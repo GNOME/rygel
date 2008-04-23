@@ -2,5 +2,13 @@
 
 	* doc/design.txt:
 
+	Simpler design:
+	- Rename MediaDb to MediaProvider.
+	- Replace MediaDbGroup and MediaDbPlugin by a single MediaDb.
+
+2008-04-13  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* doc/design.txt:
+
 	Add some more objects and description to design doc.
 

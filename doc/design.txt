@@ -3,15 +3,13 @@ objects and interfaces:
 Name: GUPnPMediaServer
 description: The MediaServer implementing singleton object.
 
+Name: GUPnPMediaProvider
+description: Interface that all Media provider/backend objects must implement.
+
 Name: GUPnPMediaDb
-description: Interface that all Media database objects must implement.
-
-Name: GUPnPMediaDbGroup
-description: Object imlementing GUPnPMediaDb that groups a bunch of MediaDb
-objects.
-
-Name: GUPnPMediaDbPlugin
-description: Object that manages plugins that provides GUPnPMediaDb objects.
+description: Object that:
+        - imlements GUPnPMediaProvider
+        - manages plugins that provides GUPnPMediaProvider
 
 Name: GUPnPMetadataExtractor
 description: Helper object providing metadata extraction facility.
