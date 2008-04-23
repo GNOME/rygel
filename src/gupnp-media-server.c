@@ -30,6 +30,8 @@
 
 #include "gupnp-media-server.h"
 
+#define HOME_DIR_ALIAS "/media"
+
 G_DEFINE_TYPE (GUPnPMediaServer,
                gupnp_media_server,
                GUPNP_TYPE_ROOT_DEVICE);
@@ -43,16 +45,19 @@ struct _GUPnPMediaServerPrivate {
         GUPnPSearchCriteriaParser *search_parser;
 };
 
-/* Hard-coded items (mime, title, path) */
+/* Hard-coded items (mime, title, path)
+ *
+ * paths are relative to home directory
+ * */
 char *items[3][4] = {
         { "4000",
           "audio/mpeg",
           "Maa",
-          "/home/zeenix/entertainment/songs/Maa.mp3" },
+          "entertainment/songs/Maa.mp3" },
         { "4001",
           "audio/mpeg",
           "Hoo",
-          "/home/zeenix/entertainment/songs/Ho.mp3" },
+          "entertainment/songs/Ho.mp3" },
         { NULL }
 };
 
@@ -108,6 +113,7 @@ gupnp_media_server_constructor (GType                  type,
         GObjectClass *object_class;
         GUPnPMediaServer *server;
         GUPnPServiceInfo *service;
+        GUPnPContext *context;
 
         object_class = G_OBJECT_CLASS (gupnp_media_server_parent_class);
         object = object_class->constructor (type,
@@ -138,6 +144,11 @@ gupnp_media_server_constructor (GType                  type,
                         g_error_free (error);
                 }
         }
+
+        context = gupnp_device_info_get_context (GUPNP_DEVICE_INFO (server));
+
+        /* Host user's home dir */
+        gupnp_context_host_path (context, g_get_home_dir (), HOME_DIR_ALIAS);
 
         return object;
 }
@@ -223,9 +234,10 @@ add_item (GUPnPContext        *context,
         gupnp_didl_lite_resource_reset (&res);
 
         /* URI */
-        res.uri = g_strdup_printf ("http://%s:%d%s",
+        res.uri = g_strdup_printf ("http://%s:%d%s/%s",
                                    gupnp_context_get_host_ip (context),
                                    gupnp_context_get_port (context),
+                                   HOME_DIR_ALIAS,
                                    path);
 
         /* Protocol info */

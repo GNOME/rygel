@@ -5,6 +5,7 @@
 	- Implement 'BrowseMetadata'.
 	- Mime-type of mp3 files should be 'audio/mpeg' rather than
 	'audio/mp3'.
+	- Host user's home directory as '/media' and update paths accordingly.
 
 2008-04-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
