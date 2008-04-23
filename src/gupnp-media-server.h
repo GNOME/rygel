@@ -23,7 +23,7 @@
 #ifndef __GUPNP_MEDIA_SERVER_H__
 #define __GUPNP_MEDIA_SERVER_H__
 
-#include "gupnp-root-device.h"
+#include <libgupnp/gupnp.h>
 
 G_BEGIN_DECLS
 
@@ -68,6 +68,11 @@ typedef struct {
         void (* _gupnp_reserved3) (void);
         void (* _gupnp_reserved4) (void);
 } GUPnPMediaServerClass;
+
+GUPnPMediaServer *
+gupnp_media_server_new             (GUPnPContext *context,
+                                    xmlDoc       *description_doc,
+                                    const char   *relative_location);
 
 G_END_DECLS
 

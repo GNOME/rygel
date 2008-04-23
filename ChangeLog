@@ -2,6 +2,14 @@
 
 	* src/gupnp-media-server.c:
 	* src/gupnp-media-server.h:
+	* src/main.c:
+
+	Implement a dummy MS.
+
+2008-04-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-media-server.c:
+	* src/gupnp-media-server.h:
 
 	Update the copyright/licence header.
 
