@@ -1,5 +1,12 @@
 2008-04-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/gupnp-media-server.c:
+	* src/gupnp-media-server.h:
+
+	Update the copyright/licence header.
+
+2008-04-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* data/xml/ConnectionManager.xml:
 	* data/xml/ContentDirectory.xml:
 	* data/xml/description.xml:
