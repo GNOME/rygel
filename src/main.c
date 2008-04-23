@@ -240,14 +240,7 @@ create_ms (void)
                                       MODIFIED_DESC_DOC,
                                       NULL);
 
-        /* Load description.xml. Loads the already-modified version, if it
-         * exists. */
-        if (g_file_test (desc_path, G_FILE_TEST_EXISTS))
-                doc = xmlParseFile (desc_path);
-        else
-                doc = xmlParseFile (DATA_DIR
-                                    G_DIR_SEPARATOR_S
-                                    DESC_DOC);
+        doc = xmlParseFile (DATA_DIR G_DIR_SEPARATOR_S DESC_DOC);
 
         if (doc == NULL)
                 return NULL;
