@@ -2,7 +2,9 @@
 
 	* src/gupnp-media-server.c:
 
-	Implement 'BrowseMetadata'.
+	- Implement 'BrowseMetadata'.
+	- Mime-type of mp3 files should be 'audio/mpeg' rather than
+	'audio/mp3'.
 
 2008-04-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
 

@@ -46,11 +46,11 @@ struct _GUPnPMediaServerPrivate {
 /* Hard-coded items (mime, title, path) */
 char *items[3][4] = {
         { "4000",
-          "audio/mp3",
+          "audio/mpeg",
           "Maa",
           "/home/zeenix/entertainment/songs/Maa.mp3" },
         { "4001",
-          "audio/mp3",
+          "audio/mpeg",
           "Hoo",
           "/home/zeenix/entertainment/songs/Ho.mp3" },
         { NULL }
