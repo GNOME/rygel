@@ -4,12 +4,12 @@
 <minor>0</minor>
 </specVersion>
 <device>
-<deviceType>urn:schemas-upnp-org:device:MediaServer:1</deviceType>
+<deviceType>urn:schemas-upnp-org:device:MediaServer:2</deviceType>
 <UDN></UDN>
 <friendlyName></friendlyName>
-<manufacturer>OpenedHand Ltd</manufacturer>
-<manufacturerURL>http://openedhand.com/</manufacturerURL>
-<modelName>rhythmbox-gupnp</modelName>
+<manufacturer>GUPnP Team</manufacturer>
+<manufacturerURL>http://www.gupnp.org/</manufacturerURL>
+<modelName>gupnp-media-server</modelName>
 <modelNumber>0.1</modelNumber>
 <modelDescription></modelDescription>
 <serialNumber>0000001</serialNumber>
@@ -17,16 +17,16 @@
 <presentationURL></presentationURL>
 <serviceList>
 <service>
-<serviceType>urn:schemas-upnp-org:service:ContentDirectory:1</serviceType>
+<serviceType>urn:schemas-upnp-org:service:ContentDirectory:2</serviceType>
 <serviceId>urn:upnp-org:serviceId:ContentDirectory</serviceId>
-<SCPDURL>/ContentDirectory.xml</SCPDURL>
+<SCPDURL>xml/ContentDirectory.xml</SCPDURL>
 <eventSubURL>/ContentDirectory/Event</eventSubURL>
 <controlURL>/ContentDirectory/Control</controlURL>
 </service>
 <service>
-<serviceType>urn:schemas-upnp-org:service:ConnectionManager:1</serviceType>
+<serviceType>urn:schemas-upnp-org:service:ConnectionManager:2</serviceType>
 <serviceId>urn:upnp-org:serviceId:ConnectionManager</serviceId>
-<SCPDURL>/ConnectionManager.xml</SCPDURL>
+<SCPDURL>xml/ConnectionManager.xml</SCPDURL>
 <eventSubURL>/ConnectionManager/Event</eventSubURL>
 <controlURL>/ConnectionManager/Control</controlURL>
 </service>
