@@ -1,22 +1,20 @@
 if UNINSTALLED
 shareddir = $(abs_top_builddir)/data
 else
-shareddir = $(datadir)/gupnp-tools
+shareddir = $(datadir)/gupnp-media-server
 endif
 
-AM_CFLAGS = $(LIBGUPNP_CFLAGS) $(LIBGLADE_CFLAGS) -I$(top_srcdir) \
-	    -DDATA_DIR='"$(shareddir)"' -I../common
+AM_CFLAGS = $(LIBGUPNP_CFLAGS) $(LIBGUPNP_AV_CFLAGS) $(LIBGCONF_CFLAGS) \
+	    -I$(top_srcdir) -DDATA_DIR='"$(shareddir)"'
 
-bin_PROGRAMS = gupnp-network-light
+bin_PROGRAMS = gupnp-media-server
 
-gupnp_network_light_SOURCES = main.c \
-			      gui.c \
-			      upnp.c \
-			      main.h \
-			      gui.h \
-			      upnp.h
-gupnp_network_light_LDADD = $(LIBGLADE_LIBS) $(LIBGUPNP_LIBS) \
-			    ../common/libicons.a
-gupnp_network_light_LDFLAGS = -export-dynamic
+gupnp_media_server_SOURCES = main.c \
+			     gupnp-media-server.h \
+			     gupnp-media-server.c
+gupnp_media_server_LDADD = $(LIBGUPNP_LIBS) \
+			   $(LIBGUPNP_AV_LIBS) \
+			   $(LIBGCONF_LIBS)
+gupnp_media_server_LDFLAGS = -export-dynamic
 
 MAINTAINERCLEANFILES = Makefile.in

@@ -1,8 +1,8 @@
-xml_DATA = network-light-desc.xml \
-	   Dimming-scpd.xml \
-	   SwitchPower-scpd.xml
+xml_DATA = description.xml \
+	   ConnectionManager.xml \
+	   ContentDirectory.xml
 
-xmldir = $(datadir)/gupnp-tools/xml
+xmldir = $(datadir)/gupnp-media-server/xml
 
 EXTRA_DIST = $(xml_DATA)
 

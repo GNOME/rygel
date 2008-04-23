@@ -1,5 +1,14 @@
 2008-04-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* configure.ac:
+	* data/Makefile.am:
+	* data/xml/Makefile.am:
+	* src/Makefile.am:
+
+	Update/fix the build system for our dummy MS.
+
+2008-04-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/gupnp-media-server.c:
 	* src/gupnp-media-server.h:
 	* src/main.c:
