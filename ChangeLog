@@ -1,3 +1,10 @@
+2008-04-23  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/main.c:
+
+	Fetch the UDN and friendlyname from gconf and set them to default
+	values if gconf keys aren't already set.
+
 2008-04-22  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/main.c:

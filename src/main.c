@@ -64,15 +64,13 @@ xml_util_get_element (xmlNode *node,
 }
 
 static GUPnPContext *
-create_context (char *desc_path)
+create_context (GConfClient *gconf_client,
+                char        *desc_path)
 {
         GUPnPContext *context;
-        GConfClient *gconf_client;
         char *host_ip;
         int port;
         GError *error;
-
-        gconf_client = gconf_client_get_default ();
 
         error = NULL;
         host_ip = gconf_client_get_string (gconf_client,
@@ -93,8 +91,6 @@ create_context (char *desc_path)
 
                 g_error_free (error);
         }
-
-        g_object_unref (gconf_client);
 
         error = NULL;
         context = gupnp_context_new (NULL, host_ip, port, &error);
@@ -119,15 +115,47 @@ create_context (char *desc_path)
         return context;
 }
 
-/* Fills the description doc @doc with a friendly name, including
- * the full name of the user, and a UDN if not already present. */
+static char *
+get_str_from_gconf (GConfClient *gconf_client,
+                    const char  *key,
+                    const char  *default_value)
+{
+        char *str;
+
+        str = gconf_client_get_string (gconf_client, key, NULL);
+        if (str == NULL) {
+                GError *error;
+
+                str = g_strdup (default_value);
+
+                error = NULL;
+                gconf_client_set_string (gconf_client, key, str, &error);
+                if (error) {
+                        g_warning ("Error setting gconf key '%s': %s.",
+                                   key,
+                                   error->message);
+
+                        g_error_free (error);
+                        g_free (str);
+
+                        str = NULL;
+                }
+        }
+
+        return str;
+}
+
+/* Fills the description doc @doc with a friendly name, and UDN from gconf. If
+ * these keys are not present in gconf, they are set with default values */
 static void
-set_friendly_name_and_udn (xmlDoc *doc)
+set_friendly_name_and_udn (xmlDoc      *doc,
+                           GConfClient *gconf_client)
 {
         xmlNode *device_element;
         xmlNode *element;
-        char *str;
+        char *str, *default_value;
         xmlChar *xml_str;
+        uuid_t id;
 
         device_element = xml_util_get_element ((xmlNode *) doc,
                                                "root",
@@ -149,7 +177,17 @@ set_friendly_name_and_udn (xmlDoc *doc)
                 return;
         }
 
-        str = g_strdup_printf ("%s's GUPnP MediaServer", g_get_real_name ());
+        default_value = g_strdup_printf ("%s's GUPnP MediaServer",
+                                         g_get_real_name ());
+        str = get_str_from_gconf (gconf_client,
+                                  GCONF_PATH "friendly-name",
+                                  default_value);
+        g_free (default_value);
+
+        if (str == NULL) {
+                return;
+        }
+
         xml_str = xmlEncodeSpecialChars (doc, (xmlChar *) str);
         g_free (str);
 
@@ -167,22 +205,23 @@ set_friendly_name_and_udn (xmlDoc *doc)
                 return;
         }
 
-        xml_str = xmlNodeGetContent (element);
-        if (!xml_str || strncmp ((char *) xml_str, "uuid:", 5)) {
-                uuid_t id;
-                char out[44];
+        default_value = g_malloc (64);
+        strcpy (default_value, "uuid:");
 
-                strcpy (out, "uuid:");
+        /* Generate new UUID */
+        uuid_generate (id);
+        uuid_unparse (id, default_value + 5);
 
-                /* Generate new UUID */
-                uuid_generate (id);
-                uuid_unparse (id, out + 5);
+        str = get_str_from_gconf (gconf_client,
+                                  GCONF_PATH "UDN",
+                                  default_value);
+        g_free (default_value);
 
-                xmlNodeSetContent (element, (xmlChar *) out);
+        if (str == NULL) {
+                return;
         }
 
-        if (xml_str)
-                xmlFree (xml_str);
+        xmlNodeSetContent (element, (xmlChar *) str);
 }
 
 static GUPnPMediaServer *
@@ -190,6 +229,7 @@ create_ms (void)
 {
         GUPnPMediaServer *server;
         GUPnPContext *context;
+        GConfClient *gconf_client;
         char *desc_path;
         xmlDoc *doc;
         FILE *f;
@@ -212,8 +252,10 @@ create_ms (void)
         if (doc == NULL)
                 return NULL;
 
+        gconf_client = gconf_client_get_default ();
+
         /* Modify description.xml to include a UDN and a friendy name */
-        set_friendly_name_and_udn (doc);
+        set_friendly_name_and_udn (doc, gconf_client);
 
         /* Save the modified description.xml into the user's config dir.
          * We do this so that we can host the modified file, and also to
@@ -233,19 +275,22 @@ create_ms (void)
 
                 g_free (desc_path);
                 xmlFreeDoc (doc);
+                g_object_unref (gconf_client);
 
                 return NULL;
         }
 
         /* Set up GUPnP context */
-        context = create_context (desc_path);
+        context = create_context (gconf_client, desc_path);
         if (!context) {
                 g_free (desc_path);
                 xmlFreeDoc (doc);
+                g_object_unref (gconf_client);
 
                 return NULL;
         }
 
+        g_object_unref (gconf_client);
         g_free (desc_path);
 
         /* Set up the root device */
