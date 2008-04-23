@@ -31,7 +31,6 @@
 #define DESC_DOC "xml/description.xml"
 #define MODIFIED_DESC_DOC "gupnp-media-server.xml"
 #define GCONF_PATH "/apps/gupnp-media-server/"
-#define DEFAULT_PORT 2700
 
 static GMainLoop *main_loop;
 
@@ -79,14 +78,10 @@ create_context (char *desc_path)
         host_ip = gconf_client_get_string (gconf_client,
                                            GCONF_PATH "host-ip",
                                            &error);
-        if (host_ip == NULL) {
-                host_ip = g_strdup (g_get_host_name ());
+        if (error) {
+                g_warning ("%s", error->message);
 
-                if (error) {
-                        g_warning ("%s", error->message);
-
-                        g_error_free (error);
-                }
+                g_error_free (error);
         }
 
         error = NULL;
@@ -94,11 +89,7 @@ create_context (char *desc_path)
                                      GCONF_PATH "port",
                                      &error);
         if (error) {
-                port = DEFAULT_PORT;
-
                 g_warning ("%s", error->message);
-                g_warning ("Failed to get port from configuration."
-                           " Assuming default: %d", port);
 
                 g_error_free (error);
         }
@@ -108,7 +99,8 @@ create_context (char *desc_path)
         error = NULL;
         context = gupnp_context_new (NULL, host_ip, port, &error);
 
-        g_free (host_ip);
+        if (host_ip)
+                g_free (host_ip);
 
         if (error) {
                 g_warning ("Error setting up GUPnP context: %s",

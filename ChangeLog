@@ -1,3 +1,10 @@
+2008-04-22  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/main.c:
+
+	Let the context choose the hostname/IP and port for us if not
+	specified in gconf.
+
 2008-04-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/gupnp-media-server.c:
