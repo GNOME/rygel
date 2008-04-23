@@ -1,0 +1,3 @@
+SUBDIRS = xml
+
+MAINTAINERCLEANFILES = Makefile.in
