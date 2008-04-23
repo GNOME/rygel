@@ -6,6 +6,10 @@
 	- Rename MediaDb to MediaProvider.
 	- Replace MediaDbGroup and MediaDbPlugin by a single MediaDb.
 
+	* TODO:
+
+	Add TODO file and put the general plan in there.
+
 2008-04-13  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* doc/design.txt:
