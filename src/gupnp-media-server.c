@@ -156,6 +156,32 @@ gupnp_media_server_class_init (GUPnPMediaServerClass *klass)
 }
 
 static void
+add_root_container (GUPnPDIDLLiteWriter *didl_writer)
+{
+        guint child_count;
+
+        /* Count items */
+        for (child_count = 0; items[child_count][0]; child_count++);
+
+        gupnp_didl_lite_writer_start_container (didl_writer,
+                                                "0",
+                                                "-1",
+                                                child_count,
+                                                FALSE,
+                                                FALSE);
+
+        gupnp_didl_lite_writer_add_string
+                        (didl_writer,
+                         "class",
+                         GUPNP_DIDL_LITE_WRITER_NAMESPACE_UPNP,
+                         NULL,
+                         "object.container.storageFolder");
+
+        /* End of Container */
+        gupnp_didl_lite_writer_end_container (didl_writer);
+}
+
+static void
 add_item (GUPnPContext        *context,
           GUPnPDIDLLiteWriter *didl_writer,
           const char          *id,
@@ -255,6 +281,66 @@ browse_direct_children (GUPnPMediaServer *server, guint *num_returned)
         return result;
 }
 
+static char *
+get_metadata (GUPnPMediaServer *server,
+              const char       *object_id,
+              guint            *num_returned)
+{
+        GUPnPContext *context;
+        char *result;
+        guint i;
+
+        context = gupnp_device_info_get_context (GUPNP_DEVICE_INFO (server));
+
+        /* Start DIDL-Lite fragment */
+        gupnp_didl_lite_writer_start_didl_lite (server->priv->didl_writer,
+                                                NULL,
+                                                NULL,
+                                                TRUE);
+        *num_returned = 0;
+        if (strcmp (object_id, "0") == 0) {
+                        add_root_container (server->priv->didl_writer);
+
+                        *num_returned = 1;
+        } else {
+                /* Find and add the item */
+                for (i = 0; items[i][0]; i++) {
+                        if (strcmp (object_id, items[i][0]) == 0) {
+                                add_item (context,
+                                          server->priv->didl_writer,
+                                          items[i][0],
+                                          "0",
+                                          items[i][1],
+                                          items[i][2],
+                                          items[i][3]);
+
+                                *num_returned = 1;
+
+                                break;
+                        }
+                }
+        }
+
+        if (*num_returned != 0) {
+                const char *didl;
+
+                /* End DIDL-Lite fragment */
+                gupnp_didl_lite_writer_end_didl_lite
+                                        (server->priv->didl_writer);
+
+                /* Retrieve generated string */
+                didl = gupnp_didl_lite_writer_get_string
+                                        (server->priv->didl_writer);
+                result = g_strdup (didl);
+        } else
+                result = NULL;
+
+        /* Reset the parser state */
+        gupnp_didl_lite_writer_reset (server->priv->didl_writer);
+
+        return result;
+}
+
 /* Browse action implementation */
 void
 browse_cb (GUPnPService       *service,
@@ -300,10 +386,14 @@ browse_cb (GUPnPService       *service,
         }
 
         if (browse_metadata) {
-                gupnp_service_action_return_error
-                        (action, 709, "Not implemented");
+                result = get_metadata (server, object_id, &num_returned);
 
-                goto OUT;
+                if (result == NULL) {
+                        gupnp_service_action_return_error
+                                (action, 701, "No such object");
+
+                        goto OUT;
+                }
         } else {
                 /* We only have a root object */
                 if (strcmp (object_id, "0")) {
@@ -312,9 +402,9 @@ browse_cb (GUPnPService       *service,
 
                         goto OUT;
                 }
-        }
 
-        result = browse_direct_children (server, &num_returned);
+                result = browse_direct_children (server, &num_returned);
+        }
 
         /* Set action return arguments */
         gupnp_service_action_set (action,

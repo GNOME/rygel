@@ -1,5 +1,11 @@
 2008-04-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/gupnp-media-server.c:
+
+	Implement 'BrowseMetadata'.
+
+2008-04-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* configure.ac:
 	* data/Makefile.am:
 	* data/xml/Makefile.am:
