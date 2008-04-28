@@ -27,10 +27,16 @@
 #include <string.h>
 #include <libgupnp/gupnp.h>
 #include <libgupnp-av/gupnp-av.h>
+#include <dbus/dbus-glib.h>
 
 #include "gupnp-media-tracker.h"
 
 #define HOME_DIR_ALIAS "/media"
+
+#define TRACKER_SERVICE "org.freedesktop.Tracker"
+#define TRACKER_PATH "/org/freedesktop/tracker"
+
+#define METADATA_IFACE "org.freedesktop.Tracker.Metadata"
 
 G_DEFINE_TYPE (GUPnPMediaTracker,
                gupnp_media_tracker,
@@ -40,6 +46,8 @@ struct _GUPnPMediaTrackerPrivate {
         char *root_id;
 
         GUPnPContext *context;
+
+        DBusGProxy *metadata_proxy;
 
         GUPnPDIDLLiteWriter *didl_writer;
         GUPnPSearchCriteriaParser *search_parser;
@@ -51,20 +59,11 @@ enum {
         PROP_CONTEXT
 };
 
-/* Hard-coded items (mime, title, path)
- *
- * paths are relative to home directory
+/* Hard-coded item paths, relative to home directory.
  * */
-static char *items[3][4] = {
-        { "4000",
-          "audio/mpeg",
-          "Maa",
-          "entertainment/songs/Maa.mp3" },
-        { "4001",
-          "audio/mpeg",
-          "Hoo",
-          "entertainment/songs/Ho.mp3" },
-        { NULL }
+static char *items[] = {
+          "entertainment/songs/Maa.mp3",
+          "entertainment/songs/Ho.mp3"
 };
 
 /* GObject stuff */
@@ -97,6 +96,11 @@ gupnp_media_tracker_dispose (GObject *object)
                 tracker->priv->root_id = NULL;
         }
 
+        if (tracker->priv->metadata_proxy) {
+                g_object_unref (tracker->priv->metadata_proxy);
+                tracker->priv->metadata_proxy = NULL;
+        }
+
         /* Call super */
         object_class = G_OBJECT_CLASS (gupnp_media_tracker_parent_class);
         object_class->dispose (object);
@@ -124,6 +128,8 @@ gupnp_media_tracker_constructor (GType                  type,
         GObject *object;
         GObjectClass *object_class;
         GUPnPMediaTracker *tracker;
+        DBusGConnection *connection;
+        GError *error;
 
         object_class = G_OBJECT_CLASS (gupnp_media_tracker_parent_class);
         object = object_class->constructor (type,
@@ -135,12 +141,42 @@ gupnp_media_tracker_constructor (GType                  type,
 
         tracker = GUPNP_MEDIA_TRACKER (object);
 
+        /* Connect to session bus */
+        error = NULL;
+        connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
+        if (connection == NULL) {
+                g_critical ("Failed to connect to tracker: %s\n",
+                            error->message);
+
+                g_error_free (error);
+
+                goto error_case;
+        }
+
+        /* Create proxy to metadata interface of tracker object */
+        tracker->priv->metadata_proxy =
+                dbus_g_proxy_new_for_name (connection,
+                                           TRACKER_SERVICE,
+                                           TRACKER_PATH,
+                                           METADATA_IFACE);
+        if (tracker->priv->metadata_proxy == NULL) {
+                g_critical ("Failed to create proxy for '%s' object\n",
+                            TRACKER_PATH);
+
+                goto error_case;
+        }
+
         /* Host user's home dir */
         gupnp_context_host_path (tracker->priv->context,
                                  g_get_home_dir (),
                                  HOME_DIR_ALIAS);
 
         return object;
+
+error_case:
+        g_object_unref (object);
+
+        return NULL;
 }
 
 static void
@@ -328,6 +364,62 @@ add_item (GUPnPContext        *context,
         gupnp_didl_lite_writer_end_item (didl_writer);
 }
 
+static void
+add_item_from_db (GUPnPMediaTracker *tracker,
+                  const char        *category,
+                  const char        *path,
+                  const char        *parent_id)
+{
+        char *keys[] = {"File:Name",
+                        "File:Mime",
+                        NULL};
+        char **values;
+        char *full_path;
+        gboolean success;
+        GError *error;
+
+        full_path = g_build_filename (g_get_home_dir (),
+                                      path,
+                                      NULL);
+
+        values = NULL;
+        error = NULL;
+        /* TODO: make this async */
+        success = dbus_g_proxy_call (tracker->priv->metadata_proxy,
+                                     "Get",
+                                     &error,
+                                     G_TYPE_STRING, category,
+                                     G_TYPE_STRING, full_path,
+                                     G_TYPE_STRV, keys,
+                                     G_TYPE_INVALID,
+                                     G_TYPE_STRV, &values,
+                                     G_TYPE_INVALID);
+        g_free (full_path);
+
+        if (!success ||
+            values == NULL ||
+            values[0] == NULL ||
+            values[1] == NULL) {
+                g_critical ("failed to get metadata for %s.", path);
+
+                if (error) {
+                        g_critical ("Reason: %s\n", error->message);
+
+                        g_error_free (error);
+                }
+
+                return;
+        }
+
+        add_item (tracker->priv->context,
+                  tracker->priv->didl_writer,
+                  path,
+                  parent_id,
+                  values[1],
+                  values[0],
+                  path);
+}
+
 GUPnPMediaTracker *
 gupnp_media_tracker_new (const char   *root_id,
                          GUPnPContext *context)
@@ -366,14 +458,11 @@ gupnp_media_tracker_browse (GUPnPMediaTracker *tracker,
                                                 NULL,
                                                 TRUE);
         /* Add items */
-        for (i = 0; items[i][0]; i++)
-                add_item (tracker->priv->context,
-                          tracker->priv->didl_writer,
-                          items[i][0],
-                          tracker->priv->root_id,
-                          items[i][1],
-                          items[i][2],
-                          items[i][3]);
+        for (i = 0; items[i]; i++)
+                add_item_from_db (tracker,
+                                  "Music",
+                                  items[i],
+                                  tracker->priv->root_id);
 
         /* End DIDL-Lite fragment */
         gupnp_didl_lite_writer_end_didl_lite (tracker->priv->didl_writer);
@@ -417,14 +506,11 @@ gupnp_media_tracker_get_metadata (GUPnPMediaTracker *tracker,
         } else {
                 /* Find and add the item */
                 for (i = 0; items[i][0]; i++) {
-                        if (strcmp (object_id, items[i][0]) == 0) {
-                                add_item (tracker->priv->context,
-                                          tracker->priv->didl_writer,
-                                          items[i][0],
-                                          tracker->priv->root_id,
-                                          items[i][1],
-                                          items[i][2],
-                                          items[i][3]);
+                        if (strcmp (object_id, items[i]) == 0) {
+                                add_item_from_db (tracker,
+                                                  "Music",
+                                                  items[i],
+                                                  tracker->priv->root_id);
 
                                 found = TRUE;
 

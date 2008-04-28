@@ -1,3 +1,11 @@
+2008-04-29  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* configure.ac:
+	* src/Makefile.am:
+	* src/gupnp-media-tracker.c:
+
+	Start using tracker for fetching the metadata.
+
 2008-04-28  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/Makefile.am:
