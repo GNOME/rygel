@@ -29,6 +29,7 @@
 #include <libgupnp-av/gupnp-av.h>
 
 #include "gupnp-media-server.h"
+#include "gupnp-media-tracker.h"
 
 #define HOME_DIR_ALIAS "/media"
 
@@ -41,24 +42,7 @@ struct _GUPnPMediaServerPrivate {
 
         GUPnPService *content_dir;
 
-        GUPnPDIDLLiteWriter *didl_writer;
-        GUPnPSearchCriteriaParser *search_parser;
-};
-
-/* Hard-coded items (mime, title, path)
- *
- * paths are relative to home directory
- * */
-char *items[3][4] = {
-        { "4000",
-          "audio/mpeg",
-          "Maa",
-          "entertainment/songs/Maa.mp3" },
-        { "4001",
-          "audio/mpeg",
-          "Hoo",
-          "entertainment/songs/Ho.mp3" },
-        { NULL }
+        GUPnPMediaTracker *tracker;
 };
 
 /* GObject stuff */
@@ -71,14 +55,9 @@ gupnp_media_server_dispose (GObject *object)
         server = GUPNP_MEDIA_SERVER (object);
 
         /* Free GUPnP resources */
-        if (server->priv->search_parser) {
-                g_object_unref (server->priv->search_parser);
-                server->priv->search_parser = NULL;
-        }
-
-        if (server->priv->didl_writer) {
-                g_object_unref (server->priv->didl_writer);
-                server->priv->didl_writer = NULL;
+        if (server->priv->tracker) {
+                g_object_unref (server->priv->tracker);
+                server->priv->tracker = NULL;
         }
         if (server->priv->content_dir) {
                 g_object_unref (server->priv->content_dir);
@@ -96,12 +75,6 @@ gupnp_media_server_init (GUPnPMediaServer *server)
          server->priv = G_TYPE_INSTANCE_GET_PRIVATE (server,
                                                      GUPNP_TYPE_MEDIA_SERVER,
                                                      GUPnPMediaServerPrivate);
-
-         /* Create a new DIDL-Lite writer */
-        server->priv->didl_writer = gupnp_didl_lite_writer_new ();
-
-        /* Create a new search criteria parser */
-        server->priv->search_parser = gupnp_search_criteria_parser_new ();
 }
 
 static GObject *
@@ -147,8 +120,7 @@ gupnp_media_server_constructor (GType                  type,
 
         context = gupnp_device_info_get_context (GUPNP_DEVICE_INFO (server));
 
-        /* Host user's home dir */
-        gupnp_context_host_path (context, g_get_home_dir (), HOME_DIR_ALIAS);
+        server->priv->tracker = gupnp_media_tracker_new ("0", context);
 
         return object;
 }
@@ -166,193 +138,6 @@ gupnp_media_server_class_init (GUPnPMediaServerClass *klass)
         g_type_class_add_private (klass, sizeof (GUPnPMediaServerPrivate));
 }
 
-static void
-add_root_container (GUPnPDIDLLiteWriter *didl_writer)
-{
-        guint child_count;
-
-        /* Count items */
-        for (child_count = 0; items[child_count][0]; child_count++);
-
-        gupnp_didl_lite_writer_start_container (didl_writer,
-                                                "0",
-                                                "-1",
-                                                child_count,
-                                                FALSE,
-                                                FALSE);
-
-        gupnp_didl_lite_writer_add_string
-                        (didl_writer,
-                         "class",
-                         GUPNP_DIDL_LITE_WRITER_NAMESPACE_UPNP,
-                         NULL,
-                         "object.container.storageFolder");
-
-        /* End of Container */
-        gupnp_didl_lite_writer_end_container (didl_writer);
-}
-
-static void
-add_item (GUPnPContext        *context,
-          GUPnPDIDLLiteWriter *didl_writer,
-          const char          *id,
-          const char          *parent_id,
-          const char          *mime,
-          const char          *title,
-          const char          *path)
-{
-        GUPnPDIDLLiteResource res;
-
-        gupnp_didl_lite_writer_start_item (didl_writer,
-                                           id,
-                                           parent_id,
-                                           NULL,
-                                           FALSE);
-
-        /* Add fields */
-        gupnp_didl_lite_writer_add_string (didl_writer,
-                                           "title",
-                                           GUPNP_DIDL_LITE_WRITER_NAMESPACE_DC,
-                                           NULL,
-                                           title);
-
-        gupnp_didl_lite_writer_add_string
-                        (didl_writer,
-                         "class",
-                         GUPNP_DIDL_LITE_WRITER_NAMESPACE_UPNP,
-                         NULL,
-                         "object.item.audioItem.musicTrack");
-
-        gupnp_didl_lite_writer_add_string
-                        (didl_writer,
-                         "album",
-                         GUPNP_DIDL_LITE_WRITER_NAMESPACE_UPNP,
-                         NULL,
-                         "Some album");
-
-        /* Add resource data */
-        gupnp_didl_lite_resource_reset (&res);
-
-        /* URI */
-        res.uri = g_strdup_printf ("http://%s:%d%s/%s",
-                                   gupnp_context_get_host_ip (context),
-                                   gupnp_context_get_port (context),
-                                   HOME_DIR_ALIAS,
-                                   path);
-
-        /* Protocol info */
-        res.protocol_info = g_strdup_printf ("http-get:*:%s:*", mime);
-
-        gupnp_didl_lite_writer_add_res (didl_writer, &res);
-
-        /* Cleanup */
-        g_free (res.protocol_info);
-        g_free (res.uri);
-
-        /* End of item */
-        gupnp_didl_lite_writer_end_item (didl_writer);
-}
-
-static char *
-browse_direct_children (GUPnPMediaServer *server, guint *num_returned)
-{
-        GUPnPContext *context;
-        const char *didl;
-        char *result;
-        guint i;
-
-        context = gupnp_device_info_get_context (GUPNP_DEVICE_INFO (server));
-
-        /* Start DIDL-Lite fragment */
-        gupnp_didl_lite_writer_start_didl_lite (server->priv->didl_writer,
-                                                NULL,
-                                                NULL,
-                                                TRUE);
-        /* Add items */
-        for (i = 0; items[i][0]; i++)
-                add_item (context,
-                          server->priv->didl_writer,
-                          items[i][0],
-                          "0",
-                          items[i][1],
-                          items[i][2],
-                          items[i][3]);
-
-        /* End DIDL-Lite fragment */
-        gupnp_didl_lite_writer_end_didl_lite (server->priv->didl_writer);
-
-        /* Retrieve generated string */
-        didl = gupnp_didl_lite_writer_get_string (server->priv->didl_writer);
-        result = g_strdup (didl);
-
-        /* Reset the parser state */
-        gupnp_didl_lite_writer_reset (server->priv->didl_writer);
-
-        *num_returned = i;
-
-        return result;
-}
-
-static char *
-get_metadata (GUPnPMediaServer *server,
-              const char       *object_id,
-              guint            *num_returned)
-{
-        GUPnPContext *context;
-        char *result;
-        guint i;
-
-        context = gupnp_device_info_get_context (GUPNP_DEVICE_INFO (server));
-
-        /* Start DIDL-Lite fragment */
-        gupnp_didl_lite_writer_start_didl_lite (server->priv->didl_writer,
-                                                NULL,
-                                                NULL,
-                                                TRUE);
-        *num_returned = 0;
-        if (strcmp (object_id, "0") == 0) {
-                        add_root_container (server->priv->didl_writer);
-
-                        *num_returned = 1;
-        } else {
-                /* Find and add the item */
-                for (i = 0; items[i][0]; i++) {
-                        if (strcmp (object_id, items[i][0]) == 0) {
-                                add_item (context,
-                                          server->priv->didl_writer,
-                                          items[i][0],
-                                          "0",
-                                          items[i][1],
-                                          items[i][2],
-                                          items[i][3]);
-
-                                *num_returned = 1;
-
-                                break;
-                        }
-                }
-        }
-
-        if (*num_returned != 0) {
-                const char *didl;
-
-                /* End DIDL-Lite fragment */
-                gupnp_didl_lite_writer_end_didl_lite
-                                        (server->priv->didl_writer);
-
-                /* Retrieve generated string */
-                didl = gupnp_didl_lite_writer_get_string
-                                        (server->priv->didl_writer);
-                result = g_strdup (didl);
-        } else
-                result = NULL;
-
-        /* Reset the parser state */
-        gupnp_didl_lite_writer_reset (server->priv->didl_writer);
-
-        return result;
-}
-
 /* Browse action implementation */
 void
 browse_cb (GUPnPService       *service,
@@ -362,8 +147,9 @@ browse_cb (GUPnPService       *service,
         GUPnPMediaServer *server;
         char *object_id, *browse_flag;
         gboolean browse_metadata;
-        char *result;
-        guint num_returned;
+        char *result, *sort_criteria, *filter;
+        guint32 starting_index, requested_count;
+        guint32 num_returned, total_matches, update_id;
 
         server = GUPNP_MEDIA_SERVER (user_data);
 
@@ -375,6 +161,18 @@ browse_cb (GUPnPService       *service,
                                   "BrowseFlag",
                                         G_TYPE_STRING,
                                         &browse_flag,
+                                  "Filter",
+                                        G_TYPE_STRING,
+                                        &filter,
+                                  "StartingIndex",
+                                        G_TYPE_UINT,
+                                        &starting_index,
+                                  "RequestedCount",
+                                        G_TYPE_UINT,
+                                        &requested_count,
+                                  "SortCriteria",
+                                        G_TYPE_STRING,
+                                        &sort_criteria,
                                   NULL);
 
         /* BrowseFlag */
@@ -398,25 +196,37 @@ browse_cb (GUPnPService       *service,
         }
 
         if (browse_metadata) {
-                result = get_metadata (server, object_id, &num_returned);
+                result = gupnp_media_tracker_get_metadata
+                                        (server->priv->tracker,
+                                         object_id,
+                                         filter,
+                                         sort_criteria,
+                                         &update_id);
 
-                if (result == NULL) {
-                        gupnp_service_action_return_error
-                                (action, 701, "No such object");
-
-                        goto OUT;
-                }
+                num_returned = 1;
+                total_matches = 1;
         } else {
-                /* We only have a root object */
-                if (strcmp (object_id, "0")) {
-                        gupnp_service_action_return_error
-                                (action, 701, "No such object");
-
-                        goto OUT;
-                }
-
-                result = browse_direct_children (server, &num_returned);
+                result = gupnp_media_tracker_browse (server->priv->tracker,
+                                                     object_id,
+                                                     filter,
+                                                     starting_index,
+                                                     requested_count,
+                                                     sort_criteria,
+                                                     &num_returned,
+                                                     &total_matches,
+                                                     &update_id);
         }
+
+        if (result == NULL) {
+                gupnp_service_action_return_error (action,
+                                                   701,
+                                                   "No such object");
+
+                goto OUT;
+        }
+
+        if (update_id == GUPNP_INVALID_UPDATE_ID)
+                update_id = server->priv->system_update_id;
 
         /* Set action return arguments */
         gupnp_service_action_set (action,
@@ -428,10 +238,10 @@ browse_cb (GUPnPService       *service,
                                         num_returned,
                                   "TotalMatches",
                                         G_TYPE_UINT,
-                                        num_returned,
+                                        total_matches,
                                   "UpdateID",
                                         G_TYPE_UINT,
-                                        server->priv->system_update_id,
+                                        update_id,
                                   NULL);
 
         gupnp_service_action_return (action);

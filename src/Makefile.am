@@ -11,7 +11,9 @@ bin_PROGRAMS = gupnp-media-server
 
 gupnp_media_server_SOURCES = main.c \
 			     gupnp-media-server.h \
-			     gupnp-media-server.c
+			     gupnp-media-server.c \
+			     gupnp-media-tracker.h \
+			     gupnp-media-tracker.c
 gupnp_media_server_LDADD = $(LIBGUPNP_LIBS) \
 			   $(LIBGUPNP_AV_LIBS) \
 			   $(LIBGCONF_LIBS)

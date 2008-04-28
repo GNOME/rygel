@@ -1,3 +1,12 @@
+2008-04-28  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/Makefile.am:
+	* src/gupnp-media-server.c:
+	* src/gupnp-media-tracker.c:
+	* src/gupnp-media-tracker.h:
+
+	Add skeleton for tracker-based media provider.
+
 2008-04-23  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* TODO:
