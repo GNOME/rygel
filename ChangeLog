@@ -1,5 +1,12 @@
 2008-04-23  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* TODO:
+	* doc/design.txt:
+
+	Remove first goal from TODO and update the design/plan.
+
+2008-04-23  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/main.c:
 
 	- Fetch the UDN and friendlyname from gconf and set them to default

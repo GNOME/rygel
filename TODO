@@ -1,12 +1,14 @@
+Please read doc/design.txt for description of each object.
+
 Before first release:
 
-* Implement a dummy Media Server
-* Create the GUPnPMediaProvider interface
 * Implement GUPnPMediaTracker
 * Complete Media Server by starting to use GUPnPMediaTracker
 
 Before second release:
 
+* Create the GUPnPMediaProvider interface
+* Make GUPnPMediaTracker implement GUPnPMediaProvider
 * Implement GUPnPMediaDb
 * Turn GUPnPMediaTracker into a plugin
 * Use GUPnPMediaDb

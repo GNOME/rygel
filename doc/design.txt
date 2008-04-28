@@ -1,7 +1,7 @@
 objects and interfaces:
 
 Name: GUPnPMediaServer
-description: The MediaServer implementing singleton object.
+description: The main object that talks to the control-points.
 
 Name: GUPnPMediaProvider
 description: Interface that all Media provider/backend objects must implement.
@@ -10,6 +10,10 @@ Name: GUPnPMediaDb
 description: Object that:
         - imlements GUPnPMediaProvider
         - manages plugins that provides GUPnPMediaProvider
+
+Name: GUPnPMediaTracker
+description: tracker-based GUPnPMediaProvider implementation.
+             http://www.tracker-project.org
 
 Name: GUPnPMetadataExtractor
 description: Helper object providing metadata extraction facility.
