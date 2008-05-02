@@ -1,5 +1,11 @@
 2008-04-29  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/gupnp-media-tracker.c:
+
+	Fix a small typo.
+
+2008-04-29  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* configure.ac:
 	* src/Makefile.am:
 	* src/gupnp-media-tracker.c:

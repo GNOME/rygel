@@ -75,12 +75,12 @@ gupnp_media_tracker_dispose (GObject *object)
 
         tracker = GUPNP_MEDIA_TRACKER (object);
 
+        /* Free GUPnP resources */
         if (tracker->priv->context) {
                 g_object_unref (tracker->priv->context);
                 tracker->priv->context = NULL;
         }
 
-        /* Free GUPnP resources */
         if (tracker->priv->search_parser) {
                 g_object_unref (tracker->priv->search_parser);
                 tracker->priv->search_parser = NULL;
