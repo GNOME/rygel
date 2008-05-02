@@ -419,6 +419,7 @@ add_item (GUPnPContext        *context,
           const char          *path)
 {
         GUPnPDIDLLiteResource res;
+        char *escaped_path;
 
         gupnp_didl_lite_writer_start_item (didl_writer,
                                            id,
@@ -450,12 +451,16 @@ add_item (GUPnPContext        *context,
         /* Add resource data */
         gupnp_didl_lite_resource_reset (&res);
 
+        escaped_path = g_uri_escape_string (path,
+                                            NULL,
+                                            TRUE);
         /* URI */
         res.uri = g_strdup_printf ("http://%s:%d%s%s",
                                    gupnp_context_get_host_ip (context),
                                    gupnp_context_get_port (context),
                                    ROOT_DIR_ALIAS,
-                                   path);
+                                   escaped_path);
+        g_free (escaped_path);
 
         /* Protocol info */
         res.protocol_info = g_strdup_printf ("http-get:*:%s:*", mime);

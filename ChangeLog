@@ -2,9 +2,10 @@
 
 	* src/gupnp-media-tracker.c:
 
-	Host the root directory rather than user's home directory since the
-	tracker URI's are absolute file paths and it could be tracking other
-	directories as well.
+	- Host the root directory rather than user's home directory since the
+	  tracker URI's are absolute file paths and it could be tracking other
+	  directories as well.
+	- Escape the path before making a URI from it.
 
 2008-05-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
