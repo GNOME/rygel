@@ -31,7 +31,8 @@
 
 #include "gupnp-media-tracker.h"
 
-#define HOME_DIR_ALIAS "/media"
+#define ROOT_DIR       "/"
+#define ROOT_DIR_ALIAS "/media"
 
 #define TRACKER_SERVICE "org.freedesktop.Tracker"
 #define TRACKER_PATH "/org/freedesktop/tracker"
@@ -182,10 +183,10 @@ gupnp_media_tracker_constructor (GType                  type,
                 goto error_case;
         }
 
-        /* Host user's home dir */
+        /* Host the system root dir */
         gupnp_context_host_path (tracker->priv->context,
-                                 g_get_home_dir (),
-                                 HOME_DIR_ALIAS);
+                                 ROOT_DIR,
+                                 ROOT_DIR_ALIAS);
 
         return object;
 
@@ -450,10 +451,10 @@ add_item (GUPnPContext        *context,
         gupnp_didl_lite_resource_reset (&res);
 
         /* URI */
-        res.uri = g_strdup_printf ("http://%s:%d%s/%s",
+        res.uri = g_strdup_printf ("http://%s:%d%s%s",
                                    gupnp_context_get_host_ip (context),
                                    gupnp_context_get_port (context),
-                                   HOME_DIR_ALIAS,
+                                   ROOT_DIR_ALIAS,
                                    path);
 
         /* Protocol info */
