@@ -2,8 +2,9 @@
 
 	* src/gupnp-media-tracker.c:
 
-	In Browse() implementation, respect 'StartingIndex' and
-	'RequestedCount' params.
+	In Browse() implementation,
+	- respect 'StartingIndex' and 'RequestedCount' params.
+	- Never return more than 128 items in a single reply.
 
 2008-05-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
 

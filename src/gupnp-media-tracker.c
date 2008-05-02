@@ -44,6 +44,8 @@
 #define G_TYPE_PTR_ARRAY \
         (dbus_g_type_get_collection ("GPtrArray", G_TYPE_STRV))
 
+#define MAX_REQUESTED_COUNT 128
+
 G_DEFINE_TYPE (GUPnPMediaTracker,
                gupnp_media_tracker,
                G_TYPE_OBJECT);
@@ -683,6 +685,9 @@ gupnp_media_tracker_browse (GUPnPMediaTracker *tracker,
                                                      tracker->priv->root_id);
                 *total_matches = *number_returned;
         } else {
+                if (requested_count == 0)
+                        requested_count = MAX_REQUESTED_COUNT;
+
                 *number_returned =
                         add_container_children_from_db (tracker,
                                                         container_id,
