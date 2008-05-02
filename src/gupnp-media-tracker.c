@@ -525,9 +525,8 @@ add_item_from_db (GUPnPMediaTracker *tracker,
 }
 
 static guint
-add_container_children_from_db (GUPnPMediaTracker   *tracker,
-                                const char          *container_id,
-                                const char          *parent_id)
+add_container_children_from_db (GUPnPMediaTracker *tracker,
+                                const char        *container_id)
 {
         guint i;
         char **children;
@@ -620,8 +619,7 @@ gupnp_media_tracker_browse (GUPnPMediaTracker *tracker,
         } else {
                 *number_returned =
                         add_container_children_from_db (tracker,
-                                                        container_id,
-                                                        tracker->priv->root_id);
+                                                        container_id);
         }
 
         if (*number_returned > 0) {
