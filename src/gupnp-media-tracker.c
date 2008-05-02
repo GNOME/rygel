@@ -39,6 +39,10 @@
 
 #define METADATA_IFACE "org.freedesktop.Tracker.Metadata"
 #define FILES_IFACE "org.freedesktop.Tracker.Files"
+#define TRACKER_IFACE "org.freedesktop.Tracker"
+
+#define G_TYPE_PTR_ARRAY \
+        (dbus_g_type_get_collection ("GPtrArray", G_TYPE_STRV))
 
 G_DEFINE_TYPE (GUPnPMediaTracker,
                gupnp_media_tracker,
@@ -51,6 +55,7 @@ struct _GUPnPMediaTrackerPrivate {
 
         DBusGProxy *metadata_proxy;
         DBusGProxy *files_proxy;
+        DBusGProxy *tracker_proxy;
 
         GUPnPDIDLLiteWriter *didl_writer;
         GUPnPSearchCriteriaParser *search_parser;
@@ -108,6 +113,12 @@ gupnp_media_tracker_dispose (GObject *object)
                 g_object_unref (tracker->priv->files_proxy);
                 tracker->priv->files_proxy = NULL;
         }
+
+        if (tracker->priv->tracker_proxy) {
+                g_object_unref (tracker->priv->tracker_proxy);
+                tracker->priv->tracker_proxy = NULL;
+        }
+
 
         /* Call super */
         object_class = G_OBJECT_CLASS (gupnp_media_tracker_parent_class);
@@ -168,15 +179,24 @@ gupnp_media_tracker_constructor (GType                  type,
                                            TRACKER_PATH,
                                            METADATA_IFACE);
 
-        /* Also a proxy to Files interface */
+        /* A proxy to Files interface */
         tracker->priv->files_proxy =
                 dbus_g_proxy_new_for_name (connection,
                                            TRACKER_SERVICE,
                                            TRACKER_PATH,
                                            FILES_IFACE);
 
+        /* A proxy to Tracker interface */
+        tracker->priv->tracker_proxy =
+                dbus_g_proxy_new_for_name (connection,
+                                           TRACKER_SERVICE,
+                                           TRACKER_PATH,
+                                           TRACKER_IFACE);
+
+
         if (tracker->priv->metadata_proxy == NULL ||
-            tracker->priv->files_proxy == NULL) {
+            tracker->priv->files_proxy == NULL ||
+            tracker->priv->tracker_proxy == NULL) {
                 g_critical ("Failed to create a proxy for '%s' object\n",
                             TRACKER_PATH);
 
@@ -340,12 +360,56 @@ add_root_container (const char          *root_id,
                        didl_writer);
 }
 
+static guint32
+get_container_children_count (GUPnPMediaTracker *tracker,
+                              const char        *container_id)
+{
+        GError *error;
+        GPtrArray *array;
+        guint32 count;
+        guint i;
+
+        array = NULL;
+        error = NULL;
+        if (!dbus_g_proxy_call (tracker->priv->tracker_proxy,
+                                "GetStats",
+                                &error,
+                                G_TYPE_INVALID,
+                                G_TYPE_PTR_ARRAY, &array,
+                                G_TYPE_INVALID)) {
+                g_critical ("error getting file list: %s", error->message);
+                g_error_free (error);
+
+                return 0;
+        }
+
+        count = 0;
+        for (i = 0; i < array->len; i++) {
+                char **stat;
+
+                stat = g_ptr_array_index (array, i);
+
+                if (strcmp (stat[0], container_id) == 0)
+                        count = atoi (stat[1]);
+        }
+
+        g_ptr_array_free (array, TRUE);
+
+        return count;
+}
+
 static char **
 get_container_children_from_db (GUPnPMediaTracker *tracker,
-                                const char        *container_id)
+                                const char        *container_id,
+                                guint32           *child_count)
 {
         GError *error;
         char **result;
+
+        *child_count = get_container_children_count (tracker, container_id);
+
+        if (*child_count == 0)
+                return NULL;
 
         result = NULL;
         error = NULL;
@@ -374,22 +438,14 @@ add_container_from_db (GUPnPMediaTracker   *tracker,
                        const char          *parent_id)
 {
         guint child_count;
-        char **children;
 
-        children = get_container_children_from_db (tracker, container_id);
-        if (children == NULL)
-                return FALSE;
-
-        /* Count items */
-        for (child_count = 0; children[child_count]; child_count++);
+        child_count = get_container_children_count (tracker, container_id);
 
         add_container (container_id,
                        parent_id,
                        container_id,
                        child_count,
                        tracker->priv->didl_writer);
-
-        g_strfreev (children);
 
         return TRUE;
 }
@@ -528,15 +584,18 @@ static guint
 add_container_children_from_db (GUPnPMediaTracker *tracker,
                                 const char        *container_id)
 {
+        guint32 child_count;
         guint i;
         char **children;
 
-        children = get_container_children_from_db (tracker, container_id);
+        children = get_container_children_from_db (tracker,
+                                                   container_id,
+                                                   &child_count);
         if (children == NULL)
                 return 0;
 
         /* Iterate through all items */
-        for (i = 0; children[i]; i++) {
+        for (i = 0; i < child_count; i++) {
                 add_item_from_db (tracker,
                                   container_id,
                                   children[i],
