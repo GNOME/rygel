@@ -37,6 +37,7 @@
 #define TRACKER_PATH "/org/freedesktop/tracker"
 
 #define METADATA_IFACE "org.freedesktop.Tracker.Metadata"
+#define FILES_IFACE "org.freedesktop.Tracker.Files"
 
 G_DEFINE_TYPE (GUPnPMediaTracker,
                gupnp_media_tracker,
@@ -48,6 +49,7 @@ struct _GUPnPMediaTrackerPrivate {
         GUPnPContext *context;
 
         DBusGProxy *metadata_proxy;
+        DBusGProxy *files_proxy;
 
         GUPnPDIDLLiteWriter *didl_writer;
         GUPnPSearchCriteriaParser *search_parser;
@@ -59,11 +61,11 @@ enum {
         PROP_CONTEXT
 };
 
-/* Hard-coded item paths, relative to home directory.
- * */
-static char *items[] = {
-          "entertainment/songs/Maa.mp3",
-          "entertainment/songs/Ho.mp3"
+static char *containers[] = {
+        "Images",
+        "Music",
+        "Videos",
+        NULL
 };
 
 /* GObject stuff */
@@ -99,6 +101,11 @@ gupnp_media_tracker_dispose (GObject *object)
         if (tracker->priv->metadata_proxy) {
                 g_object_unref (tracker->priv->metadata_proxy);
                 tracker->priv->metadata_proxy = NULL;
+        }
+
+        if (tracker->priv->files_proxy) {
+                g_object_unref (tracker->priv->files_proxy);
+                tracker->priv->files_proxy = NULL;
         }
 
         /* Call super */
@@ -159,8 +166,17 @@ gupnp_media_tracker_constructor (GType                  type,
                                            TRACKER_SERVICE,
                                            TRACKER_PATH,
                                            METADATA_IFACE);
-        if (tracker->priv->metadata_proxy == NULL) {
-                g_critical ("Failed to create proxy for '%s' object\n",
+
+        /* Also a proxy to Files interface */
+        tracker->priv->files_proxy =
+                dbus_g_proxy_new_for_name (connection,
+                                           TRACKER_SERVICE,
+                                           TRACKER_PATH,
+                                           FILES_IFACE);
+
+        if (tracker->priv->metadata_proxy == NULL ||
+            tracker->priv->files_proxy == NULL) {
+                g_critical ("Failed to create a proxy for '%s' object\n",
                             TRACKER_PATH);
 
                 goto error_case;
@@ -277,17 +293,15 @@ gupnp_media_tracker_class_init (GUPnPMediaTrackerClass *klass)
 }
 
 static void
-add_root_container (const char          *root_id,
-                    GUPnPDIDLLiteWriter *didl_writer)
+add_container (const char          *id,
+               const char          *parent_id,
+               const char          *title,
+               guint                child_count,
+               GUPnPDIDLLiteWriter *didl_writer)
 {
-        guint child_count;
-
-        /* Count items */
-        for (child_count = 0; items[child_count][0]; child_count++);
-
         gupnp_didl_lite_writer_start_container (didl_writer,
-                                                root_id,
-                                                "-1",
+                                                id,
+                                                parent_id,
                                                 child_count,
                                                 FALSE,
                                                 FALSE);
@@ -299,8 +313,99 @@ add_root_container (const char          *root_id,
                          NULL,
                          "object.container.storageFolder");
 
+        gupnp_didl_lite_writer_add_string (didl_writer,
+                                           "title",
+                                           GUPNP_DIDL_LITE_WRITER_NAMESPACE_DC,
+                                           NULL,
+                                           title);
+
         /* End of Container */
         gupnp_didl_lite_writer_end_container (didl_writer);
+}
+
+static void
+add_root_container (const char          *root_id,
+                    GUPnPDIDLLiteWriter *didl_writer)
+{
+        guint child_count;
+
+        /* Count items */
+        for (child_count = 0; containers[child_count]; child_count++);
+
+        add_container (root_id,
+                       "-1",
+                       root_id,
+                       child_count,
+                       didl_writer);
+}
+
+static char **
+get_container_children_from_db (GUPnPMediaTracker *tracker,
+                                const char        *container_id)
+{
+        GError *error;
+        char **result;
+
+        result = NULL;
+        error = NULL;
+        if (!dbus_g_proxy_call (tracker->priv->files_proxy,
+                                "GetByServiceType",
+                                &error,
+                                G_TYPE_INT, 0,
+                                G_TYPE_STRING, container_id,
+                                G_TYPE_INT, 1,
+                                G_TYPE_INT, -1,
+                                G_TYPE_INVALID,
+                                G_TYPE_STRV, &result,
+                                G_TYPE_INVALID)) {
+                g_critical ("error getting file list: %s", error->message);
+                g_error_free (error);
+
+                return NULL;
+        }
+
+        return result;
+}
+
+static gboolean
+add_container_from_db (GUPnPMediaTracker   *tracker,
+                       const char          *container_id,
+                       const char          *parent_id)
+{
+        guint child_count;
+        char **children;
+
+        children = get_container_children_from_db (tracker, container_id);
+        if (children == NULL)
+                return FALSE;
+
+        /* Count items */
+        for (child_count = 0; children[child_count]; child_count++);
+
+        add_container (container_id,
+                       parent_id,
+                       container_id,
+                       child_count,
+                       tracker->priv->didl_writer);
+
+        g_strfreev (children);
+
+        return TRUE;
+}
+
+static guint
+add_root_container_children (GUPnPMediaTracker *tracker,
+                             const char        *root_id)
+{
+        guint i;
+
+        for (i = 0; containers[i]; i++) {
+                add_container_from_db (tracker,
+                                       containers[i],
+                                       tracker->priv->root_id);
+        }
+
+        return i;
 }
 
 static void
@@ -364,7 +469,7 @@ add_item (GUPnPContext        *context,
         gupnp_didl_lite_writer_end_item (didl_writer);
 }
 
-static void
+static gboolean
 add_item_from_db (GUPnPMediaTracker *tracker,
                   const char        *category,
                   const char        *path,
@@ -374,13 +479,8 @@ add_item_from_db (GUPnPMediaTracker *tracker,
                         "File:Mime",
                         NULL};
         char **values;
-        char *full_path;
         gboolean success;
         GError *error;
-
-        full_path = g_build_filename (g_get_home_dir (),
-                                      path,
-                                      NULL);
 
         values = NULL;
         error = NULL;
@@ -389,13 +489,11 @@ add_item_from_db (GUPnPMediaTracker *tracker,
                                      "Get",
                                      &error,
                                      G_TYPE_STRING, category,
-                                     G_TYPE_STRING, full_path,
+                                     G_TYPE_STRING, path,
                                      G_TYPE_STRV, keys,
                                      G_TYPE_INVALID,
                                      G_TYPE_STRV, &values,
                                      G_TYPE_INVALID);
-        g_free (full_path);
-
         if (!success ||
             values == NULL ||
             values[0] == NULL ||
@@ -407,17 +505,72 @@ add_item_from_db (GUPnPMediaTracker *tracker,
 
                         g_error_free (error);
                 }
-
-                return;
+        } else {
+                add_item (tracker->priv->context,
+                          tracker->priv->didl_writer,
+                          path,
+                          parent_id,
+                          values[1],
+                          values[0],
+                          path);
         }
 
-        add_item (tracker->priv->context,
-                  tracker->priv->didl_writer,
-                  path,
-                  parent_id,
-                  values[1],
-                  values[0],
-                  path);
+        return success;
+}
+
+static guint
+add_container_children_from_db (GUPnPMediaTracker   *tracker,
+                                const char          *container_id,
+                                const char          *parent_id)
+{
+        guint i;
+        char **children;
+
+        children = get_container_children_from_db (tracker, container_id);
+        if (children == NULL)
+                return 0;
+
+        /* Iterate through all items */
+        for (i = 0; children[i]; i++) {
+                add_item_from_db (tracker,
+                                  container_id,
+                                  children[i],
+                                  container_id);
+        }
+
+        g_strfreev (children);
+
+        return i;
+}
+
+static char *
+get_item_category (GUPnPMediaTracker *tracker,
+                   const char        *uri)
+{
+        char *category;
+        GError *error;
+        gboolean success;
+
+        category = NULL;
+        error = NULL;
+        success = dbus_g_proxy_call (tracker->priv->files_proxy,
+                                     "GetServiceType",
+                                     &error,
+                                     G_TYPE_STRING, uri,
+                                     G_TYPE_INVALID,
+                                     G_TYPE_STRING, &category,
+                                     G_TYPE_INVALID);
+        if (!success || category == NULL) {
+                g_critical ("failed to find service type for %s.", uri);
+
+                if (error) {
+                        g_critical ("Reason: %s\n", error->message);
+
+                        g_error_free (error);
+                }
+        }
+
+        return category;
 }
 
 GUPnPMediaTracker *
@@ -447,36 +600,42 @@ gupnp_media_tracker_browse (GUPnPMediaTracker *tracker,
 {
         const char *didl;
         char *result;
-        guint i;
-
-        if (strcmp (container_id, tracker->priv->root_id) != 0)
-                return NULL;
 
         /* Start DIDL-Lite fragment */
         gupnp_didl_lite_writer_start_didl_lite (tracker->priv->didl_writer,
                                                 NULL,
                                                 NULL,
                                                 TRUE);
-        /* Add items */
-        for (i = 0; items[i]; i++)
-                add_item_from_db (tracker,
-                                  "Music",
-                                  items[i],
-                                  tracker->priv->root_id);
 
-        /* End DIDL-Lite fragment */
-        gupnp_didl_lite_writer_end_didl_lite (tracker->priv->didl_writer);
+        if (strcmp (container_id, tracker->priv->root_id) == 0) {
+                *number_returned =
+                        add_root_container_children (tracker,
+                                                     tracker->priv->root_id);
+        } else {
+                *number_returned =
+                        add_container_children_from_db (tracker,
+                                                        container_id,
+                                                        tracker->priv->root_id);
+        }
 
-        /* Retrieve generated string */
-        didl = gupnp_didl_lite_writer_get_string (tracker->priv->didl_writer);
-        result = g_strdup (didl);
+        if (*number_returned > 0) {
+                /* End DIDL-Lite fragment */
+                gupnp_didl_lite_writer_end_didl_lite
+                                (tracker->priv->didl_writer);
+
+                /* Retrieve generated string */
+                didl = gupnp_didl_lite_writer_get_string
+                                (tracker->priv->didl_writer);
+                result = g_strdup (didl);
+
+                *total_matches = *number_returned;
+                *update_id = GUPNP_INVALID_UPDATE_ID;
+        } else
+                result = NULL;
+
 
         /* Reset the parser state */
         gupnp_didl_lite_writer_reset (tracker->priv->didl_writer);
-
-        *number_returned = i;
-        *total_matches = *number_returned;
-        *update_id = GUPNP_INVALID_UPDATE_ID;
 
         return result;
 }
@@ -504,17 +663,32 @@ gupnp_media_tracker_get_metadata (GUPnPMediaTracker *tracker,
 
                         found = TRUE;
         } else {
-                /* Find and add the item */
-                for (i = 0; items[i][0]; i++) {
-                        if (strcmp (object_id, items[i]) == 0) {
-                                add_item_from_db (tracker,
-                                                  "Music",
-                                                  items[i],
-                                                  tracker->priv->root_id);
+                /* First try the containers */
+                for (i = 0; containers[i]; i++) {
+                        if (strcmp (object_id, containers[i]) == 0) {
+                                add_container_from_db (tracker,
+                                                       containers[i],
+                                                       tracker->priv->root_id);
 
                                 found = TRUE;
 
                                 break;
+                        }
+                }
+
+                if (!found) {
+                        /* Now try items */
+                        char *category;
+
+                        category = get_item_category (tracker, object_id);
+
+                        if (category != NULL) {
+                                found = add_item_from_db (tracker,
+                                                          category,
+                                                          object_id,
+                                                          category);
+
+                                g_free (category);
                         }
                 }
         }
