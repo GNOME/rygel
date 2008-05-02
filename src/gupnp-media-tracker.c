@@ -401,6 +401,8 @@ get_container_children_count (GUPnPMediaTracker *tracker,
 static char **
 get_container_children_from_db (GUPnPMediaTracker *tracker,
                                 const char        *container_id,
+                                guint32            offset,
+                                guint32            max_count,
                                 guint32           *child_count)
 {
         GError *error;
@@ -418,8 +420,8 @@ get_container_children_from_db (GUPnPMediaTracker *tracker,
                                 &error,
                                 G_TYPE_INT, 0,
                                 G_TYPE_STRING, container_id,
-                                G_TYPE_INT, 0,
-                                G_TYPE_INT, -1,
+                                G_TYPE_INT, offset,
+                                G_TYPE_INT, max_count,
                                 G_TYPE_INVALID,
                                 G_TYPE_STRV, &result,
                                 G_TYPE_INVALID)) {
@@ -582,20 +584,24 @@ add_item_from_db (GUPnPMediaTracker *tracker,
 
 static guint
 add_container_children_from_db (GUPnPMediaTracker *tracker,
-                                const char        *container_id)
+                                const char        *container_id,
+                                guint32            offset,
+                                guint32            max_count,
+                                guint32           *child_count)
 {
-        guint32 child_count;
         guint i;
         char **children;
 
         children = get_container_children_from_db (tracker,
                                                    container_id,
-                                                   &child_count);
+                                                   offset,
+                                                   max_count,
+                                                   child_count);
         if (children == NULL)
                 return 0;
 
         /* Iterate through all items */
-        for (i = 0; i < child_count; i++) {
+        for (i = 0; children[i]; i++) {
                 add_item_from_db (tracker,
                                   container_id,
                                   children[i],
@@ -675,10 +681,14 @@ gupnp_media_tracker_browse (GUPnPMediaTracker *tracker,
                 *number_returned =
                         add_root_container_children (tracker,
                                                      tracker->priv->root_id);
+                *total_matches = *number_returned;
         } else {
                 *number_returned =
                         add_container_children_from_db (tracker,
-                                                        container_id);
+                                                        container_id,
+                                                        starting_index,
+                                                        requested_count,
+                                                        total_matches);
         }
 
         if (*number_returned > 0) {
@@ -691,11 +701,9 @@ gupnp_media_tracker_browse (GUPnPMediaTracker *tracker,
                                 (tracker->priv->didl_writer);
                 result = g_strdup (didl);
 
-                *total_matches = *number_returned;
                 *update_id = GUPNP_INVALID_UPDATE_ID;
         } else
                 result = NULL;
-
 
         /* Reset the parser state */
         gupnp_didl_lite_writer_reset (tracker->priv->didl_writer);
