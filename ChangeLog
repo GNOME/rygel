@@ -2,7 +2,8 @@
 
 	* src/gupnp-media-tracker.c:
 
-	Use tracker to get the number of items in a category.
+	- Use tracker to get the number of items in a category.
+	- offset param to Files.GetByServiceType method is zero-based.
 
 2008-05-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
