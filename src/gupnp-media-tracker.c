@@ -523,12 +523,13 @@ add_item (GUPnPContext        *context,
         g_free (escaped_path);
 
         /* Protocol info */
-        res.protocol_info = g_strdup_printf ("http-get:*:%s:*", mime);
+        res.protocol = "http-get";
+        res.mime_type = (char *) mime;
+        res.dlna_profile = "MP3"; /* FIXME */
 
         gupnp_didl_lite_writer_add_res (didl_writer, &res);
 
         /* Cleanup */
-        g_free (res.protocol_info);
         g_free (res.uri);
 
         /* End of item */

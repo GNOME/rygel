@@ -1,3 +1,12 @@
+2008-05-03  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-media-tracker.c:
+
+	Adapt to latest didl writer API. We put a fake 'MP3' for all items in
+	the DLNA's PN field for each item. This should fix the playback of mp3
+	contents on DLNA-compliant MRs and CPs without breaking the playback of
+	non-mp3 contents on non-DLNA compliant MRs/CPs.
+
 2008-05-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/gupnp-media-tracker.c:
