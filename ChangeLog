@@ -1,3 +1,9 @@
+2008-05-05  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* data/xml/description.xml:
+
+	Steal some more DLNA bits from rhythmbox GUPnP plugin.
+
 2008-05-03  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/gupnp-media-tracker.c:
