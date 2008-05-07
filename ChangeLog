@@ -1,3 +1,9 @@
+2008-05-07  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-media-server.c:
+
+	Retrieve the services in version agnostic way.
+
 2008-05-06  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* data/xml/X_MS_MediaReceiverRegistrar1.xml:

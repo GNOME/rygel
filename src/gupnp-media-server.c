@@ -106,7 +106,7 @@ gupnp_media_server_constructor (GType                  type,
         /* Connect ContentDirectory signals */
         service = gupnp_device_info_get_service
                         (GUPNP_DEVICE_INFO (server),
-                         "urn:schemas-upnp-org:service:ContentDirectory:2");
+                         "urn:schemas-upnp-org:service:ContentDirectory");
         if (service != NULL) {
                 GError *error;
 
@@ -127,7 +127,7 @@ gupnp_media_server_constructor (GType                  type,
         service = gupnp_device_info_get_service
                         (GUPNP_DEVICE_INFO (server),
                          "urn:microsoft.com:service"
-                         ":X_MS_MediaReceiverRegistrar:1");
+                         ":X_MS_MediaReceiverRegistrar");
         if (service != NULL) {
                 GError *error;
 
