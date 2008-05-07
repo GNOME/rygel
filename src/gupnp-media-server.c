@@ -215,10 +215,18 @@ browse_cb (GUPnPService       *service,
 
         /* ObjectID */
         if (!object_id) {
-                gupnp_service_action_return_error
-                        (action, 701, "No such object");
+                /* Stupid Xbox */
+                gupnp_service_action_get (action,
+                                          "ContainerID",
+                                          G_TYPE_STRING,
+                                          &object_id,
+                                          NULL);
+                if (!object_id) {
+                        gupnp_service_action_return_error
+                                (action, 701, "No such object");
 
-                goto OUT;
+                        goto OUT;
+                }
         }
 
         if (browse_metadata) {

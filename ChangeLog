@@ -1,3 +1,9 @@
+2008-05-08  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-media-server.c:
+
+	Xbox 360 uses 'ContainerID' instead of 'ObjectID' for cotainers.
+
 2008-05-07  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* data/xml/Makefile.am:
