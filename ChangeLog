@@ -1,5 +1,11 @@
 2008-05-07  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* data/xml/Makefile.am:
+
+	Add the newly added xbox 360 specific xml files to build.
+
+2008-05-07  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* data/xml/description-xbox360.xml:
 	* src/main.c:
 

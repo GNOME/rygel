@@ -1,6 +1,8 @@
 xml_DATA = description.xml \
 	   ConnectionManager.xml \
-	   ContentDirectory.xml
+	   ContentDirectory.xml \
+	   X_MS_MediaReceiverRegistrar1.xml \
+	   description-xbox360.xml
 
 xmldir = $(datadir)/gupnp-media-server/xml
 
