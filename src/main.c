@@ -145,6 +145,63 @@ get_str_from_gconf (GConfClient *gconf_client,
         return str;
 }
 
+static void
+set_xbox_specifics (xmlDoc      *doc,
+                    GConfClient *gconf_client)
+{
+        xmlNode *device_element;
+        xmlNode *element;
+        gboolean enable_xbox;
+        GError *error;
+
+        error = NULL;
+        enable_xbox = gconf_client_get_bool (gconf_client,
+                                             GCONF_PATH "enable-xbox",
+                                             &error);
+        if (error) {
+                g_warning ("%s", error->message);
+
+                g_error_free (error);
+        }
+
+        if (!enable_xbox)
+                return;
+
+        device_element = xml_util_get_element ((xmlNode *) doc,
+                                               "root",
+                                               "device",
+                                               NULL);
+        if (device_element == NULL) {
+                g_warning ("Element /root/device not found.");
+
+                return;
+        }
+
+        /* friendlyName */
+        element = xml_util_get_element (device_element,
+                                        "friendlyName",
+                                        NULL);
+        if (element == NULL) {
+                g_warning ("Element /root/device/friendlyName not found.");
+
+                return;
+        }
+
+        xmlNodeAddContent (element, (xmlChar *) ": 1 : Windows Media Connect");
+
+        /* modelName */
+        element = xml_util_get_element (device_element,
+                                        "modelName",
+                                        NULL);
+        if (element == NULL) {
+                g_warning ("Element /root/device/modelName not found.");
+
+                return;
+        }
+
+        xmlNodeSetContent (element, (xmlChar *) "Windows Media Connect");
+}
+
 /* Fills the description doc @doc with a friendly name, and UDN from gconf. If
  * these keys are not present in gconf, they are set with default values */
 static void
@@ -192,7 +249,6 @@ set_friendly_name_and_udn (xmlDoc      *doc,
         g_free (str);
 
         xmlNodeSetContent (element, xml_str);
-
         xmlFree (xml_str);
 
         /* UDN */
@@ -249,6 +305,9 @@ create_ms (void)
 
         /* Modify description.xml to include a UDN and a friendy name */
         set_friendly_name_and_udn (doc, gconf_client);
+
+        /* Put/Set XboX specific stuff to description.xml */
+        set_xbox_specifics (doc, gconf_client);
 
         /* Save the modified description.xml into the user's config dir.
          * We do this so that we can host the modified file, and also to

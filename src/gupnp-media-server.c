@@ -41,6 +41,7 @@ struct _GUPnPMediaServerPrivate {
         guint32 system_update_id;
 
         GUPnPService *content_dir;
+        GUPnPService *msr;              /* MS MediaReceiverRegistrar */
 
         GUPnPMediaTracker *tracker;
 };
@@ -62,6 +63,10 @@ gupnp_media_server_dispose (GObject *object)
         if (server->priv->content_dir) {
                 g_object_unref (server->priv->content_dir);
                 server->priv->content_dir = NULL;
+        }
+        if (server->priv->msr) {
+                g_object_unref (server->priv->msr);
+                server->priv->msr = NULL;
         }
 
         /* Call super */
@@ -109,6 +114,27 @@ gupnp_media_server_constructor (GType                  type,
 
                 error = NULL;
                 gupnp_service_signals_autoconnect (server->priv->content_dir,
+                                                   server,
+                                                   &error);
+                if (error) {
+                        g_warning ("Error autoconnecting signals: %s",
+                                   error->message);
+                        g_error_free (error);
+                }
+        }
+
+        /* Connect MS MediaReceiverRegistrar signals */
+        service = gupnp_device_info_get_service
+                        (GUPNP_DEVICE_INFO (server),
+                         "urn:microsoft.com:service"
+                         ":X_MS_MediaReceiverRegistrar:1");
+        if (service != NULL) {
+                GError *error;
+
+                server->priv->msr = GUPNP_SERVICE (service);
+
+                error = NULL;
+                gupnp_service_signals_autoconnect (server->priv->msr,
                                                    server,
                                                    &error);
                 if (error) {
@@ -249,6 +275,54 @@ browse_cb (GUPnPService       *service,
         g_free (result);
 OUT:
         g_free (object_id);
+}
+
+/* IsAuthorized action implementation (fake) */
+void
+is_authorized_cb (GUPnPService       *service,
+                  GUPnPServiceAction *action,
+                  gpointer            user_data)
+{
+        /* Set action return arguments */
+        gupnp_service_action_set (action,
+                                  "Result",
+                                  G_TYPE_INT,
+                                  1,
+                                  NULL);
+
+        gupnp_service_action_return (action);
+}
+
+/* RegisterDevice action implementation (fake) */
+void
+register_device_cb (GUPnPService       *service,
+                    GUPnPServiceAction *action,
+                    gpointer            user_data)
+{
+        /* Set action return arguments */
+        gupnp_service_action_set (action,
+                                  "RegistrationRespMsg",
+                                  GUPNP_TYPE_BIN_BASE64,
+                                  "WhatisSupposedToBeHere",
+                                  NULL);
+
+        gupnp_service_action_return (action);
+}
+
+/* IsValidated action implementation (fake) */
+void
+is_validated_cb (GUPnPService       *service,
+                 GUPnPServiceAction *action,
+                 gpointer            user_data)
+{
+        /* Set action return arguments */
+        gupnp_service_action_set (action,
+                                  "Result",
+                                  G_TYPE_INT,
+                                  1,
+                                  NULL);
+
+        gupnp_service_action_return (action);
 }
 
 GUPnPMediaServer *
