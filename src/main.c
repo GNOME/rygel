@@ -29,6 +29,7 @@
 #include "gupnp-media-server.h"
 
 #define DESC_DOC "xml/description.xml"
+#define XBOX_DESC_DOC "xml/description-xbox360.xml"
 #define MODIFIED_DESC_DOC "gupnp-media-server.xml"
 #define GCONF_PATH "/apps/gupnp-media-server/"
 
@@ -146,26 +147,10 @@ get_str_from_gconf (GConfClient *gconf_client,
 }
 
 static void
-set_xbox_specifics (xmlDoc      *doc,
-                    GConfClient *gconf_client)
+add_xbox_specifics (xmlDoc *doc)
 {
         xmlNode *device_element;
         xmlNode *element;
-        gboolean enable_xbox;
-        GError *error;
-
-        error = NULL;
-        enable_xbox = gconf_client_get_bool (gconf_client,
-                                             GCONF_PATH "enable-xbox",
-                                             &error);
-        if (error) {
-                g_warning ("%s", error->message);
-
-                g_error_free (error);
-        }
-
-        if (!enable_xbox)
-                return;
 
         device_element = xml_util_get_element ((xmlNode *) doc,
                                                "root",
@@ -188,18 +173,6 @@ set_xbox_specifics (xmlDoc      *doc,
         }
 
         xmlNodeAddContent (element, (xmlChar *) ": 1 : Windows Media Connect");
-
-        /* modelName */
-        element = xml_util_get_element (device_element,
-                                        "modelName",
-                                        NULL);
-        if (element == NULL) {
-                g_warning ("Element /root/device/modelName not found.");
-
-                return;
-        }
-
-        xmlNodeSetContent (element, (xmlChar *) "Windows Media Connect");
 }
 
 /* Fills the description doc @doc with a friendly name, and UDN from gconf. If
@@ -286,28 +259,45 @@ create_ms (void)
         GUPnPMediaServer *server;
         GUPnPContext *context;
         GConfClient *gconf_client;
+        gboolean enable_xbox;
+        GError *error;
         char *desc_path;
         xmlDoc *doc;
         FILE *f;
         int res;
+
+        gconf_client = gconf_client_get_default ();
+
+        error = NULL;
+        enable_xbox = gconf_client_get_bool (gconf_client,
+                                             GCONF_PATH "enable-xbox",
+                                             &error);
+        if (error) {
+                g_warning ("%s", error->message);
+
+                g_error_free (error);
+        }
 
         /* We store a modified description.xml in the user's config dir */
         desc_path = g_build_filename (g_get_user_config_dir (),
                                       MODIFIED_DESC_DOC,
                                       NULL);
 
-        doc = xmlParseFile (DATA_DIR G_DIR_SEPARATOR_S DESC_DOC);
+        if (enable_xbox)
+                /* Use Xbox 360 specific description */
+                doc = xmlParseFile (DATA_DIR G_DIR_SEPARATOR_S XBOX_DESC_DOC);
+        else
+                doc = xmlParseFile (DATA_DIR G_DIR_SEPARATOR_S DESC_DOC);
 
         if (doc == NULL)
                 return NULL;
 
-        gconf_client = gconf_client_get_default ();
-
         /* Modify description.xml to include a UDN and a friendy name */
         set_friendly_name_and_udn (doc, gconf_client);
 
-        /* Put/Set XboX specific stuff to description.xml */
-        set_xbox_specifics (doc, gconf_client);
+        if (enable_xbox)
+                /* Put/Set XboX specific stuff to description */
+                add_xbox_specifics (doc);
 
         /* Save the modified description.xml into the user's config dir.
          * We do this so that we can host the modified file, and also to

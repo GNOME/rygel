@@ -1,5 +1,13 @@
 2008-05-07  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* data/xml/description-xbox360.xml:
+	* src/main.c:
+
+	Use a separate description document for Xbox 360 to keep the code
+	simple.
+
+2008-05-07  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/gupnp-media-server.c:
 
 	Retrieve the services in version agnostic way.
