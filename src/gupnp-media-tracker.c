@@ -69,11 +69,17 @@ enum {
         PROP_CONTEXT
 };
 
-static char *containers[] = {
-        "Images",
-        "Music",
-        "Videos",
-        NULL
+typedef struct {
+        char *id;
+        char *title;
+        char *tracker_category;
+} Container;
+
+static Container containers[] = {
+        { "13", "All Images", "Images" },
+        { "14", "All Music", "Music" },
+        { "15", "All Videos", "Videos" },
+        { NULL }
 };
 
 /* GObject stuff */
@@ -353,7 +359,7 @@ add_root_container (const char          *root_id,
         guint child_count;
 
         /* Count items */
-        for (child_count = 0; containers[child_count]; child_count++);
+        for (child_count = 0; containers[child_count].id; child_count++);
 
         add_container (root_id,
                        "-1",
@@ -364,7 +370,7 @@ add_root_container (const char          *root_id,
 
 static guint32
 get_container_children_count (GUPnPMediaTracker *tracker,
-                              const char        *container_id)
+                              Container         *container)
 {
         GError *error;
         GPtrArray *array;
@@ -391,7 +397,7 @@ get_container_children_count (GUPnPMediaTracker *tracker,
 
                 stat = g_ptr_array_index (array, i);
 
-                if (strcmp (stat[0], container_id) == 0)
+                if (strcmp (stat[0], container->tracker_category) == 0)
                         count = atoi (stat[1]);
         }
 
@@ -402,7 +408,7 @@ get_container_children_count (GUPnPMediaTracker *tracker,
 
 static char **
 get_container_children_from_db (GUPnPMediaTracker *tracker,
-                                const char        *container_id,
+                                Container         *container,
                                 guint32            offset,
                                 guint32            max_count,
                                 guint32           *child_count)
@@ -410,7 +416,7 @@ get_container_children_from_db (GUPnPMediaTracker *tracker,
         GError *error;
         char **result;
 
-        *child_count = get_container_children_count (tracker, container_id);
+        *child_count = get_container_children_count (tracker, container);
 
         if (*child_count == 0)
                 return NULL;
@@ -421,7 +427,7 @@ get_container_children_from_db (GUPnPMediaTracker *tracker,
                                 "GetByServiceType",
                                 &error,
                                 G_TYPE_INT, 0,
-                                G_TYPE_STRING, container_id,
+                                G_TYPE_STRING, container->tracker_category,
                                 G_TYPE_INT, offset,
                                 G_TYPE_INT, max_count,
                                 G_TYPE_INVALID,
@@ -438,16 +444,16 @@ get_container_children_from_db (GUPnPMediaTracker *tracker,
 
 static gboolean
 add_container_from_db (GUPnPMediaTracker   *tracker,
-                       const char          *container_id,
+                       Container           *container,
                        const char          *parent_id)
 {
         guint child_count;
 
-        child_count = get_container_children_count (tracker, container_id);
+        child_count = get_container_children_count (tracker, container);
 
-        add_container (container_id,
+        add_container (container->id,
                        parent_id,
-                       container_id,
+                       container->title,
                        child_count,
                        tracker->priv->didl_writer);
 
@@ -460,9 +466,9 @@ add_root_container_children (GUPnPMediaTracker *tracker,
 {
         guint i;
 
-        for (i = 0; containers[i]; i++) {
+        for (i = 0; containers[i].id; i++) {
                 add_container_from_db (tracker,
-                                       containers[i],
+                                       &containers[i],
                                        tracker->priv->root_id);
         }
 
@@ -538,9 +544,8 @@ add_item (GUPnPContext        *context,
 
 static gboolean
 add_item_from_db (GUPnPMediaTracker *tracker,
-                  const char        *category,
-                  const char        *path,
-                  const char        *parent_id)
+                  Container         *parent,
+                  const char        *path)
 {
         char *keys[] = {"File:Name",
                         "File:Mime",
@@ -555,7 +560,7 @@ add_item_from_db (GUPnPMediaTracker *tracker,
         success = dbus_g_proxy_call (tracker->priv->metadata_proxy,
                                      "Get",
                                      &error,
-                                     G_TYPE_STRING, category,
+                                     G_TYPE_STRING, parent->tracker_category,
                                      G_TYPE_STRING, path,
                                      G_TYPE_STRV, keys,
                                      G_TYPE_INVALID,
@@ -576,7 +581,7 @@ add_item_from_db (GUPnPMediaTracker *tracker,
                 add_item (tracker->priv->context,
                           tracker->priv->didl_writer,
                           path,
-                          parent_id,
+                          parent->id,
                           values[1],
                           values[0],
                           path);
@@ -587,7 +592,7 @@ add_item_from_db (GUPnPMediaTracker *tracker,
 
 static guint
 add_container_children_from_db (GUPnPMediaTracker *tracker,
-                                const char        *container_id,
+                                Container         *container,
                                 guint32            offset,
                                 guint32            max_count,
                                 guint32           *child_count)
@@ -596,7 +601,7 @@ add_container_children_from_db (GUPnPMediaTracker *tracker,
         char **children;
 
         children = get_container_children_from_db (tracker,
-                                                   container_id,
+                                                   container,
                                                    offset,
                                                    max_count,
                                                    child_count);
@@ -606,9 +611,8 @@ add_container_children_from_db (GUPnPMediaTracker *tracker,
         /* Iterate through all items */
         for (i = 0; children[i]; i++) {
                 add_item_from_db (tracker,
-                                  container_id,
-                                  children[i],
-                                  container_id);
+                                  container,
+                                  children[i]);
         }
 
         g_strfreev (children);
@@ -616,14 +620,16 @@ add_container_children_from_db (GUPnPMediaTracker *tracker,
         return i;
 }
 
-static char *
-get_item_category (GUPnPMediaTracker *tracker,
-                   const char        *uri)
+static Container *
+get_item_parent (GUPnPMediaTracker *tracker,
+                 const char        *uri)
 {
+        Container *container;
         char *category;
         GError *error;
         gboolean success;
 
+        container = NULL;
         category = NULL;
         error = NULL;
         success = dbus_g_proxy_call (tracker->priv->files_proxy,
@@ -641,9 +647,38 @@ get_item_category (GUPnPMediaTracker *tracker,
 
                         g_error_free (error);
                 }
+        } else {
+                guint i;
+
+                for (i = 0; containers[i].id; i++) {
+                        if (strcmp (containers[i].tracker_category,
+                                    category) == 0) {
+                                container = &containers[i];
+
+                                break;
+                        }
+                }
         }
 
-        return category;
+        return container;
+}
+
+static Container *
+find_container_by_id (const char *container_id)
+{
+        Container *container;
+        guint i;
+
+        container = NULL;
+
+        for (i = 0; containers[i].id; i++)
+                if (strcmp (container_id, containers[i].id) == 0) {
+                          container = &containers[i];
+
+                          break;
+                }
+
+        return container;
 }
 
 GUPnPMediaTracker *
@@ -686,15 +721,21 @@ gupnp_media_tracker_browse (GUPnPMediaTracker *tracker,
                                                      tracker->priv->root_id);
                 *total_matches = *number_returned;
         } else {
+                Container *container;
+
                 if (requested_count == 0)
                         requested_count = MAX_REQUESTED_COUNT;
 
-                *number_returned =
-                        add_container_children_from_db (tracker,
-                                                        container_id,
-                                                        starting_index,
-                                                        requested_count,
-                                                        total_matches);
+                container = find_container_by_id (container_id);
+                if (container == NULL)
+                        *number_returned = 0;
+                else
+                        *number_returned =
+                                add_container_children_from_db (tracker,
+                                                                container,
+                                                                starting_index,
+                                                                requested_count,
+                                                                total_matches);
         }
 
         if (*number_returned > 0) {
@@ -725,7 +766,6 @@ gupnp_media_tracker_get_metadata (GUPnPMediaTracker *tracker,
                                   guint32           *update_id)
 {
         char *result;
-        guint i;
         gboolean found;
 
         /* Start DIDL-Lite fragment */
@@ -740,32 +780,25 @@ gupnp_media_tracker_get_metadata (GUPnPMediaTracker *tracker,
 
                         found = TRUE;
         } else {
-                /* First try the containers */
-                for (i = 0; containers[i]; i++) {
-                        if (strcmp (object_id, containers[i]) == 0) {
-                                add_container_from_db (tracker,
-                                                       containers[i],
-                                                       tracker->priv->root_id);
+                Container *container;
 
-                                found = TRUE;
+                /* First try containers */
+                container = find_container_by_id (object_id);
 
-                                break;
-                        }
-                }
+                if (container != NULL) {
+                        add_container_from_db (tracker,
+                                               container,
+                                               tracker->priv->root_id);
 
-                if (!found) {
+                        found = TRUE;
+                } else {
                         /* Now try items */
-                        char *category;
+                        container = get_item_parent (tracker, object_id);
 
-                        category = get_item_category (tracker, object_id);
-
-                        if (category != NULL) {
+                        if (container != NULL) {
                                 found = add_item_from_db (tracker,
-                                                          category,
-                                                          object_id,
-                                                          category);
-
-                                g_free (category);
+                                                          container,
+                                                          object_id);
                         }
                 }
         }
