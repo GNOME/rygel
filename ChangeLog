@@ -2,8 +2,9 @@
 
 	* src/gupnp-media-tracker.c:
 
-	Introduce a structure to hold container info: ID, title and associated
-	tracker category.
+	- Introduce a structure to hold container info: ID, title and
+	  associated tracker category.
+	- Don't escape '/' in the path before putting it in HTTP URI.
 
 2008-05-08  Zeeshan Ali Khattak  <zeenix@gmail.com>
 

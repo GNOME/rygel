@@ -518,7 +518,7 @@ add_item (GUPnPContext        *context,
         gupnp_didl_lite_resource_reset (&res);
 
         escaped_path = g_uri_escape_string (path,
-                                            NULL,
+                                            "/",
                                             TRUE);
         /* URI */
         res.uri = g_strdup_printf ("http://%s:%d%s%s",
