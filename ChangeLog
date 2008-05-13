@@ -2,7 +2,8 @@
 
 	* src/gupnp-media-tracker.c:
 
-	Report the correct UPnP class of the items.
+	- Report the correct UPnP class of the items.
+	- Xbox wants Images container to have ID of '16'.
 
 2008-05-08  Zeeshan Ali Khattak  <zeenix@gmail.com>
 

@@ -75,7 +75,7 @@ typedef struct {
 } Container;
 
 static Container containers[] = {
-        { "13", "All Images", "Images", "object.item.imageItem" },
+        { "16", "All Images", "Images", "object.item.imageItem" },
         { "14", "All Music", "Music", "object.item.audioItem.musicTrack" },
         { "15", "All Videos", "Videos", "object.item.videoItem" },
         { NULL }
