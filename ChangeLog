@@ -1,3 +1,14 @@
+2008-05-14  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/Makefile.am:
+	* src/gupnp-content-directory.c:
+	* src/gupnp-content-directory.h:
+	* src/gupnp-media-receiver-registrar.c:
+	* src/gupnp-media-receiver-registrar.h:
+	* src/gupnp-media-server.c:
+
+	Put the services implementations into separate objects.
+
 2008-05-08  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/gupnp-media-tracker.c:

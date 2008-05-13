@@ -29,21 +29,24 @@
 #include <libgupnp-av/gupnp-av.h>
 
 #include "gupnp-media-server.h"
-#include "gupnp-media-tracker.h"
+#include "gupnp-content-directory.h"
+#include "gupnp-media-receiver-registrar.h"
 
-#define HOME_DIR_ALIAS "/media"
+#define CONTENT_DIR "urn:schemas-upnp-org:service:ContentDirectory"
+#define CONTENT_DIR_V1 CONTENT_DIR ":1"
+#define CONTENT_DIR_V2 CONTENT_DIR ":2"
+#define MEDIA_RECEIVER_REGISTRAR "urn:microsoft.com:service" \
+                                 ":X_MS_MediaReceiverRegistrar"
+#define MEDIA_RECEIVER_REGISTRAR_V1 MEDIA_RECEIVER_REGISTRAR ":1"
+#define MEDIA_RECEIVER_REGISTRAR_V2 MEDIA_RECEIVER_REGISTRAR ":2"
 
 G_DEFINE_TYPE (GUPnPMediaServer,
                gupnp_media_server,
                GUPNP_TYPE_ROOT_DEVICE);
 
 struct _GUPnPMediaServerPrivate {
-        guint32 system_update_id;
-
-        GUPnPService *content_dir;
+        GUPnPService *content_dir;      /* ContentDirectory */
         GUPnPService *msr;              /* MS MediaReceiverRegistrar */
-
-        GUPnPMediaTracker *tracker;
 };
 
 /* GObject stuff */
@@ -56,10 +59,6 @@ gupnp_media_server_dispose (GObject *object)
         server = GUPNP_MEDIA_SERVER (object);
 
         /* Free GUPnP resources */
-        if (server->priv->tracker) {
-                g_object_unref (server->priv->tracker);
-                server->priv->tracker = NULL;
-        }
         if (server->priv->content_dir) {
                 g_object_unref (server->priv->content_dir);
                 server->priv->content_dir = NULL;
@@ -90,8 +89,9 @@ gupnp_media_server_constructor (GType                  type,
         GObject *object;
         GObjectClass *object_class;
         GUPnPMediaServer *server;
+        GUPnPDeviceInfo  *info;
         GUPnPServiceInfo *service;
-        GUPnPContext *context;
+        GUPnPResourceFactory *factory;
 
         object_class = G_OBJECT_CLASS (gupnp_media_server_parent_class);
         object = object_class->constructor (type,
@@ -102,51 +102,36 @@ gupnp_media_server_constructor (GType                  type,
                 return NULL;
 
         server = GUPNP_MEDIA_SERVER (object);
+        info = GUPNP_DEVICE_INFO (server);
 
-        /* Connect ContentDirectory signals */
-        service = gupnp_device_info_get_service
-                        (GUPNP_DEVICE_INFO (server),
-                         "urn:schemas-upnp-org:service:ContentDirectory");
-        if (service != NULL) {
-                GError *error;
+        factory = gupnp_device_info_get_resource_factory (info);
 
-                server->priv->content_dir = GUPNP_SERVICE (service);
+        /* Register GUPnPContentDirectory and GUPnPMediaReceiverRegistrar */
+        gupnp_resource_factory_register_resource_type
+                                (factory,
+                                 CONTENT_DIR_V1,
+                                 GUPNP_TYPE_CONTENT_DIRECTORY);
+        gupnp_resource_factory_register_resource_type
+                                (factory,
+                                 CONTENT_DIR_V2,
+                                 GUPNP_TYPE_CONTENT_DIRECTORY);
 
-                error = NULL;
-                gupnp_service_signals_autoconnect (server->priv->content_dir,
-                                                   server,
-                                                   &error);
-                if (error) {
-                        g_warning ("Error autoconnecting signals: %s",
-                                   error->message);
-                        g_error_free (error);
-                }
-        }
+        gupnp_resource_factory_register_resource_type
+                                (factory,
+                                 MEDIA_RECEIVER_REGISTRAR_V1,
+                                 GUPNP_TYPE_MEDIA_RECEIVER_REGISTRAR);
+        gupnp_resource_factory_register_resource_type
+                                (factory,
+                                 MEDIA_RECEIVER_REGISTRAR_V2,
+                                 GUPNP_TYPE_MEDIA_RECEIVER_REGISTRAR);
 
-        /* Connect MS MediaReceiverRegistrar signals */
-        service = gupnp_device_info_get_service
-                        (GUPNP_DEVICE_INFO (server),
-                         "urn:microsoft.com:service"
-                         ":X_MS_MediaReceiverRegistrar");
-        if (service != NULL) {
-                GError *error;
+        /* Now create the sevice objects */
+        service = gupnp_device_info_get_service (info, CONTENT_DIR);
+        server->priv->content_dir = GUPNP_SERVICE (service);
 
-                server->priv->msr = GUPNP_SERVICE (service);
-
-                error = NULL;
-                gupnp_service_signals_autoconnect (server->priv->msr,
-                                                   server,
-                                                   &error);
-                if (error) {
-                        g_warning ("Error autoconnecting signals: %s",
-                                   error->message);
-                        g_error_free (error);
-                }
-        }
-
-        context = gupnp_device_info_get_context (GUPNP_DEVICE_INFO (server));
-
-        server->priv->tracker = gupnp_media_tracker_new ("0", context);
+        service =
+                gupnp_device_info_get_service (info, MEDIA_RECEIVER_REGISTRAR);
+        server->priv->msr = GUPNP_SERVICE (service);
 
         return object;
 }
@@ -162,175 +147,6 @@ gupnp_media_server_class_init (GUPnPMediaServerClass *klass)
         object_class->constructor = gupnp_media_server_constructor;
 
         g_type_class_add_private (klass, sizeof (GUPnPMediaServerPrivate));
-}
-
-/* Browse action implementation */
-void
-browse_cb (GUPnPService       *service,
-           GUPnPServiceAction *action,
-           gpointer            user_data)
-{
-        GUPnPMediaServer *server;
-        char *object_id, *browse_flag;
-        gboolean browse_metadata;
-        char *result, *sort_criteria, *filter;
-        guint32 starting_index, requested_count;
-        guint32 num_returned, total_matches, update_id;
-
-        server = GUPNP_MEDIA_SERVER (user_data);
-
-        /* Handle incoming arguments */
-        gupnp_service_action_get (action,
-                                  "ObjectID",
-                                        G_TYPE_STRING,
-                                        &object_id,
-                                  "BrowseFlag",
-                                        G_TYPE_STRING,
-                                        &browse_flag,
-                                  "Filter",
-                                        G_TYPE_STRING,
-                                        &filter,
-                                  "StartingIndex",
-                                        G_TYPE_UINT,
-                                        &starting_index,
-                                  "RequestedCount",
-                                        G_TYPE_UINT,
-                                        &requested_count,
-                                  "SortCriteria",
-                                        G_TYPE_STRING,
-                                        &sort_criteria,
-                                  NULL);
-
-        /* BrowseFlag */
-        if (browse_flag && !strcmp (browse_flag, "BrowseDirectChildren")) {
-                browse_metadata = FALSE;
-        } else if (browse_flag && !strcmp (browse_flag, "BrowseMetadata")) {
-                browse_metadata = TRUE;
-        } else {
-                gupnp_service_action_return_error
-                        (action, GUPNP_CONTROL_ERROR_INVALID_ARGS, NULL);
-
-                goto OUT;
-        }
-
-        /* ObjectID */
-        if (!object_id) {
-                /* Stupid Xbox */
-                gupnp_service_action_get (action,
-                                          "ContainerID",
-                                          G_TYPE_STRING,
-                                          &object_id,
-                                          NULL);
-                if (!object_id) {
-                        gupnp_service_action_return_error
-                                (action, 701, "No such object");
-
-                        goto OUT;
-                }
-        }
-
-        if (browse_metadata) {
-                result = gupnp_media_tracker_get_metadata
-                                        (server->priv->tracker,
-                                         object_id,
-                                         filter,
-                                         sort_criteria,
-                                         &update_id);
-
-                num_returned = 1;
-                total_matches = 1;
-        } else {
-                result = gupnp_media_tracker_browse (server->priv->tracker,
-                                                     object_id,
-                                                     filter,
-                                                     starting_index,
-                                                     requested_count,
-                                                     sort_criteria,
-                                                     &num_returned,
-                                                     &total_matches,
-                                                     &update_id);
-        }
-
-        if (result == NULL) {
-                gupnp_service_action_return_error (action,
-                                                   701,
-                                                   "No such object");
-
-                goto OUT;
-        }
-
-        if (update_id == GUPNP_INVALID_UPDATE_ID)
-                update_id = server->priv->system_update_id;
-
-        /* Set action return arguments */
-        gupnp_service_action_set (action,
-                                  "Result",
-                                        G_TYPE_STRING,
-                                        result,
-                                  "NumberReturned",
-                                        G_TYPE_UINT,
-                                        num_returned,
-                                  "TotalMatches",
-                                        G_TYPE_UINT,
-                                        total_matches,
-                                  "UpdateID",
-                                        G_TYPE_UINT,
-                                        update_id,
-                                  NULL);
-
-        gupnp_service_action_return (action);
-
-        g_free (result);
-OUT:
-        g_free (object_id);
-}
-
-/* IsAuthorized action implementation (fake) */
-void
-is_authorized_cb (GUPnPService       *service,
-                  GUPnPServiceAction *action,
-                  gpointer            user_data)
-{
-        /* Set action return arguments */
-        gupnp_service_action_set (action,
-                                  "Result",
-                                  G_TYPE_INT,
-                                  1,
-                                  NULL);
-
-        gupnp_service_action_return (action);
-}
-
-/* RegisterDevice action implementation (fake) */
-void
-register_device_cb (GUPnPService       *service,
-                    GUPnPServiceAction *action,
-                    gpointer            user_data)
-{
-        /* Set action return arguments */
-        gupnp_service_action_set (action,
-                                  "RegistrationRespMsg",
-                                  GUPNP_TYPE_BIN_BASE64,
-                                  "WhatisSupposedToBeHere",
-                                  NULL);
-
-        gupnp_service_action_return (action);
-}
-
-/* IsValidated action implementation (fake) */
-void
-is_validated_cb (GUPnPService       *service,
-                 GUPnPServiceAction *action,
-                 gpointer            user_data)
-{
-        /* Set action return arguments */
-        gupnp_service_action_set (action,
-                                  "Result",
-                                  G_TYPE_INT,
-                                  1,
-                                  NULL);
-
-        gupnp_service_action_return (action);
 }
 
 GUPnPMediaServer *
