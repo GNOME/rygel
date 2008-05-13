@@ -2,6 +2,12 @@
 
 	* src/gupnp-media-tracker.c:
 
+	Report the correct UPnP class of the items.
+
+2008-05-08  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-media-tracker.c:
+
 	Quick security fix: only host the user's home dir. This should be OK
 	with most tracker setups since by default tracker only indexes user's
 	home dir.

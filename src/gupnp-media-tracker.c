@@ -70,12 +70,14 @@ typedef struct {
         char *id;
         char *title;
         char *tracker_category;
+
+        char *child_class; /* UPnP class of items under this container */
 } Container;
 
 static Container containers[] = {
-        { "13", "All Images", "Images" },
-        { "14", "All Music", "Music" },
-        { "15", "All Videos", "Videos" },
+        { "13", "All Images", "Images", "object.item.imageItem" },
+        { "14", "All Music", "Music", "object.item.audioItem.musicTrack" },
+        { "15", "All Videos", "Videos", "object.item.videoItem" },
         { NULL }
 };
 
@@ -482,6 +484,7 @@ add_item (GUPnPContext        *context,
           const char          *parent_id,
           const char          *mime,
           const char          *title,
+          const char          *upnp_class,
           const char          *path)
 {
         GUPnPDIDLLiteResource res;
@@ -505,7 +508,7 @@ add_item (GUPnPContext        *context,
                          "class",
                          GUPNP_DIDL_LITE_WRITER_NAMESPACE_UPNP,
                          NULL,
-                         "object.item.audioItem.musicTrack");
+                         upnp_class);
 
         gupnp_didl_lite_writer_add_string
                         (didl_writer,
@@ -583,6 +586,7 @@ add_item_from_db (GUPnPMediaTracker *tracker,
                           parent->id,
                           values[1],
                           values[0],
+                          parent->child_class,
                           path);
         }
 
