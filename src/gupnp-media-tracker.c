@@ -43,6 +43,10 @@
 
 #define MAX_REQUESTED_COUNT 128
 
+#define IMAGE_CLASS "object.item.imageItem"
+#define VIDEO_CLASS "object.item.videoItem"
+#define AUDIO_CLASS "object.item.audioItem.musicTrack"
+
 G_DEFINE_TYPE (GUPnPMediaTracker,
                gupnp_media_tracker,
                G_TYPE_OBJECT);
@@ -75,9 +79,9 @@ typedef struct {
 } Container;
 
 static Container containers[] = {
-        { "16", "All Images", "Images", "object.item.imageItem" },
-        { "14", "All Music", "Music", "object.item.audioItem.musicTrack" },
-        { "15", "All Videos", "Videos", "object.item.videoItem" },
+        { "16", "All Images", "Images",  IMAGE_CLASS },
+        { "14", "All Music", "Music",  AUDIO_CLASS },
+        { "15", "All Videos", "Videos",  VIDEO_CLASS },
         { NULL }
 };
 
@@ -485,6 +489,8 @@ add_item (GUPnPContext        *context,
           const char          *mime,
           const char          *title,
           const char          *upnp_class,
+          gint                 width,
+          gint                 height,
           const char          *path)
 {
         GUPnPDIDLLiteResource res;
@@ -535,6 +541,9 @@ add_item (GUPnPContext        *context,
         res.mime_type = (char *) mime;
         res.dlna_profile = "MP3"; /* FIXME */
 
+        res.width = width;
+        res.height = height;
+
         gupnp_didl_lite_writer_add_res (didl_writer, &res);
 
         /* Cleanup */
@@ -549,12 +558,22 @@ add_item_from_db (GUPnPMediaTracker *tracker,
                   Container         *parent,
                   const char        *path)
 {
-        char *keys[] = {"File:Name",
-                        "File:Mime",
-                        NULL};
+        char *keys[5] = {"File:Name",
+                         "File:Mime",
+                         NULL,
+                         NULL,
+                         NULL};
         char **values;
         gboolean success;
         GError *error;
+
+        if (strcmp (parent->child_class, VIDEO_CLASS) == 0) {
+                keys[2] = "Video:Width";
+                keys[3] = "Video:Height";
+        } else if (strcmp (parent->child_class, IMAGE_CLASS) == 0) {
+                keys[2] = "Image:Width";
+                keys[3] = "Image:Height";
+        }
 
         values = NULL;
         error = NULL;
@@ -580,6 +599,15 @@ add_item_from_db (GUPnPMediaTracker *tracker,
                         g_error_free (error);
                 }
         } else {
+                gint width = -1;
+                gint height = -1;
+
+                if (keys[2] && values[2])
+                        width = atoi (values[2]);
+
+                if (keys[3] && values[3])
+                        height = atoi (values[3]);
+
                 add_item (tracker->priv->context,
                           tracker->priv->didl_writer,
                           path,
@@ -587,6 +615,8 @@ add_item_from_db (GUPnPMediaTracker *tracker,
                           values[1],
                           values[0],
                           parent->child_class,
+                          width,
+                          height,
                           path);
         }
 

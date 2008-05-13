@@ -4,6 +4,7 @@
 
 	- Report the correct UPnP class of the items.
 	- Xbox wants Images container to have ID of '16'.
+	- Provide 'res@resultion' in DIDL XML for audio and video items.
 
 2008-05-08  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
