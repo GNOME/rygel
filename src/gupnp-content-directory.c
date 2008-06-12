@@ -214,7 +214,7 @@ browse_cb (GUPnPContentDirectory *content_dir,
                 goto OUT;
         }
 
-        if (update_id == GUPNP_INVALID_UPDATE_ID)
+        if (update_id == G_MAXUINT32)
                 update_id = content_dir->priv->system_update_id;
 
         /* Set action return arguments */

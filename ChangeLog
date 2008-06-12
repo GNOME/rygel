@@ -1,3 +1,15 @@
+2008-06-11  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* configure.ac:
+	* src/Makefile.am:
+	* src/gupnp-content-directory.c:
+	* src/gupnp-media-tracker.c:
+	* src/gupnp-media-tracker.h:
+	* src/gupnp-media-tracker.vala:
+
+	Re-write MediaTracker in Vala. Doesn't really work. Thanks to
+	dbus-glib bindings for Vala and tracker API.
+
 2008-06-07  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/Makefile.am:

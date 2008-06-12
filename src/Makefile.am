@@ -23,10 +23,11 @@ gupnp_media_server_SOURCES = main.c \
 			     gupnp-media-receiver-registrar.c \
 			     gupnp-media-receiver-registrar.vala \
 			     gupnp-media-tracker.h \
-			     gupnp-media-tracker.c
+			     gupnp-media-tracker.c \
+			     gupnp-media-tracker.vala
 
 gupnp-media-server.stamp: $(filter %.vala,$(gupnp_media_server_SOURCES))
-	$(VALAC) -C --pkg gupnp-1.0 $^
+	$(VALAC) -C --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 $^
 	touch $@
 
 gupnp_media_server_LDADD = $(LIBGUPNP_LIBS) \
