@@ -1,5 +1,14 @@
 2008-06-07  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/Makefile.am:
+	* src/gupnp-media-receiver-registrar.c:
+	* src/gupnp-media-receiver-registrar.h:
+	* src/gupnp-media-receiver-registrar.vala:
+
+	Re-write X_MS_MediaReceiverRegistrar implementation in Vala.
+
+2008-06-07  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* configure.ac:
 
 	Check for Vala and GUPnP bindings.
