@@ -122,8 +122,8 @@ public class GUPnP.MediaTracker : GLib.Object {
 
     public string? browse (string   container_id,
                            string   filter,
-                           int      starting_index,
-                           int      requested_count,
+                           uint     starting_index,
+                           uint     requested_count,
                            string   sort_criteria,
                            out uint number_returned,
                            out uint total_matches,

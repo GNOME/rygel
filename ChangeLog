@@ -1,5 +1,11 @@
 2008-06-12  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/gupnp-media-tracker.vala:
+
+	Correct the types of two parameters of MediaTracker.browse().
+
+2008-06-12  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/Makefile.am:
 	* src/gupnp-content-directory.c:
 	* src/gupnp-content-directory.h:
