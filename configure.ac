@@ -11,15 +11,33 @@ AC_STDC_HEADERS
 AC_PROG_LIBTOOL
 AC_FUNC_MMAP
 
+VALA_REQUIRED=0.3.3
 GUPNP_REQUIRED=0.6
 GUPNP_AV_REQUIRED=0.1
 GCONF_REQUIRED=2.22
 DBUS_GLIB_REQUIRED=0.74
 
+PKG_CHECK_MODULES(VALA, [vala-1.0 >= $VALA_REQUIRED])
 PKG_CHECK_MODULES(LIBGUPNP, gupnp-1.0 >= $GUPNP_REQUIRED)
 PKG_CHECK_MODULES(LIBGUPNP_AV, gupnp-av-1.0 >= $GUPNP_AV_REQUIRED)
 PKG_CHECK_MODULES(LIBGCONF, gconf-2.0 >= $GCONF_REQUIRED)
 PKG_CHECK_MODULES(LIBDBUS_GLIB, dbus-glib-1 >= $DBUS_GLIB_REQUIRED)
+
+# Vala compiler
+# This is more to get the path of the compiler since the pkg-config check
+# should covers check for compiler as well.
+AC_PATH_PROG(VALAC, valac, no)
+if test "x$VALAC" = "xno"; then
+	AC_MSG_ERROR([Cannot find the "valac" compiler in your PATH])
+fi
+
+VAPIDIR=`pkg-config --variable=vapidir vala-1.0`
+AC_SUBST(VAPIDIR)
+
+# FIXME: Whats the proper way for checking for particular Vala bindings
+AC_CHECK_FILE("${VAPIDIR}/gupnp-1.0.vapi",
+        true,
+        [AC_MSG_ERROR("Unable to find Vala bindings for gupnp-1.0")])
 
 # glib-genmarshal
 GLIB_GENMARSHAL=`pkg-config --variable=glib_genmarshal glib-2.0`
