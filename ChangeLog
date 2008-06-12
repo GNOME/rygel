@@ -1,3 +1,12 @@
+2008-06-12  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/Makefile.am:
+	* src/gupnp-content-directory.c:
+	* src/gupnp-content-directory.h:
+	* src/gupnp-content-directory.vala:
+
+	Re-write ContentDirectory implementation in Vala.
+
 2008-06-11  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* configure.ac:

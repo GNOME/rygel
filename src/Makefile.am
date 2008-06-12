@@ -19,6 +19,7 @@ gupnp_media_server_SOURCES = main.c \
 			     gupnp-media-server.c \
 			     gupnp-content-directory.h \
 			     gupnp-content-directory.c \
+			     gupnp-content-directory.vala \
 			     gupnp-media-receiver-registrar.h \
 			     gupnp-media-receiver-registrar.c \
 			     gupnp-media-receiver-registrar.vala \
