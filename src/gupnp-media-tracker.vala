@@ -266,25 +266,20 @@ public class GUPnP.MediaTracker : GLib.Object {
     }
 
     private uint get_container_children_count (Tracker.Container container) {
-        /*string[][] array = null;
-        GLib.Error error;
+        /*string[][] stats;
 
-        if (!this.tracker.call ("GetStats",
-                                out error,
-                                Type.INVALID,
-                                typeof (string[][]), out array,
-                                Type.INVALID)) {
+        try {
+                stats = this.tracker.GetStats ();
+        } catch (GLib.Error error) {
             critical ("error getting file list: %s", error.message);
 
             return 0;
         }
 
         uint count = 0;
-        for (uint i = 0; i < array.length; i++) {
-            string[] stats = array[i];
-
-            if (stats[0] == container.tracker_category)
-                count = stats[1].to_int ();
+        for (uint i = 0; i < stats.length; i++) {
+            if (stats[i][0] == container.tracker_category)
+                count = stats[i][1].to_int ();
         }
 
         return count;*/
@@ -333,20 +328,19 @@ public class GUPnP.MediaTracker : GLib.Object {
                              uint              max_count,
                              out uint          child_count) {
         string[] children = null;
-        GLib.Error error;
 
         child_count = get_container_children_count (container);
 
-        if (!this.files.call ("GetByServiceType",
-                              out error,
-                              typeof (int), 0,
-                              typeof (string), container.tracker_category,
-                              typeof (int), offset,
-                              typeof (int), max_count,
-                              Type.INVALID,
-                              typeof (string[]), out children,
-                              Type.INVALID))
-            critical ("error getting file list: %s", error.message);
+        try {
+            children = this.files.GetByServiceType (0,
+                                                    container.tracker_category,
+                                                    (int) offset,
+                                                    (int) max_count);
+        } catch (GLib.Error error) {
+            critical ("error: %s", error.message);
+
+            return null;
+        }
 
         return children;
     }
@@ -366,22 +360,16 @@ public class GUPnP.MediaTracker : GLib.Object {
         }
 
         string[] values = null;
-        GLib.Error error;
 
         /* TODO: make this async */
-        if (!this.metadata.call ("Get ",
-                                 out error,
-                                 typeof (string), parent.tracker_category,
-                                 typeof (string), path,
-                                 typeof (string[]), keys,
-                                 Type.INVALID,
-                                 typeof (string[]), out values,
-                                 Type.INVALID)) {
-                critical ("failed to get metadata for %s: %s\n",
-                          path,
-                          error.message);
+        try {
+            values = this.metadata.Get (parent.tracker_category, path, keys);
+        } catch (GLib.Error error) {
+            critical ("failed to get metadata for %s: %s\n",
+                      path,
+                      error.message);
 
-                return false;
+            return false;
         }
 
         int width = -1;
@@ -469,30 +457,28 @@ public class GUPnP.MediaTracker : GLib.Object {
     }
 
     private Tracker.Container? get_item_parent (string uri) {
-            Tracker.Container container = null;
-            char *category = null;
-            GLib.Error error;
+        Tracker.Container container = null;
+        string category;
 
-            if (!this.files.call ("GetServiceType",
-                                  out error,
-                                  typeof (string), uri,
-                                  Type.INVALID,
-                                  typeof (string), out category,
-                                  Type.INVALID)) {
-                critical ("failed to find service type for %s: %s",
-                          uri,
-                          error.message);
-            } else {
-                foreach (Tracker.Container tmp in this.containers) {
-                    if (tmp.tracker_category == category) {
-                        container = tmp;
+        try {
+            category = this.files.GetServiceType (uri);
+        } catch (GLib.Error error) {
+            critical ("failed to find service type for %s: %s",
+                      uri,
+                      error.message);
 
-                        break;
-                    }
-                }
-            }
-
-            return container;
+            return null;
         }
+
+        foreach (Tracker.Container tmp in this.containers) {
+            if (tmp.tracker_category == category) {
+                container = tmp;
+
+                break;
+            }
+        }
+
+        return container;
+    }
 }
 
