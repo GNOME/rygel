@@ -1,5 +1,11 @@
 2008-06-12  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/gupnp-media-receiver-registrar.vala:
+
+	Add the copyright header.
+
+2008-06-12  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/gupnp-media-tracker.vala:
 
 	- Use the nice and clean DBus API that Vala provides us.
