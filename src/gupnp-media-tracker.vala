@@ -271,7 +271,7 @@ public class GUPnP.MediaTracker : GLib.Object {
         try {
                 stats = this.tracker.GetStats ();
         } catch (GLib.Error error) {
-            critical ("error getting file list: %s", error.message);
+            critical ("error getting tracker statistics: %s", error.message);
 
             return 0;
         }

@@ -6,6 +6,7 @@
 	- Enable the commented out code of get_container_children_count() now
 	  that it's working against the latest Vala (svn trunk). MediaTracker
 	  is fully functional again, yay!
+	- Correct a warning message (copy&paste mistake).
 
 2008-06-12  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
