@@ -266,7 +266,7 @@ public class GUPnP.MediaTracker : GLib.Object {
     }
 
     private uint get_container_children_count (Tracker.Container container) {
-        /*string[][] stats;
+        string[][] stats;
 
         try {
                 stats = this.tracker.GetStats ();
@@ -282,8 +282,7 @@ public class GUPnP.MediaTracker : GLib.Object {
                 count = stats[i][1].to_int ();
         }
 
-        return count;*/
-        return 1;
+        return count;
     }
 
     private Tracker.Container? find_container_by_id (string container_id) {

@@ -2,7 +2,10 @@
 
 	* src/gupnp-media-tracker.vala:
 
-	Use the nice and clean DBus API that Vala provides us.
+	- Use the nice and clean DBus API that Vala provides us.
+	- Enable the commented out code of get_container_children_count() now
+	  that it's working against the latest Vala (svn trunk). MediaTracker
+	  is fully functional again, yay!
 
 2008-06-12  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
