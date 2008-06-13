@@ -1,5 +1,11 @@
 2008-06-13  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* configure.ac:
+
+	Introduce a separate configure option for a strict C compiler.
+
+2008-06-13  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/Makefile.am:
 	* src/gupnp-media-server.c:
 	* src/gupnp-media-server.h:

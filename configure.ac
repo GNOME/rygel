@@ -56,7 +56,15 @@ AC_ARG_ENABLE(debug,
 	[  --enable-debug          enable debugging],,
         enable_debug=no)
 if test "x$enable_debug" = "xyes"; then
-        CFLAGS="$CFLAGS -g -Wall -Werror"
+        CFLAGS="$CFLAGS -g"
+fi
+
+# Strict compiler
+AC_ARG_ENABLE(strict-cc,
+	[  --enable-strict-cc          enable strict C compiler],,
+        enable_strict_cc=no)
+if test "x$enable_strict_cc" = "xyes"; then
+        CFLAGS="$CFLAGS -Wall -Werror"
 fi
 
 # Run uninstalled
