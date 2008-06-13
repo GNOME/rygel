@@ -17,6 +17,7 @@ BUILT_SOURCES = gupnp-media-server.stamp
 gupnp_media_server_SOURCES = main.c \
 			     gupnp-media-server.h \
 			     gupnp-media-server.c \
+			     gupnp-media-server.vala \
 			     gupnp-content-directory.h \
 			     gupnp-content-directory.c \
 			     gupnp-content-directory.vala \

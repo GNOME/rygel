@@ -1,3 +1,12 @@
+2008-06-13  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/Makefile.am:
+	* src/gupnp-media-server.c:
+	* src/gupnp-media-server.h:
+	* src/gupnp-media-server.vala:
+
+	Re-write the MediaServer class in Vala.
+
 2008-06-12  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/gupnp-media-receiver-registrar.vala:
