@@ -1,6 +1,14 @@
 2008-06-13  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* configure.ac:
+	* src/Makefile.am:
+
+	Check for gconf-2.0 Vala bindings and add it to the Vala compiler
+	flags.
+
+2008-06-13  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* configure.ac:
 
 	Introduce a separate configure option for a strict C compiler.
 

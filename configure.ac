@@ -47,6 +47,10 @@ AC_CHECK_FILE("${VAPIDIR}/dbus-glib-1.vapi",
         true,
         [AC_MSG_ERROR("Unable to find Vala bindings for dbus-glib-1")])
 
+AC_CHECK_FILE("${VAPIDIR}/gconf-2.0.vapi",
+        true,
+        [AC_MSG_ERROR("Unable to find Vala bindings for gconf-2.0")])
+
 # glib-genmarshal
 GLIB_GENMARSHAL=`pkg-config --variable=glib_genmarshal glib-2.0`
 AC_SUBST(GLIB_GENMARSHAL)
