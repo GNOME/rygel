@@ -1,6 +1,16 @@
 2008-06-15  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/Makefile.am:
+	* src/gupnp-media-server.vala:
+	* src/main.c:
+
+	Re-write the main module in Vala. The main module's code now resides
+	in MediaServer class as static methods. This marks the completion of
+	re-write of code in Vala. Yay!
+
+2008-06-15  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/Makefile.am:
 	* src/cstuff.c:
 	* src/cstuff.h:
 	* src/cstuff.vapi:

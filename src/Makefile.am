@@ -14,8 +14,7 @@ bin_PROGRAMS = gupnp-media-server
 
 BUILT_SOURCES = gupnp-media-server.stamp
 
-gupnp_media_server_SOURCES = main.c \
-			     cstuff.c \
+gupnp_media_server_SOURCES = cstuff.c \
 			     cstuff.h \
 			     gupnp-media-server.h \
 			     gupnp-media-server.c \
