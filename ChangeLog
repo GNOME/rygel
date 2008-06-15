@@ -1,3 +1,14 @@
+2008-06-15  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/Makefile.am:
+	* src/cstuff.c:
+	* src/cstuff.h:
+	* src/cstuff.vapi:
+
+	Put all low-level stuff into a separate module. This module will be
+	the only one kept in C and all the code that currently can't be
+	written (easily) in Vala, will go there.
+
 2008-06-13  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* configure.ac:

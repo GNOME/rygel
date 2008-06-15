@@ -15,6 +15,8 @@ bin_PROGRAMS = gupnp-media-server
 BUILT_SOURCES = gupnp-media-server.stamp
 
 gupnp_media_server_SOURCES = main.c \
+			     cstuff.c \
+			     cstuff.h \
 			     gupnp-media-server.h \
 			     gupnp-media-server.c \
 			     gupnp-media-server.vala \
@@ -29,7 +31,7 @@ gupnp_media_server_SOURCES = main.c \
 			     gupnp-media-tracker.vala
 
 gupnp-media-server.stamp: $(filter %.vala,$(gupnp_media_server_SOURCES))
-	$(VALAC) -C --pkg gupnp-1.0 \
+	$(VALAC) -C --vapidir=$(srcdir) --pkg cstuff --pkg gupnp-1.0 \
 	--pkg gupnp-av-1.0 --pkg dbus-glib-1 --pkg gconf-2.0 $^
 	touch $@
 
@@ -40,3 +42,4 @@ gupnp_media_server_LDADD = $(LIBGUPNP_LIBS) \
 gupnp_media_server_LDFLAGS = -export-dynamic
 
 MAINTAINERCLEANFILES = Makefile.in
+EXTRA_DIST = cstuff.vala
