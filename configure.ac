@@ -1,7 +1,7 @@
 AC_PREREQ(2.53)
 AC_INIT(gupnp-media-server, 0.1, http://www.gupnp.org/)
 AM_INIT_AUTOMAKE()
-AC_CONFIG_SRCDIR(src/main.c)
+AC_CONFIG_SRCDIR(src/gupnp-media-server.vala)
 AM_CONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
 

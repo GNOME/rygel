@@ -1,5 +1,12 @@
 2008-06-15  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* configure.ac:
+
+	Check for gupnp-media-server.vala file rather than now removed main.c
+	file.
+
+2008-06-15  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/Makefile.am:
 
 	Add the vala stamp file to CLEANFILES.
