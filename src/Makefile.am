@@ -40,5 +40,6 @@ gupnp_media_server_LDADD = $(LIBGUPNP_LIBS) \
 			   $(LIBDBUS_GLIB_LIBS)
 gupnp_media_server_LDFLAGS = -export-dynamic
 
+CLEANFILES = $(BUILT_SOURCES)
 MAINTAINERCLEANFILES = Makefile.in
 EXTRA_DIST = cstuff.vala

@@ -1,6 +1,12 @@
 2008-06-15  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/Makefile.am:
+
+	Add the vala stamp file to CLEANFILES.
+
+2008-06-15  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/Makefile.am:
 	* src/gupnp-media-server.vala:
 	* src/main.c:
 
