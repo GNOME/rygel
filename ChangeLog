@@ -1,3 +1,9 @@
+2008-06-16  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-media-tracker.vala:
+
+	Make all constants all CAPS.
+
 2008-06-15  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* configure.ac:

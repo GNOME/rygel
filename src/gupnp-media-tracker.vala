@@ -47,18 +47,18 @@ private class Tracker.Container {
 
 public class GUPnP.MediaTracker : GLib.Object {
     /* class-wide constants */
-    public static const string tracker_service = "org.freedesktop.Tracker";
-    public static const string tracker_path = "/org/freedesktop/tracker";
-    public static const string tracker_iface = "org.freedesktop.Tracker";
-    public static const string files_iface = "org.freedesktop.Tracker.Files";
-    public static const string metadata_iface =
+    public static const string TRACKER_SERVICE = "org.freedesktop.Tracker";
+    public static const string TRACKER_PATH = "/org/freedesktop/tracker";
+    public static const string TRACKER_IFACE = "org.freedesktop.Tracker";
+    public static const string FILES_IFACE = "org.freedesktop.Tracker.Files";
+    public static const string METADATA_IFACE =
                                             "org.freedesktop.Tracker.Metadata";
 
-    public static const int max_requested_count = 128;
+    public static const int MAX_REQUESTED_COUNT = 128;
 
-    public static const string image_class = "object.item.imageItem";
-    public static const string video_class = "object.item.videoItem";
-    public static const string music_class = "object.item.audioItem.musicTrack";
+    public static const string IMAGE_CLASS = "object.item.imageItem";
+    public static const string VIDEO_CLASS = "object.item.videoItem";
+    public static const string MUSIC_CLASS = "object.item.audioItem.musicTrack";
 
     /* FIXME: Make this a static if you know how to initize it */
     private List<Tracker.Container> containers;
@@ -80,32 +80,32 @@ public class GUPnP.MediaTracker : GLib.Object {
                         (new Tracker.Container ("16",
                                                 "All Images",
                                                 "Images",
-                                                MediaTracker.image_class));
+                                                MediaTracker.IMAGE_CLASS));
         this.containers.append
                         (new Tracker.Container ("14",
                                                 "All Music",
                                                 "Music",
-                                                MediaTracker.music_class));
+                                                MediaTracker.MUSIC_CLASS));
         this.containers.append
                         (new Tracker.Container ("15",
                                                 "All Videos",
                                                 "Videos",
-                                                MediaTracker.video_class));
+                                                MediaTracker.VIDEO_CLASS));
 
         this.didl_writer = new DIDLLiteWriter ();
         this.search_parser = new SearchCriteriaParser ();
 
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
-        this.metadata = connection.get_object (MediaTracker.tracker_service,
-                                               MediaTracker.tracker_path,
-                                               MediaTracker.metadata_iface);
-        this.files = connection.get_object (MediaTracker.tracker_service,
-                                            MediaTracker.tracker_path,
-                                            MediaTracker.files_iface);
-        this.tracker = connection.get_object (MediaTracker.tracker_service,
-                                              MediaTracker.tracker_path,
-                                              MediaTracker.tracker_iface);
+        this.metadata = connection.get_object (MediaTracker.TRACKER_SERVICE,
+                                               MediaTracker.TRACKER_PATH,
+                                               MediaTracker.METADATA_IFACE);
+        this.files = connection.get_object (MediaTracker.TRACKER_SERVICE,
+                                            MediaTracker.TRACKER_PATH,
+                                            MediaTracker.FILES_IFACE);
+        this.tracker = connection.get_object (MediaTracker.TRACKER_SERVICE,
+                                              MediaTracker.TRACKER_PATH,
+                                              MediaTracker.TRACKER_IFACE);
 
         weak string home_dir = Environment.get_home_dir ();
 
@@ -140,7 +140,7 @@ public class GUPnP.MediaTracker : GLib.Object {
             Tracker.Container container;
 
             if (requested_count == 0)
-                requested_count = max_requested_count;
+                requested_count = MAX_REQUESTED_COUNT;
 
             container = this.find_container_by_id (container_id);
             if (container == null)
@@ -350,10 +350,10 @@ public class GUPnP.MediaTracker : GLib.Object {
                                       "File:Mime",
                                       null,
                                       null};
-        if (parent.child_class == video_class) {
+        if (parent.child_class == VIDEO_CLASS) {
             keys[2] = "Video:Width";
             keys[3] = "Video:Height";
-        } else if (parent.child_class == image_class) {
+        } else if (parent.child_class == IMAGE_CLASS) {
             keys[2] = "Image:Width";
             keys[3] = "Image:Height";
         }
