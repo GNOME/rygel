@@ -22,7 +22,6 @@
  * version 2 of the License, or (at your option) any later version.
  */
 
-using GLib;
 using GUPnP;
 
 public class GUPnP.MediaReceiverRegistrar: Service {
