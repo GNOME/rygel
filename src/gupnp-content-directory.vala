@@ -34,16 +34,12 @@ public class GUPnP.ContentDirectory: Service {
     construct {
         this.tracker = new MediaTracker ("0", this.context);
         
-        /* FIXME: Use Vala's syntax for connecting signals when Vala adds
-        * support for signal details. */
-        Signal.connect (this,
-                        "action-invoked::Browse",
-                        (GLib.Callback) this.browse_cb,
-                        null);
+        this.action_invoked["Browse"] += this.browse_cb;
     }
 
     /* Browse action implementation */
-    private void browse_cb (ServiceAction action) {
+    private void browse_cb (ContentDirectory content_dir,
+                            ServiceAction    action) {
         string object_id, browse_flag;
         bool browse_metadata;
         string didl, sort_criteria, filter;

@@ -1,3 +1,10 @@
+2008-06-24  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-content-directory.vala:
+	* src/gupnp-media-receiver-registrar.vala:
+
+	Start using the new Vala syntax for connecting signals with details.
+
 2008-06-23  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/gupnp-media-tracker.vala:
