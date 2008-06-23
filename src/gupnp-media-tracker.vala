@@ -426,7 +426,7 @@ public class GUPnP.MediaTracker : GLib.Object {
 
         /* URI */
         string escaped_path = Uri.escape_string (path, "/", true);
-        string uri = "http://%s:%d%s".printf (context.host_ip,
+        string uri = "http://%s:%u%s".printf (context.host_ip,
                                               context.port,
                                               escaped_path);
 

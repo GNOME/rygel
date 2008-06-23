@@ -1,3 +1,9 @@
+2008-06-23  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-media-tracker.vala:
+
+	A small fix to setisfy the latest Vala compiler.
+
 2008-06-16  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/gupnp-media-tracker.vala:
