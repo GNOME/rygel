@@ -1,3 +1,11 @@
+2008-06-26  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-media-server.vala:
+
+	Correct the logic in MediaServer.set_friendly_name_and_udn (). The
+	values for UDN and FriendlyName were not set in the description doc if
+	not already present in the corresponding gconf keys.
+
 2008-06-24  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/gupnp-content-directory.vala:

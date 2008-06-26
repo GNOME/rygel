@@ -215,8 +215,6 @@ public class GUPnP.MediaServer: RootDevice {
         try {
             str = gconf_client.get_string (key);
         } catch (GLib.Error error) {
-            str = default_value;
-
             try {
                 gconf_client.set_string (key, str);
             } catch (GLib.Error error) {
@@ -228,7 +226,10 @@ public class GUPnP.MediaServer: RootDevice {
             }
         }
 
-        return str;
+        if (str != null)
+                return str;
+        else
+                return default_value;
     }
 
     private static void add_xbox_specifics (Xml.Doc doc) {
