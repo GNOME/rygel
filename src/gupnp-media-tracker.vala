@@ -361,7 +361,8 @@ public class GUPnP.MediaTracker : GLib.Object {
                                       "Video:Title",
                                       "Video:Author",
                                       "Video:Width",
-                                      "Video:Height"};
+                                      "Video:Height",
+                                      "DC:Date"};
 
         string[] values = null;
 
@@ -392,12 +393,15 @@ public class GUPnP.MediaTracker : GLib.Object {
             /* If title wasn't provided, use filename instead */
             title = values[0];
 
+        string date = seconds_to_iso8601 (values[6]);
+
         this.add_item (path,
                        parent.id,
                        values[1],
                        title,
                        values[3],
                        "",
+                       date,
                        parent.child_class,
                        width,
                        height,
@@ -415,7 +419,9 @@ public class GUPnP.MediaTracker : GLib.Object {
                                       "Image:Creator",
                                       "Image:Width",
                                       "Image:Height",
-                                      "Image:Album"};
+                                      "Image:Album",
+                                      "Image:Date",
+                                      "DC:Date"};
 
         string[] values = null;
 
@@ -446,12 +452,23 @@ public class GUPnP.MediaTracker : GLib.Object {
             /* If title wasn't provided, use filename instead */
             title = values[0];
 
+        string seconds;
+
+        if (values[8] != "") {
+            seconds = values[8];
+        } else {
+            seconds = values[7];
+        }
+
+        string date = seconds_to_iso8601 (seconds);
+
         this.add_item (path,
                        parent.id,
                        values[1],
                        title,
                        values[3],
                        values[6],
+                       date,
                        parent.child_class,
                        width,
                        height,
@@ -468,7 +485,10 @@ public class GUPnP.MediaTracker : GLib.Object {
                                       "Audio:Title",
                                       "Audio:Artist",
                                       "Audio:TrackNo",
-                                      "Audio:Album"};
+                                      "Audio:Album",
+                                      "Audio:ReleaseDate",
+                                      "Audio:DateAdded",
+                                      "DC:Date"};
 
         string[] values = null;
 
@@ -495,12 +515,25 @@ public class GUPnP.MediaTracker : GLib.Object {
             /* If title wasn't provided, use filename instead */
             title = values[0];
 
+        string seconds;
+
+        if (values[8] != "") {
+            seconds = values[8];
+        } else if (values[6] != "") {
+            seconds = values[6];
+        } else {
+            seconds = values[7];
+        }
+
+        string date = seconds_to_iso8601 (seconds);
+
         this.add_item (path,
                        parent.id,
                        values[1],
                        title,
                        values[3],
                        values[5],
+                       date,
                        parent.child_class,
                        -1,
                        -1,
@@ -516,6 +549,7 @@ public class GUPnP.MediaTracker : GLib.Object {
                            string title,
                            string author,
                            string album,
+                           string date,
                            string upnp_class,
                            int    width,
                            int    height,
@@ -569,6 +603,13 @@ public class GUPnP.MediaTracker : GLib.Object {
                                          DIDLLiteWriter.NAMESPACE_UPNP,
                                          null,
                                          album);
+        }
+
+        if (date != "") {
+            this.didl_writer.add_string ("date",
+                                         DIDLLiteWriter.NAMESPACE_DC,
+                                         null,
+                                         date);
         }
 
         /* Add resource data */
@@ -628,6 +669,24 @@ public class GUPnP.MediaTracker : GLib.Object {
         }
 
         return container;
+    }
+
+    string seconds_to_iso8601 (string seconds) {
+
+        string date;
+
+        if (seconds != "") {
+            TimeVal tv;
+
+            tv.tv_sec = seconds.to_int ();
+            tv.tv_usec = 0;
+
+            date = tv.to_iso8601 ();
+        } else {
+            date = "";
+        }
+
+        return date;
     }
 }
 

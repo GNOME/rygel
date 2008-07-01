@@ -5,6 +5,7 @@
 	- Refactor: separate functions for adding music, image and video items
 	  to DIDL.
 	- Put the actual "album" in the DIDL when available.
+	- Put "dc:date" in the DIDL when available.
 
 2008-07-01  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
