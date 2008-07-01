@@ -446,7 +446,7 @@ public class GUPnP.MediaTracker : GLib.Object {
             height = values[5].to_int ();
 
         string title;
-        if (values[2] != null && values[2] != "")
+        if (values[2] != "")
             title = values[2];
         else
             /* If title wasn't provided, use filename instead */
@@ -509,7 +509,7 @@ public class GUPnP.MediaTracker : GLib.Object {
             track_number = values[4].to_int ();
 
         string title;
-        if (values[2] != null && values[2] != "")
+        if (values[2] != "")
             title = values[2];
         else
             /* If title wasn't provided, use filename instead */
