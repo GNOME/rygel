@@ -364,6 +364,7 @@ public class GUPnP.MediaTracker : GLib.Object {
         } else if (parent.child_class == MUSIC_CLASS) {
             keys[2] = "Audio:Title";
             keys[3] = "Audio:Artist";
+            keys[4] = "Audio:TrackNo";
         }
 
         string[] values = null;
@@ -381,12 +382,19 @@ public class GUPnP.MediaTracker : GLib.Object {
 
         int width = -1;
         int height = -1;
+        int track_number = -1;
 
-        if (keys[4] != null && values[4] != "")
-            width = values[4].to_int ();
+        if (parent.child_class == MUSIC_CLASS) {
+            if (values[4] != "")
+                track_number = values[4].to_int ();
+        } else if (parent.child_class == VIDEO_CLASS ||
+                   parent.child_class == IMAGE_CLASS) {
+            if (values[4] != "")
+                width = values[4].to_int ();
 
-        if (keys[5] != null && values[5] != "")
-            height = values[5].to_int ();
+            if (values[5] != "")
+                height = values[5].to_int ();
+        }
 
         string title;
         if (values[2] != null && values[2] != "")
@@ -403,6 +411,7 @@ public class GUPnP.MediaTracker : GLib.Object {
                        parent.child_class,
                        width,
                        height,
+                       track_number,
                        path);
 
         return true;
@@ -416,6 +425,7 @@ public class GUPnP.MediaTracker : GLib.Object {
                            string upnp_class,
                            int    width,
                            int    height,
+                           int    track_number,
                            string path) {
         this.didl_writer.start_item (id,
                                      parent_id,
@@ -451,6 +461,13 @@ public class GUPnP.MediaTracker : GLib.Object {
                                 prop_namespace,
                                 null,
                                 author);
+        }
+
+        if (track_number >= 0) {
+            this.didl_writer.add_int ("originalTrackNumber",
+                                      DIDLLiteWriter.NAMESPACE_UPNP,
+                                      null,
+                                      track_number);
         }
 
         this.didl_writer.add_string ("album",

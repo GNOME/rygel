@@ -2,7 +2,8 @@
 
 	* src/gupnp-media-tracker.vala:
 
-	Include the author, creator or artist in the DIDL when available.
+	- Include the author, creator or artist in the DIDL when available.
+	- Include "originalTrackNumber" in the DIDL for Music track objects.
 
 2008-06-30  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
