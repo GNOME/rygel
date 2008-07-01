@@ -1,5 +1,11 @@
 2008-06-30  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* configure.ac:
+
+	Export the "abs_top_builddir" explicitly. Some installations need it.
+
+2008-06-30  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/gupnp-media-tracker.vala:
 
 	- Include the title instead of filename in the DIDL when it's available.

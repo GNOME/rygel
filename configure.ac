@@ -79,6 +79,8 @@ if test "x$enable_uninstalled" = "xyes"; then
         AC_MSG_WARN("You want to run the tools uninstalled only? Fine!")
 fi
 
+AC_SUBST(abs_top_builddir)
+
 AM_CONDITIONAL([UNINSTALLED], [test "x$enable_uninstalled" = "xyes"])
 
 # Gettext
