@@ -378,10 +378,10 @@ public class GUPnP.MediaTracker : GLib.Object {
         int width = -1;
         int height = -1;
 
-        if (keys[3] != null && values[3] != null)
+        if (keys[3] != null && values[3] != "")
             width = values[3].to_int ();
 
-        if (keys[4] != null && values[4] != null)
+        if (keys[4] != null && values[4] != "")
             height = values[4].to_int ();
 
         string title;

@@ -2,7 +2,9 @@
 
 	* src/gupnp-media-tracker.vala:
 
-	Include the title instead of filename in the DIDL when it's available.
+	- Include the title instead of filename in the DIDL when it's available.
+	- tracker gives us empty string rather than null for each unavailable
+	  metadata.
 
 2008-06-26  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
