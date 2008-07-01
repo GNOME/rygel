@@ -349,17 +349,21 @@ public class GUPnP.MediaTracker : GLib.Object {
                                       "File:Mime",
                                       null,
                                       null,
+                                      null,
                                       null};
         if (parent.child_class == VIDEO_CLASS) {
             keys[2] = "Video:Title";
-            keys[3] = "Video:Width";
-            keys[4] = "Video:Height";
+            keys[3] = "Video:Author";
+            keys[4] = "Video:Width";
+            keys[5] = "Video:Height";
         } else if (parent.child_class == IMAGE_CLASS) {
             keys[2] = "Image:Title";
-            keys[3] = "Image:Width";
-            keys[4] = "Image:Height";
+            keys[3] = "Image:Creator";
+            keys[4] = "Image:Width";
+            keys[5] = "Image:Height";
         } else if (parent.child_class == MUSIC_CLASS) {
             keys[2] = "Audio:Title";
+            keys[3] = "Audio:Artist";
         }
 
         string[] values = null;
@@ -378,11 +382,11 @@ public class GUPnP.MediaTracker : GLib.Object {
         int width = -1;
         int height = -1;
 
-        if (keys[3] != null && values[3] != "")
-            width = values[3].to_int ();
-
         if (keys[4] != null && values[4] != "")
-            height = values[4].to_int ();
+            width = values[4].to_int ();
+
+        if (keys[5] != null && values[5] != "")
+            height = values[5].to_int ();
 
         string title;
         if (values[2] != null && values[2] != "")
@@ -395,6 +399,7 @@ public class GUPnP.MediaTracker : GLib.Object {
                        parent.id,
                        values[1],
                        title,
+                       values[3],
                        parent.child_class,
                        width,
                        height,
@@ -407,6 +412,7 @@ public class GUPnP.MediaTracker : GLib.Object {
                            string parent_id,
                            string mime,
                            string title,
+                           string author,
                            string upnp_class,
                            int    width,
                            int    height,
@@ -426,6 +432,26 @@ public class GUPnP.MediaTracker : GLib.Object {
                                      DIDLLiteWriter.NAMESPACE_UPNP,
                                      null,
                                      upnp_class);
+
+        if (author != "") {
+                string prop_name, prop_namespace;
+
+                if (upnp_class == VIDEO_CLASS) {
+                        prop_name = "author";
+                        prop_namespace = DIDLLiteWriter.NAMESPACE_UPNP;
+                } else if (upnp_class == IMAGE_CLASS) {
+                        prop_name = "creator";
+                        prop_namespace = DIDLLiteWriter.NAMESPACE_DC;
+                } else if (upnp_class == MUSIC_CLASS) {
+                        prop_name = "artist";
+                        prop_namespace = DIDLLiteWriter.NAMESPACE_UPNP;
+                }
+
+                this.didl_writer.add_string (prop_name,
+                                prop_namespace,
+                                null,
+                                author);
+        }
 
         this.didl_writer.add_string ("album",
                                      DIDLLiteWriter.NAMESPACE_UPNP,
