@@ -635,6 +635,12 @@ public class GUPnP.MediaTracker : GLib.Object {
 
         this.didl_writer.add_res (res);
 
+        /* FIXME: These lines should be remove once GB#526552 is fixed */
+        res.uri = null;
+        res.protocol = null;
+        res.mime_type = null;
+        res.dlna_profile = null;
+
         /* End of item */
         this.didl_writer.end_item ();
     }
