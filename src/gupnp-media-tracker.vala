@@ -348,13 +348,18 @@ public class GUPnP.MediaTracker : GLib.Object {
         string[] keys = new string[] {"File:Name",
                                       "File:Mime",
                                       null,
+                                      null,
                                       null};
         if (parent.child_class == VIDEO_CLASS) {
-            keys[2] = "Video:Width";
-            keys[3] = "Video:Height";
+            keys[2] = "Video:Title";
+            keys[3] = "Video:Width";
+            keys[4] = "Video:Height";
         } else if (parent.child_class == IMAGE_CLASS) {
-            keys[2] = "Image:Width";
-            keys[3] = "Image:Height";
+            keys[2] = "Image:Title";
+            keys[3] = "Image:Width";
+            keys[4] = "Image:Height";
+        } else if (parent.child_class == MUSIC_CLASS) {
+            keys[2] = "Audio:Title";
         }
 
         string[] values = null;
@@ -373,16 +378,23 @@ public class GUPnP.MediaTracker : GLib.Object {
         int width = -1;
         int height = -1;
 
-        if (keys[2] != null && values[2] != null)
-            width = values[2].to_int ();
-
         if (keys[3] != null && values[3] != null)
-            height = values[3].to_int ();
+            width = values[3].to_int ();
+
+        if (keys[4] != null && values[4] != null)
+            height = values[4].to_int ();
+
+        string title;
+        if (values[2] != null && values[2] != "")
+            title = values[2];
+        else
+            /* If title wasn't provided, use filename instead */
+            title = values[0];
 
         this.add_item (path,
                        parent.id,
                        values[1],
-                       values[0],
+                       title,
                        parent.child_class,
                        width,
                        height,

@@ -1,3 +1,9 @@
+2008-06-30  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-media-tracker.vala:
+
+	Include the title instead of filename in the DIDL when it's available.
+
 2008-06-26  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/gupnp-media-server.vala:
