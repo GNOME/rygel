@@ -345,27 +345,23 @@ public class GUPnP.MediaTracker : GLib.Object {
 
     private bool add_item_from_db (Tracker.Container parent,
                                    string            path) {
+        if (parent.child_class == VIDEO_CLASS) {
+            return this.add_video_item_from_db (parent, path);
+        } else if (parent.child_class == IMAGE_CLASS) {
+            return this.add_image_item_from_db (parent, path);
+        } else {
+            return this.add_music_item_from_db (parent, path);
+        }
+    }
+
+    private bool add_video_item_from_db (Tracker.Container parent,
+                                         string path) {
         string[] keys = new string[] {"File:Name",
                                       "File:Mime",
-                                      null,
-                                      null,
-                                      null,
-                                      null};
-        if (parent.child_class == VIDEO_CLASS) {
-            keys[2] = "Video:Title";
-            keys[3] = "Video:Author";
-            keys[4] = "Video:Width";
-            keys[5] = "Video:Height";
-        } else if (parent.child_class == IMAGE_CLASS) {
-            keys[2] = "Image:Title";
-            keys[3] = "Image:Creator";
-            keys[4] = "Image:Width";
-            keys[5] = "Image:Height";
-        } else if (parent.child_class == MUSIC_CLASS) {
-            keys[2] = "Audio:Title";
-            keys[3] = "Audio:Artist";
-            keys[4] = "Audio:TrackNo";
-        }
+                                      "Video:Title",
+                                      "Video:Author",
+                                      "Video:Width",
+                                      "Video:Height"};
 
         string[] values = null;
 
@@ -382,19 +378,64 @@ public class GUPnP.MediaTracker : GLib.Object {
 
         int width = -1;
         int height = -1;
-        int track_number = -1;
 
-        if (parent.child_class == MUSIC_CLASS) {
-            if (values[4] != "")
-                track_number = values[4].to_int ();
-        } else if (parent.child_class == VIDEO_CLASS ||
-                   parent.child_class == IMAGE_CLASS) {
-            if (values[4] != "")
-                width = values[4].to_int ();
+        if (values[4] != "")
+            width = values[4].to_int ();
 
-            if (values[5] != "")
-                height = values[5].to_int ();
+        if (values[5] != "")
+            height = values[5].to_int ();
+
+        string title;
+        if (values[2] != "")
+            title = values[2];
+        else
+            /* If title wasn't provided, use filename instead */
+            title = values[0];
+
+        this.add_item (path,
+                       parent.id,
+                       values[1],
+                       title,
+                       values[3],
+                       parent.child_class,
+                       width,
+                       height,
+                       -1,
+                       path);
+
+        return true;
+    }
+
+    private bool add_image_item_from_db (Tracker.Container parent,
+                                         string path) {
+        string[] keys = new string[] {"File:Name",
+                                      "File:Mime",
+                                      "Image:Title",
+                                      "Image:Creator",
+                                      "Image:Width",
+                                      "Image:Height"};
+
+        string[] values = null;
+
+        /* TODO: make this async */
+        try {
+            values = this.metadata.Get (parent.tracker_category, path, keys);
+        } catch (GLib.Error error) {
+            critical ("failed to get metadata for %s: %s\n",
+                      path,
+                      error.message);
+
+            return false;
         }
+
+        int width = -1;
+        int height = -1;
+
+        if (values[4] != "")
+            width = values[4].to_int ();
+
+        if (values[5] != "")
+            height = values[5].to_int ();
 
         string title;
         if (values[2] != null && values[2] != "")
@@ -411,6 +452,53 @@ public class GUPnP.MediaTracker : GLib.Object {
                        parent.child_class,
                        width,
                        height,
+                       -1,
+                       path);
+
+        return true;
+    }
+
+    private bool add_music_item_from_db (Tracker.Container parent,
+                                         string            path) {
+        string[] keys = new string[] {"File:Name",
+                                      "File:Mime",
+                                      "Audio:Title",
+                                      "Audio:Artist",
+                                      "Audio:TrackNo"};
+
+        string[] values = null;
+
+        /* TODO: make this async */
+        try {
+            values = this.metadata.Get (parent.tracker_category, path, keys);
+        } catch (GLib.Error error) {
+            critical ("failed to get metadata for %s: %s\n",
+                      path,
+                      error.message);
+
+            return false;
+        }
+
+        int track_number = -1;
+
+        if (values[4] != "")
+            track_number = values[4].to_int ();
+
+        string title;
+        if (values[2] != null && values[2] != "")
+            title = values[2];
+        else
+            /* If title wasn't provided, use filename instead */
+            title = values[0];
+
+        this.add_item (path,
+                       parent.id,
+                       values[1],
+                       title,
+                       values[3],
+                       parent.child_class,
+                       -1,
+                       -1,
                        track_number,
                        path);
 

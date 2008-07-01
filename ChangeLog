@@ -2,6 +2,13 @@
 
 	* src/gupnp-media-tracker.vala:
 
+	Refactor: separate functions for adding music, image and video items
+	to DIDL.
+
+2008-07-01  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-media-tracker.vala:
+
 	- Include the author, creator or artist in the DIDL when available.
 	- Include "originalTrackNumber" in the DIDL for Music track objects.
 	- Indentation fix.
