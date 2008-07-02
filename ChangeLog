@@ -1,5 +1,11 @@
 2008-07-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* data/xml/ContentDirectory.xml:
+
+	List the required actions/variable before the optional.
+
+2008-07-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* data/xml/Makefile.am:
 	* data/xml/description-xbox360.xml:
 	* data/xml/description.xml:

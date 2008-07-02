@@ -26,30 +26,9 @@ feature provided by your editor.
 		</stateVariable>
 
 		<stateVariable>
-			<Optional/>
-			<name>SortExtensionCapabilities</name>
-			<sendEventsAttribute>no</sendEventsAttribute>
-			<dataType>string</dataType>
-		</stateVariable>
-
-		<stateVariable>
 			<name>SystemUpdateID</name>
 			<sendEventsAttribute>yes</sendEventsAttribute>
 			<dataType>ui4</dataType>
-		</stateVariable>
-
-		<stateVariable>
-			<Optional/>
-			<name>ContainerUpdateIDs</name>
-			<sendEventsAttribute>yes</sendEventsAttribute>
-			<dataType>string</dataType>
-		</stateVariable>
-
-		<stateVariable>
-			<Optional/>
-			<name>TransferIDs</name>
-			<sendEventsAttribute>yes</sendEventsAttribute>
-			<dataType>string</dataType>
 		</stateVariable>
 
 		<stateVariable>
@@ -66,13 +45,6 @@ feature provided by your editor.
 
 		<stateVariable>
 			<name>A_ARG_TYPE_Result</name>
-			<sendEventsAttribute>no</sendEventsAttribute>
-			<dataType>string</dataType>
-		</stateVariable>
-
-		<stateVariable>
-			<Optional/>
-			<name>A_ARG_TYPE_SearchCriteria</name>
 			<sendEventsAttribute>no</sendEventsAttribute>
 			<dataType>string</dataType>
 		</stateVariable>
@@ -115,6 +87,34 @@ feature provided by your editor.
 			<name>A_ARG_TYPE_UpdateID</name>
 			<sendEventsAttribute>no</sendEventsAttribute>
 			<dataType>ui4</dataType>
+		</stateVariable>
+
+		<stateVariable>
+			<Optional/>
+			<name>A_ARG_TYPE_SearchCriteria</name>
+			<sendEventsAttribute>no</sendEventsAttribute>
+			<dataType>string</dataType>
+		</stateVariable>
+
+		<stateVariable>
+			<Optional/>
+			<name>SortExtensionCapabilities</name>
+			<sendEventsAttribute>no</sendEventsAttribute>
+			<dataType>string</dataType>
+		</stateVariable>
+
+		<stateVariable>
+			<Optional/>
+			<name>ContainerUpdateIDs</name>
+			<sendEventsAttribute>yes</sendEventsAttribute>
+			<dataType>string</dataType>
+		</stateVariable>
+
+		<stateVariable>
+			<Optional/>
+			<name>TransferIDs</name>
+			<sendEventsAttribute>yes</sendEventsAttribute>
+			<dataType>string</dataType>
 		</stateVariable>
 
 		<stateVariable>
@@ -190,13 +190,12 @@ feature provided by your editor.
 		</action>
 
 		<action>
-			<Optional/>
-			<name>GetSortExtensionCapabilities</name>
+			<name>GetSystemUpdateID</name>
 			<argumentList>
 				<argument>
-					<name>SortExtensionCaps</name>
+					<name>Id</name>
 					<direction>out</direction>
-					<relatedStateVariable>SortExtensionCapabilities</relatedStateVariable>
+					<relatedStateVariable>SystemUpdateID</relatedStateVariable>
 				</argument>
 			</argumentList>
 		</action>
@@ -212,16 +211,6 @@ feature provided by your editor.
 			</argumentList>
 		</action>
 
-		<action>
-			<name>GetSystemUpdateID</name>
-			<argumentList>
-				<argument>
-					<name>Id</name>
-					<direction>out</direction>
-					<relatedStateVariable>SystemUpdateID</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
 
 		<action>
 			<name>Browse</name>
@@ -275,6 +264,18 @@ feature provided by your editor.
 					<name>UpdateID</name>
 					<direction>out</direction>
 					<relatedStateVariable>A_ARG_TYPE_UpdateID</relatedStateVariable>
+				</argument>
+			</argumentList>
+		</action>
+
+                <action>
+			<Optional/>
+			<name>GetSortExtensionCapabilities</name>
+			<argumentList>
+				<argument>
+					<name>SortExtensionCaps</name>
+					<direction>out</direction>
+					<relatedStateVariable>SortExtensionCapabilities</relatedStateVariable>
 				</argument>
 			</argumentList>
 		</action>
