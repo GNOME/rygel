@@ -270,6 +270,7 @@ feature provided by your editor.
 			</argumentList>
 		</action>
 
+<!-- Optional actions that are not implemented yet
                 <action>
 			<Optional/>
 			<name>GetSortExtensionCapabilities</name>
@@ -282,7 +283,6 @@ feature provided by your editor.
 			</argumentList>
 		</action>
 
-<!-- Optional actions that are not implemented yet
 		<action>
 			<Optional/>
 			<name>Search</name>

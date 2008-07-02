@@ -1,5 +1,11 @@
 2008-07-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* data/xml/ContentDirectory.xml:
+
+	Hide the optional "GetSortExtensionCapabilities" action as well.
+
+2008-07-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/gupnp-content-directory.vala:
 
 	- Initialize "SystemUpdateID" variable and implement related query and
