@@ -28,12 +28,21 @@ using GUPnP;
 
 public class GUPnP.ContentDirectory: Service {
     uint32 system_update_id;
+    string feature_list;
 
     MediaTracker tracker;
 
     construct {
         this.tracker = new MediaTracker ("0", this.context);
         this.system_update_id = 0;
+
+        this.feature_list =
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+            "<Features xmlns=\"urn:schemas-upnp-org:av:avs\" " +
+            "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
+            "xsi:schemaLocation=\"urn:schemas-upnp-org:av:avs" +
+            "http://www.upnp.org/schemas/av/avs-v1-20060531.xsd\">" +
+            "</Features>";
 
         this.action_invoked["Browse"] += this.browse_cb;
 
@@ -53,6 +62,10 @@ public class GUPnP.ContentDirectory: Service {
                                                 this.get_sort_capabilities_cb;
         this.query_variable["SortCapabilities"] +=
                                                 this.query_sort_capabilities;
+
+        /* Connect FeatureList related signals */
+        this.action_invoked["GetFeatureList"] += this.get_feature_list_cb;
+        this.query_variable["FeatureList"] += this.query_feature_list;
     }
 
     /* Browse action implementation */
@@ -184,6 +197,24 @@ public class GUPnP.ContentDirectory: Service {
         /* Set action return arguments */
         value.init (typeof (string));
         value.set_string ("");
+    }
+
+    /* action GetFeatureList implementation */
+    private void get_feature_list_cb (ContentDirectory content_dir,
+                                      ServiceAction    action) {
+        /* Set action return arguments */
+        action.set ("FeatureList", typeof (string), this.feature_list);
+
+        action.return ();
+    }
+
+    /* Query FeatureList */
+    private void query_feature_list (ContentDirectory content_dir,
+                                     string variable,
+                                     GLib.Value value) {
+        /* Set action return arguments */
+        value.init (typeof (string));
+        value.set_string (this.feature_list);
     }
 }
 

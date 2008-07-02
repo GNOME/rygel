@@ -6,6 +6,7 @@
 	  action.
 	- Implement "SearchCapabilities" and "SortCapabilities" related
 	  queries and actions.
+	- Implement "FeatureList" related queries and actions.
 
 2008-07-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
