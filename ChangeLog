@@ -1,5 +1,14 @@
 2008-07-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* data/xml/Makefile.am:
+	* data/xml/description-xbox360.xml:
+	* data/xml/description.xml:
+
+	Disable the distribution and advertisement of the yet unimplemented
+	ConnectionManager service.
+
+2008-07-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/gupnp-media-tracker.vala:
 
         A temporary hack to make Vala compiler free string in structs. We need

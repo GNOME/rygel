@@ -23,6 +23,8 @@
 <eventSubURL>/ContentDirectory/Event</eventSubURL>
 <controlURL>/ContentDirectory/Control</controlURL>
 </service>
+<!-- FIXME: Implement the service, uncomment these lines and enable the
+            distribution of the SCPD in the build.
 <service>
 <serviceType>urn:schemas-upnp-org:service:ConnectionManager:2</serviceType>
 <serviceId>urn:upnp-org:serviceId:ConnectionManager</serviceId>
@@ -30,6 +32,7 @@
 <eventSubURL>/ConnectionManager/Event</eventSubURL>
 <controlURL>/ConnectionManager/Control</controlURL>
 </service>
+-->
 <service>
 <serviceType>urn:microsoft.com:service:X_MS_MediaReceiverRegistrar:1</serviceType>
 <serviceId>urn:microsoft.com:serviceId:X_MS_MediaReceiverRegistrar</serviceId>

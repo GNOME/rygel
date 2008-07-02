@@ -1,5 +1,4 @@
 xml_DATA = description.xml \
-	   ConnectionManager.xml \
 	   ContentDirectory.xml \
 	   X_MS_MediaReceiverRegistrar1.xml \
 	   description-xbox360.xml
