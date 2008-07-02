@@ -41,6 +41,18 @@ public class GUPnP.ContentDirectory: Service {
         this.action_invoked["GetSystemUpdateID"] +=
                                                 this.get_system_update_id_cb;
         this.query_variable["SystemUpdateID"] += this.query_system_update_id;
+
+        /* Connect SearchCapabilities related signals */
+        this.action_invoked["GetSearchCapabilities"] +=
+                                                this.get_search_capabilities_cb;
+        this.query_variable["SearchCapabilities"] +=
+                                                this.query_search_capabilities;
+
+        /* Connect SortCapabilities related signals */
+        this.action_invoked["GetSortCapabilities"] +=
+                                                this.get_sort_capabilities_cb;
+        this.query_variable["SortCapabilities"] +=
+                                                this.query_sort_capabilities;
     }
 
     /* Browse action implementation */
@@ -136,6 +148,42 @@ public class GUPnP.ContentDirectory: Service {
         /* Set action return arguments */
         value.init (typeof (uint32));
         value.set_uint (this.system_update_id);
+    }
+
+    /* action GetSearchCapabilities implementation */
+    private void get_search_capabilities_cb (ContentDirectory content_dir,
+                                             ServiceAction    action) {
+        /* Set action return arguments */
+        action.set ("SearchCaps", typeof (string), "");
+
+        action.return ();
+    }
+
+    /* Query SearchCapabilities */
+    private void query_search_capabilities (ContentDirectory content_dir,
+                                            string variable,
+                                            GLib.Value value) {
+        /* Set action return arguments */
+        value.init (typeof (string));
+        value.set_string ("");
+    }
+
+    /* action GetSortCapabilities implementation */
+    private void get_sort_capabilities_cb (ContentDirectory content_dir,
+                                           ServiceAction    action) {
+        /* Set action return arguments */
+        action.set ("SortCaps", typeof (string), "");
+
+        action.return ();
+    }
+
+    /* Query SortCapabilities */
+    private void query_sort_capabilities (ContentDirectory content_dir,
+                                          string variable,
+                                          GLib.Value value) {
+        /* Set action return arguments */
+        value.init (typeof (string));
+        value.set_string ("");
     }
 }
 

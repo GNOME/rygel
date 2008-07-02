@@ -2,8 +2,10 @@
 
 	* src/gupnp-content-directory.vala:
 
-	Initialize "SystemUpdateID" variable and implement related query and
-	action.
+	- Initialize "SystemUpdateID" variable and implement related query and
+	  action.
+	- Implement "SearchCapabilities" and "SortCapabilities" related
+	  queries and actions.
 
 2008-07-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
