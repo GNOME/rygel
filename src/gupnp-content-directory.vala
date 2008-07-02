@@ -33,8 +33,14 @@ public class GUPnP.ContentDirectory: Service {
 
     construct {
         this.tracker = new MediaTracker ("0", this.context);
-        
+        this.system_update_id = 0;
+
         this.action_invoked["Browse"] += this.browse_cb;
+
+        /* Connect SystemUpdateID related signals */
+        this.action_invoked["GetSystemUpdateID"] +=
+                                                this.get_system_update_id_cb;
+        this.query_variable["SystemUpdateID"] += this.query_system_update_id;
     }
 
     /* Browse action implementation */
@@ -112,6 +118,24 @@ public class GUPnP.ContentDirectory: Service {
                     "UpdateID", typeof (uint), update_id);
 
         action.return ();
+    }
+
+    /* GetSystemUpdateID action implementation */
+    private void get_system_update_id_cb (ContentDirectory content_dir,
+                                          ServiceAction    action) {
+        /* Set action return arguments */
+        action.set ("Id", typeof (uint32), this.system_update_id);
+
+        action.return ();
+    }
+
+    /* Query GetSystemUpdateID */
+    private void query_system_update_id (ContentDirectory content_dir,
+                                         string variable,
+                                         GLib.Value value) {
+        /* Set action return arguments */
+        value.init (typeof (uint32));
+        value.set_uint (this.system_update_id);
     }
 }
 
