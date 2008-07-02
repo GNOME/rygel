@@ -2,7 +2,8 @@
 
 	* data/xml/ContentDirectory.xml:
 
-	List the required actions/variable before the optional.
+	- List the required actions/variable before the optional.
+	- Comment out the optional actions and variables.
 
 2008-07-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
 

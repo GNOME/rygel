@@ -89,6 +89,7 @@ feature provided by your editor.
 			<dataType>ui4</dataType>
 		</stateVariable>
 
+<!-- Optional state variables that are not implemented yet
 		<stateVariable>
 			<Optional/>
 			<name>A_ARG_TYPE_SearchCriteria</name>
@@ -164,6 +165,7 @@ feature provided by your editor.
 			<sendEventsAttribute>no</sendEventsAttribute>
 			<dataType>uri</dataType>
 		</stateVariable>
+-->
 	</serviceStateTable>
 
 	<actionList>
@@ -280,6 +282,7 @@ feature provided by your editor.
 			</argumentList>
 		</action>
 
+<!-- Optional actions that are not implemented yet
 		<action>
 			<Optional/>
 			<name>Search</name>
@@ -536,5 +539,6 @@ feature provided by your editor.
 				</argument>
 			</argumentList>
 		</action>
+-->
 	</actionList>
 </scpd>
