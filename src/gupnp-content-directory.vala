@@ -91,8 +91,7 @@ public class GUPnP.ContentDirectory: Service {
         } else if (browse_flag != null && browse_flag == "BrowseMetadata") {
             browse_metadata = true;
         } else {
-            /*action.return_error (GUPnP.ControlError.INVALID_ARGS, null);*/
-            action.return ();
+            action.return_error (402, "Invalid Args");
 
             return;
         }

@@ -2,6 +2,12 @@
 
 	* src/gupnp-content-directory.vala:
 
+	Return an error on getting invalid arguments for 'Browse'.
+
+2008-07-03  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-content-directory.vala:
+
 	Argument 'value' of query_variable signal should now be declared 'ref'.
 
 2008-07-03  Zeeshan Ali Khattak  <zeenix@gmail.com>
