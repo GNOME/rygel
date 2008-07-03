@@ -6,6 +6,7 @@
 	- Use Vala's syntax for connecting signals with details.
 	- Remove the unused commented-out code.
 	- Initialize the variables in the constructor.
+	- Put my name/copyright in the header.
 
 2008-07-04  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
