@@ -26,8 +26,8 @@ using GLib;
 using GUPnP;
 
 public class GUPnP.ConnectionManager : Service {
-    private string sink_protocol_info   = "http-get:*:audio/mpeg:*,http-get:*:application/ogg:*,http-get:*:audio/x-vorbis:*,http-get:*:audio/x-ms-wma:*,http-get:*:audio/x-ms-asf:*,http-get:*:audio/x-flac:*,http-get:*:audio/x-mod:*,http-get:*:audio/x-wav:*,http-get:*:audio/x-ac3:*,http-get:*:audio/x-m4a:*,http-get:*:video/x-theora:*,http-get:*:video/x-dirac:*,http-get:*:video/x-wmv:*,http-get:*:video/x-wma:*,http-get:*:video/x-msvideo:*,http-get:*:video/x-3ivx:*,http-get:*:video/x-3ivx:*,http-get:*:video/x-matroska:*,http-get:*:video/mpeg:*,http-get:*:video/x-ms-asf:*,http-get:*:video/x-divx:*,http-get:*:video/x-ms-wmv:*";
-    private string source_protocol_info = "";
+    private string source_protocol_info = "http-get:*:audio/mpeg:*,http-get:*:application/ogg:*,http-get:*:audio/x-vorbis:*,http-get:*:audio/x-ms-wma:*,http-get:*:audio/x-ms-asf:*,http-get:*:audio/x-flac:*,http-get:*:audio/x-mod:*,http-get:*:audio/x-wav:*,http-get:*:audio/x-ac3:*,http-get:*:audio/x-m4a:*,http-get:*:video/x-theora:*,http-get:*:video/x-dirac:*,http-get:*:video/x-wmv:*,http-get:*:video/x-wma:*,http-get:*:video/x-msvideo:*,http-get:*:video/x-3ivx:*,http-get:*:video/x-3ivx:*,http-get:*:video/x-matroska:*,http-get:*:video/mpeg:*,http-get:*:video/x-ms-asf:*,http-get:*:video/x-divx:*,http-get:*:video/x-ms-wmv:*";
+    private string sink_protocol_info   = "";
     private string connection_ids       = "0";
 
     // Creates a list of supported sink protocols based on GStreamer's
