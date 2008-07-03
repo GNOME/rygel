@@ -1,0 +1,15 @@
+GUPnP MediaServer
+==================
+
+GUPnP is an object-oriented open source framework for creating UPnP devices and
+control points, written in C using GObject and libsoup. The GUPnP API is
+intended to be easy to use, efficient and flexible.
+
+GUPnP MediaServer is an implementation of the UPnP MediaServer V 2.0
+specification[1] based on GUPnP and tracker[2]. It is written (mostly) in Vala
+language[3].
+
+[1] http://www.upnp.org/specs/av/UPnP-av-MediaServer-v2-Device-20060531.pdf
+[2] http://www.tracker-project.org/
+[3] http://www.vala-project.org/
+

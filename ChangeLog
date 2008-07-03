@@ -1,3 +1,9 @@
+2008-07-04  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* README:
+
+	Put some description in README file.
+
 2008-07-03  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/gupnp-content-directory.vala:
