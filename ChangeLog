@@ -4,6 +4,7 @@
 
 	- Swap the sink and source ProtocolInfo.
 	- Use Vala's syntax for connecting signals with details.
+	- Remove the unused commented-out code.
 
 2008-07-04  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
