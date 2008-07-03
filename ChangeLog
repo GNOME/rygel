@@ -1,3 +1,11 @@
+2008-07-03  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-media-tracker.vala:
+
+	Provide the 'creator' tag in DIDL xml for all items. The same value is
+	provided in 'author' and 'artist' tags for music and video items
+	respectively.
+
 2008-07-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* data/xml/ContentDirectory.xml:

@@ -572,23 +572,22 @@ public class GUPnP.MediaTracker : GLib.Object {
                                      upnp_class);
 
         if (author != "") {
-            string prop_name, prop_namespace;
-
-            if (upnp_class == VIDEO_CLASS) {
-                prop_name = "author";
-                prop_namespace = DIDLLiteWriter.NAMESPACE_UPNP;
-            } else if (upnp_class == IMAGE_CLASS) {
-                prop_name = "creator";
-                prop_namespace = DIDLLiteWriter.NAMESPACE_DC;
-            } else if (upnp_class == MUSIC_CLASS) {
-                prop_name = "artist";
-                prop_namespace = DIDLLiteWriter.NAMESPACE_UPNP;
-            }
-
-            this.didl_writer.add_string (prop_name,
-                                         prop_namespace,
+            this.didl_writer.add_string ("creator",
+                                         DIDLLiteWriter.NAMESPACE_DC,
                                          null,
                                          author);
+
+            if (upnp_class == VIDEO_CLASS) {
+                this.didl_writer.add_string ("author",
+                                             DIDLLiteWriter.NAMESPACE_UPNP,
+                                             null,
+                                             author);
+            } else if (upnp_class == MUSIC_CLASS) {
+                this.didl_writer.add_string ("artist",
+                                             DIDLLiteWriter.NAMESPACE_UPNP,
+                                             null,
+                                             author);
+            }
         }
 
         if (track_number >= 0) {
