@@ -1,5 +1,12 @@
 2008-07-04  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/Makefile.am:
+	* src/gupnp-connection-manager.vala:
+
+	Copy the ConnectionManager code from gupnp-media-renderer.
+
+2008-07-04  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* README:
 
 	Put some description in README file.
