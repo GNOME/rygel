@@ -1,5 +1,11 @@
 2008-07-03  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/gupnp-content-directory.vala:
+
+	Argument 'value' of query_variable signal should now be declared 'ref'.
+
+2008-07-03  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/gupnp-media-tracker.vala:
 
 	Provide the 'creator' tag in DIDL xml for all items. The same value is

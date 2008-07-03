@@ -157,7 +157,7 @@ public class GUPnP.ContentDirectory: Service {
     /* Query GetSystemUpdateID */
     private void query_system_update_id (ContentDirectory content_dir,
                                          string variable,
-                                         GLib.Value value) {
+                                         ref GLib.Value value) {
         /* Set action return arguments */
         value.init (typeof (uint32));
         value.set_uint (this.system_update_id);
@@ -175,7 +175,7 @@ public class GUPnP.ContentDirectory: Service {
     /* Query SearchCapabilities */
     private void query_search_capabilities (ContentDirectory content_dir,
                                             string variable,
-                                            GLib.Value value) {
+                                            ref GLib.Value value) {
         /* Set action return arguments */
         value.init (typeof (string));
         value.set_string ("");
@@ -193,7 +193,7 @@ public class GUPnP.ContentDirectory: Service {
     /* Query SortCapabilities */
     private void query_sort_capabilities (ContentDirectory content_dir,
                                           string variable,
-                                          GLib.Value value) {
+                                          ref GLib.Value value) {
         /* Set action return arguments */
         value.init (typeof (string));
         value.set_string ("");
@@ -211,7 +211,7 @@ public class GUPnP.ContentDirectory: Service {
     /* Query FeatureList */
     private void query_feature_list (ContentDirectory content_dir,
                                      string variable,
-                                     GLib.Value value) {
+                                     ref GLib.Value value) {
         /* Set action return arguments */
         value.init (typeof (string));
         value.set_string (this.feature_list);
