@@ -1,5 +1,13 @@
 2008-07-04  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* data/xml/Makefile.am:
+	* data/xml/description.xml:
+	* src/gupnp-media-server.vala:
+
+	Enable the ConnectionManager service.
+
+2008-07-04  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/Makefile.am:
 	* src/gupnp-connection-manager.vala:
 

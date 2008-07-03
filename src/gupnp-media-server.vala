@@ -31,6 +31,8 @@ using CStuff;
 public class GUPnP.MediaServer: RootDevice {
     public static const string CONTENT_DIR =
                         "urn:schemas-upnp-org:service:ContentDirectory";
+    public static const string CONNECTION_MANAGER =
+                        "urn:schemas-upnp-org:service:ConnectionManager";
     public static const string MEDIA_RECEIVER_REGISTRAR =
                         "urn:microsoft.com:service:X_MS_MediaReceiverRegistrar";
 
@@ -40,7 +42,8 @@ public class GUPnP.MediaServer: RootDevice {
     public static const string GCONF_PATH = "/apps/gupnp-media-server/";
 
     private ContentDirectory content_dir; /* ContentDirectory */
-    private MediaReceiverRegistrar msr;  /* MS MediaReceiverRegistrar */
+    private ConnectionManager cm;         /* ConnectionManager */
+    private MediaReceiverRegistrar msr;   /* MS MediaReceiverRegistrar */
 
     construct {
         ResourceFactory factory = this.resource_factory;
@@ -51,6 +54,12 @@ public class GUPnP.MediaServer: RootDevice {
         factory.register_resource_type (CONTENT_DIR + ":2",
                                         typeof (ContentDirectory));
 
+        /* Register GUPnP.ConnectionManager */
+        factory.register_resource_type (CONNECTION_MANAGER + ":1",
+                                        typeof (ConnectionManager));
+        factory.register_resource_type (CONNECTION_MANAGER + ":2",
+                                        typeof (ConnectionManager));
+
         /* Register GUPnP.MediaReceiverRegistrar */
         factory.register_resource_type (MEDIA_RECEIVER_REGISTRAR + ":1",
                                         typeof (MediaReceiverRegistrar));
@@ -59,6 +68,7 @@ public class GUPnP.MediaServer: RootDevice {
 
         /* Now create the sevice objects */
         this.content_dir = (ContentDirectory) this.get_service (CONTENT_DIR);
+        this.cm = (ConnectionManager) this.get_service (CONNECTION_MANAGER);
         this.msr = (MediaReceiverRegistrar) this.get_service
                                                 (MEDIA_RECEIVER_REGISTRAR);
     }
