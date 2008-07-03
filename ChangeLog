@@ -2,7 +2,8 @@
 
 	* src/gupnp-connection-manager.vala:
 
-	Swap the sink and source ProtocolInfo.
+	- Swap the sink and source ProtocolInfo.
+	- Use Vala's syntax for connecting signals with details.
 
 2008-07-04  Zeeshan Ali Khattak  <zeenix@gmail.com>
 

@@ -66,64 +66,58 @@ public class GUPnP.ConnectionManager : Service {
     */
 
     construct {
-        /* FIXME: Use Vala's syntax for connecting signals when Vala adds
-         * support for signal details. */
-        Signal.connect (this,
-                        "query-variable::SourceProtocolInfo",
-                        (GLib.Callback) this.query_source_protocol_info_cb,
-                        null);
-        Signal.connect (this,
-                        "query-variable::SinkProtocolInfo",
-                        (GLib.Callback) this.query_sink_protocol_info_cb,
-                        null);
-        Signal.connect (this,
-                        "query-variable::CurrentConnectionIDs",
-                        (GLib.Callback) this.query_current_connection_ids_cb,
-                        null);
+        this.query_variable["SourceProtocolInfo"] +=
+                        this.query_source_protocol_info_cb;
+        this.query_variable["SinkProtocolInfo"] +=
+                        this.query_sink_protocol_info_cb;
+        this.query_variable["CurrentConnectionIDs"] +=
+                        this.query_current_connection_ids_cb;
 
-        Signal.connect (this,
-                        "action-invoked::GetProtocolInfo",
-                        (GLib.Callback) this.get_protocol_info_cb,
-                        null);
-        Signal.connect (this,
-                        "action-invoked::GetCurrentConnectionIDs",
-                        (GLib.Callback) this.get_current_connection_ids_cb,
-                        null);
-        Signal.connect (this,
-                        "action-invoked::GetCurrentConnectionInfo",
-                        (GLib.Callback) this.get_current_connection_info_cb,
-                        null);
+        this.action_invoked["GetProtocolInfo"] += this.get_protocol_info_cb;
+        this.action_invoked["GetCurrentConnectionIDs"] +=
+                        this.get_current_connection_ids_cb;
+        this.action_invoked["GetCurrentConnectionInfo"] +=
+                        this.get_current_connection_info_cb;
     }
 
-    private void query_source_protocol_info_cb (string var, Value val) {
+    private void query_source_protocol_info_cb (ConnectionManager cm,
+                                                string            var,
+                                                ref Value         val) {
         val.init (typeof (string));
         val.set_string (source_protocol_info);
     }
 
-    private void query_sink_protocol_info_cb (string var, Value val) {
+    private void query_sink_protocol_info_cb (ConnectionManager cm,
+                                              string            var,
+                                              ref Value         val) {
         val.init (typeof (string));
         val.set_string (sink_protocol_info);
     }
 
-    private void query_current_connection_ids_cb (string var, Value val) {
+    private void query_current_connection_ids_cb (ConnectionManager cm,
+                                                  string            var,
+                                                  ref Value         val) {
         val.init (typeof (string));
         val.set_string (connection_ids);
     }
 
-    private void get_protocol_info_cb (ServiceAction action) {
+    private void get_protocol_info_cb (ConnectionManager cm,
+                                       ServiceAction     action) {
         action.set ("Source", typeof (string), source_protocol_info,
                     "Sink",   typeof (string), sink_protocol_info);
 
         action.return ();
     }
 
-    private void get_current_connection_ids_cb (ServiceAction action) {
+    private void get_current_connection_ids_cb (ConnectionManager cm,
+                                                ServiceAction     action) {
         action.set ("ConnectionIDs", typeof (string), connection_ids);
 
         action.return ();
     }
 
-    private void get_current_connection_info_cb (ServiceAction action) {
+    private void get_current_connection_info_cb (ConnectionManager cm,
+                                                 ServiceAction     action) {
         int connection_id;
 
         action.get ("ConnectionID", typeof (int), out connection_id);
