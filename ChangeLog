@@ -1,5 +1,11 @@
 2008-07-04  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* NEWS:
+
+	Prepare NEWS file for initial (0.1) release.
+
+2008-07-04  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* TODO:
 	* doc/design.txt:
 
