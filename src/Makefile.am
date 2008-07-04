@@ -45,4 +45,4 @@ gupnp_media_server_LDFLAGS = -export-dynamic
 
 CLEANFILES = $(BUILT_SOURCES)
 MAINTAINERCLEANFILES = Makefile.in
-EXTRA_DIST = cstuff.vala
+EXTRA_DIST = cstuff.vapi
