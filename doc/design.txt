@@ -1,20 +1,20 @@
 objects and interfaces:
 
-Name: GUPnPMediaServer
+Name: GUPnP.MediaServer
 description: The main object that talks to the control-points.
 
-Name: GUPnPMediaProvider
+Name: GUPnP.MediaProvider
 description: Interface that all Media provider/backend objects must implement.
 
-Name: GUPnPMediaDb
+Name: GUPnP.MediaDB
 description: Object that:
         - imlements GUPnPMediaProvider
         - manages plugins that provides GUPnPMediaProvider
 
-Name: GUPnPMediaTracker
-description: tracker-based GUPnPMediaProvider implementation.
+Name: GUPnP.MediaTracker
+description: tracker-based GUPnP.MediaProvider implementation.
              http://www.tracker-project.org
 
-Name: GUPnPMetadataExtractor
+Name: GUPnP.MetadataExtractor
 description: Helper object providing metadata extraction facility.
 
