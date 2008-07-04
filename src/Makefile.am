@@ -12,7 +12,17 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 
 bin_PROGRAMS = gupnp-media-server
 
-BUILT_SOURCES = gupnp-media-server.stamp
+BUILT_SOURCES = gupnp-media-server.stamp \
+		gupnp-media-server.h \
+		gupnp-media-server.c \
+		gupnp-content-directory.h \
+		gupnp-content-directory.c \
+		gupnp-connection-manager.h \
+		gupnp-connection-manager.c \
+		gupnp-media-receiver-registrar.h \
+		gupnp-media-receiver-registrar.c \
+		gupnp-media-tracker.h \
+		gupnp-media-tracker.c
 
 gupnp_media_server_SOURCES = cstuff.c \
 			     cstuff.h \
