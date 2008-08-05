@@ -42,5 +42,7 @@ public interface MediaProvider : GLib.Object {
                                          string  filter,
                                          string  sort_criteria,
                                          out uint update_id);
+
+    public abstract uint get_root_children_count ();
 }
 

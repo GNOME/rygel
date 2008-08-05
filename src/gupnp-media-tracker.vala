@@ -230,12 +230,16 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
         return didl;
     }
 
+    public uint get_root_children_count () {
+        return this.containers.length ();
+    }
+
     /* Private methods */
     private uint add_root_container_children () {
         foreach (Tracker.Container container in this.containers)
             this.add_container_from_db (container, this.root_id);
 
-        return this.containers.length ();
+        return this.get_root_children_count ();
     }
 
     private void add_container_from_db (Tracker.Container container,
@@ -676,7 +680,7 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
         add_container (this.root_id,
                        this.root_parent_id,
                        this.title,
-                       this.containers.length ());
+                       this.get_root_children_count ());
     }
 
     private Tracker.Container? get_item_parent (string uri) {

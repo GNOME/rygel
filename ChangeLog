@@ -4,7 +4,8 @@
 	* src/gupnp-media-provider.vala:
 	* src/gupnp-media-tracker.vala:
 
-	Add "title" prop to MediaProvider interface.
+	- Add "title" prop to MediaProvider interface.
+	- Add get_root_children_count() to MediaProvider interface.
 
 2008-08-03  Zeeshan Ali Khattak  <zeenix@gmail.com>
 

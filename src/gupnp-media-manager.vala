@@ -128,6 +128,10 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
         return didl;
     }
 
+    public uint get_root_children_count () {
+        return this.providers.size ();
+    }
+
     /* Private methods */
     private string browse_root_container (out uint number_returned,
                                           out uint total_matches,
@@ -141,10 +145,10 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
             add_container ((string) key,
                            this.root_id,
                            provider.title,
-                           -1);           /* FIXME */
+                           provider.get_root_children_count ());
             });
 
-        number_returned = total_matches = this.providers.size ();
+        number_returned = total_matches = this.get_root_children_count ();
 
         /* End DIDL-Lite fragment */
         this.didl_writer.end_didl_lite ();
@@ -167,7 +171,7 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
         add_container (this.root_id,
                        "-1",         /* FIXME */
                        this.title,
-                       this.providers.size ());
+                       this.get_root_children_count ());
 
         /* End DIDL-Lite fragment */
         this.didl_writer.end_didl_lite ();
