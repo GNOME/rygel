@@ -69,14 +69,14 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
                            out uint update_id) {
         string didl;
 
-        string id = this.remove_root_id_prefix (container_id);
+        string root_id = this.get_root_id_from_id (container_id);
 
-        if (id == this.root_id) {
+        if (root_id == this.root_id) {
             didl = this.browse_root_container (out number_returned,
                                                out total_matches,
                                                out update_id);
         } else {
-            weak MediaProvider provider = this.providers.lookup (id);
+            weak MediaProvider provider = this.providers.lookup (root_id);
             if (provider != null) {
                 didl = provider.browse (container_id,
                                         filter,
@@ -104,12 +104,12 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
                                 out uint update_id) {
         string didl;
 
-        string id = this.remove_root_id_prefix (object_id);
+        string root_id = this.get_root_id_from_id (object_id);
 
-        if (id == this.root_id) {
+        if (root_id == this.root_id) {
             didl = this.get_root_container_metadata (out update_id);
         } else {
-            weak MediaProvider provider = this.providers.lookup (id);
+            weak MediaProvider provider = this.providers.lookup (root_id);
             if (provider != null) {
                 didl = provider.get_metadata (object_id,
                                               filter,
@@ -203,15 +203,12 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
         this.didl_writer.end_container ();
     }
 
-    string remove_root_id_prefix (string id) {
+    string get_root_id_from_id (string id) {
         string[] tokens;
 
         tokens = id.split (":", 2);
 
-        if (tokens[1] != null)
-            return tokens[1];
-        else
-            return tokens[0];
+        return tokens[0];
     }
 
     private static uint id_hash_func (string id) {

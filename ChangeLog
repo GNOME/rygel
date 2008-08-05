@@ -6,6 +6,7 @@
 	  need to export it in.
 	- No need for MediaManager to prefix IDs with root_id.
 	- Pass ID as is to browse() and get_metadata() of media providers.
+	- Get the root ID prefix from IDs rather than removing it.
 
 2008-08-03  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
