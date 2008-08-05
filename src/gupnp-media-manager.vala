@@ -242,30 +242,65 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
     private void register_media_providers () {
         assert (Module.supported());
 
-        string dir_path = BuildConfig.PLUGIN_DIR;
+        File dir = File.new_for_path (BuildConfig.PLUGIN_DIR);
+        assert (dir != null && is_dir (dir));
 
-        Dir dir;
+        this.register_media_provider_from_dir (dir);
+    }
+
+    private void register_media_provider_from_dir (File dir) {
+        FileEnumerator enumerator;
+
         try {
-            dir = Dir.open (dir_path, 0);
-        } catch (FileError error) {
-            critical ("Error loading plugins from '%s'\n", dir_path);
+            string attributes = FILE_ATTRIBUTE_STANDARD_NAME + "," +
+                                FILE_ATTRIBUTE_STANDARD_TYPE + "," +
+                                FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE;
+            enumerator = dir.enumerate_children (attributes,
+                                                 FileQueryInfoFlags.NONE,
+                                                 null);
+        } catch (Error error) {
+            critical ("Error listing contents of directory '%s': %s\n",
+                      dir.get_path (),
+                      error.message);
 
             return;
         }
 
-        string file_name;
+        FileInfo info;
 
-        while ((file_name = dir.read_name ()) != null) {
-            string path = Path.build_filename (dir_path, file_name);
+        try {
+            while ((info = enumerator.next_file (null)) != null) {
+                string file_name = info.get_name ();
+                string file_path = Path.build_filename (dir.get_path (),
+                                                        file_name);
+                File file = File.new_for_path (file_path);
+                FileType file_type = info.get_file_type ();
+                string content_type = info.get_content_type ();
+                weak string mime = g_content_type_get_mime_type (content_type);
 
-            MediaProvider provider;
-            Module module;
-
-            provider = this.load_media_provider_from_file (path, out module);
-            if (provider != null) {
-                this.providers.insert (provider.root_id, provider);
-                this.modules.append (#module);
+                if (file_type == FileType.DIRECTORY) {
+                    // Recurse into directories
+                    this.register_media_provider_from_dir (file);
+                } else if (mime == "application/x-sharedlib") {
+                    // Seems like we found a plugin
+                    this.register_media_provider_from_file (file_path);
+                }
             }
+        } catch (Error error) {
+            critical ("Error iterating contents of directory '%s': %s\n",
+                      dir.get_path (),
+                      error.message);
+        }
+    }
+
+    private void register_media_provider_from_file (string file_path) {
+        MediaProvider provider;
+        Module module;
+
+        provider = this.load_media_provider_from_file (file_path, out module);
+        if (provider != null) {
+            this.providers.insert (provider.root_id, provider);
+            this.modules.append (#module);
         }
     }
 
@@ -307,6 +342,23 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
         } else {
             return id;
         }
+    }
+
+    private static bool is_dir (File file) {
+        weak FileInfo file_info;
+
+        try {
+            file_info = file.query_info (FILE_ATTRIBUTE_STANDARD_TYPE,
+                                         FileQueryInfoFlags.NONE,
+                                         null);
+        } catch (Error error) {
+            critical ("Failed to query content type for '%s'\n",
+                      file.get_path ());
+
+            return false;
+        }
+
+        return file_info.get_file_type () == FileType.DIRECTORY;
     }
 }
 
