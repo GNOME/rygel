@@ -1,3 +1,11 @@
+2008-07-31  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-media-tracker.vala:
+
+	Each MediaProvider prefixes each objectid with "root-id:". This will
+	allow the ContentDirectory to redirect the Browse requests to the
+	appropriate MediaProvider in a simple/efficient way.
+
 2008-07-30  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/Makefile.am:

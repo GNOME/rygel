@@ -132,7 +132,9 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
         /* Start DIDL-Lite fragment */
         this.didl_writer.start_didl_lite (null, null, true);
 
-        if (container_id == this.root_id) {
+        string id = this.remove_root_id_prefix (container_id);
+
+        if (id == this.root_id) {
             number_returned = this.add_root_container_children ();
             total_matches = number_returned;
         } else {
@@ -141,7 +143,7 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
             if (requested_count == 0)
                 requested_count = MAX_REQUESTED_COUNT;
 
-            container = this.find_container_by_id (container_id);
+            container = this.find_container_by_id (id);
             if (container == null)
                 number_returned = 0;
             else {
@@ -180,7 +182,10 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
         /* Start DIDL-Lite fragment */
         this.didl_writer.start_didl_lite (null, null, true);
         found = false;
-        if (object_id == this.root_id) {
+
+        string id = this.remove_root_id_prefix (object_id);
+
+        if (id == this.root_id) {
             add_root_container ();
 
             found = true;
@@ -188,7 +193,7 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
             Tracker.Container container;
 
             /* First try containers */
-            container = find_container_by_id (object_id);
+            container = find_container_by_id (id);
 
             if (container != null) {
                 add_container_from_db (container, this.root_id);
@@ -196,10 +201,10 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
                 found = true;
             } else {
                 /* Now try items */
-                container = get_item_parent (object_id);
+                container = get_item_parent (id);
 
                 if (container != null)
-                    found = add_item_from_db (container, object_id);
+                    found = add_item_from_db (container, id);
             }
         }
 
@@ -244,8 +249,20 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
                                 string parent_id,
                                 string title,
                                 uint   child_count) {
-        this.didl_writer.start_container (id,
-                                          parent_id,
+        string exported_id, exported_parent_id;
+
+        if (id == this.root_id)
+            exported_id = id;
+        else
+            exported_id = this.root_id + ":" + id;
+
+        if (parent_id == this.root_id)
+            exported_parent_id = parent_id;
+        else
+            exported_parent_id = this.root_id + ":" + parent_id;
+
+        this.didl_writer.start_container (this.root_id + ":" + id,
+                                          exported_parent_id,
                                           (int) child_count,
                                           false,
                                           false);
@@ -555,8 +572,14 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
                            int    height,
                            int    track_number,
                            string path) {
-        this.didl_writer.start_item (id,
-                                     parent_id,
+        string exported_parent_id;
+        if (parent_id == this.root_id)
+            exported_parent_id = parent_id;
+        else
+            exported_parent_id = this.root_id + ":" + parent_id;
+
+        this.didl_writer.start_item (this.root_id + ":" + id,
+                                     exported_parent_id,
                                      null,
                                      false);
 
@@ -692,6 +715,17 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
         }
 
         return date;
+    }
+
+    string remove_root_id_prefix (string id) {
+        string[] tokens;
+
+        tokens = id.split (":", 2);
+
+        if (tokens[1] != null)
+            return tokens[1];
+        else
+            return tokens[0];
     }
 }
 
