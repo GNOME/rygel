@@ -328,20 +328,14 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
 
         debug ("Loaded plugin: '%s'\n", module.name());
 
-        return register_media_provider (this.generate_id (),
+        return register_media_provider (this.generate_id_for_module (module),
                                         this.root_id,
                                         this.context);
     }
 
-    private string generate_id () {
-        string id = Random.next_int ().to_string ();
-
-        // See if generated ID is already in use
-        if (this.providers.lookup (id) != null) {
-            return generate_id ();
-        } else {
-            return id;
-        }
+    private string generate_id_for_module (Module module) {
+        uint32 id = (uint32) Quark.from_string (module.name ());
+        return id.to_string ();
     }
 
     private static bool is_dir (File file) {
