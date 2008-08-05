@@ -28,6 +28,7 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
     /* Properties */
     public string# root_id { get; construct; }
     public string# root_parent_id { get; construct; }
+    public string# title { get; private construct; }
     public GUPnP.Context context { get; construct; }
     public uint32 system_update_id { get; private set; }
 
@@ -56,6 +57,7 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
     public MediaManager (GUPnP.Context context) {
         this.root_id = "0";
         this.root_parent_id = "-1";
+        this.title = "Media Manager";
         this.context = context;
     }
 
@@ -134,9 +136,11 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
         this.didl_writer.start_didl_lite (null, null, true);
 
         this.providers.for_each ((key, value) => {
+            MediaProvider provider = (MediaProvider) value;
+
             add_container ((string) key,
                            this.root_id,
-                           (string) key,  /* FIXME */
+                           provider.title,
                            -1);           /* FIXME */
             });
 
@@ -162,7 +166,7 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
 
         add_container (this.root_id,
                        "-1",         /* FIXME */
-                       this.root_id, /* FIXME */
+                       this.title,
                        this.providers.size ());
 
         /* End DIDL-Lite fragment */
