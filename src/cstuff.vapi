@@ -22,6 +22,9 @@ namespace CStuff {
     class BuildConfig {
         [CCode (cname = "DATA_DIR")]
         public static const string DATA_DIR;
+
+        [CCode (cname = "PLUGIN_DIR")]
+        public static const string PLUGIN_DIR;
     }
 
     public class Utils {

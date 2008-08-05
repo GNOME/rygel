@@ -22,6 +22,8 @@
  * version 2 of the License, or (at your option) any later version.
  */
 
+using CStuff;
+
 public class GUPnP.MediaManager : GLib.Object, MediaProvider {
     private DIDLLiteWriter didl_writer;
 
@@ -38,19 +40,24 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
      */
     HashTable<string, MediaProvider> providers;
 
+    /* We need to keep the modules somewhere */
+    List<Module> modules;
+
+    private delegate MediaProvider RegisterMediaProviderFunc
+                                    (string        root_id,
+                                     string        root_parent_id,
+                                     GUPnP.Context context);
+
     construct {
         this.providers = new HashTable<string, MediaProvider>
                                 ((HashFunc) id_hash_func,
                                  (EqualFunc) is_root_equal);
-
-        MediaTracker tracker = new MediaTracker ("1",
-                                                 this.root_id,
-                                                 this.context);
-        providers.insert ("1", tracker);
-
+        this.modules = new List<Module> ();
         this.didl_writer = new DIDLLiteWriter ();
 
         this.system_update_id = 0;
+
+        this.register_media_providers ();
     }
 
     /* Pubic methods */
@@ -228,6 +235,78 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
         string[] id2_tokens = id2.split (":", 2);
 
         return id1_tokens[0] == id2_tokens[0];
+    }
+
+    // Plugin loading functions
+
+    private void register_media_providers () {
+        assert (Module.supported());
+
+        string dir_path = BuildConfig.PLUGIN_DIR;
+
+        Dir dir;
+        try {
+            dir = Dir.open (dir_path, 0);
+        } catch (FileError error) {
+            critical ("Error loading plugins from '%s'\n", dir_path);
+
+            return;
+        }
+
+        string file_name;
+
+        while ((file_name = dir.read_name ()) != null) {
+            string path = Path.build_filename (dir_path, file_name);
+
+            MediaProvider provider;
+            Module module;
+
+            provider = this.load_media_provider_from_file (path, out module);
+            if (provider != null) {
+                this.providers.insert (provider.root_id, provider);
+                this.modules.append (#module);
+            }
+        }
+    }
+
+    private MediaProvider? load_media_provider_from_file (string     file_path,
+                                                          out Module module) {
+        module = Module.open (file_path, ModuleFlags.BIND_LOCAL);
+        if (module == null) {
+            debug ("Failed to load plugin from path: '%s'\n", file_path);
+
+            return null;
+        }
+
+        void* function;
+        RegisterMediaProviderFunc register_media_provider;
+
+        module.symbol("register_media_provider", out function);
+
+        register_media_provider = (RegisterMediaProviderFunc) function;
+
+        if (register_media_provider == null) {
+            warning ("Failed to load plugin from path: '%s'\n", file_path);
+
+            return null;
+        }
+
+        debug ("Loaded plugin: '%s'\n", module.name());
+
+        return register_media_provider (this.generate_id (),
+                                        this.root_id,
+                                        this.context);
+    }
+
+    private string generate_id () {
+        string id = Random.next_int ().to_string ();
+
+        // See if generated ID is already in use
+        if (this.providers.lookup (id) != null) {
+            return generate_id ();
+        } else {
+            return id;
+        }
     }
 }
 
