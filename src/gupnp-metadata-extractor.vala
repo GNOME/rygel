@@ -96,7 +96,7 @@ public class GUPnP.MetadataExtractor: GLib.Object {
     private void foreach_tag (TagList tag_list, string tag) {
         GLib.Value value;
 
-        if (tag_list.copy_value (ref value, tag_list, tag)) {
+        if (tag_list.copy_value (out value, tag_list, tag)) {
             /* signal the availability of new tag */
             this.metadata_available (this.playbin.uri, tag, ref value);
         }

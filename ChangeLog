@@ -162,6 +162,7 @@
 	  cleaner.
 	- Only react to PAUSED state-change if the previous state was READY.
 	- Refactor: A separate function for extraction of 'duration'.
+	- Gst.TagList.copy_value.value is 'out' rather than 'ref'.
 
 2008-06-25  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
