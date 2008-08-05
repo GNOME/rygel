@@ -54,6 +54,7 @@ public class GUPnP.MetadataExtractor: GLib.Object {
             this.playbin.uri = value;
 
             if (this.playbin.uri != null) {
+                extract_mime ();
                 /* Start the extaction when we get a new URI */
                 this.playbin.set_state (State.PAUSED);
             }
@@ -90,6 +91,34 @@ public class GUPnP.MetadataExtractor: GLib.Object {
             this.uri = this._uris.data;
         } else {
             this.extraction_done -= this.goto_next_uri;
+        }
+    }
+
+    private void extract_mime () {
+        File file = File.new_for_uri (this.uri);
+
+        weak FileInfo file_info;
+
+        try {
+            file_info = file.query_info (FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,
+                                         FileQueryInfoFlags.NONE,
+                                         null);
+        } catch (Error error) {
+            critical ("Failed to query content type for '%s'\n", this.uri);
+
+            return;
+        }
+
+        weak string content_type = file_info.get_content_type ();
+        weak string mime = g_content_type_get_mime_type (content_type);
+        if (mime != null) {
+            GLib.Value value;
+
+            value.init (typeof (string));
+            value.set_string (mime);
+
+            /* signal the availability of new tag */
+            this.metadata_available (this.playbin.uri, "mime-type", ref value);
         }
     }
 

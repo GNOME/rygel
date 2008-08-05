@@ -148,6 +148,12 @@
 
 2008-06-27  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/gupnp-metadata-extractor.vala:
+
+	Extract the mime-type using GIO.
+
+2008-06-27  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* configure.ac:
 	* src/Makefile.am:
 
