@@ -161,6 +161,7 @@
 	- Use 'this' keyword wherever possible. This makes code much more
 	  cleaner.
 	- Only react to PAUSED state-change if the previous state was READY.
+	- Refactor: A separate function for extraction of 'duration'.
 
 2008-06-25  Zeeshan Ali Khattak  <zeenix@gmail.com>
 

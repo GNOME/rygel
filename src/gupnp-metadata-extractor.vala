@@ -112,24 +112,28 @@ public class GUPnP.MetadataExtractor: GLib.Object {
 
         message.parse_state_changed (out old_state, out new_state, null);
         if (new_state == State.PAUSED && old_state == State.READY) {
-            int64 duration;
-
-            Format format = Format.TIME;
-            if (this.playbin.query_duration (ref format, out duration)) {
-                GLib.Value duration_val;
-
-                duration_val.init (typeof (int64));
-                duration_val.set_int64 (duration);
-
-                /* signal the availability of duration tag */
-                this.metadata_available (this.playbin.uri,
-                                    TAG_DURATION,
-                                    ref duration_val);
-            }
+            this.extract_duration ();
 
             /* No hopes of getting any tags after this point */
             this.playbin.set_state (State.NULL);
             this.extraction_done (this.playbin.uri);
+        }
+    }
+
+    private void extract_duration () {
+        int64 duration;
+
+        Format format = Format.TIME;
+        if (this.playbin.query_duration (ref format, out duration)) {
+            GLib.Value duration_val;
+
+            duration_val.init (typeof (int64));
+            duration_val.set_int64 (duration);
+
+            /* signal the availability of duration tag */
+            this.metadata_available (this.playbin.uri,
+                    TAG_DURATION,
+                    ref duration_val);
         }
     }
 
