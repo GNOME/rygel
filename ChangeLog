@@ -146,6 +146,12 @@
 	- tracker gives us empty string rather than null for each unavailable
 	  metadata.
 
+2008-06-27  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-metadata-extractor.vala:
+
+	Implement extraction of audio and video specific metadata.
+
 2008-06-26  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/gupnp-media-server.vala:

@@ -25,6 +25,15 @@
 using Gst;
 using GUPnP;
 
+private enum Gst.StreamType {
+    UNKNOWN = 0,
+    AUDIO   = 1,    /* an audio stream */
+    VIDEO   = 2,    /* a video stream */
+    TEXT    = 3,    /* a subtitle/text stream */
+    SUBPICTURE = 4, /* a subtitle in picture-form */
+    ELEMENT = 5    /* stream handled by an element */
+}
+
 public class GUPnP.MetadataExtractor: GLib.Object {
 
     /* TODO: Use tagbin instead once it's ready */
@@ -113,6 +122,7 @@ public class GUPnP.MetadataExtractor: GLib.Object {
         message.parse_state_changed (out old_state, out new_state, null);
         if (new_state == State.PAUSED && old_state == State.READY) {
             this.extract_duration ();
+            this.extract_stream_info ();
 
             /* No hopes of getting any tags after this point */
             this.playbin.set_state (State.NULL);
@@ -134,6 +144,71 @@ public class GUPnP.MetadataExtractor: GLib.Object {
             this.metadata_available (this.playbin.uri,
                     TAG_DURATION,
                     ref duration_val);
+        }
+    }
+
+    private void extract_stream_info () {
+        weak List <dynamic GLib.Object> stream_info = null;
+
+        stream_info = this.playbin.stream_info;
+        return_if_fail (stream_info != null);
+
+        for (var i = 0; i < stream_info.length (); i++) {
+            dynamic GLib.Object info = stream_info.nth_data (i);
+
+            if (info == null) {
+                continue;
+            }
+
+            extract_av_info (info);
+        }
+    }
+
+    private void extract_av_info (dynamic GLib.Object info) {
+        Pad pad = (Pad) info.object;
+        if (pad == null) {
+            return;
+        }
+
+        Gst.Caps caps = pad.get_negotiated_caps ();
+        if (caps == null) {
+            return;
+        }
+
+        weak Structure structure = caps.get_structure (0);
+        if (structure == null) {
+            return;
+        }
+
+        StreamType type = info.type;
+        if (type == StreamType.AUDIO) {
+            this.extract_audio_info (structure);
+        } else if (type == StreamType.VIDEO) {
+            this.extract_video_info (structure);
+        }
+    }
+
+    private void extract_audio_info (Structure structure) {
+        this.extract_int_value (structure, "channels");
+        this.extract_int_value (structure, "rate");
+    }
+
+    private void extract_video_info (Structure structure) {
+        this.extract_int_value (structure, "width");
+        this.extract_int_value (structure, "height");
+    }
+
+    private void extract_int_value (Structure structure, string key) {
+        int val;
+
+        if (structure.get_int (key, out val)) {
+            GLib.Value value;
+
+            value.init (typeof (int));
+            value.set_int (val);
+
+            /* signal the availability of new tag */
+            this.metadata_available (this.playbin.uri, key, ref value);
         }
     }
 
