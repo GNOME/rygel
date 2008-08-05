@@ -1,5 +1,34 @@
 2008-08-05  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* configure.ac:
+	* src/Makefile.am:
+	* src/cstuff.c:
+	* src/cstuff.h:
+	* src/cstuff.vapi:
+	* src/gupnp-connection-manager.vala:
+	* src/gupnp-content-directory.vala:
+	* src/gupnp-media-manager.vala:
+	* src/gupnp-media-provider.vala:
+	* src/gupnp-media-receiver-registrar.vala:
+	* src/gupnp-media-server.vala:
+	* src/gupnp-metadata-extractor.vala:
+	* src/media-providers/tracker/Makefile.am:
+	* src/media-server/Makefile.am:
+	* src/media-server/cstuff.c:
+	* src/media-server/cstuff.h:
+	* src/media-server/cstuff.vapi:
+	* src/media-server/gupnp-connection-manager.vala:
+	* src/media-server/gupnp-content-directory.vala:
+	* src/media-server/gupnp-media-manager.vala:
+	* src/media-server/gupnp-media-provider.vala:
+	* src/media-server/gupnp-media-receiver-registrar.vala:
+	* src/media-server/gupnp-media-server.vala:
+	* src/media-server/gupnp-metadata-extractor.vala:
+
+	Move the core Media Server code into a separate subdirectory.
+
+2008-08-05  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/media-providers/Makefile.am:
 
 	Remove Makefile.in on 'make maintainer-clean'.

@@ -5,7 +5,7 @@ plugin_LTLIBRARIES = libgupnp-media-tracker.la
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
-	    -I$(top_srcdir)/src
+	    -I$(top_srcdir)/src/media-server
 
 BUILT_SOURCES = gupnp-media-tracker.stamp \
 		gupnp-media-tracker.h \
@@ -16,7 +16,8 @@ libgupnp_media_tracker_la_SOURCES = gupnp-media-tracker.h \
 				    gupnp-media-tracker.vala
 
 gupnp-media-tracker.stamp: $(filter %.vala,$(libgupnp_media_tracker_la_SOURCES))
-	$(VALAC) -C --vapidir=$(top_srcdir)/src --pkg gupnp-media-server-1.0 \
+	$(VALAC) -C --vapidir=$(top_srcdir)/src/media-server \
+	--pkg gupnp-media-server-1.0 \
 	--pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 $^
 	touch $@
 
