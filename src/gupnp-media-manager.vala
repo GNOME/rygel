@@ -183,20 +183,8 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
                                 string parent_id,
                                 string title,
                                 uint   child_count) {
-        string exported_id, exported_parent_id;
-
-        if (id == this.root_id)
-            exported_id = id;
-        else
-            exported_id = this.root_id + ":" + id;
-
-        if (parent_id == this.root_id)
-            exported_parent_id = parent_id;
-        else
-            exported_parent_id = this.root_id + ":" + parent_id;
-
-        this.didl_writer.start_container (this.root_id + ":" + id,
-                                          exported_parent_id,
+        this.didl_writer.start_container (id,
+                                          parent_id,
                                           (int) child_count,
                                           false,
                                           false);
