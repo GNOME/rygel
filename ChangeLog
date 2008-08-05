@@ -158,8 +158,9 @@
 
 	* src/gupnp-metadata-extractor.vala:
 
-	Use 'this' keyword wherever possible. This makes code much more
-	cleaner.
+	- Use 'this' keyword wherever possible. This makes code much more
+	  cleaner.
+	- Only react to PAUSED state-change if the previous state was READY.
 
 2008-06-25  Zeeshan Ali Khattak  <zeenix@gmail.com>
 

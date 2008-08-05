@@ -108,9 +108,10 @@ public class GUPnP.MetadataExtractor: GLib.Object {
             return;
 
         State new_state;
+        State old_state;
 
-        message.parse_state_changed (null, out new_state, null);
-        if (new_state == State.PAUSED) {
+        message.parse_state_changed (out old_state, out new_state, null);
+        if (new_state == State.PAUSED && old_state == State.READY) {
             int64 duration;
 
             Format format = Format.TIME;
