@@ -41,7 +41,10 @@ gupnp_media_server_SOURCES = cstuff.c \
 			     gupnp-media-receiver-registrar.vala \
 			     gupnp-media-tracker.h \
 			     gupnp-media-tracker.c \
-			     gupnp-media-tracker.vala
+			     gupnp-media-tracker.vala \
+			     gupnp-metadata-extractor.c \
+			     gupnp-metadata-extractor.h \
+			     gupnp-metadata-extractor.vala
 
 gupnp-media-server.stamp: $(filter %.vala,$(gupnp_media_server_SOURCES))
 	$(VALAC) -C --vapidir=$(srcdir) --pkg cstuff --pkg gupnp-1.0 \

@@ -156,6 +156,13 @@
 
 2008-06-25  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/Makefile.am:
+	* src/gupnp-metadata-extractor.vala:
+
+	Add a gstreamer-based metadata extractor.
+
+2008-06-25  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* configure.ac:
 	* src/Makefile.am:
 
