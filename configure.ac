@@ -108,6 +108,8 @@ AM_GLIB_DEFINE_LOCALEDIR([LOCALEDIR])
 AC_OUTPUT([
 Makefile
 src/Makefile
+src/media-providers/Makefile
+src/media-providers/tracker/Makefile
 data/Makefile
 data/xml/Makefile
 ])

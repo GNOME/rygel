@@ -1,3 +1,5 @@
+SUBDIRS = . media-providers
+
 if UNINSTALLED
 shareddir = $(abs_top_builddir)/data
 else
