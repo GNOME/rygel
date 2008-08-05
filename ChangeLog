@@ -156,6 +156,12 @@
 
 2008-06-25  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* configure.ac:
+
+	Reduce the gstreamer dependency to 0.10.18.
+
+2008-06-25  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/gupnp-metadata-extractor.vala:
 
 	- Use 'this' keyword wherever possible. This makes code much more
