@@ -78,7 +78,7 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
         } else {
             weak MediaProvider provider = this.providers.lookup (id);
             if (provider != null) {
-                didl = provider.browse (id,
+                didl = provider.browse (container_id,
                                         filter,
                                         starting_index,
                                         requested_count,
@@ -111,7 +111,7 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
         } else {
             weak MediaProvider provider = this.providers.lookup (id);
             if (provider != null) {
-                didl = provider.get_metadata (id,
+                didl = provider.get_metadata (object_id,
                                               filter,
                                               sort_criteria,
                                               out update_id);

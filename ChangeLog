@@ -5,6 +5,7 @@
 	- Correct a typo. Now we export the ID of the container in the format we
 	  need to export it in.
 	- No need for MediaManager to prefix IDs with root_id.
+	- Pass ID as is to browse() and get_metadata() of media providers.
 
 2008-08-03  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
