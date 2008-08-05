@@ -31,7 +31,7 @@ private enum Gst.StreamType {
     VIDEO   = 2,    /* a video stream */
     TEXT    = 3,    /* a subtitle/text stream */
     SUBPICTURE = 4, /* a subtitle in picture-form */
-    ELEMENT = 5    /* stream handled by an element */
+    ELEMENT = 5     /* stream handled by an element */
 }
 
 public class GUPnP.MetadataExtractor: GLib.Object {
@@ -45,6 +45,7 @@ public class GUPnP.MetadataExtractor: GLib.Object {
                                            ref GLib.Value value);
     public signal void extraction_done (string uri);
 
+    /* Properties */
     public string uri {
         get {
             return this.playbin.uri;
@@ -77,6 +78,79 @@ public class GUPnP.MetadataExtractor: GLib.Object {
             } else {
                 this.extraction_done -= this.goto_next_uri;
             }
+        }
+    }
+
+    construct {
+        this.playbin = ElementFactory.make ("playbin", null);
+
+        var bus = this.playbin.get_bus ();
+
+        bus.add_signal_watch ();
+
+        bus.message["tag"] += this.tag_cb;
+        bus.message["state-changed"] += this.state_changed_cb;
+        bus.message["error"] += this.error_cb;
+    }
+
+    /* Callback for tags found by playbin */
+    private void tag_cb (Gst.Bus     bus,
+                         Gst.Message message) {
+        TagList tag_list;
+
+        message.parse_tag (out tag_list);
+
+        tag_list.foreach (this.foreach_tag);
+    }
+
+    /* Callback for state-change in playbin */
+    private void state_changed_cb (Gst.Bus     bus,
+                                   Gst.Message message) {
+        if (message.src != this.playbin)
+            return;
+
+        State new_state;
+        State old_state;
+
+        message.parse_state_changed (out old_state, out new_state, null);
+        if (new_state == State.PAUSED && old_state == State.READY) {
+            this.extract_duration ();
+            this.extract_stream_info ();
+
+            /* No hopes of getting any tags after this point */
+            this.playbin.set_state (State.NULL);
+            this.extraction_done (this.playbin.uri);
+        }
+    }
+
+    /* Callback for errors in playbin */
+    private void error_cb (Gst.Bus     bus,
+                           Gst.Message message) {
+
+        return_if_fail (this.uri != null);
+
+        Error error = null;
+        string debug;
+
+        message.parse_error (out error, out debug);
+        if (error != null) {
+            debug = error.message;
+        }
+
+        critical ("Failed to extract metadata from %s: %s\n", this.uri, debug);
+
+        if (this._uris != null) {
+            /* We have a list of URIs to harvest, so lets jump to next one */
+            this.goto_next_uri (this, this.uri);
+        }
+    }
+
+    /* Fetch value of each tag in the @tag_list and signal it's availability */
+    private void foreach_tag (TagList tag_list, string tag) {
+        GLib.Value value;
+
+        if (tag_list.copy_value (out value, tag_list, tag)) {
+            this.metadata_available (this.playbin.uri, tag, ref value);
         }
     }
 
@@ -119,43 +193,6 @@ public class GUPnP.MetadataExtractor: GLib.Object {
 
             /* signal the availability of new tag */
             this.metadata_available (this.playbin.uri, "mime-type", ref value);
-        }
-    }
-
-    private void tag_cb (Gst.Bus     bus,
-                         Gst.Message message) {
-        TagList tag_list;
-
-        message.parse_tag (out tag_list);
-
-        tag_list.foreach (this.foreach_tag);
-    }
-
-    private void foreach_tag (TagList tag_list, string tag) {
-        GLib.Value value;
-
-        if (tag_list.copy_value (out value, tag_list, tag)) {
-            /* signal the availability of new tag */
-            this.metadata_available (this.playbin.uri, tag, ref value);
-        }
-    }
-
-    private void state_changed_cb (Gst.Bus     bus,
-                                   Gst.Message message) {
-        if (message.src != this.playbin)
-            return;
-
-        State new_state;
-        State old_state;
-
-        message.parse_state_changed (out old_state, out new_state, null);
-        if (new_state == State.PAUSED && old_state == State.READY) {
-            this.extract_duration ();
-            this.extract_stream_info ();
-
-            /* No hopes of getting any tags after this point */
-            this.playbin.set_state (State.NULL);
-            this.extraction_done (this.playbin.uri);
         }
     }
 
@@ -239,39 +276,6 @@ public class GUPnP.MetadataExtractor: GLib.Object {
             /* signal the availability of new tag */
             this.metadata_available (this.playbin.uri, key, ref value);
         }
-    }
-
-    private void error_cb (Gst.Bus     bus,
-                           Gst.Message message) {
-
-        return_if_fail (this.uri != null);
-
-        Error error = null;
-        string debug;
-
-        message.parse_error (out error, out debug);
-        if (error != null) {
-            debug = error.message;
-        }
-
-        critical ("Failed to extract metadata from %s: %s\n", this.uri, debug);
-
-        if (this._uris != null) {
-            /* We have a list of URIs to harvest, so lets jump to next one */
-            this.goto_next_uri (this, this.uri);
-        }
-    }
-
-    construct {
-        this.playbin = ElementFactory.make ("playbin", null);
-
-        var bus = this.playbin.get_bus ();
-
-        bus.add_signal_watch ();
-
-        bus.message["tag"] += this.tag_cb;
-        bus.message["state-changed"] += this.state_changed_cb;
-        bus.message["error"] += this.error_cb;
     }
 }
 

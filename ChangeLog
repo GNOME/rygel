@@ -146,6 +146,12 @@
 	- tracker gives us empty string rather than null for each unavailable
 	  metadata.
 
+2008-06-29  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-metadata-extractor.vala:
+
+	Put some more more comments and Refactor.
+
 2008-06-27  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/gupnp-metadata-extractor.vala:
