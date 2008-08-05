@@ -5,6 +5,9 @@ AC_CONFIG_SRCDIR(src/gupnp-media-server.vala)
 AM_CONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
 
+# Disable generation of static libraries
+AC_DISABLE_STATIC
+
 AC_ISC_POSIX
 AC_PROG_CC
 AC_STDC_HEADERS

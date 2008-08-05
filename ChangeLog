@@ -1,6 +1,12 @@
 2008-08-05  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* configure.ac:
+
+	Disable generation of static libraries.
+
+2008-08-05  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* configure.ac:
 	* src/Makefile.am:
 	* src/media-providers/Makefile.am:
 	* src/media-providers/tracker/Makefile.am:
