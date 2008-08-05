@@ -1,1 +1,3 @@
 SUBDIRS = tracker
+
+MAINTAINERCLEANFILES = Makefile.in

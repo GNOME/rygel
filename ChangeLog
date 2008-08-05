@@ -1,5 +1,11 @@
 2008-08-05  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/media-providers/Makefile.am:
+
+	Remove Makefile.in on 'make maintainer-clean'.
+
+2008-08-05  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/gupnp-media-manager.vala:
 
 	- Better/recursive GIO-based plugin loading.
