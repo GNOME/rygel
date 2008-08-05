@@ -264,7 +264,7 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
         else
             exported_parent_id = this.root_id + ":" + parent_id;
 
-        this.didl_writer.start_container (this.root_id + ":" + id,
+        this.didl_writer.start_container (exported_id,
                                           exported_parent_id,
                                           (int) child_count,
                                           false,

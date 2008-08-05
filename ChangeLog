@@ -1,5 +1,12 @@
 2008-08-03  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/gupnp-media-tracker.vala:
+
+	Correct a typo. Now we export the ID of the container in the format we
+	need to export it in.
+
+2008-08-03  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/gupnp-content-directory.vala:
 	* src/gupnp-media-manager.vala:
 	* src/gupnp-media-provider.vala:
