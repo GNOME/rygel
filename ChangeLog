@@ -1,3 +1,12 @@
+2008-07-30  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/Makefile.am:
+	* src/gupnp-media-provider.vala:
+	* src/gupnp-media-tracker.vala:
+
+	Introduce MediaProvider interface that MediaTracker
+	implements.
+
 2008-07-18  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/gupnp-connection-manager.vala:

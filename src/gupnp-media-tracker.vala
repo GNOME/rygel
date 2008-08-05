@@ -44,7 +44,7 @@ private class Tracker.Container {
     }
 }
 
-public class GUPnP.MediaTracker : GLib.Object {
+public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
     /* class-wide constants */
     public static const string TRACKER_SERVICE = "org.freedesktop.Tracker";
     public static const string TRACKER_PATH = "/org/freedesktop/tracker";
@@ -70,7 +70,7 @@ public class GUPnP.MediaTracker : GLib.Object {
     private SearchCriteriaParser search_parser;
 
     /* Properties */
-    public string root_id { get; construct; }
+    public string# root_id { get; construct; }
     public GUPnP.Context context { get; construct; }
 
     construct {

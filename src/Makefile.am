@@ -24,7 +24,9 @@ BUILT_SOURCES = gupnp-media-server.stamp \
 		gupnp-media-receiver-registrar.h \
 		gupnp-media-receiver-registrar.c \
 		gupnp-media-tracker.h \
-		gupnp-media-tracker.c
+		gupnp-media-tracker.c \
+		gupnp-media-provider.h \
+		gupnp-media-provider.c
 
 gupnp_media_server_SOURCES = cstuff.c \
 			     cstuff.h \
@@ -43,6 +45,9 @@ gupnp_media_server_SOURCES = cstuff.c \
 			     gupnp-media-tracker.h \
 			     gupnp-media-tracker.c \
 			     gupnp-media-tracker.vala \
+			     gupnp-media-provider.h \
+			     gupnp-media-provider.c \
+			     gupnp-media-provider.vala \
 			     gupnp-metadata-extractor.c \
 			     gupnp-metadata-extractor.h \
 			     gupnp-metadata-extractor.vala
