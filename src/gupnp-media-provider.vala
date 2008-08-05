@@ -25,6 +25,7 @@
 public interface MediaProvider : GLib.Object {
     /* Properties */
     public abstract string# root_id { get; construct; }
+    public abstract string# root_parent_id { get; construct; }
     public abstract GUPnP.Context context { get; construct; }
 
     public abstract string? browse (string   container_id,

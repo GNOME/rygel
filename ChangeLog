@@ -1,3 +1,13 @@
+2008-08-03  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/gupnp-content-directory.vala:
+	* src/gupnp-media-manager.vala:
+	* src/gupnp-media-provider.vala:
+	* src/gupnp-media-tracker.vala:
+
+	- MediaProviders now get the "root_parent_id" though a prop.
+	- MediaManager now decides the IDs to use on it's own.
+
 2008-08-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/gupnp-content-directory.vala:

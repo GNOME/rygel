@@ -32,7 +32,7 @@ public class GUPnP.ContentDirectory: Service {
     MediaManager media_manager;
 
     construct {
-        this.media_manager = new MediaManager ("0", this.context);
+        this.media_manager = new MediaManager (this.context);
 
         this.feature_list =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +

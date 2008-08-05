@@ -27,6 +27,7 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
 
     /* Properties */
     public string# root_id { get; construct; }
+    public string# root_parent_id { get; construct; }
     public GUPnP.Context context { get; construct; }
     public uint32 system_update_id { get; private set; }
 
@@ -41,7 +42,9 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
                                 ((HashFunc) id_hash_func,
                                  (EqualFunc) is_root_equal);
 
-        MediaTracker tracker = new MediaTracker ("1", this.context);
+        MediaTracker tracker = new MediaTracker ("1",
+                                                 this.root_id,
+                                                 this.context);
         providers.insert ("1", tracker);
 
         this.didl_writer = new DIDLLiteWriter ();
@@ -50,9 +53,9 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
     }
 
     /* Pubic methods */
-    public MediaManager (string        root_id,
-                                 GUPnP.Context context) {
-        this.root_id = root_id;
+    public MediaManager (GUPnP.Context context) {
+        this.root_id = "0";
+        this.root_parent_id = "-1";
         this.context = context;
     }
 

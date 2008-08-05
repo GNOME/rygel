@@ -71,6 +71,7 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
 
     /* Properties */
     public string# root_id { get; construct; }
+    public string# root_parent_id { get; construct; }
     public GUPnP.Context context { get; construct; }
 
     construct {
@@ -114,8 +115,10 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
 
     /* Pubic methods */
     public MediaTracker (string        root_id,
+                         string        root_parent_id,
                          GUPnP.Context context) {
         this.root_id = root_id;
+        this.root_parent_id = root_parent_id;
         this.context = context;
     }
 
@@ -669,7 +672,7 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
 
     private void add_root_container () {
         add_container (this.root_id,
-                       "-1",
+                       this.root_parent_id,
                        this.root_id,
                        this.containers.length ());
     }
