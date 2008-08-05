@@ -27,14 +27,12 @@
 using GUPnP;
 
 public class GUPnP.ContentDirectory: Service {
-    uint32 system_update_id;
     string feature_list;
 
-    MediaTracker tracker;
+    MediaManager media_manager;
 
     construct {
-        this.tracker = new MediaTracker ("0", this.context);
-        this.system_update_id = 0;
+        this.media_manager = new MediaManager ("0", this.context);
 
         this.feature_list =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
@@ -108,22 +106,22 @@ public class GUPnP.ContentDirectory: Service {
         }
 
         if (browse_metadata) {
-            didl = this.tracker.get_metadata (object_id,
-                                                filter,
-                                                sort_criteria,
-                                                out update_id);
+            didl = this.media_manager.get_metadata (object_id,
+                                                    filter,
+                                                    sort_criteria,
+                                                    out update_id);
 
             num_returned = 1;
             total_matches = 1;
         } else {
-            didl = this.tracker.browse (object_id,
-                                        filter,
-                                        starting_index,
-                                        requested_count,
-                                        sort_criteria,
-                                        out num_returned,
-                                        out total_matches,
-                                        out update_id);
+            didl = this.media_manager.browse (object_id,
+                                              filter,
+                                              starting_index,
+                                              requested_count,
+                                              sort_criteria,
+                                              out num_returned,
+                                              out total_matches,
+                                              out update_id);
         }
 
         if (didl == null) {
@@ -131,9 +129,6 @@ public class GUPnP.ContentDirectory: Service {
 
             return;
         }
-
-        if (update_id == uint32.MAX)
-            update_id = this.system_update_id;
 
         /* Set action return arguments */
         action.set ("Result", typeof (string), didl,
@@ -148,7 +143,7 @@ public class GUPnP.ContentDirectory: Service {
     private void get_system_update_id_cb (ContentDirectory content_dir,
                                           ServiceAction    action) {
         /* Set action return arguments */
-        action.set ("Id", typeof (uint32), this.system_update_id);
+        action.set ("Id", typeof (uint32), this.media_manager.system_update_id);
 
         action.return ();
     }
@@ -159,7 +154,7 @@ public class GUPnP.ContentDirectory: Service {
                                          ref GLib.Value value) {
         /* Set action return arguments */
         value.init (typeof (uint32));
-        value.set_uint (this.system_update_id);
+        value.set_uint (this.media_manager.system_update_id);
     }
 
     /* action GetSearchCapabilities implementation */

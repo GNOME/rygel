@@ -1,5 +1,13 @@
 2008-08-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/gupnp-content-directory.vala:
+
+	Use MediaManager rather than MediaTracker. This also means that
+	system_update_id doesn't need to be handled by ContentDirectory
+	anymore.
+
+2008-08-02  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/Makefile.am:
 	* src/gupnp-media-manager.vala:
 
