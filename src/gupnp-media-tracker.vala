@@ -259,7 +259,7 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
         else
             exported_id = this.root_id + ":" + id;
 
-        if (parent_id == this.root_id)
+        if (parent_id == this.root_id || parent_id == this.root_parent_id)
             exported_parent_id = parent_id;
         else
             exported_parent_id = this.root_id + ":" + parent_id;
