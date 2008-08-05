@@ -154,6 +154,13 @@
 	values for UDN and FriendlyName were not set in the description doc if
 	not already present in the corresponding gconf keys.
 
+2008-06-25  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* configure.ac:
+	* src/Makefile.am:
+
+	Add dependency to gstreamer >= 0.10.19.
+
 2008-06-24  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/gupnp-content-directory.vala:
