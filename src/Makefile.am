@@ -9,6 +9,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGCONF_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
+	    $(GIO_CFLAGS) \
 	    -I$(top_srcdir) -DDATA_DIR='"$(shareddir)"'
 
 bin_PROGRAMS = gupnp-media-server
@@ -49,14 +50,15 @@ gupnp_media_server_SOURCES = cstuff.c \
 gupnp-media-server.stamp: $(filter %.vala,$(gupnp_media_server_SOURCES))
 	$(VALAC) -C --vapidir=$(srcdir) --pkg cstuff --pkg gupnp-1.0 \
 	--pkg gupnp-av-1.0 --pkg dbus-glib-1 --pkg gconf-2.0 \
-	--pkg gstreamer-0.10 $^
+	--pkg gstreamer-0.10 --pkg gio-2.0 $^
 	touch $@
 
 gupnp_media_server_LDADD = $(LIBGUPNP_LIBS) \
 			   $(LIBGUPNP_AV_LIBS) \
 			   $(LIBGCONF_LIBS) \
 			   $(LIBDBUS_GLIB_LIBS) \
-			   $(LIBGSTREAMER_LIBS)
+			   $(LIBGSTREAMER_LIBS) \
+			   $(GIO_LIBS)
 gupnp_media_server_LDFLAGS = -export-dynamic
 
 CLEANFILES = $(BUILT_SOURCES)

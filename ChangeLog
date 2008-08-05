@@ -148,6 +148,13 @@
 
 2008-06-27  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* configure.ac:
+	* src/Makefile.am:
+
+	Require gio-2.0 (>= 2.16) and include it in the build.
+
+2008-06-27  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/gupnp-metadata-extractor.vala:
 
 	Implement extraction of audio and video specific metadata.
