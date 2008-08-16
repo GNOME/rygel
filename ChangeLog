@@ -1,3 +1,9 @@
+2008-08-17  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/media-server/gupnp-media-provider.vala:
+
+	Put MediaProvider in GUPnP namespace.
+
 2008-08-05  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* configure.ac:

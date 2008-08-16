@@ -22,7 +22,7 @@
  * version 2 of the License, or (at your option) any later version.
  */
 
-public interface MediaProvider : GLib.Object {
+public interface GUPnP.MediaProvider : GLib.Object {
     /* Properties */
     public abstract string# root_id { get; construct; }
     public abstract string# root_parent_id { get; construct; }
