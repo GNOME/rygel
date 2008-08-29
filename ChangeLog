@@ -1,5 +1,11 @@
 2008-08-29  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/media-server/gupnp-media-item.vala:
+
+	Introduce a class for media items.
+
+2008-08-29  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/media-server/gupnp-media-object.vala:
 
 	Introduce a new abstract class for media objects. It will be the
