@@ -1,5 +1,12 @@
 2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/media-server/gupnp-media-manager.vala:
+
+	Rename MediaManger's get_root_container_metadata() to
+	add_root_container_metadata().
+
+2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/media-server/gupnp-content-directory.vala:
 
 	Put the code and message from exception caught on the action error.

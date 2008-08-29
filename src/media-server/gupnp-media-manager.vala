@@ -109,7 +109,7 @@ public class GUPnP.MediaManager : MediaProvider {
         string root_id = this.get_root_id_from_id (object_id);
 
         if (root_id == this.root_id) {
-            this.get_root_container_metadata (didl_writer,
+            this.add_root_container_metadata (didl_writer,
                                               out update_id);
         } else {
             weak MediaProvider provider = this.providers.lookup (root_id);
@@ -158,7 +158,7 @@ public class GUPnP.MediaManager : MediaProvider {
         update_id = this.system_update_id;
     }
 
-    private void get_root_container_metadata (DIDLLiteWriter didl_writer,
+    private void add_root_container_metadata (DIDLLiteWriter didl_writer,
                                               out uint       update_id) {
         add_container (didl_writer,
                        this.root_id,
