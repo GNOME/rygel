@@ -99,7 +99,7 @@ public class GUPnP.MediaManager : MediaProvider {
         }
     }
 
-    public override void get_metadata
+    public override void add_metadata
                             (DIDLLiteWriter didl_writer,
                              string         object_id,
                              string         filter,
@@ -113,7 +113,7 @@ public class GUPnP.MediaManager : MediaProvider {
         } else {
             weak MediaProvider provider = this.providers.lookup (root_id);
             if (provider != null) {
-                provider.get_metadata (didl_writer,
+                provider.add_metadata (didl_writer,
                                        object_id,
                                        filter,
                                        sort_criteria,

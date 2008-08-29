@@ -114,7 +114,7 @@ public class GUPnP.ContentDirectory: Service {
 
         try {
             if (browse_metadata) {
-                this.media_manager.get_metadata (this.didl_writer,
+                this.media_manager.add_metadata (this.didl_writer,
                                                  object_id,
                                                  filter,
                                                  sort_criteria,

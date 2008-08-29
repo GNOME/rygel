@@ -5,6 +5,15 @@
 	* src/media-server/gupnp-media-manager.vala:
 	* src/media-server/gupnp-media-provider.vala:
 
+	Rename MediaProvider's get_metadata() to add_metadata().
+
+2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/media-providers/tracker/gupnp-media-tracker.vala:
+	* src/media-server/gupnp-content-directory.vala:
+	* src/media-server/gupnp-media-manager.vala:
+	* src/media-server/gupnp-media-provider.vala:
+
 	MediaProviders now get a DIDLiteWriter to add metadata to and no longer
 	return didl strings.
 

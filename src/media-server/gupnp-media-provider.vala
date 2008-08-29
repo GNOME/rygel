@@ -45,7 +45,7 @@ public abstract class GUPnP.MediaProvider : GLib.Object {
                                  out uint       total_matches,
                                  out uint       update_id) throws Error;
 
-    public abstract void get_metadata (DIDLLiteWriter didl_writer,
+    public abstract void add_metadata (DIDLLiteWriter didl_writer,
                                        string         object_id,
                                        string         filter,
                                        string         sort_criteria,

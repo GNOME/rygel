@@ -156,7 +156,7 @@ public class GUPnP.MediaTracker : MediaProvider {
         }
     }
 
-    public override void get_metadata
+    public override void add_metadata
                             (DIDLLiteWriter didl_writer,
                              string         object_id,
                              string         filter,
