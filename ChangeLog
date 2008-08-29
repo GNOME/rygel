@@ -1,3 +1,9 @@
+2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/media-server/Makefile.am:
+
+	MediaProvider class now requires gupnp-av package.
+
 2008-08-17  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/media-providers/tracker/gupnp-media-tracker.vala:

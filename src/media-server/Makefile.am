@@ -75,7 +75,9 @@ gupnp_media_server_LDFLAGS = -export-dynamic
 VAPI_FILES = gupnp-media-server-1.0.vapi
 
 gupnp-media-server-1.0.vapi: gupnp-media-provider.vala
-	$(VALAC) -C --library=gupnp-media-server-1.0 --pkg gupnp-1.0 $^
+	$(VALAC) -C --library=gupnp-media-server-1.0 \
+	--pkg gupnp-1.0 --pkg gupnp-av-1.0 \
+	$^
 
 CLEANFILES = $(BUILT_SOURCES)
 MAINTAINERCLEANFILES = Makefile.in
