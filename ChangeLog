@@ -1,5 +1,13 @@
 2008-08-29  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/media-server/gupnp-media-object.vala:
+
+	Introduce a new abstract class for media objects. It will be the
+	responsibility of derived classes to implement serializing to
+	DIDLLiteWriter.
+
+2008-08-29  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/media-providers/tracker/gupnp-media-tracker.vala:
 
 	- Keep the parent_id of the container in the Tracker.Container class.
