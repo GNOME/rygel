@@ -44,7 +44,7 @@ private class Tracker.Container {
     }
 }
 
-public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
+public class GUPnP.MediaTracker : MediaProvider {
     /* class-wide constants */
     public static const string TRACKER_SERVICE = "org.freedesktop.Tracker";
     public static const string TRACKER_PATH = "/org/freedesktop/tracker";
@@ -68,12 +68,6 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
 
     private DIDLLiteWriter didl_writer;
     private SearchCriteriaParser search_parser;
-
-    /* Properties */
-    public string# root_id { get; construct; }
-    public string# root_parent_id { get; construct; }
-    public string# title { get; private construct; }
-    public GUPnP.Context context { get; construct; }
 
     construct {
         this.containers = new List<Tracker.Container> ();
@@ -124,14 +118,14 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
         this.context = context;
     }
 
-    public string? browse (string   container_id,
-                           string   filter,
-                           uint     starting_index,
-                           uint     requested_count,
-                           string   sort_criteria,
-                           out uint number_returned,
-                           out uint total_matches,
-                           out uint update_id) {
+    public override string? browse (string   container_id,
+                                    string   filter,
+                                    uint     starting_index,
+                                    uint     requested_count,
+                                    string   sort_criteria,
+                                    out uint number_returned,
+                                    out uint total_matches,
+                                    out uint update_id) {
         string didl;
 
         /* Start DIDL-Lite fragment */
@@ -177,10 +171,10 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
         return didl;
     }
 
-    public string get_metadata (string  object_id,
-                                string  filter,
-                                string  sort_criteria,
-                                out uint update_id) {
+    public override string get_metadata (string  object_id,
+                                         string  filter,
+                                         string  sort_criteria,
+                                         out uint update_id) {
         string didl;
         bool found;
 
@@ -230,7 +224,7 @@ public class GUPnP.MediaTracker : GLib.Object, MediaProvider {
         return didl;
     }
 
-    public uint get_root_children_count () {
+    public override uint get_root_children_count () {
         return this.containers.length ();
     }
 

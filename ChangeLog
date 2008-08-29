@@ -1,5 +1,17 @@
 2008-08-17  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/media-providers/tracker/gupnp-media-tracker.vala:
+	* src/media-server/gupnp-media-manager.vala:
+	* src/media-server/gupnp-media-provider.vala:
+
+	Make MediaProvider an abstract class rather than interface. We will have
+	to do this at some point anyway to put common functionality into this
+	module but the real reason to do this right now is that support for
+	constuct-only props in interfaces was recenlty dropped in Vala (for good
+	reasons).
+
+2008-08-17  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/media-server/gupnp-media-provider.vala:
 
 	Put MediaProvider in GUPnP namespace.

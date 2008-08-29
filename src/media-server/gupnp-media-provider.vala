@@ -22,12 +22,12 @@
  * version 2 of the License, or (at your option) any later version.
  */
 
-public interface GUPnP.MediaProvider : GLib.Object {
+public abstract class GUPnP.MediaProvider : GLib.Object {
     /* Properties */
-    public abstract string# root_id { get; construct; }
-    public abstract string# root_parent_id { get; construct; }
-    public abstract string# title { get; private construct; }
-    public abstract GUPnP.Context context { get; construct; }
+    public string# root_id { get; construct; }
+    public string# root_parent_id { get; construct; }
+    public string# title { get; private construct; }
+    public GUPnP.Context context { get; construct; }
 
     public abstract string? browse (string   container_id,
                                     string   filter,

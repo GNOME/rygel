@@ -24,14 +24,10 @@
 
 using CStuff;
 
-public class GUPnP.MediaManager : GLib.Object, MediaProvider {
+public class GUPnP.MediaManager : MediaProvider {
     private DIDLLiteWriter didl_writer;
 
     /* Properties */
-    public string# root_id { get; construct; }
-    public string# root_parent_id { get; construct; }
-    public string# title { get; private construct; }
-    public GUPnP.Context context { get; construct; }
     public uint32 system_update_id { get; private set; }
 
     /* HashTable of Media Providers
@@ -68,14 +64,14 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
         this.context = context;
     }
 
-    public string? browse (string   container_id,
-                           string   filter,
-                           uint     starting_index,
-                           uint     requested_count,
-                           string   sort_criteria,
-                           out uint number_returned,
-                           out uint total_matches,
-                           out uint update_id) {
+    public override string? browse (string   container_id,
+                                    string   filter,
+                                    uint     starting_index,
+                                    uint     requested_count,
+                                    string   sort_criteria,
+                                    out uint number_returned,
+                                    out uint total_matches,
+                                    out uint update_id) {
         string didl;
 
         string root_id = this.get_root_id_from_id (container_id);
@@ -107,10 +103,10 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
         return didl;
     }
 
-    public string get_metadata (string  object_id,
-                                string  filter,
-                                string  sort_criteria,
-                                out uint update_id) {
+    public override string get_metadata (string  object_id,
+                                         string  filter,
+                                         string  sort_criteria,
+                                         out uint update_id) {
         string didl;
 
         string root_id = this.get_root_id_from_id (object_id);
@@ -135,7 +131,7 @@ public class GUPnP.MediaManager : GLib.Object, MediaProvider {
         return didl;
     }
 
-    public uint get_root_children_count () {
+    public override uint get_root_children_count () {
         return this.providers.size ();
     }
 
