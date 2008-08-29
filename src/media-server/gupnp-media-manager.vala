@@ -74,10 +74,10 @@ public class GUPnP.MediaManager : MediaProvider {
         string root_id = this.get_root_id_from_id (container_id);
 
         if (root_id == this.root_id) {
-            this.browse_root_container (didl_writer,
-                                        out number_returned,
-                                        out total_matches,
-                                        out update_id);
+            this.add_root_children (didl_writer,
+                                    out number_returned,
+                                    out total_matches,
+                                    out update_id);
         } else {
             weak MediaProvider provider = this.providers.lookup (root_id);
             if (provider != null) {
@@ -133,10 +133,10 @@ public class GUPnP.MediaManager : MediaProvider {
     }
 
     /* Private methods */
-    private void browse_root_container (DIDLLiteWriter didl_writer,
-                                        out uint       number_returned,
-                                        out uint       total_matches,
-                                        out uint       update_id) {
+    private void add_root_children (DIDLLiteWriter didl_writer,
+                                    out uint       number_returned,
+                                    out uint       total_matches,
+                                    out uint       update_id) {
         List<weak string> keys = this.providers.get_keys ();
 
         for (weak List<weak string> key_node = keys;

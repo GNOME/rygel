@@ -1,5 +1,11 @@
 2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/media-server/gupnp-media-manager.vala:
+
+	Rename MediaManager's browse_root_container() to add_root_children().
+
+2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/media-providers/tracker/gupnp-media-tracker.vala:
 	* src/media-server/gupnp-content-directory.vala:
 	* src/media-server/gupnp-media-manager.vala:
