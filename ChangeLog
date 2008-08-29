@@ -4,6 +4,10 @@
 
 	Introduce a class for media items.
 
+	* src/media-server/Makefile.am:
+
+	Add MediaItem to vapi file and build.
+
 2008-08-29  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/media-server/gupnp-media-object.vala:
