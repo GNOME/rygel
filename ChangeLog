@@ -8,6 +8,10 @@
 
 	Add MediaItem to vapi file and build.
 
+	* src/media-providers/tracker/gupnp-media-tracker.vala:
+
+	Start utilizing the MediaContainer class in MediaTracker.
+
 2008-08-29  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/media-server/gupnp-media-object.vala:

@@ -56,10 +56,6 @@ public class GUPnP.MediaTracker : MediaProvider {
 
     public static const int MAX_REQUESTED_COUNT = 128;
 
-    public static const string IMAGE_CLASS = "object.item.imageItem";
-    public static const string VIDEO_CLASS = "object.item.videoItem";
-    public static const string MUSIC_CLASS = "object.item.audioItem.musicTrack";
-
     /* FIXME: Make this a static if you know how to initize it */
     private List<Tracker.Container> containers;
 
@@ -76,19 +72,19 @@ public class GUPnP.MediaTracker : MediaProvider {
                                                 this.root_id,
                                                 "All Images",
                                                 "Images",
-                                                MediaTracker.IMAGE_CLASS));
+                                                MediaItem.IMAGE_CLASS));
         this.containers.append
                         (new Tracker.Container (this.root_id + ":" + "14",
                                                 this.root_id,
                                                 "All Music",
                                                 "Music",
-                                                MediaTracker.MUSIC_CLASS));
+                                                MediaItem.MUSIC_CLASS));
         this.containers.append
                         (new Tracker.Container (this.root_id + ":" + "15",
                                                 this.root_id,
                                                 "All Videos",
                                                 "Videos",
-                                                MediaTracker.VIDEO_CLASS));
+                                                MediaItem.VIDEO_CLASS));
 
         this.search_parser = new SearchCriteriaParser ();
 
@@ -302,9 +298,9 @@ public class GUPnP.MediaTracker : MediaProvider {
     private bool add_item_from_db (DIDLLiteWriter    didl_writer,
                                    Tracker.Container parent,
                                    string            path) {
-        if (parent.child_class == VIDEO_CLASS) {
+        if (parent.child_class == MediaItem.VIDEO_CLASS) {
             return this.add_video_item_from_db (didl_writer, parent, path);
-        } else if (parent.child_class == IMAGE_CLASS) {
+        } else if (parent.child_class == MediaItem.IMAGE_CLASS) {
             return this.add_image_item_from_db (didl_writer, parent, path);
         } else {
             return this.add_music_item_from_db (didl_writer, parent, path);
@@ -335,15 +331,6 @@ public class GUPnP.MediaTracker : MediaProvider {
             return false;
         }
 
-        int width = -1;
-        int height = -1;
-
-        if (values[4] != "")
-            width = values[4].to_int ();
-
-        if (values[5] != "")
-            height = values[5].to_int ();
-
         string title;
         if (values[2] != "")
             title = values[2];
@@ -351,21 +338,23 @@ public class GUPnP.MediaTracker : MediaProvider {
             /* If title wasn't provided, use filename instead */
             title = values[0];
 
-        string date = seconds_to_iso8601 (values[6]);
+        MediaItem item = new MediaItem (this.root_id + ":" + path,
+                                        parent.id,
+                                        title,
+                                        parent.child_class);
 
-        this.add_item (didl_writer,
-                       path,
-                       parent.id,
-                       values[1],
-                       title,
-                       values[3],
-                       "",
-                       date,
-                       parent.child_class,
-                       width,
-                       height,
-                       -1,
-                       path);
+        if (values[4] != "")
+            item.width = values[4].to_int ();
+
+        if (values[5] != "")
+            item.height = values[5].to_int ();
+
+        item.date = seconds_to_iso8601 (values[6]);
+        item.mime = values[1];
+        item.author = values[3];
+        item.uri = uri_from_path (path);
+
+        item.serialize (didl_writer);
 
         return true;
     }
@@ -396,15 +385,6 @@ public class GUPnP.MediaTracker : MediaProvider {
             return false;
         }
 
-        int width = -1;
-        int height = -1;
-
-        if (values[4] != "")
-            width = values[4].to_int ();
-
-        if (values[5] != "")
-            height = values[5].to_int ();
-
         string title;
         if (values[2] != "")
             title = values[2];
@@ -412,29 +392,29 @@ public class GUPnP.MediaTracker : MediaProvider {
             /* If title wasn't provided, use filename instead */
             title = values[0];
 
-        string seconds;
+        MediaItem item = new MediaItem (this.root_id + ":" + path,
+                                        parent.id,
+                                        title,
+                                        parent.child_class);
+
+        if (values[4] != "")
+            item.width = values[4].to_int ();
+
+        if (values[5] != "")
+            item.height = values[5].to_int ();
 
         if (values[8] != "") {
-            seconds = values[8];
+            item.date = seconds_to_iso8601 (values[8]);
         } else {
-            seconds = values[7];
+            item.date = seconds_to_iso8601 (values[7]);
         }
 
-        string date = seconds_to_iso8601 (seconds);
+        item.mime = values[1];
+        item.author = values[3];
+        item.album = values[6];
+        item.uri = uri_from_path (path);
 
-        this.add_item (didl_writer,
-                       path,
-                       parent.id,
-                       values[1],
-                       title,
-                       values[3],
-                       values[6],
-                       date,
-                       parent.child_class,
-                       width,
-                       height,
-                       -1,
-                       path);
+        item.serialize (didl_writer);
 
         return true;
     }
@@ -465,11 +445,6 @@ public class GUPnP.MediaTracker : MediaProvider {
             return false;
         }
 
-        int track_number = -1;
-
-        if (values[4] != "")
-            track_number = values[4].to_int ();
-
         string title;
         if (values[2] != "")
             title = values[2];
@@ -477,135 +452,30 @@ public class GUPnP.MediaTracker : MediaProvider {
             /* If title wasn't provided, use filename instead */
             title = values[0];
 
-        string seconds;
+        MediaItem item = new MediaItem (this.root_id + ":" + path,
+                                        parent.id,
+                                        title,
+                                        parent.child_class);
+
+        if (values[4] != "")
+            item.track_number = values[4].to_int ();
 
         if (values[8] != "") {
-            seconds = values[8];
+            item.date = seconds_to_iso8601 (values[8]);
         } else if (values[6] != "") {
-            seconds = values[6];
+            item.date = seconds_to_iso8601 (values[6]);
         } else {
-            seconds = values[7];
+            item.date = seconds_to_iso8601 (values[7]);
         }
 
-        string date = seconds_to_iso8601 (seconds);
+        item.mime = values[1];
+        item.author = values[3];
+        item.album = values[5];
+        item.uri = uri_from_path (path);
 
-        this.add_item (didl_writer,
-                       path,
-                       parent.id,
-                       values[1],
-                       title,
-                       values[3],
-                       values[5],
-                       date,
-                       parent.child_class,
-                       -1,
-                       -1,
-                       track_number,
-                       path);
+        item.serialize (didl_writer);
 
         return true;
-    }
-
-    private void add_item (DIDLLiteWriter didl_writer,
-                           string         id,
-                           string         parent_id,
-                           string         mime,
-                           string         title,
-                           string         author,
-                           string         album,
-                           string         date,
-                           string         upnp_class,
-                           int            width,
-                           int            height,
-                           int            track_number,
-                           string         path) {
-        didl_writer.start_item (this.root_id + ":" + id,
-                                parent_id,
-                                null,
-                                false);
-
-        /* Add fields */
-        didl_writer.add_string ("title",
-                                DIDLLiteWriter.NAMESPACE_DC,
-                                null,
-                                title);
-
-        didl_writer.add_string ("class",
-                                DIDLLiteWriter.NAMESPACE_UPNP,
-                                null,
-                                upnp_class);
-
-        if (author != "") {
-            didl_writer.add_string ("creator",
-                                    DIDLLiteWriter.NAMESPACE_DC,
-                                    null,
-                                    author);
-
-            if (upnp_class == VIDEO_CLASS) {
-                didl_writer.add_string ("author",
-                                        DIDLLiteWriter.NAMESPACE_UPNP,
-                                        null,
-                                        author);
-            } else if (upnp_class == MUSIC_CLASS) {
-                didl_writer.add_string ("artist",
-                                        DIDLLiteWriter.NAMESPACE_UPNP,
-                                        null,
-                                        author);
-            }
-        }
-
-        if (track_number >= 0) {
-            didl_writer.add_int ("originalTrackNumber",
-                                 DIDLLiteWriter.NAMESPACE_UPNP,
-                                 null,
-                                 track_number);
-        }
-
-        if (album != "") {
-            didl_writer.add_string ("album",
-                                    DIDLLiteWriter.NAMESPACE_UPNP,
-                                    null,
-                                    album);
-        }
-
-        if (date != "") {
-            didl_writer.add_string ("date",
-                                    DIDLLiteWriter.NAMESPACE_DC,
-                                    null,
-                                    date);
-        }
-
-        /* Add resource data */
-        DIDLLiteResource res;
-
-        /* URI */
-        string escaped_path = Uri.escape_string (path, "/", true);
-        string uri = "http://%s:%u%s".printf (context.host_ip,
-                                              context.port,
-                                              escaped_path);
-
-        res.reset ();
-
-        res.uri = uri;
-
-        /* Protocol info */
-        res.protocol = "http-get";
-        res.mime_type = mime;
-        res.dlna_profile = "MP3"; /* FIXME */
-
-        res.width = width;
-        res.height = height;
-
-        didl_writer.add_res (res);
-
-        /* FIXME: These lines should be remove once GB#526552 is fixed */
-        res.uri = null;
-        res.protocol = null;
-        res.mime_type = null;
-        res.dlna_profile = null;
-
-        /* End of item */
-        didl_writer.end_item ();
     }
 
     private void add_root_container (DIDLLiteWriter didl_writer) {
@@ -668,6 +538,14 @@ public class GUPnP.MediaTracker : MediaProvider {
             return tokens[1];
         else
             return tokens[0];
+    }
+
+    private string uri_from_path (string path) {
+        string escaped_path = Uri.escape_string (path, "/", true);
+
+        return "http://%s:%u%s".printf (context.host_ip,
+                                        context.port,
+                                        escaped_path);
     }
 }
 
