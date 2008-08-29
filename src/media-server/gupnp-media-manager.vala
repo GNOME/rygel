@@ -25,8 +25,6 @@
 using CStuff;
 
 public class GUPnP.MediaManager : MediaProvider {
-    private DIDLLiteWriter didl_writer;
-
     /* Properties */
     public uint32 system_update_id { get; private set; }
 
@@ -49,7 +47,6 @@ public class GUPnP.MediaManager : MediaProvider {
                                 ((HashFunc) id_hash_func,
                                  (EqualFunc) is_root_equal);
         this.modules = new List<Module> ();
-        this.didl_writer = new DIDLLiteWriter ();
 
         this.system_update_id = 0;
 
@@ -64,62 +61,35 @@ public class GUPnP.MediaManager : MediaProvider {
         this.context = context;
     }
 
-    public override string browse (string   container_id,
-                                   string   filter,
-                                   uint     starting_index,
-                                   uint     requested_count,
-                                   string   sort_criteria,
-                                   out uint number_returned,
-                                   out uint total_matches,
-                                   out uint update_id) throws Error {
-        string didl;
-
+    public override void browse (DIDLLiteWriter didl_writer,
+                                 string         container_id,
+                                 string         filter,
+                                 uint           starting_index,
+                                 uint           requested_count,
+                                 string         sort_criteria,
+                                 out uint       number_returned,
+                                 out uint       total_matches,
+                                 out uint       update_id) throws Error {
         string root_id = this.get_root_id_from_id (container_id);
 
         if (root_id == this.root_id) {
-            didl = this.browse_root_container (out number_returned,
-                                               out total_matches,
-                                               out update_id);
-        } else {
-            weak MediaProvider provider = this.providers.lookup (root_id);
-            if (provider != null) {
-                didl = provider.browse (container_id,
-                                        filter,
-                                        starting_index,
-                                        requested_count,
-                                        sort_criteria,
+            this.browse_root_container (didl_writer,
                                         out number_returned,
                                         out total_matches,
                                         out update_id);
-
-                if (update_id == uint32.MAX) {
-                    update_id = this.system_update_id;
-                }
-            } else {
-                throw new MediaProviderError.NO_SUCH_OBJECT ("No such object");
-            }
-        }
-
-        return didl;
-    }
-
-    public override string get_metadata (string  object_id,
-                                         string  filter,
-                                         string  sort_criteria,
-                                         out uint update_id) throws Error {
-        string didl;
-
-        string root_id = this.get_root_id_from_id (object_id);
-
-        if (root_id == this.root_id) {
-            didl = this.get_root_container_metadata (out update_id);
         } else {
             weak MediaProvider provider = this.providers.lookup (root_id);
             if (provider != null) {
-                didl = provider.get_metadata (object_id,
-                                              filter,
-                                              sort_criteria,
-                                              out update_id);
+                provider.browse (didl_writer,
+                                 container_id,
+                                 filter,
+                                 starting_index,
+                                 requested_count,
+                                 sort_criteria,
+                                 out number_returned,
+                                 out total_matches,
+                                 out update_id);
+
                 if (update_id == uint32.MAX) {
                     update_id = this.system_update_id;
                 }
@@ -127,8 +97,34 @@ public class GUPnP.MediaManager : MediaProvider {
                 throw new MediaProviderError.NO_SUCH_OBJECT ("No such object");
             }
         }
+    }
 
-        return didl;
+    public override void get_metadata
+                            (DIDLLiteWriter didl_writer,
+                             string         object_id,
+                             string         filter,
+                             string         sort_criteria,
+                             out uint       update_id) throws Error {
+        string root_id = this.get_root_id_from_id (object_id);
+
+        if (root_id == this.root_id) {
+            this.get_root_container_metadata (didl_writer,
+                                              out update_id);
+        } else {
+            weak MediaProvider provider = this.providers.lookup (root_id);
+            if (provider != null) {
+                provider.get_metadata (didl_writer,
+                                       object_id,
+                                       filter,
+                                       sort_criteria,
+                                       out update_id);
+                if (update_id == uint32.MAX) {
+                    update_id = this.system_update_id;
+                }
+            } else {
+                throw new MediaProviderError.NO_SUCH_OBJECT ("No such object");
+            }
+        }
     }
 
     public override uint get_root_children_count () {
@@ -136,82 +132,65 @@ public class GUPnP.MediaManager : MediaProvider {
     }
 
     /* Private methods */
-    private string browse_root_container (out uint number_returned,
-                                          out uint total_matches,
-                                          out uint update_id) {
-        /* Start DIDL-Lite fragment */
-        this.didl_writer.start_didl_lite (null, null, true);
+    private void browse_root_container (DIDLLiteWriter didl_writer,
+                                        out uint       number_returned,
+                                        out uint       total_matches,
+                                        out uint       update_id) {
+        List<weak string> keys = this.providers.get_keys ();
 
-        this.providers.for_each ((key, value) => {
-            MediaProvider provider = (MediaProvider) value;
+        for (weak List<weak string> key_node = keys;
+             key_node != null;
+             key_node = key_node.next) {
+             weak string key = key_node.data;
 
-            add_container ((string) key,
-                           this.root_id,
-                           provider.title,
-                           provider.get_root_children_count ());
-            });
+             MediaProvider provider = this.providers.lookup (key);
+
+             add_container (didl_writer,
+                            (string) key,
+                            this.root_id,
+                            provider.title,
+                            provider.get_root_children_count ());
+        }
 
         number_returned = total_matches = this.get_root_children_count ();
 
-        /* End DIDL-Lite fragment */
-        this.didl_writer.end_didl_lite ();
-
-        /* Retrieve generated string */
-        string didl = this.didl_writer.get_string ();
-
-        /* Reset the parser state */
-        this.didl_writer.reset ();
-
         update_id = this.system_update_id;
-
-        return didl;
     }
 
-    private string get_root_container_metadata (out uint update_id) {
-        /* Start DIDL-Lite fragment */
-        this.didl_writer.start_didl_lite (null, null, true);
-
-        add_container (this.root_id,
+    private void get_root_container_metadata (DIDLLiteWriter didl_writer,
+                                              out uint       update_id) {
+        add_container (didl_writer,
+                       this.root_id,
                        "-1",         /* FIXME */
                        this.title,
                        this.get_root_children_count ());
 
-        /* End DIDL-Lite fragment */
-        this.didl_writer.end_didl_lite ();
-
-        /* Retrieve generated string */
-        string didl = this.didl_writer.get_string ();
-
-        /* Reset the parser state */
-        this.didl_writer.reset ();
-
         update_id = this.system_update_id;
-
-        return didl;
     }
 
-    private void add_container (string id,
-                                string parent_id,
-                                string title,
-                                uint   child_count) {
-        this.didl_writer.start_container (id,
-                                          parent_id,
-                                          (int) child_count,
-                                          false,
-                                          false);
+    private void add_container (DIDLLiteWriter didl_writer,
+                                string         id,
+                                string         parent_id,
+                                string         title,
+                                uint           child_count) {
+        didl_writer.start_container (id,
+                                     parent_id,
+                                     (int) child_count,
+                                     false,
+                                     false);
 
-        this.didl_writer.add_string ("class",
-                                     DIDLLiteWriter.NAMESPACE_UPNP,
-                                     null,
-                                     "object.container.storageFolder");
+        didl_writer.add_string ("class",
+                                DIDLLiteWriter.NAMESPACE_UPNP,
+                                null,
+                                "object.container.storageFolder");
 
-        this.didl_writer.add_string ("title",
-                                     DIDLLiteWriter.NAMESPACE_DC,
-                                     null,
-                                     title);
+        didl_writer.add_string ("title",
+                                DIDLLiteWriter.NAMESPACE_DC,
+                                null,
+                                title);
 
         /* End of Container */
-        this.didl_writer.end_container ();
+        didl_writer.end_container ();
     }
 
     string get_root_id_from_id (string id) {

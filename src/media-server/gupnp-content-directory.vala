@@ -29,10 +29,14 @@ using GUPnP;
 public class GUPnP.ContentDirectory: Service {
     string feature_list;
 
+    DIDLLiteWriter didl_writer;
+
     MediaManager media_manager;
 
     construct {
         this.media_manager = new MediaManager (this.context);
+
+        this.didl_writer = new DIDLLiteWriter ();
 
         this.feature_list =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
@@ -71,7 +75,7 @@ public class GUPnP.ContentDirectory: Service {
                             ServiceAction    action) {
         string object_id, browse_flag;
         bool browse_metadata;
-        string didl, sort_criteria, filter;
+        string sort_criteria, filter;
         uint starting_index, requested_count;
         uint num_returned, total_matches, update_id;
 
@@ -105,38 +109,50 @@ public class GUPnP.ContentDirectory: Service {
             }
         }
 
+        /* Start DIDL-Lite fragment */
+        this.didl_writer.start_didl_lite (null, null, true);
+
         try {
             if (browse_metadata) {
-                didl = this.media_manager.get_metadata (object_id,
-                                                        filter,
-                                                        sort_criteria,
-                                                        out update_id);
+                this.media_manager.get_metadata (this.didl_writer,
+                                                 object_id,
+                                                 filter,
+                                                 sort_criteria,
+                                                 out update_id);
 
                 num_returned = 1;
                 total_matches = 1;
             } else {
-                didl = this.media_manager.browse (object_id,
-                                                  filter,
-                                                  starting_index,
-                                                  requested_count,
-                                                  sort_criteria,
-                                                  out num_returned,
-                                                  out total_matches,
-                                                  out update_id);
+                this.media_manager.browse (this.didl_writer,
+                                           object_id,
+                                           filter,
+                                           starting_index,
+                                           requested_count,
+                                           sort_criteria,
+                                           out num_returned,
+                                           out total_matches,
+                                           out update_id);
             }
+
+            /* End DIDL-Lite fragment */
+            this.didl_writer.end_didl_lite ();
+
+            /* Retrieve generated string */
+            string didl = this.didl_writer.get_string ();
+
+            /* Set action return arguments */
+            action.set ("Result", typeof (string), didl,
+                        "NumberReturned", typeof (uint), num_returned,
+                        "TotalMatches", typeof (uint), total_matches,
+                        "UpdateID", typeof (uint), update_id);
+
+            action.return ();
         } catch (Error error) {
             action.return_error (701, "No such object");
-
-            return;
         }
 
-        /* Set action return arguments */
-        action.set ("Result", typeof (string), didl,
-                    "NumberReturned", typeof (uint), num_returned,
-                    "TotalMatches", typeof (uint), total_matches,
-                    "UpdateID", typeof (uint), update_id);
-
-        action.return ();
+        /* Reset the parser state */
+        this.didl_writer.reset ();
     }
 
     /* GetSystemUpdateID action implementation */

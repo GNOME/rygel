@@ -66,7 +66,6 @@ public class GUPnP.MediaTracker : MediaProvider {
     private dynamic DBus.Object files;
     private dynamic DBus.Object tracker;
 
-    private DIDLLiteWriter didl_writer;
     private SearchCriteriaParser search_parser;
 
     construct {
@@ -87,7 +86,6 @@ public class GUPnP.MediaTracker : MediaProvider {
                                                 "Videos",
                                                 MediaTracker.VIDEO_CLASS));
 
-        this.didl_writer = new DIDLLiteWriter ();
         this.search_parser = new SearchCriteriaParser ();
 
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
@@ -118,23 +116,19 @@ public class GUPnP.MediaTracker : MediaProvider {
         this.context = context;
     }
 
-    public override string browse (string   container_id,
-                                   string   filter,
-                                   uint     starting_index,
-                                   uint     requested_count,
-                                   string   sort_criteria,
-                                   out uint number_returned,
-                                   out uint total_matches,
-                                   out uint update_id) throws GLib.Error {
-        string didl = null;
-
-        /* Start DIDL-Lite fragment */
-        this.didl_writer.start_didl_lite (null, null, true);
-
+    public override void browse (DIDLLiteWriter didl_writer,
+                                 string         container_id,
+                                 string         filter,
+                                 uint           starting_index,
+                                 uint           requested_count,
+                                 string         sort_criteria,
+                                 out uint       number_returned,
+                                 out uint       total_matches,
+                                 out uint       update_id) throws GLib.Error {
         string id = this.remove_root_id_prefix (container_id);
 
         if (id == this.root_id) {
-            number_returned = this.add_root_container_children ();
+            number_returned = this.add_root_container_children (didl_writer);
             total_matches = number_returned;
         } else {
             Tracker.Container container;
@@ -147,48 +141,32 @@ public class GUPnP.MediaTracker : MediaProvider {
                 number_returned = 0;
             else {
                 number_returned =
-                    this.add_container_children_from_db (container,
-                            starting_index,
-                            requested_count,
-                            out total_matches);
+                    this.add_container_children_from_db (didl_writer,
+                                                         container,
+                                                         starting_index,
+                                                         requested_count,
+                                                         out total_matches);
             }
         }
 
         if (number_returned > 0) {
-            /* End DIDL-Lite fragment */
-            this.didl_writer.end_didl_lite ();
-
-            /* Retrieve generated string */
-            didl = this.didl_writer.get_string ();
-
             update_id = uint32.MAX;
-        }
-
-        /* Reset the parser state */
-        this.didl_writer.reset ();
-
-        if (didl == null) {
+        } else {
             throw new MediaProviderError.NO_SUCH_OBJECT ("No such object");
         }
-
-        return didl;
     }
 
-    public override string get_metadata (string  object_id,
-                                         string  filter,
-                                         string  sort_criteria,
-                                         out uint update_id) throws GLib.Error {
-        string didl = null;
-        bool found;
-
-        /* Start DIDL-Lite fragment */
-        this.didl_writer.start_didl_lite (null, null, true);
-        found = false;
-
+    public override void get_metadata
+                            (DIDLLiteWriter didl_writer,
+                             string         object_id,
+                             string         filter,
+                             string         sort_criteria,
+                             out uint       update_id) throws GLib.Error {
+        bool found = false;
         string id = this.remove_root_id_prefix (object_id);
 
         if (id == this.root_id) {
-            add_root_container ();
+            add_root_container (didl_writer);
 
             found = true;
         } else {
@@ -198,7 +176,9 @@ public class GUPnP.MediaTracker : MediaProvider {
             container = find_container_by_id (id);
 
             if (container != null) {
-                add_container_from_db (container, this.root_id);
+                add_container_from_db (didl_writer,
+                                       container,
+                                       this.root_id);
 
                 found = true;
             } else {
@@ -206,28 +186,17 @@ public class GUPnP.MediaTracker : MediaProvider {
                 container = get_item_parent (id);
 
                 if (container != null)
-                    found = add_item_from_db (container, id);
+                    found = add_item_from_db (didl_writer,
+                                              container,
+                                              id);
             }
         }
 
-        if (found) {
-            /* End DIDL-Lite fragment */
-            this.didl_writer.end_didl_lite ();
-
-            /* Retrieve generated string */
-            didl = this.didl_writer.get_string ();
-        }
-
-        /* Reset the parser state */
-        this.didl_writer.reset ();
-
-        if (didl == null) {
+        if (!found) {
             throw new MediaProviderError.NO_SUCH_OBJECT ("No such object");
         }
 
         update_id = uint32.MAX;
-
-        return didl;
     }
 
     public override uint get_root_children_count () {
@@ -235,29 +204,34 @@ public class GUPnP.MediaTracker : MediaProvider {
     }
 
     /* Private methods */
-    private uint add_root_container_children () {
+    private uint add_root_container_children (DIDLLiteWriter didl_writer) {
         foreach (Tracker.Container container in this.containers)
-            this.add_container_from_db (container, this.root_id);
+            this.add_container_from_db (didl_writer,
+                                        container,
+                                        this.root_id);
 
         return this.get_root_children_count ();
     }
 
-    private void add_container_from_db (Tracker.Container container,
+    private void add_container_from_db (DIDLLiteWriter    didl_writer,
+                                        Tracker.Container container,
                                         string            parent_id) {
         uint child_count;
 
         child_count = get_container_children_count (container);
 
-        this.add_container (container.id,
+        this.add_container (didl_writer,
+                            container.id,
                             parent_id,
                             container.title,
                             child_count);
     }
 
-    private void add_container (string id,
-                                string parent_id,
-                                string title,
-                                uint   child_count) {
+    private void add_container (DIDLLiteWriter didl_writer,
+                                string         id,
+                                string         parent_id,
+                                string         title,
+                                uint           child_count) {
         string exported_id, exported_parent_id;
 
         if (id == this.root_id)
@@ -270,24 +244,24 @@ public class GUPnP.MediaTracker : MediaProvider {
         else
             exported_parent_id = this.root_id + ":" + parent_id;
 
-        this.didl_writer.start_container (exported_id,
-                                          exported_parent_id,
-                                          (int) child_count,
-                                          false,
-                                          false);
+        didl_writer.start_container (exported_id,
+                                     exported_parent_id,
+                                     (int) child_count,
+                                     false,
+                                     false);
 
-        this.didl_writer.add_string ("class",
-                                     DIDLLiteWriter.NAMESPACE_UPNP,
-                                     null,
-                                     "object.container.storageFolder");
+        didl_writer.add_string ("class",
+                                DIDLLiteWriter.NAMESPACE_UPNP,
+                                null,
+                                "object.container.storageFolder");
 
-        this.didl_writer.add_string ("title",
-                                     DIDLLiteWriter.NAMESPACE_DC,
-                                     null,
-                                     title);
+        didl_writer.add_string ("title",
+                                DIDLLiteWriter.NAMESPACE_DC,
+                                null,
+                                title);
 
         /* End of Container */
-        this.didl_writer.end_container ();
+        didl_writer.end_container ();
     }
 
     private uint get_container_children_count (Tracker.Container container) {
@@ -326,7 +300,8 @@ public class GUPnP.MediaTracker : MediaProvider {
     }
 
     private uint add_container_children_from_db
-                    (Tracker.Container container,
+                    (DIDLLiteWriter    didl_writer,
+                     Tracker.Container container,
                      uint              offset,
                      uint              max_count,
                      out uint          child_count) {
@@ -341,7 +316,9 @@ public class GUPnP.MediaTracker : MediaProvider {
 
         /* Iterate through all items */
         for (uint i = 0; i < children.length; i++)
-            this.add_item_from_db (container, children[i]);
+            this.add_item_from_db (didl_writer,
+                                   container,
+                                   children[i]);
 
         return children.length;
     }
@@ -369,19 +346,21 @@ public class GUPnP.MediaTracker : MediaProvider {
         return children;
     }
 
-    private bool add_item_from_db (Tracker.Container parent,
+    private bool add_item_from_db (DIDLLiteWriter    didl_writer,
+                                   Tracker.Container parent,
                                    string            path) {
         if (parent.child_class == VIDEO_CLASS) {
-            return this.add_video_item_from_db (parent, path);
+            return this.add_video_item_from_db (didl_writer, parent, path);
         } else if (parent.child_class == IMAGE_CLASS) {
-            return this.add_image_item_from_db (parent, path);
+            return this.add_image_item_from_db (didl_writer, parent, path);
         } else {
-            return this.add_music_item_from_db (parent, path);
+            return this.add_music_item_from_db (didl_writer, parent, path);
         }
     }
 
-    private bool add_video_item_from_db (Tracker.Container parent,
-                                         string path) {
+    private bool add_video_item_from_db (DIDLLiteWriter    didl_writer,
+                                         Tracker.Container parent,
+                                         string            path) {
         string[] keys = new string[] {"File:Name",
                                       "File:Mime",
                                       "Video:Title",
@@ -421,7 +400,8 @@ public class GUPnP.MediaTracker : MediaProvider {
 
         string date = seconds_to_iso8601 (values[6]);
 
-        this.add_item (path,
+        this.add_item (didl_writer,
+                       path,
                        parent.id,
                        values[1],
                        title,
@@ -437,8 +417,9 @@ public class GUPnP.MediaTracker : MediaProvider {
         return true;
     }
 
-    private bool add_image_item_from_db (Tracker.Container parent,
-                                         string path) {
+    private bool add_image_item_from_db (DIDLLiteWriter    didl_writer,
+                                         Tracker.Container parent,
+                                         string            path) {
         string[] keys = new string[] {"File:Name",
                                       "File:Mime",
                                       "Image:Title",
@@ -488,7 +469,8 @@ public class GUPnP.MediaTracker : MediaProvider {
 
         string date = seconds_to_iso8601 (seconds);
 
-        this.add_item (path,
+        this.add_item (didl_writer,
+                       path,
                        parent.id,
                        values[1],
                        title,
@@ -504,8 +486,9 @@ public class GUPnP.MediaTracker : MediaProvider {
         return true;
     }
 
-    private bool add_music_item_from_db (Tracker.Container parent,
-                                         string            path) {
+    private bool add_music_item_from_db (DIDLLiteWriter   didl_writer,
+                                        Tracker.Container parent,
+                                         string           path) {
         string[] keys = new string[] {"File:Name",
                                       "File:Mime",
                                       "Audio:Title",
@@ -553,7 +536,8 @@ public class GUPnP.MediaTracker : MediaProvider {
 
         string date = seconds_to_iso8601 (seconds);
 
-        this.add_item (path,
+        this.add_item (didl_writer,
+                       path,
                        parent.id,
                        values[1],
                        title,
@@ -569,78 +553,79 @@ public class GUPnP.MediaTracker : MediaProvider {
         return true;
     }
 
-    private void add_item (string id,
-                           string parent_id,
-                           string mime,
-                           string title,
-                           string author,
-                           string album,
-                           string date,
-                           string upnp_class,
-                           int    width,
-                           int    height,
-                           int    track_number,
-                           string path) {
+    private void add_item (DIDLLiteWriter didl_writer,
+                           string         id,
+                           string         parent_id,
+                           string         mime,
+                           string         title,
+                           string         author,
+                           string         album,
+                           string         date,
+                           string         upnp_class,
+                           int            width,
+                           int            height,
+                           int            track_number,
+                           string         path) {
         string exported_parent_id;
         if (parent_id == this.root_id)
             exported_parent_id = parent_id;
         else
             exported_parent_id = this.root_id + ":" + parent_id;
 
-        this.didl_writer.start_item (this.root_id + ":" + id,
-                                     exported_parent_id,
-                                     null,
-                                     false);
+        didl_writer.start_item (this.root_id + ":" + id,
+                                exported_parent_id,
+                                null,
+                                false);
 
         /* Add fields */
-        this.didl_writer.add_string ("title",
-                                     DIDLLiteWriter.NAMESPACE_DC,
-                                     null,
-                                     title);
+        didl_writer.add_string ("title",
+                                DIDLLiteWriter.NAMESPACE_DC,
+                                null,
+                                title);
 
-        this.didl_writer.add_string ("class",
-                                     DIDLLiteWriter.NAMESPACE_UPNP,
-                                     null,
-                                     upnp_class);
+        didl_writer.add_string ("class",
+                                DIDLLiteWriter.NAMESPACE_UPNP,
+                                null,
+                                upnp_class);
 
         if (author != "") {
-            this.didl_writer.add_string ("creator",
-                                         DIDLLiteWriter.NAMESPACE_DC,
-                                         null,
-                                         author);
+            didl_writer.add_string ("creator",
+                                    DIDLLiteWriter.NAMESPACE_DC,
+                                    null,
+                                    author);
 
             if (upnp_class == VIDEO_CLASS) {
-                this.didl_writer.add_string ("author",
-                                             DIDLLiteWriter.NAMESPACE_UPNP,
-                                             null,
-                                             author);
+                didl_writer.add_string ("author",
+                                        DIDLLiteWriter.NAMESPACE_UPNP,
+                                        null,
+                                        author);
             } else if (upnp_class == MUSIC_CLASS) {
-                this.didl_writer.add_string ("artist",
-                                             DIDLLiteWriter.NAMESPACE_UPNP,
-                                             null,
-                                             author);
+                didl_writer.add_string ("artist",
+                                        DIDLLiteWriter.NAMESPACE_UPNP,
+                                        null,
+                                        author);
             }
         }
 
         if (track_number >= 0) {
-            this.didl_writer.add_int ("originalTrackNumber",
-                                      DIDLLiteWriter.NAMESPACE_UPNP,
-                                      null,
-                                      track_number);
+            didl_writer.add_int ("originalTrackNumber",
+                                 DIDLLiteWriter.NAMESPACE_UPNP,
+                                 null,
+                                 track_number);
         }
 
         if (album != "") {
-            this.didl_writer.add_string ("album",
-                                         DIDLLiteWriter.NAMESPACE_UPNP,
-                                         null,
-                                         album);
+            didl_writer.add_string ("album",
+                                    DIDLLiteWriter.NAMESPACE_UPNP,
+                                    null,
+                                    album);
         }
 
         if (date != "") {
-            this.didl_writer.add_string ("date",
-                                         DIDLLiteWriter.NAMESPACE_DC,
-                                         null,
-                                         date);
+            didl_writer.add_string ("date",
+                                    DIDLLiteWriter.NAMESPACE_DC,
+                                    null,
+                                    date);
         }
 
         /* Add resource data */
@@ -664,7 +649,7 @@ public class GUPnP.MediaTracker : MediaProvider {
         res.width = width;
         res.height = height;
 
-        this.didl_writer.add_res (res);
+        didl_writer.add_res (res);
 
         /* FIXME: These lines should be remove once GB#526552 is fixed */
         res.uri = null;
@@ -673,11 +658,12 @@ public class GUPnP.MediaTracker : MediaProvider {
         res.dlna_profile = null;
 
         /* End of item */
-        this.didl_writer.end_item ();
+        didl_writer.end_item ();
     }
 
-    private void add_root_container () {
-        add_container (this.root_id,
+    private void add_root_container (DIDLLiteWriter didl_writer) {
+        add_container (didl_writer,
+                       this.root_id,
                        this.root_parent_id,
                        this.title,
                        this.get_root_children_count ());
