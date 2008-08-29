@@ -6,6 +6,10 @@
 	responsibility of derived classes to implement serializing to
 	DIDLLiteWriter.
 
+	* src/media-server/gupnp-media-container.vala:
+
+	Introduce a class for media containers.
+
 2008-08-29  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/media-providers/tracker/gupnp-media-tracker.vala:
