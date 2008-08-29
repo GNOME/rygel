@@ -26,7 +26,6 @@ using GUPnP;
 using DBus;
 
 private class Tracker.Container : MediaContainer {
-    public string title;
     public string tracker_category;
 
     /* UPnP class of items under this container */

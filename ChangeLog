@@ -1,3 +1,9 @@
+2008-08-30  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/media-providers/tracker/gupnp-media-tracker.vala:
+
+	Remove the redundant 'title' field from the Tracker.Container class.
+
 2008-08-29  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/media-server/gupnp-media-item.vala:
