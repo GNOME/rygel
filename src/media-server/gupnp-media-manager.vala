@@ -64,14 +64,14 @@ public class GUPnP.MediaManager : MediaProvider {
         this.context = context;
     }
 
-    public override string? browse (string   container_id,
-                                    string   filter,
-                                    uint     starting_index,
-                                    uint     requested_count,
-                                    string   sort_criteria,
-                                    out uint number_returned,
-                                    out uint total_matches,
-                                    out uint update_id) {
+    public override string browse (string   container_id,
+                                   string   filter,
+                                   uint     starting_index,
+                                   uint     requested_count,
+                                   string   sort_criteria,
+                                   out uint number_returned,
+                                   out uint total_matches,
+                                   out uint update_id) throws Error {
         string didl;
 
         string root_id = this.get_root_id_from_id (container_id);
@@ -96,7 +96,7 @@ public class GUPnP.MediaManager : MediaProvider {
                     update_id = this.system_update_id;
                 }
             } else {
-                didl = null;
+                throw new MediaProviderError.NO_SUCH_OBJECT ("No such object");
             }
         }
 
@@ -106,7 +106,7 @@ public class GUPnP.MediaManager : MediaProvider {
     public override string get_metadata (string  object_id,
                                          string  filter,
                                          string  sort_criteria,
-                                         out uint update_id) {
+                                         out uint update_id) throws Error {
         string didl;
 
         string root_id = this.get_root_id_from_id (object_id);
@@ -124,7 +124,7 @@ public class GUPnP.MediaManager : MediaProvider {
                     update_id = this.system_update_id;
                 }
             } else {
-                didl = null;
+                throw new MediaProviderError.NO_SUCH_OBJECT ("No such object");
             }
         }
 

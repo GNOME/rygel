@@ -118,15 +118,15 @@ public class GUPnP.MediaTracker : MediaProvider {
         this.context = context;
     }
 
-    public override string? browse (string   container_id,
-                                    string   filter,
-                                    uint     starting_index,
-                                    uint     requested_count,
-                                    string   sort_criteria,
-                                    out uint number_returned,
-                                    out uint total_matches,
-                                    out uint update_id) {
-        string didl;
+    public override string browse (string   container_id,
+                                   string   filter,
+                                   uint     starting_index,
+                                   uint     requested_count,
+                                   string   sort_criteria,
+                                   out uint number_returned,
+                                   out uint total_matches,
+                                   out uint update_id) throws GLib.Error {
+        string didl = null;
 
         /* Start DIDL-Lite fragment */
         this.didl_writer.start_didl_lite (null, null, true);
@@ -162,11 +162,14 @@ public class GUPnP.MediaTracker : MediaProvider {
             didl = this.didl_writer.get_string ();
 
             update_id = uint32.MAX;
-        } else
-            didl = null;
+        }
 
         /* Reset the parser state */
         this.didl_writer.reset ();
+
+        if (didl == null) {
+            throw new MediaProviderError.NO_SUCH_OBJECT ("No such object");
+        }
 
         return didl;
     }
@@ -174,8 +177,8 @@ public class GUPnP.MediaTracker : MediaProvider {
     public override string get_metadata (string  object_id,
                                          string  filter,
                                          string  sort_criteria,
-                                         out uint update_id) {
-        string didl;
+                                         out uint update_id) throws GLib.Error {
+        string didl = null;
         bool found;
 
         /* Start DIDL-Lite fragment */
@@ -213,11 +216,14 @@ public class GUPnP.MediaTracker : MediaProvider {
 
             /* Retrieve generated string */
             didl = this.didl_writer.get_string ();
-        } else
-            didl = null;
+        }
 
         /* Reset the parser state */
         this.didl_writer.reset ();
+
+        if (didl == null) {
+            throw new MediaProviderError.NO_SUCH_OBJECT ("No such object");
+        }
 
         update_id = uint32.MAX;
 

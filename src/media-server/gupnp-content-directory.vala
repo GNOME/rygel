@@ -105,26 +105,26 @@ public class GUPnP.ContentDirectory: Service {
             }
         }
 
-        if (browse_metadata) {
-            didl = this.media_manager.get_metadata (object_id,
-                                                    filter,
-                                                    sort_criteria,
-                                                    out update_id);
+        try {
+            if (browse_metadata) {
+                didl = this.media_manager.get_metadata (object_id,
+                                                        filter,
+                                                        sort_criteria,
+                                                        out update_id);
 
-            num_returned = 1;
-            total_matches = 1;
-        } else {
-            didl = this.media_manager.browse (object_id,
-                                              filter,
-                                              starting_index,
-                                              requested_count,
-                                              sort_criteria,
-                                              out num_returned,
-                                              out total_matches,
-                                              out update_id);
-        }
-
-        if (didl == null) {
+                num_returned = 1;
+                total_matches = 1;
+            } else {
+                didl = this.media_manager.browse (object_id,
+                                                  filter,
+                                                  starting_index,
+                                                  requested_count,
+                                                  sort_criteria,
+                                                  out num_returned,
+                                                  out total_matches,
+                                                  out update_id);
+            }
+        } catch (Error error) {
             action.return_error (701, "No such object");
 
             return;
