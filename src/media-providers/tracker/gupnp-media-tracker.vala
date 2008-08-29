@@ -25,9 +25,7 @@
 using GUPnP;
 using DBus;
 
-private class Tracker.Container {
-    public string id;
-    public string parent_id;
+private class Tracker.Container : MediaContainer {
     public string title;
     public string tracker_category;
 
@@ -213,40 +211,10 @@ public class GUPnP.MediaTracker : MediaProvider {
 
     private void add_container_from_db (DIDLLiteWriter    didl_writer,
                                         Tracker.Container container) {
-        uint child_count;
+        /* Update the child count */
+        container.child_count = get_container_children_count (container);
 
-        child_count = get_container_children_count (container);
-
-        this.add_container (didl_writer,
-                            container.id,
-                            container.parent_id,
-                            container.title,
-                            child_count);
-    }
-
-    private void add_container (DIDLLiteWriter didl_writer,
-                                string         id,
-                                string         parent_id,
-                                string         title,
-                                uint           child_count) {
-        didl_writer.start_container (id,
-                                     parent_id,
-                                     (int) child_count,
-                                     false,
-                                     false);
-
-        didl_writer.add_string ("class",
-                                DIDLLiteWriter.NAMESPACE_UPNP,
-                                null,
-                                "object.container.storageFolder");
-
-        didl_writer.add_string ("title",
-                                DIDLLiteWriter.NAMESPACE_DC,
-                                null,
-                                title);
-
-        /* End of Container */
-        didl_writer.end_container ();
+        container.serialize (didl_writer);
     }
 
     private uint get_container_children_count (Tracker.Container container) {
@@ -641,11 +609,11 @@ public class GUPnP.MediaTracker : MediaProvider {
     }
 
     private void add_root_container (DIDLLiteWriter didl_writer) {
-        add_container (didl_writer,
-                       this.root_id,
-                       this.root_parent_id,
-                       this.title,
-                       this.containers.length ());
+        var container = new MediaContainer (this.root_id,
+                                            this.root_parent_id,
+                                            this.title,
+                                            this.containers.length ());
+        container.serialize (didl_writer);
     }
 
     private Tracker.Container? get_item_parent (string uri) {

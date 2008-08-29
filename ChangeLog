@@ -14,6 +14,11 @@
 
 	Add MediaObject and MediaContainer to vapi file and build.
 
+	* src/media-providers/tracker/gupnp-media-tracker.vala:
+	* src/media-server/gupnp-media-manager.vala:
+
+	Start utilizing the MediaContainer class in media providers.
+
 2008-08-29  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/media-providers/tracker/gupnp-media-tracker.vala:

@@ -160,38 +160,13 @@ public class GUPnP.MediaManager : MediaProvider {
 
     private void add_root_container_metadata (DIDLLiteWriter didl_writer,
                                               out uint       update_id) {
-        add_container (didl_writer,
-                       this.root_id,
-                       "-1",         /* FIXME */
-                       this.title,
-                       this.providers.size ());
+        var container = new MediaContainer (this.root_id,
+                                            "-1",
+                                            this.title,
+                                            this.providers.size ());
+        container.serialize (didl_writer);
 
         update_id = this.system_update_id;
-    }
-
-    private void add_container (DIDLLiteWriter didl_writer,
-                                string         id,
-                                string         parent_id,
-                                string         title,
-                                uint           child_count) {
-        didl_writer.start_container (id,
-                                     parent_id,
-                                     (int) child_count,
-                                     false,
-                                     false);
-
-        didl_writer.add_string ("class",
-                                DIDLLiteWriter.NAMESPACE_UPNP,
-                                null,
-                                "object.container.storageFolder");
-
-        didl_writer.add_string ("title",
-                                DIDLLiteWriter.NAMESPACE_DC,
-                                null,
-                                title);
-
-        /* End of Container */
-        didl_writer.end_container ();
     }
 
     string get_root_id_from_id (string id) {
