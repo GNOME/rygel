@@ -2,7 +2,8 @@
 
 	* src/media-providers/tracker/gupnp-media-tracker.vala:
 
-	Keep the parent_id of the container in the Tracker.Container class.
+	- Keep the parent_id of the container in the Tracker.Container class.
+	- Add the root_id prefix to container's id at object creation time.
 
 2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
 

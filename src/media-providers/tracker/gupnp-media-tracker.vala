@@ -74,19 +74,19 @@ public class GUPnP.MediaTracker : MediaProvider {
     construct {
         this.containers = new List<Tracker.Container> ();
         this.containers.append
-                        (new Tracker.Container ("16",
+                        (new Tracker.Container (this.root_id + ":" + "16",
                                                 this.root_id,
                                                 "All Images",
                                                 "Images",
                                                 MediaTracker.IMAGE_CLASS));
         this.containers.append
-                        (new Tracker.Container ("14",
+                        (new Tracker.Container (this.root_id + ":" + "14",
                                                 this.root_id,
                                                 "All Music",
                                                 "Music",
                                                 MediaTracker.MUSIC_CLASS));
         this.containers.append
-                        (new Tracker.Container ("15",
+                        (new Tracker.Container (this.root_id + ":" + "15",
                                                 this.root_id,
                                                 "All Videos",
                                                 "Videos",
@@ -132,9 +132,7 @@ public class GUPnP.MediaTracker : MediaProvider {
                              out uint       number_returned,
                              out uint       total_matches,
                              out uint       update_id) throws GLib.Error {
-        string id = this.remove_root_id_prefix (container_id);
-
-        if (id == this.root_id) {
+        if (container_id == this.root_id) {
             number_returned = this.add_root_container_children (didl_writer);
             total_matches = number_returned;
         } else {
@@ -143,7 +141,7 @@ public class GUPnP.MediaTracker : MediaProvider {
             if (requested_count == 0)
                 requested_count = MAX_REQUESTED_COUNT;
 
-            container = this.find_container_by_id (id);
+            container = this.find_container_by_id (container_id);
             if (container == null)
                 number_returned = 0;
             else {
@@ -170,9 +168,8 @@ public class GUPnP.MediaTracker : MediaProvider {
                              string         sort_criteria,
                              out uint       update_id) throws GLib.Error {
         bool found = false;
-        string id = this.remove_root_id_prefix (object_id);
 
-        if (id == this.root_id) {
+        if (object_id == this.root_id) {
             add_root_container (didl_writer);
 
             found = true;
@@ -180,13 +177,15 @@ public class GUPnP.MediaTracker : MediaProvider {
             Tracker.Container container;
 
             /* First try containers */
-            container = find_container_by_id (id);
+            container = find_container_by_id (object_id);
 
             if (container != null) {
                 add_container_from_db (didl_writer, container);
 
                 found = true;
             } else {
+                string id = this.remove_root_id_prefix (object_id);
+
                 /* Now try items */
                 container = get_item_parent (id);
 
@@ -230,20 +229,8 @@ public class GUPnP.MediaTracker : MediaProvider {
                                 string         parent_id,
                                 string         title,
                                 uint           child_count) {
-        string exported_id, exported_parent_id;
-
-        if (id == this.root_id)
-            exported_id = id;
-        else
-            exported_id = this.root_id + ":" + id;
-
-        if (parent_id == this.root_id || parent_id == this.root_parent_id)
-            exported_parent_id = parent_id;
-        else
-            exported_parent_id = this.root_id + ":" + parent_id;
-
-        didl_writer.start_container (exported_id,
-                                     exported_parent_id,
+        didl_writer.start_container (id,
+                                     parent_id,
                                      (int) child_count,
                                      false,
                                      false);
@@ -564,14 +551,8 @@ public class GUPnP.MediaTracker : MediaProvider {
                            int            height,
                            int            track_number,
                            string         path) {
-        string exported_parent_id;
-        if (parent_id == this.root_id)
-            exported_parent_id = parent_id;
-        else
-            exported_parent_id = this.root_id + ":" + parent_id;
-
         didl_writer.start_item (this.root_id + ":" + id,
-                                exported_parent_id,
+                                parent_id,
                                 null,
                                 false);
 
