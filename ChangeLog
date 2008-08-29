@@ -1,5 +1,14 @@
 2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/media-providers/tracker/gupnp-media-tracker.vala:
+	* src/media-server/gupnp-media-manager.vala:
+	* src/media-server/gupnp-media-provider.vala:
+
+	Remove MediaProvider.get_root_children_count() and allow each provider
+	to add metadata of it's root container to DIDL instead.
+
+2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/media-server/gupnp-media-manager.vala:
 
 	Rename MediaManger's get_root_container_metadata() to

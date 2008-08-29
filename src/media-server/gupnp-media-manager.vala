@@ -75,6 +75,8 @@ public class GUPnP.MediaManager : MediaProvider {
 
         if (root_id == this.root_id) {
             this.add_root_children (didl_writer,
+                                    filter,
+                                    sort_criteria,
                                     out number_returned,
                                     out total_matches,
                                     out update_id);
@@ -128,12 +130,10 @@ public class GUPnP.MediaManager : MediaProvider {
         }
     }
 
-    public override uint get_root_children_count () {
-        return this.providers.size ();
-    }
-
     /* Private methods */
     private void add_root_children (DIDLLiteWriter didl_writer,
+                                    string         filter,
+                                    string         sort_criteria,
                                     out uint       number_returned,
                                     out uint       total_matches,
                                     out uint       update_id) {
@@ -146,14 +146,14 @@ public class GUPnP.MediaManager : MediaProvider {
 
              MediaProvider provider = this.providers.lookup (key);
 
-             add_container (didl_writer,
-                            (string) key,
-                            this.root_id,
-                            provider.title,
-                            provider.get_root_children_count ());
+             provider.add_metadata (didl_writer,
+                                    provider.root_id,
+                                    filter,
+                                    sort_criteria,
+                                    out update_id);
         }
 
-        number_returned = total_matches = this.get_root_children_count ();
+        number_returned = total_matches = this.providers.size ();
 
         update_id = this.system_update_id;
     }
@@ -164,7 +164,7 @@ public class GUPnP.MediaManager : MediaProvider {
                        this.root_id,
                        "-1",         /* FIXME */
                        this.title,
-                       this.get_root_children_count ());
+                       this.providers.size ());
 
         update_id = this.system_update_id;
     }

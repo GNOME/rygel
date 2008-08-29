@@ -200,10 +200,6 @@ public class GUPnP.MediaTracker : MediaProvider {
         update_id = uint32.MAX;
     }
 
-    public override uint get_root_children_count () {
-        return this.containers.length ();
-    }
-
     /* Private methods */
     private uint add_root_container_children (DIDLLiteWriter didl_writer) {
         foreach (Tracker.Container container in this.containers)
@@ -211,7 +207,7 @@ public class GUPnP.MediaTracker : MediaProvider {
                                         container,
                                         this.root_id);
 
-        return this.get_root_children_count ();
+        return this.containers.length ();
     }
 
     private void add_container_from_db (DIDLLiteWriter    didl_writer,
@@ -667,7 +663,7 @@ public class GUPnP.MediaTracker : MediaProvider {
                        this.root_id,
                        this.root_parent_id,
                        this.title,
-                       this.get_root_children_count ());
+                       this.containers.length ());
     }
 
     private Tracker.Container? get_item_parent (string uri) {

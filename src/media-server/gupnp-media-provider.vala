@@ -51,7 +51,5 @@ public abstract class GUPnP.MediaProvider : GLib.Object {
                                        string         filter,
                                        string         sort_criteria,
                                        out uint       update_id) throws Error;
-
-    public abstract uint get_root_children_count ();
 }
 
