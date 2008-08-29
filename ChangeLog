@@ -1,5 +1,11 @@
 2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/media-server/gupnp-content-directory.vala:
+
+	Put the code and message from exception caught on the action error.
+
+2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/media-server/gupnp-media-provider.vala:
 
 	Assign a specific code (701) to "No such object" error.

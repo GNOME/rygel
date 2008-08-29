@@ -148,7 +148,7 @@ public class GUPnP.ContentDirectory: Service {
 
             action.return ();
         } catch (Error error) {
-            action.return_error (701, "No such object");
+            action.return_error (error.code, error.message);
         }
 
         /* Reset the parser state */
