@@ -264,28 +264,22 @@ public class GUPnP.MediaManager : MediaProvider {
 
         FileInfo info;
 
-        try {
-            while ((info = enumerator.next_file (null)) != null) {
-                string file_name = info.get_name ();
-                string file_path = Path.build_filename (dir.get_path (),
+        while ((info = enumerator.next_file (null)) != null) {
+            string file_name = info.get_name ();
+            string file_path = Path.build_filename (dir.get_path (),
                                                         file_name);
-                File file = File.new_for_path (file_path);
-                FileType file_type = info.get_file_type ();
-                string content_type = info.get_content_type ();
-                weak string mime = g_content_type_get_mime_type (content_type);
+            File file = File.new_for_path (file_path);
+            FileType file_type = info.get_file_type ();
+            string content_type = info.get_content_type ();
+            weak string mime = g_content_type_get_mime_type (content_type);
 
-                if (file_type == FileType.DIRECTORY) {
-                    // Recurse into directories
-                    this.register_media_provider_from_dir (file);
-                } else if (mime == "application/x-sharedlib") {
-                    // Seems like we found a plugin
-                    this.register_media_provider_from_file (file_path);
-                }
+            if (file_type == FileType.DIRECTORY) {
+                // Recurse into directories
+                this.register_media_provider_from_dir (file);
+            } else if (mime == "application/x-sharedlib") {
+                // Seems like we found a plugin
+                this.register_media_provider_from_file (file_path);
             }
-        } catch (Error error) {
-            critical ("Error iterating contents of directory '%s': %s\n",
-                      dir.get_path (),
-                      error.message);
         }
     }
 

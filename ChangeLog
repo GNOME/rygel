@@ -1,5 +1,11 @@
 2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/media-server/gupnp-media-manager.vala:
+
+	Remove an unneeded try&catch block.
+
+2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/media-server/Makefile.am:
 
 	MediaProvider class now requires gupnp-av package.
