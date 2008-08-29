@@ -288,7 +288,7 @@ public class GUPnP.MediaServer: RootDevice {
             return;
         }
 
-        string user_name = Environment.get_user_name();
+        string user_name = Environment.get_real_name();
         default_value = "%s's GUPnP MediaServer".printf (user_name);
         str = get_str_from_gconf (gconf_client,
                                   GCONF_PATH + "friendly-name",

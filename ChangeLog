@@ -1,5 +1,11 @@
 2008-08-17  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/media-server/gupnp-media-server.vala:
+
+	Use real name of the user rather than username in FriendlyName.
+
+2008-08-17  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/media-providers/tracker/gupnp-media-tracker.vala:
 	* src/media-server/gupnp-media-manager.vala:
 	* src/media-server/gupnp-media-provider.vala:
