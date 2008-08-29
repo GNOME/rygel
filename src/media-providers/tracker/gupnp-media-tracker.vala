@@ -27,6 +27,7 @@ using DBus;
 
 private class Tracker.Container {
     public string id;
+    public string parent_id;
     public string title;
     public string tracker_category;
 
@@ -34,10 +35,12 @@ private class Tracker.Container {
     public string child_class;
 
     public Container (string id,
+                      string parent_id,
                       string title,
                       string tracker_category,
                       string child_class) {
         this.id = id;
+        this.parent_id = parent_id;
         this.title = title;
         this.tracker_category = tracker_category;
         this.child_class = child_class;
@@ -72,16 +75,19 @@ public class GUPnP.MediaTracker : MediaProvider {
         this.containers = new List<Tracker.Container> ();
         this.containers.append
                         (new Tracker.Container ("16",
+                                                this.root_id,
                                                 "All Images",
                                                 "Images",
                                                 MediaTracker.IMAGE_CLASS));
         this.containers.append
                         (new Tracker.Container ("14",
+                                                this.root_id,
                                                 "All Music",
                                                 "Music",
                                                 MediaTracker.MUSIC_CLASS));
         this.containers.append
                         (new Tracker.Container ("15",
+                                                this.root_id,
                                                 "All Videos",
                                                 "Videos",
                                                 MediaTracker.VIDEO_CLASS));
@@ -177,9 +183,7 @@ public class GUPnP.MediaTracker : MediaProvider {
             container = find_container_by_id (id);
 
             if (container != null) {
-                add_container_from_db (didl_writer,
-                                       container,
-                                       this.root_id);
+                add_container_from_db (didl_writer, container);
 
                 found = true;
             } else {
@@ -203,23 +207,20 @@ public class GUPnP.MediaTracker : MediaProvider {
     /* Private methods */
     private uint add_root_container_children (DIDLLiteWriter didl_writer) {
         foreach (Tracker.Container container in this.containers)
-            this.add_container_from_db (didl_writer,
-                                        container,
-                                        this.root_id);
+            this.add_container_from_db (didl_writer, container);
 
         return this.containers.length ();
     }
 
     private void add_container_from_db (DIDLLiteWriter    didl_writer,
-                                        Tracker.Container container,
-                                        string            parent_id) {
+                                        Tracker.Container container) {
         uint child_count;
 
         child_count = get_container_children_count (container);
 
         this.add_container (didl_writer,
                             container.id,
-                            parent_id,
+                            container.parent_id,
                             container.title,
                             child_count);
     }

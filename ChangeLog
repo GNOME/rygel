@@ -1,3 +1,9 @@
+2008-08-29  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
+	* src/media-providers/tracker/gupnp-media-tracker.vala:
+
+	Keep the parent_id of the container in the Tracker.Container class.
+
 2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/media-providers/tracker/gupnp-media-tracker.vala:
