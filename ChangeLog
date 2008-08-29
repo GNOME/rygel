@@ -1,5 +1,11 @@
 2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
+	* src/media-server/gupnp-media-provider.vala:
+
+	Assign a specific code (701) to "No such object" error.
+
+2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
+
 	* src/media-server/gupnp-media-manager.vala:
 
 	Rename MediaManager's browse_root_container() to add_root_children().

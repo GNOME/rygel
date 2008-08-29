@@ -25,7 +25,7 @@
 using GUPnP;
 
 public errordomain GUPnP.MediaProviderError {
-    NO_SUCH_OBJECT
+    NO_SUCH_OBJECT = 701
 }
 
 public abstract class GUPnP.MediaProvider : GLib.Object {
