@@ -32,6 +32,10 @@ BUILT_SOURCES = gupnp-media-server-1.0.vapi \
 		gupnp-media-receiver-registrar.c \
 		gupnp-media-provider.h \
 		gupnp-media-provider.c \
+		gupnp-media-object.c \
+		gupnp-media-object.h \
+		gupnp-media-container.c \
+		gupnp-media-container.h \
 		gupnp-media-manager.h \
 		gupnp-media-manager.c
 
@@ -52,6 +56,10 @@ gupnp_media_server_SOURCES = gupnp-media-server-1.0.vapi \
 			     gupnp-media-receiver-registrar.vala \
 			     gupnp-media-provider.h \
 			     gupnp-media-provider.c \
+				 gupnp-media-object.c \
+				 gupnp-media-object.h \
+				 gupnp-media-container.c \
+				 gupnp-media-container.h \
 			     gupnp-media-manager.h \
 			     gupnp-media-manager.c \
 			     gupnp-media-manager.vala \
@@ -74,7 +82,9 @@ gupnp_media_server_LDFLAGS = -export-dynamic
 
 VAPI_FILES = gupnp-media-server-1.0.vapi
 
-gupnp-media-server-1.0.vapi: gupnp-media-provider.vala
+gupnp-media-server-1.0.vapi: gupnp-media-provider.vala \
+							 gupnp-media-object.vala \
+							 gupnp-media-container.vala
 	$(VALAC) -C --library=gupnp-media-server-1.0 \
 	--pkg gupnp-1.0 --pkg gupnp-av-1.0 \
 	$^

@@ -10,6 +10,10 @@
 
 	Introduce a class for media containers.
 
+	* src/media-server/Makefile.am:
+
+	Add MediaObject and MediaContainer to vapi file and build.
+
 2008-08-29  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/media-providers/tracker/gupnp-media-tracker.vala:
