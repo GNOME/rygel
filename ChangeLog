@@ -5,7 +5,8 @@
 	* src/media-server/gupnp-media-manager.vala:
 	* src/media-server/gupnp-media-provider.vala:
 
-	Rename MediaProvider's get_metadata() to add_metadata().
+	- Rename MediaProvider's get_metadata() to add_metadata().
+	- Rename MediaProvider's browse() to add_children_metadata().
 
 2008-08-21  Zeeshan Ali Khattak  <zeenix@gmail.com>
 

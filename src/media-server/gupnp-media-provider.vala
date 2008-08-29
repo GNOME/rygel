@@ -35,15 +35,16 @@ public abstract class GUPnP.MediaProvider : GLib.Object {
     public string# title { get; private construct; }
     public GUPnP.Context context { get; construct; }
 
-    public abstract void browse (DIDLLiteWriter didl_writer,
-                                 string         container_id,
-                                 string         filter,
-                                 uint           starting_index,
-                                 uint           requested_count,
-                                 string         sort_criteria,
-                                 out uint       number_returned,
-                                 out uint       total_matches,
-                                 out uint       update_id) throws Error;
+    public abstract void add_children_metadata
+                            (DIDLLiteWriter didl_writer,
+                             string         container_id,
+                             string         filter,
+                             uint           starting_index,
+                             uint           requested_count,
+                             string         sort_criteria,
+                             out uint       number_returned,
+                             out uint       total_matches,
+                             out uint       update_id) throws Error;
 
     public abstract void add_metadata (DIDLLiteWriter didl_writer,
                                        string         object_id,

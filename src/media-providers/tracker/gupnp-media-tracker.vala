@@ -116,15 +116,16 @@ public class GUPnP.MediaTracker : MediaProvider {
         this.context = context;
     }
 
-    public override void browse (DIDLLiteWriter didl_writer,
-                                 string         container_id,
-                                 string         filter,
-                                 uint           starting_index,
-                                 uint           requested_count,
-                                 string         sort_criteria,
-                                 out uint       number_returned,
-                                 out uint       total_matches,
-                                 out uint       update_id) throws GLib.Error {
+    public override void add_children_metadata
+                            (DIDLLiteWriter didl_writer,
+                             string         container_id,
+                             string         filter,
+                             uint           starting_index,
+                             uint           requested_count,
+                             string         sort_criteria,
+                             out uint       number_returned,
+                             out uint       total_matches,
+                             out uint       update_id) throws GLib.Error {
         string id = this.remove_root_id_prefix (container_id);
 
         if (id == this.root_id) {

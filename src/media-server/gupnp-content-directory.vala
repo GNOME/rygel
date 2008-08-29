@@ -123,15 +123,15 @@ public class GUPnP.ContentDirectory: Service {
                 num_returned = 1;
                 total_matches = 1;
             } else {
-                this.media_manager.browse (this.didl_writer,
-                                           object_id,
-                                           filter,
-                                           starting_index,
-                                           requested_count,
-                                           sort_criteria,
-                                           out num_returned,
-                                           out total_matches,
-                                           out update_id);
+                this.media_manager.add_children_metadata (this.didl_writer,
+                                                          object_id,
+                                                          filter,
+                                                          starting_index,
+                                                          requested_count,
+                                                          sort_criteria,
+                                                          out num_returned,
+                                                          out total_matches,
+                                                          out update_id);
             }
 
             /* End DIDL-Lite fragment */

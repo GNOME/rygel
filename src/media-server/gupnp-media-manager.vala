@@ -61,15 +61,16 @@ public class GUPnP.MediaManager : MediaProvider {
         this.context = context;
     }
 
-    public override void browse (DIDLLiteWriter didl_writer,
-                                 string         container_id,
-                                 string         filter,
-                                 uint           starting_index,
-                                 uint           requested_count,
-                                 string         sort_criteria,
-                                 out uint       number_returned,
-                                 out uint       total_matches,
-                                 out uint       update_id) throws Error {
+    public override void add_children_metadata
+                            (DIDLLiteWriter didl_writer,
+                             string         container_id,
+                             string         filter,
+                             uint           starting_index,
+                             uint           requested_count,
+                             string         sort_criteria,
+                             out uint       number_returned,
+                             out uint       total_matches,
+                             out uint       update_id) throws Error {
         string root_id = this.get_root_id_from_id (container_id);
 
         if (root_id == this.root_id) {
@@ -80,15 +81,15 @@ public class GUPnP.MediaManager : MediaProvider {
         } else {
             weak MediaProvider provider = this.providers.lookup (root_id);
             if (provider != null) {
-                provider.browse (didl_writer,
-                                 container_id,
-                                 filter,
-                                 starting_index,
-                                 requested_count,
-                                 sort_criteria,
-                                 out number_returned,
-                                 out total_matches,
-                                 out update_id);
+                provider.add_children_metadata (didl_writer,
+                                                container_id,
+                                                filter,
+                                                starting_index,
+                                                requested_count,
+                                                sort_criteria,
+                                                out number_returned,
+                                                out total_matches,
+                                                out update_id);
 
                 if (update_id == uint32.MAX) {
                     update_id = this.system_update_id;
