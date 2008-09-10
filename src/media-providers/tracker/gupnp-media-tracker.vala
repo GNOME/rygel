@@ -528,12 +528,3 @@ public class GUPnP.MediaTracker : MediaProvider {
     }
 }
 
-[ModuleInit]
-public MediaProvider register_media_provider (string        root_id,
-                                              string        root_parent_id,
-                                              GUPnP.Context context) {
-    return new MediaTracker (root_id,
-                             root_parent_id,
-                             context);
-}
-

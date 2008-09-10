@@ -2,6 +2,14 @@
 
 	* src/media-providers/tracker/Makefile.am:
 	* src/media-providers/tracker/gupnp-media-tracker.vala:
+	* src/media-providers/tracker/gupnp-tracker-plugin.vala:
+
+	Refactor: Put plugin stuff into a separate module.
+
+2008-09-08  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
+
+	* src/media-providers/tracker/Makefile.am:
+	* src/media-providers/tracker/gupnp-media-tracker.vala:
 	* src/media-providers/tracker/gupnp-tracker-container.vala:
 
 	Refactor: Put TrackerContainer class into a separate module.
