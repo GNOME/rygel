@@ -25,17 +25,17 @@
 using GUPnP;
 using DBus;
 
-private class Tracker.Container : MediaContainer {
+private class GUPnP.TrackerContainer : MediaContainer {
     public string tracker_category;
 
     /* UPnP class of items under this container */
     public string child_class;
 
-    public Container (string id,
-                      string parent_id,
-                      string title,
-                      string tracker_category,
-                      string child_class) {
+    public TrackerContainer (string id,
+                             string parent_id,
+                             string title,
+                             string tracker_category,
+                             string child_class) {
         this.id = id;
         this.parent_id = parent_id;
         this.title = title;
@@ -58,7 +58,7 @@ public class GUPnP.MediaTracker : MediaProvider {
     private MediaContainer root_container;
 
     /* FIXME: Make this a static if you know how to initize it */
-    private List<Tracker.Container> containers;
+    private List<TrackerContainer> containers;
 
     private dynamic DBus.Object metadata;
     private dynamic DBus.Object files;
@@ -72,21 +72,21 @@ public class GUPnP.MediaTracker : MediaProvider {
                                                   this.title,
                                                   this.containers.length ());
 
-        this.containers = new List<Tracker.Container> ();
+        this.containers = new List<TrackerContainer> ();
         this.containers.append
-                        (new Tracker.Container (this.root_id + ":" + "16",
+                        (new TrackerContainer (this.root_id + ":" + "16",
                                                 this.root_id,
                                                 "All Images",
                                                 "Images",
                                                 MediaItem.IMAGE_CLASS));
         this.containers.append
-                        (new Tracker.Container (this.root_id + ":" + "14",
+                        (new TrackerContainer (this.root_id + ":" + "14",
                                                 this.root_id,
                                                 "All Music",
                                                 "Music",
                                                 MediaItem.MUSIC_CLASS));
         this.containers.append
-                        (new Tracker.Container (this.root_id + ":" + "15",
+                        (new TrackerContainer (this.root_id + ":" + "15",
                                                 this.root_id,
                                                 "All Videos",
                                                 "Videos",
@@ -136,7 +136,7 @@ public class GUPnP.MediaTracker : MediaProvider {
             number_returned = this.add_root_container_children (didl_writer);
             total_matches = number_returned;
         } else {
-            Tracker.Container container;
+            TrackerContainer container;
 
             if (requested_count == 0)
                 requested_count = MAX_REQUESTED_COUNT;
@@ -174,7 +174,7 @@ public class GUPnP.MediaTracker : MediaProvider {
 
             found = true;
         } else {
-            Tracker.Container container;
+            TrackerContainer container;
 
             /* First try containers */
             container = find_container_by_id (object_id);
@@ -205,21 +205,21 @@ public class GUPnP.MediaTracker : MediaProvider {
 
     /* Private methods */
     private uint add_root_container_children (DIDLLiteWriter didl_writer) {
-        foreach (Tracker.Container container in this.containers)
+        foreach (TrackerContainer container in this.containers)
             this.add_container_from_db (didl_writer, container);
 
         return this.containers.length ();
     }
 
     private void add_container_from_db (DIDLLiteWriter    didl_writer,
-                                        Tracker.Container container) {
+                                        TrackerContainer container) {
         /* Update the child count */
         container.child_count = get_container_children_count (container);
 
         container.serialize (didl_writer);
     }
 
-    private uint get_container_children_count (Tracker.Container container) {
+    private uint get_container_children_count (TrackerContainer container) {
         string[][] stats;
 
         try {
@@ -239,12 +239,12 @@ public class GUPnP.MediaTracker : MediaProvider {
         return count;
     }
 
-    private Tracker.Container? find_container_by_id (string container_id) {
-        Tracker.Container container;
+    private TrackerContainer? find_container_by_id (string container_id) {
+        TrackerContainer container;
 
         container = null;
 
-        foreach (Tracker.Container tmp in this.containers)
+        foreach (TrackerContainer tmp in this.containers)
             if (container_id == tmp.id) {
                 container = tmp;
 
@@ -256,7 +256,7 @@ public class GUPnP.MediaTracker : MediaProvider {
 
     private uint add_container_children_from_db
                     (DIDLLiteWriter    didl_writer,
-                     Tracker.Container container,
+                     TrackerContainer container,
                      uint              offset,
                      uint              max_count,
                      out uint          child_count) {
@@ -279,7 +279,7 @@ public class GUPnP.MediaTracker : MediaProvider {
     }
 
     private string[]? get_container_children_from_db
-                            (Tracker.Container container,
+                            (TrackerContainer container,
                              uint              offset,
                              uint              max_count,
                              out uint          child_count) {
@@ -302,7 +302,7 @@ public class GUPnP.MediaTracker : MediaProvider {
     }
 
     private bool add_item_from_db (DIDLLiteWriter    didl_writer,
-                                   Tracker.Container parent,
+                                   TrackerContainer parent,
                                    string            path) {
         if (parent.child_class == MediaItem.VIDEO_CLASS) {
             return this.add_video_item_from_db (didl_writer, parent, path);
@@ -314,7 +314,7 @@ public class GUPnP.MediaTracker : MediaProvider {
     }
 
     private bool add_video_item_from_db (DIDLLiteWriter    didl_writer,
-                                         Tracker.Container parent,
+                                         TrackerContainer parent,
                                          string            path) {
         string[] keys = new string[] {"File:Name",
                                       "File:Mime",
@@ -366,7 +366,7 @@ public class GUPnP.MediaTracker : MediaProvider {
     }
 
     private bool add_image_item_from_db (DIDLLiteWriter    didl_writer,
-                                         Tracker.Container parent,
+                                         TrackerContainer parent,
                                          string            path) {
         string[] keys = new string[] {"File:Name",
                                       "File:Mime",
@@ -426,7 +426,7 @@ public class GUPnP.MediaTracker : MediaProvider {
     }
 
     private bool add_music_item_from_db (DIDLLiteWriter   didl_writer,
-                                        Tracker.Container parent,
+                                        TrackerContainer parent,
                                          string           path) {
         string[] keys = new string[] {"File:Name",
                                       "File:Mime",
@@ -484,8 +484,8 @@ public class GUPnP.MediaTracker : MediaProvider {
         return true;
     }
 
-    private Tracker.Container? get_item_parent (string uri) {
-        Tracker.Container container = null;
+    private TrackerContainer? get_item_parent (string uri) {
+        TrackerContainer container = null;
         string category;
 
         try {
@@ -498,7 +498,7 @@ public class GUPnP.MediaTracker : MediaProvider {
             return null;
         }
 
-        foreach (Tracker.Container tmp in this.containers) {
+        foreach (TrackerContainer tmp in this.containers) {
             if (tmp.tracker_category == category) {
                 container = tmp;
 
