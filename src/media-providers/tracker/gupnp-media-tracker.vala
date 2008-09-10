@@ -25,25 +25,6 @@
 using GUPnP;
 using DBus;
 
-private class GUPnP.TrackerContainer : MediaContainer {
-    public string tracker_category;
-
-    /* UPnP class of items under this container */
-    public string child_class;
-
-    public TrackerContainer (string id,
-                             string parent_id,
-                             string title,
-                             string tracker_category,
-                             string child_class) {
-        this.id = id;
-        this.parent_id = parent_id;
-        this.title = title;
-        this.tracker_category = tracker_category;
-        this.child_class = child_class;
-    }
-}
-
 public class GUPnP.MediaTracker : MediaProvider {
     /* class-wide constants */
     public static const string TRACKER_SERVICE = "org.freedesktop.Tracker";
