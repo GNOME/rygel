@@ -55,6 +55,8 @@ public class GUPnP.MediaTracker : MediaProvider {
 
     public static const int MAX_REQUESTED_COUNT = 128;
 
+    private MediaContainer root_container;
+
     /* FIXME: Make this a static if you know how to initize it */
     private List<Tracker.Container> containers;
 
@@ -65,6 +67,11 @@ public class GUPnP.MediaTracker : MediaProvider {
     private SearchCriteriaParser search_parser;
 
     construct {
+        this.root_container = new MediaContainer (this.root_id,
+                                                  this.root_parent_id,
+                                                  this.title,
+                                                  this.containers.length ());
+
         this.containers = new List<Tracker.Container> ();
         this.containers.append
                         (new Tracker.Container (this.root_id + ":" + "16",
@@ -163,7 +170,7 @@ public class GUPnP.MediaTracker : MediaProvider {
         bool found = false;
 
         if (object_id == this.root_id) {
-            add_root_container (didl_writer);
+            this.root_container.serialize (didl_writer);
 
             found = true;
         } else {
@@ -475,14 +482,6 @@ public class GUPnP.MediaTracker : MediaProvider {
         item.serialize (didl_writer);
 
         return true;
-    }
-
-    private void add_root_container (DIDLLiteWriter didl_writer) {
-        var container = new MediaContainer (this.root_id,
-                                            this.root_parent_id,
-                                            this.title,
-                                            this.containers.length ());
-        container.serialize (didl_writer);
     }
 
     private Tracker.Container? get_item_parent (string uri) {

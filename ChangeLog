@@ -1,3 +1,10 @@
+2008-08-31  Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	* src/media-providers/tracker/gupnp-media-tracker.vala:
+	* src/media-server/gupnp-media-manager.vala:
+
+	Create the root container in the contructor of the media providers.
+
 2008-08-30  Zeeshan Ali Khattak  <zeenix@gmail.com>
 
 	* src/media-providers/tracker/gupnp-media-tracker.vala:

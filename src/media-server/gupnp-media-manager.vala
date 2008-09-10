@@ -37,6 +37,8 @@ public class GUPnP.MediaManager : MediaProvider {
     /* We need to keep the modules somewhere */
     List<Module> modules;
 
+    private MediaContainer root_container;
+
     private delegate MediaProvider RegisterMediaProviderFunc
                                     (string        root_id,
                                      string        root_parent_id,
@@ -49,6 +51,11 @@ public class GUPnP.MediaManager : MediaProvider {
         this.modules = new List<Module> ();
 
         this.system_update_id = 0;
+
+        this.root_container = new MediaContainer (this.root_id,
+                                                  "-1",
+                                                  this.title,
+                                                  this.providers.size ());
 
         this.register_media_providers ();
     }
@@ -111,8 +118,9 @@ public class GUPnP.MediaManager : MediaProvider {
         string root_id = this.get_root_id_from_id (object_id);
 
         if (root_id == this.root_id) {
-            this.add_root_container_metadata (didl_writer,
-                                              out update_id);
+            this.root_container.serialize (didl_writer);
+
+            update_id = this.system_update_id;
         } else {
             weak MediaProvider provider = this.providers.lookup (root_id);
             if (provider != null) {
@@ -154,17 +162,6 @@ public class GUPnP.MediaManager : MediaProvider {
         }
 
         number_returned = total_matches = this.providers.size ();
-
-        update_id = this.system_update_id;
-    }
-
-    private void add_root_container_metadata (DIDLLiteWriter didl_writer,
-                                              out uint       update_id) {
-        var container = new MediaContainer (this.root_id,
-                                            "-1",
-                                            this.title,
-                                            this.providers.size ());
-        container.serialize (didl_writer);
 
         update_id = this.system_update_id;
     }
