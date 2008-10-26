@@ -1,7 +1,7 @@
 AC_PREREQ(2.53)
-AC_INIT(gupnp-media-server, 0.1, http://www.gupnp.org/)
+AC_INIT(rygel, 0.1, http://live.gnome.org/Rygel)
 AM_INIT_AUTOMAKE()
-AC_CONFIG_SRCDIR(src/media-server/gupnp-media-server.vala)
+AC_CONFIG_SRCDIR(src/media-server/rygel-media-server.vala)
 AM_CONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
 
@@ -99,7 +99,7 @@ AC_SUBST(abs_top_builddir)
 AM_CONDITIONAL([UNINSTALLED], [test "x$enable_uninstalled" = "xyes"])
 
 # Gettext
-GETTEXT_PACKAGE=gupnp-media-server
+GETTEXT_PACKAGE=rygel
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, ["$GETTEXT_PACKAGE"], 
   [Define the gettext package to be used])

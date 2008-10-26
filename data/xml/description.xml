@@ -7,9 +7,9 @@
 <deviceType>urn:schemas-upnp-org:device:MediaServer:2</deviceType>
 <UDN></UDN>
 <friendlyName></friendlyName>
-<manufacturer>GUPnP Team</manufacturer>
-<manufacturerURL>http://www.gupnp.org/</manufacturerURL>
-<modelName>gupnp-media-server</modelName>
+<manufacturer>Rygel Developers.</manufacturer>
+<manufacturerURL>http://live.gnome.org/Rygel</manufacturerURL>
+<modelName>Rygel</modelName>
 <modelNumber>0.1</modelNumber>
 <modelDescription></modelDescription>
 <serialNumber>0000001</serialNumber>

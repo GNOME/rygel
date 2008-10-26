@@ -22,7 +22,7 @@
  * version 2 of the License, or (at your option) any later version.
  */
 
-using GUPnP;
+using Rygel;
 
 [ModuleInit]
 public MediaProvider register_media_provider (string        root_id,

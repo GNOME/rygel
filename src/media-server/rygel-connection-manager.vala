@@ -27,7 +27,7 @@
 using GLib;
 using GUPnP;
 
-public class GUPnP.ConnectionManager : Service {
+public class Rygel.ConnectionManager : Service {
     private string source_protocol_info;
     private string sink_protocol_info;
     private string connection_ids;

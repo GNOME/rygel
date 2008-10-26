@@ -4,7 +4,7 @@ xml_DATA = description.xml \
 	   X_MS_MediaReceiverRegistrar1.xml \
 	   description-xbox360.xml
 
-xmldir = $(datadir)/gupnp-media-server/xml
+xmldir = $(datadir)/rygel/xml
 
 EXTRA_DIST = $(xml_DATA)
 

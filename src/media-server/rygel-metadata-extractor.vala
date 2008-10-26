@@ -34,7 +34,7 @@ private enum Gst.StreamType {
     ELEMENT = 5     /* stream handled by an element */
 }
 
-public class GUPnP.MetadataExtractor: GLib.Object {
+public class Rygel.MetadataExtractor: GLib.Object {
 
     /* TODO: Use tagbin instead once it's ready */
     private dynamic Gst.Element playbin;

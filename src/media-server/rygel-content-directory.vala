@@ -26,7 +26,7 @@
 
 using GUPnP;
 
-public class GUPnP.ContentDirectory: Service {
+public class Rygel.ContentDirectory: Service {
     string feature_list;
 
     DIDLLiteWriter didl_writer;

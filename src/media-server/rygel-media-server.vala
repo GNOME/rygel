@@ -28,7 +28,7 @@ using GUPnP;
 using GConf;
 using CStuff;
 
-public class GUPnP.MediaServer: RootDevice {
+public class Rygel.MediaServer: RootDevice {
     public static const string CONTENT_DIR =
                         "urn:schemas-upnp-org:service:ContentDirectory";
     public static const string CONNECTION_MANAGER =
@@ -48,19 +48,19 @@ public class GUPnP.MediaServer: RootDevice {
     construct {
         ResourceFactory factory = this.resource_factory;
 
-        /* Register GUPnP.ContentDirectory */
+        /* Register Rygel.ContentDirectory */
         factory.register_resource_type (CONTENT_DIR + ":1",
                                         typeof (ContentDirectory));
         factory.register_resource_type (CONTENT_DIR + ":2",
                                         typeof (ContentDirectory));
 
-        /* Register GUPnP.ConnectionManager */
+        /* Register Rygel.ConnectionManager */
         factory.register_resource_type (CONNECTION_MANAGER + ":1",
                                         typeof (ConnectionManager));
         factory.register_resource_type (CONNECTION_MANAGER + ":2",
                                         typeof (ConnectionManager));
 
-        /* Register GUPnP.MediaReceiverRegistrar */
+        /* Register Rygel.MediaReceiverRegistrar */
         factory.register_resource_type (MEDIA_RECEIVER_REGISTRAR + ":1",
                                         typeof (MediaReceiverRegistrar));
         factory.register_resource_type (MEDIA_RECEIVER_REGISTRAR + ":2",
@@ -289,7 +289,7 @@ public class GUPnP.MediaServer: RootDevice {
         }
 
         string user_name = Environment.get_real_name();
-        default_value = "%s's GUPnP MediaServer".printf (user_name);
+        default_value = "%s's MediaServer".printf (user_name);
         str = get_str_from_gconf (gconf_client,
                                   GCONF_PATH + "friendly-name",
                                   default_value);

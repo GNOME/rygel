@@ -23,8 +23,9 @@
  */
 
 using CStuff;
+using GUPnP;
 
-public class GUPnP.MediaManager : MediaProvider {
+public class Rygel.MediaManager : MediaProvider {
     /* Properties */
     public uint32 system_update_id { get; private set; }
 

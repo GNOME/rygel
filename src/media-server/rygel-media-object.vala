@@ -24,29 +24,10 @@
 
 using GUPnP;
 
-public class GUPnP.MediaReceiverRegistrar: Service {
+public abstract class Rygel.MediaObject {
+    public string id;
+    public string parent_id;
+    public string title;
 
-    construct {
-        this.action_invoked["IsAuthorized"] += this.is_authorized_cb;
-        this.action_invoked["IsValidated"] += this.is_authorized_cb;
-        this.action_invoked["RegisterDevice"] += this.register_device_cb;
-    }
-
-    /* IsAuthorized and IsValided action implementations (fake) */
-    private void is_authorized_cb (MediaReceiverRegistrar registrar,
-                                   ServiceAction          action) {
-        action.set ("Result", typeof (int), 1);
-
-        action.return ();
-    }
-
-    private void register_device_cb (MediaReceiverRegistrar registrar,
-                                     ServiceAction          action) {
-        action.set ("RegistrationRespMsg",
-                    typeof (string),
-                    "WhatisSupposedToBeHere");
-
-        action.return ();
-    }
+    public abstract void serialize (DIDLLiteWriter didl_writer);
 }
-

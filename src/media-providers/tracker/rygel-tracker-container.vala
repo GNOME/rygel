@@ -22,10 +22,23 @@
  * version 2 of the License, or (at your option) any later version.
  */
 
-public abstract class GUPnP.MediaObject {
-    public string id;
-    public string parent_id;
-    public string title;
+using GUPnP;
 
-    public abstract void serialize (DIDLLiteWriter didl_writer);
+public class Rygel.TrackerContainer : MediaContainer {
+    public string tracker_category;
+
+    /* UPnP class of items under this container */
+    public string child_class;
+
+    public TrackerContainer (string id,
+                             string parent_id,
+                             string title,
+                             string tracker_category,
+                             string child_class) {
+        this.id = id;
+        this.parent_id = parent_id;
+        this.title = title;
+        this.tracker_category = tracker_category;
+        this.child_class = child_class;
+    }
 }

@@ -1,13 +1,13 @@
 if UNINSTALLED
 shareddir = $(abs_top_builddir)/data
 else
-shareddir = $(datadir)/gupnp-media-server
+shareddir = $(datadir)/rygel
 endif
 
 if UNINSTALLED
 plugindir = $(abs_top_builddir)/src/media-providers
 else
-plugindir = $(libdir)/gupnp-media-server-1.0
+plugindir = $(libdir)/rygel-1.0
 endif
 
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
@@ -18,79 +18,79 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -I$(top_srcdir) -DDATA_DIR='"$(shareddir)"' \
 	    -DPLUGIN_DIR='"$(plugindir)"'
 
-bin_PROGRAMS = gupnp-media-server
+bin_PROGRAMS = rygel
 
-BUILT_SOURCES = gupnp-media-server-1.0.vapi \
-		gupnp-media-server.stamp \
-		gupnp-media-server.h \
-		gupnp-media-server.c \
-		gupnp-content-directory.h \
-		gupnp-content-directory.c \
-		gupnp-connection-manager.h \
-		gupnp-connection-manager.c \
-		gupnp-media-receiver-registrar.h \
-		gupnp-media-receiver-registrar.c \
-		gupnp-media-provider.h \
-		gupnp-media-provider.c \
-		gupnp-media-object.c \
-		gupnp-media-object.h \
-		gupnp-media-container.c \
-		gupnp-media-container.h \
-		gupnp-media-item.c \
-		gupnp-media-item.h \
-		gupnp-media-manager.h \
-		gupnp-media-manager.c
+BUILT_SOURCES = rygel-1.0.vapi \
+		rygel.stamp \
+		rygel-media-server.h \
+		rygel-media-server.c \
+		rygel-content-directory.h \
+		rygel-content-directory.c \
+		rygel-connection-manager.h \
+		rygel-connection-manager.c \
+		rygel-media-receiver-registrar.h \
+		rygel-media-receiver-registrar.c \
+		rygel-media-provider.h \
+		rygel-media-provider.c \
+		rygel-media-object.c \
+		rygel-media-object.h \
+		rygel-media-container.c \
+		rygel-media-container.h \
+		rygel-media-item.c \
+		rygel-media-item.h \
+		rygel-media-manager.h \
+		rygel-media-manager.c
 
-gupnp_media_server_SOURCES = gupnp-media-server-1.0.vapi \
-			     cstuff.c \
-			     cstuff.h \
-			     gupnp-media-server.h \
-			     gupnp-media-server.c \
-			     gupnp-media-server.vala \
-			     gupnp-content-directory.h \
-			     gupnp-content-directory.c \
-			     gupnp-content-directory.vala \
-			     gupnp-connection-manager.h \
-			     gupnp-connection-manager.c \
-			     gupnp-connection-manager.vala \
-			     gupnp-media-receiver-registrar.h \
-			     gupnp-media-receiver-registrar.c \
-			     gupnp-media-receiver-registrar.vala \
-			     gupnp-media-provider.h \
-			     gupnp-media-provider.c \
-			     gupnp-media-object.c \
-			     gupnp-media-object.h \
-			     gupnp-media-container.c \
-			     gupnp-media-container.h \
-			     gupnp-media-item.c \
-			     gupnp-media-item.h \
-			     gupnp-media-manager.h \
-			     gupnp-media-manager.c \
-			     gupnp-media-manager.vala \
-			     gupnp-metadata-extractor.c \
-			     gupnp-metadata-extractor.h \
-			     gupnp-metadata-extractor.vala
+rygel_SOURCES = rygel-1.0.vapi \
+		cstuff.c \
+		cstuff.h \
+		rygel-media-server.h \
+		rygel-media-server.c \
+		rygel-media-server.vala \
+		rygel-content-directory.h \
+		rygel-content-directory.c \
+		rygel-content-directory.vala \
+		rygel-connection-manager.h \
+		rygel-connection-manager.c \
+		rygel-connection-manager.vala \
+		rygel-media-receiver-registrar.h \
+		rygel-media-receiver-registrar.c \
+		rygel-media-receiver-registrar.vala \
+		rygel-media-provider.h \
+		rygel-media-provider.c \
+		rygel-media-object.c \
+		rygel-media-object.h \
+		rygel-media-container.c \
+		rygel-media-container.h \
+		rygel-media-item.c \
+		rygel-media-item.h \
+		rygel-media-manager.h \
+		rygel-media-manager.c \
+		rygel-media-manager.vala \
+		rygel-metadata-extractor.c \
+		rygel-metadata-extractor.h \
+		rygel-metadata-extractor.vala
 
-gupnp-media-server.stamp: $(filter %.vala,$(gupnp_media_server_SOURCES))
-	$(VALAC) -C --vapidir=$(srcdir) --pkg gupnp-media-server-1.0 \
+rygel.stamp: $(filter %.vala,$(rygel_SOURCES))
+	$(VALAC) -C --vapidir=$(srcdir) --pkg rygel-1.0 \
 	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
 	--pkg gconf-2.0 --pkg gstreamer-0.10 --pkg gio-2.0 $^
 	touch $@
 
-gupnp_media_server_LDADD = $(LIBGUPNP_LIBS) \
-			   $(LIBGUPNP_AV_LIBS) \
-			   $(LIBGCONF_LIBS) \
-			   $(LIBGSTREAMER_LIBS) \
-			   $(GIO_LIBS)
-gupnp_media_server_LDFLAGS = -export-dynamic
+rygel_LDADD = $(LIBGUPNP_LIBS) \
+	      $(LIBGUPNP_AV_LIBS) \
+	      $(LIBGCONF_LIBS) \
+	      $(LIBGSTREAMER_LIBS) \
+	      $(GIO_LIBS)
+rygel_LDFLAGS = -export-dynamic
 
-VAPI_FILES = gupnp-media-server-1.0.vapi
+VAPI_FILES = rygel-1.0.vapi
 
-gupnp-media-server-1.0.vapi: gupnp-media-provider.vala \
-			     gupnp-media-object.vala \
-			     gupnp-media-container.vala \
-			     gupnp-media-item.vala
-	$(VALAC) -C --library=gupnp-media-server-1.0 \
+rygel-1.0.vapi: rygel-media-provider.vala \
+		rygel-media-object.vala \
+		rygel-media-container.vala \
+		rygel-media-item.vala
+	$(VALAC) -C --library=rygel-1.0 \
 	--pkg gupnp-1.0 --pkg gupnp-av-1.0 \
 	$^
 

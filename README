@@ -1,15 +1,16 @@
-GUPnP MediaServer
-==================
+What is Rygel?
 
-GUPnP is an object-oriented open source framework for creating UPnP devices and
-control points, written in C using GObject and libsoup. The GUPnP API is
-intended to be easy to use, efficient and flexible.
+Rygel:
 
-GUPnP MediaServer is an implementation of the UPnP MediaServer V 2.0
-specification[1] based on GUPnP and tracker[2]. It is written (mostly) in Vala
-language[3].
+* is an implementation of the UPnP MediaServer V 2.0 specification[1]
+* is designed for GNOME desktop.
+* is based on GUPnP[2].
+* supports plugable Media providers (and currently has a tracker[3]-based media
+  provider).
+* is written (mostly) in Vala language[4].
 
 [1] http://www.upnp.org/specs/av/UPnP-av-MediaServer-v2-Device-20060531.pdf
-[2] http://www.tracker-project.org/
-[3] http://www.vala-project.org/
+[2] http://www.gupnp.org/
+[3] http://www.tracker-project.org/
+[4] http://www.vala-project.org/
 

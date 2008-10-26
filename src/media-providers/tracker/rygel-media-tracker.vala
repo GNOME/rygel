@@ -25,7 +25,7 @@
 using GUPnP;
 using DBus;
 
-public class GUPnP.MediaTracker : MediaProvider {
+public class Rygel.MediaTracker : MediaProvider {
     /* class-wide constants */
     public static const string TRACKER_SERVICE = "org.freedesktop.Tracker";
     public static const string TRACKER_PATH = "/org/freedesktop/tracker";

@@ -7,8 +7,8 @@
 <deviceType>urn:schemas-upnp-org:device:MediaServer:1</deviceType>
 <UDN></UDN>
 <friendlyName></friendlyName>
-<manufacturer>GUPnP Team</manufacturer>
-<manufacturerURL>http://www.gupnp.org/</manufacturerURL>
+<manufacturer>Rygel Developers.</manufacturer>
+<manufacturerURL>http://live.gnome.org/Rygel</manufacturerURL>
 <modelName>Windows Media Connect</modelName>
 <modelNumber>0.1</modelNumber>
 <modelDescription></modelDescription>

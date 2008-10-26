@@ -1,3 +1,42 @@
+2008-10-26  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
+
+	* README:
+	* configure.ac:
+	* data/xml/Makefile.am:
+	* data/xml/description-xbox360.xml:
+	* data/xml/description.xml:
+	* doc/design.txt:
+	* src/media-providers/tracker/Makefile.am:
+	* src/media-providers/tracker/gupnp-media-tracker.vala:
+	* src/media-providers/tracker/gupnp-tracker-container.vala:
+	* src/media-providers/tracker/gupnp-tracker-plugin.vala:
+	* src/media-providers/tracker/rygel-media-tracker.vala:
+	* src/media-providers/tracker/rygel-tracker-container.vala:
+	* src/media-providers/tracker/rygel-tracker-plugin.vala:
+	* src/media-server/Makefile.am:
+	* src/media-server/gupnp-connection-manager.vala:
+	* src/media-server/gupnp-content-directory.vala:
+	* src/media-server/gupnp-media-container.vala:
+	* src/media-server/gupnp-media-item.vala:
+	* src/media-server/gupnp-media-manager.vala:
+	* src/media-server/gupnp-media-object.vala:
+	* src/media-server/gupnp-media-provider.vala:
+	* src/media-server/gupnp-media-receiver-registrar.vala:
+	* src/media-server/gupnp-media-server.vala:
+	* src/media-server/gupnp-metadata-extractor.vala:
+	* src/media-server/rygel-connection-manager.vala:
+	* src/media-server/rygel-content-directory.vala:
+	* src/media-server/rygel-media-container.vala:
+	* src/media-server/rygel-media-item.vala:
+	* src/media-server/rygel-media-manager.vala:
+	* src/media-server/rygel-media-object.vala:
+	* src/media-server/rygel-media-provider.vala:
+	* src/media-server/rygel-media-receiver-registrar.vala:
+	* src/media-server/rygel-media-server.vala:
+	* src/media-server/rygel-metadata-extractor.vala:
+
+	Project renamed to "Rygel" to be moved to GNOME SVN.
+
 2008-09-08  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
 
 	* src/media-providers/tracker/Makefile.am:

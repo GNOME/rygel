@@ -24,11 +24,11 @@
 
 using GUPnP;
 
-public errordomain GUPnP.MediaProviderError {
+public errordomain Rygel.MediaProviderError {
     NO_SUCH_OBJECT = 701
 }
 
-public abstract class GUPnP.MediaProvider : GLib.Object {
+public abstract class Rygel.MediaProvider : GLib.Object {
     /* Properties */
     public string# root_id { get; construct; }
     public string# root_parent_id { get; construct; }
