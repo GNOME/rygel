@@ -1,5 +1,11 @@
 2008-10-26  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
 
+	* MAINTAINERS:
+
+	Add MAINTAINERS file.
+
+2008-10-26  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
+
 	* README:
 	* configure.ac:
 	* data/xml/Makefile.am:
