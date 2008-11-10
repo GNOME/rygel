@@ -1,5 +1,13 @@
 2008-11-10  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
 
+	* src/media-providers/tracker/rygel-media-tracker.vala:
+	* src/media-providers/tracker/rygel-tracker-container.vala:
+
+        Refactor: A more intelligent TrackerContainer. As a result, MediaTracker
+        class is now very slim.
+
+2008-11-10  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
+
 	* AUTHORS:
 	* src/media-server/cstuff.c:
 	* src/media-server/cstuff.h:
