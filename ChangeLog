@@ -1,3 +1,11 @@
+2008-11-10  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
+
+	* AUTHORS:
+	* src/media-server/cstuff.c:
+	* src/media-server/cstuff.h:
+
+        Replace my non-working "@gstreamer.net" email with "@gnome.org" one.
+
 2008-10-29  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
 
 	* src/media-server/rygel-media-manager.vala:

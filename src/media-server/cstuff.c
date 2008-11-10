@@ -2,7 +2,7 @@
  * Copyright (C) 2008 Zeeshan Ali.
  * Copyright (C) 2007 OpenedHand Ltd.
  *
- * Author: Zeeshan Ali <zeenix@gstreamer.net>
+ * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  * Author: Jorn Baayen <jorn@openedhand.com>
  *
  * This program is free software; you can redistribute it and/or modify
