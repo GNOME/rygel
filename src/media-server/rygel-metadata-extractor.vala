@@ -171,7 +171,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
     private void extract_mime () {
         File file = File.new_for_uri (this.uri);
 
-        weak FileInfo file_info;
+        FileInfo file_info;
 
         try {
             file_info = file.query_info (FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,

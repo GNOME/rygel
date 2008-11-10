@@ -282,7 +282,7 @@ public class Rygel.MediaManager : MediaProvider {
     }
 
     private static bool is_dir (File file) {
-        weak FileInfo file_info;
+        FileInfo file_info;
 
         try {
             file_info = file.query_info (FILE_ATTRIBUTE_STANDARD_TYPE,

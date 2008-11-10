@@ -1,3 +1,10 @@
+2008-10-29  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
+
+	* src/media-server/rygel-media-manager.vala:
+	* src/media-server/rygel-metadata-extractor.vala:
+
+	File.query_info () doesn't return a weak anymore.
+
 2008-10-26  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
 
 	* MAINTAINERS:
