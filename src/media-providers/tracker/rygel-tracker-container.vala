@@ -29,16 +29,15 @@ using DBus;
 
 public class Rygel.TrackerContainer : MediaContainer {
     /* class-wide constants */
-    public static const string TRACKER_SERVICE = "org.freedesktop.Tracker";
-    public static const string TRACKER_PATH = "/org/freedesktop/tracker";
-    public static const string TRACKER_IFACE = "org.freedesktop.Tracker";
-    public static const string FILES_IFACE = "org.freedesktop.Tracker.Files";
-    public static const string METADATA_IFACE =
-                                            "org.freedesktop.Tracker.Metadata";
+    private const string TRACKER_SERVICE = "org.freedesktop.Tracker";
+    private const string TRACKER_PATH = "/org/freedesktop/tracker";
+    private const string TRACKER_IFACE = "org.freedesktop.Tracker";
+    private const string FILES_IFACE = "org.freedesktop.Tracker.Files";
+    private const string METADATA_IFACE = "org.freedesktop.Tracker.Metadata";
 
-    public static dynamic DBus.Object metadata;
-    public static dynamic DBus.Object files;
-    public static dynamic DBus.Object tracker;
+    private static dynamic DBus.Object metadata;
+    private static dynamic DBus.Object files;
+    private static dynamic DBus.Object tracker;
 
     private Context context;
     public string tracker_category;
