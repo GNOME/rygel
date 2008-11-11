@@ -202,7 +202,7 @@ public class Rygel.MediaTracker : MediaProvider {
         }
 
         foreach (TrackerContainer tmp in this.containers) {
-            if (tmp.tracker_category == category) {
+            if (tmp.category == category) {
                 container = tmp;
 
                 break;

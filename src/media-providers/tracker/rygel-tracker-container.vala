@@ -40,7 +40,7 @@ public class Rygel.TrackerContainer : MediaContainer {
     private static dynamic DBus.Object tracker;
 
     private Context context;
-    public string tracker_category;
+    public string category;
 
     /* UPnP class of items under this container */
     public string child_class;
@@ -76,14 +76,14 @@ public class Rygel.TrackerContainer : MediaContainer {
                              string  parent_id,
                              string  root_id,
                              string  title,
-                             string  tracker_category,
+                             string  category,
                              string  child_class,
                              Context context) {
         this.id = id;
         this.parent_id = parent_id;
         this.root_id = root_id;
         this.title = title;
-        this.tracker_category = tracker_category;
+        this.category = category;
         this.child_class = child_class;
         this.context = context;
     }
@@ -108,7 +108,7 @@ public class Rygel.TrackerContainer : MediaContainer {
 
         uint count = 0;
         for (uint i = 0; i < stats.length; i++) {
-            if (stats[i][0] == this.tracker_category)
+            if (stats[i][0] == this.category)
                 count = stats[i][1].to_int ();
         }
 
@@ -144,7 +144,7 @@ public class Rygel.TrackerContainer : MediaContainer {
         try {
             children =
                 TrackerContainer.files.GetByServiceType (0,
-                                                         this.tracker_category,
+                                                         this.category,
                                                          (int) offset,
                                                          (int) max_count);
         } catch (GLib.Error error) {
@@ -201,7 +201,7 @@ public class Rygel.TrackerContainer : MediaContainer {
 
         /* TODO: make this async */
         try {
-            values = TrackerContainer.metadata.Get (this.tracker_category,
+            values = TrackerContainer.metadata.Get (this.category,
                                                     path,
                                                     keys);
         } catch (GLib.Error error) {

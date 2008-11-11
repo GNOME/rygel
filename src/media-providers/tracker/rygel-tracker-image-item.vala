@@ -51,7 +51,7 @@ public class Rygel.TrackerImageItem : TrackerItem {
 
         /* TODO: make this async */
         try {
-            values = this.metadata.Get (parent.tracker_category, path, keys);
+            values = this.metadata.Get (parent.category, path, keys);
         } catch (GLib.Error error) {
             critical ("failed to get metadata for %s: %s\n",
                       path,
