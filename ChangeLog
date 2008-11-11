@@ -1,5 +1,13 @@
 2008-11-11  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
 
+	* src/media-providers/tracker/rygel-media-tracker.vala:
+	* src/media-providers/tracker/rygel-tracker-container.vala:
+
+        Refactor: Add TrackerContainer.get_file_category(). Now MediaTracker
+        doesn't talk to tracker directly.
+
+2008-11-11  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
+
 	* data/xml/ConnectionManager.xml:
 	* data/xml/ContentDirectory.xml:
 	* data/xml/X_MS_MediaReceiverRegistrar1.xml:

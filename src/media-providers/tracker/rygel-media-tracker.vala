@@ -192,7 +192,7 @@ public class Rygel.MediaTracker : MediaProvider {
         string category;
 
         try {
-            category = TrackerContainer.files.GetServiceType (uri);
+            category = TrackerContainer.get_file_category (uri);
         } catch (GLib.Error error) {
             critical ("failed to find service type for %s: %s",
                       uri,

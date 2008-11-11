@@ -366,5 +366,13 @@ public class Rygel.TrackerContainer : MediaContainer {
                                         this.context.port,
                                         escaped_path);
     }
+
+    public static string get_file_category (string uri) throws GLib.Error {
+        string category;
+
+        category = TrackerContainer.files.GetServiceType (uri);
+
+        return category;
+    }
 }
 
