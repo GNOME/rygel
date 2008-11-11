@@ -1,5 +1,11 @@
 2008-11-11  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
 
+	* src/media-providers/tracker/rygel-tracker-container.vala:
+
+        Don't hide GUPnP context and D-Bus proxy objects.
+
+2008-11-11  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
+
 	* src/media-providers/tracker/rygel-media-tracker.vala:
 	* src/media-providers/tracker/rygel-tracker-container.vala:
 	* src/media-providers/tracker/rygel-tracker-image-item.vala:

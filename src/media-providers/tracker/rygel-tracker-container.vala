@@ -35,11 +35,11 @@ public class Rygel.TrackerContainer : MediaContainer {
     private const string FILES_IFACE = "org.freedesktop.Tracker.Files";
     private const string METADATA_IFACE = "org.freedesktop.Tracker.Metadata";
 
-    private static dynamic DBus.Object metadata;
-    private static dynamic DBus.Object files;
-    private static dynamic DBus.Object tracker;
+    public static dynamic DBus.Object metadata;
+    public static dynamic DBus.Object files;
+    public static dynamic DBus.Object tracker;
 
-    private Context context;
+    public Context context;
     public string category;
 
     /* UPnP class of items under this container */
