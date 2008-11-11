@@ -81,7 +81,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
         }
     }
 
-    construct {
+    public MetadataExtractor () {
         this.playbin = ElementFactory.make ("playbin", null);
 
         var bus = this.playbin.get_bus ();

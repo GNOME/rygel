@@ -45,7 +45,13 @@ public class Rygel.MediaManager : MediaProvider {
                                      string        root_parent_id,
                                      GUPnP.Context context);
 
-    construct {
+    /* Pubic methods */
+    public MediaManager (GUPnP.Context context) {
+        this.root_id = "0";
+        this.root_parent_id = "-1";
+        this.title = "Media Manager";
+        this.context = context;
+
         this.providers = new HashTable<string, MediaProvider>
                                 ((HashFunc) id_hash_func,
                                  (EqualFunc) is_root_equal);
@@ -59,14 +65,6 @@ public class Rygel.MediaManager : MediaProvider {
                                                   this.providers.size ());
 
         this.register_media_providers ();
-    }
-
-    /* Pubic methods */
-    public MediaManager (GUPnP.Context context) {
-        this.root_id = "0";
-        this.root_parent_id = "-1";
-        this.title = "Media Manager";
-        this.context = context;
     }
 
     public override void add_children_metadata

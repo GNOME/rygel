@@ -36,7 +36,10 @@ public class Rygel.MediaTracker : MediaProvider {
 
     private SearchCriteriaParser search_parser;
 
-    construct {
+    /* Pubic methods */
+    public MediaTracker (string        root_id,
+                         string        root_parent_id,
+                         GUPnP.Context context) {
         this.containers = new List<TrackerContainer> ();
         this.containers.append
                         (new TrackerContainer (this.root_id + ":" + "16",
@@ -74,12 +77,6 @@ public class Rygel.MediaTracker : MediaProvider {
 
         /* Host the home dir of the user */
         this.context.host_path (home_dir, home_dir);
-    }
-
-    /* Pubic methods */
-    public MediaTracker (string        root_id,
-                         string        root_parent_id,
-                         GUPnP.Context context) {
         this.root_id = root_id;
         this.root_parent_id = root_parent_id;
         this.title = "Tracker";

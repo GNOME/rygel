@@ -45,7 +45,15 @@ public class Rygel.MediaServer: RootDevice {
     private ConnectionManager cm;         /* ConnectionManager */
     private MediaReceiverRegistrar msr;   /* MS MediaReceiverRegistrar */
 
-    construct {
+    public MediaServer (GUPnP.Context context,
+                        Xml.Doc       description_doc,
+                        string        relative_location) {
+        this.context = context;
+        this.resource_factory = GUPnP.ResourceFactory.get_default ();
+        this.root_device = null;
+        this.description_doc = description_doc;
+        this.relative_location = relative_location;
+
         ResourceFactory factory = this.resource_factory;
 
         /* Register Rygel.ContentDirectory */
@@ -71,16 +79,6 @@ public class Rygel.MediaServer: RootDevice {
         this.cm = (ConnectionManager) this.get_service (CONNECTION_MANAGER);
         this.msr = (MediaReceiverRegistrar) this.get_service
                                                 (MEDIA_RECEIVER_REGISTRAR);
-    }
-
-    public MediaServer (GUPnP.Context context,
-                        Xml.Doc       description_doc,
-                        string        relative_location) {
-        this.context = context;
-        this.resource_factory = GUPnP.ResourceFactory.get_default ();
-        this.root_device = null;
-        this.description_doc = description_doc;
-        this.relative_location = relative_location;
     }
 
     public static int main (string[] args) {

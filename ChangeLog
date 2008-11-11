@@ -1,5 +1,14 @@
 2008-11-11  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
 
+	* src/media-providers/tracker/rygel-media-tracker.vala:
+	* src/media-server/rygel-media-manager.vala:
+	* src/media-server/rygel-media-server.vala:
+	* src/media-server/rygel-metadata-extractor.vala:
+
+        Avoid using 'construct' now that we have flexible construction methods.
+
+2008-11-11  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
+
 	* src/media-providers/tracker/rygel-tracker-container.vala:
 	* src/media-providers/tracker/rygel-tracker-image-item.vala:
 	* src/media-providers/tracker/rygel-tracker-item.vala:
