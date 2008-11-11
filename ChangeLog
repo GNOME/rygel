@@ -1,6 +1,17 @@
 2008-11-11  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
 
 	* src/media-providers/tracker/rygel-tracker-container.vala:
+	* src/media-providers/tracker/rygel-tracker-image-item.vala:
+	* src/media-providers/tracker/rygel-tracker-item.vala:
+	* src/media-providers/tracker/rygel-tracker-music-item.vala:
+	* src/media-providers/tracker/rygel-tracker-video-item.vala:
+
+        Don't keep GUPnP context and D-Bus proxy objects in TrackerItem. It can
+        access these from the parent container object.
+
+2008-11-11  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
+
+	* src/media-providers/tracker/rygel-tracker-container.vala:
 
         Don't hide GUPnP context and D-Bus proxy objects.
 

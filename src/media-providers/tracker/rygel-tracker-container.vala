@@ -163,21 +163,15 @@ public class Rygel.TrackerContainer : MediaContainer {
         if (this.child_class == MediaItem.VIDEO_CLASS) {
             item = new TrackerVideoItem (this.root_id + ":" + path,
                                          path,
-                                         this,
-                                         this.metadata,
-                                         this.context);
+                                         this);
         } else if (this.child_class == MediaItem.IMAGE_CLASS) {
             item = new TrackerImageItem (this.root_id + ":" + path,
                                          path,
-                                         this,
-                                         this.metadata,
-                                         this.context);
+                                         this);
         } else {
             item = new TrackerMusicItem (this.root_id + ":" + path,
                                          path,
-                                         this,
-                                         this.metadata,
-                                         this.context);
+                                         this);
         }
 
         item.serialize (didl_writer);

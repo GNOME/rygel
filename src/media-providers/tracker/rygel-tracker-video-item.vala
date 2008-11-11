@@ -30,10 +30,8 @@ using DBus;
 public class Rygel.TrackerVideoItem : TrackerItem {
     public TrackerVideoItem (string              id,
                              string              path,
-                             TrackerContainer    parent,
-                             dynamic DBus.Object metadata,
-                             GUPnP.Context       context) {
-        base (id, path, parent, metadata, context);
+                             TrackerContainer    parent) {
+        base (id, path, parent);
 
         keys = new string[] {"File:Name",
                              "File:Mime",
@@ -49,7 +47,7 @@ public class Rygel.TrackerVideoItem : TrackerItem {
 
         /* TODO: make this async */
         try {
-            values = this.metadata.Get (parent.category, path, keys);
+            values = this.parent.metadata.Get (parent.category, path, keys);
         } catch (GLib.Error error) {
             critical ("failed to get metadata for %s: %s\n",
                       path,

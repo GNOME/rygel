@@ -30,7 +30,6 @@ using DBus;
 public abstract class Rygel.TrackerItem : MediaItem {
     protected TrackerContainer parent;
     protected string path;
-    protected GUPnP.Context context;
 
     protected dynamic DBus.Object metadata;
 
@@ -38,17 +37,12 @@ public abstract class Rygel.TrackerItem : MediaItem {
 
     public TrackerItem (string              id,
                         string              path,
-                        TrackerContainer    parent,
-                        dynamic DBus.Object metadata,
-                        GUPnP.Context       context) {
+                        TrackerContainer    parent) {
         this.id = id;
         this.path = path;
         this.parent = parent;
         this.parent_id = parent.id;
         this.upnp_class = parent.child_class;
-
-        this.metadata = metadata;
-        this.context = context;
     }
 
     protected string seconds_to_iso8601 (string seconds) {
@@ -71,8 +65,8 @@ public abstract class Rygel.TrackerItem : MediaItem {
     protected string uri_from_path (string path) {
         string escaped_path = Uri.escape_string (path, "/", true);
 
-        return "http://%s:%u%s".printf (this.context.host_ip,
-                                        this.context.port,
+        return "http://%s:%u%s".printf (this.parent.context.host_ip,
+                                        this.parent.context.port,
                                         escaped_path);
     }
 }
