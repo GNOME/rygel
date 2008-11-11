@@ -1,5 +1,17 @@
 2008-11-11  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
 
+	* src/media-providers/tracker/Makefile.am:
+	* src/media-providers/tracker/rygel-tracker-container.vala:
+	* src/media-providers/tracker/rygel-tracker-image-item.vala:
+	* src/media-providers/tracker/rygel-tracker-music-item.vala:
+	* src/media-providers/tracker/rygel-tracker-video-item.vala:
+
+        Refactor: Separate classes for each item type. These tracker-specific
+        item classes are responsible for fetching their metadata and serializing
+        it.
+
+2008-11-11  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
+
 	* src/media-providers/tracker/rygel-tracker-container.vala:
 
         Declare private fields as private.

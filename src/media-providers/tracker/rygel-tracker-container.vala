@@ -158,123 +158,27 @@ public class Rygel.TrackerContainer : MediaContainer {
 
     public bool add_item_from_db (DIDLLiteWriter didl_writer,
                                    string         path) {
+        MediaItem item;
+
         if (this.child_class == MediaItem.VIDEO_CLASS) {
-            return this.add_video_item_from_db (didl_writer, path);
+            item = new TrackerVideoItem (this.root_id + ":" + path,
+                                         path,
+                                         this,
+                                         this.metadata,
+                                         this.context);
         } else if (this.child_class == MediaItem.IMAGE_CLASS) {
-            return this.add_image_item_from_db (didl_writer, path);
+            item = new TrackerImageItem (this.root_id + ":" + path,
+                                         path,
+                                         this,
+                                         this.metadata,
+                                         this.context);
         } else {
-            return this.add_music_item_from_db (didl_writer, path);
+            item = new TrackerMusicItem (this.root_id + ":" + path,
+                                         path,
+                                         this,
+                                         this.metadata,
+                                         this.context);
         }
-    }
-
-    private bool add_video_item_from_db (DIDLLiteWriter didl_writer,
-                                         string         path) {
-        string[] keys = new string[] {"File:Name",
-                                      "File:Mime",
-                                      "Video:Title",
-                                      "Video:Author",
-                                      "Video:Width",
-                                      "Video:Height",
-                                      "DC:Date"};
-
-        string[] values = null;
-
-        /* TODO: make this async */
-        try {
-            values = TrackerContainer.metadata.Get (this.tracker_category,
-                                                    path,
-                                                    keys);
-        } catch (GLib.Error error) {
-            critical ("failed to get metadata for %s: %s\n",
-                      path,
-                      error.message);
-
-            return false;
-        }
-
-        string title;
-        if (values[2] != "")
-            title = values[2];
-        else
-            /* If title wasn't provided, use filename instead */
-            title = values[0];
-
-        MediaItem item = new MediaItem (this.root_id + ":" + path,
-                                        this.id,
-                                        title,
-                                        this.child_class);
-
-        if (values[4] != "")
-            item.width = values[4].to_int ();
-
-        if (values[5] != "")
-            item.height = values[5].to_int ();
-
-        item.date = seconds_to_iso8601 (values[6]);
-        item.mime = values[1];
-        item.author = values[3];
-        item.uri = uri_from_path (path);
-
-        item.serialize (didl_writer);
-
-        return true;
-    }
-
-    private bool add_image_item_from_db (DIDLLiteWriter didl_writer,
-                                         string         path) {
-        string[] keys = new string[] {"File:Name",
-                                      "File:Mime",
-                                      "Image:Title",
-                                      "Image:Creator",
-                                      "Image:Width",
-                                      "Image:Height",
-                                      "Image:Album",
-                                      "Image:Date",
-                                      "DC:Date"};
-
-        string[] values = null;
-
-        /* TODO: make this async */
-        try {
-            values = TrackerContainer.metadata.Get (this.tracker_category,
-                                                    path,
-                                                    keys);
-        } catch (GLib.Error error) {
-            critical ("failed to get metadata for %s: %s\n",
-                      path,
-                      error.message);
-
-            return false;
-        }
-
-        string title;
-        if (values[2] != "")
-            title = values[2];
-        else
-            /* If title wasn't provided, use filename instead */
-            title = values[0];
-
-        MediaItem item = new MediaItem (this.root_id + ":" + path,
-                                        this.id,
-                                        title,
-                                        this.child_class);
-
-        if (values[4] != "")
-            item.width = values[4].to_int ();
-
-        if (values[5] != "")
-            item.height = values[5].to_int ();
-
-        if (values[8] != "") {
-            item.date = seconds_to_iso8601 (values[8]);
-        } else {
-            item.date = seconds_to_iso8601 (values[7]);
-        }
-
-        item.mime = values[1];
-        item.author = values[3];
-        item.album = values[6];
-        item.uri = uri_from_path (path);
 
         item.serialize (didl_writer);
 
