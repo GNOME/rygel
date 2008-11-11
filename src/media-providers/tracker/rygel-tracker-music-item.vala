@@ -27,28 +27,13 @@ using Rygel;
 using GUPnP;
 using DBus;
 
-public class Rygel.TrackerMusicItem : MediaItem {
-    private TrackerContainer parent;
-    private string path;
-    private GUPnP.Context context;
-
-    private dynamic DBus.Object metadata;
-
-    string[] keys;
-
+public class Rygel.TrackerMusicItem : TrackerItem {
     public TrackerMusicItem (string              id,
                              string              path,
                              TrackerContainer    parent,
                              dynamic DBus.Object metadata,
                              GUPnP.Context       context) {
-        this.id = id;
-        this.path = path;
-        this.parent = parent;
-        this.parent_id = parent.id;
-        this.upnp_class = parent.child_class;
-
-        this.metadata = metadata;
-        this.context = context;
+        base (id, path, parent, metadata, context);
 
         keys = new string[] {"File:Name",
                              "File:Mime",
@@ -98,31 +83,6 @@ public class Rygel.TrackerMusicItem : MediaItem {
         this.uri = this.uri_from_path (path);
 
         base.serialize (didl_writer);
-    }
-
-    private string seconds_to_iso8601 (string seconds) {
-        string date;
-
-        if (seconds != "") {
-            TimeVal tv;
-
-            tv.tv_sec = seconds.to_int ();
-            tv.tv_usec = 0;
-
-            date = tv.to_iso8601 ();
-        } else {
-            date = "";
-        }
-
-        return date;
-    }
-
-    private string uri_from_path (string path) {
-        string escaped_path = Uri.escape_string (path, "/", true);
-
-        return "http://%s:%u%s".printf (this.context.host_ip,
-                                        this.context.port,
-                                        escaped_path);
     }
 }
 

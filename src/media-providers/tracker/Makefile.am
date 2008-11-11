@@ -12,6 +12,8 @@ BUILT_SOURCES = rygel-media-tracker.stamp \
 		rygel-media-tracker.c \
 		rygel-tracker-container.h \
 		rygel-tracker-container.c \
+		rygel-tracker-item.h \
+		rygel-tracker-item.c \
 		rygel-tracker-video-item.h \
 		rygel-tracker-video-item.c \
 		rygel-tracker-music-item.h \
@@ -27,6 +29,9 @@ librygel_media_tracker_la_SOURCES = rygel-media-tracker.h \
 				    rygel-tracker-container.h \
 			            rygel-tracker-container.c \
 				    rygel-tracker-container.vala \
+                                    rygel-tracker-item.h \
+                                    rygel-tracker-item.c \
+                                    rygel-tracker-item.vala \
                                     rygel-tracker-video-item.h \
                                     rygel-tracker-video-item.c \
                                     rygel-tracker-video-item.vala \
