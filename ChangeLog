@@ -1,5 +1,14 @@
 2008-11-11  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
 
+	* data/xml/ConnectionManager.xml:
+	* data/xml/ContentDirectory.xml:
+	* data/xml/X_MS_MediaReceiverRegistrar1.xml:
+
+        More standard-compliant SCPDs. Based on a patch by Ross Burton
+        <ross@opennedhand.com>
+
+2008-11-11  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
+
 	* src/media-providers/tracker/rygel-media-tracker.vala:
 
         Create root container after it's children. This is to pass the correct

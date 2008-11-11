@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <!--============================================================
 Title: UPnP AV Connection Manager Service (CM) Template
 
@@ -10,7 +11,8 @@ This file uses tabs (not spaces) for block indentation.
 Any updates to this file should maintain this convention.
 This includes disabling any automatic tab-to-space conversion
 feature provided by your editor.
-================================================================--><scpd>
+================================================================-->
+<scpd xmlns="urn:schemas-upnp-org:service-1-0">
 	<serviceStateTable>
 		<stateVariable>
 			<name>SourceProtocolInfo</name>

@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <!--============================================================
 Title: UPnP AV Content Directory Service (CDS) Template
 
@@ -11,7 +12,7 @@ Any updates to this file should maintain this convention.
 This includes disabling any automatic tab-to-space conversion
 feature provided by your editor.
 ================================================================-->
-<scpd>
+<scpd xmlns="urn:schemas-upnp-org:service-1-0">
 	<serviceStateTable>
 		<stateVariable>
 			<name>SearchCapabilities</name>
