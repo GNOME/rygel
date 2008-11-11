@@ -37,11 +37,6 @@ public class Rygel.MediaTracker : MediaProvider {
     private SearchCriteriaParser search_parser;
 
     construct {
-        this.root_container = new MediaContainer (this.root_id,
-                                                  this.root_parent_id,
-                                                  this.title,
-                                                  this.containers.length ());
-
         this.containers = new List<TrackerContainer> ();
         this.containers.append
                         (new TrackerContainer (this.root_id + ":" + "16",
@@ -67,6 +62,11 @@ public class Rygel.MediaTracker : MediaProvider {
                                                "Videos",
                                                MediaItem.VIDEO_CLASS,
                                                context));
+
+        this.root_container = new MediaContainer (this.root_id,
+                                                  this.root_parent_id,
+                                                  this.title,
+                                                  this.containers.length ());
 
         this.search_parser = new SearchCriteriaParser ();
 

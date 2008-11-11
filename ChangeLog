@@ -1,3 +1,10 @@
+2008-11-11  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
+
+	* src/media-providers/tracker/rygel-media-tracker.vala:
+
+        Create root container after it's children. This is to pass the correct
+        number of children to the constructor of the root container.
+
 2008-11-10  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
 
 	* src/media-providers/tracker/rygel-media-tracker.vala:
