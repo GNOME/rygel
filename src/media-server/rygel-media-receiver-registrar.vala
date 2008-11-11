@@ -26,7 +26,7 @@ using GUPnP;
 
 public class Rygel.MediaReceiverRegistrar: Service {
 
-    construct {
+    public override void constructed () {
         this.action_invoked["IsAuthorized"] += this.is_authorized_cb;
         this.action_invoked["IsValidated"] += this.is_authorized_cb;
         this.action_invoked["RegisterDevice"] += this.register_device_cb;

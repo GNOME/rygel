@@ -32,7 +32,7 @@ public class Rygel.ConnectionManager : Service {
     private string sink_protocol_info;
     private string connection_ids;
 
-    construct {
+    public override void constructed () {
         this.sink_protocol_info   = "";
         this.connection_ids       = "0";
         this.source_protocol_info = "http-get:*:*:*";

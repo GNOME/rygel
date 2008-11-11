@@ -1,5 +1,13 @@
 2008-11-11  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
 
+	* src/media-server/rygel-connection-manager.vala:
+	* src/media-server/rygel-content-directory.vala:
+	* src/media-server/rygel-media-receiver-registrar.vala:
+
+        Override GLib.Object.constructed() instead of using 'construct' keyword.
+
+2008-11-11  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
+
 	* src/media-providers/tracker/rygel-media-tracker.vala:
 	* src/media-server/rygel-media-manager.vala:
 	* src/media-server/rygel-media-server.vala:

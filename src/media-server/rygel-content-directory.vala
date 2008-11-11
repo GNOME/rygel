@@ -33,7 +33,7 @@ public class Rygel.ContentDirectory: Service {
 
     MediaManager media_manager;
 
-    construct {
+    public override void constructed () {
         this.media_manager = new MediaManager (this.context);
 
         this.didl_writer = new DIDLLiteWriter ();
