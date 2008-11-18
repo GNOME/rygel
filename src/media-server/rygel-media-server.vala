@@ -136,7 +136,7 @@ public class Rygel.MediaServer: RootDevice {
          * We do this so that we can host the modified file, and also to
          * make sure the generated UDN stays the same between sessions. */
         FileStream f = FileStream.open (desc_path, "w+");
-        int res;
+        int res = -1;
 
         if (f != null)
             res = Xml.Doc.dump (f, doc);

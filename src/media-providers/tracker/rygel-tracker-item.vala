@@ -49,7 +49,7 @@ public abstract class Rygel.TrackerItem : MediaItem {
         string date;
 
         if (seconds != "") {
-            TimeVal tv;
+            TimeVal tv = TimeVal ();
 
             tv.tv_sec = seconds.to_int ();
             tv.tv_usec = 0;

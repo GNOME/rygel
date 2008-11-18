@@ -108,7 +108,7 @@ public class Rygel.MediaItem : MediaObject {
         }
 
         /* Add resource data */
-        DIDLLiteResource res;
+        DIDLLiteResource res = DIDLLiteResource ();
 
         res.reset ();
 
@@ -124,12 +124,6 @@ public class Rygel.MediaItem : MediaObject {
         res.height = height;
 
         didl_writer.add_res (res);
-
-        /* FIXME: These lines should be remove once GB#526552 is fixed */
-        res.uri = null;
-        res.protocol = null;
-        res.mime_type = null;
-        res.dlna_profile = null;
 
         /* End of item */
         didl_writer.end_item ();

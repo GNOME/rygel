@@ -42,7 +42,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
     /* Signals */
     public signal void metadata_available (string uri,
                                            string key,
-                                           ref GLib.Value value);
+                                           ref Gst.Value value);
     public signal void extraction_done (string uri);
 
     /* Properties */
@@ -147,7 +147,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
 
     /* Fetch value of each tag in the @tag_list and signal it's availability */
     private void foreach_tag (TagList tag_list, string tag) {
-        GLib.Value value;
+        Gst.Value value = Gst.Value ();
 
         if (tag_list.copy_value (out value, tag_list, tag)) {
             this.metadata_available (this.playbin.uri, tag, ref value);
@@ -186,7 +186,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
         weak string content_type = file_info.get_content_type ();
         weak string mime = g_content_type_get_mime_type (content_type);
         if (mime != null) {
-            GLib.Value value;
+            Gst.Value value = Gst.Value ();
 
             value.init (typeof (string));
             value.set_string (mime);
@@ -201,7 +201,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
 
         Format format = Format.TIME;
         if (this.playbin.query_duration (ref format, out duration)) {
-            GLib.Value duration_val;
+            Gst.Value duration_val = Gst.Value ();
 
             duration_val.init (typeof (int64));
             duration_val.set_int64 (duration);
@@ -268,7 +268,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
         int val;
 
         if (structure.get_int (key, out val)) {
-            GLib.Value value;
+            Gst.Value value = Gst.Value ();
 
             value.init (typeof (int));
             value.set_int (val);
