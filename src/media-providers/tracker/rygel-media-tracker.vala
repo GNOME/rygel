@@ -23,10 +23,11 @@
  * version 2 of the License, or (at your option) any later version.
  */
 
+using Rygel;
 using GUPnP;
 using DBus;
 
-public class Rygel.MediaTracker : MediaProvider {
+public class Rygel.MediaTracker : ContentDirectory {
     public static const int MAX_REQUESTED_COUNT = 128;
 
     private MediaContainer root_container;
@@ -37,39 +38,37 @@ public class Rygel.MediaTracker : MediaProvider {
     private SearchCriteriaParser search_parser;
 
     /* Pubic methods */
-    public MediaTracker (string        root_id,
-                         string        root_parent_id,
-                         GUPnP.Context context) {
+    public override void constructed () {
+        // Chain-up to base first
+        base.constructed ();
+
+        this.root_container = new MediaContainer ("0",
+                                                  "-1",
+                                                  "MediaTracker",
+                                                  this.containers.length ());
+
         this.containers = new List<TrackerContainer> ();
         this.containers.append
-                        (new TrackerContainer (this.root_id + ":" + "16",
-                                               this.root_id,
-                                               this.root_id,
+                        (new TrackerContainer ("16",
+                                               this.root_container.id,
                                                "All Images",
                                                "Images",
                                                MediaItem.IMAGE_CLASS,
                                                context));
         this.containers.append
-                        (new TrackerContainer (this.root_id + ":" + "14",
-                                               this.root_id,
-                                               this.root_id,
+                        (new TrackerContainer ("14",
+                                               this.root_container.id,
                                                "All Music",
                                                "Music",
                                                MediaItem.MUSIC_CLASS,
                                                context));
         this.containers.append
-                        (new TrackerContainer (this.root_id + ":" + "15",
-                                               this.root_id,
-                                               this.root_id,
+                        (new TrackerContainer ("15",
+                                               this.root_container.id,
                                                "All Videos",
                                                "Videos",
                                                MediaItem.VIDEO_CLASS,
                                                context));
-
-        this.root_container = new MediaContainer (this.root_id,
-                                                  this.root_parent_id,
-                                                  this.title,
-                                                  this.containers.length ());
 
         this.search_parser = new SearchCriteriaParser ();
 
@@ -77,10 +76,6 @@ public class Rygel.MediaTracker : MediaProvider {
 
         /* Host the home dir of the user */
         this.context.host_path (home_dir, home_dir);
-        this.root_id = root_id;
-        this.root_parent_id = root_parent_id;
-        this.title = "Tracker";
-        this.context = context;
     }
 
     public override void add_children_metadata
@@ -93,7 +88,7 @@ public class Rygel.MediaTracker : MediaProvider {
                              out uint       number_returned,
                              out uint       total_matches,
                              out uint       update_id) throws GLib.Error {
-        if (container_id == this.root_id) {
+        if (container_id == this.root_container.id) {
             number_returned = this.add_root_container_children (didl_writer);
             total_matches = number_returned;
         } else {
@@ -117,7 +112,7 @@ public class Rygel.MediaTracker : MediaProvider {
         if (number_returned > 0) {
             update_id = uint32.MAX;
         } else {
-            throw new MediaProviderError.NO_SUCH_OBJECT ("No such object");
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
     }
 
@@ -129,7 +124,7 @@ public class Rygel.MediaTracker : MediaProvider {
                              out uint       update_id) throws GLib.Error {
         bool found = false;
 
-        if (object_id == this.root_id) {
+        if (object_id == this.root_container.id) {
             this.root_container.serialize (didl_writer);
 
             found = true;
@@ -144,18 +139,16 @@ public class Rygel.MediaTracker : MediaProvider {
 
                 found = true;
             } else {
-                string id = this.remove_root_id_prefix (object_id);
-
                 /* Now try items */
-                container = get_item_parent (id);
+                container = get_item_parent (object_id);
 
                 if (container != null)
-                    found = container.add_item_from_db (didl_writer, id);
+                    found = container.add_item_from_db (didl_writer, object_id);
             }
         }
 
         if (!found) {
-            throw new MediaProviderError.NO_SUCH_OBJECT ("No such object");
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
         update_id = uint32.MAX;
@@ -207,17 +200,6 @@ public class Rygel.MediaTracker : MediaProvider {
         }
 
         return container;
-    }
-
-    string remove_root_id_prefix (string id) {
-        string[] tokens;
-
-        tokens = id.split (":", 2);
-
-        if (tokens[1] != null)
-            return tokens[1];
-        else
-            return tokens[0];
     }
 }
 

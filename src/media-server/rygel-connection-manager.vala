@@ -28,8 +28,10 @@ using GLib;
 using GUPnP;
 
 public class Rygel.ConnectionManager : Service {
+    public const string UPNP_ID = "urn:upnp-org:serviceId:ConnectionManager";
     public const string UPNP_CLASS =
-                        "urn:schemas-upnp-org:service:ConnectionManager";
+                    "urn:schemas-upnp-org:service:ConnectionManager:2";
+    public const string DESCRIPTION_PATH = "xml/ConnectionManager.xml";
 
     private string source_protocol_info;
     private string sink_protocol_info;

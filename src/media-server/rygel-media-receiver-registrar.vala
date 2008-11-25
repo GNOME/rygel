@@ -25,8 +25,12 @@
 using GUPnP;
 
 public class Rygel.MediaReceiverRegistrar: Service {
+    public const string UPNP_ID =
+                    "urn:microsoft.com:serviceId:X_MS_MediaReceiverRegistrar";
     public const string UPNP_CLASS =
-                        "urn:microsoft.com:service:X_MS_MediaReceiverRegistrar";
+                    "urn:microsoft.com:service:X_MS_MediaReceiverRegistrar:1";
+    public const string DESCRIPTION_PATH =
+                    "xml/X_MS_MediaReceiverRegistrar1.xml";
 
     public override void constructed () {
         this.action_invoked["IsAuthorized"] += this.is_authorized_cb;

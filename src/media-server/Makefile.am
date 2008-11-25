@@ -24,22 +24,28 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel.stamp \
 		rygel-media-server.h \
 		rygel-media-server.c \
+		rygel-media-server-factory.h \
+		rygel-media-server-factory.c \
+		rygel-main.h \
+		rygel-main.c \
 		rygel-content-directory.h \
 		rygel-content-directory.c \
+		rygel-plugin.h \
+		rygel-plugin.c \
+		rygel-plugin-loader.h \
+		rygel-plugin-loader.c \
+		rygel-resource-info.h \
+		rygel-resource-info.c \
 		rygel-connection-manager.h \
 		rygel-connection-manager.c \
 		rygel-media-receiver-registrar.h \
 		rygel-media-receiver-registrar.c \
-		rygel-media-provider.h \
-		rygel-media-provider.c \
 		rygel-media-object.c \
 		rygel-media-object.h \
 		rygel-media-container.c \
 		rygel-media-container.h \
 		rygel-media-item.c \
-		rygel-media-item.h \
-		rygel-media-manager.h \
-		rygel-media-manager.c
+		rygel-media-item.h
 
 rygel_SOURCES = rygel-1.0.vapi \
 		cstuff.c \
@@ -47,26 +53,31 @@ rygel_SOURCES = rygel-1.0.vapi \
 		rygel-media-server.h \
 		rygel-media-server.c \
 		rygel-media-server.vala \
+		rygel-media-server-factory.h \
+		rygel-media-server-factory.c \
+		rygel-media-server-factory.vala \
+		rygel-main.h \
+		rygel-main.c \
+		rygel-main.vala \
 		rygel-content-directory.h \
 		rygel-content-directory.c \
-		rygel-content-directory.vala \
+		rygel-plugin.h \
+		rygel-plugin.c \
+		rygel-plugin-loader.h \
+		rygel-plugin-loader.c \
+		rygel-plugin-loader.vala \
+		rygel-resource-info.h \
+		rygel-resource-info.c \
 		rygel-connection-manager.h \
 		rygel-connection-manager.c \
-		rygel-connection-manager.vala \
 		rygel-media-receiver-registrar.h \
 		rygel-media-receiver-registrar.c \
-		rygel-media-receiver-registrar.vala \
-		rygel-media-provider.h \
-		rygel-media-provider.c \
 		rygel-media-object.c \
 		rygel-media-object.h \
 		rygel-media-container.c \
 		rygel-media-container.h \
 		rygel-media-item.c \
 		rygel-media-item.h \
-		rygel-media-manager.h \
-		rygel-media-manager.c \
-		rygel-media-manager.vala \
 		rygel-metadata-extractor.c \
 		rygel-metadata-extractor.h \
 		rygel-metadata-extractor.vala
@@ -86,7 +97,11 @@ rygel_LDFLAGS = -export-dynamic
 
 VAPI_FILES = rygel-1.0.vapi
 
-rygel-1.0.vapi: rygel-media-provider.vala \
+rygel-1.0.vapi: rygel-content-directory.vala \
+		rygel-connection-manager.vala \
+		rygel-media-receiver-registrar.vala \
+		rygel-resource-info.vala \
+		rygel-plugin.vala \
 		rygel-media-object.vala \
 		rygel-media-container.vala \
 		rygel-media-item.vala

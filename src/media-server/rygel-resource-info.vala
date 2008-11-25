@@ -1,7 +1,8 @@
 /*
- * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
+ * Copyright (C) 2008 Nokia Corporation, all rights reserved.
  *
- * Author: Zeeshan Ali <zeenix@gmail.com>
+ * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *                               <zeeshan.ali@nokia.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,20 +23,25 @@
  * version 2 of the License, or (at your option) any later version.
  */
 
-using Rygel;
 using Gee;
+using GUPnP;
 
-[ModuleInit]
-public Plugin load_plugin () {
-    Plugin plugin = new Plugin ("Tracker");
+public class Rygel.ResourceInfo {
+    public string upnp_type;
+    public string upnp_id;
+    public string description_path;
 
-    // We only implement a ContentDirectory service
-    var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
-                                          ContentDirectory.UPNP_CLASS,
-                                          ContentDirectory.DESCRIPTION_PATH,
-                                          typeof (MediaTracker));
-    plugin.add_resource (resource_info);
+    // The GLib.Type of the class implementing this service
+    public Type type;
 
-    return plugin;
+    public ResourceInfo (string upnp_id,
+                         string upnp_type,
+                         string description_path,
+                         Type   type) {
+        this.upnp_type = upnp_type;
+        this.upnp_id = upnp_id;
+        this.description_path = description_path;
+        this.type = type;
+    }
 }
 

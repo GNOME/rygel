@@ -27,34 +27,43 @@ using GUPnP;
 using GConf;
 using CStuff;
 
-public class Rygel.MediaServer: RootDevice {
-    private List<ServiceInfo> services;   /* Services we implement */
+public class Rygel.Main : Object {
+    private PluginLoader plugin_loader;
+    private MediaServerFactory ms_factory;
+    private List<MediaServer> media_servers;
 
-    public MediaServer (GUPnP.Context context,
-                        Plugin        plugin,
-                        Xml.Doc      *description_doc,
-                        string        relative_location) {
-        this.resource_factory = plugin;
-        this.root_device = null;
-        this.context = context;
+    public Main () {
+        this.media_servers = new List<MediaServer> ();
+        this.plugin_loader = new PluginLoader ();
+        this.ms_factory = new MediaServerFactory ();
 
-        this.description_doc = description_doc;
-        this.weak_ref ((WeakNotify) xml_doc_free, description_doc);
-        this.relative_location = relative_location;
-
-        // Now create the sevice objects
-        foreach (ResourceInfo info in plugin.resource_infos) {
-            // FIXME: We only support plugable services for now
-            if (info.type.is_a (typeof (Service))) {
-                var service = this.get_service (info.upnp_type);
-
-                this.services.append (service);
-            }
-        }
+        this.plugin_loader.plugin_available += this.on_plugin_loaded;
     }
 
-    private static void xml_doc_free (Xml.Doc* doc, MediaServer server) {
-        delete doc;
+    public void run () {
+        this.plugin_loader.load_plugins ();
+
+        var main_loop = new GLib.MainLoop (null, false);
+        main_loop.run ();
+    }
+
+    private void on_plugin_loaded (PluginLoader plugin_loader,
+                                   Plugin       plugin) {
+        var server = this.ms_factory.create_media_server (plugin);
+
+        /* Make our device available */
+        server.available = true;
+
+        media_servers.append (server);
+    }
+
+    public static int main (string[] args) {
+        Main main;
+
+        main = new Main ();
+        main.run ();
+
+        return 0;
     }
 }
 

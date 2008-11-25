@@ -26,19 +26,48 @@
 
 using GUPnP;
 
+public errordomain Rygel.ContentDirectoryError {
+    NO_SUCH_OBJECT = 701
+}
+
 public class Rygel.ContentDirectory: Service {
+    public const string UPNP_ID = "urn:upnp-org:serviceId:ContentDirectory";
     public const string UPNP_CLASS =
-            "urn:schemas-upnp-org:service:ContentDirectory";
+                    "urn:schemas-upnp-org:service:ContentDirectory:2";
+    public const string DESCRIPTION_PATH = "xml/ContentDirectory.xml";
+
+    protected uint32 system_update_id;
+
     string feature_list;
 
     DIDLLiteWriter didl_writer;
 
-    MediaManager media_manager;
+    // Public abstract methods derived classes need to implement
+    public virtual void add_children_metadata
+                            (DIDLLiteWriter didl_writer,
+                             string         container_id,
+                             string         filter,
+                             uint           starting_index,
+                             uint           requested_count,
+                             string         sort_criteria,
+                             out uint       number_returned,
+                             out uint       total_matches,
+                             out uint       update_id) throws Error {
+        throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
+    }
+
+    public virtual void add_metadata (DIDLLiteWriter didl_writer,
+                                       string         object_id,
+                                       string         filter,
+                                       string         sort_criteria,
+                                       out uint       update_id) throws Error {
+        throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
+    }
 
     public override void constructed () {
-        this.media_manager = new MediaManager (this.context);
-
         this.didl_writer = new DIDLLiteWriter ();
+
+        this.system_update_id = 0;
 
         this.feature_list =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
@@ -116,24 +145,24 @@ public class Rygel.ContentDirectory: Service {
 
         try {
             if (browse_metadata) {
-                this.media_manager.add_metadata (this.didl_writer,
-                                                 object_id,
-                                                 filter,
-                                                 sort_criteria,
-                                                 out update_id);
+                this.add_metadata (this.didl_writer,
+                                   object_id,
+                                   filter,
+                                   sort_criteria,
+                                   out update_id);
 
                 num_returned = 1;
                 total_matches = 1;
             } else {
-                this.media_manager.add_children_metadata (this.didl_writer,
-                                                          object_id,
-                                                          filter,
-                                                          starting_index,
-                                                          requested_count,
-                                                          sort_criteria,
-                                                          out num_returned,
-                                                          out total_matches,
-                                                          out update_id);
+                this.add_children_metadata (this.didl_writer,
+                                            object_id,
+                                            filter,
+                                            starting_index,
+                                            requested_count,
+                                            sort_criteria,
+                                            out num_returned,
+                                            out total_matches,
+                                            out update_id);
             }
 
             /* End DIDL-Lite fragment */
@@ -141,6 +170,10 @@ public class Rygel.ContentDirectory: Service {
 
             /* Retrieve generated string */
             string didl = this.didl_writer.get_string ();
+
+            if (update_id == uint32.MAX) {
+                update_id = this.system_update_id;
+            }
 
             /* Set action return arguments */
             action.set ("Result", typeof (string), didl,
@@ -161,7 +194,7 @@ public class Rygel.ContentDirectory: Service {
     private void get_system_update_id_cb (ContentDirectory content_dir,
                                           ServiceAction    action) {
         /* Set action return arguments */
-        action.set ("Id", typeof (uint32), this.media_manager.system_update_id);
+        action.set ("Id", typeof (uint32), this.system_update_id);
 
         action.return ();
     }
@@ -172,7 +205,7 @@ public class Rygel.ContentDirectory: Service {
                                          ref GLib.Value value) {
         /* Set action return arguments */
         value.init (typeof (uint32));
-        value.set_uint (this.media_manager.system_update_id);
+        value.set_uint (this.system_update_id);
     }
 
     /* action GetSearchCapabilities implementation */
