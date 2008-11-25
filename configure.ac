@@ -21,6 +21,7 @@ GCONF_REQUIRED=2.22
 DBUS_GLIB_REQUIRED=0.74
 GSTREAMER_REQUIRED=0.10.18
 GIO_REQUIRED=2.16
+GEE_REQUIRED=0.1.3
 
 PKG_CHECK_MODULES(VALA, [vala-1.0 >= $VALA_REQUIRED])
 PKG_CHECK_MODULES(LIBGUPNP, gupnp-1.0 >= $GUPNP_REQUIRED)
@@ -29,6 +30,7 @@ PKG_CHECK_MODULES(LIBGCONF, gconf-2.0 >= $GCONF_REQUIRED)
 PKG_CHECK_MODULES(LIBDBUS_GLIB, dbus-glib-1 >= $DBUS_GLIB_REQUIRED)
 PKG_CHECK_MODULES(LIBGSTREAMER, gstreamer-0.10 >= $GSTREAMER_REQUIRED)
 PKG_CHECK_MODULES(LIBGIO, gio-2.0 >= $GIO_REQUIRED)
+PKG_CHECK_MODULES(GEE, gee-1.0 >= $GEE_REQUIRED)
 
 # Vala compiler
 # This is more to get the path of the compiler since the pkg-config check
@@ -65,6 +67,10 @@ AC_CHECK_FILE("${VAPIDIR}/gstreamer-0.10.vapi",
 AC_CHECK_FILE("${VAPIDIR}/gio-2.0.vapi",
         true,
         [AC_MSG_ERROR("Unable to find Vala bindings for gio-2.0")])
+
+AC_CHECK_FILE("${VAPIDIR}/gee-1.0.vapi",
+        true,
+        [AC_MSG_ERROR("Unable to find Vala bindings for gee-1.0")])
 
 # glib-genmarshal
 GLIB_GENMARSHAL=`pkg-config --variable=glib_genmarshal glib-2.0`

@@ -5,6 +5,7 @@ plugin_LTLIBRARIES = librygel-media-tracker.la
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
+	    $(GEE_CFLAGS) \
 	    -I$(top_srcdir)/src/media-server
 
 BUILT_SOURCES = rygel-media-tracker.stamp \
@@ -48,12 +49,13 @@ librygel_media_tracker_la_SOURCES = rygel-media-tracker.h \
 rygel-media-tracker.stamp: $(filter %.vala,$(librygel_media_tracker_la_SOURCES))
 	$(VALAC) -C --vapidir=$(top_srcdir)/src/media-server \
 	--pkg rygel-1.0 \
-	--pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 $^
+	--pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 --pkg gee-1.0 $^
 	touch $@
 
 librygel_media_tracker_la_LIBADD = $(LIBGUPNP_LIBS) \
 			       	   $(LIBGUPNP_AV_LIBS) \
-				   $(LIBDBUS_GLIB_LIBS)
+				   $(LIBDBUS_GLIB_LIBS) \
+				   $(GEE_LIBS)
 librygel_media_tracker_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
 CLEANFILES = $(BUILT_SOURCES)

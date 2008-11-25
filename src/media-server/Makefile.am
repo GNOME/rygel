@@ -15,6 +15,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGCONF_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
 	    $(GIO_CFLAGS) \
+	    $(GEE_CFLAGS) \
 	    -I$(top_srcdir) -DDATA_DIR='"$(shareddir)"' \
 	    -DPLUGIN_DIR='"$(plugindir)"'
 
@@ -85,14 +86,15 @@ rygel_SOURCES = rygel-1.0.vapi \
 rygel.stamp: $(filter %.vala,$(rygel_SOURCES))
 	$(VALAC) -C --vapidir=$(srcdir) --pkg rygel-1.0 \
 	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
-	--pkg gconf-2.0 --pkg gstreamer-0.10 --pkg gio-2.0 $^
+	--pkg gconf-2.0 --pkg gstreamer-0.10 --pkg gio-2.0 --pkg gee-1.0 $^
 	touch $@
 
 rygel_LDADD = $(LIBGUPNP_LIBS) \
 	      $(LIBGUPNP_AV_LIBS) \
 	      $(LIBGCONF_LIBS) \
 	      $(LIBGSTREAMER_LIBS) \
-	      $(GIO_LIBS)
+	      $(GIO_LIBS) \
+	      $(GEE_LIBS)
 rygel_LDFLAGS = -export-dynamic
 
 VAPI_FILES = rygel-1.0.vapi
@@ -106,7 +108,7 @@ rygel-1.0.vapi: rygel-content-directory.vala \
 		rygel-media-container.vala \
 		rygel-media-item.vala
 	$(VALAC) -C --library=rygel-1.0 \
-	--pkg gupnp-1.0 --pkg gupnp-av-1.0 \
+	--pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gee-1.0 \
 	$^
 
 CLEANFILES = $(BUILT_SOURCES)
