@@ -6,7 +6,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
 	    $(GEE_CFLAGS) \
-	    -I$(top_srcdir)/src/media-server
+	    -I$(top_srcdir)/src/rygel
 
 BUILT_SOURCES = rygel-media-tracker.stamp \
 		rygel-media-tracker.h \
@@ -47,7 +47,7 @@ librygel_media_tracker_la_SOURCES = rygel-media-tracker.h \
 				    rygel-tracker-plugin.vala
 
 rygel-media-tracker.stamp: $(filter %.vala,$(librygel_media_tracker_la_SOURCES))
-	$(VALAC) -C --vapidir=$(top_srcdir)/src/media-server \
+	$(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \
 	--pkg rygel-1.0 \
 	--pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 --pkg gee-1.0 $^
 	touch $@

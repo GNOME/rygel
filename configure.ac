@@ -1,7 +1,7 @@
 AC_PREREQ(2.53)
 AC_INIT(rygel, 0.1, http://live.gnome.org/Rygel)
 AM_INIT_AUTOMAKE()
-AC_CONFIG_SRCDIR(src/media-server/rygel-media-server.vala)
+AC_CONFIG_SRCDIR(src/rygel/rygel-media-server.vala)
 AM_CONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
 
@@ -117,7 +117,7 @@ AM_GLIB_DEFINE_LOCALEDIR([LOCALEDIR])
 AC_OUTPUT([
 Makefile
 src/Makefile
-src/media-server/Makefile
+src/rygel/Makefile
 src/plugins/Makefile
 src/plugins/tracker/Makefile
 data/Makefile
