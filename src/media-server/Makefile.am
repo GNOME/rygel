@@ -5,7 +5,7 @@ shareddir = $(datadir)/rygel
 endif
 
 if UNINSTALLED
-plugindir = $(abs_top_builddir)/src/media-providers
+plugindir = $(abs_top_builddir)/src/plugins
 else
 plugindir = $(libdir)/rygel-1.0
 endif

@@ -118,8 +118,8 @@ AC_OUTPUT([
 Makefile
 src/Makefile
 src/media-server/Makefile
-src/media-providers/Makefile
-src/media-providers/tracker/Makefile
+src/plugins/Makefile
+src/plugins/tracker/Makefile
 data/Makefile
 data/xml/Makefile
 ])

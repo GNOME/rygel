@@ -1,3 +1,3 @@
-SUBDIRS = media-server media-providers
+SUBDIRS = media-server plugins
 
 MAINTAINERCLEANFILES = Makefile.in
