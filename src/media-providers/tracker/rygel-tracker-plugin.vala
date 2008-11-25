@@ -31,7 +31,7 @@ public Plugin load_plugin () {
 
     // We only implement a ContentDirectory service
     var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
-                                          ContentDirectory.UPNP_CLASS,
+                                          ContentDirectory.UPNP_TYPE,
                                           ContentDirectory.DESCRIPTION_PATH,
                                           typeof (MediaTracker));
     plugin.add_resource (resource_info);

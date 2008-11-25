@@ -39,7 +39,7 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
         /* Register Rygel.ConnectionManager */
         var resource_info = new ResourceInfo
                                 (ConnectionManager.UPNP_ID,
-                                 ConnectionManager.UPNP_CLASS,
+                                 ConnectionManager.UPNP_TYPE,
                                  ConnectionManager.DESCRIPTION_PATH,
                                  typeof (ConnectionManager));
         this.add_resource (resource_info);
@@ -47,7 +47,7 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
         /* Register Rygel.MediaReceiverRegistrar */
         resource_info = new ResourceInfo
                                 (MediaReceiverRegistrar.UPNP_ID,
-                                 MediaReceiverRegistrar.UPNP_CLASS,
+                                 MediaReceiverRegistrar.UPNP_TYPE,
                                  MediaReceiverRegistrar.DESCRIPTION_PATH,
                                  typeof (MediaReceiverRegistrar));
         this.add_resource (resource_info);

@@ -32,7 +32,7 @@ public errordomain Rygel.ContentDirectoryError {
 
 public class Rygel.ContentDirectory: Service {
     public const string UPNP_ID = "urn:upnp-org:serviceId:ContentDirectory";
-    public const string UPNP_CLASS =
+    public const string UPNP_TYPE =
                     "urn:schemas-upnp-org:service:ContentDirectory:2";
     public const string DESCRIPTION_PATH = "xml/ContentDirectory.xml";
 

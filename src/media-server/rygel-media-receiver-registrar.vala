@@ -27,7 +27,7 @@ using GUPnP;
 public class Rygel.MediaReceiverRegistrar: Service {
     public const string UPNP_ID =
                     "urn:microsoft.com:serviceId:X_MS_MediaReceiverRegistrar";
-    public const string UPNP_CLASS =
+    public const string UPNP_TYPE =
                     "urn:microsoft.com:service:X_MS_MediaReceiverRegistrar:1";
     public const string DESCRIPTION_PATH =
                     "xml/X_MS_MediaReceiverRegistrar1.xml";
