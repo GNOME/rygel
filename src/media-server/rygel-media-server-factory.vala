@@ -32,7 +32,7 @@ public class Rygel.MediaServerFactory {
     public static const string DESC_DOC = "xml/description.xml";
     public static const string XBOX_DESC_DOC = "xml/description-xbox360.xml";
     public static const string DESC_PREFIX = "Rygel";
-    public static const string GCONF_PATH = "/apps/gupnp-media-server/";
+    public static const string ROOT_GCONF_PATH = "/apps/gupnp-media-server/";
 
     private GConf.Client gconf;
     private GUPnP.Context context;
@@ -45,7 +45,7 @@ public class Rygel.MediaServerFactory {
     }
 
     public MediaServer? create_media_server (Plugin plugin) {
-        string gconf_path = GCONF_PATH + plugin.name + "/";
+        string gconf_path = ROOT_GCONF_PATH + plugin.name + "/";
         string modified_desc = DESC_PREFIX + "-" + plugin.name + ".xml";
 
         bool enable_xbox;
@@ -113,7 +113,7 @@ public class Rygel.MediaServerFactory {
     private GUPnP.Context? create_upnp_context () {
         string host_ip;
         try {
-            host_ip = this.gconf.get_string (GCONF_PATH + "host-ip");
+            host_ip = this.gconf.get_string (ROOT_GCONF_PATH + "host-ip");
         } catch (GLib.Error error) {
             warning ("%s", error.message);
 
@@ -122,7 +122,7 @@ public class Rygel.MediaServerFactory {
 
         int port;
         try {
-            port = this.gconf.get_int (GCONF_PATH + "port");
+            port = this.gconf.get_int (ROOT_GCONF_PATH + "port");
         } catch (GLib.Error error) {
             warning ("%s", error.message);
 
