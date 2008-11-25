@@ -144,8 +144,8 @@ public class Rygel.MediaServerFactory {
         return context;
     }
 
-    private string? get_str_from_gconf (string key,
-                                        string default_value) {
+    private string get_str_from_gconf (string key,
+                                       string default_value) {
         string str;
 
         try {
@@ -227,9 +227,6 @@ public class Rygel.MediaServerFactory {
 
         string str = get_str_from_gconf (gconf_path + "friendly-name",
                                          plugin_name);
-        if (str == null)
-            return;
-
         element->set_content (str);
 
         /* UDN */
@@ -242,11 +239,7 @@ public class Rygel.MediaServerFactory {
 
         /* Generate new UUID */
         string default_value = Utils.generate_random_udn ();
-
         str = get_str_from_gconf (gconf_path + "UDN", default_value);
-        if (str == null)
-            return;
-
         element->set_content (str);
     }
 
