@@ -32,7 +32,7 @@ public class Rygel.MediaServerFactory {
     public static const string DESC_DOC = "xml/description.xml";
     public static const string XBOX_DESC_DOC = "xml/description-xbox360.xml";
     public static const string DESC_PREFIX = "Rygel";
-    public static const string ROOT_GCONF_PATH = "/apps/gupnp-media-server/";
+    public static const string ROOT_GCONF_PATH = "/apps/rygel/";
 
     private GConf.Client gconf;
     private GUPnP.Context context;
