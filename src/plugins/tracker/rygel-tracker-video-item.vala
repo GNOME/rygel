@@ -27,6 +27,9 @@ using Rygel;
 using GUPnP;
 using DBus;
 
+/**
+ * Represents Tracker video item.
+ */
 public class Rygel.TrackerVideoItem : TrackerItem {
     public TrackerVideoItem (string              id,
                              string              path,

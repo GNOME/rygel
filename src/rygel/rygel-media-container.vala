@@ -24,6 +24,10 @@
 
 using GUPnP;
 
+/**
+ * Represents a container (folder) for media items and containers. Provides
+ * basic serialization (to DIDLLiteWriter) implementation.
+ */
 public class Rygel.MediaContainer : MediaObject {
     public uint child_count;
 

@@ -24,6 +24,10 @@
 
 using GUPnP;
 
+/**
+ * Represents a media (Music, Video and Image) item. Provides basic
+ * serialization (to DIDLLiteWriter) implementation.
+ */
 public class Rygel.MediaItem : MediaObject {
     public static const string IMAGE_CLASS = "object.item.imageItem";
     public static const string VIDEO_CLASS = "object.item.videoItem";

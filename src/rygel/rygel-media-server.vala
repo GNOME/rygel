@@ -27,6 +27,9 @@ using GUPnP;
 using GConf;
 using CStuff;
 
+/**
+ * Represents a MediaServer device.
+ */
 public class Rygel.MediaServer: RootDevice {
     private List<ServiceInfo> services;   /* Services we implement */
 

@@ -27,6 +27,9 @@ using Rygel;
 using GUPnP;
 using DBus;
 
+/**
+ * Represents Tracker image item.
+ */
 public class Rygel.TrackerImageItem : TrackerItem {
     public TrackerImageItem (string              id,
                              string              path,

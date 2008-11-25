@@ -27,6 +27,9 @@ using Rygel;
 using GUPnP;
 using DBus;
 
+/**
+ * Represents Tracker item.
+ */
 public abstract class Rygel.TrackerItem : MediaItem {
     protected TrackerContainer parent;
     protected string path;

@@ -24,6 +24,9 @@
 
 using GUPnP;
 
+/**
+ * Basic implementation of MS MediaReceiverRegistrar service version 1.
+ */
 public class Rygel.MediaReceiverRegistrar: Service {
     public const string UPNP_ID =
                     "urn:microsoft.com:serviceId:X_MS_MediaReceiverRegistrar";

@@ -27,6 +27,9 @@ using Rygel;
 using GUPnP;
 using DBus;
 
+/**
+ * Represents Tracker music item.
+ */
 public class Rygel.TrackerMusicItem : TrackerItem {
     public TrackerMusicItem (string              id,
                              string              path,

@@ -26,6 +26,11 @@
 using CStuff;
 using GUPnP;
 
+/**
+ * Responsible for plugin loading. Probes for shared library files in a specific
+ * directry and tries to grab a function with a specific name and signature,
+ * calls it and expects a Plugin instance in return.
+ */
 public class Rygel.PluginLoader : Object {
     /* We need to keep the modules somewhere */
     private List<Module> modules;

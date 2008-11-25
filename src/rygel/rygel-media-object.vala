@@ -24,6 +24,10 @@
 
 using GUPnP;
 
+/**
+ * Represents a media object (container and item). Subclasses should implement
+ * the abstract serialize method.
+ */
 public abstract class Rygel.MediaObject {
     public string id;
     public string parent_id;

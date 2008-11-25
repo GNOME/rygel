@@ -27,6 +27,9 @@ using Rygel;
 using GUPnP;
 using DBus;
 
+/**
+ * Implementation of Tracker-based ContentDirectory service.
+ */
 public class Rygel.MediaTracker : ContentDirectory {
     public static const int MAX_REQUESTED_COUNT = 128;
 

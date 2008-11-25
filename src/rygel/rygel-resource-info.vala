@@ -26,6 +26,10 @@
 using Gee;
 using GUPnP;
 
+/**
+ * Holds information about a particular resource (device and service)
+ * implementation.
+ */
 public class Rygel.ResourceInfo {
     public string upnp_type;
     public string upnp_id;

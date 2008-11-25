@@ -26,6 +26,10 @@
 using Gee;
 using GUPnP;
 
+/**
+ * Represents a Rygel plugin. Plugins are supposed to provide an object of this
+ * class or a subclass.
+ */
 public class Rygel.Plugin : GUPnP.ResourceFactory {
     public string name;
 

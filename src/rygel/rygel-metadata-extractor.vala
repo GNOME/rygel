@@ -34,6 +34,11 @@ private enum Gst.StreamType {
     ELEMENT = 5     /* stream handled by an element */
 }
 
+/**
+ * Metadata extractor based on Gstreamer. Just set the URI of the media on the
+ * uri property, it will extact the metadata for you and emit signal
+ * metadata_available for each key/value pair extracted.
+ */
 public class Rygel.MetadataExtractor: GLib.Object {
 
     /* TODO: Use tagbin instead once it's ready */

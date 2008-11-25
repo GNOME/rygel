@@ -28,6 +28,10 @@ using GUPnP;
 using GConf;
 using CStuff;
 
+/**
+ * Factory for MediaServer objects. Give it a plugin and it will create a
+ * MediaServer device for that.
+ */
 public class Rygel.MediaServerFactory {
     public static const string DESC_DOC = "xml/description.xml";
     public static const string XBOX_DESC_DOC = "xml/description-xbox360.xml";
@@ -209,7 +213,8 @@ public class Rygel.MediaServerFactory {
         this.add_services_to_desc (device_element, plugin);
     }
 
-    /* Fills the description doc @doc with a friendly name, and UDN from gconf.
+    /**
+     * Fills the description doc @doc with a friendly name, and UDN from gconf.
      * If these keys are not present in gconf, they are set with default values.
      */
     private void set_friendly_name_and_udn (Xml.Node *device_element,
