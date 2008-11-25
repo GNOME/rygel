@@ -28,6 +28,9 @@ using GLib;
 using GUPnP;
 
 public class Rygel.ConnectionManager : Service {
+    public const string UPNP_CLASS =
+                        "urn:schemas-upnp-org:service:ConnectionManager";
+
     private string source_protocol_info;
     private string sink_protocol_info;
     private string connection_ids;

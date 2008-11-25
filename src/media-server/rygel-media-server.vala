@@ -29,21 +29,12 @@ using GConf;
 using CStuff;
 
 public class Rygel.MediaServer: RootDevice {
-    public static const string CONTENT_DIR =
-                        "urn:schemas-upnp-org:service:ContentDirectory";
-    public static const string CONNECTION_MANAGER =
-                        "urn:schemas-upnp-org:service:ConnectionManager";
-    public static const string MEDIA_RECEIVER_REGISTRAR =
-                        "urn:microsoft.com:service:X_MS_MediaReceiverRegistrar";
-
     public static const string DESC_DOC = "xml/description.xml";
     public static const string XBOX_DESC_DOC = "xml/description-xbox360.xml";
     public static const string MODIFIED_DESC_DOC = "gupnp-media-server.xml";
     public static const string GCONF_PATH = "/apps/gupnp-media-server/";
 
-    private ContentDirectory content_dir; /* ContentDirectory */
-    private ConnectionManager cm;         /* ConnectionManager */
-    private MediaReceiverRegistrar msr;   /* MS MediaReceiverRegistrar */
+    private List<ServiceInfo> services;   /* Services we implement */
 
     public MediaServer (GUPnP.Context context,
                         Xml.Doc       description_doc,
@@ -57,28 +48,29 @@ public class Rygel.MediaServer: RootDevice {
         ResourceFactory factory = this.resource_factory;
 
         /* Register Rygel.ContentDirectory */
-        factory.register_resource_type (CONTENT_DIR + ":1",
+        factory.register_resource_type (ContentDirectory.UPNP_CLASS + ":1",
                                         typeof (ContentDirectory));
-        factory.register_resource_type (CONTENT_DIR + ":2",
+        factory.register_resource_type (ContentDirectory.UPNP_CLASS + ":2",
                                         typeof (ContentDirectory));
 
         /* Register Rygel.ConnectionManager */
-        factory.register_resource_type (CONNECTION_MANAGER + ":1",
+        factory.register_resource_type (ConnectionManager.UPNP_CLASS + ":1",
                                         typeof (ConnectionManager));
-        factory.register_resource_type (CONNECTION_MANAGER + ":2",
+        factory.register_resource_type (ConnectionManager.UPNP_CLASS + ":2",
                                         typeof (ConnectionManager));
 
         /* Register Rygel.MediaReceiverRegistrar */
-        factory.register_resource_type (MEDIA_RECEIVER_REGISTRAR + ":1",
-                                        typeof (MediaReceiverRegistrar));
-        factory.register_resource_type (MEDIA_RECEIVER_REGISTRAR + ":2",
-                                        typeof (MediaReceiverRegistrar));
+        factory.register_resource_type
+                        (MediaReceiverRegistrar.UPNP_CLASS + ":1",
+                         typeof (MediaReceiverRegistrar));
+        factory.register_resource_type
+                        (MediaReceiverRegistrar.UPNP_CLASS + ":2",
+                         typeof (MediaReceiverRegistrar));
 
         /* Now create the sevice objects */
-        this.content_dir = (ContentDirectory) this.get_service (CONTENT_DIR);
-        this.cm = (ConnectionManager) this.get_service (CONNECTION_MANAGER);
-        this.msr = (MediaReceiverRegistrar) this.get_service
-                                                (MEDIA_RECEIVER_REGISTRAR);
+        services.append (this.get_service (ContentDirectory.UPNP_CLASS));
+        services.append (this.get_service (ConnectionManager.UPNP_CLASS));
+        services.append (this.get_service (MediaReceiverRegistrar.UPNP_CLASS));
     }
 
     public static int main (string[] args) {

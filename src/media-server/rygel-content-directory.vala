@@ -27,6 +27,8 @@
 using GUPnP;
 
 public class Rygel.ContentDirectory: Service {
+    public const string UPNP_CLASS =
+            "urn:schemas-upnp-org:service:ContentDirectory";
     string feature_list;
 
     DIDLLiteWriter didl_writer;
