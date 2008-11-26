@@ -21,6 +21,11 @@
  */
 
 #include <cstuff.h>
+#include <signal.h>
+
+static ApplicationExitCb on_app_exit = NULL;
+static gpointer data;
+static struct sigaction sig_action;
 
 /* Copy-paste from gupnp. */
 xmlNode *
@@ -65,5 +70,24 @@ generate_random_udn (void)
         uuid_unparse (id, default_value + 5);
 
         return default_value;
+}
+
+static void
+signal_handler (int signum)
+{
+        on_app_exit (data);
+}
+
+void
+on_application_exit (ApplicationExitCb app_exit_cb,
+                     gpointer          user_data)
+{
+        on_app_exit = app_exit_cb;
+        data = user_data;
+
+        /* Hook the handler for SIGTERM */
+        memset (&sig_action, 0, sizeof (sig_action));
+        sig_action.sa_handler = signal_handler;
+        sigaction (SIGINT, &sig_action, NULL);
 }
 

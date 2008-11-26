@@ -42,5 +42,11 @@ namespace CStuff {
                                                        ...);
         [CCode (cname = "generate_random_udn")]
         public static string generate_random_udn ();
+
+        public delegate void ApplicationExitCb ();
+
+        [CCode (cname = "on_application_exit")]
+        public static void on_application_exit
+                                        (ApplicationExitCb app_exit_cb);
     }
 }

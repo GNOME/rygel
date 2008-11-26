@@ -45,6 +45,8 @@ public class Rygel.Main : Object {
         this.exit_code = 0;
 
         this.plugin_loader.plugin_available += this.on_plugin_loaded;
+
+        Utils.on_application_exit (this.application_exit_cb);
     }
 
     public int run () {
@@ -58,6 +60,10 @@ public class Rygel.Main : Object {
     public void exit (int exit_code) {
         this.exit_code = exit_code;
         this.main_loop.quit ();
+    }
+
+    private void application_exit_cb () {
+        this.exit (0);
     }
 
     private void on_plugin_loaded (PluginLoader plugin_loader,
