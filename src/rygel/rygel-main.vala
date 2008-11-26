@@ -34,19 +34,30 @@ public class Rygel.Main : Object {
 
     private MainLoop main_loop;
 
+    private int exit_code;
+
     public Main () throws GLib.Error {
         this.media_servers = new List<MediaServer> ();
         this.plugin_loader = new PluginLoader ();
         this.ms_factory = new MediaServerFactory ();
         this.main_loop = new GLib.MainLoop (null, false);
 
+        this.exit_code = 0;
+
         this.plugin_loader.plugin_available += this.on_plugin_loaded;
     }
 
-    public void run () {
+    public int run () {
         this.plugin_loader.load_plugins ();
 
         this.main_loop.run ();
+
+        return this.exit_code;
+    }
+
+    public void exit (int exit_code) {
+        this.exit_code = exit_code;
+        this.main_loop.quit ();
     }
 
     private void on_plugin_loaded (PluginLoader plugin_loader,
@@ -76,9 +87,9 @@ public class Rygel.Main : Object {
             return -1;
         }
 
-        main.run ();
+        int exit_code = main.run ();
 
-        return 0;
+        return exit_code;
     }
 }
 
