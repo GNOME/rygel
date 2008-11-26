@@ -32,10 +32,13 @@ public class Rygel.Main : Object {
     private MediaServerFactory ms_factory;
     private List<MediaServer> media_servers;
 
+    private MainLoop main_loop;
+
     public Main () throws GLib.Error {
         this.media_servers = new List<MediaServer> ();
         this.plugin_loader = new PluginLoader ();
         this.ms_factory = new MediaServerFactory ();
+        this.main_loop = new GLib.MainLoop (null, false);
 
         this.plugin_loader.plugin_available += this.on_plugin_loaded;
     }
@@ -43,8 +46,7 @@ public class Rygel.Main : Object {
     public void run () {
         this.plugin_loader.load_plugins ();
 
-        var main_loop = new GLib.MainLoop (null, false);
-        main_loop.run ();
+        this.main_loop.run ();
     }
 
     private void on_plugin_loaded (PluginLoader plugin_loader,
