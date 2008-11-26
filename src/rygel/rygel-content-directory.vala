@@ -45,8 +45,7 @@ public class Rygel.ContentDirectory: Service {
     public const string DESCRIPTION_PATH = "xml/ContentDirectory.xml";
 
     protected uint32 system_update_id;
-
-    string feature_list;
+    protected string feature_list;
 
     DIDLLiteWriter didl_writer;
 
@@ -110,8 +109,8 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* Browse action implementation */
-    private void browse_cb (ContentDirectory content_dir,
-                            ServiceAction    action) {
+    protected virtual void browse_cb (ContentDirectory content_dir,
+                                      ServiceAction    action) {
         string object_id, browse_flag;
         bool browse_metadata;
         string sort_criteria, filter;

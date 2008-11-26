@@ -36,9 +36,9 @@ public class Rygel.ConnectionManager : Service {
                     "urn:schemas-upnp-org:service:ConnectionManager:2";
     public const string DESCRIPTION_PATH = "xml/ConnectionManager.xml";
 
-    private string source_protocol_info;
-    private string sink_protocol_info;
-    private string connection_ids;
+    protected string source_protocol_info;
+    protected string sink_protocol_info;
+    protected string connection_ids;
 
     public override void constructed () {
         this.sink_protocol_info   = "";
