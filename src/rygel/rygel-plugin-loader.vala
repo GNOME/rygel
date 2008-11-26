@@ -95,23 +95,11 @@ public class Rygel.PluginLoader : Object {
     }
 
     private void load_plugin_from_file (string file_path) {
-        Plugin plugin;
-        Module module;
-
-        plugin = this.load_media_provider_from_file (file_path, out module);
-        if (plugin != null) {
-            this.plugin_available (plugin);
-            this.modules.append (#module);
-        }
-    }
-
-    private Plugin? load_media_provider_from_file (string     file_path,
-                                                   out Module module) {
-        module = Module.open (file_path, ModuleFlags.BIND_LOCAL);
+        Module module = Module.open (file_path, ModuleFlags.BIND_LOCAL);
         if (module == null) {
             debug ("Failed to load plugin from path: '%s'\n", file_path);
 
-            return null;
+            return;
         }
 
         void* function;
@@ -119,16 +107,19 @@ public class Rygel.PluginLoader : Object {
         module.symbol("load_plugin", out function);
 
         LoadPluginFunc load_plugin = (LoadPluginFunc) function;
-
         if (load_plugin == null) {
             warning ("Failed to load plugin from path: '%s'\n", file_path);
 
-            return null;
+            return;
         }
 
         debug ("Loaded plugin: '%s'\n", module.name());
 
-        return load_plugin ();
+        Plugin plugin = load_plugin ();
+        if (plugin != null) {
+            this.plugin_available (plugin);
+            this.modules.append (#module);
+        }
     }
 
     private static bool is_dir (File file) {
