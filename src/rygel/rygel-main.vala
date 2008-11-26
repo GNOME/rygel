@@ -32,7 +32,7 @@ public class Rygel.Main : Object {
     private MediaServerFactory ms_factory;
     private List<MediaServer> media_servers;
 
-    public Main () {
+    public Main () throws GLib.Error {
         this.media_servers = new List<MediaServer> ();
         this.plugin_loader = new PluginLoader ();
         this.ms_factory = new MediaServerFactory ();
@@ -49,18 +49,31 @@ public class Rygel.Main : Object {
 
     private void on_plugin_loaded (PluginLoader plugin_loader,
                                    Plugin       plugin) {
-        var server = this.ms_factory.create_media_server (plugin);
+        try {
+            var server = this.ms_factory.create_media_server (plugin);
 
-        /* Make our device available */
-        server.available = true;
+            /* Make our device available */
+            server.available = true;
 
-        media_servers.append (server);
+            media_servers.append (server);
+        } catch (GLib.Error error) {
+            warning ("Failed to create MediaServer for %s. Reason: %s\n",
+                     plugin.name,
+                     error.message);
+        }
     }
 
     public static int main (string[] args) {
         Main main;
 
-        main = new Main ();
+        try {
+            main = new Main ();
+        } catch (GLib.Error err) {
+            error ("%s", err.message);
+
+            return -1;
+        }
+
         main.run ();
 
         return 0;

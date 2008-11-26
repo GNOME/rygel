@@ -28,6 +28,10 @@ using GUPnP;
 using GConf;
 using CStuff;
 
+public errordomain MediaServerFactoryError {
+    XML_PARSE
+}
+
 /**
  * Factory for MediaServer objects. Give it a plugin and it will create a
  * MediaServer device for that.
@@ -41,14 +45,14 @@ public class Rygel.MediaServerFactory {
     private GConf.Client gconf;
     private GUPnP.Context context;
 
-    public MediaServerFactory () {
+    public MediaServerFactory () throws GLib.Error {
         this.gconf = GConf.Client.get_default ();
 
         /* Set up GUPnP context */
         this.context = create_upnp_context ();
     }
 
-    public MediaServer? create_media_server (Plugin plugin) {
+    public MediaServer create_media_server (Plugin plugin) throws GLib.Error {
         string gconf_path = ROOT_GCONF_PATH + plugin.name + "/";
         string modified_desc = DESC_PREFIX + "-" + plugin.name + ".xml";
 
@@ -75,8 +79,11 @@ public class Rygel.MediaServerFactory {
                                                   DESC_DOC);
 
         Xml.Doc *doc = Xml.Parser.parse_file (orig_desc_path);
-        if (doc == null)
-            return null;
+        if (doc == null) {
+            string message = "Failed to parse %s".printf (orig_desc_path);
+
+            throw new MediaServerFactoryError.XML_PARSE (message);
+        }
 
         /* Modify description to include Plugin-specific stuff */
         this.prepare_desc_for_plugin (doc, plugin, gconf_path);
@@ -95,12 +102,12 @@ public class Rygel.MediaServerFactory {
             res = Xml.Doc.dump (f, doc);
 
         if (f == null || res == -1) {
-            critical ("Failed to write modified description.xml to %s.\n",
-                      desc_path);
+            string message = "Failed to write modified description" +
+                             " to %s.\n".printf (desc_path);
 
             delete doc;
 
-            return null;
+            throw new IOError.FAILED (message);
         }
 
         /* Host our modified file */
@@ -114,7 +121,7 @@ public class Rygel.MediaServerFactory {
         return server;
     }
 
-    private GUPnP.Context? create_upnp_context () {
+    private GUPnP.Context create_upnp_context () throws GLib.Error {
         string host_ip;
         try {
             host_ip = this.gconf.get_string (ROOT_GCONF_PATH + "host-ip");
@@ -133,14 +140,7 @@ public class Rygel.MediaServerFactory {
             port = 0;
         }
 
-        GUPnP.Context context;
-        try {
-            context = new GUPnP.Context (null, host_ip, port);
-        } catch (GLib.Error error) {
-            warning ("Error setting up GUPnP context: %s", error.message);
-
-            return null;
-        }
+        GUPnP.Context context = new GUPnP.Context (null, host_ip, port);
 
         /* Host UPnP dir */
         context.host_path (BuildConfig.DATA_DIR, "");
