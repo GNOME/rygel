@@ -46,6 +46,8 @@ public class Rygel.ContentDirectory: Service {
 
     protected uint32 system_update_id;
     protected string feature_list;
+    protected string search_caps;
+    protected string sort_caps;
 
     DIDLLiteWriter didl_writer;
 
@@ -75,7 +77,6 @@ public class Rygel.ContentDirectory: Service {
         this.didl_writer = new DIDLLiteWriter ();
 
         this.system_update_id = 0;
-
         this.feature_list =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
             "<Features xmlns=\"urn:schemas-upnp-org:av:avs\" " +
@@ -83,6 +84,8 @@ public class Rygel.ContentDirectory: Service {
             "xsi:schemaLocation=\"urn:schemas-upnp-org:av:avs" +
             "http://www.upnp.org/schemas/av/avs-v1-20060531.xsd\">" +
             "</Features>";
+        this.search_caps = "";
+        this.sort_caps = "";
 
         this.action_invoked["Browse"] += this.browse_cb;
 
@@ -219,7 +222,7 @@ public class Rygel.ContentDirectory: Service {
     private void get_search_capabilities_cb (ContentDirectory content_dir,
                                              ServiceAction    action) {
         /* Set action return arguments */
-        action.set ("SearchCaps", typeof (string), "");
+        action.set ("SearchCaps", typeof (string), this.search_caps);
 
         action.return ();
     }
@@ -230,14 +233,14 @@ public class Rygel.ContentDirectory: Service {
                                             ref GLib.Value   value) {
         /* Set action return arguments */
         value.init (typeof (string));
-        value.set_string ("");
+        value.set_string (this.search_caps);
     }
 
     /* action GetSortCapabilities implementation */
     private void get_sort_capabilities_cb (ContentDirectory content_dir,
                                            ServiceAction    action) {
         /* Set action return arguments */
-        action.set ("SortCaps", typeof (string), "");
+        action.set ("SortCaps", typeof (string), this.sort_caps);
 
         action.return ();
     }
@@ -248,7 +251,7 @@ public class Rygel.ContentDirectory: Service {
                                           ref GLib.Value   value) {
         /* Set action return arguments */
         value.init (typeof (string));
-        value.set_string ("");
+        value.set_string (this.sort_caps);
     }
 
     /* action GetFeatureList implementation */
