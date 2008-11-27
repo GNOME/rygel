@@ -24,6 +24,7 @@
 
 using Rygel;
 using Gee;
+using CStuff;
 
 [ModuleInit]
 public Plugin load_plugin () {
@@ -34,7 +35,17 @@ public Plugin load_plugin () {
                                           ContentDirectory.UPNP_TYPE,
                                           ContentDirectory.DESCRIPTION_PATH,
                                           typeof (MediaTracker));
+
     plugin.add_resource (resource_info);
+
+    var icon_info = new IconInfo ("image/png", // Mimetype
+                                  48, // width
+                                  48, // height
+                                  24, // depth
+                                  BuildConfig.DATA_DIR + // Path
+                                  "/icons/hicolor/48x48/apps/tracker.png");
+
+    plugin.add_icon (icon_info);
 
     return plugin;
 }
