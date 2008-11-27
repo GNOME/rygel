@@ -113,12 +113,10 @@ public class Rygel.MediaServerFactory {
         /* Host our modified file */
         this.context.host_path (desc_path, "/" + modified_desc);
 
-        var server = new MediaServer (this.context,
-                                      plugin,
-                                      doc,
-                                      modified_desc);
-
-        return server;
+        return new MediaServer (this.context,
+                                plugin,
+                                doc,
+                                modified_desc);
     }
 
     private GUPnP.Context create_upnp_context () throws GLib.Error {
