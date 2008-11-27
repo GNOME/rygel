@@ -45,6 +45,8 @@ public class Rygel.MediaServer: RootDevice {
         this.weak_ref ((WeakNotify) xml_doc_free, description_doc);
         this.relative_location = relative_location;
 
+        this.services = new List<ServiceInfo> ();
+
         // Now create the sevice objects
         foreach (ResourceInfo info in plugin.resource_infos) {
             // FIXME: We only support plugable services for now
