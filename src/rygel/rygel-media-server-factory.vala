@@ -207,6 +207,9 @@ public class Rygel.MediaServerFactory {
                                         plugin.name,
                                         gconf_path);
 
+        /* Then list each icon */
+        this.add_icons_to_desc (device_element, plugin);
+
         /* Then list each service */
         this.add_services_to_desc (device_element, plugin);
     }
@@ -285,6 +288,45 @@ public class Rygel.MediaServerFactory {
 
         url = plugin_name + "/" + resource_info.type.name () + "/Control";
         service_node->new_child (null, "controlURL", url);
+    }
+
+    private void add_icons_to_desc (Xml.Node *device_element,
+                                    Plugin    plugin) {
+        Xml.Node *icon_list_node = Utils.get_xml_element (device_element,
+                                                          "iconList",
+                                                          null);
+        if (icon_list_node == null) {
+            warning ("Element /root/device/iconList not found.");
+
+            return;
+        }
+
+        foreach (IconInfo icon_info in plugin.icon_infos) {
+            add_icon_to_desc (icon_list_node, icon_info, plugin);
+        }
+    }
+
+    private void add_icon_to_desc (Xml.Node *icon_list_node,
+                                   IconInfo  icon_info,
+                                   Plugin    plugin) {
+        // Create the service node
+        Xml.Node *icon_node = icon_list_node->new_child (null, "icon");
+
+        string width = icon_info.width.to_string ();
+        string height = icon_info.height.to_string ();
+        string depth = icon_info.depth.to_string ();
+
+        icon_node->new_child (null, "mimetype", icon_info.mimetype);
+        icon_node->new_child (null, "width", width);
+        icon_node->new_child (null, "height", height);
+        icon_node->new_child (null, "depth", depth);
+
+        // PLUGIN_NAME-WIDTHxHEIGHTxDEPTH.png
+        string url = plugin.name + "-" +
+                     width + "x" + height + "x" + depth + ".png";
+
+        this.context.host_path (icon_info.path, "/" + url);
+        icon_node->new_child (null, "url", url);
     }
 }
 

@@ -37,6 +37,8 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-plugin-loader.c \
 		rygel-resource-info.h \
 		rygel-resource-info.c \
+		rygel-icon-info.h \
+		rygel-icon-info.c \
 		rygel-connection-manager.h \
 		rygel-connection-manager.c \
 		rygel-media-receiver-registrar.h \
@@ -69,6 +71,8 @@ rygel_SOURCES = rygel-1.0.vapi \
 		rygel-plugin-loader.vala \
 		rygel-resource-info.h \
 		rygel-resource-info.c \
+		rygel-icon-info.h \
+		rygel-icon-info.c \
 		rygel-connection-manager.h \
 		rygel-connection-manager.c \
 		rygel-media-receiver-registrar.h \
@@ -103,6 +107,7 @@ rygel-1.0.vapi: rygel-content-directory.vala \
 		rygel-connection-manager.vala \
 		rygel-media-receiver-registrar.vala \
 		rygel-resource-info.vala \
+		rygel-icon-info.vala \
 		rygel-plugin.vala \
 		rygel-media-object.vala \
 		rygel-media-container.vala \

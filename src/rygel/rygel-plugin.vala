@@ -34,11 +34,13 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
     public string name;
 
     public ArrayList<ResourceInfo> resource_infos;
+    public ArrayList<IconInfo> icon_infos;
 
     public Plugin (string name) {
         this.name = name;
 
         this.resource_infos = new ArrayList<ResourceInfo> ();
+        this.icon_infos = new ArrayList<IconInfo> ();
 
         /* Register Rygel.ConnectionManager */
         var resource_info = new ResourceInfo
@@ -61,6 +63,10 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
         this.resource_infos.add (resource_info);
         this.register_resource_type (resource_info.upnp_type,
                                      resource_info.type);
+    }
+
+    public void add_icon (IconInfo icon_info) {
+        this.icon_infos.add (icon_info);
     }
 }
 
