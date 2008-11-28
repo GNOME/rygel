@@ -32,18 +32,10 @@ using GUPnP;
  * calls it and expects a Plugin instance in return.
  */
 public class Rygel.PluginLoader : Object {
-    /* We need to keep the modules somewhere */
-    private List<Module> modules;
-
     private delegate Plugin LoadPluginFunc ();
 
     // Signals
     public signal void plugin_available (Plugin plugin);
-
-    /* Pubic methods */
-    public PluginLoader () {
-        this.modules = new List<Module> ();
-    }
 
     // Plugin loading functions
     public void load_plugins () {
@@ -117,8 +109,10 @@ public class Rygel.PluginLoader : Object {
 
         Plugin plugin = load_plugin ();
         if (plugin != null) {
+            // We don't want our modules to ever unload
+            module.make_resident ();
+
             this.plugin_available (plugin);
-            this.modules.append (#module);
         }
     }
 
