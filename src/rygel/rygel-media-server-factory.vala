@@ -56,7 +56,7 @@ public class Rygel.MediaServerFactory {
         string gconf_path = ROOT_GCONF_PATH + plugin.name + "/";
         string modified_desc = DESC_PREFIX + "-" + plugin.name + ".xml";
 
-        bool enable_xbox;
+        bool enable_xbox = false;
         try {
             enable_xbox = this.gconf.get_bool (gconf_path + "enable-xbox");
         } catch (GLib.Error error) {
@@ -148,7 +148,7 @@ public class Rygel.MediaServerFactory {
 
     private string get_str_from_gconf (string key,
                                        string default_value) {
-        string str;
+        string str = null;
 
         try {
             str = this.gconf.get_string (key);
