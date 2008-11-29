@@ -154,7 +154,7 @@ public class Rygel.MediaServerFactory {
             str = this.gconf.get_string (key);
         } catch (GLib.Error error) {
             try {
-                this.gconf.set_string (key, str);
+                this.gconf.set_string (key, default_value);
             } catch (GLib.Error error) {
                 warning ("Error setting gconf key '%s': %s.",
                         key,
