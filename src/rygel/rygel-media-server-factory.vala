@@ -73,7 +73,6 @@ public class Rygel.MediaServerFactory {
                                 modified_desc);
     }
 
-    /* FIXME: No need to create modified desc if it already exists */
     private Xml.Doc * create_desc (Plugin plugin,
                                    string desc_path,
                                    string gconf_path) throws GLib.Error {
@@ -107,23 +106,7 @@ public class Rygel.MediaServerFactory {
             /* Put/Set XboX specific stuff to description */
             add_xbox_specifics (doc);
 
-        /* Save the modified description.xml into the user's config dir.
-         * We do this so that we can host the modified file, and also to
-         * make sure the generated UDN stays the same between sessions. */
-        FileStream f = FileStream.open (desc_path, "w+");
-        int res = -1;
-
-        if (f != null)
-            res = Xml.Doc.dump (f, doc);
-
-        if (f == null || res == -1) {
-            string message = "Failed to write modified description" +
-                             " to %s.\n".printf (desc_path);
-
-            delete doc;
-
-            throw new IOError.FAILED (message);
-        }
+        save_modified_desc (doc, desc_path);
 
         return doc;
     }
@@ -336,6 +319,24 @@ public class Rygel.MediaServerFactory {
 
         this.context.host_path (icon_info.path, "/" + url);
         icon_node->new_child (null, "url", url);
+    }
+
+    private void save_modified_desc (Xml.Doc *doc,
+                                     string   desc_path) throws GLib.Error {
+        FileStream f = FileStream.open (desc_path, "w+");
+        int res = -1;
+
+        if (f != null)
+            res = Xml.Doc.dump (f, doc);
+
+        if (f == null || res == -1) {
+            string message = "Failed to write modified description" +
+                             " to %s.\n".printf (desc_path);
+
+            delete doc;
+
+            throw new IOError.FAILED (message);
+        }
     }
 }
 
