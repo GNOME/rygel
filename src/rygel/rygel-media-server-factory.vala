@@ -145,21 +145,28 @@ public class Rygel.MediaServerFactory {
         try {
             str = this.gconf.get_string (key);
         } catch (GLib.Error error) {
+            warning ("Error getting gconf key '%s': %s." +
+                     " Assuming default value '%s'.",
+                     key,
+                     error.message,
+                     default_value);
+
+            str = default_value;
+        }
+
+        if (str == null) {
+            str = default_value;
+
             try {
                 this.gconf.set_string (key, default_value);
             } catch (GLib.Error error) {
                 warning ("Error setting gconf key '%s': %s.",
                         key,
                         error.message);
-
-                str = null;
             }
         }
 
-        if (str != null)
-                return str;
-        else
-                return default_value;
+        return str;
     }
 
     private void add_xbox_specifics (Xml.Doc doc) {
