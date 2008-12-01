@@ -34,13 +34,11 @@ public abstract class Rygel.TrackerItem : MediaItem {
     protected TrackerContainer parent;
     protected string path;
 
-    protected dynamic DBus.Object metadata;
-
     protected string[] keys;
 
-    public TrackerItem (string              id,
-                        string              path,
-                        TrackerContainer    parent) {
+    public TrackerItem (string           id,
+                        string           path,
+                        TrackerContainer parent) {
         this.id = id;
         this.path = path;
         this.parent = parent;
