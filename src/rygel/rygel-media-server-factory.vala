@@ -56,6 +56,27 @@ public class Rygel.MediaServerFactory {
         string gconf_path = ROOT_GCONF_PATH + plugin.name + "/";
         string modified_desc = DESC_PREFIX + "-" + plugin.name + ".xml";
 
+        /* We store a modified description.xml in the user's config dir */
+        string desc_path = Path.build_filename
+                                    (Environment.get_user_config_dir (),
+                                     modified_desc);
+
+        /* Create the description xml */
+        Xml.Doc *doc = this.create_desc (plugin, desc_path, gconf_path);
+
+        /* Host our modified file */
+        this.context.host_path (desc_path, "/" + modified_desc);
+
+        return new MediaServer (this.context,
+                                plugin,
+                                doc,
+                                modified_desc);
+    }
+
+    /* FIXME: No need to create modified desc if it already exists */
+    private Xml.Doc * create_desc (Plugin plugin,
+                                   string desc_path,
+                                   string gconf_path) throws GLib.Error {
         bool enable_xbox = false;
         try {
             enable_xbox = this.gconf.get_bool (gconf_path + "enable-xbox");
@@ -63,13 +84,7 @@ public class Rygel.MediaServerFactory {
             warning ("%s", error.message);
         }
 
-        /* We store a modified description.xml in the user's config dir */
-        string desc_path = Path.build_filename
-                                    (Environment.get_user_config_dir (),
-                                     modified_desc);
-
         string orig_desc_path;
-
         if (enable_xbox)
             /* Use Xbox 360 specific description */
             orig_desc_path = Path.build_filename (BuildConfig.DATA_DIR,
@@ -110,13 +125,7 @@ public class Rygel.MediaServerFactory {
             throw new IOError.FAILED (message);
         }
 
-        /* Host our modified file */
-        this.context.host_path (desc_path, "/" + modified_desc);
-
-        return new MediaServer (this.context,
-                                plugin,
-                                doc,
-                                modified_desc);
+        return doc;
     }
 
     private GUPnP.Context create_upnp_context () throws GLib.Error {
