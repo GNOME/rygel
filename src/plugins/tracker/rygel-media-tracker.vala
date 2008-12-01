@@ -45,10 +45,9 @@ public class Rygel.MediaTracker : ContentDirectory {
         // Chain-up to base first
         base.constructed ();
 
-        this.root_container = new MediaContainer ("0",
-                                                  "-1",
-                                                  "MediaTracker",
-                                                  this.containers.length ());
+        this.root_container = new MediaContainer.root
+                                    ("MediaTracker",
+                                     this.containers.length ());
 
         this.containers = new List<TrackerContainer> ();
         this.containers.append

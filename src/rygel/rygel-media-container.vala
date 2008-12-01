@@ -41,6 +41,11 @@ public class Rygel.MediaContainer : MediaObject {
         this.child_count = child_count;
     }
 
+    public MediaContainer.root (string title,
+                                uint   child_count) {
+        this ("0", "-1", title, child_count);
+    }
+
     public override void serialize (DIDLLiteWriter didl_writer) {
         didl_writer.start_container (this.id,
                                      this.parent_id,
