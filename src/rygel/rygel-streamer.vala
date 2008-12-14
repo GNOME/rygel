@@ -92,6 +92,12 @@ public class Rygel.Streamer : GLib.Object {
         var stream = new Stream (server, msg);
 
         this.stream_available (stream, stream_path);
+
+        if (!stream.accepted ()) {
+            /* No body accepted the stream. */
+            stream.reject ();
+            return;
+        }
     }
 }
 

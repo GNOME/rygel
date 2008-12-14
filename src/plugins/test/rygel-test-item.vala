@@ -61,7 +61,6 @@ public abstract class Rygel.TestItem : Rygel.MediaItem {
                                       string   path) {
         if (path != this.path) {
             /* Not our path and therefore not interesting. */
-            stream.reject ();
             return;
         }
 
