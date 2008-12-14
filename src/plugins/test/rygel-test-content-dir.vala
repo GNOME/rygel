@@ -39,7 +39,7 @@ public class Rygel.TestContentDir : ContentDirectory {
         // Chain-up to base first
         base.constructed ();
 
-        Streamer streamer = new Streamer (context);
+        Streamer streamer = new Streamer (context, "RygelTest");
 
         this.items = new List<MediaItem> ();
         this.items.append (new TestAudioItem ("testaudio",

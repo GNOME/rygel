@@ -26,7 +26,7 @@
 using Gee;
 
 public class Rygel.Streamer : GLib.Object {
-    public const string SERVER_PATH_ROOT = "/RygelStreamer";
+    private string server_path_root;
 
     private GUPnP.Context context;
 
@@ -36,12 +36,14 @@ public class Rygel.Streamer : GLib.Object {
     public signal void stream_available (Rygel.Stream stream,
                                          string       path);
 
-    public Streamer (GUPnP.Context context) {
+    public Streamer (GUPnP.Context context, string name) {
         this.context = context;
 
         this.path_hash = new HashMap<string,string> (str_hash, str_equal);
 
-        context.server.add_handler (SERVER_PATH_ROOT, server_handler);
+        this.server_path_root = "/" + name;
+
+        context.server.add_handler (this.server_path_root, server_handler);
     }
 
     public void add_stream_candidate (string path,
@@ -52,7 +54,7 @@ public class Rygel.Streamer : GLib.Object {
     public string create_uri_for_path (string path) {
         return "http://%s:%u%s%s".printf (this.context.host_ip,
                                           this.context.port,
-                                          SERVER_PATH_ROOT,
+                                          this.server_path_root,
                                           path);
     }
 
@@ -61,7 +63,7 @@ public class Rygel.Streamer : GLib.Object {
                                  string             server_path,
                                  HashTable?         query,
                                  Soup.ClientContext soup_client) {
-        string[] path_tokens = server_path.split (SERVER_PATH_ROOT, 2);
+        string[] path_tokens = server_path.split (this.server_path_root, 2);
         if (path_tokens[0] == null || path_tokens[1] == null) {
             msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
             return;
