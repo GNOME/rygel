@@ -30,7 +30,8 @@ using GUPnP;
  * Errors used by ContentDirectory and deriving classes.
  */
 public errordomain Rygel.ContentDirectoryError {
-    NO_SUCH_OBJECT = 701
+    NO_SUCH_OBJECT = 701,
+    INVALID_ARGS = 402
 }
 
 public class BrowseArgs {
@@ -128,64 +129,23 @@ public class Rygel.ContentDirectory: Service {
     /* Browse action implementation */
     protected virtual void browse_cb (ContentDirectory content_dir,
                                       ServiceAction    action) {
-        bool browse_metadata;
+        bool metadata;
 
         BrowseArgs args = new BrowseArgs ();
-
-        /* Handle incoming arguments */
-        action.get ("ObjectID", typeof (string), out args.object_id,
-                    "BrowseFlag", typeof (string), out args.browse_flag,
-                    "Filter", typeof (string), out args.filter,
-                    "StartingIndex", typeof (uint), out args.index,
-                    "RequestedCount", typeof (uint), out args.requested_count,
-                    "SortCriteria", typeof (string), out args.sort_criteria);
-
-        /* BrowseFlag */
-        if (args.browse_flag != null &&
-            args.browse_flag == "BrowseDirectChildren") {
-            browse_metadata = false;
-        } else if (args.browse_flag != null &&
-                   args.browse_flag == "BrowseMetadata") {
-            browse_metadata = true;
-        } else {
-            action.return_error (402, "Invalid Args");
-
-            return;
-        }
-
-        /* ObjectID */
-        if (args.object_id == null) {
-            /* Stupid Xbox */
-            action.get ("ContainerID", typeof (string), out args.object_id);
-            if (args.object_id == null) {
-                action.return_error (701, "No such object");
-
-                return;
-            }
-        }
 
         /* Start DIDL-Lite fragment */
         this.didl_writer.start_didl_lite (null, null, true);
 
         try {
-            if (browse_metadata) {
-                // BrowseMetadata
-                if (args.object_id == this.root_container.id) {
-                    this.root_container.serialize (didl_writer);
-                    args.update_id = this.system_update_id;
-                } else {
-                    this.add_metadata (this.didl_writer, args);
-                }
+            /* Handle incoming arguments */
+            metadata = this.parse_browse_args (action, args);
 
-                args.number_returned = 1;
-                args.total_matches = 1;
+            if (metadata) {
+                // BrowseMetadata
+                this.browse_metadata (args);
             } else {
                 // BrowseDirectChildren
-                if (args.object_id == this.root_container.id) {
-                    this.add_root_children_metadata (this.didl_writer, args);
-                } else {
-                    this.add_children_metadata (this.didl_writer, args);
-                }
+                this.browse_direct_children (args);
             }
 
             /* End DIDL-Lite fragment */
@@ -194,17 +154,8 @@ public class Rygel.ContentDirectory: Service {
             /* Retrieve generated string */
             string didl = this.didl_writer.get_string ();
 
-            if (args.update_id == uint32.MAX) {
-                args.update_id = this.system_update_id;
-            }
-
-            /* Set action return arguments */
-            action.set ("Result", typeof (string), didl,
-                        "NumberReturned", typeof (uint), args.number_returned,
-                        "TotalMatches", typeof (uint), args.total_matches,
-                        "UpdateID", typeof (uint), args.update_id);
-
-            action.return ();
+            // Conclude the successful Browse action
+            conclude_browse (action, didl, args);
         } catch (Error error) {
             action.return_error (error.code, error.message);
         }
@@ -290,5 +241,75 @@ public class Rygel.ContentDirectory: Service {
         this.root_container = new MediaContainer.root (friendly_name, 0);
     }
 
+    private void browse_metadata (BrowseArgs args) throws Error {
+        if (args.object_id == this.root_container.id) {
+            this.root_container.serialize (didl_writer);
+            args.update_id = this.system_update_id;
+        } else {
+            this.add_metadata (this.didl_writer, args);
+        }
+
+        args.number_returned = 1;
+        args.total_matches = 1;
+    }
+
+    private void browse_direct_children (BrowseArgs args) throws Error {
+        if (args.object_id == this.root_container.id) {
+            this.add_root_children_metadata (this.didl_writer, args);
+        } else {
+            this.add_children_metadata (this.didl_writer, args);
+        }
+    }
+
+    private bool parse_browse_args (ServiceAction action,
+                                    BrowseArgs args) throws Error {
+        action.get ("ObjectID", typeof (string), out args.object_id,
+                    "BrowseFlag", typeof (string), out args.browse_flag,
+                    "Filter", typeof (string), out args.filter,
+                    "StartingIndex", typeof (uint), out args.index,
+                    "RequestedCount", typeof (uint), out args.requested_count,
+                    "SortCriteria", typeof (string), out args.sort_criteria);
+
+        /* BrowseFlag */
+        bool metadata;
+        if (args.browse_flag != null &&
+            args.browse_flag == "BrowseDirectChildren") {
+            metadata = false;
+        } else if (args.browse_flag != null &&
+                   args.browse_flag == "BrowseMetadata") {
+            metadata = true;
+        } else {
+            throw new ContentDirectoryError.INVALID_ARGS ("Invalid Args");
+        }
+
+        /* ObjectID */
+        if (args.object_id == null) {
+            /* Stupid Xbox */
+            action.get ("ContainerID", typeof (string), out args.object_id);
+        }
+
+        if (args.object_id == null) {
+            // Sorry we can't do anything without ObjectID
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        return metadata;
+    }
+
+    private void conclude_browse (ServiceAction action,
+                                  string        didl,
+                                  BrowseArgs    args) {
+        if (args.update_id == uint32.MAX) {
+            args.update_id = this.system_update_id;
+        }
+
+        /* Set action return arguments */
+        action.set ("Result", typeof (string), didl,
+                    "NumberReturned", typeof (uint), args.number_returned,
+                    "TotalMatches", typeof (uint), args.total_matches,
+                    "UpdateID", typeof (uint), args.update_id);
+
+        action.return ();
+    }
 }
 
