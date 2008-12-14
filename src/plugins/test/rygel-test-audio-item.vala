@@ -82,12 +82,15 @@ public class Rygel.TestAudioItem : Rygel.MediaItem {
     private Element create_gst_source () throws Error {
         Bin bin = new Bin (this.title);
 
-        Element src = ElementFactory.make ("audiotestsrc", null);
+        dynamic Element src = ElementFactory.make ("audiotestsrc", null);
         Element encoder = ElementFactory.make ("wavenc", null);
 
         if (src == null || encoder == null) {
             throw new GstStreamError.MISSING_PLUGIN ("Required plugin missing");
         }
+
+        // Tell the source to behave like a live source
+        src.is_live = true;
 
         // Add elements to our source bin
         bin.add_many (src, encoder);
