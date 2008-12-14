@@ -100,9 +100,15 @@ if test "x$enable_uninstalled" = "xyes"; then
         AC_MSG_WARN("You want to run the tools uninstalled only? Fine!")
 fi
 
+# Build test plugin
+AC_ARG_ENABLE(test-plugin,
+	[  --enable-test_plugin          build test plugin],,
+        enable_test_plugin=no)
+
 AC_SUBST(abs_top_builddir)
 
 AM_CONDITIONAL([UNINSTALLED], [test "x$enable_uninstalled" = "xyes"])
+AM_CONDITIONAL([BUILD_TEST_PLUGIN], [test "x$enable_test_plugin" = "xyes"])
 
 # Gettext
 GETTEXT_PACKAGE=rygel
