@@ -73,10 +73,6 @@ public class Rygel.GstStream : Pipeline {
             return;
         }
 
-        this.queue_buffer (buffer);
-    }
-
-    private void queue_buffer (Buffer buffer) {
         this.buffers.push (buffer);
         Idle.add_full (Priority.HIGH_IDLE, this.idle_handler);
     }
