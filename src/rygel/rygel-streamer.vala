@@ -25,8 +25,10 @@
 
 using Gee;
 
-public class Rygel.Streamer : GUPnP.Context {
+public class Rygel.Streamer : GLib.Object {
     public const string SERVER_PATH_ROOT = "/RygelStreamer";
+
+    private GUPnP.Context context;
 
     /* Mapping of hosted_paths to mimetypes */
     private HashMap<string,string> path_hash;
@@ -34,14 +36,12 @@ public class Rygel.Streamer : GUPnP.Context {
     public signal void stream_available (Rygel.Stream stream,
                                          string       path);
 
-    public Streamer (string host_ip,
-                     uint   port) {
-        this.host_ip = host_ip;
-        this.port = port;
+    public Streamer (GUPnP.Context context) {
+        this.context = context;
 
         this.path_hash = new HashMap<string,string> (str_hash, str_equal);
 
-        this.server.add_handler (SERVER_PATH_ROOT, server_handler);
+        context.server.add_handler (SERVER_PATH_ROOT, server_handler);
     }
 
     public void add_stream_candidate (string path,
