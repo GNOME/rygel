@@ -33,8 +33,8 @@ using Gst;
  * Represents Test video item.
  */
 public class Rygel.TestVideoItem : Rygel.TestItem {
-    const string TEST_PATH = "/test.ogg";
-    const string TEST_MIMETYPE = "application/ogg";
+    const string TEST_PATH = "/test.avi";
+    const string TEST_MIMETYPE = "video/x-msvideo";
 
     public TestVideoItem (string   id,
                           string   parent_id,
@@ -53,8 +53,8 @@ public class Rygel.TestVideoItem : Rygel.TestItem {
         Bin bin = new Bin (this.title);
 
         dynamic Element src = ElementFactory.make ("videotestsrc", null);
-        Element encoder = ElementFactory.make ("theoraenc", null);
-        Element muxer = ElementFactory.make ("oggmux", null);
+        Element encoder = ElementFactory.make ("ffenc_h263", null);
+        Element muxer = ElementFactory.make ("avimux", null);
 
         if (src == null || muxer == null || encoder == null) {
             throw new GstStreamError.MISSING_PLUGIN ("Required plugin missing");
