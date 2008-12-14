@@ -49,6 +49,8 @@ public class Rygel.ContentDirectory: Service {
     protected string search_caps;
     protected string sort_caps;
 
+    protected MediaContainer root_container;
+
     DIDLLiteWriter didl_writer;
 
     // Public abstract methods derived classes need to implement
@@ -73,8 +75,22 @@ public class Rygel.ContentDirectory: Service {
         throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
     }
 
+    public virtual void add_root_children_metadata
+                                        (DIDLLiteWriter didl_writer,
+                                         string         filter,
+                                         uint           starting_index,
+                                         uint           requested_count,
+                                         string         sort_criteria,
+                                         out uint       number_returned,
+                                         out uint       total_matches,
+                                         out uint       update_id)
+                                         throws Error {
+        throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
+    }
+
     public override void constructed () {
         this.didl_writer = new DIDLLiteWriter ();
+        this.setup_root_container ();
 
         this.system_update_id = 0;
         this.feature_list =
@@ -155,24 +171,42 @@ public class Rygel.ContentDirectory: Service {
 
         try {
             if (browse_metadata) {
-                this.add_metadata (this.didl_writer,
-                                   object_id,
-                                   filter,
-                                   sort_criteria,
-                                   out update_id);
+                // BrowseMetadata
+                if (object_id == this.root_container.id) {
+                    this.root_container.serialize (didl_writer);
+                    update_id = this.system_update_id;
+                } else {
+                    this.add_metadata (this.didl_writer,
+                                       object_id,
+                                       filter,
+                                       sort_criteria,
+                                       out update_id);
+                }
 
                 num_returned = 1;
                 total_matches = 1;
             } else {
-                this.add_children_metadata (this.didl_writer,
-                                            object_id,
-                                            filter,
-                                            starting_index,
-                                            requested_count,
-                                            sort_criteria,
-                                            out num_returned,
-                                            out total_matches,
-                                            out update_id);
+                // BrowseDirectChildren
+                if (object_id == this.root_container.id) {
+                    this.add_root_children_metadata (this.didl_writer,
+                                                     filter,
+                                                     starting_index,
+                                                     requested_count,
+                                                     sort_criteria,
+                                                     out num_returned,
+                                                     out total_matches,
+                                                     out update_id);
+                } else {
+                    this.add_children_metadata (this.didl_writer,
+                                                object_id,
+                                                filter,
+                                                starting_index,
+                                                requested_count,
+                                                sort_criteria,
+                                                out num_returned,
+                                                out total_matches,
+                                                out update_id);
+                }
             }
 
             /* End DIDL-Lite fragment */
@@ -271,5 +305,11 @@ public class Rygel.ContentDirectory: Service {
         value.init (typeof (string));
         value.set_string (this.feature_list);
     }
+
+    private void setup_root_container () {
+        string friendly_name = this.root_device.get_friendly_name ();
+        this.root_container = new MediaContainer.root (friendly_name, 0);
+    }
+
 }
 
