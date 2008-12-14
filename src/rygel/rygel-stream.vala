@@ -52,6 +52,10 @@ public class Rygel.Stream : GLib.Object {
         this.msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
     }
 
+    public bool accepted () {
+        return this.msg.status_code == Soup.KnownStatusCode.OK;
+    }
+
     public void set_mime_type (string mime_type) {
         this.msg.response_headers.append ("Content-Type", mime_type);
     }
