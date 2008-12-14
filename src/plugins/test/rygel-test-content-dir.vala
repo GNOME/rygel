@@ -46,6 +46,10 @@ public class Rygel.TestContentDir : ContentDirectory {
                                               this.root_container.id,
                                               "Sine Wave",
                                               streamer));
+        this.items.append (new TestVideoItem ("smtpe",
+                                              this.root_container.id,
+                                              "SMTPE",
+                                              streamer));
 
         // Now we know how many top-level items we have
         this.root_container.child_count = this.items.length ();

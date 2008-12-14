@@ -14,6 +14,8 @@ BUILT_SOURCES = rygel-test.stamp \
 		rygel-test-content-dir.c \
 		rygel-test-audio-item.h \
 		rygel-test-audio-item.c \
+                rygel-test-video-item.h \
+                rygel-test-video-item.c \
 		rygel-test-plugin.h \
 		rygel-test-plugin.c
 
@@ -23,6 +25,9 @@ librygel_test_la_SOURCES = rygel-test-content-dir.h \
                            rygel-test-audio-item.h \
                            rygel-test-audio-item.c \
                            rygel-test-audio-item.vala \
+                           rygel-test-video-item.h \
+                           rygel-test-video-item.c \
+                           rygel-test-video-item.vala \
                            rygel-test-plugin.h \
                            rygel-test-plugin.c \
                            rygel-test-plugin.vala
