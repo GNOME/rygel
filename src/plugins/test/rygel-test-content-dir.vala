@@ -42,9 +42,9 @@ public class Rygel.TestContentDir : ContentDirectory {
         Streamer streamer = new Streamer (context, "RygelTest");
 
         this.items = new List<MediaItem> ();
-        this.items.append (new TestAudioItem ("testaudio",
+        this.items.append (new TestAudioItem ("sinewave",
                                               this.root_container.id,
-                                              "testaudio",
+                                              "Sine Wave",
                                               streamer));
 
         // Now we know how many top-level items we have
