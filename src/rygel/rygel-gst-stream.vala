@@ -50,29 +50,23 @@ public class Rygel.GstStream : Pipeline {
     }
 
     private void prepare_pipeline (Element src) throws Error {
-        dynamic Element sink = ElementFactory.make ("appsink", null);
+        dynamic Element sink = ElementFactory.make ("fakesink", null);
 
         if (sink == null) {
             throw new GstStreamError.MISSING_PLUGIN ("Required plugin " +
                                                      "'appsink' missing");
         }
 
-        sink.emit_signals = true;
-        sink.new_buffer += this.on_new_buffer;
+        sink.signal_handoffs = true;
+        sink.handoff += this.on_new_buffer;
 
         this.add_many (src, sink);
         src.link (sink);
     }
 
-    private void on_new_buffer (dynamic Element sink) {
-        Buffer buffer = null;
-
-        GLib.Signal.emit_by_name (sink, "pull-buffer", out buffer);
-        if (buffer == null) {
-            critical ("Failed to get buffer from pipeline");
-            return;
-        }
-
+    private void on_new_buffer (Element sink,
+                                Buffer  buffer,
+                                Pad     pad) {
         this.buffers.push (buffer);
         Idle.add_full (Priority.HIGH_IDLE, this.idle_handler);
     }
