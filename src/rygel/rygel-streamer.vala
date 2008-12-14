@@ -30,25 +30,15 @@ public class Rygel.Streamer : GLib.Object {
 
     private GUPnP.Context context;
 
-    /* Mapping of hosted_paths to mimetypes */
-    private HashMap<string,string> path_hash;
-
     public signal void stream_available (Rygel.Stream stream,
                                          string       path);
 
     public Streamer (GUPnP.Context context, string name) {
         this.context = context;
 
-        this.path_hash = new HashMap<string,string> (str_hash, str_equal);
-
         this.server_path_root = "/" + name;
 
         context.server.add_handler (this.server_path_root, server_handler);
-    }
-
-    public void add_stream_candidate (string path,
-                                      string mimetype) {
-        this.path_hash.set (path, mimetype);
     }
 
     public string create_uri_for_path (string path) {
@@ -70,15 +60,6 @@ public class Rygel.Streamer : GLib.Object {
         }
 
         string stream_path = path_tokens[1];
-        string mimetype = this.path_hash.get (stream_path);
-        if (mimetype == null) {
-            msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
-            return;
-        }
-
-        msg.set_status (Soup.KnownStatusCode.OK);
-        msg.response_headers.append ("Content-Type", mimetype);
-
         var stream = new Stream (server, msg);
 
         this.stream_available (stream, stream_path);

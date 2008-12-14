@@ -53,7 +53,6 @@ public class Rygel.TestAudioItem : Rygel.MediaItem {
         this.streamer = streamer;
 
         streamer.stream_available += this.on_stream_available;
-        streamer.add_stream_candidate (TEST_PATH, TEST_MIMETYPE);
     }
 
     private void on_stream_available (Streamer streamer,
@@ -61,6 +60,7 @@ public class Rygel.TestAudioItem : Rygel.MediaItem {
                                       string   path) {
         if (path != TEST_PATH) {
             /* Not our path and therefore not interesting. */
+            stream.reject ();
             return;
         }
 
@@ -104,9 +104,10 @@ private class StreamContext : Pipeline {
                           string name) throws Error {
         this.stream = stream;
         this.name = name;
-
         this.buffers = new AsyncQueue<Buffer> ();
 
+        this.stream.accept ();
+        this.stream.set_mime_type (TestAudioItem.TEST_MIMETYPE);
         this.prepare_pipeline ();
     }
 
