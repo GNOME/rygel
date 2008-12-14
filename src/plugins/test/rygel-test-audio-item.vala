@@ -29,6 +29,10 @@ using GUPnP;
 using Gee;
 using Gst;
 
+public errordomain Rygel.TestError {
+    MISSING_PLUGIN
+}
+
 /**
  * Represents Test audio item.
  */
@@ -67,7 +71,8 @@ public class Rygel.TestAudioItem : Rygel.MediaItem {
         StreamContext context;
 
         try {
-            context = new StreamContext (stream, "RygelStreamer");
+            Element src = this.create_gst_source ();
+            context = new StreamContext (stream, "RygelStreamer", src);
         } catch (Error error) {
             critical ("Error creating stream context: %s", error.message);
 
@@ -93,6 +98,29 @@ public class Rygel.TestAudioItem : Rygel.MediaItem {
         /* Remove the associated context. */
         this.streams.remove (stream);
     }
+
+    private Element create_gst_source () throws Error {
+        Bin bin = new Bin (this.title);
+
+        Element src = ElementFactory.make ("audiotestsrc", null);
+        Element encoder = ElementFactory.make ("wavenc", null);
+
+        if (src == null || encoder == null) {
+            throw new TestError.MISSING_PLUGIN ("Required plugin missing");
+        }
+
+        // Add elements to our source bin
+        bin.add_many (src, encoder);
+        // Link them
+        src.link (encoder);
+
+        // Now add the encoder's src pad to the bin
+        Pad pad = encoder.get_static_pad ("src");
+        var ghost = new GhostPad (bin.name + "." + pad.name, pad);
+        bin.add_pad (ghost);
+
+        return bin;
+    }
 }
 
 private class StreamContext : Pipeline {
@@ -100,33 +128,32 @@ private class StreamContext : Pipeline {
 
     private AsyncQueue<Buffer> buffers;
 
-    public StreamContext (Stream stream,
-                          string name) throws Error {
+    public StreamContext (Stream  stream,
+                          string  name,
+                          Element src) throws Error {
         this.stream = stream;
         this.name = name;
         this.buffers = new AsyncQueue<Buffer> ();
 
         this.stream.accept ();
         this.stream.set_mime_type (TestAudioItem.TEST_MIMETYPE);
-        this.prepare_pipeline ();
+        this.prepare_pipeline (src);
     }
 
-    private void prepare_pipeline () throws Error {
-        dynamic Element src = ElementFactory.make ("audiotestsrc", null);
-        dynamic Element encoder = ElementFactory.make ("wavenc", null);
+    private void prepare_pipeline (Element src) throws Error {
         dynamic Element sink = ElementFactory.make ("appsink", null);
 
-        if (src == null || encoder == null || sink == null) {
-            //throw new Something.Error ("Required plugin missing");
-            return;
+        if (sink == null) {
+            throw new TestError.MISSING_PLUGIN ("Required plugin " +
+                                                "'appsink' missing");
         }
 
         sink.emit_signals = true;
         sink.new_buffer += this.on_new_buffer;
         sink.new_preroll += this.on_new_preroll;
 
-        this.add_many (src, encoder, sink);
-        src.link_many (encoder, sink);
+        this.add_many (src, sink);
+        src.link (sink);
     }
 
     private void on_new_buffer (dynamic Element sink) {
