@@ -26,20 +26,62 @@
 
 using Rygel;
 using GUPnP;
-using DBus;
+using Gst;
 
 /**
  * Represents Test item.
  */
-public abstract class Rygel.TestItem : MediaItem {
-    protected string parent_id;
+public abstract class Rygel.TestItem : Rygel.MediaItem {
+    const string TEST_AUTHOR = "Zeeshan Ali (Khattak)";
 
-    public TestItem (string id,
-                     string parent_id,
-                     string title) {
-        this.id = id;
-        this.parent_id = parent_id;
-        this.title = title;
+    public string path;
+
+    private Streamer streamer;
+
+    public TestItem (string   id,
+                     string   parent_id,
+                     string   title,
+                     string   mime,
+                     string   upnp_class,
+                     Streamer streamer,
+                     string   path) {
+        base (id, parent_id, title, upnp_class);
+        this.mime = mime;
+        this.streamer = streamer;
+        this.author = TEST_AUTHOR;
+        this.path= path;
+
+        this.uri = streamer.create_uri_for_path (path);
+
+        streamer.stream_available += this.on_stream_available;
     }
+
+    private void on_stream_available (Streamer streamer,
+                                      Stream   stream,
+                                      string   path) {
+        if (path != this.path) {
+            /* Not our path and therefore not interesting. */
+            stream.reject ();
+            return;
+        }
+
+        // FIXME: This should be done by GstStream
+        stream.set_mime_type (this.mime);
+
+        try {
+            Element src = this.create_gst_source ();
+            // Ask streamer to handle the stream for us but use our source in
+            // the pipeline.
+            streamer.stream_from_gst_source (src, stream);
+        } catch (Error error) {
+            critical ("Error in attempting to start streaming %s: %s",
+                      path,
+                      error.message);
+
+            return;
+        }
+    }
+
+    protected abstract Element create_gst_source () throws Error;
 }
 

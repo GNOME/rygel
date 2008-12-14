@@ -32,54 +32,24 @@ using Gst;
 /**
  * Represents Test audio item.
  */
-public class Rygel.TestAudioItem : Rygel.MediaItem {
+public class Rygel.TestAudioItem : Rygel.TestItem {
     const string TEST_PATH = "/test.wav";
     const string TEST_MIMETYPE = "audio/x-wav";
-    const string TEST_AUTHOR = "Zeeshan Ali (Khattak)";
-
-    private Streamer streamer;
 
     public TestAudioItem (string   id,
                           string   parent_id,
                           string   title,
                           Streamer streamer) {
-        base (id, parent_id, title, MediaItem.AUDIO_CLASS);
-        this.mime = TEST_MIMETYPE;
-        this.author = TEST_AUTHOR;
-        this.uri = streamer.create_uri_for_path (TEST_PATH);
-
-        this.streamer = streamer;
-
-        streamer.stream_available += this.on_stream_available;
+        base (id,
+              parent_id,
+              title,
+              TEST_MIMETYPE,
+              MediaItem.AUDIO_CLASS,
+              streamer,
+              TEST_PATH);
     }
 
-    private void on_stream_available (Streamer streamer,
-                                      Stream   stream,
-                                      string   path) {
-        if (path != TEST_PATH) {
-            /* Not our path and therefore not interesting. */
-            stream.reject ();
-            return;
-        }
-
-        // FIXME: This should be done by GstStream
-        stream.set_mime_type (TestAudioItem.TEST_MIMETYPE);
-
-        try {
-            Element src = this.create_gst_source ();
-            // Ask streamer to handle the stream for us but use our source in
-            // the pipeline.
-            streamer.stream_from_gst_source (src, stream);
-        } catch (Error error) {
-            critical ("Error in attempting to start streaming %s: %s",
-                      path,
-                      error.message);
-
-            return;
-        }
-    }
-
-    private Element create_gst_source () throws Error {
+    protected override Element create_gst_source () throws Error {
         Bin bin = new Bin (this.title);
 
         dynamic Element src = ElementFactory.make ("audiotestsrc", null);
