@@ -49,6 +49,13 @@ public class Rygel.Streamer : GLib.Object {
         this.path_hash.set (path, mimetype);
     }
 
+    public string create_uri_for_path (string path) {
+        return "http://%s:%u%s%s".printf (this.context.host_ip,
+                                          this.context.port,
+                                          SERVER_PATH_ROOT,
+                                          path);
+    }
+
     private void server_handler (Soup.Server        server,
                                  Soup.Message       msg,
                                  string             server_path,
