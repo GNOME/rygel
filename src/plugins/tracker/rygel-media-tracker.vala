@@ -45,9 +45,7 @@ public class Rygel.MediaTracker : ContentDirectory {
         // Chain-up to base first
         base.constructed ();
 
-        this.root_container = new MediaContainer.root
-                                    ("MediaTracker",
-                                     this.containers.length ());
+        this.root_container = new MediaContainer.root ("MediaTracker", 0);
 
         this.containers = new List<TrackerContainer> ();
         this.containers.append
@@ -71,6 +69,9 @@ public class Rygel.MediaTracker : ContentDirectory {
                                                "Videos",
                                                MediaItem.VIDEO_CLASS,
                                                context));
+
+        // Now we know how many top-level containers we have
+        this.root_container.child_count = this.containers.length ();
 
         this.search_parser = new SearchCriteriaParser ();
 
