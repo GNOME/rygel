@@ -77,51 +77,40 @@ public class Rygel.MediaTracker : ContentDirectory {
         this.context.host_path (home_dir, home_dir);
     }
 
-    public override void add_children_metadata
-                            (DIDLLiteWriter didl_writer,
-                             string         container_id,
-                             string         filter,
-                             uint           starting_index,
-                             uint           requested_count,
-                             string         sort_criteria,
-                             out uint       number_returned,
-                             out uint       total_matches,
-                             out uint       update_id) throws GLib.Error {
+    public override void add_children_metadata (DIDLLiteWriter didl_writer,
+                                                BrowseArgs     args)
+                                                throws GLib.Error {
         TrackerContainer container;
 
-        if (requested_count == 0)
-            requested_count = MAX_REQUESTED_COUNT;
+        if (args.requested_count == 0)
+            args.requested_count = MAX_REQUESTED_COUNT;
 
-        container = this.find_container_by_id (container_id);
+        container = this.find_container_by_id (args.object_id);
         if (container == null)
-            number_returned = 0;
+            args.number_returned = 0;
         else {
-            number_returned =
+            args.number_returned =
                 container.add_children_from_db (didl_writer,
-                        starting_index,
-                        requested_count,
-                        out total_matches);
+                                                args.index,
+                                                args.requested_count,
+                                                out args.total_matches);
         }
 
-        if (number_returned > 0) {
-            update_id = uint32.MAX;
+        if (args.number_returned > 0) {
+            args.update_id = uint32.MAX;
         } else {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
     }
 
-    public override void add_metadata
-                            (DIDLLiteWriter didl_writer,
-                             string         object_id,
-                             string         filter,
-                             string         sort_criteria,
-                             out uint       update_id) throws GLib.Error {
+    public override void add_metadata (DIDLLiteWriter didl_writer,
+                                       BrowseArgs     args) throws GLib.Error {
         bool found = false;
 
         TrackerContainer container;
 
         /* First try containers */
-        container = find_container_by_id (object_id);
+        container = find_container_by_id (args.object_id);
 
         if (container != null) {
             container.serialize (didl_writer);
@@ -129,34 +118,28 @@ public class Rygel.MediaTracker : ContentDirectory {
             found = true;
         } else {
             /* Now try items */
-            container = get_item_parent (object_id);
+            container = get_item_parent (args.object_id);
 
             if (container != null)
-                found = container.add_item_from_db (didl_writer, object_id);
+                found = container.add_item_from_db (didl_writer,
+                                                    args.object_id);
         }
 
         if (!found) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
-        update_id = uint32.MAX;
+        args.update_id = uint32.MAX;
     }
 
-    public override void add_root_children_metadata
-                                        (DIDLLiteWriter didl_writer,
-                                         string         filter,
-                                         uint           starting_index,
-                                         uint           requested_count,
-                                         string         sort_criteria,
-                                         out uint       number_returned,
-                                         out uint       total_matches,
-                                         out uint       update_id)
-                                         throws GLib.Error {
+    public override void add_root_children_metadata (DIDLLiteWriter didl_writer,
+                                                     BrowseArgs     args)
+                                                     throws GLib.Error {
         foreach (TrackerContainer container in this.containers)
             container.serialize (didl_writer);
 
-        total_matches = number_returned = this.containers.length ();
-        update_id = uint32.MAX;
+        args.total_matches = args.number_returned = this.containers.length ();
+        args.update_id = uint32.MAX;
     }
 
     /* Private methods */

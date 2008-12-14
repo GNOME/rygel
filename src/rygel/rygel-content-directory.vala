@@ -33,6 +33,21 @@ public errordomain Rygel.ContentDirectoryError {
     NO_SUCH_OBJECT = 701
 }
 
+public class BrowseArgs {
+    // In arguments
+    public string object_id;
+    public string browse_flag;
+    public string filter;
+    public uint   index;           // Starting index
+    public uint   requested_count;
+    public string sort_criteria;
+
+    // Out arguments
+    public uint   number_returned;
+    public uint   total_matches;
+    public uint   update_id;
+}
+
 /**
  * Basic implementation of UPnP ContentDirectory service version 2. Most often
  * plugins will provide a child of this class. The inheriting classes should
@@ -54,37 +69,20 @@ public class Rygel.ContentDirectory: Service {
     DIDLLiteWriter didl_writer;
 
     // Public abstract methods derived classes need to implement
-    public virtual void add_children_metadata
-                            (DIDLLiteWriter didl_writer,
-                             string         container_id,
-                             string         filter,
-                             uint           starting_index,
-                             uint           requested_count,
-                             string         sort_criteria,
-                             out uint       number_returned,
-                             out uint       total_matches,
-                             out uint       update_id) throws Error {
+    public virtual void add_children_metadata (DIDLLiteWriter didl_writer,
+                                               BrowseArgs     args)
+                                               throws Error {
         throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
     }
 
     public virtual void add_metadata (DIDLLiteWriter didl_writer,
-                                       string         object_id,
-                                       string         filter,
-                                       string         sort_criteria,
-                                       out uint       update_id) throws Error {
+                                      BrowseArgs    args) throws Error {
         throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
     }
 
     public virtual void add_root_children_metadata
                                         (DIDLLiteWriter didl_writer,
-                                         string         filter,
-                                         uint           starting_index,
-                                         uint           requested_count,
-                                         string         sort_criteria,
-                                         out uint       number_returned,
-                                         out uint       total_matches,
-                                         out uint       update_id)
-                                         throws Error {
+                                         BrowseArgs     args) throws Error {
         throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
     }
 
@@ -130,24 +128,24 @@ public class Rygel.ContentDirectory: Service {
     /* Browse action implementation */
     protected virtual void browse_cb (ContentDirectory content_dir,
                                       ServiceAction    action) {
-        string object_id, browse_flag;
         bool browse_metadata;
-        string sort_criteria, filter;
-        uint starting_index, requested_count;
-        uint num_returned, total_matches, update_id;
+
+        BrowseArgs args = new BrowseArgs ();
 
         /* Handle incoming arguments */
-        action.get ("ObjectID", typeof (string), out object_id,
-                    "BrowseFlag", typeof (string), out browse_flag,
-                    "Filter", typeof (string), out filter,
-                    "StartingIndex", typeof (uint), out starting_index,
-                    "RequestedCount", typeof (uint), out requested_count,
-                    "SortCriteria", typeof (string), out sort_criteria);
+        action.get ("ObjectID", typeof (string), out args.object_id,
+                    "BrowseFlag", typeof (string), out args.browse_flag,
+                    "Filter", typeof (string), out args.filter,
+                    "StartingIndex", typeof (uint), out args.index,
+                    "RequestedCount", typeof (uint), out args.requested_count,
+                    "SortCriteria", typeof (string), out args.sort_criteria);
 
         /* BrowseFlag */
-        if (browse_flag != null && browse_flag == "BrowseDirectChildren") {
+        if (args.browse_flag != null &&
+            args.browse_flag == "BrowseDirectChildren") {
             browse_metadata = false;
-        } else if (browse_flag != null && browse_flag == "BrowseMetadata") {
+        } else if (args.browse_flag != null &&
+                   args.browse_flag == "BrowseMetadata") {
             browse_metadata = true;
         } else {
             action.return_error (402, "Invalid Args");
@@ -156,10 +154,10 @@ public class Rygel.ContentDirectory: Service {
         }
 
         /* ObjectID */
-        if (object_id == null) {
+        if (args.object_id == null) {
             /* Stupid Xbox */
-            action.get ("ContainerID", typeof (string), out object_id);
-            if (object_id == null) {
+            action.get ("ContainerID", typeof (string), out args.object_id);
+            if (args.object_id == null) {
                 action.return_error (701, "No such object");
 
                 return;
@@ -172,40 +170,21 @@ public class Rygel.ContentDirectory: Service {
         try {
             if (browse_metadata) {
                 // BrowseMetadata
-                if (object_id == this.root_container.id) {
+                if (args.object_id == this.root_container.id) {
                     this.root_container.serialize (didl_writer);
-                    update_id = this.system_update_id;
+                    args.update_id = this.system_update_id;
                 } else {
-                    this.add_metadata (this.didl_writer,
-                                       object_id,
-                                       filter,
-                                       sort_criteria,
-                                       out update_id);
+                    this.add_metadata (this.didl_writer, args);
                 }
 
-                num_returned = 1;
-                total_matches = 1;
+                args.number_returned = 1;
+                args.total_matches = 1;
             } else {
                 // BrowseDirectChildren
-                if (object_id == this.root_container.id) {
-                    this.add_root_children_metadata (this.didl_writer,
-                                                     filter,
-                                                     starting_index,
-                                                     requested_count,
-                                                     sort_criteria,
-                                                     out num_returned,
-                                                     out total_matches,
-                                                     out update_id);
+                if (args.object_id == this.root_container.id) {
+                    this.add_root_children_metadata (this.didl_writer, args);
                 } else {
-                    this.add_children_metadata (this.didl_writer,
-                                                object_id,
-                                                filter,
-                                                starting_index,
-                                                requested_count,
-                                                sort_criteria,
-                                                out num_returned,
-                                                out total_matches,
-                                                out update_id);
+                    this.add_children_metadata (this.didl_writer, args);
                 }
             }
 
@@ -215,15 +194,15 @@ public class Rygel.ContentDirectory: Service {
             /* Retrieve generated string */
             string didl = this.didl_writer.get_string ();
 
-            if (update_id == uint32.MAX) {
-                update_id = this.system_update_id;
+            if (args.update_id == uint32.MAX) {
+                args.update_id = this.system_update_id;
             }
 
             /* Set action return arguments */
             action.set ("Result", typeof (string), didl,
-                        "NumberReturned", typeof (uint), num_returned,
-                        "TotalMatches", typeof (uint), total_matches,
-                        "UpdateID", typeof (uint), update_id);
+                        "NumberReturned", typeof (uint), args.number_returned,
+                        "TotalMatches", typeof (uint), args.total_matches,
+                        "UpdateID", typeof (uint), args.update_id);
 
             action.return ();
         } catch (Error error) {
