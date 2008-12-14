@@ -59,7 +59,6 @@ public class Rygel.GstStream : Pipeline {
 
         sink.emit_signals = true;
         sink.new_buffer += this.on_new_buffer;
-        sink.new_preroll += this.on_new_preroll;
 
         this.add_many (src, sink);
         src.link (sink);
@@ -69,18 +68,6 @@ public class Rygel.GstStream : Pipeline {
         Buffer buffer = null;
 
         GLib.Signal.emit_by_name (sink, "pull-buffer", out buffer);
-        if (buffer == null) {
-            critical ("Failed to get buffer from pipeline");
-            return;
-        }
-
-        this.queue_buffer (buffer);
-    }
-
-    private void on_new_preroll (dynamic Element sink) {
-        Buffer buffer = null;
-
-        GLib.Signal.emit_by_name (sink, "pull-preroll", out buffer);
         if (buffer == null) {
             critical ("Failed to get buffer from pipeline");
             return;
