@@ -24,17 +24,20 @@
  */
 
 using Gee;
+using Gst;
 
 public class Rygel.Streamer : GLib.Object {
     private string server_path_root;
 
     private GUPnP.Context context;
+    private HashMap<Stream,GstStream> streams;
 
     public signal void stream_available (Rygel.Stream stream,
                                          string       path);
 
     public Streamer (GUPnP.Context context, string name) {
         this.context = context;
+        this.streams = new HashMap<Stream,GstStream> ();
 
         this.server_path_root = "/" + name;
 
@@ -46,6 +49,32 @@ public class Rygel.Streamer : GLib.Object {
                                           this.context.port,
                                           this.server_path_root,
                                           path);
+    }
+
+    public void stream_from_gst_source (Element# src,
+                                        Stream   stream) throws Error {
+        GstStream gst_stream;
+
+        gst_stream = new GstStream (stream, "RygelGstStream", src);
+
+        gst_stream.set_state (State.PLAYING);
+        stream.eos += on_eos;
+
+        this.streams.set (stream, gst_stream);
+    }
+
+    private void on_eos (Stream stream) {
+        GstStream gst_stream = this.streams.get (stream);
+        if (gst_stream == null)
+            return;
+
+        /* We don't need to wait for state change since downstream state changes
+         * are guaranteed to be synchronous.
+         */
+        gst_stream.set_state (State.NULL);
+
+        /* Remove the associated Gst stream. */
+        this.streams.remove (stream);
     }
 
     private void server_handler (Soup.Server        server,
