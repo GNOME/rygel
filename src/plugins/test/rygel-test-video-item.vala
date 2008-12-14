@@ -64,9 +64,9 @@ public class Rygel.TestVideoItem : Rygel.TestItem {
         src.is_live = true;
 
         // Add elements to our source bin
-        bin.add_many (src, muxer, encoder);
+        bin.add_many (src, encoder, muxer);
         // Link them
-        src.link_many (muxer, encoder);
+        src.link_many (encoder, muxer);
 
         // Now add the encoder's src pad to the bin
         Pad pad = muxer.get_static_pad ("src");
