@@ -85,6 +85,9 @@ public class Rygel.Main : Object {
     public static int main (string[] args) {
         Main main;
 
+        // initialize gstreamer
+        Gst.init (ref args);
+
         try {
             main = new Main ();
         } catch (GLib.Error err) {
