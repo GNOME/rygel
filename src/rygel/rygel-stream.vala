@@ -48,6 +48,8 @@ public class Rygel.Stream : GLib.Object {
 
     public void accept () {
         this.msg.set_status (Soup.KnownStatusCode.OK);
+
+        this.msg.response_body.set_accumulate (false);
     }
 
     public void reject () {
