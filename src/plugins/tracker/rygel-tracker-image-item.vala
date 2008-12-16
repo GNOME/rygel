@@ -47,7 +47,8 @@ public class Rygel.TrackerImageItem : TrackerItem {
                              "DC:Date"};
     }
 
-    public override void serialize (DIDLLiteWriter didl_writer) {
+    public override void serialize (DIDLLiteWriter didl_writer)
+                                    throws GLib.Error {
         string[] values = null;
 
         /* TODO: make this async */

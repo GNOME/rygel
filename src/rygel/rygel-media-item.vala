@@ -55,7 +55,7 @@ public class Rygel.MediaItem : MediaObject {
         this.upnp_class = upnp_class;
     }
 
-    public override void serialize (DIDLLiteWriter didl_writer) {
+    public override void serialize (DIDLLiteWriter didl_writer) throws Error {
         didl_writer.start_item (this.id,
                                 this.parent_id,
                                 null,

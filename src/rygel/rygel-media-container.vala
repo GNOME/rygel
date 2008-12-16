@@ -46,7 +46,7 @@ public class Rygel.MediaContainer : MediaObject {
         this ("0", "-1", title, child_count);
     }
 
-    public override void serialize (DIDLLiteWriter didl_writer) {
+    public override void serialize (DIDLLiteWriter didl_writer) throws Error {
         didl_writer.start_container (this.id,
                                      this.parent_id,
                                      (int) this.child_count,

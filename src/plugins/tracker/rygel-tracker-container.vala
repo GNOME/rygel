@@ -88,7 +88,8 @@ public class Rygel.TrackerContainer : MediaContainer {
         this.context = context;
     }
 
-    public override void serialize (DIDLLiteWriter didl_writer) {
+    public override void serialize (DIDLLiteWriter didl_writer)
+                                    throws GLib.Error {
         /* Update the child count */
         this.child_count = this.get_children_count ();
 
@@ -174,7 +175,15 @@ public class Rygel.TrackerContainer : MediaContainer {
                                          this);
         }
 
-        item.serialize (didl_writer);
+        try {
+            item.serialize (didl_writer);
+        } catch (GLib.Error error) {
+            critical ("Failed to serialize item %s. Reason: %s",
+                      item.id,
+                      error.message);
+
+            return false;
+        }
 
         return true;
     }

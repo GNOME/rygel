@@ -33,5 +33,5 @@ public abstract class Rygel.MediaObject {
     public string parent_id;
     public string title;
 
-    public abstract void serialize (DIDLLiteWriter didl_writer);
+    public abstract void serialize (DIDLLiteWriter didl_writer) throws Error;
 }
