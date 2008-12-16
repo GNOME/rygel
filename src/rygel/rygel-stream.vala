@@ -41,7 +41,9 @@ public class Rygel.Stream : GLib.Object {
     private void on_request_aborted (Soup.Server        server,
                                      Soup.Message       msg,
                                      Soup.ClientContext client) {
-        this.eos ();
+        // Ignore if message isn't ours
+        if (msg == this.msg)
+            this.eos ();
     }
 
     public void accept () {
