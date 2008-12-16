@@ -24,6 +24,10 @@
 
 using GUPnP;
 
+public errordomain Rygel.MediaItemError {
+    UNKNOWN_URI_TYPE
+}
+
 /**
  * Represents a media (Music, Video and Image) item. Provides basic
  * serialization (to DIDLLiteWriter) implementation.
@@ -121,7 +125,8 @@ public class Rygel.MediaItem : MediaObject {
         res.uri = uri;
 
         /* Protocol info */
-        res.protocol = "http-get";
+        string protocol = get_protocol_for_uri (uri);
+        res.protocol = protocol;
         res.mime_type = mime;
         res.dlna_profile = "MP3"; /* FIXME */
         res.dlna_operation = GUPnP.DLNAOperation.RANGE;
@@ -137,5 +142,19 @@ public class Rygel.MediaItem : MediaObject {
 
         /* End of item */
         didl_writer.end_item ();
+    }
+
+    private string get_protocol_for_uri (string uri) throws Error {
+        if (uri.has_prefix ("http")) {
+            return "http-get";
+        } else if (uri.has_prefix ("file")) {
+            return "internal";
+        } else if (uri.has_prefix ("rtsp")) {
+            // FIXME: Assuming that RTSP is always accompanied with RTP over UDP
+            return "rtsp-rtp-udp";
+        } else {
+            throw new MediaItemError.UNKNOWN_URI_TYPE
+                            ("Failed to probe protocol for URI %s", uri);
+        }
     }
 }
