@@ -62,6 +62,10 @@ public class Rygel.GstStream : Pipeline {
 
         this.add_many (src, sink);
         src.link (sink);
+
+        // Bus handler
+        var bus = this.get_bus ();
+        bus.add_watch (bus_handler);
     }
 
     private void on_new_buffer (Element sink,
@@ -79,6 +83,34 @@ public class Rygel.GstStream : Pipeline {
         }
 
         return false;
+    }
+
+    private bool bus_handler (Gst.Bus     bus,
+                              Gst.Message message) {
+        bool ret = true;
+
+        if (message.type == MessageType.EOS) {
+            ret = false;
+        } else {
+            GLib.Error err;
+            string err_msg;
+
+            if (message.type == MessageType.ERROR) {
+                message.parse_error (out err, out err_msg);
+                critical ("Error from pipeline %s:%s", this.name, err_msg);
+
+                ret = false;
+            } else if (message.type == MessageType.WARNING) {
+                message.parse_warning (out err, out err_msg);
+                warning ("Warning from pipeline %s:%s", this.name, err_msg);
+            }
+        }
+
+        if (!ret) {
+            this.stream.end ();
+        }
+
+        return ret;
     }
 }
 
