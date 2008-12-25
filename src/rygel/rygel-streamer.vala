@@ -120,6 +120,9 @@ public class Rygel.Streamer : GLib.Object {
             return;
         }
 
+        // Add headers
+        this.add_item_headers (msg, item);
+
         // Create to Gst source that can handle the URI
         var src = Element.make_from_uri (URIType.SRC, uri, null);
         if (src == null) {
@@ -157,6 +160,13 @@ public class Rygel.Streamer : GLib.Object {
             stream.reject ();
             return;
         }
+    }
+
+    private void add_item_headers (Soup.Message msg,
+                                   MediaItem    item) {
+        msg.response_headers.append ("Content-Type", item.res.mime_type);
+        msg.response_headers.append ("Content-Length",
+                                     item.res.size.to_string ());
     }
 }
 
