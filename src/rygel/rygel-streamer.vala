@@ -51,6 +51,13 @@ public class Rygel.Streamer : GLib.Object {
                                           path);
     }
 
+    public string create_http_uri_for_uri (string uri) {
+        string escaped = Uri.escape_string (uri, "", true);
+        string query = "?uri=%s".printf (escaped);
+
+        return create_uri_for_path (query);
+    }
+
     public void stream_from_gst_source (Element# src,
                                         Stream   stream) throws Error {
         GstStream gst_stream;
@@ -77,19 +84,54 @@ public class Rygel.Streamer : GLib.Object {
         this.streams.remove (stream);
     }
 
-    private void server_handler (Soup.Server        server,
-                                 Soup.Message       msg,
-                                 string             server_path,
-                                 HashTable?         query,
-                                 Soup.ClientContext soup_client) {
-        string[] path_tokens = server_path.split (this.server_path_root, 2);
+    private void server_handler (Soup.Server               server,
+                                 Soup.Message              msg,
+                                 string                    server_path,
+                                 HashTable<string,string>? query,
+                                 Soup.ClientContext        soup_client) {
+        string uri = null;
+        if (query != null) {
+            uri = query.lookup ("uri");
+        }
+
+        if (uri != null) {
+            this.handle_uri_request (msg, uri);
+        } else {
+            this.handle_path_request (msg, server_path);
+        }
+    }
+
+    private void handle_uri_request (Soup.Message msg,
+                                     string       uri) {
+        // Create to Gst source that can handle the URI
+        var src = Element.make_from_uri (URIType.SRC, uri, null);
+        if (src == null) {
+            warning ("Failed to create source element for URI: %s\n", uri);
+            return;
+        }
+
+        // create a stream for it
+        var stream = new Stream (this.context.server, msg);
+        try {
+            // Then attach the gst source to stream we are good to go
+            this.stream_from_gst_source (src, stream);
+        } catch (Error error) {
+            critical ("Error in attempting to start streaming %s: %s",
+                      uri,
+                      error.message);
+        }
+    }
+
+    private void handle_path_request (Soup.Message msg,
+                                      string       path) {
+        string[] path_tokens = path.split (this.server_path_root, 2);
         if (path_tokens[0] == null || path_tokens[1] == null) {
             msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
             return;
         }
 
         string stream_path = path_tokens[1];
-        var stream = new Stream (server, msg);
+        var stream = new Stream (this.context.server, msg);
 
         this.stream_available (stream, stream_path);
 
