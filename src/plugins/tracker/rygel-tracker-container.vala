@@ -158,7 +158,7 @@ public class Rygel.TrackerContainer : MediaContainer {
 
     public bool add_item_from_db (DIDLLiteWriter didl_writer,
                                    string         path) {
-        MediaItem item;
+        MediaItem item = null;
 
         try {
             item = this.get_item_from_db (path);
