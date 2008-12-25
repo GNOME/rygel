@@ -31,6 +31,20 @@ using DBus;
  * Represents Tracker image item.
  */
 public class Rygel.TrackerImageItem : TrackerItem {
+    private enum Metadata {
+        FILE_NAME,
+        MIME,
+        SIZE,
+        TITLE,
+        CREATOR,
+        WIDTH,
+        HEIGHT,
+        ALBUM,
+        IMAGE_DATE,
+        DATE,
+        LAST_KEY
+    }
+
     public TrackerImageItem (string              id,
                              string              path,
                              TrackerContainer    parent) throws GLib.Error {
@@ -38,16 +52,17 @@ public class Rygel.TrackerImageItem : TrackerItem {
     }
 
     public override void fetch_metadata () throws GLib.Error {
-        string[] keys = new string[] {"File:Name",
-                                      "File:Mime",
-                                      "File:Size",
-                                      "Image:Title",
-                                      "Image:Creator",
-                                      "Image:Width",
-                                      "Image:Height",
-                                      "Image:Album",
-                                      "Image:Date",
-                                      "DC:Date"};
+        string[] keys = new string[Metadata.LAST_KEY];
+        keys[Metadata.FILE_NAME] = "File:Name";
+        keys[Metadata.MIME] = "File:Mime";
+        keys[Metadata.SIZE] = "File:Size";
+        keys[Metadata.TITLE] = "Video:Title";
+        keys[Metadata.CREATOR] = "Image:Creator";
+        keys[Metadata.WIDTH] = "Image:Width";
+        keys[Metadata.HEIGHT] = "Image:Height";
+        keys[Metadata.ALBUM] = "Image:Album";
+        keys[Metadata.IMAGE_DATE] = "Image:Date";
+        keys[Metadata.DATE] = "DC:Date";
         string[] values = null;
 
         /* TODO: make this async */
@@ -61,35 +76,35 @@ public class Rygel.TrackerImageItem : TrackerItem {
             return;
         }
 
-        if (values[3] != "")
-            this.title = values[3];
+        if (values[Metadata.TITLE] != "")
+            this.title = values[Metadata.TITLE];
         else
             /* If title wasn't provided, use filename instead */
-            this.title = values[0];
+            this.title = values[Metadata.FILE_NAME];
 
-        if (values[2] != "")
-            this.res.size = values[2].to_int ();
+        if (values[Metadata.SIZE] != "")
+            this.res.size = values[Metadata.SIZE].to_int ();
 
-        if (values[5] != "")
-            this.res.width = values[5].to_int ();
+        if (values[Metadata.WIDTH] != "")
+            this.res.width = values[Metadata.WIDTH].to_int ();
 
-        if (values[6] != "")
-            this.res.height = values[6].to_int ();
+        if (values[Metadata.HEIGHT] != "")
+            this.res.height = values[Metadata.HEIGHT].to_int ();
 
-        if (values[2] != "")
-            this.res.size = values[2].to_int ();
+        if (values[Metadata.SIZE] != "")
+            this.res.size = values[Metadata.SIZE].to_int ();
 
-        if (values[9] != "") {
-            this.date = seconds_to_iso8601 (values[9]);
+        if (values[Metadata.DATE] != "") {
+            this.date = seconds_to_iso8601 (values[Metadata.DATE]);
         } else {
-            this.date = seconds_to_iso8601 (values[8]);
+            this.date = seconds_to_iso8601 (values[Metadata.IMAGE_DATE]);
         }
 
         // FIXME: (Leaky) Hack to assign the string to weak fields
-        string *mime = #values[1];
+        string *mime = #values[Metadata.MIME];
         this.res.mime_type = mime;
-        this.author = values[4];
-        this.album = values[7];
+        this.author = values[Metadata.CREATOR];
+        this.album = values[Metadata.ALBUM];
         string *uri = this.uri_from_path (path);
         this.res.uri = uri;
     }

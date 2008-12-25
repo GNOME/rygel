@@ -31,6 +31,18 @@ using DBus;
  * Represents Tracker video item.
  */
 public class Rygel.TrackerVideoItem : TrackerItem {
+    private enum Metadata {
+        FILE_NAME,
+        MIME,
+        SIZE,
+        TITLE,
+        AUTHOR,
+        WIDTH,
+        HEIGHT,
+        DATE,
+        LAST_KEY
+    }
+
     public TrackerVideoItem (string              id,
                              string              path,
                              TrackerContainer    parent) throws GLib.Error {
@@ -38,14 +50,15 @@ public class Rygel.TrackerVideoItem : TrackerItem {
     }
 
     public override void fetch_metadata () throws GLib.Error {
-        string[] keys = new string[] {"File:Name",
-                                      "File:Mime",
-                                      "File:Size",
-                                      "Video:Title",
-                                      "Video:Author",
-                                      "Video:Width",
-                                      "Video:Height",
-                                      "DC:Date"};
+        string[] keys = new string[Metadata.LAST_KEY];
+        keys[Metadata.FILE_NAME] = "File:Name";
+        keys[Metadata.MIME] = "File:Mime";
+        keys[Metadata.SIZE] = "File:Size";
+        keys[Metadata.TITLE] = "Video:Title";
+        keys[Metadata.AUTHOR] = "Video:Author";
+        keys[Metadata.WIDTH] = "Video:Width";
+        keys[Metadata.HEIGHT] = "Video:Height";
+        keys[Metadata.DATE] = "DC:Date";
         string[] values = null;
 
         /* TODO: make this async */
@@ -59,26 +72,26 @@ public class Rygel.TrackerVideoItem : TrackerItem {
             return;
         }
 
-        if (values[3] != "")
-            this.title = values[3];
+        if (values[Metadata.TITLE] != "")
+            this.title = values[Metadata.TITLE];
         else
             /* If title wasn't provided, use filename instead */
-            this.title = values[0];
+            this.title = values[Metadata.FILE_NAME];
 
-        if (values[2] != "")
-            this.res.size = values[2].to_int ();
+        if (values[Metadata.SIZE] != "")
+            this.res.size = values[Metadata.SIZE].to_int ();
 
-        if (values[5] != "")
-            this.res.width = values[5].to_int ();
+        if (values[Metadata.WIDTH] != "")
+            this.res.width = values[Metadata.WIDTH].to_int ();
 
-        if (values[6] != "")
-            this.res.height = values[6].to_int ();
+        if (values[Metadata.HEIGHT] != "")
+            this.res.height = values[Metadata.HEIGHT].to_int ();
 
-        this.date = this.seconds_to_iso8601 (values[7]);
+        this.date = this.seconds_to_iso8601 (values[Metadata.DATE]);
         // FIXME: (Leaky) Hack to assign the string to weak fields
-        string *mime = #values[1];
+        string *mime = #values[Metadata.MIME];
         this.res.mime_type = mime;
-        this.author = values[4];
+        this.author = values[Metadata.AUTHOR];
         string *uri = this.uri_from_path (path);
         this.res.uri = uri;
     }

@@ -31,6 +31,20 @@ using DBus;
  * Represents Tracker music item.
  */
 public class Rygel.TrackerMusicItem : TrackerItem {
+    private enum Metadata {
+        FILE_NAME,
+        MIME,
+        SIZE,
+        TITLE,
+        ARTIST,
+        TRACK_NUM,
+        ALBUM,
+        RELEASE,
+        DATE_ADDED,
+        DATE,
+        LAST_KEY
+    }
+
     public TrackerMusicItem (string              id,
                              string              path,
                              TrackerContainer    parent) throws GLib.Error {
@@ -38,16 +52,17 @@ public class Rygel.TrackerMusicItem : TrackerItem {
     }
 
     public override void fetch_metadata () throws GLib.Error {
-        string[] keys = new string[] {"File:Name",
-                                      "File:Mime",
-                                      "File:Size",
-                                      "Audio:Title",
-                                      "Audio:Artist",
-                                      "Audio:TrackNo",
-                                      "Audio:Album",
-                                      "Audio:ReleaseDate",
-                                      "Audio:DateAdded",
-                                      "DC:Date"};
+        string[] keys = new string[Metadata.LAST_KEY];
+        keys[Metadata.FILE_NAME] = "File:Name";
+        keys[Metadata.MIME] = "File:Mime";
+        keys[Metadata.SIZE] = "File:Size";
+        keys[Metadata.TITLE] = "Video:Title";
+        keys[Metadata.ARTIST] = "Audio:Artist";
+        keys[Metadata.TRACK_NUM] = "Audio:TrackNo";
+        keys[Metadata.ALBUM] = "Audio:Album";
+        keys[Metadata.RELEASE] = "Audio:ReleaseDate";
+        keys[Metadata.DATE_ADDED] = "Audio:DateAdded";
+        keys[Metadata.DATE] = "DC:Date";
         string[] values = null;
 
         /* TODO: make this async */
@@ -61,31 +76,31 @@ public class Rygel.TrackerMusicItem : TrackerItem {
             return;
         }
 
-        if (values[3] != "")
-            this.title = values[3];
+        if (values[Metadata.TITLE] != "")
+            this.title = values[Metadata.TITLE];
         else
             /* If title wasn't provided, use filename instead */
-            this.title = values[0];
+            this.title = values[Metadata.FILE_NAME];
 
-        if (values[2] != "")
-            this.res.size = values[2].to_int ();
+        if (values[Metadata.SIZE] != "")
+            this.res.size = values[Metadata.SIZE].to_int ();
 
-        if (values[5] != "")
-            this.track_number = values[5].to_int ();
+        if (values[Metadata.TRACK_NUM] != "")
+            this.track_number = values[Metadata.TRACK_NUM].to_int ();
 
-        if (values[9] != "") {
-            this.date = seconds_to_iso8601 (values[9]);
-        } else if (values[7] != "") {
-            this.date = seconds_to_iso8601 (values[7]);
+        if (values[Metadata.DATE] != "") {
+            this.date = seconds_to_iso8601 (values[Metadata.DATE]);
+        } else if (values[Metadata.RELEASE] != "") {
+            this.date = seconds_to_iso8601 (values[Metadata.RELEASE]);
         } else {
-            this.date = seconds_to_iso8601 (values[8]);
+            this.date = seconds_to_iso8601 (values[Metadata.DATE_ADDED]);
         }
 
         // FIXME: (Leaky) Hack to assign the string to weak fields
-        string *mime = #values[1];
+        string *mime = #values[Metadata.MIME];
         this.res.mime_type = mime;
-        this.author = values[4];
-        this.album = values[6];
+        this.author = values[Metadata.ARTIST];
+        this.album = values[Metadata.ALBUM];
         string *uri = this.uri_from_path (path);
         this.res.uri = uri;
     }
