@@ -61,7 +61,29 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         this.channel_list = channel_list;
         this.streamer = streamer;
 
-        channels = new HashMap<string, DVBChannel> (str_hash, str_equal);
+        this.fetch_channels ();
+    }
+
+    public uint add_channels (DIDLLiteWriter didl_writer,
+                              uint           index,
+                              uint           requested_count,
+                              out uint       total_matches) throws GLib.Error {
+        foreach (var channel in channels.get_values ()) {
+            channel.serialize (didl_writer);
+        }
+
+        total_matches = channels.size;
+
+        return total_matches;
+    }
+
+    public DVBChannel find_channel (DIDLLiteWriter didl_writer,
+                                    string         id) {
+        return this.channels.get (id);
+    }
+
+    private void fetch_channels () {
+        this.channels = new HashMap<string, DVBChannel> (str_hash, str_equal);
 
         DBus.Connection connection;
         try {
@@ -91,24 +113,6 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         }
 
         this.child_count = this.channels.size;
-    }
-
-    public uint add_channels (DIDLLiteWriter didl_writer,
-                              uint           index,
-                              uint           requested_count,
-                              out uint       total_matches) throws GLib.Error {
-        foreach (var channel in channels.get_values ()) {
-            channel.serialize (didl_writer);
-        }
-
-        total_matches = channels.size;
-
-        return total_matches;
-    }
-
-    public DVBChannel find_channel (DIDLLiteWriter didl_writer,
-                                    string         id) {
-        return this.channels.get (id);
     }
 }
 
