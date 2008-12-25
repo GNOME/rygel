@@ -44,7 +44,7 @@ public class Rygel.TrackerContainer : MediaContainer {
     public static dynamic DBus.Object files;
     public static dynamic DBus.Object tracker;
 
-    public Context context;
+    public Streamer streamer;
     public string category;
 
     /* UPnP class of items under this container */
@@ -79,13 +79,12 @@ public class Rygel.TrackerContainer : MediaContainer {
                              string  title,
                              string  category,
                              string  child_class,
-                             Context context) {
-        this.id = id;
-        this.parent_id = parent_id;
-        this.title = title;
+                             Streamer streamer) {
+        base (id, parent_id, title, 0);
+
         this.category = category;
         this.child_class = child_class;
-        this.context = context;
+        this.streamer = streamer;
     }
 
     public override void serialize (DIDLLiteWriter didl_writer)

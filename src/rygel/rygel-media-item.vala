@@ -49,14 +49,18 @@ public class Rygel.MediaItem : MediaObject {
     public int height = -1;
     public int track_number = -1;
 
-    public MediaItem (string id,
-                      string parent_id,
-                      string title,
-                      string upnp_class) {
+    protected Rygel.Streamer streamer;
+
+    public MediaItem (string   id,
+                      string   parent_id,
+                      string   title,
+                      string   upnp_class,
+                      Streamer streamer) {
         this.id = id;
         this.parent_id = parent_id;
         this.title = title;
         this.upnp_class = upnp_class;
+        this.streamer = streamer;
     }
 
     public override void serialize (DIDLLiteWriter didl_writer) throws Error {

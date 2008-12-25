@@ -43,6 +43,8 @@ public class Rygel.MediaTracker : ContentDirectory {
         // Chain-up to base first
         base.constructed ();
 
+        Streamer streamer = new Streamer (this.context, "Tracker");
+
         this.containers = new List<TrackerContainer> ();
         this.containers.append
                         (new TrackerContainer ("16",
@@ -50,31 +52,26 @@ public class Rygel.MediaTracker : ContentDirectory {
                                                "All Images",
                                                "Images",
                                                MediaItem.IMAGE_CLASS,
-                                               context));
+                                               streamer));
         this.containers.append
                         (new TrackerContainer ("14",
                                                this.root_container.id,
                                                "All Music",
                                                "Music",
                                                MediaItem.MUSIC_CLASS,
-                                               context));
+                                               streamer));
         this.containers.append
                         (new TrackerContainer ("15",
                                                this.root_container.id,
                                                "All Videos",
                                                "Videos",
                                                MediaItem.VIDEO_CLASS,
-                                               context));
+                                               streamer));
 
         // Now we know how many top-level containers we have
         this.root_container.child_count = this.containers.length ();
 
         this.search_parser = new SearchCriteriaParser ();
-
-        weak string home_dir = Environment.get_home_dir ();
-
-        /* Host the home dir of the user */
-        this.context.host_path (home_dir, home_dir);
     }
 
     public override void add_children_metadata (DIDLLiteWriter didl_writer,

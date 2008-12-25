@@ -36,8 +36,6 @@ public abstract class Rygel.TestItem : Rygel.MediaItem {
 
     public string path;
 
-    private Streamer streamer;
-
     public TestItem (string   id,
                      string   parent_id,
                      string   title,
@@ -45,9 +43,8 @@ public abstract class Rygel.TestItem : Rygel.MediaItem {
                      string   upnp_class,
                      Streamer streamer,
                      string   path) {
-        base (id, parent_id, title, upnp_class);
+        base (id, parent_id, title, upnp_class, streamer);
         this.mime = mime;
-        this.streamer = streamer;
         this.author = TEST_AUTHOR;
         this.path= path;
 
