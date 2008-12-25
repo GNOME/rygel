@@ -105,11 +105,16 @@ public class Rygel.DVBChannelGroup : MediaContainer {
 
         foreach (uint channel_id in channel_ids) {
             // Create Channels
-            var channel = new DVBChannel (channel_id,
-                                          this.id,
-                                          channel_list,
-                                          streamer);
-            this.channels.set (channel.id, channel);
+            try {
+                var channel = new DVBChannel (channel_id,
+                                              this.id,
+                                              channel_list,
+                                              streamer);
+                this.channels.set (channel.id, channel);
+            } catch (GLib.Error error) {
+                critical ("Failed to create DVB Channel object: %s",
+                          error.message);
+            }
         }
 
         this.child_count = this.channels.size;
