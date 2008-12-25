@@ -37,13 +37,14 @@ public class Rygel.MediaTracker : ContentDirectory {
     private List<TrackerContainer> containers;
 
     private SearchCriteriaParser search_parser;
+    private Streamer streamer;
 
     /* Pubic methods */
     public override void constructed () {
         // Chain-up to base first
         base.constructed ();
 
-        Streamer streamer = new Streamer (this.context, "Tracker");
+        this.streamer = new Streamer (this.context, "Tracker");
 
         this.containers = new List<TrackerContainer> ();
         this.containers.append
