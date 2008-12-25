@@ -123,6 +123,12 @@ public class Rygel.Streamer : GLib.Object {
         // Add headers
         this.add_item_headers (msg, item);
 
+        if (msg.method == "HEAD") {
+            // Only headers requested, no need to stream contents
+            msg.set_status (Soup.KnownStatusCode.OK);
+            return;
+        }
+
         // Create to Gst source that can handle the URI
         var src = Element.make_from_uri (URIType.SRC, uri, null);
         if (src == null) {
