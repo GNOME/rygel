@@ -27,6 +27,7 @@ using Gee;
 using Gst;
 
 public class Rygel.Streamer : GLib.Object {
+    private const string SERVER_PATH_PREFIX = "/RygelStreamer";
     private string server_path_root;
 
     private GUPnP.Context context;
@@ -41,7 +42,7 @@ public class Rygel.Streamer : GLib.Object {
         this.context = context;
         this.streams = new HashMap<Stream,GstStream> ();
 
-        this.server_path_root = "/" + name;
+        this.server_path_root = SERVER_PATH_PREFIX + "/" + name;
 
         context.server.add_handler (this.server_path_root, server_handler);
     }
