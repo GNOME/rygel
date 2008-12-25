@@ -33,9 +33,7 @@ using DBus;
 public class Rygel.TrackerImageItem : TrackerItem {
     public TrackerImageItem (string              id,
                              string              path,
-                             TrackerContainer    parent) {
-        base (id, path, parent);
-
+                             TrackerContainer    parent) throws GLib.Error {
         keys = new string[] {"File:Name",
                              "File:Mime",
                              "Image:Title",
@@ -45,10 +43,11 @@ public class Rygel.TrackerImageItem : TrackerItem {
                              "Image:Album",
                              "Image:Date",
                              "DC:Date"};
+
+        base (id, path, parent);
     }
 
-    public override void serialize (DIDLLiteWriter didl_writer)
-                                    throws GLib.Error {
+    public override void fetch_metadata () throws GLib.Error {
         string[] values = null;
 
         /* TODO: make this async */
@@ -84,8 +83,6 @@ public class Rygel.TrackerImageItem : TrackerItem {
         this.author = values[3];
         this.album = values[6];
         this.uri = this.uri_from_path (path);
-
-        base.serialize (didl_writer);
     }
 }
 

@@ -33,9 +33,7 @@ using DBus;
 public class Rygel.TrackerMusicItem : TrackerItem {
     public TrackerMusicItem (string              id,
                              string              path,
-                             TrackerContainer    parent) {
-        base (id, path, parent);
-
+                             TrackerContainer    parent) throws GLib.Error {
         keys = new string[] {"File:Name",
                              "File:Mime",
                              "Audio:Title",
@@ -45,10 +43,11 @@ public class Rygel.TrackerMusicItem : TrackerItem {
                              "Audio:ReleaseDate",
                              "Audio:DateAdded",
                              "DC:Date"};
+
+        base (id, path, parent);
     }
 
-    public override void serialize (DIDLLiteWriter didl_writer)
-                                    throws GLib.Error {
+    public override void fetch_metadata () throws GLib.Error {
         string[] values = null;
 
         /* TODO: make this async */
@@ -83,8 +82,6 @@ public class Rygel.TrackerMusicItem : TrackerItem {
         this.author = values[3];
         this.album = values[5];
         this.uri = this.uri_from_path (path);
-
-        base.serialize (didl_writer);
     }
 }
 

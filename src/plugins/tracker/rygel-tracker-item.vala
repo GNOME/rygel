@@ -38,11 +38,13 @@ public abstract class Rygel.TrackerItem : MediaItem {
 
     public TrackerItem (string           id,
                         string           path,
-                        TrackerContainer parent) {
+                        TrackerContainer parent) throws GLib.Error {
         base (id, parent.id, "", parent.child_class, parent.streamer);
 
         this.path = path;
         this.parent = parent;
+
+        this.fetch_metadata ();
     }
 
     protected string seconds_to_iso8601 (string seconds) {
@@ -65,5 +67,7 @@ public abstract class Rygel.TrackerItem : MediaItem {
     protected string uri_from_path (string path) {
         return "file://%s".printf (path);
     }
+
+    protected abstract void fetch_metadata () throws GLib.Error;
 }
 

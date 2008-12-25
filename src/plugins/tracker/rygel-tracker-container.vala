@@ -160,18 +160,20 @@ public class Rygel.TrackerContainer : MediaContainer {
                                    string         path) {
         MediaItem item;
 
-        if (this.child_class == MediaItem.VIDEO_CLASS) {
-            item = new TrackerVideoItem (path,
-                                         path,
-                                         this);
-        } else if (this.child_class == MediaItem.IMAGE_CLASS) {
-            item = new TrackerImageItem (path,
-                                         path,
-                                         this);
-        } else {
-            item = new TrackerMusicItem (path,
-                                         path,
-                                         this);
+        try {
+            if (this.child_class == MediaItem.VIDEO_CLASS) {
+                item = new TrackerVideoItem (path, path, this);
+            } else if (this.child_class == MediaItem.IMAGE_CLASS) {
+                item = new TrackerImageItem (path, path, this);
+            } else {
+                item = new TrackerMusicItem (path, path, this);
+            }
+        } catch (GLib.Error error) {
+            critical ("Failed to fetch item %s. Reason: %s",
+                      item.id,
+                      error.message);
+
+            return false;
         }
 
         try {
