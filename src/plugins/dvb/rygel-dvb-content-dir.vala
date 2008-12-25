@@ -36,6 +36,7 @@ public class Rygel.DVBContentDir : ContentDirectory {
     private const string DVB_SERVICE = "org.gnome.DVB";
     private const string MANAGER_PATH = "/org/gnome/DVB/Manager";
     private const string MANAGER_IFACE = "org.gnome.DVB.Manager";
+    private const string CHANNEL_LIST_IFACE = "org.gnome.DVB.ChannelList";
 
     public dynamic DBus.Object manager;
 
@@ -72,9 +73,24 @@ public class Rygel.DVBContentDir : ContentDirectory {
 
         this.groups = new List<DVBChannelGroup> ();
         foreach (uint group_id in dev_groups) {
+            string channel_list_path = null;
+            try {
+                channel_list_path = manager.GetChannelList (group_id);
+            } catch (GLib.Error error) {
+                critical ("error: %s", error.message);
+                return;
+            }
+
+            // Get a proxy to DVB ChannelList object
+            dynamic DBus.Object channel_list = connection.get_object
+                                        (DVBContentDir.DVB_SERVICE,
+                                         channel_list_path,
+                                         DVBContentDir.CHANNEL_LIST_IFACE);
+
             // Create ChannelGroup for each registered device group
             this.groups.append (new DVBChannelGroup (group_id,
                                                      this.root_container.id,
+                                                     channel_list,
                                                      streamer));
         }
     }

@@ -35,8 +35,6 @@ using Gee;
 public class Rygel.DVBChannelGroup : MediaContainer {
     /* class-wide constants */
     private const string DVB_SERVICE = "org.gnome.DVB";
-    private const string CHANNEL_LIST_PATH_ROOT = "/org/gnome/DVB/ChannelList/";
-    private const string CHANNEL_LIST_IFACE = "org.gnome.DVB.ChannelList";
 
     private const string GID_PREFIX = "GroupID:";
     private const string TITLE_PREFIX = "Group ";
@@ -50,15 +48,17 @@ public class Rygel.DVBChannelGroup : MediaContainer {
 
     private uint gid; /* The DVB Daemon Device Group ID */
 
-    public DVBChannelGroup (uint     gid,
-                            string   parent_id,
-                            Streamer streamer) {
+    public DVBChannelGroup (uint                gid,
+                            string              parent_id,
+                            dynamic DBus.Object channel_list,
+                            Streamer            streamer) {
         base (GID_PREFIX + gid.to_string (), // UPnP ID
               parent_id,
               TITLE_PREFIX + gid.to_string (),
               0);
         this.gid = gid;
         //this.upnp_class = "object.container.channelGroup";
+        this.channel_list = channel_list;
         this.streamer = streamer;
 
         channels = new HashMap<string, DVBChannel> (str_hash, str_equal);
@@ -72,14 +72,6 @@ public class Rygel.DVBChannelGroup : MediaContainer {
             return;
         }
 
-        string channel_list_path = DVBChannelGroup.CHANNEL_LIST_PATH_ROOT +
-                                   gid.to_string ();
-
-        // Get a proxy to DVB ChannelList object
-        this.channel_list = connection.get_object
-                                    (DVBChannelGroup.DVB_SERVICE,
-                                     channel_list_path,
-                                     DVBChannelGroup.CHANNEL_LIST_IFACE);
         uint[] channel_ids = null;
 
         try {
