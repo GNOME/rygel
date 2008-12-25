@@ -44,11 +44,15 @@ public abstract class Rygel.TestItem : Rygel.MediaItem {
                      Streamer streamer,
                      string   path) {
         base (id, parent_id, title, upnp_class, streamer);
-        this.mime = mime;
+
+        // FIXME: (Leaky) Hack to assign the string to weak fields
+        string *mime_type = mime;
+        this.res.mime_type = mime_type;
         this.author = TEST_AUTHOR;
         this.path= path;
 
-        this.uri = streamer.create_uri_for_path (path);
+        string *uri = streamer.create_uri_for_path (path);
+        this.res.uri = uri;
 
         streamer.stream_available += this.on_stream_available;
     }
@@ -62,7 +66,7 @@ public abstract class Rygel.TestItem : Rygel.MediaItem {
         }
 
         // FIXME: This should be done by GstStream
-        stream.set_mime_type (this.mime);
+        stream.set_mime_type (this.res.mime_type);
 
         try {
             Element src = this.create_gst_source ();

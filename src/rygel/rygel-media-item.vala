@@ -38,15 +38,13 @@ public class Rygel.MediaItem : MediaObject {
     public static const string AUDIO_CLASS = "object.item.audioItem";
     public static const string MUSIC_CLASS = "object.item.audioItem.musicTrack";
 
-    public string mime;
     public string author;
     public string album;
     public string date;
     public string upnp_class;
-    public string uri;
 
-    public int width = -1;
-    public int height = -1;
+    public DIDLLiteResource res;
+
     public int track_number = -1;
 
     protected Rygel.Streamer streamer;
@@ -61,6 +59,9 @@ public class Rygel.MediaItem : MediaObject {
         this.title = title;
         this.upnp_class = upnp_class;
         this.streamer = streamer;
+
+        this.res = DIDLLiteResource ();
+        this.res.reset ();
     }
 
     public override void serialize (DIDLLiteWriter didl_writer) throws Error {
@@ -121,26 +122,15 @@ public class Rygel.MediaItem : MediaObject {
         }
 
         /* Add resource data */
-        DIDLLiteResource res = DIDLLiteResource ();
-
-        res.reset ();
-
-        /* URI */
-        res.uri = uri;
-
         /* Protocol info */
-        string protocol = get_protocol_for_uri (uri);
-        res.protocol = protocol;
-        res.mime_type = mime;
-        res.dlna_profile = "MP3"; /* FIXME */
-        res.dlna_operation = GUPnP.DLNAOperation.RANGE;
-        res.dlna_flags = GUPnP.DLNAFlags.STREAMING_TRANSFER_MODE |
+        string protocol = get_protocol_for_uri (this.res.uri);
+        this.res.protocol = protocol;
+        this.res.dlna_profile = "MP3"; /* FIXME */
+        this.res.dlna_operation = GUPnP.DLNAOperation.RANGE;
+        this.res.dlna_flags = GUPnP.DLNAFlags.STREAMING_TRANSFER_MODE |
                          GUPnP.DLNAFlags.BACKGROUND_TRANSFER_MODE |
                          GUPnP.DLNAFlags.CONNECTION_STALL |
                          GUPnP.DLNAFlags.DLNA_V15;
-
-        res.width = width;
-        res.height = height;
 
         /* Now get the transcoded/proxy URIs */
         var res_list = this.get_transcoded_resources (res);

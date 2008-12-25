@@ -78,10 +78,13 @@ public class Rygel.TrackerMusicItem : TrackerItem {
             this.date = seconds_to_iso8601 (values[7]);
         }
 
-        this.mime = values[1];
+        // FIXME: (Leaky) Hack to assign the string to weak fields
+        string *mime = #values[1];
+        this.res.mime_type = mime;
         this.author = values[3];
         this.album = values[5];
-        this.uri = this.uri_from_path (path);
+        string *uri = this.uri_from_path (path);
+        this.res.uri = uri;
     }
 }
 

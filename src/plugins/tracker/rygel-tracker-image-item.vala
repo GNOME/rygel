@@ -68,10 +68,10 @@ public class Rygel.TrackerImageItem : TrackerItem {
             this.title = values[0];
 
         if (values[4] != "")
-            this.width = values[4].to_int ();
+            this.res.width = values[4].to_int ();
 
         if (values[5] != "")
-            this.height = values[5].to_int ();
+            this.res.height = values[5].to_int ();
 
         if (values[8] != "") {
             this.date = seconds_to_iso8601 (values[8]);
@@ -79,10 +79,13 @@ public class Rygel.TrackerImageItem : TrackerItem {
             this.date = seconds_to_iso8601 (values[7]);
         }
 
-        this.mime = values[1];
+        // FIXME: (Leaky) Hack to assign the string to weak fields
+        string *mime = #values[1];
+        this.res.mime_type = mime;
         this.author = values[3];
         this.album = values[6];
-        this.uri = this.uri_from_path (path);
+        string *uri = this.uri_from_path (path);
+        this.res.uri = uri;
     }
 }
 
