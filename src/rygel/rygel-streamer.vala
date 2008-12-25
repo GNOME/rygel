@@ -122,8 +122,7 @@ public class Rygel.Streamer : GLib.Object {
             return;
         }
 
-        string uri = item.res.uri;
-        if (uri == null) {
+        if (item.res.uri == null) {
             warning ("Requested item '%s' didn't provide a URI\n", item_id);
             msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
             return;
@@ -138,24 +137,7 @@ public class Rygel.Streamer : GLib.Object {
             return;
         }
 
-        // Create to Gst source that can handle the URI
-        var src = Element.make_from_uri (URIType.SRC, uri, null);
-        if (src == null) {
-            warning ("Failed to create source element for URI: %s\n", uri);
-            msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
-            return;
-        }
-
-        // create a stream for it
-        var stream = new Stream (this.context.server, msg);
-        try {
-            // Then attach the gst source to stream we are good to go
-            this.stream_from_gst_source (src, stream);
-        } catch (Error error) {
-            critical ("Error in attempting to start streaming %s: %s",
-                      uri,
-                      error.message);
-        }
+        this.handle_item_stream (msg, item);
     }
 
     private void handle_path_request (Soup.Message msg,
@@ -187,6 +169,30 @@ public class Rygel.Streamer : GLib.Object {
         if (item.res.size >= 0) {
             msg.response_headers.append ("Content-Length",
                                          item.res.size.to_string ());
+        }
+    }
+
+    private void handle_item_stream (Soup.Message msg,
+                                     MediaItem    item) {
+        string uri = item.res.uri;
+
+        // Create to Gst source that can handle the URI
+        var src = Element.make_from_uri (URIType.SRC, uri, null);
+        if (src == null) {
+            warning ("Failed to create source element for URI: %s\n", uri);
+            msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
+            return;
+        }
+
+        // create a stream for it
+        var stream = new Stream (this.context.server, msg);
+        try {
+            // Then attach the gst source to stream we are good to go
+            this.stream_from_gst_source (src, stream);
+        } catch (Error error) {
+            critical ("Error in attempting to start streaming %s: %s",
+                      uri,
+                      error.message);
         }
     }
 }
