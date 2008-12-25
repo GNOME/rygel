@@ -137,7 +137,11 @@ public class Rygel.Streamer : GLib.Object {
             return;
         }
 
-        this.handle_streaming_item (msg, item);
+        if (item.upnp_class == MediaItem.IMAGE_CLASS) {
+            this.handle_interactive_item (msg, item);
+        } else {
+            this.handle_streaming_item (msg, item);
+        }
     }
 
     private void handle_path_request (Soup.Message msg,
@@ -194,6 +198,34 @@ public class Rygel.Streamer : GLib.Object {
                       uri,
                       error.message);
         }
+    }
+
+    private void handle_interactive_item (Soup.Message msg,
+                                          MediaItem    item) {
+        string uri = item.res.uri;
+
+        File file = File.new_for_uri (uri);
+
+        unowned string contents;
+        unowned string etag_out;
+        size_t length;
+        try {
+           file.load_contents (null,
+                               out contents,
+                               out length,
+                               out etag_out);
+        } catch (Error error) {
+            warning ("Failed to load contents from URI: %s: %s\n",
+                     uri,
+                     error.message);
+            msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
+            return;
+        }
+
+        msg.set_status (Soup.KnownStatusCode.OK);
+        msg.response_body.append (Soup.MemoryUse.COPY,
+                                  contents,
+                                  length);
     }
 }
 
