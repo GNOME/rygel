@@ -171,9 +171,14 @@ public class Rygel.Streamer : GLib.Object {
 
     private void add_item_headers (Soup.Message msg,
                                    MediaItem    item) {
-        msg.response_headers.append ("Content-Type", item.res.mime_type);
-        msg.response_headers.append ("Content-Length",
-                                     item.res.size.to_string ());
+        if (item.res.mime_type != null) {
+            msg.response_headers.append ("Content-Type", item.res.mime_type);
+        }
+
+        if (item.res.size >= 0) {
+            msg.response_headers.append ("Content-Length",
+                                         item.res.size.to_string ());
+        }
     }
 }
 
