@@ -34,8 +34,6 @@ public abstract class Rygel.TrackerItem : MediaItem {
     protected TrackerContainer parent;
     protected string path;
 
-    protected string[] keys;
-
     public TrackerItem (string           id,
                         string           path,
                         TrackerContainer parent) throws GLib.Error {

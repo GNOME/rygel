@@ -34,18 +34,17 @@ public class Rygel.TrackerVideoItem : TrackerItem {
     public TrackerVideoItem (string              id,
                              string              path,
                              TrackerContainer    parent) throws GLib.Error {
-        keys = new string[] {"File:Name",
-                             "File:Mime",
-                             "Video:Title",
-                             "Video:Author",
-                             "Video:Width",
-                             "Video:Height",
-                             "DC:Date"};
-
         base (id, path, parent);
     }
 
     public override void fetch_metadata () throws GLib.Error {
+        string[] keys = new string[] {"File:Name",
+                                      "File:Mime",
+                                      "Video:Title",
+                                      "Video:Author",
+                                      "Video:Width",
+                                      "Video:Height",
+                                      "DC:Date"};
         string[] values = null;
 
         /* TODO: make this async */

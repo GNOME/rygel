@@ -34,20 +34,19 @@ public class Rygel.TrackerMusicItem : TrackerItem {
     public TrackerMusicItem (string              id,
                              string              path,
                              TrackerContainer    parent) throws GLib.Error {
-        keys = new string[] {"File:Name",
-                             "File:Mime",
-                             "Audio:Title",
-                             "Audio:Artist",
-                             "Audio:TrackNo",
-                             "Audio:Album",
-                             "Audio:ReleaseDate",
-                             "Audio:DateAdded",
-                             "DC:Date"};
-
         base (id, path, parent);
     }
 
     public override void fetch_metadata () throws GLib.Error {
+        string[] keys = new string[] {"File:Name",
+                                      "File:Mime",
+                                      "Audio:Title",
+                                      "Audio:Artist",
+                                      "Audio:TrackNo",
+                                      "Audio:Album",
+                                      "Audio:ReleaseDate",
+                                      "Audio:DateAdded",
+                                      "DC:Date"};
         string[] values = null;
 
         /* TODO: make this async */
