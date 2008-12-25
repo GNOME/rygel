@@ -62,15 +62,7 @@ public class Rygel.TrackerVideoItem : TrackerItem {
         string[] values = null;
 
         /* TODO: make this async */
-        try {
-            values = this.parent.metadata.Get (parent.category, path, keys);
-        } catch (GLib.Error error) {
-            critical ("failed to get metadata for %s: %s\n",
-                      path,
-                      error.message);
-
-            return;
-        }
+        values = this.parent.metadata.Get (parent.category, path, keys);
 
         if (values[Metadata.TITLE] != "")
             this.title = values[Metadata.TITLE];
