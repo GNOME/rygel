@@ -40,6 +40,7 @@ public class Rygel.TrackerVideoItem : TrackerItem {
     public override void fetch_metadata () throws GLib.Error {
         string[] keys = new string[] {"File:Name",
                                       "File:Mime",
+                                      "File:Size",
                                       "Video:Title",
                                       "Video:Author",
                                       "Video:Width",
@@ -58,23 +59,26 @@ public class Rygel.TrackerVideoItem : TrackerItem {
             return;
         }
 
-        if (values[2] != "")
-            this.title = values[2];
+        if (values[3] != "")
+            this.title = values[3];
         else
             /* If title wasn't provided, use filename instead */
             this.title = values[0];
 
-        if (values[4] != "")
-            this.res.width = values[4].to_int ();
+        if (values[2] != "")
+            this.res.size = values[2].to_int ();
 
         if (values[5] != "")
-            this.res.height = values[5].to_int ();
+            this.res.width = values[5].to_int ();
 
-        this.date = this.seconds_to_iso8601 (values[6]);
+        if (values[6] != "")
+            this.res.height = values[6].to_int ();
+
+        this.date = this.seconds_to_iso8601 (values[7]);
         // FIXME: (Leaky) Hack to assign the string to weak fields
         string *mime = #values[1];
         this.res.mime_type = mime;
-        this.author = values[3];
+        this.author = values[4];
         string *uri = this.uri_from_path (path);
         this.res.uri = uri;
     }

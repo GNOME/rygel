@@ -40,6 +40,7 @@ public class Rygel.TrackerImageItem : TrackerItem {
     public override void fetch_metadata () throws GLib.Error {
         string[] keys = new string[] {"File:Name",
                                       "File:Mime",
+                                      "File:Size",
                                       "Image:Title",
                                       "Image:Creator",
                                       "Image:Width",
@@ -60,29 +61,35 @@ public class Rygel.TrackerImageItem : TrackerItem {
             return;
         }
 
-        if (values[2] != "")
-            this.title = values[2];
+        if (values[3] != "")
+            this.title = values[3];
         else
             /* If title wasn't provided, use filename instead */
             this.title = values[0];
 
-        if (values[4] != "")
-            this.res.width = values[4].to_int ();
+        if (values[2] != "")
+            this.res.size = values[2].to_int ();
 
         if (values[5] != "")
-            this.res.height = values[5].to_int ();
+            this.res.width = values[5].to_int ();
 
-        if (values[8] != "") {
-            this.date = seconds_to_iso8601 (values[8]);
+        if (values[6] != "")
+            this.res.height = values[6].to_int ();
+
+        if (values[2] != "")
+            this.res.size = values[2].to_int ();
+
+        if (values[9] != "") {
+            this.date = seconds_to_iso8601 (values[9]);
         } else {
-            this.date = seconds_to_iso8601 (values[7]);
+            this.date = seconds_to_iso8601 (values[8]);
         }
 
         // FIXME: (Leaky) Hack to assign the string to weak fields
         string *mime = #values[1];
         this.res.mime_type = mime;
-        this.author = values[3];
-        this.album = values[6];
+        this.author = values[4];
+        this.album = values[7];
         string *uri = this.uri_from_path (path);
         this.res.uri = uri;
     }
