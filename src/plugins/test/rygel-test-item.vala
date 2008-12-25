@@ -45,14 +45,11 @@ public abstract class Rygel.TestItem : Rygel.MediaItem {
                      string   path) {
         base (id, parent_id, title, upnp_class, streamer);
 
-        // FIXME: (Leaky) Hack to assign the string to weak fields
-        string *mime_type = mime;
-        this.res.mime_type = mime_type;
+        this.res.mime_type = mime;
         this.author = TEST_AUTHOR;
         this.path= path;
 
-        string *uri = streamer.create_uri_for_path (path);
-        this.res.uri = uri;
+        this.res.uri = streamer.create_uri_for_path (path);
 
         streamer.stream_available += this.on_stream_available;
     }

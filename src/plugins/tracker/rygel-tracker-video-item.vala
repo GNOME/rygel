@@ -88,12 +88,9 @@ public class Rygel.TrackerVideoItem : TrackerItem {
             this.res.height = values[Metadata.HEIGHT].to_int ();
 
         this.date = this.seconds_to_iso8601 (values[Metadata.DATE]);
-        // FIXME: (Leaky) Hack to assign the string to weak fields
-        string *mime = #values[Metadata.MIME];
-        this.res.mime_type = mime;
+        this.res.mime_type = values[Metadata.MIME];
         this.author = values[Metadata.AUTHOR];
-        string *uri = this.uri_from_path (path);
-        this.res.uri = uri;
+        this.res.uri = this.uri_from_path (path);
     }
 }
 

@@ -64,10 +64,7 @@ public class Rygel.DVBChannel : MediaItem {
         }
 
         this.res.mime_type = "video/mpeg";
-        // FIXME: (Leaky) Hack to assign the string to weak fields
-        string uri = this.channel_list.GetChannelURL (cid);
-        string *uri_ptr = #uri;
-        this.res.uri = uri_ptr;
+        this.res.uri = this.channel_list.GetChannelURL (cid);
     }
 }
 

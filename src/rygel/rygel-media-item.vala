@@ -170,8 +170,7 @@ public class Rygel.MediaItem : MediaObject {
         DIDLLiteResource res = orig_res;
 
         // Then modify the URI and protocol
-        string *uri = this.streamer.create_http_uri_for_item (this);
-        res.uri = uri;
+        res.uri = this.streamer.create_http_uri_for_item (this);
         res.protocol = "http-get";
 
         resources.append (res);
