@@ -40,10 +40,14 @@ public class Rygel.DVBChannel : MediaItem {
                        string              parent_id,
                        dynamic DBus.Object channel_list,
                        Streamer            streamer) throws GLib.Error {
+        this.cid = cid;
         this.id = parent_id + ":" + cid.to_string (); /* UPnP ID */
         this.parent_id = parent_id;
         this.channel_list = channel_list;
         this.streamer = streamer;
+
+        this.res = DIDLLiteResource ();
+        this.res.reset ();
 
         this.fetch_metadata ();
     }
