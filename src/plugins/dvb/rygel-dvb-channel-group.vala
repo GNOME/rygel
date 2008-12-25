@@ -62,6 +62,8 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         this.streamer = streamer;
 
         this.fetch_channels ();
+
+        this.streamer.item_requested += this.on_item_requested;
     }
 
     public uint add_channels (DIDLLiteWriter didl_writer,
@@ -117,6 +119,15 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         }
 
         this.child_count = this.channels.size;
+    }
+
+    private void on_item_requested (Streamer      streamer,
+                                    string        item_id,
+                                    out MediaItem item) {
+        var channel = this.find_channel (item_id);
+        if (channel != null) {
+            item = channel;
+        }
     }
 }
 
