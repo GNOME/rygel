@@ -167,7 +167,7 @@ public class Rygel.DVBContentDir : ContentDirectory {
         bool found = false;
 
         foreach (DVBChannelGroup group in this.groups) {
-            var channel = group.find_channel (didl_writer, id);
+            var channel = group.find_channel (id);
             if (channel != null) {
                 channel.serialize (didl_writer);
                 found = true;

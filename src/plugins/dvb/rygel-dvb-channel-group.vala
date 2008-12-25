@@ -77,8 +77,7 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         return total_matches;
     }
 
-    public DVBChannel find_channel (DIDLLiteWriter didl_writer,
-                                    string         id) {
+    public DVBChannel find_channel (string id) {
         return this.channels.get (id);
     }
 
