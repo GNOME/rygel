@@ -137,7 +137,7 @@ public class Rygel.Streamer : GLib.Object {
             return;
         }
 
-        this.handle_item_stream (msg, item);
+        this.handle_streaming_item (msg, item);
     }
 
     private void handle_path_request (Soup.Message msg,
@@ -172,8 +172,8 @@ public class Rygel.Streamer : GLib.Object {
         }
     }
 
-    private void handle_item_stream (Soup.Message msg,
-                                     MediaItem    item) {
+    private void handle_streaming_item (Soup.Message msg,
+                                        MediaItem    item) {
         string uri = item.res.uri;
 
         // Create to Gst source that can handle the URI
