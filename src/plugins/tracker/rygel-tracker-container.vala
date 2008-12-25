@@ -161,13 +161,7 @@ public class Rygel.TrackerContainer : MediaContainer {
         MediaItem item;
 
         try {
-            if (this.child_class == MediaItem.VIDEO_CLASS) {
-                item = new TrackerVideoItem (path, path, this);
-            } else if (this.child_class == MediaItem.IMAGE_CLASS) {
-                item = new TrackerImageItem (path, path, this);
-            } else {
-                item = new TrackerMusicItem (path, path, this);
-            }
+            item = this.get_item_from_db (path);
         } catch (GLib.Error error) {
             critical ("Failed to fetch item %s. Reason: %s",
                       item.id,
@@ -195,6 +189,20 @@ public class Rygel.TrackerContainer : MediaContainer {
         category = TrackerContainer.files.GetServiceType (uri);
 
         return category;
+    }
+
+    public MediaItem get_item_from_db (string path) throws GLib.Error {
+        MediaItem item;
+
+        if (this.child_class == MediaItem.VIDEO_CLASS) {
+            item = new TrackerVideoItem (path, path, this);
+        } else if (this.child_class == MediaItem.IMAGE_CLASS) {
+            item = new TrackerImageItem (path, path, this);
+        } else {
+            item = new TrackerMusicItem (path, path, this);
+        }
+
+        return item;
     }
 }
 
