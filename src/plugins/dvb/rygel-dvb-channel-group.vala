@@ -97,6 +97,8 @@ public class Rygel.DVBChannelGroup : MediaContainer {
                                           streamer);
             this.channels.set (channel.id, channel);
         }
+
+        this.child_count = this.channels.size;
     }
 
     public uint add_channels (DIDLLiteWriter didl_writer,
