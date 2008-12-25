@@ -118,12 +118,14 @@ public class Rygel.Streamer : GLib.Object {
         this.item_requested (item_id, out item);
         if (item == null) {
             warning ("Requested item '%s' not found\n", item_id);
+            msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
             return;
         }
 
         string uri = item.res.uri;
         if (uri == null) {
             warning ("Requested item '%s' didn't provide a URI\n", item_id);
+            msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
             return;
         }
 
@@ -140,6 +142,7 @@ public class Rygel.Streamer : GLib.Object {
         var src = Element.make_from_uri (URIType.SRC, uri, null);
         if (src == null) {
             warning ("Failed to create source element for URI: %s\n", uri);
+            msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
             return;
         }
 
