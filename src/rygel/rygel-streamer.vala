@@ -92,6 +92,12 @@ public class Rygel.Streamer : GLib.Object {
                                  string                    server_path,
                                  HashTable<string,string>? query,
                                  Soup.ClientContext        soup_client) {
+        if (msg.method != "HEAD" && msg.method != "GET") {
+            /* We only entertain 'HEAD' and 'GET' requests */
+            msg.set_status (Soup.KnownStatusCode.BAD_REQUEST);
+            return;
+        }
+
         string item_id = null;
         if (query != null) {
             item_id = query.lookup ("itemid");
