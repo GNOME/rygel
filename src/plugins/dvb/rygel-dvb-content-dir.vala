@@ -85,20 +85,15 @@ public class Rygel.DVBContentDir : ContentDirectory {
         DVBChannelGroup group;
 
         group = this.find_group_by_id (args.object_id);
-        if (group == null)
-            args.number_returned = 0;
-        else {
-            args.number_returned = group.add_channels (didl_writer,
-                                                       args.index,
-                                                       args.requested_count,
-                                                       out args.total_matches);
-        }
-
-        if (args.number_returned > 0) {
-            args.update_id = uint32.MAX;
-        } else {
+        if (group == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
+
+        args.number_returned = group.add_channels (didl_writer,
+                                                   args.index,
+                                                   args.requested_count,
+                                                   out args.total_matches);
+        args.update_id = uint32.MAX;
     }
 
     public override void add_metadata (DIDLLiteWriter didl_writer,
