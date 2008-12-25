@@ -144,6 +144,12 @@ public class Rygel.MediaItem : MediaObject {
 
         didl_writer.add_res (res);
 
+        /* Now get the transcoded/proxy URIs */
+        var res_list = this.get_transcoded_resources (res);
+        foreach (DIDLLiteResource res in res_list) {
+            didl_writer.add_res (res);
+        }
+
         /* End of item */
         didl_writer.end_item ();
     }
@@ -160,5 +166,25 @@ public class Rygel.MediaItem : MediaObject {
             throw new MediaItemError.UNKNOWN_URI_TYPE
                             ("Failed to probe protocol for URI %s", uri);
         }
+    }
+
+    // FIXME: We only proxy URIs through our HTTP server for now
+    private List<DIDLLiteResource?>? get_transcoded_resources
+                                            (DIDLLiteResource orig_res) {
+        if (orig_res.protocol == "http-get")
+            return null;
+
+        List<DIDLLiteResource?> resources = new List<DIDLLiteResource?> ();
+        // Copy the original res first
+        DIDLLiteResource res = orig_res;
+
+        // Then modify the URI and protocol
+        string *uri = this.streamer.create_http_uri_for_uri (res.uri);
+        res.uri = uri;
+        res.protocol = "http-get";
+
+        resources.append (res);
+
+        return resources;
     }
 }
