@@ -59,12 +59,11 @@ public class Rygel.DVBChannel : MediaItem {
         bool is_radio = this.channel_list.IsRadioChannel (cid);
         if (is_radio) {
             this.upnp_class = "object.item.audioItem.audioBroadcast";
-            this.res.mime_type = "audio/mpeg"; // correct?
         } else {
             this.upnp_class = "object.item.videoItem.videoBroadcast";
-            this.res.mime_type = "video/mpeg";
         }
 
+        this.res.mime_type = "video/mpeg";
         // FIXME: (Leaky) Hack to assign the string to weak fields
         string uri = this.channel_list.GetChannelURL (cid);
         string *uri_ptr = #uri;
