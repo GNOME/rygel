@@ -142,13 +142,14 @@ public class Rygel.MediaItem : MediaObject {
         res.width = width;
         res.height = height;
 
-        didl_writer.add_res (res);
-
         /* Now get the transcoded/proxy URIs */
         var res_list = this.get_transcoded_resources (res);
-        foreach (DIDLLiteResource res in res_list) {
-            didl_writer.add_res (res);
+        foreach (DIDLLiteResource trans_res in res_list) {
+            didl_writer.add_res (trans_res);
         }
+
+        /* Add the original res in the end */
+        didl_writer.add_res (res);
 
         /* End of item */
         didl_writer.end_item ();
