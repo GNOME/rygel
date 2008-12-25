@@ -34,6 +34,8 @@ public class Rygel.Streamer : GLib.Object {
 
     public signal void stream_available (Rygel.Stream stream,
                                          string       path);
+    public signal void item_requested (string item_id,
+                                       out MediaItem item);
 
     public Streamer (GUPnP.Context context, string name) {
         this.context = context;
@@ -51,9 +53,9 @@ public class Rygel.Streamer : GLib.Object {
                                           path);
     }
 
-    public string create_http_uri_for_uri (string uri) {
-        string escaped = Uri.escape_string (uri, "", true);
-        string query = "?uri=%s".printf (escaped);
+    public string create_http_uri_for_item (MediaItem item) {
+        string escaped = Uri.escape_string (item.id, "", true);
+        string query = "?itemid=%s".printf (escaped);
 
         return create_uri_for_path (query);
     }
@@ -89,20 +91,35 @@ public class Rygel.Streamer : GLib.Object {
                                  string                    server_path,
                                  HashTable<string,string>? query,
                                  Soup.ClientContext        soup_client) {
-        string uri = null;
+        string item_id = null;
         if (query != null) {
-            uri = query.lookup ("uri");
+            item_id = query.lookup ("itemid");
         }
 
-        if (uri != null) {
-            this.handle_uri_request (msg, uri);
+        if (item_id != null) {
+            this.handle_item_request (msg, item_id);
         } else {
             this.handle_path_request (msg, server_path);
         }
     }
 
-    private void handle_uri_request (Soup.Message msg,
-                                     string       uri) {
+    private void handle_item_request (Soup.Message msg,
+                                      string       item_id) {
+        MediaItem item;
+
+        // Signal the requestion for an item
+        this.item_requested (item_id, out item);
+        if (item == null) {
+            warning ("Requested item '%s' not found\n", item_id);
+            return;
+        }
+
+        string uri = item.res.uri;
+        if (uri == null) {
+            warning ("Requested item '%s' didn't provide a URI\n", item_id);
+            return;
+        }
+
         // Create to Gst source that can handle the URI
         var src = Element.make_from_uri (URIType.SRC, uri, null);
         if (src == null) {
