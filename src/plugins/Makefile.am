@@ -1,7 +1,7 @@
 if BUILD_TEST_PLUGIN
-SUBDIRS = tracker test
+SUBDIRS = tracker dvb test
 else
-SUBDIRS = tracker
+SUBDIRS = tracker dvb
 endif
 
 MAINTAINERCLEANFILES = Makefile.in

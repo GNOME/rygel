@@ -125,6 +125,7 @@ Makefile
 src/Makefile
 src/rygel/Makefile
 src/plugins/Makefile
+src/plugins/dvb/Makefile
 src/plugins/tracker/Makefile
 src/plugins/test/Makefile
 data/Makefile
