@@ -67,7 +67,8 @@ public class Rygel.DVBChannel : MediaItem {
 
         // FIXME: (Leaky) Hack to assign the string to weak fields
         string uri = this.channel_list.GetChannelURL (cid);
-        this.res.uri = (string *) uri;
+        string *uri_ptr = #uri;
+        this.res.uri = uri_ptr;
     }
 }
 
