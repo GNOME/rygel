@@ -35,6 +35,8 @@ public errordomain Rygel.GstStreamError {
 }
 
 public class Rygel.GstStream : Pipeline {
+    private const string SINK_NAME = "fakesink";
+
     public Stream stream;
 
     private AsyncQueue<Buffer> buffers;
@@ -51,7 +53,7 @@ public class Rygel.GstStream : Pipeline {
     }
 
     private void prepare_pipeline (Element src) throws Error {
-        dynamic Element sink = ElementFactory.make ("fakesink", null);
+        dynamic Element sink = ElementFactory.make ("fakesink", SINK_NAME);
 
         if (sink == null) {
             throw new GstStreamError.MISSING_PLUGIN ("Required plugin " +
@@ -62,15 +64,35 @@ public class Rygel.GstStream : Pipeline {
         sink.handoff += this.on_new_buffer;
 
         this.add_many (src, sink);
-        if (!src.link (sink)) {
-            throw new GstStreamError.LINK ("Failed to link %s to %s",
-                                           src.name,
-                                           sink.name);
+
+        if (src.numpads == 0) {
+            // Seems source uses dynamic pads, link when pad available
+            src.pad_added += this.src_pad_added;
+        } else {
+            // static pads? easy!
+            if (!src.link (sink)) {
+                throw new GstStreamError.LINK ("Failed to link %s to %s",
+                                               src.name,
+                                               sink.name);
+            }
         }
 
         // Bus handler
         var bus = this.get_bus ();
         bus.add_watch (bus_handler);
+    }
+
+    private void src_pad_added (Element src,
+                                Pad src_pad) {
+        var sink = this.get_by_name (SINK_NAME);
+        var sink_pad = sink.get_static_pad ("sink");
+
+        if (src_pad.link (sink_pad) != PadLinkReturn.OK) {
+            critical ("Failed to link pad %s to %s",
+                      src_pad.name,
+                      sink_pad.name);
+            this.stream.end ();
+        }
     }
 
     private void on_new_buffer (Element sink,
