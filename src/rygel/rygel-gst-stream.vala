@@ -30,7 +30,8 @@ using Gee;
 using Gst;
 
 public errordomain Rygel.GstStreamError {
-    MISSING_PLUGIN
+    MISSING_PLUGIN,
+    LINK
 }
 
 public class Rygel.GstStream : Pipeline {
@@ -61,7 +62,11 @@ public class Rygel.GstStream : Pipeline {
         sink.handoff += this.on_new_buffer;
 
         this.add_many (src, sink);
-        src.link (sink);
+        if (!src.link (sink)) {
+            throw new GstStreamError.LINK ("Failed to link %s to %s",
+                                           src.name,
+                                           sink.name);
+        }
 
         // Bus handler
         var bus = this.get_bus ();
