@@ -181,12 +181,16 @@ public class Rygel.Streamer : GLib.Object {
         string uri = item.res.uri;
 
         // Create to Gst source that can handle the URI
-        var src = Element.make_from_uri (URIType.SRC, uri, null);
+        dynamic Element src = Element.make_from_uri (URIType.SRC, uri, null);
         if (src == null) {
             warning ("Failed to create source element for URI: %s\n", uri);
             msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
             return;
         }
+
+        // For rtspsrc since some RTSP sources takes a while to start
+        // transmitting
+        src.tcp_timeout = 60000000;
 
         // create a stream for it
         var stream = new Stream (this.context.server, msg);
