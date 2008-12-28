@@ -206,14 +206,13 @@ public class Rygel.Streamer : GLib.Object {
 
         File file = File.new_for_uri (uri);
 
-        unowned string contents;
-        unowned string etag_out;
+        string contents;
         size_t length;
         try {
            file.load_contents (null,
                                out contents,
                                out length,
-                               out etag_out);
+                               null);
         } catch (Error error) {
             warning ("Failed to load contents from URI: %s: %s\n",
                      uri,
