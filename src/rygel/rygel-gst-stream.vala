@@ -125,12 +125,17 @@ public class Rygel.GstStream : Pipeline {
             return null;
         }
 
-        dynamic Element depay = null;
-
         unowned Registry registry = Registry.get_default ();
         var features = registry.feature_filter (this.rtp_depay_filter, false);
-        foreach (PluginFeature feature in features) {
 
+        return get_best_depay (features, caps);
+    }
+
+    private dynamic Element? get_best_depay (GLib.List<PluginFeature> features,
+                                             Caps                     caps) {
+        dynamic Element depay = null;
+
+        foreach (PluginFeature feature in features) {
             var factory = (ElementFactory) feature;
             if (factory.can_sink_caps (caps)) {
                 depay = ElementFactory.make (factory.get_name (), null);
