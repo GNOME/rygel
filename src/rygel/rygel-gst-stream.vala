@@ -98,9 +98,9 @@ public class Rygel.GstStream : Pipeline {
                           sink.name);
             }
 
-            sink_pad = depay.get_static_pad ("sink");
+            sink_pad = depay.get_compatible_pad (src_pad, caps);
         } else {
-            sink_pad = sink.get_static_pad ("sink");
+            sink_pad = sink.get_compatible_pad (src_pad, caps);
         }
 
         if (src_pad.link (sink_pad) != PadLinkReturn.OK) {
