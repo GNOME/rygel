@@ -133,17 +133,28 @@ public class Rygel.GstStream : Pipeline {
 
     private dynamic Element? get_best_depay (GLib.List<PluginFeature> features,
                                              Caps                     caps) {
-        dynamic Element depay = null;
+        var relevant_factories = new GLib.List<ElementFactory> ();
 
+        // First construct a list of relevant factories
         foreach (PluginFeature feature in features) {
             var factory = (ElementFactory) feature;
             if (factory.can_sink_caps (caps)) {
-                depay = ElementFactory.make (factory.get_name (), null);
-                break;
+               relevant_factories.append (factory);
             }
         }
 
-        return depay;
+        if (relevant_factories.length () == 0) {
+            // No relevant factory available, hence no depayloader
+            return null;
+        }
+
+        // Then sort the list through their ranks
+        relevant_factories.sort (this.compare_factories);
+
+        // create an element of the top ranking factory and return it
+        var factory = relevant_factories.data;
+
+        return ElementFactory.make (factory.get_name (), null);
     }
 
     private bool rtp_depay_filter (PluginFeature feature) {
@@ -154,6 +165,13 @@ public class Rygel.GstStream : Pipeline {
         var factory = (ElementFactory) feature;
 
         return factory.get_klass ().contains ("Depayloader");
+    }
+
+    private static int compare_factories (void *a, void *b) {
+        ElementFactory factory_a = (ElementFactory) a;
+        ElementFactory factory_b = (ElementFactory) b;
+
+        return (int) (factory_b.get_rank () - factory_a.get_rank ());
     }
 
     private void on_new_buffer (Element sink,
