@@ -83,9 +83,25 @@ public class Rygel.GstStream : Pipeline {
     }
 
     private void src_pad_added (Element src,
-                                Pad src_pad) {
+                                Pad     src_pad) {
+        var caps = src_pad.get_caps ();
+
         var sink = this.get_by_name (SINK_NAME);
-        var sink_pad = sink.get_static_pad ("sink");
+        Pad sink_pad;
+
+        dynamic Element depay = this.get_rtp_depayloader (caps);
+        if (depay != null) {
+            this.add (depay);
+            if (!depay.link (sink)) {
+                critical ("Failed to link %s to %s",
+                          depay.name,
+                          sink.name);
+            }
+
+            sink_pad = depay.get_static_pad ("sink");
+        } else {
+            sink_pad = sink.get_static_pad ("sink");
+        }
 
         if (src_pad.link (sink_pad) != PadLinkReturn.OK) {
             critical ("Failed to link pad %s to %s",
@@ -93,6 +109,46 @@ public class Rygel.GstStream : Pipeline {
                       sink_pad.name);
             this.stream.end ();
         }
+
+        if (depay != null) {
+            depay.sync_state_with_parent ();
+        }
+    }
+
+    private bool need_rtp_depayloader (Caps caps) {
+        var structure = caps.get_structure (0);
+        return structure.get_name () == "application/x-rtp";
+    }
+
+    private dynamic Element? get_rtp_depayloader (Caps caps) {
+        if (!need_rtp_depayloader (caps)) {
+            return null;
+        }
+
+        dynamic Element depay = null;
+
+        unowned Registry registry = Registry.get_default ();
+        var features = registry.feature_filter (this.rtp_depay_filter, false);
+        foreach (PluginFeature feature in features) {
+
+            var factory = (ElementFactory) feature;
+            if (factory.can_sink_caps (caps)) {
+                depay = ElementFactory.make (factory.get_name (), null);
+                break;
+            }
+        }
+
+        return depay;
+    }
+
+    private bool rtp_depay_filter (PluginFeature feature) {
+        if (!feature.get_type ().is_a (typeof (ElementFactory))) {
+            return false;
+        }
+
+        var factory = (ElementFactory) feature;
+
+        return factory.get_klass ().contains ("Depayloader");
     }
 
     private void on_new_buffer (Element sink,
