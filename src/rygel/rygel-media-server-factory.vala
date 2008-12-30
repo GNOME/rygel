@@ -291,15 +291,15 @@ public class Rygel.MediaServerFactory {
 
     private void add_icons_to_desc (Xml.Node *device_element,
                                     Plugin    plugin) {
-        Xml.Node *icon_list_node = Utils.get_xml_element (device_element,
-                                                          "iconList",
-                                                          null);
-        if (icon_list_node == null) {
-            warning ("Element /root/device/iconList not found.");
+        if (plugin.icon_infos == null || plugin.icon_infos.size == 0) {
+            debug ("No icon provided by %s.", plugin.name);
 
             return;
         }
 
+        Xml.Node *icon_list_node = device_element->new_child (null,
+                                                              "iconList",
+                                                              null);
         foreach (IconInfo icon_info in plugin.icon_infos) {
             add_icon_to_desc (icon_list_node, icon_info, plugin);
         }
