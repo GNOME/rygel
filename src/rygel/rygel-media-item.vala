@@ -47,8 +47,6 @@ public class Rygel.MediaItem : MediaObject {
 
     public int track_number = -1;
 
-    public bool live;
-
     protected Rygel.Streamer streamer;
 
     public MediaItem (string   id,
@@ -135,7 +133,7 @@ public class Rygel.MediaItem : MediaObject {
             this.res.dlna_flags |= GUPnP.DLNAFlags.STREAMING_TRANSFER_MODE;
         }
 
-        if (!this.live) {
+        if (this.res.size < 1) {
             this.res.dlna_operation = GUPnP.DLNAOperation.RANGE;
         }
 

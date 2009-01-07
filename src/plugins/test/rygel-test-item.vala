@@ -49,9 +49,6 @@ public abstract class Rygel.TestItem : Rygel.MediaItem {
         this.author = TEST_AUTHOR;
         this.path= path;
 
-        // This is a live media
-        this.live = true;
-
         this.res.uri = streamer.create_uri_for_path (path);
 
         streamer.stream_available += this.on_stream_available;
