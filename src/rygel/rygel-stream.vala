@@ -46,8 +46,12 @@ public class Rygel.Stream : GLib.Object {
             this.eos ();
     }
 
-    public void accept () {
-        this.msg.set_status (Soup.KnownStatusCode.OK);
+    public void accept (bool partial) {
+        if (partial) {
+            this.msg.set_status (Soup.KnownStatusCode.PARTIAL_CONTENT);
+        } else {
+            this.msg.set_status (Soup.KnownStatusCode.OK);
+        }
 
         this.msg.response_body.set_accumulate (false);
     }
