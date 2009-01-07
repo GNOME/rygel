@@ -47,6 +47,8 @@ public class Rygel.MediaItem : MediaObject {
 
     public int track_number = -1;
 
+    public bool live;
+
     protected Rygel.Streamer streamer;
 
     public MediaItem (string   id,
@@ -126,9 +128,11 @@ public class Rygel.MediaItem : MediaObject {
         string protocol = get_protocol_for_uri (this.res.uri);
         this.res.protocol = protocol;
         this.res.dlna_profile = "MP3"; /* FIXME */
-        this.res.dlna_operation = GUPnP.DLNAOperation.RANGE;
         this.res.dlna_flags = GUPnP.DLNAFlags.STREAMING_TRANSFER_MODE |
                               GUPnP.DLNAFlags.DLNA_V15;
+        if (!this.live) {
+            this.res.dlna_operation = GUPnP.DLNAOperation.RANGE;
+        }
 
         /* Now get the transcoded/proxy URIs */
         var res_list = this.get_transcoded_resources (res);
