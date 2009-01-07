@@ -37,7 +37,6 @@ public class Rygel.DVBChannelGroup : MediaContainer {
     private const string DVB_SERVICE = "org.gnome.DVB";
 
     private const string GID_PREFIX = "GroupID:";
-    private const string TITLE_PREFIX = "Group ";
 
     public static dynamic DBus.Object channel_list;
 
@@ -49,12 +48,13 @@ public class Rygel.DVBChannelGroup : MediaContainer {
     private uint gid; /* The DVB Daemon Device Group ID */
 
     public DVBChannelGroup (uint                gid,
+                            string              title,
                             string              parent_id,
                             dynamic DBus.Object channel_list,
                             Streamer            streamer) {
         base (GID_PREFIX + gid.to_string (), // UPnP ID
               parent_id,
-              TITLE_PREFIX + gid.to_string (),
+              title,
               0);
         this.gid = gid;
         //this.upnp_class = "object.container.channelGroup";

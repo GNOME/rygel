@@ -74,8 +74,13 @@ public class Rygel.DVBContentDir : ContentDirectory {
         this.groups = new List<DVBChannelGroup> ();
         foreach (uint group_id in dev_groups) {
             string channel_list_path = null;
+            string group_name =  null;
+
             try {
                 channel_list_path = manager.GetChannelList (group_id);
+
+                // Get the name of the group
+                group_name = manager.GetDeviceGroupName (group_id);
             } catch (GLib.Error error) {
                 critical ("error: %s", error.message);
                 return;
@@ -89,6 +94,7 @@ public class Rygel.DVBContentDir : ContentDirectory {
 
             // Create ChannelGroup for each registered device group
             this.groups.append (new DVBChannelGroup (group_id,
+                                                     group_name,
                                                      this.root_container.id,
                                                      channel_list,
                                                      streamer));
