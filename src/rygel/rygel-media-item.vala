@@ -128,8 +128,13 @@ public class Rygel.MediaItem : MediaObject {
         string protocol = get_protocol_for_uri (this.res.uri);
         this.res.protocol = protocol;
         this.res.dlna_profile = "MP3"; /* FIXME */
-        this.res.dlna_flags = GUPnP.DLNAFlags.STREAMING_TRANSFER_MODE |
-                              GUPnP.DLNAFlags.DLNA_V15;
+
+        if (this.upnp_class == MediaItem.IMAGE_CLASS) {
+            this.res.dlna_flags |= GUPnP.DLNAFlags.INTERACTIVE_TRANSFER_MODE;
+        } else {
+            this.res.dlna_flags |= GUPnP.DLNAFlags.STREAMING_TRANSFER_MODE;
+        }
+
         if (!this.live) {
             this.res.dlna_operation = GUPnP.DLNAOperation.RANGE;
         }
