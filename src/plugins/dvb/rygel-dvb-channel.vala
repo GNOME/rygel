@@ -48,6 +48,9 @@ public class Rygel.DVBChannel : MediaItem {
               "Unknown",        /* UPnP Class Unknown at this point */
               streamer);
 
+        // This is a live media
+        this.live = true;
+
         this.cid = cid;
         this.channel_list = channel_list;
 
