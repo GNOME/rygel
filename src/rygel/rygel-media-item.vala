@@ -128,9 +128,7 @@ public class Rygel.MediaItem : MediaObject {
         this.res.dlna_profile = "MP3"; /* FIXME */
         this.res.dlna_operation = GUPnP.DLNAOperation.RANGE;
         this.res.dlna_flags = GUPnP.DLNAFlags.STREAMING_TRANSFER_MODE |
-                         GUPnP.DLNAFlags.BACKGROUND_TRANSFER_MODE |
-                         GUPnP.DLNAFlags.CONNECTION_STALL |
-                         GUPnP.DLNAFlags.DLNA_V15;
+                              GUPnP.DLNAFlags.DLNA_V15;
 
         /* Now get the transcoded/proxy URIs */
         var res_list = this.get_transcoded_resources (res);
