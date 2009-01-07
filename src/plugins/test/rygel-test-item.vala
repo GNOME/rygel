@@ -72,7 +72,7 @@ public abstract class Rygel.TestItem : Rygel.MediaItem {
             Element src = this.create_gst_source ();
             // Ask streamer to handle the stream for us but use our source in
             // the pipeline.
-            streamer.stream_from_gst_source (src, stream);
+            streamer.stream_from_gst_source (src, stream, null);
         } catch (Error error) {
             critical ("Error in attempting to start streaming %s: %s",
                       path,

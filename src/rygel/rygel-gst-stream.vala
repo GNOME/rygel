@@ -41,14 +41,18 @@ public class Rygel.GstStream : Pipeline {
 
     private AsyncQueue<Buffer> buffers;
 
+    private Event seek_event;
+
     public GstStream (Stream  stream,
                       string  name,
-                      Element src) throws Error {
+                      Element src,
+                      Event?  seek_event) throws Error {
         this.stream = stream;
         this.name = name;
+        this.seek_event = seek_event;
         this.buffers = new AsyncQueue<Buffer> ();
 
-        this.stream.accept ();
+        this.stream.accept (seek != null);
         this.prepare_pipeline (src);
     }
 
@@ -197,6 +201,16 @@ public class Rygel.GstStream : Pipeline {
 
         if (message.type == MessageType.EOS) {
             ret = false;
+        } else if (message.type == MessageType.STATE_CHANGED &&
+                   this.seek_event != null) {
+            State new_state;
+
+            message.parse_state_changed (null, out new_state, null);
+            if (new_state == State.PAUSED || new_state == State.PLAYING) {
+                // Time to shove-in the pending seek event
+                this.send_event (this.seek_event);
+                this.seek_event = null;
+            }
         } else {
             GLib.Error err;
             string err_msg;
