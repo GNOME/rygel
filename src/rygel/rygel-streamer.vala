@@ -154,7 +154,7 @@ public class Rygel.Streamer : GLib.Object {
             return;
         }
 
-        if (item.upnp_class == MediaItem.IMAGE_CLASS) {
+        if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
             this.handle_interactive_item (msg, item, seek);
         } else {
             this.handle_streaming_item (msg, item, seek);

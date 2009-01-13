@@ -87,12 +87,12 @@ public class Rygel.MediaItem : MediaObject {
                                     null,
                                     this.author);
 
-            if (this.upnp_class == VIDEO_CLASS) {
+            if (this.upnp_class.has_prefix (VIDEO_CLASS)) {
                 didl_writer.add_string ("author",
                                         DIDLLiteWriter.NAMESPACE_UPNP,
                                         null,
                                         this.author);
-            } else if (this.upnp_class == MUSIC_CLASS) {
+            } else if (this.upnp_class.has_prefix (MUSIC_CLASS)) {
                 didl_writer.add_string ("artist",
                                         DIDLLiteWriter.NAMESPACE_UPNP,
                                         null,
@@ -130,7 +130,7 @@ public class Rygel.MediaItem : MediaObject {
 
         this.res.dlna_profile = "MP3"; /* FIXME */
 
-        if (this.upnp_class == MediaItem.IMAGE_CLASS) {
+        if (this.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
             this.res.dlna_flags |= GUPnP.DLNAFlags.INTERACTIVE_TRANSFER_MODE;
         } else {
             this.res.dlna_flags |= GUPnP.DLNAFlags.STREAMING_TRANSFER_MODE;
