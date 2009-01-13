@@ -266,7 +266,7 @@ public class Rygel.Streamer : GLib.Object {
         size_t length;
         if (seek != null) {
             offset = (size_t) seek.start;
-            length = (size_t) seek.stop + 1;
+            length = (size_t) seek.length;
 
             assert (offset < file_length);
             assert (length <= file_length);
@@ -342,13 +342,14 @@ public class Rygel.Streamer : GLib.Object {
 
             if (item.res.size > 0) {
                 // shouldn't go beyond actual length of media
-                if (seek.start > item.res.size || seek.stop >= item.res.size) {
+                if (seek.start > item.res.size ||
+                    seek.length > item.res.size) {
                     throw new StreamerError.OUT_OF_RANGE (
                             "Range '%s' not setsifiable", range);
                 }
 
                 // No need to seek if whole stream is requested
-                if (seek.start == 0 && seek.stop == item.res.size - 1) {
+                if (seek.start == 0 && seek.length == item.res.size) {
                     return null;
                 }
             } else if (seek.start == 0) {
@@ -365,11 +366,32 @@ public class Rygel.Streamer : GLib.Object {
         }
 }
 
-class Rygel.Seek {
-    public Format format;
+class Rygel.Seek : GLib.Object {
+    public Format format { get; private set; }
 
-    public int64 start;
-    public int64 stop;
+    private int64 _start;
+    public int64 start {
+        get {
+            return this._start;
+        }
+        set {
+            this._start = value;
+            this.length = stop - start + 1;
+        }
+    }
+
+    private int64 _stop;
+    public int64 stop {
+        get {
+            return this._stop;
+        }
+        set {
+            this._stop = value;
+            this.length = stop - start + 1;
+        }
+    }
+
+    public int64 length { get; private set; }
 
     public Seek (Format format,
                  int64  start,
