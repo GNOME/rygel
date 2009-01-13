@@ -136,7 +136,7 @@ public class Rygel.MediaItem : MediaObject {
             this.res.dlna_flags |= GUPnP.DLNAFlags.STREAMING_TRANSFER_MODE;
         }
 
-        if (this.res.size < 1) {
+        if (this.res.size > 0) {
             this.res.dlna_operation = GUPnP.DLNAOperation.RANGE;
         }
 
