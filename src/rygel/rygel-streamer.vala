@@ -281,9 +281,9 @@ public class Rygel.Streamer : GLib.Object {
             msg.set_status (Soup.KnownStatusCode.OK);
         }
 
-        msg.response_body.append (Soup.MemoryUse.COPY,
-                                  contents.offset ((long) offset),
-                                  length);
+        char *data = (char *) contents + offset;
+
+        msg.response_body.append (Soup.MemoryUse.COPY, data, length);
     }
 
     /* Parses the HTTP Range header on @message and sets:
