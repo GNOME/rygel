@@ -268,7 +268,7 @@ public class Rygel.Streamer : GLib.Object {
             offset = (size_t) seek.start;
             length = (size_t) seek.stop + 1;
 
-            assert (offset <= file_length);
+            assert (offset < file_length);
             assert (length <= file_length);
         } else {
             offset = 0;
