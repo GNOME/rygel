@@ -138,6 +138,7 @@ public class Rygel.MediaItem : MediaObject {
 
         if (this.res.size > 0) {
             this.res.dlna_operation = GUPnP.DLNAOperation.RANGE;
+            this.res.dlna_flags |= GUPnP.DLNAFlags.BACKGROUND_TRANSFER_MODE;
         }
 
         /* Now get the transcoded/proxy URIs */
