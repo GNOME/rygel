@@ -177,13 +177,23 @@ public class Rygel.Streamer : GLib.Object {
             msg.response_headers.append ("Accept-Ranges", "bytes");
         }
 
-        if (seek != null) {
+        if (item.res.size > 0) {
+            int64 first_byte;
+            int64 last_byte;
+
+            if (seek != null) {
+                first_byte = seek.start;
+                last_byte = seek.stop;
+            } else {
+                first_byte = 0;
+                last_byte = item.res.size - 1;
+            }
+
             // Content-Range: bytes START_BYTE-STOP_BYTE/TOTAL_LENGTH
             var content_range = "bytes " +
-                                seek.start.to_string () + "-" +
-                                seek.stop.to_string () + "/" +
+                                first_byte.to_string () + "-" +
+                                last_byte.to_string () + "/" +
                                 item.res.size.to_string ();
-
             msg.response_headers.append ("Content-Range", content_range);
         }
     }
