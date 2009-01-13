@@ -29,6 +29,7 @@ using Gst;
 using GUPnP;
 
 public errordomain Rygel.StreamerError {
+    UNACCEPTABLE = Soup.KnownStatusCode.NOT_ACCEPTABLE,
     INVALID_RANGE = Soup.KnownStatusCode.BAD_REQUEST,
     OUT_OF_RANGE = Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE
 }
@@ -68,15 +69,25 @@ public class Rygel.Streamer : GLib.Object {
         return create_uri_for_path (query);
     }
 
-    public void stream_from_gst_source (Element#      src,
-                                        Soup.Message  msg,
-                                        Event?        seek_event) throws Error {
+    private void stream_from_gst_source (Element#    src,
+                                        Soup.Message msg,
+                                        Seek?        seek) throws Error {
+        Event seek_event = null;
+        if (seek != null) {
+            seek_event = new Event.seek (1.0,
+                                         seek.format,
+                                         SeekFlags.FLUSH,
+                                         Gst.SeekType.SET,
+                                         seek.start,
+                                         Gst.SeekType.SET,
+                                         seek.stop);
+        }
+
         GstStream stream = new GstStream (this.context.server,
                                           msg,
                                           "RygelGstStream",
                                           src,
                                           seek_event);
-
         stream.start ();
         stream.eos += on_eos;
 
@@ -124,28 +135,18 @@ public class Rygel.Streamer : GLib.Object {
             return;
         }
 
-        size_t offset = 0;
-        size_t length = item.res.size;
-        bool got_range;
+        Seek seek = null;
 
         try {
-            got_range = this.parse_range (msg, out offset, out length);
+            seek = this.parse_range (msg, item);
         } catch (StreamerError err) {
             warning ("%s", err.message);
             msg.set_status (err.code);
             return;
         }
 
-        if (item.res.size == -1 && got_range) {
-            warning ("Partial download not applicable for item %s", item_id);
-            msg.set_status (Soup.KnownStatusCode.NOT_ACCEPTABLE);
-            return;
-        }
-
-        bool partial = got_range && (offset != 0 || length < item.res.size);
-
         // Add headers
-        this.add_item_headers (msg, item, partial, offset, length);
+        this.add_item_headers (msg, item, seek);
 
         if (msg.method == "HEAD") {
             // Only headers requested, no need to stream contents
@@ -154,17 +155,15 @@ public class Rygel.Streamer : GLib.Object {
         }
 
         if (item.upnp_class == MediaItem.IMAGE_CLASS) {
-            this.handle_interactive_item (msg, item, partial, offset, length);
+            this.handle_interactive_item (msg, item, seek);
         } else {
-            this.handle_streaming_item (msg, item, partial, offset, length);
+            this.handle_streaming_item (msg, item, seek);
         }
     }
 
     private void add_item_headers (Soup.Message msg,
                                    MediaItem    item,
-                                   bool         partial_content,
-                                   size_t       offset,
-                                   size_t       length) {
+                                   Seek?        seek) {
         if (item.res.mime_type != null) {
             msg.response_headers.append ("Content-Type", item.res.mime_type);
         }
@@ -178,11 +177,11 @@ public class Rygel.Streamer : GLib.Object {
             msg.response_headers.append ("Accept-Ranges", "bytes");
         }
 
-        if (partial_content) {
-            // Content-Range: bytes OFFSET-LENGTH/TOTAL_LENGTH
+        if (seek != null) {
+            // Content-Range: bytes START_BYTE-STOP_BYTE/TOTAL_LENGTH
             var content_range = "bytes " +
-                                offset.to_string () + "-" +
-                                (length - 1).to_string () + "/" +
+                                seek.start.to_string () + "-" +
+                                seek.stop.to_string () + "/" +
                                 item.res.size.to_string ();
 
             msg.response_headers.append ("Content-Range", content_range);
@@ -191,9 +190,7 @@ public class Rygel.Streamer : GLib.Object {
 
     private void handle_streaming_item (Soup.Message msg,
                                         MediaItem    item,
-                                        bool         partial_content,
-                                        size_t       offset,
-                                        size_t       length) {
+                                        Seek?        seek) {
         string uri = item.res.uri;
         dynamic Element src = null;
 
@@ -217,21 +214,8 @@ public class Rygel.Streamer : GLib.Object {
         src.tcp_timeout = (int64) 60000000;
 
         try {
-            // Create the seek event if needed
-            Event seek_event = null;
-
-            if (partial_content) {
-                seek_event = new Event.seek (1.0,
-                                             Format.BYTES,
-                                             SeekFlags.FLUSH,
-                                             Gst.SeekType.SET,
-                                             offset,
-                                             Gst.SeekType.SET,
-                                             length);
-            }
-
             // Then start the gst stream
-            this.stream_from_gst_source (src, msg, seek_event);
+            this.stream_from_gst_source (src, msg, seek);
         } catch (Error error) {
             critical ("Error in attempting to start streaming %s: %s",
                       uri,
@@ -241,9 +225,7 @@ public class Rygel.Streamer : GLib.Object {
 
     private void handle_interactive_item (Soup.Message msg,
                                           MediaItem    item,
-                                          bool         partial_content,
-                                          size_t       offset,
-                                          size_t       length) {
+                                          Seek?        seek) {
         string uri = item.res.uri;
 
         if (uri == null) {
@@ -256,6 +238,7 @@ public class Rygel.Streamer : GLib.Object {
 
         string contents;
         size_t file_length;
+
         try {
            file.load_contents (null,
                                out contents,
@@ -269,10 +252,20 @@ public class Rygel.Streamer : GLib.Object {
             return;
         }
 
-        assert (offset <= file_length);
-        assert (length <= file_length);
+        size_t offset;
+        size_t length;
+        if (seek != null) {
+            offset = (size_t) seek.start;
+            length = (size_t) seek.stop + 1;
 
-        if (partial_content) {
+            assert (offset <= file_length);
+            assert (length <= file_length);
+        } else {
+            offset = 0;
+            length = file_length;
+        }
+
+        if (seek != null) {
             msg.set_status (Soup.KnownStatusCode.PARTIAL_CONTENT);
         } else {
             msg.set_status (Soup.KnownStatusCode.OK);
@@ -292,16 +285,16 @@ public class Rygel.Streamer : GLib.Object {
      * values. Throws a #StreamerError in case of error.
      *
      * Returns %true a range header was found, false otherwise. */
-    private bool parse_range (Soup.Message message,
-                              out size_t   offset,
-                              out size_t   length)
-                              throws StreamerError {
+    private Seek? parse_range (Soup.Message message,
+                                MediaItem    item)
+                                throws StreamerError {
             string range;
             string[] range_tokens;
+            Seek seek = null;
 
             range = message.request_headers.get ("Range");
             if (range == null) {
-                return false;
+                return seek;
             }
 
             // We have a Range header. Parse.
@@ -317,34 +310,63 @@ public class Rygel.Streamer : GLib.Object {
                                                        range);
             }
 
+            seek = new Seek (Format.BYTES, 0, item.res.size - 1);
+
             // Get first byte position
             string first_byte = range_tokens[0];
             if (first_byte[0].isdigit ()) {
-                offset = first_byte.to_long ();
+                seek.start = first_byte.to_int64 ();
             } else if (first_byte  != "") {
                 throw new StreamerError.INVALID_RANGE ("Invalid Range '%s'",
                                                        range);
             }
 
-            // Save the actual length
-            size_t actual_length = length;
-
             // Get last byte position if specified
             string last_byte = range_tokens[1];
             if (last_byte[0].isdigit ()) {
-                length = last_byte.to_long ();
+                seek.stop = last_byte.to_int64 ();
             } else if (last_byte  != "") {
                 throw new StreamerError.INVALID_RANGE ("Invalid Range '%s'",
                                                        range);
             }
 
-            // Offset shouldn't go beyond actual length of media
-            if (offset > actual_length || length > actual_length) {
-                throw new StreamerError.OUT_OF_RANGE (
-                                    "Range '%s' not setsifiable", range);
+            if (item.res.size > 0) {
+                // shouldn't go beyond actual length of media
+                if (seek.start > item.res.size || seek.stop >= item.res.size) {
+                    throw new StreamerError.OUT_OF_RANGE (
+                            "Range '%s' not setsifiable", range);
+                }
+
+                // No need to seek if whole stream is requested
+                if (seek.start == 0 && seek.stop == item.res.size - 1) {
+                    return null;
+                }
+            } else if (seek.start == 0) {
+                // Might be an attempt to get the size, in which case it's not
+                // an error. Just don't seek.
+                return null;
+            } else {
+                throw new StreamerError.UNACCEPTABLE (
+                            "Partial download not applicable for item %s",
+                            item.id);
             }
 
-            return true;
+            return seek;
         }
+}
+
+class Rygel.Seek {
+    public Format format;
+
+    public int64 start;
+    public int64 stop;
+
+    public Seek (Format format,
+                 int64  start,
+                 int64  stop) {
+        this.format = format;
+        this.start = start;
+        this.stop = stop;
+    }
 }
 
