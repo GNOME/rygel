@@ -113,6 +113,8 @@ public class Rygel.GstStream : Rygel.Stream {
                 critical ("Failed to link %s to %s",
                           depay.name,
                           sink.name);
+                this.end ();
+                return;
             }
 
             sink_pad = depay.get_compatible_pad (src_pad, caps);
@@ -125,6 +127,7 @@ public class Rygel.GstStream : Rygel.Stream {
                       src_pad.name,
                       sink_pad.name);
             this.end ();
+            return;
         }
 
         if (depay != null) {
