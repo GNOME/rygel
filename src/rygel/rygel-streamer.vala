@@ -84,8 +84,6 @@ public class Rygel.Streamer : GLib.Object {
     }
 
     private void on_eos (GstStream stream) {
-        stream.stop ();
-
         /* Remove the stream from our list. */
         this.streams.remove (stream);
     }

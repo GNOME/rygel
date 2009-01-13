@@ -61,8 +61,10 @@ public class Rygel.GstStream : Rygel.Stream {
         this.pipeline.set_state (State.PAUSED);
     }
 
-    public void stop () {
+    public override void end (bool aborted) {
         this.pipeline.set_state (State.NULL);
+
+        base.end (aborted);
     }
 
     private void prepare_pipeline (string name,
@@ -113,7 +115,7 @@ public class Rygel.GstStream : Rygel.Stream {
                 critical ("Failed to link %s to %s",
                           depay.name,
                           sink.name);
-                this.end ();
+                this.end (false);
                 return;
             }
 
@@ -126,7 +128,7 @@ public class Rygel.GstStream : Rygel.Stream {
             critical ("Failed to link pad %s to %s",
                       src_pad.name,
                       sink_pad.name);
-            this.end ();
+            this.end (false);
             return;
         }
 
@@ -251,7 +253,7 @@ public class Rygel.GstStream : Rygel.Stream {
         }
 
         if (!ret) {
-            this.end ();
+            this.end (false);
         }
 
         return ret;

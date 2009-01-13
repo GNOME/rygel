@@ -51,7 +51,7 @@ public class Rygel.Stream : GLib.Object {
                                      Soup.ClientContext client) {
         // Ignore if message isn't ours
         if (msg == this.msg)
-            this.eos ();
+            this.end (true);
     }
 
     public void set_mime_type (string mime_type) {
@@ -66,8 +66,10 @@ public class Rygel.Stream : GLib.Object {
         this.server.unpause_message (this.msg);
     }
 
-    public void end () {
-        this.msg.response_body.complete ();
+    public virtual void end (bool aborted) {
+        if (!aborted) {
+            this.msg.response_body.complete ();
+        }
 
         this.eos ();
     }
