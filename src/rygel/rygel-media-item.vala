@@ -131,14 +131,14 @@ public class Rygel.MediaItem : MediaObject {
         this.res.dlna_profile = "MP3"; /* FIXME */
 
         if (this.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
-            this.res.dlna_flags |= GUPnP.DLNAFlags.INTERACTIVE_TRANSFER_MODE;
+            this.res.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
         } else {
-            this.res.dlna_flags |= GUPnP.DLNAFlags.STREAMING_TRANSFER_MODE;
+            this.res.dlna_flags |= DLNAFlags.STREAMING_TRANSFER_MODE;
         }
 
         if (this.res.size > 0) {
-            this.res.dlna_operation = GUPnP.DLNAOperation.RANGE;
-            this.res.dlna_flags |= GUPnP.DLNAFlags.BACKGROUND_TRANSFER_MODE;
+            this.res.dlna_operation = DLNAOperation.RANGE;
+            this.res.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE;
         }
 
         /* Now get the transcoded/proxy URIs */
