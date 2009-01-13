@@ -25,15 +25,23 @@
 
 public class Rygel.Stream : GLib.Object {
     public Soup.Server server { get; private set; }
-    private Soup.Message msg;
+    protected Soup.Message msg;
 
     public signal void eos ();
 
-    public Stream (Soup.Server server, Soup.Message msg) {
+    public Stream (Soup.Server server,
+                   Soup.Message msg,
+                   bool partial) {
         this.server = server;
         this.msg = msg;
 
         this.msg.response_headers.set_encoding (Soup.Encoding.CHUNKED);
+        if (partial) {
+            this.msg.set_status (Soup.KnownStatusCode.PARTIAL_CONTENT);
+        } else {
+            this.msg.set_status (Soup.KnownStatusCode.OK);
+        }
+        this.msg.response_body.set_accumulate (false);
 
         this.server.request_aborted += on_request_aborted;
     }
@@ -44,20 +52,6 @@ public class Rygel.Stream : GLib.Object {
         // Ignore if message isn't ours
         if (msg == this.msg)
             this.eos ();
-    }
-
-    public void accept (bool partial) {
-        if (partial) {
-            this.msg.set_status (Soup.KnownStatusCode.PARTIAL_CONTENT);
-        } else {
-            this.msg.set_status (Soup.KnownStatusCode.OK);
-        }
-
-        this.msg.response_body.set_accumulate (false);
-    }
-
-    public void reject () {
-        this.msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
     }
 
     public void set_mime_type (string mime_type) {

@@ -25,7 +25,6 @@
  * version 2 of the License, or (at your option) any later version.
  */
 
-using Gee;
 using Gst;
 using GUPnP;
 
@@ -39,7 +38,7 @@ public class Rygel.Streamer : GLib.Object {
     private string server_path_root;
 
     private GUPnP.Context context;
-    private HashMap<Stream,GstStream> streams;
+    private List<GstStream> streams;
 
     public signal void need_stream_source (MediaItem   item,
                                            out Element src);
@@ -48,7 +47,7 @@ public class Rygel.Streamer : GLib.Object {
 
     public Streamer (GUPnP.Context context, string name) {
         this.context = context;
-        this.streams = new HashMap<Stream,GstStream> ();
+        this.streams = new List<GstStream> ();
 
         this.server_path_root = SERVER_PATH_PREFIX + "/" + name;
 
@@ -69,28 +68,25 @@ public class Rygel.Streamer : GLib.Object {
         return create_uri_for_path (query);
     }
 
-    public void stream_from_gst_source (Element# src,
-                                        Stream   stream,
-                                        Event?   seek_event) throws Error {
-        GstStream gst_stream = new GstStream (stream,
-                                              "RygelGstStream",
-                                              src,
-                                              seek_event);
+    public void stream_from_gst_source (Element#      src,
+                                        Soup.Message  msg,
+                                        Event?        seek_event) throws Error {
+        GstStream stream = new GstStream (this.context.server,
+                                          msg,
+                                          "RygelGstStream",
+                                          src,
+                                          seek_event);
 
-        gst_stream.start ();
+        stream.start ();
         stream.eos += on_eos;
 
-        this.streams.set (stream, gst_stream);
+        this.streams.append (stream);
     }
 
-    private void on_eos (Stream stream) {
-        GstStream gst_stream = this.streams.get (stream);
-        if (gst_stream == null)
-            return;
+    private void on_eos (GstStream stream) {
+        stream.stop ();
 
-        gst_stream.stop ();
-
-        /* Remove the associated Gst stream. */
+        /* Remove the stream from our list. */
         this.streams.remove (stream);
     }
 
@@ -222,8 +218,6 @@ public class Rygel.Streamer : GLib.Object {
         // transmitting
         src.tcp_timeout = (int64) 60000000;
 
-        // create a stream for it
-        var stream = new Stream (this.context.server, msg);
         try {
             // Create the seek event if needed
             Event seek_event = null;
@@ -238,8 +232,8 @@ public class Rygel.Streamer : GLib.Object {
                                              length);
             }
 
-            // Then attach the gst source to stream we are good to go
-            this.stream_from_gst_source (src, stream, seek_event);
+            // Then start the gst stream
+            this.stream_from_gst_source (src, msg, seek_event);
         } catch (Error error) {
             critical ("Error in attempting to start streaming %s: %s",
                       uri,

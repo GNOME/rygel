@@ -34,38 +34,39 @@ public errordomain Rygel.GstStreamError {
     LINK
 }
 
-public class Rygel.GstStream : Pipeline {
+public class Rygel.GstStream : Rygel.Stream {
     private const string SINK_NAME = "fakesink";
 
-    public Stream stream;
+    private Pipeline pipeline;
 
     private AsyncQueue<Buffer> buffers;
 
     private Event seek_event;
 
-    public GstStream (Stream  stream,
+    public GstStream (Soup.Server server,
+                      Soup.Message msg,
                       string  name,
                       Element src,
                       Event?  seek_event) throws Error {
-        this.stream = stream;
-        this.name = name;
+        base (server, msg, seek_event != null);
+
         this.seek_event = seek_event;
         this.buffers = new AsyncQueue<Buffer> ();
 
-        this.stream.accept (seek != null);
-        this.prepare_pipeline (src);
+        this.prepare_pipeline (name, src);
     }
 
     public void start () {
         // Go to PAUSED first
-        this.set_state (State.PAUSED);
+        this.pipeline.set_state (State.PAUSED);
     }
 
     public void stop () {
-        this.set_state (State.NULL);
+        this.pipeline.set_state (State.NULL);
     }
 
-    private void prepare_pipeline (Element src) throws Error {
+    private void prepare_pipeline (string name,
+                                   Element src) throws Error {
         dynamic Element sink = ElementFactory.make ("fakesink", SINK_NAME);
 
         if (sink == null) {
@@ -76,7 +77,10 @@ public class Rygel.GstStream : Pipeline {
         sink.signal_handoffs = true;
         sink.handoff += this.on_new_buffer;
 
-        this.add_many (src, sink);
+        this.pipeline = new Pipeline (name);
+        assert (this.pipeline != null);
+
+        this.pipeline.add_many (src, sink);
 
         if (src.numpads == 0) {
             // Seems source uses dynamic pads, link when pad available
@@ -91,7 +95,7 @@ public class Rygel.GstStream : Pipeline {
         }
 
         // Bus handler
-        var bus = this.get_bus ();
+        var bus = this.pipeline.get_bus ();
         bus.add_watch (bus_handler);
     }
 
@@ -99,12 +103,12 @@ public class Rygel.GstStream : Pipeline {
                                 Pad     src_pad) {
         var caps = src_pad.get_caps ();
 
-        var sink = this.get_by_name (SINK_NAME);
+        var sink = this.pipeline.get_by_name (SINK_NAME);
         Pad sink_pad;
 
         dynamic Element depay = this.get_rtp_depayloader (caps);
         if (depay != null) {
-            this.add (depay);
+            this.pipeline.add (depay);
             if (!depay.link (sink)) {
                 critical ("Failed to link %s to %s",
                           depay.name,
@@ -120,7 +124,7 @@ public class Rygel.GstStream : Pipeline {
             critical ("Failed to link pad %s to %s",
                       src_pad.name,
                       sink_pad.name);
-            this.stream.end ();
+            this.end ();
         }
 
         if (depay != null) {
@@ -198,7 +202,7 @@ public class Rygel.GstStream : Pipeline {
         var buffer = this.buffers.pop ();
 
         if (buffer != null) {
-            this.stream.push_data (buffer.data, buffer.size);
+            this.push_data (buffer.data, buffer.size);
         }
 
         return false;
@@ -217,12 +221,12 @@ public class Rygel.GstStream : Pipeline {
             if (new_state == State.PAUSED) {
                 if (this.seek_event != null) {
                     // Time to shove-in the pending seek event
-                    this.send_event (this.seek_event);
+                    this.pipeline.send_event (this.seek_event);
                     this.seek_event = null;
                 }
 
                 // Now we can proceed to start streaming
-                this.set_state (State.PLAYING);
+                this.pipeline.set_state (State.PLAYING);
             }
         } else {
             GLib.Error err;
@@ -230,17 +234,21 @@ public class Rygel.GstStream : Pipeline {
 
             if (message.type == MessageType.ERROR) {
                 message.parse_error (out err, out err_msg);
-                critical ("Error from pipeline %s:%s", this.name, err_msg);
+                critical ("Error from pipeline %s:%s",
+                          this.pipeline.name,
+                          err_msg);
 
                 ret = false;
             } else if (message.type == MessageType.WARNING) {
                 message.parse_warning (out err, out err_msg);
-                warning ("Warning from pipeline %s:%s", this.name, err_msg);
+                warning ("Warning from pipeline %s:%s",
+                         this.pipeline.name,
+                         err_msg);
             }
         }
 
         if (!ret) {
-            this.stream.end ();
+            this.end ();
         }
 
         return ret;
