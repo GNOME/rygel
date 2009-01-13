@@ -221,7 +221,7 @@ public class Rygel.Streamer : GLib.Object {
 
         // For rtspsrc since some RTSP sources takes a while to start
         // transmitting
-        src.tcp_timeout = 60000000;
+        src.tcp_timeout = (int64) 60000000;
 
         // create a stream for it
         var stream = new Stream (this.context.server, msg);
