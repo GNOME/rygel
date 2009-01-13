@@ -221,9 +221,10 @@ public class Rygel.GstStream : Rygel.Stream {
             ret = false;
         } else if (message.type == MessageType.STATE_CHANGED) {
             State new_state;
+            State old_state;
 
-            message.parse_state_changed (null, out new_state, null);
-            if (new_state == State.PAUSED) {
+            message.parse_state_changed (out old_state, out new_state, null);
+            if (new_state == State.PAUSED && old_state != State.PLAYING) {
                 if (this.seek_event != null) {
                     // Time to shove-in the pending seek event
                     this.pipeline.send_event (this.seek_event);
