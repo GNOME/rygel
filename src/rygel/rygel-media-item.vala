@@ -123,8 +123,11 @@ public class Rygel.MediaItem : MediaObject {
 
         /* Add resource data */
         /* Protocol info */
-        string protocol = get_protocol_for_uri (this.res.uri);
-        this.res.protocol = protocol;
+        if (this.res.uri != null) {
+            string protocol = get_protocol_for_uri (this.res.uri);
+            this.res.protocol = protocol;
+        }
+
         this.res.dlna_profile = "MP3"; /* FIXME */
 
         if (this.upnp_class == MediaItem.IMAGE_CLASS) {
@@ -144,7 +147,9 @@ public class Rygel.MediaItem : MediaObject {
         }
 
         /* Add the original res in the end */
-        didl_writer.add_res (res);
+        if (this.res.uri != null) {
+            didl_writer.add_res (res);
+        }
 
         /* End of item */
         didl_writer.end_item ();
