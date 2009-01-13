@@ -63,6 +63,11 @@ public class Rygel.GstStream : Rygel.Stream {
 
     public override void end (bool aborted) {
         this.pipeline.set_state (State.NULL);
+        // Flush the queue of buffers
+        Buffer buffer = null;
+        do {
+            buffer = this.buffers.try_pop ();
+        } while (buffer != null);
 
         base.end (aborted);
     }
