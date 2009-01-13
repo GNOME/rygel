@@ -69,25 +69,12 @@ public class Rygel.Streamer : GLib.Object {
         return create_uri_for_path (query);
     }
 
-    private void stream_from_gst_source (Element#    src,
-                                        Soup.Message msg,
-                                        Seek?        seek) throws Error {
-        Event seek_event = null;
-        if (seek != null) {
-            seek_event = new Event.seek (1.0,
-                                         seek.format,
-                                         SeekFlags.FLUSH,
-                                         Gst.SeekType.SET,
-                                         seek.start,
-                                         Gst.SeekType.SET,
-                                         seek.stop);
-        }
-
+    private void stream_from_gst_source (Element#     src,
+                                         Soup.Message msg) throws Error {
         GstStream stream = new GstStream (this.context.server,
                                           msg,
                                           "RygelGstStream",
-                                          src,
-                                          seek_event);
+                                          src);
         stream.start ();
         stream.eos += on_eos;
 
@@ -157,7 +144,7 @@ public class Rygel.Streamer : GLib.Object {
         if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
             this.handle_interactive_item (msg, item, seek);
         } else {
-            this.handle_streaming_item (msg, item, seek);
+            this.handle_streaming_item (msg, item);
         }
     }
 
@@ -199,8 +186,7 @@ public class Rygel.Streamer : GLib.Object {
     }
 
     private void handle_streaming_item (Soup.Message msg,
-                                        MediaItem    item,
-                                        Seek?        seek) {
+                                        MediaItem    item) {
         string uri = item.res.uri;
         dynamic Element src = null;
 
@@ -225,7 +211,7 @@ public class Rygel.Streamer : GLib.Object {
 
         try {
             // Then start the gst stream
-            this.stream_from_gst_source (src, msg, seek);
+            this.stream_from_gst_source (src, msg);
         } catch (Error error) {
             critical ("Error in attempting to start streaming %s: %s",
                       uri,

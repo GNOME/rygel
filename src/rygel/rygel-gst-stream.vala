@@ -41,16 +41,12 @@ public class Rygel.GstStream : Rygel.Stream {
 
     private AsyncQueue<Buffer> buffers;
 
-    private Event seek_event;
-
-    public GstStream (Soup.Server server,
+    public GstStream (Soup.Server  server,
                       Soup.Message msg,
-                      string  name,
-                      Element src,
-                      Event?  seek_event) throws Error {
-        base (server, msg, seek_event != null);
+                      string       name,
+                      Element      src) throws Error {
+        base (server, msg, false);
 
-        this.seek_event = seek_event;
         this.buffers = new AsyncQueue<Buffer> ();
 
         this.prepare_pipeline (name, src);
@@ -58,7 +54,7 @@ public class Rygel.GstStream : Rygel.Stream {
 
     public void start () {
         // Go to PAUSED first
-        this.pipeline.set_state (State.PAUSED);
+        this.pipeline.set_state (State.PLAYING);
     }
 
     public override void end (bool aborted) {
@@ -224,21 +220,6 @@ public class Rygel.GstStream : Rygel.Stream {
 
         if (message.type == MessageType.EOS) {
             ret = false;
-        } else if (message.type == MessageType.STATE_CHANGED) {
-            State new_state;
-            State old_state;
-
-            message.parse_state_changed (out old_state, out new_state, null);
-            if (new_state == State.PAUSED && old_state != State.PLAYING) {
-                if (this.seek_event != null) {
-                    // Time to shove-in the pending seek event
-                    this.pipeline.send_event (this.seek_event);
-                    this.seek_event = null;
-                }
-
-                // Now we can proceed to start streaming
-                this.pipeline.set_state (State.PLAYING);
-            }
         } else {
             GLib.Error err;
             string err_msg;
