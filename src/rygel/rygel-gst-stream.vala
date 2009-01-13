@@ -57,7 +57,8 @@ public class Rygel.GstStream : Pipeline {
     }
 
     public void start () {
-        this.set_state (State.PLAYING);
+        // Go to PAUSED first
+        this.set_state (State.PAUSED);
     }
 
     public void stop () {
@@ -209,15 +210,19 @@ public class Rygel.GstStream : Pipeline {
 
         if (message.type == MessageType.EOS) {
             ret = false;
-        } else if (message.type == MessageType.STATE_CHANGED &&
-                   this.seek_event != null) {
+        } else if (message.type == MessageType.STATE_CHANGED) {
             State new_state;
 
             message.parse_state_changed (null, out new_state, null);
-            if (new_state == State.PAUSED || new_state == State.PLAYING) {
-                // Time to shove-in the pending seek event
-                this.send_event (this.seek_event);
-                this.seek_event = null;
+            if (new_state == State.PAUSED) {
+                if (this.seek_event != null) {
+                    // Time to shove-in the pending seek event
+                    this.send_event (this.seek_event);
+                    this.seek_event = null;
+                }
+
+                // Now we can proceed to start streaming
+                this.set_state (State.PLAYING);
             }
         } else {
             GLib.Error err;
