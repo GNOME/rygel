@@ -204,7 +204,7 @@ public class Rygel.GstStream : Rygel.Stream {
     }
 
     private bool idle_handler () {
-        var buffer = this.buffers.pop ();
+        var buffer = this.buffers.try_pop ();
 
         if (buffer != null) {
             this.push_data (buffer.data, buffer.size);
