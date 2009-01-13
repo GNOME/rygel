@@ -26,7 +26,7 @@
 
 using Rygel;
 using GUPnP;
-using DBus;
+using Gst;
 
 /**
  * Implementation of ContentDirectory service, meant for testing purposes only.
@@ -34,22 +34,27 @@ using DBus;
 public class Rygel.TestContentDir : ContentDirectory {
     private List<MediaItem> items;
 
+    private Streamer streamer;
+
     /* Pubic methods */
     public override void constructed () {
         // Chain-up to base first
         base.constructed ();
 
-        Streamer streamer = new Streamer (context, "RygelTest");
+        this.streamer = new Streamer (context, "RygelTest");
+
+        this.streamer.item_requested += this.on_item_requested;
+        this.streamer.need_stream_source += this.on_need_stream_source;
 
         this.items = new List<MediaItem> ();
         this.items.append (new TestAudioItem ("sinewave",
                                               this.root_container.id,
                                               "Sine Wave",
-                                              streamer));
+                                              this.streamer));
         this.items.append (new TestVideoItem ("smtpe",
                                               this.root_container.id,
                                               "SMTPE",
-                                              streamer));
+                                              this.streamer));
 
         // Now we know how many top-level items we have
         this.root_container.child_count = this.items.length ();
@@ -89,6 +94,26 @@ public class Rygel.TestContentDir : ContentDirectory {
         }
 
         return item;
+    }
+
+    private void on_item_requested (Streamer      streamer,
+                                    string        item_id,
+                                    out MediaItem item) {
+        item = this.find_item_by_id (item_id);
+    }
+
+    private void on_need_stream_source (Streamer    streamer,
+                                        MediaItem   item,
+                                        out Element src) {
+        try {
+            src = ((TestItem) item).create_gst_source ();
+        } catch (Error error) {
+            critical ("Error creating Gst source element for item %s: %s",
+                      item.id,
+                      error.message);
+
+            return;
+        }
     }
 }
 

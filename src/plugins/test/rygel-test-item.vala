@@ -34,51 +34,18 @@ using Gst;
 public abstract class Rygel.TestItem : Rygel.MediaItem {
     const string TEST_AUTHOR = "Zeeshan Ali (Khattak)";
 
-    public string path;
-
     public TestItem (string   id,
                      string   parent_id,
                      string   title,
                      string   mime,
                      string   upnp_class,
-                     Streamer streamer,
-                     string   path) {
+                     Streamer streamer) {
         base (id, parent_id, title, upnp_class, streamer);
 
         this.res.mime_type = mime;
         this.author = TEST_AUTHOR;
-        this.path= path;
-
-        this.res.uri = streamer.create_uri_for_path (path);
-
-        streamer.stream_available += this.on_stream_available;
     }
 
-    private void on_stream_available (Streamer streamer,
-                                      Stream   stream,
-                                      string   path) {
-        if (path != this.path) {
-            /* Not our path and therefore not interesting. */
-            return;
-        }
-
-        // FIXME: This should be done by GstStream
-        stream.set_mime_type (this.res.mime_type);
-
-        try {
-            Element src = this.create_gst_source ();
-            // Ask streamer to handle the stream for us but use our source in
-            // the pipeline.
-            streamer.stream_from_gst_source (src, stream, null);
-        } catch (Error error) {
-            critical ("Error in attempting to start streaming %s: %s",
-                      path,
-                      error.message);
-
-            return;
-        }
-    }
-
-    protected abstract Element create_gst_source () throws Error;
+    public abstract Element create_gst_source () throws Error;
 }
 

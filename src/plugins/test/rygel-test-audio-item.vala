@@ -33,7 +33,6 @@ using Gst;
  * Represents Test audio item.
  */
 public class Rygel.TestAudioItem : Rygel.TestItem {
-    const string TEST_PATH = "/test.wav";
     const string TEST_MIMETYPE = "audio/x-wav";
 
     public TestAudioItem (string   id,
@@ -45,11 +44,10 @@ public class Rygel.TestAudioItem : Rygel.TestItem {
               title,
               TEST_MIMETYPE,
               MediaItem.AUDIO_CLASS,
-              streamer,
-              TEST_PATH);
+              streamer);
     }
 
-    protected override Element create_gst_source () throws Error {
+    public override Element create_gst_source () throws Error {
         Bin bin = new Bin (this.title);
 
         dynamic Element src = ElementFactory.make ("audiotestsrc", null);

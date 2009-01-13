@@ -41,8 +41,8 @@ public class Rygel.Streamer : GLib.Object {
     private GUPnP.Context context;
     private HashMap<Stream,GstStream> streams;
 
-    public signal void stream_available (Rygel.Stream stream,
-                                         string       path);
+    public signal void need_stream_source (MediaItem   item,
+                                           out Element src);
     public signal void item_requested (string item_id,
                                        out MediaItem item);
 
@@ -55,7 +55,7 @@ public class Rygel.Streamer : GLib.Object {
         context.server.add_handler (this.server_path_root, server_handler);
     }
 
-    public string create_uri_for_path (string path) {
+    private string create_uri_for_path (string path) {
         return "http://%s:%u%s%s".printf (this.context.host_ip,
                                           this.context.port,
                                           this.server_path_root,
@@ -113,11 +113,12 @@ public class Rygel.Streamer : GLib.Object {
             item_id = query.lookup ("itemid");
         }
 
-        if (item_id != null) {
-            this.handle_item_request (msg, item_id);
-        } else {
-            this.handle_path_request (msg, server_path);
+        if (item_id == null) {
+            msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
+            return;
         }
+
+        this.handle_item_request (msg, item_id);
     }
 
     private void handle_item_request (Soup.Message msg,
@@ -128,12 +129,6 @@ public class Rygel.Streamer : GLib.Object {
         this.item_requested (item_id, out item);
         if (item == null) {
             warning ("Requested item '%s' not found\n", item_id);
-            msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
-            return;
-        }
-
-        if (item.res.uri == null) {
-            warning ("Requested item '%s' didn't provide a URI\n", item_id);
             msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
             return;
         }
@@ -172,26 +167,6 @@ public class Rygel.Streamer : GLib.Object {
         }
     }
 
-    private void handle_path_request (Soup.Message msg,
-                                      string       path) {
-        string[] path_tokens = path.split (this.server_path_root, 2);
-        if (path_tokens[0] == null || path_tokens[1] == null) {
-            msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
-            return;
-        }
-
-        string stream_path = path_tokens[1];
-        var stream = new Stream (this.context.server, msg);
-
-        this.stream_available (stream, stream_path);
-
-        if (!stream.accepted ()) {
-            /* No body accepted the stream. */
-            stream.reject ();
-            return;
-        }
-    }
-
     private void add_item_headers (Soup.Message msg,
                                    MediaItem    item,
                                    bool         partial_content,
@@ -227,11 +202,19 @@ public class Rygel.Streamer : GLib.Object {
                                         size_t       offset,
                                         size_t       length) {
         string uri = item.res.uri;
+        dynamic Element src = null;
 
-        // Create to Gst source that can handle the URI
-        dynamic Element src = Element.make_from_uri (URIType.SRC, uri, null);
+        if (uri != null) {
+            // URI provided, try to create source element from it
+            src = Element.make_from_uri (URIType.SRC, uri, null);
+        } else {
+            // No URI provided, ask for source element directly
+            this.need_stream_source (item, out src);
+        }
+
         if (src == null) {
-            warning ("Failed to create source element for URI: %s\n", uri);
+            warning ("Failed to create source element for item: %s\n",
+                     item.id);
             msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
             return;
         }
@@ -271,6 +254,12 @@ public class Rygel.Streamer : GLib.Object {
                                           size_t       offset,
                                           size_t       length) {
         string uri = item.res.uri;
+
+        if (uri == null) {
+            warning ("Requested item '%s' didn't provide a URI\n", item.id);
+            msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
+            return;
+        }
 
         File file = File.new_for_uri (uri);
 

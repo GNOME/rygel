@@ -33,7 +33,6 @@ using Gst;
  * Represents Test video item.
  */
 public class Rygel.TestVideoItem : Rygel.TestItem {
-    const string TEST_PATH = "/test.mpeg";
     const string TEST_MIMETYPE = "video/mpeg";
 
     public TestVideoItem (string   id,
@@ -45,11 +44,10 @@ public class Rygel.TestVideoItem : Rygel.TestItem {
               title,
               TEST_MIMETYPE,
               MediaItem.VIDEO_CLASS,
-              streamer,
-              TEST_PATH);
+              streamer);
     }
 
-    protected override Element create_gst_source () throws Error {
+    public override Element create_gst_source () throws Error {
         Bin bin = new Bin (this.title);
 
         dynamic Element src = ElementFactory.make ("videotestsrc", null);
