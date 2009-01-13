@@ -151,8 +151,10 @@ public class Rygel.Streamer : GLib.Object {
             return;
         }
 
+        bool partial = got_range && (offset != 0 || length < item.res.size);
+
         // Add headers
-        this.add_item_headers (msg, item, got_range, offset, length);
+        this.add_item_headers (msg, item, partial, offset, length);
 
         if (msg.method == "HEAD") {
             // Only headers requested, no need to stream contents
@@ -161,9 +163,9 @@ public class Rygel.Streamer : GLib.Object {
         }
 
         if (item.upnp_class == MediaItem.IMAGE_CLASS) {
-            this.handle_interactive_item (msg, item, got_range, offset, length);
+            this.handle_interactive_item (msg, item, partial, offset, length);
         } else {
-            this.handle_streaming_item (msg, item, got_range, offset, length);
+            this.handle_streaming_item (msg, item, partial, offset, length);
         }
     }
 
