@@ -77,7 +77,7 @@ public class Rygel.Streamer : GLib.Object {
                                               src,
                                               seek_event);
 
-        gst_stream.set_state (State.PLAYING);
+        gst_stream.start ();
         stream.eos += on_eos;
 
         this.streams.set (stream, gst_stream);
@@ -88,10 +88,7 @@ public class Rygel.Streamer : GLib.Object {
         if (gst_stream == null)
             return;
 
-        /* We don't need to wait for state change since downstream state changes
-         * are guaranteed to be synchronous.
-         */
-        gst_stream.set_state (State.NULL);
+        gst_stream.stop ();
 
         /* Remove the associated Gst stream. */
         this.streams.remove (stream);

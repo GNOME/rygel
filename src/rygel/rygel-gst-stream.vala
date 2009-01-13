@@ -56,6 +56,14 @@ public class Rygel.GstStream : Pipeline {
         this.prepare_pipeline (src);
     }
 
+    public void start () {
+        this.set_state (State.PLAYING);
+    }
+
+    public void stop () {
+        this.set_state (State.NULL);
+    }
+
     private void prepare_pipeline (Element src) throws Error {
         dynamic Element sink = ElementFactory.make ("fakesink", SINK_NAME);
 
