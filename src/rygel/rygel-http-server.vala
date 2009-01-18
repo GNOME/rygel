@@ -39,7 +39,7 @@ public class Rygel.HTTPServer : GLib.Object {
     private string path_root;
 
     private GUPnP.Context context;
-    private List<StreamingResponse> responses;
+    private List<HTTPResponse> responses;
 
     public signal void need_stream_source (MediaItem   item,
                                            out Element src);
@@ -81,7 +81,19 @@ public class Rygel.HTTPServer : GLib.Object {
         this.responses.append (response);
     }
 
-    private void on_response_ended (StreamingResponse response) {
+    private void serve_uri (string       uri,
+                            Soup.Message msg,
+                            Seek?        seek) throws Error {
+        var response = new InteractiveResponse (this.context.server,
+                                                msg,
+                                                uri,
+                                                seek);
+        response.ended += on_response_ended;
+
+        this.responses.append (response);
+    }
+
+    private void on_response_ended (HTTPResponse response) {
         /* Remove the response from our list. */
         this.responses.remove (response);
     }
@@ -230,46 +242,14 @@ public class Rygel.HTTPServer : GLib.Object {
             return;
         }
 
-        File file = File.new_for_uri (uri);
-
-        string contents;
-        size_t file_length;
-
         try {
-           file.load_contents (null,
-                               out contents,
-                               out file_length,
-                               null);
+            this.serve_uri (uri, msg, seek);
         } catch (Error error) {
-            warning ("Failed to load contents from URI: %s: %s\n",
+            warning ("Error in attempting to serve %s: %s",
                      uri,
                      error.message);
             msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
-            return;
         }
-
-        size_t offset;
-        size_t length;
-        if (seek != null) {
-            offset = (size_t) seek.start;
-            length = (size_t) seek.length;
-
-            assert (offset < file_length);
-            assert (length <= file_length);
-        } else {
-            offset = 0;
-            length = file_length;
-        }
-
-        if (seek != null) {
-            msg.set_status (Soup.KnownStatusCode.PARTIAL_CONTENT);
-        } else {
-            msg.set_status (Soup.KnownStatusCode.OK);
-        }
-
-        char *data = (char *) contents + offset;
-
-        msg.response_body.append (Soup.MemoryUse.COPY, data, length);
     }
 
     /* Parses the HTTP Range header on @message and sets:
@@ -352,7 +332,7 @@ public class Rygel.HTTPServer : GLib.Object {
         }
 }
 
-class Rygel.Seek : GLib.Object {
+public class Rygel.Seek : GLib.Object {
     public Format format { get; private set; }
 
     private int64 _start;

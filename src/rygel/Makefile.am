@@ -41,6 +41,8 @@ BUILT_SOURCES = rygel-1.0.vapi \
                 rygel-http-response.h \
                 rygel-streaming-response.c \
                 rygel-streaming-response.h \
+		rygel-interactive-response.c \
+		rygel-interactive-response.h \
 		rygel-resource-info.h \
 		rygel-resource-info.c \
 		rygel-icon-info.h \
@@ -81,6 +83,8 @@ rygel_SOURCES = rygel-1.0.vapi \
 		rygel-http-response.h \
 		rygel-streaming-response.c \
 		rygel-streaming-response.h \
+		rygel-interactive-response.c \
+		rygel-interactive-response.h \
 		rygel-resource-info.h \
 		rygel-resource-info.c \
 		rygel-icon-info.h \
@@ -121,6 +125,7 @@ rygel-1.0.vapi: rygel-content-directory.vala \
 		rygel-http-server.vala \
 		rygel-http-response.vala \
 		rygel-streaming-response.vala \
+		rygel-interactive-response.vala \
 		rygel-resource-info.vala \
 		rygel-icon-info.vala \
 		rygel-plugin.vala \
