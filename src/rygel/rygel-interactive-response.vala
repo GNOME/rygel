@@ -107,6 +107,15 @@ public class Rygel.InteractiveResponse : Rygel.HTTPResponse {
         }
 
         this.push_data (this.buffer, this.length);
+
+        try  {
+            input_stream.close (null);
+        } catch (Error err) {
+            warning ("Failed to close stream to URI %s: %s\n",
+                     this.file.get_uri (),
+                     err.message);
+        }
+
         this.end (false, Soup.KnownStatusCode.NONE);
     }
 }
