@@ -47,6 +47,9 @@ public class Rygel.GstStream : Rygel.Stream {
                       Element      src) throws Error {
         base (server, msg, false);
 
+        this.msg.response_headers.set_encoding (Soup.Encoding.CHUNKED);
+        this.msg.response_body.set_accumulate (false);
+
         this.buffers = new AsyncQueue<Buffer> ();
 
         this.prepare_pipeline (name, src);
@@ -64,6 +67,10 @@ public class Rygel.GstStream : Rygel.Stream {
         do {
             buffer = this.buffers.try_pop ();
         } while (buffer != null);
+
+        if (!aborted) {
+            this.msg.response_body.complete ();
+        }
 
         base.end (aborted);
     }

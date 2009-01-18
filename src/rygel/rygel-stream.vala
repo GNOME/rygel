@@ -35,13 +35,13 @@ public class Rygel.Stream : GLib.Object {
         this.server = server;
         this.msg = msg;
 
-        this.msg.response_headers.set_encoding (Soup.Encoding.CHUNKED);
+        server.pause_message (this.msg);
+
         if (partial) {
             this.msg.set_status (Soup.KnownStatusCode.PARTIAL_CONTENT);
         } else {
             this.msg.set_status (Soup.KnownStatusCode.OK);
         }
-        this.msg.response_body.set_accumulate (false);
 
         this.server.request_aborted += on_request_aborted;
     }
@@ -67,10 +67,6 @@ public class Rygel.Stream : GLib.Object {
     }
 
     public virtual void end (bool aborted) {
-        if (!aborted) {
-            this.msg.response_body.complete ();
-        }
-
         this.eos ();
     }
 }
