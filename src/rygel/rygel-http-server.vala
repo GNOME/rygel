@@ -77,12 +77,12 @@ public class Rygel.HTTPServer : GLib.Object {
                                                 "RygelStreamingResponse",
                                                 src);
         response.start ();
-        response.eos += on_eos;
+        response.ended += on_response_ended;
 
         this.responses.append (response);
     }
 
-    private void on_eos (StreamingResponse response) {
+    private void on_response_ended (StreamingResponse response) {
         /* Remove the response from our list. */
         this.responses.remove (response);
     }

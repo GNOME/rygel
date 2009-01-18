@@ -27,7 +27,7 @@ public class Rygel.HTTPResponse : GLib.Object {
     public Soup.Server server { get; private set; }
     protected Soup.Message msg;
 
-    public signal void eos ();
+    public signal void ended ();
 
     public HTTPResponse (Soup.Server  server,
                          Soup.Message msg,
@@ -67,7 +67,7 @@ public class Rygel.HTTPResponse : GLib.Object {
     }
 
     public virtual void end (bool aborted) {
-        this.eos ();
+        this.ended ();
     }
 }
 
