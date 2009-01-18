@@ -29,61 +29,88 @@ using GUPnP;
 
 public class Rygel.InteractiveResponse : Rygel.HTTPResponse {
     private Seek seek;
+    private File file;
+
+    private char[] buffer;
+    private size_t length;
 
     public InteractiveResponse (Soup.Server  server,
                                 Soup.Message msg,
                                 string       uri,
-                                Seek?        seek) throws Error {
+                                Seek?        seek,
+                                size_t       file_length) throws Error {
         base (server, msg, false);
 
         this.seek = seek;
+        this.length = file_length;
 
         if (seek != null) {
             msg.set_status (Soup.KnownStatusCode.PARTIAL_CONTENT);
+            this.length = (size_t) seek.length;
         } else {
+            this.length = file_length;
             msg.set_status (Soup.KnownStatusCode.OK);
         }
 
-        File file = File.new_for_uri (uri);
+        this.buffer = new char[this.length];
+        this.file = File.new_for_uri (uri);
 
-        file.load_contents_async (null, this.on_contents_loaded);
+        this.file.read_async (Priority.DEFAULT, null, this.on_file_read);
     }
 
-    private void on_contents_loaded (GLib.Object source_object,
-                                     GLib.AsyncResult result) {
-        File file = (File) source_object;
-        string contents;
-        size_t file_length;
+    private void on_file_read (GLib.Object      source_object,
+                               GLib.AsyncResult result) {
+        FileInputStream input_stream = null;
 
         try {
-           file.load_contents_finish (result,
-                                      out contents,
-                                      out file_length,
-                                      null);
-        } catch (Error error) {
-            warning ("Failed to load contents from URI: %s: %s\n",
+           input_stream = this.file.read_finish (result);
+        } catch (Error err) {
+            warning ("Failed to read from URI: %s: %s\n",
                      file.get_uri (),
-                     error.message);
-            msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
+                     err.message);
+            this.msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
             return;
         }
 
-        size_t offset;
-        size_t length;
         if (seek != null) {
-            offset = (size_t) seek.start;
-            length = (size_t) seek.length;
-
-            assert (offset < file_length);
-            assert (length <= file_length);
-        } else {
-            offset = 0;
-            length = file_length;
+            try {
+                input_stream.seek (seek.start, SeekType.SET, null);
+            } catch (Error err) {
+                warning ("Failed to seek to %s-%s on URI %s: %s\n",
+                         seek.start.to_string (),
+                         seek.stop.to_string (),
+                         file.get_uri (),
+                         err.message);
+                this.msg.set_status (
+                         Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
+                return;
+            }
         }
 
-        char *data = (char *) contents + offset;
+        input_stream.read_async (this.buffer,
+                                 this.length,
+                                 Priority.DEFAULT,
+                                 null,
+                                 on_contents_read);
 
-        this.push_data (data, length);
+
+    }
+
+    private void on_contents_read (GLib.Object      source_object,
+                                   GLib.AsyncResult result) {
+        FileInputStream input_stream = (FileInputStream) source_object;
+
+        try {
+           input_stream.read_finish (result);
+        } catch (Error err) {
+            warning ("Failed to read contents from URI: %s: %s\n",
+                     this.file.get_uri (),
+                     err.message);
+            this.msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
+            return;
+        }
+
+        this.push_data (this.buffer, this.length);
         this.end (false);
     }
 }

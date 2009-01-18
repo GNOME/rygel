@@ -83,11 +83,13 @@ public class Rygel.HTTPServer : GLib.Object {
 
     private void serve_uri (string       uri,
                             Soup.Message msg,
-                            Seek?        seek) throws Error {
+                            Seek?        seek,
+                            size_t       size) throws Error {
         var response = new InteractiveResponse (this.context.server,
                                                 msg,
                                                 uri,
-                                                seek);
+                                                seek,
+                                                size);
         response.ended += on_response_ended;
 
         this.responses.append (response);
@@ -243,7 +245,7 @@ public class Rygel.HTTPServer : GLib.Object {
         }
 
         try {
-            this.serve_uri (uri, msg, seek);
+            this.serve_uri (uri, msg, seek, item.res.size);
         } catch (Error error) {
             warning ("Error in attempting to serve %s: %s",
                      uri,
