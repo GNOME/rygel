@@ -39,7 +39,7 @@ public class Rygel.HTTPServer : GLib.Object {
     private string path_root;
 
     private GUPnP.Context context;
-    private List<GstStream> streams;
+    private List<StreamingResponse> responses;
 
     public signal void need_stream_source (MediaItem   item,
                                            out Element src);
@@ -48,7 +48,7 @@ public class Rygel.HTTPServer : GLib.Object {
 
     public HTTPServer (GUPnP.Context context, string name) {
         this.context = context;
-        this.streams = new List<GstStream> ();
+        this.responses = new List<StreamingResponse> ();
 
         this.path_root = SERVER_PATH_PREFIX + "/" + name;
 
@@ -71,19 +71,20 @@ public class Rygel.HTTPServer : GLib.Object {
 
     private void stream_from_gst_source (Element#     src,
                                          Soup.Message msg) throws Error {
-        GstStream stream = new GstStream (this.context.server,
-                                          msg,
-                                          "RygelGstStream",
-                                          src);
-        stream.start ();
-        stream.eos += on_eos;
+        StreamingResponse response = new StreamingResponse (
+                                                this.context.server,
+                                                msg,
+                                                "RygelStreamingResponse",
+                                                src);
+        response.start ();
+        response.eos += on_eos;
 
-        this.streams.append (stream);
+        this.responses.append (response);
     }
 
-    private void on_eos (GstStream stream) {
-        /* Remove the stream from our list. */
-        this.streams.remove (stream);
+    private void on_eos (StreamingResponse response) {
+        /* Remove the response from our list. */
+        this.responses.remove (response);
     }
 
     private void server_handler (Soup.Server               server,
@@ -136,7 +137,7 @@ public class Rygel.HTTPServer : GLib.Object {
         this.add_item_headers (msg, item, seek);
 
         if (msg.method == "HEAD") {
-            // Only headers requested, no need to stream contents
+            // Only headers requested, no need to send contents
             msg.set_status (Soup.KnownStatusCode.OK);
             return;
         }

@@ -54,7 +54,8 @@ public class Rygel.TestAudioItem : Rygel.TestItem {
         Element encoder = ElementFactory.make ("wavenc", null);
 
         if (src == null || encoder == null) {
-            throw new GstStreamError.MISSING_PLUGIN ("Required plugin missing");
+            throw new StreamingResponseError.MISSING_PLUGIN (
+                                    "Required plugin missing");
         }
 
         // Tell the source to behave like a live source
