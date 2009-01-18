@@ -98,10 +98,7 @@ rygel_SOURCES = rygel-1.0.vapi \
 		rygel-media-container.c \
 		rygel-media-container.h \
 		rygel-media-item.c \
-		rygel-media-item.h \
-		rygel-metadata-extractor.c \
-		rygel-metadata-extractor.h \
-		rygel-metadata-extractor.vala
+		rygel-media-item.h
 
 rygel.stamp: $(filter %.vala,$(rygel_SOURCES))
 	$(VALAC) -C --vapidir=$(srcdir) --pkg rygel-1.0 \
