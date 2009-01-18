@@ -90,8 +90,6 @@ public class Rygel.InteractiveResponse : Rygel.HTTPResponse {
                                  Priority.DEFAULT,
                                  null,
                                  on_contents_read);
-
-
     }
 
     private void on_contents_read (GLib.Object      source_object,
