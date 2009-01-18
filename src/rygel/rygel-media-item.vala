@@ -23,6 +23,7 @@
  */
 
 using GUPnP;
+using Gee;
 
 public errordomain Rygel.MediaItemError {
     UNKNOWN_URI_TYPE
@@ -171,12 +172,13 @@ public class Rygel.MediaItem : MediaObject {
     }
 
     // FIXME: We only proxy URIs through our HTTP server for now
-    private List<DIDLLiteResource?>? get_transcoded_resources
+    private ArrayList<DIDLLiteResource?>? get_transcoded_resources
                                             (DIDLLiteResource orig_res) {
         if (orig_res.protocol == "http-get")
             return null;
 
-        List<DIDLLiteResource?> resources = new List<DIDLLiteResource?> ();
+        var resources = new ArrayList<DIDLLiteResource?> ();
+
         // Copy the original res first
         DIDLLiteResource res = orig_res;
 
@@ -184,7 +186,7 @@ public class Rygel.MediaItem : MediaObject {
         res.uri = this.http_server.create_http_uri_for_item (this);
         res.protocol = "http-get";
 
-        resources.append (res);
+        resources.add (res);
 
         return resources;
     }
