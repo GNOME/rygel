@@ -23,6 +23,8 @@
  * version 2 of the License, or (at your option) any later version.
  */
 
+using Gst;
+
 public class Rygel.HTTPResponse : GLib.Object {
     public Soup.Server server { get; private set; }
     protected Soup.Message msg;
@@ -71,3 +73,38 @@ public class Rygel.HTTPResponse : GLib.Object {
     }
 }
 
+public class Rygel.Seek : GLib.Object {
+    public Format format { get; private set; }
+
+    private int64 _start;
+    public int64 start {
+        get {
+            return this._start;
+        }
+        set {
+            this._start = value;
+            this.length = stop - start + 1;
+        }
+    }
+
+    private int64 _stop;
+    public int64 stop {
+        get {
+            return this._stop;
+        }
+        set {
+            this._stop = value;
+            this.length = stop - start + 1;
+        }
+    }
+
+    public int64 length { get; private set; }
+
+    public Seek (Format format,
+                 int64  start,
+                 int64  stop) {
+        this.format = format;
+        this.start = start;
+        this.stop = stop;
+    }
+}
