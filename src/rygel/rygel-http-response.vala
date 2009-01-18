@@ -23,15 +23,15 @@
  * version 2 of the License, or (at your option) any later version.
  */
 
-public class Rygel.Stream : GLib.Object {
+public class Rygel.HTTPResponse : GLib.Object {
     public Soup.Server server { get; private set; }
     protected Soup.Message msg;
 
     public signal void eos ();
 
-    public Stream (Soup.Server server,
-                   Soup.Message msg,
-                   bool partial) {
+    public HTTPResponse (Soup.Server  server,
+                         Soup.Message msg,
+                         bool         partial) {
         this.server = server;
         this.msg = msg;
 

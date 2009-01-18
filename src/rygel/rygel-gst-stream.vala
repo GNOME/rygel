@@ -34,7 +34,7 @@ public errordomain Rygel.GstStreamError {
     LINK
 }
 
-public class Rygel.GstStream : Rygel.Stream {
+public class Rygel.GstStream : Rygel.HTTPResponse {
     private const string SINK_NAME = "fakesink";
 
     private Pipeline pipeline;
