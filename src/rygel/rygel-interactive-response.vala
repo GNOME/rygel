@@ -66,7 +66,7 @@ public class Rygel.InteractiveResponse : Rygel.HTTPResponse {
             warning ("Failed to read from URI: %s: %s\n",
                      file.get_uri (),
                      err.message);
-            this.msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
+            this.end (false, Soup.KnownStatusCode.NOT_FOUND);
             return;
         }
 
@@ -79,8 +79,8 @@ public class Rygel.InteractiveResponse : Rygel.HTTPResponse {
                          seek.stop.to_string (),
                          file.get_uri (),
                          err.message);
-                this.msg.set_status (
-                         Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
+                this.end (false,
+                          Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
                 return;
             }
         }
@@ -104,12 +104,12 @@ public class Rygel.InteractiveResponse : Rygel.HTTPResponse {
             warning ("Failed to read contents from URI: %s: %s\n",
                      this.file.get_uri (),
                      err.message);
-            this.msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
+            this.end (false, Soup.KnownStatusCode.NOT_FOUND);
             return;
         }
 
         this.push_data (this.buffer, this.length);
-        this.end (false);
+        this.end (false, Soup.KnownStatusCode.NONE);
     }
 }
 

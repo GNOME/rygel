@@ -60,7 +60,7 @@ public class Rygel.StreamingResponse : Rygel.HTTPResponse {
         this.pipeline.set_state (State.PLAYING);
     }
 
-    public override void end (bool aborted) {
+    public override void end (bool aborted, uint status) {
         this.pipeline.set_state (State.NULL);
         // Flush the queue of buffers
         Buffer buffer = null;
@@ -72,7 +72,7 @@ public class Rygel.StreamingResponse : Rygel.HTTPResponse {
             this.msg.response_body.complete ();
         }
 
-        base.end (aborted);
+        base.end (aborted, status);
     }
 
     private void prepare_pipeline (string name,
@@ -124,7 +124,7 @@ public class Rygel.StreamingResponse : Rygel.HTTPResponse {
                 critical ("Failed to link %s to %s",
                           depay.name,
                           sink.name);
-                this.end (false);
+                this.end (false, Soup.KnownStatusCode.NONE);
                 return;
             }
 
@@ -137,7 +137,7 @@ public class Rygel.StreamingResponse : Rygel.HTTPResponse {
             critical ("Failed to link pad %s to %s",
                       src_pad.name,
                       sink_pad.name);
-            this.end (false);
+            this.end (false, Soup.KnownStatusCode.NONE);
             return;
         }
 
@@ -248,7 +248,7 @@ public class Rygel.StreamingResponse : Rygel.HTTPResponse {
         }
 
         if (!ret) {
-            this.end (false);
+            this.end (false, Soup.KnownStatusCode.NONE);
         }
 
         return ret;

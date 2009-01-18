@@ -53,7 +53,7 @@ public class Rygel.HTTPResponse : GLib.Object {
                                      Soup.ClientContext client) {
         // Ignore if message isn't ours
         if (msg == this.msg)
-            this.end (true);
+            this.end (true, Soup.KnownStatusCode.NONE);
     }
 
     public void set_mime_type (string mime_type) {
@@ -68,7 +68,11 @@ public class Rygel.HTTPResponse : GLib.Object {
         this.server.unpause_message (this.msg);
     }
 
-    public virtual void end (bool aborted) {
+    public virtual void end (bool aborted, uint status) {
+        if (status != Soup.KnownStatusCode.NONE) {
+            this.msg.set_status (status);
+        }
+
         this.ended ();
     }
 }
