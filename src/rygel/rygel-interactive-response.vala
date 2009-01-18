@@ -39,17 +39,15 @@ public class Rygel.InteractiveResponse : Rygel.HTTPResponse {
                                 string       uri,
                                 Seek?        seek,
                                 size_t       file_length) throws Error {
-        base (server, msg, false);
+        base (server, msg, seek != null);
 
         this.seek = seek;
         this.length = file_length;
 
         if (seek != null) {
-            msg.set_status (Soup.KnownStatusCode.PARTIAL_CONTENT);
             this.length = (size_t) seek.length;
         } else {
             this.length = file_length;
-            msg.set_status (Soup.KnownStatusCode.OK);
         }
 
         this.buffer = new char[this.length];
