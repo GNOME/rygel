@@ -35,16 +35,16 @@ using Gst;
 public class Rygel.TestVideoItem : Rygel.TestItem {
     const string TEST_MIMETYPE = "video/mpeg";
 
-    public TestVideoItem (string   id,
-                          string   parent_id,
-                          string   title,
-                          Streamer streamer) {
+    public TestVideoItem (string     id,
+                          string     parent_id,
+                          string     title,
+                          HTTPServer http_server) {
         base (id,
               parent_id,
               title,
               TEST_MIMETYPE,
               MediaItem.VIDEO_CLASS,
-              streamer);
+              http_server);
     }
 
     public override Element create_gst_source () throws Error {

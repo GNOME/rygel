@@ -43,7 +43,7 @@ public class Rygel.DVBChannelGroup : MediaContainer {
     /* Hashmap of (UPnP) IDs to channels */
     private HashMap<string, DVBChannel> channels;
 
-    public Streamer streamer;
+    public HTTPServer http_server;
 
     private uint gid; /* The DVB Daemon Device Group ID */
 
@@ -51,7 +51,7 @@ public class Rygel.DVBChannelGroup : MediaContainer {
                             string              title,
                             string              parent_id,
                             dynamic DBus.Object channel_list,
-                            Streamer            streamer) {
+                            HTTPServer          http_server) {
         base (GID_PREFIX + gid.to_string (), // UPnP ID
               parent_id,
               title,
@@ -59,11 +59,11 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         this.gid = gid;
         //this.upnp_class = "object.container.channelGroup";
         this.channel_list = channel_list;
-        this.streamer = streamer;
+        this.http_server = http_server;
 
         this.fetch_channels ();
 
-        this.streamer.item_requested += this.on_item_requested;
+        this.http_server.item_requested += this.on_item_requested;
     }
 
     public uint add_channels (DIDLLiteWriter didl_writer,
@@ -110,7 +110,7 @@ public class Rygel.DVBChannelGroup : MediaContainer {
                 var channel = new DVBChannel (channel_id,
                                               this.id,
                                               channel_list,
-                                              streamer);
+                                              http_server);
                 this.channels.set (channel.id, channel);
             } catch (GLib.Error error) {
                 critical ("Failed to create DVB Channel object: %s",
@@ -121,7 +121,7 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         this.child_count = this.channels.size;
     }
 
-    private void on_item_requested (Streamer      streamer,
+    private void on_item_requested (HTTPServer    http_server,
                                     string        item_id,
                                     out MediaItem item) {
         var channel = this.find_channel (item_id);

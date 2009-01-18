@@ -69,7 +69,7 @@ public class Rygel.DVBContentDir : ContentDirectory {
             return;
         }
 
-        Streamer streamer = new Streamer (this.context, "DVB");
+        HTTPServer http_server = new HTTPServer (this.context, "DVB");
 
         this.groups = new List<DVBChannelGroup> ();
         foreach (uint group_id in dev_groups) {
@@ -97,7 +97,7 @@ public class Rygel.DVBContentDir : ContentDirectory {
                                                      group_name,
                                                      this.root_container.id,
                                                      channel_list,
-                                                     streamer));
+                                                     http_server));
         }
     }
 

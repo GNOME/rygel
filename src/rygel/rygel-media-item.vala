@@ -47,18 +47,18 @@ public class Rygel.MediaItem : MediaObject {
 
     public int track_number = -1;
 
-    protected Rygel.Streamer streamer;
+    protected Rygel.HTTPServer http_server;
 
-    public MediaItem (string   id,
-                      string   parent_id,
-                      string   title,
-                      string   upnp_class,
-                      Streamer streamer) {
+    public MediaItem (string     id,
+                      string     parent_id,
+                      string     title,
+                      string     upnp_class,
+                      HTTPServer http_server) {
         this.id = id;
         this.parent_id = parent_id;
         this.title = title;
         this.upnp_class = upnp_class;
-        this.streamer = streamer;
+        this.http_server = http_server;
 
         this.res = DIDLLiteResource ();
         this.res.reset ();
@@ -181,7 +181,7 @@ public class Rygel.MediaItem : MediaObject {
         DIDLLiteResource res = orig_res;
 
         // Then modify the URI and protocol
-        res.uri = this.streamer.create_http_uri_for_item (this);
+        res.uri = this.http_server.create_http_uri_for_item (this);
         res.protocol = "http-get";
 
         resources.append (res);

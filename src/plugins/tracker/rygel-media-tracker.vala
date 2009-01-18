@@ -37,16 +37,16 @@ public class Rygel.MediaTracker : ContentDirectory {
     private List<TrackerContainer> containers;
 
     private SearchCriteriaParser search_parser;
-    private Streamer streamer;
+    private HTTPServer http_server;
 
     /* Pubic methods */
     public override void constructed () {
         // Chain-up to base first
         base.constructed ();
 
-        this.streamer = new Streamer (this.context, "Tracker");
+        this.http_server = new HTTPServer (this.context, "Tracker");
 
-        this.streamer.item_requested += on_item_requested;
+        this.http_server.item_requested += on_item_requested;
 
         this.containers = new List<TrackerContainer> ();
         this.containers.append
@@ -55,21 +55,21 @@ public class Rygel.MediaTracker : ContentDirectory {
                                                "All Images",
                                                "Images",
                                                MediaItem.IMAGE_CLASS,
-                                               streamer));
+                                               http_server));
         this.containers.append
                         (new TrackerContainer ("14",
                                                this.root_container.id,
                                                "All Music",
                                                "Music",
                                                MediaItem.MUSIC_CLASS,
-                                               streamer));
+                                               http_server));
         this.containers.append
                         (new TrackerContainer ("15",
                                                this.root_container.id,
                                                "All Videos",
                                                "Videos",
                                                MediaItem.VIDEO_CLASS,
-                                               streamer));
+                                               http_server));
 
         // Now we know how many top-level containers we have
         this.root_container.child_count = this.containers.length ();
@@ -183,7 +183,7 @@ public class Rygel.MediaTracker : ContentDirectory {
         return container;
     }
 
-    private void on_item_requested (Streamer      streamer,
+    private void on_item_requested (HTTPServer    http_server,
                                     string        item_id,
                                     out MediaItem item) {
         TrackerContainer container = get_item_parent (item_id);

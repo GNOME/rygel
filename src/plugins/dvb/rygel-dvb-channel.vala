@@ -39,14 +39,14 @@ public class Rygel.DVBChannel : MediaItem {
     public DVBChannel (uint                cid,
                        string              parent_id,
                        dynamic DBus.Object channel_list,
-                       Streamer            streamer) throws GLib.Error {
+                       HTTPServer          http_server) throws GLib.Error {
         string id = parent_id + ":" + cid.to_string (); /* UPnP ID */
 
         base (id,
               parent_id,
               "Unknown",        /* Title Unknown at this point */
               "Unknown",        /* UPnP Class Unknown at this point */
-              streamer);
+              http_server);
 
         this.cid = cid;
         this.channel_list = channel_list;

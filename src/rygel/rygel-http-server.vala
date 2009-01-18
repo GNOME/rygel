@@ -28,15 +28,15 @@
 using Gst;
 using GUPnP;
 
-public errordomain Rygel.StreamerError {
+public errordomain Rygel.HTTPServerError {
     UNACCEPTABLE = Soup.KnownStatusCode.NOT_ACCEPTABLE,
     INVALID_RANGE = Soup.KnownStatusCode.BAD_REQUEST,
     OUT_OF_RANGE = Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE
 }
 
-public class Rygel.Streamer : GLib.Object {
-    private const string SERVER_PATH_PREFIX = "/RygelStreamer";
-    private string server_path_root;
+public class Rygel.HTTPServer : GLib.Object {
+    private const string SERVER_PATH_PREFIX = "/RygelHTTPServer";
+    private string path_root;
 
     private GUPnP.Context context;
     private List<GstStream> streams;
@@ -46,19 +46,19 @@ public class Rygel.Streamer : GLib.Object {
     public signal void item_requested (string item_id,
                                        out MediaItem item);
 
-    public Streamer (GUPnP.Context context, string name) {
+    public HTTPServer (GUPnP.Context context, string name) {
         this.context = context;
         this.streams = new List<GstStream> ();
 
-        this.server_path_root = SERVER_PATH_PREFIX + "/" + name;
+        this.path_root = SERVER_PATH_PREFIX + "/" + name;
 
-        context.server.add_handler (this.server_path_root, server_handler);
+        context.server.add_handler (this.path_root, server_handler);
     }
 
     private string create_uri_for_path (string path) {
         return "http://%s:%u%s%s".printf (this.context.host_ip,
                                           this.context.port,
-                                          this.server_path_root,
+                                          this.path_root,
                                           path);
     }
 
@@ -126,7 +126,7 @@ public class Rygel.Streamer : GLib.Object {
 
         try {
             seek = this.parse_range (msg, item);
-        } catch (StreamerError err) {
+        } catch (HTTPServerError err) {
             warning ("%s", err.message);
             msg.set_status (err.code);
             return;
@@ -278,12 +278,12 @@ public class Rygel.Streamer : GLib.Object {
      * @length to the requested length (left unchanged if none specified).
      *
      * Both @offset and @length are expected to be initialised to their default
-     * values. Throws a #StreamerError in case of error.
+     * values. Throws a #HTTPServerError in case of error.
      *
      * Returns %true a range header was found, false otherwise. */
     private Seek? parse_range (Soup.Message message,
-                                MediaItem    item)
-                                throws StreamerError {
+                                MediaItem   item)
+                                throws      HTTPServerError {
             string range;
             string[] range_tokens;
             Seek seek = null;
@@ -295,14 +295,14 @@ public class Rygel.Streamer : GLib.Object {
 
             // We have a Range header. Parse.
             if (!range.has_prefix ("bytes=")) {
-                throw new StreamerError.INVALID_RANGE ("Invalid Range '%s'",
+                throw new HTTPServerError.INVALID_RANGE ("Invalid Range '%s'",
                                                        range);
             }
 
             range_tokens = range.offset (6).split ("-", 2);
 
             if (range_tokens[0] == null || range_tokens[1] == null) {
-                throw new StreamerError.INVALID_RANGE ("Invalid Range '%s'",
+                throw new HTTPServerError.INVALID_RANGE ("Invalid Range '%s'",
                                                        range);
             }
 
@@ -313,7 +313,7 @@ public class Rygel.Streamer : GLib.Object {
             if (first_byte[0].isdigit ()) {
                 seek.start = first_byte.to_int64 ();
             } else if (first_byte  != "") {
-                throw new StreamerError.INVALID_RANGE ("Invalid Range '%s'",
+                throw new HTTPServerError.INVALID_RANGE ("Invalid Range '%s'",
                                                        range);
             }
 
@@ -322,7 +322,7 @@ public class Rygel.Streamer : GLib.Object {
             if (last_byte[0].isdigit ()) {
                 seek.stop = last_byte.to_int64 ();
             } else if (last_byte  != "") {
-                throw new StreamerError.INVALID_RANGE ("Invalid Range '%s'",
+                throw new HTTPServerError.INVALID_RANGE ("Invalid Range '%s'",
                                                        range);
             }
 
@@ -330,7 +330,7 @@ public class Rygel.Streamer : GLib.Object {
                 // shouldn't go beyond actual length of media
                 if (seek.start > item.res.size ||
                     seek.length > item.res.size) {
-                    throw new StreamerError.OUT_OF_RANGE (
+                    throw new HTTPServerError.OUT_OF_RANGE (
                             "Range '%s' not setsifiable", range);
                 }
 
@@ -343,7 +343,7 @@ public class Rygel.Streamer : GLib.Object {
                 // an error. Just don't seek.
                 return null;
             } else {
-                throw new StreamerError.UNACCEPTABLE (
+                throw new HTTPServerError.UNACCEPTABLE (
                             "Partial download not applicable for item %s",
                             item.id);
             }

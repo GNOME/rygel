@@ -44,7 +44,7 @@ public class Rygel.TrackerContainer : MediaContainer {
     public static dynamic DBus.Object files;
     public static dynamic DBus.Object tracker;
 
-    public Streamer streamer;
+    public HTTPServer http_server;
     public string category;
 
     /* UPnP class of items under this container */
@@ -74,17 +74,17 @@ public class Rygel.TrackerContainer : MediaContainer {
                                            TrackerContainer.TRACKER_IFACE);
     }
 
-    public TrackerContainer (string  id,
-                             string  parent_id,
-                             string  title,
-                             string  category,
-                             string  child_class,
-                             Streamer streamer) {
+    public TrackerContainer (string     id,
+                             string     parent_id,
+                             string     title,
+                             string     category,
+                             string     child_class,
+                             HTTPServer http_server) {
         base (id, parent_id, title, 0);
 
         this.category = category;
         this.child_class = child_class;
-        this.streamer = streamer;
+        this.http_server = http_server;
     }
 
     public override void serialize (DIDLLiteWriter didl_writer)

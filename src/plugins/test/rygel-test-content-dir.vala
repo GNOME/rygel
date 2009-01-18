@@ -34,27 +34,27 @@ using Gst;
 public class Rygel.TestContentDir : ContentDirectory {
     private List<MediaItem> items;
 
-    private Streamer streamer;
+    private HTTPServer http_server;
 
     /* Pubic methods */
     public override void constructed () {
         // Chain-up to base first
         base.constructed ();
 
-        this.streamer = new Streamer (context, "RygelTest");
+        this.http_server = new HTTPServer (context, "RygelTest");
 
-        this.streamer.item_requested += this.on_item_requested;
-        this.streamer.need_stream_source += this.on_need_stream_source;
+        this.http_server.item_requested += this.on_item_requested;
+        this.http_server.need_stream_source += this.on_need_stream_source;
 
         this.items = new List<MediaItem> ();
         this.items.append (new TestAudioItem ("sinewave",
                                               this.root_container.id,
                                               "Sine Wave",
-                                              this.streamer));
+                                              this.http_server));
         this.items.append (new TestVideoItem ("smtpe",
                                               this.root_container.id,
                                               "SMTPE",
-                                              this.streamer));
+                                              this.http_server));
 
         // Now we know how many top-level items we have
         this.root_container.child_count = this.items.length ();
@@ -96,13 +96,13 @@ public class Rygel.TestContentDir : ContentDirectory {
         return item;
     }
 
-    private void on_item_requested (Streamer      streamer,
+    private void on_item_requested (HTTPServer    http_server,
                                     string        item_id,
                                     out MediaItem item) {
         item = this.find_item_by_id (item_id);
     }
 
-    private void on_need_stream_source (Streamer    streamer,
+    private void on_need_stream_source (HTTPServer  http_server,
                                         MediaItem   item,
                                         out Element src) {
         try {
