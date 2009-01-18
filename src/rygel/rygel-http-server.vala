@@ -71,11 +71,10 @@ public class Rygel.HTTPServer : GLib.Object {
 
     private void stream_from_gst_source (Element#     src,
                                          Soup.Message msg) throws Error {
-        StreamingResponse response = new StreamingResponse (
-                                                this.context.server,
-                                                msg,
-                                                "RygelStreamingResponse",
-                                                src);
+        var response = new StreamingResponse (this.context.server,
+                                              msg,
+                                              "RygelStreamingResponse",
+                                              src);
         response.start ();
         response.ended += on_response_ended;
 
