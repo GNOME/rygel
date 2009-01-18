@@ -26,18 +26,19 @@
 using GUPnP;
 using GConf;
 using CStuff;
+using Gee;
 
 public class Rygel.Main : Object {
     private PluginLoader plugin_loader;
     private MediaServerFactory ms_factory;
-    private List<MediaServer> media_servers;
+    private ArrayList<MediaServer> media_servers;
 
     private MainLoop main_loop;
 
     private int exit_code;
 
     public Main () throws GLib.Error {
-        this.media_servers = new List<MediaServer> ();
+        this.media_servers = new ArrayList<MediaServer> ();
         this.plugin_loader = new PluginLoader ();
         this.ms_factory = new MediaServerFactory ();
         this.main_loop = new GLib.MainLoop (null, false);
@@ -74,7 +75,7 @@ public class Rygel.Main : Object {
             /* Make our device available */
             server.available = true;
 
-            media_servers.append (server);
+            media_servers.add (server);
         } catch (GLib.Error error) {
             warning ("Failed to create MediaServer for %s. Reason: %s\n",
                      plugin.name,

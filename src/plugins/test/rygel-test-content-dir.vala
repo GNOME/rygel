@@ -27,37 +27,34 @@
 using Rygel;
 using GUPnP;
 using Gst;
+using Gee;
 
 /**
  * Implementation of ContentDirectory service, meant for testing purposes only.
  */
 public class Rygel.TestContentDir : ContentDirectory {
-    private List<MediaItem> items;
-
-    private HTTPServer http_server;
+    private ArrayList<MediaItem> items;
 
     /* Pubic methods */
     public override void constructed () {
         // Chain-up to base first
         base.constructed ();
 
-        this.http_server = new HTTPServer (context, "RygelTest");
-
         this.http_server.item_requested += this.on_item_requested;
         this.http_server.need_stream_source += this.on_need_stream_source;
 
-        this.items = new List<MediaItem> ();
-        this.items.append (new TestAudioItem ("sinewave",
-                                              this.root_container.id,
-                                              "Sine Wave",
-                                              this.http_server));
-        this.items.append (new TestVideoItem ("smtpe",
-                                              this.root_container.id,
-                                              "SMTPE",
-                                              this.http_server));
+        this.items = new ArrayList<MediaItem> ();
+        this.items.add (new TestAudioItem ("sinewave",
+                                           this.root_container.id,
+                                           "Sine Wave",
+                                           this.http_server));
+        this.items.add (new TestVideoItem ("smtpe",
+                                           this.root_container.id,
+                                           "SMTPE",
+                                           this.http_server));
 
         // Now we know how many top-level items we have
-        this.root_container.child_count = this.items.length ();
+        this.root_container.child_count = this.items.size;
     }
 
     public override void add_metadata (DIDLLiteWriter didl_writer,
@@ -77,7 +74,7 @@ public class Rygel.TestContentDir : ContentDirectory {
         foreach (MediaItem item in this.items)
             item.serialize (didl_writer);
 
-        args.total_matches = args.number_returned = this.items.length ();
+        args.total_matches = args.number_returned = this.items.size;
         args.update_id = uint32.MAX;
     }
 

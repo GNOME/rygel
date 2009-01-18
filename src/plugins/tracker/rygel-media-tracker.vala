@@ -26,6 +26,7 @@
 using Rygel;
 using GUPnP;
 using DBus;
+using Gee;
 
 /**
  * Implementation of Tracker-based ContentDirectory service.
@@ -34,45 +35,42 @@ public class Rygel.MediaTracker : ContentDirectory {
     public static const int MAX_REQUESTED_COUNT = 128;
 
     /* FIXME: Make this a static if you know how to initize it */
-    private List<TrackerContainer> containers;
+    private ArrayList<TrackerContainer> containers;
 
     private SearchCriteriaParser search_parser;
-    private HTTPServer http_server;
 
     /* Pubic methods */
     public override void constructed () {
         // Chain-up to base first
         base.constructed ();
 
-        this.http_server = new HTTPServer (this.context, "Tracker");
-
         this.http_server.item_requested += on_item_requested;
 
-        this.containers = new List<TrackerContainer> ();
-        this.containers.append
+        this.containers = new ArrayList<TrackerContainer> ();
+        this.containers.add
                         (new TrackerContainer ("16",
                                                this.root_container.id,
                                                "All Images",
                                                "Images",
                                                MediaItem.IMAGE_CLASS,
-                                               http_server));
-        this.containers.append
+                                               this.http_server));
+        this.containers.add
                         (new TrackerContainer ("14",
                                                this.root_container.id,
                                                "All Music",
                                                "Music",
                                                MediaItem.MUSIC_CLASS,
-                                               http_server));
-        this.containers.append
+                                               this.http_server));
+        this.containers.add
                         (new TrackerContainer ("15",
                                                this.root_container.id,
                                                "All Videos",
                                                "Videos",
                                                MediaItem.VIDEO_CLASS,
-                                               http_server));
+                                               this.http_server));
 
         // Now we know how many top-level containers we have
-        this.root_container.child_count = this.containers.length ();
+        this.root_container.child_count = this.containers.size;
 
         this.search_parser = new SearchCriteriaParser ();
     }
@@ -138,7 +136,7 @@ public class Rygel.MediaTracker : ContentDirectory {
         foreach (TrackerContainer container in this.containers)
             container.serialize (didl_writer);
 
-        args.total_matches = args.number_returned = this.containers.length ();
+        args.total_matches = args.number_returned = this.containers.size;
         args.update_id = uint32.MAX;
     }
 

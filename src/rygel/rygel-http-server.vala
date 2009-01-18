@@ -27,6 +27,7 @@
 
 using Gst;
 using GUPnP;
+using Gee;
 
 public errordomain Rygel.HTTPServerError {
     UNACCEPTABLE = Soup.KnownStatusCode.NOT_ACCEPTABLE,
@@ -39,7 +40,7 @@ public class Rygel.HTTPServer : GLib.Object {
     private string path_root;
 
     private GUPnP.Context context;
-    private List<HTTPResponse> responses;
+    private ArrayList<HTTPResponse> responses;
 
     public signal void need_stream_source (MediaItem   item,
                                            out Element src);
@@ -48,11 +49,15 @@ public class Rygel.HTTPServer : GLib.Object {
 
     public HTTPServer (GUPnP.Context context, string name) {
         this.context = context;
-        this.responses = new List<StreamingResponse> ();
+        this.responses = new ArrayList<StreamingResponse> ();
 
         this.path_root = SERVER_PATH_PREFIX + "/" + name;
 
         context.server.add_handler (this.path_root, server_handler);
+    }
+
+    public void destroy () {
+        context.server.remove_handler (this.path_root);
     }
 
     private string create_uri_for_path (string path) {
@@ -78,7 +83,7 @@ public class Rygel.HTTPServer : GLib.Object {
         response.start ();
         response.ended += on_response_ended;
 
-        this.responses.append (response);
+        this.responses.add (response);
     }
 
     private void serve_uri (string       uri,
@@ -92,7 +97,7 @@ public class Rygel.HTTPServer : GLib.Object {
                                                 size);
         response.ended += on_response_ended;
 
-        this.responses.append (response);
+        this.responses.add (response);
     }
 
     private void on_response_ended (HTTPResponse response) {

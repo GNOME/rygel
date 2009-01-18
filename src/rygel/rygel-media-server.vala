@@ -26,12 +26,13 @@
 using GUPnP;
 using GConf;
 using CStuff;
+using Gee;
 
 /**
  * Represents a MediaServer device.
  */
 public class Rygel.MediaServer: RootDevice {
-    private List<ServiceInfo> services;   /* Services we implement */
+    private ArrayList<ServiceInfo> services;   /* Services we implement */
 
     public MediaServer (GUPnP.Context context,
                         Plugin        plugin,
@@ -45,7 +46,7 @@ public class Rygel.MediaServer: RootDevice {
         this.weak_ref ((WeakNotify) xml_doc_free, description_doc);
         this.relative_location = relative_location;
 
-        this.services = new List<ServiceInfo> ();
+        this.services = new ArrayList<ServiceInfo> ();
 
         // Now create the sevice objects
         foreach (ResourceInfo info in plugin.resource_infos) {
@@ -53,7 +54,7 @@ public class Rygel.MediaServer: RootDevice {
             if (info.type.is_a (typeof (Service))) {
                 var service = this.get_service (info.upnp_type);
 
-                this.services.append (service);
+                this.services.add (service);
             }
         }
     }

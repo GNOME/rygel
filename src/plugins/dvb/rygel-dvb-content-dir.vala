@@ -27,6 +27,7 @@
 using Rygel;
 using GUPnP;
 using DBus;
+using Gee;
 
 /**
  * Implementation of DVB ContentDirectory service.
@@ -40,7 +41,7 @@ public class Rygel.DVBContentDir : ContentDirectory {
 
     public dynamic DBus.Object manager;
 
-    private List<DVBChannelGroup> groups;
+    private ArrayList<DVBChannelGroup> groups;
 
     // Pubic methods
     public override void constructed () {
@@ -69,9 +70,7 @@ public class Rygel.DVBContentDir : ContentDirectory {
             return;
         }
 
-        HTTPServer http_server = new HTTPServer (this.context, "DVB");
-
-        this.groups = new List<DVBChannelGroup> ();
+        this.groups = new ArrayList<DVBChannelGroup> ();
         foreach (uint group_id in dev_groups) {
             string channel_list_path = null;
             string group_name =  null;
@@ -93,11 +92,11 @@ public class Rygel.DVBContentDir : ContentDirectory {
                                          DVBContentDir.CHANNEL_LIST_IFACE);
 
             // Create ChannelGroup for each registered device group
-            this.groups.append (new DVBChannelGroup (group_id,
-                                                     group_name,
-                                                     this.root_container.id,
-                                                     channel_list,
-                                                     http_server));
+            this.groups.add (new DVBChannelGroup (group_id,
+                                                  group_name,
+                                                  this.root_container.id,
+                                                  channel_list,
+                                                  this.http_server));
         }
     }
 
@@ -149,7 +148,7 @@ public class Rygel.DVBContentDir : ContentDirectory {
         foreach (DVBChannelGroup group in this.groups)
             group.serialize (didl_writer);
 
-        args.total_matches = args.number_returned = this.groups.length ();
+        args.total_matches = args.number_returned = this.groups.size;
         args.update_id = uint32.MAX;
     }
 
