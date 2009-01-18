@@ -108,8 +108,17 @@ public class Rygel.InteractiveResponse : Rygel.HTTPResponse {
 
         this.push_data (this.buffer, this.length);
 
+        input_stream.close_async (Priority.DEFAULT,
+                                  null,
+                                  on_input_stream_closed);
+    }
+
+    private void on_input_stream_closed (GLib.Object      source_object,
+                                         GLib.AsyncResult result) {
+        FileInputStream input_stream = (FileInputStream) source_object;
+
         try  {
-            input_stream.close (null);
+            input_stream.close_finish (result);
         } catch (Error err) {
             warning ("Failed to close stream to URI %s: %s\n",
                      this.file.get_uri (),
