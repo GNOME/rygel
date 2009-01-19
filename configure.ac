@@ -102,7 +102,7 @@ fi
 
 # Build test plugin
 AC_ARG_ENABLE(test-plugin,
-	[  --enable-test_plugin          build test plugin],,
+	[  --enable-test-plugin          build test plugin],,
         enable_test_plugin=no)
 
 AC_SUBST(abs_top_builddir)
