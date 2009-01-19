@@ -55,6 +55,8 @@ public class Rygel.DVBContentDir : ContentDirectory {
             return;
         }
 
+        this.groups = new ArrayList<DVBChannelGroup> ();
+
         // Get a proxy to DVB Manager object
         this.manager = connection.get_object (DVBContentDir.DVB_SERVICE,
                                               DVBContentDir.MANAGER_PATH,
@@ -68,7 +70,6 @@ public class Rygel.DVBContentDir : ContentDirectory {
             return;
         }
 
-        this.groups = new ArrayList<DVBChannelGroup> ();
         foreach (uint group_id in dev_groups) {
             string channel_list_path = null;
             string group_name =  null;
