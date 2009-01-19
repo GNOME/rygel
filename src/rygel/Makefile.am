@@ -116,23 +116,25 @@ rygel_LDFLAGS = -export-dynamic
 
 VAPI_FILES = rygel-1.0.vapi
 
-rygel-1.0.vapi: rygel-content-directory.vala \
-		rygel-connection-manager.vala \
-		rygel-media-receiver-registrar.vala \
-		rygel-http-server.vala \
-		rygel-http-response.vala \
-		rygel-live-response.vala \
-		rygel-seekable-response.vala \
-		rygel-resource-info.vala \
-		rygel-icon-info.vala \
-		rygel-plugin.vala \
-		rygel-media-object.vala \
-		rygel-media-container.vala \
-		rygel-media-item.vala
+VAPI_SOURCE_FILES = rygel-content-directory.vala \
+		    rygel-connection-manager.vala \
+		    rygel-media-receiver-registrar.vala \
+		    rygel-http-server.vala \
+		    rygel-http-response.vala \
+		    rygel-live-response.vala \
+		    rygel-seekable-response.vala \
+		    rygel-resource-info.vala \
+		    rygel-icon-info.vala \
+		    rygel-plugin.vala \
+		    rygel-media-object.vala \
+		    rygel-media-container.vala \
+		    rygel-media-item.vala
+
+rygel-1.0.vapi: $(VAPI_SOURCE_FILES)
 	$(VALAC) -C --library=rygel-1.0 \
 	--pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gee-1.0 --pkg gstreamer-0.10 \
 	$^
 
 CLEANFILES = $(BUILT_SOURCES)
 MAINTAINERCLEANFILES = Makefile.in
-EXTRA_DIST = cstuff.vapi
+EXTRA_DIST = cstuff.vapi $(VAPI_SOURCE_FILES)
