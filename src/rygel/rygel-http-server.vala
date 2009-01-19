@@ -49,7 +49,7 @@ public class Rygel.HTTPServer : GLib.Object {
 
     public HTTPServer (GUPnP.Context context, string name) {
         this.context = context;
-        this.responses = new ArrayList<LiveResponse> ();
+        this.responses = new ArrayList<HTTPResponse> ();
 
         this.path_root = SERVER_PATH_PREFIX + "/" + name;
 
