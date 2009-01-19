@@ -1,3 +1,28 @@
+0.2
+===
+
+The major change after last release (as gupnp-media-server) is the introduction
+of a simple yet powerful plugin-based architecture/api: Everyone plugin:
+- is loaded into a separate MediaServer instance.
+- can implement any kind and number of resources (currently only services).
+- can export an icon file.
+- inherit it's ContentDirectory implementation from a base class that does most
+  of the UPnP-related work. More improvements on this planned for next release.
+- use an intuitive API to easily export media from URIs and live GStreamer
+  source elements over HTTP.
+
+Other changes:
+
+- Relicense under LGPL to allow proprietary plugins and ease of moving code
+  from/to gupnp libraries.
+- DVB Daemon integration though a plugin. Now you can watch live channels from
+  your PC on your PS3 for example.
+- Test plugin that exports one audio and video item, streaming contents from
+  GStreamer's audiotestsrc and videotestsrc elements respectively.
+- Better interoperability with Sony playstation 3.
+- Announce unavailability to UPnP world on exit.
+- Loads of non-functional improvements.
+
 0.1
 ===
 
