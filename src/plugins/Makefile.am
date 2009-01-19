@@ -1,7 +1,15 @@
 if BUILD_TEST_PLUGIN
-SUBDIRS = tracker dvb test
-else
-SUBDIRS = tracker dvb
+TEST_PLUGIN = test
 endif
+
+if BUILD_TRACKER_PLUGIN
+TRACKER_PLUGIN = tracker
+endif
+
+if BUILD_DVB_PLUGIN
+DVB_PLUGIN = dvb
+endif
+
+SUBDIRS = $(TEST_PLUGIN) $(TRACKER_PLUGIN) $(DVB_PLUGIN)
 
 MAINTAINERCLEANFILES = Makefile.in

@@ -105,10 +105,23 @@ AC_ARG_ENABLE(test-plugin,
 	[  --enable-test-plugin          build test plugin],,
         enable_test_plugin=no)
 
+# Build Tracker plugin
+AC_ARG_ENABLE(tracker-plugin,
+	[  --enable-tracker-plugin      build tracker plugin],,
+        enable_tracker_plugin=yes)
+
+# Build DVB plugin
+AC_ARG_ENABLE(dvb-plugin,
+	[  --enable-dvb-plugin          build DVB plugin],,
+        enable_dvb_plugin=yes)
+
 AC_SUBST(abs_top_builddir)
 
 AM_CONDITIONAL([UNINSTALLED], [test "x$enable_uninstalled" = "xyes"])
 AM_CONDITIONAL([BUILD_TEST_PLUGIN], [test "x$enable_test_plugin" = "xyes"])
+AM_CONDITIONAL([BUILD_TRACKER_PLUGIN],
+               [test "x$enable_tracker_plugin" = "xyes"])
+AM_CONDITIONAL([BUILD_DVB_PLUGIN], [test "x$enable_dvb_plugin" = "xyes"])
 
 # Gettext
 GETTEXT_PACKAGE=rygel
