@@ -34,8 +34,8 @@ librygel_dvb_la_SOURCES = rygel-dvb-content-dir.h \
 
 rygel-dvb.stamp: $(filter %.vala,$(librygel_dvb_la_SOURCES))
 	$(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \
-	--pkg rygel-1.0 --pkg cstuff \
-	--pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 --pkg gee-1.0 $^
+	--pkg rygel-1.0 --pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 \
+	--pkg dbus-glib-1 --pkg gee-1.0 --pkg gstreamer-0.10 $^
 	touch $@
 
 librygel_dvb_la_LIBADD = $(LIBGUPNP_LIBS) \
