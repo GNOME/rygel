@@ -21,7 +21,7 @@ Other changes:
   GStreamer's audiotestsrc and videotestsrc elements respectively.
 - Better interoperability with Sony playstation 3.
 - Announce unavailability to UPnP world on exit.
-- Loads of non-functional improvements.
+- Loads of other improvements.
 
 0.1
 ===
