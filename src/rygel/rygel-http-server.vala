@@ -90,11 +90,11 @@ public class Rygel.HTTPServer : GLib.Object {
                             Soup.Message msg,
                             Seek?        seek,
                             size_t       size) throws Error {
-        var response = new InteractiveResponse (this.context.server,
-                                                msg,
-                                                uri,
-                                                seek,
-                                                size);
+        var response = new SeekableResponse (this.context.server,
+                                             msg,
+                                             uri,
+                                             seek,
+                                             size);
         response.ended += on_response_ended;
 
         this.responses.add (response);

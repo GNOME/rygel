@@ -27,18 +27,18 @@
 using Rygel;
 using GUPnP;
 
-public class Rygel.InteractiveResponse : Rygel.HTTPResponse {
+public class Rygel.SeekableResponse : Rygel.HTTPResponse {
     private Seek seek;
     private File file;
 
     private char[] buffer;
     private size_t length;
 
-    public InteractiveResponse (Soup.Server  server,
-                                Soup.Message msg,
-                                string       uri,
-                                Seek?        seek,
-                                size_t       file_length) throws Error {
+    public SeekableResponse (Soup.Server  server,
+                             Soup.Message msg,
+                             string       uri,
+                             Seek?        seek,
+                             size_t       file_length) throws Error {
         base (server, msg, seek != null);
 
         this.seek = seek;
