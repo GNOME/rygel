@@ -54,7 +54,7 @@ public class Rygel.TestAudioItem : Rygel.TestItem {
         Element encoder = ElementFactory.make ("wavenc", null);
 
         if (src == null || encoder == null) {
-            throw new StreamingResponseError.MISSING_PLUGIN (
+            throw new LiveResponseError.MISSING_PLUGIN (
                                     "Required plugin missing");
         }
 

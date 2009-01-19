@@ -29,22 +29,22 @@ using GUPnP;
 using Gee;
 using Gst;
 
-public errordomain Rygel.StreamingResponseError {
+public errordomain Rygel.LiveResponseError {
     MISSING_PLUGIN,
     LINK
 }
 
-public class Rygel.StreamingResponse : Rygel.HTTPResponse {
+public class Rygel.LiveResponse : Rygel.HTTPResponse {
     private const string SINK_NAME = "fakesink";
 
     private Pipeline pipeline;
 
     private AsyncQueue<Buffer> buffers;
 
-    public StreamingResponse (Soup.Server  server,
-                              Soup.Message msg,
-                              string       name,
-                              Element      src) throws Error {
+    public LiveResponse (Soup.Server  server,
+                         Soup.Message msg,
+                         string       name,
+                         Element      src) throws Error {
         base (server, msg, false);
 
         this.msg.response_headers.set_encoding (Soup.Encoding.CHUNKED);
@@ -80,7 +80,7 @@ public class Rygel.StreamingResponse : Rygel.HTTPResponse {
         dynamic Element sink = ElementFactory.make ("fakesink", SINK_NAME);
 
         if (sink == null) {
-            throw new StreamingResponseError.MISSING_PLUGIN (
+            throw new LiveResponseError.MISSING_PLUGIN (
                                     "Required plugin 'fakesink' missing");
         }
 
@@ -98,10 +98,9 @@ public class Rygel.StreamingResponse : Rygel.HTTPResponse {
         } else {
             // static pads? easy!
             if (!src.link (sink)) {
-                throw new StreamingResponseError.LINK (
-                                               "Failed to link %s to %s",
-                                               src.name,
-                                               sink.name);
+                throw new LiveResponseError.LINK ("Failed to link %s to %s",
+                                                  src.name,
+                                                  sink.name);
             }
         }
 

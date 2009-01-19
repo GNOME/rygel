@@ -49,7 +49,7 @@ public class Rygel.HTTPServer : GLib.Object {
 
     public HTTPServer (GUPnP.Context context, string name) {
         this.context = context;
-        this.responses = new ArrayList<StreamingResponse> ();
+        this.responses = new ArrayList<LiveResponse> ();
 
         this.path_root = SERVER_PATH_PREFIX + "/" + name;
 
@@ -76,10 +76,10 @@ public class Rygel.HTTPServer : GLib.Object {
 
     private void stream_from_gst_source (Element#     src,
                                          Soup.Message msg) throws Error {
-        var response = new StreamingResponse (this.context.server,
-                                              msg,
-                                              "RygelStreamingResponse",
-                                              src);
+        var response = new LiveResponse (this.context.server,
+                                         msg,
+                                         "RygelLiveResponse",
+                                         src);
         response.start ();
         response.ended += on_response_ended;
 

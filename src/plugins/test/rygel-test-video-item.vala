@@ -55,7 +55,7 @@ public class Rygel.TestVideoItem : Rygel.TestItem {
         Element muxer = ElementFactory.make ("mpegtsmux", null);
 
         if (src == null || muxer == null || encoder == null) {
-            throw new StreamingResponseError.MISSING_PLUGIN (
+            throw new LiveResponseError.MISSING_PLUGIN (
                                 "Required plugin missing");
         }
 
