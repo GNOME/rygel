@@ -1,5 +1,5 @@
 AC_PREREQ(2.53)
-AC_INIT(rygel, 0.2, http://live.gnome.org/Rygel)
+AC_INIT(rygel, 0.2.2, http://live.gnome.org/Rygel)
 AM_INIT_AUTOMAKE()
 AC_CONFIG_SRCDIR(src/rygel/rygel-media-server.vala)
 AM_CONFIG_HEADER(config.h)
