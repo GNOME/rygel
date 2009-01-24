@@ -16,6 +16,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
 	    $(GIO_CFLAGS) \
 	    $(GEE_CFLAGS) \
+	    $(UUID_CFLAGS) \
 	    -I$(top_srcdir) -DDATA_DIR='"$(shareddir)"' \
 	    -DPLUGIN_DIR='"$(plugindir)"'
 
@@ -111,7 +112,8 @@ rygel_LDADD = $(LIBGUPNP_LIBS) \
 	      $(LIBGCONF_LIBS) \
 	      $(LIBGSTREAMER_LIBS) \
 	      $(GIO_LIBS) \
-	      $(GEE_LIBS)
+	      $(GEE_LIBS) \
+	      $(UUID_LIBS)
 rygel_LDFLAGS = -export-dynamic
 
 VAPI_FILES = rygel-1.0.vapi
