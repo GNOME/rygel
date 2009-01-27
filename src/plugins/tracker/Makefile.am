@@ -12,6 +12,8 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 BUILT_SOURCES = rygel-media-tracker.stamp \
 		rygel-media-tracker.h \
 		rygel-media-tracker.c \
+		rygel-tracker-root-container.h \
+		rygel-tracker-root-container.c \
 		rygel-tracker-container.h \
 		rygel-tracker-container.c \
 		rygel-tracker-item.h \
@@ -28,6 +30,9 @@ BUILT_SOURCES = rygel-media-tracker.stamp \
 librygel_media_tracker_la_SOURCES = rygel-media-tracker.h \
 			            rygel-media-tracker.c \
 				    rygel-media-tracker.vala \
+				    rygel-tracker-root-container.h \
+				    rygel-tracker-root-container.c \
+				    rygel-tracker-root-container.vala \
 				    rygel-tracker-container.h \
 			            rygel-tracker-container.c \
 				    rygel-tracker-container.vala \

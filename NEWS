@@ -2,7 +2,7 @@
 ===
 
 The major change after last release (as gupnp-media-server) is the introduction
-of a simple yet powerful plugin-based architecture/api: Everyone plugin:
+of a simple yet powerful plugin-based architecture/api: Every plugin:
 - is loaded into a separate MediaServer instance.
 - can implement any kind and number of resources (currently only services).
 - can export an icon file.

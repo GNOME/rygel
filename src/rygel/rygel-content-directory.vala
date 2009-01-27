@@ -23,6 +23,7 @@
  */
 
 using GUPnP;
+using Gee;
 
 /**
  * Errors used by ContentDirectory and deriving classes.
@@ -50,13 +51,15 @@ public class BrowseArgs {
 /**
  * Basic implementation of UPnP ContentDirectory service version 2. Most often
  * plugins will provide a child of this class. The inheriting classes should
- * override add_children_metadata and add_metadata virtual methods.
+ * override create_root_container method.
  */
 public class Rygel.ContentDirectory: Service {
     public const string UPNP_ID = "urn:upnp-org:serviceId:ContentDirectory";
     public const string UPNP_TYPE =
                     "urn:schemas-upnp-org:service:ContentDirectory:2";
     public const string DESCRIPTION_PATH = "xml/ContentDirectory.xml";
+
+    public const int MAX_REQUESTED_COUNT = 128;
 
     protected uint32 system_update_id;
     protected string feature_list;
@@ -70,27 +73,16 @@ public class Rygel.ContentDirectory: Service {
     DIDLLiteWriter didl_writer;
 
     // Public abstract methods derived classes need to implement
-    public virtual void add_children_metadata (DIDLLiteWriter didl_writer,
-                                               BrowseArgs     args)
-                                               throws Error {
-        throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
-    }
-
-    public virtual void add_metadata (DIDLLiteWriter didl_writer,
-                                      BrowseArgs    args) throws Error {
-        throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
-    }
-
-    public virtual void add_root_children_metadata
-                                        (DIDLLiteWriter didl_writer,
-                                         BrowseArgs     args) throws Error {
-        throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
+    public virtual MediaContainer? create_root_container () {
+       return null;
     }
 
     public override void constructed () {
         this.didl_writer = new DIDLLiteWriter ();
-        this.setup_root_container ();
         this.http_server = new HTTPServer (context, this.get_type ().name ());
+        this.root_container = this.create_root_container ();
+
+        this.http_server.item_requested += this.on_item_requested;
 
         this.system_update_id = 0;
         this.feature_list =
@@ -241,11 +233,6 @@ public class Rygel.ContentDirectory: Service {
         value.set_string (this.feature_list);
     }
 
-    private void setup_root_container () {
-        string friendly_name = this.root_device.get_friendly_name ();
-        this.root_container = new MediaContainer.root (friendly_name, 0);
-    }
-
     private void browse_metadata (BrowseArgs args) throws Error {
         if (args.object_id == this.root_container.id) {
             this.root_container.serialize (didl_writer);
@@ -315,6 +302,119 @@ public class Rygel.ContentDirectory: Service {
                     "UpdateID", typeof (uint), args.update_id);
 
         action.return ();
+    }
+
+    private void add_children_metadata (DIDLLiteWriter didl_writer,
+                                                  BrowseArgs     args)
+                                                  throws GLib.Error {
+        if (args.requested_count == 0)
+            args.requested_count = MAX_REQUESTED_COUNT;
+
+        Gee.List<MediaObject> children;
+
+        children = this.get_children (args.object_id,
+                                      args.index,
+                                      args.requested_count,
+                                      out args.total_matches);
+        args.number_returned = children.size;
+
+        /* Iterate through all items */
+        for (int i = 0; i < children.size; i++) {
+            children[i].serialize (didl_writer);
+        }
+
+        args.update_id = uint32.MAX;
+    }
+
+    private void add_metadata (DIDLLiteWriter didl_writer,
+                                         BrowseArgs     args)
+                                         throws GLib.Error {
+        MediaObject media_object = this.find_object_by_id (args.object_id);
+        media_object.serialize (didl_writer);
+
+        args.update_id = uint32.MAX;
+    }
+
+    private void add_root_children_metadata (
+                                        DIDLLiteWriter didl_writer,
+                                        BrowseArgs     args)
+                                        throws GLib.Error {
+        var children = get_root_children (args.index,
+                                          args.requested_count,
+                                          out args.total_matches);
+        foreach (var child in children) {
+            child.serialize (didl_writer);
+        }
+
+        args.number_returned = children.size;
+        args.update_id = uint32.MAX;
+    }
+
+    private Gee.List<MediaObject> get_children (string   container_id,
+                                                uint     offset,
+                                                uint     max_count,
+                                                out uint child_count)
+                                                throws GLib.Error {
+        var media_object = this.find_object_by_id (container_id);
+        if (media_object == null || !(media_object is MediaContainer)) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        var container = (MediaContainer) media_object;
+        child_count = container.child_count;
+        if (max_count == 0) {
+            // No max count requested, try to fetch all children
+            max_count = child_count;
+        }
+
+        var children = container.get_children (offset, max_count);
+        if (children == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        return children;
+    }
+
+    private MediaObject find_object_by_id (string object_id) throws GLib.Error {
+        var media_object = this.root_container.find_object_by_id (object_id);
+        if (media_object == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        return media_object;
+    }
+
+    private Gee.List<MediaObject> get_root_children (uint     offset,
+                                                     uint     max_count,
+                                                     out uint child_count)
+                                                     throws GLib.Error {
+        child_count = this.root_container.child_count;
+        if (max_count == 0) {
+            // No max count requested, try to fetch all children
+            max_count = child_count;
+        }
+
+        var children = this.root_container.get_children (offset, max_count);
+        if (children == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        return children;
+    }
+
+    private void on_item_requested (HTTPServer    http_server,
+                                    string        item_id,
+                                    out MediaItem item) {
+        try {
+            var media_object = this.find_object_by_id (item_id);
+            if (media_object is MediaItem) {
+                item = (MediaItem) media_object;
+            }
+        } catch (Error err) {
+            warning ("Requested item '%s' not found: %s\n",
+                     item_id,
+                     err.message);
+        }
     }
 }
 

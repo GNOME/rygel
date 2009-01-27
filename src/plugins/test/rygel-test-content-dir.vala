@@ -24,91 +24,16 @@
 
 using Rygel;
 using GUPnP;
-using Gst;
 using Gee;
 
 /**
  * Implementation of ContentDirectory service, meant for testing purposes only.
  */
 public class Rygel.TestContentDir : ContentDirectory {
-    private ArrayList<MediaItem> items;
-
     /* Pubic methods */
-    public override void constructed () {
-        // Chain-up to base first
-        base.constructed ();
-
-        this.http_server.item_requested += this.on_item_requested;
-        this.http_server.need_stream_source += this.on_need_stream_source;
-
-        this.items = new ArrayList<MediaItem> ();
-        this.items.add (new TestAudioItem ("sinewave",
-                                           this.root_container.id,
-                                           "Sine Wave",
-                                           this.http_server));
-        this.items.add (new TestVideoItem ("smtpe",
-                                           this.root_container.id,
-                                           "SMTPE",
-                                           this.http_server));
-
-        // Now we know how many top-level items we have
-        this.root_container.child_count = this.items.size;
-    }
-
-    public override void add_metadata (DIDLLiteWriter didl_writer,
-                                       BrowseArgs     args) throws GLib.Error {
-        MediaItem item = find_item_by_id (args.object_id);
-        if (item == null) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
-        }
-
-        item.serialize (didl_writer);
-        args.update_id = uint32.MAX;
-    }
-
-    public override void add_root_children_metadata (DIDLLiteWriter didl_writer,
-                                                     BrowseArgs     args)
-                                                     throws GLib.Error {
-        foreach (MediaItem item in this.items)
-            item.serialize (didl_writer);
-
-        args.total_matches = args.number_returned = this.items.size;
-        args.update_id = uint32.MAX;
-    }
-
-    /* Private methods */
-    private MediaItem? find_item_by_id (string item_id) {
-        MediaItem item = null;
-
-        foreach (MediaItem tmp in this.items) {
-            if (item_id == tmp.id) {
-                item = tmp;
-
-                break;
-            }
-        }
-
-        return item;
-    }
-
-    private void on_item_requested (HTTPServer    http_server,
-                                    string        item_id,
-                                    out MediaItem item) {
-        item = this.find_item_by_id (item_id);
-    }
-
-    private void on_need_stream_source (HTTPServer  http_server,
-                                        MediaItem   item,
-                                        out Element src) {
-        try {
-            src = ((TestItem) item).create_gst_source ();
-        } catch (Error error) {
-            critical ("Error creating Gst source element for item %s: %s",
-                      item.id,
-                      error.message);
-
-            return;
-        }
+    public override MediaContainer? create_root_container () {
+        string friendly_name = this.root_device.get_friendly_name ();
+        return new TestRootContainer (friendly_name, this.http_server);
     }
 }
 

@@ -24,7 +24,9 @@ using GUPnP;
 
 /**
  * Represents a container (folder) for media items and containers. Provides
- * basic serialization (to DIDLLiteWriter) implementation.
+ * basic serialization (to DIDLLiteWriter) implementation. Deriving classes
+ * are supposed to provide working implementations of get_children and
+ * find_object_by_id.
  */
 public class Rygel.MediaContainer : MediaObject {
     public uint child_count;
@@ -44,6 +46,12 @@ public class Rygel.MediaContainer : MediaObject {
         this ("0", "-1", title, child_count);
     }
 
+   /**
+     * Serializes this container to the specified DIDLLiteWriter object
+     *
+     * @param didl_writer the DIDLLiteWriter object to serialize to.
+     *
+     */
     public override void serialize (DIDLLiteWriter didl_writer) throws Error {
         didl_writer.start_container (this.id,
                                      this.parent_id,
@@ -63,5 +71,31 @@ public class Rygel.MediaContainer : MediaObject {
 
         /* End of Container */
         didl_writer.end_container ();
+    }
+
+   /**
+     * Fetches the list of media objects directly under this container.
+     *
+     * @param offet zero-based index of the first item to return
+     * @param max_count maximum number of objects to return
+     *
+     * return A list of media objects.
+     */
+    public virtual Gee.List<MediaObject>? get_children (uint offset,
+                                                        uint max_count)
+                                                        throws Error {
+        return null;
+    }
+
+   /**
+     * Recursively searches for media object with the given id in this
+     * container.
+     *
+     * @param id ID of the media object to search for.
+     *
+     * return the found media object.
+     */
+    public virtual MediaObject? find_object_by_id (string id) throws Error {
+        return null;
     }
 }

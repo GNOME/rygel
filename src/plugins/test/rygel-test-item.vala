@@ -40,7 +40,7 @@ public abstract class Rygel.TestItem : Rygel.MediaItem {
                      HTTPServer http_server) {
         base (id, parent_id, title, upnp_class, http_server);
 
-        this.res.mime_type = mime;
+        this.mime_type = mime;
         this.author = TEST_AUTHOR;
     }
 

@@ -38,8 +38,8 @@ public class Rygel.DVBChannelGroup : MediaContainer {
 
     public static dynamic DBus.Object channel_list;
 
-    /* Hashmap of (UPnP) IDs to channels */
-    private HashMap<string, DVBChannel> channels;
+    /* List of channels */
+    private ArrayList<DVBChannel> channels;
 
     public HTTPServer http_server;
 
@@ -60,29 +60,32 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         this.http_server = http_server;
 
         this.fetch_channels ();
-
-        this.http_server.item_requested += this.on_item_requested;
     }
 
-    public uint add_channels (DIDLLiteWriter didl_writer,
-                              uint           index,
-                              uint           requested_count,
-                              out uint       total_matches) throws GLib.Error {
-        foreach (var channel in channels.get_values ()) {
-            channel.serialize (didl_writer);
+    public override Gee.List<MediaObject>? get_children (uint offset,
+                                                         uint max_count)
+                                                         throws GLib.Error {
+        uint stop = offset + max_count;
+        stop = stop.clamp (0, this.child_count);
+
+        return this.channels.slice ((int) offset, (int) stop);
+    }
+
+    public override MediaObject? find_object_by_id (string id)
+                                                    throws GLib.Error {
+        MediaObject channel = null;
+        foreach (var tmp in this.channels) {
+            if (tmp.id == id) {
+                channel = tmp;
+                break;
+            }
         }
 
-        total_matches = channels.size;
-
-        return total_matches;
-    }
-
-    public DVBChannel find_channel (string id) {
-        return this.channels.get (id);
+        return channel;
     }
 
     private void fetch_channels () {
-        this.channels = new HashMap<string, DVBChannel> (str_hash, str_equal);
+        this.channels = new ArrayList<DVBChannel> ();
 
         DBus.Connection connection;
         try {
@@ -109,7 +112,7 @@ public class Rygel.DVBChannelGroup : MediaContainer {
                                               this.id,
                                               channel_list,
                                               http_server);
-                this.channels.set (channel.id, channel);
+                this.channels.add (channel);
             } catch (GLib.Error error) {
                 critical ("Failed to create DVB Channel object: %s",
                           error.message);
@@ -117,15 +120,6 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         }
 
         this.child_count = this.channels.size;
-    }
-
-    private void on_item_requested (HTTPServer    http_server,
-                                    string        item_id,
-                                    out MediaItem item) {
-        var channel = this.find_channel (item_id);
-        if (channel != null) {
-            item = channel;
-        }
     }
 }
 

@@ -134,7 +134,6 @@ public class Rygel.HTTPServer : GLib.Object {
         // Signal the requestion for an item
         this.item_requested (item_id, out item);
         if (item == null) {
-            warning ("Requested item '%s' not found\n", item_id);
             msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
             return;
         }
@@ -158,7 +157,7 @@ public class Rygel.HTTPServer : GLib.Object {
             return;
         }
 
-        if (item.res.size > 0) {
+        if (item.size > 0) {
             this.handle_interactive_item (msg, item, seek);
         } else {
             this.handle_streaming_item (msg, item);
@@ -168,20 +167,16 @@ public class Rygel.HTTPServer : GLib.Object {
     private void add_item_headers (Soup.Message msg,
                                    MediaItem    item,
                                    Seek?        seek) {
-        if (item.res.mime_type != null) {
-            msg.response_headers.append ("Content-Type", item.res.mime_type);
+        if (item.mime_type != null) {
+            msg.response_headers.append ("Content-Type", item.mime_type);
         }
 
-        if (item.res.size >= 0) {
+        if (item.size >= 0) {
             msg.response_headers.append ("Content-Length",
-                                         item.res.size.to_string ());
+                                         item.size.to_string ());
         }
 
-        if (DLNAOperation.RANGE in item.res.dlna_operation) {
-            msg.response_headers.append ("Accept-Ranges", "bytes");
-        }
-
-        if (item.res.size > 0) {
+        if (item.size > 0) {
             int64 first_byte;
             int64 last_byte;
 
@@ -190,21 +185,22 @@ public class Rygel.HTTPServer : GLib.Object {
                 last_byte = seek.stop;
             } else {
                 first_byte = 0;
-                last_byte = item.res.size - 1;
+                last_byte = item.size - 1;
             }
 
             // Content-Range: bytes START_BYTE-STOP_BYTE/TOTAL_LENGTH
             var content_range = "bytes " +
                                 first_byte.to_string () + "-" +
                                 last_byte.to_string () + "/" +
-                                item.res.size.to_string ();
+                                item.size.to_string ();
             msg.response_headers.append ("Content-Range", content_range);
+            msg.response_headers.append ("Accept-Ranges", "bytes");
         }
     }
 
     private void handle_streaming_item (Soup.Message msg,
                                         MediaItem    item) {
-        string uri = item.res.uri;
+        string uri = item.uri;
         dynamic Element src = null;
 
         if (uri != null) {
@@ -239,7 +235,7 @@ public class Rygel.HTTPServer : GLib.Object {
     private void handle_interactive_item (Soup.Message msg,
                                           MediaItem    item,
                                           Seek?        seek) {
-        string uri = item.res.uri;
+        string uri = item.uri;
 
         if (uri == null) {
             warning ("Requested item '%s' didn't provide a URI\n", item.id);
@@ -248,7 +244,7 @@ public class Rygel.HTTPServer : GLib.Object {
         }
 
         try {
-            this.serve_uri (uri, msg, seek, item.res.size);
+            this.serve_uri (uri, msg, seek, item.size);
         } catch (Error error) {
             warning ("Error in attempting to serve %s: %s",
                      uri,
@@ -291,7 +287,7 @@ public class Rygel.HTTPServer : GLib.Object {
                                                        range);
             }
 
-            seek = new Seek (Format.BYTES, 0, item.res.size - 1);
+            seek = new Seek (Format.BYTES, 0, item.size - 1);
 
             // Get first byte position
             string first_byte = range_tokens[0];
@@ -311,16 +307,16 @@ public class Rygel.HTTPServer : GLib.Object {
                                                        range);
             }
 
-            if (item.res.size > 0) {
+            if (item.size > 0) {
                 // shouldn't go beyond actual length of media
-                if (seek.start > item.res.size ||
-                    seek.length > item.res.size) {
+                if (seek.start > item.size ||
+                    seek.length > item.size) {
                     throw new HTTPServerError.OUT_OF_RANGE (
                             "Range '%s' not setsifiable", range);
                 }
 
                 // No need to seek if whole stream is requested
-                if (seek.start == 0 && seek.length == item.res.size) {
+                if (seek.start == 0 && seek.length == item.size) {
                     return null;
                 }
             } else if (seek.start == 0) {
