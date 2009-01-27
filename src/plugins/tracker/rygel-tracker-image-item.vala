@@ -73,16 +73,16 @@ public class Rygel.TrackerImageItem : TrackerItem {
             this.title = values[Metadata.FILE_NAME];
 
         if (values[Metadata.SIZE] != "")
-            this.size = values[Metadata.SIZE].to_int ();
+            this.res.size = values[Metadata.SIZE].to_int ();
 
         if (values[Metadata.WIDTH] != "")
-            this.width = values[Metadata.WIDTH].to_int ();
+            this.res.width = values[Metadata.WIDTH].to_int ();
 
         if (values[Metadata.HEIGHT] != "")
-            this.height = values[Metadata.HEIGHT].to_int ();
+            this.res.height = values[Metadata.HEIGHT].to_int ();
 
         if (values[Metadata.SIZE] != "")
-            this.size = values[Metadata.SIZE].to_int ();
+            this.res.size = values[Metadata.SIZE].to_int ();
 
         if (values[Metadata.DATE] != "") {
             this.date = seconds_to_iso8601 (values[Metadata.DATE]);
@@ -90,10 +90,10 @@ public class Rygel.TrackerImageItem : TrackerItem {
             this.date = seconds_to_iso8601 (values[Metadata.IMAGE_DATE]);
         }
 
-        this.mime_type = values[Metadata.MIME];
+        this.res.mime_type = values[Metadata.MIME];
         this.author = values[Metadata.CREATOR];
         this.album = values[Metadata.ALBUM];
-        this.uri = this.uri_from_path (path);
+        this.res.uri = this.uri_from_path (path);
     }
 }
 

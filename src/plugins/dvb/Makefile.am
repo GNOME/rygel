@@ -12,8 +12,6 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 BUILT_SOURCES = rygel-dvb.stamp \
 		rygel-dvb-content-dir.h \
 		rygel-dvb-content-dir.c \
-                rygel-dvb-root-container.h \
-                rygel-dvb-root-container.c \
 		rygel-dvb-channel-group.h \
 		rygel-dvb-channel-group.c \
 		rygel-dvb-channel.h \
@@ -24,9 +22,6 @@ BUILT_SOURCES = rygel-dvb.stamp \
 librygel_dvb_la_SOURCES = rygel-dvb-content-dir.h \
 			  rygel-dvb-content-dir.c \
                           rygel-dvb-content-dir.vala \
-                          rygel-dvb-root-container.h \
-                          rygel-dvb-root-container.c \
-                          rygel-dvb-root-container.vala \
                           rygel-dvb-channel-group.h \
                           rygel-dvb-channel-group.c \
                           rygel-dvb-channel-group.vala \

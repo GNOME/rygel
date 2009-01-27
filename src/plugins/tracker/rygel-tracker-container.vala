@@ -24,7 +24,6 @@
 using Rygel;
 using GUPnP;
 using DBus;
-using Gee;
 
 /**
  * Represents Tracker category.
@@ -84,11 +83,14 @@ public class Rygel.TrackerContainer : MediaContainer {
         this.category = category;
         this.child_class = child_class;
         this.http_server = http_server;
+    }
 
-        /* FIXME: We need to hook to some tracker signals to keep
-         *        this field up2date at all times
-         */
+    public override void serialize (DIDLLiteWriter didl_writer)
+                                    throws GLib.Error {
+        /* Update the child count */
         this.child_count = this.get_children_count ();
+
+        base.serialize (didl_writer);
     }
 
     private uint get_children_count () {
@@ -111,24 +113,72 @@ public class Rygel.TrackerContainer : MediaContainer {
         return count;
     }
 
-    public override Gee.List<MediaObject>? get_children (uint offset,
-                                                         uint max_count)
-                                                         throws GLib.Error {
-        ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
+    public uint add_children_from_db (DIDLLiteWriter didl_writer,
+                                       uint           offset,
+                                       uint           max_count,
+                                       out uint       child_count) {
+        string[] children;
 
-        string[] child_paths =
+        children = this.get_children_from_db (offset,
+                                              max_count,
+                                              out child_count);
+        if (children == null)
+            return 0;
+
+        /* Iterate through all items */
+        for (uint i = 0; i < children.length; i++)
+            this.add_item_from_db (didl_writer, children[i]);
+
+        return children.length;
+    }
+
+    private string[]? get_children_from_db (uint     offset,
+                                            uint     max_count,
+                                            out uint child_count) {
+        string[] children = null;
+
+        child_count = this.get_children_count ();
+
+        try {
+            children =
                 TrackerContainer.files.GetByServiceType (0,
                                                          this.category,
                                                          (int) offset,
                                                          (int) max_count);
+        } catch (GLib.Error error) {
+            critical ("error: %s", error.message);
 
-        /* Iterate through all items */
-        for (uint i = 0; i < child_paths.length; i++) {
-            MediaObject item = this.find_object_by_id (child_paths[i]);
-            children.add (item);
+            return null;
         }
 
         return children;
+    }
+
+    public bool add_item_from_db (DIDLLiteWriter didl_writer,
+                                   string         path) {
+        MediaItem item = null;
+
+        try {
+            item = this.get_item_from_db (path);
+        } catch (GLib.Error error) {
+            critical ("Failed to fetch item %s. Reason: %s",
+                      item.id,
+                      error.message);
+
+            return false;
+        }
+
+        try {
+            item.serialize (didl_writer);
+        } catch (GLib.Error error) {
+            critical ("Failed to serialize item %s. Reason: %s",
+                      item.id,
+                      error.message);
+
+            return false;
+        }
+
+        return true;
     }
 
     public static string get_file_category (string uri) throws GLib.Error {
@@ -139,10 +189,8 @@ public class Rygel.TrackerContainer : MediaContainer {
         return category;
     }
 
-    public override MediaObject? find_object_by_id (string id)
-                                                    throws GLib.Error {
-        MediaObject item;
-        string path = id;
+    public MediaItem get_item_from_db (string path) throws GLib.Error {
+        MediaItem item;
 
         if (this.child_class == MediaItem.VIDEO_CLASS) {
             item = new TrackerVideoItem (path, path, this);

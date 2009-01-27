@@ -32,8 +32,6 @@ public class Rygel.SeekableResponse : Rygel.HTTPResponse {
     private char[] buffer;
     private size_t length;
 
-    int priority;
-
     public SeekableResponse (Soup.Server  server,
                              Soup.Message msg,
                              string       uri,
@@ -43,7 +41,6 @@ public class Rygel.SeekableResponse : Rygel.HTTPResponse {
 
         this.seek = seek;
         this.length = file_length;
-        this.priority = this.get_requested_priority ();
 
         if (seek != null) {
             this.length = (size_t) seek.length;
@@ -54,7 +51,7 @@ public class Rygel.SeekableResponse : Rygel.HTTPResponse {
         this.buffer = new char[this.length];
         this.file = File.new_for_uri (uri);
 
-        this.file.read_async (this.priority, null, this.on_file_read);
+        this.file.read_async (Priority.DEFAULT, null, this.on_file_read);
     }
 
     private void on_file_read (GLib.Object      source_object,
@@ -88,7 +85,7 @@ public class Rygel.SeekableResponse : Rygel.HTTPResponse {
 
         input_stream.read_async (this.buffer,
                                  this.length,
-                                 this.priority,
+                                 Priority.DEFAULT,
                                  null,
                                  on_contents_read);
     }
@@ -109,7 +106,7 @@ public class Rygel.SeekableResponse : Rygel.HTTPResponse {
 
         this.push_data (this.buffer, this.length);
 
-        input_stream.close_async (this.priority,
+        input_stream.close_async (Priority.DEFAULT,
                                   null,
                                   on_input_stream_closed);
     }
@@ -127,20 +124,6 @@ public class Rygel.SeekableResponse : Rygel.HTTPResponse {
         }
 
         this.end (false, Soup.KnownStatusCode.NONE);
-    }
-
-    private int get_requested_priority () {
-        var mode = this.msg.request_headers.get ("transferMode.dlna.org");
-
-        if (mode == null || mode == "Interactive") {
-            return Priority.DEFAULT;
-        } else if (mode == "Streaming") {
-            return Priority.HIGH;
-        } else if (mode == "Background") {
-            return Priority.LOW;
-        } else {
-            return Priority.DEFAULT;
-        }
     }
 }
 
