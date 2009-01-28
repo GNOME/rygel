@@ -91,7 +91,7 @@ public class Rygel.DVBChannelGroup : MediaContainer {
     }
 
     private void fetch_channels () {
-        this.channels = new ArrayList<DVBChannel> ((EqualFunc) channel_equal);
+        this.channels = new ArrayList<DVBChannel> ();
 
         DBus.Connection connection;
         try {
@@ -126,10 +126,6 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         }
 
         this.child_count = this.channels.size;
-    }
-
-    private static bool channel_equal (DVBChannel a, DVBChannel b) {
-        return a.id == b.id;
     }
 }
 
