@@ -57,35 +57,61 @@ public class Rygel.TestContentDir : ContentDirectory {
 
     public override void add_metadata (DIDLLiteWriter didl_writer,
                                        BrowseArgs     args) throws GLib.Error {
-        MediaItem item = find_item_by_id (args.object_id);
-        if (item == null) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
-        }
+        MediaObject media_object = find_object_by_id (args.object_id);
+        media_object.serialize (didl_writer);
 
-        item.serialize (didl_writer);
         args.update_id = uint32.MAX;
     }
 
     public override void add_root_children_metadata (DIDLLiteWriter didl_writer,
                                                      BrowseArgs     args)
                                                      throws GLib.Error {
-        foreach (MediaItem item in this.items)
-            item.serialize (didl_writer);
+        var children = get_root_children (args.index,
+                                          args.requested_count,
+                                          out args.total_matches);
+        foreach (var child in children) {
+            child.serialize (didl_writer);
+        }
 
-        args.total_matches = args.number_returned = this.items.size;
+        args.number_returned = children.size;
         args.update_id = uint32.MAX;
     }
 
+    private ArrayList<MediaObject> get_root_children (uint     offset,
+                                                      uint     max_count,
+                                                      out uint child_count)
+                                                      throws GLib.Error {
+        child_count = this.items.size;
+
+        ArrayList<MediaObject> children;
+
+        if (max_count == 0 && offset == 0) {
+            children = this.items;
+        } else if (offset >= child_count) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        } else {
+            children = slice_object_list (this.items,
+                                          offset,
+                                          max_count);
+        }
+
+        return children;
+    }
+
     /* Private methods */
-    private MediaItem? find_item_by_id (string item_id) {
+    private MediaObject find_object_by_id (string object_id) throws GLib.Error {
         MediaItem item = null;
 
         foreach (MediaItem tmp in this.items) {
-            if (item_id == tmp.id) {
+            if (object_id == tmp.id) {
                 item = tmp;
 
                 break;
             }
+        }
+
+        if (item == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
         return item;
@@ -94,7 +120,7 @@ public class Rygel.TestContentDir : ContentDirectory {
     private void on_item_requested (HTTPServer    http_server,
                                     string        item_id,
                                     out MediaItem item) {
-        item = this.find_item_by_id (item_id);
+        item = (MediaItem) this.find_object_by_id (item_id);
     }
 
     private void on_need_stream_source (HTTPServer  http_server,
@@ -109,6 +135,26 @@ public class Rygel.TestContentDir : ContentDirectory {
 
             return;
         }
+    }
+
+    private ArrayList<MediaObject> slice_object_list (
+                                        ArrayList<MediaObject> list,
+                                        uint                   offset,
+                                        uint                   max_count) {
+        uint total = list.size;
+
+        var slice = new ArrayList<MediaObject> ();
+
+        if (max_count == 0 || max_count > (total - offset)) {
+            max_count = total - offset;
+        }
+
+        slice = new ArrayList<MediaObject> ();
+        for (uint i = offset; i < total; i++) {
+            slice.add (list[(int) i]);
+        }
+
+        return slice;
     }
 }
 
