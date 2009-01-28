@@ -38,7 +38,6 @@ public class Rygel.TestContentDir : ContentDirectory {
         // Chain-up to base first
         base.constructed ();
 
-        this.http_server.item_requested += this.on_item_requested;
         this.http_server.need_stream_source += this.on_need_stream_source;
 
         this.items = new ArrayList<MediaItem> ();
@@ -97,12 +96,6 @@ public class Rygel.TestContentDir : ContentDirectory {
     }
 
     /* Private methods */
-    private void on_item_requested (HTTPServer    http_server,
-                                    string        item_id,
-                                    out MediaItem item) {
-        item = (MediaItem) this.find_object_by_id (item_id);
-    }
-
     private void on_need_stream_source (HTTPServer  http_server,
                                         MediaItem   item,
                                         out Element src) {

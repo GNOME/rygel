@@ -60,8 +60,6 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         this.http_server = http_server;
 
         this.fetch_channels ();
-
-        this.http_server.item_requested += this.on_item_requested;
     }
 
     public ArrayList<DVBChannel> get_channels (uint     offset,
@@ -119,15 +117,6 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         }
 
         this.child_count = this.channels.size;
-    }
-
-    private void on_item_requested (HTTPServer    http_server,
-                                    string        item_id,
-                                    out MediaItem item) {
-        var channel = this.find_channel (item_id);
-        if (channel != null) {
-            item = channel;
-        }
     }
 }
 

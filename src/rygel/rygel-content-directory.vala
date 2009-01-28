@@ -99,6 +99,8 @@ public class Rygel.ContentDirectory: Service {
         this.setup_root_container ();
         this.http_server = new HTTPServer (context, this.get_type ().name ());
 
+        this.http_server.item_requested += this.on_item_requested;
+
         this.system_update_id = 0;
         this.feature_list =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
@@ -368,6 +370,21 @@ public class Rygel.ContentDirectory: Service {
 
         args.number_returned = children.size;
         args.update_id = uint32.MAX;
+    }
+
+    private void on_item_requested (HTTPServer    http_server,
+                                    string        item_id,
+                                    out MediaItem item) {
+        try {
+            var media_object = this.find_object_by_id (item_id);
+            if (media_object is MediaItem) {
+                item = (MediaItem) media_object;
+            }
+        } catch (Error err) {
+            warning ("Requested item '%s' not found: %s\n",
+                     item_id,
+                     err.message);
+        }
     }
 }
 

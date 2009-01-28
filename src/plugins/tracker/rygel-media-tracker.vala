@@ -40,8 +40,6 @@ public class Rygel.MediaTracker : ContentDirectory {
         // Chain-up to base first
         base.constructed ();
 
-        this.http_server.item_requested += on_item_requested;
-
         this.containers = new ArrayList<TrackerContainer> ();
         this.containers.add
                         (new TrackerContainer ("16",
@@ -168,15 +166,6 @@ public class Rygel.MediaTracker : ContentDirectory {
         }
 
         return container;
-    }
-
-    private void on_item_requested (HTTPServer    http_server,
-                                    string        item_id,
-                                    out MediaItem item) {
-        TrackerContainer container = get_item_parent (item_id);
-
-        if (container != null)
-            item = container.get_item_from_db (item_id);
     }
 
     private ArrayList<MediaObject> slice_object_list (
