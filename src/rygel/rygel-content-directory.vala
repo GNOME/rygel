@@ -101,8 +101,8 @@ public class Rygel.ContentDirectory: Service {
 
     public override void constructed () {
         this.didl_writer = new DIDLLiteWriter ();
-        this.root_container = this.create_root_container ();
         this.http_server = new HTTPServer (context, this.get_type ().name ());
+        this.root_container = this.create_root_container ();
 
         this.http_server.item_requested += this.on_item_requested;
 
