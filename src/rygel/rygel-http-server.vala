@@ -134,7 +134,6 @@ public class Rygel.HTTPServer : GLib.Object {
         // Signal the requestion for an item
         this.item_requested (item_id, out item);
         if (item == null) {
-            warning ("Requested item '%s' not found\n", item_id);
             msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
             return;
         }
