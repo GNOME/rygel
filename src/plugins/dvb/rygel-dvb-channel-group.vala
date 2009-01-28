@@ -38,8 +38,8 @@ public class Rygel.DVBChannelGroup : MediaContainer {
 
     public static dynamic DBus.Object channel_list;
 
-    /* Hashmap of (UPnP) IDs to channels */
-    private HashMap<string, DVBChannel> channels;
+    /* List of channels */
+    private ArrayList<DVBChannel> channels;
 
     public HTTPServer http_server;
 
@@ -68,21 +68,23 @@ public class Rygel.DVBChannelGroup : MediaContainer {
                                                throws GLib.Error {
         child_count = this.channels.size;
 
-        var channels = new ArrayList <DVBChannel> ();
-
-        foreach (var channel in this.channels.get_values ()) {
-            channels.add (channel);
-        }
-
-        return channels;
+        return this.channels;
     }
 
     public DVBChannel find_channel (string id) {
-        return this.channels.get (id);
+        DVBChannel channel = null;
+        foreach (var tmp in this.channels) {
+            if (tmp.id == id) {
+                channel = tmp;
+                break;
+            }
+        }
+
+        return channel;
     }
 
     private void fetch_channels () {
-        this.channels = new HashMap<string, DVBChannel> (str_hash, str_equal);
+        this.channels = new ArrayList<DVBChannel> ((EqualFunc) channel_equal);
 
         DBus.Connection connection;
         try {
@@ -109,7 +111,7 @@ public class Rygel.DVBChannelGroup : MediaContainer {
                                               this.id,
                                               channel_list,
                                               http_server);
-                this.channels.set (channel.id, channel);
+                this.channels.add (channel);
             } catch (GLib.Error error) {
                 critical ("Failed to create DVB Channel object: %s",
                           error.message);
@@ -117,6 +119,10 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         }
 
         this.child_count = this.channels.size;
+    }
+
+    private static bool channel_equal (DVBChannel a, DVBChannel b) {
+        return a.id == b.id;
     }
 }
 
