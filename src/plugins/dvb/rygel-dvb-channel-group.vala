@@ -62,18 +62,15 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         this.fetch_channels ();
     }
 
-    public override Gee.List<MediaObject>? get_children (uint     offset,
-                                                         uint     max_count,
-                                                         out uint child_count)
+    public override Gee.List<MediaObject>? get_children (uint offset,
+                                                         uint max_count)
                                                          throws GLib.Error {
-        child_count = this.channels.size;
-
         if (max_count == 0) {
-            max_count = child_count;
+            max_count = this.child_count;
         }
 
         uint stop = offset + max_count;
-        stop = stop.clamp (0, child_count);
+        stop = stop.clamp (0, this.child_count);
 
         return this.channels.slice ((int) offset, (int) stop);
     }

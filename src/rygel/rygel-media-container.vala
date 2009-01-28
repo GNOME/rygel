@@ -78,14 +78,11 @@ public class Rygel.MediaContainer : MediaObject {
      *
      * @param offet zero-based index of the first item to return
      * @param max_count maximum number of objects to return
-     * @param child_count placeholder for actual number of objects directly
-     *                    under this container
      *
      * return A list of media objects.
      */
-    public virtual Gee.List<MediaObject>? get_children (uint     offset,
-                                                        uint     max_count,
-                                                        out uint child_count)
+    public virtual Gee.List<MediaObject>? get_children (uint offset,
+                                                        uint max_count)
                                                         throws Error {
         return null;
     }
