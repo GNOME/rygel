@@ -24,6 +24,7 @@
 using Rygel;
 using GUPnP;
 using DBus;
+using Gee;
 
 /**
  * Represents Tracker category.
@@ -116,39 +117,40 @@ public class Rygel.TrackerContainer : MediaContainer {
     public uint add_children_from_db (DIDLLiteWriter didl_writer,
                                        uint           offset,
                                        uint           max_count,
-                                       out uint       child_count) {
-        string[] children;
+                                       out uint       child_count)
+                                       throws GLib.Error {
+        ArrayList<MediaItem> children;
 
         children = this.get_children_from_db (offset,
                                               max_count,
                                               out child_count);
-        if (children == null)
-            return 0;
 
         /* Iterate through all items */
-        for (uint i = 0; i < children.length; i++)
-            this.add_item_from_db (didl_writer, children[i]);
+        for (int i = 0; i < children.size; i++) {
+            children[i].serialize (didl_writer);
+        }
 
-        return children.length;
+        return children.size;
     }
 
-    private string[]? get_children_from_db (uint     offset,
+    private ArrayList<MediaItem> get_children_from_db (
+                                            uint     offset,
                                             uint     max_count,
-                                            out uint child_count) {
-        string[] children = null;
-
+                                            out uint child_count)
+                                            throws GLib.Error {
+        ArrayList<MediaItem> children = new ArrayList<MediaItem> ();
         child_count = this.get_children_count ();
 
-        try {
-            children =
+        string[] child_paths =
                 TrackerContainer.files.GetByServiceType (0,
                                                          this.category,
                                                          (int) offset,
                                                          (int) max_count);
-        } catch (GLib.Error error) {
-            critical ("error: %s", error.message);
 
-            return null;
+        /* Iterate through all items */
+        for (uint i = 0; i < child_paths.length; i++) {
+            MediaItem item = this.get_item_from_db (child_paths[i]);
+            children.add (item);
         }
 
         return children;
