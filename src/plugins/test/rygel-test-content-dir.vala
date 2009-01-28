@@ -63,14 +63,14 @@ public class Rygel.TestContentDir : ContentDirectory {
 
         Gee.List<MediaObject> children = null;
 
-        if (max_count == 0 && offset == 0) {
-            children = this.items;
-        } else {
-            uint stop = offset + max_count;
-
-            stop = stop.clamp (0, child_count);
-            children = this.items.slice ((int) offset, (int) stop);
+        if (max_count == 0) {
+            max_count = child_count;
         }
+
+        uint stop = offset + max_count;
+
+        stop = stop.clamp (0, child_count);
+        children = this.items.slice ((int) offset, (int) stop);
 
         if (children == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");

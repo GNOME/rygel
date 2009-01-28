@@ -131,14 +131,14 @@ public class Rygel.DVBContentDir : ContentDirectory {
         var channels = group.get_channels (offset,
                                            max_count,
                                            out child_count);
-        if (max_count == 0 && offset == 0) {
-            children = channels;
-        } else {
-            uint stop = offset + max_count;
-
-            stop = stop.clamp (0, child_count);
-            children = channels.slice ((int) offset, (int) stop);
+        if (max_count == 0) {
+            max_count = child_count;
         }
+
+        uint stop = offset + max_count;
+
+        stop = stop.clamp (0, child_count);
+        children = channels.slice ((int) offset, (int) stop);
 
         if (children == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
@@ -156,14 +156,14 @@ public class Rygel.DVBContentDir : ContentDirectory {
 
         Gee.List<MediaObject> children = null;
 
-        if (max_count == 0 && offset == 0) {
-            children = this.groups;
-        } else {
-            uint stop = offset + max_count;
-
-            stop = stop.clamp (0, child_count);
-            children = this.groups.slice ((int) offset, (int) stop);
+        if (max_count == 0) {
+            max_count = child_count;
         }
+
+        uint stop = offset + max_count;
+
+        stop = stop.clamp (0, child_count);
+        children = this.groups.slice ((int) offset, (int) stop);
 
         if (children == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
