@@ -76,35 +76,23 @@ public class Rygel.MediaTracker : ContentDirectory {
     public override void add_children_metadata (DIDLLiteWriter didl_writer,
                                                 BrowseArgs     args)
                                                 throws GLib.Error {
-        TrackerContainer container;
-
         if (args.requested_count == 0)
             args.requested_count = MAX_REQUESTED_COUNT;
 
-        container = this.find_container_by_id (args.object_id);
-        if (container == null)
-            args.number_returned = 0;
-        else {
-            ArrayList<MediaItem> children;
+        ArrayList<MediaItem> children;
 
-            children = this.get_children (args.object_id,
-                                          args.index,
-                                          args.requested_count,
-                                          out args.total_matches);
+        children = this.get_children (args.object_id,
+                                      args.index,
+                                      args.requested_count,
+                                      out args.total_matches);
+        args.number_returned = children.size;
 
-            /* Iterate through all items */
-            for (int i = 0; i < children.size; i++) {
-                children[i].serialize (didl_writer);
-            }
-
-            args.number_returned = children.size;
+        /* Iterate through all items */
+        for (int i = 0; i < children.size; i++) {
+            children[i].serialize (didl_writer);
         }
 
-        if (args.number_returned > 0) {
-            args.update_id = uint32.MAX;
-        } else {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
-        }
+        args.update_id = uint32.MAX;
     }
 
     public override void add_metadata (DIDLLiteWriter didl_writer,
