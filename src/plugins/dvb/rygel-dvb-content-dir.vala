@@ -126,16 +126,25 @@ public class Rygel.DVBContentDir : ContentDirectory {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
+        Gee.List<MediaObject> children = null;
+
         var channels = group.get_channels (offset,
                                            max_count,
                                            out child_count);
         if (max_count == 0 && offset == 0) {
-            return channels;
+            children = channels;
         } else {
-            return slice_object_list (channels,
-                                      offset,
-                                      max_count);
+            uint stop = offset + max_count;
+
+            stop = stop.clamp (0, child_count);
+            children = channels.slice ((int) offset, (int) stop);
         }
+
+        if (children == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        return (ArrayList<MediaObject>) children;
     }
 
     public override ArrayList<MediaObject> get_root_children (
@@ -145,19 +154,22 @@ public class Rygel.DVBContentDir : ContentDirectory {
                                                  throws GLib.Error {
         child_count = this.groups.size;
 
-        ArrayList<MediaObject> children;
+        Gee.List<MediaObject> children = null;
 
         if (max_count == 0 && offset == 0) {
             children = this.groups;
-        } else if (offset >= child_count) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         } else {
-            children = slice_object_list (this.groups,
-                                          offset,
-                                          max_count);
+            uint stop = offset + max_count;
+
+            stop = stop.clamp (0, child_count);
+            children = this.groups.slice ((int) offset, (int) stop);
         }
 
-        return children;
+        if (children == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        return (ArrayList<MediaObject>) children;
     }
 
     // Private methods
@@ -186,26 +198,6 @@ public class Rygel.DVBContentDir : ContentDirectory {
         }
 
         return channel;
-    }
-
-    private ArrayList<MediaObject> slice_object_list (
-                                        ArrayList<MediaObject> list,
-                                        uint                   offset,
-                                        uint                   max_count) {
-        uint total = list.size;
-
-        var slice = new ArrayList<MediaObject> ();
-
-        if (max_count == 0 || max_count > (total - offset)) {
-            max_count = total - offset;
-        }
-
-        slice = new ArrayList<MediaObject> ();
-        for (uint i = offset; i < total; i++) {
-            slice.add (list[(int) i]);
-        }
-
-        return slice;
     }
 }
 

@@ -112,19 +112,22 @@ public class Rygel.MediaTracker : ContentDirectory {
                                                  throws GLib.Error {
         child_count = this.containers.size;
 
-        ArrayList<MediaObject> children;
+        Gee.List<MediaObject> children = null;
 
         if (max_count == 0 && offset == 0) {
             children = this.containers;
-        } else if (offset >= child_count) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         } else {
-            children = slice_object_list (this.containers,
-                                          offset,
-                                          max_count);
+            uint stop = offset + max_count;
+
+            stop = stop.clamp (0, child_count);
+            children = this.containers.slice ((int) offset, (int) stop);
         }
 
-        return children;
+        if (children == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        return (ArrayList<MediaObject>) children;
     }
 
     /* Private methods */
@@ -166,26 +169,6 @@ public class Rygel.MediaTracker : ContentDirectory {
         }
 
         return container;
-    }
-
-    private ArrayList<MediaObject> slice_object_list (
-                                        ArrayList<MediaObject> list,
-                                        uint                   offset,
-                                        uint                   max_count) {
-        uint total = list.size;
-
-        var slice = new ArrayList<MediaObject> ();
-
-        if (max_count == 0 || max_count > (total - offset)) {
-            max_count = total - offset;
-        }
-
-        slice = new ArrayList<MediaObject> ();
-        for (uint i = offset; i < total; i++) {
-            slice.add (list[(int) i]);
-        }
-
-        return slice;
     }
 }
 
