@@ -74,27 +74,6 @@ public class Rygel.ContentDirectory: Service {
     DIDLLiteWriter didl_writer;
 
     // Public abstract methods derived classes need to implement
-    public virtual Gee.List<MediaObject> get_children (string   container_id,
-                                                       uint     offset,
-                                                       uint     max_count,
-                                                       out uint child_count)
-                                                       throws GLib.Error {
-        throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
-    }
-
-    public virtual MediaObject find_object_by_id (string object_id)
-                                                  throws GLib.Error {
-        throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
-    }
-
-    public virtual Gee.List<MediaObject> get_root_children (
-                                                    uint     offset,
-                                                    uint     max_count,
-                                                    out uint child_count)
-                                                    throws GLib.Error {
-        throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
-    }
-
     public virtual MediaContainer? create_root_container () {
        return null;
     }
@@ -370,6 +349,52 @@ public class Rygel.ContentDirectory: Service {
 
         args.number_returned = children.size;
         args.update_id = uint32.MAX;
+    }
+
+    protected virtual Gee.List<MediaObject> get_children (string   container_id,
+                                                          uint     offset,
+                                                          uint     max_count,
+                                                          out uint child_count)
+                                                          throws GLib.Error {
+        var media_object = this.find_object_by_id (container_id);
+        if (media_object == null || !(media_object is MediaContainer)) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        var container = (MediaContainer) media_object;
+        var children = container.get_children (offset,
+                                               max_count,
+                                               out child_count);
+        if (children == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        return children;
+    }
+
+    protected virtual MediaObject find_object_by_id (string object_id)
+                                                     throws GLib.Error {
+        var media_object = this.root_container.find_object_by_id (object_id);
+        if (media_object == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        return media_object;
+    }
+
+    protected virtual Gee.List<MediaObject> get_root_children (
+                                                    uint     offset,
+                                                    uint     max_count,
+                                                    out uint child_count)
+                                                    throws GLib.Error {
+        var children = this.root_container.get_children (offset,
+                                                         max_count,
+                                                         out child_count);
+        if (children == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        return children;
     }
 
     private void on_item_requested (HTTPServer    http_server,

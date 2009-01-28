@@ -31,31 +31,6 @@ using Gee;
  */
 public class Rygel.TestContentDir : ContentDirectory {
     /* Pubic methods */
-    public override Gee.List<MediaObject> get_root_children (
-                                                 uint     offset,
-                                                 uint     max_count,
-                                                 out uint child_count)
-                                                 throws GLib.Error {
-        var children = this.root_container.get_children (offset,
-                                                         max_count,
-                                                         out child_count);
-        if (children == null) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
-        }
-
-        return children;
-    }
-
-    public override MediaObject find_object_by_id (string object_id)
-                                                   throws GLib.Error {
-        var media_object = this.root_container.find_object_by_id (object_id);
-        if (media_object == null) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
-        }
-
-        return media_object;
-    }
-
     public override MediaContainer? create_root_container () {
         string friendly_name = this.root_device.get_friendly_name ();
         return new TestRootContainer (friendly_name, this.http_server);
