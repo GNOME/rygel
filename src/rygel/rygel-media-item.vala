@@ -135,25 +135,6 @@ public class Rygel.MediaItem : MediaObject {
         /* Add resource data */
         DIDLLiteResource res = this.get_original_res ();
 
-        /* Protocol info */
-        if (res.uri != null) {
-            string protocol = get_protocol_for_uri (res.uri);
-            res.protocol = protocol;
-        }
-
-        res.dlna_profile = "MP3"; /* FIXME */
-
-        if (this.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
-            res.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
-        } else {
-            res.dlna_flags |= DLNAFlags.STREAMING_TRANSFER_MODE;
-        }
-
-        if (res.size > 0) {
-            res.dlna_operation = DLNAOperation.RANGE;
-            res.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE;
-        }
-
         /* Now get the transcoded/proxy URIs */
         var res_list = this.get_transcoded_resources (res);
         foreach (DIDLLiteResource trans_res in res_list) {
@@ -203,7 +184,7 @@ public class Rygel.MediaItem : MediaObject {
         return resources;
     }
 
-    private DIDLLiteResource get_original_res () {
+    private DIDLLiteResource get_original_res () throws Error {
         DIDLLiteResource res = DIDLLiteResource ();
         res.reset ();
 
@@ -221,6 +202,26 @@ public class Rygel.MediaItem : MediaObject {
         res.width = this.width;
         res.height = this.height;
         res.color_depth = this.color_depth;
+
+        /* Protocol info */
+        if (res.uri != null) {
+            string protocol = get_protocol_for_uri (res.uri);
+            res.protocol = protocol;
+        }
+
+        /* DLNA related fields */
+        res.dlna_profile = "MP3"; /* FIXME */
+
+        if (this.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
+            res.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
+        } else {
+            res.dlna_flags |= DLNAFlags.STREAMING_TRANSFER_MODE;
+        }
+
+        if (res.size > 0) {
+            res.dlna_operation = DLNAOperation.RANGE;
+            res.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE;
+        }
 
         return res;
     }
