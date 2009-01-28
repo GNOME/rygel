@@ -30,70 +30,32 @@ using Gee;
  * Implementation of Tracker-based ContentDirectory service.
  */
 public class Rygel.MediaTracker : ContentDirectory {
-    /* FIXME: Make this a static if you know how to initize it */
-    private ArrayList<TrackerContainer> containers;
-
     /* Pubic methods */
-    public override void constructed () {
-        // Chain-up to base first
-        base.constructed ();
-
-        this.containers = new ArrayList<TrackerContainer> ();
-        this.containers.add
-                        (new TrackerContainer ("16",
-                                               this.root_container.id,
-                                               "All Images",
-                                               "Images",
-                                               MediaItem.IMAGE_CLASS,
-                                               this.http_server));
-        this.containers.add
-                        (new TrackerContainer ("14",
-                                               this.root_container.id,
-                                               "All Music",
-                                               "Music",
-                                               MediaItem.MUSIC_CLASS,
-                                               this.http_server));
-        this.containers.add
-                        (new TrackerContainer ("15",
-                                               this.root_container.id,
-                                               "All Videos",
-                                               "Videos",
-                                               MediaItem.VIDEO_CLASS,
-                                               this.http_server));
-
-        // Now we know how many top-level containers we have
-        this.root_container.child_count = this.containers.size;
-    }
-
     public override Gee.List<MediaObject> get_children (
                                                  string   container_id,
                                                  uint     offset,
                                                  uint     max_count,
                                                  out uint child_count)
                                                  throws GLib.Error {
-        var container = this.find_container_by_id (container_id);
-        if (container == null) {
+        var media_object = this.find_object_by_id (container_id);
+        if (media_object == null || !(media_object is MediaContainer)) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
-        return container.get_children (offset,
-                                       max_count,
-                                       out child_count);
+        var container = (MediaContainer) media_object;
+        var children = container.get_children (offset,
+                                               max_count,
+                                               out child_count);
+        if (children == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        return children;
     }
 
     public override MediaObject find_object_by_id (string object_id)
                                                    throws GLib.Error {
-        /* First try containers */
-        MediaObject media_object = find_container_by_id (object_id);
-
-        if (media_object == null) {
-            /* Now try items */
-            var container = get_item_parent (object_id);
-
-            if (container != null)
-                media_object = container.find_object_by_id (object_id);
-        }
-
+        var media_object = this.root_container.find_object_by_id (object_id);
         if (media_object == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
@@ -106,19 +68,9 @@ public class Rygel.MediaTracker : ContentDirectory {
                                                  uint     max_count,
                                                  out uint child_count)
                                                  throws GLib.Error {
-        child_count = this.containers.size;
-
-        Gee.List<MediaObject> children = null;
-
-        if (max_count == 0) {
-            max_count = child_count;
-        }
-
-        uint stop = offset + max_count;
-
-        stop = stop.clamp (0, child_count);
-        children = this.containers.slice ((int) offset, (int) stop);
-
+        var children = this.root_container.get_children (offset,
+                                                         max_count,
+                                                         out child_count);
         if (children == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
@@ -128,48 +80,7 @@ public class Rygel.MediaTracker : ContentDirectory {
 
     public override MediaContainer? create_root_container () {
         string friendly_name = this.root_device.get_friendly_name ();
-        return new MediaContainer.root (friendly_name, 0);
-    }
-
-    /* Private methods */
-    private TrackerContainer? find_container_by_id (string container_id) {
-        TrackerContainer container;
-
-        container = null;
-
-        foreach (TrackerContainer tmp in this.containers)
-            if (container_id == tmp.id) {
-                container = tmp;
-
-                break;
-            }
-
-        return container;
-    }
-
-    private TrackerContainer? get_item_parent (string uri) {
-        TrackerContainer container = null;
-        string category;
-
-        try {
-            category = TrackerContainer.get_file_category (uri);
-        } catch (GLib.Error error) {
-            critical ("failed to find service type for %s: %s",
-                      uri,
-                      error.message);
-
-            return null;
-        }
-
-        foreach (TrackerContainer tmp in this.containers) {
-            if (tmp.category == category) {
-                container = tmp;
-
-                break;
-            }
-        }
-
-        return container;
+        return new TrackerRootContainer (friendly_name, this.http_server);
     }
 }
 
