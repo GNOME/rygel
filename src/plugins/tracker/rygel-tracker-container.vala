@@ -84,14 +84,11 @@ public class Rygel.TrackerContainer : MediaContainer {
         this.category = category;
         this.child_class = child_class;
         this.http_server = http_server;
-    }
 
-    public override void serialize (DIDLLiteWriter didl_writer)
-                                    throws GLib.Error {
-        /* Update the child count */
+        /* FIXME: We need to hook to some tracker signals to keep
+         *        this field up2date at all times
+         */
         this.child_count = this.get_children_count ();
-
-        base.serialize (didl_writer);
     }
 
     private uint get_children_count () {

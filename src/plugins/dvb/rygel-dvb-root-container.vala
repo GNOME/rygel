@@ -96,6 +96,8 @@ public class Rygel.DVBRootContainer : MediaContainer {
                                                   channel_list,
                                                   http_server));
         }
+
+        this.child_count = this.groups.size;
     }
 
     public override Gee.List<MediaObject>? get_children (uint     offset,
