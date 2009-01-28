@@ -214,20 +214,32 @@ public class Rygel.MediaTracker : ContentDirectory {
         } else if (offset >= child_count) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         } else {
-            // Make sure we don't go beyond the limits
-            max_count %= (child_count - offset);
-
-            if (max_count == 0) {
-                max_count = child_count - offset;
-            }
-
-            children = new ArrayList<MediaObject> ();
-            for (int i = 0; i < max_count; i++) {
-                children.add (this.containers.get (i + (int) offset));
-            }
+            children = slice_object_list (this.containers,
+                                          offset,
+                                          max_count);
         }
 
         return children;
+    }
+
+    private ArrayList<MediaObject> slice_object_list (
+                                        ArrayList<MediaObject> list,
+                                        uint                   offset,
+                                        uint                   max_count) {
+        uint total = list.size;
+
+        var slice = new ArrayList<MediaObject> ();
+
+        if (max_count == 0 || max_count > (total - offset)) {
+            max_count = total - offset;
+        }
+
+        slice = new ArrayList<MediaObject> ();
+        for (uint i = offset; i < total; i++) {
+            slice.add (list[(int) i]);
+        }
+
+        return slice;
     }
 }
 
