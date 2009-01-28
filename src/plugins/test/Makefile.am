@@ -12,6 +12,8 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 BUILT_SOURCES = rygel-test.stamp \
 		rygel-test-content-dir.h \
 		rygel-test-content-dir.c \
+		rygel-test-root-container.h \
+		rygel-test-root-container.c \
                 rygel-test-item.h \
                 rygel-test-item.c \
 		rygel-test-audio-item.h \
@@ -24,6 +26,9 @@ BUILT_SOURCES = rygel-test.stamp \
 librygel_test_la_SOURCES = rygel-test-content-dir.h \
 			   rygel-test-content-dir.c \
                            rygel-test-content-dir.vala \
+			   rygel-test-root-container.h \
+			   rygel-test-root-container.c \
+			   rygel-test-root-container.vala \
                            rygel-test-item.h \
                            rygel-test-item.c \
                            rygel-test-item.vala \

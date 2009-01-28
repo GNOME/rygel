@@ -24,54 +24,21 @@
 
 using Rygel;
 using GUPnP;
-using Gst;
 using Gee;
 
 /**
  * Implementation of ContentDirectory service, meant for testing purposes only.
  */
 public class Rygel.TestContentDir : ContentDirectory {
-    private ArrayList<MediaItem> items;
-
     /* Pubic methods */
-    public override void constructed () {
-        // Chain-up to base first
-        base.constructed ();
-
-        this.http_server.need_stream_source += this.on_need_stream_source;
-
-        this.items = new ArrayList<MediaItem> ();
-        this.items.add (new TestAudioItem ("sinewave",
-                                           this.root_container.id,
-                                           "Sine Wave",
-                                           this.http_server));
-        this.items.add (new TestVideoItem ("smtpe",
-                                           this.root_container.id,
-                                           "SMTPE",
-                                           this.http_server));
-
-        // Now we know how many top-level items we have
-        this.root_container.child_count = this.items.size;
-    }
-
     public override Gee.List<MediaObject> get_root_children (
                                                  uint     offset,
                                                  uint     max_count,
                                                  out uint child_count)
                                                  throws GLib.Error {
-        child_count = this.items.size;
-
-        Gee.List<MediaObject> children = null;
-
-        if (max_count == 0) {
-            max_count = child_count;
-        }
-
-        uint stop = offset + max_count;
-
-        stop = stop.clamp (0, child_count);
-        children = this.items.slice ((int) offset, (int) stop);
-
+        var children = this.root_container.get_children (offset,
+                                                         max_count,
+                                                         out child_count);
         if (children == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
@@ -81,41 +48,17 @@ public class Rygel.TestContentDir : ContentDirectory {
 
     public override MediaObject find_object_by_id (string object_id)
                                                    throws GLib.Error {
-        MediaItem item = null;
-
-        foreach (MediaItem tmp in this.items) {
-            if (object_id == tmp.id) {
-                item = tmp;
-
-                break;
-            }
-        }
-
-        if (item == null) {
+        var media_object = this.root_container.find_object_by_id (object_id);
+        if (media_object == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
-        return item;
+        return media_object;
     }
 
     public override MediaContainer? create_root_container () {
         string friendly_name = this.root_device.get_friendly_name ();
-        return new MediaContainer.root (friendly_name, 0);
-    }
-
-    /* Private methods */
-    private void on_need_stream_source (HTTPServer  http_server,
-                                        MediaItem   item,
-                                        out Element src) {
-        try {
-            src = ((TestItem) item).create_gst_source ();
-        } catch (Error error) {
-            critical ("Error creating Gst source element for item %s: %s",
-                      item.id,
-                      error.message);
-
-            return;
-        }
+        return new TestRootContainer (friendly_name, this.http_server);
     }
 }
 
