@@ -95,7 +95,7 @@ public class Rygel.MediaTracker : ContentDirectory {
             var container = get_item_parent (object_id);
 
             if (container != null)
-                media_object = container.get_item_from_db (object_id);
+                media_object = container.find_object_by_id (object_id);
         }
 
         if (media_object == null) {

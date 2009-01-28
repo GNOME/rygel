@@ -176,11 +176,11 @@ public class Rygel.DVBContentDir : ContentDirectory {
         return group;
     }
 
-    private DVBChannel find_channel_by_id (string id) throws GLib.Error {
-        DVBChannel channel = null;
+    private MediaObject find_channel_by_id (string id) throws GLib.Error {
+        MediaObject channel = null;
 
         foreach (DVBChannelGroup group in this.groups) {
-            channel = group.find_channel (id);
+            channel = group.find_object_by_id (id);
             if (channel != null) {
                 break;
             }

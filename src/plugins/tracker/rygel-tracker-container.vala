@@ -129,7 +129,7 @@ public class Rygel.TrackerContainer : MediaContainer {
 
         /* Iterate through all items */
         for (uint i = 0; i < child_paths.length; i++) {
-            MediaItem item = this.get_item_from_db (child_paths[i]);
+            MediaItem item = this.find_object_by_id (child_paths[i]);
             children.add (item);
         }
 
@@ -144,8 +144,9 @@ public class Rygel.TrackerContainer : MediaContainer {
         return category;
     }
 
-    public MediaItem get_item_from_db (string path) throws GLib.Error {
+    public MediaItem find_object_by_id (string id) throws GLib.Error {
         MediaItem item;
+        string path = id;
 
         if (this.child_class == MediaItem.VIDEO_CLASS) {
             item = new TrackerVideoItem (path, path, this);

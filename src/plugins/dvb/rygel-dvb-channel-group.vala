@@ -78,8 +78,8 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         return this.channels.slice ((int) offset, (int) stop);
     }
 
-    public DVBChannel find_channel (string id) {
-        DVBChannel channel = null;
+    public MediaObject find_object_by_id (string id) {
+        MediaObject channel = null;
         foreach (var tmp in this.channels) {
             if (tmp.id == id) {
                 channel = tmp;
