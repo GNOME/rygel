@@ -329,7 +329,7 @@ public class Rygel.ContentDirectory: Service {
     private void add_metadata (DIDLLiteWriter didl_writer,
                                          BrowseArgs     args)
                                          throws GLib.Error {
-        MediaObject media_object = find_object_by_id (args.object_id);
+        MediaObject media_object = this.find_object_by_id (args.object_id);
         media_object.serialize (didl_writer);
 
         args.update_id = uint32.MAX;
