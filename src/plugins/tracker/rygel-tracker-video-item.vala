@@ -69,18 +69,18 @@ public class Rygel.TrackerVideoItem : TrackerItem {
             this.title = values[Metadata.FILE_NAME];
 
         if (values[Metadata.SIZE] != "")
-            this.res.size = values[Metadata.SIZE].to_int ();
+            this.size = values[Metadata.SIZE].to_int ();
 
         if (values[Metadata.WIDTH] != "")
-            this.res.width = values[Metadata.WIDTH].to_int ();
+            this.width = values[Metadata.WIDTH].to_int ();
 
         if (values[Metadata.HEIGHT] != "")
-            this.res.height = values[Metadata.HEIGHT].to_int ();
+            this.height = values[Metadata.HEIGHT].to_int ();
 
         this.date = this.seconds_to_iso8601 (values[Metadata.DATE]);
-        this.res.mime_type = values[Metadata.MIME];
+        this.mime_type = values[Metadata.MIME];
         this.author = values[Metadata.AUTHOR];
-        this.res.uri = this.uri_from_path (path);
+        this.uri = this.uri_from_path (path);
     }
 }
 

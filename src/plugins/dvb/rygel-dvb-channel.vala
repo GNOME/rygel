@@ -63,8 +63,8 @@ public class Rygel.DVBChannel : MediaItem {
             this.upnp_class = "object.item.videoItem.videoBroadcast";
         }
 
-        this.res.mime_type = "video/mpeg";
-        this.res.uri = this.channel_list.GetChannelURL (cid);
+        this.mime_type = "video/mpeg";
+        this.uri = this.channel_list.GetChannelURL (cid);
     }
 }
 

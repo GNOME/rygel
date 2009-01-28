@@ -42,9 +42,24 @@ public class Rygel.MediaItem : MediaObject {
     public string date;
     public string upnp_class;
 
-    public DIDLLiteResource res;
+    // Resource info
+    public string uri;
+    public string mime_type;
 
+    public long size = -1;       // Size in bytes
+    public long duration = -1;   // Duration in seconds
+    public int bitrate = -1;     // Bytes/second
+
+    // Audio/Music
+    public int sample_freq = -1;
+    public int bits_per_sample = -1;
+    public int n_audio_channels = -1;
     public int track_number = -1;
+
+    // Image/Video
+    public int width = -1;
+    public int height = -1;
+    public int color_depth = -1;
 
     protected Rygel.HTTPServer http_server;
 
@@ -58,9 +73,6 @@ public class Rygel.MediaItem : MediaObject {
         this.title = title;
         this.upnp_class = upnp_class;
         this.http_server = http_server;
-
-        this.res = DIDLLiteResource ();
-        this.res.reset ();
     }
 
     public override void serialize (DIDLLiteWriter didl_writer) throws Error {
@@ -121,23 +133,25 @@ public class Rygel.MediaItem : MediaObject {
         }
 
         /* Add resource data */
+        DIDLLiteResource res = this.get_original_res ();
+
         /* Protocol info */
-        if (this.res.uri != null) {
-            string protocol = get_protocol_for_uri (this.res.uri);
-            this.res.protocol = protocol;
+        if (res.uri != null) {
+            string protocol = get_protocol_for_uri (res.uri);
+            res.protocol = protocol;
         }
 
-        this.res.dlna_profile = "MP3"; /* FIXME */
+        res.dlna_profile = "MP3"; /* FIXME */
 
         if (this.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
-            this.res.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
+            res.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
         } else {
-            this.res.dlna_flags |= DLNAFlags.STREAMING_TRANSFER_MODE;
+            res.dlna_flags |= DLNAFlags.STREAMING_TRANSFER_MODE;
         }
 
-        if (this.res.size > 0) {
-            this.res.dlna_operation = DLNAOperation.RANGE;
-            this.res.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE;
+        if (res.size > 0) {
+            res.dlna_operation = DLNAOperation.RANGE;
+            res.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE;
         }
 
         /* Now get the transcoded/proxy URIs */
@@ -147,7 +161,7 @@ public class Rygel.MediaItem : MediaObject {
         }
 
         /* Add the original res in the end */
-        if (this.res.uri != null) {
+        if (res.uri != null) {
             didl_writer.add_res (res);
         }
 
@@ -187,5 +201,27 @@ public class Rygel.MediaItem : MediaObject {
         resources.add (res);
 
         return resources;
+    }
+
+    private DIDLLiteResource get_original_res () {
+        DIDLLiteResource res = DIDLLiteResource ();
+        res.reset ();
+
+        res.uri = this.uri;
+        res.mime_type = this.mime_type;
+
+        res.size = this.size;
+        res.duration = this.duration;
+        res.bitrate = this.bitrate;
+
+        res.sample_freq = this.sample_freq;
+        res.bits_per_sample = this.bits_per_sample;
+        res.n_audio_channels = this.n_audio_channels;
+
+        res.width = this.width;
+        res.height = this.height;
+        res.color_depth = this.color_depth;
+
+        return res;
     }
 }

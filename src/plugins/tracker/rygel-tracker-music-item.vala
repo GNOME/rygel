@@ -73,7 +73,7 @@ public class Rygel.TrackerMusicItem : TrackerItem {
             this.title = values[Metadata.FILE_NAME];
 
         if (values[Metadata.SIZE] != "")
-            this.res.size = values[Metadata.SIZE].to_int ();
+            this.size = values[Metadata.SIZE].to_int ();
 
         if (values[Metadata.TRACK_NUM] != "")
             this.track_number = values[Metadata.TRACK_NUM].to_int ();
@@ -86,10 +86,10 @@ public class Rygel.TrackerMusicItem : TrackerItem {
             this.date = seconds_to_iso8601 (values[Metadata.DATE_ADDED]);
         }
 
-        this.res.mime_type = values[Metadata.MIME];
+        this.mime_type = values[Metadata.MIME];
         this.author = values[Metadata.ARTIST];
         this.album = values[Metadata.ALBUM];
-        this.res.uri = this.uri_from_path (path);
+        this.uri = this.uri_from_path (path);
     }
 }
 
