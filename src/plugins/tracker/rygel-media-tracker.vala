@@ -85,11 +85,19 @@ public class Rygel.MediaTracker : ContentDirectory {
         if (container == null)
             args.number_returned = 0;
         else {
-            args.number_returned =
-                container.add_children_from_db (didl_writer,
-                                                args.index,
-                                                args.requested_count,
-                                                out args.total_matches);
+            ArrayList<MediaItem> children;
+
+            children = this.get_children (args.object_id,
+                                          args.index,
+                                          args.requested_count,
+                                          out args.total_matches);
+
+            /* Iterate through all items */
+            for (int i = 0; i < children.size; i++) {
+                children[i].serialize (didl_writer);
+            }
+
+            args.number_returned = children.size;
         }
 
         if (args.number_returned > 0) {
@@ -186,6 +194,21 @@ public class Rygel.MediaTracker : ContentDirectory {
 
         if (container != null)
             item = container.get_item_from_db (item_id);
+    }
+
+    private ArrayList<MediaObject> get_children (string   container_id,
+                                                 uint     offset,
+                                                 uint     max_count,
+                                                 out uint child_count)
+                                                 throws GLib.Error {
+        var container = this.find_container_by_id (container_id);
+        if (container == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        return container.get_children_from_db (offset,
+                                               max_count,
+                                               out child_count);
     }
 }
 

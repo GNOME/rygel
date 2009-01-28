@@ -114,26 +114,7 @@ public class Rygel.TrackerContainer : MediaContainer {
         return count;
     }
 
-    public uint add_children_from_db (DIDLLiteWriter didl_writer,
-                                       uint           offset,
-                                       uint           max_count,
-                                       out uint       child_count)
-                                       throws GLib.Error {
-        ArrayList<MediaItem> children;
-
-        children = this.get_children_from_db (offset,
-                                              max_count,
-                                              out child_count);
-
-        /* Iterate through all items */
-        for (int i = 0; i < children.size; i++) {
-            children[i].serialize (didl_writer);
-        }
-
-        return children.size;
-    }
-
-    private ArrayList<MediaItem> get_children_from_db (
+    public ArrayList<MediaItem> get_children_from_db (
                                             uint     offset,
                                             uint     max_count,
                                             out uint child_count)
