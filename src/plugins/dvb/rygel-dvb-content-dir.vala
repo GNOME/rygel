@@ -31,6 +31,8 @@ using Gee;
  * Implementation of DVB ContentDirectory service.
  */
 public class Rygel.DVBContentDir : ContentDirectory {
+    public static const int MAX_REQUESTED_COUNT = 128;
+
     // class-wide constants
     private const string DVB_SERVICE = "org.gnome.DVB";
     private const string MANAGER_PATH = "/org/gnome/DVB/Manager";
@@ -102,41 +104,29 @@ public class Rygel.DVBContentDir : ContentDirectory {
     public override void add_children_metadata (DIDLLiteWriter didl_writer,
                                                 BrowseArgs     args)
                                                 throws GLib.Error {
-        DVBChannelGroup group;
+        if (args.requested_count == 0)
+            args.requested_count = MAX_REQUESTED_COUNT;
 
-        group = this.find_group_by_id (args.object_id);
-        if (group == null) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        ArrayList<MediaItem> children;
+
+        children = this.get_children (args.object_id,
+                                      args.index,
+                                      args.requested_count,
+                                      out args.total_matches);
+        args.number_returned = children.size;
+
+        /* Iterate through all items */
+        for (int i = 0; i < children.size; i++) {
+            children[i].serialize (didl_writer);
         }
 
-        args.number_returned = group.add_channels (didl_writer,
-                                                   args.index,
-                                                   args.requested_count,
-                                                   out args.total_matches);
         args.update_id = uint32.MAX;
     }
 
     public override void add_metadata (DIDLLiteWriter didl_writer,
                                        BrowseArgs     args) throws GLib.Error {
-        bool found = false;
-
-        DVBChannelGroup group;
-
-        // First try groups
-        group = find_group_by_id (args.object_id);
-
-        if (group != null) {
-            group.serialize (didl_writer);
-
-            found = true;
-        } else {
-            // Now try channels
-            found = this.add_channel (didl_writer, args.object_id);
-        }
-
-        if (!found) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
-        }
+        MediaObject media_object = find_object_by_id (args.object_id);
+        media_object.serialize (didl_writer);
 
         args.update_id = uint32.MAX;
     }
@@ -144,10 +134,14 @@ public class Rygel.DVBContentDir : ContentDirectory {
     public override void add_root_children_metadata (DIDLLiteWriter didl_writer,
                                                      BrowseArgs     args)
                                                      throws GLib.Error {
-        foreach (DVBChannelGroup group in this.groups)
-            group.serialize (didl_writer);
+        var children = get_root_children (args.index,
+                                          args.requested_count,
+                                          out args.total_matches);
+        foreach (var child in children) {
+            child.serialize (didl_writer);
+        }
 
-        args.total_matches = args.number_returned = this.groups.size;
+        args.number_returned = children.size;
         args.update_id = uint32.MAX;
     }
 
@@ -166,20 +160,95 @@ public class Rygel.DVBContentDir : ContentDirectory {
         return group;
     }
 
-    private bool add_channel (DIDLLiteWriter didl_writer,
-                              string         id) throws GLib.Error {
-        bool found = false;
+    private DVBChannel find_channel_by_id (string id) throws GLib.Error {
+        DVBChannel channel = null;
 
         foreach (DVBChannelGroup group in this.groups) {
-            var channel = group.find_channel (id);
+            channel = group.find_channel (id);
             if (channel != null) {
-                channel.serialize (didl_writer);
-                found = true;
                 break;
             }
         }
 
-        return found;
+        return channel;
+    }
+
+    private MediaObject find_object_by_id (string object_id) throws GLib.Error {
+        // First try groups
+        MediaObject media_object = find_group_by_id (object_id);
+
+        if (media_object == null) {
+            media_object = find_channel_by_id (object_id);
+        }
+
+        if (media_object == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        return media_object;
+    }
+
+    private ArrayList<MediaObject> get_children (string   container_id,
+                                                 uint     offset,
+                                                 uint     max_count,
+                                                 out uint child_count)
+                                                 throws GLib.Error {
+        var group = this.find_group_by_id (container_id);
+        if (group == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        var channels = group.get_channels (offset,
+                                           max_count,
+                                           out child_count);
+        if (max_count == 0 && offset == 0) {
+            return channels;
+        } else {
+            return slice_object_list (channels,
+                                      offset,
+                                      max_count);
+        }
+    }
+
+    private ArrayList<MediaObject> get_root_children (uint     offset,
+                                                      uint     max_count,
+                                                      out uint child_count)
+                                                      throws GLib.Error {
+        child_count = this.groups.size;
+
+        ArrayList<MediaObject> children;
+
+        if (max_count == 0 && offset == 0) {
+            children = this.groups;
+        } else if (offset >= child_count) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        } else {
+            children = slice_object_list (this.groups,
+                                          offset,
+                                          max_count);
+        }
+
+        return children;
+    }
+
+    private ArrayList<MediaObject> slice_object_list (
+                                        ArrayList<MediaObject> list,
+                                        uint                   offset,
+                                        uint                   max_count) {
+        uint total = list.size;
+
+        var slice = new ArrayList<MediaObject> ();
+
+        if (max_count == 0 || max_count > (total - offset)) {
+            max_count = total - offset;
+        }
+
+        slice = new ArrayList<MediaObject> ();
+        for (uint i = offset; i < total; i++) {
+            slice.add (list[(int) i]);
+        }
+
+        return slice;
     }
 }
 

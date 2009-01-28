@@ -64,17 +64,19 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         this.http_server.item_requested += this.on_item_requested;
     }
 
-    public uint add_channels (DIDLLiteWriter didl_writer,
-                              uint           index,
-                              uint           requested_count,
-                              out uint       total_matches) throws GLib.Error {
-        foreach (var channel in channels.get_values ()) {
-            channel.serialize (didl_writer);
+    public ArrayList<DVBChannel> get_channels (uint     offset,
+                                               uint     max_count,
+                                               out uint child_count)
+                                               throws GLib.Error {
+        child_count = this.channels.size;
+
+        var channels = new ArrayList <DVBChannel> ();
+
+        foreach (var channel in this.channels.get_values ()) {
+            channels.add (channel);
         }
 
-        total_matches = channels.size;
-
-        return total_matches;
+        return channels;
     }
 
     public DVBChannel find_channel (string id) {
