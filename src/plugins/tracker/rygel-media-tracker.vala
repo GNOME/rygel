@@ -130,6 +130,11 @@ public class Rygel.MediaTracker : ContentDirectory {
         return children;
     }
 
+    public override MediaContainer? create_root_container () {
+        string friendly_name = this.root_device.get_friendly_name ();
+        return new MediaContainer.root (friendly_name, 0);
+    }
+
     /* Private methods */
     private TrackerContainer? find_container_by_id (string container_id) {
         TrackerContainer container;

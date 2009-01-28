@@ -161,6 +161,11 @@ public class Rygel.DVBContentDir : ContentDirectory {
         return children;
     }
 
+    public override MediaContainer? create_root_container () {
+        string friendly_name = this.root_device.get_friendly_name ();
+        return new MediaContainer.root (friendly_name, 0);
+    }
+
     // Private methods
     private DVBChannelGroup? find_group_by_id (string id) {
         DVBChannelGroup group = null;

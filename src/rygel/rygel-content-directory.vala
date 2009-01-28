@@ -95,9 +95,13 @@ public class Rygel.ContentDirectory: Service {
         throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
     }
 
+    public virtual MediaContainer? create_root_container () {
+       return null;
+    }
+
     public override void constructed () {
         this.didl_writer = new DIDLLiteWriter ();
-        this.setup_root_container ();
+        this.root_container = this.create_root_container ();
         this.http_server = new HTTPServer (context, this.get_type ().name ());
 
         this.http_server.item_requested += this.on_item_requested;
@@ -249,11 +253,6 @@ public class Rygel.ContentDirectory: Service {
         /* Set action return arguments */
         value.init (typeof (string));
         value.set_string (this.feature_list);
-    }
-
-    private void setup_root_container () {
-        string friendly_name = this.root_device.get_friendly_name ();
-        this.root_container = new MediaContainer.root (friendly_name, 0);
     }
 
     private void browse_metadata (BrowseArgs args) throws Error {
