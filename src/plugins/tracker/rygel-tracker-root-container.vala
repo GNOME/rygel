@@ -67,10 +67,6 @@ public class Rygel.TrackerRootContainer : MediaContainer {
     public override Gee.List<MediaObject>? get_children (uint offset,
                                                          uint max_count)
                                                          throws GLib.Error {
-        if (max_count == 0) {
-            max_count = this.child_count;
-        }
-
         uint stop = offset + max_count;
 
         stop = stop.clamp (0, this.child_count);

@@ -362,6 +362,11 @@ public class Rygel.ContentDirectory: Service {
 
         var container = (MediaContainer) media_object;
         child_count = container.child_count;
+        if (max_count == 0) {
+            // No max count requested, try to fetch all children
+            max_count = child_count;
+        }
+
         var children = container.get_children (offset, max_count);
         if (children == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
@@ -384,6 +389,11 @@ public class Rygel.ContentDirectory: Service {
                                                      out uint child_count)
                                                      throws GLib.Error {
         child_count = this.root_container.child_count;
+        if (max_count == 0) {
+            // No max count requested, try to fetch all children
+            max_count = child_count;
+        }
+
         var children = this.root_container.get_children (offset, max_count);
         if (children == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
