@@ -23,6 +23,7 @@
  */
 
 using GUPnP;
+using Gee;
 
 /**
  * Errors used by ContentDirectory and deriving classes.
@@ -58,6 +59,8 @@ public class Rygel.ContentDirectory: Service {
                     "urn:schemas-upnp-org:service:ContentDirectory:2";
     public const string DESCRIPTION_PATH = "xml/ContentDirectory.xml";
 
+    public const int MAX_REQUESTED_COUNT = 128;
+
     protected uint32 system_update_id;
     protected string feature_list;
     protected string search_caps;
@@ -70,20 +73,24 @@ public class Rygel.ContentDirectory: Service {
     DIDLLiteWriter didl_writer;
 
     // Public abstract methods derived classes need to implement
-    public virtual void add_children_metadata (DIDLLiteWriter didl_writer,
-                                               BrowseArgs     args)
-                                               throws Error {
+    public virtual ArrayList<MediaObject> get_children (string   container_id,
+                                                        uint     offset,
+                                                        uint     max_count,
+                                                        out uint child_count)
+                                                        throws GLib.Error {
         throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
     }
 
-    public virtual void add_metadata (DIDLLiteWriter didl_writer,
-                                      BrowseArgs    args) throws Error {
+    public virtual MediaObject find_object_by_id (string object_id)
+                                                  throws GLib.Error {
         throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
     }
 
-    public virtual void add_root_children_metadata
-                                        (DIDLLiteWriter didl_writer,
-                                         BrowseArgs     args) throws Error {
+    public virtual ArrayList<MediaObject> get_root_children (
+                                                    uint     offset,
+                                                    uint     max_count,
+                                                    out uint child_count)
+                                                    throws GLib.Error {
         throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
     }
 
@@ -315,6 +322,52 @@ public class Rygel.ContentDirectory: Service {
                     "UpdateID", typeof (uint), args.update_id);
 
         action.return ();
+    }
+
+    protected virtual void add_children_metadata (DIDLLiteWriter didl_writer,
+                                                  BrowseArgs     args)
+                                                  throws GLib.Error {
+        if (args.requested_count == 0)
+            args.requested_count = MAX_REQUESTED_COUNT;
+
+        ArrayList<MediaItem> children;
+
+        children = this.get_children (args.object_id,
+                                      args.index,
+                                      args.requested_count,
+                                      out args.total_matches);
+        args.number_returned = children.size;
+
+        /* Iterate through all items */
+        for (int i = 0; i < children.size; i++) {
+            children[i].serialize (didl_writer);
+        }
+
+        args.update_id = uint32.MAX;
+    }
+
+    protected virtual void add_metadata (DIDLLiteWriter didl_writer,
+                                         BrowseArgs     args)
+                                         throws GLib.Error {
+        MediaObject media_object = find_object_by_id (args.object_id);
+        media_object.serialize (didl_writer);
+
+        args.update_id = uint32.MAX;
+    }
+
+    protected virtual void add_root_children_metadata (
+                                        DIDLLiteWriter didl_writer,
+                                        BrowseArgs     args)
+                                        throws GLib.Error {
+        var children = get_root_children (args.index,
+                                          args.requested_count,
+                                          out args.total_matches);
+        foreach (var child in children) {
+            child.serialize (didl_writer);
+        }
+
+        args.number_returned = children.size;
+        args.update_id = uint32.MAX;
     }
 }
 

@@ -55,32 +55,11 @@ public class Rygel.TestContentDir : ContentDirectory {
         this.root_container.child_count = this.items.size;
     }
 
-    public override void add_metadata (DIDLLiteWriter didl_writer,
-                                       BrowseArgs     args) throws GLib.Error {
-        MediaObject media_object = find_object_by_id (args.object_id);
-        media_object.serialize (didl_writer);
-
-        args.update_id = uint32.MAX;
-    }
-
-    public override void add_root_children_metadata (DIDLLiteWriter didl_writer,
-                                                     BrowseArgs     args)
-                                                     throws GLib.Error {
-        var children = get_root_children (args.index,
-                                          args.requested_count,
-                                          out args.total_matches);
-        foreach (var child in children) {
-            child.serialize (didl_writer);
-        }
-
-        args.number_returned = children.size;
-        args.update_id = uint32.MAX;
-    }
-
-    private ArrayList<MediaObject> get_root_children (uint     offset,
-                                                      uint     max_count,
-                                                      out uint child_count)
-                                                      throws GLib.Error {
+    public override ArrayList<MediaObject> get_root_children (
+                                                 uint     offset,
+                                                 uint     max_count,
+                                                 out uint child_count)
+                                                 throws GLib.Error {
         child_count = this.items.size;
 
         ArrayList<MediaObject> children;
@@ -98,8 +77,8 @@ public class Rygel.TestContentDir : ContentDirectory {
         return children;
     }
 
-    /* Private methods */
-    private MediaObject find_object_by_id (string object_id) throws GLib.Error {
+    public override MediaObject find_object_by_id (string object_id)
+                                                   throws GLib.Error {
         MediaItem item = null;
 
         foreach (MediaItem tmp in this.items) {
@@ -117,6 +96,7 @@ public class Rygel.TestContentDir : ContentDirectory {
         return item;
     }
 
+    /* Private methods */
     private void on_item_requested (HTTPServer    http_server,
                                     string        item_id,
                                     out MediaItem item) {

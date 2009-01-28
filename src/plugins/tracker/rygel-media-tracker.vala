@@ -30,8 +30,6 @@ using Gee;
  * Implementation of Tracker-based ContentDirectory service.
  */
 public class Rygel.MediaTracker : ContentDirectory {
-    public static const int MAX_REQUESTED_COUNT = 128;
-
     /* FIXME: Make this a static if you know how to initize it */
     private ArrayList<TrackerContainer> containers;
 
@@ -73,48 +71,62 @@ public class Rygel.MediaTracker : ContentDirectory {
         this.search_parser = new SearchCriteriaParser ();
     }
 
-    public override void add_children_metadata (DIDLLiteWriter didl_writer,
-                                                BrowseArgs     args)
-                                                throws GLib.Error {
-        if (args.requested_count == 0)
-            args.requested_count = MAX_REQUESTED_COUNT;
-
-        ArrayList<MediaItem> children;
-
-        children = this.get_children (args.object_id,
-                                      args.index,
-                                      args.requested_count,
-                                      out args.total_matches);
-        args.number_returned = children.size;
-
-        /* Iterate through all items */
-        for (int i = 0; i < children.size; i++) {
-            children[i].serialize (didl_writer);
+    public override ArrayList<MediaObject> get_children (
+                                                 string   container_id,
+                                                 uint     offset,
+                                                 uint     max_count,
+                                                 out uint child_count)
+                                                 throws GLib.Error {
+        var container = this.find_container_by_id (container_id);
+        if (container == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
-        args.update_id = uint32.MAX;
+        return container.get_children_from_db (offset,
+                                               max_count,
+                                               out child_count);
     }
 
-    public override void add_metadata (DIDLLiteWriter didl_writer,
-                                       BrowseArgs     args) throws GLib.Error {
-        MediaObject media_object = find_object_by_id (args.object_id);
-        media_object.serialize (didl_writer);
+    public override MediaObject find_object_by_id (string object_id)
+                                                   throws GLib.Error {
+        /* First try containers */
+        MediaObject media_object = find_container_by_id (object_id);
 
-        args.update_id = uint32.MAX;
-    }
+        if (media_object == null) {
+            /* Now try items */
+            var container = get_item_parent (object_id);
 
-    public override void add_root_children_metadata (DIDLLiteWriter didl_writer,
-                                                     BrowseArgs     args)
-                                                     throws GLib.Error {
-        var children = get_root_children (args.index,
-                                          args.requested_count,
-                                          out args.total_matches);
-        foreach (var child in children) {
-            child.serialize (didl_writer);
+            if (container != null)
+                media_object = container.get_item_from_db (object_id);
         }
 
-        args.number_returned = children.size;
-        args.update_id = uint32.MAX;
+        if (media_object == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        return media_object;
+    }
+
+    public override ArrayList<MediaObject> get_root_children (
+                                                 uint     offset,
+                                                 uint     max_count,
+                                                 out uint child_count)
+                                                 throws GLib.Error {
+        child_count = this.containers.size;
+
+        ArrayList<MediaObject> children;
+
+        if (max_count == 0 && offset == 0) {
+            children = this.containers;
+        } else if (offset >= child_count) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        } else {
+            children = slice_object_list (this.containers,
+                                          offset,
+                                          max_count);
+        }
+
+        return children;
     }
 
     /* Private methods */
@@ -165,61 +177,6 @@ public class Rygel.MediaTracker : ContentDirectory {
 
         if (container != null)
             item = container.get_item_from_db (item_id);
-    }
-
-    private ArrayList<MediaObject> get_children (string   container_id,
-                                                 uint     offset,
-                                                 uint     max_count,
-                                                 out uint child_count)
-                                                 throws GLib.Error {
-        var container = this.find_container_by_id (container_id);
-        if (container == null) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
-        }
-
-        return container.get_children_from_db (offset,
-                                               max_count,
-                                               out child_count);
-    }
-
-    private MediaObject find_object_by_id (string object_id) throws GLib.Error {
-        /* First try containers */
-        MediaObject media_object = find_container_by_id (object_id);
-
-        if (media_object == null) {
-            /* Now try items */
-            var container = get_item_parent (object_id);
-
-            if (container != null)
-                media_object = container.get_item_from_db (object_id);
-        }
-
-        if (media_object == null) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
-        }
-
-        return media_object;
-    }
-
-    private ArrayList<MediaObject> get_root_children (uint     offset,
-                                                      uint     max_count,
-                                                      out uint child_count)
-                                                      throws GLib.Error {
-        child_count = this.containers.size;
-
-        ArrayList<MediaObject> children;
-
-        if (max_count == 0 && offset == 0) {
-            children = this.containers;
-        } else if (offset >= child_count) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
-        } else {
-            children = slice_object_list (this.containers,
-                                          offset,
-                                          max_count);
-        }
-
-        return children;
     }
 
     private ArrayList<MediaObject> slice_object_list (
