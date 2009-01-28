@@ -69,7 +69,7 @@ public class Rygel.MediaTracker : ContentDirectory {
         this.search_parser = new SearchCriteriaParser ();
     }
 
-    public override ArrayList<MediaObject> get_children (
+    public override Gee.List<MediaObject> get_children (
                                                  string   container_id,
                                                  uint     offset,
                                                  uint     max_count,
@@ -105,7 +105,7 @@ public class Rygel.MediaTracker : ContentDirectory {
         return media_object;
     }
 
-    public override ArrayList<MediaObject> get_root_children (
+    public override Gee.List<MediaObject> get_root_children (
                                                  uint     offset,
                                                  uint     max_count,
                                                  out uint child_count)
@@ -127,7 +127,7 @@ public class Rygel.MediaTracker : ContentDirectory {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
-        return (ArrayList<MediaObject>) children;
+        return children;
     }
 
     /* Private methods */

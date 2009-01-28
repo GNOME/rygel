@@ -54,7 +54,7 @@ public class Rygel.TestContentDir : ContentDirectory {
         this.root_container.child_count = this.items.size;
     }
 
-    public override ArrayList<MediaObject> get_root_children (
+    public override Gee.List<MediaObject> get_root_children (
                                                  uint     offset,
                                                  uint     max_count,
                                                  out uint child_count)
@@ -76,7 +76,7 @@ public class Rygel.TestContentDir : ContentDirectory {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
-        return (ArrayList<MediaObject>) children;
+        return children;
     }
 
     public override MediaObject find_object_by_id (string object_id)

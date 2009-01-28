@@ -73,11 +73,11 @@ public class Rygel.ContentDirectory: Service {
     DIDLLiteWriter didl_writer;
 
     // Public abstract methods derived classes need to implement
-    public virtual ArrayList<MediaObject> get_children (string   container_id,
-                                                        uint     offset,
-                                                        uint     max_count,
-                                                        out uint child_count)
-                                                        throws GLib.Error {
+    public virtual Gee.List<MediaObject> get_children (string   container_id,
+                                                       uint     offset,
+                                                       uint     max_count,
+                                                       out uint child_count)
+                                                       throws GLib.Error {
         throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
     }
 
@@ -86,7 +86,7 @@ public class Rygel.ContentDirectory: Service {
         throw new ServerError.NOT_IMPLEMENTED ("Not Implemented\n");
     }
 
-    public virtual ArrayList<MediaObject> get_root_children (
+    public virtual Gee.List<MediaObject> get_root_children (
                                                     uint     offset,
                                                     uint     max_count,
                                                     out uint child_count)
@@ -332,7 +332,7 @@ public class Rygel.ContentDirectory: Service {
         if (args.requested_count == 0)
             args.requested_count = MAX_REQUESTED_COUNT;
 
-        ArrayList<MediaItem> children;
+        Gee.List<MediaItem> children;
 
         children = this.get_children (args.object_id,
                                       args.index,
