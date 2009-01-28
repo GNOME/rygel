@@ -51,7 +51,8 @@ public class BrowseArgs {
 /**
  * Basic implementation of UPnP ContentDirectory service version 2. Most often
  * plugins will provide a child of this class. The inheriting classes should
- * override add_children_metadata and add_metadata virtual methods.
+ * override get_children, get_root_children and find_object_by_id virtual
+ * methods.
  */
 public class Rygel.ContentDirectory: Service {
     public const string UPNP_ID = "urn:upnp-org:serviceId:ContentDirectory";
