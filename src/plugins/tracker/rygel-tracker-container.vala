@@ -137,33 +137,6 @@ public class Rygel.TrackerContainer : MediaContainer {
         return children;
     }
 
-    public bool add_item_from_db (DIDLLiteWriter didl_writer,
-                                   string         path) {
-        MediaItem item = null;
-
-        try {
-            item = this.get_item_from_db (path);
-        } catch (GLib.Error error) {
-            critical ("Failed to fetch item %s. Reason: %s",
-                      item.id,
-                      error.message);
-
-            return false;
-        }
-
-        try {
-            item.serialize (didl_writer);
-        } catch (GLib.Error error) {
-            critical ("Failed to serialize item %s. Reason: %s",
-                      item.id,
-                      error.message);
-
-            return false;
-        }
-
-        return true;
-    }
-
     public static string get_file_category (string uri) throws GLib.Error {
         string category;
 
