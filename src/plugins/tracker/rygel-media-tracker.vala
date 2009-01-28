@@ -33,8 +33,6 @@ public class Rygel.MediaTracker : ContentDirectory {
     /* FIXME: Make this a static if you know how to initize it */
     private ArrayList<TrackerContainer> containers;
 
-    private SearchCriteriaParser search_parser;
-
     /* Pubic methods */
     public override void constructed () {
         // Chain-up to base first
@@ -65,8 +63,6 @@ public class Rygel.MediaTracker : ContentDirectory {
 
         // Now we know how many top-level containers we have
         this.root_container.child_count = this.containers.size;
-
-        this.search_parser = new SearchCriteriaParser ();
     }
 
     public override Gee.List<MediaObject> get_children (
