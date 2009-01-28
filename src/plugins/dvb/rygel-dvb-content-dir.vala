@@ -31,83 +31,10 @@ using Gee;
  * Implementation of DVB ContentDirectory service.
  */
 public class Rygel.DVBContentDir : ContentDirectory {
-    // class-wide constants
-    private const string DVB_SERVICE = "org.gnome.DVB";
-    private const string MANAGER_PATH = "/org/gnome/DVB/Manager";
-    private const string MANAGER_IFACE = "org.gnome.DVB.Manager";
-    private const string CHANNEL_LIST_IFACE = "org.gnome.DVB.ChannelList";
-
-    public dynamic DBus.Object manager;
-
-    private ArrayList<DVBChannelGroup> groups;
-
     // Pubic methods
-    public override void constructed () {
-        // Chain-up to base first
-        base.constructed ();
-
-        DBus.Connection connection;
-        try {
-            connection = DBus.Bus.get (DBus.BusType.SESSION);
-        } catch (DBus.Error error) {
-            critical ("Failed to connect to Session bus: %s\n",
-                      error.message);
-            return;
-        }
-
-        this.groups = new ArrayList<DVBChannelGroup> ();
-
-        // Get a proxy to DVB Manager object
-        this.manager = connection.get_object (DVBContentDir.DVB_SERVICE,
-                                              DVBContentDir.MANAGER_PATH,
-                                              DVBContentDir.MANAGER_IFACE);
-        uint[] dev_groups = null;
-
-        try {
-            dev_groups = this.manager.GetRegisteredDeviceGroups ();
-        } catch (GLib.Error error) {
-            critical ("error: %s", error.message);
-            return;
-        }
-
-        foreach (uint group_id in dev_groups) {
-            string channel_list_path = null;
-            string group_name =  null;
-
-            try {
-                channel_list_path = manager.GetChannelList (group_id);
-
-                // Get the name of the group
-                group_name = manager.GetDeviceGroupName (group_id);
-            } catch (GLib.Error error) {
-                critical ("error: %s", error.message);
-                return;
-            }
-
-            // Get a proxy to DVB ChannelList object
-            dynamic DBus.Object channel_list = connection.get_object
-                                        (DVBContentDir.DVB_SERVICE,
-                                         channel_list_path,
-                                         DVBContentDir.CHANNEL_LIST_IFACE);
-
-            // Create ChannelGroup for each registered device group
-            this.groups.add (new DVBChannelGroup (group_id,
-                                                  group_name,
-                                                  this.root_container.id,
-                                                  channel_list,
-                                                  this.http_server));
-        }
-    }
-
     public override MediaObject find_object_by_id (string object_id)
                                                    throws GLib.Error {
-        // First try groups
-        MediaObject media_object = find_group_by_id (object_id);
-
-        if (media_object == null) {
-            media_object = find_channel_by_id (object_id);
-        }
-
+        var media_object = this.root_container.find_object_by_id (object_id);
         if (media_object == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
@@ -121,19 +48,20 @@ public class Rygel.DVBContentDir : ContentDirectory {
                                                  uint     max_count,
                                                  out uint child_count)
                                                  throws GLib.Error {
-        var group = this.find_group_by_id (container_id);
-        if (group == null) {
+        var media_object = this.find_object_by_id (container_id);
+        if (media_object == null || !(media_object is MediaContainer)) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
-        var channels = group.get_children (offset,
-                                           max_count,
-                                           out child_count);
-        if (channels == null) {
+        var container = (MediaContainer) media_object;
+        var children = container.get_children (offset,
+                                               max_count,
+                                               out child_count);
+        if (children == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
-        return channels;
+        return children;
     }
 
     public override Gee.List<MediaObject> get_root_children (
@@ -141,19 +69,9 @@ public class Rygel.DVBContentDir : ContentDirectory {
                                                  uint     max_count,
                                                  out uint child_count)
                                                  throws GLib.Error {
-        child_count = this.groups.size;
-
-        Gee.List<MediaObject> children = null;
-
-        if (max_count == 0) {
-            max_count = child_count;
-        }
-
-        uint stop = offset + max_count;
-
-        stop = stop.clamp (0, child_count);
-        children = this.groups.slice ((int) offset, (int) stop);
-
+        var children = this.root_container.get_children (offset,
+                                                         max_count,
+                                                         out child_count);
         if (children == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
@@ -163,35 +81,7 @@ public class Rygel.DVBContentDir : ContentDirectory {
 
     public override MediaContainer? create_root_container () {
         string friendly_name = this.root_device.get_friendly_name ();
-        return new MediaContainer.root (friendly_name, 0);
-    }
-
-    // Private methods
-    private DVBChannelGroup? find_group_by_id (string id) {
-        DVBChannelGroup group = null;
-
-        foreach (DVBChannelGroup tmp in this.groups) {
-            if (id == tmp.id) {
-                group = tmp;
-
-                break;
-            }
-        }
-
-        return group;
-    }
-
-    private MediaObject find_channel_by_id (string id) throws GLib.Error {
-        MediaObject channel = null;
-
-        foreach (DVBChannelGroup group in this.groups) {
-            channel = group.find_object_by_id (id);
-            if (channel != null) {
-                break;
-            }
-        }
-
-        return channel;
+        return new DVBRootContainer (friendly_name, this.http_server);
     }
 }
 
