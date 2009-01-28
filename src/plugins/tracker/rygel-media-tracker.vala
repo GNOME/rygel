@@ -118,10 +118,14 @@ public class Rygel.MediaTracker : ContentDirectory {
     public override void add_root_children_metadata (DIDLLiteWriter didl_writer,
                                                      BrowseArgs     args)
                                                      throws GLib.Error {
-        foreach (TrackerContainer container in this.containers)
-            container.serialize (didl_writer);
+        var children = get_root_children (args.index,
+                                          args.requested_count,
+                                          out args.total_matches);
+        foreach (var child in children) {
+            child.serialize (didl_writer);
+        }
 
-        args.total_matches = args.number_returned = this.containers.size;
+        args.number_returned = children.size;
         args.update_id = uint32.MAX;
     }
 
@@ -207,6 +211,35 @@ public class Rygel.MediaTracker : ContentDirectory {
         }
 
         return media_object;
+    }
+
+    private ArrayList<MediaObject> get_root_children (uint     offset,
+                                                      uint     max_count,
+                                                      out uint child_count)
+                                                      throws GLib.Error {
+        child_count = this.containers.size;
+
+        ArrayList<MediaObject> children;
+
+        if (max_count == 0 && offset == 0) {
+            children = this.containers;
+        } else if (offset >= child_count) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        } else {
+            // Make sure we don't go beyond the limits
+            max_count %= (child_count - offset);
+
+            if (max_count == 0) {
+                max_count = child_count - offset;
+            }
+
+            children = new ArrayList<MediaObject> ();
+            for (int i = 0; i < max_count; i++) {
+                children.add (this.containers.get (i + (int) offset));
+            }
+        }
+
+        return children;
     }
 }
 
