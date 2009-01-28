@@ -118,8 +118,8 @@ public class Rygel.DVBRootContainer : MediaContainer {
         return children;
     }
 
-    public override MediaObject find_object_by_id (string id)
-                                                   throws GLib.Error {
+    public override MediaObject? find_object_by_id (string id)
+                                                    throws GLib.Error {
         // First try groups
         MediaObject media_object = find_group_by_id (id);
 

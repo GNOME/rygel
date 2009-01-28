@@ -144,8 +144,8 @@ public class Rygel.TrackerContainer : MediaContainer {
         return category;
     }
 
-    public override MediaObject find_object_by_id (string id)
-                                                   throws GLib.Error {
+    public override MediaObject? find_object_by_id (string id)
+                                                    throws GLib.Error {
         MediaObject item;
         string path = id;
 

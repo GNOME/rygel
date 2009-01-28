@@ -88,8 +88,8 @@ public class Rygel.TrackerRootContainer : MediaContainer {
         return children;
     }
 
-    public override MediaObject find_object_by_id (string id)
-                                                   throws GLib.Error {
+    public override MediaObject? find_object_by_id (string id)
+                                                    throws GLib.Error {
         /* First try containers */
         MediaObject media_object = find_container_by_id (id);
 
@@ -99,10 +99,6 @@ public class Rygel.TrackerRootContainer : MediaContainer {
 
             if (container != null)
                 media_object = container.find_object_by_id (id);
-        }
-
-        if (media_object == null) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
         return media_object;

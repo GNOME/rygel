@@ -80,8 +80,8 @@ public class Rygel.TestRootContainer : MediaContainer {
         return children;
     }
 
-    public override MediaObject find_object_by_id (string id)
-                                                   throws GLib.Error {
+    public override MediaObject? find_object_by_id (string id)
+                                                    throws GLib.Error {
         MediaItem item = null;
 
         foreach (MediaItem tmp in this.items) {
@@ -90,10 +90,6 @@ public class Rygel.TestRootContainer : MediaContainer {
 
                 break;
             }
-        }
-
-        if (item == null) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
         return item;

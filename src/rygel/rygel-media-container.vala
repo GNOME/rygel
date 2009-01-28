@@ -98,7 +98,7 @@ public class Rygel.MediaContainer : MediaObject {
      *
      * return the found media object.
      */
-    public virtual MediaObject find_object_by_id (string id) throws Error {
+    public virtual MediaObject? find_object_by_id (string id) throws Error {
         return null;
     }
 }
