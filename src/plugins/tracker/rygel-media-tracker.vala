@@ -80,9 +80,9 @@ public class Rygel.MediaTracker : ContentDirectory {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
-        return container.get_children_from_db (offset,
-                                               max_count,
-                                               out child_count);
+        return container.get_children (offset,
+                                       max_count,
+                                       out child_count);
     }
 
     public override MediaObject find_object_by_id (string object_id)

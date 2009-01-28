@@ -126,7 +126,7 @@ public class Rygel.DVBContentDir : ContentDirectory {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
-        var channels = group.get_channels (offset,
+        var channels = group.get_children (offset,
                                            max_count,
                                            out child_count);
         if (channels == null) {
