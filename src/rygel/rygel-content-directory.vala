@@ -305,7 +305,7 @@ public class Rygel.ContentDirectory: Service {
         action.return ();
     }
 
-    protected virtual void add_children_metadata (DIDLLiteWriter didl_writer,
+    private void add_children_metadata (DIDLLiteWriter didl_writer,
                                                   BrowseArgs     args)
                                                   throws GLib.Error {
         if (args.requested_count == 0)
@@ -327,7 +327,7 @@ public class Rygel.ContentDirectory: Service {
         args.update_id = uint32.MAX;
     }
 
-    protected virtual void add_metadata (DIDLLiteWriter didl_writer,
+    private void add_metadata (DIDLLiteWriter didl_writer,
                                          BrowseArgs     args)
                                          throws GLib.Error {
         MediaObject media_object = find_object_by_id (args.object_id);
@@ -336,7 +336,7 @@ public class Rygel.ContentDirectory: Service {
         args.update_id = uint32.MAX;
     }
 
-    protected virtual void add_root_children_metadata (
+    private void add_root_children_metadata (
                                         DIDLLiteWriter didl_writer,
                                         BrowseArgs     args)
                                         throws GLib.Error {
@@ -351,11 +351,11 @@ public class Rygel.ContentDirectory: Service {
         args.update_id = uint32.MAX;
     }
 
-    protected virtual Gee.List<MediaObject> get_children (string   container_id,
-                                                          uint     offset,
-                                                          uint     max_count,
-                                                          out uint child_count)
-                                                          throws GLib.Error {
+    private Gee.List<MediaObject> get_children (string   container_id,
+                                                uint     offset,
+                                                uint     max_count,
+                                                out uint child_count)
+                                                throws GLib.Error {
         var media_object = this.find_object_by_id (container_id);
         if (media_object == null || !(media_object is MediaContainer)) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
@@ -372,8 +372,7 @@ public class Rygel.ContentDirectory: Service {
         return children;
     }
 
-    protected virtual MediaObject find_object_by_id (string object_id)
-                                                     throws GLib.Error {
+    private MediaObject find_object_by_id (string object_id) throws GLib.Error {
         var media_object = this.root_container.find_object_by_id (object_id);
         if (media_object == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
@@ -382,11 +381,10 @@ public class Rygel.ContentDirectory: Service {
         return media_object;
     }
 
-    protected virtual Gee.List<MediaObject> get_root_children (
-                                                    uint     offset,
-                                                    uint     max_count,
-                                                    out uint child_count)
-                                                    throws GLib.Error {
+    private Gee.List<MediaObject> get_root_children (uint     offset,
+                                                     uint     max_count,
+                                                     out uint child_count)
+                                                     throws GLib.Error {
         var children = this.root_container.get_children (offset,
                                                          max_count,
                                                          out child_count);
