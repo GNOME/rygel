@@ -114,7 +114,7 @@ public class Rygel.TrackerContainer : MediaContainer {
         return count;
     }
 
-    public override Gee.List<MediaObject> get_children (uint     offset,
+    public override Gee.List<MediaObject>? get_children (uint     offset,
                                                          uint     max_count,
                                                          out uint child_count)
                                                          throws GLib.Error {

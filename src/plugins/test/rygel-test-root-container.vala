@@ -56,13 +56,11 @@ public class Rygel.TestRootContainer : MediaContainer {
         this.child_count = this.items.size;
     }
 
-    public override Gee.List<MediaObject> get_children (uint     offset,
-                                                        uint     max_count,
-                                                        out uint child_count)
-                                                        throws GLib.Error {
+    public override Gee.List<MediaObject>? get_children (uint     offset,
+                                                         uint     max_count,
+                                                         out uint child_count)
+                                                         throws GLib.Error {
         child_count = this.items.size;
-
-        Gee.List<MediaObject> children = null;
 
         if (max_count == 0) {
             max_count = child_count;
@@ -71,13 +69,7 @@ public class Rygel.TestRootContainer : MediaContainer {
         uint stop = offset + max_count;
 
         stop = stop.clamp (0, child_count);
-        children = this.items.slice ((int) offset, (int) stop);
-
-        if (children == null) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
-        }
-
-        return children;
+        return this.items.slice ((int) offset, (int) stop);
     }
 
     public override MediaObject? find_object_by_id (string id)

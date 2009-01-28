@@ -98,13 +98,11 @@ public class Rygel.DVBRootContainer : MediaContainer {
         }
     }
 
-    public override Gee.List<MediaObject> get_children (uint     offset,
-                                                        uint     max_count,
-                                                        out uint child_count)
-                                                        throws GLib.Error {
+    public override Gee.List<MediaObject>? get_children (uint     offset,
+                                                         uint     max_count,
+                                                         out uint child_count)
+                                                         throws GLib.Error {
         child_count = this.groups.size;
-
-        Gee.List<MediaObject> children = null;
 
         if (max_count == 0) {
             max_count = child_count;
@@ -113,9 +111,7 @@ public class Rygel.DVBRootContainer : MediaContainer {
         uint stop = offset + max_count;
 
         stop = stop.clamp (0, child_count);
-        children = this.groups.slice ((int) offset, (int) stop);
-
-        return children;
+        return this.groups.slice ((int) offset, (int) stop);
     }
 
     public override MediaObject? find_object_by_id (string id)
