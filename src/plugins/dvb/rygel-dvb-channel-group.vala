@@ -62,13 +62,20 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         this.fetch_channels ();
     }
 
-    public ArrayList<DVBChannel> get_channels (uint     offset,
-                                               uint     max_count,
-                                               out uint child_count)
-                                               throws GLib.Error {
+    public Gee.List<DVBChannel> get_channels (uint     offset,
+                                              uint     max_count,
+                                              out uint child_count)
+                                              throws GLib.Error {
         child_count = this.channels.size;
 
-        return this.channels;
+        if (max_count == 0) {
+            max_count = child_count;
+        }
+
+        uint stop = offset + max_count;
+        stop = stop.clamp (0, child_count);
+
+        return this.channels.slice ((int) offset, (int) stop);
     }
 
     public DVBChannel find_channel (string id) {
