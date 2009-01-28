@@ -310,7 +310,7 @@ public class Rygel.ContentDirectory: Service {
         if (args.requested_count == 0)
             args.requested_count = MAX_REQUESTED_COUNT;
 
-        Gee.List<MediaItem> children;
+        Gee.List<MediaObject> children;
 
         children = this.get_children (args.object_id,
                                       args.index,
