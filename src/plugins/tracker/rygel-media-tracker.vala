@@ -109,29 +109,8 @@ public class Rygel.MediaTracker : ContentDirectory {
 
     public override void add_metadata (DIDLLiteWriter didl_writer,
                                        BrowseArgs     args) throws GLib.Error {
-        bool found = false;
-
-        TrackerContainer container;
-
-        /* First try containers */
-        container = find_container_by_id (args.object_id);
-
-        if (container != null) {
-            container.serialize (didl_writer);
-
-            found = true;
-        } else {
-            /* Now try items */
-            container = get_item_parent (args.object_id);
-
-            if (container != null)
-                found = container.add_item_from_db (didl_writer,
-                                                    args.object_id);
-        }
-
-        if (!found) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
-        }
+        MediaObject media_object = find_object_by_id (args.object_id);
+        media_object.serialize (didl_writer);
 
         args.update_id = uint32.MAX;
     }
@@ -209,6 +188,25 @@ public class Rygel.MediaTracker : ContentDirectory {
         return container.get_children_from_db (offset,
                                                max_count,
                                                out child_count);
+    }
+
+    private MediaObject find_object_by_id (string object_id) throws GLib.Error {
+        /* First try containers */
+        MediaObject media_object = find_container_by_id (object_id);
+
+        if (media_object == null) {
+            /* Now try items */
+            var container = get_item_parent (object_id);
+
+            if (container != null)
+                media_object = container.get_item_from_db (object_id);
+        }
+
+        if (media_object == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        return media_object;
     }
 }
 
