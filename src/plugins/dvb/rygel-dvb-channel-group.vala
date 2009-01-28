@@ -62,10 +62,10 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         this.fetch_channels ();
     }
 
-    public Gee.List<MediaObject> get_children (uint     offset,
-                                               uint     max_count,
-                                               out uint child_count)
-                                               throws GLib.Error {
+    public override Gee.List<MediaObject> get_children (uint     offset,
+                                                        uint     max_count,
+                                                        out uint child_count)
+                                                        throws GLib.Error {
         child_count = this.channels.size;
 
         if (max_count == 0) {
@@ -78,7 +78,8 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         return this.channels.slice ((int) offset, (int) stop);
     }
 
-    public MediaObject find_object_by_id (string id) {
+    public override MediaObject find_object_by_id (string id)
+                                                   throws GLib.Error {
         MediaObject channel = null;
         foreach (var tmp in this.channels) {
             if (tmp.id == id) {

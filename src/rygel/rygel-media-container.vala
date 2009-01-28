@@ -64,4 +64,15 @@ public class Rygel.MediaContainer : MediaObject {
         /* End of Container */
         didl_writer.end_container ();
     }
+
+    public virtual Gee.List<MediaObject> get_children (uint     offset,
+                                                       uint     max_count,
+                                                       out uint child_count)
+                                                       throws Error {
+        return null;
+    }
+
+    public virtual MediaObject find_object_by_id (string id) throws Error {
+        return null;
+    }
 }

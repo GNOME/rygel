@@ -114,10 +114,10 @@ public class Rygel.TrackerContainer : MediaContainer {
         return count;
     }
 
-    public ArrayList<MediaObject> get_children (uint     offset,
-                                                uint     max_count,
-                                                out uint child_count)
-                                                throws GLib.Error {
+    public override Gee.List<MediaObject> get_children (uint     offset,
+                                                         uint     max_count,
+                                                         out uint child_count)
+                                                         throws GLib.Error {
         ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
         child_count = this.get_children_count ();
 
@@ -129,7 +129,7 @@ public class Rygel.TrackerContainer : MediaContainer {
 
         /* Iterate through all items */
         for (uint i = 0; i < child_paths.length; i++) {
-            MediaItem item = this.find_object_by_id (child_paths[i]);
+            MediaObject item = this.find_object_by_id (child_paths[i]);
             children.add (item);
         }
 
@@ -144,8 +144,9 @@ public class Rygel.TrackerContainer : MediaContainer {
         return category;
     }
 
-    public MediaItem find_object_by_id (string id) throws GLib.Error {
-        MediaItem item;
+    public override MediaObject find_object_by_id (string id)
+                                                   throws GLib.Error {
+        MediaObject item;
         string path = id;
 
         if (this.child_class == MediaItem.VIDEO_CLASS) {
