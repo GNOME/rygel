@@ -242,23 +242,32 @@ public class Rygel.ContentDirectory: Service {
     }
 
     private void browse_metadata (BrowseArgs args) throws Error {
-        if (args.object_id == this.root_container.id) {
-            this.root_container.serialize (didl_writer);
-            args.update_id = this.system_update_id;
-        } else {
-            this.add_metadata (this.didl_writer, args);
-        }
+        MediaObject media_object = this.find_object_by_id (args.object_id);
 
+        media_object.serialize (didl_writer);
+
+        args.update_id = uint32.MAX;
         args.number_returned = 1;
         args.total_matches = 1;
     }
 
     private void browse_direct_children (BrowseArgs args) throws Error {
-        if (args.object_id == this.root_container.id) {
-            this.add_root_children_metadata (this.didl_writer, args);
-        } else {
-            this.add_children_metadata (this.didl_writer, args);
+        if (args.requested_count == 0)
+            args.requested_count = MAX_REQUESTED_COUNT;
+
+        Gee.List<MediaObject> children;
+
+        children = this.get_children (args.object_id,
+                                      args.index,
+                                      args.requested_count,
+                                      out args.total_matches);
+        /* Iterate through all items */
+        for (int i = 0; i < children.size; i++) {
+            children[i].serialize (didl_writer);
         }
+
+        args.update_id = uint32.MAX;
+        args.number_returned = children.size;
     }
 
     private bool parse_browse_args (ServiceAction action,
@@ -312,51 +321,6 @@ public class Rygel.ContentDirectory: Service {
         action.return ();
     }
 
-    private void add_children_metadata (DIDLLiteWriter didl_writer,
-                                        BrowseArgs     args)
-                                        throws GLib.Error {
-        if (args.requested_count == 0)
-            args.requested_count = MAX_REQUESTED_COUNT;
-
-        Gee.List<MediaObject> children;
-
-        children = this.get_children (args.object_id,
-                                      args.index,
-                                      args.requested_count,
-                                      out args.total_matches);
-        args.number_returned = children.size;
-
-        /* Iterate through all items */
-        for (int i = 0; i < children.size; i++) {
-            children[i].serialize (didl_writer);
-        }
-
-        args.update_id = uint32.MAX;
-    }
-
-    private void add_metadata (DIDLLiteWriter didl_writer,
-                               BrowseArgs     args)
-                               throws GLib.Error {
-        MediaObject media_object = this.find_object_by_id (args.object_id);
-        media_object.serialize (didl_writer);
-
-        args.update_id = uint32.MAX;
-    }
-
-    private void add_root_children_metadata (DIDLLiteWriter didl_writer,
-                                             BrowseArgs     args)
-                                             throws GLib.Error {
-        var children = get_root_children (args.index,
-                                          args.requested_count,
-                                          out args.total_matches);
-        foreach (var child in children) {
-            child.serialize (didl_writer);
-        }
-
-        args.number_returned = children.size;
-        args.update_id = uint32.MAX;
-    }
-
     private Gee.List<MediaObject> get_children (string   container_id,
                                                 uint     offset,
                                                 uint     max_count,
@@ -383,30 +347,16 @@ public class Rygel.ContentDirectory: Service {
     }
 
     private MediaObject find_object_by_id (string object_id) throws GLib.Error {
+        if (object_id == this.root_container.id) {
+            return this.root_container;
+        }
+
         var media_object = this.root_container.find_object_by_id (object_id);
         if (media_object == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
         return media_object;
-    }
-
-    private Gee.List<MediaObject> get_root_children (uint     offset,
-                                                     uint     max_count,
-                                                     out uint child_count)
-                                                     throws GLib.Error {
-        child_count = this.root_container.child_count;
-        if (max_count == 0) {
-            // No max count requested, try to fetch all children
-            max_count = child_count;
-        }
-
-        var children = this.root_container.get_children (offset, max_count);
-        if (children == null) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
-        }
-
-        return children;
     }
 
     private void on_item_requested (HTTPServer    http_server,
