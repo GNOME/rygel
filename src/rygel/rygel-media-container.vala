@@ -28,7 +28,7 @@ using GUPnP;
  * are supposed to provide working implementations of get_children and
  * find_object_by_id.
  */
-public class Rygel.MediaContainer : MediaObject {
+public abstract class Rygel.MediaContainer : MediaObject {
     public uint child_count;
 
     public MediaContainer (string id,
@@ -81,11 +81,9 @@ public class Rygel.MediaContainer : MediaObject {
      *
      * return A list of media objects.
      */
-    public virtual Gee.List<MediaObject>? get_children (uint offset,
-                                                        uint max_count)
-                                                        throws Error {
-        return null;
-    }
+    public abstract Gee.List<MediaObject>? get_children (uint offset,
+                                                         uint max_count)
+                                                         throws Error;
 
    /**
      * Recursively searches for media object with the given id in this
@@ -95,7 +93,5 @@ public class Rygel.MediaContainer : MediaObject {
      *
      * return the found media object.
      */
-    public virtual MediaObject? find_object_by_id (string id) throws Error {
-        return null;
-    }
+    public abstract MediaObject? find_object_by_id (string id) throws Error;
 }
