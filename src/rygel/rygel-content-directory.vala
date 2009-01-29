@@ -61,7 +61,6 @@ public class Rygel.ContentDirectory: Service {
 
     public const int MAX_REQUESTED_COUNT = 128;
 
-    protected uint32 system_update_id;
     protected string feature_list;
     protected string search_caps;
     protected string sort_caps;
@@ -84,7 +83,6 @@ public class Rygel.ContentDirectory: Service {
 
         this.http_server.item_requested += this.on_item_requested;
 
-        this.system_update_id = 0;
         this.feature_list =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
             "<Features xmlns=\"urn:schemas-upnp-org:av:avs\" " +
@@ -173,7 +171,7 @@ public class Rygel.ContentDirectory: Service {
     private void get_system_update_id_cb (ContentDirectory content_dir,
                                           ServiceAction    action) {
         /* Set action return arguments */
-        action.set ("Id", typeof (uint32), this.system_update_id);
+        action.set ("Id", typeof (uint32), this.root_container.update_id);
 
         action.return ();
     }
@@ -184,7 +182,7 @@ public class Rygel.ContentDirectory: Service {
                                          ref GLib.Value   value) {
         /* Set action return arguments */
         value.init (typeof (uint32));
-        value.set_uint (this.system_update_id);
+        value.set_uint (this.root_container.update_id);
     }
 
     /* action GetSearchCapabilities implementation */
@@ -246,7 +244,12 @@ public class Rygel.ContentDirectory: Service {
 
         media_object.serialize (didl_writer);
 
-        args.update_id = uint32.MAX;
+        if (media_object is MediaContainer) {
+            args.update_id = ((MediaContainer) media_object).update_id;
+        } else {
+            args.update_id = uint32.MAX;
+        }
+
         args.number_returned = 1;
         args.total_matches = 1;
     }
@@ -260,13 +263,13 @@ public class Rygel.ContentDirectory: Service {
         children = this.get_children (args.object_id,
                                       args.index,
                                       args.requested_count,
-                                      out args.total_matches);
+                                      out args.total_matches,
+                                      out args.update_id);
         /* Iterate through all items */
         for (int i = 0; i < children.size; i++) {
             children[i].serialize (didl_writer);
         }
 
-        args.update_id = uint32.MAX;
         args.number_returned = children.size;
     }
 
@@ -309,7 +312,7 @@ public class Rygel.ContentDirectory: Service {
                                   string        didl,
                                   BrowseArgs    args) {
         if (args.update_id == uint32.MAX) {
-            args.update_id = this.system_update_id;
+            args.update_id = this.root_container.update_id;
         }
 
         /* Set action return arguments */
@@ -324,7 +327,8 @@ public class Rygel.ContentDirectory: Service {
     private Gee.List<MediaObject> get_children (string   container_id,
                                                 uint     offset,
                                                 uint     max_count,
-                                                out uint child_count)
+                                                out uint child_count,
+                                                out uint update_id)
                                                 throws GLib.Error {
         var media_object = this.find_object_by_id (container_id);
         if (!(media_object is MediaContainer)) {
@@ -342,6 +346,8 @@ public class Rygel.ContentDirectory: Service {
         if (children == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
+
+        update_id = ((MediaContainer) media_object).update_id;
 
         return children;
     }

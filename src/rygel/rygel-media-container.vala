@@ -30,6 +30,7 @@ using GUPnP;
  */
 public abstract class Rygel.MediaContainer : MediaObject {
     public uint child_count;
+    public uint32 update_id;
 
     public MediaContainer (string id,
                            string parent_id,
@@ -39,11 +40,13 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.parent_id = parent_id;
         this.title = title;
         this.child_count = child_count;
+        this.update_id = uint32.MAX; // undefined for non-root containers
     }
 
     public MediaContainer.root (string title,
                                 uint   child_count) {
         this ("0", "-1", title, child_count);
+        this.update_id = 0;
     }
 
    /**
