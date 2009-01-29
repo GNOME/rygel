@@ -327,7 +327,7 @@ public class Rygel.ContentDirectory: Service {
                                                 out uint child_count)
                                                 throws GLib.Error {
         var media_object = this.find_object_by_id (container_id);
-        if (media_object == null || !(media_object is MediaContainer)) {
+        if (!(media_object is MediaContainer)) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
         }
 
