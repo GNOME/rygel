@@ -153,8 +153,16 @@ public class Rygel.ContentDirectory: Service {
 
             // Conclude the successful Browse action
             conclude_browse (action, didl, args);
-        } catch (Error error) {
+        } catch (ContentDirectoryError error) {
+            warning ("Failed to browse '%s': %s\n",
+                     args.object_id,
+                     error.message);
             action.return_error (error.code, error.message);
+        } catch (Error error) {
+            warning ("Failed to browse '%s': %s\n",
+                     args.object_id,
+                     error.message);
+            action.return_error (701, error.message);
         }
 
         /* Reset the parser state */
