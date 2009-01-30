@@ -122,8 +122,8 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* Browse action implementation */
-    protected virtual void browse_cb (ContentDirectory content_dir,
-                                      ServiceAction    action) {
+    protected virtual void browse_cb (ContentDirectory    content_dir,
+                                      owned ServiceAction action) {
         bool metadata;
 
         BrowseArgs args = new BrowseArgs ();
@@ -168,8 +168,8 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* GetSystemUpdateID action implementation */
-    private void get_system_update_id_cb (ContentDirectory content_dir,
-                                          ServiceAction    action) {
+    private void get_system_update_id_cb (ContentDirectory    content_dir,
+                                          owned ServiceAction action) {
         /* Set action return arguments */
         action.set ("Id", typeof (uint32), this.root_container.update_id);
 
@@ -186,8 +186,8 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* action GetSearchCapabilities implementation */
-    private void get_search_capabilities_cb (ContentDirectory content_dir,
-                                             ServiceAction    action) {
+    private void get_search_capabilities_cb (ContentDirectory    content_dir,
+                                             owned ServiceAction action) {
         /* Set action return arguments */
         action.set ("SearchCaps", typeof (string), this.search_caps);
 
@@ -204,8 +204,8 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* action GetSortCapabilities implementation */
-    private void get_sort_capabilities_cb (ContentDirectory content_dir,
-                                           ServiceAction    action) {
+    private void get_sort_capabilities_cb (ContentDirectory    content_dir,
+                                           owned ServiceAction action) {
         /* Set action return arguments */
         action.set ("SortCaps", typeof (string), this.sort_caps);
 
@@ -222,8 +222,8 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* action GetFeatureList implementation */
-    private void get_feature_list_cb (ContentDirectory content_dir,
-                                      ServiceAction    action) {
+    private void get_feature_list_cb (ContentDirectory    content_dir,
+                                      owned ServiceAction action) {
         /* Set action return arguments */
         action.set ("FeatureList", typeof (string), this.feature_list);
 

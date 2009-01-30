@@ -78,23 +78,23 @@ public class Rygel.ConnectionManager : Service {
         val.set_string (connection_ids);
     }
 
-    private void get_protocol_info_cb (ConnectionManager cm,
-                                       ServiceAction     action) {
+    private void get_protocol_info_cb (ConnectionManager   cm,
+                                       owned ServiceAction action) {
         action.set ("Source", typeof (string), source_protocol_info,
                     "Sink",   typeof (string), sink_protocol_info);
 
         action.return ();
     }
 
-    private void get_current_connection_ids_cb (ConnectionManager cm,
-                                                ServiceAction     action) {
+    private void get_current_connection_ids_cb (ConnectionManager   cm,
+                                                owned ServiceAction action) {
         action.set ("ConnectionIDs", typeof (string), connection_ids);
 
         action.return ();
     }
 
-    private void get_current_connection_info_cb (ConnectionManager cm,
-                                                 ServiceAction     action) {
+    private void get_current_connection_info_cb (ConnectionManager   cm,
+                                                 owned ServiceAction action) {
         int connection_id;
 
         action.get ("ConnectionID", typeof (int), out connection_id);

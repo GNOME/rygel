@@ -41,14 +41,14 @@ public class Rygel.MediaReceiverRegistrar: Service {
 
     /* IsAuthorized and IsValided action implementations (fake) */
     private void is_authorized_cb (MediaReceiverRegistrar registrar,
-                                   ServiceAction          action) {
+                                   owned ServiceAction    action) {
         action.set ("Result", typeof (int), 1);
 
         action.return ();
     }
 
     private void register_device_cb (MediaReceiverRegistrar registrar,
-                                     ServiceAction          action) {
+                                     owned ServiceAction    action) {
         action.set ("RegistrationRespMsg",
                     typeof (string),
                     "WhatisSupposedToBeHere");
