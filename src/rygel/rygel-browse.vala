@@ -48,8 +48,8 @@ public class Browse: GLib.Object {
     public uint update_id;
 
     // The media object corresponding to object_id
-    bool fetch_metadata;
-    MediaObject media_object;
+    private bool fetch_metadata;
+    private MediaObject media_object;
 
     private MediaContainer root_container;
     private ServiceAction action;
