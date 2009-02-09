@@ -50,7 +50,7 @@ public class Browse: GLib.Object {
     // The media object corresponding to object_id
     MediaObject media_object;
 
-    private unowned ContentDirectory content_dir;
+    private MediaContainer root_container;
     private ServiceAction action;
     private Rygel.DIDLLiteWriter didl_writer;
 
@@ -59,11 +59,11 @@ public class Browse: GLib.Object {
 
     public Browse (ContentDirectory    content_dir,
                    owned ServiceAction action) {
-        this.content_dir = content_dir;
+        this.root_container = content_dir.root_container;
         this.action = (owned) action;
 
         this.didl_writer =
-                new Rygel.DIDLLiteWriter (this.content_dir.http_server);
+                new Rygel.DIDLLiteWriter (content_dir.http_server);
     }
 
     public void start () {
@@ -87,9 +87,15 @@ public class Browse: GLib.Object {
     }
 
     private bool fetch_media_object () {
+        if (this.object_id == this.root_container.id) {
+            this.media_object = this.root_container;
+
+            return true;
+        }
+
         try {
             this.media_object =
-                        this.content_dir.find_object_by_id (this.object_id);
+                        this.root_container.find_object_by_id (this.object_id);
         } catch (Error err) {
             this.handle_error (err);
             return false;
@@ -192,7 +198,7 @@ public class Browse: GLib.Object {
         string didl = this.didl_writer.get_string ();
 
         if (this.update_id == uint32.MAX) {
-            this.update_id = this.content_dir.root_container.update_id;
+            this.update_id = this.root_container.update_id;
         }
 
         /* Set action return arguments */

@@ -30,14 +30,14 @@ public class Rygel.HTTPServer : GLib.Object {
     private const string SERVER_PATH_PREFIX = "/RygelHTTPServer";
     private string path_root;
 
-    // Reference to associated ContentDirectory service
-    private unowned ContentDirectory content_dir;
+    // Reference to root container of associated ContentDirectory
+    private MediaContainer root_container;
     private GUPnP.Context context;
     private ArrayList<HTTPRequest> requests;
 
     public HTTPServer (ContentDirectory content_dir,
                        string           name) {
-        this.content_dir = content_dir;
+        this.root_container = content_dir.root_container;
         this.context = content_dir.context;
         this.requests = new ArrayList<HTTPRequest> ();
 
@@ -74,7 +74,7 @@ public class Rygel.HTTPServer : GLib.Object {
                                  string                    server_path,
                                  HashTable<string,string>? query,
                                  Soup.ClientContext        soup_client) {
-        var request = new HTTPRequest (this.content_dir, server, msg, query);
+        var request = new HTTPRequest (this.root_container, server, msg, query);
 
         request.handled += this.on_request_handled;
         this.requests.add (request);

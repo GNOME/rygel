@@ -38,7 +38,7 @@ public errordomain Rygel.HTTPRequestError {
  * Responsible for handling HTTP client requests.
  */
 public class Rygel.HTTPRequest : GLib.Object {
-    private unowned ContentDirectory content_dir;
+    private MediaContainer root_container;
     private Soup.Server server;
     private Soup.Message msg;
     private HashTable<string,string>? query;
@@ -51,11 +51,11 @@ public class Rygel.HTTPRequest : GLib.Object {
     private MediaItem item;
     private Seek seek;
 
-    public HTTPRequest (ContentDirectory          content_dir,
+    public HTTPRequest (MediaContainer            root_container,
                         Soup.Server               server,
                         Soup.Message              msg,
                         HashTable<string,string>? query) {
-        this.content_dir = content_dir;
+        this.root_container = root_container;
         this.server = server;
         this.msg = msg;
         this.query = query;
@@ -286,7 +286,7 @@ public class Rygel.HTTPRequest : GLib.Object {
         MediaObject media_object;
 
         try {
-            media_object = this.content_dir.find_object_by_id (this.item_id);
+            media_object = this.root_container.find_object_by_id (this.item_id);
         } catch (Error error) {
             this.handle_error (error);
             return;
