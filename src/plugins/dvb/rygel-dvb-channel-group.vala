@@ -41,15 +41,12 @@ public class Rygel.DVBChannelGroup : MediaContainer {
     /* List of channels */
     private ArrayList<DVBChannel> channels;
 
-    public HTTPServer http_server;
-
     private uint gid; /* The DVB Daemon Device Group ID */
 
     public DVBChannelGroup (uint                gid,
                             string              title,
                             string              parent_id,
-                            dynamic DBus.Object channel_list,
-                            HTTPServer          http_server) {
+                            dynamic DBus.Object channel_list) {
         base (GID_PREFIX + gid.to_string (), // UPnP ID
               parent_id,
               title,
@@ -57,7 +54,6 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         this.gid = gid;
         //this.upnp_class = "object.container.channelGroup";
         this.channel_list = channel_list;
-        this.http_server = http_server;
 
         this.fetch_channels ();
     }
@@ -110,8 +106,7 @@ public class Rygel.DVBChannelGroup : MediaContainer {
             try {
                 var channel = new DVBChannel (channel_id,
                                               this.id,
-                                              channel_list,
-                                              http_server);
+                                              channel_list);
                 this.channels.add (channel);
             } catch (GLib.Error error) {
                 critical ("Failed to create DVB Channel object: %s",

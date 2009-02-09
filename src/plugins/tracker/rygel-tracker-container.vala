@@ -43,7 +43,6 @@ public class Rygel.TrackerContainer : MediaContainer {
     public static dynamic DBus.Object files;
     public static dynamic DBus.Object tracker;
 
-    public HTTPServer http_server;
     public string category;
 
     /* UPnP class of items under this container */
@@ -73,17 +72,15 @@ public class Rygel.TrackerContainer : MediaContainer {
                                            TrackerContainer.TRACKER_IFACE);
     }
 
-    public TrackerContainer (string     id,
-                             string     parent_id,
-                             string     title,
-                             string     category,
-                             string     child_class,
-                             HTTPServer http_server) {
+    public TrackerContainer (string id,
+                             string parent_id,
+                             string title,
+                             string category,
+                             string child_class) {
         base (id, parent_id, title, 0);
 
         this.category = category;
         this.child_class = child_class;
-        this.http_server = http_server;
 
         /* FIXME: We need to hook to some tracker signals to keep
          *        this field up2date at all times

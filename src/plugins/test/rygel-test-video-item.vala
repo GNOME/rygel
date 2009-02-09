@@ -33,16 +33,14 @@ using Gst;
 public class Rygel.TestVideoItem : Rygel.TestItem {
     const string TEST_MIMETYPE = "video/mpeg";
 
-    public TestVideoItem (string     id,
-                          string     parent_id,
-                          string     title,
-                          HTTPServer http_server) {
+    public TestVideoItem (string id,
+                          string parent_id,
+                          string title) {
         base (id,
               parent_id,
               title,
               TEST_MIMETYPE,
-              MediaItem.VIDEO_CLASS,
-              http_server);
+              MediaItem.VIDEO_CLASS);
     }
 
     public override Element? create_stream_source () {

@@ -34,7 +34,7 @@ public class Rygel.DVBContentDir : ContentDirectory {
     // Pubic methods
     public override MediaContainer? create_root_container () {
         string friendly_name = this.root_device.get_friendly_name ();
-        return new DVBRootContainer (friendly_name, this.http_server);
+        return new DVBRootContainer (friendly_name);
     }
 }
 

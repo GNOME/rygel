@@ -41,8 +41,7 @@ public class Rygel.DVBRootContainer : MediaContainer {
 
     private ArrayList<DVBChannelGroup> groups;
 
-    public DVBRootContainer (string     title,
-                             HTTPServer http_server) {
+    public DVBRootContainer (string title) {
         base.root (title, 0);
 
         DBus.Connection connection;
@@ -93,8 +92,7 @@ public class Rygel.DVBRootContainer : MediaContainer {
             this.groups.add (new DVBChannelGroup (group_id,
                                                   group_name,
                                                   this.id,
-                                                  channel_list,
-                                                  http_server));
+                                                  channel_list));
         }
 
         this.child_count = this.groups.size;

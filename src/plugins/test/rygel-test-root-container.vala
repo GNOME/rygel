@@ -33,23 +33,16 @@ using Gst;
 public class Rygel.TestRootContainer : MediaContainer {
     private ArrayList<MediaItem> items;
 
-    private HTTPServer http_server;
-
-    public TestRootContainer (string     title,
-                             HTTPServer http_server) {
+    public TestRootContainer (string title) {
         base.root (title, 0);
-
-        this.http_server = http_server;
 
         this.items = new ArrayList<MediaItem> ();
         this.items.add (new TestAudioItem ("sinewave",
                                            this.id,
-                                           "Sine Wave",
-                                           this.http_server));
+                                           "Sine Wave"));
         this.items.add (new TestVideoItem ("smtpe",
                                            this.id,
-                                           "SMTPE",
-                                           this.http_server));
+                                           "SMTPE"));
 
         // Now we know how many top-level items we have
         this.child_count = this.items.size;

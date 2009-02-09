@@ -55,18 +55,14 @@ public class Rygel.MediaItem : MediaObject {
     public int height = -1;
     public int color_depth = -1;
 
-    protected Rygel.HTTPServer http_server;
-
-    public MediaItem (string     id,
-                      string     parent_id,
-                      string     title,
-                      string     upnp_class,
-                      HTTPServer http_server) {
+    public MediaItem (string id,
+                      string parent_id,
+                      string title,
+                      string upnp_class) {
         this.id = id;
         this.parent_id = parent_id;
         this.title = title;
         this.upnp_class = upnp_class;
-        this.http_server = http_server;
     }
 
     // Live media items need to provide a nice working implementation of this

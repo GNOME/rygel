@@ -33,7 +33,7 @@ public class Rygel.TestContentDir : ContentDirectory {
     /* Pubic methods */
     public override MediaContainer? create_root_container () {
         string friendly_name = this.root_device.get_friendly_name ();
-        return new TestRootContainer (friendly_name, this.http_server);
+        return new TestRootContainer (friendly_name);
     }
 }
 

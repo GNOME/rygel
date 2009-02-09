@@ -32,13 +32,12 @@ using Gst;
 public abstract class Rygel.TestItem : Rygel.MediaItem {
     const string TEST_AUTHOR = "Zeeshan Ali (Khattak)";
 
-    public TestItem (string     id,
-                     string     parent_id,
-                     string     title,
-                     string     mime,
-                     string     upnp_class,
-                     HTTPServer http_server) {
-        base (id, parent_id, title, upnp_class, http_server);
+    public TestItem (string id,
+                     string parent_id,
+                     string title,
+                     string mime,
+                     string upnp_class) {
+        base (id, parent_id, title, upnp_class);
 
         this.mime_type = mime;
         this.author = TEST_AUTHOR;

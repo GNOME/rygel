@@ -34,7 +34,7 @@ public class Rygel.TrackerRootContainer : MediaContainer {
     /* FIXME: Make this a static if you know how to initize it */
     private ArrayList<TrackerContainer> containers;
 
-    public TrackerRootContainer (string title, HTTPServer http_server) {
+    public TrackerRootContainer (string title) {
         base.root (title, 0);
 
         this.containers = new ArrayList<TrackerContainer> ();
@@ -43,22 +43,19 @@ public class Rygel.TrackerRootContainer : MediaContainer {
                                                this.id,
                                                "All Images",
                                                "Images",
-                                               MediaItem.IMAGE_CLASS,
-                                               http_server));
+                                               MediaItem.IMAGE_CLASS));
         this.containers.add
                         (new TrackerContainer ("14",
                                                this.id,
                                                "All Music",
                                                "Music",
-                                               MediaItem.MUSIC_CLASS,
-                                               http_server));
+                                               MediaItem.MUSIC_CLASS));
         this.containers.add
                         (new TrackerContainer ("15",
                                                this.id,
                                                "All Videos",
                                                "Videos",
-                                               MediaItem.VIDEO_CLASS,
-                                               http_server));
+                                               MediaItem.VIDEO_CLASS));
 
         // Now we know how many top-level containers we have
         this.child_count = this.containers.size;
