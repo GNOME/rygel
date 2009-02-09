@@ -23,6 +23,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+using Rygel;
 using Gst;
 using GUPnP;
 using Gee;
@@ -37,6 +38,8 @@ public class Rygel.HTTPServer : GLib.Object {
     private const string SERVER_PATH_PREFIX = "/RygelHTTPServer";
     private string path_root;
 
+    // Reference to associated ContentDirectory service
+    private unowned ContentDirectory content_dir;
     private GUPnP.Context context;
     private ArrayList<HTTPResponse> responses;
 
@@ -45,8 +48,10 @@ public class Rygel.HTTPServer : GLib.Object {
     public signal void item_requested (string item_id,
                                        out MediaItem item);
 
-    public HTTPServer (GUPnP.Context context, string name) {
-        this.context = context;
+    public HTTPServer (ContentDirectory content_dir,
+                       string           name) {
+        this.content_dir = content_dir;
+        this.context = content_dir.context;
         this.responses = new ArrayList<HTTPResponse> ();
 
         this.path_root = SERVER_PATH_PREFIX + "/" + name;
