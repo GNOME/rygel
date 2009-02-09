@@ -103,19 +103,6 @@ public class Rygel.ContentDirectory: Service {
         this.http_server.destroy ();
     }
 
-    public MediaObject find_object_by_id (string object_id) throws GLib.Error {
-        if (object_id == this.root_container.id) {
-            return this.root_container;
-        }
-
-        var media_object = this.root_container.find_object_by_id (object_id);
-        if (media_object == null) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
-        }
-
-        return media_object;
-    }
-
     /* Browse action implementation */
     protected virtual void browse_cb (ContentDirectory    content_dir,
                                       owned ServiceAction action) {
