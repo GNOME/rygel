@@ -104,6 +104,13 @@ public class Browse: GLib.Object {
             this.update_id = uint32.MAX;
         }
 
+        try {
+            this.media_object.serialize (didl_writer);
+        } catch (Error err) {
+            this.handle_error (err);
+            return;
+        }
+
         this.number_returned = 1;
         this.total_matches = 1;
 
