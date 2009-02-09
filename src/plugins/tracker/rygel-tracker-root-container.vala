@@ -61,13 +61,24 @@ public class Rygel.TrackerRootContainer : MediaContainer {
         this.child_count = this.containers.size;
     }
 
-    public override Gee.List<MediaObject>? get_children (uint offset,
-                                                         uint max_count)
-                                                         throws GLib.Error {
+    public override void get_children (uint               offset,
+                                       uint               max_count,
+                                       Cancellable?       cancellable,
+                                       AsyncReadyCallback callback) {
         uint stop = offset + max_count;
 
         stop = stop.clamp (0, this.child_count);
-        return this.containers.slice ((int) offset, (int) stop);
+        var children = this.containers.slice ((int) offset, (int) stop);
+
+        var res = new Rygel.SimpleAsyncResult (this, callback, children, null);
+        res.complete_in_idle ();
+    }
+
+    public override Gee.List<MediaObject>? get_children_finish (
+                                                    AsyncResult res)
+                                                    throws GLib.Error {
+        var simple_res = (Rygel.SimpleAsyncResult) res;
+        return (Gee.List<MediaObject>) simple_res.obj;
     }
 
     public override void find_object (string             id,

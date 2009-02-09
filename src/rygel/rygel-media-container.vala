@@ -49,17 +49,30 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.update_id = 0;
     }
 
-   /**
-    * Fetches the list of media objects directly under this container.
-    *
-    * @param offet zero-based index of the first item to return
-    * @param max_count maximum number of objects to return
-    *
-    * return A list of media objects.
-    */
-    public abstract Gee.List<MediaObject>? get_children (uint offset,
-                                                         uint max_count)
-                                                         throws Error;
+    /**
+     * Fetches the list of media objects directly under this container and
+     * calls callback once the result is ready.
+     *
+     * @param offet zero-based index of the first item to return
+     * @param max_count maximum number of objects to return
+     * @param cancellable optional cancellable for this operation
+     * @param callback function to call when result is ready
+     */
+    public abstract void get_children (uint               offset,
+                                       uint               max_count,
+                                       Cancellable?       cancellable,
+                                       AsyncReadyCallback callback);
+
+    /**
+     * Finishes the operation started by #get_children.
+     *
+     * @param res an AsyncResult
+     *
+     * return A list of media objects.
+     */
+    public abstract Gee.List<MediaObject>? get_children_finish (
+                                                    AsyncResult res)
+                                                    throws Error;
 
    /**
     * Recursively searches for media object with the given id in this

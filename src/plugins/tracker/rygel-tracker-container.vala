@@ -108,24 +108,50 @@ public class Rygel.TrackerContainer : MediaContainer {
         return count;
     }
 
-    public override Gee.List<MediaObject>? get_children (uint offset,
-                                                         uint max_count)
-                                                         throws GLib.Error {
-        ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
+    public override void get_children (uint               offset,
+                                       uint               max_count,
+                                       Cancellable?       cancellable,
+                                       AsyncReadyCallback callback) {
+        Rygel.SimpleAsyncResult res;
 
-        string[] child_paths =
-                TrackerContainer.files.GetByServiceType (0,
-                                                         this.category,
-                                                         (int) offset,
-                                                         (int) max_count);
 
-        /* Iterate through all items */
-        for (uint i = 0; i < child_paths.length; i++) {
-            MediaObject item = this.find_item (child_paths[i]);
-            children.add (item);
+        try {
+            string[] child_paths;
+
+            child_paths = TrackerContainer.files.GetByServiceType (
+                                                        0,
+                                                        this.category,
+                                                        (int) offset,
+                                                        (int) max_count);
+
+            ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
+
+            /* Iterate through all items */
+            for (uint i = 0; i < child_paths.length; i++) {
+                MediaObject item = this.find_item (child_paths[i]);
+                children.add (item);
+            }
+
+            res = new Rygel.SimpleAsyncResult (this, callback, children, null);
+        } catch (GLib.Error error) {
+            res = new Rygel.SimpleAsyncResult.from_error (this,
+                                                          callback,
+                                                          error);
         }
 
-        return children;
+        res.complete_in_idle ();
+    }
+
+    public override Gee.List<MediaObject>? get_children_finish (
+                                                         AsyncResult res)
+                                                         throws GLib.Error {
+        var simple_res = (Rygel.SimpleAsyncResult) res;
+
+        if (simple_res.error != null) {
+            throw simple_res.error;
+        } else {
+            return (Gee.List<MediaObject>) simple_res.obj;
+        }
     }
 
     public static string get_file_category (string uri) throws GLib.Error {

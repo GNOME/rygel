@@ -260,16 +260,23 @@ public class Browse: GLib.Object {
     private void fetch_children () {
         var container = (MediaContainer) this.media_object;
 
+         container.get_children (this.index,
+                                 this.requested_count,
+                                 null,
+                                 this.on_children_fetched);
+    }
+
+    private void on_children_fetched (Object      source_object,
+                                      AsyncResult res) {
+        var container = (MediaContainer) source_object;
+
         try {
-            var children = container.get_children (this.index,
-                                                   this.requested_count);
+            var children = container.get_children_finish (res);
             this.number_returned = children.size;
 
             serialize_children (children);
-        } catch {
-            this.handle_error (
-                new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
-            return;
+        } catch (Error err) {
+            this.handle_error (err);
         }
     }
 }
