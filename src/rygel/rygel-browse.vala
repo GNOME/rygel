@@ -48,7 +48,7 @@ public class Browse: GLib.Object {
     public uint update_id;
 
     // The media object corresponding to object_id
-    bool metadata;
+    bool fetch_metadata;
     MediaObject media_object;
 
     private MediaContainer root_container;
@@ -78,7 +78,7 @@ public class Browse: GLib.Object {
             return;
         }
 
-        if (this.metadata) {
+        if (this.fetch_metadata) {
             // BrowseMetadata
             this.handle_metadata_request ();
         } else {
@@ -164,12 +164,12 @@ public class Browse: GLib.Object {
         /* BrowseFlag */
         if (this.browse_flag != null &&
             this.browse_flag == "BrowseDirectChildren") {
-            this.metadata = false;
+            this.fetch_metadata = false;
         } else if (this.browse_flag != null &&
                    this.browse_flag == "BrowseMetadata") {
-            this.metadata = true;
+            this.fetch_metadata = true;
         } else {
-            this.metadata = false;
+            this.fetch_metadata = false;
             this.handle_error (
                     new ContentDirectoryError.INVALID_ARGS ("Invalid Args"));
         }
