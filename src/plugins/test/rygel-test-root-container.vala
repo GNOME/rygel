@@ -57,28 +57,33 @@ public class Rygel.TestRootContainer : MediaContainer {
         stop = stop.clamp (0, this.child_count);
         var children = this.items.slice ((int) offset, (int) stop);
 
-        var res = new Rygel.SimpleAsyncResult (this, callback, children, null);
+        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>>
+                                            (this,
+                                             callback);
+        res.data = children;
         res.complete_in_idle ();
     }
 
     public override Gee.List<MediaObject>? get_children_finish (
                                                          AsyncResult res)
                                                          throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult) res;
-        return (Gee.List<MediaObject>) simple_res.obj;
+        var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
+        return simple_res.data;
     }
 
     public override void find_object (string             id,
                                       Cancellable?       cancellable,
                                       AsyncReadyCallback callback) {
-        var res = new Rygel.SimpleAsyncResult (this, callback, null, id);
+        var res = new Rygel.SimpleAsyncResult<string> (this, callback);
+
+        res.data = id;
         res.complete_in_idle ();
     }
 
     public override MediaObject? find_object_finish (AsyncResult res)
                                                      throws Error {
         MediaItem item = null;
-        string id = ((Rygel.SimpleAsyncResult) res).str;
+        var id = ((Rygel.SimpleAsyncResult<string>) res).data;
 
         foreach (MediaItem tmp in this.items) {
             if (id == tmp.id) {

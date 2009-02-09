@@ -22,36 +22,20 @@
 
 /**
  * A simple implementation of GLib.AsyncResult, very similar to
- * GLib.SimpleAsyncResult that provides holders for a string, object and
- * error reference.
+ * GLib.SimpleAsyncResult that provides holders for generic and error
+ * reference/values.
  */
-public class Rygel.SimpleAsyncResult : GLib.Object, GLib.AsyncResult {
+public class Rygel.SimpleAsyncResult<G> : GLib.Object, GLib.AsyncResult {
     private Object source_object;
     private AsyncReadyCallback callback;
 
-    public string str;
-    public Object obj;
-
+    public G data;
     public Error error;
 
     public SimpleAsyncResult (Object             source_object,
-                              AsyncReadyCallback callback,
-                              Object?            obj,
-                              string?            str) {
+                              AsyncReadyCallback callback) {
         this.source_object = source_object;
         this.callback = callback;
-
-        this.obj = obj;
-        this.str = str;
-    }
-
-    public SimpleAsyncResult.from_error (Object             source_object,
-                                         AsyncReadyCallback callback,
-                                         Error              error) {
-        this.source_object = source_object;
-        this.callback = callback;
-
-        this.error = error;
     }
 
     public unowned GLib.Object get_source_object () {

@@ -107,15 +107,17 @@ public class Rygel.DVBRootContainer : MediaContainer {
         stop = stop.clamp (0, this.child_count);
         var groups = this.groups.slice ((int) offset, (int) stop);
 
-        var res = new Rygel.SimpleAsyncResult (this, callback, groups, null);
+        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>>
+                                                (this, callback);
+        res.data = groups;
         res.complete_in_idle ();
     }
 
     public override Gee.List<MediaObject>? get_children_finish (
                                                          AsyncResult res)
                                                          throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult) res;
-        return (Gee.List<MediaObject>) simple_res.obj;
+        var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
+        return simple_res.data;
     }
 
     public override void find_object (string             id,
@@ -128,17 +130,16 @@ public class Rygel.DVBRootContainer : MediaContainer {
             media_object = find_channel_by_id (id);
         }
 
-        var res = new Rygel.SimpleAsyncResult (this,
-                                               callback,
-                                               media_object,
-                                               null);
+        var res = new Rygel.SimpleAsyncResult<MediaObject> (this, callback);
+
+        res.data = media_object;
         res.complete_in_idle ();
     }
 
     public override MediaObject? find_object_finish (AsyncResult res)
                                                      throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult) res;
-        return (MediaObject) simple_res.obj;
+        var simple_res = (Rygel.SimpleAsyncResult<MediaObject>) res;
+        return simple_res.data;
     }
 
     // Private methods

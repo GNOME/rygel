@@ -112,8 +112,9 @@ public class Rygel.TrackerContainer : MediaContainer {
                                        uint               max_count,
                                        Cancellable?       cancellable,
                                        AsyncReadyCallback callback) {
-        Rygel.SimpleAsyncResult res;
-
+        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (
+                                                this,
+                                                callback);
 
         try {
             string[] child_paths;
@@ -132,11 +133,9 @@ public class Rygel.TrackerContainer : MediaContainer {
                 children.add (item);
             }
 
-            res = new Rygel.SimpleAsyncResult (this, callback, children, null);
+            res.data = children;
         } catch (GLib.Error error) {
-            res = new Rygel.SimpleAsyncResult.from_error (this,
-                                                          callback,
-                                                          error);
+            res.error = error;
         }
 
         res.complete_in_idle ();
@@ -145,12 +144,12 @@ public class Rygel.TrackerContainer : MediaContainer {
     public override Gee.List<MediaObject>? get_children_finish (
                                                          AsyncResult res)
                                                          throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult) res;
+        var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
 
         if (simple_res.error != null) {
             throw simple_res.error;
         } else {
-            return (Gee.List<MediaObject>) simple_res.obj;
+            return simple_res.data;
         }
     }
 
@@ -180,19 +179,12 @@ public class Rygel.TrackerContainer : MediaContainer {
     public override void find_object (string             id,
                                       Cancellable?       cancellable,
                                       AsyncReadyCallback callback) {
-        Rygel.SimpleAsyncResult res = null;
-        MediaItem item = null;
+        var res = new Rygel.SimpleAsyncResult<MediaObject> (this, callback);
 
         try {
-            item = this.find_item (id);
+            res.data = this.find_item (id);
         } catch (GLib.Error error) {
-            res = new Rygel.SimpleAsyncResult.from_error (this,
-                                                          callback,
-                                                          error);
-        }
-
-        if (res == null) {
-            res = new Rygel.SimpleAsyncResult (this, callback, item, null);
+            res.error = error;
         }
 
         res.complete_in_idle ();
@@ -200,12 +192,12 @@ public class Rygel.TrackerContainer : MediaContainer {
 
     public override MediaObject? find_object_finish (AsyncResult res)
                                                      throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult) res;
+        var simple_res = (Rygel.SimpleAsyncResult<MediaObject>) res;
 
         if (simple_res.error != null) {
             throw simple_res.error;
         } else {
-            return (MediaItem) simple_res.obj;
+            return simple_res.data;
         }
     }
 }
