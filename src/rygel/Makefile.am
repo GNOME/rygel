@@ -62,6 +62,8 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-media-object.h \
 		rygel-media-container.c \
 		rygel-media-container.h \
+		rygel-simple-async-result.c \
+		rygel-simple-async-result.h \
 		rygel-media-item.c \
 		rygel-media-item.h
 
@@ -110,6 +112,8 @@ rygel_SOURCES = rygel-1.0.vapi \
 		rygel-media-object.h \
 		rygel-media-container.c \
 		rygel-media-container.h \
+		rygel-simple-async-result.c \
+		rygel-simple-async-result.h \
 		rygel-media-item.c \
 		rygel-media-item.h
 
@@ -143,6 +147,7 @@ VAPI_SOURCE_FILES = rygel-content-directory.vala \
 		    rygel-plugin.vala \
 		    rygel-media-object.vala \
 		    rygel-media-container.vala \
+		    rygel-simple-async-result.vala \
 		    rygel-media-item.vala \
 		    rygel-browse.vala \
 		    rygel-didl-lite-writer.vala
