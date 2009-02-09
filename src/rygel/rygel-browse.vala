@@ -27,7 +27,9 @@ using GUPnP;
 using Gee;
 
 /**
- * Browse action implementation.
+ * Browse action implementation. This class is more or less the state-machine
+ * associated with the Browse action handling that exists to make asynchronous
+ * handling of Browse action possible.
  */
 public class Browse: GLib.Object {
     public const int MAX_REQUESTED_COUNT = 128;
