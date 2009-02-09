@@ -25,7 +25,7 @@ using GUPnP;
 /**
  * Represents a media object (container and item).
  */
-public abstract class Rygel.MediaObject {
+public abstract class Rygel.MediaObject : GLib.Object {
     public string id;
     public string parent_id;
     public string title;
