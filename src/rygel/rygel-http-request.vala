@@ -90,9 +90,9 @@ public class Rygel.HTTPRequest : GLib.Object {
                                          "RygelLiveResponse",
                                          src);
         this.response = response;
+        response.ended += on_response_ended;
 
         response.start ();
-        response.ended += on_response_ended;
     }
 
     private void serve_uri (string uri, size_t size) {
