@@ -74,10 +74,10 @@ public class Browse: GLib.Object {
         /* Handle incoming arguments */
         this.parse_args ();
 
-        if (!this.fetch_media_object ()) {
-            return;
-        }
+        this.fetch_media_object ();
+    }
 
+    private void got_media_object () {
         if (this.fetch_metadata) {
             // BrowseMetadata
             this.handle_metadata_request ();
@@ -87,11 +87,12 @@ public class Browse: GLib.Object {
         }
     }
 
-    private bool fetch_media_object () {
+    private void fetch_media_object () {
         if (this.object_id == this.root_container.id) {
             this.media_object = this.root_container;
 
-            return true;
+            this.got_media_object ();
+            return;
         }
 
         try {
@@ -99,10 +100,10 @@ public class Browse: GLib.Object {
                         this.root_container.find_object (this.object_id);
         } catch (Error err) {
             this.handle_error (err);
-            return false;
+            return;
         }
 
-        return true;
+        this.got_media_object ();
     }
 
     private void handle_metadata_request () {
