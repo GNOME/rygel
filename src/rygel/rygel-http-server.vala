@@ -43,9 +43,6 @@ public class Rygel.HTTPServer : GLib.Object {
     private GUPnP.Context context;
     private ArrayList<HTTPResponse> responses;
 
-    public signal void need_stream_source (MediaItem   item,
-                                           out Element src);
-
     public HTTPServer (ContentDirectory content_dir,
                        string           name) {
         this.content_dir = content_dir;
@@ -210,8 +207,8 @@ public class Rygel.HTTPServer : GLib.Object {
             // URI provided, try to create source element from it
             src = Element.make_from_uri (URIType.SRC, uri, null);
         } else {
-            // No URI provided, ask for source element directly
-            this.need_stream_source (item, out src);
+            // No URI provided, ask for source element
+            src = item.create_stream_source ();
         }
 
         if (src == null) {

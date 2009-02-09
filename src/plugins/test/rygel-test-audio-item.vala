@@ -45,15 +45,16 @@ public class Rygel.TestAudioItem : Rygel.TestItem {
               http_server);
     }
 
-    public override Element create_gst_source () throws Error {
+    public override Element? create_stream_source () {
         Bin bin = new Bin (this.title);
 
         dynamic Element src = ElementFactory.make ("audiotestsrc", null);
         Element encoder = ElementFactory.make ("wavenc", null);
 
         if (src == null || encoder == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                    "Required plugin missing");
+            warning ("Required plugin missing");
+
+            return null;
         }
 
         // Tell the source to behave like a live source

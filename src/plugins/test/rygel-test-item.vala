@@ -43,7 +43,5 @@ public abstract class Rygel.TestItem : Rygel.MediaItem {
         this.mime_type = mime;
         this.author = TEST_AUTHOR;
     }
-
-    public abstract Element create_gst_source () throws Error;
 }
 

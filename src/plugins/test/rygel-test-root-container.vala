@@ -40,7 +40,6 @@ public class Rygel.TestRootContainer : MediaContainer {
         base.root (title, 0);
 
         this.http_server = http_server;
-        this.http_server.need_stream_source += this.on_need_stream_source;
 
         this.items = new ArrayList<MediaItem> ();
         this.items.add (new TestAudioItem ("sinewave",
@@ -78,21 +77,6 @@ public class Rygel.TestRootContainer : MediaContainer {
         }
 
         return item;
-    }
-
-    /* Private methods */
-    private void on_need_stream_source (HTTPServer  http_server,
-                                        MediaItem   item,
-                                        out Element src) {
-        try {
-            src = ((TestItem) item).create_gst_source ();
-        } catch (Error error) {
-            critical ("Error creating Gst source element for item %s: %s",
-                      item.id,
-                      error.message);
-
-            return;
-        }
     }
 }
 

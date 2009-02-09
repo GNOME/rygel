@@ -150,6 +150,12 @@ public class Rygel.MediaItem : MediaObject {
         didl_writer.end_item ();
     }
 
+    // Live media items need to provide a nice working implementation of this
+    // method if they can/do no provide a valid URI
+    public virtual Gst.Element? create_stream_source () {
+        return null;
+    }
+
     private string get_protocol_for_uri (string uri) throws Error {
         if (uri.has_prefix ("http")) {
             return "http-get";

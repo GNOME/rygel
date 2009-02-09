@@ -45,7 +45,7 @@ public class Rygel.TestVideoItem : Rygel.TestItem {
               http_server);
     }
 
-    public override Element create_gst_source () throws Error {
+    public override Element? create_stream_source () {
         Bin bin = new Bin (this.title);
 
         dynamic Element src = ElementFactory.make ("videotestsrc", null);
@@ -53,8 +53,9 @@ public class Rygel.TestVideoItem : Rygel.TestItem {
         Element muxer = ElementFactory.make ("mpegtsmux", null);
 
         if (src == null || muxer == null || encoder == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                "Required plugin missing");
+            warning ("Required plugin missing");
+
+            return null;
         }
 
         // Tell the source to behave like a live source
