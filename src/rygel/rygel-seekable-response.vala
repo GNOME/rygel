@@ -38,7 +38,7 @@ public class Rygel.SeekableResponse : Rygel.HTTPResponse {
                              Soup.Message msg,
                              string       uri,
                              Seek?        seek,
-                             size_t       file_length) throws Error {
+                             size_t       file_length) {
         base (server, msg, seek != null);
 
         this.seek = seek;
