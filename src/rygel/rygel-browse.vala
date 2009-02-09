@@ -47,6 +47,9 @@ public class Browse: GLib.Object {
     public uint total_matches;
     public uint update_id;
 
+    // The media object corresponding to object_id
+    MediaObject media_object;
+
     private unowned ContentDirectory content_dir;
     private ServiceAction action;
     private DIDLLiteWriter didl_writer;
@@ -68,6 +71,11 @@ public class Browse: GLib.Object {
 
         /* Handle incoming arguments */
         bool metadata = this.parse_args ();
+
+        if (!this.fetch_media_object ()) {
+            return;
+        }
+
         if (metadata) {
             // BrowseMetadata
             this.handle_metadata_request ();
@@ -77,20 +85,21 @@ public class Browse: GLib.Object {
         }
     }
 
-    private void handle_metadata_request () {
-        MediaObject media_object;
-
+    private bool fetch_media_object () {
         try {
-            media_object = this.content_dir.find_object_by_id (this.object_id);
-
-            media_object.serialize (didl_writer);
+            this.media_object =
+                        this.content_dir.find_object_by_id (this.object_id);
         } catch (Error err) {
             this.handle_error (err);
-            return;
+            return false;
         }
 
-        if (media_object is MediaContainer) {
-            this.update_id = ((MediaContainer) media_object).update_id;
+        return true;
+    }
+
+    private void handle_metadata_request () {
+        if (this.media_object is MediaContainer) {
+            this.update_id = ((MediaContainer) this.media_object).update_id;
         } else {
             this.update_id = uint32.MAX;
         }
@@ -103,50 +112,27 @@ public class Browse: GLib.Object {
     }
 
     private void handle_children_request () {
-        if (this.requested_count == 0)
-            this.requested_count = MAX_REQUESTED_COUNT;
-
-        MediaObject media_object;
-        try {
-            media_object = this.content_dir.find_object_by_id (this.object_id);
-        } catch (Error err) {
-            this.handle_error (err);
-            return;
-        }
-
-        if (!(media_object is MediaContainer)) {
+        if (!(this.media_object is MediaContainer)) {
             this.handle_error (
                 new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
             return;
         }
 
-        var container = (MediaContainer) media_object;
+        if (this.requested_count == 0)
+            this.requested_count = MAX_REQUESTED_COUNT;
+
+        var container = (MediaContainer) this.media_object;
         this.total_matches = container.child_count;
         if (this.requested_count == 0) {
             // No max count requested, try to fetch all children
             this.requested_count = this.total_matches;
         }
 
-        var children = container.get_children (this.index,
-                                               this.requested_count);
-        if (children == null) {
-            this.handle_error (
-                new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
+        if (!this.serialize_children ()) {
             return;
         }
 
-        /* serialize all children */
-        for (int i = 0; i < children.size; i++) {
-            try {
-                children[i].serialize (didl_writer);
-            } catch (Error err) {
-                this.handle_error (err);
-                return;
-            }
-        }
-
-        this.update_id = ((MediaContainer) media_object).update_id;
-        this.number_returned = children.size;
+        this.update_id = container.update_id;
 
         // Conclude the successful Browse action
         this.conclude ();
@@ -225,6 +211,42 @@ public class Browse: GLib.Object {
         }
 
         this.completed ();
+    }
+
+    private bool serialize_children () {
+        var children = this.get_children ();
+        if (children == null) {
+            return false;
+        }
+
+        /* serialize all children */
+        for (int i = 0; i < children.size; i++) {
+            try {
+                children[i].serialize (didl_writer);
+            } catch (Error err) {
+                this.handle_error (err);
+                return false;
+            }
+        }
+
+        this.number_returned = children.size;
+
+        return true;
+    }
+
+    private Gee.List<MediaObject>? get_children () {
+        var container = (MediaContainer) this.media_object;
+
+        try {
+            var children = container.get_children (this.index,
+                                                   this.requested_count);
+
+            return children;
+        } catch {
+            this.handle_error (
+                new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
+            return null;
+        }
     }
 }
 
