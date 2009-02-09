@@ -65,8 +65,6 @@ public class Rygel.ContentDirectory: Service {
 
         this.browses = new ArrayList<Browse> ();
 
-        this.http_server.item_requested += this.on_item_requested;
-
         this.feature_list =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
             "<Features xmlns=\"urn:schemas-upnp-org:av:avs\" " +
@@ -203,21 +201,6 @@ public class Rygel.ContentDirectory: Service {
 
     private void on_browse_completed (Browse browse) {
         this.browses.remove (browse);
-    }
-
-    private void on_item_requested (HTTPServer    http_server,
-                                    string        item_id,
-                                    out MediaItem item) {
-        try {
-            var media_object = this.find_object_by_id (item_id);
-            if (media_object is MediaItem) {
-                item = (MediaItem) media_object;
-            }
-        } catch (Error err) {
-            warning ("Requested item '%s' not found: %s\n",
-                     item_id,
-                     err.message);
-        }
     }
 }
 

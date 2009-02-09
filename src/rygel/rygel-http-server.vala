@@ -45,8 +45,6 @@ public class Rygel.HTTPServer : GLib.Object {
 
     public signal void need_stream_source (MediaItem   item,
                                            out Element src);
-    public signal void item_requested (string item_id,
-                                       out MediaItem item);
 
     public HTTPServer (ContentDirectory content_dir,
                        string           name) {
@@ -136,8 +134,8 @@ public class Rygel.HTTPServer : GLib.Object {
                                       string       item_id) {
         MediaItem item;
 
-        // Signal the requestion for an item
-        this.item_requested (item_id, out item);
+        // Fetch the requested item
+        item = this.get_requested_item (item_id);
         if (item == null) {
             msg.set_status (Soup.KnownStatusCode.NOT_FOUND);
             return;
@@ -335,6 +333,22 @@ public class Rygel.HTTPServer : GLib.Object {
             }
 
             return seek;
+    }
+
+    private MediaItem? get_requested_item (string item_id) {
+        MediaObject media_object;
+
+        try {
+            media_object = this.content_dir.find_object_by_id (item_id);
+        } catch (Error err) {
+            return null;
         }
+
+        if (media_object != null && media_object is MediaItem) {
+            return (MediaItem) media_object;
+        } else {
+            return null;
+        }
+    }
 }
 
