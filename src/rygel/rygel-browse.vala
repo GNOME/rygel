@@ -71,10 +71,8 @@ public class Browse: GLib.Object {
         /* Start DIDL-Lite fragment */
         this.didl_writer.start_didl_lite (null, null, true);
 
-        /* Handle incoming arguments */
+        /* Start by parsing the 'in' arguments */
         this.parse_args ();
-
-        this.fetch_media_object ();
     }
 
     private void got_media_object () {
@@ -182,6 +180,7 @@ public class Browse: GLib.Object {
             this.fetch_metadata = false;
             this.handle_error (
                     new ContentDirectoryError.INVALID_ARGS ("Invalid Args"));
+            return;
         }
 
         /* ObjectID */
@@ -196,7 +195,10 @@ public class Browse: GLib.Object {
             // Sorry we can't do anything without ObjectID
             this.handle_error (
                 new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
+            return;
         }
+
+        this.fetch_media_object ();
     }
 
     private void conclude () {
