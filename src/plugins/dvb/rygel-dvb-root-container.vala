@@ -107,7 +107,9 @@ public class Rygel.DVBRootContainer : MediaContainer {
         return this.groups.slice ((int) offset, (int) stop);
     }
 
-    public override MediaObject? find_object (string id) throws GLib.Error {
+    public override void find_object (string             id,
+                                      Cancellable?       cancellable,
+                                      AsyncReadyCallback callback) {
         // First try groups
         MediaObject media_object = find_group_by_id (id);
 
@@ -115,7 +117,17 @@ public class Rygel.DVBRootContainer : MediaContainer {
             media_object = find_channel_by_id (id);
         }
 
-        return media_object;
+        var res = new Rygel.SimpleAsyncResult (this,
+                                               callback,
+                                               media_object,
+                                               null);
+        res.complete_in_idle ();
+    }
+
+    public override MediaObject? find_object_finish (AsyncResult res)
+                                                     throws GLib.Error {
+        var simple_res = (Rygel.SimpleAsyncResult) res;
+        return (MediaObject) simple_res.obj;
     }
 
     // Private methods
@@ -137,7 +149,7 @@ public class Rygel.DVBRootContainer : MediaContainer {
         MediaObject channel = null;
 
         foreach (DVBChannelGroup group in this.groups) {
-            channel = group.find_object (id);
+            channel = group.find_object_sync (id);
             if (channel != null) {
                 break;
             }

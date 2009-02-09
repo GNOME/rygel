@@ -67,7 +67,28 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         return this.channels.slice ((int) offset, (int) stop);
     }
 
-    public override MediaObject? find_object (string id) throws GLib.Error {
+    public override void find_object (string             id,
+                                      Cancellable?       cancellable,
+                                      AsyncReadyCallback callback) {
+        MediaObject channel = null;
+        foreach (var tmp in this.channels) {
+            if (tmp.id == id) {
+                channel = tmp;
+                break;
+            }
+        }
+
+        var res = new Rygel.SimpleAsyncResult (this, callback, channel, null);
+        res.complete_in_idle ();
+    }
+
+    public override MediaObject? find_object_finish (AsyncResult res)
+                                                     throws GLib.Error {
+        var simple_res = (Rygel.SimpleAsyncResult) res;
+        return (MediaObject) simple_res.obj;
+    }
+
+    public MediaObject? find_object_sync (string id) {
         MediaObject channel = null;
         foreach (var tmp in this.channels) {
             if (tmp.id == id) {

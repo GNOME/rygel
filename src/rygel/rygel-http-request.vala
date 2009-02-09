@@ -81,7 +81,9 @@ public class Rygel.HTTPRequest : GLib.Object {
         }
 
         // Fetch the requested item
-        this.fetch_requested_item ();
+        this.root_container.find_object (this.item_id,
+                                         null,
+                                         this.on_item_found);
     }
 
     private void stream_from_gst_source (Element# src) throws Error {
@@ -279,13 +281,15 @@ public class Rygel.HTTPRequest : GLib.Object {
             }
     }
 
-    private void fetch_requested_item () {
-        MediaObject media_object;
+    private void on_item_found (GLib.Object source_object,
+                                AsyncResult res) {
+        var container = (MediaContainer) source_object;
 
+        MediaObject media_object;
         try {
-            media_object = this.root_container.find_object (this.item_id);
-        } catch (Error error) {
-            this.handle_error (error);
+            media_object = container.find_object_finish (res);
+        } catch (Error err) {
+            this.handle_error (err);
             return;
         }
 

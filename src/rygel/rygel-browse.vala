@@ -101,9 +101,17 @@ public class Browse: GLib.Object {
             return;
         }
 
+        this.root_container.find_object (this.object_id,
+                                         null,
+                                         this.on_media_object_found);
+    }
+
+    private void on_media_object_found (Object      source_object,
+                                        AsyncResult res) {
+        var container = (MediaContainer) source_object;
+
         try {
-            this.media_object =
-                        this.root_container.find_object (this.object_id);
+            this.media_object = container.find_object_finish (res);
         } catch (Error err) {
             this.handle_error (err);
             return;

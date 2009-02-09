@@ -121,7 +121,7 @@ public class Rygel.TrackerContainer : MediaContainer {
 
         /* Iterate through all items */
         for (uint i = 0; i < child_paths.length; i++) {
-            MediaObject item = this.find_object (child_paths[i]);
+            MediaObject item = this.find_item (child_paths[i]);
             children.add (item);
         }
 
@@ -136,8 +136,8 @@ public class Rygel.TrackerContainer : MediaContainer {
         return category;
     }
 
-    public override MediaObject? find_object (string id) throws GLib.Error {
-        MediaObject item;
+    public MediaItem? find_item (string id) throws GLib.Error {
+        MediaItem item;
         string path = id;
 
         if (this.child_class == MediaItem.VIDEO_CLASS) {
@@ -149,6 +149,38 @@ public class Rygel.TrackerContainer : MediaContainer {
         }
 
         return item;
+    }
+
+    public override void find_object (string             id,
+                                      Cancellable?       cancellable,
+                                      AsyncReadyCallback callback) {
+        Rygel.SimpleAsyncResult res = null;
+        MediaItem item = null;
+
+        try {
+            item = this.find_item (id);
+        } catch (GLib.Error error) {
+            res = new Rygel.SimpleAsyncResult.from_error (this,
+                                                          callback,
+                                                          error);
+        }
+
+        if (res == null) {
+            res = new Rygel.SimpleAsyncResult (this, callback, item, null);
+        }
+
+        res.complete_in_idle ();
+    }
+
+    public override MediaObject? find_object_finish (AsyncResult res)
+                                                     throws GLib.Error {
+        var simple_res = (Rygel.SimpleAsyncResult) res;
+
+        if (simple_res.error != null) {
+            throw simple_res.error;
+        } else {
+            return (MediaItem) simple_res.obj;
+        }
     }
 }
 

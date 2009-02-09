@@ -70,7 +70,9 @@ public class Rygel.TrackerRootContainer : MediaContainer {
         return this.containers.slice ((int) offset, (int) stop);
     }
 
-    public override MediaObject? find_object (string id) throws GLib.Error {
+    public override void find_object (string             id,
+                                      Cancellable?       cancellable,
+                                      AsyncReadyCallback callback) {
         /* First try containers */
         MediaObject media_object = find_container_by_id (id);
 
@@ -78,11 +80,24 @@ public class Rygel.TrackerRootContainer : MediaContainer {
             /* Now try items */
             var container = get_item_parent (id);
 
-            if (container != null)
-                media_object = container.find_object (id);
+            if (container != null) {
+                container.find_object (id, cancellable, callback);
+                return;
+            }
         }
 
-        return media_object;
+        var res = new Rygel.SimpleAsyncResult (this,
+                                               callback,
+                                               media_object,
+                                               null);
+        res.complete_in_idle ();
+    }
+
+    public override MediaObject? find_object_finish (AsyncResult res)
+                                                     throws GLib.Error {
+        var obj = ((Rygel.SimpleAsyncResult) res).obj;
+
+        return (MediaObject) obj;
     }
 
     /* Private methods */

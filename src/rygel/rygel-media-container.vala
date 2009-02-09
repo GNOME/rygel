@@ -63,13 +63,26 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
    /**
      * Recursively searches for media object with the given id in this
-     * container.
+     * container and calls callback when the result is available.
      *
-     * @param id ID of the media object to search for.
+     * @param id ID of the media object to search for
+     * @param cancellable optional cancellable for this operation
+     * @param callback function to call when result is ready
+     *
+     */
+    public abstract void find_object (string             id,
+                                      Cancellable?       cancellable,
+                                      AsyncReadyCallback callback);
+
+    /**
+     * Finishes the search operation started by #find_object.
+     *
+     * @param res an AsyncResult
      *
      * return the found media object.
      */
-    public abstract MediaObject? find_object (string id) throws Error;
+    public abstract MediaObject? find_object_finish (AsyncResult res)
+                                                     throws Error;
 }
 
 /**

@@ -57,8 +57,17 @@ public class Rygel.TestRootContainer : MediaContainer {
         return this.items.slice ((int) offset, (int) stop);
     }
 
-    public override MediaObject? find_object (string id) throws GLib.Error {
+    public override void find_object (string             id,
+                                      Cancellable?       cancellable,
+                                      AsyncReadyCallback callback) {
+        var res = new Rygel.SimpleAsyncResult (this, callback, null, id);
+        res.complete_in_idle ();
+    }
+
+    public override MediaObject? find_object_finish (AsyncResult res)
+                                                     throws Error {
         MediaItem item = null;
+        string id = ((Rygel.SimpleAsyncResult) res).str;
 
         foreach (MediaItem tmp in this.items) {
             if (id == tmp.id) {
@@ -70,5 +79,6 @@ public class Rygel.TestRootContainer : MediaContainer {
 
         return item;
     }
+
 }
 
