@@ -71,3 +71,61 @@ public abstract class Rygel.MediaContainer : MediaObject {
      */
     public abstract MediaObject? find_object (string id) throws Error;
 }
+
+/**
+  * A simple implementation of GLib.AsyncResult, very similar to
+  * GLib.SimpleAsyncResult that provides holders for a string, object and
+  * error reference.
+  */
+public class Rygel.SimpleAsyncResult : GLib.Object, GLib.AsyncResult {
+    private Object source_object;
+    private AsyncReadyCallback callback;
+
+    public string str;
+    public Object obj;
+
+    public Error error;
+
+    public SimpleAsyncResult (Object             source_object,
+                              AsyncReadyCallback callback,
+                              Object?            obj,
+                              string?            str) {
+        this.source_object = source_object;
+        this.callback = callback;
+
+        this.obj = obj;
+        this.str = str;
+    }
+
+    public SimpleAsyncResult.from_error (Object             source_object,
+                                         AsyncReadyCallback callback,
+                                         Error              error) {
+        this.source_object = source_object;
+        this.callback = callback;
+
+        this.error = error;
+    }
+
+    public unowned GLib.Object get_source_object () {
+        return this.source_object;
+    }
+
+    public void* get_user_data () {
+        return null;
+    }
+
+    public void complete () {
+        this.callback (this.source_object, this);
+    }
+
+    public void complete_in_idle () {
+        Idle.add_full (Priority.DEFAULT, idle_func);
+    }
+
+    private bool idle_func () {
+        this.complete ();
+
+        return false;
+    }
+}
+
