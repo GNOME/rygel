@@ -23,13 +23,10 @@
 using GUPnP;
 
 /**
- * Represents a media object (container and item). Subclasses should implement
- * the abstract serialize method.
+ * Represents a media object (container and item).
  */
 public abstract class Rygel.MediaObject {
     public string id;
     public string parent_id;
     public string title;
-
-    public abstract void serialize (DIDLLiteWriter didl_writer) throws Error;
 }

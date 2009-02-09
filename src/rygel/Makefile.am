@@ -34,6 +34,8 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-content-directory.c \
 		rygel-browse.h \
 		rygel-browse.c \
+		rygel-didl-lite-writer.h \
+		rygel-didl-lite-writer.c \
 		rygel-plugin.h \
 		rygel-plugin.c \
 		rygel-plugin-loader.h \
@@ -77,6 +79,8 @@ rygel_SOURCES = rygel-1.0.vapi \
 		rygel-content-directory.c \
 		rygel-browse.h \
 		rygel-browse.c \
+		rygel-didl-lite-writer.h \
+		rygel-didl-lite-writer.c \
 		rygel-plugin.h \
 		rygel-plugin.c \
 		rygel-plugin-loader.h \
@@ -135,7 +139,8 @@ VAPI_SOURCE_FILES = rygel-content-directory.vala \
 		    rygel-media-object.vala \
 		    rygel-media-container.vala \
 		    rygel-media-item.vala \
-		    rygel-browse.vala
+		    rygel-browse.vala \
+		    rygel-didl-lite-writer.vala
 
 rygel-1.0.vapi: $(VAPI_SOURCE_FILES)
 	$(VALAC) -C --library=rygel-1.0 \

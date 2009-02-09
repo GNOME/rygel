@@ -50,33 +50,6 @@ public abstract class Rygel.MediaContainer : MediaObject {
     }
 
    /**
-     * Serializes this container to the specified DIDLLiteWriter object
-     *
-     * @param didl_writer the DIDLLiteWriter object to serialize to.
-     *
-     */
-    public override void serialize (DIDLLiteWriter didl_writer) throws Error {
-        didl_writer.start_container (this.id,
-                                     this.parent_id,
-                                     (int) this.child_count,
-                                     false,
-                                     false);
-
-        didl_writer.add_string ("class",
-                                DIDLLiteWriter.NAMESPACE_UPNP,
-                                null,
-                                "object.container.storageFolder");
-
-        didl_writer.add_string ("title",
-                                DIDLLiteWriter.NAMESPACE_DC,
-                                null,
-                                this.title);
-
-        /* End of Container */
-        didl_writer.end_container ();
-    }
-
-   /**
      * Fetches the list of media objects directly under this container.
      *
      * @param offet zero-based index of the first item to return

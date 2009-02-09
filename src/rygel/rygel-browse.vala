@@ -52,7 +52,7 @@ public class Browse: GLib.Object {
 
     private unowned ContentDirectory content_dir;
     private ServiceAction action;
-    private DIDLLiteWriter didl_writer;
+    private Rygel.DIDLLiteWriter didl_writer;
 
     // Signals
     public signal void completed ();
@@ -62,7 +62,8 @@ public class Browse: GLib.Object {
         this.content_dir = content_dir;
         this.action = (owned) action;
 
-        this.didl_writer = new DIDLLiteWriter ();
+        this.didl_writer =
+                new Rygel.DIDLLiteWriter (this.content_dir.http_server);
     }
 
     public void start () {
@@ -105,7 +106,7 @@ public class Browse: GLib.Object {
         }
 
         try {
-            this.media_object.serialize (didl_writer);
+            this.didl_writer.serialize (this.media_object);
         } catch (Error err) {
             this.handle_error (err);
             return;
@@ -229,7 +230,7 @@ public class Browse: GLib.Object {
         /* serialize all children */
         for (int i = 0; i < children.size; i++) {
             try {
-                children[i].serialize (didl_writer);
+                this.didl_writer.serialize (children[i]);
             } catch (Error err) {
                 this.handle_error (err);
                 return false;
