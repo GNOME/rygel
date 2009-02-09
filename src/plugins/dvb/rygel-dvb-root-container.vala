@@ -107,8 +107,7 @@ public class Rygel.DVBRootContainer : MediaContainer {
         return this.groups.slice ((int) offset, (int) stop);
     }
 
-    public override MediaObject? find_object_by_id (string id)
-                                                    throws GLib.Error {
+    public override MediaObject? find_object (string id) throws GLib.Error {
         // First try groups
         MediaObject media_object = find_group_by_id (id);
 
@@ -138,7 +137,7 @@ public class Rygel.DVBRootContainer : MediaContainer {
         MediaObject channel = null;
 
         foreach (DVBChannelGroup group in this.groups) {
-            channel = group.find_object_by_id (id);
+            channel = group.find_object (id);
             if (channel != null) {
                 break;
             }

@@ -26,7 +26,7 @@ using GUPnP;
  * Represents a container (folder) for media items and containers. Provides
  * basic serialization (to DIDLLiteWriter) implementation. Deriving classes
  * are supposed to provide working implementations of get_children and
- * find_object_by_id.
+ * find_object.
  */
 public abstract class Rygel.MediaContainer : MediaObject {
     public uint child_count;
@@ -69,5 +69,5 @@ public abstract class Rygel.MediaContainer : MediaObject {
      *
      * return the found media object.
      */
-    public abstract MediaObject? find_object_by_id (string id) throws Error;
+    public abstract MediaObject? find_object (string id) throws Error;
 }

@@ -70,8 +70,7 @@ public class Rygel.TrackerRootContainer : MediaContainer {
         return this.containers.slice ((int) offset, (int) stop);
     }
 
-    public override MediaObject? find_object_by_id (string id)
-                                                    throws GLib.Error {
+    public override MediaObject? find_object (string id) throws GLib.Error {
         /* First try containers */
         MediaObject media_object = find_container_by_id (id);
 
@@ -80,7 +79,7 @@ public class Rygel.TrackerRootContainer : MediaContainer {
             var container = get_item_parent (id);
 
             if (container != null)
-                media_object = container.find_object_by_id (id);
+                media_object = container.find_object (id);
         }
 
         return media_object;

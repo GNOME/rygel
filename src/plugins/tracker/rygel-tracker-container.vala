@@ -121,7 +121,7 @@ public class Rygel.TrackerContainer : MediaContainer {
 
         /* Iterate through all items */
         for (uint i = 0; i < child_paths.length; i++) {
-            MediaObject item = this.find_object_by_id (child_paths[i]);
+            MediaObject item = this.find_object (child_paths[i]);
             children.add (item);
         }
 
@@ -136,8 +136,7 @@ public class Rygel.TrackerContainer : MediaContainer {
         return category;
     }
 
-    public override MediaObject? find_object_by_id (string id)
-                                                    throws GLib.Error {
+    public override MediaObject? find_object (string id) throws GLib.Error {
         MediaObject item;
         string path = id;
 

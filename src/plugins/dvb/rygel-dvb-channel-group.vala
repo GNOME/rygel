@@ -67,8 +67,7 @@ public class Rygel.DVBChannelGroup : MediaContainer {
         return this.channels.slice ((int) offset, (int) stop);
     }
 
-    public override MediaObject? find_object_by_id (string id)
-                                                    throws GLib.Error {
+    public override MediaObject? find_object (string id) throws GLib.Error {
         MediaObject channel = null;
         foreach (var tmp in this.channels) {
             if (tmp.id == id) {

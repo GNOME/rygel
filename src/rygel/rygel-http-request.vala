@@ -286,7 +286,7 @@ public class Rygel.HTTPRequest : GLib.Object {
         MediaObject media_object;
 
         try {
-            media_object = this.root_container.find_object_by_id (this.item_id);
+            media_object = this.root_container.find_object (this.item_id);
         } catch (Error error) {
             this.handle_error (error);
             return;

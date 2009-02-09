@@ -57,8 +57,7 @@ public class Rygel.TestRootContainer : MediaContainer {
         return this.items.slice ((int) offset, (int) stop);
     }
 
-    public override MediaObject? find_object_by_id (string id)
-                                                    throws GLib.Error {
+    public override MediaObject? find_object (string id) throws GLib.Error {
         MediaItem item = null;
 
         foreach (MediaItem tmp in this.items) {

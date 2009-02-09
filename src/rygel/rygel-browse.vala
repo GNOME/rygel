@@ -95,7 +95,7 @@ public class Browse: GLib.Object {
 
         try {
             this.media_object =
-                        this.root_container.find_object_by_id (this.object_id);
+                        this.root_container.find_object (this.object_id);
         } catch (Error err) {
             this.handle_error (err);
             return false;
