@@ -78,6 +78,12 @@ public class Browse: GLib.Object {
     }
 
     private void got_media_object () {
+        if (this.media_object == null) {
+            this.handle_error (
+                new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
+            return;
+        }
+
         if (this.fetch_metadata) {
             // BrowseMetadata
             this.handle_metadata_request ();
