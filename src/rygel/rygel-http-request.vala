@@ -78,7 +78,8 @@ public class Rygel.HTTPRequest : GLib.Object {
             return;
         }
 
-        this.handle_item_request ();
+        // Fetch the requested item
+        this.fetch_requested_item ();
     }
 
     private void stream_from_gst_source (Element# src) throws Error {
@@ -108,12 +109,6 @@ public class Rygel.HTTPRequest : GLib.Object {
     }
 
     private void handle_item_request () {
-        // Fetch the requested item
-        this.fetch_requested_item ();
-        if (this.item == null) {
-            return;
-        }
-
         try {
             this.parse_range ();
         } catch (Error error) {
@@ -300,6 +295,8 @@ public class Rygel.HTTPRequest : GLib.Object {
         }
 
         this.item = (MediaItem) media_object;
+
+        this.handle_item_request ();
     }
 
     private void handle_error (Error error) {
