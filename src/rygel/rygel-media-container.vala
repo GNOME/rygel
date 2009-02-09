@@ -50,26 +50,26 @@ public abstract class Rygel.MediaContainer : MediaObject {
     }
 
    /**
-     * Fetches the list of media objects directly under this container.
-     *
-     * @param offet zero-based index of the first item to return
-     * @param max_count maximum number of objects to return
-     *
-     * return A list of media objects.
-     */
+    * Fetches the list of media objects directly under this container.
+    *
+    * @param offet zero-based index of the first item to return
+    * @param max_count maximum number of objects to return
+    *
+    * return A list of media objects.
+    */
     public abstract Gee.List<MediaObject>? get_children (uint offset,
                                                          uint max_count)
                                                          throws Error;
 
    /**
-     * Recursively searches for media object with the given id in this
-     * container and calls callback when the result is available.
-     *
-     * @param id ID of the media object to search for
-     * @param cancellable optional cancellable for this operation
-     * @param callback function to call when result is ready
-     *
-     */
+    * Recursively searches for media object with the given id in this
+    * container and calls callback when the result is available.
+    *
+    * @param id ID of the media object to search for
+    * @param cancellable optional cancellable for this operation
+    * @param callback function to call when result is ready
+    *
+    */
     public abstract void find_object (string             id,
                                       Cancellable?       cancellable,
                                       AsyncReadyCallback callback);
