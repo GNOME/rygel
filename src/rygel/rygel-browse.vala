@@ -48,6 +48,7 @@ public class Browse: GLib.Object {
     public uint update_id;
 
     // The media object corresponding to object_id
+    bool metadata;
     MediaObject media_object;
 
     private MediaContainer root_container;
@@ -71,13 +72,13 @@ public class Browse: GLib.Object {
         this.didl_writer.start_didl_lite (null, null, true);
 
         /* Handle incoming arguments */
-        bool metadata = this.parse_args ();
+        this.parse_args ();
 
         if (!this.fetch_media_object ()) {
             return;
         }
 
-        if (metadata) {
+        if (this.metadata) {
             // BrowseMetadata
             this.handle_metadata_request ();
         } else {
@@ -152,7 +153,7 @@ public class Browse: GLib.Object {
         this.conclude ();
     }
 
-    private bool parse_args () {
+    private void parse_args () {
         this.action.get ("ObjectID", typeof (string), out this.object_id,
                     "BrowseFlag", typeof (string), out this.browse_flag,
                     "Filter", typeof (string), out this.filter,
@@ -161,14 +162,14 @@ public class Browse: GLib.Object {
                     "SortCriteria", typeof (string), out this.sort_criteria);
 
         /* BrowseFlag */
-        bool metadata = false;
         if (this.browse_flag != null &&
             this.browse_flag == "BrowseDirectChildren") {
-            metadata = false;
+            this.metadata = false;
         } else if (this.browse_flag != null &&
                    this.browse_flag == "BrowseMetadata") {
-            metadata = true;
+            this.metadata = true;
         } else {
+            this.metadata = false;
             this.handle_error (
                     new ContentDirectoryError.INVALID_ARGS ("Invalid Args"));
         }
@@ -186,8 +187,6 @@ public class Browse: GLib.Object {
             this.handle_error (
                 new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
         }
-
-        return metadata;
     }
 
     private void conclude () {
