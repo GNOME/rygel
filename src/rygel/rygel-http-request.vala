@@ -59,6 +59,8 @@ public class Rygel.HTTPRequest : GLib.Object {
         this.server = server;
         this.msg = msg;
         this.query = query;
+
+        this.server.pause_message (this.msg);
     }
 
     public void start_processing () {

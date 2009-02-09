@@ -35,8 +35,6 @@ public class Rygel.HTTPResponse : GLib.Object {
         this.server = server;
         this.msg = msg;
 
-        server.pause_message (this.msg);
-
         if (partial) {
             this.msg.set_status (Soup.KnownStatusCode.PARTIAL_CONTENT);
         } else {
