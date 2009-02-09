@@ -153,19 +153,14 @@ public class Browse: GLib.Object {
 
         var container = (MediaContainer) this.media_object;
         this.total_matches = container.child_count;
+        this.update_id = container.update_id;
+
         if (this.requested_count == 0) {
             // No max count requested, try to fetch all children
             this.requested_count = this.total_matches;
         }
 
-        if (!this.serialize_children ()) {
-            return;
-        }
-
-        this.update_id = container.update_id;
-
-        // Conclude the successful Browse action
-        this.conclude ();
+        this.fetch_children ();
     }
 
     private void parse_args () {
@@ -241,10 +236,11 @@ public class Browse: GLib.Object {
         this.completed ();
     }
 
-    private bool serialize_children () {
-        var children = this.get_children ();
+    private void serialize_children (Gee.List<MediaObject>? children) {
         if (children == null) {
-            return false;
+            this.handle_error (
+                new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
+            return;
         }
 
         /* serialize all children */
@@ -253,27 +249,27 @@ public class Browse: GLib.Object {
                 this.didl_writer.serialize (children[i]);
             } catch (Error err) {
                 this.handle_error (err);
-                return false;
+                return;
             }
         }
 
-        this.number_returned = children.size;
-
-        return true;
+        // Conclude the successful Browse action
+        this.conclude ();
     }
 
-    private Gee.List<MediaObject>? get_children () {
+    private void fetch_children () {
         var container = (MediaContainer) this.media_object;
 
         try {
             var children = container.get_children (this.index,
                                                    this.requested_count);
+            this.number_returned = children.size;
 
-            return children;
+            serialize_children (children);
         } catch {
             this.handle_error (
                 new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
-            return null;
+            return;
         }
     }
 }
