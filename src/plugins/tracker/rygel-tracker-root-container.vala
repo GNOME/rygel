@@ -128,22 +128,10 @@ public class Rygel.TrackerRootContainer : MediaContainer {
         return container;
     }
 
-    private TrackerContainer? get_item_parent (string uri) {
+    private TrackerContainer? get_item_parent (string item_id) {
         TrackerContainer container = null;
-        string category;
-
-        try {
-            category = TrackerContainer.get_file_category (uri);
-        } catch (GLib.Error error) {
-            critical ("failed to find service type for %s: %s",
-                      uri,
-                      error.message);
-
-            return null;
-        }
-
         foreach (TrackerContainer tmp in this.containers) {
-            if (tmp.category == category) {
+            if (tmp.is_thy_child (item_id)) {
                 container = tmp;
 
                 break;

@@ -129,7 +129,7 @@ public class Rygel.TrackerContainer : MediaContainer {
 
             /* Iterate through all items */
             for (uint i = 0; i < child_paths.length; i++) {
-                MediaObject item = this.find_item (child_paths[i]);
+                MediaObject item = this.find_item_by_path (child_paths[i]);
                 children.add (item);
             }
 
@@ -153,24 +153,25 @@ public class Rygel.TrackerContainer : MediaContainer {
         }
     }
 
-    public static string get_file_category (string uri) throws GLib.Error {
-        string category;
+    public MediaItem? find_item (string id) throws GLib.Error {
+        string path = this.get_item_path (id);
 
-        category = TrackerContainer.files.GetServiceType (uri);
+        if (path == null) {
+            return null;
+        }
 
-        return category;
+        return this.find_item_by_path (path);
     }
 
-    public MediaItem? find_item (string id) throws GLib.Error {
+    public MediaItem? find_item_by_path (string path) throws GLib.Error {
         MediaItem item;
-        string path = id;
 
         if (this.child_class == MediaItem.VIDEO_CLASS) {
-            item = new TrackerVideoItem (path, path, this);
+            item = new TrackerVideoItem (this.id + ":" + path, path, this);
         } else if (this.child_class == MediaItem.IMAGE_CLASS) {
-            item = new TrackerImageItem (path, path, this);
+            item = new TrackerImageItem (this.id + ":" + path, path, this);
         } else {
-            item = new TrackerMusicItem (path, path, this);
+            item = new TrackerMusicItem (this.id + ":" + path, path, this);
         }
 
         return item;
@@ -198,6 +199,36 @@ public class Rygel.TrackerContainer : MediaContainer {
             throw simple_res.error;
         } else {
             return simple_res.data;
+        }
+    }
+
+    public bool is_thy_child (string item_id) {
+        var parent_id = this.get_item_parent_id (item_id);
+
+        if (parent_id != null && parent_id == this.id) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private string? get_item_path (string item_id) {
+        var tokens = item_id.split (":", 2);
+
+        if (tokens[0] != null && tokens[1] != null) {
+            return tokens[1];
+        } else {
+            return null;
+        }
+    }
+
+    private string? get_item_parent_id (string item_id) {
+        var tokens = item_id.split (":", 2);
+
+        if (tokens[0] != null) {
+            return tokens[0];
+        } else {
+            return null;
         }
     }
 }
