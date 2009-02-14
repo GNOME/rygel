@@ -29,26 +29,17 @@ using DBus;
  * Represents Tracker item.
  */
 public abstract class Rygel.TrackerItem : MediaItem {
-    protected TrackerContainer parent;
     protected string path;
 
     public TrackerItem (string           id,
                         string           path,
                         TrackerContainer parent,
-                        string[]?        metadata) throws GLib.Error {
+                        string[]         metadata) throws GLib.Error {
         base (id, parent.id, "", parent.child_class);
 
         this.path = path;
-        this.parent = parent;
 
-        string[] values;
-        if (metadata == null) {
-            values = this.fetch_metadata ();
-        } else {
-            values = metadata;
-        }
-
-        this.init_from_metadata (values);
+        this.init_from_metadata (metadata);
     }
 
     protected string seconds_to_iso8601 (string seconds) {
@@ -68,14 +59,6 @@ public abstract class Rygel.TrackerItem : MediaItem {
         return date;
     }
 
-    private string[] fetch_metadata () throws GLib.Error {
-        string[] keys = this.get_metadata_keys ();
-
-        /* TODO: make this async */
-        return this.parent.metadata.Get (parent.category, path, keys);
-    }
-
-    public abstract string[] get_metadata_keys ();
     protected abstract void init_from_metadata (string[] values);
 }
 
