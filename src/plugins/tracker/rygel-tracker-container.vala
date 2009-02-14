@@ -147,30 +147,6 @@ public class Rygel.TrackerContainer : MediaContainer {
         }
     }
 
-    public MediaItem? find_item (string id) throws GLib.Error {
-        string path = this.get_item_path (id);
-
-        if (path == null) {
-            return null;
-        }
-
-        return this.find_item_by_path (path);
-    }
-
-    public MediaItem? find_item_by_path (string path) throws GLib.Error {
-        MediaItem item;
-
-        if (this.child_class == MediaItem.VIDEO_CLASS) {
-            item = new TrackerVideoItem (this.id + ":" + path, path, this);
-        } else if (this.child_class == MediaItem.IMAGE_CLASS) {
-            item = new TrackerImageItem (this.id + ":" + path, path, this);
-        } else {
-            item = new TrackerMusicItem (this.id + ":" + path, path, this);
-        }
-
-        return item;
-    }
-
     public override void find_object (string             id,
                                       Cancellable?       cancellable,
                                       AsyncReadyCallback callback) {
@@ -224,6 +200,30 @@ public class Rygel.TrackerContainer : MediaContainer {
         } else {
             return null;
         }
+    }
+
+    private MediaItem? find_item (string id) throws GLib.Error {
+        string path = this.get_item_path (id);
+
+        if (path == null) {
+            return null;
+        }
+
+        return this.find_item_by_path (path);
+    }
+
+    private MediaItem? find_item_by_path (string path) throws GLib.Error {
+        MediaItem item;
+
+        if (this.child_class == MediaItem.VIDEO_CLASS) {
+            item = new TrackerVideoItem (this.id + ":" + path, path, this);
+        } else if (this.child_class == MediaItem.IMAGE_CLASS) {
+            item = new TrackerImageItem (this.id + ":" + path, path, this);
+        } else {
+            item = new TrackerMusicItem (this.id + ":" + path, path, this);
+        }
+
+        return item;
     }
 }
 
