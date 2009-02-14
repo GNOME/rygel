@@ -221,12 +221,17 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
                                                       string[] metadata);
 }
 
-public class Rygel.TrackerSearchResult :
-             Rygel.SimpleAsyncResult<Gee.List<MediaObject>> {
+public class Rygel.TrackerSearchResult : GLib.Object, GLib.AsyncResult {
+    protected GLib.Object source_object;
+    protected AsyncReadyCallback callback;
+
+    public Gee.List<MediaObject> data;
+    public GLib.Error error;
 
     public TrackerSearchResult (TrackerContainer   container,
-                         AsyncReadyCallback callback) {
-        base (container, callback);
+                                AsyncReadyCallback callback) {
+        this.source_object = container;
+        this.callback = callback;
 
         this.data = new ArrayList<MediaObject> ();
     }
@@ -285,5 +290,27 @@ public class Rygel.TrackerSearchResult :
         for (i = 0; strv[i] != null; i++);
 
         return i + 1;
+    }
+
+    public unowned GLib.Object get_source_object () {
+        return this.source_object;
+    }
+
+    public void* get_user_data () {
+        return null;
+    }
+
+    public void complete () {
+        this.callback (this.source_object, this);
+    }
+
+    public void complete_in_idle () {
+        Idle.add_full (Priority.DEFAULT, idle_func);
+    }
+
+    private bool idle_func () {
+        this.complete ();
+
+        return false;
     }
 }
