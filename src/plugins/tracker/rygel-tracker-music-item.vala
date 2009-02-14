@@ -46,7 +46,7 @@ public class Rygel.TrackerMusicItem : TrackerItem {
     public TrackerMusicItem (string           id,
                              string           path,
                              TrackerContainer parent,
-                             string[]         metadata) throws GLib.Error {
+                             string[]         metadata) {
         base (id, path, parent, metadata);
     }
 

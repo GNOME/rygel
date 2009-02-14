@@ -44,7 +44,7 @@ public class Rygel.TrackerVideoItem : TrackerItem {
     public TrackerVideoItem (string           id,
                              string           path,
                              TrackerContainer parent,
-                             string[]         metadata) throws GLib.Error {
+                             string[]         metadata) {
         base (id, path, parent, metadata);
     }
 
