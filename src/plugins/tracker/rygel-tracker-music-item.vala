@@ -66,13 +66,6 @@ public class Rygel.TrackerMusicItem : TrackerItem {
         return keys;
     }
 
-    public override string[] fetch_metadata () throws GLib.Error {
-        string[] keys = this.get_metadata_keys ();
-
-        /* TODO: make this async */
-        return this.parent.metadata.Get (parent.category, path, keys);
-    }
-
     protected override void init_from_metadata (string[] values) {
         if (values[Metadata.TITLE] != "")
             this.title = values[Metadata.TITLE];
