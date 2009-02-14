@@ -89,7 +89,7 @@ public class Rygel.TrackerMusicItem : TrackerItem {
         this.mime_type = values[Metadata.MIME];
         this.author = values[Metadata.ARTIST];
         this.album = values[Metadata.ALBUM];
-        this.uri = this.uri_from_path (path);
+        this.uri = Filename.to_uri (path, null);
     }
 }
 

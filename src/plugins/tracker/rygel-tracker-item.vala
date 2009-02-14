@@ -60,10 +60,6 @@ public abstract class Rygel.TrackerItem : MediaItem {
         return date;
     }
 
-    protected string uri_from_path (string path) {
-        return "file://%s".printf (path);
-    }
-
     protected abstract void fetch_metadata () throws GLib.Error;
 }
 

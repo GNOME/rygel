@@ -80,7 +80,7 @@ public class Rygel.TrackerVideoItem : TrackerItem {
         this.date = this.seconds_to_iso8601 (values[Metadata.DATE]);
         this.mime_type = values[Metadata.MIME];
         this.author = values[Metadata.AUTHOR];
-        this.uri = this.uri_from_path (path);
+        this.uri = Filename.to_uri (path, null);
     }
 }
 
