@@ -110,5 +110,15 @@ public class Rygel.TrackerSearchResult : GLib.Object, GLib.AsyncResult {
     public void complete () {
         this.callback (this.source_object, this);
     }
+
+    public void complete_in_idle () {
+        Idle.add_full (Priority.DEFAULT, idle_func);
+    }
+
+    private bool idle_func () {
+        this.complete ();
+
+        return false;
+    }
 }
 
