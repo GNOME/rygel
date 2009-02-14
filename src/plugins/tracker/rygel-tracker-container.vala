@@ -113,53 +113,31 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
                                        uint               max_count,
                                        Cancellable?       cancellable,
                                        AsyncReadyCallback callback) {
-        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (
-                                                this,
-                                                callback);
+        var res = new TrackerSearchResult (this, callback);
 
-        try {
-            string[][] search_result = this.search.Query (
-                                                   0,
-                                                   this.category,
-                                                   this.get_metadata_keys (),
-                                                   "",
-                                                   new string[0],
-                                                   "",
-                                                   false,
-                                                   new string[0],
-                                                   false,
-                                                   (int) offset,
-                                                   (int) max_count);
-
-            ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
-
-            /* Iterate through all items */
-            for (uint i = 0; i < search_result.length; i++) {
-                string child_path = search_result[i][0];
-                string[] metadata = this.slice_strv_tail (search_result[i], 2);
-
-                MediaObject item = this.fetch_item_by_path (child_path,
-                                                            metadata);
-                children.add (item);
-            }
-
-            res.data = children;
-        } catch (GLib.Error error) {
-            res.error = error;
-        }
-
-        res.complete_in_idle ();
+        this.search.Query (0,
+                           this.category,
+                           this.get_metadata_keys (),
+                           "",
+                           new string[0],
+                           "",
+                           false,
+                           new string[0],
+                           false,
+                           (int) offset,
+                           (int) max_count,
+                           res.search_result_ready);
     }
 
     public override Gee.List<MediaObject>? get_children_finish (
                                                          AsyncResult res)
                                                          throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
+        var search_res = (Rygel.TrackerSearchResult) res;
 
-        if (simple_res.error != null) {
-            throw simple_res.error;
+        if (search_res.error != null) {
+            throw search_res.error;
         } else {
-            return simple_res.data;
+            return search_res.data;
         }
     }
 
@@ -229,6 +207,43 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
         }
     }
 
+    protected abstract string[] get_metadata_keys ();
+    protected abstract MediaItem? fetch_item_by_path (string   path,
+                                                      string[] metadata);
+}
+
+public class Rygel.TrackerSearchResult :
+             Rygel.SimpleAsyncResult<Gee.List<MediaObject>> {
+
+    public TrackerSearchResult (TrackerContainer   container,
+                         AsyncReadyCallback callback) {
+        base (container, callback);
+
+        this.data = new ArrayList<MediaObject> ();
+    }
+
+    public void search_result_ready (string[][] search_result,
+                                     GLib.Error error) {
+        if (error != null) {
+            this.error = error;
+
+            this.complete_in_idle ();
+        }
+
+        TrackerContainer container = (TrackerContainer) this.source_object;
+
+        /* Iterate through all items */
+        for (uint i = 0; i < search_result.length; i++) {
+            string child_path = search_result[i][0];
+            string[] metadata = this.slice_strv_tail (search_result[i], 2);
+
+            var item = container.fetch_item_by_path (child_path, metadata);
+            this.data.add (item);
+        }
+
+        this.complete_in_idle ();
+    }
+
     /**
      * Chops the tail of a string array.
      *
@@ -262,10 +277,4 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
 
         return i + 1;
     }
-
-    protected abstract string[] get_metadata_keys ();
-    protected abstract MediaItem? fetch_item_by_path (string   path,
-                                                      string[] metadata)
-                                                      throws GLib.Error;
 }
-
