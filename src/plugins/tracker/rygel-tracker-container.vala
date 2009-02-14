@@ -167,7 +167,7 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
             string[] keys = this.get_metadata_keys ();
             string[] metadata = this.metadata.Get (this.category, path, keys);
 
-            res.data = this.fetch_item_by_path (path, metadata);
+            res.data = this.create_item (path, metadata);
         } catch (GLib.Error error) {
             res.error = error;
         }
@@ -217,7 +217,6 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
     }
 
     protected abstract string[] get_metadata_keys ();
-    protected abstract MediaItem? fetch_item_by_path (string   path,
-                                                      string[] metadata);
+    protected abstract MediaItem? create_item (string path, string[] metadata);
 }
 

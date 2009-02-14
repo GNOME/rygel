@@ -58,7 +58,7 @@ public class Rygel.TrackerSearchResult : GLib.Object, GLib.AsyncResult {
             string child_path = search_result[i][0];
             string[] metadata = this.slice_strv_tail (search_result[i], 2);
 
-            var item = container.fetch_item_by_path (child_path, metadata);
+            var item = container.create_item (child_path, metadata);
             this.data.add (item);
         }
 

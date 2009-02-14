@@ -37,8 +37,7 @@ public class Rygel.TrackerImageContainer : Rygel.TrackerContainer {
         return TrackerImageItem.get_metadata_keys ();
     }
 
-    protected override MediaItem? fetch_item_by_path (string   path,
-                                                      string[] metadata) {
+    protected override MediaItem? create_item (string path, string[] metadata) {
         return new TrackerImageItem (this.id + ":" + path,
                                      path,
                                      this,
