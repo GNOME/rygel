@@ -155,14 +155,14 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
                                       AsyncReadyCallback callback) {
         var res = new TrackerGetMetadataResult (this, callback, id);
 
+        this.results.add (res);
+
         try {
             string path = this.get_item_path (id);
             if (path == null) {
                 throw new ContentDirectoryError.NO_SUCH_OBJECT (
                                                     "No such object");
             }
-
-            this.results.add (res);
 
             string[] keys = this.get_metadata_keys ();
 
