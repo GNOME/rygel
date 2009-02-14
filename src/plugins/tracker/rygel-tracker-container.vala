@@ -241,7 +241,7 @@ public class Rygel.TrackerSearchResult : GLib.Object, GLib.AsyncResult {
         if (error != null) {
             this.error = error;
 
-            this.complete_in_idle ();
+            this.complete ();
         }
 
         TrackerContainer container = (TrackerContainer) this.source_object;
@@ -255,7 +255,7 @@ public class Rygel.TrackerSearchResult : GLib.Object, GLib.AsyncResult {
             this.data.add (item);
         }
 
-        this.complete_in_idle ();
+        this.complete ();
     }
 
     /**
@@ -302,15 +302,5 @@ public class Rygel.TrackerSearchResult : GLib.Object, GLib.AsyncResult {
 
     public void complete () {
         this.callback (this.source_object, this);
-    }
-
-    public void complete_in_idle () {
-        Idle.add_full (Priority.DEFAULT, idle_func);
-    }
-
-    private bool idle_func () {
-        this.complete ();
-
-        return false;
     }
 }
