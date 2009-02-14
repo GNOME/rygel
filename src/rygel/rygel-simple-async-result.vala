@@ -26,8 +26,8 @@
  * reference/values.
  */
 public class Rygel.SimpleAsyncResult<G> : GLib.Object, GLib.AsyncResult {
-    private Object source_object;
-    private AsyncReadyCallback callback;
+    protected Object source_object;
+    protected AsyncReadyCallback callback;
 
     public G data;
     public Error error;
