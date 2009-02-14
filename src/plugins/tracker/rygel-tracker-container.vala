@@ -34,13 +34,13 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker";
     private const string TRACKER_PATH = "/org/freedesktop/Tracker";
     private const string TRACKER_IFACE = "org.freedesktop.Tracker";
-    private const string FILES_PATH = "/org/freedesktop/Tracker/Files";
-    private const string FILES_IFACE = "org.freedesktop.Tracker.Files";
+    private const string SEARCH_PATH = "/org/freedesktop/Tracker/Search";
+    private const string SEARCH_IFACE = "org.freedesktop.Tracker.Search";
     private const string METADATA_PATH = "/org/freedesktop/Tracker/Metadata";
     private const string METADATA_IFACE = "org.freedesktop.Tracker.Metadata";
 
     public dynamic DBus.Object metadata;
-    public dynamic DBus.Object files;
+    public dynamic DBus.Object search;
     public dynamic DBus.Object tracker;
 
     public string category;
@@ -70,9 +70,9 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
         this.metadata = connection.get_object (TrackerContainer.TRACKER_SERVICE,
                                                TrackerContainer.METADATA_PATH,
                                                TrackerContainer.METADATA_IFACE);
-        this.files = connection.get_object (TrackerContainer.TRACKER_SERVICE,
-                                            TrackerContainer.FILES_PATH,
-                                            TrackerContainer.FILES_IFACE);
+        this.search = connection.get_object (TrackerContainer.TRACKER_SERVICE,
+                                             TrackerContainer.SEARCH_PATH,
+                                             TrackerContainer.SEARCH_IFACE);
         this.tracker = connection.get_object (TrackerContainer.TRACKER_SERVICE,
                                               TrackerContainer.TRACKER_PATH,
                                               TrackerContainer.TRACKER_IFACE);
@@ -112,18 +112,28 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
                                                 callback);
 
         try {
-            string[] child_paths;
-
-            child_paths = this.files.GetByServiceType (0,
-                                                       this.category,
-                                                       (int) offset,
-                                                       (int) max_count);
+            string[][] search_result = this.search.Query (
+                                                   0,
+                                                   this.category,
+                                                   this.get_metadata_keys (),
+                                                   "",
+                                                   new string[0],
+                                                   "",
+                                                   false,
+                                                   new string[0],
+                                                   false,
+                                                   (int) offset,
+                                                   (int) max_count);
 
             ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
 
             /* Iterate through all items */
-            for (uint i = 0; i < child_paths.length; i++) {
-                MediaObject item = this.fetch_item_by_path (child_paths[i]);
+            for (uint i = 0; i < search_result.length; i++) {
+                string child_path = search_result[i][0];
+                string[] metadata = this.slice_strv_tail (search_result[i], 2);
+
+                MediaObject item = this.fetch_item_by_path (child_path,
+                                                            metadata);
                 children.add (item);
             }
 
@@ -209,11 +219,46 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
             return null;
         }
 
-        return this.fetch_item_by_path (path);
+        return this.fetch_item_by_path (path, null);
+    }
+
+    /**
+     * Chops the tail of a string array.
+     *
+     * param strv the string to chop the tail of.
+     * param index index of the first element in the tail.
+     *
+     * FIXME: Stop using it once vala supports array[N:M] syntax.
+     */
+    private string[] slice_strv_tail (string[] strv, int index) {
+        var strv_length = this.get_strv_length (strv);
+        string[] slice = new string[strv_length - index];
+
+        for (int i = 0; i < slice.length; i++) {
+            slice[i] = strv[i + index];
+        }
+
+        return slice;
+    }
+
+    /**
+     * Gets the length of a null-terminated string array
+     *
+     * param strv the string to compute length of
+     *
+     * FIXME: Temporary hack, don't use once bug#571322 is fixed
+     */
+    private int get_strv_length (string[] strv) {
+        int i = 0;
+
+        for (i = 0; strv[i] != null; i++);
+
+        return i + 1;
     }
 
     protected abstract string[] get_metadata_keys ();
-    protected abstract MediaItem? fetch_item_by_path (string path)
+    protected abstract MediaItem? fetch_item_by_path (string    path,
+                                                      string[]? metadata)
                                                       throws GLib.Error;
 }
 

@@ -37,12 +37,19 @@ public class Rygel.TrackerMusicContainer : Rygel.TrackerContainer {
         return TrackerMusicItem.get_metadata_keys ();
     }
 
-    protected override MediaItem? fetch_item_by_path (string path)
+    protected override MediaItem? fetch_item_by_path (string    path,
+                                                      string[]? metadata)
                                                       throws GLib.Error {
         string[] keys = this.get_metadata_keys ();
+        string[] item_metadata;
 
         /* TODO: make this async */
-        string[] item_metadata = this.metadata.Get (this.category, path, keys);
+        if (metadata == null) {
+                // No metadata provided, we need to fetch it ourselves
+                item_metadata = this.metadata.Get (this.category, path, keys);
+        } else {
+                item_metadata = metadata;
+        }
 
         return new TrackerMusicItem (this.id + ":" + path,
                                      path,
