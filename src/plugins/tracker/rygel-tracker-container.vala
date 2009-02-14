@@ -48,7 +48,7 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
     /* UPnP class of items under this container */
     public string child_class;
 
-    Gee.List<TrackerSearchResult> results;
+    Gee.List<AsyncResult> results;
 
     public TrackerContainer (string id,
                              string parent_id,
@@ -85,7 +85,7 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
         this.child_count = this.get_children_count ();
 
 
-        this.results = new Gee.ArrayList<TrackerSearchResult>();
+        this.results = new Gee.ArrayList<AsyncResult>();
     }
 
     private uint get_children_count () {
