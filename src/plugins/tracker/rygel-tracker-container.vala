@@ -133,7 +133,7 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
                            false,
                            (int) offset,
                            (int) max_count,
-                           res.search_result_ready);
+                           res.ready);
     }
 
     public override Gee.List<MediaObject>? get_children_finish (
@@ -236,8 +236,7 @@ public class Rygel.TrackerSearchResult : GLib.Object, GLib.AsyncResult {
         this.data = new ArrayList<MediaObject> ();
     }
 
-    public void search_result_ready (string[][] search_result,
-                                     GLib.Error error) {
+    public void ready (string[][] search_result, GLib.Error error) {
         if (error != null) {
             this.error = error;
 
