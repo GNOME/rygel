@@ -29,7 +29,7 @@ using Gee;
 /**
  * Represents Tracker category.
  */
-public class Rygel.TrackerContainer : MediaContainer {
+public abstract class Rygel.TrackerContainer : MediaContainer {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker";
     private const string TRACKER_PATH = "/org/freedesktop/Tracker";
@@ -212,27 +212,7 @@ public class Rygel.TrackerContainer : MediaContainer {
         return this.fetch_item_by_path (path);
     }
 
-    private MediaItem? fetch_item_by_path (string path) throws GLib.Error {
-        MediaItem item;
-
-        if (this.child_class == MediaItem.VIDEO_CLASS) {
-            item = new TrackerVideoItem (this.id + ":" + path,
-                                         path,
-                                         this,
-                                         null);
-        } else if (this.child_class == MediaItem.IMAGE_CLASS) {
-            item = new TrackerImageItem (this.id + ":" + path,
-                                         path,
-                                         this,
-                                         null);
-        } else {
-            item = new TrackerMusicItem (this.id + ":" + path,
-                                         path,
-                                         this,
-                                         null);
-        }
-
-        return item;
-    }
+    protected abstract MediaItem? fetch_item_by_path (string path)
+                                                      throws GLib.Error;
 }
 
