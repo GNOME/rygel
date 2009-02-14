@@ -39,23 +39,17 @@ public class Rygel.TrackerRootContainer : MediaContainer {
 
         this.containers = new ArrayList<TrackerContainer> ();
         this.containers.add
-                        (new TrackerContainer ("16",
-                                               this.id,
-                                               "All Images",
-                                               "Images",
-                                               MediaItem.IMAGE_CLASS));
+                        (new TrackerImageContainer ("16",
+                                                    this.id,
+                                                    "All Images"));
         this.containers.add
-                        (new TrackerContainer ("14",
-                                               this.id,
-                                               "All Music",
-                                               "Music",
-                                               MediaItem.MUSIC_CLASS));
+                        (new TrackerMusicContainer ("14",
+                                                    this.id,
+                                                    "All Music"));
         this.containers.add
-                        (new TrackerContainer ("15",
-                                               this.id,
-                                               "All Videos",
-                                               "Videos",
-                                               MediaItem.VIDEO_CLASS));
+                        (new TrackerVideoContainer ("15",
+                                                    this.id,
+                                                    "All Videos"));
 
         // Now we know how many top-level containers we have
         this.child_count = this.containers.size;
