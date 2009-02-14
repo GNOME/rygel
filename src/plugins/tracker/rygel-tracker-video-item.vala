@@ -41,10 +41,11 @@ public class Rygel.TrackerVideoItem : TrackerItem {
         LAST_KEY
     }
 
-    public TrackerVideoItem (string              id,
-                             string              path,
-                             TrackerContainer    parent) throws GLib.Error {
-        base (id, path, parent);
+    public TrackerVideoItem (string           id,
+                             string           path,
+                             TrackerContainer parent,
+                             string[]?        metadata) throws GLib.Error {
+        base (id, path, parent, metadata);
     }
 
     public override string[] get_metadata_keys () {

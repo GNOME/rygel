@@ -34,13 +34,20 @@ public abstract class Rygel.TrackerItem : MediaItem {
 
     public TrackerItem (string           id,
                         string           path,
-                        TrackerContainer parent) throws GLib.Error {
+                        TrackerContainer parent,
+                        string[]?        metadata) throws GLib.Error {
         base (id, parent.id, "", parent.child_class);
 
         this.path = path;
         this.parent = parent;
 
-        var values = this.fetch_metadata ();
+        string[] values;
+        if (metadata == null) {
+            values = this.fetch_metadata ();
+        } else {
+            values = metadata;
+        }
+
         this.init_from_metadata (values);
     }
 

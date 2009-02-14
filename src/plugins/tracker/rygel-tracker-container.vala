@@ -216,11 +216,20 @@ public class Rygel.TrackerContainer : MediaContainer {
         MediaItem item;
 
         if (this.child_class == MediaItem.VIDEO_CLASS) {
-            item = new TrackerVideoItem (this.id + ":" + path, path, this);
+            item = new TrackerVideoItem (this.id + ":" + path,
+                                         path,
+                                         this,
+                                         null);
         } else if (this.child_class == MediaItem.IMAGE_CLASS) {
-            item = new TrackerImageItem (this.id + ":" + path, path, this);
+            item = new TrackerImageItem (this.id + ":" + path,
+                                         path,
+                                         this,
+                                         null);
         } else {
-            item = new TrackerMusicItem (this.id + ":" + path, path, this);
+            item = new TrackerMusicItem (this.id + ":" + path,
+                                         path,
+                                         this,
+                                         null);
         }
 
         return item;

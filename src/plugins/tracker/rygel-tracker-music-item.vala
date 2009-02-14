@@ -43,10 +43,11 @@ public class Rygel.TrackerMusicItem : TrackerItem {
         LAST_KEY
     }
 
-    public TrackerMusicItem (string              id,
-                             string              path,
-                             TrackerContainer    parent) throws GLib.Error {
-        base (id, path, parent);
+    public TrackerMusicItem (string           id,
+                             string           path,
+                             TrackerContainer parent,
+                             string[]?        metadata) throws GLib.Error {
+        base (id, path, parent, metadata);
     }
 
     public override string[] get_metadata_keys () {
