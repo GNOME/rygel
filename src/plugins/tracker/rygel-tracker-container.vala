@@ -84,23 +84,29 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
     }
 
     private uint get_children_count () {
-        string[][] stats;
+        string[][] search_result;
 
         try {
-            stats = this.tracker.GetStats ();
+            search_result = this.search.Query (0,
+                                               this.category,
+                                               new string[0],
+                                               "",
+                                               new string[0],
+                                               "",
+                                               false,
+                                               new string[0],
+                                               false,
+                                               0,
+                                               -1);
         } catch (GLib.Error error) {
-            critical ("error getting tracker statistics: %s", error.message);
+            critical ("error getting items under category '%s': %s",
+                      this.category,
+                      error.message);
 
             return 0;
         }
 
-        uint count = 0;
-        for (uint i = 0; i < stats.length; i++) {
-            if (stats[i][0] == this.category)
-                count = stats[i][1].to_int ();
-        }
-
-        return count;
+        return search_result.length;
     }
 
     public override void get_children (uint               offset,
