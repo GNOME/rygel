@@ -212,6 +212,7 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
         return this.fetch_item_by_path (path);
     }
 
+    protected abstract string[] get_metadata_keys ();
     protected abstract MediaItem? fetch_item_by_path (string path)
                                                       throws GLib.Error;
 }
