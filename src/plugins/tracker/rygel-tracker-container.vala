@@ -196,7 +196,7 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
         }
     }
 
-    private string? get_item_path (string item_id) {
+    public string? get_item_path (string item_id) {
         var tokens = item_id.split (":", 2);
 
         if (tokens[0] != null && tokens[1] != null) {
