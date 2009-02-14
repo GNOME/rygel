@@ -168,8 +168,19 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
                                       AsyncReadyCallback callback) {
         var res = new Rygel.SimpleAsyncResult<MediaObject> (this, callback);
 
+        string path = this.get_item_path (id);
+        if (path == null) {
+            res.error = new ContentDirectoryError.NO_SUCH_OBJECT (
+                                                    "No such object");
+            res.complete_in_idle ();
+            return;
+        }
+
         try {
-            res.data = this.fetch_item (id);
+            string[] keys = this.get_metadata_keys ();
+            string[] metadata = this.metadata.Get (this.category, path, keys);
+
+            res.data = this.fetch_item_by_path (path, metadata);
         } catch (GLib.Error error) {
             res.error = error;
         }
@@ -216,19 +227,6 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
         } else {
             return null;
         }
-    }
-
-    private MediaItem? fetch_item (string id) throws GLib.Error {
-        string path = this.get_item_path (id);
-
-        if (path == null) {
-            return null;
-        }
-
-        string[] keys = this.get_metadata_keys ();
-        string[] metadata = this.metadata.Get (this.category, path, keys);
-
-        return this.fetch_item_by_path (path, metadata);
     }
 
     /**
