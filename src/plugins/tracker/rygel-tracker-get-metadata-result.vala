@@ -49,6 +49,7 @@ public class Rygel.TrackerGetMetadataResult : GLib.Object, GLib.AsyncResult {
             this.error = error;
 
             this.complete ();
+            return;
         }
 
         TrackerContainer container = (TrackerContainer) this.source_object;
