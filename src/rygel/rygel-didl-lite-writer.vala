@@ -164,10 +164,10 @@ public class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
     private ArrayList<DIDLLiteResource?>? get_transcoded_resources
                                             (MediaItem        item,
                                              DIDLLiteResource orig_res) {
-        if (orig_res.protocol == "http-get")
-            return null;
-
         var resources = new ArrayList<DIDLLiteResource?> ();
+
+        if (orig_res.protocol == "http-get")
+            return resources;
 
         // Copy the original res first
         DIDLLiteResource res = orig_res;
