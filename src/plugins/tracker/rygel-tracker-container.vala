@@ -120,6 +120,8 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
                                        AsyncReadyCallback callback) {
         var res = new TrackerSearchResult (this, callback);
 
+        this.results.add (res);
+
         this.search.Query (0,
                            this.category,
                            this.get_metadata_keys (),
@@ -132,14 +134,14 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
                            (int) offset,
                            (int) max_count,
                            res.search_result_ready);
-
-        this.results.add (res);
     }
 
     public override Gee.List<MediaObject>? get_children_finish (
                                                          AsyncResult res)
                                                          throws GLib.Error {
         var search_res = (Rygel.TrackerSearchResult) res;
+
+        this.results.remove (search_res);
 
         if (search_res.error != null) {
             throw search_res.error;
