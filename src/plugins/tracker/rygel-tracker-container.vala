@@ -123,7 +123,7 @@ public class Rygel.TrackerContainer : MediaContainer {
 
             /* Iterate through all items */
             for (uint i = 0; i < child_paths.length; i++) {
-                MediaObject item = this.find_item_by_path (child_paths[i]);
+                MediaObject item = this.fetch_item_by_path (child_paths[i]);
                 children.add (item);
             }
 
@@ -153,7 +153,7 @@ public class Rygel.TrackerContainer : MediaContainer {
         var res = new Rygel.SimpleAsyncResult<MediaObject> (this, callback);
 
         try {
-            res.data = this.find_item (id);
+            res.data = this.fetch_item (id);
         } catch (GLib.Error error) {
             res.error = error;
         }
@@ -202,17 +202,17 @@ public class Rygel.TrackerContainer : MediaContainer {
         }
     }
 
-    private MediaItem? find_item (string id) throws GLib.Error {
+    private MediaItem? fetch_item (string id) throws GLib.Error {
         string path = this.get_item_path (id);
 
         if (path == null) {
             return null;
         }
 
-        return this.find_item_by_path (path);
+        return this.fetch_item_by_path (path);
     }
 
-    private MediaItem? find_item_by_path (string path) throws GLib.Error {
+    private MediaItem? fetch_item_by_path (string path) throws GLib.Error {
         MediaItem item;
 
         if (this.child_class == MediaItem.VIDEO_CLASS) {
