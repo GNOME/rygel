@@ -153,36 +153,35 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
     public override void find_object (string             id,
                                       Cancellable?       cancellable,
                                       AsyncReadyCallback callback) {
-        var res = new Rygel.SimpleAsyncResult<MediaObject> (this, callback);
-
-        string path = this.get_item_path (id);
-        if (path == null) {
-            res.error = new ContentDirectoryError.NO_SUCH_OBJECT (
-                                                    "No such object");
-            res.complete_in_idle ();
-            return;
-        }
+        var res = new TrackerGetMetadataResult (this, callback, id);
 
         try {
-            string[] keys = this.get_metadata_keys ();
-            string[] metadata = this.metadata.Get (this.category, path, keys);
+            string path = this.get_item_path (id);
+            if (path == null) {
+                throw new ContentDirectoryError.NO_SUCH_OBJECT (
+                                                    "No such object");
+            }
 
-            res.data = this.create_item (path, metadata);
+            this.results.add (res);
+
+            string[] keys = this.get_metadata_keys ();
+
+            this.metadata.Get (this.category, path, keys, res.ready);
         } catch (GLib.Error error) {
             res.error = error;
-        }
 
-        res.complete_in_idle ();
+            res.complete_in_idle ();
+        }
     }
 
     public override MediaObject? find_object_finish (AsyncResult res)
                                                      throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult<MediaObject>) res;
+        var metadata_res = (TrackerGetMetadataResult) res;
 
-        if (simple_res.error != null) {
-            throw simple_res.error;
+        if (metadata_res.error != null) {
+            throw metadata_res.error;
         } else {
-            return simple_res.data;
+            return metadata_res.data;
         }
     }
 
@@ -220,3 +219,62 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
     protected abstract MediaItem? create_item (string path, string[] metadata);
 }
 
+/**
+ * Handles Tracker Metadata.Get method results.
+ *
+ * FIXME: This should inherit from Rygel.SimpleAsyncResult once bug#567319 is
+ *        fixed.
+ */
+public class Rygel.TrackerGetMetadataResult : GLib.Object, GLib.AsyncResult {
+    protected GLib.Object source_object;
+    protected AsyncReadyCallback callback;
+    protected string item_id;
+
+    public MediaObject data;
+    public GLib.Error error;
+
+    public TrackerGetMetadataResult (TrackerContainer   container,
+                                     AsyncReadyCallback callback,
+                                     string             item_id) {
+        this.source_object = container;
+        this.callback = callback;
+        this.item_id = item_id;
+    }
+
+    public void ready (string[] metadata, GLib.Error error) {
+        if (error != null) {
+            this.error = error;
+
+            this.complete ();
+        }
+
+        TrackerContainer container = (TrackerContainer) this.source_object;
+
+        string path = container.get_item_path (item_id);
+        this.data = container.create_item (path, metadata);
+
+        this.complete ();
+    }
+
+    public unowned GLib.Object get_source_object () {
+        return this.source_object;
+    }
+
+    public void* get_user_data () {
+        return null;
+    }
+
+    public void complete () {
+        this.callback (this.source_object, this);
+    }
+
+    public void complete_in_idle () {
+        Idle.add_full (Priority.DEFAULT, idle_func);
+    }
+
+    private bool idle_func () {
+        this.complete ();
+
+        return false;
+    }
+}
