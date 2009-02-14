@@ -122,18 +122,24 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
 
         this.results.add (res);
 
-        this.search.Query (0,
-                           this.category,
-                           this.get_metadata_keys (),
-                           "",
-                           new string[0],
-                           "",
-                           false,
-                           new string[0],
-                           false,
-                           (int) offset,
-                           (int) max_count,
-                           res.ready);
+        try {
+            this.search.Query (0,
+                               this.category,
+                               this.get_metadata_keys (),
+                               "",
+                               new string[0],
+                               "",
+                               false,
+                               new string[0],
+                               false,
+                               (int) offset,
+                               (int) max_count,
+                               res.ready);
+        } catch (GLib.Error error) {
+            res.error = error;
+
+            res.complete_in_idle ();
+        }
     }
 
     public override Gee.List<MediaObject>? get_children_finish (
