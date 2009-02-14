@@ -31,7 +31,7 @@ using Gee;
  * associated with the Browse action handling that exists to make asynchronous
  * handling of Browse action possible.
  */
-public class Browse: GLib.Object {
+public class Rygel.Browse: GLib.Object {
     public const int MAX_REQUESTED_COUNT = 128;
 
     // In arguments
