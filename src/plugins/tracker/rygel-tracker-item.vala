@@ -40,7 +40,8 @@ public abstract class Rygel.TrackerItem : MediaItem {
         this.path = path;
         this.parent = parent;
 
-        this.fetch_metadata ();
+        var values = this.fetch_metadata ();
+        this.init_from_metadata (values);
     }
 
     protected string seconds_to_iso8601 (string seconds) {
@@ -60,6 +61,7 @@ public abstract class Rygel.TrackerItem : MediaItem {
         return date;
     }
 
-    protected abstract void fetch_metadata () throws GLib.Error;
+    protected abstract string[] fetch_metadata () throws GLib.Error;
+    protected abstract void init_from_metadata (string[] values);
 }
 

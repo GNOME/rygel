@@ -47,7 +47,7 @@ public class Rygel.TrackerVideoItem : TrackerItem {
         base (id, path, parent);
     }
 
-    public override void fetch_metadata () throws GLib.Error {
+    public override string[] fetch_metadata () throws GLib.Error {
         string[] keys = new string[Metadata.LAST_KEY];
         keys[Metadata.FILE_NAME] = "File:Name";
         keys[Metadata.MIME] = "File:Mime";
@@ -57,11 +57,13 @@ public class Rygel.TrackerVideoItem : TrackerItem {
         keys[Metadata.WIDTH] = "Video:Width";
         keys[Metadata.HEIGHT] = "Video:Height";
         keys[Metadata.DATE] = "DC:Date";
-        string[] values = null;
 
         /* TODO: make this async */
-        values = this.parent.metadata.Get (parent.category, path, keys);
+        return this.parent.metadata.Get (parent.category, path, keys);
 
+    }
+
+    protected override void init_from_metadata (string[] values) {
         if (values[Metadata.TITLE] != "")
             this.title = values[Metadata.TITLE];
         else
