@@ -49,7 +49,7 @@ public class Rygel.TrackerImageItem : TrackerItem {
         base (id, path, parent);
     }
 
-    public override string[] fetch_metadata () throws GLib.Error {
+    public override string[] get_metadata_keys () {
         string[] keys = new string[Metadata.LAST_KEY];
         keys[Metadata.FILE_NAME] = "File:Name";
         keys[Metadata.MIME] = "File:Mime";
@@ -61,6 +61,12 @@ public class Rygel.TrackerImageItem : TrackerItem {
         keys[Metadata.ALBUM] = "Image:Album";
         keys[Metadata.IMAGE_DATE] = "Image:Date";
         keys[Metadata.DATE] = "DC:Date";
+
+        return keys;
+    }
+
+    public override string[] fetch_metadata () throws GLib.Error {
+        string[] keys = this.get_metadata_keys ();
 
         /* TODO: make this async */
         return this.parent.metadata.Get (parent.category, path, keys);

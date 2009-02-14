@@ -61,6 +61,7 @@ public abstract class Rygel.TrackerItem : MediaItem {
         return date;
     }
 
+    public abstract string[] get_metadata_keys ();
     protected abstract string[] fetch_metadata () throws GLib.Error;
     protected abstract void init_from_metadata (string[] values);
 }
