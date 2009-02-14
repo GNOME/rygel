@@ -39,38 +39,14 @@ public class Rygel.TrackerContainer : MediaContainer {
     private const string METADATA_PATH = "/org/freedesktop/Tracker/Metadata";
     private const string METADATA_IFACE = "org.freedesktop.Tracker.Metadata";
 
-    public static dynamic DBus.Object metadata;
-    public static dynamic DBus.Object files;
-    public static dynamic DBus.Object tracker;
+    public dynamic DBus.Object metadata;
+    public dynamic DBus.Object files;
+    public dynamic DBus.Object tracker;
 
     public string category;
 
     /* UPnP class of items under this container */
     public string child_class;
-
-    // Class constructor
-    static construct {
-        DBus.Connection connection;
-        try {
-            connection = DBus.Bus.get (DBus.BusType.SESSION);
-        } catch (DBus.Error error) {
-            critical ("Failed to connect to Session bus: %s\n",
-                      error.message);
-        }
-
-        TrackerContainer.metadata =
-                    connection.get_object (TrackerContainer.TRACKER_SERVICE,
-                                           TrackerContainer.METADATA_PATH,
-                                           TrackerContainer.METADATA_IFACE);
-        TrackerContainer.files =
-                    connection.get_object (TrackerContainer.TRACKER_SERVICE,
-                                           TrackerContainer.FILES_PATH,
-                                           TrackerContainer.FILES_IFACE);
-        TrackerContainer.tracker =
-                    connection.get_object (TrackerContainer.TRACKER_SERVICE,
-                                           TrackerContainer.TRACKER_PATH,
-                                           TrackerContainer.TRACKER_IFACE);
-    }
 
     public TrackerContainer (string id,
                              string parent_id,
@@ -82,6 +58,25 @@ public class Rygel.TrackerContainer : MediaContainer {
         this.category = category;
         this.child_class = child_class;
 
+        DBus.Connection connection;
+        try {
+            connection = DBus.Bus.get (DBus.BusType.SESSION);
+        } catch (DBus.Error error) {
+            critical ("Failed to connect to Session bus: %s\n",
+                      error.message);
+            return;
+        }
+
+        this.metadata = connection.get_object (TrackerContainer.TRACKER_SERVICE,
+                                               TrackerContainer.METADATA_PATH,
+                                               TrackerContainer.METADATA_IFACE);
+        this.files = connection.get_object (TrackerContainer.TRACKER_SERVICE,
+                                            TrackerContainer.FILES_PATH,
+                                            TrackerContainer.FILES_IFACE);
+        this.tracker = connection.get_object (TrackerContainer.TRACKER_SERVICE,
+                                              TrackerContainer.TRACKER_PATH,
+                                              TrackerContainer.TRACKER_IFACE);
+
         /* FIXME: We need to hook to some tracker signals to keep
          *        this field up2date at all times
          */
@@ -92,7 +87,7 @@ public class Rygel.TrackerContainer : MediaContainer {
         string[][] stats;
 
         try {
-                stats = TrackerContainer.tracker.GetStats ();
+            stats = this.tracker.GetStats ();
         } catch (GLib.Error error) {
             critical ("error getting tracker statistics: %s", error.message);
 
@@ -119,11 +114,10 @@ public class Rygel.TrackerContainer : MediaContainer {
         try {
             string[] child_paths;
 
-            child_paths = TrackerContainer.files.GetByServiceType (
-                                                        0,
-                                                        this.category,
-                                                        (int) offset,
-                                                        (int) max_count);
+            child_paths = this.files.GetByServiceType (0,
+                                                       this.category,
+                                                       (int) offset,
+                                                       (int) max_count);
 
             ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
 
