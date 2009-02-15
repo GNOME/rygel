@@ -44,58 +44,21 @@ public class Rygel.DVBRootContainer : MediaContainer {
     public DVBRootContainer (string title) {
         base.root (title, 0);
 
-        DBus.Connection connection;
-        try {
-            connection = DBus.Bus.get (DBus.BusType.SESSION);
-        } catch (DBus.Error error) {
-            critical ("Failed to connect to Session bus: %s\n",
-                      error.message);
-            return;
-        }
-
         this.groups = new ArrayList<DVBChannelGroup> ();
 
-        // Get a proxy to DVB Manager object
-        this.manager = connection.get_object (DVBRootContainer.DVB_SERVICE,
-                                              DVBRootContainer.MANAGER_PATH,
-                                              DVBRootContainer.MANAGER_IFACE);
-        uint[] dev_groups = null;
-
         try {
-            dev_groups = this.manager.GetRegisteredDeviceGroups ();
-        } catch (GLib.Error error) {
-            critical ("error: %s", error.message);
-            return;
+            DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
+
+            // Get a proxy to DVB Manager object
+            this.manager = connection.get_object (
+                                        DVBRootContainer.DVB_SERVICE,
+                                        DVBRootContainer.MANAGER_PATH,
+                                        DVBRootContainer.MANAGER_IFACE);
+
+            this.fetch_device_groups (connection);
+        } catch (DBus.Error error) {
+            critical ("Failed to fetch device groups: %s\n", error.message);
         }
-
-        foreach (uint group_id in dev_groups) {
-            string channel_list_path = null;
-            string group_name =  null;
-
-            try {
-                channel_list_path = manager.GetChannelList (group_id);
-
-                // Get the name of the group
-                group_name = manager.GetDeviceGroupName (group_id);
-            } catch (GLib.Error error) {
-                critical ("error: %s", error.message);
-                return;
-            }
-
-            // Get a proxy to DVB ChannelList object
-            dynamic DBus.Object channel_list = connection.get_object
-                                        (DVBRootContainer.DVB_SERVICE,
-                                         channel_list_path,
-                                         DVBRootContainer.CHANNEL_LIST_IFACE);
-
-            // Create ChannelGroup for each registered device group
-            this.groups.add (new DVBChannelGroup (group_id,
-                                                  group_name,
-                                                  this.id,
-                                                  channel_list));
-        }
-
-        this.child_count = this.groups.size;
     }
 
     public override void get_children (uint               offset,
@@ -143,6 +106,37 @@ public class Rygel.DVBRootContainer : MediaContainer {
     }
 
     // Private methods
+    private void fetch_device_groups (DBus.Connection connection)
+                                      throws GLib.Error {
+        uint[] dev_groups = null;
+
+        dev_groups = this.manager.GetRegisteredDeviceGroups ();
+
+        foreach (uint group_id in dev_groups) {
+            string channel_list_path = null;
+            string group_name =  null;
+
+            channel_list_path = manager.GetChannelList (group_id);
+
+            // Get the name of the group
+            group_name = manager.GetDeviceGroupName (group_id);
+
+            // Get a proxy to DVB ChannelList object
+            dynamic DBus.Object channel_list = connection.get_object
+                                        (DVBRootContainer.DVB_SERVICE,
+                                         channel_list_path,
+                                         DVBRootContainer.CHANNEL_LIST_IFACE);
+
+            // Create ChannelGroup for each registered device group
+            this.groups.add (new DVBChannelGroup (group_id,
+                                                  group_name,
+                                                  this.id,
+                                                  channel_list));
+        }
+
+        this.child_count = this.groups.size;
+    }
+
     private DVBChannelGroup? find_group_by_id (string id) {
         DVBChannelGroup group = null;
 
