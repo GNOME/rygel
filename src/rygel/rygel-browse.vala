@@ -32,8 +32,6 @@ using Gee;
  * handling of Browse action possible.
  */
 public class Rygel.Browse: GLib.Object {
-    public const int MAX_REQUESTED_COUNT = 128;
-
     // In arguments
     public string object_id;
     public string browse_flag;
@@ -145,9 +143,6 @@ public class Rygel.Browse: GLib.Object {
                 new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
             return;
         }
-
-        if (this.requested_count == 0)
-            this.requested_count = MAX_REQUESTED_COUNT;
 
         var container = (MediaContainer) this.media_object;
         this.total_matches = container.child_count;
