@@ -24,21 +24,21 @@
 using Rygel;
 
 /**
- * Represents Tracker Music category.
+ * Represents Tracker Image category.
  */
-public class Rygel.TrackerMusicContainer : Rygel.TrackerContainer {
-    public TrackerMusicContainer (string id,
-                                  string parent_id,
-                                  string title) {
-        base (id, parent_id, title, "Music", MediaItem.MUSIC_CLASS);
+public class Rygel.TrackerImageCategory : Rygel.TrackerCategory {
+    public TrackerImageCategory (string id,
+                                 string parent_id,
+                                 string title) {
+        base (id, parent_id, title, "Images", MediaItem.IMAGE_CLASS);
     }
 
     protected override string[] get_metadata_keys () {
-        return TrackerMusicItem.get_metadata_keys ();
+        return TrackerImageItem.get_metadata_keys ();
     }
 
     protected override MediaItem? create_item (string path, string[] metadata) {
-        return new TrackerMusicItem (this.id + ":" + path,
+        return new TrackerImageItem (this.id + ":" + path,
                                      path,
                                      this,
                                      metadata);

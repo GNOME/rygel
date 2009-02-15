@@ -36,9 +36,9 @@ public class Rygel.TrackerSearchResult : GLib.Object, GLib.AsyncResult {
     public Gee.List<MediaObject> data;
     public GLib.Error error;
 
-    public TrackerSearchResult (TrackerContainer   container,
+    public TrackerSearchResult (TrackerCategory    category,
                                 AsyncReadyCallback callback) {
-        this.source_object = container;
+        this.source_object = category;
         this.callback = callback;
 
         this.data = new ArrayList<MediaObject> ();
@@ -52,14 +52,14 @@ public class Rygel.TrackerSearchResult : GLib.Object, GLib.AsyncResult {
             return;
         }
 
-        TrackerContainer container = (TrackerContainer) this.source_object;
+        TrackerCategory category = (TrackerCategory) this.source_object;
 
         /* Iterate through all items */
         for (uint i = 0; i < search_result.length; i++) {
             string child_path = search_result[i][0];
             string[] metadata = this.slice_strv_tail (search_result[i], 2);
 
-            var item = container.create_item (child_path, metadata);
+            var item = category.create_item (child_path, metadata);
             this.data.add (item);
         }
 

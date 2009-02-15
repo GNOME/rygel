@@ -41,10 +41,10 @@ public class Rygel.TrackerVideoItem : TrackerItem {
         LAST_KEY
     }
 
-    public TrackerVideoItem (string           id,
-                             string           path,
-                             TrackerContainer parent,
-                             string[]         metadata) {
+    public TrackerVideoItem (string          id,
+                             string          path,
+                             TrackerCategory parent,
+                             string[]        metadata) {
         base (id, path, parent, metadata);
     }
 

@@ -29,7 +29,7 @@ using Gee;
 /**
  * Represents Tracker category.
  */
-public abstract class Rygel.TrackerContainer : MediaContainer {
+public abstract class Rygel.TrackerCategory : MediaContainer {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker";
     private const string TRACKER_PATH = "/org/freedesktop/Tracker";
@@ -50,11 +50,11 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
 
     Gee.List<AsyncResult> results;
 
-    public TrackerContainer (string id,
-                             string parent_id,
-                             string title,
-                             string category,
-                             string child_class) {
+    public TrackerCategory (string id,
+                            string parent_id,
+                            string title,
+                            string category,
+                            string child_class) {
         base (id, parent_id, title, 0);
 
         this.category = category;
@@ -69,15 +69,15 @@ public abstract class Rygel.TrackerContainer : MediaContainer {
             return;
         }
 
-        this.metadata = connection.get_object (TrackerContainer.TRACKER_SERVICE,
-                                               TrackerContainer.METADATA_PATH,
-                                               TrackerContainer.METADATA_IFACE);
-        this.search = connection.get_object (TrackerContainer.TRACKER_SERVICE,
-                                             TrackerContainer.SEARCH_PATH,
-                                             TrackerContainer.SEARCH_IFACE);
-        this.tracker = connection.get_object (TrackerContainer.TRACKER_SERVICE,
-                                              TrackerContainer.TRACKER_PATH,
-                                              TrackerContainer.TRACKER_IFACE);
+        this.metadata = connection.get_object (TrackerCategory.TRACKER_SERVICE,
+                                               TrackerCategory.METADATA_PATH,
+                                               TrackerCategory.METADATA_IFACE);
+        this.search = connection.get_object (TrackerCategory.TRACKER_SERVICE,
+                                             TrackerCategory.SEARCH_PATH,
+                                             TrackerCategory.SEARCH_IFACE);
+        this.tracker = connection.get_object (TrackerCategory.TRACKER_SERVICE,
+                                              TrackerCategory.TRACKER_PATH,
+                                              TrackerCategory.TRACKER_IFACE);
 
         /* FIXME: We need to hook to some tracker signals to keep
          *        this field up2date at all times

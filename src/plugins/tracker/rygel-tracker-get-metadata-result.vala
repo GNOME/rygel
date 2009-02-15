@@ -36,10 +36,10 @@ public class Rygel.TrackerGetMetadataResult : GLib.Object, GLib.AsyncResult {
     public MediaObject data;
     public Error error;
 
-    public TrackerGetMetadataResult (TrackerContainer   container,
+    public TrackerGetMetadataResult (TrackerCategory    category,
                                      AsyncReadyCallback callback,
                                      string             item_id) {
-        this.source_object = container;
+        this.source_object = category;
         this.callback = callback;
         this.item_id = item_id;
     }
@@ -52,10 +52,10 @@ public class Rygel.TrackerGetMetadataResult : GLib.Object, GLib.AsyncResult {
             return;
         }
 
-        TrackerContainer container = (TrackerContainer) this.source_object;
+        TrackerCategory category = (TrackerCategory) this.source_object;
 
-        string path = container.get_item_path (item_id);
-        this.data = container.create_item (path, metadata);
+        string path = category.get_item_path (item_id);
+        this.data = category.create_item (path, metadata);
 
         this.complete ();
     }

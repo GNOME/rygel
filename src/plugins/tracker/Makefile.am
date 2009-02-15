@@ -14,14 +14,14 @@ BUILT_SOURCES = rygel-media-tracker.stamp \
 		rygel-media-tracker.c \
 		rygel-tracker-root-container.h \
 		rygel-tracker-root-container.c \
-		rygel-tracker-container.h \
-		rygel-tracker-container.c \
-		rygel-tracker-video-container.h \
-		rygel-tracker-video-container.c \
-		rygel-tracker-music-container.h \
-		rygel-tracker-music-container.c \
-		rygel-tracker-image-container.h \
-		rygel-tracker-image-container.c \
+		rygel-tracker-category.h \
+		rygel-tracker-category.c \
+		rygel-tracker-video-category.h \
+		rygel-tracker-video-category.c \
+		rygel-tracker-music-category.h \
+		rygel-tracker-music-category.c \
+		rygel-tracker-image-category.h \
+		rygel-tracker-image-category.c \
 		rygel-tracker-search-result.h \
 		rygel-tracker-search-result.c \
 		rygel-tracker-get-metadata-result.h \
@@ -43,18 +43,18 @@ librygel_media_tracker_la_SOURCES = rygel-media-tracker.h \
 				    rygel-tracker-root-container.h \
 				    rygel-tracker-root-container.c \
 				    rygel-tracker-root-container.vala \
-				    rygel-tracker-container.h \
-			            rygel-tracker-container.c \
-				    rygel-tracker-container.vala \
-				    rygel-tracker-video-container.h \
-				    rygel-tracker-video-container.c \
-				    rygel-tracker-video-container.vala \
-				    rygel-tracker-music-container.h \
-				    rygel-tracker-music-container.c \
-				    rygel-tracker-music-container.vala \
-				    rygel-tracker-image-container.h \
-				    rygel-tracker-image-container.c \
-				    rygel-tracker-image-container.vala \
+				    rygel-tracker-category.h \
+			            rygel-tracker-category.c \
+				    rygel-tracker-category.vala \
+				    rygel-tracker-video-category.h \
+				    rygel-tracker-video-category.c \
+				    rygel-tracker-video-category.vala \
+				    rygel-tracker-music-category.h \
+				    rygel-tracker-music-category.c \
+				    rygel-tracker-music-category.vala \
+				    rygel-tracker-image-category.h \
+				    rygel-tracker-image-category.c \
+				    rygel-tracker-image-category.vala \
 				    rygel-tracker-search-result.h \
 				    rygel-tracker-search-result.c \
 				    rygel-tracker-search-result.vala \

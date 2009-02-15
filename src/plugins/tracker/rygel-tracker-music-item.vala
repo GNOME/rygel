@@ -43,10 +43,10 @@ public class Rygel.TrackerMusicItem : TrackerItem {
         LAST_KEY
     }
 
-    public TrackerMusicItem (string           id,
-                             string           path,
-                             TrackerContainer parent,
-                             string[]         metadata) {
+    public TrackerMusicItem (string          id,
+                             string          path,
+                             TrackerCategory parent,
+                             string[]        metadata) {
         base (id, path, parent, metadata);
     }
 

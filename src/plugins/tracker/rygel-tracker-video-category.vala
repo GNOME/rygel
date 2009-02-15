@@ -26,10 +26,10 @@ using Rygel;
 /**
  * Represents Tracker Video category.
  */
-public class Rygel.TrackerVideoContainer : Rygel.TrackerContainer {
-    public TrackerVideoContainer (string id,
-                                  string parent_id,
-                                  string title) {
+public class Rygel.TrackerVideoCategory : Rygel.TrackerCategory {
+    public TrackerVideoCategory (string id,
+                                 string parent_id,
+                                 string title) {
         base (id, parent_id, title, "Videos", MediaItem.VIDEO_CLASS);
     }
 
