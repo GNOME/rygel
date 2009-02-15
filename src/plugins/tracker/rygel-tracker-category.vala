@@ -60,32 +60,19 @@ public abstract class Rygel.TrackerCategory : MediaContainer {
         this.category = category;
         this.child_class = child_class;
 
-        DBus.Connection connection;
         try {
-            connection = DBus.Bus.get (DBus.BusType.SESSION);
+            this.create_proxies ();
+
+            /* FIXME: We need to hook to some tracker signals to keep
+             *        this field up2date at all times
+             */
+            this.child_count = this.get_children_count ();
+
+            this.results = new Gee.ArrayList<AsyncResult>();
         } catch (DBus.Error error) {
-            critical ("Failed to connect to Session bus: %s\n",
+            critical ("Failed to create to Session bus: %s\n",
                       error.message);
-            return;
         }
-
-        this.metadata = connection.get_object (TrackerCategory.TRACKER_SERVICE,
-                                               TrackerCategory.METADATA_PATH,
-                                               TrackerCategory.METADATA_IFACE);
-        this.search = connection.get_object (TrackerCategory.TRACKER_SERVICE,
-                                             TrackerCategory.SEARCH_PATH,
-                                             TrackerCategory.SEARCH_IFACE);
-        this.tracker = connection.get_object (TrackerCategory.TRACKER_SERVICE,
-                                              TrackerCategory.TRACKER_PATH,
-                                              TrackerCategory.TRACKER_IFACE);
-
-        /* FIXME: We need to hook to some tracker signals to keep
-         *        this field up2date at all times
-         */
-        this.child_count = this.get_children_count ();
-
-
-        this.results = new Gee.ArrayList<AsyncResult>();
     }
 
     private uint get_children_count () {
@@ -209,6 +196,20 @@ public abstract class Rygel.TrackerCategory : MediaContainer {
         } else {
             return null;
         }
+    }
+
+    private void create_proxies () throws GLib.Error {
+        DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
+
+        this.metadata = connection.get_object (TrackerCategory.TRACKER_SERVICE,
+                                               TrackerCategory.METADATA_PATH,
+                                               TrackerCategory.METADATA_IFACE);
+        this.search = connection.get_object (TrackerCategory.TRACKER_SERVICE,
+                                             TrackerCategory.SEARCH_PATH,
+                                             TrackerCategory.SEARCH_IFACE);
+        this.tracker = connection.get_object (TrackerCategory.TRACKER_SERVICE,
+                                              TrackerCategory.TRACKER_PATH,
+                                              TrackerCategory.TRACKER_IFACE);
     }
 
     private string? get_item_parent_id (string item_id) {
