@@ -130,7 +130,7 @@ public class Rygel.DVBRootContainer : MediaContainer {
             // Create ChannelGroup for each registered device group
             this.groups.add (new DVBChannelGroup (group_id,
                                                   group_name,
-                                                  this.id,
+                                                  this,
                                                   channel_list));
         }
 

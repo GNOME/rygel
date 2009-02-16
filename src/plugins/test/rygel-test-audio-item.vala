@@ -33,11 +33,11 @@ using Gst;
 public class Rygel.TestAudioItem : Rygel.TestItem {
     const string TEST_MIMETYPE = "audio/x-wav";
 
-    public TestAudioItem (string id,
-                          string parent_id,
-                          string title) {
+    public TestAudioItem (string         id,
+                          MediaContainer parent,
+                          string         title) {
         base (id,
-              parent_id,
+              parent,
               title,
               TEST_MIMETYPE,
               MediaItem.AUDIO_CLASS);

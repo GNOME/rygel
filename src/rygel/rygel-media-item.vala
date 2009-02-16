@@ -55,12 +55,12 @@ public class Rygel.MediaItem : MediaObject {
     public int height = -1;
     public int color_depth = -1;
 
-    public MediaItem (string id,
-                      string parent_id,
-                      string title,
-                      string upnp_class) {
+    public MediaItem (string         id,
+                      MediaContainer parent,
+                      string         title,
+                      string         upnp_class) {
         this.id = id;
-        this.parent_id = parent_id;
+        this.parent = parent;
         this.title = title;
         this.upnp_class = upnp_class;
     }

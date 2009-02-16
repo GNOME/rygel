@@ -38,10 +38,10 @@ public class Rygel.TestRootContainer : MediaContainer {
 
         this.items = new ArrayList<MediaItem> ();
         this.items.add (new TestAudioItem ("sinewave",
-                                           this.id,
+                                           this,
                                            "Sine Wave"));
         this.items.add (new TestVideoItem ("smtpe",
-                                           this.id,
+                                           this,
                                            "SMTPE"));
 
         // Now we know how many top-level items we have

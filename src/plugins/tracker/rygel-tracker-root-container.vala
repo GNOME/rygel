@@ -40,15 +40,15 @@ public class Rygel.TrackerRootContainer : MediaContainer {
         this.categories = new ArrayList<TrackerCategory> ();
         this.categories.add
                         (new TrackerImageCategory ("16",
-                                                   this.id,
+                                                   this,
                                                    "All Images"));
         this.categories.add
                         (new TrackerMusicCategory ("14",
-                                                   this.id,
+                                                   this,
                                                    "All Music"));
         this.categories.add
                         (new TrackerVideoCategory ("15",
-                                                   this.id,
+                                                   this,
                                                    "All Videos"));
 
         // Now we know how many top-level containers we have

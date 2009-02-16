@@ -27,10 +27,10 @@ using Rygel;
  * Represents Tracker Music category.
  */
 public class Rygel.TrackerMusicCategory : Rygel.TrackerCategory {
-    public TrackerMusicCategory (string id,
-                                 string parent_id,
-                                 string title) {
-        base (id, parent_id, title, "Music", MediaItem.MUSIC_CLASS);
+    public TrackerMusicCategory (string         id,
+                                 MediaContainer parent,
+                                 string         title) {
+        base (id, parent, title, "Music", MediaItem.MUSIC_CLASS);
     }
 
     protected override string[] get_metadata_keys () {

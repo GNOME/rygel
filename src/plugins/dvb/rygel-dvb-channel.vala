@@ -35,12 +35,12 @@ public class Rygel.DVBChannel : MediaItem {
     private uint cid; /* The DVB Daemon Channel ID */
 
     public DVBChannel (uint                cid,
-                       string              parent_id,
+                       MediaContainer      parent,
                        dynamic DBus.Object channel_list) throws GLib.Error {
-        string id = parent_id + ":" + cid.to_string (); /* UPnP ID */
+        string id = parent.id + ":" + cid.to_string (); /* UPnP ID */
 
         base (id,
-              parent_id,
+              parent,
               "Unknown",        /* Title Unknown at this point */
               "Unknown");       /* UPnP Class Unknown at this point */
 

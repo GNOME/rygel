@@ -33,11 +33,11 @@ using Gst;
 public class Rygel.TestVideoItem : Rygel.TestItem {
     const string TEST_MIMETYPE = "video/mpeg";
 
-    public TestVideoItem (string id,
-                          string parent_id,
-                          string title) {
+    public TestVideoItem (string         id,
+                          MediaContainer parent,
+                          string         title) {
         base (id,
-              parent_id,
+              parent,
               title,
               TEST_MIMETYPE,
               MediaItem.VIDEO_CLASS);

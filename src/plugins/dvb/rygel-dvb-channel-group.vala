@@ -45,10 +45,10 @@ public class Rygel.DVBChannelGroup : MediaContainer {
 
     public DVBChannelGroup (uint                gid,
                             string              title,
-                            string              parent_id,
+                            MediaContainer      parent,
                             dynamic DBus.Object channel_list) {
         base (GID_PREFIX + gid.to_string (), // UPnP ID
-              parent_id,
+              parent,
               title,
               0);
         this.gid = gid;
@@ -140,7 +140,7 @@ public class Rygel.DVBChannelGroup : MediaContainer {
             // Create Channels
             try {
                 var channel = new DVBChannel (channel_id,
-                                              this.id,
+                                              this,
                                               channel_list);
                 this.channels.add (channel);
             } catch (GLib.Error error) {

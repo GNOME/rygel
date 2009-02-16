@@ -27,10 +27,10 @@ using Rygel;
  * Represents Tracker Image category.
  */
 public class Rygel.TrackerImageCategory : Rygel.TrackerCategory {
-    public TrackerImageCategory (string id,
-                                 string parent_id,
-                                 string title) {
-        base (id, parent_id, title, "Images", MediaItem.IMAGE_CLASS);
+    public TrackerImageCategory (string         id,
+                                 MediaContainer parent,
+                                 string         title) {
+        base (id, parent, title, "Images", MediaItem.IMAGE_CLASS);
     }
 
     protected override string[] get_metadata_keys () {

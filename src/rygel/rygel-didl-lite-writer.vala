@@ -52,7 +52,7 @@ public class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
 
     private void serialize_item (MediaItem item) throws Error {
         this.start_item (item.id,
-                                item.parent_id,
+                                item.parent.id,
                                 null,
                                 false);
 
@@ -127,7 +127,7 @@ public class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
 
     private void serialize_container (MediaContainer container) throws Error {
         this.start_container (container.id,
-                              container.parent_id,
+                              container.parent.id,
                               (int) container.child_count,
                               false,
                               false);

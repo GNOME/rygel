@@ -35,7 +35,7 @@ public abstract class Rygel.TrackerItem : MediaItem {
                         string          path,
                         TrackerCategory parent,
                         string[]        metadata) {
-        base (id, parent.id, "", parent.child_class);
+        base (id, parent, "", parent.child_class);
 
         this.path = path;
 

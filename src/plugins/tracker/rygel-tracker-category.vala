@@ -50,12 +50,12 @@ public abstract class Rygel.TrackerCategory : MediaContainer {
 
     Gee.List<AsyncResult> results;
 
-    public TrackerCategory (string id,
-                            string parent_id,
-                            string title,
-                            string category,
-                            string child_class) {
-        base (id, parent_id, title, 0);
+    public TrackerCategory (string         id,
+                            MediaContainer parent,
+                            string         title,
+                            string         category,
+                            string         child_class) {
+        base (id, parent, title, 0);
 
         this.category = category;
         this.child_class = child_class;

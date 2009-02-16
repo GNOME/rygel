@@ -32,12 +32,12 @@ public abstract class Rygel.MediaContainer : MediaObject {
     public uint child_count;
     public uint32 update_id;
 
-    public MediaContainer (string id,
-                           string parent_id,
-                           string title,
-                           uint   child_count) {
+    public MediaContainer (string          id,
+                           MediaContainer? parent,
+                           string          title,
+                           uint            child_count) {
         this.id = id;
-        this.parent_id = parent_id;
+        this.parent = parent;
         this.title = title;
         this.child_count = child_count;
         this.update_id = uint32.MAX; // undefined for non-root containers
@@ -45,7 +45,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
     public MediaContainer.root (string title,
                                 uint   child_count) {
-        this ("0", "-1", title, child_count);
+        this ("0", null, title, child_count);
         this.update_id = 0;
     }
 
