@@ -33,6 +33,13 @@ feature provided by your editor.
 		</stateVariable>
 
 		<stateVariable>
+			<Optional/>
+			<name>ContainerUpdateIDs</name>
+			<sendEventsAttribute>yes</sendEventsAttribute>
+			<dataType>string</dataType>
+		</stateVariable>
+
+		<stateVariable>
 			<name>FeatureList</name>
 			<sendEventsAttribute>no</sendEventsAttribute>
 			<dataType>string</dataType>
@@ -102,13 +109,6 @@ feature provided by your editor.
 			<Optional/>
 			<name>SortExtensionCapabilities</name>
 			<sendEventsAttribute>no</sendEventsAttribute>
-			<dataType>string</dataType>
-		</stateVariable>
-
-		<stateVariable>
-			<Optional/>
-			<name>ContainerUpdateIDs</name>
-			<sendEventsAttribute>yes</sendEventsAttribute>
 			<dataType>string</dataType>
 		</stateVariable>
 

@@ -51,6 +51,7 @@ public class Rygel.ContentDirectory: Service {
     protected HTTPServer http_server;
 
     public MediaContainer root_container;
+    private ArrayList<MediaContainer> updated_containers;
 
     private ArrayList<Browse> browses;
     public uint32 system_update_id;
@@ -65,6 +66,7 @@ public class Rygel.ContentDirectory: Service {
         this.http_server = new HTTPServer (this, this.get_type ().name ());
 
         this.browses = new ArrayList<Browse> ();
+        this.updated_containers =  new ArrayList<MediaContainer> ();
 
         this.feature_list =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
@@ -82,6 +84,8 @@ public class Rygel.ContentDirectory: Service {
         this.action_invoked["GetSystemUpdateID"] +=
                                                 this.get_system_update_id_cb;
         this.query_variable["SystemUpdateID"] += this.query_system_update_id;
+        this.query_variable["ContainerUpdateIDs"] +=
+                                                this.query_container_update_ids;
 
         /* Connect SearchCapabilities related signals */
         this.action_invoked["GetSearchCapabilities"] +=
@@ -131,6 +135,17 @@ public class Rygel.ContentDirectory: Service {
         /* Set action return arguments */
         value.init (typeof (uint32));
         value.set_uint (this.system_update_id);
+    }
+
+    /* Query ContainerUpdateIDs */
+    private void query_container_update_ids (ContentDirectory content_dir,
+                                             string           variable,
+                                             ref GLib.Value   value) {
+        var update_ids = this.create_container_update_ids ();
+
+        /* Set action return arguments */
+        value.init (typeof (string));
+        value.set_string (update_ids);
     }
 
     /* action GetSearchCapabilities implementation */
@@ -189,6 +204,17 @@ public class Rygel.ContentDirectory: Service {
 
     private void on_browse_completed (Browse browse) {
         this.browses.remove (browse);
+    }
+
+    private string create_container_update_ids () {
+        var update_ids = "";
+
+        foreach (var container in this.updated_containers) {
+            update_ids += "," + container.id + "," +
+                          container.update_id.to_string ();
+        }
+
+        return update_ids;
     }
 }
 
