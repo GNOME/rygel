@@ -210,8 +210,11 @@ public class Rygel.ContentDirectory: Service {
         var update_ids = "";
 
         foreach (var container in this.updated_containers) {
-            update_ids += "," + container.id + "," +
-                          container.update_id.to_string ();
+            if (update_ids != "") {
+                update_ids += ",";
+            }
+
+            update_ids += container.id + "," + container.update_id.to_string ();
         }
 
         return update_ids;
