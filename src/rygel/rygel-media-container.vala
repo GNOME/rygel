@@ -29,6 +29,14 @@ using GUPnP;
  * find_object.
  */
 public abstract class Rygel.MediaContainer : MediaObject {
+    /**
+     * container_updated signal that is emitted if a child container under the
+     * tree of this container gets updated.
+     *
+     * @param container the container that just got updated.
+     */
+    public signal void container_updated (MediaContainer container);
+
     public uint child_count;
     public uint32 update_id;
 
@@ -41,6 +49,8 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.title = title;
         this.child_count = child_count;
         this.update_id = 0;
+
+        this.container_updated += on_container_updated;
     }
 
     public MediaContainer.root (string title,
@@ -95,5 +105,32 @@ public abstract class Rygel.MediaContainer : MediaObject {
      */
     public abstract MediaObject? find_object_finish (AsyncResult res)
                                                      throws Error;
+
+    /**
+     * Method to be be called each time this container is updated (metadata
+     * changes for this container, items under it gets removed/added or their
+     * metadata changes etc).
+     *
+     * @param container the container that just got updated.
+     */
+    public void updated () {
+        this.update_id++;
+
+        // Emit the signal that will start the bump-up process for this event.
+        this.container_updated (this);
+    }
+
+    /**
+     * handler for container_updated signal on this container. We only forward
+     * it to the parent, hoping someone will get it from the root container
+     * and act upon it.
+     *
+     * @param container the container that just got updated.
+     */
+    private void on_container_updated (MediaContainer container) {
+        if (this.parent != null) {
+            this.parent.container_updated (container);
+        }
+    }
 }
 
