@@ -50,6 +50,7 @@ public class Rygel.Browse: GLib.Object {
     private MediaObject media_object;
 
     private MediaContainer root_container;
+    private uint32 system_update_id;
     private ServiceAction action;
     private Rygel.DIDLLiteWriter didl_writer;
 
@@ -59,6 +60,7 @@ public class Rygel.Browse: GLib.Object {
     public Browse (ContentDirectory    content_dir,
                    owned ServiceAction action) {
         this.root_container = content_dir.root_container;
+        this.system_update_id = content_dir.system_update_id;
         this.action = (owned) action;
 
         this.didl_writer =
@@ -204,7 +206,7 @@ public class Rygel.Browse: GLib.Object {
         string didl = this.didl_writer.get_string ();
 
         if (this.update_id == uint32.MAX) {
-            this.update_id = this.root_container.update_id;
+            this.update_id = this.system_update_id;
         }
 
         /* Set action return arguments */

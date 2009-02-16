@@ -53,6 +53,7 @@ public class Rygel.ContentDirectory: Service {
     public MediaContainer root_container;
 
     private ArrayList<Browse> browses;
+    public uint32 system_update_id;
 
     // Public abstract methods derived classes need to implement
     public virtual MediaContainer? create_root_container () {
@@ -118,7 +119,7 @@ public class Rygel.ContentDirectory: Service {
     private void get_system_update_id_cb (ContentDirectory    content_dir,
                                           owned ServiceAction action) {
         /* Set action return arguments */
-        action.set ("Id", typeof (uint32), this.root_container.update_id);
+        action.set ("Id", typeof (uint32), this.system_update_id);
 
         action.return ();
     }
@@ -129,7 +130,7 @@ public class Rygel.ContentDirectory: Service {
                                          ref GLib.Value   value) {
         /* Set action return arguments */
         value.init (typeof (uint32));
-        value.set_uint (this.root_container.update_id);
+        value.set_uint (this.system_update_id);
     }
 
     /* action GetSearchCapabilities implementation */
