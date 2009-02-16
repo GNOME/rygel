@@ -125,11 +125,13 @@ public abstract class Rygel.MediaContainer : MediaObject {
      * it to the parent, hoping someone will get it from the root container
      * and act upon it.
      *
-     * @param container the container that just got updated.
+     * @param container the container that emitted the signal
+     * @param updated_container the container that just got updated
      */
-    private void on_container_updated (MediaContainer container) {
+    private void on_container_updated (MediaContainer container,
+                                       MediaContainer updated_container) {
         if (this.parent != null) {
-            this.parent.container_updated (container);
+            this.parent.container_updated (updated_container);
         }
     }
 }
