@@ -53,6 +53,9 @@ public class Rygel.ContentDirectory: Service {
     public MediaContainer root_container;
     private ArrayList<MediaContainer> updated_containers;
 
+    private bool clear_updated_containers;
+    private uint update_notify_id;
+
     private ArrayList<Browse> browses;
     public uint32 system_update_id;
 
@@ -67,6 +70,8 @@ public class Rygel.ContentDirectory: Service {
 
         this.browses = new ArrayList<Browse> ();
         this.updated_containers =  new ArrayList<MediaContainer> ();
+
+        this.root_container.container_updated += on_container_updated;
 
         this.feature_list =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
@@ -218,6 +223,47 @@ public class Rygel.ContentDirectory: Service {
         }
 
         return update_ids;
+    }
+
+    /**
+     * handler for container_updated signal on root_container. We don't
+     * immediately send the notification for changes but schedule the
+     * notification after 0.2 seconds. Also we don't clear the updated
+     * container list immediately after notification but rather in this
+     * function. Please refer to ContentDirectory version 2 specs for details
+     * on why we do all this the way we do.
+     *
+     * @param root_container the root_container
+     * @param updated_container the container that just got updated
+     */
+    private void on_container_updated (MediaContainer root_container,
+                                       MediaContainer updated_container) {
+        this.system_update_id++;
+
+        if (this.clear_updated_containers) {
+            this.updated_containers.clear ();
+            this.clear_updated_containers = false;
+        }
+
+        // UPnP specs dicate we make sure only last update be evented
+        this.updated_containers.remove (updated_container);
+        this.updated_containers.add (updated_container);
+
+        if (this.update_notify_id == 0) {
+            this.update_notify_id = Timeout.add (200, this.update_notify);
+        }
+    }
+
+    private bool update_notify () {
+        var update_ids = this.create_container_update_ids ();
+
+        this.notify ("ContainerUpdateIDs", typeof (string), update_ids);
+        this.notify ("SystemUpdateID", typeof (uint32), this.system_update_id);
+
+        this.clear_updated_containers = true;
+        this.update_notify_id = 0;
+
+        return false;
     }
 }
 
