@@ -41,6 +41,8 @@ internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
             this.msg.set_status (Soup.KnownStatusCode.OK);
         }
 
+        this.msg.response_body.set_accumulate (false);
+
         this.server.request_aborted += on_request_aborted;
     }
 
