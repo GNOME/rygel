@@ -152,8 +152,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
 
         if (this.item.size >= 0) {
-            this.msg.response_headers.append ("Content-Length",
-                                              this.item.size.to_string ());
+            this.msg.response_headers.set_content_length (this.item.size);
         }
 
         if (this.item.size > 0) {
