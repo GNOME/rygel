@@ -36,6 +36,8 @@ public class Rygel.Main : Object {
     private int exit_code;
 
     public Main () throws GLib.Error {
+        Environment.set_application_name (_(BuildConfig.PACKAGE_NAME));
+
         this.media_servers = new ArrayList<MediaServer> ();
         this.plugin_loader = new PluginLoader ();
         this.ms_factory = new MediaServerFactory ();

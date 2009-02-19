@@ -31,6 +31,9 @@ namespace CStuff {
 
         [CCode (cname = "PLUGIN_DIR")]
         public static const string PLUGIN_DIR;
+
+        [CCode (cname = "PACKAGE_NAME")]
+        public static const string PACKAGE_NAME;
     }
 
     /**
