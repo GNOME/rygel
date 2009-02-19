@@ -63,10 +63,6 @@ internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
             this.end (true, Soup.KnownStatusCode.NONE);
     }
 
-    public void set_mime_type (string mime_type) {
-        this.msg.response_headers.append ("Content-Type", mime_type);
-    }
-
     public void push_data (void *data, size_t length) {
         this.msg.response_body.append (Soup.MemoryUse.COPY,
                                        data,
