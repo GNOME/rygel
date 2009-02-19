@@ -23,11 +23,9 @@
 
 using Gst;
 
-public class Rygel.HTTPResponse : GLib.Object {
+public abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
     public Soup.Server server { get; private set; }
     protected Soup.Message msg;
-
-    public signal void ended ();
 
     public HTTPResponse (Soup.Server  server,
                          Soup.Message msg,
@@ -42,6 +40,12 @@ public class Rygel.HTTPResponse : GLib.Object {
         }
 
         this.server.request_aborted += on_request_aborted;
+    }
+
+    public abstract void run ();
+
+    public void cancel () {
+        this.end (true, Soup.KnownStatusCode.CANCELLED);
     }
 
     private void on_request_aborted (Soup.Server        server,
@@ -69,7 +73,7 @@ public class Rygel.HTTPResponse : GLib.Object {
             this.msg.set_status (status);
         }
 
-        this.ended ();
+        this.completed ();
     }
 }
 

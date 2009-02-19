@@ -121,7 +121,7 @@ public class Rygel.ContentDirectory: Service {
         this.browses.add (browse);
         browse.completed += this.on_browse_completed;
 
-        browse.start ();
+        browse.run ();
     }
 
     /* GetSystemUpdateID action implementation */

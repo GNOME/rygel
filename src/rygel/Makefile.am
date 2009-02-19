@@ -42,6 +42,8 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-plugin-loader.c \
                 rygel-http-server.c \
                 rygel-http-server.h \
+		rygel-state-machine.c \
+		rygel-state-machine.h \
 		rygel-http-request.c \
 		rygel-http-request.h \
                 rygel-http-response.c \
@@ -92,6 +94,8 @@ rygel_SOURCES = rygel-1.0.vapi \
 		rygel-plugin-loader.vala \
 		rygel-http-server.c \
 		rygel-http-server.h \
+		rygel-state-machine.c \
+		rygel-state-machine.h \
 		rygel-http-request.c \
 		rygel-http-request.h \
 		rygel-http-response.c \
@@ -138,6 +142,7 @@ VAPI_SOURCE_FILES = rygel-content-directory.vala \
 		    rygel-connection-manager.vala \
 		    rygel-media-receiver-registrar.vala \
 		    rygel-http-server.vala \
+		    rygel-state-machine.vala \
 		    rygel-http-request.vala \
 		    rygel-http-response.vala \
 		    rygel-live-response.vala \

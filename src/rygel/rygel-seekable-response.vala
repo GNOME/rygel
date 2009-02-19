@@ -53,7 +53,9 @@ public class Rygel.SeekableResponse : Rygel.HTTPResponse {
 
         this.buffer = new char[this.length];
         this.file = File.new_for_uri (uri);
+    }
 
+    public override void run () {
         this.file.read_async (this.priority, null, this.on_file_read);
     }
 

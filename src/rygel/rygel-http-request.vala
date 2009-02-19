@@ -37,15 +37,13 @@ public errordomain Rygel.HTTPRequestError {
 /**
  * Responsible for handling HTTP client requests.
  */
-public class Rygel.HTTPRequest : GLib.Object {
+public class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     private MediaContainer root_container;
     private Soup.Server server;
     private Soup.Message msg;
     private HashTable<string,string>? query;
 
     private HTTPResponse response;
-
-    public signal void handled ();
 
     private string item_id;
     private MediaItem item;
@@ -63,7 +61,7 @@ public class Rygel.HTTPRequest : GLib.Object {
         this.server.pause_message (this.msg);
     }
 
-    public void start_processing () {
+    public void run () {
         if (this.msg.method != "HEAD" && this.msg.method != "GET") {
             /* We only entertain 'HEAD' and 'GET' requests */
             this.handle_error (
@@ -86,15 +84,21 @@ public class Rygel.HTTPRequest : GLib.Object {
                                          this.on_item_found);
     }
 
+    public void cancel () {
+        if (this.response != null ) {
+            this.response.cancel ();
+        }
+    }
+
     private void stream_from_gst_source (Element# src) throws Error {
         var response = new LiveResponse (this.server,
                                          this.msg,
                                          "RygelLiveResponse",
                                          src);
         this.response = response;
-        response.ended += on_response_ended;
+        response.completed += on_response_completed;
 
-        response.start ();
+        response.run ();
     }
 
     private void serve_uri (string uri, size_t size) {
@@ -104,11 +108,12 @@ public class Rygel.HTTPRequest : GLib.Object {
                                              this.seek,
                                              size);
         this.response = response;
+        response.completed += on_response_completed;
 
-        response.ended += on_response_ended;
+        response.run ();
     }
 
-    private void on_response_ended (HTTPResponse response) {
+    private void on_response_completed (HTTPResponse response) {
         this.end (Soup.KnownStatusCode.NONE);
     }
 
@@ -323,7 +328,7 @@ public class Rygel.HTTPRequest : GLib.Object {
             this.msg.set_status (status);
         }
 
-        this.handled ();
+        this.completed ();
     }
 }
 

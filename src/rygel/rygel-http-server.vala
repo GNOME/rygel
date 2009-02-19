@@ -64,7 +64,7 @@ public class Rygel.HTTPServer : GLib.Object {
         return create_uri_for_path (query);
     }
 
-    private void on_request_handled (HTTPRequest request) {
+    private void on_request_completed (HTTPRequest request) {
         /* Remove the request from our list. */
         this.requests.remove (request);
     }
@@ -76,10 +76,10 @@ public class Rygel.HTTPServer : GLib.Object {
                                  Soup.ClientContext        soup_client) {
         var request = new HTTPRequest (this.root_container, server, msg, query);
 
-        request.handled += this.on_request_handled;
+        request.completed += this.on_request_completed;
         this.requests.add (request);
 
-        request.start_processing ();
+        request.run ();
     }
 }
 

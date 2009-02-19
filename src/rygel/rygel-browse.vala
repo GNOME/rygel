@@ -25,13 +25,14 @@
 using Rygel;
 using GUPnP;
 using Gee;
+using Soup;
 
 /**
  * Browse action implementation. This class is more or less the state-machine
  * associated with the Browse action handling that exists to make asynchronous
  * handling of Browse action possible.
  */
-public class Rygel.Browse: GLib.Object {
+public class Rygel.Browse: GLib.Object, Rygel.StateMachine {
     // In arguments
     public string object_id;
     public string browse_flag;
@@ -54,9 +55,6 @@ public class Rygel.Browse: GLib.Object {
     private ServiceAction action;
     private Rygel.DIDLLiteWriter didl_writer;
 
-    // Signals
-    public signal void completed ();
-
     public Browse (ContentDirectory    content_dir,
                    owned ServiceAction action) {
         this.root_container = content_dir.root_container;
@@ -67,12 +65,16 @@ public class Rygel.Browse: GLib.Object {
                 new Rygel.DIDLLiteWriter (content_dir.http_server);
     }
 
-    public void start () {
+    public void run () {
         /* Start DIDL-Lite fragment */
         this.didl_writer.start_didl_lite (null, null, true);
 
         /* Start by parsing the 'in' arguments */
         this.parse_args ();
+    }
+
+    public void cancel () {
+        // FIXME: implement canceling of browse request here
     }
 
     private void got_media_object () {
