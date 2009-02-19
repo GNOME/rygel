@@ -68,20 +68,13 @@ public class Rygel.Browse: GLib.Object, Rygel.StateMachine {
     }
 
     public void run (Cancellable? cancellable) {
-        if (cancellable != null) {
-            this.cancellable = cancellable;
-            cancellable.cancelled += this.on_cancelled;
-        }
+        this.cancellable = cancellable;
 
         /* Start DIDL-Lite fragment */
         this.didl_writer.start_didl_lite (null, null, true);
 
         /* Start by parsing the 'in' arguments */
         this.parse_args ();
-    }
-
-    private void on_cancelled (Cancellable cancellable) {
-        // FIXME: implement canceling of browse request here
     }
 
     private void got_media_object () {
@@ -109,7 +102,7 @@ public class Rygel.Browse: GLib.Object, Rygel.StateMachine {
         }
 
         this.root_container.find_object (this.object_id,
-                                         null,
+                                         this.cancellable,
                                          this.on_media_object_found);
     }
 
@@ -268,10 +261,10 @@ public class Rygel.Browse: GLib.Object, Rygel.StateMachine {
     private void fetch_children () {
         var container = (MediaContainer) this.media_object;
 
-         container.get_children (this.index,
-                                 this.requested_count,
-                                 null,
-                                 this.on_children_fetched);
+        container.get_children (this.index,
+                                this.requested_count,
+                                this.cancellable,
+                                this.on_children_fetched);
     }
 
     private void on_children_fetched (Object      source_object,
