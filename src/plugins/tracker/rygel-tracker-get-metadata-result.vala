@@ -25,22 +25,15 @@ using Rygel;
 /**
  * Handles Tracker Metadata.Get method results.
  *
- * FIXME: This should inherit from Rygel.SimpleAsyncResult once bug#567319 is
- *        fixed.
  */
-public class Rygel.TrackerGetMetadataResult : GLib.Object, GLib.AsyncResult {
-    protected Object source_object;
-    protected AsyncReadyCallback callback;
+public class Rygel.TrackerGetMetadataResult :
+             Rygel.SimpleAsyncResult<MediaObject> {
     protected string item_id;
-
-    public MediaObject data;
-    public Error error;
 
     public TrackerGetMetadataResult (TrackerCategory    category,
                                      AsyncReadyCallback callback,
                                      string             item_id) {
-        this.source_object = category;
-        this.callback = callback;
+        base (category, callback);
         this.item_id = item_id;
     }
 
@@ -58,27 +51,5 @@ public class Rygel.TrackerGetMetadataResult : GLib.Object, GLib.AsyncResult {
         this.data = category.create_item (path, metadata);
 
         this.complete ();
-    }
-
-    public unowned Object get_source_object () {
-        return this.source_object;
-    }
-
-    public void* get_user_data () {
-        return null;
-    }
-
-    public void complete () {
-        this.callback (this.source_object, this);
-    }
-
-    public void complete_in_idle () {
-        Idle.add_full (Priority.DEFAULT, idle_func);
-    }
-
-    private bool idle_func () {
-        this.complete ();
-
-        return false;
     }
 }
