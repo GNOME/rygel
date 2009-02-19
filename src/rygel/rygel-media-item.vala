@@ -21,6 +21,7 @@
  */
 
 using GUPnP;
+using Gee;
 
 /**
  * Represents a media (Music, Video and Image) item.
@@ -37,7 +38,7 @@ public class Rygel.MediaItem : MediaObject {
     public string upnp_class;
 
     // Resource info
-    public string uri;
+    public ArrayList<string> uris;
     public string mime_type;
 
     public long size = -1;       // Size in bytes
@@ -63,6 +64,8 @@ public class Rygel.MediaItem : MediaObject {
         this.parent = parent;
         this.title = title;
         this.upnp_class = upnp_class;
+
+        this.uris = new ArrayList<string> ();
     }
 
     // Live media items need to provide a nice working implementation of this

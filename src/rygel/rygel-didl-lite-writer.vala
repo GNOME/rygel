@@ -108,16 +108,16 @@ public class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         }
 
         /* Add resource data */
-        DIDLLiteResource res = this.get_original_res (item);
+        var res_list = this.get_original_res_list (item);
 
         /* Now get the transcoded/proxy URIs */
-        var res_list = this.get_transcoded_resources (item, res);
-        foreach (DIDLLiteResource trans_res in res_list) {
+        var trans_res_list = this.get_transcoded_resources (item, res_list);
+        foreach (DIDLLiteResource trans_res in trans_res_list) {
             this.add_res (trans_res);
         }
 
-        /* Add the original res in the end */
-        if (res.uri != null) {
+        /* Add the original resources in the end */
+        foreach (DIDLLiteResource res in res_list) {
             this.add_res (res);
         }
 
@@ -162,18 +162,17 @@ public class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
 
     // FIXME: We only proxy URIs through our HTTP server for now
     private ArrayList<DIDLLiteResource?>? get_transcoded_resources
-                                            (MediaItem        item,
-                                             DIDLLiteResource orig_res) {
+                                (MediaItem                    item,
+                                 ArrayList<DIDLLiteResource?> orig_res_list) {
         var resources = new ArrayList<DIDLLiteResource?> ();
 
-        if (orig_res.protocol == "http-get")
+        if (http_res_present (orig_res_list)) {
             return resources;
+        }
 
-        // Copy the original res first
-        DIDLLiteResource res = orig_res;
-
-        // Then modify the URI and protocol
-        res.uri = this.http_server.create_http_uri_for_item (item);
+        // Create the HTTP URI
+        var uri = this.http_server.create_http_uri_for_item (item);
+        DIDLLiteResource res = create_res (item, uri);
         res.protocol = "http-get";
 
         resources.add (res);
@@ -181,11 +180,39 @@ public class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         return resources;
     }
 
-    private DIDLLiteResource get_original_res (MediaItem item) throws Error {
+    private bool http_res_present (ArrayList<DIDLLiteResource?> res_list) {
+        bool present = false;
+
+        foreach (var res in res_list) {
+            if (res.protocol == "http-get") {
+                present = true;
+
+                break;
+            }
+        }
+
+        return present;
+    }
+
+    private ArrayList<DIDLLiteResource?> get_original_res_list (MediaItem item)
+                                                               throws Error {
+        var resources = new ArrayList<DIDLLiteResource?> ();
+
+        foreach (var uri in item.uris) {
+            DIDLLiteResource res = create_res (item, uri);
+
+            resources.add (res);
+        }
+
+        return resources;
+    }
+
+    private DIDLLiteResource create_res (MediaItem item, string uri)
+                                         throws Error {
         DIDLLiteResource res = DIDLLiteResource ();
         res.reset ();
 
-        res.uri = item.uri;
+        res.uri = uri;
         res.mime_type = item.mime_type;
 
         res.size = item.size;

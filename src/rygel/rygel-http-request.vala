@@ -132,7 +132,11 @@ public class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             return;
         }
 
-        string uri = this.item.uri;
+        // Just use the first URI available
+        string uri = null;
+        if (this.item.uris.size != 0) {
+            uri = this.item.uris.get (0);
+        }
 
         if (this.item.size > 0) {
             this.handle_interactive_item (uri);
