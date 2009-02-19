@@ -32,7 +32,7 @@ using Soup;
  * associated with the Browse action handling that exists to make asynchronous
  * handling of Browse action possible.
  */
-public class Rygel.Browse: GLib.Object, Rygel.StateMachine {
+internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
     // In arguments
     public string object_id;
     public string browse_flag;

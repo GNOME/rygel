@@ -26,7 +26,7 @@
 using Rygel;
 using Gst;
 
-public errordomain Rygel.HTTPRequestError {
+internal errordomain Rygel.HTTPRequestError {
     UNACCEPTABLE = Soup.KnownStatusCode.NOT_ACCEPTABLE,
     INVALID_RANGE = Soup.KnownStatusCode.BAD_REQUEST,
     OUT_OF_RANGE = Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE,
@@ -37,7 +37,7 @@ public errordomain Rygel.HTTPRequestError {
 /**
  * Responsible for handling HTTP client requests.
  */
-public class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
+internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     private MediaContainer root_container;
     private Soup.Server server;
     private Soup.Message msg;

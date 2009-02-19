@@ -25,7 +25,7 @@
 using Rygel;
 using GUPnP;
 
-public class Rygel.SeekableResponse : Rygel.HTTPResponse {
+internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
     private Seek seek;
     private File file;
 

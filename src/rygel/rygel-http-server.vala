@@ -63,7 +63,7 @@ public class Rygel.HTTPServer : GLib.Object {
                                           path);
     }
 
-    public string create_http_uri_for_item (MediaItem item) {
+    internal string create_http_uri_for_item (MediaItem item) {
         string escaped = Uri.escape_string (item.id, "", true);
         string query = "?itemid=%s".printf (escaped);
 

@@ -27,12 +27,12 @@ using GUPnP;
 using Gee;
 using Gst;
 
-public errordomain Rygel.LiveResponseError {
+internal errordomain Rygel.LiveResponseError {
     MISSING_PLUGIN,
     LINK
 }
 
-public class Rygel.LiveResponse : Rygel.HTTPResponse {
+internal class Rygel.LiveResponse : Rygel.HTTPResponse {
     private const string SINK_NAME = "fakesink";
 
     private Pipeline pipeline;

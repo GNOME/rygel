@@ -24,7 +24,7 @@
 using GUPnP;
 using Gee;
 
-public errordomain Rygel.DIDLLiteWriterError {
+internal errordomain Rygel.DIDLLiteWriterError {
     UNKNOWN_URI_TYPE,
     UNSUPPORTED_OBJECT
 }
@@ -32,7 +32,7 @@ public errordomain Rygel.DIDLLiteWriterError {
 /**
  * Responsible for serializing media objects.
  */
-public class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
+internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
     private Rygel.HTTPServer http_server;
 
     public DIDLLiteWriter (HTTPServer http_server) {

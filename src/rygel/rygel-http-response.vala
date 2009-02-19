@@ -23,7 +23,7 @@
 
 using Gst;
 
-public abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
+internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
     public Soup.Server server { get; private set; }
     protected Soup.Message msg;
 
@@ -84,7 +84,7 @@ public abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
     }
 }
 
-public class Rygel.Seek : GLib.Object {
+internal class Rygel.Seek : GLib.Object {
     public Format format { get; private set; }
 
     private int64 _start;

@@ -57,7 +57,7 @@ public class Rygel.ContentDirectory: Service {
     private uint update_notify_id;
 
     private ArrayList<Browse> browses;
-    public Cancellable cancellable;
+    internal Cancellable cancellable;
 
     public uint32 system_update_id;
 
