@@ -208,7 +208,8 @@ public class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         return resources;
     }
 
-    private DIDLLiteResource create_res (MediaItem item, string uri)
+    private DIDLLiteResource create_res (MediaItem item,
+                                         string    uri)
                                          throws Error {
         DIDLLiteResource res = DIDLLiteResource ();
         res.reset ();
