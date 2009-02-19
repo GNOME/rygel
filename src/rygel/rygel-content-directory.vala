@@ -120,8 +120,8 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* Browse action implementation */
-    protected virtual void browse_cb (ContentDirectory    content_dir,
-                                      owned ServiceAction action) {
+    private virtual void browse_cb (ContentDirectory    content_dir,
+                                    owned ServiceAction action) {
         Browse browse = new Browse (this, action);
 
         this.browses.add (browse);
