@@ -132,10 +132,12 @@ public class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             return;
         }
 
+        string uri = this.item.uri;
+
         if (this.item.size > 0) {
-            this.handle_interactive_item ();
+            this.handle_interactive_item (uri);
         } else {
-            this.handle_streaming_item ();
+            this.handle_streaming_item (uri);
         }
     }
 
@@ -172,8 +174,7 @@ public class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
     }
 
-    private void handle_streaming_item () {
-        string uri = this.item.uri;
+    private void handle_streaming_item (string? uri) {
         dynamic Element src = null;
 
         if (uri != null) {
@@ -202,9 +203,7 @@ public class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
     }
 
-    private void handle_interactive_item () {
-        string uri = this.item.uri;
-
+    private void handle_interactive_item (string? uri) {
         if (uri == null) {
             var error = new HTTPRequestError.NOT_FOUND (
                                 "Requested item '%s' didn't provide a URI\n",
