@@ -26,11 +26,14 @@ using Rygel;
 using GUPnP;
 
 internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
+    private const size_t BUFFER_LENGTH = 4096;
+
     private Seek seek;
     private File file;
+    private FileInputStream input_stream;
 
     private char[] buffer;
-    private size_t length;
+    private size_t total_length;
 
     int priority;
 
@@ -42,16 +45,18 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
         base (server, msg, seek != null);
 
         this.seek = seek;
-        this.length = file_length;
+        this.total_length = file_length;
         this.priority = this.get_requested_priority ();
 
         if (seek != null) {
-            this.length = (size_t) seek.length;
+            this.total_length = (size_t) seek.length;
         } else {
-            this.length = file_length;
+            this.total_length = file_length;
         }
 
-        this.buffer = new char[this.length];
+        msg.wrote_chunk += on_wrote_chunk;
+
+        this.buffer = new char[SeekableResponse.BUFFER_LENGTH];
         this.file = File.new_for_uri (uri);
     }
 
@@ -63,10 +68,8 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
 
     private void on_file_read (GLib.Object      source_object,
                                GLib.AsyncResult result) {
-        FileInputStream input_stream = null;
-
         try {
-           input_stream = this.file.read_finish (result);
+           this.input_stream = this.file.read_finish (result);
         } catch (Error err) {
             warning ("Failed to read from URI: %s: %s\n",
                      file.get_uri (),
@@ -77,7 +80,9 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
 
         if (seek != null) {
             try {
-                input_stream.seek (seek.start, SeekType.SET, this.cancellable);
+                this.input_stream.seek (seek.start,
+                                        SeekType.SET,
+                                        this.cancellable);
             } catch (Error err) {
                 warning ("Failed to seek to %s-%s on URI %s: %s\n",
                          seek.start.to_string (),
@@ -90,8 +95,8 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
             }
         }
 
-        input_stream.read_async (this.buffer,
-                                 this.length,
+        this.input_stream.read_async (this.buffer,
+                                 SeekableResponse.BUFFER_LENGTH,
                                  this.priority,
                                  this.cancellable,
                                  on_contents_read);
@@ -100,9 +105,10 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
     private void on_contents_read (GLib.Object      source_object,
                                    GLib.AsyncResult result) {
         FileInputStream input_stream = (FileInputStream) source_object;
+        ssize_t bytes_read;
 
         try {
-           input_stream.read_finish (result);
+           bytes_read = input_stream.read_finish (result);
         } catch (Error err) {
             warning ("Failed to read contents from URI: %s: %s\n",
                      this.file.get_uri (),
@@ -111,11 +117,13 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
             return;
         }
 
-        this.push_data (this.buffer, this.length);
-
-        input_stream.close_async (this.priority,
-                                  this.cancellable,
-                                  on_input_stream_closed);
+        if (bytes_read > 0) {
+            this.push_data (this.buffer, bytes_read);
+        } else {
+            input_stream.close_async (this.priority,
+                                      this.cancellable,
+                                      on_input_stream_closed);
+        }
     }
 
     private void on_input_stream_closed (GLib.Object      source_object,
@@ -131,6 +139,14 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
         }
 
         this.end (false, Soup.KnownStatusCode.NONE);
+    }
+
+    private void on_wrote_chunk (Soup.Message msg) {
+        this.input_stream.read_async (this.buffer,
+                                      SeekableResponse.BUFFER_LENGTH,
+                                      this.priority,
+                                      this.cancellable,
+                                      this.on_contents_read);
     }
 
     private int get_requested_priority () {
