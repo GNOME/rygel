@@ -69,7 +69,7 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-media-item.c \
 		rygel-media-item.h
 
-rygel_SOURCES = rygel-1.0.vapi \
+rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		cstuff.c \
 		cstuff.h \
 		rygel-media-server.h \
@@ -122,7 +122,7 @@ rygel_SOURCES = rygel-1.0.vapi \
 		rygel-media-item.h
 
 rygel.stamp: $(filter %.vala,$(rygel_SOURCES))
-	$(VALAC) -C --vapidir=$(srcdir) --pkg rygel-1.0 \
+	$(VALAC) -C --vapidir=$(srcdir) \
 	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
 	--pkg gconf-2.0 --pkg gstreamer-0.10 --pkg gio-2.0 --pkg gee-1.0 $^
 	touch $@
