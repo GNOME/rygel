@@ -18,7 +18,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(UUID_CFLAGS) \
 	    -I$(top_srcdir) -DDATA_DIR='"$(shareddir)"' \
-	    -DPLUGIN_DIR='"$(plugindir)"'
+	    -DPLUGIN_DIR='"$(plugindir)"' -include config.h
 
 bin_PROGRAMS = rygel
 
