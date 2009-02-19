@@ -112,6 +112,7 @@ public class Rygel.ContentDirectory: Service {
     ~ContentDirectory () {
         // Cancel all browse calls
         foreach (var browse in this.browses) {
+            browse.completed -= this.on_browse_completed;
             browse.cancel ();
         }
 

@@ -49,6 +49,7 @@ public class Rygel.HTTPServer : GLib.Object {
     public void destroy () {
         // Cancel all http requests
         foreach (var request in this.requests) {
+            request.completed -= this.on_request_completed;
             request.cancel ();
         }
 
