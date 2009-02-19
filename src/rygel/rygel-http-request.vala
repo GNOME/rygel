@@ -49,6 +49,8 @@ public class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     private MediaItem item;
     private Seek seek;
 
+    private Cancellable cancellable;
+
     public HTTPRequest (MediaContainer            root_container,
                         Soup.Server               server,
                         Soup.Message              msg,
@@ -61,7 +63,9 @@ public class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         this.server.pause_message (this.msg);
     }
 
-    public void run () {
+    public void run (Cancellable? cancellable) {
+        this.cancellable = cancellable;
+
         if (this.msg.method != "HEAD" && this.msg.method != "GET") {
             /* We only entertain 'HEAD' and 'GET' requests */
             this.handle_error (
@@ -84,12 +88,6 @@ public class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
                                          this.on_item_found);
     }
 
-    public void cancel () {
-        if (this.response != null ) {
-            this.response.cancel ();
-        }
-    }
-
     private void stream_from_gst_source (Element# src) throws Error {
         var response = new LiveResponse (this.server,
                                          this.msg,
@@ -98,7 +96,7 @@ public class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         this.response = response;
         response.completed += on_response_completed;
 
-        response.run ();
+        response.run (this.cancellable);
     }
 
     private void serve_uri (string uri, size_t size) {
@@ -110,7 +108,7 @@ public class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         this.response = response;
         response.completed += on_response_completed;
 
-        response.run ();
+        response.run (this.cancellable);
     }
 
     private void on_response_completed (HTTPResponse response) {

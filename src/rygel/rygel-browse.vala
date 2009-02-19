@@ -55,6 +55,8 @@ public class Rygel.Browse: GLib.Object, Rygel.StateMachine {
     private ServiceAction action;
     private Rygel.DIDLLiteWriter didl_writer;
 
+    private Cancellable cancellable;
+
     public Browse (ContentDirectory    content_dir,
                    owned ServiceAction action) {
         this.root_container = content_dir.root_container;
@@ -65,7 +67,12 @@ public class Rygel.Browse: GLib.Object, Rygel.StateMachine {
                 new Rygel.DIDLLiteWriter (content_dir.http_server);
     }
 
-    public void run () {
+    public void run (Cancellable? cancellable) {
+        if (cancellable != null) {
+            this.cancellable = cancellable;
+            cancellable.cancelled += this.on_cancelled;
+        }
+
         /* Start DIDL-Lite fragment */
         this.didl_writer.start_didl_lite (null, null, true);
 
@@ -73,7 +80,7 @@ public class Rygel.Browse: GLib.Object, Rygel.StateMachine {
         this.parse_args ();
     }
 
-    public void cancel () {
+    private void on_cancelled (Cancellable cancellable) {
         // FIXME: implement canceling of browse request here
     }
 

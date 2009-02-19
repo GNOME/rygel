@@ -57,6 +57,8 @@ public class Rygel.ContentDirectory: Service {
     private uint update_notify_id;
 
     private ArrayList<Browse> browses;
+    public Cancellable cancellable;
+
     public uint32 system_update_id;
 
     // Public abstract methods derived classes need to implement
@@ -69,6 +71,7 @@ public class Rygel.ContentDirectory: Service {
         this.http_server = new HTTPServer (this, this.get_type ().name ());
 
         this.browses = new ArrayList<Browse> ();
+        this.cancellable = new Cancellable ();
         this.updated_containers =  new ArrayList<MediaContainer> ();
 
         this.root_container.container_updated += on_container_updated;
@@ -110,11 +113,8 @@ public class Rygel.ContentDirectory: Service {
     }
 
     ~ContentDirectory () {
-        // Cancel all browse calls
-        foreach (var browse in this.browses) {
-            browse.completed -= this.on_browse_completed;
-            browse.cancel ();
-        }
+        // Cancel all state machines
+        this.cancellable.cancel ();
 
         this.http_server.destroy ();
     }
@@ -127,7 +127,7 @@ public class Rygel.ContentDirectory: Service {
         this.browses.add (browse);
         browse.completed += this.on_browse_completed;
 
-        browse.run ();
+        browse.run (this.cancellable);
     }
 
     /* GetSystemUpdateID action implementation */

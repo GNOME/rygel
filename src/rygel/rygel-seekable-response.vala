@@ -55,8 +55,10 @@ public class Rygel.SeekableResponse : Rygel.HTTPResponse {
         this.file = File.new_for_uri (uri);
     }
 
-    public override void run () {
-        this.file.read_async (this.priority, null, this.on_file_read);
+    public override void run (Cancellable? cancellable) {
+        this.cancellable = cancellable;
+
+        this.file.read_async (this.priority, cancellable, this.on_file_read);
     }
 
     private void on_file_read (GLib.Object      source_object,
@@ -75,7 +77,7 @@ public class Rygel.SeekableResponse : Rygel.HTTPResponse {
 
         if (seek != null) {
             try {
-                input_stream.seek (seek.start, SeekType.SET, null);
+                input_stream.seek (seek.start, SeekType.SET, this.cancellable);
             } catch (Error err) {
                 warning ("Failed to seek to %s-%s on URI %s: %s\n",
                          seek.start.to_string (),
@@ -91,7 +93,7 @@ public class Rygel.SeekableResponse : Rygel.HTTPResponse {
         input_stream.read_async (this.buffer,
                                  this.length,
                                  this.priority,
-                                 null,
+                                 this.cancellable,
                                  on_contents_read);
     }
 
@@ -112,7 +114,7 @@ public class Rygel.SeekableResponse : Rygel.HTTPResponse {
         this.push_data (this.buffer, this.length);
 
         input_stream.close_async (this.priority,
-                                  null,
+                                  this.cancellable,
                                   on_input_stream_closed);
     }
 

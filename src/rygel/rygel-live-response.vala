@@ -53,7 +53,9 @@ public class Rygel.LiveResponse : Rygel.HTTPResponse {
         this.prepare_pipeline (name, src);
     }
 
-    public override void run () {
+    public override void run (Cancellable? cancellable) {
+        base.run (cancellable);
+
         // Go to PAUSED first
         this.pipeline.set_state (State.PLAYING);
     }
