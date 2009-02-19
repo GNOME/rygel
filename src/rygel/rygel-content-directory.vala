@@ -110,6 +110,11 @@ public class Rygel.ContentDirectory: Service {
     }
 
     ~ContentDirectory () {
+        // Cancel all browse calls
+        foreach (var browse in this.browses) {
+            browse.cancel ();
+        }
+
         this.http_server.destroy ();
     }
 
