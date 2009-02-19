@@ -163,7 +163,8 @@ public class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
     // FIXME: We only proxy URIs through our HTTP server for now
     private ArrayList<DIDLLiteResource?>? get_transcoded_resources
                                 (MediaItem                    item,
-                                 ArrayList<DIDLLiteResource?> orig_res_list) {
+                                 ArrayList<DIDLLiteResource?> orig_res_list)
+                                 throws Error {
         var resources = new ArrayList<DIDLLiteResource?> ();
 
         if (http_res_present (orig_res_list)) {
