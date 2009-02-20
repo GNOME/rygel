@@ -66,7 +66,7 @@ public abstract class Rygel.TrackerCategory : MediaContainer {
             /* FIXME: We need to hook to some tracker signals to keep
              *        this field up2date at all times
              */
-            this.child_count = this.get_children_count ();
+            this.get_children_count ();
 
             this.results = new Gee.ArrayList<AsyncResult>();
         } catch (DBus.Error error) {
@@ -75,30 +75,41 @@ public abstract class Rygel.TrackerCategory : MediaContainer {
         }
     }
 
-    private uint get_children_count () {
-        string[][] search_result;
-
+    private void get_children_count () {
         try {
-            search_result = this.search.Query (0,
-                                               this.category,
-                                               new string[0],
-                                               "",
-                                               new string[0],
-                                               "",
-                                               false,
-                                               new string[0],
-                                               false,
-                                               0,
-                                               -1);
+            this.search.Query (0,
+                               this.category,
+                               new string[0],
+                               "",
+                               new string[0],
+                               "",
+                               false,
+                               new string[0],
+                               false,
+                               0,
+                               -1,
+                               on_search_query_cb);
         } catch (GLib.Error error) {
             critical ("error getting items under category '%s': %s",
                       this.category,
                       error.message);
 
-            return 0;
+            return;
+        }
+    }
+
+    private void on_search_query_cb (string[][] search_result,
+                                     GLib.Error error) {
+        if (error != null) {
+            critical ("error getting items under category '%s': %s",
+                      this.category,
+                      error.message);
+
+            return;
         }
 
-        return search_result.length;
+        this.child_count = search_result.length;
+        this.updated ();
     }
 
     public override void get_children (uint               offset,
