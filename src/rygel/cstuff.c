@@ -24,6 +24,7 @@
 
 #include <cstuff.h>
 #include <signal.h>
+#include <string.h>
 
 static ApplicationExitCb on_app_exit = NULL;
 static gpointer data;
