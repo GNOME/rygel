@@ -1,3 +1,7 @@
+V         = @
+Q         = $(V:1=)
+QUIET_GEN = $(Q:@=@echo '  GEN   '$@;)
+
 plugindir = $(libdir)/rygel-1.0
 
 plugin_LTLIBRARIES = librygel-test.la
@@ -43,7 +47,7 @@ librygel_test_la_SOURCES = rygel-test-content-dir.h \
                            rygel-test-plugin.vala
 
 rygel-test.stamp: $(filter %.vala,$(librygel_test_la_SOURCES))
-	$(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \
+	$(QUIET_GEN) $(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \
 	--pkg rygel-1.0 --pkg cstuff \
 	--pkg gupnp-1.0 --pkg gupnp-av-1.0 \
         --pkg dbus-glib-1 --pkg gee-1.0 --pkg gstreamer-0.10 $^

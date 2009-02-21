@@ -1,3 +1,7 @@
+V         = @
+Q         = $(V:1=)
+QUIET_GEN = $(Q:@=@echo '  GEN   '$@;)
+
 if UNINSTALLED
 shareddir = $(abs_top_builddir)/data
 else
@@ -122,7 +126,7 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-media-item.h
 
 rygel.stamp: $(filter %.vala,$(rygel_SOURCES))
-	$(VALAC) -C --vapidir=$(srcdir) \
+	$(QUIET_GEN) $(VALAC) -C --vapidir=$(srcdir) \
 	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
 	--pkg gconf-2.0 --pkg gstreamer-0.10 --pkg gio-2.0 --pkg gee-1.0 $^
 	touch $@
@@ -158,7 +162,7 @@ VAPI_SOURCE_FILES = rygel-content-directory.vala \
 		    rygel-didl-lite-writer.vala
 
 rygel-1.0.vapi: $(VAPI_SOURCE_FILES)
-	$(VALAC) -C --library=rygel-1.0 \
+	$(QUIET_GEN) $(VALAC) -C --library=rygel-1.0 \
 	--pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gee-1.0 --pkg gstreamer-0.10 \
 	$^
 
