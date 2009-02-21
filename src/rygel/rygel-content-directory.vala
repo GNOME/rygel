@@ -111,13 +111,13 @@ public class Rygel.ContentDirectory: Service {
         /* Connect FeatureList related signals */
         this.action_invoked["GetFeatureList"] += this.get_feature_list_cb;
         this.query_variable["FeatureList"] += this.query_feature_list;
+
+        this.http_server.run (this.cancellable);
     }
 
     ~ContentDirectory () {
         // Cancel all state machines
         this.cancellable.cancel ();
-
-        this.http_server.destroy ();
     }
 
     /* Browse action implementation */

@@ -26,7 +26,7 @@ using Gst;
 using GUPnP;
 using Gee;
 
-public class Rygel.HTTPServer : GLib.Object {
+public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
     private const string SERVER_PATH_PREFIX = "/RygelHTTPServer";
     private string path_root;
 
@@ -41,19 +41,27 @@ public class Rygel.HTTPServer : GLib.Object {
                        string           name) {
         this.root_container = content_dir.root_container;
         this.context = content_dir.context;
-        this.cancellable = content_dir.cancellable;
         this.requests = new ArrayList<HTTPRequest> ();
 
         this.path_root = SERVER_PATH_PREFIX + "/" + name;
-
-        context.server.add_handler (this.path_root, server_handler);
     }
 
-    public void destroy () {
+    public void run (Cancellable? cancellable) {
+        context.server.add_handler (this.path_root, server_handler);
+
+        if (cancellable != null) {
+            this.cancellable = cancellable;
+            this.cancellable.cancelled += this.on_cancelled;
+        }
+    }
+
+    private void on_cancelled (Cancellable cancellable) {
         // Cancel all state machines
         this.cancellable.cancel ();
 
         context.server.remove_handler (this.path_root);
+
+        this.completed ();
     }
 
     private string create_uri_for_path (string path) {
