@@ -67,11 +67,12 @@ public class Rygel.ContentDirectory: Service {
     }
 
     public override void constructed () {
+        this.cancellable = new Cancellable ();
+
         this.root_container = this.create_root_container ();
         this.http_server = new HTTPServer (this, this.get_type ().name ());
 
         this.browses = new ArrayList<Browse> ();
-        this.cancellable = new Cancellable ();
         this.updated_containers =  new ArrayList<MediaContainer> ();
 
         this.root_container.container_updated += on_container_updated;
