@@ -40,15 +40,15 @@ namespace CStuff {
      * Provides utility functions implemented in C.
      */
     public class Utils {
-        [CCode (cname = "get_xml_element")]
+        [CCode (cname = "get_xml_element", cheader_filename = "cstuff.h")]
         public static weak Xml.Node * get_xml_element (Xml.Node node,
                                                        ...);
-        [CCode (cname = "generate_random_udn")]
+        [CCode (cname = "generate_random_udn", cheader_filename = "cstuff.h")]
         public static string generate_random_udn ();
 
         public delegate void ApplicationExitCb ();
 
-        [CCode (cname = "on_application_exit")]
+        [CCode (cname = "on_application_exit", cheader_filename = "cstuff.h")]
         public static void on_application_exit
                                         (ApplicationExitCb app_exit_cb);
     }
