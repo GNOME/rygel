@@ -1,7 +1,3 @@
-V         = @
-Q         = $(V:1=)
-QUIET_GEN = $(Q:@=@echo '  GEN   '$@;)
-
 plugindir = $(libdir)/rygel-1.0
 
 plugin_LTLIBRARIES = librygel-dvb.la
@@ -42,7 +38,7 @@ librygel_dvb_la_SOURCES = rygel-dvb-content-dir.h \
                           rygel-dvb-plugin.vala
 
 rygel-dvb.stamp: $(filter %.vala,$(librygel_dvb_la_SOURCES))
-	$(QUIET_GEN) $(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \
+	$(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \
 	--pkg rygel-1.0 --pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 \
 	--pkg dbus-glib-1 --pkg gee-1.0 --pkg gstreamer-0.10 $^
 	touch $@

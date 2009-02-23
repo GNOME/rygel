@@ -1,7 +1,3 @@
-V         = @
-Q         = $(V:1=)
-QUIET_GEN = $(Q:@=@echo '  GEN   '$@;)
-
 plugindir = $(libdir)/rygel-1.0
 
 plugin_LTLIBRARIES = librygel-media-tracker.la
@@ -82,7 +78,7 @@ librygel_media_tracker_la_SOURCES = rygel-media-tracker.h \
 				    rygel-tracker-plugin.vala
 
 rygel-media-tracker.stamp: $(filter %.vala,$(librygel_media_tracker_la_SOURCES))
-	$(QUIET_GEN) $(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \
+	$(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \
 	--pkg rygel-1.0 --pkg cstuff \
 	--pkg gupnp-1.0 --pkg gupnp-av-1.0 \
         --pkg dbus-glib-1 --pkg gee-1.0 --pkg gstreamer-0.10 $^

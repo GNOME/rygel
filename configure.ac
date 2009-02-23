@@ -137,11 +137,7 @@ ALL_LINGUAS=""
 AM_GLIB_GNU_GETTEXT
 AM_GLIB_DEFINE_LOCALEDIR([LOCALEDIR])
 
-SHAVE_INIT
-
 AC_OUTPUT([
-shave
-shave-libtool
 Makefile
 src/Makefile
 src/rygel/Makefile
