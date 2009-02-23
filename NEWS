@@ -1,3 +1,35 @@
+0.2.2
+=====
+
+Changes since 0.2:
+
+- Use the new (0.6.9) Tracker API.
+- Priority of gio-based streams are based on requested DLNA transfer mode.
+- GIO-based/like asynchronous plugin API.
+- Adapt to latest changes in gupnp-vala API.
+- Serialization of media objects isn't done by media objects themselve
+  anymore, but by a new separate class, Rygel.DIDLLiteWriter.
+- Internal API is marked 'internal' so it doesn't get to our (Vala) API.
+- MediaObject now derives from GLib.Object.
+- Generic AsyncResult implementation, SimpleAsyncResult.
+- StateMachine interface that all state machines classes implement.
+- Visible performance improvements in Tracker plugin by proper use of Tracker
+  APIs.
+- Use Filename.to_string() and therefore make Bastien happy.
+- Require lastest version (0.1.5) of libgee to use List.slice().
+- Don't limit the number of objects returned to a client, let it decide
+  that on it's own.
+- Proper handling of update notification to the client by use of a very simple
+  bubble-up mechanism for containers to signal updates.
+- Decrease needed gconf version to 2.16.
+- Set application name and therefore make Lennart happy.
+- Require latest version of vala (0.5.7) and gupnp-vala (0.5.3).
+- Allow multiple URIs for each media items.
+- Response for seekable media request is now sent buffer by buffer so the whole
+  file is not put into memory.
+- Some improvements to build system.
+- Lots of other improvements and bugfixes.
+
 0.2
 ===
 
