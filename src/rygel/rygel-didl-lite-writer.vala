@@ -126,8 +126,16 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
     }
 
     private void serialize_container (MediaContainer container) throws Error {
+        string parent_id;
+
+        if (container.parent != null) {
+            parent_id = container.parent.id;
+        } else {
+            parent_id = "-1";
+        }
+
         this.start_container (container.id,
-                              container.parent.id,
+                              parent_id,
                               (int) container.child_count,
                               false,
                               false);
