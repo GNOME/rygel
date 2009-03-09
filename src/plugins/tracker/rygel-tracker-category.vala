@@ -77,6 +77,9 @@ public abstract class Rygel.TrackerCategory : MediaContainer {
 
     private void get_children_count () {
         try {
+            // We are performing actual search (though an optimized one) to get
+            // the hitcount rather than GetHitCount because GetHitCount only
+            // allows us to get hit count for Text searches.
             this.search.Query (0,
                                this.category,
                                new string[0],
