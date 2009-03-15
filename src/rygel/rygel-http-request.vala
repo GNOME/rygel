@@ -140,7 +140,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             uri = this.item.uris.get (0);
         }
 
-        if (this.item.size > 0 || this.transcode_target == null) {
+        if (this.item.size > 0 && this.transcode_target == null) {
             this.handle_interactive_item (uri);
         } else {
             this.handle_streaming_item (uri);
