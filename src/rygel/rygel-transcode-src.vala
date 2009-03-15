@@ -64,6 +64,10 @@ internal class Rygel.TranscodeSrc : Gst.Bin {
         this.add_many (src, decodebin, this.muxer);
         src.link (decodebin);
 
+        var src_pad = muxer.get_static_pad ("src");
+        var ghost = new GhostPad (null, src_pad);
+        this.add_pad (ghost);
+
         decodebin.pad_added += this.decodebin_pad_added;
    }
 
