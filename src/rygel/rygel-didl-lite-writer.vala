@@ -111,9 +111,9 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         var res_list = this.get_original_res_list (item);
 
         /* Now get the transcoded/proxy URIs */
-        var trans_res_list = this.get_transcoded_resources (item, res_list);
-        foreach (DIDLLiteResource trans_res in trans_res_list) {
-            this.add_res (trans_res);
+        var http_res_list = this.http_server.create_resources (item, res_list);
+        foreach (DIDLLiteResource http_res in http_res_list) {
+            this.add_res (http_res);
         }
 
         /* Add the original resources in the end */
@@ -152,59 +152,6 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
 
         /* End of Container */
         this.end_container ();
-    }
-
-    private string get_protocol_for_uri (string uri) throws Error {
-        if (uri.has_prefix ("http")) {
-            return "http-get";
-        } else if (uri.has_prefix ("file")) {
-            return "internal";
-        } else if (uri.has_prefix ("rtsp")) {
-            // FIXME: Assuming that RTSP is always accompanied with RTP over UDP
-            return "rtsp-rtp-udp";
-        } else {
-            throw new DIDLLiteWriterError.UNKNOWN_URI_TYPE
-                            ("Failed to probe protocol for URI %s", uri);
-        }
-    }
-
-    private ArrayList<DIDLLiteResource?>? get_transcoded_resources
-                                (MediaItem                    item,
-                                 ArrayList<DIDLLiteResource?> orig_res_list)
-                                 throws Error {
-        var resources = new ArrayList<DIDLLiteResource?> ();
-
-        if (http_res_present (orig_res_list)) {
-            return resources;
-        }
-
-        // Create the HTTP proxy URI
-        var uri = this.http_server.create_http_uri_for_item (item, false);
-        DIDLLiteResource res = create_res (item, uri);
-        res.protocol = "http-get";
-        resources.add (res);
-
-        // Create the HTTP transcode URI
-        uri = this.http_server.create_http_uri_for_item (item, true);
-        res = create_res (item, uri);
-        res.protocol = "http-get";
-        resources.add (res);
-
-        return resources;
-    }
-
-    private bool http_res_present (ArrayList<DIDLLiteResource?> res_list) {
-        bool present = false;
-
-        foreach (var res in res_list) {
-            if (res.protocol == "http-get") {
-                present = true;
-
-                break;
-            }
-        }
-
-        return present;
     }
 
     private ArrayList<DIDLLiteResource?> get_original_res_list (MediaItem item)

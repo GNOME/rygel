@@ -55,6 +55,45 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
         }
     }
 
+    public ArrayList<DIDLLiteResource?>? create_resources
+                                (MediaItem                    item,
+                                 ArrayList<DIDLLiteResource?> orig_res_list)
+                                 throws Error {
+        var resources = new ArrayList<DIDLLiteResource?> ();
+
+        if (http_res_present (orig_res_list)) {
+            return resources;
+        }
+
+        // Create the HTTP proxy URI
+        var uri = this.create_http_uri_for_item (item, false);
+        DIDLLiteResource res = item.create_res (uri);
+        res.protocol = "http-get";
+        resources.add (res);
+
+        // Create the HTTP transcode URI
+        uri = this.create_http_uri_for_item (item, true);
+        res = item.create_res (uri);
+        res.protocol = "http-get";
+        resources.add (res);
+
+        return resources;
+    }
+
+    private bool http_res_present (ArrayList<DIDLLiteResource?> res_list) {
+        bool present = false;
+
+        foreach (var res in res_list) {
+            if (res.protocol == "http-get") {
+                present = true;
+
+                break;
+            }
+        }
+
+        return present;
+    }
+
     private void on_cancelled (Cancellable cancellable) {
         // Cancel all state machines
         this.cancellable.cancel ();
