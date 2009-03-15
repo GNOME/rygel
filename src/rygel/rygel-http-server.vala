@@ -66,13 +66,13 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
         }
 
         // Create the HTTP proxy URI
-        var uri = this.create_http_uri_for_item (item, false);
+        var uri = this.create_http_uri_for_item (item, null);
         DIDLLiteResource res = item.create_res (uri);
         res.protocol = "http-get";
         resources.add (res);
 
         // Create the HTTP transcode URI
-        uri = this.create_http_uri_for_item (item, true);
+        uri = this.create_http_uri_for_item (item, "video/mpeg");
         res = item.create_res (uri);
         res.protocol = "http-get";
         resources.add (res);
@@ -110,11 +110,13 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
                                           path);
     }
 
-    private string create_http_uri_for_item (MediaItem item, bool transcode) {
+    private string create_http_uri_for_item (MediaItem item,
+                                             string?   transcode_target) {
         string escaped = Uri.escape_string (item.id, "", true);
-        string query = "?itemid=%s&transcode=%s".printf (
-                                escaped,
-                                transcode.to_string ());
+        string query = "?itemid=%s".printf (escaped);
+        if (transcode_target != null) {
+            query = "%s&transcode=%s".printf (query, transcode_target);
+        }
 
         return create_uri_for_path (query);
     }
