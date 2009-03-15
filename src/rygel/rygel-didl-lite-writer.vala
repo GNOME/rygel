@@ -52,9 +52,9 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
 
     private void serialize_item (MediaItem item) throws Error {
         this.start_item (item.id,
-                                item.parent.id,
-                                null,
-                                false);
+                         item.parent.id,
+                         null,
+                         false);
 
         /* Add fields */
         this.add_string ("title",
