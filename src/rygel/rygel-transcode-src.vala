@@ -117,13 +117,13 @@ internal class Rygel.TranscodeSrc : Gst.Bin {
        var filter = Caps.from_string ("audio/x-raw-int");
        convert.link_filtered (encoder, filter);
 
-        var pad = convert.get_static_pad ("sink");
-        var ghost = new GhostPad (null, pad);
-        bin.add_pad (ghost);
+       var pad = convert.get_static_pad ("sink");
+       var ghost = new GhostPad (null, pad);
+       bin.add_pad (ghost);
 
-        pad = encoder.get_static_pad ("src");
-        ghost = new GhostPad (null, pad);
-        bin.add_pad (ghost);
+       pad = encoder.get_static_pad ("src");
+       ghost = new GhostPad (null, pad);
+       bin.add_pad (ghost);
 
        return bin;
    }
