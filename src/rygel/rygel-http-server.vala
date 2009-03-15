@@ -69,12 +69,16 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
         var uri = this.create_http_uri_for_item (item, null);
         DIDLLiteResource res = item.create_res (uri);
         res.protocol = "http-get";
+
         resources.add (res);
 
-        // Create the HTTP transcode URI
-        uri = this.create_http_uri_for_item (item, "video/mpeg");
-        res = item.create_res (uri);
-        res.protocol = "http-get";
+        // Modify the res for transcoding resources
+        res.mime_type = "video/mpeg";
+        res.uri = this.create_http_uri_for_item (item, res.mime_type);
+        res.dlna_flags = DLNAFlags.STREAMING_TRANSFER_MODE;
+        res.dlna_operation = DLNAOperation.NONE;
+        res.size = -1;
+
         resources.add (res);
 
         return resources;
