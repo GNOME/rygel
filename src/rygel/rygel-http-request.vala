@@ -148,7 +148,10 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     }
 
     private void add_item_headers () {
-        if (this.item.mime_type != null) {
+        if (this.transcode_target != null) {
+            this.msg.response_headers.append ("Content-Type",
+                                              this.transcode_target);
+        } else if (this.item.mime_type != null) {
             this.msg.response_headers.append ("Content-Type",
                                               this.item.mime_type);
         }
