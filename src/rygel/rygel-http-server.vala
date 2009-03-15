@@ -110,7 +110,7 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
                                           path);
     }
 
-    internal string create_http_uri_for_item (MediaItem item, bool transcode) {
+    private string create_http_uri_for_item (MediaItem item, bool transcode) {
         string escaped = Uri.escape_string (item.id, "", true);
         string query = "?itemid=%s&transcode=%s".printf (
                                 escaped,
