@@ -151,16 +151,19 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         if (this.transcode_target != null) {
             this.msg.response_headers.append ("Content-Type",
                                               this.transcode_target);
-        } else if (this.item.mime_type != null) {
+            return;
+        }
+
+        if (this.item.mime_type != null) {
             this.msg.response_headers.append ("Content-Type",
                                               this.item.mime_type);
         }
 
-        if (this.item.size >= 0 && this.transcode_target == null) {
+        if (this.item.size >= 0) {
             this.msg.response_headers.set_content_length (this.item.size);
         }
 
-        if (this.item.size > 0 && this.transcode_target == null) {
+        if (this.item.size > 0) {
             int64 first_byte;
             int64 last_byte;
 
