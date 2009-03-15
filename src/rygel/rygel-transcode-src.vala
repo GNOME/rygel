@@ -25,6 +25,7 @@ using Gst;
 
 internal class Rygel.TranscodeSrc : Gst.Bin {
    private const string DECODEBIN = "decodebin2";
+   private const string AUDIO_CONVERT = "audioconvert";
    private const string AUDIO_ENCODER = "twolame";
    private const string VIDEO_ENCODER = "mpeg2enc";
    private const string MUXER = "mpegtsmux";
@@ -40,12 +41,7 @@ internal class Rygel.TranscodeSrc : Gst.Bin {
                                     "Required element '%s' missing", DECODEBIN);
         }
 
-        this.audio_enc = ElementFactory.make (AUDIO_ENCODER, AUDIO_ENCODER);
-        if (audio_enc == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                    "Required element '%s' missing",
-                                    AUDIO_ENCODER);
-        }
+        this.audio_enc = this.create_audio_encoder ();
 
         this.video_enc = ElementFactory.make (VIDEO_ENCODER, VIDEO_ENCODER);
         if (video_enc == null) {
@@ -98,6 +94,34 @@ internal class Rygel.TranscodeSrc : Gst.Bin {
        }
 
        encoder.sync_state_with_parent ();
+   }
+
+   private Element create_audio_encoder () throws Error {
+       var convert = ElementFactory.make (AUDIO_CONVERT, AUDIO_CONVERT);
+       if (convert == null) {
+           throw new LiveResponseError.MISSING_PLUGIN (
+                   "Required element '%s' missing",
+                   AUDIO_CONVERT);
+       }
+
+       var encoder = ElementFactory.make (AUDIO_ENCODER, AUDIO_ENCODER);
+       if (encoder == null) {
+           throw new LiveResponseError.MISSING_PLUGIN (
+                   "Required element '%s' missing",
+                   AUDIO_ENCODER);
+       }
+
+       var bin = new Bin ("audio-encoder-bin");
+       bin.add_many (convert, encoder);
+
+       var filter = Caps.from_string ("audio/x-raw-int");
+       convert.link_filtered (encoder, filter);
+
+       var sink_pad = convert.get_static_pad ("sink");
+       var ghost = new GhostPad (null, sink_pad);
+       this.add_pad (ghost);
+
+       return bin;
    }
 
    private void post_error (Error error) {
