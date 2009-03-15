@@ -61,16 +61,14 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
                                  throws Error {
         var resources = new ArrayList<DIDLLiteResource?> ();
 
-        if (http_res_present (orig_res_list)) {
-            return resources;
-        }
-
         // Create the HTTP proxy URI
         var uri = this.create_http_uri_for_item (item, null);
         DIDLLiteResource res = item.create_res (uri);
         res.protocol = "http-get";
 
-        resources.add (res);
+        if (!http_res_present (orig_res_list)) {
+            resources.add (res);
+        }
 
         if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
             // No  transcoding for images yet :(
