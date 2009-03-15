@@ -23,7 +23,7 @@
 using Rygel;
 using Gst;
 
-public class Rygel.TranscodeSrc : Gst.Bin {
+internal class Rygel.TranscodeSrc : Gst.Bin {
    private const string DECODEBIN = "decodebin2";
    private const string AUDIO_ENCODER = "ffenc_mp2";
    private const string VIDEO_ENCODER = "ffenc_mpeg2video";
