@@ -38,6 +38,7 @@ internal errordomain Rygel.HTTPRequestError {
  * Responsible for handling HTTP client requests.
  */
 internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
+    private unowned HTTPServer http_server;
     private MediaContainer root_container;
     private Soup.Server server;
     private Soup.Message msg;
@@ -52,11 +53,12 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
     private Cancellable cancellable;
 
-    public HTTPRequest (MediaContainer            root_container,
+    public HTTPRequest (HTTPServer                http_server,
                         Soup.Server               server,
                         Soup.Message              msg,
                         HashTable<string,string>? query) {
-        this.root_container = root_container;
+        this.http_server = http_server;
+        this.root_container = http_server.root_container;
         this.server = server;
         this.msg = msg;
         this.query = query;

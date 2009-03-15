@@ -31,7 +31,7 @@ public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     private string path_root;
 
     // Reference to root container of associated ContentDirectory
-    private MediaContainer root_container;
+    public MediaContainer root_container;
     private GUPnP.Context context;
     private ArrayList<HTTPRequest> requests;
 
@@ -135,7 +135,7 @@ public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                msg.method,
                msg.get_uri ().to_string (false));
 
-        var request = new HTTPRequest (this.root_container, server, msg, query);
+        var request = new HTTPRequest (this, server, msg, query);
 
         request.completed += this.on_request_completed;
         this.requests.add (request);
