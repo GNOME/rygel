@@ -74,7 +74,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
 
         if (query != null) {
-            this.item_id = query.lookup ("itemid");
+            this.item_id = this.query.lookup ("itemid");
         }
 
         if (this.item_id == null) {
