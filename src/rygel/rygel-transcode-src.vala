@@ -83,6 +83,11 @@ internal class Rygel.TranscodeSrc : Gst.Bin {
             return;
         }
 
+        var encoder = enc_pad.get_parent_element ();
+
+        this.add_many (encoder);
+        encoder.link (this.muxer);
+
         if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
             this.post_error (new LiveResponseError.LINK (
                                             "Failed to link pad %s to %s",
@@ -91,10 +96,6 @@ internal class Rygel.TranscodeSrc : Gst.Bin {
             return;
         }
 
-        var encoder = enc_pad.get_parent_element ();
-
-        this.add_many (encoder);
-        encoder.link (this.muxer);
         encoder.sync_state_with_parent ();
     }
 
