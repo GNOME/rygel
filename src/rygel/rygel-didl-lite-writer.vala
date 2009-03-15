@@ -212,55 +212,11 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         var resources = new ArrayList<DIDLLiteResource?> ();
 
         foreach (var uri in item.uris) {
-            DIDLLiteResource res = create_res (item, uri);
+            DIDLLiteResource res = item.create_res (uri);
 
             resources.add (res);
         }
 
         return resources;
-    }
-
-    private DIDLLiteResource create_res (MediaItem item,
-                                         string    uri)
-                                         throws Error {
-        DIDLLiteResource res = DIDLLiteResource ();
-        res.reset ();
-
-        res.uri = uri;
-        res.mime_type = item.mime_type;
-
-        res.size = item.size;
-        res.duration = item.duration;
-        res.bitrate = item.bitrate;
-
-        res.sample_freq = item.sample_freq;
-        res.bits_per_sample = item.bits_per_sample;
-        res.n_audio_channels = item.n_audio_channels;
-
-        res.width = item.width;
-        res.height = item.height;
-        res.color_depth = item.color_depth;
-
-        /* Protocol info */
-        if (res.uri != null) {
-            string protocol = get_protocol_for_uri (res.uri);
-            res.protocol = protocol;
-        }
-
-        /* DLNA related fields */
-        res.dlna_profile = "MP3"; /* FIXME */
-
-        if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
-            res.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
-        } else {
-            res.dlna_flags |= DLNAFlags.STREAMING_TRANSFER_MODE;
-        }
-
-        if (res.size > 0) {
-            res.dlna_operation = DLNAOperation.RANGE;
-            res.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE;
-        }
-
-        return res;
     }
 }

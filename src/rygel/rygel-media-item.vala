@@ -73,4 +73,60 @@ public class Rygel.MediaItem : MediaObject {
     public virtual Gst.Element? create_stream_source () {
         return null;
     }
+
+    internal DIDLLiteResource create_res (string uri) throws Error {
+        DIDLLiteResource res = DIDLLiteResource ();
+        res.reset ();
+
+        res.uri = uri;
+        res.mime_type = this.mime_type;
+
+        res.size = this.size;
+        res.duration = this.duration;
+        res.bitrate = this.bitrate;
+
+        res.sample_freq = this.sample_freq;
+        res.bits_per_sample = this.bits_per_sample;
+        res.n_audio_channels = this.n_audio_channels;
+
+        res.width = this.width;
+        res.height = this.height;
+        res.color_depth = this.color_depth;
+
+        /* Protocol info */
+        if (res.uri != null) {
+            string protocol = get_protocol_for_uri (res.uri);
+            res.protocol = protocol;
+        }
+
+        /* DLNA related fields */
+        res.dlna_profile = "MP3"; /* FIXME */
+
+        if (this.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
+            res.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
+        } else {
+            res.dlna_flags |= DLNAFlags.STREAMING_TRANSFER_MODE;
+        }
+
+        if (res.size > 0) {
+            res.dlna_operation = DLNAOperation.RANGE;
+            res.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE;
+        }
+
+        return res;
+    }
+
+    private string get_protocol_for_uri (string uri) throws Error {
+        if (uri.has_prefix ("http")) {
+            return "http-get";
+        } else if (uri.has_prefix ("file")) {
+            return "internal";
+        } else if (uri.has_prefix ("rtsp")) {
+            // FIXME: Assuming that RTSP is always accompanied with RTP over UDP
+            return "rtsp-rtp-udp";
+        } else {
+            throw new DIDLLiteWriterError.UNKNOWN_URI_TYPE
+                            ("Failed to probe protocol for URI %s", uri);
+        }
+    }
 }
