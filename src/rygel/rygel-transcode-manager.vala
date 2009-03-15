@@ -24,6 +24,7 @@
 using Rygel;
 using GUPnP;
 using Gee;
+using Gst;
 
 public abstract class Rygel.TranscodeManager : GLib.Object {
     internal abstract string create_uri_for_item
@@ -50,6 +51,18 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
             res.size = -1;
 
             resources.add (res);
+        }
+    }
+
+    internal Element get_transcoding_src (Element src,
+                                          string  target)
+                                          throws Error {
+        if (target == "video/mpeg") {
+            return new TranscodeSrc (src);
+        } else {
+            throw new HTTPRequestError.NOT_FOUND (
+                            "No transcoder available for target format '%s'",
+                            target);
         }
     }
 }

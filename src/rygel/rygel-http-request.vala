@@ -209,7 +209,9 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
         try {
             if (this.transcode_target != null) {
-                src = this.get_transoding_src (src, this.transcode_target);
+                src = this.http_server.get_transcoding_src (
+                                                src,
+                                                this.transcode_target);
             }
 
             // Then start the gst stream
@@ -343,17 +345,6 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
 
         this.completed ();
-    }
-
-    private Element get_transoding_src (Element src,
-                                        string  target) throws Error {
-        if (target == "video/mpeg") {
-            return new TranscodeSrc (src);
-        } else {
-            throw new HTTPRequestError.NOT_FOUND (
-                            "No transcoder available for target format '%s'",
-                            target);
-        }
     }
 }
 
