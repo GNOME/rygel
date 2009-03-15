@@ -25,8 +25,8 @@ using Gst;
 
 internal class Rygel.TranscodeSrc : Gst.Bin {
    private const string DECODEBIN = "decodebin2";
-   private const string AUDIO_ENCODER = "ffenc_mp2";
-   private const string VIDEO_ENCODER = "ffenc_mpeg2video";
+   private const string AUDIO_ENCODER = "twolame";
+   private const string VIDEO_ENCODER = "mpeg2enc";
    private const string MUXER = "mpegtsmux";
 
    private dynamic Element audio_enc;
