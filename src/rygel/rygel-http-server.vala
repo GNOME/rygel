@@ -79,6 +79,7 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
             // Modify the res for transcoding resources
             res.mime_type = "video/mpeg";
             res.uri = this.create_http_uri_for_item (item, res.mime_type);
+            res.dlna_conversion = DLNAConversion.TRANSCODED;
             res.dlna_flags = DLNAFlags.STREAMING_TRANSFER_MODE;
             res.dlna_operation = DLNAOperation.NONE;
             res.size = -1;
