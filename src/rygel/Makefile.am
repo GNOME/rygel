@@ -121,8 +121,7 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-media-item.c \
 		rygel-media-item.h \
 		rygel-transcode-src.h \
-		rygel-transcode-src.c \
-		rygel-transcode-src.vala
+		rygel-transcode-src.c
 
 rygel.stamp: $(filter %.vala,$(rygel_SOURCES))
 	$(VALAC) -C --vapidir=$(srcdir) \
@@ -158,7 +157,8 @@ VAPI_SOURCE_FILES = rygel-content-directory.vala \
 		    rygel-simple-async-result.vala \
 		    rygel-media-item.vala \
 		    rygel-browse.vala \
-		    rygel-didl-lite-writer.vala
+		    rygel-didl-lite-writer.vala \
+		    rygel-transcode-src.vala
 
 rygel-1.0.vapi: $(VAPI_SOURCE_FILES)
 	$(VALAC) -C --library=rygel-1.0 \
