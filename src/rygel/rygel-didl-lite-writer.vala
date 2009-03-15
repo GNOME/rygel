@@ -108,12 +108,12 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         }
 
         /* Add resource data */
-        var res_list = this.get_original_res_list (item);
+        var resources = this.get_original_resources (item);
 
         /* Now get the transcoded/proxy URIs */
-        this.http_server.add_resources (res_list, item);
+        this.http_server.add_resources (resources, item);
 
-        foreach (DIDLLiteResource res in res_list) {
+        foreach (DIDLLiteResource res in resources) {
             this.add_res (res);
         }
 
@@ -150,8 +150,8 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         this.end_container ();
     }
 
-    private ArrayList<DIDLLiteResource?> get_original_res_list (MediaItem item)
-                                                               throws Error {
+    private ArrayList<DIDLLiteResource?> get_original_resources (MediaItem item)
+                                                                 throws Error {
         var resources = new ArrayList<DIDLLiteResource?> ();
 
         foreach (var uri in item.uris) {
