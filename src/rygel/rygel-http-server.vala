@@ -112,8 +112,9 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
 
     internal string create_http_uri_for_item (MediaItem item, bool transcode) {
         string escaped = Uri.escape_string (item.id, "", true);
-        string query = "?itemid=%s?transcode=%s".printf (escaped,
-                                                         transcode.to_string ());
+        string query = "?itemid=%s&transcode=%s".printf (
+                                escaped,
+                                transcode.to_string ());
 
         return create_uri_for_path (query);
     }
