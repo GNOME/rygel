@@ -119,11 +119,11 @@ internal class Rygel.TranscodeSrc : Gst.Bin {
 
         var pad = convert.get_static_pad ("sink");
         var ghost = new GhostPad (null, pad);
-        this.add_pad (ghost);
+        bin.add_pad (ghost);
 
         pad = encoder.get_static_pad ("src");
         ghost = new GhostPad (null, pad);
-        this.add_pad (ghost);
+        bin.add_pad (ghost);
 
        return bin;
    }
