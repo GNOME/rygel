@@ -168,7 +168,6 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         }
     }
 
-    // FIXME: We only proxy URIs through our HTTP server for now
     private ArrayList<DIDLLiteResource?>? get_transcoded_resources
                                 (MediaItem                    item,
                                  ArrayList<DIDLLiteResource?> orig_res_list)
@@ -179,11 +178,16 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
             return resources;
         }
 
-        // Create the HTTP URI
-        var uri = this.http_server.create_http_uri_for_item (item);
+        // Create the HTTP proxy URI
+        var uri = this.http_server.create_http_uri_for_item (item, false);
         DIDLLiteResource res = create_res (item, uri);
         res.protocol = "http-get";
+        resources.add (res);
 
+        // Create the HTTP transcode URI
+        uri = this.http_server.create_http_uri_for_item (item, true);
+        res = create_res (item, uri);
+        res.protocol = "http-get";
         resources.add (res);
 
         return resources;
