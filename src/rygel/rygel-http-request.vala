@@ -84,11 +84,6 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             return;
         }
 
-        print ("request for %s\n", this.item_id);
-        if (this.transcode_target != null) {
-            print ("transcoding\n");
-        }
-
         // Fetch the requested item
         this.root_container.find_object (this.item_id,
                                          null,

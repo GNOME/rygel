@@ -140,6 +140,10 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
                                  string                    server_path,
                                  HashTable<string,string>? query,
                                  Soup.ClientContext        soup_client) {
+        debug ("HTTP %s request for URI: %s",
+               msg.method,
+               msg.get_uri ().to_string (false));
+
         var request = new HTTPRequest (this.root_container, server, msg, query);
 
         request.completed += this.on_request_completed;
