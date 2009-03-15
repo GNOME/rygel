@@ -46,6 +46,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     private HTTPResponse response;
 
     private string item_id;
+    private string transcode_target;
     private MediaItem item;
     private Seek seek;
 
@@ -73,8 +74,9 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             return;
         }
 
-        if (query != null) {
+        if (this.query != null) {
             this.item_id = this.query.lookup ("itemid");
+            this.transcode_target = this.query.lookup ("transcode");
         }
 
         if (this.item_id == null) {
@@ -138,7 +140,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             uri = this.item.uris.get (0);
         }
 
-        if (this.item.size > 0) {
+        if (this.item.size > 0 || this.transcode_target == null) {
             this.handle_interactive_item (uri);
         } else {
             this.handle_streaming_item (uri);
@@ -151,11 +153,11 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
                                               this.item.mime_type);
         }
 
-        if (this.item.size >= 0) {
+        if (this.item.size >= 0 && this.transcode_target == null) {
             this.msg.response_headers.set_content_length (this.item.size);
         }
 
-        if (this.item.size > 0) {
+        if (this.item.size > 0 && this.transcode_target == null) {
             int64 first_byte;
             int64 last_byte;
 
@@ -198,6 +200,10 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         src.tcp_timeout = (int64) 60000000;
 
         try {
+            if (this.transcode_target != null) {
+                src = this.get_transoding_src (src, this.transcode_target);
+            }
+
             // Then start the gst stream
             this.stream_from_gst_source (src);
         } catch (Error error) {
