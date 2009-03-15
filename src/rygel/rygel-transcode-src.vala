@@ -73,17 +73,18 @@ internal class Rygel.TranscodeSrc : Gst.Bin {
 
    private void decodebin_pad_added (Element decodebin,
                                      Pad     new_pad) {
-        Pad enc_pad = this.audio_enc.get_compatible_pad (new_pad, null);
+        var encoder = this.audio_enc;
+
+        Pad enc_pad = encoder.get_compatible_pad (new_pad, null);
         if (enc_pad == null) {
             // Try video encoder
-            enc_pad = this.video_enc.get_compatible_pad (new_pad, null);
+            encoder = this.video_enc;
+            enc_pad = encoder.get_compatible_pad (new_pad, null);
         }
 
         if (enc_pad == null) {
             return;
         }
-
-        var encoder = enc_pad.get_parent_element ();
 
         this.add_many (encoder);
         encoder.link (this.muxer);
