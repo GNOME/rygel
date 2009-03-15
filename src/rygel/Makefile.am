@@ -40,6 +40,8 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-plugin.c \
 		rygel-plugin-loader.h \
 		rygel-plugin-loader.c \
+		rygel-transcode-manager.c \
+		rygel-transcode-manager.h \
                 rygel-http-server.c \
                 rygel-http-server.h \
 		rygel-state-machine.c \
@@ -92,6 +94,8 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-plugin-loader.h \
 		rygel-plugin-loader.c \
 		rygel-plugin-loader.vala \
+		rygel-transcode-manager.c \
+		rygel-transcode-manager.h \
 		rygel-http-server.c \
 		rygel-http-server.h \
 		rygel-state-machine.c \
@@ -143,6 +147,7 @@ VAPI_FILES = rygel-1.0.vapi
 VAPI_SOURCE_FILES = rygel-content-directory.vala \
 		    rygel-connection-manager.vala \
 		    rygel-media-receiver-registrar.vala \
+		    rygel-transcode-manager.vala \
 		    rygel-http-server.vala \
 		    rygel-state-machine.vala \
 		    rygel-http-request.vala \

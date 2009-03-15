@@ -26,7 +26,7 @@ using Gst;
 using GUPnP;
 using Gee;
 
-public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
+public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     private const string SERVER_PATH_PREFIX = "/RygelHTTPServer";
     private string path_root;
 
@@ -60,8 +60,10 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
      * implemenation out there just choose the first one in the list instead of
      * the one they can handle.
      */
-    public void add_resources (ArrayList<DIDLLiteResource?> resources,
-                               MediaItem                    item) throws Error {
+    internal override void add_resources (
+                                ArrayList<DIDLLiteResource?> resources,
+                                MediaItem                    item)
+                                throws Error {
         // Create the HTTP proxy URI
         var uri = this.create_uri_for_item (item, null);
         DIDLLiteResource res = item.create_res (uri);
@@ -71,20 +73,7 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
             resources.insert (0, res);
         }
 
-        if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
-            // No  transcoding for images yet :(
-            return;
-        } else {
-            // Modify the res for transcoding resources
-            res.mime_type = "video/mpeg";
-            res.uri = this.create_uri_for_item (item, res.mime_type);
-            res.dlna_conversion = DLNAConversion.TRANSCODED;
-            res.dlna_flags = DLNAFlags.STREAMING_TRANSFER_MODE;
-            res.dlna_operation = DLNAOperation.NONE;
-            res.size = -1;
-
-            resources.insert (1, res);
-        }
+        base.add_resources (resources, item);
     }
 
     private bool http_res_present (ArrayList<DIDLLiteResource?> res_list) {
@@ -117,8 +106,8 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
                                           path);
     }
 
-    private string create_uri_for_item (MediaItem item,
-                                        string?   transcode_target) {
+    internal override string create_uri_for_item (MediaItem item,
+                                                  string?   transcode_target) {
         string escaped = Uri.escape_string (item.id, "", true);
         string query = "?itemid=" + escaped;
         if (transcode_target != null) {
