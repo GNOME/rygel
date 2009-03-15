@@ -40,6 +40,11 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
             return;
         } else {
             var mime_type = "video/mpeg";
+
+            if (item.mime_type == mime_type) {
+                return;
+            }
+
             string protocol;
             var uri = this.create_uri_for_item (item, mime_type, out protocol);
             DIDLLiteResource res = item.create_res (uri);
