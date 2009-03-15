@@ -55,24 +55,25 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
         }
     }
 
-    public ArrayList<DIDLLiteResource?>? create_resources
-                                (MediaItem                    item,
-                                 ArrayList<DIDLLiteResource?> orig_res_list)
-                                 throws Error {
-        var resources = new ArrayList<DIDLLiteResource?> ();
-
+    /* We prepend these resources into the original resource list instead of
+     * appending them because some crappy MediaRenderer/ControlPoint
+     * implemenation out there just choose the first one in the list instead of
+     * the one they can handle.
+     */
+    public void add_resources (ArrayList<DIDLLiteResource?> resources,
+                               MediaItem                    item) throws Error {
         // Create the HTTP proxy URI
         var uri = this.create_http_uri_for_item (item, null);
         DIDLLiteResource res = item.create_res (uri);
         res.protocol = "http-get";
 
-        if (!http_res_present (orig_res_list)) {
-            resources.add (res);
+        if (!http_res_present (resources)) {
+            resources.insert (0, res);
         }
 
         if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
             // No  transcoding for images yet :(
-            return resources;
+            return;
         } else {
             // Modify the res for transcoding resources
             res.mime_type = "video/mpeg";
@@ -82,10 +83,8 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
             res.dlna_operation = DLNAOperation.NONE;
             res.size = -1;
 
-            resources.add (res);
+            resources.insert (1, res);
         }
-
-        return resources;
     }
 
     private bool http_res_present (ArrayList<DIDLLiteResource?> res_list) {

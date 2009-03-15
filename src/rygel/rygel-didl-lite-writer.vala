@@ -111,12 +111,8 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         var res_list = this.get_original_res_list (item);
 
         /* Now get the transcoded/proxy URIs */
-        var http_res_list = this.http_server.create_resources (item, res_list);
-        foreach (DIDLLiteResource http_res in http_res_list) {
-            this.add_res (http_res);
-        }
+        this.http_server.add_resources (res_list, item);
 
-        /* Add the original resources in the end */
         foreach (DIDLLiteResource res in res_list) {
             this.add_res (res);
         }
