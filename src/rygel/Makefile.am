@@ -119,7 +119,10 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-simple-async-result.c \
 		rygel-simple-async-result.h \
 		rygel-media-item.c \
-		rygel-media-item.h
+		rygel-media-item.h \
+		rygel-transcode-src.h \
+		rygel-transcode-src.c \
+		rygel-transcode-src.vala
 
 rygel.stamp: $(filter %.vala,$(rygel_SOURCES))
 	$(VALAC) -C --vapidir=$(srcdir) \
