@@ -27,8 +27,9 @@ using Gee;
 
 public abstract class Rygel.TranscodeManager : GLib.Object {
     internal abstract string create_uri_for_item
-                                            (MediaItem item,
-                                             string?   transcode_target);
+                                            (MediaItem  item,
+                                             string?    transcode_target,
+                                             out string protocol);
 
     internal virtual void add_resources (ArrayList<DIDLLiteResource?> resources,
                                          MediaItem                    item)
@@ -38,10 +39,11 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
             return;
         } else {
             var mime_type = "video/mpeg";
-            var uri = this.create_uri_for_item (item, mime_type);
+            string protocol;
+            var uri = this.create_uri_for_item (item, mime_type, out protocol);
             DIDLLiteResource res = item.create_res (uri);
             res.mime_type = mime_type;
-            res.protocol = "http-get";
+            res.protocol = protocol;
             res.dlna_conversion = DLNAConversion.TRANSCODED;
             res.dlna_flags = DLNAFlags.STREAMING_TRANSFER_MODE;
             res.dlna_operation = DLNAOperation.NONE;
