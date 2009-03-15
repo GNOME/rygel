@@ -330,5 +330,16 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
         this.completed ();
     }
+
+    private Element get_transoding_src (Element src,
+                                        string  target) throws Error {
+        if (target == "video/mpeg") {
+            return new TranscodeSrc (src);
+        } else {
+            throw new HTTPRequestError.NOT_FOUND (
+                            "No transcoder available for target format '%s'",
+                            target);
+        }
+    }
 }
 

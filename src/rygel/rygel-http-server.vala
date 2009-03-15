@@ -26,10 +26,6 @@ using Gst;
 using GUPnP;
 using Gee;
 
-internal errordomain Rygel.HTTPServerError {
-    NO_TRANSCODER
-}
-
 public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
     private const string SERVER_PATH_PREFIX = "/RygelHTTPServer";
     private string path_root;
@@ -91,17 +87,6 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
         }
 
         return resources;
-    }
-
-    internal Element get_transoding_src (Element src,
-                                         string  target) throws Error {
-        if (target == "video/mpeg") {
-            return new TranscodeSrc (src);
-        } else {
-            throw new HTTPServerError.NO_TRANSCODER (
-                            "No transcoder available for target format '%s'",
-                            target);
-        }
     }
 
     private bool http_res_present (ArrayList<DIDLLiteResource?> res_list) {
