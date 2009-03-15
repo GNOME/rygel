@@ -73,35 +73,35 @@ internal class Rygel.TranscodeSrc : Gst.Bin {
 
    private void decodebin_pad_added (Element decodebin,
                                      Pad     new_pad) {
-        var encoder = this.audio_enc;
+       var encoder = this.audio_enc;
 
-        Pad enc_pad = encoder.get_compatible_pad (new_pad, null);
-        if (enc_pad == null) {
-            // Try video encoder
-            encoder = this.video_enc;
-            enc_pad = encoder.get_compatible_pad (new_pad, null);
-        }
+       Pad enc_pad = encoder.get_compatible_pad (new_pad, null);
+       if (enc_pad == null) {
+           // Try video encoder
+           encoder = this.video_enc;
+           enc_pad = encoder.get_compatible_pad (new_pad, null);
+       }
 
-        if (enc_pad == null) {
-            return;
-        }
+       if (enc_pad == null) {
+           return;
+       }
 
-        this.add_many (encoder);
-        encoder.link (this.muxer);
+       this.add_many (encoder);
+       encoder.link (this.muxer);
 
-        if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
-            this.post_error (new LiveResponseError.LINK (
-                                            "Failed to link pad %s to %s",
-                                            new_pad.name,
-                                            enc_pad.name));
-            return;
-        }
+       if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
+           this.post_error (new LiveResponseError.LINK (
+                       "Failed to link pad %s to %s",
+                       new_pad.name,
+                       enc_pad.name));
+           return;
+       }
 
-        encoder.sync_state_with_parent ();
-    }
+       encoder.sync_state_with_parent ();
+   }
 
-    private void post_error (Error error) {
-        Message msg = new Message.error (this, error, error.message);
-        this.post_message (msg);
-    }
+   private void post_error (Error error) {
+       Message msg = new Message.error (this, error, error.message);
+       this.post_message (msg);
+   }
 }
