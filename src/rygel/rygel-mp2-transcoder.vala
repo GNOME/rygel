@@ -28,6 +28,8 @@ internal class Rygel.MP2Transcoder : Gst.Bin {
    private const string AUDIO_CONVERT = "audioconvert";
    private const string AUDIO_ENCODER = "twolame";
 
+   private const string AUDIO_SRC_PAD = "audio-src-pad";
+
    private dynamic Element audio_enc;
 
    public MP2Transcoder (Element src) throws Error {
@@ -42,7 +44,7 @@ internal class Rygel.MP2Transcoder : Gst.Bin {
         this.add_many (src, decodebin);
         src.link (decodebin);
 
-        var src_pad = this.audio_enc.get_static_pad ("src");
+        var src_pad = this.audio_enc.get_static_pad (AUDIO_SRC_PAD);
         var ghost = new GhostPad (null, src_pad);
         this.add_pad (ghost);
 
@@ -95,7 +97,7 @@ internal class Rygel.MP2Transcoder : Gst.Bin {
        bin.add_pad (ghost);
 
        pad = encoder.get_static_pad ("src");
-       ghost = new GhostPad (null, pad);
+       ghost = new GhostPad (AUDIO_SRC_PAD, pad);
        bin.add_pad (ghost);
 
        return bin;
