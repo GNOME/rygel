@@ -78,11 +78,11 @@ internal class Rygel.MP2TSTranscoder : Gst.Bin {
 
        // Check which encoder to use
        if (!audio_enc_pad.is_linked () &&
-            MP3Transcoder.pads_compatible (new_pad, audio_enc_pad)) {
+            this.pads_compatible (new_pad, audio_enc_pad)) {
            encoder = this.audio_enc;
            enc_pad = audio_enc_pad;
        } else if (!video_enc_pad.is_linked () &&
-                  MP3Transcoder.pads_compatible (new_pad, video_enc_pad)) {
+                  this.pads_compatible (new_pad, video_enc_pad)) {
            encoder = this.video_enc;
            enc_pad = video_enc_pad;
        } else {
@@ -142,6 +142,12 @@ internal class Rygel.MP2TSTranscoder : Gst.Bin {
        bin.add_pad (ghost);
 
        return bin;
+   }
+
+   private bool pads_compatible (Pad pad1, Pad pad2) {
+        Caps intersection = pad1.get_caps ().intersect (pad2.get_caps ());
+
+        return !intersection.is_empty ();
    }
 
    private void post_error (Error error) {
