@@ -26,14 +26,14 @@ using GUPnP;
 using Gee;
 
 internal class Rygel.L16Transcoder : Rygel.Transcoder {
-    public const int channels = 2;
-    public const int frequency = 44100;
-    public const int width = 16;
-    public const int depth = 16;
-    public const int endianness = ByteOrder.BIG_ENDIAN; // Network byte order
+    private const int channels = 2;
+    private const int frequency = 44100;
+    private const int width = 16;
+    private const int depth = 16;
+    private const int endianness = ByteOrder.BIG_ENDIAN; // Network byte order
 
-    public const string mime_type = "audio/L16;rate=44100;channels=2";
-    public const string dlna_profile = "LPCM";
+    private const string mime_type = "audio/L16;rate=44100;channels=2";
+    private const string dlna_profile = "LPCM";
 
     private const string DECODEBIN = "decodebin2";
     private const string AUDIO_CONVERT = "audioconvert";
@@ -131,5 +131,9 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
         bin.add_pad (ghost);
 
         return bin;
+    }
+
+    internal static bool can_handle (string mime_type) {
+        return mime_type == L16Transcoder.mime_type;
     }
 }

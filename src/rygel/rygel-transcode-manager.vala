@@ -49,11 +49,11 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
     internal Element get_transcoding_src (Element src,
                                           string  target)
                                           throws Error {
-        if (target == MP3Transcoder.mime_type) {
+        if (MP3Transcoder.can_handle (target)) {
             return new MP3Transcoder (src, MP3Profile.LAYER3);
-        } else if (target == L16Transcoder.mime_type) {
+        } else if (L16Transcoder.can_handle (target)) {
             return new L16Transcoder (src);
-        } else if (target == MP2TSTranscoder.mime_type) {
+        } else if (MP2TSTranscoder.can_handle (target)) {
             return new MP2TSTranscoder (src);
         } else {
             throw new HTTPRequestError.NOT_FOUND (
