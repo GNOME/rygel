@@ -65,39 +65,46 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
     private void add_mp3_resource (ArrayList<DIDLLiteResource?> resources,
                                    MediaItem                    item)
                                    throws Error {
-            this.add_resource (resources,
-                               item,
-                               MP3Transcoder.mime_type,
-                               MP3Transcoder.dlna_profile);
+        if (TranscodeManager.mime_type_is_a (item.mime_type,
+                                             MP3Transcoder.mime_type)) {
+            return;
+        }
+
+        resources.add (this.create_resource (item,
+                                             MP3Transcoder.mime_type,
+                                             MP3Transcoder.dlna_profile));
     }
 
     private void add_l16_resource (ArrayList<DIDLLiteResource?> resources,
                                    MediaItem                    item)
                                    throws Error {
-            this.add_resource (resources,
-                               item,
-                               L16Transcoder.mime_type,
-                               L16Transcoder.dlna_profile);
+        if (TranscodeManager.mime_type_is_a (item.mime_type,
+                                             L16Transcoder.mime_type)) {
+            return;
+        }
+
+        resources.add (this.create_resource (item,
+                                             L16Transcoder.mime_type,
+                                             L16Transcoder.dlna_profile));
     }
 
     private void add_mp2ts_resource (ArrayList<DIDLLiteResource?> resources,
                                      MediaItem                    item)
                                      throws Error {
-            this.add_resource (resources,
-                               item,
-                               MP2TSTranscoder.mime_type,
-                               MP2TSTranscoder.dlna_profile);
-    }
-
-    private void add_resource (ArrayList<DIDLLiteResource?> resources,
-                               MediaItem                    item,
-                               string                       mime_type,
-                               string                       dlna_profile)
-                               throws Error {
-        if (TranscodeManager.mime_type_is_a (item.mime_type, mime_type)) {
+        if (TranscodeManager.mime_type_is_a (item.mime_type,
+                                             MP2TSTranscoder.mime_type)) {
             return;
         }
 
+        resources.add (this.create_resource (item,
+                                             MP2TSTranscoder.mime_type,
+                                             MP2TSTranscoder.dlna_profile));
+    }
+
+    private DIDLLiteResource create_resource (MediaItem  item,
+                                              string     mime_type,
+                                              string     dlna_profile)
+                                              throws Error {
         string protocol;
         var uri = this.create_uri_for_item (item, mime_type, out protocol);
         DIDLLiteResource res = item.create_res (uri);
@@ -109,7 +116,7 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
         res.dlna_operation = DLNAOperation.NONE;
         res.size = -1;
 
-        resources.add (res);
+        return res;
     }
 
     private static bool mime_type_is_a (string mime_type1, string mime_type2) {
