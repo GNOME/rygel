@@ -41,7 +41,7 @@ internal class Rygel.MP2Transcoder : Gst.Bin {
 
         this.audio_enc = this.create_audio_encoder ();
 
-        this.add_many (src, decodebin);
+        this.add_many (src, decodebin, this.audio_enc);
         src.link (decodebin);
 
         var src_pad = this.audio_enc.get_static_pad (AUDIO_SRC_PAD);
@@ -57,8 +57,6 @@ internal class Rygel.MP2Transcoder : Gst.Bin {
        if (enc_pad == null) {
            return;
        }
-
-       this.add_many (this.audio_enc);
 
        if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
            this.post_error (new LiveResponseError.LINK (
