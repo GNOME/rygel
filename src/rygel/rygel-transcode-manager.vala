@@ -49,7 +49,7 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
             dlna_profile = MP2TSTranscoder.dlna_profile;
         }
 
-        if (item.mime_type == mime_type) {
+        if (TranscodeManager.mime_type_is_a (item.mime_type, mime_type)) {
             return;
         }
 
@@ -79,6 +79,13 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
                             "No transcoder available for target format '%s'",
                             target);
         }
+    }
+
+    private static bool mime_type_is_a (string mime_type1, string mime_type2) {
+        string content_type1 = g_content_type_from_mime_type (mime_type1);
+        string content_type2 = g_content_type_from_mime_type (mime_type2);
+
+        return g_content_type_is_a (content_type1, content_type2);
     }
 }
 
