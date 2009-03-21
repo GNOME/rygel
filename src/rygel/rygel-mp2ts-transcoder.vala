@@ -33,10 +33,15 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     private const string VIDEO_ENCODER = "mpeg2enc";
     private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
     private const string VIDEO_RATE = "videorate";
+    private const string VIDEO_SCALE = "videoscale";
     private const string MUXER = "mpegtsmux";
 
     private const string AUDIO_ENC_SINK = "audio-enc-sink-pad";
     private const string VIDEO_ENC_SINK = "sink";
+
+    // HD
+    private const int WIDTH = 1920;
+    private const int HEIGHT = 1080;
 
     private dynamic Element audio_enc;
     private dynamic Element video_enc;
@@ -74,9 +79,13 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
             return;
         }
 
-        resources.add (manager.create_resource (item,
-                                                MP2TSTranscoder.mime_type,
-                                                MP2TSTranscoder.dlna_profile));
+        var res = manager.create_resource (item,
+                                           MP2TSTranscoder.mime_type,
+                                           MP2TSTranscoder.dlna_profile);
+        res.width = WIDTH;
+        res.height = HEIGHT;
+
+        resources.add (res);
     }
 
     private void decodebin_pad_added (Element decodebin, Pad new_pad) {
@@ -112,14 +121,20 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
                                             string? sink_pad_name)
                                             throws Error {
         var videorate = Transcoder.create_element (VIDEO_RATE, VIDEO_RATE);
+        var videoscale = Transcoder.create_element (VIDEO_SCALE, VIDEO_SCALE);
         var convert = Transcoder.create_element (COLORSPACE_CONVERT,
                                                  COLORSPACE_CONVERT);
         var encoder = Transcoder.create_element (VIDEO_ENCODER, VIDEO_ENCODER);
 
         var bin = new Bin ("video-encoder-bin");
-        bin.add_many (videorate, convert, encoder);
+        bin.add_many (videorate, videoscale, convert, encoder);
 
-        videorate.link_many (convert, encoder);
+        var caps = new Caps.simple ("video/x-raw-yuv",
+                                    "width", typeof (int), WIDTH,
+                                    "height", typeof (int), HEIGHT);
+        videorate.link (convert);
+        convert.link (videoscale);
+        videoscale.link_filtered (encoder, caps);
 
         var pad = videorate.get_static_pad ("sink");
         var ghost = new GhostPad (sink_pad_name, pad);
