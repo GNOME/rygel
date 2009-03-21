@@ -63,7 +63,7 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
                                           string  target)
                                           throws Error {
         if (target == "video/mpeg") {
-            return new TranscodeSrc (src);
+            return new MP2TSTranscoder (src);
         } else {
             throw new HTTPRequestError.NOT_FOUND (
                             "No transcoder available for target format '%s'",

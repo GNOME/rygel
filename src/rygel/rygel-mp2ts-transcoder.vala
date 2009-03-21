@@ -23,7 +23,7 @@
 using Rygel;
 using Gst;
 
-internal class Rygel.TranscodeSrc : Gst.Bin {
+internal class Rygel.MP2TSTranscoder : Gst.Bin {
    private const string DECODEBIN = "decodebin2";
    private const string AUDIO_CONVERT = "audioconvert";
    private const string AUDIO_ENCODER = "twolame";
@@ -34,7 +34,7 @@ internal class Rygel.TranscodeSrc : Gst.Bin {
    private dynamic Element video_enc;
    private dynamic Element muxer;
 
-   public TranscodeSrc (Element src) throws Error {
+   public MP2TSTranscoder (Element src) throws Error {
         Element decodebin = ElementFactory.make (DECODEBIN, DECODEBIN);
         if (decodebin == null) {
             throw new LiveResponseError.MISSING_PLUGIN (
