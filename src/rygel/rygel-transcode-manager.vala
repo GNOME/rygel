@@ -83,9 +83,15 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
             return;
         }
 
-        resources.add (this.create_resource (item,
-                                             L16Transcoder.mime_type,
-                                             L16Transcoder.dlna_profile));
+        var res = this.create_resource (item,
+                                        L16Transcoder.mime_type,
+                                        L16Transcoder.dlna_profile);
+
+        res.sample_freq = L16Transcoder.frequency;
+        res.n_audio_channels = L16Transcoder.channels;
+        res.bits_per_sample = L16Transcoder.width;
+
+        resources.add (res);
     }
 
     private void add_mp2ts_resource (ArrayList<DIDLLiteResource?> resources,
