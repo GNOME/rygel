@@ -27,6 +27,7 @@ internal class Rygel.MP2TSTranscoder : Gst.Bin {
    private const string DECODEBIN = "decodebin2";
    private const string VIDEO_ENCODER = "mpeg2enc";
    private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
+   private const string VIDEO_RATE = "videorate";
    private const string VIDEO_PARSER = "mpegvideoparse";
    private const string MUXER = "mpegtsmux";
 
@@ -106,6 +107,13 @@ internal class Rygel.MP2TSTranscoder : Gst.Bin {
    internal static Element create_encoder (string? src_pad_name,
                                            string? sink_pad_name)
                                            throws Error {
+       var videorate = ElementFactory.make (VIDEO_RATE, VIDEO_RATE);
+       if (videorate == null) {
+           throw new LiveResponseError.MISSING_PLUGIN (
+                   "Required element '%s' missing",
+                   VIDEO_RATE);
+       }
+
        var convert = ElementFactory.make (COLORSPACE_CONVERT,
                                           COLORSPACE_CONVERT);
        if (convert == null) {
@@ -129,11 +137,11 @@ internal class Rygel.MP2TSTranscoder : Gst.Bin {
        }
 
        var bin = new Bin ("video-encoder-bin");
-       bin.add_many (convert, encoder, parser);
+       bin.add_many (videorate, convert, encoder, parser);
 
-       convert.link_many (encoder, parser);
+       videorate.link_many (convert, encoder, parser);
 
-       var pad = convert.get_static_pad ("sink");
+       var pad = videorate.get_static_pad ("sink");
        var ghost = new GhostPad (sink_pad_name, pad);
        bin.add_pad (ghost);
 
