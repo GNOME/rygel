@@ -47,12 +47,7 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     public MP3Transcoder (Element src, MP3Profile layer) throws Error {
         this.layer = layer;
 
-        Element decodebin = ElementFactory.make (DECODEBIN, DECODEBIN);
-        if (decodebin == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                "Required element '%s' missing",
-                                DECODEBIN);
-        }
+        Element decodebin = Transcoder.create_element (DECODEBIN, DECODEBIN);
 
         this.audio_enc = MP3Transcoder.create_encoder (this.layer,
                                                        AUDIO_SRC_PAD,
@@ -89,34 +84,15 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
                                             string?    src_pad_name,
                                             string?    sink_pad_name)
                                             throws Error {
-        var convert = ElementFactory.make (AUDIO_CONVERT, AUDIO_CONVERT);
-        if (convert == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                    "Required element '%s' missing",
-                                    AUDIO_CONVERT);
-        }
-
-        Element resample = ElementFactory.make (AUDIO_RESAMPLE, AUDIO_RESAMPLE);
-        if (resample == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                    "Required element '%s' missing",
-                                    AUDIO_RESAMPLE);
-        }
-
-        dynamic Element encoder = ElementFactory.make (AUDIO_ENCODER[layer],
+        dynamic Element convert = Transcoder.create_element (AUDIO_CONVERT,
+                                                             AUDIO_CONVERT);
+        dynamic Element resample = Transcoder.create_element (AUDIO_RESAMPLE,
+                                                              AUDIO_RESAMPLE);
+        dynamic Element encoder = Transcoder.create_element (
+                                                       AUDIO_ENCODER[layer],
                                                        AUDIO_ENCODER[layer]);
-        if (encoder == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                    "Required element '%s' missing",
-                                    AUDIO_ENCODER[layer]);
-        }
-
-        Element parser = ElementFactory.make (AUDIO_PARSER, AUDIO_PARSER);
-        if (parser == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                    "Required element '%s' missing",
-                                    AUDIO_PARSER);
-        }
+        dynamic Element parser = Transcoder.create_element (AUDIO_PARSER,
+                                                            AUDIO_PARSER);
 
         if (layer == MP3Profile.LAYER3) {
             // Best quality

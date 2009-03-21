@@ -32,6 +32,19 @@ internal abstract class Rygel.Transcoder : Gst.Bin {
         return !intersection.is_empty ();
     }
 
+    protected static Element create_element (string factoryname,
+                                             string? name)
+                                             throws Error {
+        Element element = ElementFactory.make (factoryname, name);
+        if (element == null) {
+            throw new LiveResponseError.MISSING_PLUGIN (
+                                "Required element factory '%s' missing",
+                                factoryname);
+        }
+
+        return element;
+    }
+
     protected void post_error (Error error) {
         Message msg = new Message.error (this, error, error.message);
         this.post_message (msg);

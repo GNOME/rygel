@@ -41,26 +41,13 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     private dynamic Element muxer;
 
     public MP2TSTranscoder (Element src) throws Error {
-        Element decodebin = ElementFactory.make (DECODEBIN, DECODEBIN);
-        if (decodebin == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                    "Required element '%s' missing",
-                                    DECODEBIN);
-        }
-
+        Element decodebin = Transcoder.create_element (DECODEBIN, DECODEBIN);
         this.audio_enc = MP3Transcoder.create_encoder (MP3Profile.LAYER2,
                                                        null,
                                                        AUDIO_ENC_SINK);
-
         this.video_enc = MP2TSTranscoder.create_encoder (null,
                                                          VIDEO_ENC_SINK);
-
-        this.muxer = ElementFactory.make (MUXER, MUXER);
-        if (muxer == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                    "Required element '%s' missing",
-                                    MUXER);
-        }
+        this.muxer = Transcoder.create_element (MUXER, MUXER);
 
         this.add_many (src, decodebin, this.muxer);
         src.link (decodebin);
@@ -109,27 +96,10 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     internal static Element create_encoder (string? src_pad_name,
                                             string? sink_pad_name)
                                             throws Error {
-        var videorate = ElementFactory.make (VIDEO_RATE, VIDEO_RATE);
-        if (videorate == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                    "Required element '%s' missing",
-                                    VIDEO_RATE);
-        }
-
-        var convert = ElementFactory.make (COLORSPACE_CONVERT,
-                COLORSPACE_CONVERT);
-        if (convert == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                    "Required element '%s' missing",
-                                    COLORSPACE_CONVERT);
-        }
-
-        var encoder = ElementFactory.make (VIDEO_ENCODER, VIDEO_ENCODER);
-        if (encoder == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                    "Required element '%s' missing",
-                                    VIDEO_ENCODER);
-        }
+        var videorate = Transcoder.create_element (VIDEO_RATE, VIDEO_RATE);
+        var convert = Transcoder.create_element (COLORSPACE_CONVERT,
+                                                 COLORSPACE_CONVERT);
+        var encoder = Transcoder.create_element (VIDEO_ENCODER, VIDEO_ENCODER);
 
         var bin = new Bin ("video-encoder-bin");
         bin.add_many (videorate, convert, encoder);
