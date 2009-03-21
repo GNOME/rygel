@@ -48,7 +48,9 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
                                     "Required element '%s' missing", DECODEBIN);
         }
 
-        this.audio_enc = MP3Transcoder.create_encoder (this.layer);
+        this.audio_enc = MP3Transcoder.create_encoder (this.layer,
+                                                       AUDIO_SRC_PAD,
+                                                       null);
 
         this.add_many (src, decodebin, this.audio_enc);
         src.link (decodebin);
@@ -78,7 +80,10 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
        this.audio_enc.sync_state_with_parent ();
    }
 
-   internal static Element create_encoder (MP3Profile layer) throws Error {
+   internal static Element create_encoder (MP3Profile layer,
+                                           string?    src_pad_name,
+                                           string?    sink_pad_name)
+                                           throws Error {
        var convert = ElementFactory.make (AUDIO_CONVERT, AUDIO_CONVERT);
        if (convert == null) {
            throw new LiveResponseError.MISSING_PLUGIN (
@@ -117,11 +122,11 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
        encoder.link (parser);
 
        var pad = convert.get_static_pad ("sink");
-       var ghost = new GhostPad (null, pad);
+       var ghost = new GhostPad (sink_pad_name, pad);
        bin.add_pad (ghost);
 
        pad = parser.get_static_pad ("src");
-       ghost = new GhostPad (AUDIO_SRC_PAD, pad);
+       ghost = new GhostPad (src_pad_name, pad);
        bin.add_pad (ghost);
 
        return bin;

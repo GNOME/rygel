@@ -41,7 +41,9 @@ internal class Rygel.MP2TSTranscoder : Gst.Bin {
                                     "Required element '%s' missing", DECODEBIN);
         }
 
-        this.audio_enc = MP3Transcoder.create_encoder (MP3Profile.LAYER2);
+        this.audio_enc = MP3Transcoder.create_encoder (MP3Profile.LAYER2,
+                                                       null,
+                                                       null);
 
         this.video_enc = ElementFactory.make (VIDEO_ENCODER, VIDEO_ENCODER);
         if (video_enc == null) {
