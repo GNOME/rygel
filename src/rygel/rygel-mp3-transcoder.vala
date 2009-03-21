@@ -36,6 +36,7 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
    private const string AUDIO_CONVERT = "audioconvert";
    private const string[] AUDIO_ENCODER = {null, "twolame", "lame"};
    private const string AUDIO_PARSER = "mp3parse";
+   private const string AUDIO_RESAMPLE = "audioresample";
 
    private const string AUDIO_SRC_PAD = "audio-src-pad";
    private const string AUDIO_SINK_PAD = "audio-sink-pad";
@@ -95,6 +96,13 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
                    AUDIO_CONVERT);
        }
 
+       Element resample = ElementFactory.make (AUDIO_RESAMPLE, AUDIO_RESAMPLE);
+       if (resample == null) {
+           throw new LiveResponseError.MISSING_PLUGIN (
+                   "Required element '%s' missing",
+                   AUDIO_RESAMPLE);
+       }
+
        dynamic Element encoder = ElementFactory.make (AUDIO_ENCODER[layer],
                                                       AUDIO_ENCODER[layer]);
        if (encoder == null) {
@@ -119,7 +127,7 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
        encoder.bitrate = 256;
 
        var bin = new Bin ("audio-encoder-bin");
-       bin.add_many (convert, encoder, parser);
+       bin.add_many (convert, resample, encoder, parser);
 
        var filter = Caps.from_string ("audio/x-raw-int");
        convert.link_filtered (encoder, filter);
