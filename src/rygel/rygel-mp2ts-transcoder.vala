@@ -90,8 +90,6 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
                              enc_pad.name));
             return;
         }
-
-        encoder.sync_state_with_parent ();
     }
 
     internal static Element create_encoder (string? src_pad_name,

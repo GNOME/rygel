@@ -76,8 +76,6 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
                                         enc_pad.name));
             return;
         }
-
-        this.audio_enc.sync_state_with_parent ();
     }
 
     internal static Element create_encoder (MP3Profile layer,
