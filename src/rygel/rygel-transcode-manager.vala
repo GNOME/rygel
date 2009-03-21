@@ -66,7 +66,9 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
     internal Element get_transcoding_src (Element src,
                                           string  target)
                                           throws Error {
-        if (target == "video/mpeg") {
+        if (target == "audio/mpeg") {
+            return new MP2Transcoder (src);
+        } else if (target == "video/mpeg") {
             return new MP2TSTranscoder (src);
         } else {
             throw new HTTPRequestError.NOT_FOUND (
