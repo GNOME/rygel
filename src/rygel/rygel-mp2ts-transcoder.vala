@@ -49,7 +49,11 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
                                                          VIDEO_ENC_SINK);
         this.muxer = Transcoder.create_element (MUXER, MUXER);
 
-        this.add_many (src, decodebin, this.muxer);
+        this.add_many (src,
+                       decodebin,
+                       this.audio_enc,
+                       this.video_enc,
+                       this.muxer);
         src.link (decodebin);
 
         var src_pad = muxer.get_static_pad ("src");
@@ -77,7 +81,6 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
             return;
         }
 
-        this.add_many (encoder);
         encoder.link (this.muxer);
 
         if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
