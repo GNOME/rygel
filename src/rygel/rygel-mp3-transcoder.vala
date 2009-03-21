@@ -23,6 +23,11 @@
 using Rygel;
 using Gst;
 
+internal enum Rygel.MP3Profile {
+    LAYER2 = 1,
+    LAYER3 = 2
+}
+
 internal class Rygel.MP3Transcoder : Gst.Bin {
    private const string DECODEBIN = "decodebin2";
    private const string AUDIO_CONVERT = "audioconvert";
@@ -32,9 +37,9 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
    private const string AUDIO_SRC_PAD = "audio-src-pad";
 
    private dynamic Element audio_enc;
-   private uint layer;
+   private MP3Profile layer;
 
-   public MP3Transcoder (Element src, uint layer) throws Error {
+   public MP3Transcoder (Element src, MP3Profile layer) throws Error {
         this.layer = layer;
 
         Element decodebin = ElementFactory.make (DECODEBIN, DECODEBIN);
@@ -98,7 +103,7 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
                    AUDIO_PARSER);
        }
 
-       if (this.layer == 3) {
+       if (this.layer == MP3Profile.LAYER3) {
             // Best quality
             encoder.quality = 0;
        }
