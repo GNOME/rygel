@@ -24,14 +24,6 @@ using Rygel;
 using Gst;
 
 internal abstract class Rygel.Transcoder : Gst.Bin {
-    // FIXME: This method must be replaced by Gst.Pad.is_compatible once
-    //        it's there (i-e bug#575682 and 575685 are fixed).
-    protected bool pads_compatible (Pad pad1, Pad pad2) {
-        Caps intersection = pad1.get_caps ().intersect (pad2.get_caps ());
-
-        return !intersection.is_empty ();
-    }
-
     protected static Element create_element (string factoryname,
                                              string? name)
                                              throws Error {

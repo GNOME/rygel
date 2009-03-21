@@ -61,7 +61,7 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
 
     private void decodebin_pad_added (Element decodebin, Pad new_pad) {
         Pad enc_pad = this.audio_enc.get_pad (AUDIO_SINK_PAD);
-        if (enc_pad.is_linked () || !this.pads_compatible (new_pad, enc_pad)) {
+        if (!new_pad.can_link (enc_pad)) {
             return;
         }
 
