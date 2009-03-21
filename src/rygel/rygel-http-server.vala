@@ -113,7 +113,8 @@ public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         string escaped = Uri.escape_string (item.id, "", true);
         string query = "?itemid=" + escaped;
         if (transcode_target != null) {
-            query += "&transcode=" + transcode_target;
+            escaped = Uri.escape_string (transcode_target, "", true);
+            query += "&transcode=" + escaped;
         }
 
         protocol = "http-get";
