@@ -26,6 +26,8 @@ using Gst;
 internal class Rygel.MP2TSTranscoder : Gst.Bin {
    private const string DECODEBIN = "decodebin2";
    private const string VIDEO_ENCODER = "mpeg2enc";
+   private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
+   private const string VIDEO_PARSER = "mpegvideoparse";
    private const string MUXER = "mpegtsmux";
 
    private const string AUDIO_ENC_SINK = "audio-enc-sink-pad";
@@ -46,12 +48,8 @@ internal class Rygel.MP2TSTranscoder : Gst.Bin {
                                                        null,
                                                        AUDIO_ENC_SINK);
 
-        this.video_enc = ElementFactory.make (VIDEO_ENCODER, VIDEO_ENCODER);
-        if (video_enc == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                    "Required element '%s' missing",
-                                    VIDEO_ENCODER);
-        }
+        this.video_enc = MP2TSTranscoder.create_encoder (null,
+                                                         VIDEO_ENC_SINK);
 
         this.muxer = ElementFactory.make (MUXER, MUXER);
         if (muxer == null) {
@@ -103,6 +101,47 @@ internal class Rygel.MP2TSTranscoder : Gst.Bin {
        }
 
        encoder.sync_state_with_parent ();
+   }
+
+   internal static Element create_encoder (string? src_pad_name,
+                                           string? sink_pad_name)
+                                           throws Error {
+       var convert = ElementFactory.make (COLORSPACE_CONVERT,
+                                          COLORSPACE_CONVERT);
+       if (convert == null) {
+           throw new LiveResponseError.MISSING_PLUGIN (
+                   "Required element '%s' missing",
+                   COLORSPACE_CONVERT);
+       }
+
+       var encoder = ElementFactory.make (VIDEO_ENCODER, VIDEO_ENCODER);
+       if (encoder == null) {
+           throw new LiveResponseError.MISSING_PLUGIN (
+                   "Required element '%s' missing",
+                   VIDEO_ENCODER);
+       }
+
+       Element parser = ElementFactory.make (VIDEO_PARSER, VIDEO_PARSER);
+       if (parser == null) {
+           throw new LiveResponseError.MISSING_PLUGIN (
+                   "Required element '%s' missing",
+                   VIDEO_PARSER);
+       }
+
+       var bin = new Bin ("video-encoder-bin");
+       bin.add_many (convert, encoder, parser);
+
+       convert.link_many (encoder, parser);
+
+       var pad = convert.get_static_pad ("sink");
+       var ghost = new GhostPad (sink_pad_name, pad);
+       bin.add_pad (ghost);
+
+       pad = parser.get_static_pad ("src");
+       ghost = new GhostPad (src_pad_name, pad);
+       bin.add_pad (ghost);
+
+       return bin;
    }
 
    private void post_error (Error error) {
