@@ -35,20 +35,41 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
     internal virtual void add_resources (ArrayList<DIDLLiteResource?> resources,
                                          MediaItem                    item)
                                          throws Error {
-        string mime_type;
-        string dlna_profile;
-
         if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
             // No  transcoding for images yet :(
             return;
         } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS)) {
-            mime_type = MP3Transcoder.mime_type;
-            dlna_profile = MP3Transcoder.dlna_profile;
+            this.add_resource (resources,
+                               item,
+                               MP3Transcoder.mime_type,
+                               MP3Transcoder.dlna_profile);
         } else {
-            mime_type = MP2TSTranscoder.mime_type;
-            dlna_profile = MP2TSTranscoder.dlna_profile;
+            this.add_resource (resources,
+                               item,
+                               MP2TSTranscoder.mime_type,
+                               MP2TSTranscoder.dlna_profile);
         }
+    }
 
+    internal Element get_transcoding_src (Element src,
+                                          string  target)
+                                          throws Error {
+        if (target == MP3Transcoder.mime_type) {
+            return new MP3Transcoder (src, MP3Profile.LAYER3);
+        } else if (target == MP2TSTranscoder.mime_type) {
+            return new MP2TSTranscoder (src);
+        } else {
+            throw new HTTPRequestError.NOT_FOUND (
+                            "No transcoder available for target format '%s'",
+                            target);
+        }
+    }
+
+    private void add_resource (ArrayList<DIDLLiteResource?> resources,
+                               MediaItem                    item,
+                               string                       mime_type,
+                               string                       dlna_profile)
+                               throws Error {
         if (TranscodeManager.mime_type_is_a (item.mime_type, mime_type)) {
             return;
         }
@@ -65,20 +86,6 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
         res.size = -1;
 
         resources.add (res);
-    }
-
-    internal Element get_transcoding_src (Element src,
-                                          string  target)
-                                          throws Error {
-        if (target == MP3Transcoder.mime_type) {
-            return new MP3Transcoder (src, MP3Profile.LAYER3);
-        } else if (target == MP2TSTranscoder.mime_type) {
-            return new MP2TSTranscoder (src);
-        } else {
-            throw new HTTPRequestError.NOT_FOUND (
-                            "No transcoder available for target format '%s'",
-                            target);
-        }
     }
 
     private static bool mime_type_is_a (string mime_type1, string mime_type2) {
