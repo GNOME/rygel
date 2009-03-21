@@ -43,6 +43,10 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
                                item,
                                MP3Transcoder.mime_type,
                                MP3Transcoder.dlna_profile);
+            this.add_resource (resources,
+                               item,
+                               L16Transcoder.mime_type,
+                               L16Transcoder.dlna_profile);
         } else {
             this.add_resource (resources,
                                item,
@@ -56,6 +60,8 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
                                           throws Error {
         if (target == MP3Transcoder.mime_type) {
             return new MP3Transcoder (src, MP3Profile.LAYER3);
+        } else if (target == L16Transcoder.mime_type) {
+            return new L16Transcoder (src);
         } else if (target == MP2TSTranscoder.mime_type) {
             return new MP2TSTranscoder (src);
         } else {
