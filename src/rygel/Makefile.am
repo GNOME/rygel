@@ -124,6 +124,8 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-simple-async-result.h \
 		rygel-media-item.c \
 		rygel-media-item.h \
+		rygel-transcoder.h \
+		rygel-transcoder.c \
 		rygel-mp2ts-transcoder.h \
 		rygel-mp2ts-transcoder.c \
 		rygel-mp3-transcoder.h \
@@ -165,6 +167,7 @@ VAPI_SOURCE_FILES = rygel-content-directory.vala \
 		    rygel-media-item.vala \
 		    rygel-browse.vala \
 		    rygel-didl-lite-writer.vala \
+		    rygel-transcoder.vala \
 		    rygel-mp2ts-transcoder.vala \
 		    rygel-mp3-transcoder.vala
 

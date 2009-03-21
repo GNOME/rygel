@@ -23,7 +23,7 @@
 using Rygel;
 using Gst;
 
-internal class Rygel.MP2TSTranscoder : Gst.Bin {
+internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
    private const string DECODEBIN = "decodebin2";
    private const string VIDEO_ENCODER = "mpeg2enc";
    private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
@@ -142,16 +142,5 @@ internal class Rygel.MP2TSTranscoder : Gst.Bin {
        bin.add_pad (ghost);
 
        return bin;
-   }
-
-   private bool pads_compatible (Pad pad1, Pad pad2) {
-        Caps intersection = pad1.get_caps ().intersect (pad2.get_caps ());
-
-        return !intersection.is_empty ();
-   }
-
-   private void post_error (Error error) {
-       Message msg = new Message.error (this, error, error.message);
-       this.post_message (msg);
    }
 }

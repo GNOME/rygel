@@ -28,7 +28,7 @@ internal enum Rygel.MP3Profile {
     LAYER3 = 2
 }
 
-internal class Rygel.MP3Transcoder : Gst.Bin {
+internal class Rygel.MP3Transcoder : Rygel.Transcoder {
    private const string DECODEBIN = "decodebin2";
    private const string AUDIO_CONVERT = "audioconvert";
    private const string[] AUDIO_ENCODER = {null, "twolame", "lame"};
@@ -131,16 +131,5 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
        bin.add_pad (ghost);
 
        return bin;
-   }
-
-   private bool pads_compatible (Pad pad1, Pad pad2) {
-        Caps intersection = pad1.get_caps ().intersect (pad2.get_caps ());
-
-        return !intersection.is_empty ();
-   }
-
-   private void post_error (Error error) {
-       Message msg = new Message.error (this, error, error.message);
-       this.post_message (msg);
    }
 }
