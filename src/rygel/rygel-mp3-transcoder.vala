@@ -31,7 +31,7 @@ internal enum Rygel.MP3Profile {
 internal class Rygel.MP3Transcoder : Gst.Bin {
    private const string DECODEBIN = "decodebin2";
    private const string AUDIO_CONVERT = "audioconvert";
-   private const string[] AUDIO_ENCODER = {null, "twolame", "mp3parse"};
+   private const string[] AUDIO_ENCODER = {null, "twolame", "lame"};
    private const string AUDIO_PARSER = "mp3parse";
 
    private const string AUDIO_SRC_PAD = "audio-src-pad";
