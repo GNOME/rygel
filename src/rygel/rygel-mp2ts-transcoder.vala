@@ -28,6 +28,9 @@ internal class Rygel.MP2TSTranscoder : Gst.Bin {
    private const string VIDEO_ENCODER = "mpeg2enc";
    private const string MUXER = "mpegtsmux";
 
+   private const string AUDIO_ENC_SINK = "audio-enc-sink-pad";
+   private const string VIDEO_ENC_SINK = "sink";
+
    private dynamic Element audio_enc;
    private dynamic Element video_enc;
    private dynamic Element muxer;
@@ -41,7 +44,7 @@ internal class Rygel.MP2TSTranscoder : Gst.Bin {
 
         this.audio_enc = MP3Transcoder.create_encoder (MP3Profile.LAYER2,
                                                        null,
-                                                       null);
+                                                       AUDIO_ENC_SINK);
 
         this.video_enc = ElementFactory.make (VIDEO_ENCODER, VIDEO_ENCODER);
         if (video_enc == null) {
@@ -69,16 +72,21 @@ internal class Rygel.MP2TSTranscoder : Gst.Bin {
 
    private void decodebin_pad_added (Element decodebin,
                                      Pad     new_pad) {
-       var encoder = this.audio_enc;
+       Element encoder;
+       Pad enc_pad;
 
-       Pad enc_pad = encoder.get_compatible_pad (new_pad, null);
-       if (enc_pad == null) {
-           // Try video encoder
+       var audio_enc_pad = this.audio_enc.get_pad (AUDIO_ENC_SINK);
+       var video_enc_pad = this.video_enc.get_pad (VIDEO_ENC_SINK);
+
+       // Check which encoder to use
+       if (!audio_enc_pad.is_linked () && new_pad.can_link (audio_enc_pad)) {
+           encoder = this.audio_enc;
+           enc_pad = audio_enc_pad;
+       } else if (!video_enc_pad.is_linked () &&
+                  new_pad.can_link (video_enc_pad)) {
            encoder = this.video_enc;
-           enc_pad = encoder.get_compatible_pad (new_pad, null);
-       }
-
-       if (enc_pad == null) {
+           enc_pad = video_enc_pad;
+       } else {
            return;
        }
 
