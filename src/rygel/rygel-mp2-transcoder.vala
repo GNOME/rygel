@@ -27,6 +27,7 @@ internal class Rygel.MP2Transcoder : Gst.Bin {
    private const string DECODEBIN = "decodebin2";
    private const string AUDIO_CONVERT = "audioconvert";
    private const string AUDIO_ENCODER = "twolame";
+   private const string AUDIO_PARSER = "mp3parse";
 
    private const string AUDIO_SRC_PAD = "audio-src-pad";
 
@@ -84,17 +85,26 @@ internal class Rygel.MP2Transcoder : Gst.Bin {
                    AUDIO_ENCODER);
        }
 
+       Element parser = ElementFactory.make (AUDIO_PARSER,
+                                             AUDIO_PARSER);
+       if (parser == null) {
+           throw new LiveResponseError.MISSING_PLUGIN (
+                   "Required element '%s' missing",
+                   AUDIO_PARSER);
+       }
+
        var bin = new Bin ("audio-encoder-bin");
-       bin.add_many (convert, encoder);
+       bin.add_many (convert, encoder, parser);
 
        var filter = Caps.from_string ("audio/x-raw-int");
        convert.link_filtered (encoder, filter);
+       encoder.link (parser);
 
        var pad = convert.get_static_pad ("sink");
        var ghost = new GhostPad (null, pad);
        bin.add_pad (ghost);
 
-       pad = encoder.get_static_pad ("src");
+       pad = parser.get_static_pad ("src");
        ghost = new GhostPad (AUDIO_SRC_PAD, pad);
        bin.add_pad (ghost);
 
