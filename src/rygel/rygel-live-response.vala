@@ -45,7 +45,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
                          Element      src) throws Error {
         base (server, msg, false);
 
-        this.msg.response_headers.set_encoding (Soup.Encoding.CHUNKED);
+        this.msg.response_headers.set_encoding (Soup.Encoding.EOF);
 
         this.buffers = new AsyncQueue<Buffer> ();
 
