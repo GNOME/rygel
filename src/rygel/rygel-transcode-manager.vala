@@ -35,28 +35,32 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
     internal virtual void add_resources (ArrayList<DIDLLiteResource?> resources,
                                          MediaItem                    item)
                                          throws Error {
+        string mime_type;
+
         if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
             // No  transcoding for images yet :(
             return;
+        } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS)) {
+            mime_type = "audio/mpeg";
         } else {
-            var mime_type = "video/mpeg";
-
-            if (item.mime_type == mime_type) {
-                return;
-            }
-
-            string protocol;
-            var uri = this.create_uri_for_item (item, mime_type, out protocol);
-            DIDLLiteResource res = item.create_res (uri);
-            res.mime_type = mime_type;
-            res.protocol = protocol;
-            res.dlna_conversion = DLNAConversion.TRANSCODED;
-            res.dlna_flags = DLNAFlags.STREAMING_TRANSFER_MODE;
-            res.dlna_operation = DLNAOperation.NONE;
-            res.size = -1;
-
-            resources.add (res);
+            mime_type = "video/mpeg";
         }
+
+        if (item.mime_type == mime_type) {
+            return;
+        }
+
+        string protocol;
+        var uri = this.create_uri_for_item (item, mime_type, out protocol);
+        DIDLLiteResource res = item.create_res (uri);
+        res.mime_type = mime_type;
+        res.protocol = protocol;
+        res.dlna_conversion = DLNAConversion.TRANSCODED;
+        res.dlna_flags = DLNAFlags.STREAMING_TRANSFER_MODE;
+        res.dlna_operation = DLNAOperation.NONE;
+        res.size = -1;
+
+        resources.add (res);
     }
 
     internal Element get_transcoding_src (Element src,
