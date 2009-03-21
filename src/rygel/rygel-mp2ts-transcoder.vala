@@ -25,8 +25,6 @@ using Gst;
 
 internal class Rygel.MP2TSTranscoder : Gst.Bin {
    private const string DECODEBIN = "decodebin2";
-   private const string AUDIO_CONVERT = "audioconvert";
-   private const string AUDIO_ENCODER = "twolame";
    private const string VIDEO_ENCODER = "mpeg2enc";
    private const string MUXER = "mpegtsmux";
 
