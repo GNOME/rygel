@@ -22,6 +22,8 @@
  */
 using Rygel;
 using Gst;
+using GUPnP;
+using Gee;
 
 internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     public const string mime_type = "video/mpeg";
@@ -61,6 +63,20 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         this.add_pad (ghost);
 
         decodebin.pad_added += this.decodebin_pad_added;
+    }
+
+    public static void add_resource (ArrayList<DIDLLiteResource?> resources,
+                                     MediaItem                    item,
+                                     TranscodeManager             manager)
+                                     throws Error {
+        if (Transcoder.mime_type_is_a (item.mime_type,
+                                       MP2TSTranscoder.mime_type)) {
+            return;
+        }
+
+        resources.add (manager.create_resource (item,
+                                                MP2TSTranscoder.mime_type,
+                                                MP2TSTranscoder.dlna_profile));
     }
 
     private void decodebin_pad_added (Element decodebin, Pad new_pad) {

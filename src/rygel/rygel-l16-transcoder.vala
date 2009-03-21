@@ -22,6 +22,8 @@
  */
 using Rygel;
 using Gst;
+using GUPnP;
+using Gee;
 
 internal class Rygel.L16Transcoder : Rygel.Transcoder {
     public const int channels = 2;
@@ -57,6 +59,26 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
         this.add_pad (ghost);
 
         decodebin.pad_added += this.decodebin_pad_added;
+    }
+
+    public static void add_resource (ArrayList<DIDLLiteResource?> resources,
+                                     MediaItem                    item,
+                                     TranscodeManager             manager)
+                                     throws Error {
+        if (Transcoder.mime_type_is_a (item.mime_type,
+                                       L16Transcoder.mime_type)) {
+            return;
+        }
+
+        var res = manager.create_resource (item,
+                                           L16Transcoder.mime_type,
+                                           L16Transcoder.dlna_profile);
+
+        res.sample_freq = L16Transcoder.frequency;
+        res.n_audio_channels = L16Transcoder.channels;
+        res.bits_per_sample = L16Transcoder.width;
+
+        resources.add (res);
     }
 
     private void decodebin_pad_added (Element decodebin, Pad new_pad) {

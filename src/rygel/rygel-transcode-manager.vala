@@ -39,10 +39,10 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
             // No  transcoding for images yet :(
             return;
         } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS)) {
-            add_l16_resource (resources, item);
-            add_mp3_resource (resources, item);
+            L16Transcoder.add_resource (resources, item, this);
+            MP3Transcoder.add_resource (resources, item, this);
         } else {
-            add_mp2ts_resource (resources, item);
+            MP2TSTranscoder.add_resource (resources, item, this);
         }
     }
 
@@ -62,55 +62,10 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
         }
     }
 
-    private void add_mp3_resource (ArrayList<DIDLLiteResource?> resources,
-                                   MediaItem                    item)
-                                   throws Error {
-        if (TranscodeManager.mime_type_is_a (item.mime_type,
-                                             MP3Transcoder.mime_type)) {
-            return;
-        }
-
-        resources.add (this.create_resource (item,
-                                             MP3Transcoder.mime_type,
-                                             MP3Transcoder.dlna_profile));
-    }
-
-    private void add_l16_resource (ArrayList<DIDLLiteResource?> resources,
-                                   MediaItem                    item)
-                                   throws Error {
-        if (TranscodeManager.mime_type_is_a (item.mime_type,
-                                             L16Transcoder.mime_type)) {
-            return;
-        }
-
-        var res = this.create_resource (item,
-                                        L16Transcoder.mime_type,
-                                        L16Transcoder.dlna_profile);
-
-        res.sample_freq = L16Transcoder.frequency;
-        res.n_audio_channels = L16Transcoder.channels;
-        res.bits_per_sample = L16Transcoder.width;
-
-        resources.add (res);
-    }
-
-    private void add_mp2ts_resource (ArrayList<DIDLLiteResource?> resources,
-                                     MediaItem                    item)
-                                     throws Error {
-        if (TranscodeManager.mime_type_is_a (item.mime_type,
-                                             MP2TSTranscoder.mime_type)) {
-            return;
-        }
-
-        resources.add (this.create_resource (item,
-                                             MP2TSTranscoder.mime_type,
-                                             MP2TSTranscoder.dlna_profile));
-    }
-
-    private DIDLLiteResource create_resource (MediaItem  item,
-                                              string     mime_type,
-                                              string     dlna_profile)
-                                              throws Error {
+    internal DIDLLiteResource create_resource (MediaItem  item,
+                                               string     mime_type,
+                                               string     dlna_profile)
+                                               throws Error {
         string protocol;
         var uri = this.create_uri_for_item (item, mime_type, out protocol);
         DIDLLiteResource res = item.create_res (uri);
@@ -123,13 +78,6 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
         res.size = -1;
 
         return res;
-    }
-
-    private static bool mime_type_is_a (string mime_type1, string mime_type2) {
-        string content_type1 = g_content_type_from_mime_type (mime_type1);
-        string content_type2 = g_content_type_from_mime_type (mime_type2);
-
-        return g_content_type_is_a (content_type1, content_type2);
     }
 }
 
