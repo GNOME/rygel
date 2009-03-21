@@ -27,7 +27,7 @@ using Gee;
 
 internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     public const string mime_type = "video/mpeg";
-    private const string dlna_profile = "MP3";
+    private const string dlna_profile = "MPEG_TS_HD_NA";
 
     private const string DECODEBIN = "decodebin2";
     private const string VIDEO_ENCODER = "mpeg2enc";
