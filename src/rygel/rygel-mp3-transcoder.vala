@@ -48,7 +48,7 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
                                     "Required element '%s' missing", DECODEBIN);
         }
 
-        this.audio_enc = this.create_audio_encoder ();
+        this.audio_enc = MP3Transcoder.create_audio_encoder (this.layer);
 
         this.add_many (src, decodebin, this.audio_enc);
         src.link (decodebin);
@@ -78,7 +78,7 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
        this.audio_enc.sync_state_with_parent ();
    }
 
-   private Element create_audio_encoder () throws Error {
+   internal static Element create_audio_encoder (MP3Profile layer) throws Error {
        var convert = ElementFactory.make (AUDIO_CONVERT, AUDIO_CONVERT);
        if (convert == null) {
            throw new LiveResponseError.MISSING_PLUGIN (
@@ -86,13 +86,12 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
                    AUDIO_CONVERT);
        }
 
-       dynamic Element encoder = ElementFactory.make (
-                                            AUDIO_ENCODER[this.layer],
-                                            AUDIO_ENCODER[this.layer]);
+       dynamic Element encoder = ElementFactory.make (AUDIO_ENCODER[layer],
+                                                      AUDIO_ENCODER[layer]);
        if (encoder == null) {
            throw new LiveResponseError.MISSING_PLUGIN (
                    "Required element '%s' missing",
-                   AUDIO_ENCODER[this.layer]);
+                   AUDIO_ENCODER[layer]);
        }
 
        Element parser = ElementFactory.make (AUDIO_PARSER,
@@ -103,7 +102,7 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
                    AUDIO_PARSER);
        }
 
-       if (this.layer == MP3Profile.LAYER3) {
+       if (layer == MP3Profile.LAYER3) {
             // Best quality
             encoder.quality = 0;
        }
