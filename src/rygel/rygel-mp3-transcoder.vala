@@ -23,17 +23,21 @@
 using Rygel;
 using Gst;
 
-internal class Rygel.MP2Transcoder : Gst.Bin {
+internal class Rygel.MP3Transcoder : Gst.Bin {
    private const string DECODEBIN = "decodebin2";
    private const string AUDIO_CONVERT = "audioconvert";
-   private const string AUDIO_ENCODER = "twolame";
+   private const string LAYER2_ENCODER = "twolame";
+   private const string LAYER3_ENCODER = "lame";
    private const string AUDIO_PARSER = "mp3parse";
 
    private const string AUDIO_SRC_PAD = "audio-src-pad";
 
    private dynamic Element audio_enc;
+   private uint layer;
 
-   public MP2Transcoder (Element src) throws Error {
+   public MP3Transcoder (Element src, uint layer) throws Error {
+        this.layer = layer;
+
         Element decodebin = ElementFactory.make (DECODEBIN, DECODEBIN);
         if (decodebin == null) {
             throw new LiveResponseError.MISSING_PLUGIN (
@@ -78,11 +82,19 @@ internal class Rygel.MP2Transcoder : Gst.Bin {
                    AUDIO_CONVERT);
        }
 
-       var encoder = ElementFactory.make (AUDIO_ENCODER, AUDIO_ENCODER);
+       string encoder_name;
+       if (this.layer == 2) {
+           encoder_name = LAYER2_ENCODER;
+       } else {
+           encoder_name = LAYER3_ENCODER;
+       }
+
+       dynamic Element encoder = ElementFactory.make (encoder_name,
+                                                      encoder_name);
        if (encoder == null) {
            throw new LiveResponseError.MISSING_PLUGIN (
                    "Required element '%s' missing",
-                   AUDIO_ENCODER);
+                   encoder_name);
        }
 
        Element parser = ElementFactory.make (AUDIO_PARSER,
@@ -92,6 +104,13 @@ internal class Rygel.MP2Transcoder : Gst.Bin {
                    "Required element '%s' missing",
                    AUDIO_PARSER);
        }
+
+       if (this.layer == 3) {
+            // Best quality
+            encoder.quality = 0;
+       }
+
+       encoder.bitrate = 256;
 
        var bin = new Bin ("audio-encoder-bin");
        bin.add_many (convert, encoder, parser);

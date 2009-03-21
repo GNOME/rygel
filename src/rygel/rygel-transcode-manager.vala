@@ -67,7 +67,7 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
                                           string  target)
                                           throws Error {
         if (target == "audio/mpeg") {
-            return new MP2Transcoder (src);
+            return new MP3Transcoder (src, 3);
         } else if (target == "video/mpeg") {
             return new MP2TSTranscoder (src);
         } else {
