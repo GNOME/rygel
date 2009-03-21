@@ -39,19 +39,10 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
             // No  transcoding for images yet :(
             return;
         } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS)) {
-            this.add_resource (resources,
-                               item,
-                               MP3Transcoder.mime_type,
-                               MP3Transcoder.dlna_profile);
-            this.add_resource (resources,
-                               item,
-                               L16Transcoder.mime_type,
-                               L16Transcoder.dlna_profile);
+            add_mp3_resource (resources, item);
+            add_l16_resource (resources, item);
         } else {
-            this.add_resource (resources,
-                               item,
-                               MP2TSTranscoder.mime_type,
-                               MP2TSTranscoder.dlna_profile);
+            add_mp2ts_resource (resources, item);
         }
     }
 
@@ -69,6 +60,33 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
                             "No transcoder available for target format '%s'",
                             target);
         }
+    }
+
+    private void add_mp3_resource (ArrayList<DIDLLiteResource?> resources,
+                                   MediaItem                    item)
+                                   throws Error {
+            this.add_resource (resources,
+                               item,
+                               MP3Transcoder.mime_type,
+                               MP3Transcoder.dlna_profile);
+    }
+
+    private void add_l16_resource (ArrayList<DIDLLiteResource?> resources,
+                                   MediaItem                    item)
+                                   throws Error {
+            this.add_resource (resources,
+                               item,
+                               L16Transcoder.mime_type,
+                               L16Transcoder.dlna_profile);
+    }
+
+    private void add_mp2ts_resource (ArrayList<DIDLLiteResource?> resources,
+                                     MediaItem                    item)
+                                     throws Error {
+            this.add_resource (resources,
+                               item,
+                               MP2TSTranscoder.mime_type,
+                               MP2TSTranscoder.dlna_profile);
     }
 
     private void add_resource (ArrayList<DIDLLiteResource?> resources,
