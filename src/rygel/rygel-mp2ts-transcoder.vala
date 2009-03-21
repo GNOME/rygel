@@ -65,10 +65,10 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         decodebin.pad_added += this.decodebin_pad_added;
     }
 
-    public static void add_resource (ArrayList<DIDLLiteResource?> resources,
-                                     MediaItem                    item,
-                                     TranscodeManager             manager)
-                                     throws Error {
+    public static void add_resources (ArrayList<DIDLLiteResource?> resources,
+                                      MediaItem                    item,
+                                      TranscodeManager             manager)
+                                      throws Error {
         if (Transcoder.mime_type_is_a (item.mime_type,
                                        MP2TSTranscoder.mime_type)) {
             return;

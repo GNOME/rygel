@@ -39,10 +39,10 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
             // No  transcoding for images yet :(
             return;
         } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS)) {
-            L16Transcoder.add_resource (resources, item, this);
-            MP3Transcoder.add_resource (resources, item, this);
+            L16Transcoder.add_resources (resources, item, this);
+            MP3Transcoder.add_resources (resources, item, this);
         } else {
-            MP2TSTranscoder.add_resource (resources, item, this);
+            MP2TSTranscoder.add_resources (resources, item, this);
         }
     }
 
