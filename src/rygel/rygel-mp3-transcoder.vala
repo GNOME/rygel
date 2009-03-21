@@ -66,7 +66,8 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
    private void decodebin_pad_added (Element decodebin,
                                      Pad     new_pad) {
        Pad enc_pad = this.audio_enc.get_pad (AUDIO_SINK_PAD);
-       if (enc_pad.is_linked () || !new_pad.can_link (enc_pad)) {
+       if (enc_pad.is_linked () ||
+           !MP3Transcoder.pads_compatible (new_pad, enc_pad)) {
            return;
        }
 
@@ -131,6 +132,12 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
        bin.add_pad (ghost);
 
        return bin;
+   }
+
+   internal static bool pads_compatible (Pad pad1, Pad pad2) {
+        Caps intersection = pad1.get_caps ().intersect (pad2.get_caps ());
+
+        return !intersection.is_empty ();
    }
 
    private void post_error (Error error) {

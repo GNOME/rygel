@@ -79,11 +79,12 @@ internal class Rygel.MP2TSTranscoder : Gst.Bin {
        var video_enc_pad = this.video_enc.get_pad (VIDEO_ENC_SINK);
 
        // Check which encoder to use
-       if (!audio_enc_pad.is_linked () && new_pad.can_link (audio_enc_pad)) {
+       if (!audio_enc_pad.is_linked () &&
+            MP3Transcoder.pads_compatible (new_pad, audio_enc_pad)) {
            encoder = this.audio_enc;
            enc_pad = audio_enc_pad;
        } else if (!video_enc_pad.is_linked () &&
-                  new_pad.can_link (video_enc_pad)) {
+                  MP3Transcoder.pads_compatible (new_pad, video_enc_pad)) {
            encoder = this.video_enc;
            enc_pad = video_enc_pad;
        } else {
