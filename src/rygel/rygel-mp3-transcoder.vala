@@ -29,28 +29,29 @@ internal enum Rygel.MP3Profile {
 }
 
 internal class Rygel.MP3Transcoder : Rygel.Transcoder {
-   public const string mime_type = "audio/mpeg";
-   public const string dlna_profile = "MP3";
+    public const string mime_type = "audio/mpeg";
+    public const string dlna_profile = "MP3";
 
-   private const string DECODEBIN = "decodebin2";
-   private const string AUDIO_CONVERT = "audioconvert";
-   private const string[] AUDIO_ENCODER = {null, "twolame", "lame"};
-   private const string AUDIO_PARSER = "mp3parse";
-   private const string AUDIO_RESAMPLE = "audioresample";
+    private const string DECODEBIN = "decodebin2";
+    private const string AUDIO_CONVERT = "audioconvert";
+    private const string[] AUDIO_ENCODER = {null, "twolame", "lame"};
+    private const string AUDIO_PARSER = "mp3parse";
+    private const string AUDIO_RESAMPLE = "audioresample";
 
-   private const string AUDIO_SRC_PAD = "audio-src-pad";
-   private const string AUDIO_SINK_PAD = "audio-sink-pad";
+    private const string AUDIO_SRC_PAD = "audio-src-pad";
+    private const string AUDIO_SINK_PAD = "audio-sink-pad";
 
-   private dynamic Element audio_enc;
-   private MP3Profile layer;
+    private dynamic Element audio_enc;
+    private MP3Profile layer;
 
-   public MP3Transcoder (Element src, MP3Profile layer) throws Error {
+    public MP3Transcoder (Element src, MP3Profile layer) throws Error {
         this.layer = layer;
 
         Element decodebin = ElementFactory.make (DECODEBIN, DECODEBIN);
         if (decodebin == null) {
             throw new LiveResponseError.MISSING_PLUGIN (
-                                    "Required element '%s' missing", DECODEBIN);
+                                "Required element '%s' missing",
+                                DECODEBIN);
         }
 
         this.audio_enc = MP3Transcoder.create_encoder (this.layer,
@@ -65,82 +66,80 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
         this.add_pad (ghost);
 
         decodebin.pad_added += this.decodebin_pad_added;
-   }
+    }
 
-   private void decodebin_pad_added (Element decodebin,
-                                     Pad     new_pad) {
-       Pad enc_pad = this.audio_enc.get_pad (AUDIO_SINK_PAD);
-       if (enc_pad.is_linked () || !this.pads_compatible (new_pad, enc_pad)) {
-           return;
-       }
+    private void decodebin_pad_added (Element decodebin, Pad new_pad) {
+        Pad enc_pad = this.audio_enc.get_pad (AUDIO_SINK_PAD);
+        if (enc_pad.is_linked () || !this.pads_compatible (new_pad, enc_pad)) {
+            return;
+        }
 
-       if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
-           this.post_error (new LiveResponseError.LINK (
-                       "Failed to link pad %s to %s",
-                       new_pad.name,
-                       enc_pad.name));
-           return;
-       }
+        if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
+            this.post_error (new LiveResponseError.LINK (
+                                        "Failed to link pad %s to %s",
+                                        new_pad.name,
+                                        enc_pad.name));
+            return;
+        }
 
-       this.audio_enc.sync_state_with_parent ();
-   }
+        this.audio_enc.sync_state_with_parent ();
+    }
 
-   internal static Element create_encoder (MP3Profile layer,
-                                           string?    src_pad_name,
-                                           string?    sink_pad_name)
-                                           throws Error {
-       var convert = ElementFactory.make (AUDIO_CONVERT, AUDIO_CONVERT);
-       if (convert == null) {
-           throw new LiveResponseError.MISSING_PLUGIN (
-                   "Required element '%s' missing",
-                   AUDIO_CONVERT);
-       }
+    internal static Element create_encoder (MP3Profile layer,
+                                            string?    src_pad_name,
+                                            string?    sink_pad_name)
+                                            throws Error {
+        var convert = ElementFactory.make (AUDIO_CONVERT, AUDIO_CONVERT);
+        if (convert == null) {
+            throw new LiveResponseError.MISSING_PLUGIN (
+                                    "Required element '%s' missing",
+                                    AUDIO_CONVERT);
+        }
 
-       Element resample = ElementFactory.make (AUDIO_RESAMPLE, AUDIO_RESAMPLE);
-       if (resample == null) {
-           throw new LiveResponseError.MISSING_PLUGIN (
-                   "Required element '%s' missing",
-                   AUDIO_RESAMPLE);
-       }
+        Element resample = ElementFactory.make (AUDIO_RESAMPLE, AUDIO_RESAMPLE);
+        if (resample == null) {
+            throw new LiveResponseError.MISSING_PLUGIN (
+                                    "Required element '%s' missing",
+                                    AUDIO_RESAMPLE);
+        }
 
-       dynamic Element encoder = ElementFactory.make (AUDIO_ENCODER[layer],
-                                                      AUDIO_ENCODER[layer]);
-       if (encoder == null) {
-           throw new LiveResponseError.MISSING_PLUGIN (
-                   "Required element '%s' missing",
-                   AUDIO_ENCODER[layer]);
-       }
+        dynamic Element encoder = ElementFactory.make (AUDIO_ENCODER[layer],
+                                                       AUDIO_ENCODER[layer]);
+        if (encoder == null) {
+            throw new LiveResponseError.MISSING_PLUGIN (
+                                    "Required element '%s' missing",
+                                    AUDIO_ENCODER[layer]);
+        }
 
-       Element parser = ElementFactory.make (AUDIO_PARSER,
-                                             AUDIO_PARSER);
-       if (parser == null) {
-           throw new LiveResponseError.MISSING_PLUGIN (
-                   "Required element '%s' missing",
-                   AUDIO_PARSER);
-       }
+        Element parser = ElementFactory.make (AUDIO_PARSER, AUDIO_PARSER);
+        if (parser == null) {
+            throw new LiveResponseError.MISSING_PLUGIN (
+                                    "Required element '%s' missing",
+                                    AUDIO_PARSER);
+        }
 
-       if (layer == MP3Profile.LAYER3) {
+        if (layer == MP3Profile.LAYER3) {
             // Best quality
             encoder.quality = 0;
-       }
+        }
 
-       encoder.bitrate = 256;
+        encoder.bitrate = 256;
 
-       var bin = new Bin ("audio-encoder-bin");
-       bin.add_many (convert, resample, encoder, parser);
+        var bin = new Bin ("audio-encoder-bin");
+        bin.add_many (convert, resample, encoder, parser);
 
-       var filter = Caps.from_string ("audio/x-raw-int");
-       convert.link_filtered (encoder, filter);
-       encoder.link (parser);
+        var filter = Caps.from_string ("audio/x-raw-int");
+        convert.link_filtered (encoder, filter);
+        encoder.link (parser);
 
-       var pad = convert.get_static_pad ("sink");
-       var ghost = new GhostPad (sink_pad_name, pad);
-       bin.add_pad (ghost);
+        var pad = convert.get_static_pad ("sink");
+        var ghost = new GhostPad (sink_pad_name, pad);
+        bin.add_pad (ghost);
 
-       pad = parser.get_static_pad ("src");
-       ghost = new GhostPad (src_pad_name, pad);
-       bin.add_pad (ghost);
+        pad = parser.get_static_pad ("src");
+        ghost = new GhostPad (src_pad_name, pad);
+        bin.add_pad (ghost);
 
-       return bin;
-   }
+        return bin;
+    }
 }

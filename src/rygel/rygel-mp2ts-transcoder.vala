@@ -24,27 +24,28 @@ using Rygel;
 using Gst;
 
 internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
-   public const string mime_type = "video/mpeg";
-   public const string dlna_profile = "MP3";
+    public const string mime_type = "video/mpeg";
+    public const string dlna_profile = "MP3";
 
-   private const string DECODEBIN = "decodebin2";
-   private const string VIDEO_ENCODER = "mpeg2enc";
-   private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
-   private const string VIDEO_RATE = "videorate";
-   private const string MUXER = "mpegtsmux";
+    private const string DECODEBIN = "decodebin2";
+    private const string VIDEO_ENCODER = "mpeg2enc";
+    private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
+    private const string VIDEO_RATE = "videorate";
+    private const string MUXER = "mpegtsmux";
 
-   private const string AUDIO_ENC_SINK = "audio-enc-sink-pad";
-   private const string VIDEO_ENC_SINK = "sink";
+    private const string AUDIO_ENC_SINK = "audio-enc-sink-pad";
+    private const string VIDEO_ENC_SINK = "sink";
 
-   private dynamic Element audio_enc;
-   private dynamic Element video_enc;
-   private dynamic Element muxer;
+    private dynamic Element audio_enc;
+    private dynamic Element video_enc;
+    private dynamic Element muxer;
 
-   public MP2TSTranscoder (Element src) throws Error {
+    public MP2TSTranscoder (Element src) throws Error {
         Element decodebin = ElementFactory.make (DECODEBIN, DECODEBIN);
         if (decodebin == null) {
             throw new LiveResponseError.MISSING_PLUGIN (
-                                    "Required element '%s' missing", DECODEBIN);
+                                    "Required element '%s' missing",
+                                    DECODEBIN);
         }
 
         this.audio_enc = MP3Transcoder.create_encoder (MP3Profile.LAYER2,
@@ -69,81 +70,80 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         this.add_pad (ghost);
 
         decodebin.pad_added += this.decodebin_pad_added;
-   }
+    }
 
-   private void decodebin_pad_added (Element decodebin,
-                                     Pad     new_pad) {
-       Element encoder;
-       Pad enc_pad;
+    private void decodebin_pad_added (Element decodebin, Pad new_pad) {
+        Element encoder;
+        Pad enc_pad;
 
-       var audio_enc_pad = this.audio_enc.get_pad (AUDIO_ENC_SINK);
-       var video_enc_pad = this.video_enc.get_pad (VIDEO_ENC_SINK);
+        var audio_enc_pad = this.audio_enc.get_pad (AUDIO_ENC_SINK);
+        var video_enc_pad = this.video_enc.get_pad (VIDEO_ENC_SINK);
 
-       // Check which encoder to use
-       if (!audio_enc_pad.is_linked () &&
+        // Check which encoder to use
+        if (!audio_enc_pad.is_linked () &&
             this.pads_compatible (new_pad, audio_enc_pad)) {
-           encoder = this.audio_enc;
-           enc_pad = audio_enc_pad;
-       } else if (!video_enc_pad.is_linked () &&
-                  this.pads_compatible (new_pad, video_enc_pad)) {
-           encoder = this.video_enc;
-           enc_pad = video_enc_pad;
-       } else {
-           return;
-       }
+            encoder = this.audio_enc;
+            enc_pad = audio_enc_pad;
+        } else if (!video_enc_pad.is_linked () &&
+                   this.pads_compatible (new_pad, video_enc_pad)) {
+            encoder = this.video_enc;
+            enc_pad = video_enc_pad;
+        } else {
+            return;
+        }
 
-       this.add_many (encoder);
-       encoder.link (this.muxer);
+        this.add_many (encoder);
+        encoder.link (this.muxer);
 
-       if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
-           this.post_error (new LiveResponseError.LINK (
-                       "Failed to link pad %s to %s",
-                       new_pad.name,
-                       enc_pad.name));
-           return;
-       }
+        if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
+            this.post_error (new LiveResponseError.LINK (
+                             "Failed to link pad %s to %s",
+                             new_pad.name,
+                             enc_pad.name));
+            return;
+        }
 
-       encoder.sync_state_with_parent ();
-   }
+        encoder.sync_state_with_parent ();
+    }
 
-   internal static Element create_encoder (string? src_pad_name,
-                                           string? sink_pad_name)
-                                           throws Error {
-       var videorate = ElementFactory.make (VIDEO_RATE, VIDEO_RATE);
-       if (videorate == null) {
-           throw new LiveResponseError.MISSING_PLUGIN (
-                   "Required element '%s' missing",
-                   VIDEO_RATE);
-       }
+    internal static Element create_encoder (string? src_pad_name,
+                                            string? sink_pad_name)
+                                            throws Error {
+        var videorate = ElementFactory.make (VIDEO_RATE, VIDEO_RATE);
+        if (videorate == null) {
+            throw new LiveResponseError.MISSING_PLUGIN (
+                                    "Required element '%s' missing",
+                                    VIDEO_RATE);
+        }
 
-       var convert = ElementFactory.make (COLORSPACE_CONVERT,
-                                          COLORSPACE_CONVERT);
-       if (convert == null) {
-           throw new LiveResponseError.MISSING_PLUGIN (
-                   "Required element '%s' missing",
-                   COLORSPACE_CONVERT);
-       }
+        var convert = ElementFactory.make (COLORSPACE_CONVERT,
+                COLORSPACE_CONVERT);
+        if (convert == null) {
+            throw new LiveResponseError.MISSING_PLUGIN (
+                                    "Required element '%s' missing",
+                                    COLORSPACE_CONVERT);
+        }
 
-       var encoder = ElementFactory.make (VIDEO_ENCODER, VIDEO_ENCODER);
-       if (encoder == null) {
-           throw new LiveResponseError.MISSING_PLUGIN (
-                   "Required element '%s' missing",
-                   VIDEO_ENCODER);
-       }
+        var encoder = ElementFactory.make (VIDEO_ENCODER, VIDEO_ENCODER);
+        if (encoder == null) {
+            throw new LiveResponseError.MISSING_PLUGIN (
+                                    "Required element '%s' missing",
+                                    VIDEO_ENCODER);
+        }
 
-       var bin = new Bin ("video-encoder-bin");
-       bin.add_many (videorate, convert, encoder);
+        var bin = new Bin ("video-encoder-bin");
+        bin.add_many (videorate, convert, encoder);
 
-       videorate.link_many (convert, encoder);
+        videorate.link_many (convert, encoder);
 
-       var pad = videorate.get_static_pad ("sink");
-       var ghost = new GhostPad (sink_pad_name, pad);
-       bin.add_pad (ghost);
+        var pad = videorate.get_static_pad ("sink");
+        var ghost = new GhostPad (sink_pad_name, pad);
+        bin.add_pad (ghost);
 
-       pad = encoder.get_static_pad ("src");
-       ghost = new GhostPad (src_pad_name, pad);
-       bin.add_pad (ghost);
+        pad = encoder.get_static_pad ("src");
+        ghost = new GhostPad (src_pad_name, pad);
+        bin.add_pad (ghost);
 
-       return bin;
-   }
+        return bin;
+    }
 }
