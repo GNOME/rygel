@@ -41,7 +41,7 @@ internal class Rygel.MP2TSTranscoder : Gst.Bin {
                                     "Required element '%s' missing", DECODEBIN);
         }
 
-        this.audio_enc = this.create_audio_encoder ();
+        this.audio_enc = MP3Transcoder.create_encoder (MP3Profile.LAYER2);
 
         this.video_enc = ElementFactory.make (VIDEO_ENCODER, VIDEO_ENCODER);
         if (video_enc == null) {
@@ -94,38 +94,6 @@ internal class Rygel.MP2TSTranscoder : Gst.Bin {
        }
 
        encoder.sync_state_with_parent ();
-   }
-
-   private Element create_audio_encoder () throws Error {
-       var convert = ElementFactory.make (AUDIO_CONVERT, AUDIO_CONVERT);
-       if (convert == null) {
-           throw new LiveResponseError.MISSING_PLUGIN (
-                   "Required element '%s' missing",
-                   AUDIO_CONVERT);
-       }
-
-       var encoder = ElementFactory.make (AUDIO_ENCODER, AUDIO_ENCODER);
-       if (encoder == null) {
-           throw new LiveResponseError.MISSING_PLUGIN (
-                   "Required element '%s' missing",
-                   AUDIO_ENCODER);
-       }
-
-       var bin = new Bin ("audio-encoder-bin");
-       bin.add_many (convert, encoder);
-
-       var filter = Caps.from_string ("audio/x-raw-int");
-       convert.link_filtered (encoder, filter);
-
-       var pad = convert.get_static_pad ("sink");
-       var ghost = new GhostPad (null, pad);
-       bin.add_pad (ghost);
-
-       pad = encoder.get_static_pad ("src");
-       ghost = new GhostPad (null, pad);
-       bin.add_pad (ghost);
-
-       return bin;
    }
 
    private void post_error (Error error) {
