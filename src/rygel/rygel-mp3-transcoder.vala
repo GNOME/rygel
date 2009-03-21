@@ -35,6 +35,7 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
    private const string AUDIO_PARSER = "mp3parse";
 
    private const string AUDIO_SRC_PAD = "audio-src-pad";
+   private const string AUDIO_SINK_PAD = "audio-sink-pad";
 
    private dynamic Element audio_enc;
    private MP3Profile layer;
@@ -50,7 +51,7 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
 
         this.audio_enc = MP3Transcoder.create_encoder (this.layer,
                                                        AUDIO_SRC_PAD,
-                                                       null);
+                                                       AUDIO_SINK_PAD);
 
         this.add_many (src, decodebin, this.audio_enc);
         src.link (decodebin);
@@ -64,8 +65,8 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
 
    private void decodebin_pad_added (Element decodebin,
                                      Pad     new_pad) {
-       Pad enc_pad = this.audio_enc.get_compatible_pad (new_pad, null);
-       if (enc_pad == null) {
+       Pad enc_pad = this.audio_enc.get_pad (AUDIO_SINK_PAD);
+       if (enc_pad.is_linked () || !new_pad.can_link (enc_pad)) {
            return;
        }
 
