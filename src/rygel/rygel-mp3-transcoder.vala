@@ -26,8 +26,7 @@ using Gst;
 internal class Rygel.MP3Transcoder : Gst.Bin {
    private const string DECODEBIN = "decodebin2";
    private const string AUDIO_CONVERT = "audioconvert";
-   private const string LAYER2_ENCODER = "twolame";
-   private const string LAYER3_ENCODER = "lame";
+   private const string[] AUDIO_ENCODER = {null, "twolame", "mp3parse"};
    private const string AUDIO_PARSER = "mp3parse";
 
    private const string AUDIO_SRC_PAD = "audio-src-pad";
@@ -82,19 +81,13 @@ internal class Rygel.MP3Transcoder : Gst.Bin {
                    AUDIO_CONVERT);
        }
 
-       string encoder_name;
-       if (this.layer == 2) {
-           encoder_name = LAYER2_ENCODER;
-       } else {
-           encoder_name = LAYER3_ENCODER;
-       }
-
-       dynamic Element encoder = ElementFactory.make (encoder_name,
-                                                      encoder_name);
+       dynamic Element encoder = ElementFactory.make (
+                                            AUDIO_ENCODER[this.layer],
+                                            AUDIO_ENCODER[this.layer]);
        if (encoder == null) {
            throw new LiveResponseError.MISSING_PLUGIN (
                    "Required element '%s' missing",
-                   encoder_name);
+                   AUDIO_ENCODER[this.layer]);
        }
 
        Element parser = ElementFactory.make (AUDIO_PARSER,
