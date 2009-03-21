@@ -24,6 +24,9 @@ using Rygel;
 using Gst;
 
 internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
+   public const string mime_type = "video/mpeg";
+   public const string dlna_profile = "MP3";
+
    private const string DECODEBIN = "decodebin2";
    private const string VIDEO_ENCODER = "mpeg2enc";
    private const string COLORSPACE_CONVERT = "ffmpegcolorspace";

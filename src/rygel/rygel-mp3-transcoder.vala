@@ -29,6 +29,9 @@ internal enum Rygel.MP3Profile {
 }
 
 internal class Rygel.MP3Transcoder : Rygel.Transcoder {
+   public const string mime_type = "audio/mpeg";
+   public const string dlna_profile = "MP3";
+
    private const string DECODEBIN = "decodebin2";
    private const string AUDIO_CONVERT = "audioconvert";
    private const string[] AUDIO_ENCODER = {null, "twolame", "lame"};

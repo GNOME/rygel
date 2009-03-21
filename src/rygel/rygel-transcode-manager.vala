@@ -36,14 +36,17 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
                                          MediaItem                    item)
                                          throws Error {
         string mime_type;
+        string dlna_profile;
 
         if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
             // No  transcoding for images yet :(
             return;
         } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS)) {
-            mime_type = "audio/mpeg";
+            mime_type = MP3Transcoder.mime_type;
+            dlna_profile = MP3Transcoder.dlna_profile;
         } else {
-            mime_type = "video/mpeg";
+            mime_type = MP2TSTranscoder.mime_type;
+            dlna_profile = MP2TSTranscoder.dlna_profile;
         }
 
         if (item.mime_type == mime_type) {
@@ -55,6 +58,7 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
         DIDLLiteResource res = item.create_res (uri);
         res.mime_type = mime_type;
         res.protocol = protocol;
+        res.dlna_profile = dlna_profile;
         res.dlna_conversion = DLNAConversion.TRANSCODED;
         res.dlna_flags = DLNAFlags.STREAMING_TRANSFER_MODE;
         res.dlna_operation = DLNAOperation.NONE;
@@ -66,9 +70,9 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
     internal Element get_transcoding_src (Element src,
                                           string  target)
                                           throws Error {
-        if (target == "audio/mpeg") {
+        if (target == MP3Transcoder.mime_type) {
             return new MP3Transcoder (src, MP3Profile.LAYER3);
-        } else if (target == "video/mpeg") {
+        } else if (target == MP2TSTranscoder.mime_type) {
             return new MP2TSTranscoder (src);
         } else {
             throw new HTTPRequestError.NOT_FOUND (
