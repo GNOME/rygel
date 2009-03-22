@@ -55,7 +55,7 @@ public class Rygel.TrackerMusicItem : TrackerItem {
         keys[Metadata.FILE_NAME] = "File:Name";
         keys[Metadata.MIME] = "File:Mime";
         keys[Metadata.SIZE] = "File:Size";
-        keys[Metadata.TITLE] = "Video:Title";
+        keys[Metadata.TITLE] = "Audio:Title";
         keys[Metadata.ARTIST] = "Audio:Artist";
         keys[Metadata.TRACK_NUM] = "Audio:TrackNo";
         keys[Metadata.ALBUM] = "Audio:Album";
