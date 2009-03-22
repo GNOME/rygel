@@ -33,6 +33,7 @@ public class Rygel.TrackerMusicItem : TrackerItem {
         FILE_NAME,
         MIME,
         SIZE,
+        DURATION,
         TITLE,
         ARTIST,
         TRACK_NUM,
@@ -55,6 +56,7 @@ public class Rygel.TrackerMusicItem : TrackerItem {
         keys[Metadata.FILE_NAME] = "File:Name";
         keys[Metadata.MIME] = "File:Mime";
         keys[Metadata.SIZE] = "File:Size";
+        keys[Metadata.DURATION] = "Audio:Duration";
         keys[Metadata.TITLE] = "Audio:Title";
         keys[Metadata.ARTIST] = "Audio:Artist";
         keys[Metadata.TRACK_NUM] = "Audio:TrackNo";
@@ -75,6 +77,9 @@ public class Rygel.TrackerMusicItem : TrackerItem {
 
         if (values[Metadata.SIZE] != "")
             this.size = values[Metadata.SIZE].to_int ();
+
+        if (values[Metadata.DURATION] != "")
+            this.duration = values[Metadata.DURATION].to_int ();
 
         if (values[Metadata.TRACK_NUM] != "")
             this.track_number = values[Metadata.TRACK_NUM].to_int ();

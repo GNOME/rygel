@@ -33,6 +33,7 @@ public class Rygel.TrackerVideoItem : TrackerItem {
         FILE_NAME,
         MIME,
         SIZE,
+        DURATION,
         TITLE,
         AUTHOR,
         WIDTH,
@@ -53,6 +54,7 @@ public class Rygel.TrackerVideoItem : TrackerItem {
         keys[Metadata.FILE_NAME] = "File:Name";
         keys[Metadata.MIME] = "File:Mime";
         keys[Metadata.SIZE] = "File:Size";
+        keys[Metadata.DURATION] = "Video:Duration";
         keys[Metadata.TITLE] = "Video:Title";
         keys[Metadata.AUTHOR] = "Video:Author";
         keys[Metadata.WIDTH] = "Video:Width";
@@ -71,6 +73,9 @@ public class Rygel.TrackerVideoItem : TrackerItem {
 
         if (values[Metadata.SIZE] != "")
             this.size = values[Metadata.SIZE].to_int ();
+
+        if (values[Metadata.DURATION] != "")
+            this.duration = values[Metadata.DURATION].to_int ();
 
         if (values[Metadata.WIDTH] != "")
             this.width = values[Metadata.WIDTH].to_int ();
