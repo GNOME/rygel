@@ -26,12 +26,13 @@ using GUPnP;
 using Gee;
 
 internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
-    public const string mime_type = "video/mpeg";
-    private const string dlna_profile = "MPEG_TS_HD_NA";
-
     // HD
     private const int WIDTH = 1920;
     private const int HEIGHT = 1080;
+
+    public MP2TSTranscoder () {
+        base ("video/mpeg", "MPEG_TS_HD_NA");
+    }
 
     public override Element create_source (Element src) throws Error {
         return new MP2TSTranscoderBin (src,
@@ -43,13 +44,13 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
                                         MediaItem                    item,
                                         TranscodeManager             manager)
                                         throws Error {
-        if (this.mime_type_is_a (item.mime_type, MP2TSTranscoder.mime_type)) {
+        if (this.mime_type_is_a (item.mime_type, this.mime_type)) {
             return;
         }
 
         var res = manager.create_resource (item,
-                                           MP2TSTranscoder.mime_type,
-                                           MP2TSTranscoder.dlna_profile);
+                                           this.mime_type,
+                                           this.dlna_profile);
         res.width = WIDTH;
         res.height = HEIGHT;
 
@@ -57,7 +58,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     }
 
     internal override bool can_handle (string mime_type) {
-        return mime_type == MP2TSTranscoder.mime_type;
+        return mime_type == this.mime_type;
     }
 }
 

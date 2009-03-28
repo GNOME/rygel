@@ -31,12 +31,11 @@ internal enum Rygel.MP3Profile {
 }
 
 internal class Rygel.MP3Transcoder : Rygel.Transcoder {
-    public const string mime_type = "audio/mpeg";
-    private const string dlna_profile = "MP3";
-
     private MP3Profile layer;
 
     public MP3Transcoder (MP3Profile layer) {
+        base ("audio/mpeg", "MP3");
+
         this.layer = layer;
     }
 
@@ -56,17 +55,17 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
                                         MediaItem                    item,
                                         TranscodeManager             manager)
                                         throws Error {
-        if (this.mime_type_is_a (item.mime_type, MP3Transcoder.mime_type)) {
+        if (this.mime_type_is_a (item.mime_type, this.mime_type)) {
             return;
         }
 
         resources.add (manager.create_resource (item,
-                                                MP3Transcoder.mime_type,
-                                                MP3Transcoder.dlna_profile));
+                                                this.mime_type,
+                                                this.dlna_profile));
     }
 
     public override bool can_handle (string mime_type) {
-        return mime_type == MP3Transcoder.mime_type;
+        return mime_type == this.mime_type;
     }
 }
 

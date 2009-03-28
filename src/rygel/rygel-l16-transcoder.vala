@@ -33,8 +33,9 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
     private const int ENDIANNESS = ByteOrder.BIG_ENDIAN; // Network byte order
     private const bool SIGNED = true; // Network byte order
 
-    private const string mime_type = "audio/L16;rate=44100;channels=2";
-    private const string dlna_profile = "LPCM";
+    public L16Transcoder () {
+        base ("audio/L16;rate=44100;channels=2", "LPCM");
+    }
 
     public override Element create_source (Element src) throws Error {
         return new L16TranscoderBin (src,
@@ -50,13 +51,13 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
                                         MediaItem                    item,
                                         TranscodeManager             manager)
                                         throws Error {
-        if (this.mime_type_is_a (item.mime_type, L16Transcoder.mime_type)) {
+        if (this.mime_type_is_a (item.mime_type, this.mime_type)) {
             return;
         }
 
         var res = manager.create_resource (item,
-                                           L16Transcoder.mime_type,
-                                           L16Transcoder.dlna_profile);
+                                           this.mime_type,
+                                           this.dlna_profile);
 
         res.sample_freq = L16Transcoder.FREQUENCY;
         res.n_audio_channels = L16Transcoder.CHANNELS;
@@ -66,7 +67,7 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
     }
 
     internal override bool can_handle (string mime_type) {
-        return mime_type == L16Transcoder.mime_type;
+        return mime_type == this.mime_type;
     }
 }
 

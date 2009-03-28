@@ -26,6 +26,14 @@ using GUPnP;
 using Gee;
 
 internal abstract class Rygel.Transcoder : GLib.Object {
+    public string mime_type { get; protected set; }
+    public string dlna_profile { get; protected set; }
+
+    public Transcoder (string mime_type, string dlna_profile) {
+        this.mime_type = mime_type;
+        this.dlna_profile = dlna_profile;
+    }
+
     public abstract Element create_source (Element src) throws Error;
 
     public abstract void add_resources (ArrayList<DIDLLiteResource?> resources,
