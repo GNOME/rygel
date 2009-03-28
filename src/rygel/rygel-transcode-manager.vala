@@ -27,17 +27,15 @@ using Gee;
 using Gst;
 
 internal abstract class Rygel.TranscodeManager : GLib.Object {
-    private ArrayList<Transcoder> audio_transcoders;
-    private ArrayList<Transcoder> video_transcoders;
+    private ArrayList<Transcoder> transcoders;
 
     public TranscodeManager () {
-        audio_transcoders = new ArrayList<Transcoder> ();
-        video_transcoders = new ArrayList<Transcoder> ();
+        transcoders = new ArrayList<Transcoder> ();
 
-        audio_transcoders.add (new L16Transcoder (Endianness.BIG));
-        audio_transcoders.add (new MP3Transcoder (MP3Layer.THREE));
-        video_transcoders.add (new MP2TSTranscoder(MP2TSProfile.SD));
-        video_transcoders.add (new MP2TSTranscoder(MP2TSProfile.HD));
+        transcoders.add (new L16Transcoder (Endianness.BIG));
+        transcoders.add (new MP3Transcoder (MP3Layer.THREE));
+        transcoders.add (new MP2TSTranscoder(MP2TSProfile.SD));
+        transcoders.add (new MP2TSTranscoder(MP2TSProfile.HD));
     }
 
     public abstract string create_uri_for_item (MediaItem  item,
@@ -50,25 +48,28 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
         if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
             // No  transcoding for images yet :(
             return;
-        } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS)) {
-            this.add_audio_resources (resources, item);
-            this.add_video_resources (resources, item);
-        } else {
-            this.add_video_resources (resources, item);
-            this.add_audio_resources (resources, item);
+        }
+
+        // First add resource of the transcoders that are primarily meant for
+        // the UPnP class of the item concerned
+        foreach (var transcoder in this.transcoders) {
+            if (item.upnp_class.has_prefix (transcoder.upnp_class)) {
+                transcoder.add_resources (resources, item, this);
+            }
+        }
+
+        // Then add resources from other transcoders
+        foreach (var transcoder in this.transcoders) {
+            if (!item.upnp_class.has_prefix (transcoder.upnp_class)) {
+                transcoder.add_resources (resources, item, this);
+            }
         }
     }
 
     public Transcoder get_transcoder (string  target) throws Error {
         Transcoder transcoder = null;
 
-        foreach (var iter in this.audio_transcoders) {
-            if (iter.can_handle (target)) {
-                transcoder = iter;
-            }
-        }
-
-        foreach (var iter in this.video_transcoders) {
+        foreach (var iter in this.transcoders) {
             if (iter.can_handle (target)) {
                 transcoder = iter;
             }
@@ -81,22 +82,6 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
         }
 
         return transcoder;
-    }
-
-    private void add_audio_resources (ArrayList<DIDLLiteResource?> resources,
-                                      MediaItem                    item)
-                                      throws Error {
-        foreach (var transcoder in this.audio_transcoders) {
-            transcoder.add_resources (resources, item, this);
-        }
-    }
-
-    private void add_video_resources (ArrayList<DIDLLiteResource?> resources,
-                                      MediaItem                    item)
-                                      throws Error {
-        foreach (var transcoder in this.video_transcoders) {
-            transcoder.add_resources (resources, item, this);
-        }
     }
 }
 
