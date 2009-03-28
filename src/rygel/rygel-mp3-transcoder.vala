@@ -22,8 +22,11 @@
  */
 using Rygel;
 using Gst;
+using GUPnP;
 
 internal class Rygel.MP3Transcoder : Rygel.Transcoder {
+    private const int BITRATE = 256;
+
     private const string[] AUDIO_ENCODER = {null, "twolame", "lame"};
     private const string AUDIO_PARSER = "mp3parse";
 
@@ -39,6 +42,16 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
 
     public override Element create_source (Element src) throws Error {
         return new MP3TranscoderBin (src, this);
+    }
+
+    public override DIDLLiteResource create_resource (MediaItem        item,
+                                                      TranscodeManager manager)
+                                                      throws Error {
+        var res = base.create_resource (item, manager);
+
+        res.bitrate = BITRATE;
+
+        return res;
     }
 
     public Element create_encoder (string?  src_pad_name,
@@ -59,7 +72,7 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
             encoder.quality = 0;
         }
 
-        encoder.bitrate = 256;
+        encoder.bitrate = BITRATE;
 
         var bin = new Bin ("mp3-encoder-bin");
         bin.add_many (convert, encoder, parser);
