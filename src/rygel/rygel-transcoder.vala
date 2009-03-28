@@ -42,20 +42,17 @@ internal abstract class Rygel.Transcoder : GLib.Object {
                                         throws Error;
 
 
-    public virtual DIDLLiteResource create_resource (
-                                        MediaItem        item,
-                                        string           mime_type,
-                                        string           dlna_profile,
-                                        TranscodeManager manager)
-                                        throws Error {
+    public virtual DIDLLiteResource create_resource (MediaItem        item,
+                                                     TranscodeManager manager)
+                                                     throws Error {
         string protocol;
         var uri = manager.create_uri_for_item (item,
-                                               dlna_profile,
+                                               this.dlna_profile,
                                                out protocol);
         DIDLLiteResource res = item.create_res (uri);
-        res.mime_type = mime_type;
+        res.mime_type = this.mime_type;
         res.protocol = protocol;
-        res.dlna_profile = dlna_profile;
+        res.dlna_profile = this.dlna_profile;
         res.dlna_conversion = DLNAConversion.TRANSCODED;
         res.dlna_flags = DLNAFlags.STREAMING_TRANSFER_MODE;
         res.dlna_operation = DLNAOperation.NONE;
