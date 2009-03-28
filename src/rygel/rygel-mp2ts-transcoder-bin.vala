@@ -25,10 +25,6 @@ using Gst;
 
 internal class Rygel.MP2TSTranscoderBin : Rygel.TranscoderBin {
     private const string DECODEBIN = "decodebin2";
-    private const string VIDEO_ENCODER = "mpeg2enc";
-    private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
-    private const string VIDEO_RATE = "videorate";
-    private const string VIDEO_SCALE = "videoscale";
     private const string MUXER = "mpegtsmux";
 
     private const string AUDIO_ENC_SINK = "audio-enc-sink-pad";
@@ -38,18 +34,14 @@ internal class Rygel.MP2TSTranscoderBin : Rygel.TranscoderBin {
     private dynamic Element video_enc;
     private dynamic Element muxer;
 
-    public MP2TSTranscoderBin (Element src,
-                               int     width,
-                               int     height)
+    public MP2TSTranscoderBin (Element         src,
+                               MP2TSTranscoder transcoder)
                                throws Error {
         Element decodebin = TranscoderBin.create_element (DECODEBIN, DECODEBIN);
-        this.audio_enc = MP3TranscoderBin.create_encoder (MP3Layer.TWO,
-                                                          null,
-                                                          AUDIO_ENC_SINK);
-        this.video_enc = MP2TSTranscoderBin.create_encoder (null,
-                                                            VIDEO_ENC_SINK,
-                                                            width,
-                                                            height);
+        var mp3_transcoder = new MP3Transcoder (MP3Layer.TWO);
+        this.audio_enc = mp3_transcoder.create_encoder (null,
+                                                        AUDIO_ENC_SINK);
+        this.video_enc = transcoder.create_encoder (null, VIDEO_ENC_SINK);
         this.muxer = TranscoderBin.create_element (MUXER, MUXER);
 
         this.add_many (src,
@@ -93,39 +85,5 @@ internal class Rygel.MP2TSTranscoderBin : Rygel.TranscoderBin {
                              enc_pad.name));
             return;
         }
-    }
-
-    internal static Element create_encoder (string? src_pad_name,
-                                            string? sink_pad_name,
-                                            int     width,
-                                            int     height)
-                                            throws Error {
-        var videorate = TranscoderBin.create_element (VIDEO_RATE, VIDEO_RATE);
-        var videoscale = TranscoderBin.create_element (VIDEO_SCALE,
-                                                       VIDEO_SCALE);
-        var convert = TranscoderBin.create_element (COLORSPACE_CONVERT,
-                                                    COLORSPACE_CONVERT);
-        var encoder = TranscoderBin.create_element (VIDEO_ENCODER,
-                                                    VIDEO_ENCODER);
-
-        var bin = new Bin ("video-encoder-bin");
-        bin.add_many (videorate, videoscale, convert, encoder);
-
-        var caps = new Caps.simple ("video/x-raw-yuv",
-                                    "width", typeof (int), width,
-                                    "height", typeof (int), height);
-        videorate.link (convert);
-        convert.link (videoscale);
-        videoscale.link_filtered (encoder, caps);
-
-        var pad = videorate.get_static_pad ("sink");
-        var ghost = new GhostPad (sink_pad_name, pad);
-        bin.add_pad (ghost);
-
-        pad = encoder.get_static_pad ("src");
-        ghost = new GhostPad (src_pad_name, pad);
-        bin.add_pad (ghost);
-
-        return bin;
     }
 }

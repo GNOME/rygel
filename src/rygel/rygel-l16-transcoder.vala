@@ -32,6 +32,10 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
     private const int ENDIANNESS = ByteOrder.BIG_ENDIAN; // Network byte order
     private const bool SIGNED = true; // Network byte order
 
+    private const string AUDIO_CONVERT = "audioconvert";
+    private const string AUDIO_RESAMPLE = "audioresample";
+    private const string CAPS_FILTER = "capsfilter";
+
     public L16Transcoder () {
         var mime_type = "audio/L" + L16Transcoder.WIDTH.to_string () +
                         ";rate=" + L16Transcoder.FREQUENCY.to_string () +
@@ -41,13 +45,7 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
     }
 
     public override Element create_source (Element src) throws Error {
-        return new L16TranscoderBin (src,
-                                     L16Transcoder.CHANNELS,
-                                     L16Transcoder.FREQUENCY,
-                                     L16Transcoder.WIDTH,
-                                     L16Transcoder.DEPTH,
-                                     L16Transcoder.ENDIANNESS,
-                                     L16Transcoder.SIGNED);
+        return new L16TranscoderBin (src, this);
     }
 
     public override DIDLLiteResource create_resource (
@@ -61,5 +59,43 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
         res.bits_per_sample = L16Transcoder.WIDTH;
 
         return res;
+    }
+
+    public Element create_encoder (string? src_pad_name,
+                                   string? sink_pad_name)
+                                   throws Error {
+        dynamic Element convert1 = TranscoderBin.create_element (AUDIO_CONVERT,
+                                                                 null);
+        dynamic Element resample = TranscoderBin.create_element (
+                                                        AUDIO_RESAMPLE,
+                                                        AUDIO_RESAMPLE);
+        dynamic Element convert2 = TranscoderBin.create_element (AUDIO_CONVERT,
+                                                                 null);
+        dynamic Element capsfilter = TranscoderBin.create_element (CAPS_FILTER,
+                                                                   CAPS_FILTER);
+
+        var bin = new Bin ("audio-encoder-bin");
+        bin.add_many (convert1, resample, convert2, capsfilter);
+
+        capsfilter.caps = new Caps.simple (
+                                    "audio/x-raw-int",
+                                    "channels", typeof (int), CHANNELS,
+                                    "rate",  typeof (int), FREQUENCY,
+                                    "width", typeof (int), WIDTH,
+                                    "depth", typeof (int), DEPTH,
+                                    "endianness", typeof (int), ENDIANNESS,
+                                    "signed", typeof (bool), SIGNED);
+
+        convert1.link_many (resample, convert2, capsfilter);
+
+        var pad = convert1.get_static_pad ("sink");
+        var ghost = new GhostPad (sink_pad_name, pad);
+        bin.add_pad (ghost);
+
+        pad = capsfilter.get_static_pad ("src");
+        ghost = new GhostPad (src_pad_name, pad);
+        bin.add_pad (ghost);
+
+        return bin;
     }
 }

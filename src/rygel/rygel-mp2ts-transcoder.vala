@@ -35,6 +35,11 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     private const int[] HEIGHT = {480, 1080};
     private const string[] PROFILES = {"MPEG_TS_SD_NA", "MPEG_TS_HD_NA"};
 
+    private const string VIDEO_ENCODER = "mpeg2enc";
+    private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
+    private const string VIDEO_RATE = "videorate";
+    private const string VIDEO_SCALE = "videoscale";
+
     private MP2TSProfile profile;
 
     public MP2TSTranscoder (MP2TSProfile profile) {
@@ -44,9 +49,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     }
 
     public override Element create_source (Element src) throws Error {
-        return new MP2TSTranscoderBin (src,
-                                       MP2TSTranscoder.WIDTH[this.profile],
-                                       MP2TSTranscoder.HEIGHT[this.profile]);
+        return new MP2TSTranscoderBin (src, this);
     }
 
     public override DIDLLiteResource create_resource (MediaItem        item,
@@ -58,5 +61,38 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         res.height = HEIGHT[profile];
 
         return res;
+    }
+
+    public Element create_encoder (string? src_pad_name,
+                                   string? sink_pad_name)
+                                   throws Error {
+        var videorate = TranscoderBin.create_element (VIDEO_RATE, VIDEO_RATE);
+        var videoscale = TranscoderBin.create_element (VIDEO_SCALE,
+                                                       VIDEO_SCALE);
+        var convert = TranscoderBin.create_element (COLORSPACE_CONVERT,
+                                                    COLORSPACE_CONVERT);
+        var encoder = TranscoderBin.create_element (VIDEO_ENCODER,
+                                                    VIDEO_ENCODER);
+
+        var bin = new Bin ("video-encoder-bin");
+        bin.add_many (videorate, videoscale, convert, encoder);
+
+        var caps = new Caps.simple (
+                                "video/x-raw-yuv",
+                                "width", typeof (int), WIDTH[this.profile],
+                                "height", typeof (int), HEIGHT[this.profile]);
+        videorate.link (convert);
+        convert.link (videoscale);
+        videoscale.link_filtered (encoder, caps);
+
+        var pad = videorate.get_static_pad ("sink");
+        var ghost = new GhostPad (sink_pad_name, pad);
+        bin.add_pad (ghost);
+
+        pad = encoder.get_static_pad ("src");
+        ghost = new GhostPad (src_pad_name, pad);
+        bin.add_pad (ghost);
+
+        return bin;
     }
 }

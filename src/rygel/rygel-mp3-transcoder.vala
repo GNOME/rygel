@@ -24,6 +24,11 @@ using Rygel;
 using Gst;
 
 internal class Rygel.MP3Transcoder : Rygel.Transcoder {
+    private const string AUDIO_CONVERT = "audioconvert";
+    private const string[] AUDIO_ENCODER = {null, "twolame", "lame"};
+    private const string AUDIO_PARSER = "mp3parse";
+    private const string AUDIO_RESAMPLE = "audioresample";
+
     private MP3Layer layer;
 
     public MP3Transcoder (MP3Layer layer) {
@@ -33,6 +38,45 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     }
 
     public override Element create_source (Element src) throws Error {
-        return new MP3TranscoderBin (src, this.layer);
+        return new MP3TranscoderBin (src, this);
+    }
+
+    public Element create_encoder (string?  src_pad_name,
+                                   string?  sink_pad_name)
+                                   throws Error {
+        dynamic Element convert = TranscoderBin.create_element (AUDIO_CONVERT,
+                                                                AUDIO_CONVERT);
+        dynamic Element resample = TranscoderBin.create_element (
+                                                    AUDIO_RESAMPLE,
+                                                    AUDIO_RESAMPLE);
+        dynamic Element encoder = TranscoderBin.create_element (
+                                                    AUDIO_ENCODER[this.layer],
+                                                    AUDIO_ENCODER[this.layer]);
+        dynamic Element parser = TranscoderBin.create_element (AUDIO_PARSER,
+                                                               AUDIO_PARSER);
+
+        if (this.layer == MP3Layer.THREE) {
+            // Best quality
+            encoder.quality = 0;
+        }
+
+        encoder.bitrate = 256;
+
+        var bin = new Bin ("audio-encoder-bin");
+        bin.add_many (convert, resample, encoder, parser);
+
+        var filter = Caps.from_string ("audio/x-raw-int");
+        convert.link_filtered (encoder, filter);
+        encoder.link (parser);
+
+        var pad = convert.get_static_pad ("sink");
+        var ghost = new GhostPad (sink_pad_name, pad);
+        bin.add_pad (ghost);
+
+        pad = parser.get_static_pad ("src");
+        ghost = new GhostPad (src_pad_name, pad);
+        bin.add_pad (ghost);
+
+        return bin;
     }
 }
