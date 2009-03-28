@@ -27,16 +27,17 @@ using Gee;
 using Gst;
 
 internal abstract class Rygel.TranscodeManager : GLib.Object {
-    private Transcoder l16_transcoder;
-    private Transcoder mp3_transcoder;
-    private Transcoder mp2ts_hd_transcoder;
-    private Transcoder mp2ts_sd_transcoder;
+    private ArrayList<Transcoder> audio_transcoders;
+    private ArrayList<Transcoder> video_transcoders;
 
     public TranscodeManager () {
-        l16_transcoder = new L16Transcoder (Endianness.BIG);
-        mp3_transcoder = new MP3Transcoder (MP3Layer.THREE);
-        mp2ts_sd_transcoder = new MP2TSTranscoder(MP2TSProfile.SD);
-        mp2ts_hd_transcoder = new MP2TSTranscoder(MP2TSProfile.HD);
+        audio_transcoders = new ArrayList<Transcoder> ();
+        video_transcoders = new ArrayList<Transcoder> ();
+
+        audio_transcoders.add (new L16Transcoder (Endianness.BIG));
+        audio_transcoders.add (new MP3Transcoder (MP3Layer.THREE));
+        video_transcoders.add (new MP2TSTranscoder(MP2TSProfile.SD));
+        video_transcoders.add (new MP2TSTranscoder(MP2TSProfile.HD));
     }
 
     public abstract string create_uri_for_item (MediaItem  item,
@@ -59,33 +60,43 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
     }
 
     public Transcoder get_transcoder (string  target) throws Error {
-        if (this.mp3_transcoder.can_handle (target)) {
-            return this.mp3_transcoder;
-        } else if (this.l16_transcoder.can_handle (target)) {
-            return this.l16_transcoder;
-        } else if (this.mp2ts_sd_transcoder.can_handle (target)) {
-            return this.mp2ts_sd_transcoder;
-        } else if (this.mp2ts_hd_transcoder.can_handle (target)) {
-            return this.mp2ts_hd_transcoder;
-        } else {
+        Transcoder transcoder = null;
+
+        foreach (var iter in this.audio_transcoders) {
+            if (iter.can_handle (target)) {
+                transcoder = iter;
+            }
+        }
+
+        foreach (var iter in this.video_transcoders) {
+            if (iter.can_handle (target)) {
+                transcoder = iter;
+            }
+        }
+
+        if (transcoder == null) {
             throw new HTTPRequestError.NOT_FOUND (
                             "No transcoder available for target format '%s'",
                             target);
         }
+
+        return transcoder;
     }
 
     private void add_audio_resources (ArrayList<DIDLLiteResource?> resources,
                                       MediaItem                    item)
                                       throws Error {
-        this.l16_transcoder.add_resources (resources, item, this);
-        this.mp3_transcoder.add_resources (resources, item, this);
+        foreach (var transcoder in this.audio_transcoders) {
+            transcoder.add_resources (resources, item, this);
+        }
     }
 
     private void add_video_resources (ArrayList<DIDLLiteResource?> resources,
                                       MediaItem                    item)
                                       throws Error {
-        this.mp2ts_sd_transcoder.add_resources (resources, item, this);
-        this.mp2ts_hd_transcoder.add_resources (resources, item, this);
+        foreach (var transcoder in this.video_transcoders) {
+            transcoder.add_resources (resources, item, this);
+        }
     }
 }
 
