@@ -39,14 +39,6 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
         this.layer = layer;
     }
 
-    public Element create_encoder (string? src_pad_name,
-                                   string? sink_pad_name)
-                                   throws Error {
-        return MP3TranscoderBin.create_encoder (this.layer,
-                                                src_pad_name,
-                                                sink_pad_name);
-    }
-
     public override Element create_source (Element src) throws Error {
         return new MP3TranscoderBin (src, this.layer);
     }
