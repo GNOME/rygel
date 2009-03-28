@@ -24,24 +24,32 @@ using Rygel;
 using Gst;
 using GUPnP;
 
+internal enum Endianness {
+    LITTLE = ByteOrder.LITTLE_ENDIAN,
+    BIG = ByteOrder.BIG_ENDIAN
+}
+
 internal class Rygel.L16Transcoder : Rygel.Transcoder {
     private const int CHANNELS = 2;
     private const int FREQUENCY = 44100;
     private const int WIDTH = 16;
     private const int DEPTH = 16;
-    private const int ENDIANNESS = ByteOrder.BIG_ENDIAN; // Network byte order
     private const bool SIGNED = true; // Network byte order
+
+    private Endianness endianness;
 
     private const string AUDIO_CONVERT = "audioconvert";
     private const string AUDIO_RESAMPLE = "audioresample";
     private const string CAPS_FILTER = "capsfilter";
 
-    public L16Transcoder () {
+    public L16Transcoder (Endianness endianness) {
         var mime_type = "audio/L" + L16Transcoder.WIDTH.to_string () +
                         ";rate=" + L16Transcoder.FREQUENCY.to_string () +
                         ";channels=" + L16Transcoder.CHANNELS.to_string ();
 
         base (mime_type, "LPCM");
+
+        this.endianness = endianness;
     }
 
     public override Element create_source (Element src) throws Error {
@@ -82,8 +90,9 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
                                     "rate",  typeof (int), FREQUENCY,
                                     "width", typeof (int), WIDTH,
                                     "depth", typeof (int), DEPTH,
-                                    "endianness", typeof (int), ENDIANNESS,
-                                    "signed", typeof (bool), SIGNED);
+                                    "signed", typeof (bool), SIGNED,
+                                    "endianness", typeof (int),
+                                    this.endianness);
 
         convert1.link_many (resample, convert2, capsfilter);
 
