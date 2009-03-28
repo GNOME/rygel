@@ -79,22 +79,3 @@ internal abstract class Rygel.Transcoder : GLib.Object {
     }
 }
 
-internal abstract class Rygel.TranscoderBin : Gst.Bin {
-    protected static Element create_element (string factoryname,
-                                             string? name)
-                                             throws Error {
-        Element element = ElementFactory.make (factoryname, name);
-        if (element == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                "Required element factory '%s' missing",
-                                factoryname);
-        }
-
-        return element;
-    }
-
-    protected static void post_error (Element dest, Error error) {
-        Message msg = new Message.error (dest, error, error.message);
-        dest.post_message (msg);
-    }
-}

@@ -23,7 +23,7 @@
 using Rygel;
 using Gst;
 
-internal class Rygel.L16TranscoderBin : Rygel.TranscoderBin {
+internal class Rygel.L16TranscoderBin : Gst.Bin {
     private const string DECODEBIN = "decodebin2";
 
     private const string AUDIO_SRC_PAD = "audio-src-pad";
@@ -33,7 +33,7 @@ internal class Rygel.L16TranscoderBin : Rygel.TranscoderBin {
 
     public L16TranscoderBin (Element       src,
                              L16Transcoder transcoder) throws Error {
-        Element decodebin = TranscoderBin.create_element (DECODEBIN, DECODEBIN);
+        Element decodebin = GstUtils.create_element (DECODEBIN, DECODEBIN);
 
         this.audio_enc = transcoder.create_encoder (AUDIO_SRC_PAD,
                                                     AUDIO_SINK_PAD);
@@ -55,8 +55,8 @@ internal class Rygel.L16TranscoderBin : Rygel.TranscoderBin {
         }
 
         if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
-            TranscoderBin.post_error (this,
-                                      new LiveResponseError.LINK (
+            GstUtils.post_error (this,
+                                 new LiveResponseError.LINK (
                                                 "Failed to link pad %s to %s",
                                                 new_pad.name,
                                                 enc_pad.name));

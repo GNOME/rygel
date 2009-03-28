@@ -23,7 +23,7 @@
 using Rygel;
 using Gst;
 
-internal class Rygel.MP2TSTranscoderBin : Rygel.TranscoderBin {
+internal class Rygel.MP2TSTranscoderBin : Gst.Bin {
     private const string DECODEBIN = "decodebin2";
     private const string MUXER = "mpegtsmux";
 
@@ -37,12 +37,12 @@ internal class Rygel.MP2TSTranscoderBin : Rygel.TranscoderBin {
     public MP2TSTranscoderBin (Element         src,
                                MP2TSTranscoder transcoder)
                                throws Error {
-        Element decodebin = TranscoderBin.create_element (DECODEBIN, DECODEBIN);
+        Element decodebin = GstUtils.create_element (DECODEBIN, DECODEBIN);
         var mp3_transcoder = new MP3Transcoder (MP3Layer.TWO);
         this.audio_enc = mp3_transcoder.create_encoder (null,
                                                         AUDIO_ENC_SINK);
         this.video_enc = transcoder.create_encoder (null, VIDEO_ENC_SINK);
-        this.muxer = TranscoderBin.create_element (MUXER, MUXER);
+        this.muxer = GstUtils.create_element (MUXER, MUXER);
 
         this.add_many (src,
                        decodebin,
@@ -79,8 +79,8 @@ internal class Rygel.MP2TSTranscoderBin : Rygel.TranscoderBin {
         encoder.link (this.muxer);
 
         if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
-            TranscoderBin.post_error (this,
-                                      new LiveResponseError.LINK (
+            GstUtils.post_error (this,
+                                 new LiveResponseError.LINK (
                                                 "Failed to link pad %s to %s",
                                                 new_pad.name,
                                                 enc_pad.name));

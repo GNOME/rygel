@@ -138,7 +138,9 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-mp3-transcoder-bin.h \
 		rygel-mp3-transcoder-bin.c \
 		rygel-l16-transcoder-bin.h \
-		rygel-l16-transcoder-bin.c
+		rygel-l16-transcoder-bin.c \
+		rygel-gst-utils.h \
+		rygel-gst-utils.c
 
 rygel.stamp: $(filter %.vala,$(rygel_SOURCES))
 	$(VALAC) -C --vapidir=$(srcdir) \
@@ -183,7 +185,8 @@ VAPI_SOURCE_FILES = rygel-content-directory.vala \
 		    rygel-l16-transcoder.vala \
 		    rygel-mp2ts-transcoder-bin.vala \
 		    rygel-mp3-transcoder-bin.vala \
-		    rygel-l16-transcoder-bin.vala
+		    rygel-l16-transcoder-bin.vala \
+		    rygel-gst-utils.vala
 
 rygel-1.0.vapi: $(VAPI_SOURCE_FILES)
 	$(VALAC) -C --library=rygel-1.0 \

@@ -28,7 +28,7 @@ internal enum Rygel.MP3Layer {
     THREE = 2
 }
 
-internal class Rygel.MP3TranscoderBin : Rygel.TranscoderBin {
+internal class Rygel.MP3TranscoderBin : Gst.Bin {
     private const string DECODEBIN = "decodebin2";
 
     private const string AUDIO_SRC_PAD = "audio-src-pad";
@@ -38,7 +38,7 @@ internal class Rygel.MP3TranscoderBin : Rygel.TranscoderBin {
 
     public MP3TranscoderBin (Element src,
                              MP3Transcoder transcoder) throws Error {
-        Element decodebin = TranscoderBin.create_element (DECODEBIN, DECODEBIN);
+        Element decodebin = GstUtils.create_element (DECODEBIN, DECODEBIN);
 
         this.audio_enc = transcoder.create_encoder (AUDIO_SRC_PAD,
                                                     AUDIO_SINK_PAD);
@@ -60,8 +60,8 @@ internal class Rygel.MP3TranscoderBin : Rygel.TranscoderBin {
         }
 
         if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
-            TranscoderBin.post_error (this,
-                                      new LiveResponseError.LINK (
+            GstUtils.post_error (this,
+                                 new LiveResponseError.LINK (
                                                 "Failed to link pad %s to %s",
                                                 new_pad.name,
                                                 enc_pad.name));

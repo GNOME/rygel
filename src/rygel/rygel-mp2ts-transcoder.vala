@@ -66,13 +66,11 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     public Element create_encoder (string? src_pad_name,
                                    string? sink_pad_name)
                                    throws Error {
-        var videorate = TranscoderBin.create_element (VIDEO_RATE, VIDEO_RATE);
-        var videoscale = TranscoderBin.create_element (VIDEO_SCALE,
-                                                       VIDEO_SCALE);
-        var convert = TranscoderBin.create_element (COLORSPACE_CONVERT,
-                                                    COLORSPACE_CONVERT);
-        var encoder = TranscoderBin.create_element (VIDEO_ENCODER,
-                                                    VIDEO_ENCODER);
+        var videorate = GstUtils.create_element (VIDEO_RATE, VIDEO_RATE);
+        var videoscale = GstUtils.create_element (VIDEO_SCALE, VIDEO_SCALE);
+        var convert = GstUtils.create_element (COLORSPACE_CONVERT,
+                                               COLORSPACE_CONVERT);
+        var encoder = GstUtils.create_element (VIDEO_ENCODER, VIDEO_ENCODER);
 
         var bin = new Bin ("video-encoder-bin");
         bin.add_many (videorate, videoscale, convert, encoder);

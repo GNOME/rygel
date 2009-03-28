@@ -64,15 +64,14 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
     public Element create_encoder (string? src_pad_name,
                                    string? sink_pad_name)
                                    throws Error {
-        dynamic Element convert1 = TranscoderBin.create_element (AUDIO_CONVERT,
-                                                                 null);
-        dynamic Element resample = TranscoderBin.create_element (
-                                                        AUDIO_RESAMPLE,
-                                                        AUDIO_RESAMPLE);
-        dynamic Element convert2 = TranscoderBin.create_element (AUDIO_CONVERT,
-                                                                 null);
-        dynamic Element capsfilter = TranscoderBin.create_element (CAPS_FILTER,
-                                                                   CAPS_FILTER);
+        dynamic Element convert1 = GstUtils.create_element (AUDIO_CONVERT,
+                                                            null);
+        dynamic Element resample = GstUtils.create_element (AUDIO_RESAMPLE,
+                                                            AUDIO_RESAMPLE);
+        dynamic Element convert2 = GstUtils.create_element (AUDIO_CONVERT,
+                                                            null);
+        dynamic Element capsfilter = GstUtils.create_element (CAPS_FILTER,
+                                                              CAPS_FILTER);
 
         var bin = new Bin ("audio-encoder-bin");
         bin.add_many (convert1, resample, convert2, capsfilter);

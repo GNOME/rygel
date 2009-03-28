@@ -44,16 +44,15 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     public Element create_encoder (string?  src_pad_name,
                                    string?  sink_pad_name)
                                    throws Error {
-        dynamic Element convert = TranscoderBin.create_element (AUDIO_CONVERT,
-                                                                AUDIO_CONVERT);
-        dynamic Element resample = TranscoderBin.create_element (
-                                                    AUDIO_RESAMPLE,
-                                                    AUDIO_RESAMPLE);
-        dynamic Element encoder = TranscoderBin.create_element (
+        dynamic Element convert = GstUtils.create_element (AUDIO_CONVERT,
+                                                           AUDIO_CONVERT);
+        dynamic Element resample = GstUtils.create_element (AUDIO_RESAMPLE,
+                                                            AUDIO_RESAMPLE);
+        dynamic Element encoder = GstUtils.create_element (
                                                     AUDIO_ENCODER[this.layer],
                                                     AUDIO_ENCODER[this.layer]);
-        dynamic Element parser = TranscoderBin.create_element (AUDIO_PARSER,
-                                                               AUDIO_PARSER);
+        dynamic Element parser = GstUtils.create_element (AUDIO_PARSER,
+                                                          AUDIO_PARSER);
 
         if (this.layer == MP3Layer.THREE) {
             // Best quality
