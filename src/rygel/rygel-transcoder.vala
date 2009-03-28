@@ -42,11 +42,12 @@ internal abstract class Rygel.Transcoder : GLib.Object {
                                         throws Error;
 
 
-    public DIDLLiteResource create_resource (MediaItem        item,
-                                             string           mime_type,
-                                             string           dlna_profile,
-                                             TranscodeManager manager)
-                                             throws Error {
+    public virtual DIDLLiteResource create_resource (
+                                        MediaItem        item,
+                                        string           mime_type,
+                                        string           dlna_profile,
+                                        TranscodeManager manager)
+                                        throws Error {
         string protocol;
         var uri = manager.create_uri_for_item (item,
                                                dlna_profile,

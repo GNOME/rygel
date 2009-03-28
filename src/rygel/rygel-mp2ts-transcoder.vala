@@ -58,14 +58,26 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
             return;
         }
 
-        var res = this.create_resource (item,
-                                        this.mime_type,
-                                        PROFILES[this.profile],
+        resources.add (this.create_resource (item,
+                                             this.mime_type,
+                                             PROFILES[this.profile],
+                                             manager));
+    }
+
+    public override DIDLLiteResource create_resource (
+                                        MediaItem        item,
+                                        string           mime_type,
+                                        string           dlna_profile,
+                                        TranscodeManager manager)
+                                        throws Error {
+        var res = base.create_resource (item,
+                                        mime_type,
+                                        dlna_profile,
                                         manager);
         res.width = WIDTH[profile];
         res.height = HEIGHT[profile];
 
-        resources.add (res);
+        return res;
     }
 }
 
