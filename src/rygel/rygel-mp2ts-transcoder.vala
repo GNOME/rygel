@@ -56,10 +56,6 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
 
         resources.add (res);
     }
-
-    internal override bool can_handle (string mime_type) {
-        return mime_type == this.mime_type;
-    }
 }
 
 private class Rygel.MP2TSTranscoderBin : Rygel.TranscoderBin {

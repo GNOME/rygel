@@ -41,7 +41,9 @@ internal abstract class Rygel.Transcoder : GLib.Object {
                                         TranscodeManager             manager)
                                         throws Error;
 
-    public abstract bool can_handle (string mime_type);
+    public bool can_handle (string mime_type) {
+        return mime_type == this.mime_type;
+    }
 
     protected bool mime_type_is_a (string mime_type1,
                                           string mime_type2) {

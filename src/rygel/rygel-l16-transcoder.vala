@@ -65,10 +65,6 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
 
         resources.add (res);
     }
-
-    internal override bool can_handle (string mime_type) {
-        return mime_type == this.mime_type;
-    }
 }
 
 private class Rygel.L16TranscoderBin : Rygel.TranscoderBin {

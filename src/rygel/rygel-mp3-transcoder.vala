@@ -63,10 +63,6 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
                                                 this.mime_type,
                                                 this.dlna_profile));
     }
-
-    public override bool can_handle (string mime_type) {
-        return mime_type == this.mime_type;
-    }
 }
 
 private class Rygel.MP3TranscoderBin : Rygel.TranscoderBin {
