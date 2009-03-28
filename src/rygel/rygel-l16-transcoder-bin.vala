@@ -23,6 +23,10 @@
 using Rygel;
 using Gst;
 
+/**
+ * A Gst.Bin derivative that implements transcoding of any type of media (using
+ * decodebin2) to linear PCM audio.
+ */
 internal class Rygel.L16TranscoderBin : Gst.Bin {
     private const string DECODEBIN = "decodebin2";
 

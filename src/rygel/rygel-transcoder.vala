@@ -25,6 +25,10 @@ using Gst;
 using GUPnP;
 using Gee;
 
+/**
+ * The base Transcoder class. Each implementation derives from it and must
+ * at least implement create_source method.
+ */
 internal abstract class Rygel.Transcoder : GLib.Object {
     public string mime_type { get; protected set; }
     public string dlna_profile { get; protected set; }
@@ -41,6 +45,13 @@ internal abstract class Rygel.Transcoder : GLib.Object {
         this.upnp_class = upnp_class;
     }
 
+    /**
+     * Creates a transcoding source.
+     *
+     * @param src the original (non-transcoding) source
+     *
+     * @return      the new transcoding source
+     */
     public abstract Element create_source (Element src) throws Error;
 
     public void add_resources (ArrayList<DIDLLiteResource?> resources,

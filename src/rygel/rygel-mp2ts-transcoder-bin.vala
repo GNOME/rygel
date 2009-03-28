@@ -23,6 +23,10 @@
 using Rygel;
 using Gst;
 
+/**
+ * A Gst.Bin derivative that implements transcoding of any type of media (using
+ * decodebin2) to mpeg transport stream containing mpeg 2 video and mp2 audio.
+ */
 internal class Rygel.MP2TSTranscoderBin : Gst.Bin {
     private const string DECODEBIN = "decodebin2";
     private const string MUXER = "mpegtsmux";

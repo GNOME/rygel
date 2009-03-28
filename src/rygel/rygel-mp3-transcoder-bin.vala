@@ -28,6 +28,10 @@ internal enum Rygel.MP3Layer {
     THREE = 2
 }
 
+/**
+ * A Gst.Bin derivative that implements transcoding of any type of media (using
+ * decodebin2) to mpeg 1 layer 2 and 3 format.
+ */
 internal class Rygel.MP3TranscoderBin : Gst.Bin {
     private const string DECODEBIN = "decodebin2";
 

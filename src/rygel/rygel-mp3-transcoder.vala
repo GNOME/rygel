@@ -24,6 +24,10 @@ using Rygel;
 using Gst;
 using GUPnP;
 
+/**
+ * Transcoder for mpeg 1 layer 2 and 3 audio. This element uses MP3TrancoderBin
+ * for actual transcoding.
+ */
 internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     private const int BITRATE = 256;
 

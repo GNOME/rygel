@@ -26,6 +26,11 @@ using GUPnP;
 using Gee;
 using Gst;
 
+/**
+ * Responsible for management of all transcoders:
+ *    - gets the appropriate transcoder given a transcoding target.
+ *    - provide all possible transcoding resources for items.
+ */
 internal abstract class Rygel.TranscodeManager : GLib.Object {
     private ArrayList<Transcoder> transcoders;
 

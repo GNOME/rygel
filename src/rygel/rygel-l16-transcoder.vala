@@ -29,6 +29,10 @@ internal enum Endianness {
     BIG = ByteOrder.BIG_ENDIAN
 }
 
+/**
+ * Transcoder for linear PCM audio (LPCM). This element uses L16TrancoderBin for
+ * actual transcoding.
+ */
 internal class Rygel.L16Transcoder : Rygel.Transcoder {
     private const int CHANNELS = 2;
     private const int FREQUENCY = 44100;

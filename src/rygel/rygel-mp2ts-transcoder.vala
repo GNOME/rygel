@@ -29,6 +29,10 @@ internal enum Rygel.MP2TSProfile {
     HD
 }
 
+/**
+ * Transcoder for mpeg transport stream containing mpeg 2 video and mp2 audio.
+ * This element uses MP2TSTrancoderBin for actual transcoding.
+ */
 internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     // HD
     private const int[] WIDTH = {640, 1920};
