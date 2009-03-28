@@ -34,7 +34,11 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
     private const bool SIGNED = true; // Network byte order
 
     public L16Transcoder () {
-        base ("audio/L16;rate=44100;channels=2", "LPCM");
+        var mime_type = "audio/L" + L16Transcoder.WIDTH.to_string () +
+                        ";rate=" + L16Transcoder.FREQUENCY.to_string () +
+                        ";channels=" + L16Transcoder.CHANNELS.to_string ();
+
+        base (mime_type, "LPCM");
     }
 
     public override Element create_source (Element src) throws Error {
