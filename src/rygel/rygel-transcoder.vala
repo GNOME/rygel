@@ -36,11 +36,16 @@ internal abstract class Rygel.Transcoder : GLib.Object {
 
     public abstract Element create_source (Element src) throws Error;
 
-    public abstract void add_resources (ArrayList<DIDLLiteResource?> resources,
-                                        MediaItem                    item,
-                                        TranscodeManager             manager)
-                                        throws Error;
+    public void add_resources (ArrayList<DIDLLiteResource?> resources,
+                               MediaItem                    item,
+                               TranscodeManager             manager)
+                               throws Error {
+        if (this.mime_type_is_a (item.mime_type, this.mime_type)) {
+            return;
+        }
 
+        resources.add (this.create_resource (item, manager));
+    }
 
     public virtual DIDLLiteResource create_resource (MediaItem        item,
                                                      TranscodeManager manager)

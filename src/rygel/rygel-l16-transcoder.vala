@@ -47,17 +47,6 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
                                      L16Transcoder.SIGNED);
     }
 
-    public override void add_resources (ArrayList<DIDLLiteResource?> resources,
-                                        MediaItem                    item,
-                                        TranscodeManager             manager)
-                                        throws Error {
-        if (this.mime_type_is_a (item.mime_type, this.mime_type)) {
-            return;
-        }
-
-        resources.add (this.create_resource (item, manager));
-    }
-
     public override DIDLLiteResource create_resource (
                                         MediaItem        item,
                                         TranscodeManager manager)

@@ -50,17 +50,6 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     public override Element create_source (Element src) throws Error {
         return new MP3TranscoderBin (src, this.layer);
     }
-
-    public override void add_resources (ArrayList<DIDLLiteResource?> resources,
-                                        MediaItem                    item,
-                                        TranscodeManager             manager)
-                                        throws Error {
-        if (this.mime_type_is_a (item.mime_type, this.mime_type)) {
-            return;
-        }
-
-        resources.add (this.create_resource (item, manager));
-    }
 }
 
 private class Rygel.MP3TranscoderBin : Rygel.TranscoderBin {
