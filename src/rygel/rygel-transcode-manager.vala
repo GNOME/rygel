@@ -53,6 +53,7 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
             this.add_audio_resources (resources, item);
         } else {
             this.add_video_resources (resources, item);
+            this.add_audio_resources (resources, item);
         }
     }
 
