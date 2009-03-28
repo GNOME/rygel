@@ -29,9 +29,16 @@ internal abstract class Rygel.Transcoder : GLib.Object {
     public string mime_type { get; protected set; }
     public string dlna_profile { get; protected set; }
 
-    public Transcoder (string mime_type, string dlna_profile) {
+    // Primary UPnP item class that this transcoder is meant for, doesn't
+    // necessarily mean it cant be used for other classes.
+    public string upnp_class { get; protected set; }
+
+    public Transcoder (string mime_type,
+                       string dlna_profile,
+                       string upnp_class) {
         this.mime_type = mime_type;
         this.dlna_profile = dlna_profile;
+        this.upnp_class = upnp_class;
     }
 
     public abstract Element create_source (Element src) throws Error;

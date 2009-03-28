@@ -43,7 +43,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     private MP2TSProfile profile;
 
     public MP2TSTranscoder (MP2TSProfile profile) {
-        base ("video/mpeg", PROFILES[profile]);
+        base ("video/mpeg", PROFILES[profile], MediaItem.VIDEO_CLASS);
 
         this.profile = profile;
     }
