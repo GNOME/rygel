@@ -55,10 +55,10 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
             return;
         }
 
-        var res = manager.create_resource (item,
-                                           this.mime_type,
-                                           this.dlna_profile);
-
+        var res = this.create_resource (item,
+                                        this.mime_type,
+                                        this.dlna_profile,
+                                        manager);
         res.sample_freq = L16Transcoder.FREQUENCY;
         res.n_audio_channels = L16Transcoder.CHANNELS;
         res.bits_per_sample = L16Transcoder.WIDTH;

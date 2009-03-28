@@ -59,9 +59,10 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
             return;
         }
 
-        resources.add (manager.create_resource (item,
-                                                this.mime_type,
-                                                this.dlna_profile));
+        resources.add (this.create_resource (item,
+                                             this.mime_type,
+                                             this.dlna_profile,
+                                             manager));
     }
 }
 

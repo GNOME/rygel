@@ -58,9 +58,10 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
             return;
         }
 
-        var res = manager.create_resource (item,
-                                           this.mime_type,
-                                           PROFILES[this.profile]);
+        var res = this.create_resource (item,
+                                        this.mime_type,
+                                        PROFILES[this.profile],
+                                        manager);
         res.width = WIDTH[profile];
         res.height = HEIGHT[profile];
 
