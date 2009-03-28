@@ -29,12 +29,14 @@ using Gst;
 internal abstract class Rygel.TranscodeManager : GLib.Object {
     private Transcoder l16_transcoder;
     private Transcoder mp3_transcoder;
-    private Transcoder mp2ts_transcoder;
+    private Transcoder mp2ts_hd_transcoder;
+    private Transcoder mp2ts_sd_transcoder;
 
     internal TranscodeManager () {
         l16_transcoder = new L16Transcoder ();
         mp3_transcoder = new MP3Transcoder (MP3Layer.THREE);
-        mp2ts_transcoder = new MP2TSTranscoder();
+        mp2ts_sd_transcoder = new MP2TSTranscoder(MP2TSProfile.SD);
+        mp2ts_hd_transcoder = new MP2TSTranscoder(MP2TSProfile.HD);
     }
 
     internal abstract string create_uri_for_item
@@ -52,7 +54,8 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
             this.l16_transcoder.add_resources (resources, item, this);
             this.mp3_transcoder.add_resources (resources, item, this);
         } else {
-            this.mp2ts_transcoder.add_resources (resources, item, this);
+            this.mp2ts_sd_transcoder.add_resources (resources, item, this);
+            this.mp2ts_hd_transcoder.add_resources (resources, item, this);
         }
     }
 
@@ -61,8 +64,10 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
             return this.mp3_transcoder;
         } else if (this.l16_transcoder.can_handle (target)) {
             return this.l16_transcoder;
-        } else if (this.mp2ts_transcoder.can_handle (target)) {
-            return this.mp2ts_transcoder;
+        } else if (this.mp2ts_sd_transcoder.can_handle (target)) {
+            return this.mp2ts_sd_transcoder;
+        } else if (this.mp2ts_hd_transcoder.can_handle (target)) {
+            return this.mp2ts_hd_transcoder;
         } else {
             throw new HTTPRequestError.NOT_FOUND (
                             "No transcoder available for target format '%s'",

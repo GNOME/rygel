@@ -25,19 +25,29 @@ using Gst;
 using GUPnP;
 using Gee;
 
+internal enum Rygel.MP2TSProfile {
+    SD = 0,
+    HD
+}
+
 internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     // HD
-    private const int WIDTH = 1920;
-    private const int HEIGHT = 1080;
+    private const int[] WIDTH = {640, 1920};
+    private const int[] HEIGHT = {480, 1080};
+    private const string[] PROFILES = {"MPEG_TS_SD_NA", "MPEG_TS_HD_NA"};
 
-    public MP2TSTranscoder () {
-        base ("video/mpeg", "MPEG_TS_HD_NA");
+    private MP2TSProfile profile;
+
+    public MP2TSTranscoder (MP2TSProfile profile) {
+        base ("video/mpeg", PROFILES[profile]);
+
+        this.profile = profile;
     }
 
     public override Element create_source (Element src) throws Error {
         return new MP2TSTranscoderBin (src,
-                                       MP2TSTranscoder.WIDTH,
-                                       MP2TSTranscoder.HEIGHT);
+                                       MP2TSTranscoder.WIDTH[this.profile],
+                                       MP2TSTranscoder.HEIGHT[this.profile]);
     }
 
     public override void add_resources (ArrayList<DIDLLiteResource?> resources,
@@ -50,9 +60,9 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
 
         var res = manager.create_resource (item,
                                            this.mime_type,
-                                           this.dlna_profile);
-        res.width = WIDTH;
-        res.height = HEIGHT;
+                                           PROFILES[this.profile]);
+        res.width = WIDTH[profile];
+        res.height = HEIGHT[profile];
 
         resources.add (res);
     }
