@@ -22,13 +22,6 @@
  */
 using Rygel;
 using Gst;
-using GUPnP;
-using Gee;
-
-internal enum Rygel.MP3Layer {
-    TWO = 1,
-    THREE = 2
-}
 
 internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     private MP3Layer layer;
@@ -41,90 +34,5 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
 
     public override Element create_source (Element src) throws Error {
         return new MP3TranscoderBin (src, this.layer);
-    }
-}
-
-private class Rygel.MP3TranscoderBin : Rygel.TranscoderBin {
-    private const string DECODEBIN = "decodebin2";
-    private const string AUDIO_CONVERT = "audioconvert";
-    private const string[] AUDIO_ENCODER = {null, "twolame", "lame"};
-    private const string AUDIO_PARSER = "mp3parse";
-    private const string AUDIO_RESAMPLE = "audioresample";
-
-    private const string AUDIO_SRC_PAD = "audio-src-pad";
-    private const string AUDIO_SINK_PAD = "audio-sink-pad";
-
-    private dynamic Element audio_enc;
-
-    public MP3TranscoderBin (Element src, MP3Layer layer) throws Error {
-        Element decodebin = TranscoderBin.create_element (DECODEBIN, DECODEBIN);
-
-        this.audio_enc = MP3TranscoderBin.create_encoder (layer,
-                                                          AUDIO_SRC_PAD,
-                                                          AUDIO_SINK_PAD);
-
-        this.add_many (src, decodebin, this.audio_enc);
-        src.link (decodebin);
-
-        var src_pad = this.audio_enc.get_static_pad (AUDIO_SRC_PAD);
-        var ghost = new GhostPad (null, src_pad);
-        this.add_pad (ghost);
-
-        decodebin.pad_added += this.decodebin_pad_added;
-    }
-
-    public static Element create_encoder (MP3Layer layer,
-                                          string?  src_pad_name,
-                                          string?  sink_pad_name)
-                                          throws Error {
-        dynamic Element convert = TranscoderBin.create_element (AUDIO_CONVERT,
-                                                                AUDIO_CONVERT);
-        dynamic Element resample = TranscoderBin.create_element (
-                                                        AUDIO_RESAMPLE,
-                                                        AUDIO_RESAMPLE);
-        dynamic Element encoder = TranscoderBin.create_element (
-                                                        AUDIO_ENCODER[layer],
-                                                        AUDIO_ENCODER[layer]);
-        dynamic Element parser = TranscoderBin.create_element (AUDIO_PARSER,
-                                                               AUDIO_PARSER);
-
-        if (layer == MP3Layer.THREE) {
-            // Best quality
-            encoder.quality = 0;
-        }
-
-        encoder.bitrate = 256;
-
-        var bin = new Bin ("audio-encoder-bin");
-        bin.add_many (convert, resample, encoder, parser);
-
-        var filter = Caps.from_string ("audio/x-raw-int");
-        convert.link_filtered (encoder, filter);
-        encoder.link (parser);
-
-        var pad = convert.get_static_pad ("sink");
-        var ghost = new GhostPad (sink_pad_name, pad);
-        bin.add_pad (ghost);
-
-        pad = parser.get_static_pad ("src");
-        ghost = new GhostPad (src_pad_name, pad);
-        bin.add_pad (ghost);
-
-        return bin;
-    }
-
-    private void decodebin_pad_added (Element decodebin, Pad new_pad) {
-        Pad enc_pad = this.audio_enc.get_pad (AUDIO_SINK_PAD);
-        if (!new_pad.can_link (enc_pad)) {
-            return;
-        }
-
-        if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
-            this.post_error (new LiveResponseError.LINK (
-                                        "Failed to link pad %s to %s",
-                                        new_pad.name,
-                                        enc_pad.name));
-            return;
-        }
     }
 }
