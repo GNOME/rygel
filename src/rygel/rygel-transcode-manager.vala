@@ -32,21 +32,20 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
     private Transcoder mp2ts_hd_transcoder;
     private Transcoder mp2ts_sd_transcoder;
 
-    internal TranscodeManager () {
+    public TranscodeManager () {
         l16_transcoder = new L16Transcoder ();
         mp3_transcoder = new MP3Transcoder (MP3Layer.THREE);
         mp2ts_sd_transcoder = new MP2TSTranscoder(MP2TSProfile.SD);
         mp2ts_hd_transcoder = new MP2TSTranscoder(MP2TSProfile.HD);
     }
 
-    internal abstract string create_uri_for_item
-                                            (MediaItem  item,
-                                             string?    transcode_target,
-                                             out string protocol);
+    public abstract string create_uri_for_item (MediaItem  item,
+                                                string?    transcode_target,
+                                                out string protocol);
 
-    internal virtual void add_resources (ArrayList<DIDLLiteResource?> resources,
-                                         MediaItem                    item)
-                                         throws Error {
+    public virtual void add_resources (ArrayList<DIDLLiteResource?> resources,
+                                       MediaItem                    item)
+                                       throws Error {
         if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
             // No  transcoding for images yet :(
             return;
@@ -59,7 +58,7 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
         }
     }
 
-    internal Transcoder get_transcoder (string  target) throws Error {
+    public Transcoder get_transcoder (string  target) throws Error {
         if (this.mp3_transcoder.can_handle (target)) {
             return this.mp3_transcoder;
         } else if (this.l16_transcoder.can_handle (target)) {
@@ -75,10 +74,10 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
         }
     }
 
-    internal DIDLLiteResource create_resource (MediaItem  item,
-                                               string     mime_type,
-                                               string     dlna_profile)
-                                               throws Error {
+    public DIDLLiteResource create_resource (MediaItem  item,
+                                             string     mime_type,
+                                             string     dlna_profile)
+                                             throws Error {
         string protocol;
         var uri = this.create_uri_for_item (item, dlna_profile, out protocol);
         DIDLLiteResource res = item.create_res (uri);
