@@ -75,7 +75,7 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
                                                string     dlna_profile)
                                                throws Error {
         string protocol;
-        var uri = this.create_uri_for_item (item, mime_type, out protocol);
+        var uri = this.create_uri_for_item (item, dlna_profile, out protocol);
         DIDLLiteResource res = item.create_res (uri);
         res.mime_type = mime_type;
         res.protocol = protocol;
