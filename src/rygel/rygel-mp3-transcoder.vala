@@ -55,14 +55,11 @@ private class Rygel.MP3TranscoderBin : Rygel.TranscoderBin {
     private const string AUDIO_SINK_PAD = "audio-sink-pad";
 
     private dynamic Element audio_enc;
-    private MP3Layer layer;
 
     public MP3TranscoderBin (Element src, MP3Layer layer) throws Error {
-        this.layer = layer;
-
         Element decodebin = TranscoderBin.create_element (DECODEBIN, DECODEBIN);
 
-        this.audio_enc = MP3TranscoderBin.create_encoder (this.layer,
+        this.audio_enc = MP3TranscoderBin.create_encoder (layer,
                                                           AUDIO_SRC_PAD,
                                                           AUDIO_SINK_PAD);
 
