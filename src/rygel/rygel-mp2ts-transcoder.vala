@@ -34,6 +34,8 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     private const int[] WIDTH = {640, 1920};
     private const int[] HEIGHT = {480, 1080};
     private const string[] PROFILES = {"MPEG_TS_SD_NA", "MPEG_TS_HD_NA"};
+    private const int[] ASPECT =  { 2,   // 4:3
+                                    3 }; // 16:9
 
     private const string VIDEO_ENCODER = "mpeg2enc";
     private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
@@ -70,7 +72,10 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         var videoscale = GstUtils.create_element (VIDEO_SCALE, VIDEO_SCALE);
         var convert = GstUtils.create_element (COLORSPACE_CONVERT,
                                                COLORSPACE_CONVERT);
-        var encoder = GstUtils.create_element (VIDEO_ENCODER, VIDEO_ENCODER);
+        dynamic Element encoder = GstUtils.create_element (VIDEO_ENCODER,
+                                                           VIDEO_ENCODER);
+
+        encoder.aspect = ASPECT[this.profile];
 
         var bin = new Bin ("video-encoder-bin");
         bin.add_many (videorate, videoscale, convert, encoder);
