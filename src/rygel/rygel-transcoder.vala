@@ -23,16 +23,28 @@
 using Rygel;
 using Gst;
 using GUPnP;
+using Gee;
 
-internal abstract class Rygel.Transcoder : Gst.Bin {
-    protected static bool mime_type_is_a (string mime_type1,
+internal abstract class Rygel.Transcoder : GLib.Object {
+    public abstract Element create_source (Element src) throws Error;
+
+    public abstract void add_resources (ArrayList<DIDLLiteResource?> resources,
+                                        MediaItem                    item,
+                                        TranscodeManager             manager)
+                                        throws Error;
+
+    public abstract bool can_handle (string mime_type);
+
+    protected bool mime_type_is_a (string mime_type1,
                                           string mime_type2) {
         string content_type1 = g_content_type_from_mime_type (mime_type1);
         string content_type2 = g_content_type_from_mime_type (mime_type2);
 
         return g_content_type_is_a (content_type1, content_type2);
     }
+}
 
+internal abstract class Rygel.TranscoderBin : Gst.Bin {
     protected static Element create_element (string factoryname,
                                              string? name)
                                              throws Error {

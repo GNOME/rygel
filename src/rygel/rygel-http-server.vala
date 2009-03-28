@@ -39,6 +39,8 @@ public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
 
     public HTTPServer (ContentDirectory content_dir,
                        string           name) {
+        base ();
+
         this.root_container = content_dir.root_container;
         this.context = content_dir.context;
         this.requests = new ArrayList<HTTPRequest> ();

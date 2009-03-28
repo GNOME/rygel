@@ -34,6 +34,43 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     public const string mime_type = "audio/mpeg";
     private const string dlna_profile = "MP3";
 
+    private MP3Profile layer;
+
+    public MP3Transcoder (MP3Profile layer) {
+        this.layer = layer;
+    }
+
+    public Element create_encoder (string? src_pad_name,
+                                   string? sink_pad_name)
+                                   throws Error {
+        return MP3TranscoderBin.create_encoder (this.layer,
+                                                src_pad_name,
+                                                sink_pad_name);
+    }
+
+    public override Element create_source (Element src) throws Error {
+        return new MP3TranscoderBin (src, this.layer);
+    }
+
+    public override void add_resources (ArrayList<DIDLLiteResource?> resources,
+                                        MediaItem                    item,
+                                        TranscodeManager             manager)
+                                        throws Error {
+        if (this.mime_type_is_a (item.mime_type, MP3Transcoder.mime_type)) {
+            return;
+        }
+
+        resources.add (manager.create_resource (item,
+                                                MP3Transcoder.mime_type,
+                                                MP3Transcoder.dlna_profile));
+    }
+
+    public override bool can_handle (string mime_type) {
+        return mime_type == MP3Transcoder.mime_type;
+    }
+}
+
+private class Rygel.MP3TranscoderBin : Rygel.TranscoderBin {
     private const string DECODEBIN = "decodebin2";
     private const string AUDIO_CONVERT = "audioconvert";
     private const string[] AUDIO_ENCODER = {null, "twolame", "lame"};
@@ -46,14 +83,14 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     private dynamic Element audio_enc;
     private MP3Profile layer;
 
-    public MP3Transcoder (Element src, MP3Profile layer) throws Error {
+    public MP3TranscoderBin (Element src, MP3Profile layer) throws Error {
         this.layer = layer;
 
-        Element decodebin = Transcoder.create_element (DECODEBIN, DECODEBIN);
+        Element decodebin = TranscoderBin.create_element (DECODEBIN, DECODEBIN);
 
-        this.audio_enc = MP3Transcoder.create_encoder (this.layer,
-                                                       AUDIO_SRC_PAD,
-                                                       AUDIO_SINK_PAD);
+        this.audio_enc = MP3TranscoderBin.create_encoder (this.layer,
+                                                          AUDIO_SRC_PAD,
+                                                          AUDIO_SINK_PAD);
 
         this.add_many (src, decodebin, this.audio_enc);
         src.link (decodebin);
@@ -65,48 +102,20 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
         decodebin.pad_added += this.decodebin_pad_added;
     }
 
-    public static void add_resources (ArrayList<DIDLLiteResource?> resources,
-                                      MediaItem                    item,
-                                      TranscodeManager             manager)
-                                      throws Error {
-        if (Transcoder.mime_type_is_a (item.mime_type,
-                                       MP3Transcoder.mime_type)) {
-            return;
-        }
-
-        resources.add (manager.create_resource (item,
-                                                MP3Transcoder.mime_type,
-                                                MP3Transcoder.dlna_profile));
-    }
-
-    private void decodebin_pad_added (Element decodebin, Pad new_pad) {
-        Pad enc_pad = this.audio_enc.get_pad (AUDIO_SINK_PAD);
-        if (!new_pad.can_link (enc_pad)) {
-            return;
-        }
-
-        if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
-            this.post_error (new LiveResponseError.LINK (
-                                        "Failed to link pad %s to %s",
-                                        new_pad.name,
-                                        enc_pad.name));
-            return;
-        }
-    }
-
-    internal static Element create_encoder (MP3Profile layer,
-                                            string?    src_pad_name,
-                                            string?    sink_pad_name)
-                                            throws Error {
-        dynamic Element convert = Transcoder.create_element (AUDIO_CONVERT,
-                                                             AUDIO_CONVERT);
-        dynamic Element resample = Transcoder.create_element (AUDIO_RESAMPLE,
-                                                              AUDIO_RESAMPLE);
-        dynamic Element encoder = Transcoder.create_element (
-                                                       AUDIO_ENCODER[layer],
-                                                       AUDIO_ENCODER[layer]);
-        dynamic Element parser = Transcoder.create_element (AUDIO_PARSER,
-                                                            AUDIO_PARSER);
+    public static Element create_encoder (MP3Profile layer,
+                                          string?    src_pad_name,
+                                          string?    sink_pad_name)
+                                          throws Error {
+        dynamic Element convert = TranscoderBin.create_element (AUDIO_CONVERT,
+                                                                AUDIO_CONVERT);
+        dynamic Element resample = TranscoderBin.create_element (
+                                                        AUDIO_RESAMPLE,
+                                                        AUDIO_RESAMPLE);
+        dynamic Element encoder = TranscoderBin.create_element (
+                                                        AUDIO_ENCODER[layer],
+                                                        AUDIO_ENCODER[layer]);
+        dynamic Element parser = TranscoderBin.create_element (AUDIO_PARSER,
+                                                               AUDIO_PARSER);
 
         if (layer == MP3Profile.LAYER3) {
             // Best quality
@@ -133,7 +142,18 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
         return bin;
     }
 
-    internal static bool can_handle (string mime_type) {
-        return mime_type == MP3Transcoder.mime_type;
+    private void decodebin_pad_added (Element decodebin, Pad new_pad) {
+        Pad enc_pad = this.audio_enc.get_pad (AUDIO_SINK_PAD);
+        if (!new_pad.can_link (enc_pad)) {
+            return;
+        }
+
+        if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
+            this.post_error (new LiveResponseError.LINK (
+                                        "Failed to link pad %s to %s",
+                                        new_pad.name,
+                                        enc_pad.name));
+            return;
+        }
     }
 }

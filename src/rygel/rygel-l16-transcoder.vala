@@ -26,15 +26,51 @@ using GUPnP;
 using Gee;
 
 internal class Rygel.L16Transcoder : Rygel.Transcoder {
-    private const int channels = 2;
-    private const int frequency = 44100;
-    private const int width = 16;
-    private const int depth = 16;
-    private const int endianness = ByteOrder.BIG_ENDIAN; // Network byte order
+    private const int CHANNELS = 2;
+    private const int FREQUENCY = 44100;
+    private const int WIDTH = 16;
+    private const int DEPTH = 16;
+    private const int ENDIANNESS = ByteOrder.BIG_ENDIAN; // Network byte order
+    private const bool SIGNED = true; // Network byte order
 
     private const string mime_type = "audio/L16;rate=44100;channels=2";
     private const string dlna_profile = "LPCM";
 
+    public override Element create_source (Element src) throws Error {
+        return new L16TranscoderBin (src,
+                                     L16Transcoder.CHANNELS,
+                                     L16Transcoder.FREQUENCY,
+                                     L16Transcoder.WIDTH,
+                                     L16Transcoder.DEPTH,
+                                     L16Transcoder.ENDIANNESS,
+                                     L16Transcoder.SIGNED);
+    }
+
+    public override void add_resources (ArrayList<DIDLLiteResource?> resources,
+                                        MediaItem                    item,
+                                        TranscodeManager             manager)
+                                        throws Error {
+        if (this.mime_type_is_a (item.mime_type, L16Transcoder.mime_type)) {
+            return;
+        }
+
+        var res = manager.create_resource (item,
+                                           L16Transcoder.mime_type,
+                                           L16Transcoder.dlna_profile);
+
+        res.sample_freq = L16Transcoder.FREQUENCY;
+        res.n_audio_channels = L16Transcoder.CHANNELS;
+        res.bits_per_sample = L16Transcoder.WIDTH;
+
+        resources.add (res);
+    }
+
+    internal override bool can_handle (string mime_type) {
+        return mime_type == L16Transcoder.mime_type;
+    }
+}
+
+private class Rygel.L16TranscoderBin : Rygel.TranscoderBin {
     private const string DECODEBIN = "decodebin2";
     private const string AUDIO_CONVERT = "audioconvert";
     private const string AUDIO_RESAMPLE = "audioresample";
@@ -45,11 +81,24 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
 
     private dynamic Element audio_enc;
 
-    public L16Transcoder (Element src) throws Error {
-        Element decodebin = Transcoder.create_element (DECODEBIN, DECODEBIN);
+    public L16TranscoderBin (Element src,
+                             int     channels,
+                             int     frequency,
+                             int     width,
+                             int     depth,
+                             int     endianness,
+                             bool    signed_)
+                             throws Error {
+        Element decodebin = TranscoderBin.create_element (DECODEBIN, DECODEBIN);
 
-        this.audio_enc = L16Transcoder.create_encoder (AUDIO_SRC_PAD,
-                                                       AUDIO_SINK_PAD);
+        this.audio_enc = L16TranscoderBin.create_encoder (AUDIO_SRC_PAD,
+                                                          AUDIO_SINK_PAD,
+                                                          channels,
+                                                          frequency,
+                                                          width,
+                                                          depth,
+                                                          endianness,
+                                                          signed_);
 
         this.add_many (src, decodebin, this.audio_enc);
         src.link (decodebin);
@@ -59,26 +108,6 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
         this.add_pad (ghost);
 
         decodebin.pad_added += this.decodebin_pad_added;
-    }
-
-    public static void add_resources (ArrayList<DIDLLiteResource?> resources,
-                                      MediaItem                    item,
-                                      TranscodeManager             manager)
-                                      throws Error {
-        if (Transcoder.mime_type_is_a (item.mime_type,
-                                       L16Transcoder.mime_type)) {
-            return;
-        }
-
-        var res = manager.create_resource (item,
-                                           L16Transcoder.mime_type,
-                                           L16Transcoder.dlna_profile);
-
-        res.sample_freq = L16Transcoder.frequency;
-        res.n_audio_channels = L16Transcoder.channels;
-        res.bits_per_sample = L16Transcoder.width;
-
-        resources.add (res);
     }
 
     private void decodebin_pad_added (Element decodebin, Pad new_pad) {
@@ -96,17 +125,24 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
         }
     }
 
-    internal static Element create_encoder (string?    src_pad_name,
-                                            string?    sink_pad_name)
-                                            throws Error {
-        dynamic Element convert1 = Transcoder.create_element (AUDIO_CONVERT,
-                                                             null);
-        dynamic Element resample = Transcoder.create_element (AUDIO_RESAMPLE,
-                                                              AUDIO_RESAMPLE);
-        dynamic Element convert2 = Transcoder.create_element (AUDIO_CONVERT,
-                                                              null);
-        dynamic Element capsfilter = Transcoder.create_element (CAPS_FILTER,
-                                                                CAPS_FILTER);
+    public static Element create_encoder (string? src_pad_name,
+                                          string? sink_pad_name,
+                                          int     channels,
+                                          int     frequency,
+                                          int     width,
+                                          int     depth,
+                                          int     endianness,
+                                          bool    signed_)
+                                          throws Error {
+        dynamic Element convert1 = TranscoderBin.create_element (AUDIO_CONVERT,
+                                                                 null);
+        dynamic Element resample = TranscoderBin.create_element (
+                                                        AUDIO_RESAMPLE,
+                                                        AUDIO_RESAMPLE);
+        dynamic Element convert2 = TranscoderBin.create_element (AUDIO_CONVERT,
+                                                                 null);
+        dynamic Element capsfilter = TranscoderBin.create_element (CAPS_FILTER,
+                                                                   CAPS_FILTER);
 
         var bin = new Bin ("audio-encoder-bin");
         bin.add_many (convert1, resample, convert2, capsfilter);
@@ -118,7 +154,7 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
                                     "width", typeof (int), width,
                                     "depth", typeof (int), depth,
                                     "endianness", typeof (int), endianness,
-                                    "signed", typeof (bool), true);
+                                    "signed", typeof (bool), signed_);
 
         convert1.link_many (resample, convert2, capsfilter);
 
@@ -131,9 +167,5 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
         bin.add_pad (ghost);
 
         return bin;
-    }
-
-    internal static bool can_handle (string mime_type) {
-        return mime_type == L16Transcoder.mime_type;
     }
 }

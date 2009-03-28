@@ -27,6 +27,16 @@ using Gee;
 using Gst;
 
 public abstract class Rygel.TranscodeManager : GLib.Object {
+    private Transcoder l16_transcoder;
+    private Transcoder mp3_transcoder;
+    private Transcoder mp2ts_transcoder;
+
+    internal TranscodeManager () {
+        l16_transcoder = new L16Transcoder ();
+        mp3_transcoder = new MP3Transcoder (MP3Profile.LAYER3);
+        mp2ts_transcoder = new MP2TSTranscoder();
+    }
+
     internal abstract string create_uri_for_item
                                             (MediaItem  item,
                                              string?    transcode_target,
@@ -39,22 +49,22 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
             // No  transcoding for images yet :(
             return;
         } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS)) {
-            L16Transcoder.add_resources (resources, item, this);
-            MP3Transcoder.add_resources (resources, item, this);
+            this.l16_transcoder.add_resources (resources, item, this);
+            this.mp3_transcoder.add_resources (resources, item, this);
         } else {
-            MP2TSTranscoder.add_resources (resources, item, this);
+            this.mp2ts_transcoder.add_resources (resources, item, this);
         }
     }
 
     internal Element get_transcoding_src (Element src,
                                           string  target)
                                           throws Error {
-        if (MP3Transcoder.can_handle (target)) {
-            return new MP3Transcoder (src, MP3Profile.LAYER3);
-        } else if (L16Transcoder.can_handle (target)) {
-            return new L16Transcoder (src);
-        } else if (MP2TSTranscoder.can_handle (target)) {
-            return new MP2TSTranscoder (src);
+        if (this.mp3_transcoder.can_handle (target)) {
+            return this.mp3_transcoder.create_source (src);
+        } else if (this.l16_transcoder.can_handle (target)) {
+            return this.l16_transcoder.create_source (src);
+        } else if (this.mp2ts_transcoder.can_handle (target)) {
+            return this.mp2ts_transcoder.create_source (src);
         } else {
             throw new HTTPRequestError.NOT_FOUND (
                             "No transcoder available for target format '%s'",

@@ -29,6 +29,39 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     public const string mime_type = "video/mpeg";
     private const string dlna_profile = "MPEG_TS_HD_NA";
 
+    // HD
+    private const int WIDTH = 1920;
+    private const int HEIGHT = 1080;
+
+    public override Element create_source (Element src) throws Error {
+        return new MP2TSTranscoderBin (src,
+                                       MP2TSTranscoder.WIDTH,
+                                       MP2TSTranscoder.HEIGHT);
+    }
+
+    public override void add_resources (ArrayList<DIDLLiteResource?> resources,
+                                        MediaItem                    item,
+                                        TranscodeManager             manager)
+                                        throws Error {
+        if (this.mime_type_is_a (item.mime_type, MP2TSTranscoder.mime_type)) {
+            return;
+        }
+
+        var res = manager.create_resource (item,
+                                           MP2TSTranscoder.mime_type,
+                                           MP2TSTranscoder.dlna_profile);
+        res.width = WIDTH;
+        res.height = HEIGHT;
+
+        resources.add (res);
+    }
+
+    internal override bool can_handle (string mime_type) {
+        return mime_type == MP2TSTranscoder.mime_type;
+    }
+}
+
+private class Rygel.MP2TSTranscoderBin : Rygel.TranscoderBin {
     private const string DECODEBIN = "decodebin2";
     private const string VIDEO_ENCODER = "mpeg2enc";
     private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
@@ -39,22 +72,24 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     private const string AUDIO_ENC_SINK = "audio-enc-sink-pad";
     private const string VIDEO_ENC_SINK = "sink";
 
-    // HD
-    private const int WIDTH = 1920;
-    private const int HEIGHT = 1080;
-
     private dynamic Element audio_enc;
     private dynamic Element video_enc;
     private dynamic Element muxer;
 
-    public MP2TSTranscoder (Element src) throws Error {
-        Element decodebin = Transcoder.create_element (DECODEBIN, DECODEBIN);
-        this.audio_enc = MP3Transcoder.create_encoder (MP3Profile.LAYER2,
-                                                       null,
-                                                       AUDIO_ENC_SINK);
-        this.video_enc = MP2TSTranscoder.create_encoder (null,
-                                                         VIDEO_ENC_SINK);
-        this.muxer = Transcoder.create_element (MUXER, MUXER);
+    public MP2TSTranscoderBin (Element src,
+                               int     width,
+                               int     height)
+                               throws Error {
+        var mp3_transcoder = new MP3Transcoder (MP3Profile.LAYER2);
+
+        Element decodebin = TranscoderBin.create_element (DECODEBIN, DECODEBIN);
+        this.audio_enc = mp3_transcoder.create_encoder (null,
+                                                        AUDIO_ENC_SINK);
+        this.video_enc = MP2TSTranscoderBin.create_encoder (null,
+                                                            VIDEO_ENC_SINK,
+                                                            width,
+                                                            height);
+        this.muxer = TranscoderBin.create_element (MUXER, MUXER);
 
         this.add_many (src,
                        decodebin,
@@ -68,24 +103,6 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         this.add_pad (ghost);
 
         decodebin.pad_added += this.decodebin_pad_added;
-    }
-
-    public static void add_resources (ArrayList<DIDLLiteResource?> resources,
-                                      MediaItem                    item,
-                                      TranscodeManager             manager)
-                                      throws Error {
-        if (Transcoder.mime_type_is_a (item.mime_type,
-                                       MP2TSTranscoder.mime_type)) {
-            return;
-        }
-
-        var res = manager.create_resource (item,
-                                           MP2TSTranscoder.mime_type,
-                                           MP2TSTranscoder.dlna_profile);
-        res.width = WIDTH;
-        res.height = HEIGHT;
-
-        resources.add (res);
     }
 
     private void decodebin_pad_added (Element decodebin, Pad new_pad) {
@@ -118,20 +135,24 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     }
 
     internal static Element create_encoder (string? src_pad_name,
-                                            string? sink_pad_name)
+                                            string? sink_pad_name,
+                                            int     width,
+                                            int     height)
                                             throws Error {
-        var videorate = Transcoder.create_element (VIDEO_RATE, VIDEO_RATE);
-        var videoscale = Transcoder.create_element (VIDEO_SCALE, VIDEO_SCALE);
-        var convert = Transcoder.create_element (COLORSPACE_CONVERT,
-                                                 COLORSPACE_CONVERT);
-        var encoder = Transcoder.create_element (VIDEO_ENCODER, VIDEO_ENCODER);
+        var videorate = TranscoderBin.create_element (VIDEO_RATE, VIDEO_RATE);
+        var videoscale = TranscoderBin.create_element (VIDEO_SCALE,
+                                                       VIDEO_SCALE);
+        var convert = TranscoderBin.create_element (COLORSPACE_CONVERT,
+                                                    COLORSPACE_CONVERT);
+        var encoder = TranscoderBin.create_element (VIDEO_ENCODER,
+                                                    VIDEO_ENCODER);
 
         var bin = new Bin ("video-encoder-bin");
         bin.add_many (videorate, videoscale, convert, encoder);
 
         var caps = new Caps.simple ("video/x-raw-yuv",
-                                    "width", typeof (int), WIDTH,
-                                    "height", typeof (int), HEIGHT);
+                                    "width", typeof (int), width,
+                                    "height", typeof (int), height);
         videorate.link (convert);
         convert.link (videoscale);
         videoscale.link_filtered (encoder, caps);
@@ -145,9 +166,5 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         bin.add_pad (ghost);
 
         return bin;
-    }
-
-    internal static bool can_handle (string mime_type) {
-        return mime_type == MP2TSTranscoder.mime_type;
     }
 }
