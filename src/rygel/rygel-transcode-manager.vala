@@ -56,15 +56,13 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
         }
     }
 
-    internal Element get_transcoding_src (Element src,
-                                          string  target)
-                                          throws Error {
+    internal Transcoder get_transcoder (string  target) throws Error {
         if (this.mp3_transcoder.can_handle (target)) {
-            return this.mp3_transcoder.create_source (src);
+            return this.mp3_transcoder;
         } else if (this.l16_transcoder.can_handle (target)) {
-            return this.l16_transcoder.create_source (src);
+            return this.l16_transcoder;
         } else if (this.mp2ts_transcoder.can_handle (target)) {
-            return this.mp2ts_transcoder.create_source (src);
+            return this.mp2ts_transcoder;
         } else {
             throw new HTTPRequestError.NOT_FOUND (
                             "No transcoder available for target format '%s'",

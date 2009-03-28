@@ -47,7 +47,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     private HTTPResponse response;
 
     private string item_id;
-    private string transcode_target;
+    private Transcoder transcoder;
     private MediaItem item;
     private Seek seek;
 
@@ -78,7 +78,11 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
         if (this.query != null) {
             this.item_id = this.query.lookup ("itemid");
-            this.transcode_target = this.query.lookup ("transcode");
+            var transcode_target = this.query.lookup ("transcode");
+            if (transcode_target != null) {
+                this.transcoder = this.http_server.get_transcoder (
+                                                    transcode_target);
+            }
         }
 
         if (this.item_id == null) {
@@ -142,7 +146,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             uri = this.item.uris.get (0);
         }
 
-        if (this.item.size > 0 && this.transcode_target == null) {
+        if (this.item.size > 0 && this.transcoder == null) {
             this.handle_interactive_item (uri);
         } else {
             this.handle_streaming_item (uri);
@@ -150,9 +154,9 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     }
 
     private void add_item_headers () {
-        if (this.transcode_target != null) {
+        if (this.transcoder != null) {
             this.msg.response_headers.append ("Content-Type",
-                                              this.transcode_target);
+                                              this.transcoder.mime_type);
             return;
         }
 
@@ -208,10 +212,8 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         src.tcp_timeout = (int64) 60000000;
 
         try {
-            if (this.transcode_target != null) {
-                src = this.http_server.get_transcoding_src (
-                                                src,
-                                                this.transcode_target);
+            if (this.transcoder != null) {
+                src = this.transcoder.create_source (src);
             }
 
             // Then start the gst stream
