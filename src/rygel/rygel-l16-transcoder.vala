@@ -34,7 +34,7 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
     private const int FREQUENCY = 44100;
     private const int WIDTH = 16;
     private const int DEPTH = 16;
-    private const bool SIGNED = true; // Network byte order
+    private const bool SIGNED = true;
 
     private Endianness endianness;
 
