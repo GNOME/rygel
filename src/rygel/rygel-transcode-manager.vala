@@ -26,7 +26,7 @@ using GUPnP;
 using Gee;
 using Gst;
 
-public abstract class Rygel.TranscodeManager : GLib.Object {
+internal abstract class Rygel.TranscodeManager : GLib.Object {
     private Transcoder l16_transcoder;
     private Transcoder mp3_transcoder;
     private Transcoder mp2ts_transcoder;

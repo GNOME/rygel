@@ -26,7 +26,7 @@ using Gst;
 using GUPnP;
 using Gee;
 
-public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
+internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     private const string SERVER_PATH_PREFIX = "/RygelHTTPServer";
     private string path_root;
 

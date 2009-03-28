@@ -48,7 +48,7 @@ public class Rygel.ContentDirectory: Service {
     protected string search_caps;
     protected string sort_caps;
 
-    protected HTTPServer http_server;
+    internal HTTPServer http_server;
 
     public MediaContainer root_container;
     private ArrayList<MediaContainer> updated_containers;
