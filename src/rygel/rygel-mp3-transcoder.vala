@@ -25,15 +25,15 @@ using Gst;
 using GUPnP;
 using Gee;
 
-internal enum Rygel.MP3Profile {
-    LAYER2 = 1,
-    LAYER3 = 2
+internal enum Rygel.MP3Layer {
+    TWO = 1,
+    THREE = 2
 }
 
 internal class Rygel.MP3Transcoder : Rygel.Transcoder {
-    private MP3Profile layer;
+    private MP3Layer layer;
 
-    public MP3Transcoder (MP3Profile layer) {
+    public MP3Transcoder (MP3Layer layer) {
         base ("audio/mpeg", "MP3");
 
         this.layer = layer;
@@ -76,9 +76,9 @@ private class Rygel.MP3TranscoderBin : Rygel.TranscoderBin {
     private const string AUDIO_SINK_PAD = "audio-sink-pad";
 
     private dynamic Element audio_enc;
-    private MP3Profile layer;
+    private MP3Layer layer;
 
-    public MP3TranscoderBin (Element src, MP3Profile layer) throws Error {
+    public MP3TranscoderBin (Element src, MP3Layer layer) throws Error {
         this.layer = layer;
 
         Element decodebin = TranscoderBin.create_element (DECODEBIN, DECODEBIN);
@@ -97,9 +97,9 @@ private class Rygel.MP3TranscoderBin : Rygel.TranscoderBin {
         decodebin.pad_added += this.decodebin_pad_added;
     }
 
-    public static Element create_encoder (MP3Profile layer,
-                                          string?    src_pad_name,
-                                          string?    sink_pad_name)
+    public static Element create_encoder (MP3Layer layer,
+                                          string?  src_pad_name,
+                                          string?  sink_pad_name)
                                           throws Error {
         dynamic Element convert = TranscoderBin.create_element (AUDIO_CONVERT,
                                                                 AUDIO_CONVERT);
@@ -112,7 +112,7 @@ private class Rygel.MP3TranscoderBin : Rygel.TranscoderBin {
         dynamic Element parser = TranscoderBin.create_element (AUDIO_PARSER,
                                                                AUDIO_PARSER);
 
-        if (layer == MP3Profile.LAYER3) {
+        if (layer == MP3Layer.THREE) {
             // Best quality
             encoder.quality = 0;
         }

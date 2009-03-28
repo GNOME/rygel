@@ -33,7 +33,7 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
 
     internal TranscodeManager () {
         l16_transcoder = new L16Transcoder ();
-        mp3_transcoder = new MP3Transcoder (MP3Profile.LAYER3);
+        mp3_transcoder = new MP3Transcoder (MP3Layer.THREE);
         mp2ts_transcoder = new MP2TSTranscoder();
     }
 

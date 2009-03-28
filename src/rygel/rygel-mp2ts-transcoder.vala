@@ -77,7 +77,7 @@ private class Rygel.MP2TSTranscoderBin : Rygel.TranscoderBin {
                                int     width,
                                int     height)
                                throws Error {
-        var mp3_transcoder = new MP3Transcoder (MP3Profile.LAYER2);
+        var mp3_transcoder = new MP3Transcoder (MP3Layer.TWO);
 
         Element decodebin = TranscoderBin.create_element (DECODEBIN, DECODEBIN);
         this.audio_enc = mp3_transcoder.create_encoder (null,
