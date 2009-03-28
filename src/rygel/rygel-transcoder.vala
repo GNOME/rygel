@@ -93,8 +93,8 @@ internal abstract class Rygel.TranscoderBin : Gst.Bin {
         return element;
     }
 
-    protected void post_error (Error error) {
-        Message msg = new Message.error (this, error, error.message);
-        this.post_message (msg);
+    protected static void post_error (Element dest, Error error) {
+        Message msg = new Message.error (dest, error, error.message);
+        dest.post_message (msg);
     }
 }

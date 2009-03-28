@@ -55,10 +55,11 @@ internal class Rygel.L16TranscoderBin : Rygel.TranscoderBin {
         }
 
         if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
-            this.post_error (new LiveResponseError.LINK (
-                                        "Failed to link pad %s to %s",
-                                        new_pad.name,
-                                        enc_pad.name));
+            TranscoderBin.post_error (this,
+                                      new LiveResponseError.LINK (
+                                                "Failed to link pad %s to %s",
+                                                new_pad.name,
+                                                enc_pad.name));
             return;
         }
     }
