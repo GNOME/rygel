@@ -24,10 +24,10 @@ using Rygel;
 using Gst;
 
 internal class Rygel.MP3Transcoder : Rygel.Transcoder {
-    private const string AUDIO_CONVERT = "audioconvert";
     private const string[] AUDIO_ENCODER = {null, "twolame", "lame"};
     private const string AUDIO_PARSER = "mp3parse";
-    private const string AUDIO_RESAMPLE = "audioresample";
+
+    private const string CONVERT_SINK_PAD = "convert-sink-pad";
 
     private MP3Layer layer;
 
@@ -44,10 +44,10 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     public Element create_encoder (string?  src_pad_name,
                                    string?  sink_pad_name)
                                    throws Error {
-        dynamic Element convert = GstUtils.create_element (AUDIO_CONVERT,
-                                                           AUDIO_CONVERT);
-        dynamic Element resample = GstUtils.create_element (AUDIO_RESAMPLE,
-                                                            AUDIO_RESAMPLE);
+        var l16_transcoder = new L16Transcoder (Endianness.LITTLE);
+        dynamic Element convert = l16_transcoder.create_encoder (
+                                                    null,
+                                                    CONVERT_SINK_PAD);
         dynamic Element encoder = GstUtils.create_element (
                                                     AUDIO_ENCODER[this.layer],
                                                     AUDIO_ENCODER[this.layer]);
@@ -61,14 +61,12 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
 
         encoder.bitrate = 256;
 
-        var bin = new Bin ("audio-encoder-bin");
-        bin.add_many (convert, resample, encoder, parser);
+        var bin = new Bin ("mp3-encoder-bin");
+        bin.add_many (convert, encoder, parser);
 
-        var filter = Caps.from_string ("audio/x-raw-int");
-        convert.link_filtered (encoder, filter);
-        encoder.link (parser);
+        convert.link_many (encoder, parser);
 
-        var pad = convert.get_static_pad ("sink");
+        var pad = convert.get_static_pad (CONVERT_SINK_PAD);
         var ghost = new GhostPad (sink_pad_name, pad);
         bin.add_pad (ghost);
 
