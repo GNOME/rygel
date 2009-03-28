@@ -81,7 +81,7 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
         dynamic Element capsfilter = GstUtils.create_element (CAPS_FILTER,
                                                               CAPS_FILTER);
 
-        var bin = new Bin ("audio-encoder-bin");
+        var bin = new Bin ("l16-encoder-bin");
         bin.add_many (convert1, resample, convert2, capsfilter);
 
         capsfilter.caps = new Caps.simple (
