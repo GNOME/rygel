@@ -50,11 +50,9 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
             // No  transcoding for images yet :(
             return;
         } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS)) {
-            this.l16_transcoder.add_resources (resources, item, this);
-            this.mp3_transcoder.add_resources (resources, item, this);
+            this.add_audio_resources (resources, item);
         } else {
-            this.mp2ts_sd_transcoder.add_resources (resources, item, this);
-            this.mp2ts_hd_transcoder.add_resources (resources, item, this);
+            this.add_video_resources (resources, item);
         }
     }
 
@@ -72,6 +70,20 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
                             "No transcoder available for target format '%s'",
                             target);
         }
+    }
+
+    private void add_audio_resources (ArrayList<DIDLLiteResource?> resources,
+                                      MediaItem                    item)
+                                      throws Error {
+        this.l16_transcoder.add_resources (resources, item, this);
+        this.mp3_transcoder.add_resources (resources, item, this);
+    }
+
+    private void add_video_resources (ArrayList<DIDLLiteResource?> resources,
+                                      MediaItem                    item)
+                                      throws Error {
+        this.mp2ts_sd_transcoder.add_resources (resources, item, this);
+        this.mp2ts_hd_transcoder.add_resources (resources, item, this);
     }
 }
 
