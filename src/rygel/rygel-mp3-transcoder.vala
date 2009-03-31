@@ -39,7 +39,7 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     private MP3Layer layer;
 
     public MP3Transcoder (MP3Layer layer) {
-        base ("audio/mpeg", "MP3", MediaItem.MUSIC_CLASS);
+        base ("audio/mpeg", "MP3", MediaItem.AUDIO_CLASS);
 
         this.layer = layer;
     }

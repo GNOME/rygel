@@ -51,7 +51,7 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
                         ";rate=" + L16Transcoder.FREQUENCY.to_string () +
                         ";channels=" + L16Transcoder.CHANNELS.to_string ();
 
-        base (mime_type, "LPCM", MediaItem.MUSIC_CLASS);
+        base (mime_type, "LPCM", MediaItem.AUDIO_CLASS);
 
         this.endianness = endianness;
     }
