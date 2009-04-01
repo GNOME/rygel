@@ -41,7 +41,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     private const int[] ASPECT =  { 2,   // 4:3
                                     3 }; // 16:9
 
-    private const string VIDEO_ENCODER = "mpeg2enc";
+    private const string VIDEO_ENCODER = "ffenc_mpeg2video";
     private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
     private const string VIDEO_RATE = "videorate";
     private const string VIDEO_SCALE = "videoscale";
