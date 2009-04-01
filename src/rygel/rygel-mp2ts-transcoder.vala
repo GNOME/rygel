@@ -37,7 +37,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     // HD
     private const int[] WIDTH = {640, 1920};
     private const int[] HEIGHT = {480, 1080};
-    private const string[] PROFILES = {"MPEG_TS_SD_NA", "MPEG_TS_HD_NA"};
+    private const string[] PROFILES = {"MPEG_TS_SD_US", "MPEG_TS_HD_US"};
     private const int[] ASPECT =  { 2,   // 4:3
                                     3 }; // 16:9
 
