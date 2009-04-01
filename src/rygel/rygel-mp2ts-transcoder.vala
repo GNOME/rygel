@@ -84,12 +84,13 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         var bin = new Bin ("video-encoder-bin");
         bin.add_many (videorate, videoscale, convert, encoder);
 
-        var caps = new Caps.simple (
-                                "video/x-raw-yuv",
+        var caps = new Caps.simple ("video/x-raw-yuv",
+                                    "framerate", typeof (Fraction), 30, 1);
+        videorate.link_filtered (convert, caps);
+        convert.link (videoscale);
+        caps = new Caps.simple ("video/x-raw-yuv",
                                 "width", typeof (int), WIDTH[this.profile],
                                 "height", typeof (int), HEIGHT[this.profile]);
-        videorate.link (convert);
-        convert.link (videoscale);
         videoscale.link_filtered (encoder, caps);
 
         var pad = videorate.get_static_pad ("sink");
