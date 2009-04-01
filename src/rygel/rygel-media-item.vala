@@ -99,9 +99,6 @@ public class Rygel.MediaItem : MediaObject {
             res.protocol = protocol;
         }
 
-        // FIXME: report DLNA profile
-        //res.dlna_profile = "MP3";
-
         if (this.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
             res.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
         } else {
