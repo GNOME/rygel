@@ -44,6 +44,7 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
 
     private const string AUDIO_CONVERT = "audioconvert";
     private const string AUDIO_RESAMPLE = "audioresample";
+    private const string AUDIO_RATE = "audiorate";
     private const string CAPS_FILTER = "capsfilter";
 
     public L16Transcoder (Endianness endianness) {
@@ -80,13 +81,14 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
                                                             null);
         dynamic Element resample = GstUtils.create_element (AUDIO_RESAMPLE,
                                                             AUDIO_RESAMPLE);
+        dynamic Element audiorate = GstUtils.create_element (AUDIO_RATE, null);
         dynamic Element convert2 = GstUtils.create_element (AUDIO_CONVERT,
                                                             null);
         dynamic Element capsfilter = GstUtils.create_element (CAPS_FILTER,
                                                               CAPS_FILTER);
 
         var bin = new Bin ("l16-encoder-bin");
-        bin.add_many (convert1, resample, convert2, capsfilter);
+        bin.add_many (convert1, resample, audiorate, convert2, capsfilter);
 
         capsfilter.caps = new Caps.simple (
                                     "audio/x-raw-int",
@@ -98,7 +100,7 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
                                     "endianness", typeof (int),
                                     this.endianness);
 
-        convert1.link_many (resample, convert2, capsfilter);
+        convert1.link_many (resample, audiorate, convert2, capsfilter);
 
         var pad = convert1.get_static_pad ("sink");
         var ghost = new GhostPad (sink_pad_name, pad);
