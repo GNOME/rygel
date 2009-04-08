@@ -10,71 +10,45 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
 
 BUILT_SOURCES = rygel-media-tracker.stamp \
-		rygel-media-tracker.h \
 		rygel-media-tracker.c \
-		rygel-tracker-root-container.h \
 		rygel-tracker-root-container.c \
-		rygel-tracker-category.h \
 		rygel-tracker-category.c \
-		rygel-tracker-video-category.h \
 		rygel-tracker-video-category.c \
-		rygel-tracker-music-category.h \
 		rygel-tracker-music-category.c \
-		rygel-tracker-image-category.h \
 		rygel-tracker-image-category.c \
-		rygel-tracker-search-result.h \
 		rygel-tracker-search-result.c \
-		rygel-tracker-get-metadata-result.h \
 		rygel-tracker-get-metadata-result.c \
-		rygel-tracker-item.h \
 		rygel-tracker-item.c \
-		rygel-tracker-video-item.h \
 		rygel-tracker-video-item.c \
-		rygel-tracker-music-item.h \
 		rygel-tracker-music-item.c \
-		rygel-tracker-image-item.h \
 		rygel-tracker-image-item.c \
-		rygel-tracker-plugin.h \
 		rygel-tracker-plugin.c
 
-librygel_media_tracker_la_SOURCES = rygel-media-tracker.h \
-			            rygel-media-tracker.c \
+librygel_media_tracker_la_SOURCES = rygel-media-tracker.c \
 				    rygel-media-tracker.vala \
-				    rygel-tracker-root-container.h \
 				    rygel-tracker-root-container.c \
 				    rygel-tracker-root-container.vala \
-				    rygel-tracker-category.h \
-			            rygel-tracker-category.c \
+				    rygel-tracker-category.c \
 				    rygel-tracker-category.vala \
-				    rygel-tracker-video-category.h \
 				    rygel-tracker-video-category.c \
 				    rygel-tracker-video-category.vala \
-				    rygel-tracker-music-category.h \
 				    rygel-tracker-music-category.c \
 				    rygel-tracker-music-category.vala \
-				    rygel-tracker-image-category.h \
 				    rygel-tracker-image-category.c \
 				    rygel-tracker-image-category.vala \
-				    rygel-tracker-search-result.h \
 				    rygel-tracker-search-result.c \
 				    rygel-tracker-search-result.vala \
-				    rygel-tracker-get-metadata-result.h \
 				    rygel-tracker-get-metadata-result.c \
 				    rygel-tracker-get-metadata-result.vala \
-                                    rygel-tracker-item.h \
-                                    rygel-tracker-item.c \
-                                    rygel-tracker-item.vala \
-                                    rygel-tracker-video-item.h \
-                                    rygel-tracker-video-item.c \
-                                    rygel-tracker-video-item.vala \
-                                    rygel-tracker-music-item.h \
-                                    rygel-tracker-music-item.c \
-                                    rygel-tracker-music-item.vala \
-                                    rygel-tracker-image-item.h \
-                                    rygel-tracker-image-item.c \
-                                    rygel-tracker-image-item.vala \
-				    rygel-tracker-plugin.h \
-			            rygel-tracker-plugin.c \
+				    rygel-tracker-item.c \
+				    rygel-tracker-item.vala \
+				    rygel-tracker-video-item.c \
+				    rygel-tracker-video-item.vala \
+				    rygel-tracker-music-item.c \
+				    rygel-tracker-music-item.vala \
+				    rygel-tracker-image-item.c \
+				    rygel-tracker-image-item.vala \
+				    rygel-tracker-plugin.c \
 				    rygel-tracker-plugin.vala
 
 rygel-media-tracker.stamp: $(filter %.vala,$(librygel_media_tracker_la_SOURCES))

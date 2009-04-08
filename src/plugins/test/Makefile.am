@@ -10,37 +10,25 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
 
 BUILT_SOURCES = rygel-test.stamp \
-		rygel-test-content-dir.h \
 		rygel-test-content-dir.c \
-		rygel-test-root-container.h \
 		rygel-test-root-container.c \
-                rygel-test-item.h \
-                rygel-test-item.c \
-		rygel-test-audio-item.h \
+		rygel-test-item.c \
 		rygel-test-audio-item.c \
-                rygel-test-video-item.h \
-                rygel-test-video-item.c \
-		rygel-test-plugin.h \
+		rygel-test-video-item.c \
 		rygel-test-plugin.c
 
-librygel_test_la_SOURCES = rygel-test-content-dir.h \
-			   rygel-test-content-dir.c \
-                           rygel-test-content-dir.vala \
-			   rygel-test-root-container.h \
+librygel_test_la_SOURCES = rygel-test-content-dir.c \
+			   rygel-test-content-dir.vala \
 			   rygel-test-root-container.c \
 			   rygel-test-root-container.vala \
-                           rygel-test-item.h \
-                           rygel-test-item.c \
-                           rygel-test-item.vala \
-                           rygel-test-audio-item.h \
-                           rygel-test-audio-item.c \
-                           rygel-test-audio-item.vala \
-                           rygel-test-video-item.h \
-                           rygel-test-video-item.c \
-                           rygel-test-video-item.vala \
-                           rygel-test-plugin.h \
-                           rygel-test-plugin.c \
-                           rygel-test-plugin.vala
+			   rygel-test-item.c \
+			   rygel-test-item.vala \
+			   rygel-test-audio-item.c \
+			   rygel-test-audio-item.vala \
+			   rygel-test-video-item.c \
+			   rygel-test-video-item.vala \
+			   rygel-test-plugin.c \
+			   rygel-test-plugin.vala
 
 rygel-test.stamp: $(filter %.vala,$(librygel_test_la_SOURCES))
 	$(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \

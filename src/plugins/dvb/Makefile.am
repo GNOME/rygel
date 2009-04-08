@@ -10,32 +10,22 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
 
 BUILT_SOURCES = rygel-dvb.stamp \
-		rygel-dvb-content-dir.h \
 		rygel-dvb-content-dir.c \
-                rygel-dvb-root-container.h \
-                rygel-dvb-root-container.c \
-		rygel-dvb-channel-group.h \
+		rygel-dvb-root-container.c \
 		rygel-dvb-channel-group.c \
-		rygel-dvb-channel.h \
 		rygel-dvb-channel.c \
-		rygel-dvb-plugin.h \
 		rygel-dvb-plugin.c
 
-librygel_dvb_la_SOURCES = rygel-dvb-content-dir.h \
-			  rygel-dvb-content-dir.c \
-                          rygel-dvb-content-dir.vala \
-                          rygel-dvb-root-container.h \
-                          rygel-dvb-root-container.c \
-                          rygel-dvb-root-container.vala \
-                          rygel-dvb-channel-group.h \
-                          rygel-dvb-channel-group.c \
-                          rygel-dvb-channel-group.vala \
-                          rygel-dvb-channel.h \
-                          rygel-dvb-channel.c \
-                          rygel-dvb-channel.vala \
-                          rygel-dvb-plugin.h \
-                          rygel-dvb-plugin.c \
-                          rygel-dvb-plugin.vala
+librygel_dvb_la_SOURCES = rygel-dvb-content-dir.c \
+			  rygel-dvb-content-dir.vala \
+			  rygel-dvb-root-container.c \
+			  rygel-dvb-root-container.vala \
+			  rygel-dvb-channel-group.c \
+			  rygel-dvb-channel-group.vala \
+			  rygel-dvb-channel.c \
+			  rygel-dvb-channel.vala \
+			  rygel-dvb-plugin.c \
+			  rygel-dvb-plugin.vala
 
 rygel-dvb.stamp: $(filter %.vala,$(librygel_dvb_la_SOURCES))
 	$(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \

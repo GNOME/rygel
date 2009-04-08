@@ -25,121 +25,69 @@ bin_PROGRAMS = rygel
 
 BUILT_SOURCES = rygel-1.0.vapi \
 		rygel.stamp \
-		rygel-media-server.h \
+		rygel.h \
 		rygel-media-server.c \
-		rygel-media-server-factory.h \
 		rygel-media-server-factory.c \
-		rygel-main.h \
 		rygel-main.c \
-		rygel-content-directory.h \
 		rygel-content-directory.c \
-		rygel-browse.h \
 		rygel-browse.c \
-		rygel-didl-lite-writer.h \
 		rygel-didl-lite-writer.c \
-		rygel-plugin.h \
 		rygel-plugin.c \
-		rygel-plugin-loader.h \
 		rygel-plugin-loader.c \
 		rygel-transcode-manager.c \
-		rygel-transcode-manager.h \
-                rygel-http-server.c \
-                rygel-http-server.h \
+		rygel-http-server.c \
 		rygel-state-machine.c \
-		rygel-state-machine.h \
 		rygel-http-request.c \
-		rygel-http-request.h \
-                rygel-http-response.c \
-                rygel-http-response.h \
-                rygel-live-response.c \
-                rygel-live-response.h \
+		rygel-http-response.c \
+		rygel-live-response.c \
 		rygel-seekable-response.c \
-		rygel-seekable-response.h \
-		rygel-resource-info.h \
 		rygel-resource-info.c \
-		rygel-icon-info.h \
 		rygel-icon-info.c \
-		rygel-connection-manager.h \
 		rygel-connection-manager.c \
-		rygel-media-receiver-registrar.h \
 		rygel-media-receiver-registrar.c \
 		rygel-media-object.c \
-		rygel-media-object.h \
 		rygel-media-container.c \
-		rygel-media-container.h \
 		rygel-simple-async-result.c \
-		rygel-simple-async-result.h \
-		rygel-media-item.c \
-		rygel-media-item.h
+		rygel-media-item.c
 
 rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		cstuff.c \
 		cstuff.h \
-		rygel-media-server.h \
+		rygel.h \
 		rygel-media-server.c \
 		rygel-media-server.vala \
-		rygel-media-server-factory.h \
 		rygel-media-server-factory.c \
 		rygel-media-server-factory.vala \
-		rygel-main.h \
 		rygel-main.c \
 		rygel-main.vala \
-		rygel-content-directory.h \
 		rygel-content-directory.c \
-		rygel-browse.h \
 		rygel-browse.c \
-		rygel-didl-lite-writer.h \
 		rygel-didl-lite-writer.c \
-		rygel-plugin.h \
 		rygel-plugin.c \
-		rygel-plugin-loader.h \
 		rygel-plugin-loader.c \
 		rygel-plugin-loader.vala \
 		rygel-transcode-manager.c \
-		rygel-transcode-manager.h \
 		rygel-http-server.c \
-		rygel-http-server.h \
 		rygel-state-machine.c \
-		rygel-state-machine.h \
 		rygel-http-request.c \
-		rygel-http-request.h \
 		rygel-http-response.c \
-		rygel-http-response.h \
 		rygel-live-response.c \
-		rygel-live-response.h \
 		rygel-seekable-response.c \
-		rygel-seekable-response.h \
-		rygel-resource-info.h \
 		rygel-resource-info.c \
-		rygel-icon-info.h \
 		rygel-icon-info.c \
-		rygel-connection-manager.h \
 		rygel-connection-manager.c \
-		rygel-media-receiver-registrar.h \
 		rygel-media-receiver-registrar.c \
 		rygel-media-object.c \
-		rygel-media-object.h \
 		rygel-media-container.c \
-		rygel-media-container.h \
 		rygel-simple-async-result.c \
-		rygel-simple-async-result.h \
 		rygel-media-item.c \
-		rygel-media-item.h \
-		rygel-transcoder.h \
 		rygel-transcoder.c \
-		rygel-mp2ts-transcoder.h \
 		rygel-mp2ts-transcoder.c \
-		rygel-mp3-transcoder.h \
 		rygel-mp3-transcoder.c \
-		rygel-l16-transcoder.h \
 		rygel-l16-transcoder.c \
-		rygel-mp2ts-transcoder-bin.h \
 		rygel-mp2ts-transcoder-bin.c \
-		rygel-mp3-transcoder-bin.h \
 		rygel-mp3-transcoder-bin.c \
-		rygel-l16-transcoder-bin.h \
 		rygel-l16-transcoder-bin.c \
-		rygel-gst-utils.h \
 		rygel-gst-utils.c
 
 rygel.stamp: $(filter %.vala,$(rygel_SOURCES))
@@ -189,8 +137,9 @@ VAPI_SOURCE_FILES = rygel-content-directory.vala \
 		    rygel-gst-utils.vala
 
 rygel-1.0.vapi: $(VAPI_SOURCE_FILES)
-	$(VALAC) -C --library=rygel-1.0 \
-	--pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gee-1.0 --pkg gstreamer-0.10 \
+	$(VALAC) -H rygel.h -C --library=rygel-1.0 --vapidir=$(srcdir) \
+	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 \
+	--pkg gee-1.0 --pkg gstreamer-0.10 \
 	$^
 
 CLEANFILES = $(BUILT_SOURCES)
