@@ -60,7 +60,6 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-media-server-factory.c \
 		rygel-media-server-factory.vala \
 		rygel-configuration.c \
-		rygel-configuration.vala \
 		rygel-main.c \
 		rygel-main.vala \
 		rygel-content-directory.c \
@@ -111,7 +110,8 @@ rygel_LDFLAGS = -export-dynamic
 
 VAPI_FILES = rygel-1.0.vapi
 
-VAPI_SOURCE_FILES = rygel-content-directory.vala \
+VAPI_SOURCE_FILES = rygel-configuration.vala \
+		    rygel-content-directory.vala \
 		    rygel-connection-manager.vala \
 		    rygel-media-receiver-registrar.vala \
 		    rygel-transcode-manager.vala \
@@ -141,7 +141,7 @@ VAPI_SOURCE_FILES = rygel-content-directory.vala \
 
 rygel-1.0.vapi: $(VAPI_SOURCE_FILES)
 	$(VALAC) -H rygel.h -C --library=rygel-1.0 --vapidir=$(srcdir) \
-	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 \
+	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gconf-2.0 \
 	--pkg gee-1.0 --pkg gstreamer-0.10 \
 	$^
 
