@@ -29,7 +29,7 @@ using CStuff;
  * User configuration for Rygel.
  */
 public class Rygel.Configuration {
-    public static const string ROOT_GCONF_PATH = "/apps/rygel/";
+    private static const string ROOT_GCONF_PATH = "/apps/rygel/";
 
     private GConf.Client gconf;
 
