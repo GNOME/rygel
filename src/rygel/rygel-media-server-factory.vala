@@ -23,8 +23,8 @@
  */
 
 using GUPnP;
-using GConf;
 using CStuff;
+using Rygel;
 
 public errordomain MediaServerFactoryError {
     XML_PARSE
@@ -38,20 +38,18 @@ public class Rygel.MediaServerFactory {
     public static const string DESC_DOC = "xml/description.xml";
     public static const string XBOX_DESC_DOC = "xml/description-xbox360.xml";
     public static const string DESC_PREFIX = "Rygel";
-    public static const string ROOT_GCONF_PATH = "/apps/rygel/";
 
-    private GConf.Client gconf;
+    private Configuration config;
     private GUPnP.Context context;
 
     public MediaServerFactory () throws GLib.Error {
-        this.gconf = GConf.Client.get_default ();
+        this.config = new Configuration ();
 
         /* Set up GUPnP context */
         this.context = create_upnp_context ();
     }
 
     public MediaServer create_media_server (Plugin plugin) throws GLib.Error {
-        string gconf_path = ROOT_GCONF_PATH + plugin.name + "/";
         string modified_desc = DESC_PREFIX + "-" + plugin.name + ".xml";
 
         /* We store a modified description.xml in the user's config dir */
@@ -60,7 +58,7 @@ public class Rygel.MediaServerFactory {
                                      modified_desc);
 
         /* Create the description xml */
-        Xml.Doc *doc = this.create_desc (plugin, desc_path, gconf_path);
+        Xml.Doc *doc = this.create_desc (plugin, desc_path);
 
         /* Host our modified file */
         this.context.host_path (desc_path, "/" + modified_desc);
@@ -72,17 +70,10 @@ public class Rygel.MediaServerFactory {
     }
 
     private Xml.Doc * create_desc (Plugin plugin,
-                                   string desc_path,
-                                   string gconf_path) throws GLib.Error {
-        bool enable_xbox = false;
-        try {
-            enable_xbox = this.gconf.get_bool (gconf_path + "enable-xbox");
-        } catch (GLib.Error error) {
-            warning ("%s", error.message);
-        }
-
+                                   string desc_path) throws GLib.Error {
         string orig_desc_path;
-        if (enable_xbox)
+
+        if (this.config.enable_xbox)
             /* Use Xbox 360 specific description */
             orig_desc_path = Path.build_filename (BuildConfig.DATA_DIR,
                                                   XBOX_DESC_DOC);
@@ -98,9 +89,9 @@ public class Rygel.MediaServerFactory {
         }
 
         /* Modify description to include Plugin-specific stuff */
-        this.prepare_desc_for_plugin (doc, plugin, gconf_path);
+        this.prepare_desc_for_plugin (doc, plugin);
 
-        if (enable_xbox)
+        if (this.config.enable_xbox)
             /* Put/Set XboX specific stuff to description */
             add_xbox_specifics (doc);
 
@@ -110,61 +101,14 @@ public class Rygel.MediaServerFactory {
     }
 
     private GUPnP.Context create_upnp_context () throws GLib.Error {
-        string host_ip;
-        try {
-            host_ip = this.gconf.get_string (ROOT_GCONF_PATH + "host-ip");
-        } catch (GLib.Error error) {
-            warning ("%s", error.message);
-
-            host_ip = null;
-        }
-
-        int port;
-        try {
-            port = this.gconf.get_int (ROOT_GCONF_PATH + "port");
-        } catch (GLib.Error error) {
-            warning ("%s", error.message);
-
-            port = 0;
-        }
-
-        GUPnP.Context context = new GUPnP.Context (null, host_ip, port);
+        GUPnP.Context context = new GUPnP.Context (null,
+                                                   this.config.host_ip,
+                                                   this.config.port);
 
         /* Host UPnP dir */
         context.host_path (BuildConfig.DATA_DIR, "");
 
         return context;
-    }
-
-    private string get_str_from_gconf (string key,
-                                       string default_value) {
-        string str = null;
-
-        try {
-            str = this.gconf.get_string (key);
-        } catch (GLib.Error error) {
-            warning ("Error getting gconf key '%s': %s." +
-                     " Assuming default value '%s'.",
-                     key,
-                     error.message,
-                     default_value);
-
-            str = default_value;
-        }
-
-        if (str == null) {
-            str = default_value;
-
-            try {
-                this.gconf.set_string (key, default_value);
-            } catch (GLib.Error error) {
-                warning ("Error setting gconf key '%s': %s.",
-                        key,
-                        error.message);
-            }
-        }
-
-        return str;
     }
 
     private void add_xbox_specifics (Xml.Doc doc) {
@@ -184,9 +128,7 @@ public class Rygel.MediaServerFactory {
         element->add_content (": 1 : Windows Media Connect");
     }
 
-    private void prepare_desc_for_plugin (Xml.Doc doc,
-                                          Plugin  plugin,
-                                          string  gconf_path) {
+    private void prepare_desc_for_plugin (Xml.Doc doc, Plugin plugin) {
         Xml.Node *device_element;
 
         device_element = Utils.get_xml_element ((Xml.Node *) doc,
@@ -200,9 +142,7 @@ public class Rygel.MediaServerFactory {
         }
 
         /* First, set the Friendly name and UDN */
-        this.set_friendly_name_and_udn (device_element,
-                                        plugin.name,
-                                        gconf_path);
+        this.set_friendly_name_and_udn (device_element, plugin.name);
 
         /* Then list each icon */
         this.add_icons_to_desc (device_element, plugin);
@@ -216,21 +156,18 @@ public class Rygel.MediaServerFactory {
      * If these keys are not present in gconf, they are set with default values.
      */
     private void set_friendly_name_and_udn (Xml.Node *device_element,
-                                            string    plugin_name,
-                                            string    gconf_path) {
+                                            string    plugin_name) {
         /* friendlyName */
         Xml.Node *element = Utils.get_xml_element (device_element,
-                                         "friendlyName",
-                                         null);
+                                                   "friendlyName",
+                                                   null);
         if (element == null) {
             warning ("Element /root/device/friendlyName not found.");
 
             return;
         }
 
-        string str = get_str_from_gconf (gconf_path + "friendly-name",
-                                         plugin_name);
-        element->set_content (str);
+        element->set_content (this.config.get_title (plugin_name));
 
         /* UDN */
         element = Utils.get_xml_element (device_element, "UDN");
@@ -240,10 +177,7 @@ public class Rygel.MediaServerFactory {
             return;
         }
 
-        /* Generate new UUID */
-        string default_value = Utils.generate_random_udn ();
-        str = get_str_from_gconf (gconf_path + "UDN", default_value);
-        element->set_content (str);
+        element->set_content (this.config.get_udn (plugin_name));
     }
 
     private void add_services_to_desc (Xml.Node *device_element,

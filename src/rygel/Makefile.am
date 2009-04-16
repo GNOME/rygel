@@ -28,6 +28,7 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel.h \
 		rygel-media-server.c \
 		rygel-media-server-factory.c \
+		rygel-configuration.c \
 		rygel-main.c \
 		rygel-content-directory.c \
 		rygel-browse.c \
@@ -58,6 +59,8 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-media-server.vala \
 		rygel-media-server-factory.c \
 		rygel-media-server-factory.vala \
+		rygel-configuration.c \
+		rygel-configuration.vala \
 		rygel-main.c \
 		rygel-main.vala \
 		rygel-content-directory.c \
