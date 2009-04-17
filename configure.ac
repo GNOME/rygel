@@ -25,6 +25,7 @@ GIO_REQUIRED=2.16
 GEE_REQUIRED=0.1.5
 UUID_REQUIRED=1.41.3
 LIBSOUP_REQUIRED=2.26.0
+GTK_REQUIRED=2.16
 
 PKG_CHECK_MODULES(VALA, [vala-1.0 >= $VALA_REQUIRED])
 PKG_CHECK_MODULES(LIBGUPNP, gupnp-1.0 >= $GUPNP_REQUIRED)
@@ -105,6 +106,46 @@ AC_ARG_ENABLE(uninstalled,
 if test "x$enable_uninstalled" = "xyes"; then
         AC_MSG_WARN("You want to run the tools uninstalled only? Fine!")
 fi
+
+# Check wether user wants to build UIs
+AC_ARG_WITH( ui,
+  AC_HELP_STRING([--disable-ui],[Don't build UI applications]),
+  try_ui=$withval, try_ui=yes )
+
+HAVE_GTK=no
+if test x$try_ui = xyes ; then
+    dnl check for gtk
+    PKG_CHECK_MODULES(GTK, gtk+-2.0 >= $GTK_REQUIRED ,
+      [
+        AC_SUBST(GTK_CFLAGS)
+        AC_SUBST(GTK_LIBS)
+        AC_CHECK_FILE("${VAPIDIR}/gtk+-2.0.vapi",
+          [
+             HAVE_GTK=yes
+          ],
+          [
+             HAVE_GTK=no
+             AC_MSG_ERROR("Unable to find Vala bindings for gtk+-2.0")
+          ])
+        ],
+      [
+        HAVE_GTK=no
+        AC_MSG_WARN([gtk $GTK_REQUIRED or greater not found.])
+        AC_MSG_WARN([UI applications will not be built.])
+      ])
+else
+    AC_MSG_NOTICE([UI applications disabled.])
+fi
+
+if test x$HAVE_GTK = xno; then
+  BUILD_UI=no
+else
+  BUILD_UI=yes
+  AC_DEFINE(HAVE_GTK, , [Build UI applications])
+fi
+
+AC_SUBST(HAVE_GTK)
+AM_CONDITIONAL(BUILD_UI, test x$BUILD_UI = xyes)
 
 # Build test plugin
 AC_ARG_ENABLE(test-plugin,
