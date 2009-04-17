@@ -184,6 +184,7 @@ AC_OUTPUT([
 Makefile
 src/Makefile
 src/rygel/Makefile
+src/ui/Makefile
 src/plugins/Makefile
 src/plugins/dvb/Makefile
 src/plugins/tracker/Makefile
