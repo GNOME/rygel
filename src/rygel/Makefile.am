@@ -59,7 +59,6 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-media-server.vala \
 		rygel-media-server-factory.c \
 		rygel-media-server-factory.vala \
-		rygel-configuration.c \
 		rygel-main.c \
 		rygel-main.vala \
 		rygel-content-directory.c \
@@ -105,7 +104,8 @@ rygel_LDADD = $(LIBGUPNP_LIBS) \
 	      $(GIO_LIBS) \
 	      $(GEE_LIBS) \
 	      $(UUID_LIBS) \
-	      $(LIBSOUP_LIBS)
+	      $(LIBSOUP_LIBS) \
+	      librygel-configuration.a
 rygel_LDFLAGS = -export-dynamic
 
 VAPI_FILES = rygel-1.0.vapi
@@ -144,6 +144,10 @@ rygel-1.0.vapi: $(VAPI_SOURCE_FILES)
 	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gconf-2.0 \
 	--pkg gee-1.0 --pkg gstreamer-0.10 \
 	$^
+
+noinst_LIBRARIES = librygel-configuration.a
+
+librygel_configuration_a_SOURCES = rygel-configuration.c
 
 CLEANFILES = $(BUILT_SOURCES)
 MAINTAINERCLEANFILES = Makefile.in
