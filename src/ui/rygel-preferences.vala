@@ -31,6 +31,12 @@ public class Rygel.Preferences : Dialog {
         this.add_button (STOCK_CANCEL, ResponseType.REJECT);
     }
 
+    public new void run () {
+        this.show_all ();
+
+        Gtk.main ();
+    }
+
     public static int main (string[] args) {
         Gtk.init (ref args);
 
