@@ -29,11 +29,11 @@ public class Rygel.Preferences : Dialog {
         this.add_button (STOCK_OK, ResponseType.ACCEPT);
         this.add_button (STOCK_APPLY, ResponseType.APPLY);
         this.add_button (STOCK_CANCEL, ResponseType.REJECT);
+
+        this.show_all ();
     }
 
     public new void run () {
-        this.show_all ();
-
         Gtk.main ();
     }
 
