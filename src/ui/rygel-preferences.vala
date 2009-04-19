@@ -27,6 +27,7 @@ public class Rygel.Preferences : Dialog {
         this.title = "Rygel Preferences";
 
         this.add_button (STOCK_OK, ResponseType.ACCEPT);
+        this.add_button (STOCK_APPLY, ResponseType.APPLY);
         this.add_button (STOCK_CANCEL, ResponseType.REJECT);
     }
 
