@@ -30,7 +30,20 @@ public class Rygel.Preferences : Dialog {
         this.add_button (STOCK_APPLY, ResponseType.APPLY);
         this.add_button (STOCK_CANCEL, ResponseType.REJECT);
 
+        this.response += this.on_response;
+
         this.show_all ();
+    }
+
+    private void on_response (Preferences pref, int response_id) {
+        switch (response_id) {
+            case ResponseType.REJECT:
+            case ResponseType.ACCEPT:
+                Gtk.main_quit ();
+                break;
+            case ResponseType.APPLY:
+                break;
+        }
     }
 
     public new void run () {
