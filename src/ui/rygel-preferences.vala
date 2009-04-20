@@ -26,6 +26,17 @@ public class Rygel.Preferences : Dialog {
     public Preferences () {
         this.title = "Rygel Preferences";
 
+        var config = new Rygel.Configuration ();
+
+        this.add_string_pref ("IP",
+                              config.host_ip,
+                              "The IP to advertise the UPnP MediaServer on");
+        this.add_int_pref ("Port",
+                           config.port,
+                           uint16.MIN,
+                           uint16.MAX,
+                           "The port to advertise the UPnP MediaServer on");
+
         this.add_button (STOCK_OK, ResponseType.ACCEPT);
         this.add_button (STOCK_APPLY, ResponseType.APPLY);
         this.add_button (STOCK_CANCEL, ResponseType.REJECT);
@@ -33,6 +44,52 @@ public class Rygel.Preferences : Dialog {
         this.response += this.on_response;
 
         this.show_all ();
+    }
+
+    private void add_string_pref (string  name,
+                                  string? current_value,
+                                  string  tooltip) {
+        var hbox = new HBox (true, 6);
+
+        var label = new Label (name);
+        var entry = new Entry ();
+
+        hbox.add (label);
+        hbox.add (entry);
+
+        if (current_value != null) {
+            entry.set_text (current_value);
+        }
+
+        hbox.set_tooltip_text (tooltip);
+
+        this.vbox.add (hbox);
+    }
+
+    private void add_int_pref (string  name,
+                               int     current_value,
+                               int     min,
+                               int     max,
+                               string  tooltip) {
+        var hbox = new HBox (true, 6);
+
+        var label = new Label (name);
+
+        var adjustment = new Adjustment (current_value,
+                                         min,
+                                         max,
+                                         1.0,
+                                         10.0,
+                                         10.0);
+
+        var spin = new SpinButton (adjustment, 1.0, 0);
+
+        hbox.add (label);
+        hbox.add (spin);
+
+        hbox.set_tooltip_text (tooltip);
+
+        this.vbox.add (hbox);
     }
 
     private void on_response (Preferences pref, int response_id) {
