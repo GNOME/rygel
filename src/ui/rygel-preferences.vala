@@ -36,6 +36,9 @@ public class Rygel.Preferences : Dialog {
                            uint16.MIN,
                            uint16.MAX,
                            "The port to advertise the UPnP MediaServer on");
+        this.add_boolean_pref ("XBox support",
+                               config.enable_xbox,
+                               "Enable Xbox support");
 
         this.add_button (STOCK_OK, ResponseType.ACCEPT);
         this.add_button (STOCK_APPLY, ResponseType.APPLY);
@@ -86,6 +89,22 @@ public class Rygel.Preferences : Dialog {
 
         hbox.add (label);
         hbox.add (spin);
+
+        hbox.set_tooltip_text (tooltip);
+
+        this.vbox.add (hbox);
+    }
+
+    private void add_boolean_pref (string  name,
+                                   bool    current_value,
+                                   string  tooltip) {
+        var hbox = new HBox (true, 6);
+
+        var check = new CheckButton.with_label (name);
+
+        check.active = current_value;
+
+        hbox.add (check);
 
         hbox.set_tooltip_text (tooltip);
 
