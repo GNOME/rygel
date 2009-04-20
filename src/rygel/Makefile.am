@@ -52,8 +52,6 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-media-item.c
 
 rygel_SOURCES = $(VAPI_SOURCE_FILES) \
-		cstuff.c \
-		cstuff.h \
 		rygel.h \
 		rygel-media-server.c \
 		rygel-media-server.vala \
@@ -147,7 +145,9 @@ rygel-1.0.vapi: $(VAPI_SOURCE_FILES)
 
 noinst_LIBRARIES = librygel-configuration.a
 
-librygel_configuration_a_SOURCES = rygel-configuration.c
+librygel_configuration_a_SOURCES = rygel-configuration.c \
+				   cstuff.c \
+                                   cstuff.h
 
 CLEANFILES = $(BUILT_SOURCES)
 MAINTAINERCLEANFILES = Makefile.in
