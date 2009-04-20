@@ -96,10 +96,13 @@ public class Rygel.Preferences : Dialog {
                                    string  tooltip) {
         var hbox = new HBox (true, 6);
 
-        var check = new CheckButton.with_label (name);
+        var label = new Label (name);
+
+        var check = new CheckButton ();
 
         check.active = current_value;
 
+        hbox.add (label);
         hbox.add (check);
 
         this.add_pref_widget (hbox, tooltip);
