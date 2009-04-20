@@ -52,19 +52,13 @@ public class Rygel.Preferences : Dialog {
     private void add_string_pref (string  name,
                                   string? current_value,
                                   string  tooltip) {
-        var hbox = new HBox (true, 6);
-
-        var label = new Label (name);
         var entry = new Entry ();
-
-        hbox.add (label);
-        hbox.add (entry);
 
         if (current_value != null) {
             entry.set_text (current_value);
         }
 
-        this.add_pref_widget (hbox, tooltip);
+        this.add_pref_widget (name, entry, tooltip);
     }
 
     private void add_int_pref (string  name,
@@ -72,10 +66,6 @@ public class Rygel.Preferences : Dialog {
                                int     min,
                                int     max,
                                string  tooltip) {
-        var hbox = new HBox (true, 6);
-
-        var label = new Label (name);
-
         var adjustment = new Adjustment (current_value,
                                          min,
                                          max,
@@ -85,34 +75,32 @@ public class Rygel.Preferences : Dialog {
 
         var spin = new SpinButton (adjustment, 1.0, 0);
 
-        hbox.add (label);
-        hbox.add (spin);
-
-        this.add_pref_widget (hbox, tooltip);
+        this.add_pref_widget (name, spin, tooltip);
     }
 
     private void add_boolean_pref (string  name,
                                    bool    current_value,
                                    string  tooltip) {
-        var hbox = new HBox (true, 6);
-
-        var label = new Label (name);
-
         var check = new CheckButton ();
 
         check.active = current_value;
 
-        hbox.add (label);
-        hbox.add (check);
-
-        this.add_pref_widget (hbox, tooltip);
+        this.add_pref_widget (name, check, tooltip);
     }
 
-    private void add_pref_widget (Widget widget,
+    private void add_pref_widget (string name,
+                                  Widget widget,
                                   string tooltip) {
-        widget.set_tooltip_text (tooltip);
+        var hbox = new HBox (true, 6);
 
-        this.vbox.add (widget);
+        var label = new Label (name);
+
+        hbox.add (label);
+        hbox.add (widget);
+
+        hbox.set_tooltip_text (tooltip);
+
+        this.vbox.add (hbox);
     }
 
     private void on_response (Preferences pref, int response_id) {
