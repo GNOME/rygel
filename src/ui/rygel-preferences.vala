@@ -64,9 +64,7 @@ public class Rygel.Preferences : Dialog {
             entry.set_text (current_value);
         }
 
-        hbox.set_tooltip_text (tooltip);
-
-        this.vbox.add (hbox);
+        this.add_pref_widget (hbox, tooltip);
     }
 
     private void add_int_pref (string  name,
@@ -90,9 +88,7 @@ public class Rygel.Preferences : Dialog {
         hbox.add (label);
         hbox.add (spin);
 
-        hbox.set_tooltip_text (tooltip);
-
-        this.vbox.add (hbox);
+        this.add_pref_widget (hbox, tooltip);
     }
 
     private void add_boolean_pref (string  name,
@@ -106,9 +102,14 @@ public class Rygel.Preferences : Dialog {
 
         hbox.add (check);
 
-        hbox.set_tooltip_text (tooltip);
+        this.add_pref_widget (hbox, tooltip);
+    }
 
-        this.vbox.add (hbox);
+    private void add_pref_widget (Widget widget,
+                                  string tooltip) {
+        widget.set_tooltip_text (tooltip);
+
+        this.vbox.add (widget);
     }
 
     private void on_response (Preferences pref, int response_id) {
