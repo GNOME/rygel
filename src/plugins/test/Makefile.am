@@ -7,6 +7,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
+	    $(LIBGCONF_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
 
 BUILT_SOURCES = rygel-test.stamp \
@@ -32,7 +33,7 @@ librygel_test_la_SOURCES = rygel-test-content-dir.c \
 
 rygel-test.stamp: $(filter %.vala,$(librygel_test_la_SOURCES))
 	$(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \
-	--pkg rygel-1.0 --pkg cstuff \
+	--pkg rygel-1.0 --pkg cstuff --pkg gconf-2.0 \
 	--pkg gupnp-1.0 --pkg gupnp-av-1.0 \
         --pkg dbus-glib-1 --pkg gee-1.0 --pkg gstreamer-0.10 $^
 	touch $@
@@ -41,7 +42,8 @@ librygel_test_la_LIBADD = $(LIBGUPNP_LIBS) \
 			  $(LIBGUPNP_AV_LIBS) \
                           $(LIBDBUS_GLIB_LIBS) \
 	                  $(LIBGSTREAMER_LIBS) \
-                          $(GEE_LIBS)
+                          $(GEE_LIBS) \
+			  $(LIBGCONF_LIBS)
 librygel_test_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
 CLEANFILES = $(BUILT_SOURCES)
