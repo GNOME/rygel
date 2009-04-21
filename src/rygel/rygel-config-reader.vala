@@ -30,6 +30,9 @@ using CStuff;
  */
 public class Rygel.ConfigReader {
     protected static const string ROOT_GCONF_PATH = "/apps/rygel/";
+    protected static const string IP_KEY = "host-ip";
+    protected static const string PORT_KEY = "port";
+    protected static const string XBOX_KEY = "enable-xbox";
 
     protected GConf.Client gconf;
 
@@ -40,9 +43,13 @@ public class Rygel.ConfigReader {
     public ConfigReader () {
         this.gconf = GConf.Client.get_default ();
 
-        this.enable_xbox = this.get_bool ("general", "enable-xbox", false);
-        this.host_ip = this.get_string ("general", "host-ip", null);
-        this.port = this.get_int ("general", "port", uint16.MIN, uint16.MAX, 0);
+        this.enable_xbox = this.get_bool ("general", XBOX_KEY, false);
+        this.host_ip = this.get_string ("general", IP_KEY, null);
+        this.port = this.get_int ("general",
+                                  PORT_KEY,
+                                  uint16.MIN,
+                                  uint16.MAX,
+                                  0);
     }
 
     public string get_title (string section) {
