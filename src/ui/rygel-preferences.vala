@@ -28,15 +28,18 @@ public class Rygel.Preferences : Dialog {
 
         var config_editor = new Rygel.ConfigEditor ();
 
-        this.add_string_pref ("IP",
+        this.add_string_pref (ConfigReader.IP_KEY,
+                              "IP",
                               config_editor.host_ip,
                               "The IP to advertise the UPnP MediaServer on");
-        this.add_int_pref ("Port",
+        this.add_int_pref (ConfigReader.PORT_KEY,
+                           "Port",
                            config_editor.port,
                            uint16.MIN,
                            uint16.MAX,
                            "The port to advertise the UPnP MediaServer on");
-        this.add_boolean_pref ("XBox support",
+        this.add_boolean_pref (ConfigReader.XBOX_KEY,
+                               "XBox support",
                                config_editor.enable_xbox,
                                "Enable Xbox support");
 
@@ -50,6 +53,7 @@ public class Rygel.Preferences : Dialog {
     }
 
     private void add_string_pref (string  name,
+                                  string  title,
                                   string? current_value,
                                   string  tooltip) {
         var entry = new Entry ();
@@ -58,10 +62,11 @@ public class Rygel.Preferences : Dialog {
             entry.set_text (current_value);
         }
 
-        this.add_pref_widget (name, entry, tooltip);
+        this.add_pref_widget (name, title, entry, tooltip);
     }
 
     private void add_int_pref (string  name,
+                               string  title,
                                int     current_value,
                                int     min,
                                int     max,
@@ -75,30 +80,33 @@ public class Rygel.Preferences : Dialog {
 
         var spin = new SpinButton (adjustment, 1.0, 0);
 
-        this.add_pref_widget (name, spin, tooltip);
+        this.add_pref_widget (name, title, spin, tooltip);
     }
 
     private void add_boolean_pref (string  name,
+                                   string  title,
                                    bool    current_value,
                                    string  tooltip) {
         var check = new CheckButton ();
 
         check.active = current_value;
 
-        this.add_pref_widget (name, check, tooltip);
+        this.add_pref_widget (name, title, check, tooltip);
     }
 
     private void add_pref_widget (string name,
+                                  string title,
                                   Widget widget,
                                   string tooltip) {
         var hbox = new HBox (true, 6);
 
-        var label = new Label (name);
+        var label = new Label (title);
 
         hbox.add (label);
         hbox.add (widget);
 
         hbox.set_tooltip_text (tooltip);
+        widget.set_name (name);
 
         this.vbox.add (hbox);
     }
