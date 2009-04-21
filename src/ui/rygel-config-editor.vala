@@ -33,6 +33,18 @@ public class Rygel.ConfigEditor : ConfigReader {
         base ();
     }
 
+    public void set_host_ip (string ip) {
+        this.set_string ("general", "host-ip", ip);
+    }
+
+    public void set_port (uint16 port) {
+        this.set_int ("general", "port", port);
+    }
+
+    public void set_enable_xbox (bool enabled) {
+        this.set_bool ("general", "enable-xbox", enabled);
+    }
+
     public void set_title (string section, string title) {
         this.set_string (section, "title", title);
     }
