@@ -80,5 +80,41 @@ public class Rygel.ConfigReader {
 
         return val;
     }
+
+    private int get_int (string section,
+                         string key,
+                         int    min,
+                         int    max,
+                         int    default_value) {
+        int val;
+        var path = ROOT_GCONF_PATH + section + "/" + key;
+
+        try {
+            val = this.gconf.get_int (path);
+        } catch (GLib.Error error) {
+            val = default_value;
+        }
+
+        if (val < min || val > max) {
+            val = default_value;
+        }
+
+        return val;
+    }
+
+    private bool get_bool (string section,
+                           string key,
+                           bool   default_value) {
+        bool val;
+        var path = ROOT_GCONF_PATH + section + "/" + key;
+
+        try {
+            val = this.gconf.get_bool (path);
+        } catch (GLib.Error error) {
+            val = default_value;
+        }
+
+        return val;
+    }
 }
 
