@@ -46,7 +46,7 @@ public class Rygel.ConfigReader {
     }
 
     public string get_title (string section) {
-        return this.get_string (section, "Title", section);
+        return this.get_string (section, "title", section);
     }
 
     public string get_udn (string section) {

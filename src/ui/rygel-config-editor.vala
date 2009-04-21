@@ -34,7 +34,7 @@ public class Rygel.ConfigEditor : ConfigReader {
     }
 
     public void set_title (string section, string title) {
-        this.set_string (section, "Title", title);
+        this.set_string (section, "title", title);
     }
 
     public void set_udn (string section, string? udn) {
