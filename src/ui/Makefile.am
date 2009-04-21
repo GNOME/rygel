@@ -21,16 +21,19 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 bin_PROGRAMS = rygel-preferences
 
 BUILT_SOURCES = rygel.stamp \
-		rygel-preferences.c
+		rygel-preferences.c \
+		rygel-config-editor.c
 
 rygel_preferences_SOURCES = rygel-preferences.c \
-                            rygel-preferences.vala
+			    rygel-preferences.vala \
+			    rygel-config-editor.c \
+			    rygel-config-editor.vala
 
 rygel.stamp: $(filter %.vala,$(rygel_preferences_SOURCES))
 	$(VALAC) -C --vapidir=$(rygeldir) \
-	--pkg rygel-1.0 --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
-	--pkg gconf-2.0 --pkg gstreamer-0.10 --pkg gio-2.0 --pkg gee-1.0 \
-        --pkg gtk+-2.0 $^
+	--pkg rygel-1.0 --pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 \
+	--pkg dbus-glib-1 --pkg gconf-2.0 --pkg gstreamer-0.10 \
+	--pkg gio-2.0 --pkg gee-1.0 --pkg gtk+-2.0 $^
 	touch $@
 
 rygel_preferences_LDADD = $(LIBGUPNP_LIBS) \
