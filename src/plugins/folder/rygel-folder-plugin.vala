@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008 Jens Georg <mail@jensge.org>.
+ * Copyright (C) 2008-2009 Jens Georg <mail@jensge.org>.
  *
  * This file is part of Rygel.
  *
