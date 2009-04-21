@@ -29,9 +29,9 @@ using CStuff;
  * Reads the user configuration for Rygel.
  */
 public class Rygel.ConfigReader {
-    private static const string ROOT_GCONF_PATH = "/apps/rygel/";
+    protected static const string ROOT_GCONF_PATH = "/apps/rygel/";
 
-    private GConf.Client gconf;
+    protected GConf.Client gconf;
 
     public bool enable_xbox;
     public string host_ip;
