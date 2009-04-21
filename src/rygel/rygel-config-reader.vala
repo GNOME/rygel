@@ -55,9 +55,9 @@ public class Rygel.ConfigReader {
         return this.get_string (section, "UDN", new_udn);
     }
 
-    private string? get_string (string  section,
-                                string  key,
-                                string? default_value) {
+    public string? get_string (string  section,
+                               string  key,
+                               string? default_value) {
         string val;
         var path = ROOT_GCONF_PATH + section + "/" + key;
 
@@ -74,11 +74,11 @@ public class Rygel.ConfigReader {
         return val;
     }
 
-    private int get_int (string section,
-                         string key,
-                         int    min,
-                         int    max,
-                         int    default_value) {
+    public int get_int (string section,
+                        string key,
+                        int    min,
+                        int    max,
+                        int    default_value) {
         int val;
         var path = ROOT_GCONF_PATH + section + "/" + key;
 
@@ -95,9 +95,9 @@ public class Rygel.ConfigReader {
         return val;
     }
 
-    private bool get_bool (string section,
-                           string key,
-                           bool   default_value) {
+    public bool get_bool (string section,
+                          string key,
+                          bool   default_value) {
         bool val;
         var path = ROOT_GCONF_PATH + section + "/" + key;
 
