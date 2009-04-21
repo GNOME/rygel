@@ -162,6 +162,17 @@ AC_ARG_ENABLE(dvb-plugin,
 	[  --enable-dvb-plugin          build DVB plugin],,
         enable_dvb_plugin=yes)
 
+# Build Folder plugin
+AC_ARG_ENABLE(folder-plugin,
+	[  --enable-folder-plugin          build Folder plugin],,
+        enable_folder_plugin=yes)
+
+# Build Mediathek plugin
+AC_ARG_ENABLE(mediathek-plugin,
+	[  --enable-mediathek-plugin          build Mediathek plugin],,
+        enable_mediathek_plugin=yes)
+
+
 AC_SUBST(abs_top_builddir)
 
 AM_CONDITIONAL([UNINSTALLED], [test "x$enable_uninstalled" = "xyes"])
@@ -169,6 +180,8 @@ AM_CONDITIONAL([BUILD_TEST_PLUGIN], [test "x$enable_test_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_TRACKER_PLUGIN],
                [test "x$enable_tracker_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_DVB_PLUGIN], [test "x$enable_dvb_plugin" = "xyes"])
+AM_CONDITIONAL([BUILD_MEDIATHEK_PLUGIN], [test "x$enable_mediathek_plugin" = "xyes"])
+AM_CONDITIONAL([BUILD_FOLDER_PLUGIN], [test "x$enable_folder_plugin" = "xyes"])
 
 # Gettext
 GETTEXT_PACKAGE=rygel
@@ -187,6 +200,8 @@ src/rygel/Makefile
 src/ui/Makefile
 src/plugins/Makefile
 src/plugins/dvb/Makefile
+src/plugins/folder/Makefile
+src/plugins/mediathek/Makefile
 src/plugins/tracker/Makefile
 src/plugins/test/Makefile
 data/Makefile
