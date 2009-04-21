@@ -39,11 +39,11 @@ public class Rygel.MediaServerFactory {
     public static const string XBOX_DESC_DOC = "xml/description-xbox360.xml";
     public static const string DESC_PREFIX = "Rygel";
 
-    private Configuration config;
+    private ConfigReader config_reader;
     private GUPnP.Context context;
 
     public MediaServerFactory () throws GLib.Error {
-        this.config = new Configuration ();
+        this.config_reader = new ConfigReader ();
 
         /* Set up GUPnP context */
         this.context = create_upnp_context ();
@@ -73,7 +73,7 @@ public class Rygel.MediaServerFactory {
                                    string desc_path) throws GLib.Error {
         string orig_desc_path;
 
-        if (this.config.enable_xbox)
+        if (this.config_reader.enable_xbox)
             /* Use Xbox 360 specific description */
             orig_desc_path = Path.build_filename (BuildConfig.DATA_DIR,
                                                   XBOX_DESC_DOC);
@@ -91,7 +91,7 @@ public class Rygel.MediaServerFactory {
         /* Modify description to include Plugin-specific stuff */
         this.prepare_desc_for_plugin (doc, plugin);
 
-        if (this.config.enable_xbox)
+        if (this.config_reader.enable_xbox)
             /* Put/Set XboX specific stuff to description */
             add_xbox_specifics (doc);
 
@@ -102,8 +102,8 @@ public class Rygel.MediaServerFactory {
 
     private GUPnP.Context create_upnp_context () throws GLib.Error {
         GUPnP.Context context = new GUPnP.Context (null,
-                                                   this.config.host_ip,
-                                                   this.config.port);
+                                                   this.config_reader.host_ip,
+                                                   this.config_reader.port);
 
         /* Host UPnP dir */
         context.host_path (BuildConfig.DATA_DIR, "");
@@ -167,7 +167,7 @@ public class Rygel.MediaServerFactory {
             return;
         }
 
-        element->set_content (this.config.get_title (plugin_name));
+        element->set_content (this.config_reader.get_title (plugin_name));
 
         /* UDN */
         element = Utils.get_xml_element (device_element, "UDN");
@@ -177,7 +177,7 @@ public class Rygel.MediaServerFactory {
             return;
         }
 
-        element->set_content (this.config.get_udn (plugin_name));
+        element->set_content (this.config_reader.get_udn (plugin_name));
     }
 
     private void add_services_to_desc (Xml.Node *device_element,

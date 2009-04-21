@@ -26,9 +26,9 @@ using GConf;
 using CStuff;
 
 /**
- * User configuration for Rygel.
+ * Reads the user configuration for Rygel.
  */
-public class Rygel.Configuration {
+public class Rygel.ConfigReader {
     private static const string ROOT_GCONF_PATH = "/apps/rygel/";
 
     private GConf.Client gconf;
@@ -37,7 +37,7 @@ public class Rygel.Configuration {
     public string host_ip;
     public int port;
 
-    public Configuration () {
+    public ConfigReader () {
         this.gconf = GConf.Client.get_default ();
 
         try {

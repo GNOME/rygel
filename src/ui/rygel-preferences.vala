@@ -26,18 +26,18 @@ public class Rygel.Preferences : Dialog {
     public Preferences () {
         this.title = "Rygel Preferences";
 
-        var config = new Rygel.Configuration ();
+        var config_reader = new Rygel.ConfigReader ();
 
         this.add_string_pref ("IP",
-                              config.host_ip,
+                              config_reader.host_ip,
                               "The IP to advertise the UPnP MediaServer on");
         this.add_int_pref ("Port",
-                           config.port,
+                           config_reader.port,
                            uint16.MIN,
                            uint16.MAX,
                            "The port to advertise the UPnP MediaServer on");
         this.add_boolean_pref ("XBox support",
-                               config.enable_xbox,
+                               config_reader.enable_xbox,
                                "Enable Xbox support");
 
         this.add_button (STOCK_OK, ResponseType.ACCEPT);
