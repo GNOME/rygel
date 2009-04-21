@@ -62,9 +62,9 @@ public class Rygel.ConfigReader {
         return this.get_string (section, "UDN", new_udn);
     }
 
-    private string get_string (string section,
-                               string key,
-                               string default_value) {
+    private string? get_string (string  section,
+                                string  key,
+                                string? default_value) {
         string val;
         var path = ROOT_GCONF_PATH + section + "/" + key;
 
