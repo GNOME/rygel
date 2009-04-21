@@ -78,12 +78,6 @@ public class Rygel.Configuration {
             val = default_value;
         }
 
-        try {
-            this.gconf.set_string (path, val);
-        } catch (GLib.Error error) {
-            // No big deal
-        }
-
         return val;
     }
 }
