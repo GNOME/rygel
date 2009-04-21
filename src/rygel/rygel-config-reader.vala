@@ -40,16 +40,9 @@ public class Rygel.ConfigReader {
     public ConfigReader () {
         this.gconf = GConf.Client.get_default ();
 
-        try {
-            this.enable_xbox = this.gconf.get_bool (ROOT_GCONF_PATH +
-                                                    "enable-xbox");
-            this.host_ip = this.gconf.get_string (ROOT_GCONF_PATH + "host-ip");
-            this.port = this.gconf.get_int (ROOT_GCONF_PATH + "port");
-        } catch (GLib.Error error) {
-            this.enable_xbox = false;
-            this.host_ip = null;
-            this.port = 0;
-        }
+        this.enable_xbox = this.get_bool ("general", "enable-xbox", false);
+        this.host_ip = this.get_string ("general", "host-ip", null);
+        this.port = this.get_int ("general", "port", uint16.MIN, uint16.MAX, 0);
     }
 
     public string get_title (string section) {
