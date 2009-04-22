@@ -23,14 +23,12 @@
 using Gtk;
 
 public class Rygel.PreferencesDialog : Dialog {
-    ConfigEditor config_editor;
-
     public PreferencesDialog () {
         this.title = "Rygel Preferences";
 
-        this.config_editor = new ConfigEditor ();
+        var config_editor = new ConfigEditor ();
 
-        this.vbox.add (new PreferencesVBox (this.config_editor));
+        this.vbox.add (new PreferencesVBox (config_editor));
 
         this.add_button (STOCK_OK, ResponseType.ACCEPT);
         this.add_button (STOCK_APPLY, ResponseType.APPLY);
