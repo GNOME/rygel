@@ -137,7 +137,14 @@ public class Rygel.Preferences : Dialog {
             var hbox = (HBox) child;
 
             foreach (var widget in hbox.get_children ()) {
-                if (widget is Entry) {
+                if (widget is SpinButton) {
+                        var name = widget.get_name ();
+                        var number = ((SpinButton) widget).get_value ();
+
+                        this.config_editor.set_int ("general",
+                                                    name,
+                                                    (int) number);
+                } else if (widget is Entry) {
                         var name = widget.get_name ();
                         var text = ((Entry) widget).get_text ();
 
