@@ -28,10 +28,10 @@ BUILT_SOURCES = rygel.stamp \
 
 rygel_preferences_SOURCES = rygel-preferences-dialog.c \
 			    rygel-preferences-dialog.vala \
-				rygel-preferences-vbox.c \
-				rygel-preferences-vbox.vala \
-		            rygel-general-pref-vbox.c \
-		            rygel-general-pref-vbox.vala \
+			    rygel-preferences-vbox.c \
+			    rygel-preferences-vbox.vala \
+			    rygel-general-pref-vbox.c \
+			    rygel-general-pref-vbox.vala \
 			    rygel-config-editor.c \
 			    rygel-config-editor.vala
 
