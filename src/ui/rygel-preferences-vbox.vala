@@ -25,7 +25,11 @@ using Gtk;
 public class Rygel.PreferencesVBox : VBox {
     ConfigEditor config_editor;
 
+    public string title;
+
     public PreferencesVBox (ConfigEditor config_editor) {
+        this.title = "General";
+
         this.config_editor = config_editor;
 
         this.add_string_pref (ConfigReader.IP_KEY,
