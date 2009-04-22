@@ -22,10 +22,10 @@
  */
 using Gtk;
 
-public class Rygel.Preferences : Dialog {
+public class Rygel.PreferencesDialog : Dialog {
     ConfigEditor config_editor;
 
-    public Preferences () {
+    public PreferencesDialog () {
         this.title = "Rygel Preferences";
 
         this.config_editor = new ConfigEditor ();
@@ -113,7 +113,7 @@ public class Rygel.Preferences : Dialog {
         this.vbox.add (hbox);
     }
 
-    private void on_response (Preferences pref, int response_id) {
+    private void on_response (PreferencesDialog dialog, int response_id) {
         switch (response_id) {
             case ResponseType.REJECT:
                 Gtk.main_quit ();
@@ -166,9 +166,9 @@ public class Rygel.Preferences : Dialog {
     public static int main (string[] args) {
         Gtk.init (ref args);
 
-        var pref = new Preferences ();
+        var dialog = new PreferencesDialog ();
 
-        pref.run ();
+        dialog.run ();
 
         return 0;
     }

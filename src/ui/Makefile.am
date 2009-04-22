@@ -21,11 +21,11 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 bin_PROGRAMS = rygel-preferences
 
 BUILT_SOURCES = rygel.stamp \
-		rygel-preferences.c \
+		rygel-preferences-dialog.c \
 		rygel-config-editor.c
 
-rygel_preferences_SOURCES = rygel-preferences.c \
-			    rygel-preferences.vala \
+rygel_preferences_SOURCES = rygel-preferences-dialog.c \
+			    rygel-preferences-dialog.vala \
 			    rygel-config-editor.c \
 			    rygel-config-editor.vala
 
