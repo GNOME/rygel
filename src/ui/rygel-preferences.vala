@@ -116,11 +116,34 @@ public class Rygel.Preferences : Dialog {
     private void on_response (Preferences pref, int response_id) {
         switch (response_id) {
             case ResponseType.REJECT:
+                Gtk.main_quit ();
+                break;
             case ResponseType.ACCEPT:
+                apply_settings ();
                 Gtk.main_quit ();
                 break;
             case ResponseType.APPLY:
+                apply_settings ();
                 break;
+        }
+    }
+
+    private void apply_settings () {
+        foreach (var child in this.vbox.get_children ()) {
+            if (!(child is HBox)) {
+                break;
+            }
+
+            var hbox = (HBox) child;
+
+            foreach (var widget in hbox.get_children ()) {
+                if (widget is Entry) {
+                        var name = widget.get_name ();
+                        var text = ((Entry) widget).get_text ();
+
+                        this.config_editor.set_string ("general", name, text);
+                }
+            }
         }
     }
 
