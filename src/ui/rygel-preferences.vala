@@ -23,24 +23,26 @@
 using Gtk;
 
 public class Rygel.Preferences : Dialog {
+    ConfigEditor config_editor;
+
     public Preferences () {
         this.title = "Rygel Preferences";
 
-        var config_editor = new Rygel.ConfigEditor ();
+        this.config_editor = new ConfigEditor ();
 
         this.add_string_pref (ConfigReader.IP_KEY,
                               "IP",
-                              config_editor.host_ip,
+                              this.config_editor.host_ip,
                               "The IP to advertise the UPnP MediaServer on");
         this.add_int_pref (ConfigReader.PORT_KEY,
                            "Port",
-                           config_editor.port,
+                           this.config_editor.port,
                            uint16.MIN,
                            uint16.MAX,
                            "The port to advertise the UPnP MediaServer on");
         this.add_boolean_pref (ConfigReader.XBOX_KEY,
                                "XBox support",
-                               config_editor.enable_xbox,
+                               this.config_editor.enable_xbox,
                                "Enable Xbox support");
 
         this.add_button (STOCK_OK, ResponseType.ACCEPT);
