@@ -142,6 +142,11 @@ public class Rygel.Preferences : Dialog {
                         var text = ((Entry) widget).get_text ();
 
                         this.config_editor.set_string ("general", name, text);
+                } else if (widget is CheckButton) {
+                        var name = widget.get_name ();
+                        var active = ((CheckButton) widget).get_active ();
+
+                        this.config_editor.set_bool ("general", name, active);
                 }
             }
         }
