@@ -23,7 +23,7 @@
 using Gtk;
 
 public class Rygel.PreferencesVBox : VBox {
-    ConfigEditor config_editor;
+    protected ConfigEditor config_editor;
 
     public string title;
     public string section;
@@ -50,10 +50,10 @@ public class Rygel.PreferencesVBox : VBox {
                                "Enable Xbox support");
     }
 
-    private void add_string_pref (string  name,
-                                  string  title,
-                                  string? current_value,
-                                  string  tooltip) {
+    protected void add_string_pref (string  name,
+                                    string  title,
+                                    string? current_value,
+                                    string  tooltip) {
         var entry = new Entry ();
 
         if (current_value != null) {
@@ -63,12 +63,12 @@ public class Rygel.PreferencesVBox : VBox {
         this.add_pref_widget (name, title, entry, tooltip);
     }
 
-    private void add_int_pref (string  name,
-                               string  title,
-                               int     current_value,
-                               int     min,
-                               int     max,
-                               string  tooltip) {
+    protected void add_int_pref (string  name,
+                                 string  title,
+                                 int     current_value,
+                                 int     min,
+                                 int     max,
+                                 string  tooltip) {
         var adjustment = new Adjustment (current_value,
                                          min,
                                          max,
@@ -81,10 +81,10 @@ public class Rygel.PreferencesVBox : VBox {
         this.add_pref_widget (name, title, spin, tooltip);
     }
 
-    private void add_boolean_pref (string  name,
-                                   string  title,
-                                   bool    current_value,
-                                   string  tooltip) {
+    protected void add_boolean_pref (string  name,
+                                     string  title,
+                                     bool    current_value,
+                                     string  tooltip) {
         var check = new CheckButton ();
 
         check.active = current_value;
