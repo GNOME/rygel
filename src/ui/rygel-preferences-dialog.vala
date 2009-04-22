@@ -23,12 +23,20 @@
 using Gtk;
 
 public class Rygel.PreferencesDialog : Dialog {
+    Notebook notebook;
+
     public PreferencesDialog () {
         this.title = "Rygel Preferences";
 
         var config_editor = new ConfigEditor ();
 
-        this.vbox.add (new PreferencesVBox (config_editor));
+        this.notebook = new Notebook ();
+
+        var pref_vbox = new PreferencesVBox (config_editor);
+        var label = new Label (pref_vbox.title);
+        this.notebook.append_page (pref_vbox, label);
+
+        this.vbox.add (this.notebook);
 
         this.add_button (STOCK_OK, ResponseType.ACCEPT);
         this.add_button (STOCK_APPLY, ResponseType.APPLY);
@@ -55,7 +63,7 @@ public class Rygel.PreferencesDialog : Dialog {
     }
 
     private void apply_settings () {
-        foreach (var child in this.vbox.get_children ()) {
+        foreach (var child in this.notebook.get_children ()) {
             if (!(child is PreferencesVBox)) {
                 break;
             }
