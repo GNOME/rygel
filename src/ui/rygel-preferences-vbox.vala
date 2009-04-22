@@ -28,26 +28,13 @@ public class Rygel.PreferencesVBox : VBox {
     public string title;
     public string section;
 
-    public PreferencesVBox (ConfigEditor config_editor) {
-        this.section = "general";
-        this.title = "General";
+    public PreferencesVBox (ConfigEditor config_editor,
+                            string       title,
+                            string       section) {
+        this.section = section;
+        this.title = title;
 
         this.config_editor = config_editor;
-
-        this.add_string_pref (ConfigReader.IP_KEY,
-                              "IP",
-                              this.config_editor.host_ip,
-                              "The IP to advertise the UPnP MediaServer on");
-        this.add_int_pref (ConfigReader.PORT_KEY,
-                           "Port",
-                           this.config_editor.port,
-                           uint16.MIN,
-                           uint16.MAX,
-                           "The port to advertise the UPnP MediaServer on");
-        this.add_boolean_pref (ConfigReader.XBOX_KEY,
-                               "XBox support",
-                               this.config_editor.enable_xbox,
-                               "Enable Xbox support");
     }
 
     protected void add_string_pref (string  name,

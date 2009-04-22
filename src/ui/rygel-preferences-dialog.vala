@@ -32,7 +32,7 @@ public class Rygel.PreferencesDialog : Dialog {
 
         this.notebook = new Notebook ();
 
-        var pref_vbox = new PreferencesVBox (config_editor);
+        var pref_vbox = new GeneralPrefVBox (config_editor);
         var label = new Label (pref_vbox.title);
         this.notebook.append_page (pref_vbox, label);
 
