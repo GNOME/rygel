@@ -31,10 +31,7 @@ public class Rygel.PreferencesDialog : Dialog {
         var config_editor = new ConfigEditor ();
 
         this.notebook = new Notebook ();
-
-        var pref_vbox = new GeneralPrefVBox (config_editor);
-        var label = new Label (pref_vbox.title);
-        this.notebook.append_page (pref_vbox, label);
+        this.add_pref_page (new GeneralPrefVBox (config_editor));
 
         this.vbox.add (this.notebook);
 
@@ -45,6 +42,11 @@ public class Rygel.PreferencesDialog : Dialog {
         this.response += this.on_response;
 
         this.show_all ();
+    }
+
+    private void add_pref_page (PreferencesVBox pref_vbox) {
+        var label = new Label (pref_vbox.title);
+        this.notebook.append_page (pref_vbox, label);
     }
 
     private void on_response (PreferencesDialog dialog, int response_id) {
