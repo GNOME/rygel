@@ -24,7 +24,7 @@ using Gtk;
 
 public class Rygel.GeneralPrefVBox : PreferencesVBox {
     public GeneralPrefVBox (ConfigEditor config_editor) {
-        base (config_editor, "general", "General");
+        base (config_editor, "General", "general");
 
         this.add_string_pref (ConfigReader.IP_KEY,
                               "IP",
