@@ -33,6 +33,8 @@ public class Rygel.ConfigReader {
     protected static const string IP_KEY = "host-ip";
     protected static const string PORT_KEY = "port";
     protected static const string XBOX_KEY = "enable-xbox";
+    protected static const string TITLE_KEY = "title";
+    protected static const string UDN_KEY = "UDN";
 
     protected GConf.Client gconf;
 
