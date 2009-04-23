@@ -36,9 +36,5 @@ public class Rygel.GeneralPrefVBox : PreferencesVBox {
                            uint16.MIN,
                            uint16.MAX,
                            "The port to advertise the UPnP MediaServer on");
-        this.add_boolean_pref (ConfigReader.XBOX_KEY,
-                               "XBox support",
-                               this.config_editor.enable_xbox,
-                               "Enable Xbox support");
     }
 }
