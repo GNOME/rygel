@@ -74,7 +74,7 @@ public class Rygel.ConfigReader {
             val = null;
         }
 
-        if (val == null) {
+        if (val == null || val == "") {
             val = default_value;
         }
 
