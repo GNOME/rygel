@@ -27,8 +27,14 @@ public class Rygel.PluginPrefVBox : PreferencesVBox {
                            string       section) {
         base (config_editor, section, section);
 
+        var enabled = config_editor.get_enabled (section);
         var title = config_editor.get_title (section);
         var udn = config_editor.get_udn (section);
+
+        this.add_boolean_pref (ConfigReader.ENABLED_KEY,
+                               "Enabled",
+                               enabled,
+                               "Enable/Disable this plugin");
 
         this.add_string_pref (ConfigReader.TITLE_KEY,
                               "Title",
