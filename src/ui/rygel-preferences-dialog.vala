@@ -32,15 +32,9 @@ public class Rygel.PreferencesDialog : Dialog {
 
         this.notebook = new Notebook ();
         this.add_pref_page (new GeneralPrefVBox (config_editor));
-        this.add_pref_page (new PluginPrefVBox (config_editor,
-                                                "Tracker",
-                                                "tracker"));
-        this.add_pref_page (new PluginPrefVBox (config_editor,
-                                                "DVB",
-                                                "dvb"));
-        this.add_pref_page (new PluginPrefVBox (config_editor,
-                                                "Test",
-                                                "test"));
+        this.add_pref_page (new PluginPrefVBox (config_editor, "Tracker"));
+        this.add_pref_page (new PluginPrefVBox (config_editor, "DVB"));
+        this.add_pref_page (new PluginPrefVBox (config_editor, "Test"));
 
         this.vbox.add (this.notebook);
 

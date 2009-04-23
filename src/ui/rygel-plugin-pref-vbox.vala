@@ -24,9 +24,8 @@ using Gtk;
 
 public class Rygel.PluginPrefVBox : PreferencesVBox {
     public PluginPrefVBox (ConfigEditor config_editor,
-                           string       pref_title,
                            string       section) {
-        base (config_editor, pref_title, section);
+        base (config_editor, section, section);
 
         var title = config_editor.get_title (section);
         var udn = config_editor.get_udn (section);
