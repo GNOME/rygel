@@ -116,7 +116,12 @@ public class Rygel.ConfigReader {
         var path = ROOT_GCONF_PATH + section + "/" + key;
 
         try {
-            val = this.gconf.get_bool (path);
+            unowned GConf.Value value = this.gconf.get (path);
+            if (value != null) {
+                val = value.get_bool ();
+            } else {
+                val = default_value;
+            }
         } catch (GLib.Error error) {
             val = default_value;
         }
