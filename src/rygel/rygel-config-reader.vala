@@ -55,13 +55,13 @@ public class Rygel.ConfigReader {
     }
 
     public string get_title (string section) {
-        return this.get_string (section, "title", section);
+        return this.get_string (section, TITLE_KEY, section);
     }
 
     public string get_udn (string section) {
         var new_udn = Utils.generate_random_udn ();
 
-        return this.get_string (section, "UDN", new_udn);
+        return this.get_string (section, UDN_KEY, new_udn);
     }
 
     public string? get_string (string  section,
