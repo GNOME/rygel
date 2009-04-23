@@ -27,7 +27,8 @@ using CStuff;
 using Rygel;
 
 public errordomain MediaServerFactoryError {
-    XML_PARSE
+    XML_PARSE,
+    PLUGIN_DISABLED
 }
 
 /**
@@ -50,6 +51,11 @@ public class Rygel.MediaServerFactory {
     }
 
     public MediaServer create_media_server (Plugin plugin) throws GLib.Error {
+        if (!this.config_reader.get_enabled (plugin.name)) {
+            throw new MediaServerFactoryError.PLUGIN_DISABLED (
+                            "Plugin disabled in user configuration.");
+        }
+
         string modified_desc = DESC_PREFIX + "-" + plugin.name + ".xml";
 
         /* We store a modified description.xml in the user's config dir */
