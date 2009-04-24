@@ -43,6 +43,10 @@ public class Rygel.PreferencesDialog : Dialog {
         this.add_button (STOCK_OK, ResponseType.ACCEPT);
 
         this.response += this.on_response;
+        this.delete_event += (dialog, event) => {
+                                Gtk.main_quit ();
+                                return false;
+        };
 
         this.show_all ();
     }
