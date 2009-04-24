@@ -23,16 +23,16 @@
 using Gtk;
 
 public class Rygel.GeneralPrefVBox : PreferencesVBox {
-    public GeneralPrefVBox (ConfigEditor config_editor) {
-        base (config_editor, "General", "general");
+    public GeneralPrefVBox (Configuration config) {
+        base (config, "General", "general");
 
-        this.add_string_pref (ConfigReader.IP_KEY,
+        this.add_string_pref (Configuration.IP_KEY,
                               "IP",
-                              this.config_editor.host_ip,
+                              this.config.host_ip,
                               "The IP to advertise the UPnP MediaServer on");
-        this.add_int_pref (ConfigReader.PORT_KEY,
+        this.add_int_pref (Configuration.PORT_KEY,
                            "Port",
-                           this.config_editor.port,
+                           this.config.port,
                            uint16.MIN,
                            uint16.MAX,
                            "The port to advertise the UPnP MediaServer on");

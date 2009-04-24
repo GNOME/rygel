@@ -28,13 +28,13 @@ public class Rygel.PreferencesDialog : Dialog {
     public PreferencesDialog () {
         this.title = "Rygel Preferences";
 
-        var config_editor = new ConfigEditor ();
+        var config = new Configuration ();
 
         this.notebook = new Notebook ();
-        this.add_pref_page (new GeneralPrefVBox (config_editor));
-        this.add_pref_page (new PluginPrefVBox (config_editor, "Tracker"));
-        this.add_pref_page (new PluginPrefVBox (config_editor, "DVB"));
-        this.add_pref_page (new PluginPrefVBox (config_editor, "Test"));
+        this.add_pref_page (new GeneralPrefVBox (config));
+        this.add_pref_page (new PluginPrefVBox (config, "Tracker"));
+        this.add_pref_page (new PluginPrefVBox (config, "DVB"));
+        this.add_pref_page (new PluginPrefVBox (config, "Test"));
 
         this.vbox.add (this.notebook);
 

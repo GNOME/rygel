@@ -24,8 +24,7 @@ BUILT_SOURCES = rygel.stamp \
 		rygel-preferences-dialog.c \
 		rygel-preferences-vbox.c \
 		rygel-general-pref-vbox.c \
-		rygel-plugin-pref-vbox.c \
-		rygel-config-editor.c
+		rygel-plugin-pref-vbox.c
 
 rygel_preferences_SOURCES = rygel-preferences-dialog.c \
 			    rygel-preferences-dialog.vala \
@@ -34,9 +33,7 @@ rygel_preferences_SOURCES = rygel-preferences-dialog.c \
 			    rygel-general-pref-vbox.c \
 			    rygel-general-pref-vbox.vala \
 			    rygel-plugin-pref-vbox.c \
-			    rygel-plugin-pref-vbox.vala \
-			    rygel-config-editor.c \
-			    rygel-config-editor.vala
+			    rygel-plugin-pref-vbox.vala
 
 rygel.stamp: $(filter %.vala,$(rygel_preferences_SOURCES))
 	$(VALAC) -C --vapidir=$(rygeldir) \

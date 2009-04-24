@@ -28,7 +28,7 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel.h \
 		rygel-media-server.c \
 		rygel-media-server-factory.c \
-		rygel-config-reader.c \
+		rygel-configuration.c \
 		rygel-main.c \
 		rygel-content-directory.c \
 		rygel-browse.c \
@@ -108,7 +108,7 @@ rygel_LDFLAGS = -export-dynamic
 
 VAPI_FILES = rygel-1.0.vapi
 
-VAPI_SOURCE_FILES = rygel-config-reader.vala \
+VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-content-directory.vala \
 		    rygel-connection-manager.vala \
 		    rygel-media-receiver-registrar.vala \
@@ -145,7 +145,7 @@ rygel-1.0.vapi: $(VAPI_SOURCE_FILES)
 
 noinst_LIBRARIES = librygel-configuration.a
 
-librygel_configuration_a_SOURCES = rygel-config-reader.c \
+librygel_configuration_a_SOURCES = rygel-configuration.c \
 				   cstuff.c \
                                    cstuff.h
 

@@ -28,7 +28,7 @@ using CStuff;
 /**
  * Reads the user configuration for Rygel.
  */
-public class Rygel.ConfigReader {
+public class Rygel.Configuration {
     protected static const string ROOT_GCONF_PATH = "/apps/rygel/";
     protected static const string IP_KEY = "host-ip";
     protected static const string PORT_KEY = "port";
@@ -43,7 +43,7 @@ public class Rygel.ConfigReader {
     public string host_ip;
     public int port;
 
-    public ConfigReader () {
+    public Configuration () {
         this.gconf = GConf.Client.get_default ();
 
         this.enable_xbox = this.get_bool ("general", XBOX_KEY, false);
@@ -127,6 +127,42 @@ public class Rygel.ConfigReader {
         }
 
         return val;
+    }
+
+    public void set_string (string section,
+                            string key,
+                            string value) {
+        var path = ROOT_GCONF_PATH + section + "/" + key;
+
+        try {
+            this.gconf.set_string (path, value);
+        } catch (GLib.Error error) {
+            // No big deal
+        }
+    }
+
+    public void set_int (string section,
+                         string key,
+                         int    value) {
+        var path = ROOT_GCONF_PATH + section + "/" + key;
+
+        try {
+            this.gconf.set_int (path, value);
+        } catch (GLib.Error error) {
+            // No big deal
+        }
+    }
+
+    public void set_bool (string section,
+                          string key,
+                          bool   value) {
+        var path = ROOT_GCONF_PATH + section + "/" + key;
+
+        try {
+            this.gconf.set_bool (path, value);
+        } catch (GLib.Error error) {
+            // No big deal
+        }
     }
 }
 

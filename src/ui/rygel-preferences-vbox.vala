@@ -23,18 +23,18 @@
 using Gtk;
 
 public class Rygel.PreferencesVBox : VBox {
-    protected ConfigEditor config_editor;
+    protected Configuration config;
 
     public string title;
     public string section;
 
-    public PreferencesVBox (ConfigEditor config_editor,
-                            string       title,
-                            string       section) {
+    public PreferencesVBox (Configuration config,
+                            string        title,
+                            string        section) {
         this.section = section;
         this.title = title;
 
-        this.config_editor = config_editor;
+        this.config = config;
     }
 
     protected void add_string_pref (string  name,
@@ -109,23 +109,17 @@ public class Rygel.PreferencesVBox : VBox {
                         var name = widget.get_name ();
                         var number = ((SpinButton) widget).get_value ();
 
-                        this.config_editor.set_int (this.section,
-                                                    name,
-                                                    (int) number);
+                        this.config.set_int (this.section, name, (int) number);
                 } else if (widget is Entry) {
                         var name = widget.get_name ();
                         var text = ((Entry) widget).get_text ();
 
-                        this.config_editor.set_string (this.section,
-                                                       name,
-                                                       text);
+                        this.config.set_string (this.section, name, text);
                 } else if (widget is CheckButton) {
                         var name = widget.get_name ();
                         var active = ((CheckButton) widget).get_active ();
 
-                        this.config_editor.set_bool (this.section,
-                                                     name,
-                                                     active);
+                        this.config.set_bool (this.section, name, active);
                 }
             }
         }

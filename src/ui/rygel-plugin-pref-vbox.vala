@@ -23,26 +23,26 @@
 using Gtk;
 
 public class Rygel.PluginPrefVBox : PreferencesVBox {
-    public PluginPrefVBox (ConfigEditor config_editor,
-                           string       section) {
-        base (config_editor, section, section);
+    public PluginPrefVBox (Configuration config,
+                           string        section) {
+        base (config, section, section);
 
-        var enabled = config_editor.get_enabled (section);
-        var title = config_editor.get_title (section);
-        var udn = config_editor.get_udn (section);
+        var enabled = config.get_enabled (section);
+        var title = config.get_title (section);
+        var udn = config.get_udn (section);
 
-        this.add_boolean_pref (ConfigReader.ENABLED_KEY,
+        this.add_boolean_pref (Configuration.ENABLED_KEY,
                                "Enabled",
                                enabled,
                                "Enable/Disable this plugin");
 
-        this.add_string_pref (ConfigReader.TITLE_KEY,
+        this.add_string_pref (Configuration.TITLE_KEY,
                               "Title",
                               title,
                               "This is the name that will appear on the " +
                               "client UIs to");
 
-        this.add_string_pref (ConfigReader.UDN_KEY,
+        this.add_string_pref (Configuration.UDN_KEY,
                               "UDN",
                               udn,
                               "The Unique Device Name (UDN) for this plugin." +
