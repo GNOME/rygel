@@ -31,10 +31,10 @@ public class Rygel.PreferencesDialog : Dialog {
         var config = new Configuration ();
 
         this.notebook = new Notebook ();
-        this.add_pref_page (new GeneralPrefVBox (config));
-        this.add_pref_page (new PluginPrefVBox (config, "Tracker"));
-        this.add_pref_page (new PluginPrefVBox (config, "DVB"));
-        this.add_pref_page (new PluginPrefVBox (config, "Test"));
+        this.add_pref_page (new GeneralPrefPage (config));
+        this.add_pref_page (new PluginPrefPage (config, "Tracker"));
+        this.add_pref_page (new PluginPrefPage (config, "DVB"));
+        this.add_pref_page (new PluginPrefPage (config, "Test"));
 
         this.vbox.add (this.notebook);
 
@@ -51,9 +51,9 @@ public class Rygel.PreferencesDialog : Dialog {
         this.show_all ();
     }
 
-    private void add_pref_page (PreferencesVBox pref_vbox) {
-        var label = new Label (pref_vbox.title);
-        this.notebook.append_page (pref_vbox, label);
+    private void add_pref_page (PreferencesPage page) {
+        var label = new Label (page.title);
+        this.notebook.append_page (page, label);
     }
 
     private void on_response (PreferencesDialog dialog, int response_id) {
@@ -73,11 +73,11 @@ public class Rygel.PreferencesDialog : Dialog {
 
     private void apply_settings () {
         foreach (var child in this.notebook.get_children ()) {
-            if (!(child is PreferencesVBox)) {
+            if (!(child is PreferencesPage)) {
                 break;
             }
 
-            ((PreferencesVBox) child).save ();
+            ((PreferencesPage) child).save ();
         }
     }
 

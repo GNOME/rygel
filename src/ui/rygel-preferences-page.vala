@@ -22,13 +22,13 @@
  */
 using Gtk;
 
-public class Rygel.PreferencesVBox : VBox {
+public class Rygel.PreferencesPage : VBox {
     protected Configuration config;
 
     public string title;
     public string section;
 
-    public PreferencesVBox (Configuration config,
+    public PreferencesPage (Configuration config,
                             string        title,
                             string        section) {
         this.section = section;

@@ -22,8 +22,8 @@
  */
 using Gtk;
 
-public class Rygel.GeneralPrefVBox : PreferencesVBox {
-    public GeneralPrefVBox (Configuration config) {
+public class Rygel.GeneralPrefPage : PreferencesPage {
+    public GeneralPrefPage (Configuration config) {
         base (config, "General", "general");
 
         this.add_string_pref (Configuration.IP_KEY,

@@ -22,8 +22,8 @@
  */
 using Gtk;
 
-public class Rygel.PluginPrefVBox : PreferencesVBox {
-    public PluginPrefVBox (Configuration config,
+public class Rygel.PluginPrefPage : PreferencesPage {
+    public PluginPrefPage (Configuration config,
                            string        section) {
         base (config, section, section);
 
