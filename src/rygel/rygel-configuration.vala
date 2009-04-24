@@ -64,9 +64,14 @@ public class Rygel.Configuration {
     }
 
     public string get_udn (string section) {
-        var new_udn = Utils.generate_random_udn ();
+        var udn = this.get_string (section, UDN_KEY, null);
+        if (udn == null) {
+            udn = Utils.generate_random_udn ();
 
-        return this.get_string (section, UDN_KEY, new_udn);
+            this.set_string (section, UDN_KEY, udn);
+        }
+
+        return udn;
     }
 
     public string? get_string (string  section,
