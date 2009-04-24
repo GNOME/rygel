@@ -38,9 +38,9 @@ public class Rygel.PreferencesDialog : Dialog {
 
         this.vbox.add (this.notebook);
 
-        this.add_button (STOCK_OK, ResponseType.ACCEPT);
         this.add_button (STOCK_APPLY, ResponseType.APPLY);
         this.add_button (STOCK_CANCEL, ResponseType.REJECT);
+        this.add_button (STOCK_OK, ResponseType.ACCEPT);
 
         this.response += this.on_response;
 
