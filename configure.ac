@@ -154,3 +154,15 @@ src/plugins/test/Makefile
 data/Makefile
 data/xml/Makefile
 ])
+
+echo "
+
+                    ${PACKAGE} ${VERSION}
+                    ============
+
+
+	Prefix:                 ${prefix}
+        Source code location:   ${srcdir}
+        Compiler:               ${CC}
+        CFLAGS:                 ${CFLAGS}
+"
