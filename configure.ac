@@ -1,8 +1,12 @@
 AC_PREREQ(2.53)
-AC_INIT(rygel, 0.2.3, http://live.gnome.org/Rygel)
-AM_INIT_AUTOMAKE()
-AC_CONFIG_SRCDIR(src/rygel/rygel-media-server.vala)
-AM_CONFIG_HEADER(config.h)
+AC_INIT([rygel],
+	m4_esyscmd([GNOME_TAG_PATTERN=RYGEL build-aux/git-version-gen .tarball-version]),
+	[http://live.gnome.org/Rygel])
+AC_CONFIG_AUX_DIR([build-aux])
+AM_INIT_AUTOMAKE
+AC_CONFIG_SRCDIR([src/rygel/rygel-media-server.vala])
+AM_CONFIG_HEADER([config.h])
+AC_CONFIG_MACRO_DIR([m4])
 AM_MAINTAINER_MODE
 
 # Disable generation of static libraries
