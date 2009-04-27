@@ -23,29 +23,43 @@
 using Gtk;
 
 public class Rygel.PluginPrefPage : PreferencesPage {
-    public PluginPrefPage (Configuration config,
+    const string ENABLED_CHECK = "-enabled-checkbutton";
+    const string TITLE_ENTRY = "-title-entry";
+    const string UDN_ENTRY = "-udn-entry";
+
+    private CheckButton enabled_check;
+    private Entry title_entry;
+    private Entry udn_entry;
+
+    public PluginPrefPage (Builder       builder,
+                           Configuration config,
                            string        section) {
-        base (config, section, section);
+        base (config, section);
 
-        var enabled = config.get_enabled (section);
-        var title = config.get_title (section);
-        var udn = config.get_udn (section);
+        this.enabled_check = (CheckButton) builder.get_object (section.down () +
+                                                               ENABLED_CHECK);
+        assert (this.enabled_check != null);
+        this.title_entry = (Entry) builder.get_object (section.down () +
+                                                       TITLE_ENTRY);
+        assert (this.title_entry != null);
+        this.udn_entry = (Entry) builder.get_object (section.down () +
+                                                     UDN_ENTRY);
+        assert (this.udn_entry != null);
 
-        this.add_boolean_pref (Configuration.ENABLED_KEY,
-                               "Enabled",
-                               enabled,
-                               "Enable/Disable this plugin");
+        this.enabled_check.active = config.get_enabled (section);
+        this.title_entry.set_text (config.get_title (section));
+        this.udn_entry.set_text (config.get_udn (section));
+    }
 
-        this.add_string_pref (Configuration.TITLE_KEY,
-                              "Title",
-                              title,
-                              "This is the name that will appear on the " +
-                              "client UIs to");
-
-        this.add_string_pref (Configuration.UDN_KEY,
-                              "UDN",
-                              udn,
-                              "The Unique Device Name (UDN) for this plugin." +
-                              " Usually, there is no need to change this.");
+    public override void save () {
+        this.config.set_bool (this.section,
+                              Configuration.ENABLED_KEY,
+                              this.enabled_check.active);
+        this.config.set_string (this.section,
+                                Configuration.TITLE_KEY,
+                                this.title_entry.get_text ());
+        this.config.set_string (this.section,
+                                Configuration.UDN_KEY,
+                                this.udn_entry.get_text ());
     }
 }

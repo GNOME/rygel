@@ -21,42 +21,44 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 using Gtk;
+using Gee;
+using CStuff;
 
-public class Rygel.PreferencesDialog : Dialog {
-    Notebook notebook;
+public class Rygel.PreferencesDialog : GLib.Object {
+    const string UI_FILE = BuildConfig.DATA_DIR + "/rygel-preferences.ui";
+    const string DIALOG = "preferences-dialog";
 
-    public PreferencesDialog () {
-        this.title = "Rygel Preferences";
+    Builder builder;
+    Dialog dialog;
+    ArrayList<PreferencesPage> pages;
 
+    public PreferencesDialog () throws Error {
         var config = new Configuration ();
 
-        this.notebook = new Notebook ();
-        this.add_pref_page (new GeneralPrefPage (config));
-        this.add_pref_page (new PluginPrefPage (config, "Tracker"));
-        this.add_pref_page (new PluginPrefPage (config, "DVB"));
-        this.add_pref_page (new PluginPrefPage (config, "Test"));
+        this.builder = new Builder ();
 
-        this.vbox.add (this.notebook);
+        this.builder.add_from_file (UI_FILE);
 
-        this.add_button (STOCK_APPLY, ResponseType.APPLY);
-        this.add_button (STOCK_CANCEL, ResponseType.REJECT);
-        this.add_button (STOCK_OK, ResponseType.ACCEPT);
+        this.dialog = (Dialog) this.builder.get_object (DIALOG);
+        assert (this.dialog != null);
 
-        this.response += this.on_response;
-        this.delete_event += (dialog, event) => {
+        this.pages = new ArrayList<PreferencesPage> ();
+        this.pages.add (new GeneralPrefPage (this.builder, config));
+        this.pages.add (new PluginPrefPage (this.builder, config, "Tracker"));
+        this.pages.add (new PluginPrefPage (this.builder, config, "DVB"));
+        this.pages.add (new PluginPrefPage (this.builder, config, "Test"));
+
+        this.dialog.response += this.on_response;
+        this.dialog.delete_event += (dialog, event) => {
                                 Gtk.main_quit ();
                                 return false;
         };
 
-        this.show_all ();
+        this.dialog.show_all ();
+
     }
 
-    private void add_pref_page (PreferencesPage page) {
-        var label = new Label (page.title);
-        this.notebook.append_page (page, label);
-    }
-
-    private void on_response (PreferencesDialog dialog, int response_id) {
+    private void on_response (Dialog dialog, int response_id) {
         switch (response_id) {
             case ResponseType.REJECT:
                 Gtk.main_quit ();
@@ -72,12 +74,8 @@ public class Rygel.PreferencesDialog : Dialog {
     }
 
     private void apply_settings () {
-        foreach (var child in this.notebook.get_children ()) {
-            if (!(child is PreferencesPage)) {
-                break;
-            }
-
-            ((PreferencesPage) child).save ();
+        foreach (var page in this.pages) {
+            page.save ();
         }
     }
 
@@ -88,9 +86,13 @@ public class Rygel.PreferencesDialog : Dialog {
     public static int main (string[] args) {
         Gtk.init (ref args);
 
-        var dialog = new PreferencesDialog ();
+        try {
+            var dialog = new PreferencesDialog ();
 
-        dialog.run ();
+            dialog.run ();
+        } catch (Error err) {
+            error ("Failed to create preferences dialog: %s\n", err.message);
+        }
 
         return 0;
     }

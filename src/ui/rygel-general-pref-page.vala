@@ -23,18 +23,34 @@
 using Gtk;
 
 public class Rygel.GeneralPrefPage : PreferencesPage {
-    public GeneralPrefPage (Configuration config) {
-        base (config, "General", "general");
+    const string IP_ENTRY = "ip-entry";
+    const string PORT_SPINBUTTON = "port-spinbutton";
 
-        this.add_string_pref (Configuration.IP_KEY,
-                              "IP",
-                              this.config.host_ip,
-                              "The IP to advertise the UPnP MediaServer on");
-        this.add_int_pref (Configuration.PORT_KEY,
-                           "Port",
-                           this.config.port,
-                           uint16.MIN,
-                           uint16.MAX,
-                           "The port to advertise the UPnP MediaServer on");
+    private Entry ip_entry;
+    private SpinButton port_spin;
+
+    public GeneralPrefPage (Builder       builder,
+                            Configuration config) throws Error {
+        base (config, "general");
+
+        this.ip_entry = (Entry) builder.get_object (IP_ENTRY);
+        assert (this.ip_entry != null);
+        this.port_spin = (SpinButton) builder.get_object (PORT_SPINBUTTON);
+        assert (this.port_spin != null);
+
+        if (config.host_ip != null) {
+            this.ip_entry.set_text (config.host_ip);
+        }
+        this.port_spin.set_value (config.port);
+    }
+
+    public override void save () {
+        this.config.set_string (this.section,
+                                Configuration.IP_KEY,
+                                this.ip_entry.get_text ());
+
+        this.config.set_int (this.section,
+                             Configuration.PORT_KEY,
+                             (int) this.port_spin.get_value ());
     }
 }
