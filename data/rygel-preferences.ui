@@ -25,14 +25,14 @@
                     <property name="n_rows">2</property>
                     <property name="n_columns">2</property>
                     <child>
-                      <object class="GtkLabel" id="ip">
+                      <object class="GtkLabel" id="ip-label">
                         <property name="visible">True</property>
                         <property name="tooltip_text">The IP to advertise the UPnP MediaServer on.</property>
                         <property name="label" translatable="yes">IP Adress</property>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="label6">
+                      <object class="GtkLabel" id="port-label">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">Port</property>
                       </object>
@@ -89,7 +89,7 @@
                 <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkCheckButton" id="enable-checkbutton">
+                  <object class="GtkCheckButton" id="tracker-enabled-checkbutton">
                     <property name="label" translatable="yes">Enabled</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -104,7 +104,7 @@
                   <object class="GtkHBox" id="hbox3">
                     <property name="visible">True</property>
                     <child>
-                      <object class="GtkLabel" id="label4">
+                      <object class="GtkLabel" id="tracker-title-label">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">Title</property>
                       </object>
@@ -132,7 +132,7 @@
                   <object class="GtkHBox" id="hbox4">
                     <property name="visible">True</property>
                     <child>
-                      <object class="GtkLabel" id="label5">
+                      <object class="GtkLabel" id="tracker-udn-label">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">UDN</property>
                       </object>
@@ -176,7 +176,7 @@
                 <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkCheckButton" id="enable-checkbutton1">
+                  <object class="GtkCheckButton" id="dvb-enabled-checkbutton">
                     <property name="label" translatable="yes">Enabled</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -191,7 +191,7 @@
                   <object class="GtkHBox" id="hbox5">
                     <property name="visible">True</property>
                     <child>
-                      <object class="GtkLabel" id="label7">
+                      <object class="GtkLabel" id="dvb-title-label">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">Title</property>
                       </object>
@@ -220,7 +220,7 @@
                   <object class="GtkHBox" id="hbox6">
                     <property name="visible">True</property>
                     <child>
-                      <object class="GtkLabel" id="label8">
+                      <object class="GtkLabel" id="dvb-udn-label">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">UDN</property>
                       </object>
@@ -265,7 +265,7 @@
                 <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkCheckButton" id="test-enable-checkbutton">
+                  <object class="GtkCheckButton" id="test-enabled-checkbutton">
                     <property name="label" translatable="yes">Enabled</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -281,7 +281,7 @@
                   <object class="GtkHBox" id="hbox7">
                     <property name="visible">True</property>
                     <child>
-                      <object class="GtkLabel" id="label9">
+                      <object class="GtkLabel" id="test-title-label">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">Title</property>
                       </object>
@@ -310,7 +310,7 @@
                   <object class="GtkHBox" id="hbox8">
                     <property name="visible">True</property>
                     <child>
-                      <object class="GtkLabel" id="label10">
+                      <object class="GtkLabel" id="test-udn-label">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">UDN</property>
                       </object>
