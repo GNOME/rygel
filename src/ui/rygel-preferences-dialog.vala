@@ -60,10 +60,10 @@ public class Rygel.PreferencesDialog : GLib.Object {
 
     private void on_response (Dialog dialog, int response_id) {
         switch (response_id) {
-            case ResponseType.REJECT:
+            case ResponseType.CANCEL:
                 Gtk.main_quit ();
                 break;
-            case ResponseType.ACCEPT:
+            case ResponseType.OK:
                 apply_settings ();
                 Gtk.main_quit ();
                 break;
