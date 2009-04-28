@@ -36,12 +36,23 @@ public class Rygel.Configuration {
     protected static const string ENABLED_KEY = "enabled";
     protected static const string TITLE_KEY = "title";
     protected static const string UDN_KEY = "UDN";
+    protected static const string TRANSCODING_KEY = "enable-transcoding";
+    protected static const string MP3_TRANSCODER_KEY = "enable-mp3-transcoder";
+    protected static const string MP2TS_TRANSCODER_KEY =
+                                                    "enable-mp2ts-transcoder";
+    protected static const string LPCM_TRANSCODER_KEY =
+                                                    "enable-lpcm-transcoder";
 
     protected GConf.Client gconf;
 
     public bool enable_xbox;
     public string host_ip;
     public int port;
+
+    public bool transcoding;
+    public bool mp3_transcoder;
+    public bool mp2ts_transcoder;
+    public bool lpcm_transcoder;
 
     public Configuration () {
         this.gconf = GConf.Client.get_default ();
@@ -53,6 +64,16 @@ public class Rygel.Configuration {
                                   uint16.MIN,
                                   uint16.MAX,
                                   0);
+        this.transcoding = this.get_bool ("general", TRANSCODING_KEY, true);
+        this.mp3_transcoder = this.get_bool ("general",
+                                             MP3_TRANSCODER_KEY,
+                                             true);
+        this.mp2ts_transcoder = this.get_bool ("general",
+                                               MP2TS_TRANSCODER_KEY,
+                                               true);
+        this.lpcm_transcoder = this.get_bool ("general",
+                                              LPCM_TRANSCODER_KEY,
+                                              true);
     }
 
     public bool get_enabled (string section) {
