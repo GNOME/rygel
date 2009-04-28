@@ -68,25 +68,12 @@ public class Rygel.GeneralPrefPage : PreferencesPage {
     }
 
     public override void save () {
-        this.config.set_string (this.section,
-                                Configuration.IP_KEY,
-                                this.ip_entry.get_text ());
+        this.config.host_ip = this.ip_entry.get_text ();
+        this.config.port = (int) this.port_spin.get_value ();
 
-        this.config.set_int (this.section,
-                             Configuration.PORT_KEY,
-                             (int) this.port_spin.get_value ());
-
-        this.config.set_bool (this.section,
-                              Configuration.TRANSCODING_KEY,
-                              this.trans_check.active);
-        this.config.set_bool (this.section,
-                              Configuration.MP3_TRANSCODER_KEY,
-                              this.mp3_check.active);
-        this.config.set_bool (this.section,
-                              Configuration.MP2TS_TRANSCODER_KEY,
-                              this.mp2ts_check.active);
-        this.config.set_bool (this.section,
-                              Configuration.LPCM_TRANSCODER_KEY,
-                              this.lpcm_check.active);
+        this.config.transcoding = this.trans_check.active;
+        this.config.mp3_transcoder = this.mp3_check.active;
+        this.config.mp2ts_transcoder = this.mp2ts_check.active;
+        this.config.lpcm_transcoder = this.lpcm_check.active;
     }
 }

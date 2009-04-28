@@ -45,35 +45,77 @@ public class Rygel.Configuration {
 
     protected GConf.Client gconf;
 
-    public bool enable_xbox;
-    public string host_ip;
-    public int port;
+    public bool enable_xbox {
+        get {
+            return this.get_bool ("general", XBOX_KEY, false);
+        }
+        set {
+            this.set_bool ("general", XBOX_KEY, value);
+        }
+    }
 
-    public bool transcoding;
-    public bool mp3_transcoder;
-    public bool mp2ts_transcoder;
-    public bool lpcm_transcoder;
+    private string _host_ip;
+    public string host_ip {
+        get {
+            _host_ip = this.get_string ("general", IP_KEY, null);
+            return _host_ip;
+        }
+        set {
+            this.set_string ("general", IP_KEY, value);
+        }
+    }
+
+    public int port {
+        get {
+            return this.get_int ("general",
+                                 PORT_KEY,
+                                 uint16.MIN,
+                                 uint16.MAX,
+                                 0);
+        }
+        set {
+            this.set_int ("general", PORT_KEY, value);
+        }
+    }
+
+    public bool transcoding {
+        get {
+            return this.get_bool ("general", TRANSCODING_KEY, true);
+        }
+        set {
+            this.set_bool ("general", TRANSCODING_KEY, value);
+        }
+    }
+
+    public bool mp3_transcoder {
+        get {
+            return this.get_bool ("general", MP3_TRANSCODER_KEY, true);
+        }
+        set {
+            this.set_bool ("general", MP3_TRANSCODER_KEY, value);
+        }
+    }
+
+    public bool mp2ts_transcoder {
+        get {
+            return this.get_bool ("general", MP2TS_TRANSCODER_KEY, true);
+        }
+        set {
+            this.set_bool ("general", MP2TS_TRANSCODER_KEY, value);
+        }
+    }
+
+    public bool lpcm_transcoder {
+        get {
+            return this.get_bool ("general", LPCM_TRANSCODER_KEY, true);
+        }
+        set {
+            this.set_bool ("general", LPCM_TRANSCODER_KEY, value);
+        }
+    }
 
     public Configuration () {
         this.gconf = GConf.Client.get_default ();
-
-        this.enable_xbox = this.get_bool ("general", XBOX_KEY, false);
-        this.host_ip = this.get_string ("general", IP_KEY, null);
-        this.port = this.get_int ("general",
-                                  PORT_KEY,
-                                  uint16.MIN,
-                                  uint16.MAX,
-                                  0);
-        this.transcoding = this.get_bool ("general", TRANSCODING_KEY, true);
-        this.mp3_transcoder = this.get_bool ("general",
-                                             MP3_TRANSCODER_KEY,
-                                             true);
-        this.mp2ts_transcoder = this.get_bool ("general",
-                                               MP2TS_TRANSCODER_KEY,
-                                               true);
-        this.lpcm_transcoder = this.get_bool ("general",
-                                              LPCM_TRANSCODER_KEY,
-                                              true);
     }
 
     public bool get_enabled (string section) {
