@@ -49,6 +49,8 @@ public class Rygel.PluginPrefPage : PreferencesPage {
         this.enabled_check.active = config.get_enabled (section);
         this.title_entry.set_text (config.get_title (section));
         this.udn_entry.set_text (config.get_udn (section));
+
+        this.enabled_check.toggled += this.on_enabled_check_toggled;
     }
 
     public override void save () {
@@ -61,5 +63,10 @@ public class Rygel.PluginPrefPage : PreferencesPage {
         this.config.set_string (this.section,
                                 Configuration.UDN_KEY,
                                 this.udn_entry.get_text ());
+    }
+
+    private void on_enabled_check_toggled (CheckButton enabled_check) {
+        this.title_entry.sensitive =
+        this.udn_entry.sensitive = enabled_check.active;
     }
 }

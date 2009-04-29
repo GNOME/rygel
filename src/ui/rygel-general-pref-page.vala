@@ -65,6 +65,8 @@ public class Rygel.GeneralPrefPage : PreferencesPage {
         this.mp3_check.active = this.config.mp3_transcoder;
         this.mp2ts_check.active = this.config.mp2ts_transcoder;
         this.lpcm_check.active = this.config.lpcm_transcoder;
+
+        this.trans_check.toggled += this.on_trans_check_toggled;
     }
 
     public override void save () {
@@ -75,5 +77,11 @@ public class Rygel.GeneralPrefPage : PreferencesPage {
         this.config.mp3_transcoder = this.mp3_check.active;
         this.config.mp2ts_transcoder = this.mp2ts_check.active;
         this.config.lpcm_transcoder = this.lpcm_check.active;
+    }
+
+    private void on_trans_check_toggled (CheckButton trans_check) {
+        this.mp3_check.sensitive =
+        this.mp2ts_check.sensitive =
+        this.lpcm_check.sensitive = trans_check.active;
     }
 }
