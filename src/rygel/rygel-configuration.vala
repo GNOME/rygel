@@ -32,7 +32,6 @@ public class Rygel.Configuration {
     protected static const string ROOT_GCONF_PATH = "/apps/rygel/";
     protected static const string IP_KEY = "host-ip";
     protected static const string PORT_KEY = "port";
-    protected static const string XBOX_KEY = "enable-xbox";
     protected static const string ENABLED_KEY = "enabled";
     protected static const string TITLE_KEY = "title";
     protected static const string UDN_KEY = "UDN";
@@ -44,15 +43,6 @@ public class Rygel.Configuration {
                                                     "enable-lpcm-transcoder";
 
     protected GConf.Client gconf;
-
-    public bool enable_xbox {
-        get {
-            return this.get_bool ("general", XBOX_KEY, false);
-        }
-        set {
-            this.set_bool ("general", XBOX_KEY, value);
-        }
-    }
 
     private string _host_ip;
     public string host_ip {

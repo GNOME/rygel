@@ -47,14 +47,6 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
                                  ConnectionManager.DESCRIPTION_PATH,
                                  typeof (ConnectionManager));
         this.add_resource (resource_info);
-
-        /* Register Rygel.MediaReceiverRegistrar */
-        resource_info = new ResourceInfo
-                                (MediaReceiverRegistrar.UPNP_ID,
-                                 MediaReceiverRegistrar.UPNP_TYPE,
-                                 MediaReceiverRegistrar.DESCRIPTION_PATH,
-                                 typeof (MediaReceiverRegistrar));
-        this.add_resource (resource_info);
     }
 
     public void add_resource (ResourceInfo resource_info) {

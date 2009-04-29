@@ -45,7 +45,6 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-resource-info.c \
 		rygel-icon-info.c \
 		rygel-connection-manager.c \
-		rygel-media-receiver-registrar.c \
 		rygel-media-object.c \
 		rygel-media-container.c \
 		rygel-simple-async-result.c \
@@ -75,7 +74,6 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-resource-info.c \
 		rygel-icon-info.c \
 		rygel-connection-manager.c \
-		rygel-media-receiver-registrar.c \
 		rygel-media-object.c \
 		rygel-media-container.c \
 		rygel-simple-async-result.c \
@@ -111,7 +109,6 @@ VAPI_FILES = rygel-1.0.vapi
 VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-content-directory.vala \
 		    rygel-connection-manager.vala \
-		    rygel-media-receiver-registrar.vala \
 		    rygel-transcode-manager.vala \
 		    rygel-http-server.vala \
 		    rygel-state-machine.vala \

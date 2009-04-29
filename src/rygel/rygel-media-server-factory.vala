@@ -37,7 +37,6 @@ public errordomain MediaServerFactoryError {
  */
 public class Rygel.MediaServerFactory {
     public static const string DESC_DOC = "xml/description.xml";
-    public static const string XBOX_DESC_DOC = "xml/description-xbox360.xml";
     public static const string DESC_PREFIX = "Rygel";
 
     private Configuration config;
@@ -77,14 +76,7 @@ public class Rygel.MediaServerFactory {
 
     private Xml.Doc * create_desc (Plugin plugin,
                                    string desc_path) throws GLib.Error {
-        string orig_desc_path;
-
-        if (this.config.enable_xbox)
-            /* Use Xbox 360 specific description */
-            orig_desc_path = Path.build_filename (BuildConfig.DATA_DIR,
-                                                  XBOX_DESC_DOC);
-        else
-            orig_desc_path = Path.build_filename (BuildConfig.DATA_DIR,
+        var orig_desc_path = Path.build_filename (BuildConfig.DATA_DIR,
                                                   DESC_DOC);
 
         Xml.Doc *doc = Xml.Parser.parse_file (orig_desc_path);
@@ -96,10 +88,6 @@ public class Rygel.MediaServerFactory {
 
         /* Modify description to include Plugin-specific stuff */
         this.prepare_desc_for_plugin (doc, plugin);
-
-        if (this.config.enable_xbox)
-            /* Put/Set XboX specific stuff to description */
-            add_xbox_specifics (doc);
 
         save_modified_desc (doc, desc_path);
 
@@ -115,23 +103,6 @@ public class Rygel.MediaServerFactory {
         context.host_path (BuildConfig.DATA_DIR, "");
 
         return context;
-    }
-
-    private void add_xbox_specifics (Xml.Doc doc) {
-        Xml.Node *element;
-
-        element = Utils.get_xml_element ((Xml.Node *) doc,
-                                         "root",
-                                         "device",
-                                         "friendlyName");
-        /* friendlyName */
-        if (element == null) {
-            warning ("Element /root/device/friendlyName not found.");
-
-            return;
-        }
-
-        element->add_content (": 1 : Windows Media Connect");
     }
 
     private void prepare_desc_for_plugin (Xml.Doc doc, Plugin plugin) {

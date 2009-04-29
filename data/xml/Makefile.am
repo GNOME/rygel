@@ -1,8 +1,6 @@
 xml_DATA = description.xml \
 	   ContentDirectory.xml \
-	   ConnectionManager.xml \
-	   X_MS_MediaReceiverRegistrar1.xml \
-	   description-xbox360.xml
+	   ConnectionManager.xml
 
 xmldir = $(datadir)/rygel/xml
 
