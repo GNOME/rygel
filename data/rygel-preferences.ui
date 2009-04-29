@@ -49,6 +49,7 @@
                                 <child>
                                   <object class="GtkLabel" id="port-label">
                                     <property name="visible">True</property>
+                                    <property name="tooltip_text" translatable="yes">The port to bind the media server to. Set it to '0' if you don't care.</property>
                                     <property name="label" translatable="yes">Port</property>
                                   </object>
                                   <packing>
@@ -62,6 +63,7 @@
                                   <object class="GtkEntry" id="ip-entry">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <property name="tooltip_text" translatable="yes">The IP addres of the network interface to bind the media server to. Leave it blank if you want to attach Media Server to all interfaces.</property>
                                     <property name="invisible_char">&#x25CF;</property>
                                   </object>
                                   <packing>
@@ -74,6 +76,7 @@
                                   <object class="GtkSpinButton" id="port-spinbutton">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <property name="tooltip_text" translatable="yes">The port to bind the media server to. Set it to '0' if you don't care.</property>
                                     <property name="invisible_char">&#x25CF;</property>
                                     <property name="adjustment">adjustment1</property>
                                   </object>
@@ -88,6 +91,7 @@
                                 <child>
                                   <object class="GtkLabel" id="ip-label">
                                     <property name="visible">True</property>
+                                    <property name="tooltip_text" translatable="yes">The IP addres of the network interface to bind the media server to. Leave it blank if you want to attach Media Server to all interfaces.</property>
                                     <property name="label" translatable="yes">IP Address</property>
                                   </object>
                                   <packing>
@@ -253,6 +257,7 @@
                         <child>
                           <object class="GtkLabel" id="tracker-title-label">
                             <property name="visible">True</property>
+                            <property name="tooltip_text" translatable="yes">This is the text that will appear on the client UIs to represent this media source.</property>
                             <property name="label" translatable="yes">Title</property>
                           </object>
                           <packing>
@@ -264,6 +269,7 @@
                           <object class="GtkEntry" id="tracker-title-entry">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="tooltip_text" translatable="yes">This is the text that will appear on the client UIs to represent this media source.</property>
                             <property name="invisible_char">&#x25CF;</property>
                             <property name="width_chars">30</property>
                           </object>
@@ -285,6 +291,7 @@
                         <child>
                           <object class="GtkLabel" id="tracker-udn-label">
                             <property name="visible">True</property>
+                            <property name="tooltip_text" translatable="yes">The Unique Device Name (UDN) for this media source. Usually, there is no need to change this.</property>
                             <property name="label" translatable="yes">UDN</property>
                           </object>
                           <packing>
@@ -296,6 +303,7 @@
                           <object class="GtkEntry" id="tracker-udn-entry">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="tooltip_text" translatable="yes">The Unique Device Name (UDN) for this media source. Usually, there is no need to change this.</property>
                             <property name="invisible_char">&#x25CF;</property>
                             <property name="width_chars">30</property>
                           </object>
@@ -359,6 +367,7 @@
                         <child>
                           <object class="GtkLabel" id="dvb-title-label">
                             <property name="visible">True</property>
+                            <property name="tooltip_text" translatable="yes">This is the text that will appear on the client UIs to represent this media source.</property>
                             <property name="label" translatable="yes">Title</property>
                           </object>
                           <packing>
@@ -370,6 +379,7 @@
                           <object class="GtkEntry" id="dvb-title-entry">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="tooltip_text" translatable="yes">This is the text that will appear on the client UIs to represent this media source.</property>
                             <property name="invisible_char">&#x25CF;</property>
                             <property name="width_chars">30</property>
                             <property name="invisible_char_set">True</property>
@@ -392,6 +402,7 @@
                         <child>
                           <object class="GtkLabel" id="dvb-udn-label">
                             <property name="visible">True</property>
+                            <property name="tooltip_text" translatable="yes">The Unique Device Name (UDN) for this media source. Usually, there is no need to change this.</property>
                             <property name="label" translatable="yes">UDN</property>
                           </object>
                           <packing>
@@ -403,6 +414,7 @@
                           <object class="GtkEntry" id="dvb-udn-entry">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="tooltip_text" translatable="yes">The Unique Device Name (UDN) for this media source. Usually, there is no need to change this.</property>
                             <property name="invisible_char">&#x25CF;</property>
                             <property name="width_chars">30</property>
                             <property name="invisible_char_set">True</property>
@@ -467,6 +479,7 @@
                         <child>
                           <object class="GtkLabel" id="test-title-label">
                             <property name="visible">True</property>
+                            <property name="tooltip_text" translatable="yes">This is the text that will appear on the client UIs to represent this media source.</property>
                             <property name="label" translatable="yes">Title</property>
                           </object>
                           <packing>
@@ -478,6 +491,7 @@
                           <object class="GtkEntry" id="test-title-entry">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="tooltip_text" translatable="yes">This is the text that will appear on the client UIs to represent this media source.</property>
                             <property name="invisible_char">&#x25CF;</property>
                             <property name="width_chars">30</property>
                             <property name="invisible_char_set">True</property>
@@ -500,6 +514,7 @@
                         <child>
                           <object class="GtkLabel" id="test-udn-label">
                             <property name="visible">True</property>
+                            <property name="tooltip_text" translatable="yes">The Unique Device Name (UDN) for this media source. Usually, there is no need to change this.</property>
                             <property name="label" translatable="yes">UDN</property>
                           </object>
                           <packing>
@@ -511,6 +526,7 @@
                           <object class="GtkEntry" id="test-udn-entry">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="tooltip_text" translatable="yes">The Unique Device Name (UDN) for this media source. Usually, there is no need to change this.</property>
                             <property name="invisible_char">&#x25CF;</property>
                             <property name="width_chars">30</property>
                             <property name="invisible_char_set">True</property>
