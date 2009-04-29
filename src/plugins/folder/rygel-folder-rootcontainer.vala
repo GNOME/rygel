@@ -99,8 +99,8 @@ public class Folder.FolderRootContainer : MediaContainer {
                 foreach (FileInfo info in list) {
                     var file = this.root_dir.get_child(info.get_name());
                     var item = new FilesystemMediaItem(this, file, info);
-                    if (item != null)
-                        items.add(item);
+                    /*if (item != null)
+                        items.add(item); */
                 }
                 file_enumerator.next_files_async (MAX_CHILDREN, 
                                                   Priority.DEFAULT, 

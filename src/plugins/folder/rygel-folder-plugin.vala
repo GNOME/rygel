@@ -22,6 +22,7 @@ using Rygel;
 using GUPnP;
 using Gee;
 using GLib;
+using GConf;
 
 /**
  * Simple plugin which exposes the media contents of a directory via UPnP.
@@ -49,44 +50,17 @@ public Plugin load_plugin() {
 }
 
 public class Folder.FolderContentDir : ContentDirectory {
-
-    // FIXME get some configuration for this
-    public static const string DIR = "/home/jens/Media";
-
     public override MediaContainer? create_root_container () {
-        return new FolderRootContainer (DIR);
+        GConf.Client client = GConf.Client.get_default();
+        try {
+            string dir = client.get_string("/apps/rygel/Folder/folder");
+            message("Using folder %s", dir);
+            return new FolderRootContainer (dir);
+        }
+        catch (GLib.Error error) {
+            return null;
+        }
     }
 }
 
-/**
- * Very simple media item. 
- */
-public class Folder.FilesystemMediaItem : Rygel.MediaItem {
-    public FilesystemMediaItem(MediaContainer parent, 
-                               File file, 
-                               FileInfo file_info) {
-        string item_class;
-        var content_type = file_info.get_content_type();
 
-        if (content_type.has_prefix("video/")) {
-            item_class = MediaItem.VIDEO_CLASS;
-        }
-        else if (content_type.has_prefix("audio/")) {
-            item_class = MediaItem.AUDIO_CLASS;
-        }
-        else if (content_type.has_prefix("image/")) {
-            item_class = MediaItem.IMAGE_CLASS;
-        }
-        else {
-            return;
-        }
-
-        base(Checksum.compute_for_string(ChecksumType.MD5, file_info.get_name()), 
-             parent,
-             file_info.get_name(),
-             item_class);
-
-        this.mime_type = content_type;
-        this.uris.add(GLib.Markup.escape_text(file.get_uri()));
-    }
-}
