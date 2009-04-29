@@ -121,6 +121,8 @@ public class Rygel.MediaItem : MediaObject {
         } else if (uri.has_prefix ("rtsp")) {
             // FIXME: Assuming that RTSP is always accompanied with RTP over UDP
             return "rtsp-rtp-udp";
+        } else if (uri.has_prefix ("mms")) {
+            return "mms";
         } else {
             throw new DIDLLiteWriterError.UNKNOWN_URI_TYPE
                             ("Failed to probe protocol for URI %s", uri);
