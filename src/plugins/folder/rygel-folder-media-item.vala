@@ -21,13 +21,17 @@
 using GLib;
 using Rygel;
 
+public errordomain MediaItemError {
+    INVALID_CONTENT_TYPE
+}
+
 /**
  * Very simple media item. 
  */
 public class Folder.FilesystemMediaItem : Rygel.MediaItem {
     public FilesystemMediaItem(MediaContainer parent, 
                                File file, 
-                               FileInfo file_info) {
+                               FileInfo file_info) throws MediaItemError {
         string item_class;
         var content_type = file_info.get_content_type();
 
@@ -41,7 +45,7 @@ public class Folder.FilesystemMediaItem : Rygel.MediaItem {
             item_class = MediaItem.IMAGE_CLASS;
         }
         else {
-            return;
+            throw new MediaItemError.INVALID_CONTENT_TYPE("content_type %s not supported by plugin".printf(content_type));
         }
 
         base(Checksum.compute_for_string(ChecksumType.MD5, file_info.get_name()), 
