@@ -636,12 +636,12 @@
   </object>
   <object class="GtkSizeGroup" id="plugin-labels-sizegroup">
     <widgets>
-      <widget name="tracker-title-label"/>
-      <widget name="tracker-udn-label"/>
-      <widget name="dvb-title-label"/>
-      <widget name="dvb-udn-label"/>
-      <widget name="test-title-label"/>
       <widget name="test-udn-label"/>
+      <widget name="test-title-label"/>
+      <widget name="dvb-udn-label"/>
+      <widget name="dvb-title-label"/>
+      <widget name="tracker-udn-label"/>
+      <widget name="tracker-title-label"/>
     </widgets>
   </object>
 </interface>
