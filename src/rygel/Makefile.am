@@ -21,6 +21,10 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -I$(top_srcdir) -DDATA_DIR='"$(shareddir)"' \
 	    -DPLUGIN_DIR='"$(plugindir)"' -include config.h
 
+librygelincdir = $(includedir)/rygel-1.0
+
+librygelinc_HEADERS = rygel.h
+
 bin_PROGRAMS = rygel
 
 BUILT_SOURCES = rygel-1.0.vapi \
@@ -51,7 +55,6 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-media-item.c
 
 rygel_SOURCES = $(VAPI_SOURCE_FILES) \
-		rygel.h \
 		rygel-media-server.c \
 		rygel-media-server.vala \
 		rygel-media-server-factory.c \
