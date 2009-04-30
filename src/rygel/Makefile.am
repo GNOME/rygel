@@ -108,6 +108,7 @@ rygel_LDADD = $(LIBGUPNP_LIBS) \
 rygel_LDFLAGS = -export-dynamic
 
 VAPI_FILES = rygel-1.0.vapi
+DEPS_FILES = rygel-1.0.deps
 
 VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-content-directory.vala \
@@ -151,4 +152,4 @@ librygel_configuration_a_SOURCES = rygel-configuration.c \
 
 CLEANFILES = $(BUILT_SOURCES)
 MAINTAINERCLEANFILES = Makefile.in
-EXTRA_DIST = cstuff.vapi $(VAPI_FILES) $(VAPI_SOURCE_FILES)
+EXTRA_DIST = cstuff.vapi $(VAPI_FILES) $(DEPS_FILES) $(VAPI_SOURCE_FILES)
