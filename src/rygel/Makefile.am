@@ -150,6 +150,9 @@ librygel_configuration_a_SOURCES = rygel-configuration.c \
 				   cstuff.c \
                                    cstuff.h
 
+vapidir = $(VAPIDIR)
+vapi_DATA = $(VAPI_FILES) $(DEPS_FILES)
+
 CLEANFILES = $(BUILT_SOURCES)
 MAINTAINERCLEANFILES = Makefile.in
 EXTRA_DIST = cstuff.vapi $(VAPI_FILES) $(DEPS_FILES) $(VAPI_SOURCE_FILES)
