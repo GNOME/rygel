@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: rygel-1.0
+Description: GNOME (Mobile) UPnP/DLNA Media Server
+Version: @VERSION@
+Libs:
+Cflags: -I${includedir}/rygel-1.0
+Requires: gupnp-av-1.0 gconf-2.0 gee-1.0 gstreamer-0.10
+Requires.Private: uuid gmodule-2.0
