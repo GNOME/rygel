@@ -22,6 +22,52 @@ using Gee;
 using GLib;
 using Rygel;
 
+public class Folder.DirectorySearchResult : Rygel.SimpleAsyncResult<Gee.List<MediaItem>> {
+    private uint max_count;
+    private uint offset;
+
+    public DirectorySearchResult(MediaContainer parent, uint offset, uint max_count, AsyncReadyCallback callback) {
+        base(parent, callback);
+
+        this.data = new ArrayList<MediaItem>();
+        this.offset = offset;
+        this.max_count = max_count;
+    }
+
+    public void enumerate_children_ready(Object obj, AsyncResult res) {
+        File file = (File)obj;
+        try {
+            var enumerator = file.enumerate_children_finish(res);
+            var file_info = enumerator.next_file(null);
+            while (file_info != null) {
+                var f = file.get_child(file_info.get_name());
+                try {
+                    var item = new FilesystemMediaItem((MediaContainer)source_object, f, file_info);
+                    if (item != null)
+                    data.add(item);
+                } catch (MediaItemError err) {
+                    // most likely invalid content type
+                }
+                file_info = enumerator.next_file(null);
+            }
+
+            this.complete();
+        }
+        catch (Error error) {
+            this.error = error;
+            this.complete();
+        }
+    }
+
+    public Gee.List<MediaItem> get_children() {
+        uint stop = offset + max_count;
+        stop = stop.clamp(0, data.size);
+        var children = data.slice ((int)offset, (int)stop);
+
+        return children;
+    }
+}
+
 /**
  * MediaContainer which exposes the contents of a directory 
  * as items
@@ -40,6 +86,8 @@ public class Folder.FolderRootContainer : MediaContainer {
      */
     private File root_dir;
 
+    private Gee.List<AsyncResult> results;
+
     // methods overridden from MediaContainer
 
     public override void get_children(uint offset, 
@@ -47,18 +95,41 @@ public class Folder.FolderRootContainer : MediaContainer {
                                       Cancellable? cancellable, 
                                       AsyncReadyCallback callback)
     {
-        uint stop = offset + max_count;
-        stop = stop.clamp(0, this.child_count);
-        var children = this.items.slice ((int)offset, (int)stop);
-        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (this, callback);
-        res.data = children;
-        res.complete_in_idle();
+        if (items.size == 0) {
+            DirectorySearchResult res = new DirectorySearchResult(this, offset, max_count, callback);
+            root_dir.enumerate_children_async(FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE + "," +
+                                              FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME + "," +
+                                              FILE_ATTRIBUTE_STANDARD_NAME,
+                                              FileQueryInfoFlags.NONE,
+                                              Priority.DEFAULT, 
+                                              null,
+                                              res.enumerate_children_ready);
+            this.results.add(res);
+        }
+        else {
+            uint stop = offset + max_count;
+            stop = stop.clamp(0, this.child_count);
+            var children = this.items.slice ((int)offset, (int)stop);
+            var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (this, callback);
+            res.data = children;
+            res.complete_in_idle();
+        }
     }
 
     public override Gee.List<MediaObject>? get_children_finish (AsyncResult res) throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
-
-        return simple_res.data;
+        if (res is DirectorySearchResult) {
+            var dsr = (DirectorySearchResult)res;
+            foreach (var item in dsr.data) {
+                this.items.add(item);
+            }
+            this.child_count = this.items.size;
+            this.results.remove(res);
+            return dsr.get_children();
+        }
+        else {
+            var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
+            return simple_res.data;
+        }
     }
 
     public override void find_object (string id, 
@@ -122,26 +193,6 @@ public class Folder.FolderRootContainer : MediaContainer {
     }
 
     /**
-     * Async callback for GLib.File.enumerate_children_async
-     *
-     * Kick of async iteration over result
-     */
-    private void on_enumerate_children_ready(Object obj, AsyncResult res) {
-        File file = (File)obj;
-
-        try {
-            var file_enumerator = file.enumerate_children_finish(res);
-            file_enumerator.next_files_async (MAX_CHILDREN, 
-                                              Priority.DEFAULT, 
-                                              null, 
-                                              on_enumerate_children_next_ready);
-        }
-        catch (Error e) {
-            warning("Failed to enumerate children: %s", e.message);
-        }
-    }
-
-    /**
      * Create a new root container.
      * 
      * Schedules an async enumeration of the children of the 
@@ -153,15 +204,8 @@ public class Folder.FolderRootContainer : MediaContainer {
         base.root(directory_path, 0);
         this.items = new ArrayList<MediaItem> ();
         this.child_count = 0;
+        this.results = new ArrayList<AsyncResult>();
 
         this.root_dir = GLib.File.new_for_path(directory_path);
-
-        root_dir.enumerate_children_async(FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE + "," +
-                                          FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME + "," +
-                                          FILE_ATTRIBUTE_STANDARD_NAME,
-                                          FileQueryInfoFlags.NONE,
-                                          Priority.DEFAULT, 
-                                          null,
-                                          on_enumerate_children_ready);
     }
 }
