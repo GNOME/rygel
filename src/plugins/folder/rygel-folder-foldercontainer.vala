@@ -53,6 +53,7 @@ public class Folder.FolderContainer : MediaContainer {
             DirectorySearchResult res = new DirectorySearchResult(this, offset, max_count, callback);
             root_dir.enumerate_children_async(FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE + "," +
                                               FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME + "," +
+                                              FILE_ATTRIBUTE_STANDARD_TYPE + "," +
                                               FILE_ATTRIBUTE_STANDARD_NAME,
                                               FileQueryInfoFlags.NONE,
                                               Priority.DEFAULT, 
@@ -96,17 +97,38 @@ public class Folder.FolderContainer : MediaContainer {
     }
 
     public override MediaObject? find_object_finish (AsyncResult res) throws GLib.Error {
-        MediaObject item = null;
         var id = ((Rygel.SimpleAsyncResult<string>)res).data;
 
-        foreach (MediaObject tmp in this.items) {
+        return find_object_sync(id);
+    }
+
+    public MediaObject? find_object_sync(string id) {
+        MediaObject item = null;
+
+        foreach (MediaObject tmp in items) {
             if (id == tmp.id) {
                 item = tmp;
                 break;
             }
         }
 
+        if (item == null) {
+            foreach (MediaObject tmp in items) {
+                if (tmp is FolderContainer) {
+                    var folder = (FolderContainer)tmp;
+                    item = folder.find_object_sync(id);
+                    if (item != null) {
+                        break;
+                    }
+                }
+            }
+        }
+
         return item;
+    }
+
+    public string strip_parent(File child) {
+        return root_dir.get_relative_path(child);
     }
 
     /**
@@ -118,12 +140,17 @@ public class Folder.FolderContainer : MediaContainer {
      * @parameter directory_path, directory you want to expose
      */
     public FolderContainer (MediaContainer parent, string id, string directory_path, bool full) {
-        //base.root(directory_path, 0);
         base(id, parent, directory_path, 0);
+        this.root_dir = GLib.File.new_for_path(directory_path);
+
+        if (!full && parent is FolderContainer) {
+            this.title = ((FolderContainer)parent).strip_parent(root_dir);
+        }
+
         this.items = new ArrayList<MediaObject> ();
         this.child_count = 0;
         this.results = new ArrayList<AsyncResult>();
 
-        this.root_dir = GLib.File.new_for_path(directory_path);
+
     }
 }

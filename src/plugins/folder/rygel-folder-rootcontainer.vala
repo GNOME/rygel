@@ -67,6 +67,18 @@ public class Folder.FolderRootContainer : MediaContainer {
             }
         }
 
+        if (item == null) {
+            foreach (MediaObject tmp in items) {
+                if (tmp is FolderContainer) {
+                    var folder = (FolderContainer)tmp;
+                    item = folder.find_object_sync(id);
+                    if (item != null) {
+                        break;
+                    }
+                }
+            }
+        }
+
         return item;
     }
 

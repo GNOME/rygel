@@ -22,14 +22,14 @@ using Gee;
 using Rygel;
 using GLib;
 
-public class Folder.DirectorySearchResult : Rygel.SimpleAsyncResult<Gee.List<MediaItem>> {
+public class Folder.DirectorySearchResult : Rygel.SimpleAsyncResult<Gee.List<MediaObject>> {
     private uint max_count;
     private uint offset;
 
     public DirectorySearchResult(MediaContainer parent, uint offset, uint max_count, AsyncReadyCallback callback) {
         base(parent, callback);
 
-        this.data = new ArrayList<MediaItem>();
+        this.data = new ArrayList<MediaObject>();
         this.offset = offset;
         this.max_count = max_count;
     }
@@ -42,9 +42,18 @@ public class Folder.DirectorySearchResult : Rygel.SimpleAsyncResult<Gee.List<Med
             while (file_info != null) {
                 var f = file.get_child(file_info.get_name());
                 try {
-                    var item = new FilesystemMediaItem((MediaContainer)source_object, f, file_info);
+                    MediaObject item = null;
+                    if (file_info.get_file_type() == FileType.DIRECTORY) {
+                        item = new FolderContainer((MediaContainer)source_object, 
+                                                   Checksum.compute_for_string(ChecksumType.MD5, f.get_path()),
+                                                   f.get_path(), false);
+
+                    }
+                    else {
+                        item = new FilesystemMediaItem((MediaContainer)source_object, f, file_info);
+                    }
                     if (item != null)
-                    data.add(item);
+                        data.add(item);
                 } catch (MediaItemError err) {
                     // most likely invalid content type
                 }
