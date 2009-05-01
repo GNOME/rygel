@@ -90,10 +90,10 @@ public class Folder.FolderRootContainer : MediaContainer {
      * 
      * @parameter directory_path, directory you want to expose
      */
-    public FolderRootContainer (string directory_path) {
-        base.root(directory_path, 0);
+    public FolderRootContainer (string uri) {
+        base.root(uri, 0);
         this.items = new ArrayList<FolderContainer> ();
-        items.add(new FolderContainer(this, "12", directory_path, true));
+        items.add(new FolderContainer(this, "12", uri, true));
         this.child_count = 1;
     }
 }

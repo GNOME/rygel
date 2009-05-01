@@ -55,7 +55,8 @@ public class Folder.FolderContentDir : ContentDirectory {
         try {
             string dir = client.get_string("/apps/rygel/Folder/folder");
             message("Using folder %s", dir);
-            return new FolderRootContainer (dir);
+            File f = File.new_for_commandline_arg(dir);
+            return new FolderRootContainer (f.get_uri());
         }
         catch (GLib.Error error) {
             return null;

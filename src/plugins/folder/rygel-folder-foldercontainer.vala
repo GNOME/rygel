@@ -49,6 +49,7 @@ public class Folder.FolderContainer : MediaContainer {
                                       Cancellable? cancellable, 
                                       AsyncReadyCallback callback)
     {
+        debug("GetChildren called");
         if (items.size == 0) {
             DirectorySearchResult res = new DirectorySearchResult(this, offset, max_count, callback);
             root_dir.enumerate_children_async(FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE + "," +
@@ -141,7 +142,7 @@ public class Folder.FolderContainer : MediaContainer {
      */
     public FolderContainer (MediaContainer parent, string id, string directory_path, bool full) {
         base(id, parent, directory_path, 0);
-        this.root_dir = GLib.File.new_for_path(directory_path);
+        this.root_dir = GLib.File.new_for_uri(directory_path);
 
         if (!full && parent is FolderContainer) {
             this.title = ((FolderContainer)parent).strip_parent(root_dir);
