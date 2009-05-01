@@ -48,6 +48,20 @@ public class Folder.DirectorySearchResult : Rygel.SimpleAsyncResult<Gee.List<Med
         this.complete();
     }
 
+    private string? get_upnp_class_from_content_type(string content_type) {
+        if (content_type.has_prefix("video/")) {
+            return MediaItem.VIDEO_CLASS;
+        }
+        else if (content_type.has_prefix("audio/")) {
+            return MediaItem.AUDIO_CLASS;
+        }
+        else if (content_type.has_prefix("image/")) {
+            return MediaItem.IMAGE_CLASS;
+        }
+
+        return null;
+    }
+
     public void enumerate_next_ready(Object obj, AsyncResult res) {
         var enumerator = (FileEnumerator)obj;
         try {
@@ -56,7 +70,6 @@ public class Folder.DirectorySearchResult : Rygel.SimpleAsyncResult<Gee.List<Med
                 foreach (FileInfo file_info in list) {
                     debug("new file info");
                     var f = file.get_child(file_info.get_name());
-                    try {
                         MediaObject item = null;
                         if (file_info.get_file_type() == FileType.DIRECTORY) {
                             item = new FolderContainer((MediaContainer)source_object, 
@@ -65,13 +78,11 @@ public class Folder.DirectorySearchResult : Rygel.SimpleAsyncResult<Gee.List<Med
 
                         }
                         else {
-                            item = new FilesystemMediaItem((MediaContainer)source_object, f, file_info);
+                            var upnp_class = get_upnp_class_from_content_type(file_info.get_content_type());
+                            item = new FilesystemMediaItem((MediaContainer)source_object, f, upnp_class, file_info);
                         }
                         if (item != null)
                             data.add(item);
-                    } catch (MediaItemError err) {
-                        // most likely invalid content type
-                    }
 
                 }
                 enumerator.next_files_async(MAX_CHILDREN,

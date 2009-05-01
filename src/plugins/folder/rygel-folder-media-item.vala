@@ -20,40 +20,52 @@
 
 using GLib;
 using Rygel;
-
-public errordomain MediaItemError {
-    INVALID_CONTENT_TYPE
-}
+using Gst;
 
 /**
  * Very simple media item. 
  */
 public class Folder.FilesystemMediaItem : Rygel.MediaItem {
+    private bool need_source;
+    private string raw_uri;
+
     public FilesystemMediaItem(MediaContainer parent, 
                                File file, 
-                               FileInfo file_info) throws MediaItemError {
-        string item_class;
-        var content_type = file_info.get_content_type();
-
-        if (content_type.has_prefix("video/")) {
-            item_class = MediaItem.VIDEO_CLASS;
-        }
-        else if (content_type.has_prefix("audio/")) {
-            item_class = MediaItem.AUDIO_CLASS;
-        }
-        else if (content_type.has_prefix("image/")) {
-            item_class = MediaItem.IMAGE_CLASS;
-        }
-        else {
-            throw new MediaItemError.INVALID_CONTENT_TYPE("content_type %s not supported by plugin".printf(content_type));
-        }
+                               string item_class,
+                               FileInfo file_info) {
 
         base(Checksum.compute_for_string(ChecksumType.MD5, file_info.get_name()), 
              parent,
              file_info.get_name(),
              item_class);
 
+        var content_type = file_info.get_content_type();
+        need_source = false;
+
+
         this.mime_type = content_type;
-        this.uris.add(GLib.Markup.escape_text(file.get_uri()));
+        // check if rygel can handle this uri type itself
+        if (file.get_uri().has_prefix("file:") || 
+            file.get_uri().has_prefix("http:")) {
+            this.uris.add(GLib.Markup.escape_text(file.get_uri()));
+        }
+        else {
+            need_source = true;
+            raw_uri = file.get_uri();
+        }
+    }
+
+    public override Gst.Element? create_stream_source() {
+        if (need_source) {
+            dynamic Element src = ElementFactory.make("giosrc", null);
+            if (src != null) {
+                src.is_live = true;
+                src.location = raw_uri;
+            }
+
+            return src;
+        }
+
+        return null;
     }
 }
