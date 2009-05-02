@@ -40,7 +40,7 @@ public class ZdfMediathek.VideoItem : Rygel.MediaItem {
     public static VideoItem create_from_xml(MediaContainer parent, Xml.Node *item) throws VideoItemError {
         string title = null;
         VideoItem video_item = null;
-        AsxPlaylist asx = null;
+        MediathekAsxPlaylist asx = null;
 
         for (Xml.Node* item_child = item->children; item_child != null; item_child = item_child->next)
         {
@@ -60,7 +60,7 @@ public class ZdfMediathek.VideoItem : Rygel.MediaItem {
                                         var url = attr->children->content;
                                         if (url.has_suffix(".asx")) {
                                             debug("Found Url %s", url);
-                                            asx = new AsxPlaylist(url);
+                                            asx = new MediathekAsxPlaylist(url);
                                             asx.parse();
                                         }
                                     }

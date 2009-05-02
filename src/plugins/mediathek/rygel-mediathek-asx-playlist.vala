@@ -23,7 +23,7 @@ using Gee;
 using Soup;
 using Xml;
 
-public errordomain ZdfMediathek.AsxPlaylistError {
+public errordomain Rygel.MediathekAsxPlaylistError {
     XML_ERROR,
     NETWORK_ERROR
 }
@@ -37,11 +37,11 @@ public errordomain ZdfMediathek.AsxPlaylistError {
  * This parser is //only// intended to work with the simple 
  * ASX files presented by the ZDF Mediathek streaming server
  */
-public class ZdfMediathek.AsxPlaylist : Object {
+public class Rygel.MediathekAsxPlaylist : Object {
     public ArrayList<string> uris;
     private string uri;
 
-    public AsxPlaylist(string uri) {
+    public MediathekAsxPlaylist(string uri) {
         this.uris = new ArrayList<string>();
         this.uri = uri;
     }
@@ -56,7 +56,7 @@ public class ZdfMediathek.AsxPlaylist : Object {
      * to extract all of the href attributes for every entry
      * in the file
      */
-    public void parse() throws AsxPlaylistError {
+    public void parse() throws MediathekAsxPlaylistError {
         // FIXME make async using global soup session
         var session = new Soup.SessionSync();
         var message = new Soup.Message("GET",
@@ -82,13 +82,13 @@ public class ZdfMediathek.AsxPlaylist : Object {
                     }
                 }
                 else {
-                    throw new AsxPlaylistError.XML_ERROR("Could not received XML");
+                    throw new MediathekAsxPlaylistError.XML_ERROR("Could not received XML");
                 }
             }
             catch (RegexError error) { }
         }
         else {
-            throw new AsxPlaylistError.NETWORK_ERROR("Could not download playlist, error code was %u (%s)".printf(message.status_code, 
+            throw new MediathekAsxPlaylistError.NETWORK_ERROR("Could not download playlist, error code was %u (%s)".printf(message.status_code, 
                 Soup.status_get_phrase(message.status_code)));
         }
     }

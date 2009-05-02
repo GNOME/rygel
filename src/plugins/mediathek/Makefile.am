@@ -13,15 +13,15 @@ AM_CFLAGS = \
 	-DDATA_DIR='"$(datadir)"'
 
 BUILT_SOURCES = rygel-media-mediathek.stamp \
-				rygel-mediathek-asx.c \
+				rygel-mediathek-asx-playlist.c \
 				rygel-mediathek-plugin.c \
 				rygel-mediathek-item.c \
 				rygel-mediathek-container-root.c \
 				rygel-mediathek-container-rss.c
 
 librygel_media_mediathek_la_SOURCES = \
-	rygel-mediathek-asx.c \
-	rygel-mediathek-asx.vala \
+	rygel-mediathek-asx-playlist.c \
+	rygel-mediathek-asx-playlist.vala \
 	rygel-mediathek-plugin.c \
 	rygel-mediathek-plugin.vala \
 	rygel-mediathek-item.c \
