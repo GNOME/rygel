@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2009 Jens Georg <mail@jensge.org>.
+ * Copyright (C) 2009 Jens Georg <mail@jensge.org>.
  *
  * This file is part of Rygel.
  *
@@ -28,6 +28,30 @@ using Gst;
 public class Rygel.FolderGioMediaItem : Rygel.MediaItem {
     private bool need_source;
     private string raw_uri;
+
+    private static string? get_upnp_class_from_content_type(string content_type) {
+        if (content_type.has_prefix("video/")) {
+            return MediaItem.VIDEO_CLASS;
+        }
+        else if (content_type.has_prefix("audio/")) {
+            return MediaItem.AUDIO_CLASS;
+        }
+        else if (content_type.has_prefix("image/")) {
+            return MediaItem.IMAGE_CLASS;
+        }
+
+        return null;
+    }
+
+
+    public static FolderGioMediaItem? create(MediaContainer parent, File file, FileInfo file_info) {
+        var upnp_class = get_upnp_class_from_content_type(file_info.get_content_type());
+        if (upnp_class != null) {
+            return new FolderGioMediaItem(parent, file, upnp_class, file_info);
+        }
+
+        return null;
+    }
 
     public FolderGioMediaItem(MediaContainer parent, 
                                File file, 
@@ -59,7 +83,6 @@ public class Rygel.FolderGioMediaItem : Rygel.MediaItem {
         if (need_source) {
             dynamic Element src = ElementFactory.make("giosrc", null);
             if (src != null) {
-                src.is_live = true;
                 src.location = raw_uri;
             }
 

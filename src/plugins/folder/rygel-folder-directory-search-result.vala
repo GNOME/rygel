@@ -48,20 +48,6 @@ public class Rygel.FolderDirectorySearchResult : Rygel.SimpleAsyncResult<Gee.Lis
         this.complete();
     }
 
-    private string? get_upnp_class_from_content_type(string content_type) {
-        if (content_type.has_prefix("video/")) {
-            return MediaItem.VIDEO_CLASS;
-        }
-        else if (content_type.has_prefix("audio/")) {
-            return MediaItem.AUDIO_CLASS;
-        }
-        else if (content_type.has_prefix("image/")) {
-            return MediaItem.IMAGE_CLASS;
-        }
-
-        return null;
-    }
-
     public void enumerate_next_ready(Object obj, AsyncResult res) {
         var enumerator = (FileEnumerator)obj;
         try {
@@ -76,11 +62,14 @@ public class Rygel.FolderDirectorySearchResult : Rygel.SimpleAsyncResult<Gee.Lis
 
                         }
                         else {
-                            var upnp_class = get_upnp_class_from_content_type(file_info.get_content_type());
-                            item = new Rygel.FolderGioMediaItem((MediaContainer)source_object, f, upnp_class, file_info);
+                            try {
+                                item = FolderGioMediaItem.create((MediaContainer)source_object, f, file_info);
+                            } catch (Error error) {
+                            }
                         }
-                        if (item != null)
+                        if (item != null) {
                             data.add(item);
+                        }
 
                 }
                 enumerator.next_files_async(MAX_CHILDREN,
