@@ -71,7 +71,7 @@ public class Rygel.FolderDirectorySearchResult : Rygel.SimpleAsyncResult<Gee.Lis
                     var f = file.get_child(file_info.get_name());
                         MediaObject item = null;
                         if (file_info.get_file_type() == FileType.DIRECTORY) {
-                            item = new Folder.FolderContainer((MediaContainer)source_object, 
+                            item = new Rygel.FolderContainer((MediaContainer)source_object, 
                                                        f, false);
 
                         }

@@ -12,8 +12,8 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 
 BUILT_SOURCES = rygel-media-folder.stamp \
 	rygel-folder-rootcontainer.c \
-	rygel-folder-foldercontainer.c \
-	rygel-folder-directorysearch.c \
+	rygel-folder-container.c \
+	rygel-folder-directory-search-result.c \
 	rygel-folder-media-item.c \
 	rygel-folder-plugin.c
 
@@ -22,11 +22,10 @@ librygel_media_folder_la_SOURCES = \
 	rygel-folder-plugin.vala \
 	rygel-folder-rootcontainer.c \
 	rygel-folder-rootcontainer.vala \
-	rygel-folder-foldercontainer.c \
-	rygel-folder-foldercontainer.vala \
-	rygel-folder-directorysearch.vala \
-	rygel-folder-directorysearch.c \
-	rygel-folder-directorysearch.vala \
+	rygel-folder-container.c \
+	rygel-folder-container.vala \
+	rygel-folder-directory-search-result.c \
+	rygel-folder-directory-search-result.vala \
 	rygel-folder-media-item.c \
 	rygel-folder-media-item.vala
 

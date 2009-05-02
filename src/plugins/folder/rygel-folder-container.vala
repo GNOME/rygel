@@ -26,7 +26,7 @@ using Rygel;
  * MediaContainer which exposes the contents of a directory 
  * as items
  */
-public class Folder.FolderContainer : MediaContainer {
+public class Rygel.FolderContainer : MediaContainer {
 
     private const int MAX_CHILDREN = 10;
 
