@@ -13,6 +13,7 @@ AM_CFLAGS = \
 	-DDATA_DIR='"$(datadir)"'
 
 BUILT_SOURCES = rygel-media-mediathek.stamp \
+				rygel-mediathek-asx.c \
 				rygel-mediathek-plugin.c \
 				rygel-mediathek-item.c \
 				rygel-mediathek-container-root.c \
