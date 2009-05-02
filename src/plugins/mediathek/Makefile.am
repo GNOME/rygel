@@ -17,7 +17,7 @@ BUILT_SOURCES = rygel-media-mediathek.stamp \
 				rygel-mediathek-plugin.c \
 				rygel-mediathek-item.c \
 				rygel-mediathek-root-container.c \
-				rygel-mediathek-container-rss.c
+				rygel-mediathek-rss-container.c
 
 librygel_media_mediathek_la_SOURCES = \
 	rygel-mediathek-asx-playlist.c \
@@ -28,8 +28,8 @@ librygel_media_mediathek_la_SOURCES = \
 	rygel-mediathek-item.vala \
 	rygel-mediathek-root-container.c \
 	rygel-mediathek-root-container.vala \
-	rygel-mediathek-container-rss.c \
-	rygel-mediathek-container-rss.vala 
+	rygel-mediathek-rss-container.c \
+	rygel-mediathek-rss-container.vala 
 
 
 rygel-media-mediathek.stamp: $(filter %.vala,$(librygel_media_mediathek_la_SOURCES))

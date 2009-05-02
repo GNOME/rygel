@@ -22,8 +22,9 @@ using Gee;
 using Soup;
 using Rygel;
 using Xml;
+using ZdfMediathek;
 
-public class ZdfMediathek.RssContainer : MediaContainer {
+public class Rygel.MediathekRssContainer : MediaContainer {
     private ArrayList<MediaItem> items;
     private uint zdf_content_id;
     private Soup.Date last_modified = null;
@@ -147,7 +148,7 @@ public class ZdfMediathek.RssContainer : MediaContainer {
         ((MediathekRootContainer)this.parent).session.queue_message (message, on_feed_got);
     }
 
-    public RssContainer (MediaContainer parent, uint id) {
+    public MediathekRssContainer (MediaContainer parent, uint id) {
         base("GroupId:%u".printf(id), parent, "ZDF Mediathek RSS feed %u".printf(id), 0);
         this.items = new ArrayList<MediaItem> ();
         this.child_count = 0;

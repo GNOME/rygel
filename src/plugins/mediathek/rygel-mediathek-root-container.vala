@@ -25,7 +25,7 @@ using GConf;
 using ZdfMediathek;
 
 public class Rygel.MediathekRootContainer : MediaContainer {
-    private ArrayList<RssContainer> items;
+    private ArrayList<MediathekRssContainer> items;
     internal SessionAsync session;
     private GConf.Client gconf;
 
@@ -63,7 +63,7 @@ public class Rygel.MediathekRootContainer : MediaContainer {
         MediaObject item = null;
         var id = ((Rygel.SimpleAsyncResult<string>)res).data;
 
-        foreach (RssContainer tmp in this.items) {
+        foreach (MediathekRssContainer tmp in this.items) {
             if (id == tmp.id) {
                 item = tmp;
                 break;
@@ -71,7 +71,7 @@ public class Rygel.MediathekRootContainer : MediaContainer {
         }
 
         if (item == null) {
-            foreach (RssContainer container in this.items) {
+            foreach (MediathekRssContainer container in this.items) {
                 item = container.find_object_sync(id);
                 if (item != null) {
                     break;
@@ -84,7 +84,7 @@ public class Rygel.MediathekRootContainer : MediaContainer {
 
     private bool on_schedule_update() {
         message("Scheduling update for all feeds....");
-        foreach (RssContainer container in this.items) {
+        foreach (MediathekRssContainer container in this.items) {
             container.update();
         }
 
@@ -94,7 +94,7 @@ public class Rygel.MediathekRootContainer : MediaContainer {
     public MediathekRootContainer() {
         base.root("ZDF Mediathek", 0);
         this.session = new Soup.SessionAsync ();
-        this.items = new ArrayList<RssContainer>();
+        this.items = new ArrayList<MediathekRssContainer>();
 
         this.gconf = GConf.Client.get_default();
         unowned SList<int> feeds = null;
@@ -115,7 +115,7 @@ public class Rygel.MediathekRootContainer : MediaContainer {
         }
 
         foreach (int id in feeds) {
-            this.items.add(new RssContainer(this, id));
+            this.items.add(new MediathekRssContainer(this, id));
         }
 
         this.child_count = this.items.size;
