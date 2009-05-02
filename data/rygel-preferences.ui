@@ -276,40 +276,6 @@
                         <property name="position">1</property>
                       </packing>
                     </child>
-                    <child>
-                      <object class="GtkHBox" id="hbox4">
-                        <property name="visible">True</property>
-                        <property name="spacing">12</property>
-                        <child>
-                          <object class="GtkLabel" id="tracker-udn-label">
-                            <property name="visible">True</property>
-                            <property name="tooltip_text" translatable="yes">The Unique Device Name (UDN) for this media source. Usually, there is no need to change this.</property>
-                            <property name="label" translatable="yes">UDN</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="tracker-udn-entry">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">The Unique Device Name (UDN) for this media source. Usually, there is no need to change this.</property>
-                            <property name="invisible_char">&#x25CF;</property>
-                            <property name="width_chars">30</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
                   </object>
                 </child>
               </object>
@@ -387,41 +353,6 @@
                         <property name="position">1</property>
                       </packing>
                     </child>
-                    <child>
-                      <object class="GtkHBox" id="hbox6">
-                        <property name="visible">True</property>
-                        <property name="spacing">12</property>
-                        <child>
-                          <object class="GtkLabel" id="dvb-udn-label">
-                            <property name="visible">True</property>
-                            <property name="tooltip_text" translatable="yes">The Unique Device Name (UDN) for this media source. Usually, there is no need to change this.</property>
-                            <property name="label" translatable="yes">UDN</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="dvb-udn-entry">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">The Unique Device Name (UDN) for this media source. Usually, there is no need to change this.</property>
-                            <property name="invisible_char">&#x25CF;</property>
-                            <property name="width_chars">30</property>
-                            <property name="invisible_char_set">True</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
                   </object>
                 </child>
               </object>
@@ -497,41 +428,6 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkHBox" id="hbox8">
-                        <property name="visible">True</property>
-                        <property name="spacing">12</property>
-                        <child>
-                          <object class="GtkLabel" id="test-udn-label">
-                            <property name="visible">True</property>
-                            <property name="tooltip_text" translatable="yes">The Unique Device Name (UDN) for this media source. Usually, there is no need to change this.</property>
-                            <property name="label" translatable="yes">UDN</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="test-udn-entry">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">The Unique Device Name (UDN) for this media source. Usually, there is no need to change this.</property>
-                            <property name="invisible_char">&#x25CF;</property>
-                            <property name="width_chars">30</property>
-                            <property name="invisible_char_set">True</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -628,12 +524,9 @@
   </object>
   <object class="GtkSizeGroup" id="plugin-labels-sizegroup">
     <widgets>
-      <widget name="tracker-title-label"/>
-      <widget name="tracker-udn-label"/>
-      <widget name="dvb-title-label"/>
-      <widget name="dvb-udn-label"/>
       <widget name="test-title-label"/>
-      <widget name="test-udn-label"/>
+      <widget name="dvb-title-label"/>
+      <widget name="tracker-title-label"/>
     </widgets>
   </object>
 </interface>

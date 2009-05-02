@@ -25,11 +25,9 @@ using Gtk;
 public class Rygel.PluginPrefPage : PreferencesPage {
     const string ENABLED_CHECK = "-enabled-checkbutton";
     const string TITLE_ENTRY = "-title-entry";
-    const string UDN_ENTRY = "-udn-entry";
 
     private CheckButton enabled_check;
     private Entry title_entry;
-    private Entry udn_entry;
 
     public PluginPrefPage (Builder       builder,
                            Configuration config,
@@ -42,13 +40,9 @@ public class Rygel.PluginPrefPage : PreferencesPage {
         this.title_entry = (Entry) builder.get_object (section.down () +
                                                        TITLE_ENTRY);
         assert (this.title_entry != null);
-        this.udn_entry = (Entry) builder.get_object (section.down () +
-                                                     UDN_ENTRY);
-        assert (this.udn_entry != null);
 
         this.enabled_check.active = config.get_enabled (section);
         this.title_entry.set_text (config.get_title (section));
-        this.udn_entry.set_text (config.get_udn (section));
 
         this.enabled_check.toggled += this.on_enabled_check_toggled;
     }
@@ -60,13 +54,9 @@ public class Rygel.PluginPrefPage : PreferencesPage {
         this.config.set_string (this.section,
                                 Configuration.TITLE_KEY,
                                 this.title_entry.get_text ());
-        this.config.set_string (this.section,
-                                Configuration.UDN_KEY,
-                                this.udn_entry.get_text ());
     }
 
     private void on_enabled_check_toggled (CheckButton enabled_check) {
-        this.title_entry.sensitive =
-        this.udn_entry.sensitive = enabled_check.active;
+        this.title_entry.sensitive = enabled_check.active;
     }
 }
