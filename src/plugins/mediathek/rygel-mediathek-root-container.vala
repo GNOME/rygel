@@ -22,8 +22,9 @@ using Gee;
 using Rygel;
 using Soup;
 using GConf;
+using ZdfMediathek;
 
-public class ZdfMediathek.ZdfRootContainer : MediaContainer {
+public class Rygel.MediathekRootContainer : MediaContainer {
     private ArrayList<RssContainer> items;
     internal SessionAsync session;
     private GConf.Client gconf;
@@ -90,7 +91,7 @@ public class ZdfMediathek.ZdfRootContainer : MediaContainer {
         return true;
     }
 
-    public ZdfRootContainer() {
+    public MediathekRootContainer() {
         base.root("ZDF Mediathek", 0);
         this.session = new Soup.SessionAsync ();
         this.items = new ArrayList<RssContainer>();

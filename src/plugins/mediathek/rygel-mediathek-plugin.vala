@@ -37,7 +37,7 @@ public Plugin load_plugin() {
 
 public class ZdfMediathek.ZdfContentDir : ContentDirectory {
     public override MediaContainer? create_root_container () {
-        return new ZdfRootContainer ();
+        return new MediathekRootContainer ();
     }
 }
 

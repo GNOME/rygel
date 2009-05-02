@@ -144,7 +144,7 @@ public class ZdfMediathek.RssContainer : MediaContainer {
             message.request_headers.append("If-Modified-Since", last_modified.to_string(DateFormat.HTTP));
         }
 
-        ((ZdfRootContainer)this.parent).session.queue_message (message, on_feed_got);
+        ((MediathekRootContainer)this.parent).session.queue_message (message, on_feed_got);
     }
 
     public RssContainer (MediaContainer parent, uint id) {
