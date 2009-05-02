@@ -14,7 +14,7 @@ BUILT_SOURCES = rygel-media-folder.stamp \
 	rygel-folder-rootcontainer.c \
 	rygel-folder-container.c \
 	rygel-folder-directory-search-result.c \
-	rygel-folder-media-item.c \
+	rygel-folder-gio-media-item.c \
 	rygel-folder-plugin.c
 
 librygel_media_folder_la_SOURCES = \
@@ -26,8 +26,8 @@ librygel_media_folder_la_SOURCES = \
 	rygel-folder-container.vala \
 	rygel-folder-directory-search-result.c \
 	rygel-folder-directory-search-result.vala \
-	rygel-folder-media-item.c \
-	rygel-folder-media-item.vala
+	rygel-folder-gio-media-item.c \
+	rygel-folder-gio-media-item.vala
 
 rygel-media-folder.stamp: $(filter %.vala,$(librygel_media_folder_la_SOURCES))
 	$(VALAC) -g -C --vapidir=$(top_srcdir)/src/rygel \

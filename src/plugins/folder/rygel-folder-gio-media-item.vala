@@ -25,11 +25,11 @@ using Gst;
 /**
  * Very simple media item. 
  */
-public class Folder.FilesystemMediaItem : Rygel.MediaItem {
+public class Rygel.FolderGioMediaItem : Rygel.MediaItem {
     private bool need_source;
     private string raw_uri;
 
-    public FilesystemMediaItem(MediaContainer parent, 
+    public FolderGioMediaItem(MediaContainer parent, 
                                File file, 
                                string item_class,
                                FileInfo file_info) {

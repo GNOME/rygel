@@ -77,7 +77,7 @@ public class Rygel.FolderDirectorySearchResult : Rygel.SimpleAsyncResult<Gee.Lis
                         }
                         else {
                             var upnp_class = get_upnp_class_from_content_type(file_info.get_content_type());
-                            item = new Folder.FilesystemMediaItem((MediaContainer)source_object, f, upnp_class, file_info);
+                            item = new Rygel.FolderGioMediaItem((MediaContainer)source_object, f, upnp_class, file_info);
                         }
                         if (item != null)
                             data.add(item);
