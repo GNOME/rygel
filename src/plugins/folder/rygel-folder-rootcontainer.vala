@@ -27,7 +27,7 @@ using GConf;
  * MediaContainer which exposes the contents of a directory 
  * as items
  */
-public class Folder.FolderRootContainer : MediaContainer {
+public class Rygel.FolderRootContainer : MediaContainer {
     private ArrayList<FolderContainer> items;
 
     public override void get_children(uint offset, 

@@ -41,7 +41,7 @@ public Plugin load_plugin() {
     var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
                                           ContentDirectory.UPNP_TYPE,
                                           ContentDirectory.DESCRIPTION_PATH,
-                                          typeof (Folder.FolderContentDir));
+                                          typeof (Rygel.FolderContentDir));
 
     plugin.add_resource (resource_info);
 
