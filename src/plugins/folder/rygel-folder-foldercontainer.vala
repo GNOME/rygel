@@ -49,9 +49,8 @@ public class Folder.FolderContainer : MediaContainer {
                                       Cancellable? cancellable, 
                                       AsyncReadyCallback callback)
     {
-        debug("GetChildren called");
         if (items.size == 0) {
-            DirectorySearchResult res = new DirectorySearchResult(this, offset, max_count, callback);
+            var res = new FolderDirectorySearchResult(this, offset, max_count, callback);
             root_dir.enumerate_children_async(FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE + "," +
                                               FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME + "," +
                                               FILE_ATTRIBUTE_STANDARD_TYPE + "," +
@@ -73,8 +72,8 @@ public class Folder.FolderContainer : MediaContainer {
     }
 
     public override Gee.List<MediaObject>? get_children_finish (AsyncResult res) throws GLib.Error {
-        if (res is DirectorySearchResult) {
-            var dsr = (DirectorySearchResult)res;
+        if (res is FolderDirectorySearchResult) {
+            var dsr = (FolderDirectorySearchResult)res;
             foreach (var item in dsr.data) {
                 this.items.add(item);
             }

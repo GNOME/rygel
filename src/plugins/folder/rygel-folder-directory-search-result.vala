@@ -22,14 +22,14 @@ using Gee;
 using Rygel;
 using GLib;
 
-public class Folder.DirectorySearchResult : Rygel.SimpleAsyncResult<Gee.List<MediaObject>> {
+public class Rygel.FolderDirectorySearchResult : Rygel.SimpleAsyncResult<Gee.List<MediaObject>> {
     private uint max_count;
     private uint offset;
     private File file;
 
     private const int MAX_CHILDREN = 10;
 
-    public DirectorySearchResult(MediaContainer parent, uint offset, uint max_count, AsyncReadyCallback callback) {
+    public FolderDirectorySearchResult(MediaContainer parent, uint offset, uint max_count, AsyncReadyCallback callback) {
         base(parent, callback);
 
         this.data = new ArrayList<MediaObject>();
@@ -68,17 +68,16 @@ public class Folder.DirectorySearchResult : Rygel.SimpleAsyncResult<Gee.List<Med
             var list = enumerator.next_files_finish(res);
             if (list != null) {
                 foreach (FileInfo file_info in list) {
-                    debug("new file info");
                     var f = file.get_child(file_info.get_name());
                         MediaObject item = null;
                         if (file_info.get_file_type() == FileType.DIRECTORY) {
-                            item = new FolderContainer((MediaContainer)source_object, 
+                            item = new Folder.FolderContainer((MediaContainer)source_object, 
                                                        f, false);
 
                         }
                         else {
                             var upnp_class = get_upnp_class_from_content_type(file_info.get_content_type());
-                            item = new FilesystemMediaItem((MediaContainer)source_object, f, upnp_class, file_info);
+                            item = new Folder.FilesystemMediaItem((MediaContainer)source_object, f, upnp_class, file_info);
                         }
                         if (item != null)
                             data.add(item);
@@ -101,7 +100,6 @@ public class Folder.DirectorySearchResult : Rygel.SimpleAsyncResult<Gee.List<Med
 
     public void enumerate_children_ready(Object obj, AsyncResult res) {
         file = (File)obj;
-        debug("enumerate ready");
         try {
             var enumerator = file.enumerate_children_finish(res);
             enumerator.next_files_async(MAX_CHILDREN,
