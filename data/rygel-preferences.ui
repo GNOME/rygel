@@ -40,188 +40,167 @@
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkFrame" id="network-frame">
+                      <object class="GtkTable" id="table2">
                         <property name="visible">True</property>
-                        <property name="label_xalign">0</property>
-                        <property name="shadow_type">none</property>
+                        <property name="n_rows">4</property>
+                        <property name="row_spacing">8</property>
                         <child>
-                          <object class="GtkAlignment" id="alignment5">
+                          <object class="GtkCheckButton" id="transcoding-checkbutton">
+                            <property name="label" translatable="yes">Transcoding support</property>
                             <property name="visible">True</property>
-                            <property name="left_padding">12</property>
-                            <child>
-                              <object class="GtkTable" id="table1">
-                                <property name="visible">True</property>
-                                <property name="n_rows">2</property>
-                                <property name="n_columns">2</property>
-                                <property name="column_spacing">6</property>
-                                <property name="row_spacing">12</property>
-                                <child>
-                                  <object class="GtkLabel" id="port-label">
-                                    <property name="visible">True</property>
-                                    <property name="tooltip_text" translatable="yes">The port to bind the media server to. Set it to '0' if you don't care.</property>
-                                    <property name="label" translatable="yes">Port</property>
-                                  </object>
-                                  <packing>
-                                    <property name="top_attach">1</property>
-                                    <property name="bottom_attach">2</property>
-                                    <property name="x_options">GTK_FILL</property>
-                                    <property name="y_options">GTK_FILL</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkEntry" id="ip-entry">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="tooltip_text" translatable="yes">The IP addres of the network interface to bind the media server to. Leave it blank if you want to attach Media Server to all interfaces.</property>
-                                    <property name="invisible_char">&#x25CF;</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="right_attach">2</property>
-                                    <property name="y_options">GTK_FILL</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkSpinButton" id="port-spinbutton">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="tooltip_text" translatable="yes">The port to bind the media server to. Set it to '0' if you don't care.</property>
-                                    <property name="invisible_char">&#x25CF;</property>
-                                    <property name="adjustment">adjustment1</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="right_attach">2</property>
-                                    <property name="top_attach">1</property>
-                                    <property name="bottom_attach">2</property>
-                                    <property name="y_options">GTK_FILL</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel" id="ip-label">
-                                    <property name="visible">True</property>
-                                    <property name="tooltip_text" translatable="yes">The IP addres of the network interface to bind the media server to. Leave it blank if you want to attach Media Server to all interfaces.</property>
-                                    <property name="label" translatable="yes">IP Address</property>
-                                  </object>
-                                  <packing>
-                                    <property name="y_options">GTK_FILL</property>
-                                  </packing>
-                                </child>
-                              </object>
-                            </child>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="draw_indicator">True</property>
                           </object>
+                          <packing>
+                            <property name="y_options"></property>
+                          </packing>
                         </child>
-                        <child type="label">
-                          <object class="GtkLabel" id="network-label">
-                            <property name="visible">True</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Network Options&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
-                          </object>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkFrame" id="transcoding-frame">
-                        <property name="visible">True</property>
-                        <property name="label_xalign">0</property>
-                        <property name="shadow_type">none</property>
                         <child>
-                          <object class="GtkAlignment" id="alignment6">
+                          <object class="GtkCheckButton" id="mp3-checkbutton">
+                            <property name="label" translatable="yes">MP3</property>
                             <property name="visible">True</property>
-                            <property name="left_padding">12</property>
-                            <child>
-                              <object class="GtkVBox" id="vbox5">
-                                <property name="visible">True</property>
-                                <property name="orientation">vertical</property>
-                                <property name="spacing">12</property>
-                                <child>
-                                  <object class="GtkCheckButton" id="transcoding-checkbutton">
-                                    <property name="label" translatable="yes">Transcoding support</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">False</property>
-                                    <property name="draw_indicator">True</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkAlignment" id="alignment7">
-                                    <property name="visible">True</property>
-                                    <child>
-                                      <object class="GtkVBox" id="vbox6">
-                                        <property name="visible">True</property>
-                                        <property name="orientation">vertical</property>
-                                        <property name="spacing">12</property>
-                                        <child>
-                                          <object class="GtkCheckButton" id="mp3-checkbutton">
-                                            <property name="label" translatable="yes">MP3</property>
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="receives_default">False</property>
-                                            <property name="draw_indicator">True</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="position">0</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkCheckButton" id="mp2ts-checkbutton">
-                                            <property name="label" translatable="yes">MPEG TS</property>
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="receives_default">False</property>
-                                            <property name="draw_indicator">True</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="position">1</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkCheckButton" id="lpcm-checkbutton">
-                                            <property name="label" translatable="yes">LPCM</property>
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="receives_default">False</property>
-                                            <property name="draw_indicator">True</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="position">2</property>
-                                          </packing>
-                                        </child>
-                                      </object>
-                                    </child>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
-                              </object>
-                            </child>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="draw_indicator">True</property>
                           </object>
+                          <packing>
+                            <property name="top_attach">1</property>
+                            <property name="bottom_attach">2</property>
+                            <property name="x_padding">12</property>
+                          </packing>
                         </child>
-                        <child type="label">
-                          <object class="GtkLabel" id="transcoding-label">
+                        <child>
+                          <object class="GtkCheckButton" id="mp2ts-checkbutton">
+                            <property name="label" translatable="yes">MPEG TS</property>
                             <property name="visible">True</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Transcoding Options&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="draw_indicator">True</property>
                           </object>
+                          <packing>
+                            <property name="top_attach">2</property>
+                            <property name="bottom_attach">3</property>
+                            <property name="x_padding">12</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="lpcm-checkbutton">
+                            <property name="label" translatable="yes">LPCM</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="top_attach">3</property>
+                            <property name="bottom_attach">4</property>
+                            <property name="x_padding">12</property>
+                          </packing>
                         </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkTable" id="table1">
+                        <property name="visible">True</property>
+                        <property name="n_rows">3</property>
+                        <property name="n_columns">2</property>
+                        <property name="column_spacing">6</property>
+                        <property name="row_spacing">8</property>
+                        <child>
+                          <object class="GtkLabel" id="port-label">
+                            <property name="visible">True</property>
+                            <property name="xalign">0</property>
+                            <property name="xpad">12</property>
+                            <property name="label" translatable="yes">Port</property>
+                          </object>
+                          <packing>
+                            <property name="top_attach">2</property>
+                            <property name="bottom_attach">3</property>
+                            <property name="x_options">GTK_FILL</property>
+                            <property name="y_options">GTK_FILL</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="ip-entry">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="invisible_char">&#x25CF;</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="right_attach">2</property>
+                            <property name="top_attach">1</property>
+                            <property name="bottom_attach">2</property>
+                            <property name="y_options">GTK_FILL</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="ip-label">
+                            <property name="visible">True</property>
+                            <property name="xalign">0</property>
+                            <property name="xpad">12</property>
+                            <property name="label" translatable="yes">IP Address</property>
+                          </object>
+                          <packing>
+                            <property name="top_attach">1</property>
+                            <property name="bottom_attach">2</property>
+                            <property name="y_options">GTK_FILL</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkAlignment" id="alignment8">
+                            <property name="visible">True</property>
+                            <property name="xalign">0</property>
+                            <property name="xscale">0</property>
+                            <child>
+                              <object class="GtkSpinButton" id="port-spinbutton">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="max_length">5</property>
+                                <property name="invisible_char">&#x25CF;</property>
+                                <property name="width_chars">5</property>
+                                <property name="xalign">1</property>
+                                <property name="caps_lock_warning">False</property>
+                                <property name="adjustment">adjustment1</property>
+                                <property name="climb_rate">1</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="right_attach">2</property>
+                            <property name="top_attach">2</property>
+                            <property name="bottom_attach">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="network-label">
+                            <property name="visible">True</property>
+                            <property name="xalign">0</property>
+                            <property name="label" translatable="yes">&lt;b&gt;Network Options&lt;/b&gt;</property>
+                            <property name="use_markup">True</property>
+                          </object>
+                          <packing>
+                            <property name="right_attach">2</property>
+                            <property name="y_options"></property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
                         <property name="position">2</property>
                       </packing>
                     </child>
@@ -649,12 +628,12 @@
   </object>
   <object class="GtkSizeGroup" id="plugin-labels-sizegroup">
     <widgets>
-      <widget name="test-udn-label"/>
-      <widget name="test-title-label"/>
-      <widget name="dvb-udn-label"/>
-      <widget name="dvb-title-label"/>
-      <widget name="tracker-udn-label"/>
       <widget name="tracker-title-label"/>
+      <widget name="tracker-udn-label"/>
+      <widget name="dvb-title-label"/>
+      <widget name="dvb-udn-label"/>
+      <widget name="test-title-label"/>
+      <widget name="test-udn-label"/>
     </widgets>
   </object>
 </interface>
