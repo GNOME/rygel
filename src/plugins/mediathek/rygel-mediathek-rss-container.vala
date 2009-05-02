@@ -68,11 +68,11 @@ public class Rygel.MediathekRssContainer : MediaContainer {
                 for (int i = 0; i < xpo->nodesetval->length(); i++) {
                     Xml.Node* node = xpo->nodesetval->item(i);
                     try {
-                        var item = VideoItem.create_from_xml(this, node);
+                        var item = MediathekVideoItem.create_from_xml(this, node);
                         this.items.add(item);
                         ret = true;
                     }
-                    catch (VideoItemError error) {
+                    catch (MediathekVideoItemError error) {
                         GLib.message("Error creating video item: %s", 
                             error.message); 
                     }

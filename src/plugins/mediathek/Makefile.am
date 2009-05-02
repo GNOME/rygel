@@ -15,7 +15,7 @@ AM_CFLAGS = \
 BUILT_SOURCES = rygel-media-mediathek.stamp \
 				rygel-mediathek-asx-playlist.c \
 				rygel-mediathek-plugin.c \
-				rygel-mediathek-item.c \
+				rygel-mediathek-video-item.c \
 				rygel-mediathek-root-container.c \
 				rygel-mediathek-rss-container.c
 
@@ -24,8 +24,8 @@ librygel_media_mediathek_la_SOURCES = \
 	rygel-mediathek-asx-playlist.vala \
 	rygel-mediathek-plugin.c \
 	rygel-mediathek-plugin.vala \
-	rygel-mediathek-item.c \
-	rygel-mediathek-item.vala \
+	rygel-mediathek-video-item.c \
+	rygel-mediathek-video-item.vala \
 	rygel-mediathek-root-container.c \
 	rygel-mediathek-root-container.vala \
 	rygel-mediathek-rss-container.c \

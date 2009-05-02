@@ -22,12 +22,12 @@ using GLib;
 using Rygel;
 using Xml;
 
-public errordomain ZdfMediathek.VideoItemError {
+public errordomain Rygel.MediathekVideoItemError {
     XML_PARSE_ERROR
 }
 
-public class ZdfMediathek.VideoItem : Rygel.MediaItem {
-    private VideoItem(MediaContainer parent, string title) {
+public class Rygel.MediathekVideoItem : Rygel.MediaItem {
+    private MediathekVideoItem(MediaContainer parent, string title) {
         base(Checksum.compute_for_string(ChecksumType.MD5, title), parent, title, MediaItem.VIDEO_CLASS);
         this.mime_type = "video/x-ms-asf";
         this.author = "ZDF - Zweites Deutsches Fernsehen";
@@ -37,9 +37,9 @@ public class ZdfMediathek.VideoItem : Rygel.MediaItem {
         return node->ns != null && node->ns->prefix == "media";
     }
 
-    public static VideoItem create_from_xml(MediaContainer parent, Xml.Node *item) throws VideoItemError {
+    public static MediathekVideoItem create_from_xml(MediaContainer parent, Xml.Node *item) throws MediathekVideoItemError {
         string title = null;
-        VideoItem video_item = null;
+        MediathekVideoItem video_item = null;
         MediathekAsxPlaylist asx = null;
 
         for (Xml.Node* item_child = item->children; item_child != null; item_child = item_child->next)
@@ -65,17 +65,17 @@ public class ZdfMediathek.VideoItem : Rygel.MediaItem {
                                         }
                                     }
                                     else {
-                                        throw new VideoItemError.XML_PARSE_ERROR("group node has url property");
+                                        throw new MediathekVideoItemError.XML_PARSE_ERROR("group node has url property");
                                     }
                                 }
                                 else {
-                                    throw new VideoItemError.XML_PARSE_ERROR("invalid or no namespace");
+                                    throw new MediathekVideoItemError.XML_PARSE_ERROR("invalid or no namespace");
                                 }
                             }
                         }
                     }
                     else {
-                        throw new VideoItemError.XML_PARSE_ERROR("invalid or no namespace on group node");
+                        throw new MediathekVideoItemError.XML_PARSE_ERROR("invalid or no namespace on group node");
                     }
                     break;
                 default:
@@ -85,15 +85,15 @@ public class ZdfMediathek.VideoItem : Rygel.MediaItem {
 
         }
         if (title == null) {
-            throw new VideoItemError.XML_PARSE_ERROR("Could not find title");
+            throw new MediathekVideoItemError.XML_PARSE_ERROR("Could not find title");
         }
 
 
         if (asx == null) {
-            throw new VideoItemError.XML_PARSE_ERROR("Could not find uris");
+            throw new MediathekVideoItemError.XML_PARSE_ERROR("Could not find uris");
         }
 
-        video_item = new VideoItem(parent, title);
+        video_item = new MediathekVideoItem(parent, title);
         foreach (string uri in asx.uris) {
             video_item.uris.add(uri);
         }
