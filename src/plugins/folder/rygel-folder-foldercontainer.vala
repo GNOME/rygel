@@ -140,9 +140,10 @@ public class Folder.FolderContainer : MediaContainer {
      * 
      * @parameter directory_path, directory you want to expose
      */
-    public FolderContainer (MediaContainer parent, string id, string directory_path, bool full) {
-        base(id, parent, directory_path, 0);
-        this.root_dir = GLib.File.new_for_uri(directory_path);
+    public FolderContainer (MediaContainer parent, File file, bool full) {
+        string id = Checksum.compute_for_string(ChecksumType.MD5, file.get_uri());
+        base(id, parent, file.get_uri(), 0);
+        this.root_dir = file;
 
         if (!full && parent is FolderContainer) {
             this.title = ((FolderContainer)parent).strip_parent(root_dir);
@@ -151,7 +152,5 @@ public class Folder.FolderContainer : MediaContainer {
         this.items = new ArrayList<MediaObject> ();
         this.child_count = 0;
         this.results = new ArrayList<AsyncResult>();
-
-
     }
 }

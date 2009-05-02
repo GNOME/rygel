@@ -22,7 +22,6 @@ using Rygel;
 using GUPnP;
 using Gee;
 using GLib;
-using GConf;
 
 /**
  * Simple plugin which exposes the media contents of a directory via UPnP.
@@ -51,16 +50,7 @@ public Plugin load_plugin() {
 
 public class Folder.FolderContentDir : ContentDirectory {
     public override MediaContainer? create_root_container () {
-        GConf.Client client = GConf.Client.get_default();
-        try {
-            string dir = client.get_string("/apps/rygel/Folder/folder");
-            message("Using folder %s", dir);
-            File f = File.new_for_commandline_arg(dir);
-            return new FolderRootContainer (f.get_uri());
-        }
-        catch (GLib.Error error) {
-            return null;
-        }
+        return new FolderRootContainer();
     }
 }
 

@@ -21,6 +21,7 @@
 using Gee;
 using GLib;
 using Rygel;
+using GConf;
 
 /**
  * MediaContainer which exposes the contents of a directory 
@@ -90,10 +91,32 @@ public class Folder.FolderRootContainer : MediaContainer {
      * 
      * @parameter directory_path, directory you want to expose
      */
-    public FolderRootContainer (string uri) {
-        base.root(uri, 0);
+    public FolderRootContainer () {
+        base.root("FolderRoot", 0);
+        GConf.Client client = GConf.Client.get_default();
         this.items = new ArrayList<FolderContainer> ();
-        items.add(new FolderContainer(this, "12", uri, true));
-        this.child_count = 1;
+        unowned SList<string> dirs = null;
+        try {
+            dirs = client.get_list("/apps/rygel/Folder/folder", GConf.ValueType.STRING);
+        }
+        catch (GLib.Error error) {
+            message("Error fetching configuration, error was %s", error.message);
+        }
+
+        // either an error occured or the gconf key is not set
+        if (dirs == null) {
+            dirs.append(Environment.get_user_special_dir(UserDirectory.MUSIC));
+            dirs.append(Environment.get_user_special_dir(UserDirectory.PICTURES));
+            dirs.append(Environment.get_user_special_dir(UserDirectory.VIDEOS));
+        }
+
+        foreach (var dir in dirs) {
+            var f = File.new_for_commandline_arg(dir);
+            if (f.query_exists(null)) {
+                items.add(new FolderContainer(this, f, true));
+            }
+        }
+
+        this.child_count = items.size;
     }
 }

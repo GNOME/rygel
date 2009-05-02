@@ -73,8 +73,7 @@ public class Folder.DirectorySearchResult : Rygel.SimpleAsyncResult<Gee.List<Med
                         MediaObject item = null;
                         if (file_info.get_file_type() == FileType.DIRECTORY) {
                             item = new FolderContainer((MediaContainer)source_object, 
-                                                       Checksum.compute_for_string(ChecksumType.MD5, f.get_uri()),
-                                                       f.get_uri(), false);
+                                                       f, false);
 
                         }
                         else {
