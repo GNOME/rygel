@@ -30,7 +30,7 @@ public class Rygel.PreferencesDialog : GLib.Object {
 
     Builder builder;
     Dialog dialog;
-    ArrayList<PreferencesPage> pages;
+    ArrayList<PreferencesSection> sections;
 
     public PreferencesDialog () throws Error {
         var config = new Configuration ();
@@ -42,11 +42,17 @@ public class Rygel.PreferencesDialog : GLib.Object {
         this.dialog = (Dialog) this.builder.get_object (DIALOG);
         assert (this.dialog != null);
 
-        this.pages = new ArrayList<PreferencesPage> ();
-        this.pages.add (new GeneralPrefPage (this.builder, config));
-        this.pages.add (new PluginPrefPage (this.builder, config, "Tracker"));
-        this.pages.add (new PluginPrefPage (this.builder, config, "DVB"));
-        this.pages.add (new PluginPrefPage (this.builder, config, "Test"));
+        this.sections = new ArrayList<PreferencesSection> ();
+        this.sections.add (new GeneralPrefSection (this.builder, config));
+        this.sections.add (new PluginPrefSection (this.builder,
+                                                  config,
+                                                  "Tracker"));
+        this.sections.add (new PluginPrefSection (this.builder,
+                                                  config,
+                                                  "DVB"));
+        this.sections.add (new PluginPrefSection (this.builder,
+                                                  config,
+                                                  "Test"));
 
         this.dialog.response += this.on_response;
         this.dialog.delete_event += (dialog, event) => {
@@ -74,8 +80,8 @@ public class Rygel.PreferencesDialog : GLib.Object {
     }
 
     private void apply_settings () {
-        foreach (var page in this.pages) {
-            page.save ();
+        foreach (var section in this.sections) {
+            section.save ();
         }
     }
 

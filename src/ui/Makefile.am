@@ -22,18 +22,18 @@ bin_PROGRAMS = rygel-preferences
 
 BUILT_SOURCES = rygel.stamp \
 		rygel-preferences-dialog.c \
-		rygel-preferences-page.c \
-		rygel-general-pref-page.c \
-		rygel-plugin-pref-page.c
+		rygel-preferences-section.c \
+		rygel-general-pref-section.c \
+		rygel-plugin-pref-section.c
 
 rygel_preferences_SOURCES = rygel-preferences-dialog.c \
 			    rygel-preferences-dialog.vala \
-			    rygel-preferences-page.c \
-			    rygel-preferences-page.vala \
-			    rygel-general-pref-page.c \
-			    rygel-general-pref-page.vala \
-			    rygel-plugin-pref-page.c \
-			    rygel-plugin-pref-page.vala
+			    rygel-preferences-section.c \
+			    rygel-preferences-section.vala \
+			    rygel-general-pref-section.c \
+			    rygel-general-pref-section.vala \
+			    rygel-plugin-pref-section.c \
+			    rygel-plugin-pref-section.vala
 
 rygel.stamp: $(filter %.vala,$(rygel_preferences_SOURCES))
 	$(VALAC) -C --vapidir=$(rygeldir) \

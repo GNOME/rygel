@@ -22,14 +22,14 @@
  */
 using Gtk;
 
-public abstract class Rygel.PreferencesPage : GLib.Object {
+public abstract class Rygel.PreferencesSection : GLib.Object {
     protected Configuration config;
 
-    public string section;
+    public string name;
 
-    public PreferencesPage (Configuration config,
-                            string        section) {
-        this.section = section;
+    public PreferencesSection (Configuration config,
+                               string        name) {
+        this.name = name;
         this.config = config;
     }
 

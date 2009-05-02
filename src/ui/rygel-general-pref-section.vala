@@ -22,7 +22,7 @@
  */
 using Gtk;
 
-public class Rygel.GeneralPrefPage : PreferencesPage {
+public class Rygel.GeneralPrefSection : PreferencesSection {
     const string IP_ENTRY = "ip-entry";
     const string PORT_SPINBUTTON = "port-spinbutton";
     const string TRANS_CHECKBUTTON = "transcoding-checkbutton";
@@ -39,8 +39,8 @@ public class Rygel.GeneralPrefPage : PreferencesPage {
     private CheckButton mp2ts_check;
     private CheckButton lpcm_check;
 
-    public GeneralPrefPage (Builder       builder,
-                            Configuration config) throws Error {
+    public GeneralPrefSection (Builder       builder,
+                               Configuration config) throws Error {
         base (config, "general");
 
         this.ip_entry = (Entry) builder.get_object (IP_ENTRY);

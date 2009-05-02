@@ -22,36 +22,36 @@
  */
 using Gtk;
 
-public class Rygel.PluginPrefPage : PreferencesPage {
+public class Rygel.PluginPrefSection : PreferencesSection {
     const string ENABLED_CHECK = "-enabled-checkbutton";
     const string TITLE_ENTRY = "-title-entry";
 
     private CheckButton enabled_check;
     private Entry title_entry;
 
-    public PluginPrefPage (Builder       builder,
-                           Configuration config,
-                           string        section) {
-        base (config, section);
+    public PluginPrefSection (Builder       builder,
+                              Configuration config,
+                              string        name) {
+        base (config, name);
 
-        this.enabled_check = (CheckButton) builder.get_object (section.down () +
+        this.enabled_check = (CheckButton) builder.get_object (name.down () +
                                                                ENABLED_CHECK);
         assert (this.enabled_check != null);
-        this.title_entry = (Entry) builder.get_object (section.down () +
+        this.title_entry = (Entry) builder.get_object (name.down () +
                                                        TITLE_ENTRY);
         assert (this.title_entry != null);
 
-        this.enabled_check.active = config.get_enabled (section);
-        this.title_entry.set_text (config.get_title (section));
+        this.enabled_check.active = config.get_enabled (name);
+        this.title_entry.set_text (config.get_title (name));
 
         this.enabled_check.toggled += this.on_enabled_check_toggled;
     }
 
     public override void save () {
-        this.config.set_bool (this.section,
+        this.config.set_bool (this.name,
                               Configuration.ENABLED_KEY,
                               this.enabled_check.active);
-        this.config.set_string (this.section,
+        this.config.set_string (this.name,
                                 Configuration.TITLE_KEY,
                                 this.title_entry.get_text ());
     }
