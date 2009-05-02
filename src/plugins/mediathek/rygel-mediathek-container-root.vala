@@ -96,20 +96,25 @@ public class ZdfMediathek.ZdfRootContainer : MediaContainer {
         this.items = new ArrayList<RssContainer>();
 
         this.gconf = GConf.Client.get_default();
+        unowned SList<int> feeds = null;
 
         // get subscribed feeds
         try {
             // TODO get gconf prefix from Rygel
-            unowned GLib.SList<int> feeds = 
-                gconf.get_list("/apps/rygel/ZDFMediathek/rss",
+            feeds = gconf.get_list("/apps/rygel/ZDFMediathek/rss",
                                 GConf.ValueType.INT);
 
-            foreach (int id in feeds) {
-                this.items.add(new RssContainer(this, id));
-            }
         } catch (GLib.Error error) {
+            message("Error on getting configuration: %s", error.message);
+        }
+
+        if (feeds == null) {
             message("Could not get RSS items from GConf, using defaults");
-            this.items.add(new RssContainer(this, 508));
+            feeds.append(508);
+        }
+
+        foreach (int id in feeds) {
+            this.items.add(new RssContainer(this, id));
         }
 
         this.child_count = this.items.size;
