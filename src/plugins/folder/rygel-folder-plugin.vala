@@ -48,7 +48,7 @@ public Plugin load_plugin() {
     return plugin;
 }
 
-public class Folder.FolderContentDir : ContentDirectory {
+public class Rygel.FolderContentDir : ContentDirectory {
     public override MediaContainer? create_root_container () {
         return new FolderRootContainer();
     }
