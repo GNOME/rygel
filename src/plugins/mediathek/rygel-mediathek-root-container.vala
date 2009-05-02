@@ -22,7 +22,6 @@ using Gee;
 using Rygel;
 using Soup;
 using GConf;
-using ZdfMediathek;
 
 public class Rygel.MediathekRootContainer : MediaContainer {
     private ArrayList<MediathekRssContainer> items;
