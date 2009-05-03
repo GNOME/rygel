@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2009 Jens Georg <mail@jensge.org>.
+ * Copyright (C) 2009 Jens Georg <mail@jensge.org>.
  *
  * This file is part of Rygel.
  *
@@ -24,14 +24,19 @@ using Rygel;
 
 /**
  * MediaContainer which exposes the contents of a directory 
- * as items
+ * as items.
+ *
+ * The folder contents will be queried on demand and cached afterwards
  */
 public class Rygel.FolderContainer : MediaContainer {
 
+    /**
+     * Number of children to use for crawling the subdir
+     */
     private const int MAX_CHILDREN = 10;
 
     /**
-     * Flat storage of items found in directory
+     * Cache of items found in directory
      */
     private ArrayList<MediaObject> items;
 
@@ -43,46 +48,58 @@ public class Rygel.FolderContainer : MediaContainer {
     private Gee.List<AsyncResult> results;
 
     // methods overridden from MediaContainer
-
-    public override void get_children(uint offset, 
-                                      uint max_count,
-                                      Cancellable? cancellable, 
-                                      AsyncReadyCallback callback)
-    {
+    public override void get_children (uint offset, 
+                                       uint max_count,
+                                       Cancellable? cancellable, 
+                                       AsyncReadyCallback callback) {
+        // if the cache is empty, fill it
         if (items.size == 0) {
-            var res = new FolderDirectorySearchResult(this, offset, max_count, callback);
-            root_dir.enumerate_children_async(FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE + "," +
-                                              FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME + "," +
-                                              FILE_ATTRIBUTE_STANDARD_TYPE + "," +
-                                              FILE_ATTRIBUTE_STANDARD_NAME,
-                                              FileQueryInfoFlags.NONE,
-                                              Priority.DEFAULT, 
-                                              null,
-                                              res.enumerate_children_ready);
-            this.results.add(res);
+            var res = new FolderDirectorySearchResult (this, 
+                                offset, 
+                                max_count, 
+                                callback);
+
+            root_dir.enumerate_children_async (
+                                FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE + "," +
+                                FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME + "," +
+                                FILE_ATTRIBUTE_STANDARD_TYPE + "," +
+                                FILE_ATTRIBUTE_STANDARD_NAME,
+                                FileQueryInfoFlags.NONE,
+                                Priority.DEFAULT, 
+                                null,
+                                res.enumerate_children_ready);
+            this.results.add (res);
         }
         else {
             uint stop = offset + max_count;
-            stop = stop.clamp(0, this.child_count);
-            var children = this.items.slice ((int)offset, (int)stop);
-            var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (this, callback);
+            stop = stop.clamp (0, this.child_count);
+            var children = this.items.slice ((int) offset, (int) stop);
+            var res = 
+                new SimpleAsyncResult<Gee.List<MediaObject>> (
+                            this, 
+                            callback);
             res.data = children;
-            res.complete_in_idle();
+            res.complete_in_idle ();
         }
     }
 
-    public override Gee.List<MediaObject>? get_children_finish (AsyncResult res) throws GLib.Error {
+    public override Gee.List<MediaObject>? get_children_finish (
+                                                         AsyncResult res)
+                                                         throws GLib.Error {
         if (res is FolderDirectorySearchResult) {
-            var dsr = (FolderDirectorySearchResult)res;
+            var dsr = (FolderDirectorySearchResult) res;
+
             foreach (var item in dsr.data) {
-                this.items.add(item);
+                this.items.add (item);
             }
+
             this.child_count = this.items.size;
-            this.results.remove(res);
-            return dsr.get_children();
+            this.results.remove (res);
+            return dsr.get_children ();
         }
         else {
-            var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
+            var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>)
+                            res;
             return simple_res.data;
         }
     }
@@ -93,30 +110,34 @@ public class Rygel.FolderContainer : MediaContainer {
         var res = new Rygel.SimpleAsyncResult<string> (this, callback);
 
         res.data = id;
-        res.complete_in_idle();
+        res.complete_in_idle ();
     }
 
-    public override MediaObject? find_object_finish (AsyncResult res) throws GLib.Error {
-        var id = ((Rygel.SimpleAsyncResult<string>)res).data;
+    public override MediaObject? find_object_finish (AsyncResult res) 
+                                                     throws GLib.Error {
+        var id = ((Rygel.SimpleAsyncResult<string>) res).data;
 
-        return find_object_sync(id);
+        return find_object_sync (id);
     }
 
-    public MediaObject? find_object_sync(string id) {
+    public MediaObject? find_object_sync (string id) {
         MediaObject item = null;
 
-        foreach (MediaObject tmp in items) {
+        // check if the searched item is in our cache
+        foreach (var tmp in items) {
             if (id == tmp.id) {
                 item = tmp;
                 break;
             }
         }
 
+        // if not found, do a depth-first search on the child 
+        // folders
         if (item == null) {
-            foreach (MediaObject tmp in items) {
+            foreach (var tmp in items) {
                 if (tmp is FolderContainer) {
-                    var folder = (FolderContainer)tmp;
-                    item = folder.find_object_sync(id);
+                    var folder = (FolderContainer) tmp;
+                    item = folder.find_object_sync (id);
                     if (item != null) {
                         break;
                     }
@@ -127,29 +148,30 @@ public class Rygel.FolderContainer : MediaContainer {
         return item;
     }
 
-    public string strip_parent(File child) {
-        return root_dir.get_relative_path(child);
+    public string strip_parent (File child) {
+        return root_dir.get_relative_path (child);
     }
 
     /**
      * Create a new root container.
      * 
-     * Schedules an async enumeration of the children of the 
-     * directory
-     * 
-     * @parameter directory_path, directory you want to expose
+     * @parameter parent, parent container
+     * @parameter file, directory you want to expose
+     * @parameter full, show full path in title
      */
     public FolderContainer (MediaContainer parent, File file, bool full) {
-        string id = Checksum.compute_for_string(ChecksumType.MD5, file.get_uri());
-        base(id, parent, file.get_uri(), 0);
+        string id = Checksum.compute_for_string (ChecksumType.MD5, 
+                                                file.get_uri ());
+
+        base(id, parent, file.get_uri (), 0);
         this.root_dir = file;
 
         if (!full && parent is FolderContainer) {
-            this.title = ((FolderContainer)parent).strip_parent(root_dir);
+            this.title = ((FolderContainer) parent).strip_parent (root_dir);
         }
 
         this.items = new ArrayList<MediaObject> ();
         this.child_count = 0;
-        this.results = new ArrayList<AsyncResult>();
+        this.results = new ArrayList<AsyncResult> ();
     }
 }

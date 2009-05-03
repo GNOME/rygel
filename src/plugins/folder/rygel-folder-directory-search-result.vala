@@ -22,25 +22,29 @@ using Gee;
 using Rygel;
 using GLib;
 
-public class Rygel.FolderDirectorySearchResult : Rygel.SimpleAsyncResult<Gee.List<MediaObject>> {
+public class Rygel.FolderDirectorySearchResult : 
+             Rygel.SimpleAsyncResult<Gee.List<MediaObject>> {
     private uint max_count;
     private uint offset;
     private File file;
 
     private const int MAX_CHILDREN = 10;
 
-    public FolderDirectorySearchResult(MediaContainer parent, uint offset, uint max_count, AsyncReadyCallback callback) {
-        base(parent, callback);
+    public FolderDirectorySearchResult (MediaContainer parent, 
+                                        uint offset, 
+                                        uint max_count, 
+                                        AsyncReadyCallback callback) {
+        base (parent, callback);
 
         this.data = new ArrayList<MediaObject>();
         this.offset = offset;
         this.max_count = max_count;
     }
 
-    public void enumerator_closed(Object obj, AsyncResult res) {
-        var enumerator = (FileEnumerator)obj;
+    public void enumerator_closed (Object obj, AsyncResult res) {
+        var enumerator = (FileEnumerator) obj;
         try {
-            enumerator.close_finish(res);
+            enumerator.close_finish (res);
         }
         catch (Error e) {
             this.error = e;
@@ -48,64 +52,72 @@ public class Rygel.FolderDirectorySearchResult : Rygel.SimpleAsyncResult<Gee.Lis
         this.complete();
     }
 
-    public void enumerate_next_ready(Object obj, AsyncResult res) {
-        var enumerator = (FileEnumerator)obj;
+    public void enumerate_next_ready (Object obj, AsyncResult res) {
+        var enumerator = (FileEnumerator) obj;
         try {
             var list = enumerator.next_files_finish(res);
             if (list != null) {
                 foreach (FileInfo file_info in list) {
                     var f = file.get_child(file_info.get_name());
-                        MediaObject item = null;
-                        if (file_info.get_file_type() == FileType.DIRECTORY) {
-                            item = new Rygel.FolderContainer((MediaContainer)source_object, 
-                                                       f, false);
+                    MediaObject item = null;
+                    if (file_info.get_file_type () == FileType.DIRECTORY) {
+                        item = new Rygel.FolderContainer (
+                                               (MediaContainer) source_object,
+                                               f, 
+                                               false);
 
+                    }
+                    else {
+                        try {
+                            item = FolderGioMediaItem.create (
+                                        (MediaContainer) source_object, 
+                                        f, 
+                                        file_info);
+                        } 
+                        catch (Error error) {
                         }
-                        else {
-                            try {
-                                item = FolderGioMediaItem.create((MediaContainer)source_object, f, file_info);
-                            } catch (Error error) {
-                            }
-                        }
-                        if (item != null) {
-                            data.add(item);
-                        }
+                    }
+
+                    if (item != null) {
+                        data.add (item);
+                    }
 
                 }
-                enumerator.next_files_async(MAX_CHILDREN,
-                                            Priority.DEFAULT,
-                                            null, enumerate_next_ready);
+                enumerator.next_files_async (MAX_CHILDREN,
+                                             Priority.DEFAULT,
+                                             null, enumerate_next_ready);
             }
             else {
-                enumerator.close_async(Priority.DEFAULT,
-                                       null, enumerator_closed);
+                enumerator.close_async (Priority.DEFAULT,
+                                        null, 
+                                        enumerator_closed);
             }
         }
         catch (Error e) {
             this.error = e;
-            this.complete();
+            this.complete ();
         }
     }
 
     public void enumerate_children_ready(Object obj, AsyncResult res) {
-        file = (File)obj;
+        file = (File) obj;
         try {
-            var enumerator = file.enumerate_children_finish(res);
-            enumerator.next_files_async(MAX_CHILDREN,
-                                        Priority.DEFAULT,
-                                        null, enumerate_next_ready);
+            var enumerator = file.enumerate_children_finish (res);
+            enumerator.next_files_async (MAX_CHILDREN,
+                                         Priority.DEFAULT,
+                                         null, 
+                                         enumerate_next_ready);
         }
         catch (Error error) {
             this.error = error;
-            debug("Error %s", error.message);
-            this.complete();
+            this.complete ();
         }
     }
 
-    public Gee.List<MediaItem> get_children() {
+    public Gee.List<MediaItem> get_children () {
         uint stop = offset + max_count;
-        stop = stop.clamp(0, data.size);
-        var children = data.slice ((int)offset, (int)stop);
+        stop = stop.clamp (0, data.size);
+        var children = data.slice ((int) offset, (int) stop);
 
         return children;
     }

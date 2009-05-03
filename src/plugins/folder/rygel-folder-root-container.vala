@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2009 Jens Georg <mail@jensge.org>.
+ * Copyright (C) 2009 Jens Georg <mail@jensge.org>.
  *
  * This file is part of Rygel.
  *
@@ -30,20 +30,23 @@ using GConf;
 public class Rygel.FolderRootContainer : MediaContainer {
     private ArrayList<FolderContainer> items;
 
-    public override void get_children(uint offset, 
-                                      uint max_count,
-                                      Cancellable? cancellable, 
-                                      AsyncReadyCallback callback)
+    public override void get_children (uint offset, 
+                                       uint max_count,
+                                       Cancellable? cancellable, 
+                                       AsyncReadyCallback callback)
     {
         uint stop = offset + max_count;
-        stop = stop.clamp(0, this.child_count);
-        var children = this.items.slice ((int)offset, (int)stop);
-        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (this, callback);
+        stop = stop.clamp (0, this.child_count);
+        var children = this.items.slice ((int) offset, (int) stop);
+        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (this, 
+                                                callback);
         res.data = children;
-        res.complete_in_idle();
+        res.complete_in_idle ();
     }
 
-    public override Gee.List<MediaObject>? get_children_finish (AsyncResult res) throws GLib.Error {
+    public override Gee.List<MediaObject>? get_children_finish (
+                                                    AsyncResult res) 
+                                                    throws GLib.Error {
         var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
         return simple_res.data;
     }
@@ -54,14 +57,15 @@ public class Rygel.FolderRootContainer : MediaContainer {
         var res = new Rygel.SimpleAsyncResult<string> (this, callback);
 
         res.data = id;
-        res.complete_in_idle();
+        res.complete_in_idle ();
     }
 
-    public override MediaObject? find_object_finish (AsyncResult res) throws GLib.Error {
+    public override MediaObject? find_object_finish (AsyncResult res) 
+                                                     throws GLib.Error {
         MediaObject item = null;
-        var id = ((Rygel.SimpleAsyncResult<string>)res).data;
+        var id = ((Rygel.SimpleAsyncResult<string>) res).data;
 
-        foreach (MediaObject tmp in this.items) {
+        foreach (var tmp in this.items) {
             if (id == tmp.id) {
                 item = tmp;
                 break;
@@ -69,10 +73,10 @@ public class Rygel.FolderRootContainer : MediaContainer {
         }
 
         if (item == null) {
-            foreach (MediaObject tmp in items) {
+            foreach (var tmp in items) {
                 if (tmp is FolderContainer) {
-                    var folder = (FolderContainer)tmp;
-                    item = folder.find_object_sync(id);
+                    var folder = (FolderContainer) tmp;
+                    item = folder.find_object_sync (id);
                     if (item != null) {
                         break;
                     }
@@ -92,28 +96,33 @@ public class Rygel.FolderRootContainer : MediaContainer {
      * @parameter directory_path, directory you want to expose
      */
     public FolderRootContainer () {
-        base.root("FolderRoot", 0);
-        GConf.Client client = GConf.Client.get_default();
+        base.root ("FolderRoot", 0);
+        GConf.Client client = GConf.Client.get_default ();
         this.items = new ArrayList<FolderContainer> ();
         unowned SList<string> dirs = null;
         try {
-            dirs = client.get_list("/apps/rygel/Folder/folder", GConf.ValueType.STRING);
+            dirs = client.get_list ("/apps/rygel/Folder/folder", 
+                                    GConf.ValueType.STRING);
         }
         catch (GLib.Error error) {
-            message("Error fetching configuration, error was %s", error.message);
+            message("Error fetching configuration, error was %s", 
+                    error.message);
         }
 
         // either an error occured or the gconf key is not set
         if (dirs == null) {
-            dirs.append(Environment.get_user_special_dir(UserDirectory.MUSIC));
-            dirs.append(Environment.get_user_special_dir(UserDirectory.PICTURES));
-            dirs.append(Environment.get_user_special_dir(UserDirectory.VIDEOS));
+            dirs.append (Environment.get_user_special_dir (
+                                        UserDirectory.MUSIC));
+            dirs.append (Environment.get_user_special_dir (
+                                        UserDirectory.PICTURES));
+            dirs.append (Environment.get_user_special_dir (
+                                        UserDirectory.VIDEOS));
         }
 
         foreach (var dir in dirs) {
-            var f = File.new_for_commandline_arg(dir);
-            if (f.query_exists(null)) {
-                items.add(new FolderContainer(this, f, true));
+            var f = File.new_for_commandline_arg (dir);
+            if (f.query_exists (null)) {
+                items.add (new FolderContainer (this, f, true));
             }
         }
 

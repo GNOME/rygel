@@ -29,14 +29,14 @@ public class Rygel.FolderGioMediaItem : Rygel.MediaItem {
     private bool need_source;
     private string raw_uri;
 
-    private static string? get_upnp_class_from_content_type(string content_type) {
-        if (content_type.has_prefix("video/")) {
+    private static string? get_upnp_class (string content_type) {
+        if (content_type.has_prefix ("video/")) {
             return MediaItem.VIDEO_CLASS;
         }
-        else if (content_type.has_prefix("audio/")) {
+        else if (content_type.has_prefix ("audio/")) {
             return MediaItem.AUDIO_CLASS;
         }
-        else if (content_type.has_prefix("image/")) {
+        else if (content_type.has_prefix ("image/")) {
             return MediaItem.IMAGE_CLASS;
         }
 
@@ -44,10 +44,15 @@ public class Rygel.FolderGioMediaItem : Rygel.MediaItem {
     }
 
 
-    public static FolderGioMediaItem? create(MediaContainer parent, File file, FileInfo file_info) {
-        var upnp_class = get_upnp_class_from_content_type(file_info.get_content_type());
+    public static FolderGioMediaItem? create(MediaContainer parent, 
+                                             File file, 
+                                             FileInfo file_info) {
+        var upnp_class = get_upnp_class (file_info.get_content_type ());
         if (upnp_class != null) {
-            return new FolderGioMediaItem(parent, file, upnp_class, file_info);
+            return new FolderGioMediaItem (parent, 
+                                           file, 
+                                           upnp_class, 
+                                           file_info);
         }
 
         return null;
@@ -58,30 +63,31 @@ public class Rygel.FolderGioMediaItem : Rygel.MediaItem {
                                string item_class,
                                FileInfo file_info) {
 
-        base(Checksum.compute_for_string(ChecksumType.MD5, file_info.get_name()), 
+        base (Checksum.compute_for_string (ChecksumType.MD5, 
+                                           file_info.get_name ()), 
              parent,
-             file_info.get_name(),
+             file_info.get_name (),
              item_class);
 
-        var content_type = file_info.get_content_type();
+        var content_type = file_info.get_content_type ();
         need_source = false;
 
 
         this.mime_type = content_type;
         // check if rygel can handle this uri type itself
-        if (file.get_uri().has_prefix("file:") || 
-            file.get_uri().has_prefix("http:")) {
-            this.uris.add(GLib.Markup.escape_text(file.get_uri()));
+        if (file.get_uri ().has_prefix ("file:") || 
+            file.get_uri ().has_prefix ("http:")) {
+            this.uris.add (GLib.Markup.escape_text (file.get_uri ()));
         }
         else {
             need_source = true;
-            raw_uri = file.get_uri();
+            raw_uri = file.get_uri ();
         }
     }
 
-    public override Gst.Element? create_stream_source() {
+    public override Gst.Element? create_stream_source () {
         if (need_source) {
-            dynamic Element src = ElementFactory.make("giosrc", null);
+            dynamic Element src = ElementFactory.make ("giosrc", null);
             if (src != null) {
                 src.location = raw_uri;
             }

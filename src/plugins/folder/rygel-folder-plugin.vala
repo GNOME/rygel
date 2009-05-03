@@ -36,7 +36,7 @@ using GLib;
  */
 [ModuleInit]
 public Plugin load_plugin() {
-    Plugin plugin = new Plugin("Folder");
+    Plugin plugin = new Plugin ("Folder");
 
     var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
                                           ContentDirectory.UPNP_TYPE,
@@ -50,8 +50,6 @@ public Plugin load_plugin() {
 
 public class Rygel.FolderContentDir : ContentDirectory {
     public override MediaContainer? create_root_container () {
-        return new FolderRootContainer();
+        return new FolderRootContainer ();
     }
 }
-
-
