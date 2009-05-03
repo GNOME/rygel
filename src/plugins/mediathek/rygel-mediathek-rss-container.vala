@@ -34,97 +34,105 @@ public class Rygel.MediathekRssContainer : MediaContainer {
                 message("Feed has not changed, nothing to do");
                 break;
             case 200:
-                if (parse_response(
-                        msg.response_body.data, 
-                        (size_t)msg.response_body.length)) {
-                    last_modified = new Soup.Date.from_string(msg.response_headers.get("Date"));
+                if (parse_response (msg.response_body.data, 
+                                    (size_t) msg.response_body.length)) {
+                    last_modified = new Soup.Date.from_string(
+                                            msg.response_headers.get ("Date"));
                 }
                 break;
             default:
                 // TODO Need to handle redirects....
                 warning("Got unexpected response %u (%s)",
-                    msg.status_code,
-                    Soup.status_get_phrase (msg.status_code));
+                        msg.status_code,
+                        Soup.status_get_phrase (msg.status_code));
                 break;
         }
     }
 
-    private bool parse_response(string data, size_t length) {
+    private bool parse_response (string data, size_t length) {
         bool ret = false;
-        Xml.Doc* doc = Xml.Parser.parse_memory(data, (int)length);
+        Xml.Doc* doc = Xml.Parser.parse_memory (data, (int) length);
         if (doc != null) {
-            items.clear();
-            var ctx = new XPathContext(doc);
-            var xpo = ctx.eval("/rss/channel/title");
+            items.clear ();
+            var ctx = new XPathContext (doc);
+            var xpo = ctx.eval ("/rss/channel/title");
             if (xpo->type == Xml.XPathObjectType.NODESET &&
-                xpo->nodesetval->length() > 0) {
+                xpo->nodesetval->length () > 0) {
                 // just use first title (there should be only one)
-                this.title = xpo->nodesetval->item(0)->get_content();
+                this.title = xpo->nodesetval->item (0)->get_content ();
             }
 
-            xpo = ctx.eval("/rss/channel/item");
+            xpo = ctx.eval ("/rss/channel/item");
             if (xpo->type == Xml.XPathObjectType.NODESET) {
-                for (int i = 0; i < xpo->nodesetval->length(); i++) {
-                    Xml.Node* node = xpo->nodesetval->item(i);
+                for (int i = 0; i < xpo->nodesetval->length (); i++) {
+                    Xml.Node* node = xpo->nodesetval->item (i);
                     try {
-                        var item = MediathekVideoItem.create_from_xml(this, node);
-                        this.items.add(item);
+                        var item = 
+                                MediathekVideoItem.create_from_xml (this, 
+                                                                    node);
+                        this.items.add (item);
                         ret = true;
                     }
                     catch (MediathekVideoItemError error) {
-                        GLib.message("Error creating video item: %s", 
-                            error.message); 
+                        GLib.message ("Error creating video item: %s", 
+                                      error.message); 
                     }
                 }
             }
             else {
-                warning("XPath query failed");
+                warning ("XPath query failed");
             }
 
             delete doc;
             this.child_count = items.size;
-            this.updated();
+            this.updated ();
         }
         else {
-            warning("Failed to parse doc");
+            warning ("Failed to parse doc");
         }
 
         return ret;
     }
 
-    public override void get_children(uint offset, uint max_count, 
-        Cancellable? cancellable, AsyncReadyCallback callback) {
-        debug("get_children called");
+    public override void get_children (uint offset, 
+                                       uint max_count, 
+                                       Cancellable? cancellable, 
+                                       AsyncReadyCallback callback) {
         uint stop = offset + max_count;
-        stop = stop.clamp(0, this.child_count);
-        var children = this.items.slice ((int)offset, (int)stop);
+        stop = stop.clamp (0, this.child_count);
+        var children = this.items.slice ((int) offset, (int) stop);
 
         var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (this,
-        callback);
+                                                                    callback);
         res.data = children;
-        res.complete_in_idle();
+        res.complete_in_idle ();
     }
 
-    public override Gee.List<MediaObject>? get_children_finish (AsyncResult res) throws GLib.Error {
+    public override Gee.List<MediaObject>? get_children_finish (
+                                                            AsyncResult res)
+                                                            throws GLib.Error {
         var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
 
         return simple_res.data;
     }
 
-    public override void find_object (string id, Cancellable? cancellable, AsyncReadyCallback callback) {
+    public override void find_object (string id, 
+                                      Cancellable? cancellable, 
+                                      AsyncReadyCallback callback) {
         var res = new Rygel.SimpleAsyncResult<string> (this,
-            callback);
+                                                       callback);
 
         res.data = id;
-        res.complete_in_idle();
+        res.complete_in_idle ();
     }
 
-    public override MediaObject? find_object_finish (AsyncResult res) throws GLib.Error {
-        var id = ((Rygel.SimpleAsyncResult<string>)res).data;
-        return find_object_sync(id);
+    public override MediaObject? find_object_finish (AsyncResult res) 
+                                                     throws GLib.Error {
+        var id = ((Rygel.SimpleAsyncResult<string>) res).data;
+        return find_object_sync (id);
     }
 
-    public MediaObject? find_object_sync(string id) {
+    public MediaObject? find_object_sync (string id) {
         MediaItem item = null;
         foreach (MediaItem tmp in this.items) {
             if (id == tmp.id) {
@@ -136,22 +144,30 @@ public class Rygel.MediathekRssContainer : MediaContainer {
         return item;
     }
 
-    public void update() {
+    public void update () {
         var message = new Soup.Message ("GET",
-            "http://www.zdf.de/ZDFmediathek/content/%u?view=rss".printf(zdf_content_id)); 
+            "http://www.zdf.de/ZDFmediathek/content/%u?view=rss".printf(
+                                                            zdf_content_id)); 
         if (last_modified != null) {
-            debug("Requesting change since %s", last_modified.to_string(DateFormat.HTTP));
-            message.request_headers.append("If-Modified-Since", last_modified.to_string(DateFormat.HTTP));
+            debug ("Requesting change since %s", 
+                   last_modified.to_string(DateFormat.HTTP));
+            message.request_headers.append("If-Modified-Since", 
+                   last_modified.to_string(DateFormat.HTTP));
         }
 
-        ((MediathekRootContainer)this.parent).session.queue_message (message, on_feed_got);
+        ((MediathekRootContainer) this.parent).session.queue_message (
+                                                                  message, 
+                                                                  on_feed_got);
     }
 
     public MediathekRssContainer (MediaContainer parent, uint id) {
-        base("GroupId:%u".printf(id), parent, "ZDF Mediathek RSS feed %u".printf(id), 0);
+        base ("GroupId:%u".printf(id), 
+             parent, 
+             "ZDF Mediathek RSS feed %u".printf(id), 
+             0);
         this.items = new ArrayList<MediaItem> ();
         this.child_count = 0;
         this.zdf_content_id = id;
-        update();
+        update ();
     }
 }

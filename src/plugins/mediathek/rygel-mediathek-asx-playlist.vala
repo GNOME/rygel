@@ -41,8 +41,8 @@ public class Rygel.MediathekAsxPlaylist : Object {
     public ArrayList<string> uris;
     private string uri;
 
-    public MediathekAsxPlaylist(string uri) {
-        this.uris = new ArrayList<string>();
+    public MediathekAsxPlaylist (string uri) {
+        this.uris = new ArrayList<string> ();
         this.uri = uri;
     }
 
@@ -58,38 +58,47 @@ public class Rygel.MediathekAsxPlaylist : Object {
      */
     public void parse() throws MediathekAsxPlaylistError {
         // FIXME make async using global soup session
-        var session = new Soup.SessionSync();
-        var message = new Soup.Message("GET",
-            this.uri);
+        var session = new Soup.SessionSync ();
+        var message = new Soup.Message ("GET",
+                                        this.uri);
 
-        session.send_message(message);
+        session.send_message (message);
         if (message.status_code == 200) {
             try {
                 // lowercase all tags using regex and \L\E syntax
-                var normalizer = new Regex("(<[/]?)([a-zA-Z:]+)");
-                string normalized_content = normalizer.replace(message.response_body.data,
-                        (long)message.response_body.length, 0, "\\1\\L\\2\\E");
-                var doc = Parser.parse_memory(normalized_content, (int)normalized_content.length);
+                var normalizer = new Regex ("(<[/]?)([a-zA-Z:]+)");
+                string normalized_content = 
+                        normalizer.replace (message.response_body.data,
+                                            (long)message.response_body.length,
+                                            0, 
+                                            "\\1\\L\\2\\E");
+
+                var doc = Parser.parse_memory (normalized_content, 
+                                               (int)normalized_content.length);
 
                 if (doc != null) {
-                    var ctx = new XPathContext(doc);
-                    var xpo = ctx.eval("/asx/entry/ref/@href");
+                    var ctx = new XPathContext (doc);
+                    var xpo = ctx.eval ("/asx/entry/ref/@href");
                     if (xpo->type == XPathObjectType.NODESET) {
-                        for (int i = 0; i < xpo->nodesetval->length(); i++) {
-                            var item = xpo->nodesetval->item(i);
-                            uris.add(item->children->content);
+                        for (int i = 0; i < xpo->nodesetval->length (); i++) {
+                            var item = xpo->nodesetval->item (i);
+                            uris.add (item->children->content);
                         }
                     }
                 }
                 else {
-                    throw new MediathekAsxPlaylistError.XML_ERROR("Could not received XML");
+                    throw new 
+                        MediathekAsxPlaylistError.XML_ERROR (
+                                                  "Could not received XML");
                 }
             }
             catch (RegexError error) { }
         }
         else {
-            throw new MediathekAsxPlaylistError.NETWORK_ERROR("Could not download playlist, error code was %u (%s)".printf(message.status_code, 
-                Soup.status_get_phrase(message.status_code)));
+            throw new MediathekAsxPlaylistError.NETWORK_ERROR (
+                 "Could not download playlist, error code was %u (%s)".printf (
+                 message.status_code, 
+                 Soup.status_get_phrase (message.status_code)));
         }
     }
 }
