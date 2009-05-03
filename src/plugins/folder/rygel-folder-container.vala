@@ -163,7 +163,7 @@ public class Rygel.FolderContainer : MediaContainer {
         string id = Checksum.compute_for_string (ChecksumType.MD5, 
                                                 file.get_uri ());
 
-        base(id, parent, file.get_uri (), 0);
+        base(id, parent, file.get_basename (), 0);
         this.root_dir = file;
 
         if (!full && parent is FolderContainer) {
