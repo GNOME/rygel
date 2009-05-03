@@ -39,7 +39,7 @@ public class Rygel.FolderRootContainer : MediaContainer {
         stop = stop.clamp (0, this.child_count);
         var children = this.items.slice ((int) offset, (int) stop);
         var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (this, 
-                                                callback);
+                                                                      callback);
         res.data = children;
         res.complete_in_idle ();
     }
@@ -48,6 +48,7 @@ public class Rygel.FolderRootContainer : MediaContainer {
                                                     AsyncResult res) 
                                                     throws GLib.Error {
         var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
+
         return simple_res.data;
     }
 
@@ -97,14 +98,15 @@ public class Rygel.FolderRootContainer : MediaContainer {
      */
     public FolderRootContainer () {
         base.root ("FolderRoot", 0);
+
         GConf.Client client = GConf.Client.get_default ();
         this.items = new ArrayList<FolderContainer> ();
         unowned SList<string> dirs = null;
+
         try {
             dirs = client.get_list ("/apps/rygel/Folder/folder", 
                                     GConf.ValueType.STRING);
-        }
-        catch (GLib.Error error) {
+        } catch (GLib.Error error) {
             message("Error fetching configuration, error was %s", 
                     error.message);
         }

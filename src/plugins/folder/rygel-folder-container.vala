@@ -69,8 +69,7 @@ public class Rygel.FolderContainer : MediaContainer {
                                 null,
                                 res.enumerate_children_ready);
             this.results.add (res);
-        }
-        else {
+        } else {
             uint stop = offset + max_count;
             stop = stop.clamp (0, this.child_count);
             var children = this.items.slice ((int) offset, (int) stop);
@@ -96,8 +95,7 @@ public class Rygel.FolderContainer : MediaContainer {
             this.child_count = this.items.size;
             this.results.remove (res);
             return dsr.get_children ();
-        }
-        else {
+        } else {
             var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>)
                             res;
             return simple_res.data;
@@ -161,7 +159,7 @@ public class Rygel.FolderContainer : MediaContainer {
      */
     public FolderContainer (MediaContainer parent, File file, bool full) {
         string id = Checksum.compute_for_string (ChecksumType.MD5, 
-                                                file.get_uri ());
+                                                 file.get_uri ());
 
         base(id, parent, file.get_basename (), 0);
         this.root_dir = file;

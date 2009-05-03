@@ -32,11 +32,9 @@ public class Rygel.FolderGioMediaItem : Rygel.MediaItem {
     private static string? get_upnp_class (string content_type) {
         if (content_type.has_prefix ("video/")) {
             return MediaItem.VIDEO_CLASS;
-        }
-        else if (content_type.has_prefix ("audio/")) {
+        } else if (content_type.has_prefix ("audio/")) {
             return MediaItem.AUDIO_CLASS;
-        }
-        else if (content_type.has_prefix ("image/")) {
+        } else if (content_type.has_prefix ("image/")) {
             return MediaItem.IMAGE_CLASS;
         }
 

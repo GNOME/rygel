@@ -43,22 +43,23 @@ public class Rygel.FolderDirectorySearchResult :
 
     public void enumerator_closed (Object obj, AsyncResult res) {
         var enumerator = (FileEnumerator) obj;
+
         try {
             enumerator.close_finish (res);
-        }
-        catch (Error e) {
+        } catch (Error e) {
             this.error = e;
         }
+
         this.complete();
     }
 
     public void enumerate_next_ready (Object obj, AsyncResult res) {
         var enumerator = (FileEnumerator) obj;
         try {
-            var list = enumerator.next_files_finish(res);
+            var list = enumerator.next_files_finish (res);
             if (list != null) {
                 foreach (FileInfo file_info in list) {
-                    var f = file.get_child(file_info.get_name());
+                    var f = file.get_child (file_info.get_name ());
                     MediaObject item = null;
                     if (file_info.get_file_type () == FileType.DIRECTORY) {
                         item = new Rygel.FolderContainer (
@@ -66,28 +67,25 @@ public class Rygel.FolderDirectorySearchResult :
                                                f, 
                                                false);
 
-                    }
-                    else {
+                    } else {
                         try {
                             item = FolderGioMediaItem.create (
                                         (MediaContainer) source_object, 
                                         f, 
                                         file_info);
-                        } 
-                        catch (Error error) {
+                        }  catch (Error error) {
                         }
                     }
 
                     if (item != null) {
                         data.add (item);
                     }
-
                 }
+
                 enumerator.next_files_async (MAX_CHILDREN,
                                              Priority.DEFAULT,
                                              null, enumerate_next_ready);
-            }
-            else {
+            } else {
                 enumerator.close_async (Priority.DEFAULT,
                                         null, 
                                         enumerator_closed);
@@ -101,14 +99,15 @@ public class Rygel.FolderDirectorySearchResult :
 
     public void enumerate_children_ready(Object obj, AsyncResult res) {
         file = (File) obj;
+
         try {
             var enumerator = file.enumerate_children_finish (res);
+
             enumerator.next_files_async (MAX_CHILDREN,
                                          Priority.DEFAULT,
                                          null, 
                                          enumerate_next_ready);
-        }
-        catch (Error error) {
+        } catch (Error error) {
             this.error = error;
             this.complete ();
         }
