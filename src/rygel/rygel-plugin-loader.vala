@@ -67,8 +67,8 @@ public class Rygel.PluginLoader : Object {
 
         while ((info = enumerator.next_file (null)) != null) {
             string file_name = info.get_name ();
-            string file_path = Path.build_filename (dir.get_path (),
-                                                        file_name);
+            string file_path = Path.build_filename (dir.get_path (), file_name);
+
             File file = File.new_for_path (file_path);
             FileType file_type = info.get_file_type ();
             string content_type = info.get_content_type ();
