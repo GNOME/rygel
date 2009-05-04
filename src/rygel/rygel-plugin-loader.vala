@@ -72,9 +72,29 @@ public class Rygel.PluginLoader : Object {
             return;
         }
 
-        FileInfo info;
+        enumerator.next_files_async (int.MAX,
+                                     Priority.DEFAULT,
+                                     null,
+                                     on_next_files_enumerated);
+    }
 
-        while ((info = enumerator.next_file (null)) != null) {
+    private void on_next_files_enumerated (GLib.Object      source_object,
+                                           GLib.AsyncResult res) {
+        FileEnumerator enumerator = (FileEnumerator) source_object;
+        File dir = (File) enumerator.get_container ();
+
+        List<FileInfo> infos;
+        try {
+            infos = enumerator.next_files_finish (res);
+        } catch (Error error) {
+            critical ("Error listing contents of directory '%s': %s\n",
+                      dir.get_path (),
+                      error.message);
+
+            return;
+        }
+
+        foreach (var info in infos) {
             string file_name = info.get_name ();
             string file_path = Path.build_filename (dir.get_path (), file_name);
 
