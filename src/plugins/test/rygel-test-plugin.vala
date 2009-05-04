@@ -27,7 +27,7 @@ using Gee;
 using CStuff;
 
 [ModuleInit]
-public Plugin load_plugin () {
+public void load_plugin (PluginLoader loader) {
     Plugin plugin = new Plugin ("Test");
 
     // We only implement a ContentDirectory service
@@ -38,6 +38,6 @@ public Plugin load_plugin () {
 
     plugin.add_resource (resource_info);
 
-    return plugin;
+    loader.add_plugin (plugin);
 }
 

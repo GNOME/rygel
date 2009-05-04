@@ -30,7 +30,7 @@ using GUPnP;
  * calls it and expects a Plugin instance in return.
  */
 public class Rygel.PluginLoader : Object {
-    private delegate Plugin LoadPluginFunc ();
+    private delegate void LoadPluginFunc (PluginLoader loader);
 
     // Signals
     public signal void plugin_available (Plugin plugin);
@@ -43,6 +43,10 @@ public class Rygel.PluginLoader : Object {
         assert (dir != null && is_dir (dir));
 
         this.load_plugins_from_dir (dir);
+    }
+
+    public void add_plugin (Plugin plugin) {
+        this.plugin_available (plugin);
     }
 
     private void load_plugins_from_dir (File dir) {
@@ -132,15 +136,12 @@ public class Rygel.PluginLoader : Object {
             return;
         }
 
-        debug ("Loaded plugin: '%s'\n", module.name());
+        // We don't want our modules to ever unload
+        module.make_resident ();
 
-        Plugin plugin = load_plugin ();
-        if (plugin != null) {
-            // We don't want our modules to ever unload
-            module.make_resident ();
+        load_plugin (this);
 
-            this.plugin_available (plugin);
-        }
+        debug ("Loaded plugin source: '%s'\n", module.name());
     }
 
     private static bool is_dir (File file) {
