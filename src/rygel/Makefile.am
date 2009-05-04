@@ -66,7 +66,6 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-didl-lite-writer.c \
 		rygel-plugin.c \
 		rygel-plugin-loader.c \
-		rygel-plugin-loader.vala \
 		rygel-transcode-manager.c \
 		rygel-http-server.c \
 		rygel-state-machine.c \
@@ -123,6 +122,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-resource-info.vala \
 		    rygel-icon-info.vala \
 		    rygel-plugin.vala \
+		    rygel-plugin-loader.vala \
 		    rygel-media-object.vala \
 		    rygel-media-container.vala \
 		    rygel-simple-async-result.vala \
