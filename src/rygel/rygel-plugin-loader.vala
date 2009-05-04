@@ -46,15 +46,24 @@ public class Rygel.PluginLoader : Object {
     }
 
     private void load_plugins_from_dir (File dir) {
+        string attributes = FILE_ATTRIBUTE_STANDARD_NAME + "," +
+                            FILE_ATTRIBUTE_STANDARD_TYPE + "," +
+                            FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE;
+
+        dir.enumerate_children_async (attributes,
+                                      FileQueryInfoFlags.NONE,
+                                      Priority.DEFAULT,
+                                      null,
+                                      on_children_enumerated);
+    }
+
+    private void on_children_enumerated (GLib.Object      source_object,
+                                         GLib.AsyncResult res) {
+        File dir = (File) source_object;
         FileEnumerator enumerator;
 
         try {
-            string attributes = FILE_ATTRIBUTE_STANDARD_NAME + "," +
-                                FILE_ATTRIBUTE_STANDARD_TYPE + "," +
-                                FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE;
-            enumerator = dir.enumerate_children (attributes,
-                                                 FileQueryInfoFlags.NONE,
-                                                 null);
+            enumerator = dir.enumerate_children_finish (res);
         } catch (Error error) {
             critical ("Error listing contents of directory '%s': %s\n",
                       dir.get_path (),
