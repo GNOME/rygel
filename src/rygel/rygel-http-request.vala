@@ -96,7 +96,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
                                          this.on_item_found);
     }
 
-    private void stream_from_gst_source (Element# src) throws Error {
+    private void stream_from_gst_source (owned Element src) throws Error {
         var response = new LiveResponse (this.server,
                                          this.msg,
                                          "RygelLiveResponse",
