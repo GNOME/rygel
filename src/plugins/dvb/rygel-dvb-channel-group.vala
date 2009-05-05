@@ -32,8 +32,6 @@ using Gee;
  */
 public class Rygel.DVBChannelGroup : MediaContainer {
     /* class-wide constants */
-    private const string DVB_SERVICE = "org.gnome.DVB";
-
     private const string GID_PREFIX = "GroupID:";
 
     public static dynamic DBus.Object channel_list;
