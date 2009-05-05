@@ -174,7 +174,7 @@ AC_ARG_ENABLE(folder-plugin,
 # Build Mediathek plugin
 AC_ARG_ENABLE(mediathek-plugin,
 	[  --enable-mediathek-plugin          build Mediathek plugin],,
-        enable_mediathek_plugin=yes)
+        enable_mediathek_plugin=no)
 
 
 AC_SUBST(abs_top_builddir)
