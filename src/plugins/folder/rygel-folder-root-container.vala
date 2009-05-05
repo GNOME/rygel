@@ -117,7 +117,7 @@ public class Rygel.FolderRootContainer : MediaContainer {
         foreach (var dir in dirs) {
             var f = File.new_for_commandline_arg (dir);
             if (f.query_exists (null)) {
-                items.add (new FolderContainer (this, f, true));
+                items.add (new FolderContainer (this, f));
             }
         }
 

@@ -146,10 +146,6 @@ public class Rygel.FolderContainer : MediaContainer {
         return item;
     }
 
-    public string strip_parent (File child) {
-        return root_dir.get_relative_path (child);
-    }
-
     /**
      * Create a new root container.
      * 
@@ -157,16 +153,12 @@ public class Rygel.FolderContainer : MediaContainer {
      * @parameter file, directory you want to expose
      * @parameter full, show full path in title
      */
-    public FolderContainer (MediaContainer parent, File file, bool full) {
+    public FolderContainer (MediaContainer parent, File file) {
         string id = Checksum.compute_for_string (ChecksumType.MD5, 
                                                  file.get_uri ());
 
         base(id, parent, file.get_basename (), 0);
         this.root_dir = file;
-
-        if (!full && parent is FolderContainer) {
-            this.title = ((FolderContainer) parent).strip_parent (root_dir);
-        }
 
         this.items = new ArrayList<MediaObject> ();
         this.child_count = 0;

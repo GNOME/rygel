@@ -64,8 +64,7 @@ public class Rygel.FolderDirectorySearchResult :
                     if (file_info.get_file_type () == FileType.DIRECTORY) {
                         item = new Rygel.FolderContainer (
                                                (MediaContainer) source_object,
-                                               f, 
-                                               false);
+                                               f);
 
                     } else {
                         try {
