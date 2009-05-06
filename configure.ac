@@ -171,6 +171,11 @@ AC_ARG_ENABLE(folder-plugin,
 	[  --enable-folder-plugin          build Folder plugin],,
         enable_folder_plugin=yes)
 
+# Build External plugin
+AC_ARG_ENABLE(external-plugin,
+	[  --enable-external-plugin          build External plugin],,
+        enable_external_plugin=yes)
+
 # Build Mediathek plugin
 AC_ARG_ENABLE(mediathek-plugin,
 	[  --enable-mediathek-plugin          build Mediathek plugin],,
@@ -186,6 +191,7 @@ AM_CONDITIONAL([BUILD_TRACKER_PLUGIN],
 AM_CONDITIONAL([BUILD_DVB_PLUGIN], [test "x$enable_dvb_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_MEDIATHEK_PLUGIN], [test "x$enable_mediathek_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_FOLDER_PLUGIN], [test "x$enable_folder_plugin" = "xyes"])
+AM_CONDITIONAL([BUILD_EXTERNAL_PLUGIN], [test "x$enable_external_plugin" = "xyes"])
 
 # Gettext
 GETTEXT_PACKAGE=rygel
@@ -205,6 +211,7 @@ src/ui/Makefile
 src/plugins/Makefile
 src/plugins/dvb/Makefile
 src/plugins/folder/Makefile
+src/plugins/external/Makefile
 src/plugins/mediathek/Makefile
 src/plugins/tracker/Makefile
 src/plugins/test/Makefile
