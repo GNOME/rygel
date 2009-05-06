@@ -23,6 +23,10 @@
 using GUPnP;
 using Gee;
 
+private errordomain Rygel.MediaItemError {
+    BAD_URI
+}
+
 /**
  * Represents a media (Music, Video and Image) item.
  */
@@ -121,11 +125,16 @@ public class Rygel.MediaItem : MediaObject {
         } else if (uri.has_prefix ("rtsp")) {
             // FIXME: Assuming that RTSP is always accompanied with RTP over UDP
             return "rtsp-rtp-udp";
-        } else if (uri.has_prefix ("mms")) {
-            return "mms";
         } else {
-            throw new DIDLLiteWriterError.UNKNOWN_URI_TYPE
-                            ("Failed to probe protocol for URI %s", uri);
+            warning ("Failed to probe protocol for URI %s", uri);
+
+            // Assume the protocol to be the scheme of the URI
+            var tokens = uri.split (":", 2);
+            if (tokens[0] == null) {
+                throw new MediaItemError.BAD_URI ("Bad URI: %s", uri);
+            }
+
+            return tokens[0];
         }
     }
 }

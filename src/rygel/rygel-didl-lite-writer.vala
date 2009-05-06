@@ -25,7 +25,6 @@ using GUPnP;
 using Gee;
 
 internal errordomain Rygel.DIDLLiteWriterError {
-    UNKNOWN_URI_TYPE,
     UNSUPPORTED_OBJECT
 }
 
