@@ -71,7 +71,7 @@ public class Rygel.ExternalContainer : MediaContainer {
                                                            object_path,
                                                            CONTAINER_IFACE);
 
-            this.fetch_media_objects (connection);
+            this.fetch_media_objects ();
         } catch (DBus.Error error) {
             critical ("Failed to fetch root media objects: %s\n",
                       error.message);
@@ -139,8 +139,7 @@ public class Rygel.ExternalContainer : MediaContainer {
         return obj;
     }
 
-    private void fetch_media_objects (DBus.Connection connection)
-                                      throws GLib.Error {
+    private void fetch_media_objects () throws GLib.Error {
         string[] object_paths = null;
 
         object_paths = this.actual_container.GetContainers ();
