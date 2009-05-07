@@ -31,16 +31,13 @@ using Gee;
  * Implementation of External ContentDirectory service.
  */
 public class Rygel.ExternalContentDir : ContentDirectory {
-    private const string EXTERNAL_SERVICE = "org.Rygel.MediaServer1.PulseAudio";
-    private const string EXTERNAL_PATH = "/org/Rygel/MediaServer1/PulseAudio";
-
     // Pubic methods
     public override MediaContainer? create_root_container () {
-        //string friendly_name = this.root_device.get_friendly_name ();
+        var plugin = (ExternalPlugin) this.root_device.resource_factory;
 
         return new ExternalContainer ("0",
-                                      EXTERNAL_SERVICE,
-                                      EXTERNAL_PATH,
+                                      plugin.service_name,
+                                      plugin.root_object,
                                       null);
     }
 }
