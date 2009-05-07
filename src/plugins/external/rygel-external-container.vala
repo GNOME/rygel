@@ -39,18 +39,18 @@ public class Rygel.ExternalContainer : MediaContainer {
 
     public dynamic DBus.Object actual_container;
 
-    private string service_path;
+    private string service_name;
     private string object_path;
 
     private ArrayList<MediaObject> media_objects;
 
     public ExternalContainer (string             id,
-                              string             service_path,
+                              string             service_name,
                               string             object_path,
                               ExternalContainer? parent) {
         base (id, parent, "Uknown", 0);
 
-        this.service_path = service_path;
+        this.service_name = service_name;
         this.object_path = object_path;
 
         this.media_objects = new ArrayList<MediaObject> ();
@@ -59,7 +59,7 @@ public class Rygel.ExternalContainer : MediaContainer {
             DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
             // Create proxy to MediaObject iface to get the display name through
-            dynamic DBus.Object props = connection.get_object (service_path,
+            dynamic DBus.Object props = connection.get_object (service_name,
                                                                object_path,
                                                                PROPS_IFACE);
             Value value;
@@ -67,7 +67,7 @@ public class Rygel.ExternalContainer : MediaContainer {
             this.title = value.get_string ();
 
             // Now proxy to MediaContainer iface for the rest of the stuff
-            this.actual_container = connection.get_object (service_path,
+            this.actual_container = connection.get_object (service_name,
                                                            object_path,
                                                            CONTAINER_IFACE);
 
@@ -145,14 +145,14 @@ public class Rygel.ExternalContainer : MediaContainer {
         object_paths = this.actual_container.GetContainers ();
         foreach (var object_path in object_paths) {
             this.media_objects.add (new ExternalContainer (object_path,
-                                                           this.service_path,
+                                                           this.service_name,
                                                            object_path,
                                                            this));
         }
 
         object_paths = this.actual_container.GetItems ();
         foreach (var object_path in object_paths) {
-            this.media_objects.add (new ExternalItem (this.service_path,
+            this.media_objects.add (new ExternalItem (this.service_name,
                                                       object_path,
                                                       this));
         }
