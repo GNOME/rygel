@@ -140,20 +140,20 @@ public class Rygel.ExternalContainer : MediaContainer {
     }
 
     private void fetch_media_objects () throws GLib.Error {
-        string[] object_paths = null;
+        ObjectPath[] object_paths = null;
 
         object_paths = this.actual_container.GetContainers ();
         foreach (var object_path in object_paths) {
             this.media_objects.add (new ExternalContainer (object_path,
                                                            this.service_name,
-                                                           object_path,
+                                                           (string) object_path,
                                                            this));
         }
 
         object_paths = this.actual_container.GetItems ();
         foreach (var object_path in object_paths) {
             this.media_objects.add (new ExternalItem (this.service_name,
-                                                      object_path,
+                                                      (string) object_path,
                                                       this));
         }
 
