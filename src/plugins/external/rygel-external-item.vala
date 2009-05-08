@@ -69,7 +69,7 @@ public class Rygel.ExternalItem : MediaItem {
         this.mime_type = value.get_string ();
 
         props.Get (ITEM_IFACE, "urls", out value);
-        string[] uris = (string[]) value.get_boxed ();
+        weak string[] uris = (string[]) value.get_boxed ();
 
         foreach (var uri in uris) {
             this.uris.add (uri);
