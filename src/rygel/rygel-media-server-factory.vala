@@ -119,7 +119,9 @@ public class Rygel.MediaServerFactory {
         }
 
         /* First, set the Friendly name and UDN */
-        this.set_friendly_name_and_udn (device_element, plugin.name);
+        this.set_friendly_name_and_udn (device_element,
+                                        plugin.name,
+                                        plugin.title);
 
         /* Then list each icon */
         this.add_icons_to_desc (device_element, plugin);
@@ -133,7 +135,8 @@ public class Rygel.MediaServerFactory {
      * If these keys are not present in gconf, they are set with default values.
      */
     private void set_friendly_name_and_udn (Xml.Node *device_element,
-                                            string    plugin_name) {
+                                            string    plugin_name,
+                                            string    plugin_title) {
         /* friendlyName */
         Xml.Node *element = Utils.get_xml_element (device_element,
                                                    "friendlyName",
@@ -144,7 +147,7 @@ public class Rygel.MediaServerFactory {
             return;
         }
 
-        var title = this.config.get_title (plugin_name);
+        var title = this.config.get_title (plugin_name, plugin_title);
         title = title.replace ("%n", Environment.get_real_name ());
         title = title.replace ("%u", Environment.get_user_name ());
 
