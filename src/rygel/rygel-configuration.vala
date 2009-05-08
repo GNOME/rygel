@@ -112,8 +112,8 @@ public class Rygel.Configuration {
         return this.get_bool (section, ENABLED_KEY, true);
     }
 
-    public string get_title (string section) {
-        return this.get_string (section, TITLE_KEY, section);
+    public string get_title (string section, string default_title) {
+        return this.get_string (section, TITLE_KEY, default_title);
     }
 
     public string get_udn (string section) {

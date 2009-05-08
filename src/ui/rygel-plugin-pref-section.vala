@@ -42,7 +42,7 @@ public class Rygel.PluginPrefSection : PreferencesSection {
         assert (this.title_entry != null);
 
         this.enabled_check.active = config.get_enabled (name);
-        this.title_entry.set_text (config.get_title (name));
+        this.title_entry.set_text (config.get_title (name, name));
 
         this.enabled_check.toggled += this.on_enabled_check_toggled;
     }
