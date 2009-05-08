@@ -30,12 +30,19 @@ using GUPnP;
  */
 public class Rygel.Plugin : GUPnP.ResourceFactory {
     public string name;
+    public string title;
 
     public ArrayList<ResourceInfo> resource_infos;
     public ArrayList<IconInfo> icon_infos;
 
-    public Plugin (string name) {
+    public Plugin (string  name,
+                   string? title) {
         this.name = name;
+        this.title = title;
+
+        if (title == null) {
+            this.title = name;
+        }
 
         this.resource_infos = new ArrayList<ResourceInfo> ();
         this.icon_infos = new ArrayList<IconInfo> ();

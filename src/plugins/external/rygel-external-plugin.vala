@@ -73,7 +73,7 @@ public class ExternalPlugin : Plugin {
         props.Get (OBJECT_IFACE, "display-name", out value);
         var title = value.get_string ();
 
-        base (title);
+        base (service_name, title);
 
         this.service_name = service_name;
         this.root_object = root_object;
