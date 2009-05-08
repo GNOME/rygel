@@ -144,7 +144,11 @@ public class Rygel.MediaServerFactory {
             return;
         }
 
-        element->set_content (this.config.get_title (plugin_name));
+        var title = this.config.get_title (plugin_name);
+        title = title.replace ("%n", Environment.get_real_name ());
+        title = title.replace ("%u", Environment.get_user_name ());
+
+        element->set_content (title);
 
         /* UDN */
         element = Utils.get_xml_element (device_element, "UDN");

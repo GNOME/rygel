@@ -26,8 +26,7 @@ using CStuff;
 
 [ModuleInit]
 public void load_plugin (PluginLoader loader) {
-    var title = Environment.get_real_name () + "'s media";
-    Plugin plugin = new Plugin ("Tracker", title);
+    Plugin plugin = new Plugin ("Tracker", "%n's media");
 
     // We only implement a ContentDirectory service
     var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
