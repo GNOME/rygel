@@ -27,7 +27,8 @@ using GUPnP;
 /**
  * Responsible for plugin loading. Probes for shared library files in a specific
  * directry and tries to grab a function with a specific name and signature,
- * calls it and expects a Plugin instance in return.
+ * calls it. The loaded module can then add plugins to Rygel by calling the
+ * add_plugin method.
  */
 public class Rygel.PluginLoader : Object {
     private delegate void LoadPluginFunc (PluginLoader loader);
