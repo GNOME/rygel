@@ -32,6 +32,8 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
     public string name;
     public string title;
 
+    public bool available { get; set; }
+
     public ArrayList<ResourceInfo> resource_infos;
     public ArrayList<IconInfo> icon_infos;
 
@@ -39,6 +41,8 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
                    string? title) {
         this.name = name;
         this.title = title;
+
+        this.available = true;
 
         if (title == null) {
             this.title = name;
