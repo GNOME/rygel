@@ -72,14 +72,24 @@ public class Rygel.Main : Object {
         try {
             var server = this.ms_factory.create_media_server (plugin);
 
-            /* Make our device available */
-            server.available = true;
+            server.available = plugin.available;
 
             media_servers.add (server);
+
+            plugin.notify["available"] += this.on_plugin_notify;
         } catch (GLib.Error error) {
             warning ("Failed to create MediaServer for %s. Reason: %s\n",
                      plugin.name,
                      error.message);
+        }
+    }
+
+    private void on_plugin_notify (Plugin    plugin,
+                                   ParamSpec spec) {
+        foreach (var server in this.media_servers) {
+            if (server.resource_factory == plugin) {
+                server.available = plugin.available;
+            }
         }
     }
 
