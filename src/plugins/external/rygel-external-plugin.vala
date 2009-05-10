@@ -35,7 +35,7 @@ private const string OBJECT_IFACE = "org.Rygel.MediaObject1";
 private const string SERVICE_PREFIX = "org.Rygel.MediaServer1.";
 
 [ModuleInit]
-public void load_plugin (PluginLoader loader) {
+public void module_init (PluginLoader loader) {
     try {
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 

@@ -27,7 +27,7 @@ using Gee;
 using CStuff;
 
 [ModuleInit]
-public void load_plugin (PluginLoader loader) {
+public void module_init (PluginLoader loader) {
     Plugin plugin = new Plugin ("Test", "Test Streams");
 
     // We only implement a ContentDirectory service

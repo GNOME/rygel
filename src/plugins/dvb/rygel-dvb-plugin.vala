@@ -29,7 +29,7 @@ using Gee;
 using CStuff;
 
 [ModuleInit]
-public void load_plugin (PluginLoader loader) {
+public void module_init (PluginLoader loader) {
     Plugin plugin = new Plugin ("DVB", "Digital TV");
 
     // We only implement a ContentDirectory service

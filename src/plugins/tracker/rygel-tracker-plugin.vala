@@ -25,7 +25,7 @@ using Gee;
 using CStuff;
 
 [ModuleInit]
-public void load_plugin (PluginLoader loader) {
+public void module_init (PluginLoader loader) {
     Plugin plugin = new Plugin ("Tracker", "%n's media");
 
     // We only implement a ContentDirectory service

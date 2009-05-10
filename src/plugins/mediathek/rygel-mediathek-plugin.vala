@@ -24,7 +24,7 @@ using Rygel;
 using GUPnP;
 
 [ModuleInit]
-public void load_plugin (PluginLoader loader) {
+public void module_init (PluginLoader loader) {
     Plugin plugin = new Plugin ("ZDFMediathek", "ZDF Mediathek");
 
     var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,

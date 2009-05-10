@@ -31,7 +31,7 @@ using GUPnP;
  * add_plugin method.
  */
 public class Rygel.PluginLoader : Object {
-    private delegate void LoadPluginFunc (PluginLoader loader);
+    private delegate void ModuleInitFunc (PluginLoader loader);
 
     // Signals
     public signal void plugin_available (Plugin plugin);
@@ -43,14 +43,14 @@ public class Rygel.PluginLoader : Object {
         File dir = File.new_for_path (BuildConfig.PLUGIN_DIR);
         assert (dir != null && is_dir (dir));
 
-        this.load_plugins_from_dir (dir);
+        this.load_modules_from_dir (dir);
     }
 
     public void add_plugin (Plugin plugin) {
         this.plugin_available (plugin);
     }
 
-    private void load_plugins_from_dir (File dir) {
+    private void load_modules_from_dir (File dir) {
         string attributes = FILE_ATTRIBUTE_STANDARD_NAME + "," +
                             FILE_ATTRIBUTE_STANDARD_TYPE + "," +
                             FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE;
@@ -110,29 +110,29 @@ public class Rygel.PluginLoader : Object {
 
             if (file_type == FileType.DIRECTORY) {
                 // Recurse into directories
-                this.load_plugins_from_dir (file);
+                this.load_modules_from_dir (file);
             } else if (mime == "application/x-sharedlib") {
-                // Seems like we found a plugin
-                this.load_plugin_from_file (file_path);
+                // Seems like we found a module
+                this.load_module_from_file (file_path);
             }
         }
     }
 
-    private void load_plugin_from_file (string file_path) {
+    private void load_module_from_file (string file_path) {
         Module module = Module.open (file_path, ModuleFlags.BIND_LOCAL);
         if (module == null) {
-            debug ("Failed to load plugin from path: '%s'\n", file_path);
+            debug ("Failed to load module from path: '%s'\n", file_path);
 
             return;
         }
 
         void* function;
 
-        module.symbol("load_plugin", out function);
+        module.symbol("module_init", out function);
 
-        LoadPluginFunc load_plugin = (LoadPluginFunc) function;
-        if (load_plugin == null) {
-            warning ("Failed to load plugin from path: '%s'\n", file_path);
+        ModuleInitFunc module_init = (ModuleInitFunc) function;
+        if (module_init == null) {
+            warning ("Failed to load module from path: '%s'\n", file_path);
 
             return;
         }
@@ -140,9 +140,9 @@ public class Rygel.PluginLoader : Object {
         // We don't want our modules to ever unload
         module.make_resident ();
 
-        load_plugin (this);
+        module_init (this);
 
-        debug ("Loaded plugin source: '%s'\n", module.name());
+        debug ("Loaded module source: '%s'\n", module.name());
     }
 
     private static bool is_dir (File file) {
