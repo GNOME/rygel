@@ -13,7 +13,6 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 BUILT_SOURCES = rygel-folder-root-container.c \
 		rygel-folder-container.c \
 		rygel-folder-directory-search-result.c \
-		rygel-folder-gio-media-item.c \
 		rygel-folder-plugin.c
 
 $(BUILT_SOURCES) : rygel-media-folder.stamp
@@ -26,9 +25,7 @@ librygel_media_folder_la_SOURCES = \
 	rygel-folder-container.c \
 	rygel-folder-container.vala \
 	rygel-folder-directory-search-result.c \
-	rygel-folder-directory-search-result.vala \
-	rygel-folder-gio-media-item.c \
-	rygel-folder-gio-media-item.vala
+	rygel-folder-directory-search-result.vala
 
 rygel-media-folder.stamp: $(filter %.vala,$(librygel_media_folder_la_SOURCES))
 	$(VALAC) -g -C --vapidir=$(top_srcdir)/src/rygel \
