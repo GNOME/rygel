@@ -70,8 +70,9 @@ public class Rygel.ExternalItem : MediaItem {
         props.Get (ITEM_IFACE, "urls", out value);
         weak string[] uris = (string[]) value.get_boxed ();
 
-        foreach (var uri in uris) {
-            var tmp = uri.replace ("://@HOSTNAME@", parent.host_ip);
+        for (var i = 0; uris[i] != null; i++) {
+            var tmp = uris[i].replace ("://@HOSTNAME@", parent.host_ip);
+
             this.uris.add (tmp);
         }
     }
