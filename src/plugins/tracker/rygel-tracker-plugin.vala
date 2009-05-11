@@ -26,7 +26,7 @@ using CStuff;
 
 [ModuleInit]
 public void module_init (PluginLoader loader) {
-    Plugin plugin = new Plugin ("Tracker", "%n's media");
+    Plugin plugin = new Plugin ("Tracker", "@REALNAME@'s media");
 
     // We only implement a ContentDirectory service
     var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,

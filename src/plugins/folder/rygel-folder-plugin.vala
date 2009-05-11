@@ -36,7 +36,7 @@ using GLib;
  */
 [ModuleInit]
 public void module_init (PluginLoader loader) {
-    Plugin plugin = new Plugin ("Folder", "%n's media");
+    Plugin plugin = new Plugin ("Folder", "@REALNAME@'s media");
 
     var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
                                           ContentDirectory.UPNP_TYPE,

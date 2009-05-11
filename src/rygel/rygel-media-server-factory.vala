@@ -148,8 +148,8 @@ public class Rygel.MediaServerFactory {
         }
 
         var title = this.config.get_title (plugin_name, plugin_title);
-        title = title.replace ("%n", Environment.get_real_name ());
-        title = title.replace ("%u", Environment.get_user_name ());
+        title = title.replace ("@REALNAME@", Environment.get_real_name ());
+        title = title.replace ("@USERNAME@", Environment.get_user_name ());
 
         element->set_content (title);
 
