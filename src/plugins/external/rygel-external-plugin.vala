@@ -46,7 +46,9 @@ public void module_init (PluginLoader loader) {
         string[] services = dbus_obj.ListNames ();
         foreach (var service in services) {
             if (service.has_prefix (SERVICE_PREFIX)) {
-                loader.add_plugin (new ExternalPlugin (connection, service));
+                loader.add_plugin (new ExternalPlugin (connection,
+                                                       dbus_obj,
+                                                       service));
             }
         }
     } catch (DBus.Error error) {
@@ -60,8 +62,11 @@ public class ExternalPlugin : Plugin {
     public string service_name;
     public string root_object;
 
-    public ExternalPlugin (DBus.Connection connection,
-                           string          service_name) {
+    private dynamic DBus.Object dbus_obj;
+
+    public ExternalPlugin (DBus.Connection     connection,
+                           dynamic DBus.Object dbus_obj,
+                           string              service_name) {
         // org.Rygel.MediaServer1.NAME => /org/Rygel/MediaServer1/NAME
         var root_object = "/" + service_name.replace (".", "/");
 
@@ -75,6 +80,7 @@ public class ExternalPlugin : Plugin {
 
         base (service_name, title);
 
+        this.dbus_obj = dbus_obj;
         this.service_name = service_name;
         this.root_object = root_object;
 
@@ -85,5 +91,24 @@ public class ExternalPlugin : Plugin {
                                               typeof (ExternalContentDir));
 
         this.add_resource (resource_info);
+
+        dbus_obj.NameOwnerChanged += this.name_owner_changed;
+    }
+
+    private void name_owner_changed (dynamic DBus.Object dbus_obj,
+                                     string              name,
+                                     string              old_owner,
+                                     string              new_owner) {
+        if (name == this.service_name) {
+            if (old_owner != "" && new_owner == "") {
+                debug ("Service '%s' going down, marking it as unavailable",
+                        name);
+                this.available = false;
+            } else if (old_owner == "" && new_owner != "") {
+                debug ("Service '%s' up again, marking it as available",
+                        name);
+                this.available = true;
+            }
+        }
     }
 }
