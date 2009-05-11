@@ -42,7 +42,10 @@ public class Rygel.PluginPrefSection : PreferencesSection {
         assert (this.title_entry != null);
 
         this.enabled_check.active = config.get_enabled (name);
-        this.title_entry.set_text (config.get_title (name, name));
+
+        var title = config.get_title (name, name).replace ("@REALNAME@", "%n");
+        title = title.replace ("@USERNAME@", "%u");
+        this.title_entry.set_text (title);
 
         this.enabled_check.toggled += this.on_enabled_check_toggled;
     }
@@ -51,9 +54,10 @@ public class Rygel.PluginPrefSection : PreferencesSection {
         this.config.set_bool (this.name,
                               Configuration.ENABLED_KEY,
                               this.enabled_check.active);
-        this.config.set_string (this.name,
-                                Configuration.TITLE_KEY,
-                                this.title_entry.get_text ());
+
+        var title = this.title_entry.get_text ().replace ("%n", "@REALNAME@");
+        title = title.replace ("%u", "@USERNAME@");
+        this.config.set_string (this.name, Configuration.TITLE_KEY, title);
     }
 
     private void on_enabled_check_toggled (CheckButton enabled_check) {
