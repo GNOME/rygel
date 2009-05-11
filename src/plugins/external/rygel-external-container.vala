@@ -41,7 +41,7 @@ public class Rygel.ExternalContainer : MediaContainer {
 
     public string host_ip;
 
-    private string service_name;
+    public string service_name;
     private string object_path;
 
     private ArrayList<MediaObject> media_objects;
@@ -157,8 +157,7 @@ public class Rygel.ExternalContainer : MediaContainer {
 
         object_paths = this.actual_container.GetItems ();
         foreach (var object_path in object_paths) {
-            this.media_objects.add (new ExternalItem (this.service_name,
-                                                      (string) object_path,
+            this.media_objects.add (new ExternalItem ((string) object_path,
                                                       this));
         }
 

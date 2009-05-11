@@ -34,8 +34,7 @@ public class Rygel.ExternalItem : MediaItem {
     private static string OBJECT_IFACE = "org.Rygel.MediaObject1";
     private static string ITEM_IFACE = "org.Rygel.MediaItem1";
 
-    public ExternalItem (string            service_name,
-                         string            object_path,
+    public ExternalItem (string            object_path,
                          ExternalContainer parent)
                          throws GLib.Error {
         base (object_path,
@@ -45,7 +44,7 @@ public class Rygel.ExternalItem : MediaItem {
 
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
-        dynamic DBus.Object props = connection.get_object (service_name,
+        dynamic DBus.Object props = connection.get_object (parent.service_name,
                                                            object_path,
                                                            PROPS_IFACE);
 
