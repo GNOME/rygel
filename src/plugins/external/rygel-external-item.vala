@@ -50,12 +50,7 @@ public class Rygel.ExternalItem : MediaItem {
 
         Value value;
         props.Get (OBJECT_IFACE, "display-name", out value);
-        this.title = value.get_string ().replace ("@REALNAME@",
-                                                  Environment.get_real_name ());
-        this.title = this.title.replace ("@USERNAME@",
-                                         Environment.get_user_name ());
-        this.title = this.title.replace ("@HOSTNAME@",
-                                         Environment.get_host_name ());
+        this.title = parent.substitute_keywords (value.get_string ());
 
         props.Get (ITEM_IFACE, "type", out value);
         string type = value.get_string ();
