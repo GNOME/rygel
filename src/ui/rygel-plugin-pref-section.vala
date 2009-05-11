@@ -45,6 +45,7 @@ public class Rygel.PluginPrefSection : PreferencesSection {
 
         var title = config.get_title (name, name).replace ("@REALNAME@", "%n");
         title = title.replace ("@USERNAME@", "%u");
+        title = title.replace ("@HOSTNAME@", "%h");
         this.title_entry.set_text (title);
 
         this.enabled_check.toggled += this.on_enabled_check_toggled;
@@ -57,6 +58,7 @@ public class Rygel.PluginPrefSection : PreferencesSection {
 
         var title = this.title_entry.get_text ().replace ("%n", "@REALNAME@");
         title = title.replace ("%u", "@USERNAME@");
+        title = title.replace ("%h", "@HOSTNAME@");
         this.config.set_string (this.name, Configuration.TITLE_KEY, title);
     }
 
