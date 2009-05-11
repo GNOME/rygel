@@ -68,7 +68,7 @@ public class Rygel.ExternalContainer : MediaContainer {
                                                                PROPS_IFACE);
             Value value;
             props.Get (OBJECT_IFACE, "display-name", out value);
-            this.title = value.get_string ();
+            this.title = this.substitute_keywords (value.get_string ());
 
             // Now proxy to MediaContainer iface for the rest of the stuff
             this.actual_container = connection.get_object (service_name,
