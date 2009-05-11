@@ -34,9 +34,9 @@ public class Rygel.ExternalItem : MediaItem {
     private static string OBJECT_IFACE = "org.Rygel.MediaObject1";
     private static string ITEM_IFACE = "org.Rygel.MediaItem1";
 
-    public ExternalItem (string         service_name,
-                         string         object_path,
-                         MediaContainer parent)
+    public ExternalItem (string            service_name,
+                         string            object_path,
+                         ExternalContainer parent)
                          throws GLib.Error {
         base (object_path,
               parent,
