@@ -38,6 +38,7 @@ public class Rygel.ExternalContentDir : ContentDirectory {
         return new ExternalContainer ("0",
                                       plugin.service_name,
                                       plugin.root_object,
+                                      this.context.host_ip,
                                       null);
     }
 }

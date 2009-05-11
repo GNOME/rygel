@@ -39,6 +39,8 @@ public class Rygel.ExternalContainer : MediaContainer {
 
     public dynamic DBus.Object actual_container;
 
+    public string host_ip;
+
     private string service_name;
     private string object_path;
 
@@ -47,11 +49,13 @@ public class Rygel.ExternalContainer : MediaContainer {
     public ExternalContainer (string             id,
                               string             service_name,
                               string             object_path,
+                              string             host_ip,
                               ExternalContainer? parent) {
         base (id, parent, "Uknown", 0);
 
         this.service_name = service_name;
         this.object_path = object_path;
+        this.host_ip = host_ip;
 
         this.media_objects = new ArrayList<MediaObject> ();
 
@@ -147,6 +151,7 @@ public class Rygel.ExternalContainer : MediaContainer {
             this.media_objects.add (new ExternalContainer (object_path,
                                                            this.service_name,
                                                            (string) object_path,
+                                                           this.host_ip,
                                                            this));
         }
 

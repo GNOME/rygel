@@ -72,7 +72,8 @@ public class Rygel.ExternalItem : MediaItem {
         weak string[] uris = (string[]) value.get_boxed ();
 
         foreach (var uri in uris) {
-            this.uris.add (uri);
+            var tmp = uri.replace ("://@HOSTNAME@", parent.host_ip);
+            this.uris.add (tmp);
         }
     }
 }
