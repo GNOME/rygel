@@ -34,14 +34,30 @@ private const string PROPS_IFACE = "org.freedesktop.DBus.Properties";
 private const string OBJECT_IFACE = "org.Rygel.MediaObject1";
 private const string SERVICE_PREFIX = "org.Rygel.MediaServer1.";
 
+private ExternalPluginFactory plugin_factory;
+
 [ModuleInit]
 public void module_init (PluginLoader loader) {
     try {
-        DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
+        plugin_factory = new ExternalPluginFactory (loader);
+    } catch (DBus.Error error) {
+        critical ("Failed to fetch list of external services: %s\n",
+                error.message);
+    }
+}
 
-        dynamic DBus.Object dbus_obj = connection.get_object (DBUS_SERVICE,
-                                                              DBUS_OBJECT,
-                                                              DBUS_IFACE);
+public class ExternalPluginFactory {
+    dynamic DBus.Object dbus_obj;
+    DBus.Connection     connection;
+    PluginLoader        loader;
+
+    public ExternalPluginFactory (PluginLoader loader) throws DBus.Error {
+        this.connection = DBus.Bus.get (DBus.BusType.SESSION);
+
+        this.dbus_obj = connection.get_object (DBUS_SERVICE,
+                                               DBUS_OBJECT,
+                                               DBUS_IFACE);
+        this.loader = loader;
 
         string[] services = dbus_obj.ListNames ();
         foreach (var service in services) {
@@ -51,9 +67,6 @@ public void module_init (PluginLoader loader) {
                                                        service));
             }
         }
-    } catch (DBus.Error error) {
-        critical ("Failed to fetch list of external services: %s\n",
-                error.message);
     }
 }
 
