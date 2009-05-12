@@ -73,8 +73,8 @@ public class ExternalPluginFactory {
 
         foreach (var service in services) {
             if (service.has_prefix (SERVICE_PREFIX)) {
-                loader.add_plugin (new ExternalPlugin (connection,
-                                                       service));
+                this.loader.add_plugin (new ExternalPlugin (this.connection,
+                                                            service));
             }
         }
 
