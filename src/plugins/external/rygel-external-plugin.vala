@@ -78,6 +78,27 @@ public class ExternalPluginFactory {
                                                        service));
             }
         }
+
+        dbus_obj.NameOwnerChanged += this.name_owner_changed;
+    }
+
+    private void name_owner_changed (dynamic DBus.Object dbus_obj,
+                                     string              name,
+                                     string              old_owner,
+                                     string              new_owner) {
+        var plugin = this.loader.get_plugin_by_name (name);
+
+        if (plugin != null) {
+            if (old_owner != "" && new_owner == "") {
+                debug ("Service '%s' going down, marking it as unavailable",
+                        name);
+                plugin.available = false;
+            } else if (old_owner == "" && new_owner != "") {
+                debug ("Service '%s' up again, marking it as available",
+                        name);
+                plugin.available = true;
+            }
+        }
     }
 }
 
@@ -115,24 +136,5 @@ public class ExternalPlugin : Plugin {
                                               typeof (ExternalContentDir));
 
         this.add_resource (resource_info);
-
-        dbus_obj.NameOwnerChanged += this.name_owner_changed;
-    }
-
-    private void name_owner_changed (dynamic DBus.Object dbus_obj,
-                                     string              name,
-                                     string              old_owner,
-                                     string              new_owner) {
-        if (name == this.service_name) {
-            if (old_owner != "" && new_owner == "") {
-                debug ("Service '%s' going down, marking it as unavailable",
-                        name);
-                this.available = false;
-            } else if (old_owner == "" && new_owner != "") {
-                debug ("Service '%s' up again, marking it as available",
-                        name);
-                this.available = true;
-            }
-        }
     }
 }
