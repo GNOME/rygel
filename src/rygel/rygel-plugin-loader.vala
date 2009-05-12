@@ -40,7 +40,7 @@ public class Rygel.PluginLoader : Object {
     public signal void plugin_available (Plugin plugin);
 
     public PluginLoader () {
-        this.plugin_hash = new HashMap<string,Plugin> ();
+        this.plugin_hash = new HashMap<string,Plugin> (str_hash, str_equal);
     }
 
     // Plugin loading functions
