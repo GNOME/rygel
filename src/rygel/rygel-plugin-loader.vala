@@ -23,6 +23,7 @@
 
 using CStuff;
 using GUPnP;
+using Gee;
 
 /**
  * Responsible for plugin loading. Probes for shared library files in a specific
@@ -33,8 +34,14 @@ using GUPnP;
 public class Rygel.PluginLoader : Object {
     private delegate void ModuleInitFunc (PluginLoader loader);
 
+    private HashMap<string,Plugin> plugin_hash;
+
     // Signals
     public signal void plugin_available (Plugin plugin);
+
+    public PluginLoader () {
+        this.plugin_hash = new HashMap<string,Plugin> ();
+    }
 
     // Plugin loading functions
     public void load_plugins () {
@@ -47,6 +54,8 @@ public class Rygel.PluginLoader : Object {
     }
 
     public void add_plugin (Plugin plugin) {
+        this.plugin_hash.set (plugin.name, plugin);
+
         this.plugin_available (plugin);
     }
 
@@ -88,7 +97,7 @@ public class Rygel.PluginLoader : Object {
         FileEnumerator enumerator = (FileEnumerator) source_object;
         File dir = (File) enumerator.get_container ();
 
-        List<FileInfo> infos;
+        GLib.List<FileInfo> infos;
         try {
             infos = enumerator.next_files_finish (res);
         } catch (Error error) {
