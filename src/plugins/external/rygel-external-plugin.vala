@@ -59,7 +59,18 @@ public class ExternalPluginFactory {
                                                DBUS_IFACE);
         this.loader = loader;
 
-        string[] services = dbus_obj.ListNames ();
+        dbus_obj.ListNames (this.list_names_cb);
+    }
+
+    private void list_names_cb (string[]   services,
+                                GLib.Error err) {
+        if (err != null) {
+            critical ("Failed to fetch list of external services: %s\n",
+                      err.message);
+
+            return;
+        }
+
         foreach (var service in services) {
             if (service.has_prefix (SERVICE_PREFIX)) {
                 loader.add_plugin (new ExternalPlugin (connection,
