@@ -59,6 +59,14 @@ public class Rygel.PluginLoader : Object {
         this.plugin_available (plugin);
     }
 
+    public Plugin? get_plugin_by_name (string name) {
+        return this.plugin_hash.get (name);
+    }
+
+    public Collection<Plugin> list_plugins () {
+        return this.plugin_hash.get_values ();
+    }
+
     private void load_modules_from_dir (File dir) {
         string attributes = FILE_ATTRIBUTE_STANDARD_NAME + "," +
                             FILE_ATTRIBUTE_STANDARD_TYPE + "," +
