@@ -97,6 +97,10 @@ public class ExternalPluginFactory {
                         name);
                 plugin.available = true;
             }
+        } else if (name.has_prefix (SERVICE_PREFIX)) {
+                // Ah, new plugin available, lets use it
+                this.loader.add_plugin (new ExternalPlugin (this.connection,
+                                                            name));
         }
     }
 }
