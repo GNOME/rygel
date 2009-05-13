@@ -74,7 +74,6 @@ public class ExternalPluginFactory {
         foreach (var service in services) {
             if (service.has_prefix (SERVICE_PREFIX)) {
                 loader.add_plugin (new ExternalPlugin (connection,
-                                                       dbus_obj,
                                                        service));
             }
         }
@@ -107,10 +106,7 @@ public class ExternalPlugin : Plugin {
     public string service_name;
     public string root_object;
 
-    private dynamic DBus.Object dbus_obj;
-
     public ExternalPlugin (DBus.Connection     connection,
-                           dynamic DBus.Object dbus_obj,
                            string              service_name) {
         // org.Rygel.MediaServer1.NAME => /org/Rygel/MediaServer1/NAME
         var root_object = "/" + service_name.replace (".", "/");
@@ -125,7 +121,6 @@ public class ExternalPlugin : Plugin {
 
         base (service_name, title);
 
-        this.dbus_obj = dbus_obj;
         this.service_name = service_name;
         this.root_object = root_object;
 
