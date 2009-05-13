@@ -24,11 +24,11 @@
 
 using Rygel;
 
-private const string PROPS_IFACE = "org.freedesktop.DBus.Properties";
-private const string OBJECT_IFACE = "org.Rygel.MediaObject1";
-
 public class ExternalPlugin : Plugin {
     // class-wide constants
+    private const string PROPS_IFACE = "org.freedesktop.DBus.Properties";
+    private const string OBJECT_IFACE = "org.Rygel.MediaObject1";
+
     public string service_name;
     public string root_object;
 

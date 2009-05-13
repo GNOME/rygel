@@ -26,12 +26,6 @@ using Rygel;
 using Gee;
 using CStuff;
 
-private const string DBUS_SERVICE = "org.freedesktop.DBus";
-private const string DBUS_OBJECT = "/org/freedesktop/DBus";
-private const string DBUS_IFACE = "org.freedesktop.DBus";
-
-private const string SERVICE_PREFIX = "org.Rygel.MediaServer1.";
-
 private ExternalPluginFactory plugin_factory;
 
 [ModuleInit]
@@ -45,6 +39,12 @@ public void module_init (PluginLoader loader) {
 }
 
 public class ExternalPluginFactory {
+    private const string DBUS_SERVICE = "org.freedesktop.DBus";
+    private const string DBUS_OBJECT = "/org/freedesktop/DBus";
+    private const string DBUS_IFACE = "org.freedesktop.DBus";
+
+    private const string SERVICE_PREFIX = "org.Rygel.MediaServer1.";
+
     dynamic DBus.Object dbus_obj;
     DBus.Connection     connection;
     PluginLoader        loader;
