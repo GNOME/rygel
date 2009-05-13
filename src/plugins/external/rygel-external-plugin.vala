@@ -23,87 +23,9 @@
  */
 
 using Rygel;
-using Gee;
-using CStuff;
 
-private const string DBUS_SERVICE = "org.freedesktop.DBus";
-private const string DBUS_OBJECT = "/org/freedesktop/DBus";
-private const string DBUS_IFACE = "org.freedesktop.DBus";
 private const string PROPS_IFACE = "org.freedesktop.DBus.Properties";
-
 private const string OBJECT_IFACE = "org.Rygel.MediaObject1";
-private const string SERVICE_PREFIX = "org.Rygel.MediaServer1.";
-
-private ExternalPluginFactory plugin_factory;
-
-[ModuleInit]
-public void module_init (PluginLoader loader) {
-    try {
-        plugin_factory = new ExternalPluginFactory (loader);
-    } catch (DBus.Error error) {
-        critical ("Failed to fetch list of external services: %s\n",
-                error.message);
-    }
-}
-
-public class ExternalPluginFactory {
-    dynamic DBus.Object dbus_obj;
-    DBus.Connection     connection;
-    PluginLoader        loader;
-
-    public ExternalPluginFactory (PluginLoader loader) throws DBus.Error {
-        this.connection = DBus.Bus.get (DBus.BusType.SESSION);
-
-        this.dbus_obj = connection.get_object (DBUS_SERVICE,
-                                               DBUS_OBJECT,
-                                               DBUS_IFACE);
-        this.loader = loader;
-
-        dbus_obj.ListNames (this.list_names_cb);
-    }
-
-    private void list_names_cb (string[]   services,
-                                GLib.Error err) {
-        if (err != null) {
-            critical ("Failed to fetch list of external services: %s\n",
-                      err.message);
-
-            return;
-        }
-
-        foreach (var service in services) {
-            if (service.has_prefix (SERVICE_PREFIX)) {
-                this.loader.add_plugin (new ExternalPlugin (this.connection,
-                                                            service));
-            }
-        }
-
-        dbus_obj.NameOwnerChanged += this.name_owner_changed;
-    }
-
-    private void name_owner_changed (dynamic DBus.Object dbus_obj,
-                                     string              name,
-                                     string              old_owner,
-                                     string              new_owner) {
-        var plugin = this.loader.get_plugin_by_name (name);
-
-        if (plugin != null) {
-            if (old_owner != "" && new_owner == "") {
-                debug ("Service '%s' going down, marking it as unavailable",
-                        name);
-                plugin.available = false;
-            } else if (old_owner == "" && new_owner != "") {
-                debug ("Service '%s' up again, marking it as available",
-                        name);
-                plugin.available = true;
-            }
-        } else if (name.has_prefix (SERVICE_PREFIX)) {
-                // Ah, new plugin available, lets use it
-                this.loader.add_plugin (new ExternalPlugin (this.connection,
-                                                            name));
-        }
-    }
-}
 
 public class ExternalPlugin : Plugin {
     // class-wide constants

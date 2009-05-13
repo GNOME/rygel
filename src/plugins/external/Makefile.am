@@ -14,7 +14,8 @@ BUILT_SOURCES = rygel-external.stamp \
 		rygel-external-content-dir.c \
 		rygel-external-container.c \
 		rygel-external-item.c \
-		rygel-external-plugin.c
+		rygel-external-plugin.c \
+		rygel-external-plugin-factory.c
 
 librygel_external_la_SOURCES = rygel-external-content-dir.c \
 			       rygel-external-content-dir.vala \
@@ -23,7 +24,9 @@ librygel_external_la_SOURCES = rygel-external-content-dir.c \
 			       rygel-external-item.c \
 			       rygel-external-item.vala \
 			       rygel-external-plugin.c \
-			       rygel-external-plugin.vala
+			       rygel-external-plugin.vala \
+			       rygel-external-plugin-factory.c \
+			       rygel-external-plugin-factory.vala
 
 rygel-external.stamp: $(filter %.vala,$(librygel_external_la_SOURCES))
 	$(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \
