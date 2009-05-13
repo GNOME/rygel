@@ -49,6 +49,8 @@ public class ExternalPluginFactory {
     DBus.Connection     connection;
     PluginLoader        loader;
 
+    bool activatable; // Indicated if we have listed activatable services yet
+
     public ExternalPluginFactory (PluginLoader loader) throws DBus.Error {
         this.connection = DBus.Bus.get (DBus.BusType.SESSION);
 
@@ -57,6 +59,7 @@ public class ExternalPluginFactory {
                                                DBUS_IFACE);
         this.loader = loader;
 
+        this.activatable = false;
         dbus_obj.ListNames (this.list_names_cb);
     }
 
@@ -76,7 +79,15 @@ public class ExternalPluginFactory {
             }
         }
 
-        dbus_obj.NameOwnerChanged += this.name_owner_changed;
+        if (this.activatable) {
+            // Activatable services are already taken-care of, now we can
+            // just relax but keep a watch on bus for plugins coming and
+            // going away on the fly.
+            dbus_obj.NameOwnerChanged += this.name_owner_changed;
+        } else {
+            dbus_obj.ListActivatableNames (this.list_names_cb);
+            this.activatable = true;
+        }
     }
 
     private void name_owner_changed (dynamic DBus.Object dbus_obj,
