@@ -56,6 +56,7 @@ public class Rygel.PluginLoader : Object {
     public void add_plugin (Plugin plugin) {
         this.plugin_hash.set (plugin.name, plugin);
 
+        debug ("New plugin '%s' available", plugin.name);
         this.plugin_available (plugin);
     }
 
