@@ -76,6 +76,8 @@ public class Rygel.ExternalContainer : MediaContainer {
                                                            CONTAINER_IFACE);
 
             this.fetch_media_objects ();
+
+            this.actual_container.Updated += this.on_container_updated;
         } catch (DBus.Error error) {
             critical ("Failed to fetch root media objects: %s\n",
                       error.message);
@@ -173,6 +175,15 @@ public class Rygel.ExternalContainer : MediaContainer {
         }
 
         this.child_count = this.media_objects.size;
+    }
+
+    private void on_container_updated (dynamic DBus.Object actual_container) {
+        // Re-fetch the objects
+        this.media_objects.clear ();
+        this.fetch_media_objects ();
+
+        // and signal the clients
+        this.updated ();
     }
 }
 
