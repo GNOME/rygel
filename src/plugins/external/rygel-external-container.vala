@@ -38,6 +38,7 @@ public class Rygel.ExternalContainer : MediaContainer {
     private const string ITEM_IFACE = "org.Rygel.MediaItem1";
 
     public dynamic DBus.Object actual_container;
+    public dynamic DBus.Object props;
 
     public string host_ip;
 
@@ -63,11 +64,11 @@ public class Rygel.ExternalContainer : MediaContainer {
             DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
             // Create proxy to MediaObject iface to get the display name through
-            dynamic DBus.Object props = connection.get_object (service_name,
-                                                               object_path,
-                                                               PROPS_IFACE);
+            this.props = connection.get_object (service_name,
+                                                object_path,
+                                                PROPS_IFACE);
             Value value;
-            props.Get (OBJECT_IFACE, "display-name", out value);
+            this.props.Get (OBJECT_IFACE, "DisplayName", out value);
             this.title = this.substitute_keywords (value.get_string ());
 
             // Now proxy to MediaContainer iface for the rest of the stuff
@@ -157,21 +158,31 @@ public class Rygel.ExternalContainer : MediaContainer {
     }
 
     private void fetch_media_objects () throws GLib.Error {
-        ObjectPath[] object_paths = null;
+        HashTable<string,Value?> all_props =
+                                    this.props.GetAll (CONTAINER_IFACE);
 
-        object_paths = this.actual_container.GetContainers ();
-        foreach (var object_path in object_paths) {
-            this.media_objects.add (new ExternalContainer (object_path,
-                                                           this.service_name,
-                                                           (string) object_path,
-                                                           this.host_ip,
-                                                           this));
+        var value = all_props.lookup ("Containers");
+        unowned PtrArray obj_paths = (PtrArray) value.get_boxed ();
+        if (obj_paths.len > 0) {
+            for (var i = 0; i < obj_paths.len; i++) {
+                var obj_path = (ObjectPath) obj_paths.pdata[i];
+                var container = new ExternalContainer (obj_path,
+                                                       this.service_name,
+                                                       obj_path,
+                                                       this.host_ip,
+                                                       this);
+                this.media_objects.add (container);
+            }
         }
 
-        object_paths = this.actual_container.GetItems ();
-        foreach (var object_path in object_paths) {
-            this.media_objects.add (new ExternalItem ((string) object_path,
-                                                      this));
+        value = all_props.lookup ("Items");
+        obj_paths = (PtrArray) value.get_boxed ();
+        if (obj_paths.len > 0) {
+            for (var i = 0; i < obj_paths.len; i++) {
+                var obj_path = (ObjectPath) obj_paths.pdata[i];
+                this.media_objects.add (new ExternalItem (obj_path,
+                                                          this));
+            }
         }
 
         this.child_count = this.media_objects.size;

@@ -42,7 +42,7 @@ public class ExternalPlugin : Plugin {
                                                            root_object,
                                                            PROPS_IFACE);
         Value value;
-        props.Get (OBJECT_IFACE, "display-name", out value);
+        props.Get (OBJECT_IFACE, "DisplayName", out value);
         var title = value.get_string ();
 
         base (service_name, title);

@@ -50,12 +50,13 @@ public class Rygel.ExternalItem : MediaItem {
 
         HashTable<string,Value?> object_props = props.GetAll (OBJECT_IFACE);
 
-        var value = object_props.lookup ("display-name");
+        var value = object_props.lookup ("DisplayName");
         this.title = parent.substitute_keywords (value.get_string ());
 
-        HashTable<string,Value?> item_props = props.GetAll (ITEM_IFACE);
+        HashTable<string,Value?> item_props;
+        props.GetAll (ITEM_IFACE, out item_props);
 
-        value = item_props.lookup ("type");
+        value = item_props.lookup ("Type");
         string type = value.get_string ();
         if (type == "audio") {
             this.upnp_class = MediaItem.AUDIO_CLASS;
@@ -67,10 +68,10 @@ public class Rygel.ExternalItem : MediaItem {
             this.upnp_class = MediaItem.IMAGE_CLASS;
         }
 
-        value = item_props.lookup ("mime-type");
+        value = item_props.lookup ("MIMEType");
         this.mime_type = value.get_string ();
 
-        value = item_props.lookup ("urls");
+        value = item_props.lookup ("URLs");
         weak string[] uris = (string[]) value.get_boxed ();
 
         for (var i = 0; uris[i] != null; i++) {
