@@ -191,7 +191,11 @@ public class Rygel.ExternalContainer : MediaContainer {
     private void on_container_updated (dynamic DBus.Object actual_container) {
         // Re-fetch the objects
         this.media_objects.clear ();
-        this.fetch_media_objects ();
+        try {
+            this.fetch_media_objects ();
+        } catch (GLib.Error err) {
+            warning ("Failed to re-fetch media objects: %s\n", err.message);
+        }
 
         // and signal the clients
         this.updated ();
