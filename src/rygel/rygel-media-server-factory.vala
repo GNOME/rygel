@@ -76,12 +76,18 @@ public class Rygel.MediaServerFactory {
 
     private Xml.Doc * create_desc (Plugin plugin,
                                    string desc_path) throws GLib.Error {
-        var orig_desc_path = Path.build_filename (BuildConfig.DATA_DIR,
-                                                  DESC_DOC);
+        string path;
 
-        Xml.Doc *doc = Xml.Parser.parse_file (orig_desc_path);
+        if (this.check_path_exist (desc_path)) {
+            path = desc_path;
+        } else {
+            /* Use the template */
+            path = Path.build_filename (BuildConfig.DATA_DIR, DESC_DOC);
+        }
+
+        Xml.Doc *doc = Xml.Parser.parse_file (path);
         if (doc == null) {
-            string message = "Failed to parse %s".printf (orig_desc_path);
+            string message = "Failed to parse %s".printf (path);
 
             throw new MediaServerFactoryError.XML_PARSE (message);
         }
@@ -261,6 +267,12 @@ public class Rygel.MediaServerFactory {
 
             throw new IOError.FAILED (message);
         }
+    }
+
+    private bool check_path_exist (string path) {
+        var file = File.new_for_path (path);
+
+        return file.query_exists (null);
     }
 }
 
