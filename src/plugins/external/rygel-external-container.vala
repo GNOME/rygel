@@ -28,7 +28,7 @@ using DBus;
 using Gee;
 
 /**
- * Represents and external container.
+ * Represents an external container.
  */
 public class Rygel.ExternalContainer : MediaContainer {
     // class-wide constants
