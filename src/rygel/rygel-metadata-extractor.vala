@@ -68,8 +68,8 @@ public class Rygel.MetadataExtractor: GLib.Object {
     }
 
     /* A list of URIs to extract metadata from */
-    public List <string> _uris = null;
-    public List <string> uris {
+    public GLib.List <string> _uris = null;
+    public GLib.List <string> uris {
         get {
             return this._uris;
         }
@@ -163,7 +163,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
                                 string            uri) {
         return_if_fail (this._uris != null);
 
-        weak List <string> link = this._uris.find_custom (uri, strcmp);
+        weak GLib.List <string> link = this._uris.find_custom (uri, strcmp);
         this._uris.remove_link (link);
 
         if (this._uris != null) {
@@ -219,7 +219,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
     }
 
     private void extract_stream_info () {
-        weak List <dynamic GLib.Object> stream_info = null;
+        weak GLib.List <dynamic GLib.Object> stream_info = null;
 
         stream_info = this.playbin.stream_info;
         return_if_fail (stream_info != null);

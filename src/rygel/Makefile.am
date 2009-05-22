@@ -62,6 +62,7 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-simple-async-result.c \
 		rygel-media-item.c \
 		rygel-transcoder.c \
+		rygel-metadata-extractor.c \
 		rygel-mp2ts-transcoder.c \
 		rygel-mp3-transcoder.c \
 		rygel-l16-transcoder.c \
@@ -101,6 +102,8 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-media-container.c \
 		rygel-simple-async-result.c \
 		rygel-media-item.c \
+		rygel-metadata-extractor.c \
+		rygel-metadata-extractor.vala \
 		rygel-transcoder.c \
 		rygel-mp2ts-transcoder.c \
 		rygel-mp3-transcoder.c \
