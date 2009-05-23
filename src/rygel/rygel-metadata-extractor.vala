@@ -23,7 +23,7 @@
  */
 
 using Gst;
-using GUPnP;
+using Gee;
 
 private enum Gst.StreamType {
     UNKNOWN = 0,
@@ -52,41 +52,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
 
     private TagList tag_list;
 
-    /* Properties */
-    public string uri {
-        get {
-            return this.playbin.uri;
-        }
-
-        set {
-            this.playbin.uri = value;
-
-            if (this.playbin.uri != null) {
-                extract_mime ();
-                /* Start the extaction when we get a new URI */
-                this.playbin.set_state (State.PAUSED);
-            }
-        }
-    }
-
-    /* A list of URIs to extract metadata from */
-    public GLib.List <string> _uris = null;
-    public GLib.List <string> uris {
-        get {
-            return this._uris;
-        }
-
-        set {
-            this._uris = value.copy ();
-
-            if (this._uris != null) {
-                this.extraction_done += this.goto_next_uri;
-                this.uri = this._uris.data;
-            } else {
-                this.extraction_done -= this.goto_next_uri;
-            }
-        }
-    }
+    private ArrayList<File> file_queue;
 
     public MetadataExtractor () {
         this.playbin = ElementFactory.make ("playbin", null);
@@ -98,6 +64,26 @@ public class Rygel.MetadataExtractor: GLib.Object {
         bus.message["tag"] += this.tag_cb;
         bus.message["state-changed"] += this.state_changed_cb;
         bus.message["error"] += this.error_cb;
+
+        this.file_queue = new ArrayList<File> ();
+    }
+
+    public void extract (File file) {
+        var trigger_run = this.file_queue.size == 0;
+        this.file_queue.add (file);
+        if (trigger_run) {
+            this.extract_next ();
+        }
+    }
+
+    private void extract_next () {
+        if (this.file_queue.size > 0) {
+            var item = file_queue.get (0);
+
+            this.extract_mime ();
+            this.playbin.uri = item.get_uri ();
+            this.playbin.set_state (State.PAUSED);
+        }
     }
 
     /* Callback for tags found by playbin */
@@ -125,9 +111,11 @@ public class Rygel.MetadataExtractor: GLib.Object {
             this.extract_stream_info ();
 
             /* No hopes of getting any tags after this point */
+            this.extraction_done (this.playbin.uri, tag_list);
             this.playbin.set_state (State.NULL);
             this.tag_list = null;
-            this.extraction_done (this.playbin.uri, tag_list);
+            this.file_queue.remove_at (0);
+            this.extract_next ();
         }
     }
 
@@ -135,7 +123,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
     private void error_cb (Gst.Bus     bus,
                            Gst.Message message) {
 
-        return_if_fail (this.uri != null);
+        return_if_fail (this.file_queue.size != 0);
 
         Error error = null;
         string debug;
@@ -145,32 +133,18 @@ public class Rygel.MetadataExtractor: GLib.Object {
             debug = error.message;
         }
 
-        critical ("Failed to extract metadata from %s: %s\n", this.uri, debug);
+        critical ("Failed to extract metadata from %s: %s\n",
+                  this.playbin.uri, debug);
 
-        if (this._uris != null) {
-            /* We have a list of URIs to harvest, so lets jump to next one */
-            this.goto_next_uri (this, this.uri, null);
-        }
-    }
-
-    private void goto_next_uri (MetadataExtractor extractor,
-                                string            uri,
-                                TagList? tag_list) {
-        return_if_fail (this._uris != null);
-
-        weak GLib.List <string> link = this._uris.find_custom (uri, strcmp);
-        this._uris.remove_link (link);
-
-        if (this._uris != null) {
-            this.uri = this._uris.data;
-        } else {
-            this.extraction_done -= this.goto_next_uri;
-        }
+        /* We have a list of URIs to harvest, so lets jump to next one */
+        this.playbin.set_state (State.NULL);
+        this.tag_list = null;
+        this.file_queue.remove_at (0);
+        this.extract_next ();
     }
 
     private void extract_mime () {
-        File file = File.new_for_uri (this.uri);
-
+        var file = this.file_queue.get (0);
         FileInfo file_info;
 
         try {
@@ -178,7 +152,8 @@ public class Rygel.MetadataExtractor: GLib.Object {
                                          FileQueryInfoFlags.NONE,
                                          null);
         } catch (Error error) {
-            critical ("Failed to query content type for '%s'\n", this.uri);
+            critical ("Failed to query content type for '%s'\n",
+                      file.get_uri ());
 
             return;
         }
