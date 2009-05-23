@@ -48,7 +48,9 @@ public class Rygel.MetadataExtractor: GLib.Object {
     public signal void metadata_available (string uri,
                                            string key,
                                            ref Gst.Value value);
-    public signal void extraction_done (string uri);
+    public signal void extraction_done (string uri, Gst.TagList tag_list);
+
+    private TagList tag_list;
 
     /* Properties */
     public string uri {
@@ -101,11 +103,11 @@ public class Rygel.MetadataExtractor: GLib.Object {
     /* Callback for tags found by playbin */
     private void tag_cb (Gst.Bus     bus,
                          Gst.Message message) {
-        TagList tag_list;
+        TagList new_tag_list;
 
-        message.parse_tag (out tag_list);
-
-        tag_list.foreach (this.foreach_tag);
+        message.parse_tag (out new_tag_list);
+        this.tag_list = new_tag_list.merge (this.tag_list,
+                                            TagMergeMode.REPLACE);
     }
 
     /* Callback for state-change in playbin */
@@ -124,7 +126,8 @@ public class Rygel.MetadataExtractor: GLib.Object {
 
             /* No hopes of getting any tags after this point */
             this.playbin.set_state (State.NULL);
-            this.extraction_done (this.playbin.uri);
+            this.tag_list = null;
+            this.extraction_done (this.playbin.uri, tag_list);
         }
     }
 
@@ -146,21 +149,13 @@ public class Rygel.MetadataExtractor: GLib.Object {
 
         if (this._uris != null) {
             /* We have a list of URIs to harvest, so lets jump to next one */
-            this.goto_next_uri (this, this.uri);
-        }
-    }
-
-    /* Fetch value of each tag in the @tag_list and signal it's availability */
-    private void foreach_tag (TagList tag_list, string tag) {
-        Gst.Value value = Gst.Value ();
-
-        if (tag_list.copy_value (out value, tag_list, tag)) {
-            this.metadata_available (this.playbin.uri, tag, ref value);
+            this.goto_next_uri (this, this.uri, null);
         }
     }
 
     private void goto_next_uri (MetadataExtractor extractor,
-                                string            uri) {
+                                string            uri,
+                                TagList? tag_list) {
         return_if_fail (this._uris != null);
 
         weak GLib.List <string> link = this._uris.find_custom (uri, strcmp);
