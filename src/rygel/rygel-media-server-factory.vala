@@ -168,7 +168,12 @@ public class Rygel.MediaServerFactory {
             return;
         }
 
-        element->set_content (this.config.get_udn (plugin_name));
+        var udn = element->get_content ();
+        if (udn == null || udn == "") {
+            udn = Utils.generate_random_udn ();
+
+            element->set_content (udn);
+        }
     }
 
     private void add_services_to_desc (Xml.Node *device_element,
