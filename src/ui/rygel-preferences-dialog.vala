@@ -50,9 +50,6 @@ public class Rygel.PreferencesDialog : GLib.Object {
         this.sections.add (new PluginPrefSection (this.builder,
                                                   config,
                                                   "DVB"));
-        this.sections.add (new PluginPrefSection (this.builder,
-                                                  config,
-                                                  "Test"));
 
         this.dialog.response += this.on_response;
         this.dialog.delete_event += (dialog, event) => {

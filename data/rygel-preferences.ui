@@ -265,29 +265,6 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkCheckButton" id="test-enabled-checkbutton">
-                    <property name="label" translatable="yes">Test</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="draw_indicator">True</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="test-title-label">
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Title</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">5</property>
-                    <property name="bottom_attach">6</property>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkEntry" id="tracker-title-entry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -314,21 +291,6 @@
                     <property name="right_attach">2</property>
                     <property name="top_attach">3</property>
                     <property name="bottom_attach">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="test-title-entry">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="invisible_char">&#x25CF;</property>
-                    <property name="width_chars">30</property>
-                    <property name="invisible_char_set">True</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">5</property>
-                    <property name="bottom_attach">6</property>
                   </packing>
                 </child>
                 <child>
@@ -432,7 +394,6 @@
   </object>
   <object class="GtkSizeGroup" id="plugin-labels-sizegroup">
     <widgets>
-      <widget name="test-title-label"/>
       <widget name="dvb-title-label"/>
       <widget name="tracker-title-label"/>
     </widgets>
