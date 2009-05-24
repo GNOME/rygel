@@ -40,22 +40,44 @@ private enum Gst.StreamType {
  * metadata_available for each key/value pair extracted.
  */
 public class Rygel.MetadataExtractor: GLib.Object {
+    public const string TAG_RYGEL_SIZE = "rygel-size";
+    public const string TAG_RYGEL_DURATION = "rygel-duration";
+    public const string TAG_RYGEL_MIME = "rygel-mime";
+    public const string TAG_RYGEL_CHANNELS = "rygel-channels";
+    public const string TAG_RYGEL_RATE = "rygel-rate";
+    public const string TAG_RYGEL_WIDTH = "rygel-width";
+    public const string TAG_RYGEL_HEIGHT = "rygel-height";
+    public const string TAG_RYGEL_DEPTH = "rygel-depth";
 
     /* TODO: Use tagbin instead once it's ready */
     private dynamic Gst.Element playbin;
 
     /* Signals */
-    public signal void metadata_available (string uri,
-                                           string key,
-                                           ref Gst.Value value);
     public signal void extraction_done (string uri, Gst.TagList tag_list);
 
     private TagList tag_list;
 
     private ArrayList<File> file_queue;
 
+    private static void register_custom_tag (string tag, Type type) {
+        Gst.tag_register (tag,
+                          TagFlag.META,
+                          type,
+                          tag,
+                          "",
+                          Gst.tag_merge_use_first);
+    }
+
     public MetadataExtractor () {
         this.playbin = ElementFactory.make ("playbin", null);
+        this.register_custom_tag (TAG_RYGEL_SIZE, typeof (int64));
+        this.register_custom_tag (TAG_RYGEL_DURATION, typeof (int64));
+        this.register_custom_tag (TAG_RYGEL_MIME, typeof (string));
+        this.register_custom_tag (TAG_RYGEL_CHANNELS, typeof (int));
+        this.register_custom_tag (TAG_RYGEL_RATE, typeof (int));
+        this.register_custom_tag (TAG_RYGEL_WIDTH, typeof (int));
+        this.register_custom_tag (TAG_RYGEL_HEIGHT, typeof (int));
+        this.register_custom_tag (TAG_RYGEL_DEPTH, typeof (int));
 
         var bus = this.playbin.get_bus ();
 
@@ -66,6 +88,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
         bus.message["error"] += this.error_cb;
 
         this.file_queue = new ArrayList<File> ();
+        this.tag_list = new Gst.TagList ();
     }
 
     public void extract (File file) {
@@ -80,7 +103,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
         if (this.file_queue.size > 0) {
             var item = file_queue.get (0);
 
-            this.extract_mime ();
+            this.extract_mime_and_size ();
             this.playbin.uri = item.get_uri ();
             this.playbin.set_state (State.PAUSED);
         }
@@ -113,7 +136,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
             /* No hopes of getting any tags after this point */
             this.extraction_done (this.playbin.uri, tag_list);
             this.playbin.set_state (State.NULL);
-            this.tag_list = null;
+            this.tag_list = new Gst.TagList ();
             this.file_queue.remove_at (0);
             this.extract_next ();
         }
@@ -138,17 +161,19 @@ public class Rygel.MetadataExtractor: GLib.Object {
 
         /* We have a list of URIs to harvest, so lets jump to next one */
         this.playbin.set_state (State.NULL);
-        this.tag_list = null;
+        this.tag_list = new Gst.TagList ();
         this.file_queue.remove_at (0);
         this.extract_next ();
     }
 
-    private void extract_mime () {
+    private void extract_mime_and_size () {
         var file = this.file_queue.get (0);
         FileInfo file_info;
 
         try {
-            file_info = file.query_info (FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,
+            file_info = file.query_info (FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE
+                                         + "," +
+                                         FILE_ATTRIBUTE_STANDARD_SIZE,
                                          FileQueryInfoFlags.NONE,
                                          null);
         } catch (Error error) {
@@ -161,14 +186,16 @@ public class Rygel.MetadataExtractor: GLib.Object {
         weak string content_type = file_info.get_content_type ();
         weak string mime = g_content_type_get_mime_type (content_type);
         if (mime != null) {
-            Gst.Value value = Gst.Value ();
-
-            value.init (typeof (string));
-            value.set_string (mime);
-
-            /* signal the availability of new tag */
-            this.metadata_available (this.playbin.uri, "mime-type", ref value);
+            /* add custom mime tag to tag list */
+            this.tag_list.add (TagMergeMode.REPLACE,
+                               TAG_RYGEL_MIME,
+                               mime);
         }
+
+        var size = file_info.get_size ();
+        this.tag_list.add (TagMergeMode.REPLACE,
+                           TAG_RYGEL_SIZE,
+                           size);
     }
 
     private void extract_duration () {
@@ -176,15 +203,9 @@ public class Rygel.MetadataExtractor: GLib.Object {
 
         Format format = Format.TIME;
         if (this.playbin.query_duration (ref format, out duration)) {
-            Gst.Value duration_val = Gst.Value ();
-
-            duration_val.init (typeof (int64));
-            duration_val.set_int64 (duration);
-
-            /* signal the availability of duration tag */
-            this.metadata_available (this.playbin.uri,
-                    TAG_DURATION,
-                    ref duration_val);
+            this.tag_list.add (TagMergeMode.REPLACE,
+                               TAG_RYGEL_DURATION,
+                               duration);
         }
     }
 
@@ -194,9 +215,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
         stream_info = this.playbin.stream_info;
         return_if_fail (stream_info != null);
 
-        for (var i = 0; i < stream_info.length (); i++) {
-            dynamic GLib.Object info = stream_info.nth_data (i);
-
+        foreach (var info in stream_info) {
             if (info == null) {
                 continue;
             }
@@ -230,26 +249,23 @@ public class Rygel.MetadataExtractor: GLib.Object {
     }
 
     private void extract_audio_info (Structure structure) {
-        this.extract_int_value (structure, "channels");
-        this.extract_int_value (structure, "rate");
+        this.extract_int_value (structure, TAG_RYGEL_CHANNELS);
+        this.extract_int_value (structure, TAG_RYGEL_RATE);
     }
 
     private void extract_video_info (Structure structure) {
-        this.extract_int_value (structure, "width");
-        this.extract_int_value (structure, "height");
+        this.extract_int_value (structure, TAG_RYGEL_WIDTH);
+        this.extract_int_value (structure, TAG_RYGEL_HEIGHT);
+        this.extract_int_value (structure, TAG_RYGEL_DEPTH);
     }
 
     private void extract_int_value (Structure structure, string key) {
         int val;
 
         if (structure.get_int (key, out val)) {
-            Gst.Value value = Gst.Value ();
-
-            value.init (typeof (int));
-            value.set_int (val);
-
-            /* signal the availability of new tag */
-            this.metadata_available (this.playbin.uri, key, ref value);
+            tag_list.add (TagMergeMode.REPLACE,
+                          key,
+                          val);
         }
     }
 }
