@@ -55,6 +55,11 @@ public class Rygel.MetadataExtractor: GLib.Object {
     /* Signals */
     public signal void extraction_done (string uri, Gst.TagList tag_list);
 
+    /**
+     * Signalize that an error occured during metadata extraction
+     */
+    public signal void error (File file, Error err);
+
     private TagList tag_list;
 
     private ArrayList<File> file_queue;
@@ -156,8 +161,11 @@ public class Rygel.MetadataExtractor: GLib.Object {
             debug = error.message;
         }
 
-        critical ("Failed to extract metadata from %s: %s\n",
+        warning ("Failed to extract metadata from %s: %s\n",
                   this.playbin.uri, debug);
+
+        // signalize error to listeners
+        this.error (this.file_queue.get (0), error);
 
         /* We have a list of URIs to harvest, so lets jump to next one */
         this.playbin.set_state (State.NULL);
@@ -177,8 +185,11 @@ public class Rygel.MetadataExtractor: GLib.Object {
                                          FileQueryInfoFlags.NONE,
                                          null);
         } catch (Error error) {
-            critical ("Failed to query content type for '%s'\n",
+            warning ("Failed to query content type for '%s'\n",
                       file.get_uri ());
+
+            // signal error to parent
+            this.error (file, error);
 
             return;
         }
