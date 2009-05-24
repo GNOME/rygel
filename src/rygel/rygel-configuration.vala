@@ -34,7 +34,6 @@ public class Rygel.Configuration {
     protected static const string PORT_KEY = "port";
     protected static const string ENABLED_KEY = "enabled";
     protected static const string TITLE_KEY = "title";
-    protected static const string UDN_KEY = "UDN";
     protected static const string TRANSCODING_KEY = "enable-transcoding";
     protected static const string MP3_TRANSCODER_KEY = "enable-mp3-transcoder";
     protected static const string MP2TS_TRANSCODER_KEY =
@@ -114,17 +113,6 @@ public class Rygel.Configuration {
 
     public string get_title (string section, string default_title) {
         return this.get_string (section, TITLE_KEY, default_title);
-    }
-
-    public string get_udn (string section) {
-        var udn = this.get_string (section, UDN_KEY, null);
-        if (udn == null) {
-            udn = Utils.generate_random_udn ();
-
-            this.set_string (section, UDN_KEY, udn);
-        }
-
-        return udn;
     }
 
     public string? get_string (string  section,
