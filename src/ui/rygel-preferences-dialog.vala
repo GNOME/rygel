@@ -49,6 +49,9 @@ public class Rygel.PreferencesDialog : GLib.Object {
                                                   "Tracker"));
         this.sections.add (new PluginPrefSection (this.builder,
                                                   config,
+                                                  "Folder"));
+        this.sections.add (new PluginPrefSection (this.builder,
+                                                  config,
                                                   "DVB"));
 
         this.dialog.response += this.on_response;
