@@ -122,11 +122,15 @@ public class Rygel.MetadataExtractor: GLib.Object {
 
     private void extract_next () {
         if (this.file_queue.size > 0) {
-            var item = file_queue.peek ();
-
-            this.extract_mime_and_size ();
-            this.playbin.uri = item.get_uri ();
-            this.playbin.set_state (State.PAUSED);
+            try {
+                var item = this.file_queue.peek ();
+                this.extract_mime_and_size ();
+                this.playbin.uri = item.get_uri ();
+                this.playbin.set_state (State.PAUSED);
+            } catch (Error error) {
+                // on error just move to the next uri in queue
+                this.extract_next ();
+            }
         }
     }
 
@@ -190,7 +194,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
         this.extract_next ();
     }
 
-    private void extract_mime_and_size () {
+    private void extract_mime_and_size () throws Error {
         var file = this.file_queue.peek ();
         FileInfo file_info;
 
@@ -207,7 +211,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
             // signal error to parent
             this.error (file, error);
 
-            return;
+            throw error;
         }
 
         weak string content_type = file_info.get_content_type ();
