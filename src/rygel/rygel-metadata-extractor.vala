@@ -276,22 +276,24 @@ public class Rygel.MetadataExtractor: GLib.Object {
     }
 
     private void extract_audio_info (Structure structure) {
-        this.extract_int_value (structure, TAG_RYGEL_CHANNELS);
-        this.extract_int_value (structure, TAG_RYGEL_RATE);
+        this.extract_int_value (structure, "channels", TAG_RYGEL_CHANNELS);
+        this.extract_int_value (structure, "rate", TAG_RYGEL_RATE);
     }
 
     private void extract_video_info (Structure structure) {
-        this.extract_int_value (structure, TAG_RYGEL_WIDTH);
-        this.extract_int_value (structure, TAG_RYGEL_HEIGHT);
-        this.extract_int_value (structure, TAG_RYGEL_DEPTH);
+        this.extract_int_value (structure, "width", TAG_RYGEL_WIDTH);
+        this.extract_int_value (structure, "height", TAG_RYGEL_HEIGHT);
+        this.extract_int_value (structure, "depth", TAG_RYGEL_DEPTH);
     }
 
-    private void extract_int_value (Structure structure, string key) {
+    private void extract_int_value (Structure structure,
+                                    string key,
+                                    string tag) {
         int val;
 
         if (structure.get_int (key, out val)) {
             tag_list.add (TagMergeMode.REPLACE,
-                          key,
+                          tag,
                           val);
         }
     }
