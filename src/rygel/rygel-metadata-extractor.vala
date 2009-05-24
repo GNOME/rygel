@@ -79,6 +79,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
     private TagList tag_list;
 
     private Queue<File> file_queue;
+    private Gst.Element[] fakesinks;
 
     private static void register_custom_tag (string tag, Type type) {
         Gst.tag_register (tag,
@@ -90,7 +91,6 @@ public class Rygel.MetadataExtractor: GLib.Object {
     }
 
     public MetadataExtractor () {
-        this.playbin = ElementFactory.make ("playbin", null);
         this.register_custom_tag (TAG_RYGEL_SIZE, typeof (int64));
         this.register_custom_tag (TAG_RYGEL_DURATION, typeof (int64));
         this.register_custom_tag (TAG_RYGEL_MIME, typeof (string));
@@ -100,10 +100,16 @@ public class Rygel.MetadataExtractor: GLib.Object {
         this.register_custom_tag (TAG_RYGEL_HEIGHT, typeof (int));
         this.register_custom_tag (TAG_RYGEL_DEPTH, typeof (int));
 
+        // setup fake sinks
+        this.playbin = ElementFactory.make ("playbin", null);
+        this.fakesinks = new Gst.Element[2];
+        this.fakesinks[0] = ElementFactory.make ("fakesink", null);
+        this.fakesinks[1] = ElementFactory.make ("fakesink", null);
+        this.playbin.video_sink = this.fakesinks[0];
+        this.playbin.audio_sink = this.fakesinks[1];
+
         var bus = this.playbin.get_bus ();
-
         bus.add_signal_watch ();
-
         bus.message["tag"] += this.tag_cb;
         bus.message["state-changed"] += this.state_changed_cb;
         bus.message["error"] += this.error_cb;
