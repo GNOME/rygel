@@ -28,18 +28,17 @@ using Rygel;
 using Gee;
 using CStuff;
 
-[ModuleInit]
-public void module_init (PluginLoader loader) {
-    Plugin plugin = new Plugin ("DVB", "Digital TV");
+public class DVBPlugin : Plugin {
+    public DVBPlugin () {
+        base ("DVB", "Digital TV");
 
-    // We only implement a ContentDirectory service
-    var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
-                                          ContentDirectory.UPNP_TYPE,
-                                          ContentDirectory.DESCRIPTION_PATH,
-                                          typeof (DVBContentDir));
+        // We only implement a ContentDirectory service
+        var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
+                                              ContentDirectory.UPNP_TYPE,
+                                              ContentDirectory.DESCRIPTION_PATH,
+                                              typeof (DVBContentDir));
 
-    plugin.add_resource (resource_info);
-
-    loader.add_plugin (plugin);
+        this.add_resource (resource_info);
+    }
 }
 

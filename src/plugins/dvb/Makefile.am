@@ -15,7 +15,8 @@ BUILT_SOURCES = rygel-dvb.stamp \
 		rygel-dvb-root-container.c \
 		rygel-dvb-channel-group.c \
 		rygel-dvb-channel.c \
-		rygel-dvb-plugin.c
+		rygel-dvb-plugin.c \
+		rygel-dvb-plugin-factory.c
 
 librygel_dvb_la_SOURCES = rygel-dvb-content-dir.c \
 			  rygel-dvb-content-dir.vala \
@@ -26,7 +27,9 @@ librygel_dvb_la_SOURCES = rygel-dvb-content-dir.c \
 			  rygel-dvb-channel.c \
 			  rygel-dvb-channel.vala \
 			  rygel-dvb-plugin.c \
-			  rygel-dvb-plugin.vala
+			  rygel-dvb-plugin.vala \
+			  rygel-dvb-plugin-factory.c \
+			  rygel-dvb-plugin-factory.vala
 
 rygel-dvb.stamp: $(filter %.vala,$(librygel_dvb_la_SOURCES))
 	$(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \
