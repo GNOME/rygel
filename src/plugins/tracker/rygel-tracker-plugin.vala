@@ -24,27 +24,29 @@ using Rygel;
 using Gee;
 using CStuff;
 
-[ModuleInit]
-public void module_init (PluginLoader loader) {
-    Plugin plugin = new Plugin ("Tracker", "@REALNAME@'s media");
+public class TrackerPlugin : Plugin {
+    // class-wide constants
+    private const string ICON = BuildConfig.DATA_DIR + // Path
+                                "/icons/hicolor/48x48/apps/tracker.png";
 
-    // We only implement a ContentDirectory service
-    var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
-                                          ContentDirectory.UPNP_TYPE,
-                                          ContentDirectory.DESCRIPTION_PATH,
-                                          typeof (MediaTracker));
+    public TrackerPlugin () {
+        base ("Tracker", "@REALNAME@'s media");
 
-    plugin.add_resource (resource_info);
+        // We only implement a ContentDirectory service
+        var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
+                                              ContentDirectory.UPNP_TYPE,
+                                              ContentDirectory.DESCRIPTION_PATH,
+                                              typeof (MediaTracker));
 
-    var icon_info = new IconInfo ("image/png", // Mimetype
-                                  48, // width
-                                  48, // height
-                                  24, // depth
-                                  BuildConfig.DATA_DIR + // Path
-                                  "/icons/hicolor/48x48/apps/tracker.png");
+        this.add_resource (resource_info);
 
-    plugin.add_icon (icon_info);
+        var icon_info = new IconInfo ("image/png", // Mimetype
+                                      48,          // width
+                                      48,          // height
+                                      24,          // depth
+                                      ICON);       // Icon Path
 
-    loader.add_plugin (plugin);
+        this.add_icon (icon_info);
+    }
 }
 

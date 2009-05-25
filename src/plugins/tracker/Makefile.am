@@ -23,7 +23,8 @@ BUILT_SOURCES = rygel-media-tracker.stamp \
 		rygel-tracker-video-item.c \
 		rygel-tracker-music-item.c \
 		rygel-tracker-image-item.c \
-		rygel-tracker-plugin.c
+		rygel-tracker-plugin.c \
+		rygel-tracker-plugin-factory.c
 
 librygel_media_tracker_la_SOURCES = rygel-media-tracker.c \
 				    rygel-media-tracker.vala \
@@ -50,7 +51,9 @@ librygel_media_tracker_la_SOURCES = rygel-media-tracker.c \
 				    rygel-tracker-image-item.c \
 				    rygel-tracker-image-item.vala \
 				    rygel-tracker-plugin.c \
-				    rygel-tracker-plugin.vala
+				    rygel-tracker-plugin.vala \
+				    rygel-tracker-plugin-factory.c \
+				    rygel-tracker-plugin-factory.vala
 
 rygel-media-tracker.stamp: $(filter %.vala,$(librygel_media_tracker_la_SOURCES))
 	$(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \
