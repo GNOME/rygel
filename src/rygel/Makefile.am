@@ -21,6 +21,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(UUID_CFLAGS) \
 	    $(LIBSOUP_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
+	    $(LIBSQLITE3_CFLAGS) \
 	    -I$(top_srcdir) -DDATA_DIR='"$(shareddir)"' \
 	    -DPLUGIN_DIR='"$(plugindir)"' -DDESKTOP_DIR='"$(desktopdir)"'\
 	    -include config.h
@@ -61,8 +62,8 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-media-container.c \
 		rygel-simple-async-result.c \
 		rygel-media-item.c \
-		rygel-transcoder.c \
 		rygel-metadata-extractor.c \
+		rygel-media-db.c \
 		rygel-mp2ts-transcoder.c \
 		rygel-mp3-transcoder.c \
 		rygel-l16-transcoder.c \
@@ -116,7 +117,8 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 rygel.stamp: $(filter %.vala,$(rygel_SOURCES))
 	$(VALAC) -C --vapidir=$(srcdir) --thread \
 	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
-	--pkg gconf-2.0 --pkg gstreamer-0.10 --pkg gio-2.0 --pkg gee-1.0 $^
+	--pkg gconf-2.0 --pkg gstreamer-0.10 --pkg gio-2.0 --pkg gee-1.0 \
+	--pkg sqlite3 $^
 	touch $@
 
 rygel_LDADD = $(LIBGUPNP_LIBS) \
@@ -128,6 +130,7 @@ rygel_LDADD = $(LIBGUPNP_LIBS) \
 	      $(UUID_LIBS) \
 	      $(LIBSOUP_LIBS) \
 	      $(LIBDBUS_GLIB_LIBS) \
+	      $(LIBSQLITE3_LIBS) \
 	      librygel-configuration.a
 rygel_LDFLAGS = -export-dynamic
 
@@ -165,12 +168,13 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-mp2ts-transcoder-bin.vala \
 		    rygel-mp3-transcoder-bin.vala \
 		    rygel-l16-transcoder-bin.vala \
-		    rygel-gst-utils.vala
+		    rygel-gst-utils.vala \
+		    rygel-media-db.vala
 
 rygel-1.0.vapi: $(VAPI_SOURCE_FILES)
 	$(VALAC) -H rygel.h -C --library=rygel-1.0 --vapidir=$(srcdir) \
 	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gconf-2.0 \
-	--pkg gee-1.0 --pkg gstreamer-0.10 --pkg dbus-glib-1 \
+	--pkg gee-1.0 --pkg gstreamer-0.10 --pkg sqlite3 --pkg dbus-glib-1 \
 	$(VAPI_SOURCE_FILES)
 
 noinst_LIBRARIES = librygel-configuration.a

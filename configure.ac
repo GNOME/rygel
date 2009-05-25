@@ -30,6 +30,7 @@ GEE_REQUIRED=0.1.5
 UUID_REQUIRED=1.41.3
 LIBSOUP_REQUIRED=2.26.0
 GTK_REQUIRED=2.16
+LIBSQLITE3_REQUIRED=3.5
 
 PKG_CHECK_MODULES(LIBGUPNP, gupnp-1.0 >= $GUPNP_REQUIRED)
 PKG_CHECK_MODULES(LIBGUPNP_AV, gupnp-av-1.0 >= $GUPNP_AV_REQUIRED)
@@ -40,6 +41,7 @@ PKG_CHECK_MODULES(LIBGIO, gio-2.0 >= $GIO_REQUIRED)
 PKG_CHECK_MODULES(GEE, gee-1.0 >= $GEE_REQUIRED)
 PKG_CHECK_MODULES(UUID, uuid >= $UUID_REQUIRED)
 PKG_CHECK_MODULES(LIBSOUP, libsoup-2.4 >= $LIBSOUP_REQUIRED)
+PKG_CHECK_MODULES(LIBSQLITE3, sqlite3 >= $LIBSQLITE3_REQUIRED)
 
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
 AM_GCONF_SOURCE_2
@@ -98,6 +100,10 @@ if test x$enable_vala = xyes ; then
     AC_CHECK_FILE("${VAPIDIR}/gee-1.0.vapi",
                   true,
                   [AC_MSG_ERROR("Unable to find Vala bindings for gee-1.0")])
+
+    AC_CHECK_FILE("${VAPIDIR}/sqlite3.vapi",
+                  true,
+                  [AC_MSG_ERROR("Unable to find Vala bindings for sqlite3")])
 else
     VAPIDIR=`echo ${datadir}/vala/vapi`
 fi
