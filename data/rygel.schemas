@@ -1,0 +1,136 @@
+<gconfschemafile>
+   <schemalist>
+      <schema>
+        <key>/schemas/apps/rygel/general/enable-transcoding</key>
+        <applyto>/apps/rygel/general/enable-transcoding</applyto>
+        <owner>rygel</owner>
+        <type>bool</type>
+        <default>TRUE</default>
+        <locale name="C">
+	<short>True if transcoding is supposed to be enabled.</short>
+	<long>True if transcoding is supposed to be enabled.</long>
+        </locale>
+      </schema>
+      <schema>
+        <key>/schemas/apps/rygel/general/enable-mp3-transcoder</key>
+        <applyto>/apps/rygel/general/enable-mp3-transcoder</applyto>
+        <owner>rygel</owner>
+        <type>bool</type>
+        <default>TRUE</default>
+        <locale name="C">
+	<short>True if MP3 transcoding is supposed to be enabled.</short>
+	<long>True if MP3 transcoding is supposed to be enabled.</long>
+        </locale>
+      </schema>
+      <schema>
+        <key>/schemas/apps/rygel/general/enable-lpcm-transcoder</key>
+        <applyto>/apps/rygel/general/enable-lpcm-transcoder</applyto>
+        <owner>rygel</owner>
+        <type>bool</type>
+        <default>TRUE</default>
+        <locale name="C">
+	<short>True if LPCM transcoding is supposed to be enabled.</short>
+	<long>True if LPCM transcoding is supposed to be enabled.</long>
+        </locale>
+      </schema>
+      <schema>
+        <key>/schemas/apps/rygel/general/enable-mp2ts-transcoder</key>
+        <applyto>/apps/rygel/general/enable-mp2ts-transcoder</applyto>
+        <owner>rygel</owner>
+        <type>bool</type>
+        <default>TRUE</default>
+        <locale name="C">
+	<short>True if MP2 transport stream transcoding is supposed to be enabled.</short>
+	<long>True if rygel should transcode to mpeg transport stream (mpeg 2 video + mp2 audio).</long>
+        </locale>
+      </schema>
+      <schema>
+        <key>/schemas/apps/rygel/general/port</key>
+        <applyto>/apps/rygel/general/port</applyto>
+        <owner>rygel</owner>
+        <type>int</type>
+        <default>0</default>
+        <locale name="C">
+	<short>The port to run HTTP server on.</short>
+	<long>The port to run HTTP server on. 0 means dynamic.</long>
+        </locale>
+      </schema>
+      <schema>
+        <key>/schemas/apps/rygel/general/host-ip</key>
+        <applyto>/apps/rygel/general/host-ip</applyto>
+        <owner>rygel</owner>
+        <type>string</type>
+        <default></default>
+        <locale name="C">
+          <short>The IP of the network interface to attach rygel to.</short>
+          <long>The IP of the network interface to attach rygel to. Leave it blank for dynamic configuration.</long>
+        </locale>
+      </schema>
+      <schema>
+        <key>/schemas/apps/rygel/Tracker/enabled</key>
+        <applyto>/apps/rygel/Tracker/enabled</applyto>
+        <owner>rygel</owner>
+        <type>bool</type>
+        <default>TRUE</default>
+        <locale name="C">
+          <short>Enable Tracker plugin.</short>
+          <long>Enable Tracker plugin.</long>
+        </locale>
+      </schema>
+      <schema>
+        <key>/schemas/apps/rygel/Tracker/title</key>
+        <applyto>/apps/rygel/Tracker/title</applyto>
+        <owner>rygel</owner>
+        <type>string</type>
+        <default></default>
+        <locale name="C">
+          <short>The title of this plugin to advertise to UPnP clients.</short>
+          <long>The title of this plugin to advertise to UPnP clients.</long>
+        </locale>
+      </schema>
+      <schema>
+        <key>/schemas/apps/rygel/Folder/enabled</key>
+        <applyto>/apps/rygel/Folder/enabled</applyto>
+        <owner>rygel</owner>
+        <type>bool</type>
+        <default>TRUE</default>
+        <locale name="C">
+          <short>Enable Folder plugin.</short>
+          <long>Enable Folder plugin.</long>
+        </locale>
+      </schema>
+      <schema>
+        <key>/schemas/apps/rygel/Folder/title</key>
+        <applyto>/apps/rygel/Folder/title</applyto>
+        <owner>rygel</owner>
+        <type>string</type>
+        <default></default>
+        <locale name="C">
+          <short>The title of this plugin to advertise to UPnP clients.</short>
+          <long>The title of this plugin to advertise to UPnP clients.</long>
+        </locale>
+      </schema>
+      <schema>
+        <key>/schemas/apps/rygel/DVB/enabled</key>
+        <applyto>/apps/rygel/DVB/enabled</applyto>
+        <owner>rygel</owner>
+        <type>bool</type>
+        <default>TRUE</default>
+        <locale name="C">
+          <short>Enable DVB plugin</short>
+          <long>Enable DVB plugin</long>
+        </locale>
+      </schema>
+      <schema>
+        <key>/schemas/apps/rygel/DVB/title</key>
+        <applyto>/apps/rygel/DVB/title</applyto>
+        <owner>rygel</owner>
+        <type>string</type>
+        <default>Digital TV</default>
+        <locale name="C">
+          <short>The title of this plugin to advertise to UPnP clients.</short>
+          <long>The title of this plugin to advertise to UPnP clients.</long>
+        </locale>
+      </schema>
+    </schemalist>
+</gconfschemafile>

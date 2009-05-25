@@ -83,6 +83,9 @@ AC_CHECK_FILE("${VAPIDIR}/gee-1.0.vapi",
         true,
         [AC_MSG_ERROR("Unable to find Vala bindings for gee-1.0")])
 
+AC_PATH_PROG(GCONFTOOL, gconftool-2)
+AM_GCONF_SOURCE_2
+
 # glib-genmarshal
 GLIB_GENMARSHAL=`pkg-config --variable=glib_genmarshal glib-2.0`
 AC_SUBST(GLIB_GENMARSHAL)
