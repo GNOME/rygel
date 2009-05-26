@@ -10,12 +10,13 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	$(GEE_CFLAGS) \
 	-I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
 
-BUILT_SOURCES = rygel-media-folder.stamp \
-	rygel-folder-root-container.c \
-	rygel-folder-container.c \
-	rygel-folder-directory-search-result.c \
-	rygel-folder-gio-media-item.c \
-	rygel-folder-plugin.c
+BUILT_SOURCES = rygel-folder-root-container.c \
+		rygel-folder-container.c \
+		rygel-folder-directory-search-result.c \
+		rygel-folder-gio-media-item.c \
+		rygel-folder-plugin.c
+
+$(BUILT_SOURCES) : rygel-media-folder.stamp
 
 librygel_media_folder_la_SOURCES = \
 	rygel-folder-plugin.c \
@@ -51,5 +52,6 @@ librygel_media_folder_la_LIBADD = \
 	$(GEE_LIBS)
 librygel_media_folder_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
-CLEANFILES = $(BUILT_SOURCES)
+CLEANFILES = $(BUILT_SOURCES) rygel-media-folder.stamp
 MAINTAINERCLEANFILES = Makefile.in
+EXTRA_DIST = $(BUILT_SOURCES) rygel-media-folder.stamp

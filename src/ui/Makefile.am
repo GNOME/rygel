@@ -20,11 +20,12 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 
 bin_PROGRAMS = rygel-preferences
 
-BUILT_SOURCES = rygel.stamp \
-		rygel-preferences-dialog.c \
+BUILT_SOURCES = rygel-preferences-dialog.c \
 		rygel-preferences-section.c \
 		rygel-general-pref-section.c \
 		rygel-plugin-pref-section.c
+
+$(BUILT_SOURCES) : rygel.stamp
 
 rygel_preferences_SOURCES = rygel-preferences-dialog.c \
 			    rygel-preferences-dialog.vala \
@@ -54,5 +55,6 @@ rygel_preferences_LDADD = $(LIBGUPNP_LIBS) \
                           -L$(rygeldir) \
                           -lrygel-configuration
 
-CLEANFILES = $(BUILT_SOURCES)
+CLEANFILES = $(BUILT_SOURCES) rygel.stamp
 MAINTAINERCLEANFILES = Makefile.in
+EXTRA_DIST = $(BUILT_SOURCES) rygel.stamp

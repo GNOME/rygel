@@ -10,8 +10,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGCONF_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
 
-BUILT_SOURCES = rygel-media-tracker.stamp \
-		rygel-media-tracker.c \
+BUILT_SOURCES = rygel-media-tracker.c \
 		rygel-tracker-root-container.c \
 		rygel-tracker-category.c \
 		rygel-tracker-video-category.c \
@@ -25,6 +24,8 @@ BUILT_SOURCES = rygel-media-tracker.stamp \
 		rygel-tracker-image-item.c \
 		rygel-tracker-plugin.c \
 		rygel-tracker-plugin-factory.c
+
+$(BUILT_SOURCES) : rygel-media-tracker.stamp
 
 librygel_media_tracker_la_SOURCES = rygel-media-tracker.c \
 				    rygel-media-tracker.vala \
@@ -70,5 +71,6 @@ librygel_media_tracker_la_LIBADD = $(LIBGUPNP_LIBS) \
 	    			   $(LIBGCONF_LIBS)
 librygel_media_tracker_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
-CLEANFILES = $(BUILT_SOURCES)
+CLEANFILES = $(BUILT_SOURCES) rygel-media-tracker.stamp
 MAINTAINERCLEANFILES = Makefile.in
+EXTRA_DIST = $(BUILT_SOURCES) rygel-media-tracker.stamp

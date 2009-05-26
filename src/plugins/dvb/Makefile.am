@@ -10,13 +10,14 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGCONF_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
 
-BUILT_SOURCES = rygel-dvb.stamp \
-		rygel-dvb-content-dir.c \
+BUILT_SOURCES = rygel-dvb-content-dir.c \
 		rygel-dvb-root-container.c \
 		rygel-dvb-channel-group.c \
 		rygel-dvb-channel.c \
 		rygel-dvb-plugin.c \
 		rygel-dvb-plugin-factory.c
+
+$(BUILT_SOURCES) : rygel-dvb.stamp
 
 librygel_dvb_la_SOURCES = rygel-dvb-content-dir.c \
 			  rygel-dvb-content-dir.vala \
@@ -46,5 +47,6 @@ librygel_dvb_la_LIBADD = $(LIBGUPNP_LIBS) \
 	    		 $(LIBGCONF_LIBS)
 librygel_dvb_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
-CLEANFILES = $(BUILT_SOURCES)
+CLEANFILES = $(BUILT_SOURCES) rygel-dvb.stamp
 MAINTAINERCLEANFILES = Makefile.in
+EXTRA_DIST = $(BUILT_SOURCES) rygel-dvb.stamp

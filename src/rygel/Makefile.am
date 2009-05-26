@@ -28,7 +28,6 @@ librygelinc_HEADERS = rygel.h
 bin_PROGRAMS = rygel
 
 BUILT_SOURCES = rygel-1.0.vapi \
-		rygel.stamp \
 		rygel.h \
 		rygel-media-server.c \
 		rygel-media-server-factory.c \
@@ -53,6 +52,8 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-media-container.c \
 		rygel-simple-async-result.c \
 		rygel-media-item.c
+
+$(BUILT_SOURCES) : rygel.stamp
 
 rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-media-server.c \
@@ -142,7 +143,7 @@ rygel-1.0.vapi: $(VAPI_SOURCE_FILES)
 	$(VALAC) -H rygel.h -C --library=rygel-1.0 --vapidir=$(srcdir) \
 	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gconf-2.0 \
 	--pkg gee-1.0 --pkg gstreamer-0.10 \
-	$^
+	$(VAPI_SOURCE_FILES)
 
 noinst_LIBRARIES = librygel-configuration.a
 
@@ -153,6 +154,11 @@ librygel_configuration_a_SOURCES = rygel-configuration.c \
 vapidir = $(VAPIDIR)
 vapi_DATA = $(VAPI_FILES) $(DEPS_FILES)
 
-CLEANFILES = $(BUILT_SOURCES)
+CLEANFILES = $(BUILT_SOURCES) rygel.stamp
 MAINTAINERCLEANFILES = Makefile.in
-EXTRA_DIST = cstuff.vapi $(VAPI_FILES) $(DEPS_FILES) $(VAPI_SOURCE_FILES)
+EXTRA_DIST = cstuff.vapi \
+             $(VAPI_FILES) \
+             $(DEPS_FILES) \
+             $(VAPI_SOURCE_FILES) \
+             $(BUILT_SOURCES) \
+	     rygel.stamp

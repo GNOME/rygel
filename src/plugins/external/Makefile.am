@@ -10,12 +10,13 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGCONF_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
 
-BUILT_SOURCES = rygel-external.stamp \
-		rygel-external-content-dir.c \
+BUILT_SOURCES = rygel-external-content-dir.c \
 		rygel-external-container.c \
 		rygel-external-item.c \
 		rygel-external-plugin.c \
 		rygel-external-plugin-factory.c
+
+$(BUILT_SOURCES) : rygel-external.stamp
 
 librygel_external_la_SOURCES = rygel-external-content-dir.c \
 			       rygel-external-content-dir.vala \
@@ -43,5 +44,6 @@ librygel_external_la_LIBADD = $(LIBGUPNP_LIBS) \
 			      $(LIBGCONF_LIBS)
 librygel_external_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
-CLEANFILES = $(BUILT_SOURCES)
+CLEANFILES = $(BUILT_SOURCES) rygel-external.stamp
 MAINTAINERCLEANFILES = Makefile.in
+EXTRA_DIST = $(BUILT_SOURCES) rygel-external.stamp
