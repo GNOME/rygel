@@ -69,7 +69,6 @@ if test x$enable_vala = xyes ; then
     fi
 
     VAPIDIR=`pkg-config --variable=vapidir vala-1.0`
-    AC_SUBST(VAPIDIR)
 
     # FIXME: Whats the proper way for checking for particular Vala bindings
     AC_CHECK_FILE("${VAPIDIR}/gupnp-1.0.vapi",
@@ -99,7 +98,11 @@ if test x$enable_vala = xyes ; then
     AC_CHECK_FILE("${VAPIDIR}/gee-1.0.vapi",
                   true,
                   [AC_MSG_ERROR("Unable to find Vala bindings for gee-1.0")])
+else
+    VAPIDIR=`echo ${datadir}/vala/vapi`
 fi
+
+AC_SUBST(VAPIDIR)
 
 # Debugging
 AC_ARG_ENABLE(debug,
