@@ -150,7 +150,8 @@ public class Rygel.PluginLoader : Object {
 
         ModuleInitFunc module_init = (ModuleInitFunc) function;
         if (module_init == null) {
-            warning ("Failed to load module from path: '%s'\n", file_path);
+            warning ("Failed to find entry point function 'module_init'" +
+                     " in module loaded from path: '%s'\n", file_path);
 
             return;
         }
