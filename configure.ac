@@ -149,6 +149,8 @@ if test x$try_ui = xyes ; then
                         HAVE_GTK=no
                         AC_MSG_ERROR("Unable to find Vala bindings for gtk+-2.0")
                   ])
+        else
+                HAVE_GTK=yes
         fi
       ],
       [
