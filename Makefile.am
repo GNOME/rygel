@@ -3,7 +3,8 @@ SUBDIRS = src data
 pkgconfig_DATA= rygel-1.0.pc
 pkgconfigdir = $(libdir)/pkgconfig
 
-EXTRA_DIST = rygel-1.0.pc.in
+EXTRA_DIST = rygel-1.0.pc.in \
+             .version
 
 DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
 
