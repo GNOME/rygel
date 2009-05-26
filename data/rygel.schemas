@@ -111,6 +111,17 @@
         </locale>
       </schema>
       <schema>
+        <key>/schemas/apps/rygel/Folder/folder</key>
+        <applyto>/apps/rygel/Folder/folder</applyto>
+        <owner>rygel</owner>
+        <type>list</type>
+        <list_type>string</list_type>
+        <default>[]</default>
+        <locale name="C">
+          <short>List of folders to export</short>
+          <long>List of folders to export; if list is empty, the XDG media directries are exported</long>
+        </locale>
+      <schema>
         <key>/schemas/apps/rygel/DVB/enabled</key>
         <applyto>/apps/rygel/DVB/enabled</applyto>
         <owner>rygel</owner>
@@ -131,6 +142,29 @@
           <short>The title of this plugin to advertise to UPnP clients.</short>
           <long>The title of this plugin to advertise to UPnP clients.</long>
         </locale>
+      </schema>
+      <schema>
+          <key>/schemas/apps/rygel/ZDFMediathek/enabled</key>
+          <applyto>/apps/rygel/Mediathek/enabled</applyto>
+          <owner>rygel</owner>
+          <type>bool</type>
+          <default>FALSE</default>
+          <locale name="C">
+            <short>Enable Mediathek plugin</short>
+            <long>Enable Mediathek plugin</long>
+          </locale>
+      </schema>
+      <schema>
+          <key>/schemas/apps/rygel/ZDFMediathek/rss</key>
+          <applyto>/apps/rygel/Mediathek/rss</applyto>
+          <owner>rygel</owner>
+          <type>list</type>
+          <list_type>int</list_type>
+          <default>[508]</default>
+          <locale name="C">
+            <short>List of ids of broadcasts</short>
+            <long>List of ids of broadcasts</long>
+          </locale>
       </schema>
     </schemalist>
 </gconfschemafile>
