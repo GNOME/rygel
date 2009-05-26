@@ -4,7 +4,7 @@ else
 shareddir = $(datadir)/rygel
 endif
 
-rygeldir = $(abs_top_builddir)/src/rygel
+rygeldir = $(top_srcdir)/src/rygel
 
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
@@ -52,7 +52,7 @@ rygel_preferences_LDADD = $(LIBGUPNP_LIBS) \
                           $(UUID_LIBS) \
                           $(LIBSOUP_LIBS) \
                           $(GTK_LIBS) \
-                          -L$(rygeldir) \
+                          -L$(abs_top_builddir)/src/rygel \
                           -lrygel-configuration
 
 CLEANFILES = $(BUILT_SOURCES) rygel.stamp
