@@ -31,10 +31,8 @@ UUID_REQUIRED=1.41.3
 LIBSOUP_REQUIRED=2.26.0
 GTK_REQUIRED=2.16
 
-PKG_CHECK_MODULES(VALA, [vala-1.0 >= $VALA_REQUIRED])
 PKG_CHECK_MODULES(LIBGUPNP, gupnp-1.0 >= $GUPNP_REQUIRED)
 PKG_CHECK_MODULES(LIBGUPNP_AV, gupnp-av-1.0 >= $GUPNP_AV_REQUIRED)
-PKG_CHECK_MODULES(GUPNP_VALA, gupnp-vala-1.0 >= $GUPNP_VALA_REQUIRED)
 PKG_CHECK_MODULES(LIBGCONF, gconf-2.0 >= $GCONF_REQUIRED)
 PKG_CHECK_MODULES(LIBDBUS_GLIB, dbus-glib-1 >= $DBUS_GLIB_REQUIRED)
 PKG_CHECK_MODULES(LIBGSTREAMER, gstreamer-0.10 >= $GSTREAMER_REQUIRED)
@@ -43,52 +41,65 @@ PKG_CHECK_MODULES(GEE, gee-1.0 >= $GEE_REQUIRED)
 PKG_CHECK_MODULES(UUID, uuid >= $UUID_REQUIRED)
 PKG_CHECK_MODULES(LIBSOUP, libsoup-2.4 >= $LIBSOUP_REQUIRED)
 
-# Vala compiler
-# This is more to get the path of the compiler since the pkg-config check
-# should covers check for compiler as well.
-AC_PATH_PROG(VALAC, valac, no)
-if test "x$VALAC" = "xno"; then
-	AC_MSG_ERROR([Cannot find the "valac" compiler in your PATH])
-fi
-
-VAPIDIR=`pkg-config --variable=vapidir vala-1.0`
-AC_SUBST(VAPIDIR)
-
-# FIXME: Whats the proper way for checking for particular Vala bindings
-AC_CHECK_FILE("${VAPIDIR}/gupnp-1.0.vapi",
-        true,
-        [AC_MSG_ERROR("Unable to find Vala bindings for gupnp-1.0")])
-
-AC_CHECK_FILE("${VAPIDIR}/gupnp-av-1.0.vapi",
-        true,
-        [AC_MSG_ERROR("Unable to find Vala bindings for gupnp-av-1.0")])
-
-AC_CHECK_FILE("${VAPIDIR}/dbus-glib-1.vapi",
-        true,
-        [AC_MSG_ERROR("Unable to find Vala bindings for dbus-glib-1")])
-
-AC_CHECK_FILE("${VAPIDIR}/gconf-2.0.vapi",
-        true,
-        [AC_MSG_ERROR("Unable to find Vala bindings for gconf-2.0")])
-
-AC_CHECK_FILE("${VAPIDIR}/gstreamer-0.10.vapi",
-        true,
-        [AC_MSG_ERROR("Unable to find Vala bindings for gstreamer-0.10")])
-
-AC_CHECK_FILE("${VAPIDIR}/gio-2.0.vapi",
-        true,
-        [AC_MSG_ERROR("Unable to find Vala bindings for gio-2.0")])
-
-AC_CHECK_FILE("${VAPIDIR}/gee-1.0.vapi",
-        true,
-        [AC_MSG_ERROR("Unable to find Vala bindings for gee-1.0")])
-
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
 AM_GCONF_SOURCE_2
 
 # glib-genmarshal
 GLIB_GENMARSHAL=`pkg-config --variable=glib_genmarshal glib-2.0`
 AC_SUBST(GLIB_GENMARSHAL)
+
+AC_ARG_ENABLE(vala,
+	[  --enable-vala          enable checks for vala],,
+        enable_vala=no)
+
+# Vala
+if test x$enable_vala = xyes ; then
+    # check for vala
+    PKG_CHECK_MODULES(VALA, [vala-1.0 >= $VALA_REQUIRED])
+    PKG_CHECK_MODULES(GUPNP_VALA, gupnp-vala-1.0 >= $GUPNP_VALA_REQUIRED)
+
+    # Vala compiler
+    # This is more to get the path of the compiler since the pkg-config check
+    # should covers check for compiler as well.
+
+    AC_PATH_PROG(VALAC, valac, no)
+
+    if test "x$VALAC" = "xno"; then
+	AC_MSG_ERROR([Cannot find the "valac" compiler in your PATH])
+    fi
+
+    VAPIDIR=`pkg-config --variable=vapidir vala-1.0`
+    AC_SUBST(VAPIDIR)
+
+    # FIXME: Whats the proper way for checking for particular Vala bindings
+    AC_CHECK_FILE("${VAPIDIR}/gupnp-1.0.vapi",
+                  true,
+                  [AC_MSG_ERROR("Unable to find Vala bindings for gupnp-1.0")])
+
+    AC_CHECK_FILE("${VAPIDIR}/gupnp-av-1.0.vapi",
+                  true,
+                  [AC_MSG_ERROR("Unable to find Vala bindings for gupnp-av-1.0")])
+
+    AC_CHECK_FILE("${VAPIDIR}/dbus-glib-1.vapi",
+                  true,
+                  [AC_MSG_ERROR("Unable to find Vala bindings for dbus-glib-1")])
+
+    AC_CHECK_FILE("${VAPIDIR}/gconf-2.0.vapi",
+                  true,
+                  [AC_MSG_ERROR("Unable to find Vala bindings for gconf-2.0")])
+
+    AC_CHECK_FILE("${VAPIDIR}/gstreamer-0.10.vapi",
+                  true,
+                  [AC_MSG_ERROR("Unable to find Vala bindings for gstreamer-0.10")])
+
+    AC_CHECK_FILE("${VAPIDIR}/gio-2.0.vapi",
+                  true,
+                  [AC_MSG_ERROR("Unable to find Vala bindings for gio-2.0")])
+
+    AC_CHECK_FILE("${VAPIDIR}/gee-1.0.vapi",
+                  true,
+                  [AC_MSG_ERROR("Unable to find Vala bindings for gee-1.0")])
+fi
 
 # Debugging
 AC_ARG_ENABLE(debug,
@@ -126,15 +137,17 @@ if test x$try_ui = xyes ; then
       [
         AC_SUBST(GTK_CFLAGS)
         AC_SUBST(GTK_LIBS)
-        AC_CHECK_FILE("${VAPIDIR}/gtk+-2.0.vapi",
-          [
-             HAVE_GTK=yes
-          ],
-          [
-             HAVE_GTK=no
-             AC_MSG_ERROR("Unable to find Vala bindings for gtk+-2.0")
-          ])
-        ],
+        if test x$enable_vala = xyes ; then
+                AC_CHECK_FILE("${VAPIDIR}/gtk+-2.0.vapi",
+                  [
+                        HAVE_GTK=yes
+                  ],
+                  [
+                        HAVE_GTK=no
+                        AC_MSG_ERROR("Unable to find Vala bindings for gtk+-2.0")
+                  ])
+        fi
+      ],
       [
         HAVE_GTK=no
         AC_MSG_WARN([gtk $GTK_REQUIRED or greater not found.])
