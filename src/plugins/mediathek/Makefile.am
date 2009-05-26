@@ -1,6 +1,6 @@
 plugindir = $(libdir)/rygel-1.0
 
-plugin_LTLIBRARIES = librygel-media-mediathek.la
+plugin_LTLIBRARIES = librygel-mediathek.la
 
 AM_CFLAGS = \
 	$(LIBGUPNP_CFLAGS) \
@@ -12,7 +12,7 @@ AM_CFLAGS = \
 	-I$(top_srcdir)/src/rygel \
 	-DDATA_DIR='"$(datadir)"'
 
-BUILT_SOURCES = rygel-media-mediathek.stamp \
+BUILT_SOURCES = rygel-mediathek.stamp \
 				rygel-mediathek-asx-playlist.c \
 				rygel-mediathek-plugin.c \
 				rygel-mediathek-video-item.c \
@@ -32,7 +32,7 @@ librygel_media_mediathek_la_SOURCES = \
 	rygel-mediathek-rss-container.vala 
 
 
-rygel-media-mediathek.stamp: $(filter %.vala,$(librygel_media_mediathek_la_SOURCES))
+rygel-mediathek.stamp: $(filter %.vala,$(librygel_mediathek_la_SOURCES))
 	$(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \
 	--pkg rygel-1.0 \
 	--pkg cstuff \
@@ -45,7 +45,7 @@ rygel-media-mediathek.stamp: $(filter %.vala,$(librygel_media_mediathek_la_SOURC
 	$^
 	touch $@
 
-librygel_media_mediathek_la_LIBADD = \
+librygel_mediathek_la_LIBADD = \
 	$(LIBGUPNP_LIBS) \
 	$(LIBGUPNP_AV_LIBS) \
 	$(LIBDBUS_GLIB_LIBS) \
@@ -53,7 +53,7 @@ librygel_media_mediathek_la_LIBADD = \
 	$(LIBGCONF_LIBS) \
 	$(GEE_LIBS)
 
-librygel_media_mediathek_la_LDFLAGS = -shared -fPIC -module -avoid-version
+librygel_mediathek_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
 CLEANFILES = $(BUILT_SOURCES)
 MAINTAINERCLEANFILES = Makefile.in
