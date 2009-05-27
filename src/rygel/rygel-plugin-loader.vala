@@ -148,15 +148,17 @@ public class Rygel.PluginLoader : Object {
 
         void* function;
 
-        module.symbol("module_init", out function);
-
-        ModuleInitFunc module_init = (ModuleInitFunc) function;
-        if (module_init == null) {
+        if (!module.symbol("module_init", out function)) {
             warning ("Failed to find entry point function 'module_init'" +
-                     " in module loaded from path: '%s'\n", file_path);
+                     " in module loaded from path '%s': %s\n",
+                     file_path,
+                     Module.error ());
 
             return;
         }
+
+        ModuleInitFunc module_init = (ModuleInitFunc) function;
+        assert (module_init != null);
 
         // We don't want our modules to ever unload
         module.make_resident ();
