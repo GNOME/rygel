@@ -27,14 +27,14 @@ using Rygel;
 public class ExternalPlugin : Plugin {
     // class-wide constants
     private const string PROPS_IFACE = "org.freedesktop.DBus.Properties";
-    private const string OBJECT_IFACE = "org.Rygel.MediaObject1";
+    private const string OBJECT_IFACE = "org.gnome.UPnP.MediaObject1";
 
     public string service_name;
     public string root_object;
 
     public ExternalPlugin (DBus.Connection     connection,
                            string              service_name) {
-        // org.Rygel.MediaServer1.NAME => /org/Rygel/MediaServer1/NAME
+        // org.gnome.UPnP.MediaServer1.NAME => /org/gnome/UPnP/MediaServer1/NAME
         var root_object = "/" + service_name.replace (".", "/");
 
         // Create proxy to MediaObject iface to get the display name through

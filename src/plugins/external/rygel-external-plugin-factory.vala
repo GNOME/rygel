@@ -43,7 +43,7 @@ public class ExternalPluginFactory {
     private const string DBUS_OBJECT = "/org/freedesktop/DBus";
     private const string DBUS_IFACE = "org.freedesktop.DBus";
 
-    private const string SERVICE_PREFIX = "org.Rygel.MediaServer1.";
+    private const string SERVICE_PREFIX = "org.gnome.UPnP.MediaServer1.";
 
     dynamic DBus.Object dbus_obj;
     DBus.Connection     connection;

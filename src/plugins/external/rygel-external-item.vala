@@ -31,8 +31,8 @@ using DBus;
  */
 public class Rygel.ExternalItem : MediaItem {
     private static string PROPS_IFACE = "org.freedesktop.DBus.Properties";
-    private static string OBJECT_IFACE = "org.Rygel.MediaObject1";
-    private static string ITEM_IFACE = "org.Rygel.MediaItem1";
+    private static string OBJECT_IFACE = "org.gnome.UPnP.MediaObject1";
+    private static string ITEM_IFACE = "org.gnome.UPnP.MediaItem1";
 
     public ExternalItem (string            object_path,
                          ExternalContainer parent)

@@ -33,9 +33,9 @@ using Gee;
 public class Rygel.ExternalContainer : MediaContainer {
     // class-wide constants
     private static string PROPS_IFACE = "org.freedesktop.DBus.Properties";
-    private const string OBJECT_IFACE = "org.Rygel.MediaObject1";
-    private const string CONTAINER_IFACE = "org.Rygel.MediaContainer1";
-    private const string ITEM_IFACE = "org.Rygel.MediaItem1";
+    private const string OBJECT_IFACE = "org.gnome.UPnP.MediaObject1";
+    private const string CONTAINER_IFACE = "org.gnome.UPnP.MediaContainer1";
+    private const string ITEM_IFACE = "org.gnome.UPnP.MediaItem1";
 
     public dynamic DBus.Object actual_container;
     public dynamic DBus.Object props;
