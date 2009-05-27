@@ -43,15 +43,21 @@ public class Rygel.MediathekVideoItem : Rygel.MediaItem {
         return node->ns != null && node->ns->prefix == "media";
     }
 
-    public static MediathekAsxPlaylist? handle_content(Xml.Node *group) {
+    public static MediathekAsxPlaylist? handle_content (
+                                            Xml.Node *group)
+                                            throws MediathekVideoItemError {
         MediathekAsxPlaylist asx = null;
         if (namespace_ok (group)) {
             Xml.Attr* attr = group->has_prop ("url");
             if (attr != null) {
                 var url = attr->children->content;
                 if (url.has_suffix (".asx")) {
-                    asx = new MediathekAsxPlaylist (url);
-                    asx.parse ();
+                    try {
+                        asx = new MediathekAsxPlaylist (url);
+                        asx.parse ();
+                    } catch (MediathekAsxPlaylistError error) {
+                        asx = null;
+                    }
                 }
             }
             else {
