@@ -111,8 +111,8 @@
         </locale>
       </schema>
       <schema>
-        <key>/schemas/apps/rygel/Folder/folder</key>
-        <applyto>/apps/rygel/Folder/folder</applyto>
+        <key>/schemas/apps/rygel/Folder/folders</key>
+        <applyto>/apps/rygel/Folder/folders</applyto>
         <owner>rygel</owner>
         <type>list</type>
         <list_type>string</list_type>

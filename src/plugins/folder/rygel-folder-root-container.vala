@@ -104,10 +104,10 @@ public class Rygel.FolderRootContainer : MediaContainer {
         unowned SList<string> dirs = null;
 
         try {
-            dirs = client.get_list ("/apps/rygel/Folder/folder", 
+            dirs = client.get_list ("/apps/rygel/Folder/folders",
                                     GConf.ValueType.STRING);
         } catch (GLib.Error error) {
-            message("Error fetching configuration, error was %s", 
+            message("Error fetching configuration, error was %s",
                     error.message);
         }
 
