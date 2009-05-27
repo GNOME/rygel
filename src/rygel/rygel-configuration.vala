@@ -134,6 +134,27 @@ public class Rygel.Configuration {
         return val;
     }
 
+    public Gee.ArrayList<string> get_string_list (string section,
+                                                  string key) {
+        var str_list = new Gee.ArrayList<string> ();
+        var path = ROOT_GCONF_PATH + section + "/" + key;
+
+        try {
+            unowned SList<string> strings = this.gconf.get_list (
+                                                        path,
+                                                        GConf.ValueType.STRING);
+            if (strings != null) {
+                foreach (var str in strings) {
+                    str_list.add (str);
+                }
+            }
+        } catch (GLib.Error error) {
+            warning ("Failed to get value for key: %s\n", path);
+        }
+
+        return str_list;
+    }
+
     public int get_int (string section,
                         string key,
                         int    min,
@@ -182,6 +203,25 @@ public class Rygel.Configuration {
 
         try {
             this.gconf.set_string (path, value);
+        } catch (GLib.Error error) {
+            // No big deal
+        }
+    }
+
+    public void set_string_list (string                section,
+                                 string                key,
+                                 Gee.ArrayList<string> str_list) {
+        var path = ROOT_GCONF_PATH + section + "/" + key;
+
+        // GConf requires us to provide it GLib.SList
+        SList<string> slist = null;
+
+        foreach (var str in str_list) {
+            slist.append (str);
+        }
+
+        try {
+            this.gconf.set_list (path, GConf.ValueType.STRING, slist);
         } catch (GLib.Error error) {
             // No big deal
         }
