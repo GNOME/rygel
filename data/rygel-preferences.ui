@@ -227,181 +227,185 @@
               </packing>
             </child>
             <child>
-              <object class="GtkTable" id="table3">
+              <object class="GtkAlignment" id="alignment2">
                 <property name="visible">True</property>
-                <property name="n_rows">7</property>
-                <property name="n_columns">2</property>
-                <property name="column_spacing">6</property>
-                <property name="row_spacing">6</property>
+                <property name="top_padding">12</property>
+                <property name="bottom_padding">12</property>
+                <property name="left_padding">12</property>
+                <property name="right_padding">12</property>
                 <child>
-                  <object class="GtkCheckButton" id="tracker-enabled-checkbutton">
-                    <property name="label" translatable="yes">T_racker</property>
+                  <object class="GtkTable" id="table4">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
-                    <property name="draw_indicator">True</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="tracker-title-label">
-                    <property name="visible">True</property>
-                    <property name="xalign">0</property>
-                    <property name="xpad">12</property>
-                    <property name="ypad">2</property>
-                    <property name="label" translatable="yes">T_itle</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">tracker-title-entry</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkCheckButton" id="folder-enabled-checkbutton">
-                    <property name="label" translatable="yes">_Folder</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
-                    <property name="draw_indicator">True</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="folder-title-label">
-                    <property name="visible">True</property>
-                    <property name="xalign">0</property>
-                    <property name="xpad">12</property>
-                    <property name="label" translatable="yes">Ti_tle</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">folder-title-entry</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="tracker-title-entry">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="invisible_char">&#x25CF;</property>
-                    <property name="width_chars">30</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="folder-title-entry">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="invisible_char">&#x25CF;</property>
-                    <property name="width_chars">30</property>
-                    <property name="invisible_char_set">True</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkCheckButton" id="dvb-enabled-checkbutton">
-                    <property name="label" translatable="yes">_DVB</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
-                    <property name="draw_indicator">True</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">5</property>
-                    <property name="bottom_attach">6</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="dvb-title-label">
-                    <property name="visible">True</property>
-                    <property name="xalign">0</property>
-                    <property name="xpad">12</property>
-                    <property name="label" translatable="yes">Tit_le</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">dvb-title-entry</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">6</property>
-                    <property name="bottom_attach">7</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="dvb-title-entry">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="invisible_char">&#x25CF;</property>
-                    <property name="width_chars">30</property>
-                    <property name="invisible_char_set">True</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">6</property>
-                    <property name="bottom_attach">7</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="folders-label">
-                    <property name="visible">True</property>
-                    <property name="xalign">0</property>
-                    <property name="xpad">12</property>
-                    <property name="label" translatable="yes">F_olders</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">folders-textview</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkScrolledWindow" id="scrolledwindow1">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="hscrollbar_policy">automatic</property>
-                    <property name="vscrollbar_policy">automatic</property>
+                    <property name="n_rows">7</property>
+                    <property name="n_columns">2</property>
+                    <property name="column_spacing">6</property>
+                    <property name="row_spacing">6</property>
                     <child>
-                      <object class="GtkTextView" id="folders-textview">
+                      <object class="GtkCheckButton" id="tracker-enabled-checkbutton">
+                        <property name="label" translatable="yes">T_racker</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">Paths/URIs of folders to export, each on separate line.</property>
-                        <property name="buffer">folders-textbuffer</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="draw_indicator">True</property>
                       </object>
                     </child>
+                    <child>
+                      <object class="GtkLabel" id="tracker-title-label">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="xpad">12</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">T_itle</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="folder-enabled-checkbutton">
+                        <property name="label" translatable="yes">_Folder</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="folder-title-label">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="xpad">12</property>
+                        <property name="label" translatable="yes">Ti_tle</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="tracker-title-entry">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="width_chars">30</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="folder-title-entry">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="width_chars">30</property>
+                        <property name="invisible_char_set">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="dvb-enabled-checkbutton">
+                        <property name="label" translatable="yes">_DVB</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">5</property>
+                        <property name="bottom_attach">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="dvb-title-label">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="xpad">12</property>
+                        <property name="label" translatable="yes">Tit_le</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">6</property>
+                        <property name="bottom_attach">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="dvb-title-entry">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="width_chars">30</property>
+                        <property name="invisible_char_set">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">6</property>
+                        <property name="bottom_attach">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="folders-label">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="xpad">12</property>
+                        <property name="label" translatable="yes">F_olders</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">4</property>
+                        <property name="bottom_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScrolledWindow" id="scrolledwindow2">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
+                        <child>
+                          <object class="GtkTextView" id="folders-textview">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="buffer">folders-textbuffer</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">4</property>
+                        <property name="bottom_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
                   </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
                 </child>
               </object>
               <packing>
@@ -493,13 +497,6 @@
   <object class="GtkSizeGroup" id="general-labels-sizegroup">
     <property name="mode">both</property>
   </object>
-  <object class="GtkSizeGroup" id="plugin-labels-sizegroup">
-    <widgets>
-      <widget name="folders-label"/>
-      <widget name="tracker-title-label"/>
-      <widget name="folder-title-label"/>
-      <widget name="dvb-title-label"/>
-    </widgets>
-  </object>
+  <object class="GtkSizeGroup" id="plugin-labels-sizegroup"/>
   <object class="GtkTextBuffer" id="folders-textbuffer"/>
 </interface>
