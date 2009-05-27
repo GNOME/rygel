@@ -28,7 +28,6 @@ using GConf;
 public class Rygel.MediathekRootContainer : MediaContainer {
     private ArrayList<MediathekRssContainer> items;
     internal SessionAsync session;
-    private GConf.Client gconf;
 
     public override void get_children (uint offset, 
                                        uint max_count, 
@@ -101,22 +100,12 @@ public class Rygel.MediathekRootContainer : MediaContainer {
         this.session = new Soup.SessionAsync ();
         this.items = new ArrayList<MediathekRssContainer> ();
 
-        this.gconf = GConf.Client.get_default ();
-        unowned SList<int> feeds = null;
+        var config = new Rygel.Configuration ();
+        var feeds = config.get_int_list ("ZDFMediathek", "rss");
 
-        // get subscribed feeds
-        try {
-            // TODO get gconf prefix from Rygel
-            feeds = gconf.get_list("/apps/rygel/ZDFMediathek/rss",
-                                   GConf.ValueType.INT);
-
-        } catch (GLib.Error error) {
-            message ("Error on getting configuration: %s", error.message);
-        }
-
-        if (feeds == null) {
+        if (feeds.size == 0) {
             message ("Could not get RSS items from GConf, using defaults");
-            feeds.append (508);
+            feeds.add (508);
         }
 
         foreach (int id in feeds) {
