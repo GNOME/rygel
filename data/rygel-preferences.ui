@@ -220,7 +220,7 @@
             <child>
               <object class="GtkTable" id="table3">
                 <property name="visible">True</property>
-                <property name="n_rows">6</property>
+                <property name="n_rows">7</property>
                 <property name="n_columns">2</property>
                 <child>
                   <object class="GtkCheckButton" id="tracker-enabled-checkbutton">
@@ -302,8 +302,8 @@
                     <property name="draw_indicator">True</property>
                   </object>
                   <packing>
-                    <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
+                    <property name="top_attach">5</property>
+                    <property name="bottom_attach">6</property>
                   </packing>
                 </child>
                 <child>
@@ -312,8 +312,8 @@
                     <property name="label" translatable="yes">Title</property>
                   </object>
                   <packing>
-                    <property name="top_attach">5</property>
-                    <property name="bottom_attach">6</property>
+                    <property name="top_attach">6</property>
+                    <property name="bottom_attach">7</property>
                   </packing>
                 </child>
                 <child>
@@ -327,8 +327,40 @@
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">2</property>
-                    <property name="top_attach">5</property>
-                    <property name="bottom_attach">6</property>
+                    <property name="top_attach">6</property>
+                    <property name="bottom_attach">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="folders-label">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">Folders</property>
+                  </object>
+                  <packing>
+                    <property name="top_attach">4</property>
+                    <property name="bottom_attach">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow" id="scrolledwindow1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="hscrollbar_policy">automatic</property>
+                    <property name="vscrollbar_policy">automatic</property>
+                    <child>
+                      <object class="GtkTextView" id="folders-textview">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Paths/URIs of folders to export, each on separate line.</property>
+                        <property name="buffer">folders-textbuffer</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                    <property name="top_attach">4</property>
+                    <property name="bottom_attach">5</property>
                   </packing>
                 </child>
                 <child>
@@ -432,9 +464,11 @@
   </object>
   <object class="GtkSizeGroup" id="plugin-labels-sizegroup">
     <widgets>
-      <widget name="tracker-title-label"/>
-      <widget name="folder-title-label"/>
       <widget name="dvb-title-label"/>
+      <widget name="folder-title-label"/>
+      <widget name="tracker-title-label"/>
+      <widget name="folders-label"/>
     </widgets>
   </object>
+  <object class="GtkTextBuffer" id="folders-textbuffer"/>
 </interface>
