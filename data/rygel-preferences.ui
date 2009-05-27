@@ -33,10 +33,11 @@
                     <property name="spacing">12</property>
                     <child>
                       <object class="GtkCheckButton" id="enable-ms-checkbutton">
-                        <property name="label" translatable="yes">Enable Media Server</property>
+                        <property name="label" translatable="yes">_Enable Media Server</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
@@ -52,10 +53,11 @@
                         <property name="row_spacing">8</property>
                         <child>
                           <object class="GtkCheckButton" id="transcoding-checkbutton">
-                            <property name="label" translatable="yes">Transcoding support</property>
+                            <property name="label" translatable="yes">_Transcoding support</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -64,10 +66,11 @@
                         </child>
                         <child>
                           <object class="GtkCheckButton" id="mp3-checkbutton">
-                            <property name="label" translatable="yes">MP3</property>
+                            <property name="label" translatable="yes">_MP3</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -78,10 +81,11 @@
                         </child>
                         <child>
                           <object class="GtkCheckButton" id="mp2ts-checkbutton">
-                            <property name="label" translatable="yes">MPEG TS</property>
+                            <property name="label" translatable="yes">MPE_G TS</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -92,10 +96,11 @@
                         </child>
                         <child>
                           <object class="GtkCheckButton" id="lpcm-checkbutton">
-                            <property name="label" translatable="yes">LPCM</property>
+                            <property name="label" translatable="yes">_LPCM</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -123,7 +128,9 @@
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
                             <property name="xpad">12</property>
-                            <property name="label" translatable="yes">Port</property>
+                            <property name="label" translatable="yes">_Port</property>
+                            <property name="use_underline">True</property>
+                            <property name="mnemonic_widget">port-spinbutton</property>
                           </object>
                           <packing>
                             <property name="top_attach">2</property>
@@ -151,7 +158,9 @@
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
                             <property name="xpad">12</property>
-                            <property name="label" translatable="yes">IP Address</property>
+                            <property name="label" translatable="yes">_IP Address</property>
+                            <property name="use_underline">True</property>
+                            <property name="mnemonic_widget">ip-entry</property>
                           </object>
                           <packing>
                             <property name="top_attach">1</property>
@@ -226,10 +235,11 @@
                 <property name="row_spacing">6</property>
                 <child>
                   <object class="GtkCheckButton" id="tracker-enabled-checkbutton">
-                    <property name="label" translatable="yes">Tracker</property>
+                    <property name="label" translatable="yes">T_racker</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
+                    <property name="use_underline">True</property>
                     <property name="draw_indicator">True</property>
                   </object>
                 </child>
@@ -238,7 +248,10 @@
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="xpad">12</property>
-                    <property name="label" translatable="yes">Title</property>
+                    <property name="ypad">2</property>
+                    <property name="label" translatable="yes">T_itle</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">tracker-title-entry</property>
                   </object>
                   <packing>
                     <property name="top_attach">1</property>
@@ -247,10 +260,11 @@
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="folder-enabled-checkbutton">
-                    <property name="label" translatable="yes">Folder</property>
+                    <property name="label" translatable="yes">_Folder</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
+                    <property name="use_underline">True</property>
                     <property name="draw_indicator">True</property>
                   </object>
                   <packing>
@@ -263,7 +277,9 @@
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="xpad">12</property>
-                    <property name="label" translatable="yes">Title</property>
+                    <property name="label" translatable="yes">Ti_tle</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">folder-title-entry</property>
                   </object>
                   <packing>
                     <property name="top_attach">3</property>
@@ -301,10 +317,11 @@
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="dvb-enabled-checkbutton">
-                    <property name="label" translatable="yes">DVB</property>
+                    <property name="label" translatable="yes">_DVB</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
+                    <property name="use_underline">True</property>
                     <property name="draw_indicator">True</property>
                   </object>
                   <packing>
@@ -317,7 +334,9 @@
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="xpad">12</property>
-                    <property name="label" translatable="yes">Title</property>
+                    <property name="label" translatable="yes">Tit_le</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">dvb-title-entry</property>
                   </object>
                   <packing>
                     <property name="top_attach">6</property>
@@ -344,7 +363,9 @@
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="xpad">12</property>
-                    <property name="label" translatable="yes">Folders</property>
+                    <property name="label" translatable="yes">F_olders</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">folders-textview</property>
                   </object>
                   <packing>
                     <property name="top_attach">4</property>
