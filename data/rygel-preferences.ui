@@ -222,6 +222,8 @@
                 <property name="visible">True</property>
                 <property name="n_rows">7</property>
                 <property name="n_columns">2</property>
+                <property name="column_spacing">6</property>
+                <property name="row_spacing">6</property>
                 <child>
                   <object class="GtkCheckButton" id="tracker-enabled-checkbutton">
                     <property name="label" translatable="yes">Tracker</property>
@@ -234,6 +236,8 @@
                 <child>
                   <object class="GtkLabel" id="tracker-title-label">
                     <property name="visible">True</property>
+                    <property name="xalign">0</property>
+                    <property name="xpad">12</property>
                     <property name="label" translatable="yes">Title</property>
                   </object>
                   <packing>
@@ -257,6 +261,8 @@
                 <child>
                   <object class="GtkLabel" id="folder-title-label">
                     <property name="visible">True</property>
+                    <property name="xalign">0</property>
+                    <property name="xpad">12</property>
                     <property name="label" translatable="yes">Title</property>
                   </object>
                   <packing>
@@ -309,6 +315,8 @@
                 <child>
                   <object class="GtkLabel" id="dvb-title-label">
                     <property name="visible">True</property>
+                    <property name="xalign">0</property>
+                    <property name="xpad">12</property>
                     <property name="label" translatable="yes">Title</property>
                   </object>
                   <packing>
@@ -334,6 +342,8 @@
                 <child>
                   <object class="GtkLabel" id="folders-label">
                     <property name="visible">True</property>
+                    <property name="xalign">0</property>
+                    <property name="xpad">12</property>
                     <property name="label" translatable="yes">Folders</property>
                   </object>
                   <packing>
@@ -464,10 +474,10 @@
   </object>
   <object class="GtkSizeGroup" id="plugin-labels-sizegroup">
     <widgets>
-      <widget name="dvb-title-label"/>
-      <widget name="folder-title-label"/>
-      <widget name="tracker-title-label"/>
       <widget name="folders-label"/>
+      <widget name="tracker-title-label"/>
+      <widget name="folder-title-label"/>
+      <widget name="dvb-title-label"/>
     </widgets>
   </object>
   <object class="GtkTextBuffer" id="folders-textbuffer"/>
