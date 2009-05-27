@@ -62,7 +62,8 @@ public class Rygel.PluginPrefSection : PreferencesSection {
         this.config.set_string (this.name, Configuration.TITLE_KEY, title);
     }
 
-    private void on_enabled_check_toggled (CheckButton enabled_check) {
+    protected virtual void on_enabled_check_toggled (
+                                CheckButton enabled_check) {
         this.title_entry.sensitive = enabled_check.active;
     }
 }
