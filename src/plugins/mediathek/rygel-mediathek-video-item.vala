@@ -95,7 +95,7 @@ public class Rygel.MediathekVideoItem : Rygel.MediaItem {
                              group != null;
                              group = group->next) {
                             if (group->name == "content") {
-                                handle_content (group);
+                                asx = handle_content (group);
                             }
                         }
                     }
