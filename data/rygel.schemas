@@ -121,6 +121,7 @@
           <short>List of folders to export</short>
           <long>List of folders to export; if list is empty, the XDG media directries are exported</long>
         </locale>
+      </schema>
       <schema>
         <key>/schemas/apps/rygel/DVB/enabled</key>
         <applyto>/apps/rygel/DVB/enabled</applyto>
@@ -145,7 +146,7 @@
       </schema>
       <schema>
           <key>/schemas/apps/rygel/ZDFMediathek/enabled</key>
-          <applyto>/apps/rygel/Mediathek/enabled</applyto>
+          <applyto>/apps/rygel/ZDFMediathek/enabled</applyto>
           <owner>rygel</owner>
           <type>bool</type>
           <default>FALSE</default>
@@ -156,7 +157,7 @@
       </schema>
       <schema>
           <key>/schemas/apps/rygel/ZDFMediathek/rss</key>
-          <applyto>/apps/rygel/Mediathek/rss</applyto>
+          <applyto>/apps/rygel/ZDFMediathek/rss</applyto>
           <owner>rygel</owner>
           <type>list</type>
           <list_type>int</list_type>
