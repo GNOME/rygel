@@ -90,35 +90,28 @@ public class Rygel.FolderRootContainer : MediaContainer {
 
     /**
      * Create a new root container.
-     * 
-     * Schedules an async enumeration of the children of the 
-     * directory
-     * 
-     * @parameter directory_path, directory you want to expose
      */
     public FolderRootContainer () {
         base.root ("FolderRoot", 0);
 
-        GConf.Client client = GConf.Client.get_default ();
         this.items = new ArrayList<FolderContainer> ();
-        unowned SList<string> dirs = null;
 
-        try {
-            dirs = client.get_list ("/apps/rygel/Folder/folders",
-                                    GConf.ValueType.STRING);
-        } catch (GLib.Error error) {
-            message("Error fetching configuration, error was %s",
-                    error.message);
-        }
+        var config = new Rygel.Configuration ();
+        var dirs = config.get_string_list ("Folder", "folders");
 
         // either an error occured or the gconf key is not set
-        if (dirs == null) {
-            dirs.append (Environment.get_user_special_dir (
-                                        UserDirectory.MUSIC));
-            dirs.append (Environment.get_user_special_dir (
-                                        UserDirectory.PICTURES));
-            dirs.append (Environment.get_user_special_dir (
-                                        UserDirectory.VIDEOS));
+        if (dirs.size == 0) {
+            var dir = Environment.get_user_special_dir (UserDirectory.MUSIC);
+            if (dir != null)
+                dirs.add (dir);
+
+            dir = Environment.get_user_special_dir (UserDirectory.PICTURES);
+            if (dir != null)
+                dirs.add (dir);
+
+            dir = Environment.get_user_special_dir (UserDirectory.VIDEOS);
+            if (dir != null)
+                dirs.add (dir);
         }
 
         foreach (var dir in dirs) {
