@@ -139,7 +139,7 @@ public class Rygel.PluginLoader : Object {
     private void load_module_from_file (string file_path) {
         Module module = Module.open (file_path, ModuleFlags.BIND_LOCAL);
         if (module == null) {
-            debug ("Failed to load module from path: '%s'\n", file_path);
+            warning ("Failed to load module from path: '%s'\n", file_path);
 
             return;
         }
