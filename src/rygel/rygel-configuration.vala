@@ -176,6 +176,27 @@ public class Rygel.Configuration {
         return val;
     }
 
+    public Gee.ArrayList<int> get_int_list (string section,
+                                            string key) {
+        var int_list = new Gee.ArrayList<int> ();
+        var path = ROOT_GCONF_PATH + section + "/" + key;
+
+        try {
+            unowned SList<int> ints = this.gconf.get_list (
+                                                    path,
+                                                    GConf.ValueType.INT);
+            if (ints != null) {
+                foreach (var num in ints) {
+                    int_list.add (num);
+                }
+            }
+        } catch (GLib.Error error) {
+            warning ("Failed to get value for key: %s", path);
+        }
+
+        return int_list;
+    }
+
     public bool get_bool (string section,
                           string key,
                           bool   default_value) {
