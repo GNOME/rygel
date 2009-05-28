@@ -200,7 +200,10 @@ public class Rygel.MediaServerFactory {
     private void add_service_to_desc (Xml.Node    *service_list_node,
                                       string       plugin_name,
                                       ResourceInfo resource_info) {
-        // Create the service node
+        // Clear the existing service list first
+        service_list_node->set_content ("");
+
+        // Now create the service node
         Xml.Node *service_node = service_list_node->new_child (null, "service");
 
         service_node->new_child (null, "serviceType", resource_info.upnp_type);
