@@ -76,8 +76,8 @@ public class Rygel.MediathekRssContainer : MediaContainer {
                         ret = true;
                     }
                     catch (MediathekVideoItemError error) {
-                        GLib.message ("Error creating video item: %s", 
-                                      error.message); 
+                        warning ("Error creating video item: %s",
+                                 error.message);
                     }
                 }
             }
