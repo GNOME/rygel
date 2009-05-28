@@ -149,7 +149,7 @@
           <applyto>/apps/rygel/ZDFMediathek/enabled</applyto>
           <owner>rygel</owner>
           <type>bool</type>
-          <default>FALSE</default>
+          <default>TRUE</default>
           <locale name="C">
             <short>Enable Mediathek plugin</short>
             <long>Enable Mediathek plugin</long>
