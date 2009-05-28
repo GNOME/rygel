@@ -30,9 +30,9 @@ public class Rygel.FolderDirectorySearchResult :
 
     private const int MAX_CHILDREN = 10;
 
-    public FolderDirectorySearchResult (MediaContainer parent, 
-                                        uint offset, 
-                                        uint max_count, 
+    public FolderDirectorySearchResult (MediaContainer     parent,
+                                        uint               offset,
+                                        uint               max_count,
                                         AsyncReadyCallback callback) {
         base (parent, callback);
 
@@ -148,5 +148,4 @@ public class Rygel.FolderDirectorySearchResult :
         return item;
     }
 }
-
 
