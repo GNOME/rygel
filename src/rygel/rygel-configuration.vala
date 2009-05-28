@@ -249,7 +249,9 @@ public class Rygel.Configuration : GLib.Object {
         SList<string> slist = null;
 
         foreach (var str in str_list) {
-            slist.append (str);
+            if (str != "") {
+                slist.append (str);
+            }
         }
 
         try {
