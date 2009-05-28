@@ -37,10 +37,20 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
     public TranscodeManager () {
         transcoders = new ArrayList<Transcoder> ();
 
-        transcoders.add (new L16Transcoder (Endianness.BIG));
-        transcoders.add (new MP3Transcoder (MP3Layer.THREE));
-        transcoders.add (new MP2TSTranscoder(MP2TSProfile.SD));
-        transcoders.add (new MP2TSTranscoder(MP2TSProfile.HD));
+        var config = Configuration.get_default ();
+
+        if (config.transcoding) {
+            if (config.lpcm_transcoder) {
+                transcoders.add (new L16Transcoder (Endianness.BIG));
+            }
+            if (config.mp3_transcoder) {
+                transcoders.add (new MP3Transcoder (MP3Layer.THREE));
+            }
+            if (config.mp2ts_transcoder) {
+                transcoders.add (new MP2TSTranscoder(MP2TSProfile.SD));
+                transcoders.add (new MP2TSTranscoder(MP2TSProfile.HD));
+            }
+        }
     }
 
     public abstract string create_uri_for_item (MediaItem  item,
