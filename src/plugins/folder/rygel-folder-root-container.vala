@@ -96,7 +96,7 @@ public class Rygel.FolderRootContainer : MediaContainer {
 
         this.items = new ArrayList<FolderContainer> ();
 
-        var config = new Rygel.Configuration ();
+        var config = Rygel.Configuration.get_default ();
         var dirs = config.get_string_list ("Folder", "folders");
 
         // either an error occured or the gconf key is not set

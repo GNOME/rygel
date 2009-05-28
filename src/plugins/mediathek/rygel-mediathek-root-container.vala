@@ -100,7 +100,7 @@ public class Rygel.MediathekRootContainer : MediaContainer {
         this.session = new Soup.SessionAsync ();
         this.items = new ArrayList<MediathekRssContainer> ();
 
-        var config = new Rygel.Configuration ();
+        var config = Rygel.Configuration.get_default ();
         var feeds = config.get_int_list ("ZDFMediathek", "rss");
 
         if (feeds.size == 0) {

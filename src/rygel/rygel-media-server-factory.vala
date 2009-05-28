@@ -43,7 +43,7 @@ public class Rygel.MediaServerFactory {
     private GUPnP.Context context;
 
     public MediaServerFactory () throws GLib.Error {
-        this.config = new Configuration ();
+        this.config = Configuration.get_default ();
 
         /* Set up GUPnP context */
         this.context = create_upnp_context ();

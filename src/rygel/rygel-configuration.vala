@@ -41,6 +41,9 @@ public class Rygel.Configuration : GLib.Object {
     protected static const string LPCM_TRANSCODER_KEY =
                                                     "enable-lpcm-transcoder";
 
+    // Our singleton
+    private static Configuration config;
+
     protected GConf.Client gconf;
 
     private string _host_ip;
@@ -101,6 +104,14 @@ public class Rygel.Configuration : GLib.Object {
         set {
             this.set_bool ("general", LPCM_TRANSCODER_KEY, value);
         }
+    }
+
+    public static Configuration get_default () {
+        if (config == null) {
+            config = new Configuration ();
+        }
+
+        return config;
     }
 
     public Configuration () {
