@@ -28,7 +28,7 @@ using CStuff;
 /**
  * Reads the user configuration for Rygel.
  */
-public class Rygel.Configuration {
+public class Rygel.Configuration : GLib.Object {
     protected static const string ROOT_GCONF_PATH = "/apps/rygel/";
     protected static const string IP_KEY = "host-ip";
     protected static const string PORT_KEY = "port";
