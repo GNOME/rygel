@@ -1,3 +1,70 @@
+0.3
+===
+
+Brief summary of changes since 0.2.2:
+
+- Transcoding from any format (that gstreamer's decodebin2 can handle) to mp3,
+  linear PCM and mpeg transport stream containing mpeg 2 video and mp2 audio.
+- Plugin API to deal with user preferences.
+- User preferences UI: rygel-preferences.
+- New plugins:
+   * Folder: Recursively exports folders specified in the user preferences.
+   * ZDFMediathek: Exports online media from 2nd German TV station.
+   * External: Exports media hierarchies provided by external applications
+     through implementation of this spec:
+     http://live.gnome.org/Rygel/MediaServer. The first application
+     that utilizes this feature is PulseAudio.
+- Drop xbox support. It didn't work anyway and we better concentrate on
+  implementing standard stuff that it at least worthy of being called "UPnP" (
+  at least for now).
+- Tracker and DVB plugins are only loaded if their corresponding services are
+  available.
+- Export of duration for music and video items from Tracker.
+- Use HTTP EOF encoding rather the CHUNKED for live streams.
+- Ability to build rygel plugins outside it's source tree.
+- HTTP proxying only if needed.
+- Now that gupnp-av does DLNA profile guessing for us, no need to lie about
+  DLNA profile anymore.
+- Add a summary after configure.
+- HTTServer is now internal API.
+- Use git-version-gen to generate package version.
+- Differentiate between modules and plugins
+- Passive, asynchronous plugin loading. A side-effect of which is that modules
+  can now load more than one plugin.
+- Differentiate between name and title of the plugin.
+- Plugins can now dynamically change their availability.
+- Add API to get/list plugins.
+- Re-use existing description from user's home directory. This not only speeds
+  the start-up but also obsoletes the necessity to keep immutable data (e.g UDN)
+  in user preferences.
+- Provide gconf schemas.
+- Lots of other improvements and bug fixes.
+
+Dependency-related changes:
+
+- Explicitly require and link to libsoup-2.4 >= 2.26.0.
+- Don't require Vala (and bindings) in distribution tarball.
+- Require gupnp-av >= 0.4.
+- Require Vala >= 0.7.3.
+- Require Gtk+ >= 2.16 if preferences UI is not disabled.
+
+Bugs fixed in this release:
+
+582173 - git-version-gen: generate versions with - instead of .
+577000 - gupnp-av-cp does not like & in uris
+576998 - Rygel wants to transcode audio files to video/mpeg
+575935 - Add support for duration metadata field
+574604 – bug connecting to PS3
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+Henrique Ferreiro <henrique.ferreiro@gmail.com>
+Lennart Poettering <lennart@poettering.net>
+Marc-André Lureau <marcandre.lureau@gmail.com>
+Rob Taylor <rob.taylor@codethink.co.uk>
+
 0.2.2
 =====
 
