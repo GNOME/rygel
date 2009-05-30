@@ -105,6 +105,7 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-media-item.c \
 		rygel-metadata-extractor.c \
 		rygel-metadata-extractor.vala \
+		rygel-media-db.c \
 		rygel-transcoder.c \
 		rygel-mp2ts-transcoder.c \
 		rygel-mp3-transcoder.c \
