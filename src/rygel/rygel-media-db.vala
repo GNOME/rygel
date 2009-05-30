@@ -25,6 +25,15 @@
 using Gee;
 using Sqlite;
 
+public errordomain Rygel.MediaDBError {
+    SQLITE_ERROR
+}
+
+public enum Rygel.MediaDBObjectType {
+    CONTAINER,
+    ITEM
+}
+
 public class Rygel.MediaDB : Object {
     private Database db;
     private const string schema_version = "1";
@@ -62,6 +71,21 @@ public class Rygel.MediaDB : Object {
                                                 "'); " +
     "END;";
 
+    private const string META_DATA_INSERT_STRING =
+    "INSERT INTO Meta_Data " +
+        "(size, mime_type, width, height, class, " +
+         "title, author, album, date, bitrate, " +
+         "sample_freq, bits_per_sample, channels, " +
+         "track, color_depth) VALUES " +
+         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+
+    private const string OBJECT_INSERT_STRING =
+    "INSERT INTO Object (upnp_id, type_fk, metadata_fk) " +
+        "VALUES (?,?,?);";
+
+    private const string URI_INSERT_STRING =
+    "INSERT INTO Uri (object_fk, uri) VALUES (?,?);";
+
 
     public MediaDB (string name) {
         var rc = Database.open (name, out this.db);
@@ -75,7 +99,7 @@ public class Rygel.MediaDB : Object {
         weak string[] schema_info;
         int nrows;
         int ncolumns;
-        // FIXME error message causes segfaul
+        // FIXME error message causes segfault
         rc = db.get_table ("SELECT version FROM Schema_Info;",
                            out schema_info,
                            out nrows,
@@ -119,6 +143,101 @@ public class Rygel.MediaDB : Object {
                 warning ("Incompatible schema... cannot proceed");
                 return;
             }
+        }
+    }
+
+    public signal void item_added (string item_id);
+
+    public void save_item (MediaItem item) throws Error {
+        var rc = db.exec ("BEGIN;");
+        try {
+            var id = save_metadata (item);
+            id = create_object (item, id);
+            save_uris (item, id);
+            rc = db.exec ("COMMIT;");
+            if (rc == Sqlite.OK) {
+                item_added (item.id);
+            }
+        } catch (Error error) {
+            rc = db.exec ("ROLLBACK;");
+        }
+    }
+
+    private int64 save_metadata (MediaItem item) throws Error {
+        Statement statement;
+        var rc = db.prepare_v2 (META_DATA_INSERT_STRING,
+                                -1,
+                                out statement,
+                                null);
+        if (rc == Sqlite.OK) {
+            statement.bind_int64 (1, item.size);
+            statement.bind_text (2, item.mime_type);
+            statement.bind_int (3, item.width);
+            statement.bind_int (4, item.height);
+            statement.bind_text (5, item.upnp_class);
+            statement.bind_text (6, item.title);
+            statement.bind_text (7, item.author);
+            statement.bind_text (8, item.album);
+            statement.bind_text (9, item.date);
+            statement.bind_int (10, item.bitrate);
+            statement.bind_int (11, item.sample_freq);
+            statement.bind_int (12, item.bits_per_sample);
+            statement.bind_int (13, item.n_audio_channels);
+            statement.bind_int (14, item.track_number);
+            statement.bind_int (15, item.color_depth);
+
+            rc = statement.step ();
+            if (rc == Sqlite.DONE) {
+                return db.last_insert_rowid ();
+            } else {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
+        } else {
+            throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+        }
+    }
+
+    private int64 create_object (MediaItem item, int64 metadata_id) throws
+                                                                        Error {
+        Statement statement;
+
+        var rc = db.prepare_v2 (OBJECT_INSERT_STRING,
+                            -1,
+                            out statement,
+                            null);
+        if (rc == Sqlite.OK) {
+            statement.bind_text (1, item.id);
+            statement.bind_int (2, MediaDBObjectType.ITEM);
+            statement.bind_int64 (3, metadata_id);
+            rc = statement.step ();
+            if (rc == Sqlite.OK) {
+                return db.last_insert_rowid ();
+            } else {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
+        } else {
+            throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+        }
+    }
+
+    private void save_uris (MediaItem item, int64 object_id) throws Error {
+        Statement statement;
+
+        var rc = db.prepare_v2 (URI_INSERT_STRING,
+                                -1,
+                                out statement,
+                                null);
+        if (rc == Sqlite.OK) {
+            foreach (var uri in item.uris) {
+                statement.bind_int64 (1, object_id);
+                statement.bind_text (2, uri);
+                rc = statement.step ();
+                if (rc != Sqlite.OK) {
+                    throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+                }
+            }
+        } else {
+            throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
         }
     }
 
