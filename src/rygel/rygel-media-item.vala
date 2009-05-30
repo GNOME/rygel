@@ -62,7 +62,7 @@ public class Rygel.MediaItem : MediaObject {
     public int color_depth = -1;
 
     public MediaItem (string         id,
-                      MediaContainer parent,
+                      MediaContainer? parent,
                       string         title,
                       string         upnp_class) {
         this.id = id;
