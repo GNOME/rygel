@@ -36,7 +36,7 @@ public enum Rygel.MediaDBObjectType {
 
 public class Rygel.MediaDB : Object {
     private Database db;
-    private const string schema_version = "1";
+    private const string schema_version = "2";
     private const string db_schema_v1 =
     "BEGIN;" +
     "CREATE TABLE Schema_Info (version TEXT NOT NULL); " +
@@ -45,6 +45,7 @@ public class Rygel.MediaDB : Object {
     "CREATE TABLE Meta_Data (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                             "size INTEGER NOT NULL, " +
                             "mime_type TEXT NOT NULL, " +
+                            "duration INTEGER, " +
                             "width INTEGER, " +
                             "height INTEGER, " +
                             "class TEXT NOT NULL, " +
@@ -76,8 +77,8 @@ public class Rygel.MediaDB : Object {
         "(size, mime_type, width, height, class, " +
          "title, author, album, date, bitrate, " +
          "sample_freq, bits_per_sample, channels, " +
-         "track, color_depth) VALUES " +
-         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+         "track, color_depth, duration) VALUES " +
+         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
     private const string OBJECT_INSERT_STRING =
     "INSERT INTO Object (upnp_id, type_fk, metadata_fk) " +
@@ -185,6 +186,7 @@ public class Rygel.MediaDB : Object {
             statement.bind_int (13, item.n_audio_channels);
             statement.bind_int (14, item.track_number);
             statement.bind_int (15, item.color_depth);
+            statement.bind_int64 (16, item.duration);
 
             rc = statement.step ();
             if (rc == Sqlite.DONE || rc == Sqlite.OK) {
@@ -267,7 +269,7 @@ public class Rygel.MediaDB : Object {
 
     public MediaItem? get_item (string item_id) {
         Statement statement;
-        var rc = db.prepare_v2 ("SELECT size, mime_type, width, height, class, title, author, album, date, bitrate, sample_freq, bits_per_sample, channels, track, color_depth from Meta_Data join Object on Object.metadata_fk = Meta_Data.id WHERE Object.upnp_id = ?",
+        var rc = db.prepare_v2 ("SELECT size, mime_type, width, height, class, title, author, album, date, bitrate, sample_freq, bits_per_sample, channels, track, color_depth, duration from Meta_Data join Object on Object.metadata_fk = Meta_Data.id WHERE Object.upnp_id = ?",
                                 -1,
                                 out statement,
                                 null);
@@ -283,6 +285,7 @@ public class Rygel.MediaDB : Object {
                 item.album = statement.column_text (7);
                 item.date = statement.column_text (8);
                 item.mime_type = statement.column_text (1);
+                item.duration = (long)statement.column_text (15);
 
                 item.size = (long)statement.column_int64 (0);
                 item.bitrate = statement.column_int (9);
