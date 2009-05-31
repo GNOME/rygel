@@ -69,7 +69,7 @@ public class Rygel.Main : Object {
     private void on_plugin_loaded (PluginLoader plugin_loader,
                                    Plugin       plugin) {
         try {
-            var device = this.device_factory.create_root_device (plugin);
+            var device = this.device_factory.create (plugin);
 
             device.available = plugin.available;
 

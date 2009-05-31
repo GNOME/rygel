@@ -48,7 +48,7 @@ public class Rygel.RootDeviceFactory {
         this.context = create_upnp_context ();
     }
 
-    public RootDevice create_root_device (Plugin plugin) throws GLib.Error {
+    public RootDevice create (Plugin plugin) throws GLib.Error {
         if (!this.config.get_enabled (plugin.name)) {
             throw new RootDeviceFactoryError.PLUGIN_DISABLED (
                             "Plugin disabled in user configuration.");
