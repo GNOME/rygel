@@ -4,7 +4,7 @@ AC_INIT([rygel],
 	[http://live.gnome.org/Rygel])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE
-AC_CONFIG_SRCDIR([src/rygel/rygel-media-server.vala])
+AC_CONFIG_SRCDIR([src/rygel/rygel-root-device.vala])
 AM_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 AM_MAINTAINER_MODE

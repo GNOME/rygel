@@ -22,20 +22,19 @@
  */
 
 using GUPnP;
-using GConf;
 using CStuff;
 using Gee;
 
 /**
- * Represents a MediaServer device.
+ * Represents a Root device.
  */
-public class Rygel.MediaServer: RootDevice {
+public class Rygel.RootDevice: GUPnP.RootDevice {
     private ArrayList<ServiceInfo> services;   /* Services we implement */
 
-    public MediaServer (GUPnP.Context context,
-                        Plugin        plugin,
-                        Xml.Doc      *description_doc,
-                        string        relative_location) {
+    public RootDevice (GUPnP.Context context,
+                       Plugin        plugin,
+                       Xml.Doc      *description_doc,
+                       string        relative_location) {
         this.resource_factory = plugin;
         this.root_device = null;
         this.context = context;
@@ -57,7 +56,8 @@ public class Rygel.MediaServer: RootDevice {
         }
     }
 
-    private static void xml_doc_free (Xml.Doc* doc, MediaServer server) {
+    private static void xml_doc_free (Xml.Doc*         doc,
+                                      Rygel.RootDevice device) {
         delete doc;
     }
 }

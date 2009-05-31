@@ -22,14 +22,13 @@
  */
 
 using GUPnP;
-using GConf;
 using CStuff;
 using Gee;
 
 public class Rygel.Main : Object {
     private PluginLoader plugin_loader;
-    private MediaServerFactory ms_factory;
-    private ArrayList<MediaServer> media_servers;
+    private RootDeviceFactory device_factory;
+    private ArrayList<RootDevice> root_devices;
 
     private MainLoop main_loop;
 
@@ -38,9 +37,9 @@ public class Rygel.Main : Object {
     public Main () throws GLib.Error {
         Environment.set_application_name (_(BuildConfig.PACKAGE_NAME));
 
-        this.media_servers = new ArrayList<MediaServer> ();
+        this.root_devices = new ArrayList<RootDevice> ();
         this.plugin_loader = new PluginLoader ();
-        this.ms_factory = new MediaServerFactory ();
+        this.device_factory = new RootDeviceFactory ();
         this.main_loop = new GLib.MainLoop (null, false);
 
         this.exit_code = 0;
@@ -70,15 +69,15 @@ public class Rygel.Main : Object {
     private void on_plugin_loaded (PluginLoader plugin_loader,
                                    Plugin       plugin) {
         try {
-            var server = this.ms_factory.create_media_server (plugin);
+            var device = this.device_factory.create_root_device (plugin);
 
-            server.available = plugin.available;
+            device.available = plugin.available;
 
-            media_servers.add (server);
+            root_devices.add (device);
 
             plugin.notify["available"] += this.on_plugin_notify;
         } catch (GLib.Error error) {
-            warning ("Failed to create MediaServer for %s. Reason: %s\n",
+            warning ("Failed to create RootDevice for %s. Reason: %s\n",
                      plugin.name,
                      error.message);
         }
@@ -86,9 +85,9 @@ public class Rygel.Main : Object {
 
     private void on_plugin_notify (Plugin    plugin,
                                    ParamSpec spec) {
-        foreach (var server in this.media_servers) {
-            if (server.resource_factory == plugin) {
-                server.available = plugin.available;
+        foreach (var device in this.root_devices) {
+            if (device.resource_factory == plugin) {
+                device.available = plugin.available;
             }
         }
     }

@@ -24,34 +24,33 @@
 
 using GUPnP;
 using CStuff;
-using Rygel;
 
-public errordomain MediaServerFactoryError {
+public errordomain RootDeviceFactoryError {
     XML_PARSE,
     PLUGIN_DISABLED
 }
 
 /**
- * Factory for MediaServer objects. Give it a plugin and it will create a
- * MediaServer device for that.
+ * Factory for RootDevice objects. Give it a plugin and it will create a
+ * Root device for that.
  */
-public class Rygel.MediaServerFactory {
+public class Rygel.RootDeviceFactory {
     public static const string DESC_DOC = "xml/description.xml";
     public static const string DESC_PREFIX = "Rygel";
 
     private Configuration config;
     private GUPnP.Context context;
 
-    public MediaServerFactory () throws GLib.Error {
+    public RootDeviceFactory () throws GLib.Error {
         this.config = Configuration.get_default ();
 
         /* Set up GUPnP context */
         this.context = create_upnp_context ();
     }
 
-    public MediaServer create_media_server (Plugin plugin) throws GLib.Error {
+    public RootDevice create_root_device (Plugin plugin) throws GLib.Error {
         if (!this.config.get_enabled (plugin.name)) {
-            throw new MediaServerFactoryError.PLUGIN_DISABLED (
+            throw new RootDeviceFactoryError.PLUGIN_DISABLED (
                             "Plugin disabled in user configuration.");
         }
 
@@ -68,7 +67,7 @@ public class Rygel.MediaServerFactory {
         /* Host our modified file */
         this.context.host_path (desc_path, "/" + modified_desc);
 
-        return new MediaServer (this.context,
+        return new RootDevice (this.context,
                                 plugin,
                                 doc,
                                 modified_desc);
@@ -89,7 +88,7 @@ public class Rygel.MediaServerFactory {
         if (doc == null) {
             string message = "Failed to parse %s".printf (path);
 
-            throw new MediaServerFactoryError.XML_PARSE (message);
+            throw new RootDeviceFactoryError.XML_PARSE (message);
         }
 
         /* Modify description to include Plugin-specific stuff */

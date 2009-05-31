@@ -29,8 +29,8 @@ bin_PROGRAMS = rygel
 
 BUILT_SOURCES = rygel-1.0.vapi \
 		rygel.h \
-		rygel-media-server.c \
-		rygel-media-server-factory.c \
+		rygel-root-device.c \
+		rygel-root-device-factory.c \
 		rygel-configuration.c \
 		rygel-main.c \
 		rygel-content-directory.c \
@@ -56,10 +56,10 @@ BUILT_SOURCES = rygel-1.0.vapi \
 $(BUILT_SOURCES) : rygel.stamp
 
 rygel_SOURCES = $(VAPI_SOURCE_FILES) \
-		rygel-media-server.c \
-		rygel-media-server.vala \
-		rygel-media-server-factory.c \
-		rygel-media-server-factory.vala \
+		rygel-root-device.c \
+		rygel-root-device.vala \
+		rygel-root-device-factory.c \
+		rygel-root-device-factory.vala \
 		rygel-main.c \
 		rygel-main.vala \
 		rygel-content-directory.c \
