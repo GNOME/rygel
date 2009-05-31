@@ -108,7 +108,7 @@ public class Rygel.MediaDB : Object {
 
         if (rc == Sqlite.OK) {
             if (nrows == 1 && ncolumns == 1) {
-                if (schema_info[0] == schema_version) {
+                if (schema_info[1] == schema_version) {
                     debug ("Media DB schema has current version");
                 } else {
                     debug ("Schema version differs... checking for upgrade");
@@ -187,7 +187,7 @@ public class Rygel.MediaDB : Object {
             statement.bind_int (15, item.color_depth);
 
             rc = statement.step ();
-            if (rc == Sqlite.DONE) {
+            if (rc == Sqlite.DONE || rc == Sqlite.OK) {
                 return db.last_insert_rowid ();
             } else {
                 throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
@@ -210,7 +210,7 @@ public class Rygel.MediaDB : Object {
             statement.bind_int (2, MediaDBObjectType.ITEM);
             statement.bind_int64 (3, metadata_id);
             rc = statement.step ();
-            if (rc == Sqlite.OK) {
+            if (rc == Sqlite.OK || rc == Sqlite.DONE) {
                 return db.last_insert_rowid ();
             } else {
                 throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
@@ -232,9 +232,11 @@ public class Rygel.MediaDB : Object {
                 statement.bind_int64 (1, object_id);
                 statement.bind_text (2, uri);
                 rc = statement.step ();
-                if (rc != Sqlite.OK) {
+                if (rc != Sqlite.OK && rc != Sqlite.DONE) {
                     throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
                 }
+                statement.reset ();
+                statement.clear_bindings ();
             }
         } else {
             throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
@@ -261,5 +263,43 @@ public class Rygel.MediaDB : Object {
             rc = db.exec ("ROLLBACK;");
             return false;
         }
+    }
+
+    public MediaItem? get_item (string item_id) {
+        Statement statement;
+        var rc = db.prepare_v2 ("SELECT size, mime_type, width, height, class, title, author, album, date, bitrate, sample_freq, bits_per_sample, channels, track, color_depth from Meta_Data join Object on Object.metadata_fk = Meta_Data.id WHERE Object.upnp_id = ?",
+                                -1,
+                                out statement,
+                                null);
+        if (rc == Sqlite.OK) {
+            debug ("Trying to find item with id %s", item_id);
+            statement.bind_text (1, item_id);
+            while ((rc = statement.step ()) == Sqlite.ROW) {
+                string title = statement.column_text (5);
+                string upnp_class = statement.column_text (4);
+                var item = new MediaItem (item_id, null, title, upnp_class);
+
+                item.author = statement.column_text (6);
+                item.album = statement.column_text (7);
+                item.date = statement.column_text (8);
+                item.mime_type = statement.column_text (1);
+
+                item.size = (long)statement.column_int64 (0);
+                item.bitrate = statement.column_int (9);
+
+                item.sample_freq = statement.column_int (10);
+                item.bits_per_sample = statement.column_int (11);
+                item.n_audio_channels = statement.column_int (12);
+                item.track_number = statement.column_int (13);
+
+                item.width = statement.column_int (2);
+                item.height = statement.column_int (3);
+                item.color_depth = statement.column_int (14);
+
+                return item;
+            }
+        }
+
+        return null;
     }
 }
