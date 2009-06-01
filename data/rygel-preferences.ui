@@ -32,8 +32,8 @@
                     <property name="orientation">vertical</property>
                     <property name="spacing">12</property>
                     <child>
-                      <object class="GtkCheckButton" id="enable-ms-checkbutton">
-                        <property name="label" translatable="yes">_Enable Media Server</property>
+                      <object class="GtkCheckButton" id="enable-upnp-checkbutton">
+                        <property name="label" translatable="yes">_Enable UPnP/DLNA</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
