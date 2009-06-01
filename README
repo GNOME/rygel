@@ -1,16 +1,39 @@
 What is Rygel?
 
-Rygel:
+Rygel is a collection of UPnP/DLNA[1][2] devices, implemented through a plug-in
+mechanism.
 
-* is an implementation of the UPnP MediaServer V 2.0 specification[1]
-* is designed for GNOME desktop.
-* is based on GUPnP[2].
-* supports plugable Media providers (and currently has a tracker[3]-based media
-  provider).
-* is written (mostly) in Vala language[4].
+== Important facts and features ==
+  * Specifically designed for GNOME (Mobile) and is therefore planned to be one
+    of the key new features of Maemo[3] platform in the Harmattan[4] release.
+  * Based on GUPnP[5].
+  * Written (mostly) in Vala language[6]
+  * APIs to ease the implementation of AV devices (currently only MediaServer[7]
+    version 2.0 specification[8].
+  * Export of on-disk media:
+    * tracker[9] plugin.
+    * Folder: Recursively exports folders specified in the user preferences.
+  * Export of live TV (DVB) channels streams through DVB Daemon[10].
+  * Export of online media from 2nd German TV station[11].
+  * Export of media hierarchies provided by external applications through
+    implementation of this spec[12]. The first application that utilizes this
+    feature is PulseAudio[13].
+  * Audio and Video Transcoding: source format could be anything GStreamer's
+    decodebin2 can handle but output formats are currently limited to: mp3, PCM
+    and MPEG TS. Fortunately the transcoding framework is flexible enough to
+    easily add more transcoding targets.
 
-[1] http://www.upnp.org/specs/av/UPnP-av-MediaServer-v2-Device-20060531.pdf
-[2] http://www.gupnp.org/
-[3] http://www.tracker-project.org/
-[4] http://www.vala-project.org/
+[1] http://www.upnp.org
+[2] http://www.dlna.org
+[3] http://maemo.org/intro/platform
+[4] http://wiki.maemo.org/Task:Maemo_roadmap/Harmattan|Harmattan
+[5] http://www.gupnp.org
+[6] http://www.vala-project.org
+[7] http://www.wikipedia.org/wiki/Media_server
+[8] http://www.upnp.org/specs/av/UPnP-av-MediaServer-v2-Device-20060531.pdf
+[9] http://www.gnome.org/projects/tracker
+[10] http://live.gnome.org/DVBDaemon
+[11] http://www.zdf.de
+[12] http://live.gnome.org/Rygel/MediaServerSpec
+[13] http://www.pulseaudio.org
 
