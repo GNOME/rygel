@@ -23,22 +23,31 @@
 
 using Gee;
 using GUPnP;
+using CStuff;
 
 /**
  * Represents a Rygel plugin. Plugins are supposed to provide an object of this
  * class or a subclass.
  */
 public class Rygel.Plugin : GUPnP.ResourceFactory {
+    private static const string MEDIA_SERVER_DESC_PATH = BuildConfig.DATA_DIR +
+                                                         "/xml/description.xml";
+
     public string name;
     public string title;
+
+    // Path to description document
+    public string desc_path;
 
     public bool available { get; set; }
 
     public ArrayList<ResourceInfo> resource_infos;
     public ArrayList<IconInfo> icon_infos;
 
-    public Plugin (string  name,
+    public Plugin (string  desc_path,
+                   string  name,
                    string? title) {
+        this.desc_path = desc_path;
         this.name = name;
         this.title = title;
 
@@ -50,6 +59,11 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
 
         this.resource_infos = new ArrayList<ResourceInfo> ();
         this.icon_infos = new ArrayList<IconInfo> ();
+    }
+
+    public Plugin.MediaServer (string  name,
+                               string? title) {
+        this (MEDIA_SERVER_DESC_PATH, name, title);
 
         /* Register Rygel.ConnectionManager */
         var resource_info = new ResourceInfo

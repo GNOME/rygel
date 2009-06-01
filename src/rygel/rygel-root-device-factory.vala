@@ -35,7 +35,6 @@ public errordomain RootDeviceFactoryError {
  * Root device for that.
  */
 public class Rygel.RootDeviceFactory {
-    public static const string DESC_DOC = "xml/description.xml";
     public static const string DESC_PREFIX = "Rygel";
 
     private Configuration config;
@@ -81,7 +80,7 @@ public class Rygel.RootDeviceFactory {
             path = desc_path;
         } else {
             /* Use the template */
-            path = Path.build_filename (BuildConfig.DATA_DIR, DESC_DOC);
+            path = plugin.desc_path;
         }
 
         Xml.Doc *doc = Xml.Parser.parse_file (path);

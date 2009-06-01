@@ -45,7 +45,7 @@ public class ExternalPlugin : Plugin {
         props.Get (OBJECT_IFACE, "DisplayName", out value);
         var title = value.get_string ();
 
-        base (service_name, title);
+        base.MediaServer (service_name, title);
 
         this.service_name = service_name;
         this.root_object = root_object;

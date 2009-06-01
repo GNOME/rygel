@@ -30,7 +30,7 @@ public class TrackerPlugin : Plugin {
                                 "/icons/hicolor/48x48/apps/tracker.png";
 
     public TrackerPlugin () {
-        base ("Tracker", "@REALNAME@'s media");
+        base.MediaServer ("Tracker", "@REALNAME@'s media");
 
         // We only implement a ContentDirectory service
         var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,

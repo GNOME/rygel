@@ -30,7 +30,7 @@ using CStuff;
 
 public class DVBPlugin : Plugin {
     public DVBPlugin () {
-        base ("DVB", "Digital TV");
+        base.MediaServer ("DVB", "Digital TV");
 
         // We only implement a ContentDirectory service
         var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
