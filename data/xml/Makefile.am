@@ -1,4 +1,4 @@
-xml_DATA = description.xml \
+xml_DATA = MediaServer2.xml \
 	   ContentDirectory.xml \
 	   ConnectionManager.xml
 

@@ -30,8 +30,8 @@ using CStuff;
  * class or a subclass.
  */
 public class Rygel.Plugin : GUPnP.ResourceFactory {
-    private static const string MEDIA_SERVER_DESC_PATH = BuildConfig.DATA_DIR +
-                                                         "/xml/description.xml";
+    private static const string MEDIA_SERVER_DESC_PATH =
+                                BuildConfig.DATA_DIR + "/xml/MediaServer2.xml";
 
     public string name;
     public string title;
