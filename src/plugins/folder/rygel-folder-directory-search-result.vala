@@ -143,7 +143,7 @@ public class Rygel.FolderDirectorySearchResult :
                                               info.get_name (),
                                               item_class);
         item.mime_type = content_type;
-        item.uris.add (GLib.Markup.escape_text (file.get_uri ()));
+        item.uris.add (file.get_uri ());
 
         return item;
     }
