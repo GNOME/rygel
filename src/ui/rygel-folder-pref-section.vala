@@ -26,43 +26,50 @@ using Gee;
 public class Rygel.FolderPrefSection : Rygel.PluginPrefSection {
     const string NAME = "Folder";
     const string FOLDERS_KEY = "folders";
-    const string FOLDERS_TEXTVIEW = FOLDERS_KEY + "-textview";
-    const string FOLDERS_TEXTBUFFER = FOLDERS_KEY + "-textbuffer";
+    const string FOLDERS_TEXTVIEW = FOLDERS_KEY + "-treeview";
+    const string FOLDERS_LISTSTORE = FOLDERS_KEY + "-liststore";
 
-    private TextView text_view;
-    private TextBuffer text_buffer;
+    private TreeView treeview;
+    private ListStore liststore;
 
     public FolderPrefSection (Builder       builder,
                               Configuration config) {
         base (builder, config, NAME);
 
-        this.text_view = (TextView) builder.get_object (FOLDERS_TEXTVIEW);
-        assert (this.text_view != null);
-        this.text_buffer = (TextBuffer) builder.get_object (FOLDERS_TEXTBUFFER);
-        assert (this.text_buffer != null);
+        this.treeview = (TreeView) builder.get_object (FOLDERS_TEXTVIEW);
+        assert (this.treeview != null);
+        this.liststore = (ListStore) builder.get_object (FOLDERS_LISTSTORE);
+        assert (this.liststore != null);
+
+        treeview.insert_column_with_attributes (-1,
+                                                "paths",
+                                                new CellRendererText (),
+                                                "text",
+                                                0,
+                                                null);
 
         var folders = config.get_string_list (this.name, FOLDERS_KEY);
-        string text = "";
         foreach (var folder in folders) {
-            text += folder + "\n";
+            TreeIter iter;
+
+            this.liststore.append (out iter);
+            this.liststore.set (iter, 0, folder, -1);
         }
-        this.text_buffer.set_text (text, -1);
+
+        builder.connect_signals (this);
     }
 
     public override void save () {
-        TextIter start;
-        TextIter end;
-
-        this.text_buffer.get_start_iter (out start);
-        this.text_buffer.get_end_iter (out end);
-
-        var text = this.text_buffer.get_text (start, end, false);
-
-        var folders = text.split ("\n", -1);
+        TreeIter iter;
         var folder_list = new ArrayList<string> ();
 
-        foreach (var folder in folders) {
-            folder_list.add (folder);
+        if (this.liststore.get_iter_first (out iter)) {
+            do {
+                string folder;
+
+                this.liststore.get (iter, 0, out folder, -1);
+                folder_list.add (folder);
+            } while (this.liststore.iter_next (ref iter));
         }
 
         this.config.set_string_list (this.name, FOLDERS_KEY, folder_list);
@@ -72,6 +79,19 @@ public class Rygel.FolderPrefSection : Rygel.PluginPrefSection {
                                         CheckButton enabled_check) {
         base.on_enabled_check_toggled (enabled_check);
 
-        this.text_view.sensitive = enabled_check.active;
+        this.treeview.sensitive = enabled_check.active;
+    }
+
+    [CCode (instance_pos = -1)]
+    public void on_add_button_clicked (Button button) {
+    }
+
+    [CCode (instance_pos = -1)]
+    public void on_remove_button_clicked (Button button) {
+    }
+
+    [CCode (instance_pos = -1)]
+    public void on_clear_button_clicked (Button button) {
+        this.liststore.clear ();
     }
 }

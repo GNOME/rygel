@@ -2,10 +2,15 @@
 <interface>
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
+  <object class="GtkListStore" id="folders-liststore">
+    <columns>
+      <!-- column-name path -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkDialog" id="preferences-dialog">
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Rygel Preferences</property>
-    <property name="resizable">False</property>
     <property name="default_height">400</property>
     <property name="type_hint">normal</property>
     <property name="has_separator">False</property>
@@ -377,17 +382,70 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkScrolledWindow" id="scrolledwindow2">
+                      <object class="GtkHBox" id="hbox2">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">automatic</property>
-                        <property name="vscrollbar_policy">automatic</property>
                         <child>
-                          <object class="GtkTextView" id="folders-textview">
+                          <object class="GtkTreeView" id="folders-treeview">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="buffer">folders-textbuffer</property>
+                            <property name="model">folders-liststore</property>
+                            <property name="headers_visible">False</property>
+                            <property name="headers_clickable">False</property>
+                            <property name="fixed_height_mode">True</property>
                           </object>
+                          <packing>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkVBox" id="vbox4">
+                            <property name="visible">True</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkButton" id="add-button">
+                                <property name="label" translatable="yes">gtk-add</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">True</property>
+                                <property name="use_underline">True</property>
+                                <property name="use_stock">True</property>
+                                <signal name="clicked" handler="rygel_folder_pref_section_on_add_button_clicked"/>
+                              </object>
+                              <packing>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="remove-button">
+                                <property name="label" translatable="yes">gtk-remove</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">True</property>
+                                <property name="use_stock">True</property>
+                                <signal name="clicked" handler="rygel_folder_pref_section_on_remove_button_clicked"/>
+                              </object>
+                              <packing>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="clear-button">
+                                <property name="label" translatable="yes">gtk-clear</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">True</property>
+                                <property name="use_underline">True</property>
+                                <property name="use_stock">True</property>
+                                <signal name="clicked" handler="rygel_folder_pref_section_on_clear_button_clicked"/>
+                              </object>
+                              <packing>
+                                <property name="position">2</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="position">1</property>
+                          </packing>
                         </child>
                       </object>
                       <packing>
@@ -501,5 +559,4 @@
     <property name="mode">both</property>
   </object>
   <object class="GtkSizeGroup" id="plugin-labels-sizegroup"/>
-  <object class="GtkTextBuffer" id="folders-textbuffer"/>
 </interface>
