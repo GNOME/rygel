@@ -88,6 +88,24 @@ public class Rygel.FolderPrefSection : Rygel.PluginPrefSection {
 
     [CCode (instance_pos = -1)]
     public void on_remove_button_clicked (Button button) {
+        var selection = this.treeview.get_selection ();
+        var rows = selection.get_selected_rows (null);
+
+        // First get permanent references to rows
+        var row_refs = new ArrayList<TreeRowReference> ();
+        foreach (var row in rows) {
+            row_refs.add (new TreeRowReference (this.liststore, row));
+        }
+
+        // Now we can safely remove rows
+        foreach (var row_ref in row_refs) {
+           TreeIter iter;
+
+           var path = row_ref.get_path ();
+           this.liststore.get_iter (out iter, path);
+
+           this.liststore.remove (iter);
+        }
     }
 
     [CCode (instance_pos = -1)]
