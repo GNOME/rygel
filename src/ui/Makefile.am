@@ -57,6 +57,7 @@ rygel_preferences_LDADD = $(LIBGUPNP_LIBS) \
                           $(GTK_LIBS) \
                           -L$(abs_top_builddir)/src/rygel \
                           -lrygel-configuration
+rygel_preferences_LDFLAGS = -export-dynamic
 
 CLEANFILES = $(BUILT_SOURCES) rygel.stamp
 MAINTAINERCLEANFILES = Makefile.in
