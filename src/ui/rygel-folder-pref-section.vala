@@ -60,6 +60,8 @@ public class Rygel.FolderPrefSection : Rygel.PluginPrefSection {
     }
 
     public override void save () {
+        base.save ();
+
         TreeIter iter;
         var folder_list = new ArrayList<string> ();
 
