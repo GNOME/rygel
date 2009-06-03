@@ -52,40 +52,14 @@ public class Rygel.PreferencesDialog : GLib.Object {
                                                   "DVB"));
         this.sections.add (new FolderPrefSection (this.builder,
                                                   config));
-
-        this.dialog.response += this.on_response;
-        this.dialog.delete_event += (dialog, event) => {
-                                Gtk.main_quit ();
-                                return false;
-        };
-
-        this.dialog.show_all ();
-
     }
 
-    private void on_response (Dialog dialog, int response_id) {
-        switch (response_id) {
-            case ResponseType.CANCEL:
-                Gtk.main_quit ();
-                break;
-            case ResponseType.OK:
-                apply_settings ();
-                Gtk.main_quit ();
-                break;
-            case ResponseType.APPLY:
-                apply_settings ();
-                break;
-        }
-    }
+    public void run () {
+        this.dialog.run ();
 
-    private void apply_settings () {
         foreach (var section in this.sections) {
             section.save ();
         }
-    }
-
-    public new void run () {
-        Gtk.main ();
     }
 
     public static int main (string[] args) {
