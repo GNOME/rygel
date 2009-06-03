@@ -28,9 +28,11 @@ public class Rygel.FolderPrefSection : Rygel.PluginPrefSection {
     const string FOLDERS_KEY = "folders";
     const string FOLDERS_TEXTVIEW = FOLDERS_KEY + "-treeview";
     const string FOLDERS_LISTSTORE = FOLDERS_KEY + "-liststore";
+    const string FOLDERS_DIALOG = FOLDERS_KEY + "-dialog";
 
     private TreeView treeview;
     private ListStore liststore;
+    private FileChooserDialog dialog;
 
     public FolderPrefSection (Builder       builder,
                               Configuration config) {
@@ -40,6 +42,8 @@ public class Rygel.FolderPrefSection : Rygel.PluginPrefSection {
         assert (this.treeview != null);
         this.liststore = (ListStore) builder.get_object (FOLDERS_LISTSTORE);
         assert (this.liststore != null);
+        this.dialog = (FileChooserDialog) builder.get_object (FOLDERS_DIALOG);
+        assert (this.dialog != null);
 
         treeview.insert_column_with_attributes (-1,
                                                 "paths",
@@ -86,6 +90,18 @@ public class Rygel.FolderPrefSection : Rygel.PluginPrefSection {
 
     [CCode (instance_pos = -1)]
     public void on_add_button_clicked (Button button) {
+        if (this.dialog.run () == ResponseType.OK) {
+            TreeIter iter;
+
+            var uris = this.dialog.get_uris ();
+
+            foreach (var uri in uris) {
+                this.liststore.append (out iter);
+                this.liststore.set (iter, 0, uri, -1);
+            }
+        }
+
+        this.dialog.hide ();
     }
 
     [CCode (instance_pos = -1)]
