@@ -385,6 +385,7 @@
                     <child>
                       <object class="GtkHBox" id="hbox2">
                         <property name="visible">True</property>
+                        <property name="spacing">12</property>
                         <child>
                           <object class="GtkTreeView" id="folders-treeview">
                             <property name="visible">True</property>
@@ -402,6 +403,8 @@
                           <object class="GtkVBox" id="vbox4">
                             <property name="visible">True</property>
                             <property name="orientation">vertical</property>
+                            <property name="spacing">6</property>
+                            <property name="homogeneous">True</property>
                             <child>
                               <object class="GtkButton" id="add-button">
                                 <property name="label" translatable="yes">gtk-add</property>
@@ -445,6 +448,8 @@
                             </child>
                           </object>
                           <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
                             <property name="position">1</property>
                           </packing>
                         </child>
