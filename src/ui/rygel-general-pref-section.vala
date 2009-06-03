@@ -66,7 +66,7 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
         this.mp2ts_check.active = this.config.mp2ts_transcoder;
         this.lpcm_check.active = this.config.lpcm_transcoder;
 
-        this.trans_check.toggled += this.on_trans_check_toggled;
+        builder.connect_signals (this);
     }
 
     public override void save () {
@@ -79,7 +79,8 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
         this.config.lpcm_transcoder = this.lpcm_check.active;
     }
 
-    private void on_trans_check_toggled (CheckButton trans_check) {
+    [CCode (instance_pos = -1)]
+    public void on_trans_check_toggled (CheckButton trans_check) {
         this.mp3_check.sensitive =
         this.mp2ts_check.sensitive =
         this.lpcm_check.sensitive = trans_check.active;

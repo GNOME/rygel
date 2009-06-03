@@ -64,6 +64,7 @@
                             <property name="receives_default">False</property>
                             <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
+                            <signal name="toggled" handler="rygel_general_pref_section_on_trans_check_toggled"/>
                           </object>
                           <packing>
                             <property name="y_options"></property>
