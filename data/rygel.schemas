@@ -82,7 +82,7 @@
         <applyto>/apps/rygel/Tracker/title</applyto>
         <owner>rygel</owner>
         <type>string</type>
-        <default></default>
+        <default@REALNAME@'s media</default>
         <locale name="C">
           <short>The title of this plugin to advertise to UPnP clients.</short>
           <long>The title of this plugin to advertise to UPnP clients.</long>
@@ -104,7 +104,7 @@
         <applyto>/apps/rygel/MediaExport/title</applyto>
         <owner>rygel</owner>
         <type>string</type>
-        <default></default>
+        <default>@REALNAME@'s media</default>
         <locale name="C">
           <short>The title of this plugin to advertise to UPnP clients.</short>
           <long>The title of this plugin to advertise to UPnP clients.</long>
