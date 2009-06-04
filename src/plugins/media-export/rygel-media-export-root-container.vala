@@ -113,29 +113,40 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
         foreach (var uri in uris) {
             var f = File.new_for_commandline_arg (uri);
             if (f.query_exists (null)) {
-                MediaObject media_obj = null;
-                var info = f.query_info (
-                                FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE + "," +
-                                FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME + "," +
-                                FILE_ATTRIBUTE_STANDARD_TYPE + "," +
-                                FILE_ATTRIBUTE_STANDARD_NAME,
-                                FileQueryInfoFlags.NONE,
-                                null);
-
-                if (info.get_file_type () == FileType.DIRECTORY) {
-                    media_obj = new MediaExportContainer (this, f);
-                } else {
-                    media_obj = new MediaExportItem (this,
-                                                     f,
-                                                     info);
-                }
-
-                if (media_obj != null) {
-                    this.children.add (media_obj);
-                }
+                f.query_info_async (
+                            FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE + "," +
+                            FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME + "," +
+                            FILE_ATTRIBUTE_STANDARD_TYPE + "," +
+                            FILE_ATTRIBUTE_STANDARD_NAME,
+                            FileQueryInfoFlags.NONE,
+                            Priority.DEFAULT,
+                            null,
+                            this.on_info_ready);
             }
         }
+    }
 
-        this.child_count = this.children.size;
+    private void on_info_ready (Object obj, AsyncResult res) {
+        var file = (File) obj;
+
+        try {
+            var info = file.query_info_finish (res);
+            MediaObject media_obj = null;
+
+            if (info.get_file_type () == FileType.DIRECTORY) {
+                media_obj = new MediaExportContainer (this, file);
+            } else {
+                media_obj = new MediaExportItem (this, file, info);
+            }
+
+            this.children.add (media_obj);
+            this.child_count = this.children.size;
+
+            this.updated ();
+        } catch (Error err) {
+            warning ("Failed to query information on '%s': %s\n",
+                     file.get_uri (),
+                     err.message);
+        }
     }
 }
