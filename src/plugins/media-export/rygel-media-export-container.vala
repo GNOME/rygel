@@ -53,7 +53,7 @@ public class Rygel.MediaExportContainer : MediaContainer {
                                        Cancellable? cancellable,
                                        AsyncReadyCallback callback) {
         // if the cache is empty, fill it
-        if (items.size == 0) {
+        if (this.items.size == 0) {
             var res = new MediaExportDirectorySearchResult (this,
                                                             offset,
                                                             max_count,
@@ -122,7 +122,7 @@ public class Rygel.MediaExportContainer : MediaContainer {
         MediaObject item = null;
 
         // check if the searched item is in our cache
-        foreach (var tmp in items) {
+        foreach (var tmp in this.items) {
             if (id == tmp.id) {
                 item = tmp;
                 break;
@@ -132,7 +132,7 @@ public class Rygel.MediaExportContainer : MediaContainer {
         // if not found, do a depth-first search on the child
         // folders
         if (item == null) {
-            foreach (var tmp in items) {
+            foreach (var tmp in this.items) {
                 if (tmp is MediaExportContainer) {
                     var folder = (MediaExportContainer) tmp;
                     item = folder.find_object_sync (id);
