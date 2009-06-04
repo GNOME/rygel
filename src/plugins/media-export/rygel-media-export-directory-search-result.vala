@@ -67,7 +67,7 @@ public class Rygel.MediaExportDirectorySearchResult :
                                                f);
 
                     } else {
-                        media_obj = get_media_item (
+                        media_obj = new Rygel.MediaExportItem (
                                                (MediaContainer) source_object,
                                                f,
                                                file_info);
@@ -114,39 +114,6 @@ public class Rygel.MediaExportDirectorySearchResult :
         var children = data.slice ((int) offset, (int) stop);
 
         return children;
-    }
-
-    private MediaItem? get_media_item (MediaContainer parent,
-                                       File           file,
-                                       FileInfo       info) {
-        string content_type = info.get_content_type ();
-        string item_class = null;
-        string id = Checksum.compute_for_string (ChecksumType.MD5,
-                                                 info.get_name ());
-
-        // use heuristics based on content type; will use MediaHarvester
-        // when it's ready
-
-        if (content_type.has_prefix ("video/")) {
-            item_class = MediaItem.VIDEO_CLASS;
-        } else if (content_type.has_prefix ("audio/")) {
-            item_class = MediaItem.AUDIO_CLASS;
-        } else if (content_type.has_prefix ("image/")) {
-            item_class = MediaItem.IMAGE_CLASS;
-        }
-
-        if (null == item_class) {
-            return null;
-        }
-
-        MediaItem item = new Rygel.MediaItem (id,
-                                              parent,
-                                              info.get_name (),
-                                              item_class);
-        item.mime_type = content_type;
-        item.uris.add (file.get_uri ());
-
-        return item;
     }
 }
 
