@@ -26,7 +26,8 @@ using Gee;
 using Sqlite;
 
 public errordomain Rygel.MediaDBError {
-    SQLITE_ERROR
+    SQLITE_ERROR,
+    GENERAL_ERROR
 }
 
 public enum Rygel.MediaDBObjectType {
@@ -36,7 +37,7 @@ public enum Rygel.MediaDBObjectType {
 
 public class Rygel.MediaDB : Object {
     private Database db;
-    private const string schema_version = "2";
+    private const string schema_version = "3";
     private const string db_schema_v1 =
     "BEGIN;" +
     "CREATE TABLE Schema_Info (version TEXT NOT NULL); " +
@@ -49,7 +50,6 @@ public class Rygel.MediaDB : Object {
                             "width INTEGER, " +
                             "height INTEGER, " +
                             "class TEXT NOT NULL, " +
-                            "title TEXT NOT NULL, " +
                             "author TEXT, " +
                             "album TEXT, " +
                             "date TEXT, " +
@@ -59,12 +59,13 @@ public class Rygel.MediaDB : Object {
                             "channels INTEGER, " +
                             "track, " +
                             "color_depth);" +
-    "CREATE TABLE Object (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                         "upnp_id TEXT UNIQUE, " +
+    "CREATE TABLE Object (parent TEXT REFERENCES Object(upnp_id), " +
+                         "upnp_id TEXT PRIMARY KEY, " +
                          "type_fk INTEGER REFERENCES Object_Type(id), " +
+                         "title TEXT NOT NULL, " +
                          "metadata_fk INTEGER REFERENCES Meta_Data(id) " +
                          "ON DELETE CASCADE);" +
-    "CREATE TABLE Uri (object_fk INTEGER REFERENCES Object(id), "+
+    "CREATE TABLE Uri (object_fk TEXT REFERENCES Object(upnp_id), "+
                       "uri TEXT NOT NULL);" +
     "INSERT INTO Object_Type (id, desc) VALUES (0, 'Container'); " +
     "INSERT INTO Object_Type (id, desc) VALUES (1, 'Item'); " +
@@ -75,18 +76,24 @@ public class Rygel.MediaDB : Object {
     private const string META_DATA_INSERT_STRING =
     "INSERT INTO Meta_Data " +
         "(size, mime_type, width, height, class, " +
-         "title, author, album, date, bitrate, " +
+         "author, album, date, bitrate, " +
          "sample_freq, bits_per_sample, channels, " +
          "track, color_depth, duration) VALUES " +
-         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     private const string OBJECT_INSERT_STRING =
-    "INSERT INTO Object (upnp_id, type_fk, metadata_fk) " +
-        "VALUES (?,?,?);";
+    "INSERT INTO Object (upnp_id, title, type_fk, metadata_fk, parent) " +
+        "VALUES (?,?,?,?,?)";
 
     private const string URI_INSERT_STRING =
-    "INSERT INTO Uri (object_fk, uri) VALUES (?,?);";
+    "INSERT INTO Uri (object_fk, uri) VALUES (?,?)";
 
+    private const string ITEM_GET_STRING =
+    "SELECT size, mime_type, width, height, class, Object.title, author, album, " +
+            "date, bitrate, sample_freq, bits_per_sample, channels, track, " +
+            "color_depth, duration " +
+    "FROM Meta_Data JOIN Object " +
+        "ON Object.metadata_fk = Meta_Data.id WHERE Object.upnp_id = ?";
 
     public MediaDB (string name) {
         var rc = Database.open (name, out this.db);
@@ -149,17 +156,40 @@ public class Rygel.MediaDB : Object {
 
     public signal void item_added (string item_id);
 
+    public void save_object (MediaObject obj) throws Error {
+        if (obj is MediaItem) {
+            save_item ((MediaItem)obj);
+        } else if (obj is MediaContainer) {
+            save_container ((MediaContainer)obj);
+        } else {
+            throw new MediaDBError.GENERAL_ERROR ("Invalid object type");
+        }
+    }
+
+    public void save_container (MediaContainer container) throws Error {
+        var rc = db.exec ("BEGIN");
+        try {
+            save_object (container, -1);
+            rc = db.exec ("COMMIT");
+        } catch (Error error) {
+            rc = db.exec ("ROLLBACK");
+        }
+    }
+
     public void save_item (MediaItem item) throws Error {
         var rc = db.exec ("BEGIN;");
         try {
             var id = save_metadata (item);
-            id = create_object (item, id);
-            save_uris (item, id);
+            save_object (item, id);
+            save_uris (item);
             rc = db.exec ("COMMIT;");
             if (rc == Sqlite.OK) {
                 item_added (item.id);
             }
         } catch (Error error) {
+            warning ("Failed to add item with id %s: %s",
+                     item.id,
+                     error.message);
             rc = db.exec ("ROLLBACK;");
         }
     }
@@ -176,17 +206,16 @@ public class Rygel.MediaDB : Object {
             statement.bind_int (3, item.width);
             statement.bind_int (4, item.height);
             statement.bind_text (5, item.upnp_class);
-            statement.bind_text (6, item.title);
-            statement.bind_text (7, item.author);
-            statement.bind_text (8, item.album);
-            statement.bind_text (9, item.date);
-            statement.bind_int (10, item.bitrate);
-            statement.bind_int (11, item.sample_freq);
-            statement.bind_int (12, item.bits_per_sample);
-            statement.bind_int (13, item.n_audio_channels);
-            statement.bind_int (14, item.track_number);
-            statement.bind_int (15, item.color_depth);
-            statement.bind_int64 (16, item.duration);
+            statement.bind_text (6, item.author);
+            statement.bind_text (7, item.album);
+            statement.bind_text (8, item.date);
+            statement.bind_int (9, item.bitrate);
+            statement.bind_int (10, item.sample_freq);
+            statement.bind_int (11, item.bits_per_sample);
+            statement.bind_int (12, item.n_audio_channels);
+            statement.bind_int (13, item.track_number);
+            statement.bind_int (14, item.color_depth);
+            statement.bind_int64 (15, item.duration);
 
             rc = statement.step ();
             if (rc == Sqlite.DONE || rc == Sqlite.OK) {
@@ -199,8 +228,7 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    private int64 create_object (MediaItem item, int64 metadata_id) throws
-                                                                        Error {
+    private void save_object (MediaObject item, int64 metadata_id) throws Error {
         Statement statement;
 
         var rc = db.prepare_v2 (OBJECT_INSERT_STRING,
@@ -209,12 +237,29 @@ public class Rygel.MediaDB : Object {
                             null);
         if (rc == Sqlite.OK) {
             statement.bind_text (1, item.id);
-            statement.bind_int (2, MediaDBObjectType.ITEM);
-            statement.bind_int64 (3, metadata_id);
-            rc = statement.step ();
-            if (rc == Sqlite.OK || rc == Sqlite.DONE) {
-                return db.last_insert_rowid ();
+            statement.bind_text (2, item.title);
+
+            if (item is MediaItem) {
+                statement.bind_int (3, MediaDBObjectType.ITEM);
+            } else if (item is MediaObject) {
+                statement.bind_int (3, MediaDBObjectType.CONTAINER);
             } else {
+                throw new MediaDBError.GENERAL_ERROR ("Invalid object type");
+            }
+
+            if (metadata_id == -1) {
+                statement.bind_null (4);
+            } else {
+                statement.bind_int64 (4, metadata_id);
+            }
+
+            if (item.parent == null || item.parent.id == "0") {
+                statement.bind_null (5);
+            } else {
+                statement.bind_text (5, item.parent.id);
+            }
+            rc = statement.step ();
+            if (rc != Sqlite.OK && rc != Sqlite.DONE) {
                 throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
             }
         } else {
@@ -222,7 +267,7 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    private void save_uris (MediaItem item, int64 object_id) throws Error {
+    private void save_uris (MediaItem item) throws Error {
         Statement statement;
 
         var rc = db.prepare_v2 (URI_INSERT_STRING,
@@ -231,7 +276,7 @@ public class Rygel.MediaDB : Object {
                                 null);
         if (rc == Sqlite.OK) {
             foreach (var uri in item.uris) {
-                statement.bind_int64 (1, object_id);
+                statement.bind_text (1, item.id);
                 statement.bind_text (2, uri);
                 rc = statement.step ();
                 if (rc != Sqlite.OK && rc != Sqlite.DONE) {
@@ -268,18 +313,32 @@ public class Rygel.MediaDB : Object {
     }
 
     public MediaItem? get_item (string item_id) {
+        var item = new MediaItem ("", null, "", "");
+        try {
+            fill_object (item_id, ref item);
+        } catch (Error error) {
+            item = null;
+        }
+
+        return item;
+    }
+
+    private void fill_container (string object_id, ref MediaContainer container) {
+
+    }
+
+    private void fill_item (string object_id, ref MediaItem item) {
         Statement statement;
-        var rc = db.prepare_v2 ("SELECT size, mime_type, width, height, class, title, author, album, date, bitrate, sample_freq, bits_per_sample, channels, track, color_depth, duration from Meta_Data join Object on Object.metadata_fk = Meta_Data.id WHERE Object.upnp_id = ?",
+        var rc = db.prepare_v2 (ITEM_GET_STRING,
                                 -1,
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            debug ("Trying to find item with id %s", item_id);
-            statement.bind_text (1, item_id);
+            statement.bind_text (1, object_id);
             while ((rc = statement.step ()) == Sqlite.ROW) {
-                string title = statement.column_text (5);
-                string upnp_class = statement.column_text (4);
-                var item = new MediaItem (item_id, null, title, upnp_class);
+                item.id = object_id;
+                item.title = statement.column_text (5);
+                item.upnp_class = statement.column_text (4);
 
                 item.author = statement.column_text (6);
                 item.album = statement.column_text (7);
@@ -298,11 +357,20 @@ public class Rygel.MediaDB : Object {
                 item.width = statement.column_int (2);
                 item.height = statement.column_int (3);
                 item.color_depth = statement.column_int (14);
-
-                return item;
+                break;
             }
         }
-
-        return null;
     }
-}
+
+    public void fill_object (string object_id, ref MediaObject obj) throws Error {
+        if (obj is MediaItem) {
+            MediaItem item = (MediaItem) obj;
+            fill_item (object_id, ref item);
+        } else if (obj is MediaContainer) {
+            MediaContainer container = (MediaContainer) obj;
+            fill_container (object_id, ref container);
+        } else {
+            throw new MediaDBError.GENERAL_ERROR ("Invalid object type");
+        }
+    }
+
