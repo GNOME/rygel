@@ -2,7 +2,7 @@
 <interface>
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkListStore" id="folders-liststore">
+  <object class="GtkListStore" id="uris-liststore">
     <columns>
       <!-- column-name path -->
       <column type="gchararray"/>
@@ -368,12 +368,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="folders-label">
+                      <object class="GtkLabel" id="uris-label">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
                         <property name="yalign">0</property>
                         <property name="xpad">12</property>
-                        <property name="label" translatable="yes">F_olders</property>
+                        <property name="label" translatable="yes">_URIs</property>
                         <property name="use_underline">True</property>
                       </object>
                       <packing>
@@ -386,10 +386,10 @@
                         <property name="visible">True</property>
                         <property name="spacing">12</property>
                         <child>
-                          <object class="GtkTreeView" id="folders-treeview">
+                          <object class="GtkTreeView" id="uris-treeview">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="model">folders-liststore</property>
+                            <property name="model">uris-liststore</property>
                             <property name="headers_visible">False</property>
                             <property name="headers_clickable">False</property>
                             <property name="fixed_height_mode">True</property>
@@ -528,7 +528,7 @@
     <property name="page_increment">10</property>
     <property name="page_size">10</property>
   </object>
-  <object class="GtkFileChooserDialog" id="folders-dialog">
+  <object class="GtkFileChooserDialog" id="uris-dialog">
     <property name="can_default">True</property>
     <property name="has_default">True</property>
     <property name="border_width">5</property>

@@ -111,15 +111,15 @@
         </locale>
       </schema>
       <schema>
-        <key>/schemas/apps/rygel/MediaExport/folders</key>
-        <applyto>/apps/rygel/MediaExport/folders</applyto>
+        <key>/schemas/apps/rygel/MediaExport/uris</key>
+        <applyto>/apps/rygel/MediaExport/uris</applyto>
         <owner>rygel</owner>
         <type>list</type>
         <list_type>string</list_type>
         <default>[]</default>
         <locale name="C">
-          <short>List of folders to export</short>
-          <long>List of folders to export; if list is empty, the XDG media directries are exported</long>
+          <short>List of URIs to export</short>
+          <long>List of URIs to export; if list is empty, the XDG media directries are exported</long>
         </locale>
       </schema>
       <schema>

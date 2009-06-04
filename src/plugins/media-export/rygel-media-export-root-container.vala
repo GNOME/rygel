@@ -93,7 +93,7 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
         this.children = new ArrayList<MediaExportContainer> ();
 
         var config = Rygel.Configuration.get_default ();
-        var uris = config.get_string_list ("MediaExport", "folders");
+        var uris = config.get_string_list ("MediaExport", "uris");
 
         // either an error occured or the gconf key is not set
         if (uris.size == 0) {

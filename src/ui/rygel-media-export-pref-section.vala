@@ -25,10 +25,10 @@ using Gee;
 
 public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
     const string NAME = "MediaExport";
-    const string FOLDERS_KEY = "folders";
-    const string FOLDERS_TEXTVIEW = FOLDERS_KEY + "-treeview";
-    const string FOLDERS_LISTSTORE = FOLDERS_KEY + "-liststore";
-    const string FOLDERS_DIALOG = FOLDERS_KEY + "-dialog";
+    const string URIS_KEY = "uris";
+    const string URIS_TEXTVIEW = URIS_KEY + "-treeview";
+    const string URIS_LISTSTORE = URIS_KEY + "-liststore";
+    const string URIS_DIALOG = URIS_KEY + "-dialog";
     const string ADD_BUTTON = "add-button";
     const string REMOVE_BUTTON = "remove-button";
     const string CLEAR_BUTTON = "clear-button";
@@ -41,11 +41,11 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
                                    Configuration config) {
         base (builder, config, NAME);
 
-        this.treeview = (TreeView) builder.get_object (FOLDERS_TEXTVIEW);
+        this.treeview = (TreeView) builder.get_object (URIS_TEXTVIEW);
         assert (this.treeview != null);
-        this.liststore = (ListStore) builder.get_object (FOLDERS_LISTSTORE);
+        this.liststore = (ListStore) builder.get_object (URIS_LISTSTORE);
         assert (this.liststore != null);
-        this.dialog = (FileChooserDialog) builder.get_object (FOLDERS_DIALOG);
+        this.dialog = (FileChooserDialog) builder.get_object (URIS_DIALOG);
         assert (this.dialog != null);
 
         treeview.insert_column_with_attributes (-1,
@@ -55,12 +55,12 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
                                                 0,
                                                 null);
 
-        var folders = config.get_string_list (this.name, FOLDERS_KEY);
-        foreach (var folder in folders) {
+        var uris = config.get_string_list (this.name, URIS_KEY);
+        foreach (var uri in uris) {
             TreeIter iter;
 
             this.liststore.append (out iter);
-            this.liststore.set (iter, 0, folder, -1);
+            this.liststore.set (iter, 0, uri, -1);
         }
 
         var button = (Button) builder.get_object (ADD_BUTTON);
@@ -77,18 +77,18 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
         base.save ();
 
         TreeIter iter;
-        var folder_list = new ArrayList<string> ();
+        var uri_list = new ArrayList<string> ();
 
         if (this.liststore.get_iter_first (out iter)) {
             do {
-                string folder;
+                string uri;
 
-                this.liststore.get (iter, 0, out folder, -1);
-                folder_list.add (folder);
+                this.liststore.get (iter, 0, out uri, -1);
+                uri_list.add (uri);
             } while (this.liststore.iter_next (ref iter));
         }
 
-        this.config.set_string_list (this.name, FOLDERS_KEY, folder_list);
+        this.config.set_string_list (this.name, URIS_KEY, uri_list);
     }
 
     protected override void on_enabled_check_toggled (
