@@ -23,7 +23,7 @@ using GLib;
 using Rygel;
 
 /**
- * MediaContainer which exposes the contents of a directory 
+ * MediaContainer which exposes the contents of a directory
  * as items.
  *
  * The folder contents will be queried on demand and cached afterwards
@@ -48,9 +48,9 @@ public class Rygel.MediaExportContainer : MediaContainer {
     private Gee.List<AsyncResult> results;
 
     // methods overridden from MediaContainer
-    public override void get_children (uint offset, 
+    public override void get_children (uint offset,
                                        uint max_count,
-                                       Cancellable? cancellable, 
+                                       Cancellable? cancellable,
                                        AsyncReadyCallback callback) {
         // if the cache is empty, fill it
         if (items.size == 0) {
@@ -65,7 +65,7 @@ public class Rygel.MediaExportContainer : MediaContainer {
                                 FILE_ATTRIBUTE_STANDARD_TYPE + "," +
                                 FILE_ATTRIBUTE_STANDARD_NAME,
                                 FileQueryInfoFlags.NONE,
-                                Priority.DEFAULT, 
+                                Priority.DEFAULT,
                                 null,
                                 res.enumerate_children_ready);
             this.results.add (res);
@@ -73,9 +73,9 @@ public class Rygel.MediaExportContainer : MediaContainer {
             uint stop = offset + max_count;
             stop = stop.clamp (0, this.child_count);
             var children = this.items.slice ((int) offset, (int) stop);
-            var res = 
+            var res =
                 new SimpleAsyncResult<Gee.List<MediaObject>> (
-                            this, 
+                            this,
                             callback);
             res.data = children;
             res.complete_in_idle ();
@@ -102,7 +102,7 @@ public class Rygel.MediaExportContainer : MediaContainer {
         }
     }
 
-    public override void find_object (string id, 
+    public override void find_object (string id,
                                       Cancellable? cancellable,
                                       AsyncReadyCallback callback) {
         var res = new Rygel.SimpleAsyncResult<string> (this, callback);
@@ -111,7 +111,7 @@ public class Rygel.MediaExportContainer : MediaContainer {
         res.complete_in_idle ();
     }
 
-    public override MediaObject? find_object_finish (AsyncResult res) 
+    public override MediaObject? find_object_finish (AsyncResult res)
                                                      throws GLib.Error {
         var id = ((Rygel.SimpleAsyncResult<string>) res).data;
 
@@ -129,7 +129,7 @@ public class Rygel.MediaExportContainer : MediaContainer {
             }
         }
 
-        // if not found, do a depth-first search on the child 
+        // if not found, do a depth-first search on the child
         // folders
         if (item == null) {
             foreach (var tmp in items) {
@@ -148,13 +148,13 @@ public class Rygel.MediaExportContainer : MediaContainer {
 
     /**
      * Create a new root container.
-     * 
+     *
      * @parameter parent, parent container
      * @parameter file, directory you want to expose
      * @parameter full, show full path in title
      */
     public MediaExportContainer (MediaContainer parent, File file) {
-        string id = Checksum.compute_for_string (ChecksumType.MD5, 
+        string id = Checksum.compute_for_string (ChecksumType.MD5,
                                                  file.get_uri ());
 
         base(id, parent, file.get_basename (), 0);

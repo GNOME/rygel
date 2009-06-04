@@ -24,35 +24,35 @@ using Rygel;
 using GConf;
 
 /**
- * MediaContainer which exposes the contents of a directory 
+ * MediaContainer which exposes the contents of a directory
  * as items
  */
 public class Rygel.MediaExportRootContainer : MediaContainer {
     private ArrayList<MediaExportContainer> items;
 
-    public override void get_children (uint offset, 
+    public override void get_children (uint offset,
                                        uint max_count,
-                                       Cancellable? cancellable, 
+                                       Cancellable? cancellable,
                                        AsyncReadyCallback callback)
     {
         uint stop = offset + max_count;
         stop = stop.clamp (0, this.child_count);
         var children = this.items.slice ((int) offset, (int) stop);
-        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (this, 
+        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (this,
                                                                       callback);
         res.data = children;
         res.complete_in_idle ();
     }
 
     public override Gee.List<MediaObject>? get_children_finish (
-                                                    AsyncResult res) 
+                                                    AsyncResult res)
                                                     throws GLib.Error {
         var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
 
         return simple_res.data;
     }
 
-    public override void find_object (string id, 
+    public override void find_object (string id,
                                       Cancellable? cancellable,
                                       AsyncReadyCallback callback) {
         var res = new Rygel.SimpleAsyncResult<string> (this, callback);
@@ -61,7 +61,7 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
         res.complete_in_idle ();
     }
 
-    public override MediaObject? find_object_finish (AsyncResult res) 
+    public override MediaObject? find_object_finish (AsyncResult res)
                                                      throws GLib.Error {
         MediaObject item = null;
         var id = ((Rygel.SimpleAsyncResult<string>) res).data;

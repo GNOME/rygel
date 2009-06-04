@@ -82,7 +82,7 @@ public class Rygel.MediaExportDirectorySearchResult :
                                              null, enumerate_next_ready);
             } else {
                 enumerator.close_async (Priority.DEFAULT,
-                                        null, 
+                                        null,
                                         enumerator_closed);
             }
         } catch (Error e) {
@@ -99,7 +99,7 @@ public class Rygel.MediaExportDirectorySearchResult :
 
             enumerator.next_files_async (MAX_CHILDREN,
                                          Priority.DEFAULT,
-                                         null, 
+                                         null,
                                          enumerate_next_ready);
         } catch (Error error) {
             this.error = error;

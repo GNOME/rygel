@@ -25,8 +25,8 @@ using GLib;
 
 /**
  * Simple plugin which exposes the media contents of a directory via UPnP.
- * 
- * This plugin is currently meant for testing purposes only. It has several 
+ *
+ * This plugin is currently meant for testing purposes only. It has several
  * drawbacks like:
  *
  * * No sorting
