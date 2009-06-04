@@ -50,8 +50,8 @@ public class Rygel.PreferencesDialog : GLib.Object {
         this.sections.add (new PluginPrefSection (this.builder,
                                                   config,
                                                   "DVB"));
-        this.sections.add (new FolderPrefSection (this.builder,
-                                                  config));
+        this.sections.add (new MediaExportPrefSection (this.builder,
+                                                       config));
     }
 
     public void run () {

@@ -89,19 +89,19 @@
         </locale>
       </schema>
       <schema>
-        <key>/schemas/apps/rygel/Folder/enabled</key>
-        <applyto>/apps/rygel/Folder/enabled</applyto>
+        <key>/schemas/apps/rygel/MediaExport/enabled</key>
+        <applyto>/apps/rygel/MediaExport/enabled</applyto>
         <owner>rygel</owner>
         <type>bool</type>
         <default>TRUE</default>
         <locale name="C">
-          <short>Enable Folder plugin.</short>
-          <long>Enable Folder plugin.</long>
+          <short>Enable MediaExport plugin.</short>
+          <long>Enable MediaExport plugin.</long>
         </locale>
       </schema>
       <schema>
-        <key>/schemas/apps/rygel/Folder/title</key>
-        <applyto>/apps/rygel/Folder/title</applyto>
+        <key>/schemas/apps/rygel/MediaExport/title</key>
+        <applyto>/apps/rygel/MediaExport/title</applyto>
         <owner>rygel</owner>
         <type>string</type>
         <default></default>
@@ -111,8 +111,8 @@
         </locale>
       </schema>
       <schema>
-        <key>/schemas/apps/rygel/Folder/folders</key>
-        <applyto>/apps/rygel/Folder/folders</applyto>
+        <key>/schemas/apps/rygel/MediaExport/folders</key>
+        <applyto>/apps/rygel/MediaExport/folders</applyto>
         <owner>rygel</owner>
         <type>list</type>
         <list_type>string</list_type>

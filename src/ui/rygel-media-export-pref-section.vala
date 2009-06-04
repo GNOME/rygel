@@ -23,8 +23,8 @@
 using Gtk;
 using Gee;
 
-public class Rygel.FolderPrefSection : Rygel.PluginPrefSection {
-    const string NAME = "Folder";
+public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
+    const string NAME = "MediaExport";
     const string FOLDERS_KEY = "folders";
     const string FOLDERS_TEXTVIEW = FOLDERS_KEY + "-treeview";
     const string FOLDERS_LISTSTORE = FOLDERS_KEY + "-liststore";
@@ -37,8 +37,8 @@ public class Rygel.FolderPrefSection : Rygel.PluginPrefSection {
     private ListStore liststore;
     private FileChooserDialog dialog;
 
-    public FolderPrefSection (Builder       builder,
-                              Configuration config) {
+    public MediaExportPrefSection (Builder       builder,
+                                   Configuration config) {
         base (builder, config, NAME);
 
         this.treeview = (TreeView) builder.get_object (FOLDERS_TEXTVIEW);

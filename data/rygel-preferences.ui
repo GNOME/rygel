@@ -270,8 +270,8 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="folder-enabled-checkbutton">
-                        <property name="label" translatable="yes">_Folder</property>
+                      <object class="GtkCheckButton" id="mediaexport-enabled-checkbutton">
+                        <property name="label" translatable="yes">_Media Export</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -284,7 +284,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="folder-title-label">
+                      <object class="GtkLabel" id="mediaexport-title-label">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
                         <property name="xpad">12</property>
@@ -311,7 +311,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="folder-title-entry">
+                      <object class="GtkEntry" id="mediaexport-title-entry">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">&#x25CF;</property>
