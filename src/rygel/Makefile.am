@@ -106,7 +106,6 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-simple-async-result.c \
 		rygel-media-item.c \
 		rygel-metadata-extractor.c \
-		rygel-metadata-extractor.vala \
 		rygel-media-db.c \
 		rygel-transcoder.c \
 		rygel-mp2ts-transcoder.c \
@@ -175,6 +174,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-l16-transcoder-bin.vala \
 		    rygel-gst-utils.vala \
 		    rygel-media-db.vala \
+		    rygel-metadata-extractor.vala \
 		    rygel-database-backed-media-container.vala \
 		    rygel-media-db-object-factory.vala
 
