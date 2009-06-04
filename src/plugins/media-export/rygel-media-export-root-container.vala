@@ -24,8 +24,7 @@ using Rygel;
 using GConf;
 
 /**
- * MediaContainer which exposes the contents of a directory
- * as items
+ * Represents the root container.
  */
 public class Rygel.MediaExportRootContainer : MediaContainer {
     private ArrayList<MediaExportContainer> children;
