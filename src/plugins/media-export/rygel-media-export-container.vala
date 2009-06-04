@@ -23,8 +23,7 @@ using GLib;
 using Rygel;
 
 /**
- * MediaContainer which exposes the contents of a directory
- * as items.
+ * MediaContainer which exposes the contents of a directory.
  *
  * The folder contents will be queried on demand and cached afterwards
  */
@@ -36,9 +35,9 @@ public class Rygel.MediaExportContainer : MediaContainer {
     private const int MAX_CHILDREN = 10;
 
     /**
-     * Cache of items found in directory
+     * Cache of children found in directory
      */
-    private ArrayList<MediaObject> items;
+    private ArrayList<MediaObject> children;
 
     /**
      * Instance of GLib.File of the directory we expose
@@ -53,7 +52,7 @@ public class Rygel.MediaExportContainer : MediaContainer {
                                        Cancellable? cancellable,
                                        AsyncReadyCallback callback) {
         // if the cache is empty, fill it
-        if (this.items.size == 0) {
+        if (this.children.size == 0) {
             var res = new MediaExportDirectorySearchResult (this,
                                                             offset,
                                                             max_count,
@@ -72,7 +71,7 @@ public class Rygel.MediaExportContainer : MediaContainer {
         } else {
             uint stop = offset + max_count;
             stop = stop.clamp (0, this.child_count);
-            var children = this.items.slice ((int) offset, (int) stop);
+            var children = this.children.slice ((int) offset, (int) stop);
             var res =
                 new SimpleAsyncResult<Gee.List<MediaObject>> (
                             this,
@@ -88,11 +87,11 @@ public class Rygel.MediaExportContainer : MediaContainer {
         if (res is MediaExportDirectorySearchResult) {
             var dsr = (MediaExportDirectorySearchResult) res;
 
-            foreach (var item in dsr.data) {
-                this.items.add (item);
+            foreach (var media_obj in dsr.data) {
+                this.children.add (media_obj);
             }
 
-            this.child_count = this.items.size;
+            this.child_count = this.children.size;
             this.results.remove (res);
             return dsr.get_children ();
         } else {
@@ -119,31 +118,31 @@ public class Rygel.MediaExportContainer : MediaContainer {
     }
 
     public MediaObject? find_object_sync (string id) {
-        MediaObject item = null;
+        MediaObject media_obj = null;
 
-        // check if the searched item is in our cache
-        foreach (var tmp in this.items) {
+        // check if the searched object is in our cache
+        foreach (var tmp in this.children) {
             if (id == tmp.id) {
-                item = tmp;
+                media_obj = tmp;
                 break;
             }
         }
 
         // if not found, do a depth-first search on the child
         // folders
-        if (item == null) {
-            foreach (var tmp in this.items) {
+        if (media_obj == null) {
+            foreach (var tmp in this.children) {
                 if (tmp is MediaExportContainer) {
                     var folder = (MediaExportContainer) tmp;
-                    item = folder.find_object_sync (id);
-                    if (item != null) {
+                    media_obj = folder.find_object_sync (id);
+                    if (media_obj != null) {
                         break;
                     }
                 }
             }
         }
 
-        return item;
+        return media_obj;
     }
 
     /**
@@ -159,7 +158,7 @@ public class Rygel.MediaExportContainer : MediaContainer {
         base(id, parent, file.get_basename (), 0);
         this.root_dir = file;
 
-        this.items = new ArrayList<MediaObject> ();
+        this.children = new ArrayList<MediaObject> ();
         this.child_count = 0;
         this.results = new ArrayList<AsyncResult> ();
     }

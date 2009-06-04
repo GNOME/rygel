@@ -27,7 +27,7 @@ using GConf;
  * Represents the root container.
  */
 public class Rygel.MediaExportRootContainer : MediaContainer {
-    private ArrayList<MediaExportContainer> children;
+    private ArrayList<MediaObject> children;
 
     public override void get_children (uint offset,
                                        uint max_count,
@@ -62,29 +62,29 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
 
     public override MediaObject? find_object_finish (AsyncResult res)
                                                      throws GLib.Error {
-        MediaObject item = null;
+        MediaObject media_obj = null;
         var id = ((Rygel.SimpleAsyncResult<string>) res).data;
 
         foreach (var tmp in this.children) {
             if (id == tmp.id) {
-                item = tmp;
+                media_obj = tmp;
                 break;
             }
         }
 
-        if (item == null) {
+        if (media_obj == null) {
             foreach (var tmp in this.children) {
                 if (tmp is MediaExportContainer) {
                     var folder = (MediaExportContainer) tmp;
-                    item = folder.find_object_sync (id);
-                    if (item != null) {
+                    media_obj = folder.find_object_sync (id);
+                    if (media_obj != null) {
                         break;
                     }
                 }
             }
         }
 
-        return item;
+        return media_obj;
     }
 
     /**

@@ -60,20 +60,21 @@ public class Rygel.MediaExportDirectorySearchResult :
             if (list != null) {
                 foreach (FileInfo file_info in list) {
                     var f = file.get_child (file_info.get_name ());
-                    MediaObject item = null;
+                    MediaObject media_obj = null;
                     if (file_info.get_file_type () == FileType.DIRECTORY) {
-                        item = new Rygel.MediaExportContainer (
+                        media_obj = new Rygel.MediaExportContainer (
                                                (MediaContainer) source_object,
                                                f);
 
                     } else {
-                        item = get_media_item ((MediaContainer) source_object,
+                        media_obj = get_media_item (
+                                               (MediaContainer) source_object,
                                                f,
                                                file_info);
                     }
 
-                    if (item != null) {
-                        data.add (item);
+                    if (media_obj != null) {
+                        data.add (media_obj);
                     }
                 }
 
@@ -107,12 +108,12 @@ public class Rygel.MediaExportDirectorySearchResult :
         }
     }
 
-    public Gee.List<MediaItem> get_children () {
+    public Gee.List<MediaObject> get_children () {
         uint stop = offset + max_count;
         stop = stop.clamp (0, data.size);
         var children = data.slice ((int) offset, (int) stop);
 
-        return children as Gee.List<MediaItem>;
+        return children;
     }
 
     private MediaItem? get_media_item (MediaContainer parent,
