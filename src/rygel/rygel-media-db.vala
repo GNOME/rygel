@@ -37,6 +37,7 @@ public enum Rygel.MediaDBObjectType {
 
 public class Rygel.MediaDB : Object {
     private Database db;
+    private MediaDBObjectFactory factory;
     private const string schema_version = "3";
     private const string db_schema_v1 =
     "BEGIN;" +
@@ -88,14 +89,23 @@ public class Rygel.MediaDB : Object {
     private const string URI_INSERT_STRING =
     "INSERT INTO Uri (object_fk, uri) VALUES (?,?)";
 
-    private const string ITEM_GET_STRING =
-    "SELECT size, mime_type, width, height, class, Object.title, author, album, " +
-            "date, bitrate, sample_freq, bits_per_sample, channels, track, " +
-            "color_depth, duration " +
-    "FROM Meta_Data JOIN Object " +
+    private const string OBJECT_GET_STRING =
+    "SELECT Object.type_fk, Object.title, size, mime_type, width, height, " +
+            "class, author, album, date, bitrate, sample_freq, " +
+            "bits_per_sample, channels, track, color_depth, duration " +
+    "FROM Meta_Data LEFT OUTER JOIN Object " +
         "ON Object.metadata_fk = Meta_Data.id WHERE Object.upnp_id = ?";
 
-    public MediaDB (string name) {
+    private const string CHILDREN_GET_STRING =
+    "SELECT Object.type_fk, Object.title, size, mime_type, width, height, " +
+            "class, author, album, date, bitrate, sample_freq, " +
+            "bits_per_sample, channels, track, color_depth, duration " +
+    "FROM Meta_Data LEFT OUTER JOIN Object " +
+        "ON Object.metadata_fk = Meta_Data.id " +
+    "WHERE Object.parent = ? " +
+    "LIMIT ?,?";
+
+    private void open_db (string name) {
         var rc = Database.open (name, out this.db);
         if (rc != Sqlite.OK) {
             warning ("Failed to open database: %d, %s",
@@ -154,6 +164,16 @@ public class Rygel.MediaDB : Object {
         }
     }
 
+    public MediaDB (string name) {
+        open_db (name);
+        this.factory = new MediaDBObjectFactory ();
+    }
+
+    public MediaDB.with_factory (string name, MediaDBObjectFactory factory) {
+        open_db (name);
+        this.factory = factory;
+    }
+
     public signal void item_added (string item_id);
 
     public void save_object (MediaObject obj) throws Error {
@@ -169,7 +189,7 @@ public class Rygel.MediaDB : Object {
     public void save_container (MediaContainer container) throws Error {
         var rc = db.exec ("BEGIN");
         try {
-            save_object (container, -1);
+            create_object (container, -1);
             rc = db.exec ("COMMIT");
         } catch (Error error) {
             rc = db.exec ("ROLLBACK");
@@ -180,7 +200,7 @@ public class Rygel.MediaDB : Object {
         var rc = db.exec ("BEGIN;");
         try {
             var id = save_metadata (item);
-            save_object (item, id);
+            create_object (item, id);
             save_uris (item);
             rc = db.exec ("COMMIT;");
             if (rc == Sqlite.OK) {
@@ -228,7 +248,7 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    private void save_object (MediaObject item, int64 metadata_id) throws Error {
+    private void create_object (MediaObject item, int64 metadata_id) throws Error {
         Statement statement;
 
         var rc = db.prepare_v2 (OBJECT_INSERT_STRING,
@@ -253,7 +273,7 @@ public class Rygel.MediaDB : Object {
                 statement.bind_int64 (4, metadata_id);
             }
 
-            if (item.parent == null || item.parent.id == "0") {
+            if (item.parent == null) {
                 statement.bind_null (5);
             } else {
                 statement.bind_text (5, item.parent.id);
@@ -312,65 +332,95 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    public MediaItem? get_item (string item_id) {
-        var item = new MediaItem ("", null, "", "");
-        try {
-            fill_object (item_id, ref item);
-        } catch (Error error) {
-            item = null;
+    private MediaObject? get_object_from_statement (string object_id, Statement statement) {
+        MediaObject obj = null;
+        switch (statement.column_int (0)) {
+            case 0:
+                // this is a container
+                obj = factory.get_container (this,
+                        object_id,
+                        statement.column_text (1),
+                        0);
+                break;
+            case 1:
+                // this is an item
+                obj = factory.get_item (this,
+                        object_id,
+                        statement.column_text (1),
+                        statement.column_text (6));
+                fill_item (statement, (MediaItem)obj);
+                break;
+            default:
+                // should not happen
+                break;
         }
 
-        return item;
+        return null;
     }
 
-    private void fill_container (string object_id, ref MediaContainer container) {
-
-    }
-
-    private void fill_item (string object_id, ref MediaItem item) {
+    public MediaObject? get_object (string object_id) {
+        MediaObject obj = null;
         Statement statement;
-        var rc = db.prepare_v2 (ITEM_GET_STRING,
+
+        // decide what kind of object this is
+        var rc = db.prepare_v2 (OBJECT_GET_STRING,
                                 -1,
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
             statement.bind_text (1, object_id);
             while ((rc = statement.step ()) == Sqlite.ROW) {
-                item.id = object_id;
-                item.title = statement.column_text (5);
-                item.upnp_class = statement.column_text (4);
-
-                item.author = statement.column_text (6);
-                item.album = statement.column_text (7);
-                item.date = statement.column_text (8);
-                item.mime_type = statement.column_text (1);
-                item.duration = (long)statement.column_text (15);
-
-                item.size = (long)statement.column_int64 (0);
-                item.bitrate = statement.column_int (9);
-
-                item.sample_freq = statement.column_int (10);
-                item.bits_per_sample = statement.column_int (11);
-                item.n_audio_channels = statement.column_int (12);
-                item.track_number = statement.column_int (13);
-
-                item.width = statement.column_int (2);
-                item.height = statement.column_int (3);
-                item.color_depth = statement.column_int (14);
+                obj = get_object_from_statement (object_id, statement);
                 break;
             }
-        }
-    }
-
-    public void fill_object (string object_id, ref MediaObject obj) throws Error {
-        if (obj is MediaItem) {
-            MediaItem item = (MediaItem) obj;
-            fill_item (object_id, ref item);
-        } else if (obj is MediaContainer) {
-            MediaContainer container = (MediaContainer) obj;
-            fill_container (object_id, ref container);
         } else {
-            throw new MediaDBError.GENERAL_ERROR ("Invalid object type");
         }
+
+        return obj;
     }
 
+    private void fill_item (Statement statement, MediaItem item) {
+        item.author = statement.column_text (7);
+        item.album = statement.column_text (8);
+        item.date = statement.column_text (9);
+        item.mime_type = statement.column_text (3);
+        item.duration = (long)statement.column_text (16);
+
+        item.size = (long)statement.column_int64 (2);
+        item.bitrate = statement.column_int (10);
+
+        item.sample_freq = statement.column_int(11);
+        item.bits_per_sample = statement.column_int (12);
+        item.n_audio_channels = statement.column_int (13);
+        item.track_number = statement.column_int (14);
+
+        item.width = statement.column_int (4);
+        item.height = statement.column_int (5);
+        item.color_depth = statement.column_int (15);
+    }
+
+    public Gee.ArrayList<MediaObject>? get_children (string object_id,
+                                                      uint offset,
+                                                      uint max_count) {
+        Statement statement;
+        Gee.ArrayList<MediaObject> children = null;
+        var rc = db.prepare_v2 (CHILDREN_GET_STRING,
+                                -1,
+                                out statement,
+                                null);
+        if (rc == Sqlite.OK) {
+            statement.bind_text (1, object_id);
+            statement.bind_int64 (2, (int64)offset);
+            statement.bind_int64 (3, (int64)max_count);
+            while ((rc = statement.step ()) == Sqlite.ROW) {
+                if (children == null) {
+                    children = new Gee.ArrayList<MediaObject> ();
+                }
+
+                children.add (get_object_from_statement (object_id, statement));
+            }
+        }
+
+        return children;
+    }
+}
