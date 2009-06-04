@@ -112,7 +112,7 @@ public class Rygel.MediaExportDirectorySearchResult :
         stop = stop.clamp (0, data.size);
         var children = data.slice ((int) offset, (int) stop);
 
-        return children;
+        return children as Gee.List<MediaItem>;
     }
 
     private MediaItem? get_media_item (MediaContainer parent,
