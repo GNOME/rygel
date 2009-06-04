@@ -28,7 +28,7 @@ using GConf;
  * as items
  */
 public class Rygel.MediaExportRootContainer : MediaContainer {
-    private ArrayList<MediaExportContainer> items;
+    private ArrayList<MediaExportContainer> children;
 
     public override void get_children (uint offset,
                                        uint max_count,
@@ -37,7 +37,7 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
     {
         uint stop = offset + max_count;
         stop = stop.clamp (0, this.child_count);
-        var children = this.items.slice ((int) offset, (int) stop);
+        var children = this.children.slice ((int) offset, (int) stop);
         var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (this,
                                                                       callback);
         res.data = children;
@@ -66,7 +66,7 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
         MediaObject item = null;
         var id = ((Rygel.SimpleAsyncResult<string>) res).data;
 
-        foreach (var tmp in this.items) {
+        foreach (var tmp in this.children) {
             if (id == tmp.id) {
                 item = tmp;
                 break;
@@ -74,7 +74,7 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
         }
 
         if (item == null) {
-            foreach (var tmp in items) {
+            foreach (var tmp in this.children) {
                 if (tmp is MediaExportContainer) {
                     var folder = (MediaExportContainer) tmp;
                     item = folder.find_object_sync (id);
@@ -94,7 +94,7 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
     public MediaExportRootContainer () {
         base.root ("MediaExportRoot", 0);
 
-        this.items = new ArrayList<MediaExportContainer> ();
+        this.children = new ArrayList<MediaExportContainer> ();
 
         var config = Rygel.Configuration.get_default ();
         var dirs = config.get_string_list ("MediaExport", "folders");
@@ -117,10 +117,10 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
         foreach (var dir in dirs) {
             var f = File.new_for_commandline_arg (dir);
             if (f.query_exists (null)) {
-                items.add (new MediaExportContainer (this, f));
+                this.children.add (new MediaExportContainer (this, f));
             }
         }
 
-        this.child_count = items.size;
+        this.child_count = this.children.size;
     }
 }
