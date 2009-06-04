@@ -31,9 +31,9 @@ public class Rygel.MediaExportDirectorySearchResult :
     private const int MAX_CHILDREN = 10;
 
     public MediaExportDirectorySearchResult (MediaContainer     parent,
-                                        uint               offset,
-                                        uint               max_count,
-                                        AsyncReadyCallback callback) {
+                                             uint               offset,
+                                             uint               max_count,
+                                             AsyncReadyCallback callback) {
         base (parent, callback);
 
         this.data = new ArrayList<MediaObject>();
