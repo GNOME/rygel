@@ -147,11 +147,10 @@ public class Rygel.MediaExportContainer : MediaContainer {
     }
 
     /**
-     * Create a new root container.
+     * Create a new container.
      *
      * @parameter parent, parent container
      * @parameter file, directory you want to expose
-     * @parameter full, show full path in title
      */
     public MediaExportContainer (MediaContainer parent, File file) {
         string id = Checksum.compute_for_string (ChecksumType.MD5,
