@@ -69,7 +69,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
     private dynamic Gst.Element playbin;
 
     /* Signals */
-    public signal void extraction_done (string uri, Gst.TagList tag_list);
+    public signal void extraction_done (File file, Gst.TagList tag_list);
 
     /**
      * Signalize that an error occured during metadata extraction
@@ -165,7 +165,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
             this.extract_stream_info ();
 
             /* No hopes of getting any tags after this point */
-            this.extraction_done (this.playbin.uri, tag_list);
+            this.extraction_done (this.file_queue.peek (), tag_list);
             this.playbin.set_state (State.NULL);
             this.tag_list = new Gst.TagList ();
             this.file_queue.pop ();
