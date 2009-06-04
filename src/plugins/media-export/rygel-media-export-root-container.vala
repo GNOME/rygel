@@ -19,9 +19,6 @@
  */
 
 using Gee;
-using GLib;
-using Rygel;
-using GConf;
 
 /**
  * Represents the root container.
