@@ -116,7 +116,26 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
         foreach (var uri in uris) {
             var f = File.new_for_commandline_arg (uri);
             if (f.query_exists (null)) {
-                this.children.add (new MediaExportContainer (this, f));
+                MediaObject media_obj = null;
+                var info = f.query_info (
+                                FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE + "," +
+                                FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME + "," +
+                                FILE_ATTRIBUTE_STANDARD_TYPE + "," +
+                                FILE_ATTRIBUTE_STANDARD_NAME,
+                                FileQueryInfoFlags.NONE,
+                                null);
+
+                if (info.get_file_type () == FileType.DIRECTORY) {
+                    media_obj = new MediaExportContainer (this, f);
+                } else {
+                    media_obj = new MediaExportItem (this,
+                                                     f,
+                                                     info);
+                }
+
+                if (media_obj != null) {
+                    this.children.add (media_obj);
+                }
             }
         }
 
