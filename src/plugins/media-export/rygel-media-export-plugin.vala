@@ -36,20 +36,20 @@ using GLib;
  */
 [ModuleInit]
 public void module_init (PluginLoader loader) {
-    Plugin plugin = new Plugin.MediaServer ("Folder", "@REALNAME@'s media");
+    var plugin = new Plugin.MediaServer ("MediaExport", "@REALNAME@'s media");
 
     var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
                                           ContentDirectory.UPNP_TYPE,
                                           ContentDirectory.DESCRIPTION_PATH,
-                                          typeof (Rygel.FolderContentDir));
+                                          typeof (Rygel.MediaExportContentDir));
 
     plugin.add_resource (resource_info);
 
     loader.add_plugin (plugin);
 }
 
-public class Rygel.FolderContentDir : ContentDirectory {
+public class Rygel.MediaExportContentDir : ContentDirectory {
     public override MediaContainer? create_root_container () {
-        return new FolderRootContainer ();
+        return new MediaExportRootContainer ();
     }
 }

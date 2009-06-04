@@ -22,7 +22,7 @@ using Gee;
 using Rygel;
 using GLib;
 
-public class Rygel.FolderDirectorySearchResult : 
+public class Rygel.MediaExportDirectorySearchResult :
              Rygel.SimpleAsyncResult<Gee.List<MediaObject>> {
     private uint max_count;
     private uint offset;
@@ -30,7 +30,7 @@ public class Rygel.FolderDirectorySearchResult :
 
     private const int MAX_CHILDREN = 10;
 
-    public FolderDirectorySearchResult (MediaContainer     parent,
+    public MediaExportDirectorySearchResult (MediaContainer     parent,
                                         uint               offset,
                                         uint               max_count,
                                         AsyncReadyCallback callback) {
@@ -62,7 +62,7 @@ public class Rygel.FolderDirectorySearchResult :
                     var f = file.get_child (file_info.get_name ());
                     MediaObject item = null;
                     if (file_info.get_file_type () == FileType.DIRECTORY) {
-                        item = new Rygel.FolderContainer (
+                        item = new Rygel.MediaExportContainer (
                                                (MediaContainer) source_object,
                                                f);
 

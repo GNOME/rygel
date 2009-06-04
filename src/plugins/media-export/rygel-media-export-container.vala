@@ -28,7 +28,7 @@ using Rygel;
  *
  * The folder contents will be queried on demand and cached afterwards
  */
-public class Rygel.FolderContainer : MediaContainer {
+public class Rygel.MediaExportContainer : MediaContainer {
 
     /**
      * Number of children to use for crawling the subdir
@@ -54,10 +54,10 @@ public class Rygel.FolderContainer : MediaContainer {
                                        AsyncReadyCallback callback) {
         // if the cache is empty, fill it
         if (items.size == 0) {
-            var res = new FolderDirectorySearchResult (this, 
-                                offset, 
-                                max_count, 
-                                callback);
+            var res = new MediaExportDirectorySearchResult (this,
+                                                            offset,
+                                                            max_count,
+                                                            callback);
 
             root_dir.enumerate_children_async (
                                 FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE + "," +
@@ -85,8 +85,8 @@ public class Rygel.FolderContainer : MediaContainer {
     public override Gee.List<MediaObject>? get_children_finish (
                                                          AsyncResult res)
                                                          throws GLib.Error {
-        if (res is FolderDirectorySearchResult) {
-            var dsr = (FolderDirectorySearchResult) res;
+        if (res is MediaExportDirectorySearchResult) {
+            var dsr = (MediaExportDirectorySearchResult) res;
 
             foreach (var item in dsr.data) {
                 this.items.add (item);
@@ -133,8 +133,8 @@ public class Rygel.FolderContainer : MediaContainer {
         // folders
         if (item == null) {
             foreach (var tmp in items) {
-                if (tmp is FolderContainer) {
-                    var folder = (FolderContainer) tmp;
+                if (tmp is MediaExportContainer) {
+                    var folder = (MediaExportContainer) tmp;
                     item = folder.find_object_sync (id);
                     if (item != null) {
                         break;
@@ -153,7 +153,7 @@ public class Rygel.FolderContainer : MediaContainer {
      * @parameter file, directory you want to expose
      * @parameter full, show full path in title
      */
-    public FolderContainer (MediaContainer parent, File file) {
+    public MediaExportContainer (MediaContainer parent, File file) {
         string id = Checksum.compute_for_string (ChecksumType.MD5, 
                                                  file.get_uri ());
 

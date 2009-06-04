@@ -27,8 +27,8 @@ using GConf;
  * MediaContainer which exposes the contents of a directory 
  * as items
  */
-public class Rygel.FolderRootContainer : MediaContainer {
-    private ArrayList<FolderContainer> items;
+public class Rygel.MediaExportRootContainer : MediaContainer {
+    private ArrayList<MediaExportContainer> items;
 
     public override void get_children (uint offset, 
                                        uint max_count,
@@ -75,8 +75,8 @@ public class Rygel.FolderRootContainer : MediaContainer {
 
         if (item == null) {
             foreach (var tmp in items) {
-                if (tmp is FolderContainer) {
-                    var folder = (FolderContainer) tmp;
+                if (tmp is MediaExportContainer) {
+                    var folder = (MediaExportContainer) tmp;
                     item = folder.find_object_sync (id);
                     if (item != null) {
                         break;
@@ -91,13 +91,13 @@ public class Rygel.FolderRootContainer : MediaContainer {
     /**
      * Create a new root container.
      */
-    public FolderRootContainer () {
-        base.root ("FolderRoot", 0);
+    public MediaExportRootContainer () {
+        base.root ("MediaExportRoot", 0);
 
-        this.items = new ArrayList<FolderContainer> ();
+        this.items = new ArrayList<MediaExportContainer> ();
 
         var config = Rygel.Configuration.get_default ();
-        var dirs = config.get_string_list ("Folder", "folders");
+        var dirs = config.get_string_list ("MediaExport", "folders");
 
         // either an error occured or the gconf key is not set
         if (dirs.size == 0) {
@@ -117,7 +117,7 @@ public class Rygel.FolderRootContainer : MediaContainer {
         foreach (var dir in dirs) {
             var f = File.new_for_commandline_arg (dir);
             if (f.query_exists (null)) {
-                items.add (new FolderContainer (this, f));
+                items.add (new MediaExportContainer (this, f));
             }
         }
 

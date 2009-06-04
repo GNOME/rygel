@@ -187,10 +187,10 @@ AC_ARG_ENABLE(dvb-plugin,
 	[  --enable-dvb-plugin          build DVB plugin],,
         enable_dvb_plugin=yes)
 
-# Build Folder plugin
-AC_ARG_ENABLE(folder-plugin,
-	[  --enable-folder-plugin          build Folder plugin],,
-        enable_folder_plugin=yes)
+# Build MediaExport plugin
+AC_ARG_ENABLE(media-export-plugin,
+	[  --enable-media-export-plugin          build MediaExport plugin],,
+        enable_media_export_plugin=yes)
 
 # Build External plugin
 AC_ARG_ENABLE(external-plugin,
@@ -211,7 +211,7 @@ AM_CONDITIONAL([BUILD_TRACKER_PLUGIN],
                [test "x$enable_tracker_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_DVB_PLUGIN], [test "x$enable_dvb_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_MEDIATHEK_PLUGIN], [test "x$enable_mediathek_plugin" = "xyes"])
-AM_CONDITIONAL([BUILD_FOLDER_PLUGIN], [test "x$enable_folder_plugin" = "xyes"])
+AM_CONDITIONAL([BUILD_MEDIA_EXPORT_PLUGIN], [test "x$enable_media_export_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_EXTERNAL_PLUGIN], [test "x$enable_external_plugin" = "xyes"])
 
 # Gettext
@@ -231,7 +231,7 @@ src/rygel/Makefile
 src/ui/Makefile
 src/plugins/Makefile
 src/plugins/dvb/Makefile
-src/plugins/folder/Makefile
+src/plugins/media-export/Makefile
 src/plugins/external/Makefile
 src/plugins/mediathek/Makefile
 src/plugins/tracker/Makefile
