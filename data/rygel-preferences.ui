@@ -64,7 +64,6 @@
                             <property name="receives_default">False</property>
                             <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
-                            <signal name="toggled" handler="rygel_general_pref_section_on_trans_check_toggled"/>
                           </object>
                           <packing>
                             <property name="y_options"></property>
@@ -413,7 +412,6 @@
                                 <property name="receives_default">True</property>
                                 <property name="use_underline">True</property>
                                 <property name="use_stock">True</property>
-                                <signal name="clicked" handler="rygel_folder_pref_section_on_add_button_clicked"/>
                               </object>
                               <packing>
                                 <property name="position">0</property>
@@ -426,7 +424,6 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="use_stock">True</property>
-                                <signal name="clicked" handler="rygel_folder_pref_section_on_remove_button_clicked"/>
                               </object>
                               <packing>
                                 <property name="position">1</property>
@@ -440,7 +437,6 @@
                                 <property name="receives_default">True</property>
                                 <property name="use_underline">True</property>
                                 <property name="use_stock">True</property>
-                                <signal name="clicked" handler="rygel_folder_pref_section_on_clear_button_clicked"/>
                               </object>
                               <packing>
                                 <property name="position">2</property>
@@ -542,9 +538,9 @@
     <property name="type_hint">dialog</property>
     <property name="transient_for">preferences-dialog</property>
     <property name="has_separator">False</property>
+    <property name="local_only">False</property>
     <property name="select_multiple">True</property>
     <property name="action">select-folder</property>
-    <property name="local_only">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox2">
         <property name="visible">True</property>

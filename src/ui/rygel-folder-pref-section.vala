@@ -29,6 +29,9 @@ public class Rygel.FolderPrefSection : Rygel.PluginPrefSection {
     const string FOLDERS_TEXTVIEW = FOLDERS_KEY + "-treeview";
     const string FOLDERS_LISTSTORE = FOLDERS_KEY + "-liststore";
     const string FOLDERS_DIALOG = FOLDERS_KEY + "-dialog";
+    const string ADD_BUTTON = "add-button";
+    const string REMOVE_BUTTON = "remove-button";
+    const string CLEAR_BUTTON = "clear-button";
 
     private TreeView treeview;
     private ListStore liststore;
@@ -60,7 +63,14 @@ public class Rygel.FolderPrefSection : Rygel.PluginPrefSection {
             this.liststore.set (iter, 0, folder, -1);
         }
 
-        builder.connect_signals (this);
+        var button = (Button) builder.get_object (ADD_BUTTON);
+        button.clicked += this.on_add_button_clicked;
+
+        button = (Button) builder.get_object (REMOVE_BUTTON);
+        button.clicked += this.on_remove_button_clicked;
+
+        button = (Button) builder.get_object (CLEAR_BUTTON);
+        button.clicked += this.on_clear_button_clicked;
     }
 
     public override void save () {
@@ -88,8 +98,7 @@ public class Rygel.FolderPrefSection : Rygel.PluginPrefSection {
         this.treeview.sensitive = enabled_check.active;
     }
 
-    [CCode (instance_pos = -1)]
-    public void on_add_button_clicked (Button button) {
+    private void on_add_button_clicked (Button button) {
         if (this.dialog.run () == ResponseType.OK) {
             TreeIter iter;
 
@@ -104,8 +113,7 @@ public class Rygel.FolderPrefSection : Rygel.PluginPrefSection {
         this.dialog.hide ();
     }
 
-    [CCode (instance_pos = -1)]
-    public void on_remove_button_clicked (Button button) {
+    private void on_remove_button_clicked (Button button) {
         var selection = this.treeview.get_selection ();
         var rows = selection.get_selected_rows (null);
 
@@ -126,8 +134,7 @@ public class Rygel.FolderPrefSection : Rygel.PluginPrefSection {
         }
     }
 
-    [CCode (instance_pos = -1)]
-    public void on_clear_button_clicked (Button button) {
+    private void on_clear_button_clicked (Button button) {
         this.liststore.clear ();
     }
 }
