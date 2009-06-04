@@ -96,25 +96,25 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
         this.children = new ArrayList<MediaExportContainer> ();
 
         var config = Rygel.Configuration.get_default ();
-        var dirs = config.get_string_list ("MediaExport", "folders");
+        var uris = config.get_string_list ("MediaExport", "folders");
 
         // either an error occured or the gconf key is not set
-        if (dirs.size == 0) {
-            var dir = Environment.get_user_special_dir (UserDirectory.MUSIC);
-            if (dir != null)
-                dirs.add (dir);
+        if (uris.size == 0) {
+            var uri = Environment.get_user_special_dir (UserDirectory.MUSIC);
+            if (uri != null)
+                uris.add (uri);
 
-            dir = Environment.get_user_special_dir (UserDirectory.PICTURES);
-            if (dir != null)
-                dirs.add (dir);
+            uri = Environment.get_user_special_dir (UserDirectory.PICTURES);
+            if (uri != null)
+                uris.add (uri);
 
-            dir = Environment.get_user_special_dir (UserDirectory.VIDEOS);
-            if (dir != null)
-                dirs.add (dir);
+            uri = Environment.get_user_special_dir (UserDirectory.VIDEOS);
+            if (uri != null)
+                uris.add (uri);
         }
 
-        foreach (var dir in dirs) {
-            var f = File.new_for_commandline_arg (dir);
+        foreach (var uri in uris) {
+            var f = File.new_for_commandline_arg (uri);
             if (f.query_exists (null)) {
                 this.children.add (new MediaExportContainer (this, f));
             }
