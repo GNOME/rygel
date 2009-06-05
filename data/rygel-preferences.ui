@@ -299,6 +299,7 @@
                       <object class="GtkEntry" id="tracker-title-entry">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Write %u for username, %n for real name of the user and %h for host name</property>
                         <property name="invisible_char">&#x25CF;</property>
                         <property name="width_chars">30</property>
                       </object>
@@ -313,6 +314,7 @@
                       <object class="GtkEntry" id="mediaexport-title-entry">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Write %u for username, %n for real name of the user and %h for host name</property>
                         <property name="invisible_char">&#x25CF;</property>
                         <property name="width_chars">30</property>
                         <property name="invisible_char_set">True</property>
@@ -355,6 +357,7 @@
                       <object class="GtkEntry" id="dvb-title-entry">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Write %u for username, %n for real name of the user and %h for host name</property>
                         <property name="invisible_char">&#x25CF;</property>
                         <property name="width_chars">30</property>
                         <property name="invisible_char_set">True</property>
