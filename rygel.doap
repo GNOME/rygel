@@ -19,7 +19,7 @@
   <maintainer>
     <foaf:Person>
       <foaf:name>Zeeshan Ali (Khattak)</foaf:name>
-      <foaf:mbox rdf:resource="zeeshanak@gnome.org" />
+      <foaf:mbox rdf:resource="mailto:zeeshanak@gnome.org" />
       <gnome:userid>zeeshanak</gnome:userid>
     </foaf:Person>
   </maintainer>
