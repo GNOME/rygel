@@ -94,12 +94,14 @@ public class Rygel.Main : Object {
 
     public static int main (string[] args) {
         Main main;
+        DBusService service;
 
         // initialize gstreamer
         Gst.init (ref args);
 
         try {
             main = new Main ();
+            service = new DBusService (main);
         } catch (GLib.Error err) {
             error ("%s", err.message);
 

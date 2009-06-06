@@ -33,6 +33,7 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-root-device-factory.c \
 		rygel-configuration.c \
 		rygel-main.c \
+		rygel-dbus-service.c \
 		rygel-content-directory.c \
 		rygel-browse.c \
 		rygel-didl-lite-writer.c \
@@ -62,6 +63,8 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-root-device-factory.vala \
 		rygel-main.c \
 		rygel-main.vala \
+		rygel-dbus-service.c \
+		rygel-dbus-service.vala \
 		rygel-content-directory.c \
 		rygel-browse.c \
 		rygel-didl-lite-writer.c \
