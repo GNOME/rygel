@@ -5,7 +5,7 @@
          xmlns="http://usefulinc.com/ns/doap#">
 
   <name xml:lang="en">rygel</name>
-  <shortdesc xml:lang="en">The GNOME (Mobile) UPnP/DLNA Media Server</shortdesc>
+  <shortdesc xml:lang="en">Rygel is a collection of UPnP/DLNA devices, implemented through a plug-in mechanism.</shortdesc>
 
   <homepage
   rdf:resource="http://live.gnome.org/Rygel" />
