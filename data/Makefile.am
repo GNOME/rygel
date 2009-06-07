@@ -24,7 +24,7 @@ $(dbusservice_DATA): $(dbusservice_in_files) Makefile
 	@sed -e "s|\@bindir\@|$(bindir)|" $< > $@
 
 desktopdir = $(datadir)/applications
-desktop_in_files = rygel-preferences.desktop.in
+desktop_in_files = rygel.desktop.in rygel-preferences.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 # Rule to create the .desktop files

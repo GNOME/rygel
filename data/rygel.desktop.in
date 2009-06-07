@@ -1,0 +1,17 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Rygel
+Name[en_GB]=Rygel
+GenericName=UPnP/DLNA Services
+GenericName[en_GB]=UPnP/DLNA Services
+Categories=
+Exec=dbus-send --dest=org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus.StartServiceByName string:org.gnome.Rygel uint32:0
+Terminal=false
+Type=Application
+NoDisplay=true
+StartupNotify=true
+X-GNOME-Autostart-enabled=true
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=Rygel
+X-GNOME-Bugzilla-Component=general
+X-GNOME-Bugzilla-Version=${version}
