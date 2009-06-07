@@ -23,7 +23,17 @@ dbusservice_DATA = $(dbusservice_in_files:.service.in=.service)
 $(dbusservice_DATA): $(dbusservice_in_files) Makefile
 	@sed -e "s|\@bindir\@|$(bindir)|" $< > $@
 
-CLEANFILES = $(dbusservice_DATA)
-EXTRA_DIST = $(schema_DATA) $(dbusservice_in_files)
+desktopdir = $(datadir)/applications
+desktop_in_files = rygel-preferences.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+
+# Rule to create the .desktop files
+$(desktop_DATA): $(desktop_in_files) Makefile
+	@sed -e "s,\$${prefix},${prefix},g" \
+	     -e "s,\$${version},${PACKAGE_VERSION},g" \
+             $(@:.desktop=.desktop.in) > $@
+
+CLEANFILES = $(dbusservice_DATA) $(desktop_DATA)
+EXTRA_DIST = $(schema_DATA) $(dbusservice_in_files) $(desktop_in_files)
 
 MAINTAINERCLEANFILES = Makefile.in

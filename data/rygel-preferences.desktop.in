@@ -1,0 +1,15 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Rygel Preferences
+Name[en_GB]=Rygel Preferences
+GenericName=UPnP/DLNA Preferences
+GenericName[en_GB]=UPnP/DLNA Preferences
+Categories=Settings;X-GNOME-PersonalSettings;
+Exec=rygel-preferences
+Terminal=false
+Type=Application
+StartupNotify=true
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=Rygel
+X-GNOME-Bugzilla-Component=rygel-preferences
+X-GNOME-Bugzilla-Version=${version}
