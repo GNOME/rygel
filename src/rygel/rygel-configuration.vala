@@ -90,7 +90,18 @@ public class Rygel.Configuration : GLib.Object {
                 }
             } else if (!value && this.upnp_enabled) {
                 try {
+                    // Stop service first
                     this.rygel_obj.Shutdown ();
+
+                    // Then delete the symlink from user's autostart dir
+                    var dest_path = Path.build_filename (
+                                        Environment.get_user_config_dir (),
+                                        "autostart",
+                                        "rygel.desktop");
+                    var dest = File.new_for_path (dest_path);
+
+                    dest.delete (null);
+
                     this.set_bool ("general", ENABLED_KEY, value);
                 } catch (DBus.Error err) {
                     warning ("Failed to shutdown Rygel service: %s\n",
