@@ -62,51 +62,8 @@ public class Rygel.Configuration : GLib.Object {
             return this.get_bool ("general", ENABLED_KEY, true);
         }
         set {
-            if (value && !this.upnp_enabled) {
-                try {
-                    uint32 res;
-
-                    // Start service first
-                    this.dbus_obj.StartServiceByName (RYGEL_SERVICE,
-                                                      (uint32) 0,
-                                                      out res);
-
-                    // Then symlink the desktop file to user's autostart dir
-                    var source_path = Path.build_filename (
-                                                    BuildConfig.DESKTOP_DIR,
-                                                    "rygel.desktop");
-                    var dest_path = Path.build_filename (
-                                        Environment.get_user_config_dir (),
-                                        "autostart",
-                                        "rygel.desktop");
-                    var dest = File.new_for_path (dest_path);
-
-                    dest.make_symbolic_link (source_path, null);
-
-                    this.set_bool ("general", ENABLED_KEY, value);
-                } catch (DBus.Error err) {
-                    warning ("Failed to start Rygel service: %s\n",
-                             err.message);
-                }
-            } else if (!value && this.upnp_enabled) {
-                try {
-                    // Stop service first
-                    this.rygel_obj.Shutdown ();
-
-                    // Then delete the symlink from user's autostart dir
-                    var dest_path = Path.build_filename (
-                                        Environment.get_user_config_dir (),
-                                        "autostart",
-                                        "rygel.desktop");
-                    var dest = File.new_for_path (dest_path);
-
-                    dest.delete (null);
-
-                    this.set_bool ("general", ENABLED_KEY, value);
-                } catch (DBus.Error err) {
-                    warning ("Failed to shutdown Rygel service: %s\n",
-                             err.message);
-                }
+            if (value != this.upnp_enabled) {
+                this.enable_upnp (value);
             }
         }
     }
@@ -358,6 +315,44 @@ public class Rygel.Configuration : GLib.Object {
             this.gconf.set_bool (path, value);
         } catch (GLib.Error error) {
             // No big deal
+        }
+    }
+
+    private void enable_upnp (bool enable) {
+        var dest_path = Path.build_filename (Environment.get_user_config_dir (),
+                                             "autostart",
+                                             "rygel.desktop");
+        var dest = File.new_for_path (dest_path);
+
+        try {
+            if (enable) {
+                uint32 res;
+
+                // Start service first
+                this.dbus_obj.StartServiceByName (RYGEL_SERVICE,
+                        (uint32) 0,
+                        out res);
+
+                // Then symlink the desktop file to user's autostart dir
+                var source_path = Path.build_filename (
+                        BuildConfig.DESKTOP_DIR,
+                        "rygel.desktop");
+                dest.make_symbolic_link (source_path, null);
+
+                this.set_bool ("general", ENABLED_KEY, true);
+            } else {
+                // Stop service first
+                this.rygel_obj.Shutdown ();
+
+                // Then delete the symlink from user's autostart dir
+                dest.delete (null);
+
+                this.set_bool ("general", ENABLED_KEY, false);
+            }
+        } catch (DBus.Error err) {
+            warning ("Failed to %s Rygel service: %s\n",
+                     enable? "start": "stop",
+                     err.message);
         }
     }
 }
