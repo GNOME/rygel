@@ -1,6 +1,17 @@
 <gconfschemafile>
    <schemalist>
       <schema>
+        <key>/schemas/apps/rygel/general/enabled</key>
+        <applyto>/apps/rygel/general/enabled</applyto>
+        <owner>rygel</owner>
+        <type>bool</type>
+        <default>FALSE</default>
+        <locale name="C">
+	<short>True if Rygel should be run as part of user's session.</short>
+	<long>True if Rygel should be run as part of user's session.</long>
+        </locale>
+      </schema>
+      <schema>
         <key>/schemas/apps/rygel/general/enable-transcoding</key>
         <applyto>/apps/rygel/general/enable-transcoding</applyto>
         <owner>rygel</owner>
