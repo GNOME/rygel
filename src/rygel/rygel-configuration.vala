@@ -71,7 +71,7 @@ public class Rygel.Configuration : GLib.Object {
                                                       (uint32) 0,
                                                       out res);
 
-                    // Then copy the desktop file to user's autostart dir
+                    // Then symlink the desktop file to user's autostart dir
                     var source_path = Path.build_filename (
                                                     BuildConfig.DESKTOP_DIR,
                                                     "rygel.desktop");
@@ -79,10 +79,9 @@ public class Rygel.Configuration : GLib.Object {
                                         Environment.get_user_config_dir (),
                                         "autostart",
                                         "rygel.desktop");
-                    var source = File.new_for_path (source_path);
                     var dest = File.new_for_path (dest_path);
 
-                    source.copy (dest, FileCopyFlags.OVERWRITE, null, null);
+                    dest.make_symbolic_link (source_path, null);
 
                     this.set_bool ("general", ENABLED_KEY, value);
                 } catch (DBus.Error err) {
