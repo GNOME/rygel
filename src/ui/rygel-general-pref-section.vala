@@ -23,6 +23,7 @@
 using Gtk;
 
 public class Rygel.GeneralPrefSection : PreferencesSection {
+    const string UPNP_CHECKBUTTON = "upnp-checkbutton";
     const string IP_ENTRY = "ip-entry";
     const string PORT_SPINBUTTON = "port-spinbutton";
     const string TRANS_CHECKBUTTON = "transcoding-checkbutton";
@@ -34,6 +35,7 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
     private SpinButton port_spin;
 
     // Transcoding options
+    private CheckButton upnp_check;
     private CheckButton trans_check;
     private CheckButton mp3_check;
     private CheckButton mp2ts_check;
@@ -43,6 +45,8 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
                                Configuration config) throws Error {
         base (config, "general");
 
+        this.upnp_check = (CheckButton) builder.get_object (UPNP_CHECKBUTTON);
+        assert (this.upnp_check != null);
         this.ip_entry = (Entry) builder.get_object (IP_ENTRY);
         assert (this.ip_entry != null);
         this.port_spin = (SpinButton) builder.get_object (PORT_SPINBUTTON);
@@ -61,6 +65,7 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
         }
         this.port_spin.set_value (config.port);
 
+        this.upnp_check.active = this.config.upnp_enabled;
         this.trans_check.active = this.config.transcoding;
         this.mp3_check.active = this.config.mp3_transcoder;
         this.mp2ts_check.active = this.config.mp2ts_transcoder;
@@ -73,6 +78,7 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
         this.config.host_ip = this.ip_entry.get_text ();
         this.config.port = (int) this.port_spin.get_value ();
 
+        this.config.upnp_enabled = this.upnp_check.active;
         this.config.transcoding = this.trans_check.active;
         this.config.mp3_transcoder = this.mp3_check.active;
         this.config.mp2ts_transcoder = this.mp2ts_check.active;

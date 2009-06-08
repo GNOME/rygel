@@ -46,6 +46,15 @@ public class Rygel.Configuration : GLib.Object {
 
     protected GConf.Client gconf;
 
+    public bool upnp_enabled {
+        get {
+            return this.get_bool ("general", ENABLED_KEY, true);
+        }
+        set {
+            this.set_bool ("general", ENABLED_KEY, value);
+        }
+    }
+
     private string _host_ip;
     public string host_ip {
         get {
