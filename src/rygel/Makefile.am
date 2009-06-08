@@ -36,6 +36,7 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-root-device.c \
 		rygel-root-device-factory.c \
 		rygel-configuration.c \
+		rygel-user-config.c \
 		rygel-main.c \
 		rygel-dbus-service.c \
 		rygel-content-directory.c \
@@ -119,6 +120,7 @@ VAPI_FILES = rygel-1.0.vapi
 DEPS_FILES = rygel-1.0.deps
 
 VAPI_SOURCE_FILES = rygel-configuration.vala \
+		    rygel-user-config.vala \
 		    rygel-content-directory.vala \
 		    rygel-connection-manager.vala \
 		    rygel-transcode-manager.vala \
@@ -156,6 +158,7 @@ rygel-1.0.vapi: $(VAPI_SOURCE_FILES)
 noinst_LIBRARIES = librygel-configuration.a
 
 librygel_configuration_a_SOURCES = rygel-configuration.c \
+			           rygel-user-config.c \
 				   cstuff.c \
                                    cstuff.h
 

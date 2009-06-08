@@ -41,8 +41,8 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
     private CheckButton mp2ts_check;
     private CheckButton lpcm_check;
 
-    public GeneralPrefSection (Builder       builder,
-                               Configuration config) throws Error {
+    public GeneralPrefSection (Builder    builder,
+                               UserConfig config) throws Error {
         base (config, "general");
 
         this.upnp_check = (CheckButton) builder.get_object (UPNP_CHECKBUTTON);

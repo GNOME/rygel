@@ -29,9 +29,9 @@ public class Rygel.PluginPrefSection : PreferencesSection {
     private CheckButton enabled_check;
     private Entry title_entry;
 
-    public PluginPrefSection (Builder       builder,
-                              Configuration config,
-                              string        name) {
+    public PluginPrefSection (Builder    builder,
+                              UserConfig config,
+                              string     name) {
         base (config, name);
 
         this.enabled_check = (CheckButton) builder.get_object (name.down () +
@@ -53,13 +53,13 @@ public class Rygel.PluginPrefSection : PreferencesSection {
 
     public override void save () {
         this.config.set_bool (this.name,
-                              Configuration.ENABLED_KEY,
+                              UserConfig.ENABLED_KEY,
                               this.enabled_check.active);
 
         var title = this.title_entry.get_text ().replace ("%n", "@REALNAME@");
         title = title.replace ("%u", "@USERNAME@");
         title = title.replace ("%h", "@HOSTNAME@");
-        this.config.set_string (this.name, Configuration.TITLE_KEY, title);
+        this.config.set_string (this.name, UserConfig.TITLE_KEY, title);
     }
 
     protected virtual void on_enabled_check_toggled (

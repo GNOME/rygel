@@ -33,7 +33,7 @@ public class Rygel.PreferencesDialog : GLib.Object {
     ArrayList<PreferencesSection> sections;
 
     public PreferencesDialog () throws Error {
-        var config = Configuration.get_default ();
+        var config = UserConfig.get_default ();
 
         this.builder = new Builder ();
 

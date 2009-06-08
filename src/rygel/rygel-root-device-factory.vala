@@ -41,7 +41,7 @@ public class Rygel.RootDeviceFactory {
     private GUPnP.Context context;
 
     public RootDeviceFactory () throws GLib.Error {
-        this.config = Configuration.get_default ();
+        this.config = UserConfig.get_default ();
 
         /* Set up GUPnP context */
         this.context = create_upnp_context ();
