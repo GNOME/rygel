@@ -18,6 +18,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(UUID_CFLAGS) \
 	    $(LIBSOUP_CFLAGS) \
+	    $(LIBDBUS_GLIB_CFLAGS) \
 	    -I$(top_srcdir) -DDATA_DIR='"$(shareddir)"' \
 	    -DPLUGIN_DIR='"$(plugindir)"' -include config.h
 
@@ -107,6 +108,7 @@ rygel_LDADD = $(LIBGUPNP_LIBS) \
 	      $(GEE_LIBS) \
 	      $(UUID_LIBS) \
 	      $(LIBSOUP_LIBS) \
+	      $(LIBDBUS_GLIB_LIBS) \
 	      librygel-configuration.a
 rygel_LDFLAGS = -export-dynamic
 
@@ -145,7 +147,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 rygel-1.0.vapi: $(VAPI_SOURCE_FILES)
 	$(VALAC) -H rygel.h -C --library=rygel-1.0 --vapidir=$(srcdir) \
 	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gconf-2.0 \
-	--pkg gee-1.0 --pkg gstreamer-0.10 \
+	--pkg gee-1.0 --pkg gstreamer-0.10 --pkg dbus-glib-1 \
 	$(VAPI_SOURCE_FILES)
 
 noinst_LIBRARIES = librygel-configuration.a
