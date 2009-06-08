@@ -41,17 +41,49 @@ public class Rygel.Configuration : GLib.Object {
     protected static const string LPCM_TRANSCODER_KEY =
                                                     "enable-lpcm-transcoder";
 
+    private const string DBUS_SERVICE = "org.freedesktop.DBus";
+    private const string DBUS_PATH = "/org/freedesktop/DBus";
+    private const string DBUS_INTERFACE = "org.freedesktop.DBus";
+
+    private const string RYGEL_SERVICE = "org.gnome.Rygel";
+    private const string RYGEL_PATH = "/org/gnome/Rygel";
+    private const string RYGEL_INTERFACE = "org.gnome.Rygel";
+
     // Our singleton
     private static Configuration config;
 
     protected GConf.Client gconf;
+
+    private dynamic DBus.Object dbus_obj;
+    private dynamic DBus.Object rygel_obj;
 
     public bool upnp_enabled {
         get {
             return this.get_bool ("general", ENABLED_KEY, true);
         }
         set {
-            this.set_bool ("general", ENABLED_KEY, value);
+            if (value && !this.upnp_enabled) {
+                try {
+                    uint32 res;
+
+                    this.dbus_obj.StartServiceByName (RYGEL_SERVICE,
+                                                      (uint32) 0,
+                                                      out res);
+
+                    this.set_bool ("general", ENABLED_KEY, value);
+                } catch (DBus.Error err) {
+                    warning ("Failed to start Rygel service: %s\n",
+                             err.message);
+                }
+            } else if (!value && this.upnp_enabled) {
+                try {
+                    this.rygel_obj.Shutdown ();
+                    this.set_bool ("general", ENABLED_KEY, value);
+                } catch (DBus.Error err) {
+                    warning ("Failed to shutdown Rygel service: %s\n",
+                             err.message);
+                }
+            }
         }
     }
 
@@ -125,6 +157,17 @@ public class Rygel.Configuration : GLib.Object {
 
     public Configuration () {
         this.gconf = GConf.Client.get_default ();
+
+        DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
+
+        // Create proxy to Rygel
+        this.rygel_obj = connection.get_object (RYGEL_SERVICE,
+                                                RYGEL_PATH,
+                                                RYGEL_INTERFACE);
+        // and DBus
+        this.dbus_obj = connection.get_object (DBUS_SERVICE,
+                                               DBUS_PATH,
+                                               DBUS_INTERFACE);
     }
 
     public bool get_enabled (string section) {
