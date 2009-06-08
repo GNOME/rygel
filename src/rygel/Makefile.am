@@ -1,7 +1,9 @@
 if UNINSTALLED
 shareddir = $(abs_top_builddir)/data
+desktopdir = $(shareddir)
 else
 shareddir = $(datadir)/rygel
+desktopdir = $(shareddir)/applications
 endif
 
 if UNINSTALLED
@@ -20,7 +22,8 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBSOUP_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
 	    -I$(top_srcdir) -DDATA_DIR='"$(shareddir)"' \
-	    -DPLUGIN_DIR='"$(plugindir)"' -include config.h
+	    -DPLUGIN_DIR='"$(plugindir)"' -DDESKTOP_DIR='"$(desktopdir)"'\
+	    -include config.h
 
 librygelincdir = $(includedir)/rygel-1.0
 

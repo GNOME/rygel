@@ -31,6 +31,9 @@ namespace CStuff {
         [CCode (cname = "DATA_DIR")]
         public static const string DATA_DIR;
 
+        [CCode (cname = "DESKTOP_DIR")]
+        public static const string DESKTOP_DIR;
+
         [CCode (cname = "PLUGIN_DIR")]
         public static const string PLUGIN_DIR;
 
