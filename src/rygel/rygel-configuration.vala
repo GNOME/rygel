@@ -25,6 +25,11 @@
 using GConf;
 using CStuff;
 
+public errordomain Rygel.ConfigurationError {
+    NO_VALUE_SET,
+    VALUE_OUT_OF_RANGE
+}
+
 /**
  * Interface for dealing with Rygel configuration.
  */
