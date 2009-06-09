@@ -34,22 +34,6 @@ private enum Gst.StreamType {
     ELEMENT = 5     /* stream handled by an element */
 }
 
-private class Rygel.Queue<G> : Gee.ArrayList<G> {
-    public G peek () {
-        return this.get (0);
-    }
-
-    public G pop () {
-        G head = this.get (0);
-        this.remove_at (0);
-        return head;
-    }
-
-    public void shift (G data) {
-        this.add (data);
-    }
-}
-
 /**
  * Metadata extractor based on Gstreamer. Just set the URI of the media on the
  * uri property, it will extact the metadata for you and emit signal
@@ -78,7 +62,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
 
     private TagList tag_list;
 
-    private Queue<File> file_queue;
+    private GLib.Queue<File> file_queue;
     private Gst.Element[] fakesinks;
 
     private static void register_custom_tag (string tag, Type type) {
@@ -114,22 +98,22 @@ public class Rygel.MetadataExtractor: GLib.Object {
         bus.message["state-changed"] += this.state_changed_cb;
         bus.message["error"] += this.error_cb;
 
-        this.file_queue = new Queue<File> ();
+        this.file_queue = new GLib.Queue<File> ();
         this.tag_list = new Gst.TagList ();
     }
 
     public void extract (File file) {
-        var trigger_run = this.file_queue.size == 0;
-        this.file_queue.shift (file);
+        var trigger_run = this.file_queue.get_length () == 0;
+        this.file_queue.push_tail (file);
         if (trigger_run) {
             this.extract_next ();
         }
     }
 
     private void extract_next () {
-        if (this.file_queue.size > 0) {
+        if (this.file_queue.get_length () > 0) {
             try {
-                var item = this.file_queue.peek ();
+                var item = this.file_queue.peek_head ();
                 this.extract_mime_and_size ();
                 this.playbin.uri = item.get_uri ();
                 this.playbin.set_state (State.PAUSED);
@@ -165,10 +149,10 @@ public class Rygel.MetadataExtractor: GLib.Object {
             this.extract_stream_info ();
 
             /* No hopes of getting any tags after this point */
-            this.extraction_done (this.file_queue.peek (), tag_list);
+            this.extraction_done (this.file_queue.peek_head (), tag_list);
             this.playbin.set_state (State.NULL);
             this.tag_list = new Gst.TagList ();
-            this.file_queue.pop ();
+            this.file_queue.pop_head ();
             this.extract_next ();
         }
     }
@@ -177,7 +161,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
     private void error_cb (Gst.Bus     bus,
                            Gst.Message message) {
 
-        return_if_fail (this.file_queue.size != 0);
+        return_if_fail (this.file_queue.get_length() != 0);
 
         Error error = null;
         string debug;
@@ -191,17 +175,17 @@ public class Rygel.MetadataExtractor: GLib.Object {
                   this.playbin.uri, debug);
 
         // signalize error to listeners
-        this.error (this.file_queue.peek (), error);
+        this.error (this.file_queue.peek_head (), error);
 
         /* We have a list of URIs to harvest, so lets jump to next one */
         this.playbin.set_state (State.NULL);
         this.tag_list = new Gst.TagList ();
-        this.file_queue.pop ();
+        this.file_queue.pop_head ();
         this.extract_next ();
     }
 
     private void extract_mime_and_size () throws Error {
-        var file = this.file_queue.peek ();
+        var file = this.file_queue.peek_head ();
         FileInfo file_info;
 
         try {
