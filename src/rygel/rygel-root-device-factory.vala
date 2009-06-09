@@ -151,7 +151,13 @@ public class Rygel.RootDeviceFactory {
             return;
         }
 
-        var title = this.config.get_title (plugin_name, plugin_title);
+        string title;
+        try {
+            title = this.config.get_title (plugin_name);
+        } catch (GLib.Error err) {
+            title = plugin_title;
+        }
+
         title = title.replace ("@REALNAME@", Environment.get_real_name ());
         title = title.replace ("@USERNAME@", Environment.get_user_name ());
         title = title.replace ("@HOSTNAME@", Environment.get_host_name ());

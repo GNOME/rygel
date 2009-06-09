@@ -52,24 +52,26 @@ public interface Rygel.Configuration : GLib.Object {
 
     public abstract string get_title (string section, string default_title);
 
-    public abstract string? get_string (string  section,
-                               string  key,
-                               string? default_value);
+    public abstract string get_string (string section,
+                                       string key) throws GLib.Error;
 
-    public abstract Gee.ArrayList<string> get_string_list (string section,
-                                                           string key);
+    public abstract Gee.ArrayList<string> get_string_list (
+                                                    string section,
+                                                    string key)
+                                                    throws GLib.Error;
 
     public abstract int get_int (string section,
                                  string key,
                                  int    min,
-                                 int    max,
-                                 int    default_value);
+                                 int    max)
+                                 throws GLib.Error;
 
     public abstract Gee.ArrayList<int> get_int_list (string section,
-                                                     string key);
+                                                     string key)
+                                                     throws GLib.Error;
 
     public abstract bool get_bool (string section,
-                                   string key,
-                                   bool   default_value);
+                                   string key)
+                                   throws GLib.Error;
 }
 

@@ -151,49 +151,45 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                                                DBUS_INTERFACE);
     }
 
-    public bool get_enabled (string section) {
-        return this.get_bool (section, ENABLED_KEY, true);
+    public bool get_enabled (string section) throws GLib.Error {
+        return this.get_bool (section, ENABLED_KEY);
     }
 
-    public string get_title (string section, string default_title) {
-        return this.get_string (section, TITLE_KEY, default_title);
+    public string get_title (string section) throws GLib.Error {
+        return this.get_string (section, TITLE_KEY);
     }
 
-    public string? get_string (string  section,
-                               string  key,
-                               string? default_value) {
+    public string get_string (string section,
+                              string key) throws GLib.Error {
         string val;
         var path = ROOT_GCONF_PATH + section + "/" + key;
 
-        try {
-            val = this.gconf.get_string (path);
-        } catch (GLib.Error error) {
-            val = null;
-        }
+        val = this.gconf.get_string (path);
 
         if (val == null || val == "") {
-            val = default_value;
+            throw new ConfigurationError.NO_VALUE_SET (
+                                        "No value available for '%s'", key);
         }
 
         return val;
     }
 
     public Gee.ArrayList<string> get_string_list (string section,
-                                                  string key) {
+                                                  string key)
+                                                  throws GLib.Error {
         var str_list = new Gee.ArrayList<string> ();
         var path = ROOT_GCONF_PATH + section + "/" + key;
 
-        try {
-            unowned SList<string> strings = this.gconf.get_list (
-                                                        path,
-                                                        GConf.ValueType.STRING);
-            if (strings != null) {
-                foreach (var str in strings) {
-                    str_list.add (str);
-                }
+        unowned SList<string> strings = this.gconf.get_list (
+                path,
+                GConf.ValueType.STRING);
+        if (strings != null) {
+            foreach (var str in strings) {
+                str_list.add (str);
             }
-        } catch (GLib.Error error) {
-            warning ("Failed to get value for key: %s\n", path);
+        } else {
+            throw new ConfigurationError.NO_VALUE_SET (
+                                        "No value available for '%s'", key);
         }
 
         return str_list;
@@ -202,60 +198,53 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     public int get_int (string section,
                         string key,
                         int    min,
-                        int    max,
-                        int    default_value) {
+                        int    max)
+                        throws GLib.Error {
         int val;
         var path = ROOT_GCONF_PATH + section + "/" + key;
 
-        try {
-            val = this.gconf.get_int (path);
-        } catch (GLib.Error error) {
-            val = default_value;
-        }
+        val = this.gconf.get_int (path);
 
         if (val < min || val > max) {
-            val = default_value;
+            throw new ConfigurationError.VALUE_OUT_OF_RANGE (
+                                        "Value of '%s' out of range", key);
         }
 
         return val;
     }
 
     public Gee.ArrayList<int> get_int_list (string section,
-                                            string key) {
+                                            string key)
+                                            throws GLib.Error {
         var int_list = new Gee.ArrayList<int> ();
         var path = ROOT_GCONF_PATH + section + "/" + key;
 
-        try {
-            unowned SList<int> ints = this.gconf.get_list (
-                                                    path,
-                                                    GConf.ValueType.INT);
-            if (ints != null) {
-                foreach (var num in ints) {
-                    int_list.add (num);
-                }
+        unowned SList<int> ints = this.gconf.get_list (path,
+                                                       GConf.ValueType.INT);
+        if (ints != null) {
+            foreach (var num in ints) {
+                int_list.add (num);
             }
-        } catch (GLib.Error error) {
-            warning ("Failed to get value for key: %s", path);
+        } else {
+            throw new ConfigurationError.NO_VALUE_SET (
+                                        "No value available for '%s'", key);
         }
 
         return int_list;
     }
 
     public bool get_bool (string section,
-                          string key,
-                          bool   default_value) {
+                          string key)
+                          throws GLib.Error {
         bool val;
         var path = ROOT_GCONF_PATH + section + "/" + key;
 
-        try {
-            unowned GConf.Value value = this.gconf.get (path);
-            if (value != null) {
-                val = value.get_bool ();
-            } else {
-                val = default_value;
-            }
-        } catch (GLib.Error error) {
-            val = default_value;
+        unowned GConf.Value value = this.gconf.get (path);
+        if (value != null) {
+            val = value.get_bool ();
+        } else {
+            throw new ConfigurationError.NO_VALUE_SET (
+                                        "No value available for '%s'", key);
         }
 
         return val;

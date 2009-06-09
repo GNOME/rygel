@@ -43,7 +43,14 @@ public class Rygel.PluginPrefSection : PreferencesSection {
 
         this.enabled_check.active = config.get_enabled (name);
 
-        var title = config.get_title (name, name).replace ("@REALNAME@", "%n");
+        string title;
+        try {
+            title = config.get_title (name);
+        } catch (GLib.Error err) {
+            title = name;
+        }
+
+        title = title.replace ("@REALNAME@", "%n");
         title = title.replace ("@USERNAME@", "%u");
         title = title.replace ("@HOSTNAME@", "%h");
         this.title_entry.set_text (title);
