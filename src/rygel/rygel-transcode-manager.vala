@@ -34,19 +34,19 @@ using Gst;
 internal abstract class Rygel.TranscodeManager : GLib.Object {
     private ArrayList<Transcoder> transcoders;
 
-    public TranscodeManager () {
+    public TranscodeManager () throws GLib.Error {
         transcoders = new ArrayList<Transcoder> ();
 
         var config = UserConfig.get_default ();
 
-        if (config.transcoding) {
-            if (config.lpcm_transcoder) {
+        if (config.get_transcoding ()) {
+            if (config.get_lpcm_transcoder ()) {
                 transcoders.add (new L16Transcoder (Endianness.BIG));
             }
-            if (config.mp3_transcoder) {
+            if (config.get_mp3_transcoder ()) {
                 transcoders.add (new MP3Transcoder (MP3Layer.THREE));
             }
-            if (config.mp2ts_transcoder) {
+            if (config.get_mp2ts_transcoder ()) {
                 transcoders.add (new MP2TSTranscoder(MP2TSProfile.SD));
                 transcoders.add (new MP2TSTranscoder(MP2TSProfile.HD));
             }

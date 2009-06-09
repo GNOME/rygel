@@ -100,8 +100,8 @@ public class Rygel.RootDeviceFactory {
 
     private GUPnP.Context create_upnp_context () throws GLib.Error {
         GUPnP.Context context = new GUPnP.Context (null,
-                                                   this.config.host_ip,
-                                                   this.config.port);
+                                                   this.config.get_host_ip (),
+                                                   this.config.get_port ());
 
         /* Host UPnP dir */
         context.host_path (BuildConfig.DATA_DIR, "");

@@ -60,29 +60,32 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
         this.lpcm_check = (CheckButton) builder.get_object (LPCM_CHECKBUTTON);
         assert (this.lpcm_check != null);
 
-        if (config.host_ip != null) {
-            this.ip_entry.set_text (config.host_ip);
-        }
-        this.port_spin.set_value (config.port);
+        try {
+            this.ip_entry.set_text (config.get_host_ip ());
+            this.port_spin.set_value (config.get_port ());
 
-        this.upnp_check.active = this.config.upnp_enabled;
-        this.trans_check.active = this.config.transcoding;
-        this.mp3_check.active = this.config.mp3_transcoder;
-        this.mp2ts_check.active = this.config.mp2ts_transcoder;
-        this.lpcm_check.active = this.config.lpcm_transcoder;
+            this.upnp_check.active = this.config.get_upnp_enabled ();
+            this.trans_check.active = this.config.get_transcoding ();
+            this.mp3_check.active = this.config.get_mp3_transcoder ();
+            this.mp2ts_check.active = this.config.get_mp2ts_transcoder ();
+            this.lpcm_check.active = this.config.get_lpcm_transcoder ();
+        } catch (GLib.Error err) {
+            // No problem if we fail to read the config, the default values
+            // will do just fine
+        }
 
         this.trans_check.toggled += this.on_trans_check_toggled;
     }
 
     public override void save () {
-        this.config.host_ip = this.ip_entry.get_text ();
-        this.config.port = (int) this.port_spin.get_value ();
+        this.config.set_host_ip (this.ip_entry.get_text ());
+        this.config.set_port ((int) this.port_spin.get_value ());
 
-        this.config.upnp_enabled = this.upnp_check.active;
-        this.config.transcoding = this.trans_check.active;
-        this.config.mp3_transcoder = this.mp3_check.active;
-        this.config.mp2ts_transcoder = this.mp2ts_check.active;
-        this.config.lpcm_transcoder = this.lpcm_check.active;
+        this.config.set_upnp_enabled (this.upnp_check.active);
+        this.config.set_transcoding (this.trans_check.active);
+        this.config.set_mp3_transcoder (this.mp3_check.active);
+        this.config.set_mp2ts_transcoder (this.mp2ts_check.active);
+        this.config.set_lpcm_transcoder (this.lpcm_check.active);
     }
 
     private void on_trans_check_toggled (CheckButton trans_check) {

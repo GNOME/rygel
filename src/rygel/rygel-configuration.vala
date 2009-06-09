@@ -34,23 +34,23 @@ public errordomain Rygel.ConfigurationError {
  * Interface for dealing with Rygel configuration.
  */
 public interface Rygel.Configuration : GLib.Object {
-    public abstract bool upnp_enabled { get; set; }
+    public abstract bool get_upnp_enabled () throws GLib.Error;
 
-    public abstract string host_ip { get; set; }
+    public abstract string get_host_ip () throws GLib.Error;
 
-    public abstract int port { get; set; }
+    public abstract int get_port () throws GLib.Error;
 
-    public abstract bool transcoding { get; set; }
+    public abstract bool get_transcoding () throws GLib.Error;
 
-    public abstract bool mp3_transcoder { get; set; }
+    public abstract bool get_mp3_transcoder () throws GLib.Error;
 
-    public abstract bool mp2ts_transcoder { get; set; }
+    public abstract bool get_mp2ts_transcoder () throws GLib.Error;
 
-    public abstract bool lpcm_transcoder { get; set; }
+    public abstract bool get_lpcm_transcoder () throws GLib.Error;
 
-    public abstract bool get_enabled (string section);
+    public abstract bool get_enabled (string section) throws GLib.Error;
 
-    public abstract string get_title (string section, string default_title);
+    public abstract string get_title (string section) throws GLib.Error;
 
     public abstract string get_string (string section,
                                        string key) throws GLib.Error;

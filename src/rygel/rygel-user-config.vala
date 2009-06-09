@@ -57,75 +57,62 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     private dynamic DBus.Object dbus_obj;
     private dynamic DBus.Object rygel_obj;
 
-    public bool upnp_enabled {
-        get {
-            return this.get_bool ("general", ENABLED_KEY, true);
-        }
-        set {
-            if (value != this.upnp_enabled) {
-                this.enable_upnp (value);
-            }
+    public bool get_upnp_enabled () throws GLib.Error {
+        return this.get_bool ("general", ENABLED_KEY);
+    }
+
+    public void set_upnp_enabled (bool value) {
+        if (value != this.get_upnp_enabled ()) {
+            this.enable_upnp (value);
         }
     }
 
-    private string _host_ip;
-    public string host_ip {
-        get {
-            _host_ip = this.get_string ("general", IP_KEY, null);
-            return _host_ip;
-        }
-        set {
-            this.set_string ("general", IP_KEY, value);
-        }
+    public string get_host_ip () throws GLib.Error {
+        return this.get_string ("general", IP_KEY);
     }
 
-    public int port {
-        get {
-            return this.get_int ("general",
-                                 PORT_KEY,
-                                 uint16.MIN,
-                                 uint16.MAX,
-                                 0);
-        }
-        set {
-            this.set_int ("general", PORT_KEY, value);
-        }
+    public void set_host_ip (string value) {
+        this.set_string ("general", IP_KEY, value);
     }
 
-    public bool transcoding {
-        get {
-            return this.get_bool ("general", TRANSCODING_KEY, true);
-        }
-        set {
-            this.set_bool ("general", TRANSCODING_KEY, value);
-        }
+    public int get_port () throws GLib.Error {
+        return this.get_int ("general", PORT_KEY, uint16.MIN, uint16.MAX);
     }
 
-    public bool mp3_transcoder {
-        get {
-            return this.get_bool ("general", MP3_TRANSCODER_KEY, true);
-        }
-        set {
-            this.set_bool ("general", MP3_TRANSCODER_KEY, value);
-        }
+    public void set_port (int value) {
+        this.set_int ("general", PORT_KEY, value);
     }
 
-    public bool mp2ts_transcoder {
-        get {
-            return this.get_bool ("general", MP2TS_TRANSCODER_KEY, true);
-        }
-        set {
-            this.set_bool ("general", MP2TS_TRANSCODER_KEY, value);
-        }
+    public bool get_transcoding () throws GLib.Error {
+        return this.get_bool ("general", TRANSCODING_KEY);
     }
 
-    public bool lpcm_transcoder {
-        get {
-            return this.get_bool ("general", LPCM_TRANSCODER_KEY, true);
-        }
-        set {
-            this.set_bool ("general", LPCM_TRANSCODER_KEY, value);
-        }
+    public void set_transcoding (bool value) {
+        this.set_bool ("general", TRANSCODING_KEY, value);
+    }
+
+    public bool get_mp3_transcoder () throws GLib.Error {
+        return this.get_bool ("general", MP3_TRANSCODER_KEY);
+    }
+
+    public void set_mp3_transcoder (bool value) {
+        this.set_bool ("general", MP3_TRANSCODER_KEY, value);
+    }
+
+    public bool get_mp2ts_transcoder () throws GLib.Error {
+        return this.get_bool ("general", MP2TS_TRANSCODER_KEY);
+    }
+
+    public void set_mp2ts_transcoder (bool value) {
+        this.set_bool ("general", MP2TS_TRANSCODER_KEY, value);
+    }
+
+    public bool get_lpcm_transcoder () throws GLib.Error {
+        return this.get_bool ("general", LPCM_TRANSCODER_KEY);
+    }
+
+    public void set_lpcm_transcoder (bool value) {
+        this.set_bool ("general", LPCM_TRANSCODER_KEY, value);
     }
 
     public static UserConfig get_default () {

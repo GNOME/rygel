@@ -70,7 +70,15 @@ public class Rygel.ContentDirectory: Service {
         this.cancellable = new Cancellable ();
 
         this.root_container = this.create_root_container ();
-        this.http_server = new HTTPServer (this, this.get_type ().name ());
+
+        try {
+            this.http_server = new HTTPServer (this, this.get_type ().name ());
+        } catch (GLib.Error err) {
+            critical ("Failed to create HTTP server for %s: %s",
+                      this.get_type ().name (),
+                      err.message);
+            return;
+        }
 
         this.browses = new ArrayList<Browse> ();
         this.updated_containers =  new ArrayList<MediaContainer> ();
