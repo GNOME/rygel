@@ -325,7 +325,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
                 this.set_bool ("general", ENABLED_KEY, false);
             }
-        } catch (DBus.Error err) {
+        } catch (GLib.Error err) {
             warning ("Failed to %s Rygel service: %s\n",
                      enable? "start": "stop",
                      err.message);
