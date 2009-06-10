@@ -37,7 +37,7 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
     public TranscodeManager () throws GLib.Error {
         transcoders = new ArrayList<Transcoder> ();
 
-        var config = UserConfig.get_default ();
+        var config = MetaConfig.get_default ();
 
         if (config.get_transcoding ()) {
             if (config.get_lpcm_transcoder ()) {

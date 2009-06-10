@@ -41,14 +41,19 @@ public class Rygel.RootDeviceFactory {
     private GUPnP.Context context;
 
     public RootDeviceFactory () throws GLib.Error {
-        this.config = UserConfig.get_default ();
+        this.config = MetaConfig.get_default ();
 
         /* Set up GUPnP context */
         this.context = create_upnp_context ();
     }
 
     public RootDevice create (Plugin plugin) throws GLib.Error {
-        if (!this.config.get_enabled (plugin.name)) {
+        bool enabled = true;
+        try {
+            enabled = this.config.get_enabled (plugin.name);
+        } catch (GLib.Error err) {}
+
+        if (!enabled) {
             throw new RootDeviceFactoryError.PLUGIN_DISABLED (
                             "Plugin disabled in user configuration.");
         }
@@ -99,9 +104,15 @@ public class Rygel.RootDeviceFactory {
     }
 
     private GUPnP.Context create_upnp_context () throws GLib.Error {
-        GUPnP.Context context = new GUPnP.Context (null,
-                                                   this.config.get_host_ip (),
-                                                   this.config.get_port ());
+        string host_ip = null;
+        int port = 0;
+
+        try {
+            host_ip = this.config.get_host_ip ();
+            port = this.config.get_port ();
+        } catch (GLib.Error err) {}
+
+        GUPnP.Context context = new GUPnP.Context (null, host_ip, port);
 
         /* Host UPnP dir */
         context.host_path (BuildConfig.DATA_DIR, "");
