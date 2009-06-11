@@ -100,7 +100,7 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-gst-utils.c
 
 rygel.stamp: $(filter %.vala,$(rygel_SOURCES))
-	$(VALAC) -C --vapidir=$(srcdir) \
+	$(VALAC) -C --vapidir=$(srcdir) --thread \
 	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
 	--pkg gconf-2.0 --pkg gstreamer-0.10 --pkg gio-2.0 --pkg gee-1.0 $^
 	touch $@
