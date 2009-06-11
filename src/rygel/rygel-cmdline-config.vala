@@ -51,25 +51,25 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     // Command-line options
 	const OptionEntry[] options = {
-		{ "version", 0, 0, OptionArg.NONE, ref version,
+        { "version", 0, 0, OptionArg.NONE, ref version,
           "Display version number", null },
-		{ "host-ip", 'H', 0, OptionArg.STRING, ref host_ip,
+        { "host-ip", 'H', 0, OptionArg.STRING, ref host_ip,
           "IP address", "IP" },
-		{ "port", 'p', 0, OptionArg.INT, ref port,
+        { "port", 'p', 0, OptionArg.INT, ref port,
           "Port", "PORT" },
-		{ "disable-transcoding", 't', 0, OptionArg.NONE, ref no_transcoding,
+        { "disable-transcoding", 't', 0, OptionArg.NONE, ref no_transcoding,
           "Disable transcoding", null },
-		{ "disable-mp3-transcoder", 'm', 0, OptionArg.NONE, ref no_mp3_trans,
+        { "disable-mp3-transcoder", 'm', 0, OptionArg.NONE, ref no_mp3_trans,
           "Disable MP3 transcoder", null },
-		{ "disable-mp2ts-transcoder", 'p', 0, OptionArg.NONE,
+        { "disable-mp2ts-transcoder", 'p', 0, OptionArg.NONE,
           ref no_mp2ts_trans,
           "Disable mpeg2 transport stream transcoder", null },
-		{ "disable-lpcm-transcoder", 'l', 0, OptionArg.NONE, ref no_lpcm_trans,
+        { "disable-lpcm-transcoder", 'l', 0, OptionArg.NONE, ref no_lpcm_trans,
           "Disable Linear PCM transcoder", null },
-		{ "disable-plugin", 'd', 0, OptionArg.STRING_ARRAY,
+        { "disable-plugin", 'd', 0, OptionArg.STRING_ARRAY,
           ref disabled_plugins,
           "Disable plugin", "PluginName" },
-		{ null }
+        { null }
 	};
 
     public static CmdlineConfig get_default () {
