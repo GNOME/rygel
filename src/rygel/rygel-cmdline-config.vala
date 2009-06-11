@@ -23,6 +23,7 @@
  */
 
 using CStuff;
+using Gee;
 
 public errordomain Rygel.CmdlineConfigError {
     VERSION_ONLY
@@ -197,7 +198,27 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     public Gee.ArrayList<string> get_string_list (string section,
                                                   string key)
                                                   throws GLib.Error {
-        throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        ArrayList<string> value = null;
+        foreach (var option in plugin_options) {
+            var tokens = option.split (":", 3);
+            if (tokens[0] != null &&
+                tokens[1] != null &&
+                tokens[2] != null &&
+                tokens[0] == section &&
+                tokens[1] == key) {
+                value = new ArrayList<string> ();
+                foreach (var val_token in tokens[2].split (",", -1)) {
+                    value.add (val_token);
+                }
+                break;
+            }
+        }
+
+        if (value != null) {
+            return value;
+        } else {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        }
     }
 
     public int get_int (string section,
