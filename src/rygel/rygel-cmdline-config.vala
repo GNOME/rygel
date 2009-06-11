@@ -45,6 +45,9 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     [CCode (array_length = false, array_null_terminated = true)]
     [NoArrayLength]
     private static string[] disabled_plugins;
+    [CCode (array_length = false, array_null_terminated = true)]
+    [NoArrayLength]
+    private static string[] plugin_titles;
 
     // Our singleton
     private static CmdlineConfig config;
@@ -69,6 +72,8 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         { "disable-plugin", 'd', 0, OptionArg.STRING_ARRAY,
           ref disabled_plugins,
           "Disable plugin", "PluginName" },
+        { "title", 'i', 0, OptionArg.STRING_ARRAY, ref plugin_titles,
+          "Set plugin titles", "PluginName,TITLE" },
         { null }
 	};
 
@@ -142,7 +147,22 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     }
 
     public string get_title (string section) throws GLib.Error {
-        throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        string title = null;
+        foreach (var plugin_title in plugin_titles) {
+            var tokens = plugin_title.split (",", 2);
+            if (tokens[0] != null &&
+                tokens[1] != null &&
+                tokens[0] == section) {
+                title = tokens[1];
+                break;
+            }
+        }
+
+        if (title != null) {
+            return title;
+        } else {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        }
     }
 
     // Dynamic options
