@@ -49,6 +49,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
     public MetaConfig () {
         this.configs = new ArrayList<Configuration> ();
 
+        this.configs.add (CmdlineConfig.get_default ());
         this.configs.add (UserConfig.get_default ());
     }
 

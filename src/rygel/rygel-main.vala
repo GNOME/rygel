@@ -96,12 +96,18 @@ public class Rygel.Main : Object {
         Main main;
         DBusService service;
 
-        // initialize gstreamer
-        Gst.init (ref args);
-
         try {
+            // Parse commandline options
+            CmdlineConfig.parse_args (ref args);
+
+            // initialize gstreamer
+            var dummy_args = new string[0];
+            Gst.init (ref dummy_args);
+
             main = new Main ();
             service = new DBusService (main);
+        } catch (CmdlineConfigError.VERSION_ONLY err) {
+            return 0;
         } catch (GLib.Error err) {
             error ("%s", err.message);
 
