@@ -253,7 +253,27 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     public Gee.ArrayList<int> get_int_list (string section,
                                             string key)
                                             throws GLib.Error {
-        throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        ArrayList<int> value = null;
+        foreach (var option in plugin_options) {
+            var tokens = option.split (":", 3);
+            if (tokens[0] != null &&
+                tokens[1] != null &&
+                tokens[2] != null &&
+                tokens[0] == section &&
+                tokens[1] == key) {
+                value = new ArrayList<int> ();
+                foreach (var val_token in tokens[2].split (",", -1)) {
+                    value.add (val_token.to_int ());
+                }
+                break;
+            }
+        }
+
+        if (value != null) {
+            return value;
+        } else {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        }
     }
 
     public bool get_bool (string section,
