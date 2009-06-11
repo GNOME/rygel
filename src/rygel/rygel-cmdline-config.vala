@@ -76,9 +76,9 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
           ref disabled_plugins,
           "Disable plugin", "PluginName" },
         { "title", 'i', 0, OptionArg.STRING_ARRAY, ref plugin_titles,
-          "Set plugin titles", "PluginName,TITLE" },
+          "Set plugin titles", "PluginName:TITLE" },
         { "plugin-option", 'o', 0, OptionArg.STRING_ARRAY, ref plugin_options,
-          "Set plugin options", "PluginName,OPTION,VALUE" },
+          "Set plugin options", "PluginName:OPTION:VALUE1[,VALUE2,..]" },
         { null }
 	};
 
@@ -154,7 +154,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     public string get_title (string section) throws GLib.Error {
         string title = null;
         foreach (var plugin_title in plugin_titles) {
-            var tokens = plugin_title.split (",", 2);
+            var tokens = plugin_title.split (":", 2);
             if (tokens[0] != null &&
                 tokens[1] != null &&
                 tokens[0] == section) {
@@ -176,7 +176,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
                               string key) throws GLib.Error {
         string value = null;
         foreach (var option in plugin_options) {
-            var tokens = option.split (",", 3);
+            var tokens = option.split (":", 3);
             if (tokens[0] != null &&
                 tokens[1] != null &&
                 tokens[2] != null &&
@@ -208,7 +208,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         int value = 0;
         bool value_set = false;
         foreach (var option in plugin_options) {
-            var tokens = option.split (",", 3);
+            var tokens = option.split (":", 3);
             if (tokens[0] != null &&
                 tokens[1] != null &&
                 tokens[2] != null &&
@@ -241,7 +241,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         bool value = false;
         bool value_set = false;
         foreach (var option in plugin_options) {
-            var tokens = option.split (",", 3);
+            var tokens = option.split (":", 3);
             if (tokens[0] != null &&
                 tokens[1] != null &&
                 tokens[2] != null &&
