@@ -48,6 +48,9 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     [CCode (array_length = false, array_null_terminated = true)]
     [NoArrayLength]
     private static string[] plugin_titles;
+    [CCode (array_length = false, array_null_terminated = true)]
+    [NoArrayLength]
+    private static string[] plugin_options;
 
     // Our singleton
     private static CmdlineConfig config;
@@ -74,6 +77,8 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
           "Disable plugin", "PluginName" },
         { "title", 'i', 0, OptionArg.STRING_ARRAY, ref plugin_titles,
           "Set plugin titles", "PluginName,TITLE" },
+        { "plugin-option", 'o', 0, OptionArg.STRING_ARRAY, ref plugin_options,
+          "Set plugin options", "PluginName,OPTION,VALUE" },
         { null }
 	};
 
@@ -169,7 +174,24 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     // FIXME: How to handle them?
     public string get_string (string section,
                               string key) throws GLib.Error {
-        throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        string value = null;
+        foreach (var option in plugin_options) {
+            var tokens = option.split (",", 3);
+            if (tokens[0] != null &&
+                tokens[1] != null &&
+                tokens[2] != null &&
+                tokens[0] == section &&
+                tokens[1] == key) {
+                value = tokens[2];
+                break;
+            }
+        }
+
+        if (value != null) {
+            return value;
+        } else {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        }
     }
 
     public Gee.ArrayList<string> get_string_list (string section,
@@ -183,7 +205,28 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
                         int    min,
                         int    max)
                         throws GLib.Error {
-        throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        int value = 0;
+        bool value_set = false;
+        foreach (var option in plugin_options) {
+            var tokens = option.split (",", 3);
+            if (tokens[0] != null &&
+                tokens[1] != null &&
+                tokens[2] != null &&
+                tokens[0] == section &&
+                tokens[1] == key) {
+                value = tokens[2].to_int ();
+                if (value >= min && value <= max) {
+                    value_set = true;
+                }
+                break;
+            }
+        }
+
+        if (value_set) {
+            return value;
+        } else {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        }
     }
 
     public Gee.ArrayList<int> get_int_list (string section,
@@ -195,7 +238,26 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     public bool get_bool (string section,
                           string key)
                           throws GLib.Error {
-        throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        bool value = false;
+        bool value_set = false;
+        foreach (var option in plugin_options) {
+            var tokens = option.split (",", 3);
+            if (tokens[0] != null &&
+                tokens[1] != null &&
+                tokens[2] != null &&
+                tokens[0] == section &&
+                tokens[1] == key) {
+                value = tokens[2].to_bool ();
+                value_set = true;
+                break;
+            }
+        }
+
+        if (value_set) {
+            return value;
+        } else {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        }
     }
 }
 
