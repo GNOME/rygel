@@ -42,6 +42,10 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     private static bool version;
 
+    [CCode (array_length = false, array_null_terminated = true)]
+    [NoArrayLength]
+    private static string[] disabled_plugins;
+
     // Our singleton
     private static CmdlineConfig config;
 
@@ -62,6 +66,9 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
           "Disable mpeg2 transport stream transcoder", null },
 		{ "disable-lpcm-transcoder", 'l', 0, OptionArg.NONE, ref no_lpcm_trans,
           "Disable Linear PCM transcoder", null },
+		{ "disable-plugin", 'd', 0, OptionArg.STRING_ARRAY,
+          ref disabled_plugins,
+          "Disable plugin", "PluginName" },
 		{ null }
 	};
 
@@ -118,16 +125,28 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         return !no_lpcm_trans;
     }
 
-    // Dynamic options
-    // FIXME: How to handle them?
     public bool get_enabled (string section) throws GLib.Error {
-        throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        var disabled = false;
+        foreach (var plugin in disabled_plugins) {
+            if (plugin == section) {
+                disabled = true;
+                break;
+            }
+        }
+
+        if (disabled) {
+            return false;
+        } else {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        }
     }
 
     public string get_title (string section) throws GLib.Error {
         throw new ConfigurationError.NO_VALUE_SET ("No value available");
     }
 
+    // Dynamic options
+    // FIXME: How to handle them?
     public string get_string (string section,
                               string key) throws GLib.Error {
         throw new ConfigurationError.NO_VALUE_SET ("No value available");
