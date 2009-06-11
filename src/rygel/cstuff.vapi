@@ -39,6 +39,12 @@ namespace CStuff {
 
         [CCode (cname = "PACKAGE_NAME")]
         public static const string PACKAGE_NAME;
+
+        [CCode (cname = "PACKAGE_VERSION")]
+        public static const string PACKAGE_VERSION;
+
+        [CCode (cname = "PACKAGE_STRING")]
+        public static const string PACKAGE_STRING;
     }
 
     /**
