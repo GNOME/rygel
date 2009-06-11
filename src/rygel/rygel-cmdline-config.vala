@@ -64,7 +64,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
           "Disable transcoding", null },
         { "disable-mp3-transcoder", 'm', 0, OptionArg.NONE, ref no_mp3_trans,
           "Disable MP3 transcoder", null },
-        { "disable-mp2ts-transcoder", 'p', 0, OptionArg.NONE,
+        { "disable-mp2ts-transcoder", 's', 0, OptionArg.NONE,
           ref no_mp2ts_trans,
           "Disable mpeg2 transport stream transcoder", null },
         { "disable-lpcm-transcoder", 'l', 0, OptionArg.NONE, ref no_lpcm_trans,
