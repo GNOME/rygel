@@ -35,8 +35,8 @@ internal enum Rygel.MP2TSProfile {
  */
 internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     // HD
-    private const int[] WIDTH = {640, 1920};
-    private const int[] HEIGHT = {480, 1080};
+    private const int[] WIDTH = {640, 1280};
+    private const int[] HEIGHT = {480, 720};
     private const string[] PROFILES = {"MPEG_TS_SD_US", "MPEG_TS_HD_US"};
 
     private const string VIDEO_ENCODER = "ffenc_mpeg2video";
