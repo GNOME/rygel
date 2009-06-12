@@ -104,6 +104,11 @@ fi
 
 AC_SUBST(VAPIDIR)
 
+# Maemo support
+AC_ARG_ENABLE(maemo,
+	[  --enable-maemo          enable maemo support],,
+        enable_maemo=no)
+
 # Debugging
 AC_ARG_ENABLE(debug,
 	[  --enable-debug          enable debugging],,
@@ -206,6 +211,7 @@ AC_ARG_ENABLE(mediathek-plugin,
 AC_SUBST(abs_top_builddir)
 
 AM_CONDITIONAL([UNINSTALLED], [test "x$enable_uninstalled" = "xyes"])
+AM_CONDITIONAL([ENABLE_MAEMO], [test "x$enable_maemo" = "xyes"])
 AM_CONDITIONAL([BUILD_TEST_PLUGIN], [test "x$enable_test_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_TRACKER_PLUGIN],
                [test "x$enable_tracker_plugin" = "xyes"])
