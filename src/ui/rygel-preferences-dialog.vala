@@ -44,9 +44,8 @@ public class Rygel.PreferencesDialog : GLib.Object {
 
         this.sections = new ArrayList<PreferencesSection> ();
         this.sections.add (new GeneralPrefSection (this.builder, config));
-        this.sections.add (new PluginPrefSection (this.builder,
-                                                  config,
-                                                  "Tracker"));
+        this.sections.add (new TrackerPrefSection (this.builder,
+                                                   config));
         this.sections.add (new PluginPrefSection (this.builder,
                                                   config,
                                                   "DVB"));
