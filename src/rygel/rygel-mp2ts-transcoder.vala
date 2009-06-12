@@ -77,8 +77,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         dynamic Element encoder = GstUtils.create_element (VIDEO_ENCODER,
                                                            VIDEO_ENCODER);
 
-        encoder.bitrate = (int) 30000000;
-        encoder.bitrate_tolerance = (int) 100000000;
+        encoder.bitrate = (int) 3000000;
 
         var bin = new Bin ("video-encoder-bin");
         bin.add_many (videorate, videoscale, convert, encoder);
