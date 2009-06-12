@@ -100,6 +100,39 @@
         </locale>
       </schema>
       <schema>
+        <key>/schemas/apps/rygel/Tracker/share-videos</key>
+        <applyto>/apps/rygel/Tracker/share-videos</applyto>
+        <owner>rygel</owner>
+        <type>bool</type>
+        <default>TRUE</default>
+        <locale name="C">
+          <short>Enable sharing of videos over UPnP.</short>
+          <long>Enable sharing of videos over UPnP.</long>
+        </locale>
+      </schema>
+      <schema>
+        <key>/schemas/apps/rygel/Tracker/share-music</key>
+        <applyto>/apps/rygel/Tracker/share-music</applyto>
+        <owner>rygel</owner>
+        <type>bool</type>
+        <default>TRUE</default>
+        <locale name="C">
+          <short>Enable sharing of music over UPnP.</short>
+          <long>Enable sharing of music over UPnP.</long>
+        </locale>
+      </schema>
+      <schema>
+        <key>/schemas/apps/rygel/Tracker/share-pictures</key>
+        <applyto>/apps/rygel/Tracker/share-pictures</applyto>
+        <owner>rygel</owner>
+        <type>bool</type>
+        <default>TRUE</default>
+        <locale name="C">
+          <short>Enable sharing of pictures over UPnP.</short>
+          <long>Enable sharing of pictures over UPnP.</long>
+        </locale>
+      </schema>
+      <schema>
         <key>/schemas/apps/rygel/MediaExport/enabled</key>
         <applyto>/apps/rygel/MediaExport/enabled</applyto>
         <owner>rygel</owner>
