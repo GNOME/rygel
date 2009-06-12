@@ -1,7 +1,11 @@
 SUBDIRS = xml
 
 schemadir = @GCONF_SCHEMA_FILE_DIR@
+if ENABLE_MAEMO
+schema_DATA = rygel-maemo.schemas
+else
 schema_DATA = rygel.schemas
+endif
 
 shareddir = $(datadir)/rygel
 
