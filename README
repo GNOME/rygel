@@ -13,11 +13,12 @@ mechanism.
   * Export of on-disk media:
     * tracker[9] plugin.
     * Folder: Recursively exports folders specified in the user preferences.
-  * Export of live TV (DVB) channels streams through DVB Daemon[10].
   * Export of online media from 2nd German TV station[11].
   * Export of media hierarchies provided by external applications through
-    implementation of this spec[12]. The first application that utilizes this
-    feature is PulseAudio[13].
+    implementation of D-Bus MediaServer spec[12]. Applications that utilize
+    this feature are:
+    * PulseAudio[13]: Provides streams for input/output devices on the system.
+    * DVB Daemon[10]: Provides live TV (DVB) channel streams.
   * Audio and Video Transcoding: source format could be anything GStreamer's
     decodebin2 can handle but output formats are currently limited to: mp3, PCM
     and MPEG TS. Fortunately the transcoding framework is flexible enough to
