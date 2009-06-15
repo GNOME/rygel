@@ -167,28 +167,6 @@
         </locale>
       </schema>
       <schema>
-        <key>/schemas/apps/rygel/DVB/enabled</key>
-        <applyto>/apps/rygel/DVB/enabled</applyto>
-        <owner>rygel</owner>
-        <type>bool</type>
-        <default>TRUE</default>
-        <locale name="C">
-          <short>Enable DVB plugin</short>
-          <long>Enable DVB plugin</long>
-        </locale>
-      </schema>
-      <schema>
-        <key>/schemas/apps/rygel/DVB/title</key>
-        <applyto>/apps/rygel/DVB/title</applyto>
-        <owner>rygel</owner>
-        <type>string</type>
-        <default>Digital TV</default>
-        <locale name="C">
-          <short>The title of this plugin to advertise to UPnP clients.</short>
-          <long>The title of this plugin to advertise to UPnP clients.</long>
-        </locale>
-      </schema>
-      <schema>
           <key>/schemas/apps/rygel/ZDFMediathek/enabled</key>
           <applyto>/apps/rygel/ZDFMediathek/enabled</applyto>
           <owner>rygel</owner>

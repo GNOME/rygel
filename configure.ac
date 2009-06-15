@@ -187,11 +187,6 @@ AC_ARG_ENABLE(tracker-plugin,
 	[  --enable-tracker-plugin      build tracker plugin],,
         enable_tracker_plugin=yes)
 
-# Build DVB plugin
-AC_ARG_ENABLE(dvb-plugin,
-	[  --enable-dvb-plugin          build DVB plugin],,
-        enable_dvb_plugin=yes)
-
 # Build MediaExport plugin
 AC_ARG_ENABLE(media-export-plugin,
 	[  --enable-media-export-plugin          build MediaExport plugin],,
@@ -215,7 +210,6 @@ AM_CONDITIONAL([ENABLE_MAEMO], [test "x$enable_maemo" = "xyes"])
 AM_CONDITIONAL([BUILD_TEST_PLUGIN], [test "x$enable_test_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_TRACKER_PLUGIN],
                [test "x$enable_tracker_plugin" = "xyes"])
-AM_CONDITIONAL([BUILD_DVB_PLUGIN], [test "x$enable_dvb_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_MEDIATHEK_PLUGIN], [test "x$enable_mediathek_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_MEDIA_EXPORT_PLUGIN], [test "x$enable_media_export_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_EXTERNAL_PLUGIN], [test "x$enable_external_plugin" = "xyes"])
@@ -236,7 +230,6 @@ src/Makefile
 src/rygel/Makefile
 src/ui/Makefile
 src/plugins/Makefile
-src/plugins/dvb/Makefile
 src/plugins/media-export/Makefile
 src/plugins/external/Makefile
 src/plugins/mediathek/Makefile
