@@ -35,16 +35,21 @@ public errordomain RootDeviceFactoryError {
  * Root device for that.
  */
 public class Rygel.RootDeviceFactory {
-    public static const string DESC_PREFIX = "Rygel";
-
     private Configuration config;
     private GUPnP.Context context;
+
+    private string desc_dir;
 
     public RootDeviceFactory () throws GLib.Error {
         this.config = MetaConfig.get_default ();
 
         /* Set up GUPnP context */
         this.context = create_upnp_context ();
+
+        /* We store the modified descriptions in the user's config dir */
+        this.desc_dir = Path.build_filename (Environment.get_user_config_dir (),
+                                             "Rygel");
+        this.ensure_dir_exists (this.desc_dir);
     }
 
     public RootDevice create (Plugin plugin) throws GLib.Error {
@@ -58,12 +63,9 @@ public class Rygel.RootDeviceFactory {
                             "Plugin disabled in user configuration.");
         }
 
-        string modified_desc = DESC_PREFIX + "-" + plugin.name + ".xml";
-
-        /* We store a modified description.xml in the user's config dir */
-        string desc_path = Path.build_filename
-                                    (Environment.get_user_config_dir (),
-                                     modified_desc);
+        string modified_desc = plugin.name + ".xml";
+        string desc_path = Path.build_filename (this.desc_dir,
+                                                modified_desc);
 
         /* Create the description xml */
         Xml.Doc *doc = this.create_desc (plugin, desc_path);
@@ -296,6 +298,14 @@ public class Rygel.RootDeviceFactory {
         var file = File.new_for_path (path);
 
         return file.query_exists (null);
+    }
+
+    private void ensure_dir_exists (string dir_path) throws Error {
+        if (!check_path_exist (dir_path)) {
+            var file = File.new_for_path (dir_path);
+
+            file.make_directory (null);
+        }
     }
 }
 
