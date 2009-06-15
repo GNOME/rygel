@@ -126,13 +126,15 @@ public class Rygel.MediaItem : MediaObject {
             // FIXME: Assuming that RTSP is always accompanied with RTP over UDP
             return "rtsp-rtp-udp";
         } else {
-            warning ("Failed to probe protocol for URI %s", uri);
-
             // Assume the protocol to be the scheme of the URI
             var tokens = uri.split (":", 2);
             if (tokens[0] == null) {
                 throw new MediaItemError.BAD_URI ("Bad URI: %s", uri);
             }
+
+            warning ("Failed to probe protocol for URI %s. Assuming '%s'",
+                     uri,
+                     tokens[0]);
 
             return tokens[0];
         }
