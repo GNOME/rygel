@@ -89,14 +89,21 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
      */
     public MediaExportRootContainer () {
         base.root ("MediaExportRoot", 0);
+        ArrayList<string> uris;
 
         this.children = new ArrayList<MediaExportContainer> ();
 
         var config = Rygel.MetaConfig.get_default ();
-        var uris = config.get_string_list ("MediaExport", "uris");
+
+        try {
+            uris = config.get_string_list ("MediaExport", "uris");
+        } catch (Error error) {
+            uris = new ArrayList<string> ();
+        }
 
         // either an error occured or the gconf key is not set
         if (uris.size == 0) {
+            debug("Nothing configured, using XDG special directories");
             var uri = Environment.get_user_special_dir (UserDirectory.MUSIC);
             if (uri != null)
                 uris.add (uri);
