@@ -239,6 +239,7 @@ src/plugins/external/Makefile
 src/plugins/gst-launch/Makefile
 src/plugins/mediathek/Makefile
 src/plugins/tracker/Makefile
+src/plugins/gst-renderer/Makefile
 src/plugins/test/Makefile
 data/Makefile
 data/xml/Makefile
