@@ -1,3 +1,9 @@
+if UNINSTALLED
+shareddir = $(abs_top_builddir)/data
+else
+shareddir = $(datadir)/rygel
+endif
+
 plugindir = $(libdir)/rygel-1.0
 
 plugin_LTLIBRARIES = librygel-mediathek.la
@@ -8,7 +14,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel \
-	    -DDATA_DIR='"$(datadir)"'
+	    -DDATA_DIR='"$(shareddir)"'
 
 librygel_mediathek_la_SOURCES = rygel-mediathek-asx-playlist.vala \
 				rygel-mediathek-plugin.vala \

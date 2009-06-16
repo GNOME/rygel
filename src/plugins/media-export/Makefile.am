@@ -1,3 +1,9 @@
+if UNINSTALLED
+shareddir = $(abs_top_builddir)/data
+else
+shareddir = $(datadir)/rygel
+endif
+
 plugindir = $(libdir)/rygel-1.0
 
 plugin_LTLIBRARIES = librygel-media-export.la

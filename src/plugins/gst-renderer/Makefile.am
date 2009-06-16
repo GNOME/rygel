@@ -1,3 +1,9 @@
+if UNINSTALLED
+shareddir = $(abs_top_builddir)/data
+else
+shareddir = $(datadir)/rygel
+endif
+
 plugindir = $(libdir)/rygel-1.0
 
 plugin_LTLIBRARIES = librygel-gst.la
@@ -7,8 +13,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(GTK_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
-	    $(LIBGCONF_CFLAGS) \
-	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
+	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"'
 
 BUILT_SOURCES = rygel-gst-connection-manager.c \
 		rygel-gst-rendering-control.c \

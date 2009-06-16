@@ -1,3 +1,9 @@
+if UNINSTALLED
+shareddir = $(abs_top_builddir)/data
+else
+shareddir = $(datadir)/rygel
+endif
+
 plugindir = $(libdir)/rygel-1.0
 
 plugin_LTLIBRARIES = librygel-external.la
@@ -7,7 +13,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
-	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
+	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"'
 
 librygel_external_la_SOURCES = rygel-external-content-dir.vala \
 			       rygel-external-container.vala \
