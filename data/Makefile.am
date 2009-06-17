@@ -38,6 +38,9 @@ $(desktop_DATA): $(desktop_in_files) Makefile
              $(srcdir)/$(@:.desktop=.desktop.in) > $@
 
 CLEANFILES = $(dbusservice_DATA) $(desktop_DATA)
-EXTRA_DIST = $(schema_DATA) $(dbusservice_in_files) $(desktop_in_files)
+EXTRA_DIST = rygel-maemo.schemas \
+	     rygel.schemas \
+	     $(dbusservice_in_files) \
+	     $(desktop_in_files)
 
 MAINTAINERCLEANFILES = Makefile.in
