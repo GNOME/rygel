@@ -171,8 +171,8 @@ librygel_configuration_a_SOURCES = rygel-configuration.c \
 vapidir = $(VAPIDIR)
 vapi_DATA = $(VAPI_FILES) $(DEPS_FILES)
 
-CLEANFILES = $(BUILT_SOURCES) rygel.stamp
-MAINTAINERCLEANFILES = Makefile.in
+CLEANFILES = rygel.stamp
+MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
 EXTRA_DIST = cstuff.vapi \
              $(VAPI_FILES) \
              $(DEPS_FILES) \

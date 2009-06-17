@@ -62,6 +62,6 @@ rygel_preferences_LDADD = $(LIBGUPNP_LIBS) \
                           -lrygel-configuration
 rygel_preferences_LDFLAGS = -export-dynamic
 
-CLEANFILES = $(BUILT_SOURCES) rygel.stamp
-MAINTAINERCLEANFILES = Makefile.in
+CLEANFILES = rygel.stamp
+MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
 EXTRA_DIST = $(BUILT_SOURCES) rygel.stamp

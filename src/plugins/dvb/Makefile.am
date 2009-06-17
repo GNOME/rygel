@@ -47,6 +47,6 @@ librygel_dvb_la_LIBADD = $(LIBGUPNP_LIBS) \
 	    		 $(LIBGCONF_LIBS)
 librygel_dvb_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
-CLEANFILES = $(BUILT_SOURCES) rygel-dvb.stamp
-MAINTAINERCLEANFILES = Makefile.in
+CLEANFILES = rygel-dvb.stamp
+MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
 EXTRA_DIST = $(BUILT_SOURCES) rygel-dvb.stamp

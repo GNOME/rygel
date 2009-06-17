@@ -56,6 +56,6 @@ librygel_mediathek_la_LIBADD = \
 
 librygel_mediathek_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
-CLEANFILES = $(BUILT_SOURCES) rygel-mediathek.stamp
-MAINTAINERCLEANFILES = Makefile.in
+CLEANFILES = rygel-mediathek.stamp
+MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
 EXTRA_DIST = $(BUILT_SOURCES) rygel-mediathek.stamp

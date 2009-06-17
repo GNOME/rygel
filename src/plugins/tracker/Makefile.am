@@ -71,6 +71,6 @@ librygel_media_tracker_la_LIBADD = $(LIBGUPNP_LIBS) \
 	    			   $(LIBGCONF_LIBS)
 librygel_media_tracker_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
-CLEANFILES = $(BUILT_SOURCES) rygel-media-tracker.stamp
-MAINTAINERCLEANFILES = Makefile.in
+CLEANFILES = rygel-media-tracker.stamp
+MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
 EXTRA_DIST = $(BUILT_SOURCES) rygel-media-tracker.stamp

@@ -52,6 +52,6 @@ librygel_media_media_export_la_LIBADD = \
 	$(GEE_LIBS)
 librygel_media_media_export_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
-CLEANFILES = $(BUILT_SOURCES) rygel-media-media-export.stamp
-MAINTAINERCLEANFILES = Makefile.in
+CLEANFILES = rygel-media-media-export.stamp
+MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
 EXTRA_DIST = $(BUILT_SOURCES) rygel-media-media-export.stamp
