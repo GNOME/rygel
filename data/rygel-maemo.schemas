@@ -38,7 +38,7 @@
         <applyto>/apps/rygel/general/enable-lpcm-transcoder</applyto>
         <owner>rygel</owner>
         <type>bool</type>
-        <default>FALSE</default>
+        <default>TRUE</default>
         <locale name="C">
 	<short>True if LPCM transcoding is supposed to be enabled.</short>
 	<long>True if LPCM transcoding is supposed to be enabled.</long>
