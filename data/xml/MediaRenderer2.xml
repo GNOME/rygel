@@ -1,29 +1,19 @@
-<!--============================================================
-Title: UPnP AV MediaRenderer:2 Device Template
-
-Purpose:
-To identify the required and optional services
-defined by this device type.
-
-NOTE: This file uses tabs (not spaces) for block indentation.
-Any updates to this file should maintain this convention.
-This includes disabling any automatic tab-to-space conversion
-feature enabled by your editor.
-============================================================-->
-<device>
-	<serviceList>
-		<service>
-		<serviceType>urn:schemas-upnp-org:service:RenderingControl:2</serviceType>
-			<serviceId>RenderingControl</serviceId>
-		</service>
-		<service>
-			<serviceType>urn:schemas-upnp-org:service:ConnectionManager:2</serviceType>
-			<serviceId>ConnectionManager</serviceId>
-		</service>
-		<service>
-			<Optional/>
-			<serviceType>urn:schemas-upnp-org:service:AVTransport:2</serviceType>
-			<serviceId>AVTransport</serviceId>
-		</service>
-	</serviceList>
-</device>
+<root xmlns="urn:schemas-upnp-org:device-1-0" xmlns:dlna="urn:schemas-dlna-org:device-1-0">
+  <specVersion>
+    <major>2</major>
+    <minor>0</minor>
+  </specVersion>
+  <device>
+    <deviceType>urn:schemas-upnp-org:device:MediaRenderer:2</deviceType>
+    <friendlyName></friendlyName>
+    <manufacturer>Rygel Developers</manufacturer>
+    <manufacturerURL>http://live.gnome.org/Rygel</manufacturerURL>
+    <modelName>Rygel</modelName>
+    <modelNumber>0.1</modelNumber>
+    <modelDescription></modelDescription>
+    <modelURL>http://live.gnome.org/Rygel</modelURL>
+    <UDN></UDN>
+    <serviceList>
+    </serviceList>
+  </device>
+</root>
