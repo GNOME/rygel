@@ -35,7 +35,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 $(desktop_DATA): $(desktop_in_files) Makefile
 	@sed -e "s,\$${prefix},${prefix},g" \
 	     -e "s,\$${version},${PACKAGE_VERSION},g" \
-             $(@:.desktop=.desktop.in) > $@
+             $(srcdir)/$(@:.desktop=.desktop.in) > $@
 
 CLEANFILES = $(dbusservice_DATA) $(desktop_DATA)
 EXTRA_DIST = $(schema_DATA) $(dbusservice_in_files) $(desktop_in_files)
