@@ -59,7 +59,15 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-media-object.c \
 		rygel-media-container.c \
 		rygel-simple-async-result.c \
-		rygel-media-item.c
+		rygel-media-item.c \
+		rygel-transcoder.c \
+		rygel-mp2ts-transcoder.c \
+		rygel-mp3-transcoder.c \
+		rygel-l16-transcoder.c \
+		rygel-mp2ts-transcoder-bin.c \
+		rygel-mp3-transcoder-bin.c \
+		rygel-l16-transcoder-bin.c \
+		rygel-gst-utils.c
 
 $(BUILT_SOURCES) : rygel.stamp
 
