@@ -39,29 +39,25 @@ public void module_init (PluginLoader loader) {
 }
 
 public class TrackerPluginFactory {
-    private const string DBUS_SERVICE = "org.freedesktop.DBus";
-    private const string DBUS_OBJECT = "/org/freedesktop/DBus";
-    private const string DBUS_IFACE = "org.freedesktop.DBus";
-
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker";
+    private const string TRACKER_OBJECT = "/org/freedesktop/Tracker";
+    private const string TRACKER_IFACE = "org.freedesktop.Tracker";
 
-    dynamic DBus.Object dbus_obj;
+    dynamic DBus.Object tracker;
     PluginLoader        loader;
 
     public TrackerPluginFactory (PluginLoader loader) throws DBus.Error {
         var connection = DBus.Bus.get (DBus.BusType.SESSION);
 
-        this.dbus_obj = connection.get_object (DBUS_SERVICE,
-                                               DBUS_OBJECT,
-                                               DBUS_IFACE);
+        this.tracker = connection.get_object (TRACKER_SERVICE,
+                                              TRACKER_OBJECT,
+                                              TRACKER_IFACE);
         this.loader = loader;
 
-        dbus_obj.StartServiceByName (TRACKER_SERVICE,
-                                     (uint32) 0,
-                                     this.start_service_cb);
+        tracker.GetVersion (this.get_version_cb);
     }
 
-    private void start_service_cb (uint32 status, GLib.Error err) {
+    private void get_version_cb (int32 version, GLib.Error err) {
         if (err != null) {
             warning ("Failed to start Tracker service: %s\n",
                      err.message);
