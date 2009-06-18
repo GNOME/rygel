@@ -137,7 +137,7 @@
         <applyto>/apps/rygel/MediaExport/enabled</applyto>
         <owner>rygel</owner>
         <type>bool</type>
-        <default>TRUE</default>
+        <default>FALSE</default>
         <locale name="C">
           <short>Enable MediaExport plugin.</short>
           <long>Enable MediaExport plugin.</long>
