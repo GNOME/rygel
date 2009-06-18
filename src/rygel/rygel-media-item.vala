@@ -44,6 +44,7 @@ public class Rygel.MediaItem : MediaObject {
     // Resource info
     public ArrayList<string> uris;
     public string mime_type;
+    public string dlna_profile;
 
     public long size = -1;       // Size in bytes
     public long duration = -1;   // Duration in seconds
@@ -84,6 +85,7 @@ public class Rygel.MediaItem : MediaObject {
 
         res.uri = uri;
         res.mime_type = this.mime_type;
+        res.dlna_profile = this.dlna_profile;
 
         res.size = this.size;
         res.duration = this.duration;
