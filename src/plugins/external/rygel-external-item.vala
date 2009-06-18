@@ -71,6 +71,11 @@ public class Rygel.ExternalItem : MediaItem {
         value = item_props.lookup ("MIMEType");
         this.mime_type = value.get_string ();
 
+        value = item_props.lookup ("DLNAProfile");
+        if (value != null) {
+            this.dlna_profile = value.get_string ();
+        }
+
         value = item_props.lookup ("URLs");
         weak string[] uris = (string[]) value.get_boxed ();
 
