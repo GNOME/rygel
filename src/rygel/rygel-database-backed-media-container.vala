@@ -25,7 +25,7 @@
 using Rygel;
 
 public class Rygel.DatabaseBackedMediaContainer : Rygel.MediaContainer {
-    private MediaDB media_db;
+    protected MediaDB media_db;
 
     public DatabaseBackedMediaContainer (Rygel.MediaDB media_db,
                                          string id,
@@ -50,7 +50,12 @@ public class Rygel.DatabaseBackedMediaContainer : Rygel.MediaContainer {
     public override Gee.List<MediaObject>? get_children_finish (
                                                            AsyncResult res)
                                                            throws GLib.Error {
-        return ((Rygel.SimpleAsyncResult<Gee.ArrayList<MediaObject>>)res).data;
+        var result = (Rygel.SimpleAsyncResult<Gee.ArrayList<MediaObject>>)res;
+
+        foreach (var obj in result.data) {
+            obj.parent = this;
+        }
+        return result.data;
     }
 
 
