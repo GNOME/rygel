@@ -55,13 +55,15 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
                                                 0,
                                                 null);
 
-        var uris = config.get_string_list (this.name, URIS_KEY);
-        foreach (var uri in uris) {
-            TreeIter iter;
+        try {
+            var uris = config.get_string_list (this.name, URIS_KEY);
+            foreach (var uri in uris) {
+                TreeIter iter;
 
-            this.liststore.append (out iter);
-            this.liststore.set (iter, 0, uri, -1);
-        }
+                this.liststore.append (out iter);
+                this.liststore.set (iter, 0, uri, -1);
+            }
+        } catch (GLib.Error err) {} // Nevermind
 
         var button = (Button) builder.get_object (ADD_BUTTON);
         button.clicked += this.on_add_button_clicked;
