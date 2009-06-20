@@ -90,10 +90,13 @@ public class Rygel.MediaDB : Object {
     "INSERT INTO Uri (object_fk, uri) VALUES (?,?)";
 
     private const string OBJECT_GET_STRING =
-    "SELECT Object.type_fk, Object.title, size, mime_type, width, height, " +
-            "class, author, album, date, bitrate, sample_freq, " +
-            "bits_per_sample, channels, track, color_depth, duration " +
-    "FROM Meta_Data LEFT OUTER JOIN Object " +
+    "SELECT type_fk, title, Meta_Data.size, Meta_Data.mime_type, " +
+            "Meta_Data.width, Meta_Data.height, " +
+            "Meta_Data.class, Meta_Data.author, Meta_Data.album, " +
+            "Meta_Data.date, Meta_Data.bitrate, Meta_Data.sample_freq, " +
+            "Meta_Data.bits_per_sample, Meta_Data.channels, " +
+            "Meta_Data.track, Meta_Data.color_depth, Meta_Data.duration " +
+    "FROM Object LEFT OUTER JOIN Meta_Data " +
         "ON Object.metadata_fk = Meta_Data.id WHERE Object.upnp_id = ?";
 
     private const string CHILDREN_GET_STRING =
