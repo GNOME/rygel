@@ -105,6 +105,9 @@ public class Rygel.MediaDB : Object {
     "WHERE Object.parent = ? " +
     "LIMIT ?,?";
 
+    private const string OBJECT_GET_URIS =
+    "SELECT uri FROM Uri WHERE Uri.object_fk = ?";
+
     private void open_db (string name) {
         var rc = Database.open (name, out this.db);
         if (rc != Sqlite.OK) {
@@ -332,6 +335,25 @@ public class Rygel.MediaDB : Object {
         }
     }
 
+    private void add_uris (MediaItem item) {
+        Statement statement;
+
+        var rc = db.prepare_v2 (OBJECT_GET_URIS,
+                                -1,
+                                out statement,
+                                null);
+        if (rc == Sqlite.OK) {
+            statement.bind_text (1, item.id);
+            while ((rc = statement.step ()) == Sqlite.ROW) {
+                item.uris.add (statement.column_text (0));
+            }
+        } else {
+            warning ("Failed to get uris for item %s: %s",
+                     item.id,
+                     db.errmsg ());
+        }
+    }
+
     private MediaObject? get_object_from_statement (string object_id, Statement statement) {
         MediaObject obj = null;
         switch (statement.column_int (0)) {
@@ -349,6 +371,7 @@ public class Rygel.MediaDB : Object {
                         statement.column_text (1),
                         statement.column_text (6));
                 fill_item (statement, (MediaItem)obj);
+                add_uris ((MediaItem)obj);
                 break;
             default:
                 // should not happen
