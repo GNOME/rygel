@@ -62,17 +62,21 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
 
         try {
             this.ip_entry.set_text (config.get_host_ip ());
-            this.port_spin.set_value (config.get_port ());
+        } catch (GLib.Error err) {
+            // No problem if we fail to read the config, the default values
+            // will do just fine
+        }
 
+        // We put these calls in separate try/catch block since its uncommon
+        // for these to fail
+        try {
+            this.port_spin.set_value (config.get_port ());
             this.upnp_check.active = this.config.get_upnp_enabled ();
             this.trans_check.active = this.config.get_transcoding ();
             this.mp3_check.active = this.config.get_mp3_transcoder ();
             this.mp2ts_check.active = this.config.get_mp2ts_transcoder ();
             this.lpcm_check.active = this.config.get_lpcm_transcoder ();
-        } catch (GLib.Error err) {
-            // No problem if we fail to read the config, the default values
-            // will do just fine
-        }
+        } catch (GLib.Error err) {} // Same goes for these keys
 
         this.trans_check.toggled += this.on_trans_check_toggled;
     }
