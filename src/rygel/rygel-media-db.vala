@@ -355,7 +355,7 @@ public class Rygel.MediaDB : Object {
                 break;
         }
 
-        return null;
+        return obj;
     }
 
     public MediaObject? get_object (string object_id) {
