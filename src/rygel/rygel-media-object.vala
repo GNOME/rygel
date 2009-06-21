@@ -21,6 +21,7 @@
  */
 
 using GUPnP;
+using Gee;
 
 /**
  * Represents a media object (container and item).
@@ -28,6 +29,7 @@ using GUPnP;
 public abstract class Rygel.MediaObject : GLib.Object {
     public string id;
     public string title;
+    public Gee.ArrayList<string> uris;
 
     // You can keep both a unowned and owned ref to parent of this MediaObject.
     // In most cases, one will only need to keep an unowned ref to avoid cyclic
@@ -39,4 +41,7 @@ public abstract class Rygel.MediaObject : GLib.Object {
     // mandatory.
     public unowned MediaContainer parent;
     public MediaContainer parent_ref;
+    construct {
+        uris = new ArrayList<string> ();
+    }
 }

@@ -203,6 +203,7 @@ public class Rygel.MediaDB : Object {
         var rc = db.exec ("BEGIN");
         try {
             create_object (container, -1);
+            save_uris (container);
             rc = db.exec ("COMMIT");
         } catch (Error error) {
             rc = db.exec ("ROLLBACK");
@@ -300,7 +301,7 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    private void save_uris (MediaItem item) throws Error {
+    private void save_uris (MediaObject obj) throws Error {
         Statement statement;
 
         var rc = db.prepare_v2 (URI_INSERT_STRING,
@@ -308,8 +309,8 @@ public class Rygel.MediaDB : Object {
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            foreach (var uri in item.uris) {
-                statement.bind_text (1, item.id);
+            foreach (var uri in obj.uris) {
+                statement.bind_text (1, obj.id);
                 statement.bind_text (2, uri);
                 rc = statement.step ();
                 if (rc != Sqlite.OK && rc != Sqlite.DONE) {
@@ -345,7 +346,7 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    private void add_uris (MediaItem item) {
+    private void add_uris (MediaObject obj) {
         Statement statement;
 
         var rc = db.prepare_v2 (OBJECT_GET_URIS,
@@ -353,13 +354,13 @@ public class Rygel.MediaDB : Object {
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            statement.bind_text (1, item.id);
+            statement.bind_text (1, obj.id);
             while ((rc = statement.step ()) == Sqlite.ROW) {
-                item.uris.add (statement.column_text (0));
+                obj.uris.add (statement.column_text (0));
             }
         } else {
-            warning ("Failed to get uris for item %s: %s",
-                     item.id,
+            warning ("Failed to get uris for obj %s: %s",
+                     obj.id,
                      db.errmsg ());
         }
     }
@@ -381,13 +382,15 @@ public class Rygel.MediaDB : Object {
                         statement.column_text (1),
                         statement.column_text (6));
                 fill_item (statement, (MediaItem)obj);
-                add_uris ((MediaItem)obj);
                 break;
             default:
                 // should not happen
                 break;
         }
 
+        if (obj != null) {
+            add_uris (obj);
+        }
         return obj;
     }
 

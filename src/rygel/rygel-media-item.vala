@@ -42,7 +42,6 @@ public class Rygel.MediaItem : MediaObject {
     public string upnp_class;
 
     // Resource info
-    public ArrayList<string> uris;
     public string mime_type;
     public string dlna_profile;
 
@@ -69,8 +68,6 @@ public class Rygel.MediaItem : MediaObject {
         this.parent = parent;
         this.title = title;
         this.upnp_class = upnp_class;
-
-        this.uris = new ArrayList<string> ();
     }
 
     // Live media items need to provide a nice working implementation of this
