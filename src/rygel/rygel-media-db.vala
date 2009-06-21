@@ -429,11 +429,12 @@ public class Rygel.MediaDB : Object {
         item.color_depth = statement.column_int (15);
     }
 
-    public Gee.ArrayList<MediaObject>? get_children (string object_id,
+    public Gee.ArrayList<MediaObject> get_children (string object_id,
                                                       uint offset,
                                                       uint max_count) {
         Statement statement;
-        Gee.ArrayList<MediaObject> children = null;
+        Gee.ArrayList<MediaObject> children =
+                                            new Gee.ArrayList<MediaObject> ();
         var rc = db.prepare_v2 (CHILDREN_GET_STRING,
                                 -1,
                                 out statement,
@@ -443,10 +444,6 @@ public class Rygel.MediaDB : Object {
             statement.bind_int64 (2, (int64)offset);
             statement.bind_int64 (3, (int64)max_count);
             while ((rc = statement.step ()) == Sqlite.ROW) {
-                if (children == null) {
-                    children = new Gee.ArrayList<MediaObject> ();
-                }
-
                 var child_id = statement.column_text (17);
                 children.add (get_object_from_statement (child_id, statement));
             }
