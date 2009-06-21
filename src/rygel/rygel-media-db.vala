@@ -100,10 +100,14 @@ public class Rygel.MediaDB : Object {
         "ON Object.metadata_fk = Meta_Data.id WHERE Object.upnp_id = ?";
 
     private const string CHILDREN_GET_STRING =
-    "SELECT Object.type_fk, Object.title, size, mime_type, width, height, " +
-            "class, author, album, date, bitrate, sample_freq, " +
-            "bits_per_sample, channels, track, color_depth, duration " +
-    "FROM Meta_Data LEFT OUTER JOIN Object " +
+    "SELECT type_fk, title, Meta_Data.size, Meta_Data.mime_type, " +
+            "Meta_Data.width, Meta_Data.height, " +
+            "Meta_Data.class, Meta_Data.author, Meta_Data.album, " +
+            "Meta_Data.date, Meta_Data.bitrate, Meta_Data.sample_freq, " +
+            "Meta_Data.bits_per_sample, Meta_Data.channels, " +
+            "Meta_Data.track, Meta_Data.color_depth, Meta_Data.duration, " +
+            "upnp_id " +
+    "FROM Object LEFT OUTER JOIN Meta_Data " +
         "ON Object.metadata_fk = Meta_Data.id " +
     "WHERE Object.parent = ? " +
     "LIMIT ?,?";
@@ -443,7 +447,8 @@ public class Rygel.MediaDB : Object {
                     children = new Gee.ArrayList<MediaObject> ();
                 }
 
-                children.add (get_object_from_statement (object_id, statement));
+                var child_id = statement.column_text (17);
+                children.add (get_object_from_statement (child_id, statement));
             }
         }
 
