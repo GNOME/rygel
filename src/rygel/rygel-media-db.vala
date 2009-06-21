@@ -115,6 +115,9 @@ public class Rygel.MediaDB : Object {
     private const string OBJECT_GET_URIS =
     "SELECT uri FROM Uri WHERE Uri.object_fk = ?";
 
+    private const string CHILDREN_COUNT_STRING =
+    "SELECT count(upnp_id) from Object where Object.parent = ?";
+
     private void open_db (string name) {
         var rc = Database.open (name, out this.db);
         if (rc != Sqlite.OK) {
@@ -427,6 +430,28 @@ public class Rygel.MediaDB : Object {
         item.width = statement.column_int (4);
         item.height = statement.column_int (5);
         item.color_depth = statement.column_int (15);
+    }
+
+    public int get_child_count (string object_id) {
+        Statement statement;
+        int count = 0;
+        var rc = db.prepare_v2 (CHILDREN_COUNT_STRING,
+                                -1,
+                                out statement,
+                                null);
+        if (rc == Sqlite.OK) {
+            statement.bind_text (1, object_id);
+            while ((rc = statement.step ()) == Sqlite.ROW) {
+                count = statement.column_int (0);
+                break;
+            }
+        } else {
+            warning ("Could not get child count for object %s: %s",
+                     object_id,
+                     db.errmsg ());
+        }
+
+        return count;
     }
 
     public Gee.ArrayList<MediaObject> get_children (string object_id,
