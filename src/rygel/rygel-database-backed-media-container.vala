@@ -30,7 +30,8 @@ public class Rygel.DatabaseBackedMediaContainer : Rygel.MediaContainer {
     public DatabaseBackedMediaContainer (Rygel.MediaDB media_db,
                                          string id,
                                          string title) {
-        base (id, null, title, 0);
+        var count = media_db.get_child_count (id);
+        base (id, null, title, count);
 
         this.media_db = media_db;
     }
