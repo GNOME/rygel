@@ -275,7 +275,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
             var children = container.get_children_finish (res);
             this.number_returned = children.size;
 
-            serialize_children (children);
+            this.serialize_children (children);
         } catch (Error err) {
             this.handle_error (err);
         }
