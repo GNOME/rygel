@@ -41,7 +41,7 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
     public void serialize (MediaObject media_object,
                            string      filter_str)
                            throws Error {
-        var filter = new Filter (filter_str);
+        var filter = new BrowseFilter (filter_str);
 
         if (media_object is MediaItem) {
             this.serialize_item ((MediaItem) media_object, filter);
@@ -53,7 +53,9 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         }
     }
 
-    private void serialize_item (MediaItem item, Filter filter) throws Error {
+    private void serialize_item (MediaItem    item,
+                                 BrowseFilter filter)
+                                 throws Error {
         this.start_item (item.id,
                          item.parent.id,
                          null,
@@ -134,7 +136,7 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
     }
 
     private void serialize_container (MediaContainer container,
-                                      Filter         filter)
+                                      BrowseFilter   filter)
                                       throws Error {
         string parent_id;
 
@@ -177,9 +179,9 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
     }
 }
 
-private class Rygel.Filter : ArrayList<string> {
-    public Filter (string filter_str) {
-        base ((GLib.EqualFunc) Filter.filter_equal_func);
+private class Rygel.BrowseFilter : ArrayList<string> {
+    public BrowseFilter (string filter_str) {
+        base ((GLib.EqualFunc) BrowseFilter.filter_equal_func);
 
         var tokens = filter_str.split (",", -1);
 
