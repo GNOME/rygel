@@ -38,18 +38,22 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         this.http_server = http_server;
     }
 
-    public void serialize (MediaObject media_object) throws Error {
+    public void serialize (MediaObject media_object,
+                           string      filter_str)
+                           throws Error {
+        var filter = new Filter (filter_str);
+
         if (media_object is MediaItem) {
-            this.serialize_item ((MediaItem) media_object);
+            this.serialize_item ((MediaItem) media_object, filter);
         } else if (media_object is MediaContainer) {
-            this.serialize_container ((MediaContainer) media_object);
+            this.serialize_container ((MediaContainer) media_object, filter);
         } else {
             throw new DIDLLiteWriterError.UNSUPPORTED_OBJECT (
                 "Unable to serialize unsupported object");
         }
     }
 
-    private void serialize_item (MediaItem item) throws Error {
+    private void serialize_item (MediaItem item, Filter filter) throws Error {
         this.start_item (item.id,
                          item.parent.id,
                          null,
@@ -61,23 +65,29 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
                          null,
                          item.title);
 
-        this.add_string ("class",
-                         GUPnP.DIDLLiteWriter.NAMESPACE_UPNP,
-                         null,
-                         item.upnp_class);
+        if ("class" in filter) {
+            this.add_string ("class",
+                             GUPnP.DIDLLiteWriter.NAMESPACE_UPNP,
+                             null,
+                             item.upnp_class);
+        }
 
         if (item.author != null && item.author != "") {
-            this.add_string ("creator",
-                             GUPnP.DIDLLiteWriter.NAMESPACE_DC,
-                             null,
-                             item.author);
+            if ("creator" in filter) {
+                this.add_string ("creator",
+                                 GUPnP.DIDLLiteWriter.NAMESPACE_DC,
+                                 null,
+                                 item.author);
+            }
 
-            if (item.upnp_class.has_prefix (MediaItem.VIDEO_CLASS)) {
+            if (item.upnp_class.has_prefix (MediaItem.VIDEO_CLASS) &&
+                "author" in filter) {
                 this.add_string ("author",
                                  GUPnP.DIDLLiteWriter.NAMESPACE_UPNP,
                                  null,
                                  item.author);
-            } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS)) {
+            } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS) &&
+                       "artist" in filter) {
                 this.add_string ("artist",
                                  GUPnP.DIDLLiteWriter.NAMESPACE_UPNP,
                                  null,
@@ -85,42 +95,46 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
             }
         }
 
-        if (item.track_number >= 0) {
+        if (item.track_number >= 0 && "originalTrackNumber" in filter) {
             this.add_int ("originalTrackNumber",
                           GUPnP.DIDLLiteWriter.NAMESPACE_UPNP,
                           null,
                           item.track_number);
         }
 
-        if (item.album != null && item.album != "") {
+        if (item.album != null && item.album != "" && "album" in filter) {
             this.add_string ("album",
                              GUPnP.DIDLLiteWriter.NAMESPACE_UPNP,
                              null,
                              item.album);
         }
 
-        if (item.date != null && item.date != "") {
+        if (item.date != null && item.date != "" && "date" in filter) {
             this.add_string ("date",
                              GUPnP.DIDLLiteWriter.NAMESPACE_DC,
                              null,
                              item.date);
         }
 
-        /* Add resource data */
-        var resources = this.get_original_resources (item);
+        if ("res" in filter) {
+            /* Add resource data */
+            var resources = this.get_original_resources (item);
 
-        /* Now get the transcoded/proxy URIs */
-        this.http_server.add_resources (resources, item);
+            /* Now get the transcoded/proxy URIs */
+            this.http_server.add_resources (resources, item);
 
-        foreach (DIDLLiteResource res in resources) {
-            this.add_res (res);
+            foreach (DIDLLiteResource res in resources) {
+                this.add_res (res);
+            }
         }
 
         /* End of item */
         this.end_item ();
     }
 
-    private void serialize_container (MediaContainer container) throws Error {
+    private void serialize_container (MediaContainer container,
+                                      Filter         filter)
+                                      throws Error {
         string parent_id;
 
         if (container.parent != null) {
@@ -134,11 +148,12 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
                               (int) container.child_count,
                               false,
                               false);
-
-        this.add_string ("class",
-                         GUPnP.DIDLLiteWriter.NAMESPACE_UPNP,
-                         null,
-                         "object.container.storageFolder");
+        if ("class" in filter) {
+            this.add_string ("class",
+                             GUPnP.DIDLLiteWriter.NAMESPACE_UPNP,
+                             null,
+                             "object.container.storageFolder");
+        }
 
         this.add_string ("title",
                          GUPnP.DIDLLiteWriter.NAMESPACE_DC,
@@ -162,3 +177,20 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         return resources;
     }
 }
+
+private class Rygel.Filter : ArrayList<string> {
+    public Filter (string filter_str) {
+        base ((GLib.EqualFunc) Filter.filter_equal_func);
+
+        var tokens = filter_str.split (",", -1);
+
+        foreach (var token in tokens) {
+            this.add (token);
+        }
+    }
+
+    private static bool filter_equal_func (string a, string b) {
+        return a == "*" || a == b;
+    }
+}
+

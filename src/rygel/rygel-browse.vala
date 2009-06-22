@@ -128,7 +128,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
         }
 
         try {
-            this.didl_writer.serialize (this.media_object);
+            this.didl_writer.serialize (this.media_object, this.filter);
         } catch (Error err) {
             this.handle_error (err);
             return;
@@ -247,7 +247,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
         /* serialize all children */
         for (int i = 0; i < children.size; i++) {
             try {
-                this.didl_writer.serialize (children[i]);
+                this.didl_writer.serialize (children[i], this.filter);
             } catch (Error err) {
                 this.handle_error (err);
                 return;
