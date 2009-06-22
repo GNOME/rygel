@@ -65,12 +65,10 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
                          null,
                          item.title);
 
-        if (filter.have ("class", NAMESPACE_UPNP)) {
-            this.add_string ("class",
-                             NAMESPACE_UPNP,
-                             null,
-                             item.upnp_class);
-        }
+        this.add_string ("class",
+                         NAMESPACE_UPNP,
+                         null,
+                         item.upnp_class);
 
         if (item.author != null && item.author != "") {
             if (filter.have ("creator", NAMESPACE_UPNP)) {
@@ -151,12 +149,10 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
                               (int) container.child_count,
                               false,
                               false);
-        if (filter.have ("class", NAMESPACE_UPNP)) {
-            this.add_string ("class",
-                             NAMESPACE_UPNP,
-                             null,
-                             "object.container.storageFolder");
-        }
+        this.add_string ("class",
+                         NAMESPACE_UPNP,
+                         null,
+                         "object.container.storageFolder");
 
         this.add_string ("title",
                          NAMESPACE_DC,
