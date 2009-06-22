@@ -61,13 +61,13 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
 
         /* Add fields */
         this.add_string ("title",
-                         GUPnP.DIDLLiteWriter.NAMESPACE_DC,
+                         NAMESPACE_DC,
                          null,
                          item.title);
 
         if (filter.have ("class", NAMESPACE_UPNP)) {
             this.add_string ("class",
-                             GUPnP.DIDLLiteWriter.NAMESPACE_UPNP,
+                             NAMESPACE_UPNP,
                              null,
                              item.upnp_class);
         }
@@ -75,7 +75,7 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         if (item.author != null && item.author != "") {
             if (filter.have ("creator", NAMESPACE_UPNP)) {
                 this.add_string ("creator",
-                                 GUPnP.DIDLLiteWriter.NAMESPACE_DC,
+                                 NAMESPACE_DC,
                                  null,
                                  item.author);
             }
@@ -83,13 +83,13 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
             if (item.upnp_class.has_prefix (MediaItem.VIDEO_CLASS) &&
                 filter.have ("author", NAMESPACE_UPNP)) {
                 this.add_string ("author",
-                                 GUPnP.DIDLLiteWriter.NAMESPACE_UPNP,
+                                 NAMESPACE_UPNP,
                                  null,
                                  item.author);
             } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS) &&
                        filter.have ("artist", NAMESPACE_UPNP)) {
                 this.add_string ("artist",
-                                 GUPnP.DIDLLiteWriter.NAMESPACE_UPNP,
+                                 NAMESPACE_UPNP,
                                  null,
                                  item.author);
             }
@@ -98,7 +98,7 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         if (item.track_number >= 0 &&
             filter.have ("originalTrackNumber", NAMESPACE_UPNP)) {
             this.add_int ("originalTrackNumber",
-                          GUPnP.DIDLLiteWriter.NAMESPACE_UPNP,
+                          NAMESPACE_UPNP,
                           null,
                           item.track_number);
         }
@@ -106,7 +106,7 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         if (item.album != null && item.album != "" &&
             filter.have ("album", NAMESPACE_UPNP)) {
             this.add_string ("album",
-                             GUPnP.DIDLLiteWriter.NAMESPACE_UPNP,
+                             NAMESPACE_UPNP,
                              null,
                              item.album);
         }
@@ -114,7 +114,7 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         if (item.date != null && item.date != "" &&
             filter.have ("date", NAMESPACE_DC)) {
             this.add_string ("date",
-                             GUPnP.DIDLLiteWriter.NAMESPACE_DC,
+                             NAMESPACE_DC,
                              null,
                              item.date);
         }
@@ -153,13 +153,13 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
                               false);
         if (filter.have ("class", NAMESPACE_UPNP)) {
             this.add_string ("class",
-                             GUPnP.DIDLLiteWriter.NAMESPACE_UPNP,
+                             NAMESPACE_UPNP,
                              null,
                              "object.container.storageFolder");
         }
 
         this.add_string ("title",
-                         GUPnP.DIDLLiteWriter.NAMESPACE_DC,
+                         NAMESPACE_DC,
                          null,
                          container.title);
 
