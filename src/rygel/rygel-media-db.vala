@@ -119,6 +119,8 @@ public class Rygel.MediaDB : Object {
     "SELECT count(upnp_id) from Object where Object.parent = ?";
 
     private void open_db (string name) {
+        var dirname = Path.get_dirname (name);
+        DirUtils.create_with_parents (dirname, 0750);
         var rc = Database.open (name, out this.db);
         if (rc != Sqlite.OK) {
             warning ("Failed to open database: %d, %s",
