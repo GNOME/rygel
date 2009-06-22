@@ -56,7 +56,15 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
     private void serialize_item (MediaItem    item,
                                  BrowseFilter filter)
                                  throws Error {
-        this.start_item (item.id, item.parent.id, null, false);
+        string parent_id;
+
+        if (item.parent != null) {
+            parent_id = item.parent.id;
+        } else {
+            parent_id = "0";
+        }
+
+        this.start_item (item.id, parent_id, null, false);
 
         /* Add fields */
         this.add_string ("title", NAMESPACE_DC, null, item.title);
