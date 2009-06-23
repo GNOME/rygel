@@ -180,7 +180,7 @@ private class Rygel.BrowseFilter : ArrayList<string> {
     }
 
     private static bool filter_equal_func (string a, string b) {
-        return a == "*" || a == b;
+        return a == "*" || a == b || a.has_prefix (b + "@");
     }
 }
 
