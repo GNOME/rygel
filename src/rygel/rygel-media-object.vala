@@ -29,5 +29,14 @@ public abstract class Rygel.MediaObject : GLib.Object {
     public string id;
     public string title;
 
+    // You can keep both a unowned and owned ref to parent of this MediaObject.
+    // In most cases, one will only need to keep an unowned ref to avoid cyclic
+    // references since usually parent container will keep refs to child items.
+    // However in some cases, one only wants the parent to exist as long as the
+    // child exists and it is in those cases, you will want to use 'parent_ref'.
+    //
+    // You must set 'parent' if you set 'parent_ref' but the opposite is not
+    // mandatory.
     public unowned MediaContainer parent;
+    public MediaContainer parent_ref;
 }
