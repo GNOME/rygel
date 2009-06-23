@@ -44,6 +44,7 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-content-directory.c \
 		rygel-browse.c \
 		rygel-didl-lite-writer.c \
+		rygel-browse-filter.c \
 		rygel-plugin.c \
 		rygel-plugin-loader.c \
 		rygel-transcode-manager.c \
@@ -83,6 +84,7 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-content-directory.c \
 		rygel-browse.c \
 		rygel-didl-lite-writer.c \
+		rygel-browse-filter.c \
 		rygel-plugin.c \
 		rygel-plugin-loader.c \
 		rygel-transcode-manager.c \
@@ -152,6 +154,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-media-item.vala \
 		    rygel-browse.vala \
 		    rygel-didl-lite-writer.vala \
+		    rygel-browse-filter.vala \
 		    rygel-transcoder.vala \
 		    rygel-mp2ts-transcoder.vala \
 		    rygel-mp3-transcoder.vala \
