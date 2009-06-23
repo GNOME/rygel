@@ -1,6 +1,6 @@
 plugindir = $(libdir)/rygel-1.0
 
-plugin_LTLIBRARIES = librygel-media-media-export.la
+plugin_LTLIBRARIES = librygel-media-export.la
 
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	$(LIBGUPNP_AV_CFLAGS) \
@@ -16,9 +16,9 @@ BUILT_SOURCES = rygel-media-export-root-container.c \
 		rygel-media-export-directory-search-result.c \
 		rygel-media-export-plugin.c
 
-$(BUILT_SOURCES) : rygel-media-media-export.stamp
+$(BUILT_SOURCES) : rygel-media-export.stamp
 
-librygel_media_media_export_la_SOURCES = \
+librygel_media_export_la_SOURCES = \
 	rygel-media-export-plugin.c \
 	rygel-media-export-plugin.vala \
 	rygel-media-export-root-container.c \
@@ -30,7 +30,7 @@ librygel_media_media_export_la_SOURCES = \
 	rygel-media-export-directory-search-result.c \
 	rygel-media-export-directory-search-result.vala
 
-rygel-media-media-export.stamp: $(filter %.vala,$(librygel_media_media_export_la_SOURCES))
+rygel-media-export.stamp: $(filter %.vala,$(librygel_media_export_la_SOURCES))
 	$(VALAC) -g -C --vapidir=$(top_srcdir)/src/rygel \
 	--pkg rygel-1.0 \
 	--pkg cstuff \
@@ -43,15 +43,15 @@ rygel-media-media-export.stamp: $(filter %.vala,$(librygel_media_media_export_la
 	$^
 	touch $@
 
-librygel_media_media_export_la_LIBADD = \
+librygel_media_export_la_LIBADD = \
 	$(LIBGUPNP_LIBS) \
 	$(LIBGUPNP_AV_LIBS) \
 	$(LIBDBUS_GLIB_LIBS) \
 	$(LIBGSTREAMER_LIBS) \
 	$(LIBGCONF_LIBS) \
 	$(GEE_LIBS)
-librygel_media_media_export_la_LDFLAGS = -shared -fPIC -module -avoid-version
+librygel_media_export_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
-CLEANFILES = rygel-media-media-export.stamp
+CLEANFILES = rygel-media-export.stamp
 MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
-EXTRA_DIST = $(BUILT_SOURCES) rygel-media-media-export.stamp
+EXTRA_DIST = $(BUILT_SOURCES) rygel-media-export.stamp
