@@ -111,6 +111,7 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
             this.http_server.add_resources (resources, item);
 
             foreach (DIDLLiteResource res in resources) {
+                filter.adjust_resource (ref res);
                 this.add_res (res);
             }
         }
@@ -176,6 +177,49 @@ private class Rygel.BrowseFilter : ArrayList<string> {
             return (prefix + ":" + prop) in this;
         } else {
             return (prop in this);
+        }
+    }
+
+    public void adjust_resource (ref DIDLLiteResource res) {
+        // Unset all optional props that are not requested
+        if (!this.have ("res@importUri", null)) {
+            res.import_uri = null;
+        }
+
+        if (!this.have ("res@protection", null)) {
+            res.protection = null;
+        }
+
+        if (!this.have ("res@size", null)) {
+            res.size = -1;
+        }
+
+        if (!this.have ("res@duration", null)) {
+            res.duration = -1;
+        }
+
+        if (!this.have ("res@bitrate", null)) {
+            res.bitrate = -1;
+        }
+
+        if (!this.have ("res@bitsPerSample", null)) {
+            res.bits_per_sample = -1;
+        }
+
+        if (!this.have ("res@sampleFrequency", null)) {
+            res.sample_freq = -1;
+        }
+
+        if (!this.have ("res@nrAudioChannels", null)) {
+            res.n_audio_channels = -1;
+        }
+
+        if (!this.have ("res@colorDepth", null)) {
+            res.color_depth = -1;
+        }
+
+        if (!this.have ("res@resolution", null)) {
+            res.width = res.height = -1;
         }
     }
 
