@@ -204,6 +204,9 @@ public class Rygel.RootDeviceFactory {
             return;
         }
 
+        // Clear the existing service list first
+        service_list_node->set_content ("");
+
         foreach (ResourceInfo resource_info in plugin.resource_infos) {
             // FIXME: We only support plugable services for now
             if (resource_info.type.is_a (typeof (Service))) {
@@ -217,9 +220,6 @@ public class Rygel.RootDeviceFactory {
     private void add_service_to_desc (Xml.Node    *service_list_node,
                                       string       plugin_name,
                                       ResourceInfo resource_info) {
-        // Clear the existing service list first
-        service_list_node->set_content ("");
-
         // Now create the service node
         Xml.Node *service_node = service_list_node->new_child (null, "service");
 
