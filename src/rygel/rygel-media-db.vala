@@ -111,6 +111,7 @@ public class Rygel.MediaDB : Object {
     "FROM Object LEFT OUTER JOIN Meta_Data " +
         "ON Object.metadata_fk = Meta_Data.id " +
     "WHERE Object.parent = ? " +
+        "ORDER BY Meta_Data.track ASC, title ASC " +
     "LIMIT ?,?";
 
     private const string OBJECT_GET_URIS =
