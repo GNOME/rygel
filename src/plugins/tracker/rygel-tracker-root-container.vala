@@ -59,10 +59,11 @@ public class Rygel.TrackerRootContainer : MediaContainer {
                                        uint               max_count,
                                        Cancellable?       cancellable,
                                        AsyncReadyCallback callback) {
-        uint stop = offset + max_count;
-
+        uint start = offset.clamp (0, this.child_count - 1);
+        uint stop = start + max_count;
         stop = stop.clamp (0, this.child_count);
-        var children = this.categories.slice ((int) offset, (int) stop);
+
+        var children = this.categories.slice ((int) start, (int) stop);
 
         var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (
                                         this,
