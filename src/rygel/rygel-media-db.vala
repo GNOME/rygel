@@ -95,7 +95,8 @@ public class Rygel.MediaDB : Object {
             "Meta_Data.class, Meta_Data.author, Meta_Data.album, " +
             "Meta_Data.date, Meta_Data.bitrate, Meta_Data.sample_freq, " +
             "Meta_Data.bits_per_sample, Meta_Data.channels, " +
-            "Meta_Data.track, Meta_Data.color_depth, Meta_Data.duration " +
+            "Meta_Data.track, Meta_Data.color_depth, Meta_Data.duration, " +
+            "Object.parent " +
     "FROM Object LEFT OUTER JOIN Meta_Data " +
         "ON Object.metadata_fk = Meta_Data.id WHERE Object.upnp_id = ?";
 
@@ -106,7 +107,7 @@ public class Rygel.MediaDB : Object {
             "Meta_Data.date, Meta_Data.bitrate, Meta_Data.sample_freq, " +
             "Meta_Data.bits_per_sample, Meta_Data.channels, " +
             "Meta_Data.track, Meta_Data.color_depth, Meta_Data.duration, " +
-            "upnp_id " +
+            "upnp_id, Object.parent " +
     "FROM Object LEFT OUTER JOIN Meta_Data " +
         "ON Object.metadata_fk = Meta_Data.id " +
     "WHERE Object.parent = ? " +
@@ -367,7 +368,7 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    private MediaObject? get_object_from_statement (string object_id, Statement statement) {
+    private MediaObject? get_object_from_statement (MediaContainer? parent, string object_id, Statement statement) {
         MediaObject obj = null;
         switch (statement.column_int (0)) {
             case 0:
@@ -380,6 +381,7 @@ public class Rygel.MediaDB : Object {
             case 1:
                 // this is an item
                 obj = factory.get_item (this,
+                        parent,
                         object_id,
                         statement.column_text (1),
                         statement.column_text (6));
@@ -408,7 +410,10 @@ public class Rygel.MediaDB : Object {
         if (rc == Sqlite.OK) {
             statement.bind_text (1, object_id);
             while ((rc = statement.step ()) == Sqlite.ROW) {
-                obj = get_object_from_statement (object_id, statement);
+                var parent = get_object (statement.column_text (17));
+                obj = get_object_from_statement ((MediaContainer)parent, object_id, statement);
+                obj.parent_ref = (MediaContainer)parent;
+                obj.parent = obj.parent_ref;
                 break;
             }
         } else {
@@ -475,7 +480,11 @@ public class Rygel.MediaDB : Object {
             statement.bind_int64 (3, (int64)max_count);
             while ((rc = statement.step ()) == Sqlite.ROW) {
                 var child_id = statement.column_text (17);
-                children.add (get_object_from_statement (child_id, statement));
+                var parent = get_object (statement.column_text (18));
+                children.add (get_object_from_statement
+                ((MediaContainer)parent, child_id, statement));
+                children[children.size - 1].parent = (MediaContainer)parent;
+                children[children.size - 1].parent_ref = (MediaContainer)parent;
             }
         }
 

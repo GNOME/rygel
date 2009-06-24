@@ -61,9 +61,10 @@ public class Rygel.MediaDBObjectFactory : Object {
      * @param upnp_class upnp_class of the item
      */
     public virtual MediaItem get_item (Rygel.MediaDB media_db,
+                                       MediaContainer parent,
                                        string id,
                                        string title,
                                        string upnp_class) {
-        return new MediaItem (id, null, title, upnp_class);
+        return new MediaItem (id, parent, title, upnp_class);
     }
 }

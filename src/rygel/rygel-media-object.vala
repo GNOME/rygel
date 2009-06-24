@@ -41,6 +41,7 @@ public abstract class Rygel.MediaObject : GLib.Object {
     // mandatory.
     public unowned MediaContainer parent;
     public MediaContainer parent_ref;
+
     construct {
         uris = new ArrayList<string> ();
     }
