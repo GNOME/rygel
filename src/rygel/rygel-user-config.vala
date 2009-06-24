@@ -52,6 +52,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     private static UserConfig config;
 
     protected KeyFile key_file;
+    private string path;          // Path to configuration file
 
     private dynamic DBus.Object dbus_obj;
     private dynamic DBus.Object rygel_obj;
@@ -128,13 +129,12 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         var dirs = new string[2];
         dirs[0] = Environment.get_user_config_dir ();
         dirs[1] = BuildConfig.SYS_CONFIG_DIR;
-        string full_path;
 
         this.key_file.load_from_dirs (CONFIG_FILE,
                                       dirs,
-                                      out full_path,
+                                      out this.path,
                                       KeyFileFlags.NONE);
-        debug ("Loaded user configuration from file '%s'", full_path);
+        debug ("Loaded user configuration from file '%s'", this.path);
 
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
@@ -146,6 +146,19 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         this.dbus_obj = connection.get_object (DBUS_SERVICE,
                                                DBUS_PATH,
                                                DBUS_INTERFACE);
+    }
+
+    public void save () {
+        size_t length;
+        var data = this.key_file.to_data (out length);
+
+        try {
+            FileUtils.set_contents (this.path, data, (long) length);
+        } catch (FileError err) {
+            critical ("Failed to save configuration data to file '%s': %s",
+                      this.path,
+                      err.message);
+        }
     }
 
     public bool get_enabled (string section) throws GLib.Error {
