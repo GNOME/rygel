@@ -8,7 +8,6 @@ rygeldir = $(top_srcdir)/src/rygel
 
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
-	    $(LIBGCONF_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
 	    $(GIO_CFLAGS) \
             $(GTK_CFLAGS) \
@@ -51,7 +50,6 @@ rygel.stamp: $(filter %.vala,$(rygel_preferences_SOURCES))
 
 rygel_preferences_LDADD = $(LIBGUPNP_LIBS) \
 	                  $(LIBGUPNP_AV_LIBS) \
-                          $(LIBGCONF_LIBS) \
                           $(LIBGSTREAMER_LIBS) \
                           $(GIO_LIBS) \
                           $(GEE_LIBS) \

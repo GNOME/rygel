@@ -22,14 +22,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using GConf;
 using CStuff;
 
 /**
  * Manages the user configuration for Rygel.
  */
 public class Rygel.UserConfig : GLib.Object, Configuration {
-    protected static const string ROOT_GCONF_PATH = "/apps/rygel/";
+    protected static const string CONFIG_FILE = "rygel.conf";
     protected static const string IP_KEY = "host-ip";
     protected static const string PORT_KEY = "port";
     protected static const string ENABLED_KEY = "enabled";
@@ -52,7 +51,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     // Our singleton
     private static UserConfig config;
 
-    protected GConf.Client gconf;
+    protected KeyFile key_file;
 
     private dynamic DBus.Object dbus_obj;
     private dynamic DBus.Object rygel_obj;
@@ -115,7 +114,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         this.set_bool ("general", LPCM_TRANSCODER_KEY, value);
     }
 
-    public static UserConfig get_default () {
+    public static UserConfig get_default () throws Error {
         if (config == null) {
             config = new UserConfig ();
         }
@@ -123,8 +122,19 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         return config;
     }
 
-    public UserConfig () {
-        this.gconf = GConf.Client.get_default ();
+    public UserConfig () throws Error {
+        this.key_file = new KeyFile ();
+
+        var dirs = new string[2];
+        dirs[0] = Environment.get_user_config_dir ();
+        dirs[1] = BuildConfig.SYS_CONFIG_DIR;
+        string full_path;
+
+        this.key_file.load_from_dirs (CONFIG_FILE,
+                                      dirs,
+                                      out full_path,
+                                      KeyFileFlags.NONE);
+        debug ("Loaded user configuration from file '%s'", full_path);
 
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
@@ -148,10 +158,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
     public string get_string (string section,
                               string key) throws GLib.Error {
-        string val;
-        var path = ROOT_GCONF_PATH + section + "/" + key;
-
-        val = this.gconf.get_string (path);
+        var val = this.key_file.get_string (section, key);
 
         if (val == null || val == "") {
             throw new ConfigurationError.NO_VALUE_SET (
@@ -165,18 +172,10 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                                                   string key)
                                                   throws GLib.Error {
         var str_list = new Gee.ArrayList<string> ();
-        var path = ROOT_GCONF_PATH + section + "/" + key;
+        var strings = this.key_file.get_string_list (section, key);
 
-        unowned SList<string> strings = this.gconf.get_list (
-                path,
-                GConf.ValueType.STRING);
-        if (strings != null) {
-            foreach (var str in strings) {
-                str_list.add (str);
-            }
-        } else {
-            throw new ConfigurationError.NO_VALUE_SET (
-                                        "No value available for '%s'", key);
+        foreach (var str in strings) {
+            str_list.add (str);
         }
 
         return str_list;
@@ -187,10 +186,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                         int    min,
                         int    max)
                         throws GLib.Error {
-        int val;
-        var path = ROOT_GCONF_PATH + section + "/" + key;
-
-        val = this.gconf.get_int (path);
+        int val = this.key_file.get_integer (section, key);
 
         if (val < min || val > max) {
             throw new ConfigurationError.VALUE_OUT_OF_RANGE (
@@ -204,17 +200,10 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                                             string key)
                                             throws GLib.Error {
         var int_list = new Gee.ArrayList<int> ();
-        var path = ROOT_GCONF_PATH + section + "/" + key;
+        var ints = this.key_file.get_integer_list (section, key);
 
-        unowned SList<int> ints = this.gconf.get_list (path,
-                                                       GConf.ValueType.INT);
-        if (ints != null) {
-            foreach (var num in ints) {
-                int_list.add (num);
-            }
-        } else {
-            throw new ConfigurationError.NO_VALUE_SET (
-                                        "No value available for '%s'", key);
+        foreach (var num in ints) {
+            int_list.add (num);
         }
 
         return int_list;
@@ -223,75 +212,41 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     public bool get_bool (string section,
                           string key)
                           throws GLib.Error {
-        bool val;
-        var path = ROOT_GCONF_PATH + section + "/" + key;
-
-        unowned GConf.Value value = this.gconf.get (path);
-        if (value != null) {
-            val = value.get_bool ();
-        } else {
-            throw new ConfigurationError.NO_VALUE_SET (
-                                        "No value available for '%s'", key);
-        }
-
-        return val;
+        return this.key_file.get_boolean (section, key);
     }
 
     public void set_string (string section,
                             string key,
                             string value) {
-        var path = ROOT_GCONF_PATH + section + "/" + key;
-
-        try {
-            this.gconf.set_string (path, value);
-        } catch (GLib.Error error) {
-            // No big deal
-        }
+        this.key_file.set_string (section, key, value);
     }
 
     public void set_string_list (string                section,
                                  string                key,
                                  Gee.ArrayList<string> str_list) {
-        var path = ROOT_GCONF_PATH + section + "/" + key;
-
         // GConf requires us to provide it GLib.SList
-        SList<string> slist = null;
+        var strings = new string[str_list.size];
+        int i = 0;
 
         foreach (var str in str_list) {
             if (str != "") {
-                slist.append (str);
+                strings[i++] = str;
             }
         }
 
-        try {
-            this.gconf.set_list (path, GConf.ValueType.STRING, slist);
-        } catch (GLib.Error error) {
-            // No big deal
-        }
+        this.key_file.set_string_list (section, key, strings);
     }
 
     public void set_int (string section,
                          string key,
                          int    value) {
-        var path = ROOT_GCONF_PATH + section + "/" + key;
-
-        try {
-            this.gconf.set_int (path, value);
-        } catch (GLib.Error error) {
-            // No big deal
-        }
+        this.key_file.set_integer (section, key, value);
     }
 
     public void set_bool (string section,
                           string key,
                           bool   value) {
-        var path = ROOT_GCONF_PATH + section + "/" + key;
-
-        try {
-            this.gconf.set_bool (path, value);
-        } catch (GLib.Error error) {
-            // No big deal
-        }
+        this.key_file.set_boolean (section, key, value);
     }
 
     private void enable_upnp (bool enable) {

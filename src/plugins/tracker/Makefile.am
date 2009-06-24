@@ -7,7 +7,6 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
             $(LIBGSTREAMER_CFLAGS) \
 	    $(GEE_CFLAGS) \
-	    $(LIBGCONF_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
 
 BUILT_SOURCES = rygel-media-tracker.c \
@@ -67,8 +66,7 @@ librygel_media_tracker_la_LIBADD = $(LIBGUPNP_LIBS) \
 			       	   $(LIBGUPNP_AV_LIBS) \
 				   $(LIBDBUS_GLIB_LIBS) \
 	                           $(LIBGSTREAMER_LIBS) \
-				   $(GEE_LIBS) \
-	    			   $(LIBGCONF_LIBS)
+				   $(GEE_LIBS)
 librygel_media_tracker_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
 CLEANFILES = rygel-media-tracker.stamp

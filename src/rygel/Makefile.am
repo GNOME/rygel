@@ -14,7 +14,6 @@ endif
 
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
-	    $(LIBGCONF_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
 	    $(GIO_CFLAGS) \
 	    $(GEE_CFLAGS) \
@@ -128,7 +127,6 @@ rygel.stamp: $(filter %.vala,$(rygel_SOURCES))
 
 rygel_LDADD = $(LIBGUPNP_LIBS) \
 	      $(LIBGUPNP_AV_LIBS) \
-	      $(LIBGCONF_LIBS) \
 	      $(LIBGSTREAMER_LIBS) \
 	      $(GIO_LIBS) \
 	      $(GEE_LIBS) \

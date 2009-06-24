@@ -22,7 +22,6 @@ VALA_REQUIRED=0.7.4
 GUPNP_REQUIRED=0.12.5
 GUPNP_AV_REQUIRED=0.4
 GUPNP_VALA_REQUIRED=0.5.3
-GCONF_REQUIRED=2.16
 DBUS_GLIB_REQUIRED=0.74
 GSTREAMER_REQUIRED=0.10.23
 GIO_REQUIRED=2.16
@@ -34,7 +33,6 @@ LIBSQLITE3_REQUIRED=3.5
 
 PKG_CHECK_MODULES(LIBGUPNP, gupnp-1.0 >= $GUPNP_REQUIRED)
 PKG_CHECK_MODULES(LIBGUPNP_AV, gupnp-av-1.0 >= $GUPNP_AV_REQUIRED)
-PKG_CHECK_MODULES(LIBGCONF, gconf-2.0 >= $GCONF_REQUIRED)
 PKG_CHECK_MODULES(LIBDBUS_GLIB, dbus-glib-1 >= $DBUS_GLIB_REQUIRED)
 PKG_CHECK_MODULES(LIBGSTREAMER, gstreamer-0.10 >= $GSTREAMER_REQUIRED)
 PKG_CHECK_MODULES(LIBGIO, gio-2.0 >= $GIO_REQUIRED)
@@ -84,10 +82,6 @@ if test x$enable_vala = xyes ; then
     AC_CHECK_FILE("${VAPIDIR}/dbus-glib-1.vapi",
                   true,
                   [AC_MSG_ERROR("Unable to find Vala bindings for dbus-glib-1")])
-
-    AC_CHECK_FILE("${VAPIDIR}/gconf-2.0.vapi",
-                  true,
-                  [AC_MSG_ERROR("Unable to find Vala bindings for gconf-2.0")])
 
     AC_CHECK_FILE("${VAPIDIR}/gstreamer-0.10.vapi",
                   true,

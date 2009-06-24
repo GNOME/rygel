@@ -7,7 +7,6 @@ AM_CFLAGS = \
 	$(LIBGUPNP_AV_CFLAGS) \
 	$(LIBDBUS_GLIB_CFLAGS) \
 	$(LIBGSTREAMER_CFLAGS) \
-	$(LIBGCONF_CFLAGS) \
 	$(GEE_CFLAGS) \
 	-I$(top_srcdir)/src/rygel \
 	-DDATA_DIR='"$(datadir)"'
@@ -51,7 +50,6 @@ librygel_mediathek_la_LIBADD = \
 	$(LIBGUPNP_AV_LIBS) \
 	$(LIBDBUS_GLIB_LIBS) \
 	$(LIBGSTREAMER_LIBS) \
-	$(LIBGCONF_LIBS) \
 	$(GEE_LIBS)
 
 librygel_mediathek_la_LDFLAGS = -shared -fPIC -module -avoid-version
