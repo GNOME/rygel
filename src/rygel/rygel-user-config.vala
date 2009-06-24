@@ -123,12 +123,15 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         return config;
     }
 
-    public UserConfig () throws Error {
+    public UserConfig (bool read_only=true) throws Error {
         this.key_file = new KeyFile ();
 
         var dirs = new string[2];
         dirs[0] = Environment.get_user_config_dir ();
-        dirs[1] = BuildConfig.SYS_CONFIG_DIR;
+        if (!read_only) {
+            // We only write to user config
+            dirs[1] = BuildConfig.SYS_CONFIG_DIR;
+        }
 
         this.key_file.load_from_dirs (CONFIG_FILE,
                                       dirs,
@@ -136,6 +139,9 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                                       KeyFileFlags.KEEP_COMMENTS |
                                       KeyFileFlags.KEEP_TRANSLATIONS);
         debug ("Loaded user configuration from file '%s'", this.path);
+        if (read_only) {
+            this.path = null; // No need to keep the path around
+        }
 
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
@@ -150,6 +156,8 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     }
 
     public void save () {
+        return_if_fail (this.path != null);
+
         size_t length;
         var data = this.key_file.to_data (out length);
 
