@@ -60,23 +60,6 @@ public class Rygel.MediaExportHarvester : GLib.Object {
     private File origin;
     private MediaContainer parent;
 
-    private void dump_queues () {
-        print ("directories queue\n==================\n");
-        for (int i = 0; i < directories.length; i++) {
-            print ("\t%s\n", directories.peek_nth (i).get_basename ());
-        }
-
-        print ("files queue\n==================\n");
-        for (int i = 0; i < files.length; i++) {
-            print ("\t%s\n", files.peek_nth (i).get_basename ());
-        }
-
-        print ("container queue\n==================\n");
-        for (int i = 0; i < containers.length; i++) {
-            print ("\t%s\n", containers.peek_nth (i).title);
-        }
-    }
-
     public MediaExportHarvester (MediaContainer parent,
                                  MediaDB media_db,
                                  MetadataExtractor extractor) {
@@ -124,7 +107,6 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                     } else {
                         this.files.push_tail (file);
                     }
-                    dump_queues ();
                 }
 
                 enumerator.next_files_async (10,
@@ -155,7 +137,6 @@ public class Rygel.MediaExportHarvester : GLib.Object {
     }
 
     private bool on_idle () {
-        dump_queues ();
         if (this.files.get_length () > 0) {
             var candidate = this.files.peek_head ();
             this.extractor.extract (candidate);
