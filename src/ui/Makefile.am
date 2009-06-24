@@ -14,6 +14,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(UUID_CFLAGS) \
 	    $(LIBSOUP_CFLAGS) \
+	    $(LIBDBUS_GLIB_CFLAGS) \
 	    -I$(top_srcdir) -I$(rygeldir) -DDATA_DIR='"$(shareddir)"' \
 	    -include config.h
 
@@ -56,6 +57,7 @@ rygel_preferences_LDADD = $(LIBGUPNP_LIBS) \
                           $(UUID_LIBS) \
                           $(LIBSOUP_LIBS) \
                           $(GTK_LIBS) \
+	    		  $(LIBDBUS_GLIB_LIBS) \
                           -L$(abs_top_builddir)/src/rygel \
                           -lrygel-configuration
 rygel_preferences_LDFLAGS = -export-dynamic
