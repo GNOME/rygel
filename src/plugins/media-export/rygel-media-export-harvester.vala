@@ -23,11 +23,13 @@ using Gee;
 using Rygel;
 
 internal class DummyContainer : Rygel.MediaContainer {
+    public File file;
     public DummyContainer (File file, MediaContainer parent) {
         var id = Checksum.compute_for_string (ChecksumType.MD5,
                                               file.get_uri ());
         base (id, parent, file.get_basename (), 0);
         this.parent_ref = parent;
+        this.file = file;
     }
 
 
@@ -54,7 +56,6 @@ internal class DummyContainer : Rygel.MediaContainer {
 public class Rygel.MediaExportHarvester : GLib.Object {
     private MetadataExtractor extractor;
     private MediaDB media_db;
-    private Queue<File> directories;
     private Queue<MediaContainer> containers;
     private Queue<File> files;
     private File origin;
@@ -68,9 +69,8 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         this.media_db = media_db;
         this.extractor.extraction_done.connect (on_extracted_cb);
         this.extractor.error.connect (on_extractor_error_cb);
-        this.directories = new Queue<File> ();
         this.files = new Queue<File> ();
-        this.containers = new Queue<MediaContainer> ();
+        this.containers = new Queue<DummyContainer> ();
         this.origin = null;
         Idle.add (this.on_idle);
     }
@@ -82,7 +82,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         } catch (Error error) {
             // TODO
         }
-        this.directories.pop_head ();
+
         if (this.files.get_length() == 0 && this.containers.get_length () != 0) {
             this.containers.pop_head ();
         }
@@ -96,10 +96,9 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             var list = enumerator.next_files_finish (res);
             if (list != null) {
                 foreach (var info in list) {
-                    var dir = this.directories.peek_head ();
+                    var dir = ((DummyContainer)this.containers.peek_head ()).file;
                     var file = dir.get_child (info.get_name ());
                     if (info.get_file_type () == FileType.DIRECTORY) {
-                        this.directories.push_tail (file);
                         this.containers.push_tail (
                             new DummyContainer (file,
                                this.containers.peek_head ()));
@@ -140,8 +139,8 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         if (this.files.get_length () > 0) {
             var candidate = this.files.peek_head ();
             this.extractor.extract (candidate);
-        } else if (this.directories.get_length () > 0) {
-            var directory = this.directories.peek_head ();
+        } else if (this.containers.get_length () > 0) {
+            var directory = ((DummyContainer)this.containers.peek_head ()).file;
             directory.enumerate_children_async (
                             FILE_ATTRIBUTE_STANDARD_TYPE + "," +
                             FILE_ATTRIBUTE_STANDARD_NAME,
@@ -188,7 +187,6 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                              null);
                 if (info.get_file_type () == FileType.DIRECTORY) {
                     this.origin = file;
-                    this.directories.push_tail (file);
                     this.containers.push_tail (
                                 new DummyContainer (file,
                                                           this.parent));
@@ -209,8 +207,6 @@ public class Rygel.MediaExportHarvester : GLib.Object {
 
     private void on_extracted_cb (File file, Gst.TagList tag_list) {
         if (file == this.files.peek_head ()) {
-            debug ("successfully harvested file %s", file.get_uri ());
-
             var item = MediaExportItem.create_from_taglist (
                                                this.containers.peek_head (),
                                                file,
