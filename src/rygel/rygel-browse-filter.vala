@@ -87,7 +87,10 @@ internal class Rygel.BrowseFilter : ArrayList<string> {
     }
 
     private static bool filter_equal_func (string a, string b) {
-        return a == "*" || a == b || a.has_prefix (b + "@");
+        return a == "*" ||              // Wildcard
+               a == b ||                // Exact match
+               a == "@" + b ||          // top-level attribute, e.g @childCount
+               a.has_prefix (b + "@");  // Attribute implies containing element
     }
 }
 
