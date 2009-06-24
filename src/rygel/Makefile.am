@@ -22,7 +22,8 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBSOUP_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
 	    $(LIBSQLITE3_CFLAGS) \
-	    -I$(top_srcdir) -DDATA_DIR='"$(shareddir)"' \
+	    -I$(top_srcdir) \
+	    -DDATA_DIR='"$(shareddir)"' -DSYS_CONFIG_DIR='"$(sysconfdir)"'\
 	    -DPLUGIN_DIR='"$(plugindir)"' -DDESKTOP_DIR='"$(desktopdir)"'\
 	    -include config.h
 
