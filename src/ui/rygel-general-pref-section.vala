@@ -62,6 +62,7 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
 
         try {
             this.ip_entry.set_text (config.get_host_ip ());
+            this.port_spin.set_value (config.get_port ());
         } catch (GLib.Error err) {
             // No problem if we fail to read the config, the default values
             // will do just fine
@@ -70,7 +71,6 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
         // We put these calls in separate try/catch block since its uncommon
         // for these to fail
         try {
-            this.port_spin.set_value (config.get_port ());
             this.upnp_check.active = this.config.get_upnp_enabled ();
             this.trans_check.active = this.config.get_transcoding ();
             this.mp3_check.active = this.config.get_mp3_transcoder ();
