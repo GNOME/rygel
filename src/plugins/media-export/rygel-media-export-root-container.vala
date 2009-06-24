@@ -34,6 +34,7 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
                                        Cancellable? cancellable,
                                        AsyncReadyCallback callback)
     {
+        debug ("Get children called for root container");
         this.root_container.get_children (offset,
                                           max_count,
                                           cancellable,
@@ -117,11 +118,12 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
                                 extractor);
                     this.harvester.add (harvest);
                     harvest.harvest (file);
-                } else {
-                    this.child_count++;
-                    this.updated ();
                 }
             }
         }
+
+        this.child_count = this.root_container.child_count;
+
+        debug ("Root container child count: %u", child_count);
     }
 }
