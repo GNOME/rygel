@@ -23,64 +23,11 @@ using Gee;
 /**
  * Represents the root container.
  */
-public class Rygel.MediaExportRootContainer : MediaContainer {
-    private MediaDB media_db;
-    private DatabaseBackedMediaContainer root_container;
+public class Rygel.MediaExportRootContainer : DatabaseBackedMediaContainer {
     private MetadataExtractor extractor;
     private Gee.ArrayList<MediaExportHarvester> harvester;
 
-    public override void get_children (uint offset,
-                                       uint max_count,
-                                       Cancellable? cancellable,
-                                       AsyncReadyCallback callback)
-    {
-        debug ("Get children called for root container");
-        this.root_container.get_children (offset,
-                                          max_count,
-                                          cancellable,
-                                          callback);
-    }
-
-    public override Gee.List<MediaObject>? get_children_finish (
-                                                    AsyncResult res)
-                                                    throws GLib.Error {
-        return this.root_container.get_children_finish (res);
-    }
-
-    public override void find_object (string id,
-                                      Cancellable? cancellable,
-                                      AsyncReadyCallback callback) {
-        this.root_container.find_object (id,
-                                         cancellable,
-                                         callback);
-    }
-
-    public override MediaObject? find_object_finish (AsyncResult res)
-                                                     throws GLib.Error {
-        return this.root_container.find_object_finish (res);
-    }
-
-    /**
-     * Create a new root container.
-     */
-    public MediaExportRootContainer () {
-        base.root ("MediaExportRoot", 0);
-        var media_db_path = Path.build_filename (
-                                            Environment.get_user_cache_dir (),
-                                            Environment.get_prgname (),
-                                            "media-export.db");
-
-        debug("Using media database %s", media_db_path);
-
-        this.media_db = new MediaDB(media_db_path);
-        this.extractor = new MetadataExtractor ();
-
-
-        this.root_container = new DatabaseBackedMediaContainer (this.media_db,
-                                                                "0",
-                                                                "MediaExportRoot");
-
-        this.harvester = new Gee.ArrayList<MediaExportHarvester> ();
+    private Gee.ArrayList<string> get_uris () {
         ArrayList<string> uris;
 
         var config = Rygel.MetaConfig.get_default ();
@@ -107,23 +54,39 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
                 uris.add (uri);
         }
 
+        return uris;
+    }
+
+    /**
+     * Create a new root container.
+     */
+    public MediaExportRootContainer () {
+        var media_db_path = Path.build_filename (
+                                            Environment.get_user_cache_dir (),
+                                            Environment.get_prgname (),
+                                            "media-export.db");
+        debug("Using media database %s", media_db_path);
+        var db = new MediaDB(media_db_path);
+        base (db, "0", "MediaExportRoot");
+
+        this.extractor = new MetadataExtractor ();
+        this.harvester = new Gee.ArrayList<MediaExportHarvester> ();
+
+        var uris = get_uris ();
+
         foreach (var uri in uris) {
             var file = File.new_for_commandline_arg (uri);
             if (file.query_exists (null)) {
                 var id = Checksum.compute_for_string (ChecksumType.MD5,
                                                       file.get_uri ());
                 if (!this.media_db.exists (id)) {
-                    var harvest =
-                        new MediaExportHarvester (this.root_container, media_db,
-                                extractor);
+                    var harvest = new MediaExportHarvester (this,
+                                                            media_db,
+                                                            extractor);
                     this.harvester.add (harvest);
                     harvest.harvest (file);
                 }
             }
         }
-
-        this.child_count = this.root_container.child_count;
-
-        debug ("Root container child count: %u", child_count);
     }
 }
