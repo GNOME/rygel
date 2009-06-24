@@ -117,7 +117,10 @@ public class Rygel.MediaDB : Object {
     "SELECT uri FROM Uri WHERE Uri.object_fk = ?";
 
     private const string CHILDREN_COUNT_STRING =
-    "SELECT count(upnp_id) from Object where Object.parent = ?";
+    "SELECT COUNT(upnp_id) FROM Object WHERE Object.parent = ?";
+
+    private const string OBJECT_EXISTS_STRING =
+    "SELECT COUNT(upnp_id) FROM Object WHERE Object.upnp_id = ?";
 
     private void open_db (string name) {
         var dirname = Path.get_dirname (name);
@@ -463,6 +466,29 @@ public class Rygel.MediaDB : Object {
 
         return count;
     }
+
+    public bool exists (string object_id) {
+        Statement statement;
+        bool exists = false;
+        var rc = db.prepare_v2 (OBJECT_EXISTS_STRING,
+                                -1,
+                                out statement,
+                                null);
+        if (rc == Sqlite.OK) {
+            statement.bind_text (1, object_id);
+            while ((rc = statement.step ()) == Sqlite.ROW) {
+                exists = statement.column_int (0) == 1;
+                break;
+            }
+        } else {
+            warning ("Could not get child count for object %s: %s",
+                     object_id,
+                     db.errmsg ());
+        }
+
+        return exists;
+    }
+
 
     public Gee.ArrayList<MediaObject> get_children (string object_id,
                                                       uint offset,
