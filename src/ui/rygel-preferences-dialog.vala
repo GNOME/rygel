@@ -28,12 +28,13 @@ public class Rygel.PreferencesDialog : GLib.Object {
     const string UI_FILE = BuildConfig.DATA_DIR + "/rygel-preferences.ui";
     const string DIALOG = "preferences-dialog";
 
+    UserConfig config;
     Builder builder;
     Dialog dialog;
     ArrayList<PreferencesSection> sections;
 
     public PreferencesDialog () throws Error {
-        var config = UserConfig.get_default ();
+        this.config = UserConfig.get_default ();
 
         this.builder = new Builder ();
 
@@ -43,11 +44,10 @@ public class Rygel.PreferencesDialog : GLib.Object {
         assert (this.dialog != null);
 
         this.sections = new ArrayList<PreferencesSection> ();
-        this.sections.add (new GeneralPrefSection (this.builder, config));
-        this.sections.add (new TrackerPrefSection (this.builder,
-                                                   config));
+        this.sections.add (new GeneralPrefSection (this.builder, this.config));
+        this.sections.add (new TrackerPrefSection (this.builder, this.config));
         this.sections.add (new MediaExportPrefSection (this.builder,
-                                                       config));
+                                                       this.config));
     }
 
     public void run () {
@@ -56,6 +56,8 @@ public class Rygel.PreferencesDialog : GLib.Object {
         foreach (var section in this.sections) {
             section.save ();
         }
+
+        this.config.save ();
     }
 
     public static int main (string[] args) {
