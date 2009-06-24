@@ -221,6 +221,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             this.files.pop_head ();
             if (this.files.get_length () == 0 &&
                 this.containers.get_length () != 0) {
+                this.containers.peek_head ().updated ();
                 this.containers.pop_head ();
             }
             Idle.add(this.on_idle);
@@ -234,6 +235,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             this.files.pop_head ();
             if (this.files.get_length () == 0 &&
                 this.containers.get_length () != 0) {
+                this.containers.peek_head ().updated ();
                 this.containers.pop_head ();
             }
             Idle.add(this.on_idle);
