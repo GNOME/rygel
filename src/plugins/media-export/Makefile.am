@@ -13,6 +13,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 BUILT_SOURCES = rygel-media-export-root-container.c \
 		rygel-media-export-container.c \
 	        rygel-media-export-item.c \
+		rygel-media-export-harvester.c \
 		rygel-media-export-directory-search-result.c \
 		rygel-media-export-plugin.c
 
@@ -23,6 +24,8 @@ librygel_media_export_la_SOURCES = \
 	rygel-media-export-plugin.vala \
 	rygel-media-export-root-container.c \
 	rygel-media-export-root-container.vala \
+	rygel-media-export-harvester.c \
+	rygel-media-export-harvester.vala \
 	rygel-media-export-container.c \
 	rygel-media-export-container.vala \
 	rygel-media-export-item.c \

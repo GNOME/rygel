@@ -24,64 +24,44 @@ using Gee;
  * Represents the root container.
  */
 public class Rygel.MediaExportRootContainer : MediaContainer {
-    private ArrayList<MediaObject> children;
+    private MediaDB media_db;
+    private Gee.ArrayList<MediaObject> children;
+    private DatabaseBackedMediaContainer root_container;
+    private MetadataExtractor extractor;
+    private Gee.ArrayList<MediaExportHarvester> harvester;
 
     public override void get_children (uint offset,
                                        uint max_count,
                                        Cancellable? cancellable,
                                        AsyncReadyCallback callback)
     {
-        uint stop = offset + max_count;
-        stop = stop.clamp (0, this.child_count);
-        var children = this.children.slice ((int) offset, (int) stop);
-        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (this,
-                                                                      callback);
-        res.data = children;
-        res.complete_in_idle ();
+        debug ("get children called");
+        this.root_container.get_children (offset,
+                                          max_count,
+                                          cancellable,
+                                          callback);
     }
 
     public override Gee.List<MediaObject>? get_children_finish (
                                                     AsyncResult res)
                                                     throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
-
-        return simple_res.data;
+        debug ("get children_finish called");
+        return this.root_container.get_children_finish (res);
     }
 
     public override void find_object (string id,
                                       Cancellable? cancellable,
                                       AsyncReadyCallback callback) {
-        var res = new Rygel.SimpleAsyncResult<string> (this, callback);
-
-        res.data = id;
-        res.complete_in_idle ();
+        debug ("find object called");
+        this.root_container.find_object (id,
+                                         cancellable,
+                                         callback);
     }
 
     public override MediaObject? find_object_finish (AsyncResult res)
                                                      throws GLib.Error {
-        MediaObject media_obj = null;
-        var id = ((Rygel.SimpleAsyncResult<string>) res).data;
-
-        foreach (var tmp in this.children) {
-            if (id == tmp.id) {
-                media_obj = tmp;
-                break;
-            }
-        }
-
-        if (media_obj == null) {
-            foreach (var tmp in this.children) {
-                if (tmp is MediaExportContainer) {
-                    var folder = (MediaExportContainer) tmp;
-                    media_obj = folder.find_object_sync (id);
-                    if (media_obj != null) {
-                        break;
-                    }
-                }
-            }
-        }
-
-        return media_obj;
+        debug ("find object finish called");
+        return this.root_container.find_object_finish (res);
     }
 
     /**
@@ -89,6 +69,22 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
      */
     public MediaExportRootContainer () {
         base.root ("MediaExportRoot", 0);
+        var media_db_path = Path.build_filename (
+                                            Environment.get_user_cache_dir (),
+                                            Environment.get_prgname (),
+                                            "media-export.db");
+
+        debug("Using media database %s", media_db_path);
+
+        this.media_db = new MediaDB(media_db_path);
+        this.extractor = new MetadataExtractor ();
+
+
+        this.root_container = new DatabaseBackedMediaContainer (this.media_db,
+                                                                "0",
+                                                                "MediaExportRoot");
+
+        this.harvester = new Gee.ArrayList<MediaExportHarvester> ();
         ArrayList<string> uris;
 
         this.children = new ArrayList<MediaExportContainer> ();
@@ -120,7 +116,11 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
         foreach (var uri in uris) {
             var f = File.new_for_commandline_arg (uri);
             if (f.query_exists (null)) {
-                f.query_info_async (
+                var id = Checksum.compute_for_string (ChecksumType.MD5,
+                                                      uri);
+                var obj = media_db.get_object (id);
+                if (obj == null) {
+                    f.query_info_async (
                             FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE + "," +
                             FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME + "," +
                             FILE_ATTRIBUTE_STANDARD_TYPE + "," +
@@ -129,6 +129,10 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
                             Priority.DEFAULT,
                             null,
                             this.on_info_ready);
+                } else {
+                    this.child_count++;
+                    this.updated ();
+                }
             }
         }
     }
@@ -141,15 +145,19 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
             MediaObject media_obj = null;
 
             if (info.get_file_type () == FileType.DIRECTORY) {
-                media_obj = new MediaExportContainer (this, file);
+                media_obj = new MediaExportContainer (root_container, file);
             } else {
-                media_obj = new MediaExportItem (this, file, info);
+                media_obj = new MediaExportItem (root_container, file, info);
             }
 
-            this.children.add (media_obj);
-            this.child_count = this.children.size;
-
-            this.updated ();
+            if (media_obj != null) {
+                debug ("Scheduling new harvester");
+                var harvest =
+                    new MediaExportHarvester (this.root_container, media_db,
+                                              extractor);
+                this.harvester.add (harvest);
+                harvest.harvest (file);
+            }
         } catch (Error err) {
             warning ("Failed to query information on '%s': %s\n",
                      file.get_uri (),
