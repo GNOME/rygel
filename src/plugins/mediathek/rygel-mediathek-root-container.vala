@@ -22,7 +22,6 @@
 
 using Gee;
 using Soup;
-using GConf;
 
 public class Rygel.MediathekRootContainer : Rygel.MediaContainer {
     private ArrayList<MediathekRssContainer> items;
@@ -107,9 +106,14 @@ public class Rygel.MediathekRootContainer : Rygel.MediaContainer {
         base.root ("ZDF Mediathek", 0);
         this.session = new Soup.SessionAsync ();
         this.items = new ArrayList<MediathekRssContainer> ();
+        Gee.ArrayList<int> feeds = null;
 
         var config = Rygel.MetaConfig.get_default ();
-        var feeds = config.get_int_list ("ZDFMediathek", "rss");
+        try {
+            feeds = config.get_int_list ("ZDFMediathek", "rss");
+        } catch (Error error) {
+            feeds = new Gee.ArrayList<int> ();
+        }
 
         if (feeds.size == 0) {
             message ("Could not get RSS items from GConf, using defaults");
