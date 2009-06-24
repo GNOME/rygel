@@ -133,7 +133,8 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         this.key_file.load_from_dirs (CONFIG_FILE,
                                       dirs,
                                       out this.path,
-                                      KeyFileFlags.NONE);
+                                      KeyFileFlags.KEEP_COMMENTS |
+                                      KeyFileFlags.KEEP_TRANSLATIONS);
         debug ("Loaded user configuration from file '%s'", this.path);
 
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
