@@ -11,10 +11,8 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	-I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
 
 BUILT_SOURCES = rygel-media-export-root-container.c \
-		rygel-media-export-container.c \
-	        rygel-media-export-item.c \
+		rygel-media-export-item.c \
 		rygel-media-export-harvester.c \
-		rygel-media-export-directory-search-result.c \
 		rygel-media-export-plugin.c
 
 $(BUILT_SOURCES) : rygel-media-export.stamp
@@ -26,12 +24,8 @@ librygel_media_export_la_SOURCES = \
 	rygel-media-export-root-container.vala \
 	rygel-media-export-harvester.c \
 	rygel-media-export-harvester.vala \
-	rygel-media-export-container.c \
-	rygel-media-export-container.vala \
 	rygel-media-export-item.c \
-	rygel-media-export-item.vala \
-	rygel-media-export-directory-search-result.c \
-	rygel-media-export-directory-search-result.vala
+	rygel-media-export-item.vala
 
 rygel-media-export.stamp: $(filter %.vala,$(librygel_media_export_la_SOURCES))
 	$(VALAC) -g -C --vapidir=$(top_srcdir)/src/rygel \
