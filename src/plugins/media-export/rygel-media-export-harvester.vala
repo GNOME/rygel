@@ -96,6 +96,9 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             var list = enumerator.next_files_finish (res);
             if (list != null) {
                 foreach (var info in list) {
+                    if (info.get_name ()[0] == '.') {
+                        continue;
+                    }
                     var dir = ((DummyContainer)this.containers.peek_head ()).file;
                     var file = dir.get_child (info.get_name ());
                     if (info.get_file_type () == FileType.DIRECTORY) {
