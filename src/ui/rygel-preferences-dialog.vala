@@ -34,8 +34,7 @@ public class Rygel.PreferencesDialog : GLib.Object {
     ArrayList<PreferencesSection> sections;
 
     public PreferencesDialog () throws Error {
-        this.config = UserConfig.get_default ();
-
+        this.config = new UserConfig ();
         this.builder = new Builder ();
 
         this.builder.add_from_file (UI_FILE);
