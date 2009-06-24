@@ -110,9 +110,8 @@ public class Rygel.MediaExportRootContainer : MediaContainer {
             var file = File.new_for_commandline_arg (uri);
             if (file.query_exists (null)) {
                 var id = Checksum.compute_for_string (ChecksumType.MD5,
-                                                      uri);
+                                                      file.get_uri ());
                 if (!this.media_db.exists (id)) {
-                    debug ("Scheduling new harvester");
                     var harvest =
                         new MediaExportHarvester (this.root_container, media_db,
                                 extractor);
