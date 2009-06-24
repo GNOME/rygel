@@ -124,6 +124,7 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
                                       BrowseFilter   filter)
                                       throws Error {
         string parent_id;
+        int child_count = -1;
 
         if (container.parent != null) {
             parent_id = container.parent.id;
@@ -131,9 +132,13 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
             parent_id = "-1";
         }
 
+        if (filter.have ("childCount", null)) {
+            child_count = (int) container.child_count;
+        }
+
         this.start_container (container.id,
                               parent_id,
-                              (int) container.child_count,
+                              child_count,
                               false,
                               false);
         this.add_string ("class",
