@@ -34,6 +34,12 @@ public class Rygel.DatabaseBackedMediaContainer : Rygel.MediaContainer {
         base (id, null, title, count);
 
         this.media_db = media_db;
+        this.container_updated.connect (on_db_container_updated);
+    }
+
+    private void on_db_container_updated (MediaContainer container,
+                                     MediaContainer container_updated) {
+        this.child_count = media_db.get_child_count (this.id);
     }
 
     public override void get_children (uint offset,
