@@ -74,7 +74,7 @@ public class Rygel.MediaDB : Object {
                                                 "'); " +
     "END;";
 
-    private const string META_DATA_INSERT_STRING =
+    private const string INSERT_META_DATA_STRING =
     "INSERT INTO Meta_Data " +
         "(size, mime_type, width, height, class, " +
          "author, album, date, bitrate, " +
@@ -82,14 +82,14 @@ public class Rygel.MediaDB : Object {
          "track, color_depth, duration) VALUES " +
          "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-    private const string OBJECT_INSERT_STRING =
+    private const string INSERT_OBJECT_STRING =
     "INSERT INTO Object (upnp_id, title, type_fk, metadata_fk, parent) " +
         "VALUES (?,?,?,?,?)";
 
-    private const string URI_INSERT_STRING =
+    private const string INSERT_URI_STRING =
     "INSERT INTO Uri (object_fk, uri) VALUES (?,?)";
 
-    private const string OBJECT_GET_STRING =
+    private const string GET_OBJECT_STRING =
     "SELECT type_fk, title, Meta_Data.size, Meta_Data.mime_type, " +
             "Meta_Data.width, Meta_Data.height, " +
             "Meta_Data.class, Meta_Data.author, Meta_Data.album, " +
@@ -100,7 +100,7 @@ public class Rygel.MediaDB : Object {
     "FROM Object LEFT OUTER JOIN Meta_Data " +
         "ON Object.metadata_fk = Meta_Data.id WHERE Object.upnp_id = ?";
 
-    private const string CHILDREN_GET_STRING =
+    private const string GET_CHILDREN_STRING =
     "SELECT type_fk, title, Meta_Data.size, Meta_Data.mime_type, " +
             "Meta_Data.width, Meta_Data.height, " +
             "Meta_Data.class, Meta_Data.author, Meta_Data.album, " +
@@ -114,7 +114,7 @@ public class Rygel.MediaDB : Object {
         "ORDER BY Meta_Data.track ASC, title ASC " +
     "LIMIT ?,?";
 
-    private const string OBJECT_GET_URIS =
+    private const string URI_GET_STRING =
     "SELECT uri FROM Uri WHERE Uri.object_fk = ?";
 
     private const string CHILDREN_COUNT_STRING =
@@ -237,7 +237,7 @@ public class Rygel.MediaDB : Object {
 
     private int64 save_metadata (MediaItem item) throws Error {
         Statement statement;
-        var rc = db.prepare_v2 (META_DATA_INSERT_STRING,
+        var rc = db.prepare_v2 (INSERT_META_DATA_STRING,
                                 -1,
                                 out statement,
                                 null);
@@ -272,7 +272,7 @@ public class Rygel.MediaDB : Object {
     private void create_object (MediaObject item, int64 metadata_id) throws Error {
         Statement statement;
 
-        var rc = db.prepare_v2 (OBJECT_INSERT_STRING,
+        var rc = db.prepare_v2 (INSERT_OBJECT_STRING,
                             -1,
                             out statement,
                             null);
@@ -311,7 +311,7 @@ public class Rygel.MediaDB : Object {
     private void save_uris (MediaObject obj) throws Error {
         Statement statement;
 
-        var rc = db.prepare_v2 (URI_INSERT_STRING,
+        var rc = db.prepare_v2 (INSERT_URI_STRING,
                                 -1,
                                 out statement,
                                 null);
@@ -356,7 +356,7 @@ public class Rygel.MediaDB : Object {
     private void add_uris (MediaObject obj) {
         Statement statement;
 
-        var rc = db.prepare_v2 (OBJECT_GET_URIS,
+        var rc = db.prepare_v2 (URI_GET_STRING,
                                 -1,
                                 out statement,
                                 null);
@@ -407,7 +407,7 @@ public class Rygel.MediaDB : Object {
         Statement statement;
 
         // decide what kind of object this is
-        var rc = db.prepare_v2 (OBJECT_GET_STRING,
+        var rc = db.prepare_v2 (GET_OBJECT_STRING,
                                 -1,
                                 out statement,
                                 null);
@@ -497,7 +497,7 @@ public class Rygel.MediaDB : Object {
         Statement statement;
         Gee.ArrayList<MediaObject> children =
                                             new Gee.ArrayList<MediaObject> ();
-        var rc = db.prepare_v2 (CHILDREN_GET_STRING,
+        var rc = db.prepare_v2 (GET_CHILDREN_STRING,
                                 -1,
                                 out statement,
                                 null);
