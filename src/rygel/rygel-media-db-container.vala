@@ -24,12 +24,10 @@
 
 using Rygel;
 
-public class Rygel.DatabaseBackedMediaContainer : Rygel.MediaContainer {
+public class Rygel.MediaDBContainer : MediaContainer {
     protected MediaDB media_db;
 
-    public DatabaseBackedMediaContainer (Rygel.MediaDB media_db,
-                                         string id,
-                                         string title) {
+    public MediaDBContainer (MediaDB media_db, string  id, string title) {
         var count = media_db.get_child_count (id);
         base (id, null, title, count);
 
@@ -38,16 +36,17 @@ public class Rygel.DatabaseBackedMediaContainer : Rygel.MediaContainer {
     }
 
     private void on_db_container_updated (MediaContainer container,
-                                     MediaContainer container_updated) {
+                                          MediaContainer container_updated) {
         this.child_count = media_db.get_child_count (this.id);
     }
 
-    public override void get_children (uint offset,
-                                       uint max_count,
-                                       Cancellable? cancellable,
+    public override void get_children (uint               offset,
+                                       uint               max_count,
+                                       Cancellable?       cancellable,
                                        AsyncReadyCallback callback) {
-        var res = new Rygel.SimpleAsyncResult<Gee.ArrayList<MediaObject>>
-                                                            (this, callback);
+        var res = new SimpleAsyncResult<Gee.ArrayList<MediaObject>>
+                                                            (this,
+                                                             callback);
         res.data = this.media_db.get_children (this.id,
                                                offset,
                                                max_count);
@@ -57,7 +56,7 @@ public class Rygel.DatabaseBackedMediaContainer : Rygel.MediaContainer {
     public override Gee.List<MediaObject>? get_children_finish (
                                                            AsyncResult res)
                                                            throws GLib.Error {
-        var result = (Rygel.SimpleAsyncResult<Gee.ArrayList<MediaObject>>)res;
+        var result = (SimpleAsyncResult<Gee.ArrayList<MediaObject>>)res;
 
         foreach (var obj in result.data) {
             obj.parent = this;
@@ -66,17 +65,17 @@ public class Rygel.DatabaseBackedMediaContainer : Rygel.MediaContainer {
     }
 
 
-    public override void find_object (string id,
-                                      Cancellable? cancellable,
+    public override void find_object (string             id,
+                                      Cancellable?       cancellable,
                                       AsyncReadyCallback callback) {
-        var res = new Rygel.SimpleAsyncResult<MediaObject> (this, callback);
+        var res = new SimpleAsyncResult<MediaObject> (this, callback);
 
         res.data = media_db.get_object (id);
         res.complete_in_idle ();
     }
 
     public override MediaObject? find_object_finish (AsyncResult res) {
-        return ((Rygel.SimpleAsyncResult<MediaObject>)res).data;
+        return ((SimpleAsyncResult<MediaObject>)res).data;
     }
 }
 

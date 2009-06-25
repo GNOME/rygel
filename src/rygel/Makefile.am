@@ -64,7 +64,7 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-media-item.c \
 		rygel-metadata-extractor.c \
 		rygel-media-db.c \
-		rygel-database-backed-media-container.c \
+		rygel-media-db-container.c \
 		rygel-media-db-object-factory.c \
 		rygel-mp2ts-transcoder.c \
 		rygel-mp3-transcoder.c \
@@ -115,7 +115,7 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-mp3-transcoder-bin.c \
 		rygel-l16-transcoder-bin.c \
 		rygel-gst-utils.c \
-		rygel-database-backed-media-container.c \
+		rygel-media-db-container.c \
 		rygel-media-db-object-factory.c
 
 rygel.stamp: $(filter %.vala,$(rygel_SOURCES))
@@ -175,7 +175,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-gst-utils.vala \
 		    rygel-media-db.vala \
 		    rygel-metadata-extractor.vala \
-		    rygel-database-backed-media-container.vala \
+		    rygel-media-db-container.vala \
 		    rygel-media-db-object-factory.vala
 
 rygel-1.0.vapi: $(VAPI_SOURCE_FILES)

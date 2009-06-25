@@ -19,18 +19,19 @@
  */
 
 using Gee;
+using Rygel;
 
 /**
  * Represents the root container.
  */
-public class Rygel.MediaExportRootContainer : DatabaseBackedMediaContainer {
+public class Rygel.MediaExportRootContainer : MediaDBContainer {
     private MetadataExtractor extractor;
     private Gee.ArrayList<MediaExportHarvester> harvester;
 
     private Gee.ArrayList<string> get_uris () {
         ArrayList<string> uris;
 
-        var config = Rygel.MetaConfig.get_default ();
+        var config = MetaConfig.get_default ();
 
         try {
             uris = config.get_string_list ("MediaExport", "uris");
