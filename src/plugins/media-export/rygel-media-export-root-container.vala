@@ -61,12 +61,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
      * Create a new root container.
      */
     public MediaExportRootContainer () {
-        var media_db_path = Path.build_filename (
-                                            Environment.get_user_cache_dir (),
-                                            Environment.get_prgname (),
-                                            "media-export.db");
-        debug("Using media database %s", media_db_path);
-        var db = new MediaDB(media_db_path);
+        var db = new MediaDB("media-export");
         base (db, "0", "MediaExportRoot");
 
         this.extractor = new MetadataExtractor ();
