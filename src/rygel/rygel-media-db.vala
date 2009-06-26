@@ -35,6 +35,11 @@ public enum Rygel.MediaDBObjectType {
     ITEM
 }
 
+/**
+ * Persistent storage of media objects
+ *
+ * MediaDB is a sqlite3 backed persistent storage of media objects
+ */
 public class Rygel.MediaDB : Object {
     private Database db;
     private MediaDBObjectFactory factory;
@@ -100,6 +105,16 @@ public class Rygel.MediaDB : Object {
     "FROM Object LEFT OUTER JOIN Meta_Data " +
         "ON Object.metadata_fk = Meta_Data.id WHERE Object.upnp_id = ?";
 
+    /**
+     * This is the database query used to retrieve the children for a
+     * given object.
+     *
+     * Sorting is as follows:
+     *   - by type: containers first, then items if both are present
+     *   - by upnp_class: items are sorted according to their class
+     *   - by track: sorted by track
+     *   - and after that alphabetically
+     */
     private const string GET_CHILDREN_STRING =
     "SELECT type_fk, title, Meta_Data.size, Meta_Data.mime_type, " +
             "Meta_Data.width, Meta_Data.height, " +
