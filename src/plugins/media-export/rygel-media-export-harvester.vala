@@ -29,6 +29,7 @@ internal class Rygel.DummyContainer : Rygel.MediaContainer {
         base (id, parent, file.get_basename (), 0);
         this.parent_ref = parent;
         this.file = file;
+        this.uris.add (file.get_uri ());
     }
 
 
