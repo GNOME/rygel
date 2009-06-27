@@ -66,9 +66,10 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         base (db, "0", "MediaExportRoot");
 
         this.extractor = new MetadataExtractor ();
-        this.harvester = new ArrayList<MediaExportHarvester> ();
-        this.monitor = new MediaExportRecursiveFileMonitor (null);
 
+        this.harvester = new ArrayList<MediaExportHarvester> ();
+
+        this.monitor = new MediaExportRecursiveFileMonitor (null);
         this.monitor.changed.connect (this.on_file_changed);
 
         var uris = get_uris ();
@@ -81,15 +82,19 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 if (!this.media_db.exists (id)) {
                     debug ("Found new directory %s",
                            file.get_uri ());
-                    var harvest = new MediaExportHarvester (this,
-                                                            this.media_db,
-                                                            this.extractor,
-                                                            this.monitor);
-                    this.harvester.add (harvest);
-                    harvest.harvest (file);
+                    this.harvest (file);
                 }
             }
         }
+    }
+
+    private void harvest (File file, MediaContainer parent = this) {
+        var harvest = new MediaExportHarvester (parent,
+                                                this.media_db,
+                                                this.extractor,
+                                                this.monitor);
+        this.harvester.add (harvest);
+        harvest.harvest (file);
     }
 
     private void on_file_changed (File             file,
@@ -97,6 +102,15 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                                   FileMonitorEvent event) {
         switch (event) {
             case FileMonitorEvent.CREATED:
+                var parent = file.get_parent ();
+                var id = Checksum.compute_for_string (ChecksumType.MD5,
+                                                      parent.get_uri ());
+                var parent_container = this.media_db.get_object (id);
+                if (parent_container != null) {
+                    this.harvest (file, (MediaContainer)parent_container);
+                } else {
+                    // This should not happen
+                }
                 break;
             case FileMonitorEvent.CHANGES_DONE_HINT:
                 break;
