@@ -69,6 +69,8 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         this.harvester = new ArrayList<MediaExportHarvester> ();
         this.monitor = new MediaExportRecursiveFileMonitor (null);
 
+        this.monitor.changed.connect (this.on_file_changed);
+
         var uris = get_uris ();
 
         foreach (var uri in uris) {
@@ -77,13 +79,31 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 var id = Checksum.compute_for_string (ChecksumType.MD5,
                                                       file.get_uri ());
                 if (!this.media_db.exists (id)) {
+                    debug ("Found new directory %s",
+                           file.get_uri ());
                     var harvest = new MediaExportHarvester (this,
-                                                            media_db,
-                                                            extractor);
+                                                            this.media_db,
+                                                            this.extractor,
+                                                            this.monitor);
                     this.harvester.add (harvest);
                     harvest.harvest (file);
                 }
             }
+        }
+    }
+
+    private void on_file_changed (File             file,
+                                  File?            other,
+                                  FileMonitorEvent event) {
+        switch (event) {
+            case FileMonitorEvent.CREATED:
+                break;
+            case FileMonitorEvent.CHANGES_DONE_HINT:
+                break;
+            case FileMonitorEvent.DELETED:
+                break;
+            default:
+                break;
         }
     }
 }

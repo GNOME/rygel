@@ -59,10 +59,12 @@ public class Rygel.MediaExportHarvester : GLib.Object {
     private Queue<File> files;
     private File origin;
     private MediaContainer parent;
+    private MediaExportRecursiveFileMonitor monitor;
 
     public MediaExportHarvester (MediaContainer parent,
                                  MediaDB media_db,
-                                 MetadataExtractor extractor) {
+                                 MetadataExtractor extractor,
+                                 MediaExportRecursiveFileMonitor monitor) {
         this.parent = parent;
         this.extractor = extractor;
         this.media_db = media_db;
@@ -71,6 +73,8 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         this.files = new Queue<File> ();
         this.containers = new Queue<DummyContainer> ();
         this.origin = null;
+        this.monitor = monitor;
+
         Idle.add (this.on_idle);
     }
 
@@ -101,6 +105,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                     var dir = ((DummyContainer)this.containers.peek_head ()).file;
                     var file = dir.get_child (info.get_name ());
                     if (info.get_file_type () == FileType.DIRECTORY) {
+                        monitor.monitor (file);
                         this.containers.push_tail (
                             new DummyContainer (file,
                                this.containers.peek_head ()));
@@ -189,6 +194,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                              null);
                 if (info.get_file_type () == FileType.DIRECTORY) {
                     this.origin = file;
+                    monitor.monitor (file);
                     this.containers.push_tail (
                                 new DummyContainer (file,
                                                           this.parent));
