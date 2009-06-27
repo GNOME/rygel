@@ -25,9 +25,10 @@ using Gee;
  */
 public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     private MetadataExtractor extractor;
-    private Gee.ArrayList<MediaExportHarvester> harvester;
+    private ArrayList<MediaExportHarvester> harvester;
+    private MediaExportRecursiveFileMonitor monitor;
 
-    private Gee.ArrayList<string> get_uris () {
+    private ArrayList<string> get_uris () {
         ArrayList<string> uris;
 
         var config = MetaConfig.get_default ();
@@ -65,7 +66,8 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         base (db, "0", "MediaExportRoot");
 
         this.extractor = new MetadataExtractor ();
-        this.harvester = new Gee.ArrayList<MediaExportHarvester> ();
+        this.harvester = new ArrayList<MediaExportHarvester> ();
+        this.monitor = new MediaExportRecursiveFileMonitor (null);
 
         var uris = get_uris ();
 

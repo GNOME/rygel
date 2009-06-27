@@ -11,6 +11,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 
 librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
 				   rygel-media-export-root-container.vala \
+				   rygel-media-export-recursive-file-monitor.vala \
 				   rygel-media-export-harvester.vala \
 				   rygel-media-export-item.vala
 
@@ -21,8 +22,7 @@ librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
                                      --pkg gupnp-av-1.0 \
                                      --pkg libsoup-2.4 \
                                      --pkg gee-1.0 \
-                                     --pkg libxml-2.0 \
-                                     --pkg gconf-2.0
+                                     --pkg libxml-2.0
 
 librygel_media_export_la_LIBADD = $(LIBGUPNP_LIBS) \
 				  $(LIBGUPNP_AV_LIBS) \
