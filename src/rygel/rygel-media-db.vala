@@ -43,9 +43,8 @@ public enum Rygel.MediaDBObjectType {
 public class Rygel.MediaDB : Object {
     private Database db;
     private MediaDBObjectFactory factory;
-    private const string schema_version = "3";
-    private const string db_schema_v1 =
-    "BEGIN;" +
+    private const string schema_version = "4";
+    private const string SCHEMA_STRING =
     "CREATE TABLE Schema_Info (version TEXT NOT NULL); " +
     "CREATE TABLE Object_Type (id INTEGER PRIMARY KEY, " +
                               "desc TEXT NOT NULL);" +
@@ -63,21 +62,46 @@ public class Rygel.MediaDB : Object {
                             "sample_freq INTEGER, " +
                             "bits_per_sample INTEGER, " +
                             "channels INTEGER, " +
-                            "track, " +
-                            "color_depth);" +
-    "CREATE TABLE Object (parent TEXT REFERENCES Object(upnp_id), " +
-                         "upnp_id TEXT PRIMARY KEY, " +
-                         "type_fk INTEGER REFERENCES Object_Type(id), " +
-                         "title TEXT NOT NULL, " +
-                         "metadata_fk INTEGER REFERENCES Meta_Data(id) " +
-                         "ON DELETE CASCADE);" +
-    "CREATE TABLE Uri (object_fk TEXT REFERENCES Object(upnp_id), "+
+                            "track INTEGER, " +
+                            "color_depth INTEGER);" +
+    "CREATE TABLE Object (parent TEXT CONSTRAINT parent_fk_id " +
+                                "REFERENCES Object(upnp_id), " +
+                          "upnp_id TEXT PRIMARY KEY, " +
+                          "type_fk INTEGER CONSTRAINT type_fk_id " +
+                                "REFERENCES Object_Type(id), " +
+                          "title TEXT NOT NULL, " +
+                          "metadata_fk INTEGER UNIQUE CONSTRAINT " +
+                                "metadata_fk_id REFERENCES Meta_Data(id) " +
+                                    "ON DELETE CASCADE);" +
+    "CREATE TABLE Uri (object_fk TEXT " +
+                        "CONSTRAINT object_fk_id REFERENCES Object(upnp_id) "+
+                            "ON DELETE CASCADE, " +
                       "uri TEXT NOT NULL);" +
     "INSERT INTO Object_Type (id, desc) VALUES (0, 'Container'); " +
     "INSERT INTO Object_Type (id, desc) VALUES (1, 'Item'); " +
     "INSERT INTO Schema_Info (version) VALUES ('" + MediaDB.schema_version +
-                                                "'); " +
+                                                "'); ";
+
+    private const string CREATE_TRIGGER_STRING =
+    "CREATE TRIGGER trgr_delete_children " +
+    "BEFORE DELETE ON Object " +
+    "FOR EACH ROW BEGIN " +
+        "UPDATE Object SET parent = NULL " +
+            "WHERE Object.parent = OLD.upnp_id;" +
+    "END;" +
+
+    "CREATE TRIGGER trgr_delete_metadata " +
+    "BEFORE DELETE ON Object " +
+    "FOR EACH ROW BEGIN " +
+        "DELETE FROM Meta_Data WHERE Meta_Data.id = OLD.metadata_fk; "+
+    "END;" +
+
+    "CREATE TRIGGER trgr_delete_uris " +
+    "BEFORE DELETE ON Object " +
+    "FOR EACH ROW BEGIN " +
+        "DELETE FROM Uri WHERE Uri.object_fk = OLD.upnp_id;" +
     "END;";
+
 
     private const string INSERT_META_DATA_STRING =
     "INSERT INTO Meta_Data " +
@@ -126,7 +150,10 @@ public class Rygel.MediaDB : Object {
     "FROM Object LEFT OUTER JOIN Meta_Data " +
         "ON Object.metadata_fk = Meta_Data.id " +
     "WHERE Object.parent = ? " +
-        "ORDER BY type_fk ASC, Meta_Data.class ASC, Meta_Data.track ASC, title ASC " +
+        "ORDER BY type_fk ASC, " +
+                 "Meta_Data.class ASC, " +
+                 "Meta_Data.track ASC, " +
+                 "title ASC " +
     "LIMIT ?,?";
 
     private const string URI_GET_STRING =
@@ -137,6 +164,12 @@ public class Rygel.MediaDB : Object {
 
     private const string OBJECT_EXISTS_STRING =
     "SELECT COUNT(upnp_id) FROM Object WHERE Object.upnp_id = ?";
+
+    private const string OBJECT_DELETE_STRING =
+    "DELETE FROM Object where Object.upnp_id = ?";
+
+    private const string SWEEPER_STRING =
+    "DELETE FROM Object WHERE parent IS NULL";
 
     private void open_db (string name) {
         var dirname = Path.build_filename (Environment.get_user_cache_dir (),
@@ -210,6 +243,50 @@ public class Rygel.MediaDB : Object {
     public MediaDB.with_factory (string name, MediaDBObjectFactory factory) {
         open_db (name);
         this.factory = factory;
+    }
+
+    private bool sweeper () {
+        debug ("Running sweeper");
+        var rc = db.exec (SWEEPER_STRING);
+        if (rc != Sqlite.OK) {
+            warning ("Failed to sweep database");
+            return false;
+        } else {
+            // if there have been any objects deleted, their children
+            // will have nullified parents by the trigger, so we reschedule
+            // the idle sweeper
+            var changes = db.changes ();
+            debug ("Changes in sweeper: %d", changes);
+            return changes != 0;
+        }
+    }
+
+    public signal void item_deleted (string item_id);
+
+    public void delete_by_id (string id) {
+        Statement statement;
+
+        var rc = db.prepare_v2 ("DELETE FROM Object WHERE upnp_id = ?",
+                                -1,
+                                out statement,
+                                null);
+        if (rc == Sqlite.OK) {
+            rc = statement.bind_text (1, id);
+            rc = statement.step ();
+            if (rc == Sqlite.DONE || rc == Sqlite.OK) {
+                item_deleted (id);
+                Idle.add (this.sweeper);
+            }
+        } else {
+            warning ("Failed to prepare delete of object %s: %s",
+                     id,
+                     db.errmsg ());
+        }
+    }
+
+
+    public void delete_object (MediaObject obj) {
+        this.delete_by_id (obj.id);
     }
 
     public signal void item_added (string item_id);
@@ -358,18 +435,42 @@ public class Rygel.MediaDB : Object {
      * @returns: true on success, false on failure
      */
     private bool create_schema () {
-        var rc = db.exec (db_schema_v1);
+        var rc = db.exec ("BEGIN");
         if (rc == Sqlite.OK) {
-            debug ("Schema created");
-            return true;
+            rc = db.exec (SCHEMA_STRING);
+            if (rc == Sqlite.OK) {
+                debug ("succeeded in schema creation");
+                rc = db.exec (CREATE_TRIGGER_STRING);
+                if (rc == Sqlite.OK) {
+                    debug ("succeeded in trigger creation");
+                    rc = db.exec ("COMMIT");
+                    if (rc == Sqlite.OK) {
+                        return true;
+                    } else {
+                        warning ("Failed to commit schema: %d %s",
+                                 rc,
+                                 db.errmsg ());
+                    }
+                } else {
+                    warning ("Failed to create triggers: %d %s",
+                             rc,
+                             db.errmsg ());
+                }
+            } else {
+                warning ("Failed to create tables: %d %s",
+                         rc,
+                         db.errmsg ());
+            }
         } else {
-            warning ("Could not create schema: %d, %s",
+            warning ("Failed to start transaction: %d %s",
                      rc,
                      db.errmsg ());
-            rc = db.exec ("ROLLBACK;");
-            return false;
         }
-    }
+
+        db.exec ("ROLLBACK");
+        return false;
+
+   }
 
     private void add_uris (MediaObject obj) {
         Statement statement;
@@ -390,7 +491,9 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    private MediaObject? get_object_from_statement (MediaContainer? parent, string object_id, Statement statement) {
+    private MediaObject? get_object_from_statement (MediaContainer? parent,
+                                                    string object_id,
+                                                    Statement statement) {
         MediaObject obj = null;
         switch (statement.column_int (0)) {
             case 0:
