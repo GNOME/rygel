@@ -178,10 +178,10 @@ public class Rygel.MediaDB : Object {
     "SELECT COUNT(upnp_id) FROM Object WHERE Object.parent = ?";
 
     private const string OBJECT_EXISTS_STRING =
-    "SELECT COUNT(upnp_id) FROM Object WHERE Object.upnp_id = ?";
+    "SELECT COUNT(upnp_id), timestamp FROM Object WHERE Object.upnp_id = ?";
 
     private const string OBJECT_DELETE_STRING =
-    "DELETE FROM Object where Object.upnp_id = ?";
+    "DELETE FROM Object WHERE Object.upnp_id = ?";
 
     private const string SWEEPER_STRING =
     "DELETE FROM Object WHERE parent IS NULL";
@@ -661,7 +661,7 @@ public class Rygel.MediaDB : Object {
         return count;
     }
 
-    public bool exists (string object_id) {
+    public bool exists (string object_id, out int64 timestamp) {
         Statement statement;
         bool exists = false;
         var rc = db.prepare_v2 (OBJECT_EXISTS_STRING,
@@ -672,6 +672,7 @@ public class Rygel.MediaDB : Object {
             statement.bind_text (1, object_id);
             while ((rc = statement.step ()) == Sqlite.ROW) {
                 exists = statement.column_int (0) == 1;
+                timestamp = statement.column_int64 (1);
                 break;
             }
         } else {
