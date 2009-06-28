@@ -48,6 +48,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
     public const string TAG_RYGEL_WIDTH = "rygel-width";
     public const string TAG_RYGEL_HEIGHT = "rygel-height";
     public const string TAG_RYGEL_DEPTH = "rygel-depth";
+    public const string TAG_RYGEL_MTIME = "rygel-mtime";
 
     /* TODO: Use tagbin instead once it's ready */
     private dynamic Gst.Element playbin;
@@ -83,6 +84,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
         this.register_custom_tag (TAG_RYGEL_WIDTH, typeof (int));
         this.register_custom_tag (TAG_RYGEL_HEIGHT, typeof (int));
         this.register_custom_tag (TAG_RYGEL_DEPTH, typeof (int));
+        this.register_custom_tag (TAG_RYGEL_MTIME, typeof (uint64));
 
         // setup fake sinks
         this.playbin = ElementFactory.make ("playbin", null);
@@ -191,7 +193,8 @@ public class Rygel.MetadataExtractor: GLib.Object {
         try {
             file_info = file.query_info (FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE
                                          + "," +
-                                         FILE_ATTRIBUTE_STANDARD_SIZE,
+                                         FILE_ATTRIBUTE_STANDARD_SIZE + "," +
+                                         FILE_ATTRIBUTE_TIME_MODIFIED,
                                          FileQueryInfoFlags.NONE,
                                          null);
         } catch (Error error) {
@@ -217,6 +220,12 @@ public class Rygel.MetadataExtractor: GLib.Object {
         this.tag_list.add (TagMergeMode.REPLACE,
                            TAG_RYGEL_SIZE,
                            size);
+
+        var mtime = file_info.get_attribute_uint64(
+                                                FILE_ATTRIBUTE_TIME_MODIFIED);
+        this.tag_list.add (TagMergeMode.REPLACE,
+                           TAG_RYGEL_MTIME,
+                           mtime);
     }
 
     private void extract_duration () {

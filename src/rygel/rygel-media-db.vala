@@ -121,11 +121,11 @@ public class Rygel.MediaDB : Object {
          "WHERE object_fk = ?";
 
     private const string INSERT_OBJECT_STRING =
-    "INSERT INTO Object (upnp_id, title, type_fk, parent) " +
-        "VALUES (?,?,?,?)";
+    "INSERT INTO Object (upnp_id, title, type_fk, parent, timestamp) " +
+        "VALUES (?,?,?,?,?)";
 
     private const string UPDATE_OBJECT_STRING =
-    "UPDATE Object SET title = ? WHERE upnp_id = ?";
+    "UPDATE Object SET title = ?, timestamp = ? WHERE upnp_id = ?";
 
     private const string INSERT_URI_STRING =
     "INSERT INTO Uri (object_fk, uri) VALUES (?,?)";
@@ -161,7 +161,7 @@ public class Rygel.MediaDB : Object {
             "Meta_Data.date, Meta_Data.bitrate, Meta_Data.sample_freq, " +
             "Meta_Data.bits_per_sample, Meta_Data.channels, " +
             "Meta_Data.track, Meta_Data.color_depth, Meta_Data.duration, " +
-            "upnp_id, Object.parent " +
+            "upnp_id, Object.parent, Object.timestamp " +
     "FROM Object LEFT OUTER JOIN Meta_Data " +
         "ON Object.upnp_id = Meta_Data.object_fk " +
     "WHERE Object.parent = ? " +
@@ -376,7 +376,8 @@ public class Rygel.MediaDB : Object {
                                 null);
         if (rc == Sqlite.OK) {
             statement.bind_text (1, obj.title);
-            statement.bind_text (2, obj.id);
+            statement.bind_int64 (2, (int64) obj.timestamp);
+            statement.bind_text (3, obj.id);
             rc = statement.step ();
             if (rc != Sqlite.DONE && rc != Sqlite.OK) {
                 throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
@@ -462,6 +463,8 @@ public class Rygel.MediaDB : Object {
             } else {
                 statement.bind_text (4, item.parent.id);
             }
+
+            statement.bind_int64 (5, (int64) item.timestamp);
             rc = statement.step ();
             if (rc != Sqlite.OK && rc != Sqlite.DONE) {
                 throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
@@ -586,6 +589,7 @@ public class Rygel.MediaDB : Object {
         }
 
         if (obj != null) {
+            obj.timestamp = statement.column_int64 (18);
             add_uris (obj);
         }
         return obj;
@@ -692,8 +696,8 @@ public class Rygel.MediaDB : Object {
                                 null);
         if (rc == Sqlite.OK) {
             statement.bind_text (1, object_id);
-            statement.bind_int64 (2, (int64)offset);
-            statement.bind_int64 (3, (int64)max_count);
+            statement.bind_int64 (2, (int64) offset);
+            statement.bind_int64 (3, (int64) max_count);
             while ((rc = statement.step ()) == Sqlite.ROW) {
                 var child_id = statement.column_text (17);
                 var parent = get_object (statement.column_text (18));
