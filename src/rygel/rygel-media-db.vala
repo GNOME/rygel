@@ -63,16 +63,16 @@ public class Rygel.MediaDB : Object {
                             "bits_per_sample INTEGER, " +
                             "channels INTEGER, " +
                             "track INTEGER, " +
-                            "color_depth INTEGER);" +
+                            "color_depth INTEGER, " +
+                            "object_fk TEXT UNIQUE CONSTRAINT " +
+                                "object_fk_id REFERENCES Object(upnp_id) " +
+                                    "ON DELETE CASCADE);" +
     "CREATE TABLE Object (parent TEXT CONSTRAINT parent_fk_id " +
                                 "REFERENCES Object(upnp_id), " +
                           "upnp_id TEXT PRIMARY KEY, " +
                           "type_fk INTEGER CONSTRAINT type_fk_id " +
                                 "REFERENCES Object_Type(id), " +
-                          "title TEXT NOT NULL, " +
-                          "metadata_fk INTEGER UNIQUE CONSTRAINT " +
-                                "metadata_fk_id REFERENCES Meta_Data(id) " +
-                                    "ON DELETE CASCADE);" +
+                          "title TEXT NOT NULL);" +
     "CREATE TABLE Uri (object_fk TEXT " +
                         "CONSTRAINT object_fk_id REFERENCES Object(upnp_id) "+
                             "ON DELETE CASCADE, " +
@@ -93,7 +93,7 @@ public class Rygel.MediaDB : Object {
     "CREATE TRIGGER trgr_delete_metadata " +
     "BEFORE DELETE ON Object " +
     "FOR EACH ROW BEGIN " +
-        "DELETE FROM Meta_Data WHERE Meta_Data.id = OLD.metadata_fk; "+
+        "DELETE FROM Meta_Data WHERE Meta_Data.object_fk = OLD.upnp_id; "+
     "END;" +
 
     "CREATE TRIGGER trgr_delete_uris " +
@@ -108,12 +108,12 @@ public class Rygel.MediaDB : Object {
         "(size, mime_type, width, height, class, " +
          "author, album, date, bitrate, " +
          "sample_freq, bits_per_sample, channels, " +
-         "track, color_depth, duration) VALUES " +
-         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         "track, color_depth, duration, object_fk) VALUES " +
+         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     private const string INSERT_OBJECT_STRING =
-    "INSERT INTO Object (upnp_id, title, type_fk, metadata_fk, parent) " +
-        "VALUES (?,?,?,?,?)";
+    "INSERT INTO Object (upnp_id, title, type_fk, parent) " +
+        "VALUES (?,?,?,?)";
 
     private const string INSERT_URI_STRING =
     "INSERT INTO Uri (object_fk, uri) VALUES (?,?)";
@@ -127,7 +127,7 @@ public class Rygel.MediaDB : Object {
             "Meta_Data.track, Meta_Data.color_depth, Meta_Data.duration, " +
             "Object.parent " +
     "FROM Object LEFT OUTER JOIN Meta_Data " +
-        "ON Object.metadata_fk = Meta_Data.id WHERE Object.upnp_id = ?";
+        "ON Object.upnp_id = Meta_Data.object_fk WHERE Object.upnp_id = ?";
 
     /**
      * This is the database query used to retrieve the children for a
@@ -148,7 +148,7 @@ public class Rygel.MediaDB : Object {
             "Meta_Data.track, Meta_Data.color_depth, Meta_Data.duration, " +
             "upnp_id, Object.parent " +
     "FROM Object LEFT OUTER JOIN Meta_Data " +
-        "ON Object.metadata_fk = Meta_Data.id " +
+        "ON Object.upnp_id = Meta_Data.object_fk " +
     "WHERE Object.parent = ? " +
         "ORDER BY type_fk ASC, " +
                  "Meta_Data.class ASC, " +
@@ -304,7 +304,7 @@ public class Rygel.MediaDB : Object {
     public void save_container (MediaContainer container) throws Error {
         var rc = db.exec ("BEGIN");
         try {
-            create_object (container, -1);
+            create_object (container);
             save_uris (container);
             rc = db.exec ("COMMIT");
         } catch (Error error) {
@@ -315,8 +315,8 @@ public class Rygel.MediaDB : Object {
     public void save_item (MediaItem item) throws Error {
         var rc = db.exec ("BEGIN;");
         try {
-            var id = save_metadata (item);
-            create_object (item, id);
+            save_metadata (item);
+            create_object (item);
             save_uris (item);
             rc = db.exec ("COMMIT;");
             if (rc == Sqlite.OK) {
@@ -330,7 +330,7 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    private int64 save_metadata (MediaItem item) throws Error {
+    private void save_metadata (MediaItem item) throws Error {
         Statement statement;
         var rc = db.prepare_v2 (INSERT_META_DATA_STRING,
                                 -1,
@@ -352,11 +352,10 @@ public class Rygel.MediaDB : Object {
             statement.bind_int (13, item.track_number);
             statement.bind_int (14, item.color_depth);
             statement.bind_int64 (15, item.duration);
+            statement.bind_text (16, item.id);
 
             rc = statement.step ();
-            if (rc == Sqlite.DONE || rc == Sqlite.OK) {
-                return db.last_insert_rowid ();
-            } else {
+            if (rc != Sqlite.DONE && rc != Sqlite.OK) {
                 throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
             }
         } else {
@@ -364,7 +363,7 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    private void create_object (MediaObject item, int64 metadata_id) throws Error {
+    private void create_object (MediaObject item) throws Error {
         Statement statement;
 
         var rc = db.prepare_v2 (INSERT_OBJECT_STRING,
@@ -383,16 +382,10 @@ public class Rygel.MediaDB : Object {
                 throw new MediaDBError.GENERAL_ERROR ("Invalid object type");
             }
 
-            if (metadata_id == -1) {
+            if (item.parent == null) {
                 statement.bind_null (4);
             } else {
-                statement.bind_int64 (4, metadata_id);
-            }
-
-            if (item.parent == null) {
-                statement.bind_null (5);
-            } else {
-                statement.bind_text (5, item.parent.id);
+                statement.bind_text (4, item.parent.id);
             }
             rc = statement.step ();
             if (rc != Sqlite.OK && rc != Sqlite.DONE) {
