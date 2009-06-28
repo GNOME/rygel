@@ -186,6 +186,9 @@ public class Rygel.MediaDB : Object {
     private const string SWEEPER_STRING =
     "DELETE FROM Object WHERE parent IS NULL";
 
+    private const string GET_CHILD_ID_STRING =
+    "SELECT upnp_id FROM OBJECT WHERE parent = ?";
+
     private void open_db (string name) {
         var dirname = Path.build_filename (Environment.get_user_cache_dir (),
                                            Environment.get_prgname ());
@@ -637,6 +640,28 @@ public class Rygel.MediaDB : Object {
         item.width = statement.column_int (4);
         item.height = statement.column_int (5);
         item.color_depth = statement.column_int (15);
+    }
+
+    public ArrayList<string> get_child_ids (string object_id) {
+        ArrayList<string> children = new ArrayList<string> (str_equal);
+        Statement statement;
+
+        var rc = db.prepare_v2 (GET_CHILD_ID_STRING,
+                                -1,
+                                out statement,
+                                null);
+        if (rc == Sqlite.OK) {
+            statement.bind_text (1, object_id);
+            while ((rc = statement.step ()) == Sqlite.ROW) {
+                children.add (statement.column_text (0));
+            }
+        } else {
+            warning ("Failed to get children for obj %s: %s",
+                     object_id,
+                     db.errmsg ());
+        }
+
+        return children;
     }
 
     public int get_child_count (string object_id) {
