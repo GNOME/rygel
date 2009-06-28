@@ -72,7 +72,8 @@ public class Rygel.MediaDB : Object {
                           "upnp_id TEXT PRIMARY KEY, " +
                           "type_fk INTEGER CONSTRAINT type_fk_id " +
                                 "REFERENCES Object_Type(id), " +
-                          "title TEXT NOT NULL);" +
+                          "title TEXT NOT NULL, " +
+                          "timestamp INTEGER NOT NULL);" +
     "CREATE TABLE Uri (object_fk TEXT " +
                         "CONSTRAINT object_fk_id REFERENCES Object(upnp_id) "+
                             "ON DELETE CASCADE, " +
@@ -111,12 +112,26 @@ public class Rygel.MediaDB : Object {
          "track, color_depth, duration, object_fk) VALUES " +
          "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
+    private const string UPDATE_META_DATA_STRING =
+    "UPDATE Meta_Data SET " +
+         "size = ?, mime_type = ?, width = ?, height = ?, class = ?, " +
+         "author = ?, album = ?, date = ?, bitrate = ?, " +
+         "sample_freq = ?, bits_per_sample = ?, channels = ?, " +
+         "track = ?, color_depth = ?, duration = ? " +
+         "WHERE object_fk = ?";
+
     private const string INSERT_OBJECT_STRING =
     "INSERT INTO Object (upnp_id, title, type_fk, parent) " +
         "VALUES (?,?,?,?)";
 
+    private const string UPDATE_OBJECT_STRING =
+    "UPDATE Object SET title = ? WHERE upnp_id = ?";
+
     private const string INSERT_URI_STRING =
     "INSERT INTO Uri (object_fk, uri) VALUES (?,?)";
+
+    private const string DELETE_URI_STRING =
+    "DELETE FROM Uri WHERE object_fk = ?";
 
     private const string GET_OBJECT_STRING =
     "SELECT type_fk, title, Meta_Data.size, Meta_Data.mime_type, " +
@@ -301,7 +316,7 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    public void save_container (MediaContainer container) throws Error {
+    private void save_container (MediaContainer container) throws Error {
         var rc = db.exec ("BEGIN");
         try {
             create_object (container);
@@ -312,7 +327,7 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    public void save_item (MediaItem item) throws Error {
+    private void save_item (MediaItem item) throws Error {
         var rc = db.exec ("BEGIN;");
         try {
             save_metadata (item);
@@ -330,9 +345,69 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    private void save_metadata (MediaItem item) throws Error {
+    public signal void item_updated (string item_id);
+
+    public void update_object (MediaObject obj) {
+        var rc = db.exec ("BEGIN");
+        try {
+            delete_uris (obj);
+            if (obj is MediaItem) {
+                save_metadata ((MediaItem)obj, UPDATE_META_DATA_STRING);
+            }
+            update_object_internal (obj);
+            save_uris (obj);
+            rc = db.exec ("COMMIT");
+            if (rc == Sqlite.OK) {
+                item_updated (obj.id);
+            }
+        } catch (Error error) {
+            warning ("Failed to add item with id %s: %s",
+                     obj.id,
+                     error.message);
+            rc = db.exec ("ROLLBACK");
+        }
+    }
+
+    private void update_object_internal (MediaObject obj) throws Error {
         Statement statement;
-        var rc = db.prepare_v2 (INSERT_META_DATA_STRING,
+        var rc = db.prepare_v2 (UPDATE_OBJECT_STRING,
+                                -1,
+                                out statement,
+                                null);
+        if (rc == Sqlite.OK) {
+            statement.bind_text (1, obj.title);
+            statement.bind_text (2, obj.id);
+            rc = statement.step ();
+            if (rc != Sqlite.DONE && rc != Sqlite.OK) {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
+        } else {
+            throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+        }
+    }
+
+    private void delete_uris (MediaObject obj) throws Error {
+        Statement statement;
+        var rc = db.prepare_v2 (DELETE_URI_STRING,
+                                -1,
+                                out statement,
+                                null);
+        if (rc == Sqlite.OK) {
+            statement.bind_text (1, obj.id);
+            rc = statement.step ();
+            if (rc != Sqlite.DONE && rc != Sqlite.OK) {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
+        } else {
+            throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+        }
+    }
+
+    private void save_metadata (MediaItem item,
+                                string sql = INSERT_META_DATA_STRING)
+                                                                throws Error {
+        Statement statement;
+        var rc = db.prepare_v2 (sql,
                                 -1,
                                 out statement,
                                 null);
