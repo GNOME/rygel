@@ -115,6 +115,9 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
             case FileMonitorEvent.CHANGES_DONE_HINT:
                 break;
             case FileMonitorEvent.DELETED:
+                var id = Checksum.compute_for_string (ChecksumType.MD5,
+                                                      file.get_uri ());
+                this.media_db.delete_by_id (id);
                 break;
             default:
                 break;
