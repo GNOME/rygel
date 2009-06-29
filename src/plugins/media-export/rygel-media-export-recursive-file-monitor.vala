@@ -66,8 +66,6 @@ public class Rygel.MediaExportRecursiveFileMonitor : Object {
         try {
             var info = file.query_info_finish (res);
             if (info.get_file_type () == FileType.DIRECTORY) {
-                debug ("Setting up monitor for %s",
-                       file.get_uri ());
                 var file_monitor = file.monitor_directory (
                                                          FileMonitorFlags.NONE,
                                                          this.cancellable);

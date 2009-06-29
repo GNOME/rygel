@@ -74,19 +74,27 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
 
         var uris = get_uris ();
 
+        var ids = media_db.get_child_ids ("0");
+
         foreach (var uri in uris) {
             var file = File.new_for_commandline_arg (uri);
             if (file.query_exists (null)) {
                 var id = Checksum.compute_for_string (ChecksumType.MD5,
                                                       file.get_uri ());
-                if (!this.media_db.exists (id)) {
-                    debug ("Found new directory %s",
-                           file.get_uri ());
-                    this.harvest (file);
-                }
+                debug ("Requested id %s", id);
+                ids.remove (id);
+                this.harvest (file);
             }
         }
-    }
+        foreach (var id in ids) {
+            debug ("Id %s no longer in config, deleting...",
+                   id);
+            this.media_db.delete_by_id (id);
+        }
+        this.updated ();
+
+
+   }
 
     private void harvest (File file, MediaContainer parent = this) {
         var harvest = new MediaExportHarvester (parent,

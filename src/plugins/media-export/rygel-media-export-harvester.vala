@@ -23,6 +23,8 @@ using Gee;
 
 internal class Rygel.DummyContainer : Rygel.MediaContainer {
     public File file;
+    public ArrayList<string> seen_children;
+
     public DummyContainer (File file, MediaContainer parent) {
         var id = Checksum.compute_for_string (ChecksumType.MD5,
                                               file.get_uri ());
@@ -30,6 +32,11 @@ internal class Rygel.DummyContainer : Rygel.MediaContainer {
         this.parent_ref = parent;
         this.file = file;
         this.uris.add (file.get_uri ());
+        this.seen_children = new ArrayList<string> (str_equal);
+    }
+
+    public void seen (string id) {
+        seen_children.add (id);
     }
 
 
@@ -87,11 +94,42 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             // TODO
         }
 
-        if (this.files.get_length() == 0 && this.containers.get_length () != 0) {
+        // delete all children which are not in filesystem anymore
+        var container = (DummyContainer) this.containers.peek_head ();
+        var children = this.media_db.get_child_ids (container.id);
+
+        foreach (var seen_id in container.seen_children) {
+            children.remove (seen_id);
+        }
+
+        foreach (var child in children) {
+            this.media_db.delete_by_id (child);
+        }
+
+        if (this.files.get_length() == 0 &&
+            this.containers.get_length () != 0) {
             this.containers.pop_head ();
         }
 
         Idle.add(this.on_idle);
+    }
+
+    private string push_if_changed_or_unknown (File file, FileInfo info) {
+        var id = Checksum.compute_for_string (ChecksumType.MD5,
+                                              file.get_uri ());
+        int64 timestamp;
+        if (media_db.exists (id, out timestamp)) {
+            int64 mtime = (int64) info.get_attribute_uint64 (
+                                                FILE_ATTRIBUTE_TIME_MODIFIED);
+
+            if (mtime > timestamp) {
+                this.files.push_tail (file);
+            }
+        } else {
+            this.files.push_tail (file);
+        }
+
+        return id;
     }
 
     private void on_next_files_ready (Object obj, AsyncResult res) {
@@ -103,16 +141,25 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                     if (info.get_name ()[0] == '.') {
                         continue;
                     }
-                    var dir = ((DummyContainer)this.containers.peek_head ()).file;
+                    var parent_container =
+                                 (DummyContainer)this.containers.peek_head ();
+
+                    var dir = parent_container.file;
                     var file = dir.get_child (info.get_name ());
                     if (info.get_file_type () == FileType.DIRECTORY) {
                         monitor.monitor (file);
-                        this.containers.push_tail (
-                            new DummyContainer (file,
-                               this.containers.peek_head ()));
-                        this.media_db.save_object (this.containers.peek_tail ());
+                        var container = new DummyContainer (file,
+                                                            parent_container);
+                        this.containers.push_tail (container);
+                        parent_container.seen (container.id);
+                        int64 timestamp;
+                        if (!this.media_db.exists (container.id,
+                                                   out timestamp)) {
+                            this.media_db.save_object (container);
+                        }
                     } else {
-                        this.files.push_tail (file);
+                        var id = push_if_changed_or_unknown (file, info);
+                        parent_container.seen (id);
                     }
                 }
 
@@ -151,7 +198,8 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             var directory = ((DummyContainer)this.containers.peek_head ()).file;
             directory.enumerate_children_async (
                             FILE_ATTRIBUTE_STANDARD_TYPE + "," +
-                            FILE_ATTRIBUTE_STANDARD_NAME,
+                            FILE_ATTRIBUTE_STANDARD_NAME + "," +
+                            FILE_ATTRIBUTE_TIME_MODIFIED,
                             FileQueryInfoFlags.NONE,
                             Priority.DEFAULT,
                             null,
