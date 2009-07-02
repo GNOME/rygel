@@ -12,11 +12,13 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
 				   rygel-media-export-null-container.vala \
 				   rygel-media-export-root-container.vala \
+				   rygel-media-export-dbus-service.vala \
 				   rygel-media-export-recursive-file-monitor.vala \
 				   rygel-media-export-harvester.vala \
 				   rygel-media-export-item.vala
 
 librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
+				     --pkg dbus-glib-1 \
                                      --pkg rygel-1.0 \
                                      --pkg cstuff \
                                      --pkg gupnp-1.0 \

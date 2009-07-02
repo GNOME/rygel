@@ -27,6 +27,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     private MetadataExtractor extractor;
     private HashMap<File, MediaExportHarvester> harvester;
     private MediaExportRecursiveFileMonitor monitor;
+    private MediaExportDBusService service;
 
     private static MediaContainer instance = null;
 
@@ -75,6 +76,19 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         return MediaExportRootContainer.instance;
     }
 
+    public void add_uri (string uri) {
+        var file = File.new_for_commandline_arg (uri);
+        this.harvest (file);
+    }
+
+    public void remove_uri (string uri) {
+        var file = File.new_for_commandline_arg (uri);
+        var id = Checksum.compute_for_string (ChecksumType.MD5,
+                                              file.get_uri ());
+        this.media_db.delete_by_id (id);
+    }
+
+
     /**
      * Create a new root container.
      */
@@ -88,6 +102,8 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
 
         this.monitor = new MediaExportRecursiveFileMonitor (null);
         this.monitor.changed.connect (this.on_file_changed);
+
+        this.service = new MediaExportDBusService (this);
 
         try {
             media_db.save_object (this);
