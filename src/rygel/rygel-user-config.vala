@@ -283,13 +283,12 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
                 // Start service first
                 this.dbus_obj.StartServiceByName (RYGEL_SERVICE,
-                        (uint32) 0,
-                        out res);
+                                                  (uint32) 0,
+                                                  out res);
 
                 // Then symlink the desktop file to user's autostart dir
-                var source_path = Path.build_filename (
-                        BuildConfig.DESKTOP_DIR,
-                        "rygel.desktop");
+                var source_path = Path.build_filename (BuildConfig.DESKTOP_DIR,
+                                                       "rygel.desktop");
                 dest.make_symbolic_link (source_path, null);
 
                 this.set_bool ("general", ENABLED_KEY, true);
