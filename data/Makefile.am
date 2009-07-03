@@ -7,6 +7,8 @@ else
 schema_DATA = rygel.schemas
 endif
 
+sysconf_DATA = rygel.conf
+
 shareddir = $(datadir)/rygel
 
 if BUILD_UI
