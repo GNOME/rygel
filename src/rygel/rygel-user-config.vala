@@ -128,7 +128,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
         var dirs = new string[2];
         dirs[0] = Environment.get_user_config_dir ();
-        if (!read_only) {
+        if (read_only) {
             // We only write to user config
             dirs[1] = BuildConfig.SYS_CONFIG_DIR;
         }
