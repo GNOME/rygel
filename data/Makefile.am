@@ -3,11 +3,15 @@ SUBDIRS = xml
 schemadir = @GCONF_SCHEMA_FILE_DIR@
 if ENABLE_MAEMO
 schema_DATA = rygel-maemo.schemas
+configfile = rygel-default.conf
 else
 schema_DATA = rygel.schemas
+configfile = rygel-maemo.conf
 endif
 
 sysconf_DATA = rygel.conf
+$(sysconf_DATA): $(configfile) Makefile
+	cp $(configfile) $@
 
 shareddir = $(datadir)/rygel
 
