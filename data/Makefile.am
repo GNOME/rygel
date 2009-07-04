@@ -1,9 +1,9 @@
 SUBDIRS = xml
 
 if ENABLE_MAEMO
-configfile = rygel-default.conf
-else
 configfile = rygel-maemo.conf
+else
+configfile = rygel-default.conf
 endif
 
 sysconf_DATA = rygel.conf
