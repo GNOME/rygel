@@ -87,8 +87,6 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         this.containers = new Queue<DummyContainer> ();
         this.origin = null;
         this.monitor = monitor;
-
-        Idle.add (this.on_idle);
     }
 
     private void on_close_async (Object obj, AsyncResult res) {
@@ -223,7 +221,6 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         } else {
             // nothing to do
             harvested (this.origin);
-            this.origin = null;
         }
 
         return false;
@@ -241,9 +238,11 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                                                                this.parent));
 
                 this.media_db.save_object (this.containers.peek_tail ());
+                Idle.add (this.on_idle);
             } else {
                 string id;
                 if (push_if_changed_or_unknown (file, info, out id)) {
+                    Idle.add (this.on_idle);
                     this.origin = file;
                     this.containers.push_tail (this.parent);
                 }

@@ -25,7 +25,7 @@ using Gee;
  */
 public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     private MetadataExtractor extractor;
-    private ArrayList<MediaExportHarvester> harvester;
+    private HashMap<File, MediaExportHarvester> harvester;
     private MediaExportRecursiveFileMonitor monitor;
 
     private ArrayList<string> get_uris () {
@@ -67,7 +67,8 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
 
         this.extractor = new MetadataExtractor ();
 
-        this.harvester = new ArrayList<MediaExportHarvester> ();
+        this.harvester = new HashMap<File,MediaExportHarvester> (file_hash,
+                                                                 file_equal);
 
         this.monitor = new MediaExportRecursiveFileMonitor (null);
         this.monitor.changed.connect (this.on_file_changed);
@@ -94,16 +95,19 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
             this.media_db.delete_by_id (id);
         }
         this.updated ();
+    }
 
-
-   }
+    private void on_file_harvested (File file) {
+        this.harvester.remove (file);
+    }
 
     private void harvest (File file, MediaContainer parent = this) {
         var harvest = new MediaExportHarvester (parent,
                                                 this.media_db,
                                                 this.extractor,
                                                 this.monitor);
-        this.harvester.add (harvest);
+        harvest.harvested.connect (this.on_file_harvested);
+        this.harvester[file] = harvest;
         harvest.harvest (file);
     }
 
