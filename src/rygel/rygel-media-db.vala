@@ -184,7 +184,7 @@ public class Rygel.MediaDB : Object {
     "DELETE FROM Object WHERE Object.upnp_id = ?";
 
     private const string SWEEPER_STRING =
-    "DELETE FROM Object WHERE parent IS NULL";
+    "DELETE FROM Object WHERE parent IS NULL AND Object.upnp_id != '0'";
 
     private const string GET_CHILD_ID_STRING =
     "SELECT upnp_id FROM OBJECT WHERE parent = ?";
