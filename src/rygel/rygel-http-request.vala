@@ -209,7 +209,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
         try {
             if (this.transcoder != null) {
-                src = this.transcoder.create_source (src);
+                src = this.transcoder.create_source (this.item, src);
             }
 
             // Then start the gst stream

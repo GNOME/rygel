@@ -57,7 +57,9 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
         this.endianness = endianness;
     }
 
-    public override Element create_source (Element src) throws Error {
+    public override Element create_source (MediaItem item,
+                                           Element   src)
+                                           throws Error {
         return new L16TranscoderBin (src, this);
     }
 

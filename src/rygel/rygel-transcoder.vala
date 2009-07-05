@@ -48,11 +48,13 @@ internal abstract class Rygel.Transcoder : GLib.Object {
     /**
      * Creates a transcoding source.
      *
+     * @param src the media item to create the transcoding source for
      * @param src the original (non-transcoding) source
      *
      * @return      the new transcoding source
      */
-    public abstract Element create_source (Element src) throws Error;
+    public abstract Element create_source (MediaItem item,
+                                           Element   src) throws Error;
 
     public virtual DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
                                                    MediaItem        item,

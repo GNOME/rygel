@@ -44,7 +44,9 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
         this.layer = layer;
     }
 
-    public override Element create_source (Element src) throws Error {
+    public override Element create_source (MediaItem item,
+                                           Element   src)
+                                           throws Error {
         return new MP3TranscoderBin (src, this);
     }
 

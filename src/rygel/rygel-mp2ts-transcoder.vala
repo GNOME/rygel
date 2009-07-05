@@ -55,7 +55,9 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         this.profile = profile;
     }
 
-    public override Element create_source (Element src) throws Error {
+    public override Element create_source (MediaItem item,
+                                           Element   src)
+                                           throws Error {
         return new MP2TSTranscoderBin (src, this);
     }
 
