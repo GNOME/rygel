@@ -40,6 +40,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     private const int[] WIDTH = {640, 1280};
     private const int[] HEIGHT = {480, 720};
     private const string[] PROFILES = {"MPEG_TS_SD_US", "MPEG_TS_HD_US"};
+    private const int BITRATE = 3000000;
 
     private const string VIDEO_ENCODER = "ffenc_mpeg2video";
     private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
