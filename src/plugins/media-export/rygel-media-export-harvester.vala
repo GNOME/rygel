@@ -229,6 +229,32 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         return false;
     }
 
+    private void on_initial_info_ready (Object source, AsyncResult result) {
+        var file = (File) source;
+        try {
+            var info = file.query_info_finish (result);
+
+            if (info.get_file_type () == FileType.DIRECTORY) {
+                this.origin = file;
+                monitor.monitor (file);
+                this.containers.push_tail (new DummyContainer (file,
+                                                               this.parent));
+
+                this.media_db.save_object (this.containers.peek_tail ());
+            } else {
+                string id;
+                if (push_if_changed_or_unknown (file, info, out id)) {
+                    this.origin = file;
+                    this.containers.push_tail (this.parent);
+                }
+            }
+
+        } catch (Error err) {
+            warning ("Failed to harvest file %s", file.get_uri ());
+            harvested (file);
+        }
+    }
+
     /**
      * Fired for every file passed to harvest.
      */
@@ -250,35 +276,13 @@ public class Rygel.MediaExportHarvester : GLib.Object {
      * only one event is sent when all the children are done.
      */
     public void harvest (File file) {
-        if (file.query_exists (null)) {
-            try {
-                var info = file.query_info (
-                             FILE_ATTRIBUTE_STANDARD_NAME + "," +
-                             FILE_ATTRIBUTE_STANDARD_TYPE + "," +
-                             FILE_ATTRIBUTE_TIME_MODIFIED,
-                             FileQueryInfoFlags.NONE,
-                             null);
-                if (info.get_file_type () == FileType.DIRECTORY) {
-                    this.origin = file;
-                    monitor.monitor (file);
-                    this.containers.push_tail (new DummyContainer (
-                                                                 file,
-                                                                  this.parent));
-
-                    this.media_db.save_object (this.containers.peek_tail ());
-                } else {
-                    string id;
-                    if (push_if_changed_or_unknown (file, info, out id)) {
-                        this.origin = file;
-                        this.containers.push_tail (this.parent);
-                    }
-                }
-            } catch (Error error) {
-                debug ("Failed to query info for file %s: %s",
-                       file.get_uri (),
-                       error.message);
-            }
-        }
+        file.query_info_async (FILE_ATTRIBUTE_STANDARD_NAME + "," +
+                               FILE_ATTRIBUTE_STANDARD_TYPE + "," +
+                               FILE_ATTRIBUTE_TIME_MODIFIED,
+                               FileQueryInfoFlags.NONE,
+                               Priority.DEFAULT,
+                               null,
+                               this.on_initial_info_ready);
     }
 
     private void on_extracted_cb (File file, Gst.TagList tag_list) {
