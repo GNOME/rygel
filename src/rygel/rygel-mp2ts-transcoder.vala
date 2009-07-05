@@ -93,12 +93,34 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         bin.add_many (videorate, videoscale, convert, encoder);
 
         convert.link_many (videoscale, videorate);
-        var caps = new Caps.simple (
-                                "video/x-raw-yuv",
-                                "width", typeof (int), WIDTH[this.profile],
-                                "height", typeof (int), HEIGHT[this.profile],
-                                "framerate", typeof (Fraction), 30, 1,
-                                "pixel-aspect-ratio", typeof (Fraction), 1, 1);
+
+        int pixel_w;
+        int pixel_h;
+
+        if (item.pixel_width > 0 && item.pixel_height > 0) {
+            pixel_w = item.width * HEIGHT[this.profile] * item.pixel_width;
+            pixel_h = item.height * WIDTH[this.profile] * item.pixel_height;
+        } else {
+            // Original pixel-ratio not provided, lets just use 1:1
+            pixel_w = 1;
+            pixel_h = 1;
+        }
+
+        var caps = new Caps.simple ("video/x-raw-yuv",
+                                    "width",
+                                        typeof (int),
+                                        WIDTH[this.profile],
+                                    "height",
+                                        typeof (int),
+                                        HEIGHT[this.profile],
+                                    "framerate",
+                                        typeof (Fraction),
+                                        30,
+                                        1,
+                                    "pixel-aspect-ratio",
+                                        typeof (Fraction),
+                                        pixel_w,
+                                        pixel_h);
         videorate.link_filtered (encoder, caps);
 
         var pad = convert.get_static_pad ("sink");
