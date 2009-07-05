@@ -610,9 +610,22 @@ public class Rygel.MediaDB : Object {
         if (rc == Sqlite.OK) {
             statement.bind_text (1, object_id);
             while ((rc = statement.step ()) == Sqlite.ROW) {
-                var parent = get_object (statement.column_text (17));
-                obj = get_object_from_statement ((MediaContainer)parent, object_id, statement);
-                obj.parent_ref = (MediaContainer)parent;
+                MediaContainer parent = null;
+                var parent_id = statement.column_text (17);
+                if (parent_id != null) {
+                    parent = (MediaContainer) get_object (
+                                    statement.column_text (17));
+                } else {
+                    if (statement.column_text (0) != "0") {
+                        warning ("Inconsitent database; non-root element " +
+                                 "without parent found. Id is %s",
+                                 statement.column_text (0));
+                    }
+                }
+                obj = get_object_from_statement ((MediaContainer) parent,
+                                                 object_id,
+                                                 statement);
+                obj.parent_ref = (MediaContainer) parent;
                 obj.parent = obj.parent_ref;
                 break;
             }
