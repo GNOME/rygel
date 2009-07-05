@@ -58,6 +58,8 @@ public class Rygel.MediaItem : MediaObject {
     // Image/Video
     public int width = -1;
     public int height = -1;
+    public int pixel_width = -1;
+    public int pixel_height = -1;
     public int color_depth = -1;
 
     public MediaItem (string         id,
