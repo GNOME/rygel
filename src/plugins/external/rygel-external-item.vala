@@ -71,11 +71,6 @@ public class Rygel.ExternalItem : MediaItem {
         value = item_props.lookup ("MIMEType");
         this.mime_type = value.get_string ();
 
-        value = item_props.lookup ("DLNAProfile");
-        if (value != null) {
-            this.dlna_profile = value.get_string ();
-        }
-
         value = item_props.lookup ("URLs");
         weak string[] uris = (string[]) value.get_boxed ();
 
@@ -83,6 +78,79 @@ public class Rygel.ExternalItem : MediaItem {
             var tmp = uris[i].replace ("@ADDRESS@", parent.host_ip);
 
             this.uris.add (tmp);
+        }
+
+        // Optional properties
+        //
+        // FIXME: Handle:
+        //
+        // MeidaItem1.Genre
+        // MediaItem1.Thumbnail
+        // MediaItem1.AlbumArt
+        //
+
+        value = item_props.lookup ("DLNAProfile");
+        if (value != null) {
+            this.dlna_profile = value.get_string ();
+        }
+
+        value = item_props.lookup ("Size");
+        if (value != null) {
+            this.size = value.get_int ();
+        }
+
+        value = item_props.lookup ("Artist");
+        if (value != null) {
+            this.author = value.get_string ();
+        }
+
+        value = item_props.lookup ("Album");
+        if (value != null) {
+            this.album = value.get_string ();
+        }
+
+        value = item_props.lookup ("Date");
+        if (value != null) {
+            this.date = value.get_string ();
+        }
+
+        // Properties specific to video and audio/music
+
+        value = item_props.lookup ("Duration");
+        if (value != null) {
+            this.duration = value.get_int ();
+        }
+
+        value = item_props.lookup ("Bitrate");
+        if (value != null) {
+            this.bitrate = value.get_int ();
+        }
+
+        value = item_props.lookup ("SampleRate");
+        if (value != null) {
+            this.sample_freq = value.get_int ();
+        }
+
+        value = item_props.lookup ("BitsPerSample");
+        if (value != null) {
+            this.bits_per_sample = value.get_int ();
+        }
+
+        // Properties specific to video and image
+
+        value = item_props.lookup ("Width");
+        if (value != null) {
+            this.width = value.get_int ();
+        }
+
+        value = item_props.lookup ("Height");
+        if (value != null) {
+            this.height = value.get_int ();
+        }
+
+        value = item_props.lookup ("ColorDepth");
+        if (value != null) {
+            this.color_depth = value.get_int ();
         }
     }
 }
