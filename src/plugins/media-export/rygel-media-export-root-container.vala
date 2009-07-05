@@ -72,16 +72,18 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         this.monitor = new MediaExportRecursiveFileMonitor (null);
         this.monitor.changed.connect (this.on_file_changed);
 
-        var uris = get_uris ();
+        try {
+            media_db.save_object (this);
+        } catch (Error error) {
+        }
 
         var ids = media_db.get_child_ids ("0");
-
+        var uris = get_uris ();
         foreach (var uri in uris) {
             var file = File.new_for_commandline_arg (uri);
             if (file.query_exists (null)) {
                 var id = Checksum.compute_for_string (ChecksumType.MD5,
                                                       file.get_uri ());
-                debug ("Requested id %s", id);
                 ids.remove (id);
                 this.harvest (file);
             }
