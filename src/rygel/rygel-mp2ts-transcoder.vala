@@ -58,7 +58,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     public override Element create_source (MediaItem item,
                                            Element   src)
                                            throws Error {
-        return new MP2TSTranscoderBin (src, this);
+        return new MP2TSTranscoderBin (item, src, this);
     }
 
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
@@ -76,8 +76,9 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         return resource;
     }
 
-    public Element create_encoder (string? src_pad_name,
-                                   string? sink_pad_name)
+    public Element create_encoder (MediaItem item,
+                                   string?   src_pad_name,
+                                   string?   sink_pad_name)
                                    throws Error {
         var videorate = GstUtils.create_element (VIDEO_RATE, VIDEO_RATE);
         var videoscale = GstUtils.create_element (VIDEO_SCALE, VIDEO_SCALE);

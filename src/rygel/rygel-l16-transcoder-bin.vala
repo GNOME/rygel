@@ -35,11 +35,13 @@ internal class Rygel.L16TranscoderBin : Gst.Bin {
 
     private dynamic Element audio_enc;
 
-    public L16TranscoderBin (Element       src,
+    public L16TranscoderBin (MediaItem     item,
+                             Element       src,
                              L16Transcoder transcoder) throws Error {
         Element decodebin = GstUtils.create_element (DECODEBIN, DECODEBIN);
 
-        this.audio_enc = transcoder.create_encoder (AUDIO_SRC_PAD,
+        this.audio_enc = transcoder.create_encoder (item,
+                                                    AUDIO_SRC_PAD,
                                                     AUDIO_SINK_PAD);
 
         this.add_many (src, decodebin, this.audio_enc);

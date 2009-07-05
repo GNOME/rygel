@@ -47,7 +47,7 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     public override Element create_source (MediaItem item,
                                            Element   src)
                                            throws Error {
-        return new MP3TranscoderBin (src, this);
+        return new MP3TranscoderBin (item, src, this);
     }
 
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
@@ -64,11 +64,13 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
         return resource;
     }
 
-    public Element create_encoder (string?  src_pad_name,
-                                   string?  sink_pad_name)
+    public Element create_encoder (MediaItem item,
+                                   string?   src_pad_name,
+                                   string?   sink_pad_name)
                                    throws Error {
         var l16_transcoder = new L16Transcoder (Endianness.LITTLE);
         dynamic Element convert = l16_transcoder.create_encoder (
+                                                    item,
                                                     null,
                                                     CONVERT_SINK_PAD);
         dynamic Element encoder = GstUtils.create_element (

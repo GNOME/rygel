@@ -60,7 +60,7 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
     public override Element create_source (MediaItem item,
                                            Element   src)
                                            throws Error {
-        return new L16TranscoderBin (src, this);
+        return new L16TranscoderBin (item, src, this);
     }
 
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
@@ -82,8 +82,9 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
         return resource;
     }
 
-    public Element create_encoder (string? src_pad_name,
-                                   string? sink_pad_name)
+    public Element create_encoder (MediaItem item,
+                                   string?   src_pad_name,
+                                   string?   sink_pad_name)
                                    throws Error {
         dynamic Element convert1 = GstUtils.create_element (AUDIO_CONVERT,
                                                             null);
