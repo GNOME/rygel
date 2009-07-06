@@ -76,6 +76,30 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         return resource;
     }
 
+    public override uint get_distance (MediaItem item) {
+        if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
+            return uint.MAX;
+        }
+
+        uint distance = uint.MIN;
+
+        if (item.upnp_class.has_prefix (MediaItem.VIDEO_CLASS)) {
+            if (item.bitrate > 0) {
+                distance += (item.bitrate - BITRATE).abs ();
+            }
+
+            if (item.width > 0) {
+                distance += (item.width - WIDTH[this.profile]).abs ();
+            }
+
+            if (item.height > 0) {
+                distance += (item.height - HEIGHT[this.profile]).abs ();
+            }
+        }
+
+        return distance;
+    }
+
     public Element create_encoder (MediaItem item,
                                    string?   src_pad_name,
                                    string?   sink_pad_name)

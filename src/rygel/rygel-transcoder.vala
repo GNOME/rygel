@@ -85,6 +85,18 @@ internal abstract class Rygel.Transcoder : GLib.Object {
         return target == this.dlna_profile;
     }
 
+    /**
+     * Gets the numeric value that gives an gives an estimate of how hard
+     * would it be to trancode @item to target profile of this transcoder.
+     *
+     * @param item the media item to calculate the distance for
+     *
+     * @return      the distance from the @item, uint.MIN if providing such a
+     *              value is impossible or uint.MAX if it doesn't make any
+     *              sense to use this transcoder for @item
+     */
+    public abstract uint get_distance (MediaItem item);
+
     protected bool mime_type_is_a (string mime_type1,
                                           string mime_type2) {
         string content_type1 = g_content_type_from_mime_type (mime_type1);

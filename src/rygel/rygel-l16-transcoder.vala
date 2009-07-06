@@ -82,6 +82,30 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
         return resource;
     }
 
+    public override uint get_distance (MediaItem item) {
+        if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
+            return uint.MAX;
+        }
+
+        uint distance = uint.MIN;
+
+        if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS)) {
+            if (item.sample_freq > 0) {
+                distance += (item.sample_freq - FREQUENCY).abs ();
+            }
+
+            if (item.n_audio_channels > 0) {
+                distance += (item.n_audio_channels - CHANNELS).abs ();
+            }
+
+            if (item.bits_per_sample > 0) {
+                distance += (item.bits_per_sample - WIDTH).abs ();
+            }
+        }
+
+        return distance;
+    }
+
     public Element create_encoder (MediaItem item,
                                    string?   src_pad_name,
                                    string?   sink_pad_name)

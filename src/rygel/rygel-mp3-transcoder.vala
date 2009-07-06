@@ -64,6 +64,20 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
         return resource;
     }
 
+    public override uint get_distance (MediaItem item) {
+        if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
+            return uint.MAX;
+        }
+
+        uint distance = uint.MIN;
+
+        if (item.bitrate > 0) {
+            distance += (item.bitrate - BITRATE).abs ();
+        }
+
+        return distance;
+    }
+
     public Element create_encoder (MediaItem item,
                                    string?   src_pad_name,
                                    string?   sink_pad_name)
