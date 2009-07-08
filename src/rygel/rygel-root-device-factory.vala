@@ -35,8 +35,9 @@ public errordomain RootDeviceFactoryError {
  * Root device for that.
  */
 public class Rygel.RootDeviceFactory {
+    public GUPnP.Context context;
+
     private Configuration config;
-    private GUPnP.Context context;
 
     private string desc_dir;
 
