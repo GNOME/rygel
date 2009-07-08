@@ -113,9 +113,6 @@ public class Rygel.Main : Object {
             }
 
             this.factories.add (factory);
-
-            // Host UPnP dir
-            context.host_path (BuildConfig.DATA_DIR, "");
         } else {
             debug ("Ignoring network context %s (%s).",
                    context.name,

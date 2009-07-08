@@ -49,6 +49,9 @@ public class Rygel.RootDeviceFactory {
         this.desc_dir = Path.build_filename (Environment.get_user_config_dir (),
                                              "Rygel");
         this.ensure_dir_exists (this.desc_dir);
+
+        // Host UPnP dir
+        context.host_path (BuildConfig.DATA_DIR, "");
     }
 
     public RootDevice create (Plugin plugin) throws GLib.Error {
