@@ -640,7 +640,7 @@ public class Rygel.MediaDB : Object {
         item.album = statement.column_text (8);
         item.date = statement.column_text (9);
         item.mime_type = statement.column_text (3);
-        item.duration = (long)statement.column_text (16);
+        item.duration = (long)statement.column_int64 (16);
 
         item.size = (long)statement.column_int64 (2);
         item.bitrate = statement.column_int (10);
