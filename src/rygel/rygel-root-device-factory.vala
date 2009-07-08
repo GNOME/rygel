@@ -73,9 +73,9 @@ public class Rygel.RootDeviceFactory {
         this.context.host_path (desc_path, "/" + modified_desc);
 
         return new RootDevice (this.context,
-                                plugin,
-                                doc,
-                                modified_desc);
+                               plugin,
+                               doc,
+                               modified_desc);
     }
 
     private Xml.Doc * create_desc (Plugin plugin,
