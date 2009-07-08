@@ -23,11 +23,15 @@
 
 using CStuff;
 using Gee;
+using GUPnP;
 
 public class Rygel.Main : Object {
     private PluginLoader plugin_loader;
-    private RootDeviceFactory device_factory;
-    private ArrayList<RootDevice> root_devices;
+    private ContextManager context_manager;
+    private ArrayList <RootDeviceFactory> factories;
+    private ArrayList <RootDevice> root_devices;
+
+    private Configuration config;
 
     private MainLoop main_loop;
 
@@ -36,9 +40,11 @@ public class Rygel.Main : Object {
     public Main () throws GLib.Error {
         Environment.set_application_name (_(BuildConfig.PACKAGE_NAME));
 
-        this.root_devices = new ArrayList<RootDevice> ();
+        this.config = MetaConfig.get_default ();
         this.plugin_loader = new PluginLoader ();
-        this.device_factory = new RootDeviceFactory ();
+        this.root_devices = new ArrayList <RootDevice> ();
+        this.factories = new ArrayList <RootDeviceFactory> ();
+        this.context_manager = this.create_context_manager ();
         this.main_loop = new GLib.MainLoop (null, false);
 
         this.exit_code = 0;
@@ -67,18 +73,77 @@ public class Rygel.Main : Object {
 
     private void on_plugin_loaded (PluginLoader plugin_loader,
                                    Plugin       plugin) {
+        foreach (var factory in this.factories) {
+            this.create_device (plugin, factory);
+        }
+    }
+
+    private ContextManager create_context_manager () {
+        int port = 0;
+
         try {
-            var device = this.device_factory.create (plugin);
+            port = this.config.get_port ();
+        } catch (GLib.Error err) {}
+
+        var manager = new ContextManager (null, port);
+
+        manager.context_available.connect (this.on_context_available);
+        manager.context_unavailable.connect (this.on_context_unavailable);
+
+        return manager;
+    }
+
+    private void on_context_available (GUPnP.ContextManager manager,
+                                       GUPnP.Context        context) {
+        string host_ip = null;
+
+        try {
+            host_ip = this.config.get_host_ip ();
+        } catch (GLib.Error err) {}
+
+        if (host_ip == null || host_ip == context.host_ip) {
+            var factory = new RootDeviceFactory (context);
+
+            foreach (var plugin in this.plugin_loader.list_plugins ()) {
+                this.create_device (plugin, factory);
+            }
+
+            this.factories.add (factory);
+
+            // Host UPnP dir
+            context.host_path (BuildConfig.DATA_DIR, "");
+        }
+    }
+
+    private void on_context_unavailable (GUPnP.ContextManager manager,
+                                         GUPnP.Context        context) {
+        foreach (var factory in this.factories) {
+            if (context == factory.context) {
+                this.factories.remove (factory);
+            }
+        }
+
+        foreach (var device in this.root_devices) {
+            if (context == device.context) {
+                this.root_devices.remove (device);
+            }
+        }
+    }
+
+    private void create_device (Plugin            plugin,
+                                RootDeviceFactory factory) {
+        try {
+            var device = factory.create (plugin);
 
             device.available = plugin.available;
 
-            root_devices.add (device);
+            this.root_devices.add (device);
 
             plugin.notify["available"] += this.on_plugin_notify;
         } catch (GLib.Error error) {
             warning ("Failed to create RootDevice for %s. Reason: %s\n",
-                     plugin.name,
-                     error.message);
+                    plugin.name,
+                    error.message);
         }
     }
 
