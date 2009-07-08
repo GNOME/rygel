@@ -97,6 +97,10 @@ public class Rygel.Main : Object {
                                        GUPnP.Context        context) {
         string host_ip = null;
 
+        debug ("new network context %s (%s) available.",
+               context.name,
+               context.host_ip);
+
         try {
             host_ip = this.config.get_host_ip ();
         } catch (GLib.Error err) {}
@@ -112,11 +116,19 @@ public class Rygel.Main : Object {
 
             // Host UPnP dir
             context.host_path (BuildConfig.DATA_DIR, "");
+        } else {
+            debug ("Ignoring network context %s (%s).",
+                   context.name,
+                   context.host_ip);
         }
     }
 
     private void on_context_unavailable (GUPnP.ContextManager manager,
                                          GUPnP.Context        context) {
+        debug ("Network context %s (%s) now unavailable.",
+               context.name,
+               context.host_ip);
+
         foreach (var factory in this.factories) {
             if (context == factory.context) {
                 this.factories.remove (factory);
