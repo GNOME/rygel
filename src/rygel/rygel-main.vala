@@ -129,16 +129,26 @@ public class Rygel.Main : Object {
                context.name,
                context.host_ip);
 
+        var factory_list = new ArrayList <RootDeviceFactory> ();
         foreach (var factory in this.factories) {
             if (context == factory.context) {
-                this.factories.remove (factory);
+                factory_list.add (factory);
             }
         }
 
+        foreach (var factory in factory_list) {
+            this.factories.remove (factory);
+        }
+
+        var device_list = new ArrayList <RootDevice> ();
         foreach (var device in this.root_devices) {
             if (context == device.context) {
-                this.root_devices.remove (device);
+                device_list.add (device);
             }
+        }
+
+        foreach (var device in device_list) {
+            this.root_devices.remove (device);
         }
     }
 
