@@ -41,11 +41,9 @@ public class Rygel.RootDeviceFactory {
 
     private string desc_dir;
 
-    public RootDeviceFactory () throws GLib.Error {
+    public RootDeviceFactory (GUPnP.Context context) throws GLib.Error {
         this.config = MetaConfig.get_default ();
-
-        /* Set up GUPnP context */
-        this.context = create_upnp_context ();
+        this.context = context;
 
         /* We store the modified descriptions in the user's config dir */
         this.desc_dir = Path.build_filename (Environment.get_user_config_dir (),
@@ -104,23 +102,6 @@ public class Rygel.RootDeviceFactory {
         save_modified_desc (doc, desc_path);
 
         return doc;
-    }
-
-    private GUPnP.Context create_upnp_context () throws GLib.Error {
-        string host_ip = null;
-        int port = 0;
-
-        try {
-            host_ip = this.config.get_host_ip ();
-            port = this.config.get_port ();
-        } catch (GLib.Error err) {}
-
-        GUPnP.Context context = new GUPnP.Context (null, host_ip, port);
-
-        /* Host UPnP dir */
-        context.host_path (BuildConfig.DATA_DIR, "");
-
-        return context;
     }
 
     private void prepare_desc_for_plugin (Xml.Doc doc, Plugin plugin) {
