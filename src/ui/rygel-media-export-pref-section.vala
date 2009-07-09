@@ -107,11 +107,17 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
         if (this.dialog.run () == ResponseType.OK) {
             TreeIter iter;
 
-            var uris = this.dialog.get_uris ();
+            var dirs = this.dialog.get_files ();
 
-            foreach (var uri in uris) {
+            foreach (var dir in dirs) {
+                string path = dir.get_path ();
+
+                if (path == null) {
+                    path = dir.get_uri ();
+                }
+
                 this.liststore.append (out iter);
-                this.liststore.set (iter, 0, uri, -1);
+                this.liststore.set (iter, 0, path, -1);
             }
         }
 
