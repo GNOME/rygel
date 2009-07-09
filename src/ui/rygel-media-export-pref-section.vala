@@ -65,6 +65,9 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
             }
         } catch (GLib.Error err) {} // Nevermind
 
+        this.dialog.set_current_folder (Environment.get_home_dir ());
+        this.dialog.show_hidden = false;
+
         var button = (Button) builder.get_object (ADD_BUTTON);
         button.clicked += this.on_add_button_clicked;
 
