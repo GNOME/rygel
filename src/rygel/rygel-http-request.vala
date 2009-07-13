@@ -62,12 +62,12 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         this.server = server;
         this.msg = msg;
         this.query = query;
-
-        this.server.pause_message (this.msg);
     }
 
     public void run (Cancellable? cancellable) {
         this.cancellable = cancellable;
+
+        this.server.pause_message (this.msg);
 
         if (this.msg.method != "HEAD" && this.msg.method != "GET") {
             /* We only entertain 'HEAD' and 'GET' requests */
@@ -136,6 +136,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
         if (this.msg.method == "HEAD") {
             // Only headers requested, no need to send contents
+            this.server.unpause_message (this.msg);
             this.end (Soup.KnownStatusCode.OK);
             return;
         }
@@ -338,6 +339,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             status = Soup.KnownStatusCode.NOT_FOUND;
         }
 
+        this.server.unpause_message (this.msg);
         this.end (status);
     }
 
