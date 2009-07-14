@@ -145,7 +145,6 @@ public class Rygel.Main : Object {
         }
 
         foreach (var device in device_list) {
-            device.available = false;
             this.root_devices.remove (device);
         }
     }
