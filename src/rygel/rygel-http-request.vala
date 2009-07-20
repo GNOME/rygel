@@ -49,7 +49,8 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     private string item_id;
     private Transcoder transcoder;
     private MediaItem item;
-    private Seek seek;
+    private Seek byte_range;
+    private Seek time_range;
 
     private Cancellable cancellable;
 
@@ -100,7 +101,8 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         var response = new LiveResponse (this.server,
                                          this.msg,
                                          "RygelLiveResponse",
-                                         src);
+                                         src,
+                                         this.time_range);
         this.response = response;
         response.completed += on_response_completed;
 
@@ -111,7 +113,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         var response = new SeekableResponse (this.server,
                                              this.msg,
                                              uri,
-                                             this.seek,
+                                             this.byte_range,
                                              size);
         this.response = response;
         response.completed += on_response_completed;
@@ -125,7 +127,8 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
     private void handle_item_request () {
         try {
-            this.parse_range ();
+            this.byte_range = Seek.from_byte_range(this.msg);
+            this.time_range = Seek.from_time_range(this.msg);
         } catch (Error error) {
             this.handle_error (error);
             return;
@@ -158,6 +161,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         if (this.transcoder != null) {
             this.msg.response_headers.append ("Content-Type",
                                               this.transcoder.mime_type);
+            this.time_range.add_response_header(this.msg);
             return;
         }
 
@@ -171,24 +175,15 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
 
         if (this.item.size > 0) {
-            int64 first_byte;
-            int64 last_byte;
+            Seek seek;
 
-            if (this.seek != null) {
-                first_byte = this.seek.start;
-                last_byte = this.seek.stop;
+            if (this.byte_range != null) {
+                seek = this.byte_range;
             } else {
-                first_byte = 0;
-                last_byte = this.item.size - 1;
+                seek = new Seek (Format.BYTES, 0, this.item.size - 1);
             }
 
-            // Content-Range: bytes START_BYTE-STOP_BYTE/TOTAL_LENGTH
-            var content_range = "bytes " +
-                                first_byte.to_string () + "-" +
-                                last_byte.to_string () + "/" +
-                                this.item.size.to_string ();
-            this.msg.response_headers.append ("Content-Range", content_range);
-            this.msg.response_headers.append ("Accept-Ranges", "bytes");
+            seek.add_response_header (this.msg, this.item.size);
         }
     }
 
@@ -235,74 +230,6 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
 
         this.serve_uri (uri, this.item.size);
-    }
-
-    private void parse_range () throws HTTPRequestError {
-            string range;
-            string[] range_tokens;
-
-            range = this.msg.request_headers.get ("Range");
-            if (range == null) {
-                return;
-            }
-
-            // We have a Range header. Parse.
-            if (!range.has_prefix ("bytes=")) {
-                throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
-                                                       range);
-            }
-
-            range_tokens = range.offset (6).split ("-", 2);
-
-            if (range_tokens[0] == null || range_tokens[1] == null) {
-                throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
-                                                       range);
-            }
-
-            this.seek = new Seek (Format.BYTES, 0, this.item.size - 1);
-
-            // Get first byte position
-            string first_byte = range_tokens[0];
-            if (first_byte[0].isdigit ()) {
-                this.seek.start = first_byte.to_int64 ();
-            } else if (first_byte  != "") {
-                throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
-                                                       range);
-            }
-
-            // Get last byte position if specified
-            string last_byte = range_tokens[1];
-            if (last_byte[0].isdigit ()) {
-                this.seek.stop = last_byte.to_int64 ();
-            } else if (last_byte  != "") {
-                throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
-                                                       range);
-            }
-
-            if (this.item.size > 0) {
-                // shouldn't go beyond actual length of media
-                if (this.seek.start > this.item.size ||
-                    this.seek.length > this.item.size) {
-                    throw new HTTPRequestError.OUT_OF_RANGE (
-                            "Range '%s' not setsifiable", range);
-                }
-
-                // No need to seek if whole stream is requested
-                if (this.seek.start == 0 &&
-                    this.seek.length == this.item.size) {
-                    this.seek == null;
-                    return;
-                }
-            } else if (this.seek.start == 0) {
-                // Might be an attempt to get the size, in which case it's not
-                // an error. Just don't seek.
-                this.seek == null;
-                return;
-            } else {
-                throw new HTTPRequestError.UNACCEPTABLE (
-                            "Partial download not applicable for item %s",
-                            this.item.id);
-            }
     }
 
     private void on_item_found (GLib.Object source_object,

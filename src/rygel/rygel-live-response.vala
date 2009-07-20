@@ -39,10 +39,13 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
 
     private AsyncQueue<Buffer> buffers;
 
+    private Seek time_range;
+
     public LiveResponse (Soup.Server  server,
                          Soup.Message msg,
                          string       name,
-                         Element      src) throws Error {
+                         Element      src,
+                         Seek?        time_range) throws Error {
         base (server, msg, false);
 
         this.msg.response_headers.set_encoding (Soup.Encoding.EOF);
@@ -50,12 +53,28 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         this.buffers = new AsyncQueue<Buffer> ();
 
         this.prepare_pipeline (name, src);
+        this.time_range = time_range;
     }
 
     public override void run (Cancellable? cancellable) {
         base.run (cancellable);
 
-        // Go to PAUSED first
+        // Only bother attempting to seek if the offset is greater than zero.
+        if (this.time_range != null && this.time_range.start > 0) {
+            this.pipeline.set_state (State.PAUSED);
+            this.pipeline.get_state (null, null, -1);
+            if (!this.pipeline.seek (
+                    1.0, Format.TIME, SeekFlags.FLUSH,
+                    Gst.SeekType.SET, this.time_range.start,
+                    this.time_range.stop > 0 ? Gst.SeekType.SET :
+                    Gst.SeekType.NONE, this.time_range.stop)) {
+                warning ("Failed to seek to offset %lld",
+                         this.time_range.start);
+                this.end(false,
+                         Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
+                return;
+            }
+        }
         this.pipeline.set_state (State.PLAYING);
     }
 

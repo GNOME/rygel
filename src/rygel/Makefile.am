@@ -52,6 +52,7 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel-http-server.c \
 		rygel-state-machine.c \
 		rygel-http-request.c \
+		rygel-seek.c \
 		rygel-http-response.c \
 		rygel-live-response.c \
 		rygel-seekable-response.c \
@@ -95,6 +96,7 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-http-server.c \
 		rygel-state-machine.c \
 		rygel-http-request.c \
+		rygel-seek.c \
 		rygel-http-response.c \
 		rygel-live-response.c \
 		rygel-seekable-response.c \
@@ -150,6 +152,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-http-server.vala \
 		    rygel-state-machine.vala \
 		    rygel-http-request.vala \
+		    rygel-seek.vala \
 		    rygel-http-response.vala \
 		    rygel-live-response.vala \
 		    rygel-seekable-response.vala \

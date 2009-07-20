@@ -81,39 +81,3 @@ internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         this.completed ();
     }
 }
-
-internal class Rygel.Seek : GLib.Object {
-    public Format format { get; private set; }
-
-    private int64 _start;
-    public int64 start {
-        get {
-            return this._start;
-        }
-        set {
-            this._start = value;
-            this.length = stop - start + 1;
-        }
-    }
-
-    private int64 _stop;
-    public int64 stop {
-        get {
-            return this._stop;
-        }
-        set {
-            this._stop = value;
-            this.length = stop - start + 1;
-        }
-    }
-
-    public int64 length { get; private set; }
-
-    public Seek (Format format,
-                 int64  start,
-                 int64  stop) {
-        this.format = format;
-        this.start = start;
-        this.stop = stop;
-    }
-}
