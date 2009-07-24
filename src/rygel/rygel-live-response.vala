@@ -62,20 +62,9 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         // Only bother attempting to seek if the offset is greater than zero.
         if (this.time_range != null && this.time_range.start > 0) {
             this.pipeline.set_state (State.PAUSED);
-            this.pipeline.get_state (null, null, -1);
-            if (!this.pipeline.seek (
-                    1.0, Format.TIME, SeekFlags.FLUSH,
-                    Gst.SeekType.SET, this.time_range.start,
-                    this.time_range.stop > 0 ? Gst.SeekType.SET :
-                    Gst.SeekType.NONE, this.time_range.stop)) {
-                warning ("Failed to seek to offset %lld",
-                         this.time_range.start);
-                this.end(false,
-                         Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
-                return;
-            }
+        } else {
+            this.pipeline.set_state (State.PLAYING);
         }
-        this.pipeline.set_state (State.PLAYING);
     }
 
     public override void end (bool aborted, uint status) {
@@ -245,6 +234,21 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
 
         if (message.type == MessageType.EOS) {
             ret = false;
+        } else if (message.type == MessageType.STATE_CHANGED) {
+            if (this.time_range != null && this.time_range.start > 0) {
+                State old_state;
+                State new_state;
+
+                message.parse_state_changed (out old_state,
+                                             out new_state,
+                                             null);
+
+                if (old_state == State.READY && new_state == State.PAUSED) {
+                    if (this.seek ()) {
+                        this.pipeline.set_state (State.PLAYING);
+                    }
+                }
+            }
         } else {
             GLib.Error err;
             string err_msg;
@@ -269,6 +273,33 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         }
 
         return ret;
+    }
+
+    private bool seek () {
+        Gst.SeekType stop_type;
+
+        if (this.time_range.stop > 0) {
+            stop_type = Gst.SeekType.SET;
+        } else {
+            stop_type = Gst.SeekType.NONE;
+        }
+
+        if (!this.pipeline.seek (1.0,
+                                 Format.TIME,
+                                 SeekFlags.FLUSH,
+                                 Gst.SeekType.SET,
+                                 this.time_range.start,
+                                 stop_type,
+                                 this.time_range.stop)) {
+            warning ("Failed to seek to offset %lld", this.time_range.start);
+
+            this.end (false,
+                      Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
+
+            return false;
+        }
+
+        return true;
     }
 }
 
