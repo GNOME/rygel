@@ -9,24 +9,17 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	$(GEE_CFLAGS) \
 	-I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
 
-BUILT_SOURCES = rygel-media-export-root-container.c \
-		rygel-media-export-item.c \
-		rygel-media-export-harvester.c \
-		rygel-media-export-plugin.c
+$(librygel_media_export_la_SOURCES) : rygel-media-export.stamp
 
-$(BUILT_SOURCES) : rygel-media-export.stamp
-
-librygel_media_export_la_SOURCES = \
-	rygel-media-export-plugin.c \
+librygel_media_export_la_VALASOURCES = \
 	rygel-media-export-plugin.vala \
-	rygel-media-export-root-container.c \
 	rygel-media-export-root-container.vala \
-	rygel-media-export-harvester.c \
 	rygel-media-export-harvester.vala \
-	rygel-media-export-item.c \
 	rygel-media-export-item.vala
+librygel_media_export_la_SOURCES = \
+	$(librygel_media_export_la_VALASOURCES:.vala=.c)
 
-rygel-media-export.stamp: $(filter %.vala,$(librygel_media_export_la_SOURCES))
+rygel-media-export.stamp: $(librygel_media_export_la_VALASOURCES)
 	$(VALAC) -g -C --vapidir=$(top_srcdir)/src/rygel \
 	--pkg rygel-1.0 \
 	--pkg cstuff \
@@ -48,5 +41,5 @@ librygel_media_export_la_LIBADD = \
 librygel_media_export_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
 CLEANFILES = rygel-media-export.stamp
-MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
-EXTRA_DIST = $(BUILT_SOURCES) rygel-media-export.stamp
+MAINTAINERCLEANFILES = Makefile.in $(librygel_media_export_la_SOURCES)
+EXTRA_DIST = $(librygel_media_export_la_VALASOURCES) rygel-media-export.stamp

@@ -9,29 +9,20 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
 
-BUILT_SOURCES = rygel-test-content-dir.c \
-		rygel-test-root-container.c \
-		rygel-test-item.c \
-		rygel-test-audio-item.c \
-		rygel-test-video-item.c \
-		rygel-test-plugin.c
+$(librygel_test_la_SOURCES) : rygel-test.stamp
 
-$(BUILT_SOURCES) : rygel-test.stamp
-
-librygel_test_la_SOURCES = rygel-test-content-dir.c \
+librygel_test_la_VALASOURCES = \
 			   rygel-test-content-dir.vala \
-			   rygel-test-root-container.c \
 			   rygel-test-root-container.vala \
-			   rygel-test-item.c \
 			   rygel-test-item.vala \
-			   rygel-test-audio-item.c \
 			   rygel-test-audio-item.vala \
-			   rygel-test-video-item.c \
 			   rygel-test-video-item.vala \
-			   rygel-test-plugin.c \
 			   rygel-test-plugin.vala
 
-rygel-test.stamp: $(filter %.vala,$(librygel_test_la_SOURCES))
+librygel_test_la_SOURCES = \
+			$(librygel_test_la_VALASOURCES:.vala=.c)
+
+rygel-test.stamp: $(librygel_test_la_VALASOURCES)
 	$(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \
 	--pkg rygel-1.0 --pkg cstuff --pkg gconf-2.0 \
 	--pkg gupnp-1.0 --pkg gupnp-av-1.0 \
@@ -46,5 +37,5 @@ librygel_test_la_LIBADD = $(LIBGUPNP_LIBS) \
 librygel_test_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
 CLEANFILES = rygel-test.stamp
-MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
-EXTRA_DIST = $(BUILT_SOURCES) rygel-test.stamp
+MAINTAINERCLEANFILES = Makefile.in $(librygel_test_la_SOURCES)
+EXTRA_DIST = $(librygel_test_la_VALASOURCES) rygel-test.stamp

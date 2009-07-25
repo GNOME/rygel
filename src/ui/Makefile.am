@@ -20,29 +20,19 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 
 bin_PROGRAMS = rygel-preferences
 
-BUILT_SOURCES = rygel-preferences-dialog.c \
-		rygel-preferences-section.c \
-		rygel-general-pref-section.c \
-		rygel-plugin-pref-section.c \
-		rygel-media-export-pref-section.c \
-		rygel-tracker-pref-section.c
+$(rygel_preferences_SOURCES) : rygel.stamp
 
-$(BUILT_SOURCES) : rygel.stamp
-
-rygel_preferences_SOURCES = rygel-preferences-dialog.c \
+rygel_preferences_VALASOURCES = \
 			    rygel-preferences-dialog.vala \
-			    rygel-preferences-section.c \
 			    rygel-preferences-section.vala \
-			    rygel-general-pref-section.c \
 			    rygel-general-pref-section.vala \
-			    rygel-plugin-pref-section.c \
 			    rygel-plugin-pref-section.vala \
-			    rygel-media-export-pref-section.c \
 			    rygel-media-export-pref-section.vala \
-			    rygel-tracker-pref-section.c \
 			    rygel-tracker-pref-section.vala
 
-rygel.stamp: $(filter %.vala,$(rygel_preferences_SOURCES))
+rygel_preferences_SOURCES = $(rygel_preferences_VALASOURCES:.vala=.c)
+
+rygel.stamp: $(rygel_preferences_VALASOURCES)
 	$(VALAC) -C --vapidir=$(rygeldir) \
 	--pkg rygel-1.0 --pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 \
 	--pkg dbus-glib-1 --pkg gconf-2.0 --pkg gstreamer-0.10 \
@@ -63,5 +53,5 @@ rygel_preferences_LDADD = $(LIBGUPNP_LIBS) \
 rygel_preferences_LDFLAGS = -export-dynamic
 
 CLEANFILES = rygel.stamp
-MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
-EXTRA_DIST = $(BUILT_SOURCES) rygel.stamp
+MAINTAINERCLEANFILES = Makefile.in $(rygel_preferences_SOURCES)
+EXTRA_DIST = $(rygel_preferences_VALASOURCES) rygel.stamp
