@@ -8,7 +8,7 @@ endif
 
 sysconf_DATA = rygel.conf
 $(sysconf_DATA): $(configfile) Makefile
-	cp $(srcdir)/$(configfile) $@
+	$(AM_V_GEN)cp $(srcdir)/$(configfile) $@
 
 shareddir = $(datadir)/rygel
 
