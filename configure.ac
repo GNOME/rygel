@@ -217,6 +217,9 @@ ALL_LINGUAS=""
 AM_GLIB_GNU_GETTEXT
 AM_GLIB_DEFINE_LOCALEDIR([LOCALEDIR])
 
+dnl Shave the output
+AM_SILENT_RULES([yes])
+
 AC_OUTPUT([
 Makefile
 src/Makefile
