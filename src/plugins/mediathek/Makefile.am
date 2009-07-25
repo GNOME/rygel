@@ -16,8 +16,6 @@ librygel_mediathek_la_SOURCES = rygel-mediathek-asx-playlist.vala \
 				rygel-mediathek-root-container.vala \
 				rygel-mediathek-rss-container.vala
 
-rygel-mediathek.stamp: $(librygel_mediathek_la_VALASOURCES)
-	$(VALAC) -C
 librygel_mediathek_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
 				  --pkg rygel-1.0 \
 				  --pkg cstuff \
