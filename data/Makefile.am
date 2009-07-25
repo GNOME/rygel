@@ -8,7 +8,7 @@ endif
 
 sysconf_DATA = rygel.conf
 $(sysconf_DATA): $(configfile) Makefile
-	cp $(configfile) $@
+	cp $(srcdir)/$(configfile) $@
 
 shareddir = $(datadir)/rygel
 
@@ -35,7 +35,7 @@ $(desktop_DATA): $(desktop_in_files) Makefile
 	     -e "s,\$${version},${PACKAGE_VERSION},g" \
              $(srcdir)/$(@:.desktop=.desktop.in) > $@
 
-CLEANFILES = $(dbusservice_DATA) $(desktop_DATA)
+CLEANFILES = $(dbusservice_DATA) $(desktop_DATA) rygel.conf
 EXTRA_DIST = rygel-maemo.conf \
 	     rygel-default.conf \
 	     $(dbusservice_in_files) \
