@@ -41,26 +41,6 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-root-device-factory.vala \
 		rygel-main.vala
 
-rygel_VALAFLAGS = \
-	--vapidir=$(srcdir) --thread \
-	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
-	--pkg gstreamer-0.10 --pkg gio-2.0 --pkg gee-1.0 --pkg sqlite3
-
-rygel_LDADD = $(LIBGUPNP_LIBS) \
-	      $(LIBGUPNP_AV_LIBS) \
-	      $(LIBGSTREAMER_LIBS) \
-	      $(GIO_LIBS) \
-	      $(GEE_LIBS) \
-	      $(UUID_LIBS) \
-	      $(LIBSOUP_LIBS) \
-	      $(LIBDBUS_GLIB_LIBS) \
-	      $(LIBSQLITE3_LIBS) \
-	      librygel-configuration.a
-rygel_LDFLAGS = -export-dynamic
-
-VAPI_FILES = rygel-1.0.vapi
-DEPS_FILES = rygel-1.0.deps
-
 VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-user-config.vala \
 		    rygel-meta-config.vala \
@@ -99,11 +79,29 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-media-db-container.vala \
 		    rygel-media-db-object-factory.vala
 
+rygel_VALAFLAGS = \
+	-H rygel.h -C --library=rygel-1.0 --vapidir=$(srcdir) --thread \
+	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
+	--pkg gstreamer-0.10 --pkg gio-2.0 --pkg gee-1.0 --pkg sqlite3
+
+rygel_LDADD = $(LIBGUPNP_LIBS) \
+	      $(LIBGUPNP_AV_LIBS) \
+	      $(LIBGSTREAMER_LIBS) \
+	      $(GIO_LIBS) \
+	      $(GEE_LIBS) \
+	      $(UUID_LIBS) \
+	      $(LIBSOUP_LIBS) \
+	      $(LIBDBUS_GLIB_LIBS) \
+	      $(LIBSQLITE3_LIBS) \
+	      librygel-configuration.a
+rygel_LDFLAGS = -export-dynamic
+
+VAPI_FILES = rygel-1.0.vapi
+DEPS_FILES = rygel-1.0.deps
+
+vapidir = $(VAPIDIR)
+vapi_DATA = $(VAPI_FILES) $(DEPS_FILES)
 rygel-1.0.vapi rygel.h: $(VAPI_SOURCE_FILES)
-	$(VALAC) -H rygel.h -C --library=rygel-1.0 --vapidir=$(srcdir) \
-	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gee-1.0 \
-	--pkg gstreamer-0.10 --pkg sqlite3 --pkg dbus-glib-1 \
-	$(VAPI_SOURCE_FILES)
 
 noinst_LIBRARIES = librygel-configuration.a
 
@@ -112,9 +110,6 @@ librygel_configuration_a_SOURCES = rygel-configuration.c \
 				   rygel-meta-config.c \
 				   rygel-cmdline-config.c \
 				   cstuff.c
-
-vapidir = $(VAPIDIR)
-vapi_DATA = $(VAPI_FILES) $(DEPS_FILES)
 
 MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
 EXTRA_DIST = cstuff.vapi \
