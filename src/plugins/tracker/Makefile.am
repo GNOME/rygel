@@ -32,10 +32,10 @@ librygel_media_tracker_la_VALAFLAGS = \
 	--pkg dbus-glib-1 --pkg gee-1.0 --pkg gstreamer-0.10
 
 librygel_media_tracker_la_LIBADD = $(LIBGUPNP_LIBS) \
-								   $(LIBGUPNP_AV_LIBS) \
-								   $(LIBDBUS_GLIB_LIBS) \
-								   $(LIBGSTREAMER_LIBS) \
-								   $(GEE_LIBS)
+				   $(LIBGUPNP_AV_LIBS) \
+				   $(LIBDBUS_GLIB_LIBS) \
+				   $(LIBGSTREAMER_LIBS) \
+				   $(GEE_LIBS)
 librygel_media_tracker_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
 MAINTAINERCLEANFILES = Makefile.in
