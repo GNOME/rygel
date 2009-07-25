@@ -3,7 +3,9 @@ AC_INIT([rygel],
 	m4_esyscmd([GNOME_TAG_PATTERN=RYGEL build-aux/git-version-gen .tarball-version]),
 	[http://live.gnome.org/Rygel])
 AC_CONFIG_AUX_DIR([build-aux])
-AM_INIT_AUTOMAKE
+
+# require automake-1.11 for vala support
+AM_INIT_AUTOMAKE([1.11])
 AC_CONFIG_SRCDIR([src/rygel/rygel-root-device.vala])
 AM_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([m4])
@@ -52,19 +54,13 @@ AC_ARG_ENABLE(vala,
 # Vala
 if test x$enable_vala = xyes ; then
     # check for vala
-    PKG_CHECK_MODULES(VALA, [vala-1.0 >= $VALA_REQUIRED])
-    PKG_CHECK_MODULES(GUPNP_VALA, gupnp-vala-1.0 >= $GUPNP_VALA_REQUIRED)
+    AM_PROG_VALAC([$VALA_REQUIRED])
 
-    # Vala compiler
-    # This is more to get the path of the compiler since the pkg-config check
-    # should covers check for compiler as well.
-
-    AC_PATH_PROG(VALAC, valac, no)
-
-    if test "x$VALAC" = "xno"; then
-	AC_MSG_ERROR([Cannot find the "valac" compiler in your PATH])
+    if test "x$VALAC" = "x"; then
+        AC_MSG_ERROR([Cannot find the "valac" compiler in your PATH])
     fi
 
+    PKG_CHECK_MODULES(GUPNP_VALA, gupnp-vala-1.0 >= $GUPNP_VALA_REQUIRED)
     VAPIDIR=`pkg-config --variable=vapidir vala-1.0`
 
     # FIXME: Whats the proper way for checking for particular Vala bindings

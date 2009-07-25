@@ -11,20 +11,17 @@ AM_CFLAGS = \
 	-I$(top_srcdir)/src/rygel \
 	-DDATA_DIR='"$(datadir)"'
 
-$(librygel_mediathek_la_SOURCES) : rygel-mediathek.stamp
-
-librygel_mediathek_la_VALASOURCES = \
+librygel_mediathek_la_SOURCES = \
 	rygel-mediathek-asx-playlist.vala \
 	rygel-mediathek-plugin.vala \
 	rygel-mediathek-video-item.vala \
 	rygel-mediathek-root-container.vala \
 	rygel-mediathek-rss-container.vala
 
-librygel_mediathek_la_SOURCES = \
-	$(librygel_mediathek_la_VALASOURCES:.vala=.c)
-
 rygel-mediathek.stamp: $(librygel_mediathek_la_VALASOURCES)
-	$(VALAC) -C --vapidir=$(top_srcdir)/src/rygel \
+	$(VALAC) -C
+librygel_mediathek_la_VALAFLAGS = \
+	--vapidir=$(top_srcdir)/src/rygel \
 	--pkg rygel-1.0 \
 	--pkg cstuff \
 	--pkg gupnp-1.0 \
@@ -32,9 +29,7 @@ rygel-mediathek.stamp: $(librygel_mediathek_la_VALASOURCES)
 	--pkg libsoup-2.4 \
 	--pkg gee-1.0 \
 	--pkg libxml-2.0 \
-	--pkg gconf-2.0 \
-	$^
-	touch $@
+	--pkg gconf-2.0
 
 librygel_mediathek_la_LIBADD = \
 	$(LIBGUPNP_LIBS) \
@@ -45,6 +40,4 @@ librygel_mediathek_la_LIBADD = \
 
 librygel_mediathek_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
-CLEANFILES = rygel-mediathek.stamp
-MAINTAINERCLEANFILES = Makefile.in $(librygel_mediathek_la_SOURCES)
-EXTRA_DIST = $(librygel_mediathek_la_VALASOURCES) rygel-mediathek.stamp
+MAINTAINERCLEANFILES = Makefile.in

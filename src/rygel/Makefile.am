@@ -33,62 +33,18 @@ librygelinc_HEADERS = rygel.h
 bin_PROGRAMS = rygel
 
 BUILT_SOURCES = rygel-1.0.vapi \
-		rygel.h \
-		$(rygel_SOURCES)
+		rygel.h
 
-$(BUILT_SOURCES) : rygel.stamp
-
-rygel_VALASOURCE = $(VAPI_SOURCE_FILES) \
+rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-dbus-service.vala \
 		rygel-root-device.vala \
 		rygel-root-device-factory.vala \
 		rygel-main.vala
 
-rygel_SOURCES = \
-		rygel-root-device.c \
-		rygel-root-device-factory.c \
-		rygel-main.c \
-		rygel-dbus-service.c \
-		rygel-content-directory.c \
-		rygel-browse.c \
-		rygel-didl-lite-writer.c \
-		rygel-browse-filter.c \
-		rygel-plugin.c \
-		rygel-plugin-loader.c \
-		rygel-transcode-manager.c \
-		rygel-http-server.c \
-		rygel-state-machine.c \
-		rygel-http-request.c \
-		rygel-seek.c \
-		rygel-http-response.c \
-		rygel-live-response.c \
-		rygel-seekable-response.c \
-		rygel-resource-info.c \
-		rygel-icon-info.c \
-		rygel-connection-manager.c \
-		rygel-media-object.c \
-		rygel-media-container.c \
-		rygel-simple-async-result.c \
-		rygel-media-item.c \
-		rygel-metadata-extractor.c \
-		rygel-media-db.c \
-		rygel-transcoder.c \
-		rygel-mp2ts-transcoder.c \
-		rygel-mp3-transcoder.c \
-		rygel-l16-transcoder.c \
-		rygel-mp2ts-transcoder-bin.c \
-		rygel-mp3-transcoder-bin.c \
-		rygel-l16-transcoder-bin.c \
-		rygel-gst-utils.c \
-		rygel-media-db-container.c \
-		rygel-media-db-object-factory.c
-
-rygel.stamp: $(rygel_VALASOURCE)
-	$(VALAC) -C --vapidir=$(srcdir) --thread \
+rygel_VALAFLAGS = \
+	--vapidir=$(srcdir) --thread \
 	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
-	--pkg gstreamer-0.10 --pkg gio-2.0 --pkg gee-1.0 --pkg sqlite3 \
-        $^
-	touch $@
+	--pkg gstreamer-0.10 --pkg gio-2.0 --pkg gee-1.0 --pkg sqlite3
 
 rygel_LDADD = $(LIBGUPNP_LIBS) \
 	      $(LIBGUPNP_AV_LIBS) \
@@ -143,29 +99,25 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-media-db-container.vala \
 		    rygel-media-db-object-factory.vala
 
-rygel-1.0.vapi: $(VAPI_SOURCE_FILES)
+rygel-1.0.vapi rygel.h: $(VAPI_SOURCE_FILES)
 	$(VALAC) -H rygel.h -C --library=rygel-1.0 --vapidir=$(srcdir) \
 	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gee-1.0 \
-        --pkg gstreamer-0.10 --pkg sqlite3 --pkg dbus-glib-1 \
+	--pkg gstreamer-0.10 --pkg sqlite3 --pkg dbus-glib-1 \
 	$(VAPI_SOURCE_FILES)
 
 noinst_LIBRARIES = librygel-configuration.a
 
 librygel_configuration_a_SOURCES = rygel-configuration.c \
-			           rygel-user-config.c \
+				   rygel-user-config.c \
 				   rygel-meta-config.c \
 				   rygel-cmdline-config.c \
-				   cstuff.c \
-                                   cstuff.h
+				   cstuff.c
 
 vapidir = $(VAPIDIR)
 vapi_DATA = $(VAPI_FILES) $(DEPS_FILES)
 
-CLEANFILES = rygel.stamp
 MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
 EXTRA_DIST = cstuff.vapi \
              $(VAPI_FILES) \
              $(DEPS_FILES) \
-             $(rygel_VALASOURCE) \
-             $(BUILT_SOURCES) \
-	     rygel.stamp
+             $(BUILT_SOURCES) cstuff.h

@@ -9,18 +9,14 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	$(GEE_CFLAGS) \
 	-I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
 
-$(librygel_media_export_la_SOURCES) : rygel-media-export.stamp
-
-librygel_media_export_la_VALASOURCES = \
+librygel_media_export_la_SOURCES = \
 	rygel-media-export-plugin.vala \
 	rygel-media-export-root-container.vala \
 	rygel-media-export-harvester.vala \
 	rygel-media-export-item.vala
-librygel_media_export_la_SOURCES = \
-	$(librygel_media_export_la_VALASOURCES:.vala=.c)
 
-rygel-media-export.stamp: $(librygel_media_export_la_VALASOURCES)
-	$(VALAC) -g -C --vapidir=$(top_srcdir)/src/rygel \
+librygel_media_export_la_VALAFLAGS = \
+	--vapidir=$(top_srcdir)/src/rygel \
 	--pkg rygel-1.0 \
 	--pkg cstuff \
 	--pkg gupnp-1.0 \
@@ -28,9 +24,7 @@ rygel-media-export.stamp: $(librygel_media_export_la_VALASOURCES)
 	--pkg libsoup-2.4 \
 	--pkg gee-1.0 \
 	--pkg libxml-2.0 \
-	--pkg gconf-2.0 \
-	$^
-	touch $@
+	--pkg gconf-2.0
 
 librygel_media_export_la_LIBADD = \
 	$(LIBGUPNP_LIBS) \
@@ -40,6 +34,4 @@ librygel_media_export_la_LIBADD = \
 	$(GEE_LIBS)
 librygel_media_export_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
-CLEANFILES = rygel-media-export.stamp
-MAINTAINERCLEANFILES = Makefile.in $(librygel_media_export_la_SOURCES)
-EXTRA_DIST = $(librygel_media_export_la_VALASOURCES) rygel-media-export.stamp
+MAINTAINERCLEANFILES = Makefile.in
