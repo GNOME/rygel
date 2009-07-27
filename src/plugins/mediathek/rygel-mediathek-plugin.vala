@@ -39,7 +39,7 @@ public void module_init (PluginLoader loader) {
 
 public class Rygel.MediathekContentDir : ContentDirectory {
     public override MediaContainer? create_root_container () {
-        return new MediathekRootContainer ();
+        return MediathekRootContainer.get_instance ();
     }
 }
 

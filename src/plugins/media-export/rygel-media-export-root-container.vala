@@ -28,6 +28,8 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     private HashMap<File, MediaExportHarvester> harvester;
     private MediaExportRecursiveFileMonitor monitor;
 
+    private static MediaExportRootContainer instance = null;
+
     private ArrayList<string> get_uris () {
         ArrayList<string> uris;
 
@@ -58,10 +60,18 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         return uris;
     }
 
+    public static MediaExportRootContainer get_instance() {
+        if (MediaExportRootContainer.instance == null) {
+            MediaExportRootContainer.instance = new MediaExportRootContainer ();
+        }
+
+        return MediaExportRootContainer.instance;
+    }
+
     /**
      * Create a new root container.
      */
-    public MediaExportRootContainer () {
+    private MediaExportRootContainer () {
         var db = new MediaDB("media-export");
         base (db, "0", "MediaExportRoot");
 

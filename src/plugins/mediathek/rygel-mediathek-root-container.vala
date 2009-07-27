@@ -27,6 +27,7 @@ using GConf;
 public class Rygel.MediathekRootContainer : Rygel.MediaContainer {
     private ArrayList<MediathekRssContainer> items;
     internal SessionAsync session;
+    private static MediathekRootContainer instance;
 
     public override void get_children (uint offset, 
                                        uint max_count, 
@@ -94,7 +95,15 @@ public class Rygel.MediathekRootContainer : Rygel.MediaContainer {
         return true;
     }
 
-    public MediathekRootContainer () {
+    public static MediathekRootContainer get_instance () {
+        if (MediathekRootContainer.instance == null) {
+            MediathekRootContainer.instance = new MediathekRootContainer ();
+        }
+
+        return instance;
+    }
+
+    private MediathekRootContainer () {
         base.root ("ZDF Mediathek", 0);
         this.session = new Soup.SessionAsync ();
         this.items = new ArrayList<MediathekRssContainer> ();

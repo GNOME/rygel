@@ -50,6 +50,6 @@ public void module_init (PluginLoader loader) {
 
 public class Rygel.MediaExportContentDir : ContentDirectory {
     public override MediaContainer? create_root_container () {
-        return new MediaExportRootContainer ();
+        return MediaExportRootContainer.get_instance ();
     }
 }
