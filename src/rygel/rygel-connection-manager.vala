@@ -37,27 +37,15 @@ public class Rygel.ConnectionManager : Service {
     protected string sink_protocol_info;
     protected string connection_ids;
 
-    private TranscodeManager? get_transcode_manager () {
-        var root_device = (Rygel.RootDevice) this.root_device;
-
-        // Find the ContentDirectory service attached to this root device.
-        foreach (var service in root_device.services) {
-            if (service.get_type().is_a (typeof (Rygel.ContentDirectory))) {
-                var content_directory = (Rygel.ContentDirectory) service;
-                return (TranscodeManager) content_directory.http_server;
-            }
-        }
-        return null;
-    }
-
     protected string source_protocol_info {
         owned get {
-            string protocol_info = "http-get:*:*:*";
+            var protocol_info = "http-get:*:*:*";
             TranscodeManager tm = get_transcode_manager ();
 
             if (tm != null) {
-                protocol_info += tm.get_transcoder_protocol_info ();
+                protocol_info += tm.get_protocol_info ();
             }
+
             return protocol_info;
         }
     }
@@ -136,5 +124,21 @@ public class Rygel.ConnectionManager : Service {
                     "Status",                typeof (string), "Unknown");
 
         action.return ();
+    }
+
+    private TranscodeManager? get_transcode_manager () {
+        TranscodeManager manager = null;
+
+        var root_device = (Rygel.RootDevice) this.root_device;
+
+        // Find the ContentDirectory service attached to this root device.
+        foreach (var service in root_device.services) {
+            if (service.get_type().is_a (typeof (Rygel.ContentDirectory))) {
+                var content_directory = (Rygel.ContentDirectory) service;
+                manager = (TranscodeManager) content_directory.http_server;
+            }
+        }
+
+        return manager;
     }
 }
