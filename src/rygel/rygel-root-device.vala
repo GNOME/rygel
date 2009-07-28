@@ -29,7 +29,7 @@ using Gee;
  * Represents a Root device.
  */
 public class Rygel.RootDevice: GUPnP.RootDevice {
-    private ArrayList<ServiceInfo> services;   /* Services we implement */
+    internal ArrayList<ServiceInfo> services;   /* Services we implement */
 
     public RootDevice (GUPnP.Context context,
                        Plugin        plugin,

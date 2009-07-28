@@ -98,5 +98,15 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
 
         return transcoder;
     }
+
+    public string get_transcoder_protocol_info () {
+        string protocol_info = "";
+
+        foreach (var transcoder in this.transcoders) {
+            protocol_info += ",http-get:*:%s:DLNA.ORG_PN=%s".printf (
+                transcoder.mime_type, transcoder.dlna_profile);
+        }
+        return protocol_info;
+    }
 }
 
