@@ -72,7 +72,7 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         this.add_string ("class", NAMESPACE_UPNP, null, item.upnp_class);
 
         if (item.author != null && item.author != "") {
-            if (filter.have ("creator", NAMESPACE_UPNP)) {
+            if (filter.have ("creator", NAMESPACE_DC)) {
                 this.add_string ("creator", NAMESPACE_DC, null, item.author);
             }
 
