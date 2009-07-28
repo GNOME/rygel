@@ -124,8 +124,12 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         return create_uri_for_path (query);
     }
 
+    internal override string get_protocol () {
+        return "http-get";
+    }
+
     internal override string get_protocol_info () {
-        var protocol_info = "http-get:*:*:*";
+        var protocol_info = this.get_protocol () + ":*:*:*";
         var base_info = base.get_protocol_info ();
 
         if (base_info != "")
