@@ -34,6 +34,8 @@ internal enum Rygel.MP2TSProfile {
  * This element uses MP2TSTrancoderBin for actual transcoding.
  */
 internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
+    private const int VIDEO_BITRATE = 3000;
+
     // HD
     private const int[] WIDTH = {640, 1280};
     private const int[] HEIGHT = {480, 720};
@@ -63,6 +65,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
 
         res.width = WIDTH[profile];
         res.height = HEIGHT[profile];
+        res.bitrate = (VIDEO_BITRATE + MP3Transcoder.BITRATE) * 1000 / 8;
 
         return res;
     }
@@ -77,7 +80,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         dynamic Element encoder = GstUtils.create_element (VIDEO_ENCODER,
                                                            VIDEO_ENCODER);
 
-        encoder.bitrate = (int) 3000000;
+        encoder.bitrate = (int) VIDEO_BITRATE * 1000;
 
         var bin = new Bin ("video-encoder-bin");
         bin.add_many (videorate, videoscale, convert, encoder);

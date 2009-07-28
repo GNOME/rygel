@@ -70,6 +70,10 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
         res.sample_freq = L16Transcoder.FREQUENCY;
         res.n_audio_channels = L16Transcoder.CHANNELS;
         res.bits_per_sample = L16Transcoder.WIDTH;
+        // Set bitrate in bytes/second
+        res.bitrate = L16Transcoder.FREQUENCY *
+                      L16Transcoder.CHANNELS *
+                      L16Transcoder.WIDTH / 8;
 
         return res;
     }

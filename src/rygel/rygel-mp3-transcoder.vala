@@ -53,7 +53,8 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
                                                       throws Error {
         var res = base.create_resource (item, manager);
 
-        res.bitrate = BITRATE;
+        // Convert bitrate to bytes/second
+        res.bitrate = BITRATE * 1000 / 8;
 
         return res;
     }
