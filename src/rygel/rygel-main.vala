@@ -98,7 +98,7 @@ public class Rygel.Main : Object {
         string host_ip = null;
 
         debug ("new network context %s (%s) available.",
-               context.name,
+               context.interface,
                context.host_ip);
 
         try {
@@ -115,7 +115,7 @@ public class Rygel.Main : Object {
             this.factories.add (factory);
         } else {
             debug ("Ignoring network context %s (%s).",
-                   context.name,
+                   context.interface,
                    context.host_ip);
         }
     }
@@ -123,7 +123,7 @@ public class Rygel.Main : Object {
     private void on_context_unavailable (GUPnP.ContextManager manager,
                                          GUPnP.Context        context) {
         debug ("Network context %s (%s) now unavailable.",
-               context.name,
+               context.interface,
                context.host_ip);
 
         var factory_list = new ArrayList <RootDeviceFactory> ();

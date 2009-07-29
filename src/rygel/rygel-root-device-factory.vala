@@ -49,9 +49,6 @@ public class Rygel.RootDeviceFactory {
         this.desc_dir = Path.build_filename (Environment.get_user_config_dir (),
                                              "Rygel");
         this.ensure_dir_exists (this.desc_dir);
-
-        // Host UPnP dir
-        context.host_path (BuildConfig.DATA_DIR, "");
     }
 
     public RootDevice create (Plugin plugin) throws GLib.Error {
@@ -72,13 +69,11 @@ public class Rygel.RootDeviceFactory {
         /* Create the description xml */
         Xml.Doc *doc = this.create_desc (plugin, desc_path);
 
-        /* Host our modified file */
-        this.context.host_path (desc_path, "/" + modified_desc);
-
         return new RootDevice (this.context,
                                plugin,
                                doc,
-                               modified_desc);
+                               desc_path,
+                               BuildConfig.DATA_DIR);
     }
 
     private Xml.Doc * create_desc (Plugin plugin,
