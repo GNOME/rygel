@@ -73,7 +73,15 @@ public class Rygel.Main : Object {
 
     private void on_plugin_loaded (PluginLoader plugin_loader,
                                    Plugin       plugin) {
+        // We iterate over the copy of the list rather than list itself because
+        // there is high chances of the original list being modified during the
+        // iteration, which is not allowed by libgee.
+        var factories = new ArrayList <RootDeviceFactory> ();
         foreach (var factory in this.factories) {
+            factories.add (factory);
+        }
+
+        foreach (var factory in factories) {
             this.create_device (plugin, factory);
         }
     }
@@ -109,6 +117,7 @@ public class Rygel.Main : Object {
             var factory = new RootDeviceFactory (context);
             this.factories.add (factory);
 
+            // See the comment in on_plugin_loaded method
             var plugins = new ArrayList <Plugin> ();
             foreach (var plugin in this.plugin_loader.list_plugins ()) {
                 plugins.add (plugin);
