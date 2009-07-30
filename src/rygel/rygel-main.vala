@@ -107,6 +107,8 @@ public class Rygel.Main : Object {
 
         if (host_ip == null || host_ip == context.host_ip) {
             var factory = new RootDeviceFactory (context);
+            this.factories.add (factory);
+
             var plugins = new ArrayList <Plugin> ();
             foreach (var plugin in this.plugin_loader.list_plugins ()) {
                 plugins.add (plugin);
@@ -115,8 +117,6 @@ public class Rygel.Main : Object {
             foreach (var plugin in plugins) {
                 this.create_device (plugin, factory);
             }
-
-            this.factories.add (factory);
         } else {
             debug ("Ignoring network context %s (%s).",
                    context.interface,
