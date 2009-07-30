@@ -107,8 +107,12 @@ public class Rygel.Main : Object {
 
         if (host_ip == null || host_ip == context.host_ip) {
             var factory = new RootDeviceFactory (context);
-
+            var plugins = new ArrayList <Plugin> ();
             foreach (var plugin in this.plugin_loader.list_plugins ()) {
+                plugins.add (plugin);
+            }
+
+            foreach (var plugin in plugins) {
                 this.create_device (plugin, factory);
             }
 
