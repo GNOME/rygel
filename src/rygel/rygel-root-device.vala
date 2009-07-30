@@ -31,6 +31,8 @@ using Gee;
 public class Rygel.RootDevice: GUPnP.RootDevice {
     internal ArrayList<ServiceInfo> services;   /* Services we implement */
 
+    private Xml.Doc *desc_doc;
+
     public RootDevice (GUPnP.Context context,
                        Plugin        plugin,
                        Xml.Doc      *description_doc,
@@ -41,10 +43,10 @@ public class Rygel.RootDevice: GUPnP.RootDevice {
         this.context = context;
 
         this.description_doc = description_doc;
-        this.weak_ref ((WeakNotify) xml_doc_free, description_doc);
         this.description_path = description_path;
         this.description_dir = description_dir;
 
+        this.desc_doc = description_doc;
         this.services = new ArrayList<ServiceInfo> ();
 
         // Now create the sevice objects
@@ -58,9 +60,8 @@ public class Rygel.RootDevice: GUPnP.RootDevice {
         }
     }
 
-    private static void xml_doc_free (Xml.Doc*         doc,
-                                      Rygel.RootDevice device) {
-        delete doc;
+    ~RootDevice () {
+        delete this.desc_doc;
     }
 }
 
