@@ -51,6 +51,8 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-http-server.vala \
 		    rygel-state-machine.vala \
 		    rygel-http-request.vala \
+		    rygel-http-request-handler.vala \
+		    rygel-identity-request-handler.vala \
 		    rygel-seek.vala \
 		    rygel-http-response.vala \
 		    rygel-live-response.vala \

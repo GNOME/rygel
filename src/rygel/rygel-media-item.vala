@@ -101,6 +101,14 @@ public class Rygel.MediaItem : MediaObject {
                (int) transcoder2.get_distance (this);
     }
 
+    // Return true if item should be streamed as a live response with
+    // time based seeking, or false to serve directly with byte range
+    // seeking.
+    public virtual bool should_stream () {
+        // Simple heuristic: if we know the size, serve directly.
+        return this.size <= 0;
+    }
+
     internal void add_resources (DIDLLiteItem didl_item) throws Error {
         foreach (var uri in this.uris) {
             this.add_resource (didl_item, uri, null);
@@ -143,7 +151,7 @@ public class Rygel.MediaItem : MediaObject {
             protocol_info.dlna_flags |= DLNAFlags.STREAMING_TRANSFER_MODE;
         }
 
-        if (res.size > 0) {
+        if (!this.should_stream ()) {
             protocol_info.dlna_operation = DLNAOperation.RANGE;
             protocol_info.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE;
         }

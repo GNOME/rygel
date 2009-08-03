@@ -40,17 +40,18 @@ internal errordomain Rygel.HTTPRequestError {
 internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     private unowned HTTPServer http_server;
     private MediaContainer root_container;
-    private Soup.Server server;
-    private Soup.Message msg;
+    public Soup.Server server;
+    public Soup.Message msg;
     private HashTable<string,string>? query;
 
     private HTTPResponse response;
 
     private string item_id;
-    private Transcoder transcoder;
-    private MediaItem item;
-    private Seek byte_range;
-    private Seek time_range;
+    public MediaItem item;
+    public Seek byte_range;
+    public Seek time_range;
+
+    private HTTPRequestHandler request_handler;
 
     private Cancellable cancellable;
 
@@ -81,7 +82,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             this.item_id = this.query.lookup ("itemid");
             var transcode_target = this.query.lookup ("transcode");
             if (transcode_target != null) {
-                this.transcoder = this.http_server.get_transcoder (
+                this.request_handler = this.http_server.get_transcoder (
                                                     transcode_target);
             }
         }
@@ -91,34 +92,14 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             return;
         }
 
+        if (this.request_handler == null) {
+            this.request_handler = new IdentityRequestHandler ();
+        }
+
         // Fetch the requested item
         this.root_container.find_object (this.item_id,
                                          null,
                                          this.on_item_found);
-    }
-
-    private void stream_from_gst_source (owned Element src) throws Error {
-        var response = new LiveResponse (this.server,
-                                         this.msg,
-                                         "RygelLiveResponse",
-                                         src,
-                                         this.time_range);
-        this.response = response;
-        response.completed += on_response_completed;
-
-        response.run (this.cancellable);
-    }
-
-    private void serve_uri (string uri, size_t size) {
-        var response = new SeekableResponse (this.server,
-                                             this.msg,
-                                             uri,
-                                             this.byte_range,
-                                             size);
-        this.response = response;
-        response.completed += on_response_completed;
-
-        response.run (this.cancellable);
     }
 
     private void on_response_completed (HTTPResponse response) {
@@ -129,91 +110,23 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         try {
             this.byte_range = Seek.from_byte_range(this.msg);
             this.time_range = Seek.from_time_range(this.msg);
-        } catch (Error error) {
-            this.handle_error (error);
-            return;
-        }
 
-        // Add headers
-        this.add_item_headers ();
+            // Add headers
+            this.request_handler.add_response_headers (this);
 
-        if (this.msg.method == "HEAD") {
-            // Only headers requested, no need to send contents
-            this.server.unpause_message (this.msg);
-            this.end (Soup.KnownStatusCode.OK);
-            return;
-        }
-
-        if (this.item.size > 0 && this.transcoder == null) {
-            this.handle_interactive_item ();
-        } else {
-            this.handle_streaming_item ();
-        }
-    }
-
-    private void add_item_headers () {
-        if (this.transcoder != null) {
-            this.msg.response_headers.append ("Content-Type",
-                                              this.transcoder.mime_type);
-            this.time_range.add_response_header(this.msg);
-            return;
-        }
-
-        if (this.item.mime_type != null) {
-            this.msg.response_headers.append ("Content-Type",
-                                              this.item.mime_type);
-        }
-
-        if (this.item.size >= 0) {
-            this.msg.response_headers.set_content_length (this.item.size);
-        }
-
-        if (this.item.size > 0) {
-            Seek seek;
-
-            if (this.byte_range != null) {
-                seek = this.byte_range;
-            } else {
-                seek = new Seek (Format.BYTES, 0, this.item.size - 1);
+            if (this.msg.method == "HEAD") {
+                // Only headers requested, no need to send contents
+                this.server.unpause_message (this.msg);
+                this.end (Soup.KnownStatusCode.OK);
+                return;
             }
 
-            seek.add_response_header (this.msg, this.item.size);
-        }
-    }
-
-    private void handle_streaming_item () {
-        Element src = null;
-
-        src = this.item.create_stream_source ();
-
-        if (src == null) {
-            this.handle_error (new HTTPRequestError.NOT_FOUND ("Not Found"));
-            return;
-        }
-
-        try {
-            if (this.transcoder != null) {
-                src = this.transcoder.create_source (this.item, src);
-            }
-
-            // Then start the gst stream
-            this.stream_from_gst_source (src);
+            this.response = this.request_handler.render_body (this);
+            this.response.completed += on_response_completed;
+            this.response.run (this.cancellable);
         } catch (Error error) {
             this.handle_error (error);
-            return;
         }
-    }
-
-    private void handle_interactive_item () {
-        if (this.item.uris.size == 0) {
-            var error = new HTTPRequestError.NOT_FOUND (
-                                "Requested item '%s' didn't provide a URI\n",
-                                this.item.id);
-            this.handle_error (error);
-            return;
-        }
-
-        this.serve_uri (this.item.uris.get (0), this.item.size);
     }
 
     private void on_item_found (GLib.Object source_object,

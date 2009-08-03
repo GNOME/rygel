@@ -29,7 +29,7 @@ using Gee;
  * The base Transcoder class. Each implementation derives from it and must
  * at least implement create_source method.
  */
-internal abstract class Rygel.Transcoder : GLib.Object {
+internal abstract class Rygel.Transcoder : GLib.Object, HTTPRequestHandler {
     public string mime_type { get; protected set; }
     public string dlna_profile { get; protected set; }
 
@@ -102,6 +102,31 @@ internal abstract class Rygel.Transcoder : GLib.Object {
         string content_type2 = g_content_type_from_mime_type (mime_type2);
 
         return g_content_type_is_a (content_type1, content_type2);
+    }
+
+    public virtual void add_response_headers (HTTPRequest request)
+            throws HTTPRequestError {
+        request.msg.response_headers.append ("Content-Type", this.mime_type);
+        if (request.time_range != null) {
+            request.time_range.add_response_header(request.msg);
+        }
+    }
+
+    public virtual HTTPResponse render_body (HTTPRequest request)
+            throws HTTPRequestError {
+        weak MediaItem item = request.item;
+        Element src = item.create_stream_source ();
+
+        if (src == null) {
+            throw new HTTPRequestError.NOT_FOUND ("Not found");
+        }
+
+        src = this.create_source (item, src);
+        return new LiveResponse (request.server,
+                                 request.msg,
+                                 "RygelLiveResponse",
+                                 src,
+                                 request.time_range);
     }
 }
 

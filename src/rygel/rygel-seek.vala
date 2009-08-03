@@ -151,19 +151,22 @@ internal class Rygel.Seek : GLib.Object {
         } else {
             // Content-Range: bytes START_BYTE-STOP_BYTE/TOTAL_LENGTH
             value = "bytes " + this.start.to_string() + "-";
-            if (this.stop >= 0) {
-                int64 end_point = this.stop;
 
-                if (length > 0) {
-                    end_point = int64.min(end_point, length - 1);
+            int64 end_point = this.stop;
+            if (length > 0) {
+                if (end_point >= 0) {
+                    end_point = int64.max (end_point, length - 1);
+                } else {
+                    end_point = length - 1;
                 }
+            }
+            if (end_point >= 0)
                 value += end_point.to_string();
             }
             if (length > 0) {
                 value += "/" + length.to_string();
             }
             msg.response_headers.append ("Content-Range", value);
-            msg.response_headers.append ("Accept-Ranges", "bytes");
         }
     }
 }
