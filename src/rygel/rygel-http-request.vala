@@ -144,16 +144,10 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             return;
         }
 
-        // Just use the first URI available
-        string uri = null;
-        if (this.item.uris.size != 0) {
-            uri = this.item.uris.get (0);
-        }
-
         if (this.item.size > 0 && this.transcoder == null) {
-            this.handle_interactive_item (uri);
+            this.handle_interactive_item ();
         } else {
-            this.handle_streaming_item (uri);
+            this.handle_streaming_item ();
         }
     }
 
@@ -187,25 +181,15 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
     }
 
-    private void handle_streaming_item (string? uri) {
-        dynamic Element src = null;
+    private void handle_streaming_item () {
+        Element src = null;
 
-        if (uri != null) {
-            // URI provided, try to create source element from it
-            src = Element.make_from_uri (URIType.SRC, uri, null);
-        } else {
-            // No URI provided, ask for source element
-            src = this.item.create_stream_source ();
-        }
+        src = this.item.create_stream_source ();
 
         if (src == null) {
             this.handle_error (new HTTPRequestError.NOT_FOUND ("Not Found"));
             return;
         }
-
-        // For rtspsrc since some RTSP sources takes a while to start
-        // transmitting
-        src.tcp_timeout = (int64) 60000000;
 
         try {
             if (this.transcoder != null) {
@@ -220,8 +204,8 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
     }
 
-    private void handle_interactive_item (string? uri) {
-        if (uri == null) {
+    private void handle_interactive_item () {
+        if (this.item.uris.size == 0) {
             var error = new HTTPRequestError.NOT_FOUND (
                                 "Requested item '%s' didn't provide a URI\n",
                                 this.item.id);
@@ -229,7 +213,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             return;
         }
 
-        this.serve_uri (uri, this.item.size);
+        this.serve_uri (this.item.uris.get (0), this.item.size);
     }
 
     private void on_item_found (GLib.Object source_object,

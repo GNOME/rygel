@@ -75,7 +75,22 @@ public class Rygel.MediaItem : MediaObject {
     // Live media items need to provide a nice working implementation of this
     // method if they can/do no provide a valid URI
     public virtual Gst.Element? create_stream_source () {
-        return null;
+        dynamic Gst.Element src = null;
+
+        if (this.uris.size != 0) {
+            src = Gst.Element.make_from_uri (
+                    Gst.URIType.SRC, this.uris.get(0),null);
+        }
+        if (src != null) {
+            weak ObjectClass cls = (ObjectClass) src.get_type().class_peek();
+
+            // For rtspsrc since some RTSP sources takes a while to start
+            // transmitting
+            if (cls.find_property ("tcp-timeout") != null) {
+                src.tcp_timeout = (int64) 60000000;
+            }
+        }
+        return src;
     }
 
     internal int compare_transcoders (void *a, void *b) {
