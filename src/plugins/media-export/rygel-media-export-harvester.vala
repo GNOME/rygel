@@ -297,15 +297,17 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                                                this.containers.peek_head (),
                                                file,
                                                tag_list);
-            item.parent_ref = this.containers.peek_head ();
-            try {
-                if (entry.update) {
-                    this.media_db.update_object (item);
-                } else {
-                    this.media_db.save_object (item);
+            if (item != null) {
+                item.parent_ref = this.containers.peek_head ();
+                try {
+                    if (entry.update) {
+                        this.media_db.update_object (item);
+                    } else {
+                        this.media_db.save_object (item);
+                    }
+                } catch (Error error) {
+                    // Ignore it for now
                 }
-            } catch (Error error) {
-                // Ignore it for now
             }
 
             this.files.pop_head ();

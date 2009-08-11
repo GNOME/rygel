@@ -137,8 +137,9 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
                         tag_list.get_int (MetadataExtractor.TAG_RYGEL_HEIGHT, out height)) {
                         class_guessed = MediaItem.IMAGE_CLASS;
                     } else {
-                        warning("There's no codec inside and no image for file" +
+                        warning("There's no codec inside and file is no image: " +
                                 "%s", file.get_uri ());
+                        return null;
                     }
                 } else {
                     class_guessed = MediaItem.AUDIO_CLASS;
