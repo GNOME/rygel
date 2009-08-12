@@ -218,8 +218,17 @@ public class Rygel.MediaDB : Object {
                 if (schema_info[1] == schema_version) {
                     debug ("Media DB schema has current version");
                 } else {
-                    debug ("Schema version differs... checking for upgrade");
-                    // FIXME implement if necessary
+                    int old_version = schema_info[1].to_int();
+                    int new_version = schema_version.to_int();
+                    if (schema_info[1].to_int() < schema_version.to_int()) {
+                        debug ("Older schema detected. Upgrading...");
+                    } else {
+                        // FIXME implement if necessary
+                        warning("The version \"%d\" of the detected database" +
+                                " is newer than our supported version \"%d\"",
+                                old_version, new_version);
+                        db = null;
+                    }
                 }
             } else {
                 warning ("Incompatible schema... cannot proceed");
@@ -236,7 +245,7 @@ public class Rygel.MediaDB : Object {
             if (rc != Sqlite.OK) {
                 warning ("Something weird going on: %s",
                          db.errmsg ());
-                db = null;
+                this.db = null;
                 return;
             }
 
@@ -244,23 +253,40 @@ public class Rygel.MediaDB : Object {
                 debug ("Empty database, creating new schema version %s",
                        schema_version);
                 if (!create_schema ()) {
+                    this.db = null;
                     return;
                 }
             } else {
                 warning ("Incompatible schema... cannot proceed");
+                this.db = null;
                 return;
             }
         }
     }
 
-    public MediaDB (string name) {
-        open_db (name);
-        this.factory = new MediaDBObjectFactory ();
-    }
-
-    public MediaDB.with_factory (string name, MediaDBObjectFactory factory) {
+    private MediaDB (string name, MediaDBObjectFactory factory) {
         open_db (name);
         this.factory = factory;
+    }
+
+    public static MediaDB? create (string name) throws MediaDBError {
+        var instance = new MediaDB (name, new MediaDBObjectFactory());
+        if (instance.db != null) {
+            return instance;
+        }
+
+        throw new MediaDBError.GENERAL_ERROR("Invalid database");
+    }
+
+    public static MediaDB? create_with_factory (string               name,
+                                                MediaDBObjectFactory factory)
+                                                throws MediaDBError          {
+        var instance = new MediaDB (name, new MediaDBObjectFactory());
+        if (instance.db != null) {
+            return instance;
+        }
+
+        throw new MediaDBError.GENERAL_ERROR("Invalid database");
     }
 
     private bool sweeper () {

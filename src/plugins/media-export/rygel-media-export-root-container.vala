@@ -28,7 +28,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     private HashMap<File, MediaExportHarvester> harvester;
     private MediaExportRecursiveFileMonitor monitor;
 
-    private static MediaExportRootContainer instance = null;
+    private static MediaContainer instance = null;
 
     private ArrayList<string> get_uris () {
         ArrayList<string> uris;
@@ -60,9 +60,16 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         return uris;
     }
 
-    public static MediaExportRootContainer get_instance() {
+    public static MediaContainer get_instance() {
         if (MediaExportRootContainer.instance == null) {
-            MediaExportRootContainer.instance = new MediaExportRootContainer ();
+            try {
+                var db = MediaDB.create("media-export");
+                MediaExportRootContainer.instance =
+                                             new MediaExportRootContainer (db);
+            } catch (MediaDBError err) {
+                warning("Failed to create instance of database");
+                MediaExportRootContainer.instance = new NullContainer ();
+            }
         }
 
         return MediaExportRootContainer.instance;
@@ -71,8 +78,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     /**
      * Create a new root container.
      */
-    private MediaExportRootContainer () {
-        var db = new MediaDB("media-export");
+    private MediaExportRootContainer (MediaDB db) {
         base (db, "0", "MediaExportRoot");
 
         this.extractor = new MetadataExtractor ();

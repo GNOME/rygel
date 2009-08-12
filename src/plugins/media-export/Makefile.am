@@ -10,6 +10,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
 
 librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
+				   rygel-media-export-null-container.vala \
 				   rygel-media-export-root-container.vala \
 				   rygel-media-export-recursive-file-monitor.vala \
 				   rygel-media-export-harvester.vala \
