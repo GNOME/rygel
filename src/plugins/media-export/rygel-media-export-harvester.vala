@@ -21,14 +21,17 @@
 using GLib;
 using Gee;
 
-internal class Rygel.DummyContainer : Rygel.MediaContainer {
+internal class Rygel.DummyContainer : NullContainer {
     public File file;
     public ArrayList<string> seen_children;
 
     public DummyContainer (File file, MediaContainer parent) {
         var id = Checksum.compute_for_string (ChecksumType.MD5,
                                               file.get_uri ());
-        base (id, parent, file.get_basename (), 0);
+        this.id = id;
+        this.parent = parent;
+        this.title = file.get_basename ();
+        this.child_count = 0;
         this.parent_ref = parent;
         this.file = file;
         this.uris.add (file.get_uri ());
@@ -38,29 +41,9 @@ internal class Rygel.DummyContainer : Rygel.MediaContainer {
     public void seen (string id) {
         seen_children.add (id);
     }
-
-
-    public override void get_children (uint               offset,
-                                       uint               max_count,
-                                       Cancellable?       cancellable,
-                                       AsyncReadyCallback callback) {}
-
-    public override Gee.List<MediaObject>? get_children_finish (
-                                                    AsyncResult res)
-                                                    throws Error
-                                                    { return null; }
-
-    public override void find_object (string             id,
-                                      Cancellable?       cancellable,
-                                      AsyncReadyCallback callback) { }
-
-    public override MediaObject? find_object_finish (AsyncResult res)
-                                                     throws Error { return
-                                                     null;}
-
 }
 
-internal struct FileQueueEntry  {
+internal struct Rygel.FileQueueEntry  {
     public File file;
     public bool update;
 }
