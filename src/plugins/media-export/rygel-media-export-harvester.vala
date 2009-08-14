@@ -82,19 +82,25 @@ public class Rygel.MediaExportHarvester : GLib.Object {
 
         // delete all children which are not in filesystem anymore
         var container = (DummyContainer) this.containers.peek_head ();
-        var children = this.media_db.get_child_ids (container.id);
+        try {
+            var children = this.media_db.get_child_ids (container.id);
 
-        foreach (var seen_id in container.seen_children) {
-            children.remove (seen_id);
-        }
+            foreach (var seen_id in container.seen_children) {
+                children.remove (seen_id);
+            }
 
-        foreach (var child in children) {
-            this.media_db.delete_by_id (child);
-        }
+            foreach (var child in children) {
+                this.media_db.delete_by_id (child);
+            }
 
-        if (this.files.get_length() == 0 &&
-            this.containers.get_length () != 0) {
-            this.containers.pop_head ();
+            if (this.files.get_length() == 0 &&
+                    this.containers.get_length () != 0) {
+                this.containers.pop_head ();
+            }
+        } catch (MediaDBError err) {
+            warning("Failed to get children of container %s: %s",
+                    container.id,
+                    err.message);
         }
 
         Idle.add(this.on_idle);
