@@ -307,7 +307,7 @@ public class Rygel.MediaDB : Object {
 
     public signal void item_deleted (string item_id);
 
-    public void delete_by_id (string id) {
+    public void delete_by_id (string id) throws MediaDBError {
         Statement statement;
 
         var rc = db.prepare_v2 ("DELETE FROM Object WHERE upnp_id = ?",
@@ -315,7 +315,9 @@ public class Rygel.MediaDB : Object {
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            rc = statement.bind_text (1, id);
+            if (statement.bind_text (1, id) != Sqlite.OK) {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
             rc = statement.step ();
             if (rc == Sqlite.DONE || rc == Sqlite.OK) {
                 item_deleted (id);
@@ -329,7 +331,7 @@ public class Rygel.MediaDB : Object {
     }
 
 
-    public void delete_object (MediaObject obj) {
+    public void delete_object (MediaObject obj) throws MediaDBError {
         this.delete_by_id (obj.id);
     }
 
@@ -404,9 +406,11 @@ public class Rygel.MediaDB : Object {
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            statement.bind_text (1, obj.title);
-            statement.bind_int64 (2, (int64) obj.timestamp);
-            statement.bind_text (3, obj.id);
+            if (statement.bind_text (1, obj.title) != Sqlite.OK ||
+                statement.bind_int64 (2, (int64) obj.timestamp) != Sqlite.OK ||
+                statement.bind_text (3, obj.id) != Sqlite.OK) {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
             rc = statement.step ();
             if (rc != Sqlite.DONE && rc != Sqlite.OK) {
                 throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
@@ -423,7 +427,9 @@ public class Rygel.MediaDB : Object {
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            statement.bind_text (1, obj.id);
+            if (statement.bind_text (1, obj.id) != Sqlite.OK) {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
             rc = statement.step ();
             if (rc != Sqlite.DONE && rc != Sqlite.OK) {
                 throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
@@ -442,22 +448,24 @@ public class Rygel.MediaDB : Object {
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            statement.bind_int64 (1, item.size);
-            statement.bind_text (2, item.mime_type);
-            statement.bind_int (3, item.width);
-            statement.bind_int (4, item.height);
-            statement.bind_text (5, item.upnp_class);
-            statement.bind_text (6, item.author);
-            statement.bind_text (7, item.album);
-            statement.bind_text (8, item.date);
-            statement.bind_int (9, item.bitrate);
-            statement.bind_int (10, item.sample_freq);
-            statement.bind_int (11, item.bits_per_sample);
-            statement.bind_int (12, item.n_audio_channels);
-            statement.bind_int (13, item.track_number);
-            statement.bind_int (14, item.color_depth);
-            statement.bind_int64 (15, item.duration);
-            statement.bind_text (16, item.id);
+            if (statement.bind_int64 (1, item.size) != Sqlite.OK ||
+                statement.bind_text (2, item.mime_type) != Sqlite.OK ||
+                statement.bind_int (3, item.width) != Sqlite.OK ||
+                statement.bind_int (4, item.height) != Sqlite.OK ||
+                statement.bind_text (5, item.upnp_class) != Sqlite.OK ||
+                statement.bind_text (6, item.author) != Sqlite.OK ||
+                statement.bind_text (7, item.album) != Sqlite.OK ||
+                statement.bind_text (8, item.date) != Sqlite.OK ||
+                statement.bind_int (9, item.bitrate) != Sqlite.OK ||
+                statement.bind_int (10, item.sample_freq) != Sqlite.OK ||
+                statement.bind_int (11, item.bits_per_sample) != Sqlite.OK ||
+                statement.bind_int (12, item.n_audio_channels) != Sqlite.OK ||
+                statement.bind_int (13, item.track_number) != Sqlite.OK ||
+                statement.bind_int (14, item.color_depth) != Sqlite.OK ||
+                statement.bind_int64 (15, item.duration) != Sqlite.OK ||
+                statement.bind_text (16, item.id) != Sqlite.OK) {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
 
             rc = statement.step ();
             if (rc != Sqlite.DONE && rc != Sqlite.OK) {
@@ -476,24 +484,33 @@ public class Rygel.MediaDB : Object {
                             out statement,
                             null);
         if (rc == Sqlite.OK) {
-            statement.bind_text (1, item.id);
-            statement.bind_text (2, item.title);
+            if (statement.bind_text (1, item.id) != Sqlite.OK ||
+                statement.bind_int64 (5, (int64) item.timestamp) != Sqlite.OK ||
+                statement.bind_text (2, item.title) != Sqlite.OK) {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
 
             if (item is MediaItem) {
-                statement.bind_int (3, MediaDBObjectType.ITEM);
+                rc = statement.bind_int (3, MediaDBObjectType.ITEM);
             } else if (item is MediaObject) {
-                statement.bind_int (3, MediaDBObjectType.CONTAINER);
+                rc = statement.bind_int (3, MediaDBObjectType.CONTAINER);
             } else {
                 throw new MediaDBError.GENERAL_ERROR ("Invalid object type");
             }
 
-            if (item.parent == null) {
-                statement.bind_null (4);
-            } else {
-                statement.bind_text (4, item.parent.id);
+            if (rc != Sqlite.OK) {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
             }
 
-            statement.bind_int64 (5, (int64) item.timestamp);
+            if (item.parent == null) {
+                rc = statement.bind_null (5);
+            } else {
+                rc = statement.bind_text (4, item.parent.id);
+            }
+            if (rc != Sqlite.OK) {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
+
             rc = statement.step ();
             if (rc != Sqlite.OK && rc != Sqlite.DONE) {
                 throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
@@ -512,8 +529,10 @@ public class Rygel.MediaDB : Object {
                                 null);
         if (rc == Sqlite.OK) {
             foreach (var uri in obj.uris) {
-                statement.bind_text (1, obj.id);
-                statement.bind_text (2, uri);
+                if (statement.bind_text (1, obj.id) != Sqlite.OK ||
+                    statement.bind_text (2, uri) != Sqlite.OK) {
+                    throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+                }
                 rc = statement.step ();
                 if (rc != Sqlite.OK && rc != Sqlite.DONE) {
                     throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
@@ -572,7 +591,7 @@ public class Rygel.MediaDB : Object {
 
    }
 
-    private void add_uris (MediaObject obj) {
+    private void add_uris (MediaObject obj) throws MediaDBError {
         Statement statement;
 
         var rc = db.prepare_v2 (URI_GET_STRING,
@@ -580,7 +599,10 @@ public class Rygel.MediaDB : Object {
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            statement.bind_text (1, obj.id);
+            if (statement.bind_text (1, obj.id) != Sqlite.OK) {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
+
             while ((rc = statement.step ()) == Sqlite.ROW) {
                 obj.uris.add (statement.column_text (0));
             }
@@ -617,14 +639,19 @@ public class Rygel.MediaDB : Object {
                 break;
         }
 
-        if (obj != null) {
-            obj.timestamp = statement.column_int64 (18);
-            add_uris (obj);
+        try {
+            if (obj != null) {
+                obj.timestamp = statement.column_int64 (18);
+                add_uris (obj);
+            }
+        } catch (MediaDBError err) {
+            warning ("Failed to load uris from database: %s", err.message);
+            obj = null;
         }
         return obj;
     }
 
-    public MediaObject? get_object (string object_id) {
+    public MediaObject? get_object (string object_id) throws MediaDBError {
         MediaObject obj = null;
         Statement statement;
 
@@ -634,7 +661,10 @@ public class Rygel.MediaDB : Object {
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            statement.bind_text (1, object_id);
+            if (statement.bind_text (1, object_id) != Sqlite.OK) {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
+
             while ((rc = statement.step ()) == Sqlite.ROW) {
                 MediaContainer parent = null;
                 var parent_id = statement.column_text (17);
@@ -656,6 +686,7 @@ public class Rygel.MediaDB : Object {
                 break;
             }
         } else {
+            throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
         }
 
         return obj;
@@ -681,7 +712,8 @@ public class Rygel.MediaDB : Object {
         item.color_depth = statement.column_int (15);
     }
 
-    public ArrayList<string> get_child_ids (string object_id) {
+    public ArrayList<string> get_child_ids (string object_id)
+                                                         throws MediaDBError {
         ArrayList<string> children = new ArrayList<string> (str_equal);
         Statement statement;
 
@@ -690,7 +722,9 @@ public class Rygel.MediaDB : Object {
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            statement.bind_text (1, object_id);
+            if (statement.bind_text (1, object_id) != Sqlite.OK) {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
             while ((rc = statement.step ()) == Sqlite.ROW) {
                 children.add (statement.column_text (0));
             }
@@ -703,7 +737,7 @@ public class Rygel.MediaDB : Object {
         return children;
     }
 
-    public int get_child_count (string object_id) {
+    public int get_child_count (string object_id) throws MediaDBError {
         Statement statement;
         int count = 0;
         var rc = db.prepare_v2 (CHILDREN_COUNT_STRING,
@@ -711,7 +745,9 @@ public class Rygel.MediaDB : Object {
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            statement.bind_text (1, object_id);
+            if (statement.bind_text (1, object_id) != Sqlite.OK) {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
             while ((rc = statement.step ()) == Sqlite.ROW) {
                 count = statement.column_int (0);
                 break;
@@ -725,7 +761,8 @@ public class Rygel.MediaDB : Object {
         return count;
     }
 
-    public bool exists (string object_id, out int64 timestamp) {
+    public bool exists (string object_id, out int64 timestamp)
+                                                          throws MediaDBError {
         Statement statement;
         bool exists = false;
         var rc = db.prepare_v2 (OBJECT_EXISTS_STRING,
@@ -733,7 +770,9 @@ public class Rygel.MediaDB : Object {
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            statement.bind_text (1, object_id);
+            if (statement.bind_text (1, object_id) != Sqlite.OK) {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
             while ((rc = statement.step ()) == Sqlite.ROW) {
                 exists = statement.column_int (0) == 1;
                 timestamp = statement.column_int64 (1);
@@ -760,16 +799,22 @@ public class Rygel.MediaDB : Object {
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            statement.bind_text (1, object_id);
-            statement.bind_int64 (2, (int64) offset);
-            statement.bind_int64 (3, (int64) max_count);
+            if (statement.bind_text (1, object_id) != Sqlite.OK ||
+                statement.bind_int64 (2, (int64) offset) != Sqlite.OK ||
+                statement.bind_int64 (3, (int64) max_count) != Sqlite.OK) {
+                throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
+            }
             while ((rc = statement.step ()) == Sqlite.ROW) {
                 var child_id = statement.column_text (17);
-                var parent = get_object (statement.column_text (18));
-                children.add (get_object_from_statement
-                ((MediaContainer)parent, child_id, statement));
-                children[children.size - 1].parent = (MediaContainer)parent;
-                children[children.size - 1].parent_ref = (MediaContainer)parent;
+                try {
+                    var parent = get_object (statement.column_text (18));
+                    children.add (get_object_from_statement
+                    ((MediaContainer)parent, child_id, statement));
+                    children[children.size - 1].parent = (MediaContainer)parent;
+                    children[children.size - 1].parent_ref = (MediaContainer)parent;
+                } catch (MediaDBError err) {
+                    warning ("Could not get parent object: %s", err.message);
+                }
             }
         }
 
