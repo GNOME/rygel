@@ -189,6 +189,36 @@ public class Rygel.MediaDB : Object {
     private const string GET_CHILD_ID_STRING =
     "SELECT upnp_id FROM OBJECT WHERE parent = ?";
 
+    private const string UPDATE_V3_V4_STRING_1 =
+    "ALTER TABLE Meta_Data ADD object_fk TEXT";
+
+    private const string UPDATE_V3_V4_STRING_2 =
+    "UPDATE Meta_Data SET object_fk = " +
+        "(SELECT upnp_id FROM Object WHERE metadata_fk = Meta_Data.id)";
+
+    private const string UPDATE_V3_V4_STRING_3 =
+    "ALTER TABLE Object ADD timestamp INTEGER";
+
+    private const string UPDATE_V3_V4_STRING_4 =
+    "UPDATE Object SET timestamp = 0";
+
+    private void update_v3_v4() {
+        if (db.exec ("BEGIN") == Sqlite.OK &&
+            db.exec (UPDATE_V3_V4_STRING_1) == Sqlite.OK &&
+            db.exec (UPDATE_V3_V4_STRING_2) == Sqlite.OK &&
+            db.exec (UPDATE_V3_V4_STRING_3) == Sqlite.OK &&
+            db.exec (UPDATE_V3_V4_STRING_4) == Sqlite.OK &&
+            db.exec (CREATE_TRIGGER_STRING) == Sqlite.OK &&
+            db.exec ("UPDATE Schema_Info SET version = " +
+                     schema_version) == Sqlite.OK) {
+            db.exec ("COMMIT");
+        } else {
+            db.exec ("ROLLBACK");
+            warning ("Database upgrade failed: %s", db.errmsg());
+            db = null;
+        }
+    }
+
     private void open_db (string name) {
         var dirname = Path.build_filename (Environment.get_user_cache_dir (),
                                            Environment.get_prgname ());
@@ -219,14 +249,21 @@ public class Rygel.MediaDB : Object {
                     debug ("Media DB schema has current version");
                 } else {
                     int old_version = schema_info[1].to_int();
-                    int new_version = schema_version.to_int();
-                    if (schema_info[1].to_int() < schema_version.to_int()) {
+                    int current_version = schema_version.to_int();
+                    if (old_version < current_version) {
                         debug ("Older schema detected. Upgrading...");
+                        switch (old_version) {
+                            case 3:
+                                update_v3_v4();
+                                break;
+                            default:
+                                warning ("Cannot upgrade");
+                                break;
+                        }
                     } else {
-                        // FIXME implement if necessary
-                        warning("The version \"%d\" of the detected database" +
-                                " is newer than our supported version \"%d\"",
-                                old_version, new_version);
+                        warning ("The version \"%d\" of the detected database" +
+                                 " is newer than our supported version \"%d\"",
+                                old_version, current_version);
                         db = null;
                     }
                 }
