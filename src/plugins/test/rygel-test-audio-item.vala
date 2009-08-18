@@ -43,31 +43,12 @@ public class Rygel.TestAudioItem : Rygel.TestItem {
     }
 
     public override Element? create_stream_source () {
-        Bin bin = new Bin (this.title);
-
-        dynamic Element src = ElementFactory.make ("audiotestsrc", null);
-        Element encoder = ElementFactory.make ("wavenc", null);
-
-        if (src == null || encoder == null) {
-            warning ("Required plugin missing");
-
-            return null;
+        try {
+          return Gst.parse_bin_from_description ("audiotestsrc is-live=1 ! wavenc", true);
+        } catch (Error err) {
+          warning ("Required plugin missing (%s)", err.message);
+          return null;
         }
-
-        // Tell the source to behave like a live source
-        src.is_live = true;
-
-        // Add elements to our source bin
-        bin.add_many (src, encoder);
-        // Link them
-        src.link (encoder);
-
-        // Now add the encoder's src pad to the bin
-        Pad pad = encoder.get_static_pad ("src");
-        var ghost = new GhostPad (bin.name + "." + pad.name, pad);
-        bin.add_pad (ghost);
-
-        return bin;
     }
 }
 

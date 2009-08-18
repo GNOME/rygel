@@ -43,32 +43,12 @@ public class Rygel.TestVideoItem : Rygel.TestItem {
     }
 
     public override Element? create_stream_source () {
-        Bin bin = new Bin (this.title);
-
-        dynamic Element src = ElementFactory.make ("videotestsrc", null);
-        Element encoder = ElementFactory.make ("ffenc_mpeg2video", null);
-        Element muxer = ElementFactory.make ("mpegtsmux", null);
-
-        if (src == null || muxer == null || encoder == null) {
-            warning ("Required plugin missing");
-
-            return null;
+        try {
+          return Gst.parse_bin_from_description ("videotestsrc is-live=1 ! ffenc_mpeg2video ! mpegtsmux", true);
+        } catch (Error err) {
+          warning ("Required plugin missing (%s)", err.message);
+          return null;
         }
-
-        // Tell the source to behave like a live source
-        src.is_live = true;
-
-        // Add elements to our source bin
-        bin.add_many (src, encoder, muxer);
-        // Link them
-        src.link_many (encoder, muxer);
-
-        // Now add the encoder's src pad to the bin
-        Pad pad = muxer.get_static_pad ("src");
-        var ghost = new GhostPad (bin.name + "." + pad.name, pad);
-        bin.add_pad (ghost);
-
-        return bin;
     }
 }
 
