@@ -7,7 +7,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 		$(LIBDBUS_GLIB_CFLAGS) \
 		$(GEE_CFLAGS) \
 		$(LIBGSTREAMER_CFLAGS) \
-		$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"' \
+		-I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"' \
 		-DSYS_CONFIG_DIR='"$(sysconfdir)"'
 
 librygel_gstlaunch_la_SOURCES = rygel-gstlaunch-plugin.vala \

@@ -38,7 +38,6 @@ $(desktop_DATA): $(desktop_in_files) Makefile
 CLEANFILES = $(dbusservice_DATA) $(desktop_DATA) rygel.conf
 EXTRA_DIST = rygel-maemo.conf \
 	     rygel-default.conf \
-	     rygel-gstlaunch.conf \
 	     $(dbusservice_in_files) \
 	     $(desktop_in_files)
 
