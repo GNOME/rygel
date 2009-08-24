@@ -20,9 +20,9 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
-using Rygel;
 using Gst;
 using GUPnP;
+using Gee;
 
 internal enum Endianness {
     LITTLE = ByteOrder.LITTLE_ENDIAN,
@@ -61,21 +61,23 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
         return new L16TranscoderBin (src, this);
     }
 
-    public override DIDLLiteResource create_resource (
-                                        MediaItem        item,
-                                        TranscodeManager manager)
-                                        throws Error {
-        var res = base.create_resource (item, manager);
+    public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
+                                                    MediaItem        item,
+                                                    TranscodeManager manager)
+                                                    throws Error {
+        var resource = base.add_resource (didl_item, item, manager);
+        if (resource == null)
+            return null;
 
-        res.sample_freq = L16Transcoder.FREQUENCY;
-        res.n_audio_channels = L16Transcoder.CHANNELS;
-        res.bits_per_sample = L16Transcoder.WIDTH;
+        resource.sample_freq = L16Transcoder.FREQUENCY;
+        resource.audio_channels = L16Transcoder.CHANNELS;
+        resource.bits_per_sample = L16Transcoder.WIDTH;
         // Set bitrate in bytes/second
-        res.bitrate = L16Transcoder.FREQUENCY *
-                      L16Transcoder.CHANNELS *
-                      L16Transcoder.WIDTH / 8;
+        resource.bitrate = L16Transcoder.FREQUENCY *
+                           L16Transcoder.CHANNELS *
+                           L16Transcoder.WIDTH / 8;
 
-        return res;
+        return resource;
     }
 
     public Element create_encoder (string? src_pad_name,

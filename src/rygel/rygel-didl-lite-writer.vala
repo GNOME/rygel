@@ -38,130 +38,73 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         this.http_server = http_server;
     }
 
-    public void serialize (MediaObject media_object,
-                           string      filter_str)
-                           throws Error {
-        var filter = new BrowseFilter (filter_str);
-
+    public void serialize (MediaObject media_object) throws Error {
         if (media_object is MediaItem) {
-            this.serialize_item ((MediaItem) media_object, filter);
+            this.serialize_item ((MediaItem) media_object);
         } else if (media_object is MediaContainer) {
-            this.serialize_container ((MediaContainer) media_object, filter);
+            this.serialize_container ((MediaContainer) media_object);
         } else {
             throw new DIDLLiteWriterError.UNSUPPORTED_OBJECT (
                 "Unable to serialize unsupported object");
         }
     }
 
-    private void serialize_item (MediaItem    item,
-                                 BrowseFilter filter)
-                                 throws Error {
-        string parent_id;
+    private void serialize_item (MediaItem item) throws Error {
+        var didl_item = this.add_item ();
 
+        didl_item.id = item.id;
         if (item.parent != null) {
-            parent_id = item.parent.id;
+            didl_item.parent_id = item.parent.id;
         } else {
-            parent_id = "0";
+            didl_item.parent_id = "0";
         }
 
-        this.start_item (item.id, parent_id, null, false);
+        didl_item.restricted = false;
 
-        /* Add fields */
-        this.add_string ("title", NAMESPACE_DC, null, item.title);
-
-        this.add_string ("class", NAMESPACE_UPNP, null, item.upnp_class);
-
+        didl_item.title = item.title;
+        didl_item.upnp_class = item.upnp_class;
         if (item.author != null && item.author != "") {
-            if (filter.have ("creator", NAMESPACE_DC)) {
-                this.add_string ("creator", NAMESPACE_DC, null, item.author);
-            }
+            didl_item.creator = item.author;
 
-            if (item.upnp_class.has_prefix (MediaItem.VIDEO_CLASS) &&
-                filter.have ("author", NAMESPACE_UPNP)) {
-                this.add_string ("author", NAMESPACE_UPNP, null, item.author);
-            } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS) &&
-                       filter.have ("artist", NAMESPACE_UPNP)) {
-                this.add_string ("artist", NAMESPACE_UPNP, null, item.author);
+            if (item.upnp_class.has_prefix (MediaItem.VIDEO_CLASS)) {
+                didl_item.author = item.author;
+            } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS)) {
+                didl_item.artist = item.author;
             }
         }
 
-        if (item.track_number >= 0 &&
-            filter.have ("originalTrackNumber", NAMESPACE_UPNP)) {
-            this.add_int ("originalTrackNumber",
-                          NAMESPACE_UPNP,
-                          null,
-                          item.track_number);
+        if (item.track_number >= 0) {
+            didl_item.track_number = item.track_number;
         }
 
-        if (item.album != null && item.album != "" &&
-            filter.have ("album", NAMESPACE_UPNP)) {
-            this.add_string ("album", NAMESPACE_UPNP, null, item.album);
+        if (item.album != null && item.album != "") {
+            didl_item.album = item.album;
         }
 
-        if (item.date != null && item.date != "" &&
-            filter.have ("date", NAMESPACE_DC)) {
-            this.add_string ("date", NAMESPACE_DC, null, item.date);
+        if (item.date != null && item.date != "") {
+            didl_item.date = item.date;
         }
 
-        if (filter.have ("res", null)) {
-            /* Add resource data */
-            var resources = this.get_original_resources (item);
+        // Add the transcoded/proxy URIs first
+        this.http_server.add_resources (didl_item, item);
 
-            /* Now get the transcoded/proxy URIs */
-            this.http_server.add_resources (resources, item);
-
-            foreach (DIDLLiteResource res in resources) {
-                filter.adjust_resource (ref res);
-                this.add_res (res);
-            }
-        }
-
-        /* End of item */
-        this.end_item ();
+        // then original URIs
+        item.add_resources (didl_item);
     }
 
-    private void serialize_container (MediaContainer container,
-                                      BrowseFilter   filter)
-                                      throws Error {
-        string parent_id;
-        int child_count = -1;
-
+    private void serialize_container (MediaContainer container) throws Error {
+        var didl_container = this.add_container ();
         if (container.parent != null) {
-            parent_id = container.parent.id;
+            didl_container.parent_id = container.parent.id;
         } else {
-            parent_id = "-1";
+            didl_container.parent_id = "-1";
         }
 
-        if (filter.have ("childCount", null)) {
-            child_count = (int) container.child_count;
-        }
-
-        this.start_container (container.id,
-                              parent_id,
-                              child_count,
-                              false,
-                              false);
-        this.add_string ("class",
-                         NAMESPACE_UPNP,
-                         null,
-                         "object.container.storageFolder");
-
-        this.add_string ("title", NAMESPACE_DC, null, container.title);
-
-        /* End of Container */
-        this.end_container ();
-    }
-
-    private ArrayList<DIDLLiteResource?> get_original_resources (MediaItem item)
-                                                                 throws Error {
-        var resources = new ArrayList<DIDLLiteResource?> ();
-
-        foreach (var uri in item.uris) {
-            DIDLLiteResource res = item.create_res (uri);
-
-            resources.add (res);
-        }
-
-        return resources;
+        didl_container.id = container.id;
+        didl_container.title = container.title;
+        didl_container.child_count = container.child_count;
+        didl_container.restricted = false;
+        didl_container.searchable = false;
+        didl_container.upnp_class = "object.container.storageFolder";
     }
 }

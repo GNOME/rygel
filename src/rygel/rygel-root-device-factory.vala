@@ -67,7 +67,7 @@ public class Rygel.RootDeviceFactory {
                                                 modified_desc);
 
         /* Create the description xml */
-        Xml.Doc *doc = this.create_desc (plugin, desc_path);
+        var doc = this.create_desc (plugin, desc_path);
 
         return new RootDevice (this.context,
                                plugin,
@@ -76,8 +76,8 @@ public class Rygel.RootDeviceFactory {
                                BuildConfig.DATA_DIR);
     }
 
-    private Xml.Doc * create_desc (Plugin plugin,
-                                   string desc_path) throws GLib.Error {
+    private XMLDoc create_desc (Plugin plugin,
+                                string desc_path) throws GLib.Error {
         string path;
 
         if (this.check_path_exist (desc_path)) {
@@ -87,12 +87,7 @@ public class Rygel.RootDeviceFactory {
             path = plugin.desc_path;
         }
 
-        Xml.Doc *doc = Xml.Parser.parse_file (path);
-        if (doc == null) {
-            string message = "Failed to parse %s".printf (path);
-
-            throw new RootDeviceFactoryError.XML_PARSE (message);
-        }
+        var doc = new XMLDoc.from_path (path);
 
         /* Modify description to include Plugin-specific stuff */
         this.prepare_desc_for_plugin (doc, plugin);
@@ -102,10 +97,10 @@ public class Rygel.RootDeviceFactory {
         return doc;
     }
 
-    private void prepare_desc_for_plugin (Xml.Doc doc, Plugin plugin) {
+    private void prepare_desc_for_plugin (XMLDoc doc, Plugin plugin) {
         Xml.Node *device_element;
 
-        device_element = Utils.get_xml_element ((Xml.Node *) doc,
+        device_element = Utils.get_xml_element ((Xml.Node *) doc.doc,
                                                 "root",
                                                 "device",
                                                 null);
@@ -256,19 +251,17 @@ public class Rygel.RootDeviceFactory {
         icon_node->new_child (null, "url", url);
     }
 
-    private void save_modified_desc (Xml.Doc *doc,
-                                     string   desc_path) throws GLib.Error {
+    private void save_modified_desc (XMLDoc doc,
+                                     string desc_path) throws GLib.Error {
         FileStream f = FileStream.open (desc_path, "w+");
         int res = -1;
 
         if (f != null)
-            res = Xml.Doc.dump (f, doc);
+            res = Xml.Doc.dump (f, doc.doc);
 
         if (f == null || res == -1) {
             string message = "Failed to write modified description" +
                              " to %s.\n".printf (desc_path);
-
-            delete doc;
 
             throw new IOError.FAILED (message);
         }

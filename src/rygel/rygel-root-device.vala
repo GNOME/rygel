@@ -31,11 +31,9 @@ using Gee;
 public class Rygel.RootDevice: GUPnP.RootDevice {
     internal ArrayList<ServiceInfo> services;   /* Services we implement */
 
-    private Xml.Doc *desc_doc;
-
     public RootDevice (GUPnP.Context context,
                        Plugin        plugin,
-                       Xml.Doc      *description_doc,
+                       XMLDoc        description_doc,
                        string        description_path,
                        string        description_dir) {
         this.resource_factory = plugin;
@@ -46,7 +44,6 @@ public class Rygel.RootDevice: GUPnP.RootDevice {
         this.description_path = description_path;
         this.description_dir = description_dir;
 
-        this.desc_doc = description_doc;
         this.services = new ArrayList<ServiceInfo> ();
 
         // Now create the sevice objects
@@ -58,10 +55,6 @@ public class Rygel.RootDevice: GUPnP.RootDevice {
                 this.services.add (service);
             }
         }
-    }
-
-    ~RootDevice () {
-        delete this.desc_doc;
     }
 }
 

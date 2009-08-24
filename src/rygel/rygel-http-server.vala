@@ -62,28 +62,24 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
      * implemenation out there just choose the first one in the list instead of
      * the one they can handle.
      */
-    internal override void add_resources (
-                                ArrayList<DIDLLiteResource?> resources,
-                                MediaItem                    item)
+    internal override void add_resources (DIDLLiteItem didl_item,
+                                          MediaItem    item)
                                 throws Error {
-        // Create the HTTP proxy URI
-        string protocol;
-        var uri = this.create_uri_for_item (item, null, out protocol);
-        DIDLLiteResource res = item.create_res (uri);
-        res.protocol = protocol;
-
-        if (!http_res_present (resources)) {
-            resources.insert (0, res);
+        if (!this.http_uri_present (item)) {
+            // Create the HTTP proxy URI
+            string protocol;
+            var uri = this.create_uri_for_item (item, null, out protocol);
+            item.add_resource (didl_item, uri, protocol);
         }
 
-        base.add_resources (resources, item);
+        base.add_resources (didl_item, item);
     }
 
-    private bool http_res_present (ArrayList<DIDLLiteResource?> res_list) {
+    private bool http_uri_present (MediaItem item) {
         bool present = false;
 
-        foreach (var res in res_list) {
-            if (res.protocol == "http-get") {
+        foreach (var uri in item.uris) {
+            if (uri.has_prefix ("http:")) {
                 present = true;
 
                 break;

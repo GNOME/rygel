@@ -20,9 +20,9 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
-using Rygel;
 using Gst;
 using GUPnP;
+using Gee;
 
 internal enum Rygel.MP2TSProfile {
     SD = 0,
@@ -58,16 +58,19 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         return new MP2TSTranscoderBin (src, this);
     }
 
-    public override DIDLLiteResource create_resource (MediaItem        item,
-                                                      TranscodeManager manager)
-                                                      throws Error {
-        var res = base.create_resource (item, manager);
+    public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
+                                                    MediaItem        item,
+                                                    TranscodeManager manager)
+                                                    throws Error {
+        var resource = base.add_resource (didl_item, item, manager);
+        if (resource == null)
+            return null;
 
-        res.width = WIDTH[profile];
-        res.height = HEIGHT[profile];
-        res.bitrate = (VIDEO_BITRATE + MP3Transcoder.BITRATE) * 1000 / 8;
+        resource.width = WIDTH[profile];
+        resource.height = HEIGHT[profile];
+        resource.bitrate = (VIDEO_BITRATE + MP3Transcoder.BITRATE) * 1000 / 8;
 
-        return res;
+        return resource;
     }
 
     public Element create_encoder (string? src_pad_name,

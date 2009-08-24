@@ -54,32 +54,27 @@ internal abstract class Rygel.Transcoder : GLib.Object {
      */
     public abstract Element create_source (Element src) throws Error;
 
-    public void add_resources (ArrayList<DIDLLiteResource?> resources,
-                               MediaItem                    item,
-                               TranscodeManager             manager)
-                               throws Error {
+    public virtual DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
+                                                   MediaItem        item,
+                                                   TranscodeManager manager)
+                                                   throws Error {
         if (this.mime_type_is_a (item.mime_type, this.mime_type)) {
-            return;
+            return null;
         }
 
-        resources.add (this.create_resource (item, manager));
-    }
-
-    public virtual DIDLLiteResource create_resource (MediaItem        item,
-                                                     TranscodeManager manager)
-                                                     throws Error {
         string protocol;
         var uri = manager.create_uri_for_item (item,
                                                this.dlna_profile,
                                                out protocol);
-        DIDLLiteResource res = item.create_res (uri);
-        res.mime_type = this.mime_type;
-        res.protocol = protocol;
-        res.dlna_profile = this.dlna_profile;
-        res.dlna_conversion = DLNAConversion.TRANSCODED;
-        res.dlna_flags = DLNAFlags.STREAMING_TRANSFER_MODE;
-        res.dlna_operation = DLNAOperation.TIMESEEK;
+        var res = item.add_resource (didl_item, uri, protocol);
         res.size = -1;
+
+        var protocol_info = res.protocol_info;
+        protocol_info.mime_type = this.mime_type;
+        protocol_info.dlna_profile = this.dlna_profile;
+        protocol_info.dlna_conversion = DLNAConversion.TRANSCODED;
+        protocol_info.dlna_flags = DLNAFlags.STREAMING_TRANSFER_MODE;
+        protocol_info.dlna_operation = DLNAOperation.TIMESEEK;
 
         return res;
     }

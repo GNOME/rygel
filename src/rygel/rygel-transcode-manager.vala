@@ -57,8 +57,8 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
                                                 string?    transcode_target,
                                                 out string protocol);
 
-    public virtual void add_resources (ArrayList<DIDLLiteResource?> resources,
-                                       MediaItem                    item)
+    public virtual void add_resources (DIDLLiteItem didl_item,
+                                       MediaItem    item)
                                        throws Error {
         if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
             // No  transcoding for images yet :(
@@ -69,14 +69,14 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
         // the UPnP class of the item concerned
         foreach (var transcoder in this.transcoders) {
             if (item.upnp_class.has_prefix (transcoder.upnp_class)) {
-                transcoder.add_resources (resources, item, this);
+                transcoder.add_resource (didl_item, item, this);
             }
         }
 
         // Then add resources from other transcoders
         foreach (var transcoder in this.transcoders) {
             if (!item.upnp_class.has_prefix (transcoder.upnp_class)) {
-                transcoder.add_resources (resources, item, this);
+                transcoder.add_resource (didl_item, item, this);
             }
         }
     }

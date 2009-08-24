@@ -70,9 +70,6 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
     public void run (Cancellable? cancellable) {
         this.cancellable = cancellable;
 
-        /* Start DIDL-Lite fragment */
-        this.didl_writer.start_didl_lite (null, null, true);
-
         /* Start by parsing the 'in' arguments */
         this.parse_args ();
     }
@@ -128,7 +125,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
         }
 
         try {
-            this.didl_writer.serialize (this.media_object, this.filter);
+            this.didl_writer.serialize (this.media_object);
         } catch (Error err) {
             this.handle_error (err);
             return;
@@ -201,8 +198,8 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
     }
 
     private void conclude () {
-        /* End DIDL-Lite fragment */
-        this.didl_writer.end_didl_lite ();
+        // Apply the filter from the client
+        this.didl_writer.filter (this.filter);
 
         /* Retrieve generated string */
         string didl = this.didl_writer.get_string ();
@@ -247,7 +244,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
         /* serialize all children */
         for (int i = 0; i < children.size; i++) {
             try {
-                this.didl_writer.serialize (children[i], this.filter);
+                this.didl_writer.serialize (children[i]);
             } catch (Error err) {
                 this.handle_error (err);
                 return;

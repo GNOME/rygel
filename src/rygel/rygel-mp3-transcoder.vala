@@ -20,9 +20,9 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
-using Rygel;
 using Gst;
 using GUPnP;
+using Gee;
 
 /**
  * Transcoder for mpeg 1 layer 2 and 3 audio. This element uses MP3TrancoderBin
@@ -48,15 +48,18 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
         return new MP3TranscoderBin (src, this);
     }
 
-    public override DIDLLiteResource create_resource (MediaItem        item,
-                                                      TranscodeManager manager)
-                                                      throws Error {
-        var res = base.create_resource (item, manager);
+    public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
+                                                    MediaItem        item,
+                                                    TranscodeManager manager)
+                                                    throws Error {
+        var resource = base.add_resource (didl_item, item, manager);
+        if (resource == null)
+            return null;
 
         // Convert bitrate to bytes/second
-        res.bitrate = BITRATE * 1000 / 8;
+        resource.bitrate = BITRATE * 1000 / 8;
 
-        return res;
+        return resource;
     }
 
     public Element create_encoder (string?  src_pad_name,

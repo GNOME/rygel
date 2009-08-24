@@ -76,42 +76,54 @@ public class Rygel.MediaItem : MediaObject {
         return null;
     }
 
-    internal DIDLLiteResource create_res (string uri) throws Error {
-        DIDLLiteResource res = DIDLLiteResource ();
-        res.reset ();
+    internal void add_resources (DIDLLiteItem didl_item) throws Error {
+        foreach (var uri in this.uris) {
+            this.add_resource (didl_item, uri, null);
+        }
+    }
+
+    internal DIDLLiteResource add_resource (DIDLLiteItem didl_item,
+                                            string       uri,
+                                            string?      protocol)
+                                            throws Error {
+        var res = didl_item.add_resource ();
 
         res.uri = uri;
-        res.mime_type = this.mime_type;
-        res.dlna_profile = this.dlna_profile;
-
         res.size = this.size;
         res.duration = this.duration;
         res.bitrate = this.bitrate;
 
         res.sample_freq = this.sample_freq;
         res.bits_per_sample = this.bits_per_sample;
-        res.n_audio_channels = this.n_audio_channels;
+        res.audio_channels = this.n_audio_channels;
 
         res.width = this.width;
         res.height = this.height;
         res.color_depth = this.color_depth;
 
         /* Protocol info */
-        if (res.uri != null) {
-            string protocol = get_protocol_for_uri (res.uri);
-            res.protocol = protocol;
+        var protocol_info = new ProtocolInfo ();
+
+        protocol_info.mime_type = this.mime_type;
+        protocol_info.dlna_profile = this.dlna_profile;
+        if (protocol == null) {
+            protocol_info.protocol = this.get_protocol_for_uri (res.uri);
+        } else {
+            protocol_info.protocol = protocol;
         }
 
         if (this.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
-            res.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
+            protocol_info.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
         } else {
-            res.dlna_flags |= DLNAFlags.STREAMING_TRANSFER_MODE;
+            protocol_info.dlna_flags |= DLNAFlags.STREAMING_TRANSFER_MODE;
         }
 
         if (res.size > 0) {
-            res.dlna_operation = DLNAOperation.RANGE;
-            res.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE;
+            protocol_info.dlna_operation = DLNAOperation.RANGE;
+            protocol_info.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE;
         }
+
+        res.protocol_info = protocol_info;
 
         return res;
     }
