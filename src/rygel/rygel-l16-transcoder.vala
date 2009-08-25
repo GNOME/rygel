@@ -87,9 +87,11 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
             return uint.MAX;
         }
 
-        uint distance = uint.MIN;
+        uint distance;
 
-        if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS)) {
+        if (item.upnp_class.has_prefix (MediaItem.AUDIO_CLASS)) {
+            distance = uint.MIN;
+
             if (item.sample_freq > 0) {
                 distance += (item.sample_freq - FREQUENCY).abs ();
             }
@@ -101,6 +103,8 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
             if (item.bits_per_sample > 0) {
                 distance += (item.bits_per_sample - WIDTH).abs ();
             }
+        } else {
+            distance = uint.MAX / 2;
         }
 
         return distance;

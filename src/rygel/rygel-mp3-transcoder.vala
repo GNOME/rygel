@@ -69,10 +69,16 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
             return uint.MAX;
         }
 
-        uint distance = uint.MIN;
+        uint distance;
 
-        if (item.bitrate > 0) {
-            distance += (item.bitrate - BITRATE).abs ();
+        if (item.upnp_class.has_prefix (MediaItem.AUDIO_CLASS)) {
+            distance = uint.MIN;
+
+            if (item.bitrate > 0) {
+                distance += (item.bitrate - BITRATE).abs ();
+            }
+        } else {
+            distance = uint.MAX / 2;
         }
 
         return distance;

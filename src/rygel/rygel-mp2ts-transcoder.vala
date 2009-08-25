@@ -81,9 +81,11 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
             return uint.MAX;
         }
 
-        uint distance = uint.MIN;
+        uint distance;
 
         if (item.upnp_class.has_prefix (MediaItem.VIDEO_CLASS)) {
+            distance = uint.MIN;
+
             if (item.bitrate > 0) {
                 distance += (item.bitrate - BITRATE).abs ();
             }
@@ -95,6 +97,8 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
             if (item.height > 0) {
                 distance += (item.height - HEIGHT[this.profile]).abs ();
             }
+        } else {
+            distance = uint.MAX / 2;
         }
 
         return distance;
