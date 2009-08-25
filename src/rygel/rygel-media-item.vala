@@ -78,6 +78,14 @@ public class Rygel.MediaItem : MediaObject {
         return null;
     }
 
+    internal int compare_transcoders (void *a, void *b) {
+        var transcoder1 = (Transcoder) a;
+        var transcoder2 = (Transcoder) b;
+
+        return (int) transcoder1.get_distance (this) -
+               (int) transcoder2.get_distance (this);
+    }
+
     internal void add_resources (DIDLLiteItem didl_item) throws Error {
         foreach (var uri in this.uris) {
             this.add_resource (didl_item, uri, null);
