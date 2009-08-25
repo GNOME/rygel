@@ -220,9 +220,16 @@ public class Rygel.RootDeviceFactory {
             return;
         }
 
-        Xml.Node *icon_list_node = device_element->new_child (null,
-                                                              "iconList",
-                                                              null);
+        Xml.Node *icon_list_node = Utils.get_xml_element (device_element,
+                                                          "iconList",
+                                                          null);
+        if (icon_list_node == null) {
+            icon_list_node = device_element->new_child (null, "iconList", null);
+        } else {
+            // Clear the existing icon list first
+            icon_list_node->set_content ("");
+        }
+
         foreach (IconInfo icon_info in plugin.icon_infos) {
             add_icon_to_desc (icon_list_node, icon_info, plugin);
         }
