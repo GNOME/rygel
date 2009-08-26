@@ -133,14 +133,22 @@ public class Rygel.MediaItem : MediaObject {
         res.color_depth = this.color_depth;
 
         /* Protocol info */
+        res.protocol_info = this.get_protocol_info (uri, protocol);
+
+        return res;
+    }
+
+    internal ProtocolInfo get_protocol_info (string? uri,
+                                             string? protocol) {
         var protocol_info = new ProtocolInfo ();
 
         protocol_info.mime_type = this.mime_type;
         protocol_info.dlna_profile = this.dlna_profile;
-        if (protocol == null) {
-            protocol_info.protocol = this.get_protocol_for_uri (res.uri);
-        } else {
+
+        if (protocol != null) {
             protocol_info.protocol = protocol;
+        } else if (uri != null) {
+            protocol_info.protocol = this.get_protocol_for_uri (uri);
         }
 
         if (this.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
@@ -154,9 +162,7 @@ public class Rygel.MediaItem : MediaObject {
             protocol_info.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE;
         }
 
-        res.protocol_info = protocol_info;
-
-        return res;
+        return protocol_info;
     }
 
     private string get_protocol_for_uri (string uri) throws Error {
