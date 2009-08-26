@@ -82,14 +82,10 @@ public class Rygel.MediaItem : MediaObject {
             src = Element.make_from_uri (URIType.SRC, this.uris.get (0), null);
         }
 
-        if (src != null) {
-            var object_class = (ObjectClass) src.get_type ().class_peek ();
-
+        if (src != null && src.get_type ().name () == "GstRTSPSrc") {
             // For rtspsrc since some RTSP sources takes a while to start
             // transmitting
-            if (object_class.find_property ("tcp-timeout") != null) {
-                src.tcp_timeout = (int64) 60000000;
-            }
+            src.tcp_timeout = (int64) 60000000;
         }
 
         return src;
