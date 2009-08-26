@@ -105,7 +105,7 @@ internal abstract class Rygel.Transcoder : GLib.Object, HTTPRequestHandler {
     }
 
     public virtual void add_response_headers (HTTPRequest request)
-            throws HTTPRequestError {
+                                              throws HTTPRequestError {
         request.msg.response_headers.append ("Content-Type", this.mime_type);
         if (request.time_range != null) {
             request.time_range.add_response_header(request.msg);
@@ -113,15 +113,15 @@ internal abstract class Rygel.Transcoder : GLib.Object, HTTPRequestHandler {
     }
 
     public virtual HTTPResponse render_body (HTTPRequest request)
-            throws HTTPRequestError {
-        weak MediaItem item = request.item;
-        Element src = item.create_stream_source ();
-
+                                             throws HTTPRequestError {
+        var item = request.item;
+        var src = item.create_stream_source ();
         if (src == null) {
             throw new HTTPRequestError.NOT_FOUND ("Not found");
         }
 
         src = this.create_source (item, src);
+
         return new LiveResponse (request.server,
                                  request.msg,
                                  "RygelLiveResponse",

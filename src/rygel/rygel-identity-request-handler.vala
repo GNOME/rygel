@@ -28,8 +28,8 @@ internal class Rygel.IdentityRequestHandler : GLib.Object,
     public IdentityRequestHandler () {}
 
     public virtual void add_response_headers (HTTPRequest request)
-            throws HTTPRequestError {
-        weak MediaItem item = request.item;
+                                              throws HTTPRequestError {
+        var item = request.item;
 
         request.msg.response_headers.append ("Content-Type", item.mime_type);
         if (item.size >= 0) {
@@ -48,15 +48,15 @@ internal class Rygel.IdentityRequestHandler : GLib.Object,
     }
 
     public virtual HTTPResponse render_body (HTTPRequest request)
-            throws HTTPRequestError {
-        weak MediaItem item = request.item;
+                                             throws HTTPRequestError {
+        var item = request.item;
 
         if (item.should_stream ()) {
             Gst.Element src = item.create_stream_source ();
-
             if (src == null) {
                 throw new HTTPRequestError.NOT_FOUND ("Not found");
             }
+
             return new LiveResponse (request.server,
                                      request.msg,
                                      "RygelLiveResponse",
@@ -68,6 +68,7 @@ internal class Rygel.IdentityRequestHandler : GLib.Object,
                         "Requested item '%s' didn't provide a URI\n",
                         item.id);
             }
+
             return new SeekableResponse (request.server,
                                          request.msg,
                                          item.uris.get (0),
