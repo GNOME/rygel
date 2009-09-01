@@ -23,7 +23,7 @@
 
 using Gst;
 
-internal class Rygel.Seek : GLib.Object {
+internal class Rygel.HTTPSeek : GLib.Object {
     public Format format { get; private set; }
 
     public int64 start { get; private set; }
@@ -35,16 +35,16 @@ internal class Rygel.Seek : GLib.Object {
         }
     }
 
-    public Seek (Format format,
-                 int64  start,
-                 int64  stop) {
+    public HTTPSeek (Format format,
+                     int64  start,
+                     int64  stop) {
         this.format = format;
         this.start = start;
         this.stop = stop;
     }
 
-    public static Seek? from_byte_range (Soup.Message msg)
-                                         throws HTTPRequestError {
+    public static HTTPSeek? from_byte_range (Soup.Message msg)
+                                             throws HTTPRequestError {
         string range, pos;
         string[] range_tokens;
         int64 start = 0, stop = -1;
@@ -88,10 +88,10 @@ internal class Rygel.Seek : GLib.Object {
                                                       range);
         }
 
-        return new Seek (Format.BYTES, start, stop);
+        return new HTTPSeek (Format.BYTES, start, stop);
     }
 
-    public static Seek? from_time_range (Soup.Message msg)
+    public static HTTPSeek? from_time_range (Soup.Message msg)
                                          throws HTTPRequestError {
         string range, time;
         string[] range_tokens;
@@ -135,7 +135,7 @@ internal class Rygel.Seek : GLib.Object {
                                                       range);
         }
 
-        return new Seek (Format.TIME, start, stop);
+        return new HTTPSeek (Format.TIME, start, stop);
     }
 
     public void add_response_header (Soup.Message msg, int64 length=-1) {

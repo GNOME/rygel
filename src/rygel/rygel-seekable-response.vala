@@ -28,7 +28,7 @@ using GUPnP;
 internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
     private const size_t BUFFER_LENGTH = 4096;
 
-    private Seek seek;
+    private HTTPSeek seek;
     private File file;
     private FileInputStream input_stream;
 
@@ -40,7 +40,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
     public SeekableResponse (Soup.Server  server,
                              Soup.Message msg,
                              string       uri,
-                             Seek?        seek,
+                             HTTPSeek?    seek,
                              size_t       file_length) {
         base (server, msg, seek != null);
 

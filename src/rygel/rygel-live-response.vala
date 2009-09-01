@@ -39,13 +39,13 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
 
     private AsyncQueue<Buffer> buffers;
 
-    private Seek time_range;
+    private HTTPSeek time_range;
 
     public LiveResponse (Soup.Server  server,
                          Soup.Message msg,
                          string       name,
                          Element      src,
-                         Seek?        time_range) throws Error {
+                         HTTPSeek?    time_range) throws Error {
         base (server, msg, false);
 
         this.msg.response_headers.set_encoding (Soup.Encoding.EOF);
