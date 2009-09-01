@@ -47,7 +47,8 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
             }
         }
 
-        this.add_content_features_headers (request);
+        // Chain-up
+        base.add_response_headers (request);
     }
 
     public override HTTPResponse render_body (HTTPRequest request)

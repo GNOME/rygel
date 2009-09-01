@@ -29,14 +29,7 @@ using GUPnP;
  */
 internal abstract class Rygel.HTTPRequestHandler: GLib.Object {
     // Add response headers.
-    public abstract void add_response_headers (HTTPRequest request)
-                                               throws HTTPRequestError;
-
-    // Create an HTTPResponse object that will render the body.
-    public abstract HTTPResponse render_body (HTTPRequest request)
-                                              throws HTTPRequestError;
-
-    public void add_content_features_headers (HTTPRequest request)
+    public virtual void add_response_headers (HTTPRequest request)
                                               throws HTTPRequestError {
         var didl_writer = new GUPnP.DIDLLiteWriter (null);
         var didl_item = didl_writer.add_item ();
@@ -47,6 +40,10 @@ internal abstract class Rygel.HTTPRequestHandler: GLib.Object {
         request.msg.response_headers.append ("contentFeatures.dlna.org",
                                              tokens[3]);
     }
+
+    // Create an HTTPResponse object that will render the body.
+    public abstract HTTPResponse render_body (HTTPRequest request)
+                                              throws HTTPRequestError;
 
     protected abstract DIDLLiteResource add_resource (DIDLLiteItem didl_item,
                                                       HTTPRequest  request)
