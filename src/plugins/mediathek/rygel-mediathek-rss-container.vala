@@ -22,10 +22,9 @@
 
 using Gee;
 using Soup;
-using Rygel;
 using Xml;
 
-public class Rygel.MediathekRssContainer : MediaContainer {
+public class Rygel.MediathekRssContainer : Rygel.MediaContainer {
     private ArrayList<MediaItem> items;
     private uint zdf_content_id;
     private Soup.Date last_modified = null;

@@ -21,14 +21,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Rygel;
 using GUPnP;
 using DBus;
 
 /**
  * Represents Tracker item.
  */
-public abstract class Rygel.TrackerItem : MediaItem {
+public abstract class Rygel.TrackerItem : Rygel.MediaItem {
     protected string path;
 
     public TrackerItem (string          id,

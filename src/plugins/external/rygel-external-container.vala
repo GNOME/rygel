@@ -22,7 +22,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Rygel;
 using GUPnP;
 using DBus;
 using Gee;
@@ -30,7 +29,7 @@ using Gee;
 /**
  * Represents an external container.
  */
-public class Rygel.ExternalContainer : MediaContainer {
+public class Rygel.ExternalContainer : Rygel.MediaContainer {
     // class-wide constants
     private static string PROPS_IFACE = "org.freedesktop.DBus.Properties";
     private const string OBJECT_IFACE = "org.gnome.UPnP.MediaObject1";

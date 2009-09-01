@@ -22,14 +22,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Rygel;
 using GUPnP;
 using Gee;
 
 /**
  * Implementation of ContentDirectory service, meant for testing purposes only.
  */
-public class Rygel.TestContentDir : ContentDirectory {
+public class Rygel.TestContentDir : Rygel.ContentDirectory {
     /* Pubic methods */
     public override MediaContainer? create_root_container () {
         string friendly_name = this.root_device.get_friendly_name ();

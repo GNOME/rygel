@@ -22,8 +22,6 @@
  * version 2 of the License, or (at your option) any later version.
  */
 
-using Rygel;
-
 public class Rygel.MediaDBContainer : MediaContainer {
     protected MediaDB media_db;
 

@@ -22,7 +22,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Rygel;
 using GUPnP;
 using Gee;
 using Gst;
@@ -30,7 +29,7 @@ using Gst;
 /**
  * Represents the root container for Test media content hierarchy.
  */
-public class Rygel.TestRootContainer : MediaContainer {
+public class Rygel.TestRootContainer : Rygel.MediaContainer {
     private ArrayList<MediaItem> items;
 
     public TestRootContainer (string title) {

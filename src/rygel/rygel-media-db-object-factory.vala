@@ -22,8 +22,6 @@
  * version 2 of the License, or (at your option) any later version.
  */
 
-using Rygel;
-
 /**
  * Class used by MediaDB to create containers and items on demand
  *

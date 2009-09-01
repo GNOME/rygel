@@ -21,11 +21,10 @@
  */
 
 using Gee;
-using Rygel;
 using Soup;
 using GConf;
 
-public class Rygel.MediathekRootContainer : MediaContainer {
+public class Rygel.MediathekRootContainer : Rygel.MediaContainer {
     private ArrayList<MediathekRssContainer> items;
     internal SessionAsync session;
 

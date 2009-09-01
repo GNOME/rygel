@@ -21,7 +21,6 @@
  */
 
 using GLib;
-using Rygel;
 using Xml;
 
 public errordomain Rygel.MediathekVideoItemError {

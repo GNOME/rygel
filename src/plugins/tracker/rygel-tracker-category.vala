@@ -21,7 +21,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Rygel;
 using GUPnP;
 using DBus;
 using Gee;
@@ -29,7 +28,7 @@ using Gee;
 /**
  * Represents Tracker category.
  */
-public abstract class Rygel.TrackerCategory : MediaContainer {
+public abstract class Rygel.TrackerCategory : Rygel.MediaContainer {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker";
     private const string TRACKER_PATH = "/org/freedesktop/Tracker";

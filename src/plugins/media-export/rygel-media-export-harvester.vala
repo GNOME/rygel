@@ -20,9 +20,8 @@
 
 using GLib;
 using Gee;
-using Rygel;
 
-internal class DummyContainer : Rygel.MediaContainer {
+internal class Rygel.DummyContainer : Rygel.MediaContainer {
     public File file;
     public DummyContainer (File file, MediaContainer parent) {
         var id = Checksum.compute_for_string (ChecksumType.MD5,

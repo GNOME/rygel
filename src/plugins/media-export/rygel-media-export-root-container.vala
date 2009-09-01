@@ -19,12 +19,11 @@
  */
 
 using Gee;
-using Rygel;
 
 /**
  * Represents the root container.
  */
-public class Rygel.MediaExportRootContainer : MediaDBContainer {
+public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     private MetadataExtractor extractor;
     private Gee.ArrayList<MediaExportHarvester> harvester;
 

@@ -27,7 +27,7 @@ using Gst;
 /**
  * Represents MediaExport item.
  */
-public class Rygel.MediaExportItem : MediaItem {
+public class Rygel.MediaExportItem : Rygel.MediaItem {
     public MediaExportItem (MediaContainer parent,
                             File           file,
                             FileInfo       info) {

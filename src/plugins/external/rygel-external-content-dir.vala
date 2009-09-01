@@ -22,7 +22,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Rygel;
 using GUPnP;
 using DBus;
 using Gee;
@@ -30,7 +29,7 @@ using Gee;
 /**
  * Implementation of External ContentDirectory service.
  */
-public class Rygel.ExternalContentDir : ContentDirectory {
+public class Rygel.ExternalContentDir : Rygel.ContentDirectory {
     // Pubic methods
     public override MediaContainer? create_root_container () {
         var plugin = (ExternalPlugin) this.root_device.resource_factory;

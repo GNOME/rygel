@@ -20,11 +20,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Rygel;
 using Gee;
 using CStuff;
 
-public class TrackerPlugin : Plugin {
+public class Rygel.TrackerPlugin : Rygel.Plugin {
     // class-wide constants
     private const string ICON = BuildConfig.DATA_DIR + // Path
                                 "/icons/hicolor/48x48/apps/tracker.png";

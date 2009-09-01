@@ -22,14 +22,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Rygel;
 using GUPnP;
 using DBus;
 
 /**
  * Represents External item.
  */
-public class Rygel.ExternalItem : MediaItem {
+public class Rygel.ExternalItem : Rygel.MediaItem {
     private static string PROPS_IFACE = "org.freedesktop.DBus.Properties";
     private static string OBJECT_IFACE = "org.gnome.UPnP.MediaObject1";
     private static string ITEM_IFACE = "org.gnome.UPnP.MediaItem1";

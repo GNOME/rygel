@@ -22,7 +22,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Rygel;
 using GUPnP;
 using DBus;
 using Gee;
@@ -30,7 +29,7 @@ using Gee;
 /**
  * Represents the root container for Tracker media content hierarchy.
  */
-public class Rygel.TrackerRootContainer : MediaContainer {
+public class Rygel.TrackerRootContainer : Rygel.MediaContainer {
     /* FIXME: Make this a static if you know how to initize it */
     private ArrayList<TrackerCategory> categories;
 

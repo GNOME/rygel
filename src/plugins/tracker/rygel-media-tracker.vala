@@ -21,7 +21,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Rygel;
 using GUPnP;
 using DBus;
 using Gee;
@@ -29,7 +28,7 @@ using Gee;
 /**
  * Implementation of Tracker-based ContentDirectory service.
  */
-public class Rygel.MediaTracker : ContentDirectory {
+public class Rygel.MediaTracker : Rygel.ContentDirectory {
     /* Pubic methods */
     public override MediaContainer? create_root_container () {
         string friendly_name = this.root_device.get_friendly_name ();
