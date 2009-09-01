@@ -22,10 +22,10 @@
  */
 
 // An HTTP request handler that passes the item content through as is.
-internal class Rygel.IdentityRequestHandler : GLib.Object,
-                                              Rygel.HTTPRequestHandler {
+internal class Rygel.HTTPIdentityHandler : GLib.Object,
+                                           Rygel.HTTPRequestHandler {
 
-    public IdentityRequestHandler () {}
+    public HTTPIdentityHandler () {}
 
     public virtual void add_response_headers (HTTPRequest request)
                                               throws HTTPRequestError {

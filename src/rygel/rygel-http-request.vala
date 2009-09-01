@@ -93,7 +93,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
 
         if (this.request_handler == null) {
-            this.request_handler = new IdentityRequestHandler ();
+            this.request_handler = new HTTPIdentityHandler ();
         }
 
         // Fetch the requested item
