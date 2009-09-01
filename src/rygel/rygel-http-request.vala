@@ -36,7 +36,7 @@ internal errordomain Rygel.HTTPRequestError {
  * Responsible for handling HTTP client requests.
  */
 internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
-    private unowned HTTPServer http_server;
+    public unowned HTTPServer http_server;
     private MediaContainer root_container;
     public Soup.Server server;
     public Soup.Message msg;
