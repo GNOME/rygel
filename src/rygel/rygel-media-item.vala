@@ -141,8 +141,8 @@ public class Rygel.MediaItem : MediaObject {
         return res;
     }
 
-    internal ProtocolInfo get_protocol_info (string? uri,
-                                             string? protocol) {
+    private ProtocolInfo get_protocol_info (string? uri,
+                                            string? protocol) {
         var protocol_info = new ProtocolInfo ();
 
         protocol_info.mime_type = this.mime_type;
