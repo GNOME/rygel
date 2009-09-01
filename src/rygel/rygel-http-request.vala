@@ -28,8 +28,6 @@ using Gst;
 
 internal errordomain Rygel.HTTPRequestError {
     UNACCEPTABLE = Soup.KnownStatusCode.NOT_ACCEPTABLE,
-    INVALID_RANGE = Soup.KnownStatusCode.BAD_REQUEST,
-    OUT_OF_RANGE = Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE,
     BAD_REQUEST = Soup.KnownStatusCode.BAD_REQUEST,
     NOT_FOUND = Soup.KnownStatusCode.NOT_FOUND
 }

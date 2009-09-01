@@ -23,6 +23,11 @@
 
 using Gst;
 
+internal errordomain Rygel.HTTPSeekError {
+    INVALID_RANGE = Soup.KnownStatusCode.BAD_REQUEST,
+    OUT_OF_RANGE = Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE,
+}
+
 internal class Rygel.HTTPSeek : GLib.Object {
     public Format format { get; private set; }
 
@@ -44,7 +49,7 @@ internal class Rygel.HTTPSeek : GLib.Object {
     }
 
     public static HTTPSeek? from_byte_range (Soup.Message msg)
-                                             throws HTTPRequestError {
+                                             throws HTTPSeekError {
         string range, pos;
         string[] range_tokens;
         int64 start = 0, stop = -1;
@@ -56,14 +61,12 @@ internal class Rygel.HTTPSeek : GLib.Object {
 
         // We have a Range header. Parse.
         if (!range.has_prefix ("bytes=")) {
-            throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
-                                                      range);
+            throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
         }
 
         range_tokens = range.offset (6).split ("-", 2);
         if (range_tokens[0] == null || range_tokens[1] == null) {
-            throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
-                                                      range);
+            throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
         }
 
         // Get first byte position
@@ -71,8 +74,7 @@ internal class Rygel.HTTPSeek : GLib.Object {
         if (pos[0].isdigit ()) {
             start = pos.to_int64 ();
         } else if (pos  != "") {
-            throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
-                                                      range);
+            throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
         }
 
         // Get last byte position if specified
@@ -80,19 +82,18 @@ internal class Rygel.HTTPSeek : GLib.Object {
         if (pos[0].isdigit ()) {
             stop = pos.to_int64 ();
             if (stop < start) {
-                throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
-                                                          range);
+                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                                                       range);
             }
         } else if (pos != "") {
-            throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
-                                                      range);
+            throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
         }
 
         return new HTTPSeek (Format.BYTES, start, stop);
     }
 
     public static HTTPSeek? from_time_range (Soup.Message msg)
-                                         throws HTTPRequestError {
+                                             throws HTTPSeekError {
         string range, time;
         string[] range_tokens;
         int64 start = 0, stop = -1;
@@ -103,14 +104,12 @@ internal class Rygel.HTTPSeek : GLib.Object {
         }
 
         if (!range.has_prefix ("npt=")) {
-            throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
-                                                      range);
+            throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
         }
 
         range_tokens = range.offset (4).split ("-", 2);
         if (range_tokens[0] == null || range_tokens[1] == null) {
-            throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
-                                                      range);
+            throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
         }
 
         // Get start time
@@ -118,8 +117,7 @@ internal class Rygel.HTTPSeek : GLib.Object {
         if (time[0].isdigit ()) {
             start = (int64) (time.to_double () * SECOND);
         } else if (time != "") {
-            throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
-                                                      range);
+            throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
         }
 
         // Get end time
@@ -127,12 +125,11 @@ internal class Rygel.HTTPSeek : GLib.Object {
         if (time[0].isdigit()) {
             stop = (int64) (time.to_double () * SECOND);
             if (stop < start) {
-                throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
-                                                          range);
+                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                                                       range);
             }
         } else if (time != "") {
-            throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
-                                                      range);
+            throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
         }
 
         return new HTTPSeek (Format.TIME, start, stop);
