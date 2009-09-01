@@ -24,13 +24,12 @@
 using GUPnP;
 
 // An HTTP request handler that passes the item content through as is.
-internal class Rygel.HTTPIdentityHandler : GLib.Object,
-                                           Rygel.HTTPRequestHandler {
+internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
 
     public HTTPIdentityHandler () {}
 
-    public virtual void add_response_headers (HTTPRequest request)
-                                              throws HTTPRequestError {
+    public override void add_response_headers (HTTPRequest request)
+                                               throws HTTPRequestError {
         var item = request.item;
 
         request.msg.response_headers.append ("Content-Type", item.mime_type);
@@ -51,8 +50,8 @@ internal class Rygel.HTTPIdentityHandler : GLib.Object,
         this.add_content_features_headers (request);
     }
 
-    public virtual HTTPResponse render_body (HTTPRequest request)
-                                             throws HTTPRequestError {
+    public override HTTPResponse render_body (HTTPRequest request)
+                                              throws HTTPRequestError {
         var item = request.item;
 
         if (item.should_stream ()) {
@@ -81,9 +80,9 @@ internal class Rygel.HTTPIdentityHandler : GLib.Object,
         }
     }
 
-    protected DIDLLiteResource add_resource (DIDLLiteItem didl_item,
-                                             HTTPRequest  request)
-                                             throws HTTPRequestError {
+    protected override DIDLLiteResource add_resource (DIDLLiteItem didl_item,
+                                                      HTTPRequest  request)
+                                                      throws HTTPRequestError {
         return request.item.add_resource (didl_item,
                                           null,
                                           request.http_server.get_protocol ());

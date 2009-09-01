@@ -27,15 +27,15 @@ using GUPnP;
 /**
  * The handler for HTTP transcoding requests.
  */
-internal class Rygel.HTTPTranscodeHandler : GLib.Object, HTTPRequestHandler {
+internal class Rygel.HTTPTranscodeHandler : HTTPRequestHandler {
     private Transcoder transcoder;
 
     public HTTPTranscodeHandler (Transcoder transcoder) {
         this.transcoder = transcoder;
     }
 
-    public virtual void add_response_headers (HTTPRequest request)
-                                              throws HTTPRequestError {
+    public override void add_response_headers (HTTPRequest request)
+                                               throws HTTPRequestError {
         request.msg.response_headers.append ("Content-Type",
                                              this.transcoder.mime_type);
         if (request.time_range != null) {
@@ -45,8 +45,8 @@ internal class Rygel.HTTPTranscodeHandler : GLib.Object, HTTPRequestHandler {
         this.add_content_features_headers (request);
     }
 
-    public virtual HTTPResponse render_body (HTTPRequest request)
-                                             throws HTTPRequestError {
+    public override HTTPResponse render_body (HTTPRequest request)
+                                              throws HTTPRequestError {
         var item = request.item;
         var src = item.create_stream_source ();
         if (src == null) {
@@ -62,9 +62,9 @@ internal class Rygel.HTTPTranscodeHandler : GLib.Object, HTTPRequestHandler {
                                  request.time_range);
     }
 
-    protected DIDLLiteResource add_resource (DIDLLiteItem didl_item,
-                                             HTTPRequest  request)
-                                             throws HTTPRequestError {
+    protected override DIDLLiteResource add_resource (DIDLLiteItem didl_item,
+                                                      HTTPRequest  request)
+                                                      throws HTTPRequestError {
         return this.transcoder.add_resource (didl_item,
                                              request.item,
                                              request.http_server);
