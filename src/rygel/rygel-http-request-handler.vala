@@ -31,6 +31,9 @@ internal abstract class Rygel.HTTPRequestHandler: GLib.Object {
     // Add response headers.
     public virtual void add_response_headers (HTTPRequest request)
                                               throws HTTPRequestError {
+        // Yes, I know this is not the ideal code to just get a specific
+        // string for an HTTP header but if you think you can come-up with
+        // something better, be my guest and provide a patch.
         var didl_writer = new GUPnP.DIDLLiteWriter (null);
         var didl_item = didl_writer.add_item ();
         var resource = this.add_resource (didl_item, request);
