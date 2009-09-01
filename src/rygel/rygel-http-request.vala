@@ -80,10 +80,10 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
         if (this.query != null) {
             this.item_id = this.query.lookup ("itemid");
-            var transcode_target = this.query.lookup ("transcode");
-            if (transcode_target != null) {
-                this.request_handler = this.http_server.get_transcoder (
-                                                    transcode_target);
+            var target = this.query.lookup ("transcode");
+            if (target != null) {
+                var transcoder = this.http_server.get_transcoder (target);
+                this.request_handler = new HTTPTranscodeHandler (transcoder);
             }
         }
 
