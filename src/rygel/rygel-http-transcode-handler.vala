@@ -22,6 +22,7 @@
  */
 using Rygel;
 using Gst;
+using GUPnP;
 
 /**
  * The handler for HTTP transcoding requests.
@@ -40,6 +41,8 @@ internal class Rygel.HTTPTranscodeHandler : GLib.Object, HTTPRequestHandler {
         if (request.time_range != null) {
             request.time_range.add_response_header (request.msg);
         }
+
+        this.add_content_features_headers (request);
     }
 
     public virtual HTTPResponse render_body (HTTPRequest request)
@@ -57,6 +60,14 @@ internal class Rygel.HTTPTranscodeHandler : GLib.Object, HTTPRequestHandler {
                                  "RygelLiveResponse",
                                  src,
                                  request.time_range);
+    }
+
+    protected DIDLLiteResource add_resource (DIDLLiteItem didl_item,
+                                             HTTPRequest  request)
+                                             throws HTTPRequestError {
+        return this.transcoder.add_resource (didl_item,
+                                             request.item,
+                                             request.http_server);
     }
 }
 

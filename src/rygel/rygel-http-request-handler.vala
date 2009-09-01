@@ -21,8 +21,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-
 using Rygel;
+using GUPnP;
 
 /**
  * HTTP request handler interface.
@@ -31,7 +31,24 @@ internal interface Rygel.HTTPRequestHandler: GLib.Object {
     // Add response headers.
     public abstract void add_response_headers (HTTPRequest request)
                                                throws HTTPRequestError;
+
     // Create an HTTPResponse object that will render the body.
     public abstract HTTPResponse render_body (HTTPRequest request)
                                               throws HTTPRequestError;
+
+    public void add_content_features_headers (HTTPRequest request)
+                                              throws HTTPRequestError {
+        var didl_writer = new GUPnP.DIDLLiteWriter (null);
+        var didl_item = didl_writer.add_item ();
+        var resource = this.add_resource (didl_item, request);
+        var tokens = resource.protocol_info.to_string ().split (":", 4);
+        assert (tokens.length == 4);
+
+        request.msg.response_headers.append ("contentFeatures.dlna.org",
+                                             tokens[3]);
+    }
+
+    protected abstract DIDLLiteResource add_resource (DIDLLiteItem didl_item,
+                                                      HTTPRequest  request)
+                                                      throws HTTPRequestError;
 }

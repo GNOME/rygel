@@ -21,6 +21,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+using GUPnP;
+
 // An HTTP request handler that passes the item content through as is.
 internal class Rygel.HTTPIdentityHandler : GLib.Object,
                                            Rygel.HTTPRequestHandler {
@@ -45,6 +47,8 @@ internal class Rygel.HTTPIdentityHandler : GLib.Object,
                 request.byte_range.add_response_header (request.msg, item.size);
             }
         }
+
+        this.add_content_features_headers (request);
     }
 
     public virtual HTTPResponse render_body (HTTPRequest request)
@@ -75,5 +79,13 @@ internal class Rygel.HTTPIdentityHandler : GLib.Object,
                                          request.byte_range,
                                          item.size);
         }
+    }
+
+    protected DIDLLiteResource add_resource (DIDLLiteItem didl_item,
+                                             HTTPRequest  request)
+                                             throws HTTPRequestError {
+        return request.item.add_resource (didl_item,
+                                          null,
+                                          request.http_server.get_protocol ());
     }
 }
