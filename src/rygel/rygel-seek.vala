@@ -43,8 +43,8 @@ internal class Rygel.Seek : GLib.Object {
         this.stop = stop;
     }
 
-    public static Seek? from_byte_range(Soup.Message msg)
-            throws HTTPRequestError {
+    public static Seek? from_byte_range (Soup.Message msg)
+                                         throws HTTPRequestError {
         string range, pos;
         string[] range_tokens;
         int64 start = 0, stop = -1;
@@ -83,7 +83,7 @@ internal class Rygel.Seek : GLib.Object {
                 throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
                                                           range);
             }
-        } else if (pos  != "") {
+        } else if (pos != "") {
             throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
                                                       range);
         }
@@ -92,7 +92,7 @@ internal class Rygel.Seek : GLib.Object {
     }
 
     public static Seek? from_time_range (Soup.Message msg)
-            throws HTTPRequestError {
+                                         throws HTTPRequestError {
         string range, time;
         string[] range_tokens;
         int64 start = 0, stop = -1;
@@ -115,8 +115,8 @@ internal class Rygel.Seek : GLib.Object {
 
         // Get start time
         time = range_tokens[0];
-        if (time[0].isdigit()) {
-            start = (int64)(time.to_double() * SECOND);
+        if (time[0].isdigit ()) {
+            start = (int64) (time.to_double () * SECOND);
         } else if (time != "") {
             throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
                                                       range);
@@ -125,7 +125,7 @@ internal class Rygel.Seek : GLib.Object {
         // Get end time
         time = range_tokens[1];
         if (time[0].isdigit()) {
-            stop = (int64)(time.to_double() * SECOND);
+            stop = (int64) (time.to_double () * SECOND);
             if (stop < start) {
                 throw new HTTPRequestError.INVALID_RANGE ("Invalid Range '%s'",
                                                           range);
@@ -143,16 +143,17 @@ internal class Rygel.Seek : GLib.Object {
 
         if (this.format == Format.TIME) {
             // TimeSeekRange.dlna.org: npt=START_TIME-END_TIME
-            value = "npt=%g-".printf((double)this.start / SECOND);
+            value = "npt=%g-".printf ((double) this.start / SECOND);
             if (this.stop > 0) {
-                value += "%g".printf((double)this.stop / SECOND);
+                value += "%g".printf ((double) this.stop / SECOND);
             }
+
             msg.response_headers.append ("TimeSeekRange.dlna.org", value);
         } else {
             // Content-Range: bytes START_BYTE-STOP_BYTE/TOTAL_LENGTH
-            value = "bytes " + this.start.to_string() + "-";
+            value = "bytes " + this.start.to_string () + "-";
+            var end_point = this.stop;
 
-            int64 end_point = this.stop;
             if (length > 0) {
                 if (end_point >= 0) {
                     end_point = int64.max (end_point, length - 1);
@@ -160,12 +161,15 @@ internal class Rygel.Seek : GLib.Object {
                     end_point = length - 1;
                 }
             }
+
             if (end_point >= 0)
                 value += end_point.to_string();
             }
+
             if (length > 0) {
                 value += "/" + length.to_string();
             }
+
             msg.response_headers.append ("Content-Range", value);
         }
     }

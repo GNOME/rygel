@@ -30,8 +30,8 @@ using Rygel;
 internal interface Rygel.HTTPRequestHandler: GLib.Object {
     // Add response headers.
     public abstract void add_response_headers (HTTPRequest request)
-        throws HTTPRequestError;
+                                               throws HTTPRequestError;
     // Create an HTTPResponse object that will render the body.
     public abstract HTTPResponse render_body (HTTPRequest request)
-        throws HTTPRequestError;
+                                              throws HTTPRequestError;
 }
