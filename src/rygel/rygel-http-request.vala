@@ -68,8 +68,12 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
         this.server.pause_message (this.msg);
 
-        if (this.msg.method != "HEAD" && this.msg.method != "GET") {
-            /* We only entertain 'HEAD' and 'GET' requests */
+        var header = this.msg.request_headers.get (
+                                        "getcontentFeatures.dlna.org");
+
+        /* We only entertain 'HEAD' and 'GET' requests */
+        if ((this.msg.method != "HEAD" && this.msg.method != "GET") ||
+            (header != null && header != "1")) {
             this.handle_error (
                         new HTTPRequestError.BAD_REQUEST ("Invalid Request"));
             return;
