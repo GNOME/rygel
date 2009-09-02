@@ -21,10 +21,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-[DBus (name = "org.gnome.Rygel")]
+[DBus (name = "org.gnome.Rygel1")]
 public class Rygel.DBusService : Object {
-    private static string RYGEL_SERVICE = "org.gnome.Rygel";
-    private static string RYGEL_PATH = "/org/gnome/Rygel";
+    private static string RYGEL_SERVICE = "org.gnome.Rygel1";
+    private static string RYGEL_PATH = "/org/gnome/Rygel1";
 
     private Main main;
 
