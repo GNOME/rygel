@@ -88,8 +88,10 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         // Add the transcoded/proxy URIs first
         this.http_server.add_resources (didl_item, item);
 
+        var internal_allowed = this.http_server.context.interface == "lo" ||
+                               this.http_server.context.host_ip == "127.0.0.1";
         // then original URIs
-        item.add_resources (didl_item);
+        item.add_resources (didl_item, internal_allowed);
     }
 
     private void serialize_container (MediaContainer container) throws Error {

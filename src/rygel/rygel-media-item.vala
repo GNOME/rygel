@@ -107,11 +107,15 @@ public class Rygel.MediaItem : MediaObject {
         return this.size <= 0;
     }
 
-    internal void add_resources (DIDLLiteItem didl_item) throws Error {
+    internal void add_resources (DIDLLiteItem didl_item,
+                                 bool         allow_internal)
+                                 throws Error {
         foreach (var uri in this.uris) {
-            this.add_resource (didl_item,
-                               uri,
-                               this.get_protocol_for_uri (uri));
+            var protocol = this.get_protocol_for_uri (uri);
+
+            if (allow_internal || protocol != "internal") {
+                this.add_resource (didl_item, uri, protocol);
+            }
         }
     }
 
