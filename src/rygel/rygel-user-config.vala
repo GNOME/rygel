@@ -210,7 +210,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                         throws GLib.Error {
         int val = this.key_file.get_integer (section, key);
 
-        if (val < min || val > max) {
+        if (val == 0 || val < min || val > max) {
             throw new ConfigurationError.VALUE_OUT_OF_RANGE (
                                         "Value of '%s' out of range", key);
         }
