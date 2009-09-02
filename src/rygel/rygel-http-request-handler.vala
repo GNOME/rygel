@@ -30,6 +30,14 @@ internal abstract class Rygel.HTTPRequestHandler: GLib.Object {
     // Add response headers.
     public virtual void add_response_headers (HTTPRequest request)
                                               throws HTTPRequestError {
+        var mode = request.msg.request_headers.get ("transferMode.dlna.org");
+        if (mode != null) {
+            // FIXME: Is it OK to just copy the value of this header from
+            // request to response? All we do to entertain this header is to
+            // set the priority of IO operations.
+            request.msg.response_headers.append ("transferMode.dlna.org", mode);
+        }
+
         // Yes, I know this is not the ideal code to just get a specific
         // string for an HTTP header but if you think you can come-up with
         // something better, be my guest and provide a patch.
