@@ -31,7 +31,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
 
     // Reference to root container of associated ContentDirectory
     public MediaContainer root_container;
-    private GUPnP.Context context;
+    public GUPnP.Context context;
     private ArrayList<HTTPRequest> requests;
 
     private Cancellable cancellable;
