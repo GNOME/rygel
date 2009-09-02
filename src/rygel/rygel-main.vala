@@ -37,7 +37,7 @@ public class Rygel.Main : Object {
 
     private int exit_code;
 
-    public Main () throws GLib.Error {
+    private Main () throws GLib.Error {
         Environment.set_application_name (_(BuildConfig.PACKAGE_NAME));
 
         this.config = MetaConfig.get_default ();
@@ -54,17 +54,17 @@ public class Rygel.Main : Object {
         Utils.on_application_exit (this.application_exit_cb);
     }
 
-    public int run () {
+    public void exit (int exit_code) {
+        this.exit_code = exit_code;
+        this.main_loop.quit ();
+    }
+
+    private int run () {
         this.plugin_loader.load_plugins ();
 
         this.main_loop.run ();
 
         return this.exit_code;
-    }
-
-    public void exit (int exit_code) {
-        this.exit_code = exit_code;
-        this.main_loop.quit ();
     }
 
     private void application_exit_cb () {
@@ -188,7 +188,7 @@ public class Rygel.Main : Object {
         }
     }
 
-    public static int main (string[] args) {
+    private static int main (string[] args) {
         Main main;
         DBusService service;
 
