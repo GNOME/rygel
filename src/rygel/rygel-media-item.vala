@@ -109,13 +109,15 @@ public class Rygel.MediaItem : MediaObject {
 
     internal void add_resources (DIDLLiteItem didl_item) throws Error {
         foreach (var uri in this.uris) {
-            this.add_resource (didl_item, uri, null);
+            this.add_resource (didl_item,
+                               uri,
+                               this.get_protocol_for_uri (uri));
         }
     }
 
     internal DIDLLiteResource add_resource (DIDLLiteItem didl_item,
                                             string?      uri,
-                                            string?      protocol)
+                                            string       protocol)
                                             throws Error {
         var res = didl_item.add_resource ();
 
@@ -142,17 +144,12 @@ public class Rygel.MediaItem : MediaObject {
     }
 
     private ProtocolInfo get_protocol_info (string? uri,
-                                            string? protocol) {
+                                            string  protocol) {
         var protocol_info = new ProtocolInfo ();
 
         protocol_info.mime_type = this.mime_type;
         protocol_info.dlna_profile = this.dlna_profile;
-
-        if (protocol != null) {
-            protocol_info.protocol = protocol;
-        } else if (uri != null) {
-            protocol_info.protocol = this.get_protocol_for_uri (uri);
-        }
+        protocol_info.protocol = protocol;
 
         if (this.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
             protocol_info.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
