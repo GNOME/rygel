@@ -77,13 +77,13 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         return val;
     }
 
-    public string get_host_ip () throws GLib.Error {
+    public string get_interface () throws GLib.Error {
         string val = null;
         bool unavailable = true;
 
         foreach (var config in this.configs) {
             try {
-                val = config.get_host_ip ();
+                val = config.get_interface ();
                 unavailable = false;
                 break;
             } catch (GLib.Error err) {}

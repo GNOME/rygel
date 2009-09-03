@@ -33,7 +33,7 @@ public errordomain Rygel.CmdlineConfigError {
  * Manages configuration from Commandline arguments.
  */
 public class Rygel.CmdlineConfig : GLib.Object, Configuration {
-    private static string host_ip;
+    private static string iface;
     private static int port = -1;
 
     private static bool no_transcoding;
@@ -60,8 +60,8 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
 	const OptionEntry[] options = {
         { "version", 0, 0, OptionArg.NONE, ref version,
           "Display version number", null },
-        { "host-ip", 'H', 0, OptionArg.STRING, ref host_ip,
-          "IP address", "IP" },
+        { "network-interface", 'n', 0, OptionArg.STRING, ref iface,
+          "Network Interface", "INTERFACE" },
         { "port", 'p', 0, OptionArg.INT, ref port,
           "Port", "PORT" },
         { "disable-transcoding", 't', 0, OptionArg.NONE, ref no_transcoding,
@@ -112,8 +112,12 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         throw new ConfigurationError.NO_VALUE_SET ("No value available");
     }
 
-    public string get_host_ip () throws GLib.Error {
-        return host_ip;
+    public string get_interface () throws GLib.Error {
+        if (iface == null) {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        }
+
+        return iface;
     }
 
     public int get_port () throws GLib.Error {

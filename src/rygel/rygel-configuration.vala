@@ -35,7 +35,7 @@ public errordomain Rygel.ConfigurationError {
 public interface Rygel.Configuration : GLib.Object {
     public abstract bool get_upnp_enabled () throws GLib.Error;
 
-    public abstract string get_host_ip () throws GLib.Error;
+    public abstract string get_interface () throws GLib.Error;
 
     public abstract int get_port () throws GLib.Error;
 

@@ -21,17 +21,18 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 using Gtk;
+using GUPnP;
 
 public class Rygel.GeneralPrefSection : PreferencesSection {
     const string UPNP_CHECKBUTTON = "upnp-checkbutton";
-    const string IP_ENTRY = "ip-entry";
+    const string IFACE_ENTRY = "iface-entry";
     const string PORT_SPINBUTTON = "port-spinbutton";
     const string TRANS_CHECKBUTTON = "transcoding-checkbutton";
     const string MP3_CHECKBUTTON = "mp3-checkbutton";
     const string MP2TS_CHECKBUTTON = "mp2ts-checkbutton";
     const string LPCM_CHECKBUTTON = "lpcm-checkbutton";
 
-    private Entry ip_entry;
+    private ComboBoxEntry iface_entry;
     private SpinButton port_spin;
 
     // Transcoding options
@@ -41,14 +42,16 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
     private CheckButton mp2ts_check;
     private CheckButton lpcm_check;
 
+    private ContextManager context_manager;
+
     public GeneralPrefSection (Builder    builder,
                                UserConfig config) throws Error {
         base (config, "general");
 
         this.upnp_check = (CheckButton) builder.get_object (UPNP_CHECKBUTTON);
         assert (this.upnp_check != null);
-        this.ip_entry = (Entry) builder.get_object (IP_ENTRY);
-        assert (this.ip_entry != null);
+        this.iface_entry = (ComboBoxEntry) builder.get_object (IFACE_ENTRY);
+        assert (this.iface_entry != null);
         this.port_spin = (SpinButton) builder.get_object (PORT_SPINBUTTON);
         assert (this.port_spin != null);
         this.trans_check = (CheckButton) builder.get_object (TRANS_CHECKBUTTON);
@@ -60,8 +63,13 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
         this.lpcm_check = (CheckButton) builder.get_object (LPCM_CHECKBUTTON);
         assert (this.lpcm_check != null);
 
+        this.context_manager = new ContextManager (null, 0);
+
+        // Apparently glade/GtkBuilder is unable to do this for us
+        this.iface_entry.set_text_column (0);
         try {
-            this.ip_entry.set_text (config.get_host_ip ());
+            this.iface_entry.append_text (config.get_interface ());
+            this.iface_entry.set_active (0);
         } catch (GLib.Error err) {
             // No problem if we fail to read the config, the default values
             // will do just fine. Same goes for rest of the keys.
@@ -86,10 +94,15 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
         } catch (GLib.Error err) {}
 
         this.trans_check.toggled += this.on_trans_check_toggled;
+
+        this.context_manager.context_available.connect (
+                                        this.on_context_available);
+        this.context_manager.context_unavailable.connect (
+                                        this.on_context_unavailable);
     }
 
     public override void save () {
-        this.config.set_host_ip (this.ip_entry.get_text ());
+        this.config.set_interface (this.iface_entry.get_active_text ());
         this.config.set_port ((int) this.port_spin.get_value ());
 
         this.config.set_upnp_enabled (this.upnp_check.active);
@@ -103,5 +116,40 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
         this.mp3_check.sensitive =
         this.mp2ts_check.sensitive =
         this.lpcm_check.sensitive = trans_check.active;
+    }
+
+    private void on_context_available (GUPnP.ContextManager manager,
+                                       GUPnP.Context        context) {
+        TreeIter iter;
+
+        if (!this.find_interface (context.interface, out iter)) {
+            this.iface_entry.append_text (context.interface);
+        }
+    }
+
+    private void on_context_unavailable (GUPnP.ContextManager manager,
+                                         GUPnP.Context        context) {
+        TreeIter iter;
+
+        if (this.find_interface (context.interface, out iter)) {
+            var list_store = this.iface_entry.model as ListStore;
+            list_store.remove (iter);
+        }
+    }
+
+    private bool find_interface (string iface, out TreeIter iter) {
+        var model = this.iface_entry.model;
+        var more = model.get_iter_first (out iter);
+        while (more) {
+            model.get (iter, 0, &name, -1);
+
+            if (name == iface) {
+                break;
+            }
+
+            more = model.iter_next (ref iter);
+        }
+
+        return more;
     }
 }

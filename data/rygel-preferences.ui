@@ -8,6 +8,12 @@
       <column type="gchararray"/>
     </columns>
   </object>
+  <object class="GtkListStore" id="iface-liststore">
+    <columns>
+      <!-- column-name interface -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkDialog" id="preferences-dialog">
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Rygel Preferences</property>
@@ -144,27 +150,12 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="ip-entry">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="invisible_char">&#x25CF;</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="y_options">GTK_FILL</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="ip-label">
+                          <object class="GtkLabel" id="iface-label">
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
                             <property name="xpad">12</property>
-                            <property name="label" translatable="yes">_IP Address</property>
+                            <property name="label" translatable="yes">_Interface</property>
                             <property name="use_underline">True</property>
-                            <property name="mnemonic_widget">ip-entry</property>
                           </object>
                           <packing>
                             <property name="top_attach">1</property>
@@ -208,6 +199,18 @@
                           <packing>
                             <property name="right_attach">2</property>
                             <property name="y_options"></property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBoxEntry" id="iface-entry">
+                            <property name="visible">True</property>
+                            <property name="model">iface-liststore</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="right_attach">2</property>
+                            <property name="top_attach">1</property>
+                            <property name="bottom_attach">2</property>
                           </packing>
                         </child>
                       </object>

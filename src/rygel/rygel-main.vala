@@ -103,17 +103,17 @@ public class Rygel.Main : Object {
 
     private void on_context_available (GUPnP.ContextManager manager,
                                        GUPnP.Context        context) {
-        string host_ip = null;
+        string iface = null;
 
         debug ("new network context %s (%s) available.",
                context.interface,
                context.host_ip);
 
         try {
-            host_ip = this.config.get_host_ip ();
+            iface = this.config.get_interface ();
         } catch (GLib.Error err) {}
 
-        if (host_ip == null || host_ip == context.host_ip) {
+        if (iface == null || iface == context.interface) {
             var factory = new RootDeviceFactory (context);
             this.factories.add (factory);
 

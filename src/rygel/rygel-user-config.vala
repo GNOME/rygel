@@ -29,7 +29,7 @@ using CStuff;
  */
 public class Rygel.UserConfig : GLib.Object, Configuration {
     protected static const string CONFIG_FILE = "rygel.conf";
-    protected static const string IP_KEY = "host-ip";
+    protected static const string IFACE_KEY = "interface";
     protected static const string PORT_KEY = "port";
     protected static const string ENABLED_KEY = "enabled";
     protected static const string TITLE_KEY = "title";
@@ -67,12 +67,12 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         }
     }
 
-    public string get_host_ip () throws GLib.Error {
-        return this.get_string ("general", IP_KEY);
+    public string get_interface () throws GLib.Error {
+        return this.get_string ("general", IFACE_KEY);
     }
 
-    public void set_host_ip (string value) {
-        this.set_string ("general", IP_KEY, value);
+    public void set_interface (string value) {
+        this.set_string ("general", IFACE_KEY, value);
     }
 
     public int get_port () throws GLib.Error {
