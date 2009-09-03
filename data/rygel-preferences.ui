@@ -368,7 +368,7 @@
                             <property name="homogeneous">True</property>
                             <child>
                               <object class="GtkButton" id="add-button">
-                                <property name="label" translatable="yes">gtk-add</property>
+                                <property name="label">gtk-add</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
@@ -381,7 +381,7 @@
                             </child>
                             <child>
                               <object class="GtkButton" id="remove-button">
-                                <property name="label" translatable="yes">gtk-remove</property>
+                                <property name="label">gtk-remove</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
@@ -393,7 +393,7 @@
                             </child>
                             <child>
                               <object class="GtkButton" id="clear-button">
-                                <property name="label" translatable="yes">gtk-clear</property>
+                                <property name="label">gtk-clear</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
@@ -511,7 +511,7 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button3">
-                <property name="label" translatable="yes">gtk-close</property>
+                <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="has_focus">True</property>
@@ -555,9 +555,9 @@
     <property name="type_hint">dialog</property>
     <property name="transient_for">preferences-dialog</property>
     <property name="has_separator">False</property>
-    <property name="local_only">False</property>
-    <property name="select_multiple">True</property>
     <property name="action">select-folder</property>
+    <property name="select_multiple">True</property>
+    <property name="local_only">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox2">
         <property name="visible">True</property>
@@ -572,7 +572,7 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button4">
-                <property name="label" translatable="yes">gtk-cancel</property>
+                <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
@@ -587,7 +587,7 @@
             </child>
             <child>
               <object class="GtkButton" id="button5">
-                <property name="label" translatable="yes">gtk-open</property>
+                <property name="label">gtk-open</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
