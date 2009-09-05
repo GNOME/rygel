@@ -96,7 +96,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         bool present = false;
 
         foreach (var uri in item.uris) {
-            if (uri.has_prefix ("http:")) {
+            if (this.is_http_uri (uri)) {
                 present = true;
 
                 break;
@@ -104,6 +104,10 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         }
 
         return present;
+    }
+
+    private bool is_http_uri (string uri) {
+            return uri.has_prefix ("http:");
     }
 
     private void on_cancelled (Cancellable cancellable) {
