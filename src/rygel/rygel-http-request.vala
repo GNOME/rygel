@@ -44,7 +44,9 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     private HTTPResponse response;
 
     private string item_id;
+    private int thumbnail_index;
     public MediaItem item;
+    public Thumbnail thumbnail;
     public HTTPSeek byte_range;
     public HTTPSeek time_range;
 
@@ -61,6 +63,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         this.server = server;
         this.msg = msg;
         this.query = query;
+        this.thumbnail_index = -1;
     }
 
     public void run (Cancellable? cancellable) {
@@ -85,6 +88,11 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             if (target != null) {
                 var transcoder = this.http_server.get_transcoder (target);
                 this.request_handler = new HTTPTranscodeHandler (transcoder);
+            }
+
+            var index = this.query.lookup ("thumbnail");
+            if (index != null) {
+                this.thumbnail_index = index.to_int ();
             }
         }
 
@@ -150,6 +158,10 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
 
         this.item = (MediaItem) media_object;
+
+        if (this.thumbnail_index >= 0) {
+            this.thumbnail = this.item.thumbnails.get (this.thumbnail_index);
+        }
 
         this.handle_item_request ();
     }

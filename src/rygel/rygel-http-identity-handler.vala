@@ -30,20 +30,30 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
 
     public override void add_response_headers (HTTPRequest request)
                                                throws HTTPRequestError {
-        var item = request.item;
+        long size;
+        string mime_type;
 
-        request.msg.response_headers.append ("Content-Type", item.mime_type);
-        if (item.size >= 0) {
-            request.msg.response_headers.set_content_length (item.size);
+        if (request.thumbnail != null) {
+            size = request.thumbnail.size;
+            mime_type= request.thumbnail.mime_type;
+        } else {
+            size = request.item.size;
+            mime_type= request.item.mime_type;
         }
-        if (item.should_stream ()) {
+
+        request.msg.response_headers.append ("Content-Type", mime_type);
+        if (size >= 0) {
+            request.msg.response_headers.set_content_length (size);
+        }
+
+        if (request.thumbnail == null && request.item.should_stream ()) {
             if (request.time_range != null) {
                 request.time_range.add_response_header (request.msg);
             }
         } else {
             request.msg.response_headers.append ("Accept-Ranges", "bytes");
             if (request.byte_range != null) {
-                request.byte_range.add_response_header (request.msg, item.size);
+                request.byte_range.add_response_header (request.msg, size);
             }
         }
 
@@ -53,6 +63,14 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
 
     public override HTTPResponse render_body (HTTPRequest request)
                                               throws HTTPRequestError {
+        if (request.thumbnail != null) {
+            return new SeekableResponse (request.server,
+                                         request.msg,
+                                         request.thumbnail.uri,
+                                         request.byte_range,
+                                         request.thumbnail.size);
+        }
+
         var item = request.item;
 
         if (item.should_stream ()) {
@@ -84,8 +102,12 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
     protected override DIDLLiteResource add_resource (DIDLLiteItem didl_item,
                                                       HTTPRequest  request)
                                                       throws HTTPRequestError {
-        return request.item.add_resource (didl_item,
-                                          null,
-                                          request.http_server.get_protocol ());
+        var protocol = request.http_server.get_protocol ();
+
+        if (request.thumbnail != null) {
+            return request.thumbnail.add_resource (didl_item, protocol);
+        } else {
+            return request.item.add_resource (didl_item, null, protocol);
+        }
     }
 }

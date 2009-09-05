@@ -67,11 +67,29 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         if (!this.http_uri_present (item)) {
             // Create the HTTP proxy URI
             string protocol;
-            var uri = this.create_uri_for_item (item, null, out protocol);
+            var uri = this.create_uri_for_item (item, -1, null, out protocol);
             item.add_resource (didl_item, uri, protocol);
         }
 
         base.add_resources (didl_item, item);
+
+        // Thumbnails comes in the end
+        foreach (var thumbnail in item.thumbnails) {
+            if (!is_http_uri (thumbnail.uri)) {
+                var uri = thumbnail.uri; // Save the original URI
+                var index = item.thumbnails.index_of (thumbnail);
+                string protocol;
+
+                thumbnail.uri = this.create_uri_for_item (item,
+                                                          index,
+                                                          null,
+                                                          out protocol);
+                thumbnail.add_resource (didl_item, protocol);
+
+                // Now restore the original URI
+                thumbnail.uri = uri;
+            }
+        }
     }
 
     private bool http_uri_present (MediaItem item) {
@@ -104,11 +122,16 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                                           path);
     }
 
-    internal override string create_uri_for_item (MediaItem  item,
-                                                  string?    transcode_target,
+    internal override string create_uri_for_item (MediaItem item,
+                                                  int       thumbnail_index,
+                                                  string?   transcode_target,
                                                   out string protocol) {
         string escaped = Uri.escape_string (item.id, "", true);
         string query = "?itemid=" + escaped;
+        if (thumbnail_index >= 0) {
+            query += "&thumbnail=" + thumbnail_index.to_string ();
+        }
+
         if (transcode_target != null) {
             escaped = Uri.escape_string (transcode_target, "", true);
             query += "&transcode=" + escaped;

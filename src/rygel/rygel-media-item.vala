@@ -63,6 +63,8 @@ public class Rygel.MediaItem : MediaObject {
     public int pixel_height = -1;
     public int color_depth = -1;
 
+    public ArrayList<Thumbnail> thumbnails;
+
     public MediaItem (string         id,
                       MediaContainer parent,
                       string         title,
@@ -71,6 +73,8 @@ public class Rygel.MediaItem : MediaObject {
         this.parent = parent;
         this.title = title;
         this.upnp_class = upnp_class;
+
+        this.thumbnails = new ArrayList<Thumbnail> ();
     }
 
     // Live media items need to provide a nice working implementation of this
@@ -115,6 +119,14 @@ public class Rygel.MediaItem : MediaObject {
 
             if (allow_internal || protocol != "internal") {
                 this.add_resource (didl_item, uri, protocol);
+            }
+        }
+
+        foreach (var thumbnail in this.thumbnails) {
+            var protocol = this.get_protocol_for_uri (thumbnail.uri);
+
+            if (allow_internal || protocol != "internal") {
+                thumbnail.add_resource (didl_item, protocol);
             }
         }
     }

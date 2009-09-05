@@ -66,6 +66,7 @@ internal abstract class Rygel.Transcoder : GLib.Object {
 
         string protocol;
         var uri = manager.create_uri_for_item (item,
+                                               -1,
                                                this.dlna_profile,
                                                out protocol);
         var res = item.add_resource (didl_item, uri, protocol);
