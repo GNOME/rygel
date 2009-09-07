@@ -22,26 +22,17 @@
 
 using GUPnP;
 
-private errordomain Rygel.ThumbnailError {
-    BAD_URI
-}
-
 /**
  * Represents a picture or video thumbnail.
  */
-public class Rygel.Thumbnail : GLib.Object {
+public class Rygel.Thumbnail : Rygel.IconInfo {
     public string uri;
-    public string mime_type;
     public string dlna_profile;
-
-    public long size = -1;       // Size in bytes
-    public int width = -1;       // Width in pixels
-    public int height = -1;      // Height in pixels
-    public int color_depth = -1; // depth of pixels in bytes
 
     public Thumbnail (string mime_type = "image/jpeg",
                       string dlna_profile = "JPEG_TN") {
-        this.mime_type = mime_type;
+        base (mime_type);
+
         this.dlna_profile = dlna_profile;
     }
 
@@ -54,7 +45,7 @@ public class Rygel.Thumbnail : GLib.Object {
 
         res.width = this.width;
         res.height = this.height;
-        res.color_depth = this.color_depth;
+        res.color_depth = this.depth;
 
         /* Protocol info */
         res.protocol_info = this.get_protocol_info (protocol);

@@ -39,11 +39,12 @@ public class Rygel.TrackerPlugin : Rygel.Plugin {
 
         this.add_resource (resource_info);
 
-        var icon_info = new IconInfo ("image/png", // Mimetype
-                                      48,          // width
-                                      48,          // height
-                                      24,          // depth
-                                      ICON);       // Icon Path
+        var icon_info = new IconInfo ("image/png");
+
+        icon_info.path = ICON;
+        icon_info.width = 48;
+        icon_info.height = 48;
+        icon_info.depth = 24;
 
         this.add_icon (icon_info);
     }

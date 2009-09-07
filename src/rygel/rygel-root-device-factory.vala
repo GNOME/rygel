@@ -245,7 +245,7 @@ public class Rygel.RootDeviceFactory {
         string height = icon_info.height.to_string ();
         string depth = icon_info.depth.to_string ();
 
-        icon_node->new_child (null, "mimetype", icon_info.mimetype);
+        icon_node->new_child (null, "mimetype", icon_info.mime_type);
         icon_node->new_child (null, "width", width);
         icon_node->new_child (null, "height", height);
         icon_node->new_child (null, "depth", depth);
