@@ -95,20 +95,20 @@ public class Rygel.MediaItem : MediaObject {
         return src;
     }
 
-    internal int compare_transcoders (void *a, void *b) {
-        var transcoder1 = (Transcoder) a;
-        var transcoder2 = (Transcoder) b;
-
-        return (int) transcoder1.get_distance (this) -
-               (int) transcoder2.get_distance (this);
-    }
-
     // Return true if item should be streamed as a live response with
     // time based seeking, or false to serve directly with byte range
     // seeking.
     public virtual bool should_stream () {
         // Simple heuristic: if we know the size, serve directly.
         return this.size <= 0;
+    }
+
+    internal int compare_transcoders (void *a, void *b) {
+        var transcoder1 = (Transcoder) a;
+        var transcoder2 = (Transcoder) b;
+
+        return (int) transcoder1.get_distance (this) -
+               (int) transcoder2.get_distance (this);
     }
 
     internal void add_resources (DIDLLiteItem didl_item,
