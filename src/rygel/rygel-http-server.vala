@@ -33,7 +33,6 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     public MediaContainer root_container;
     public GUPnP.Context context;
     private ArrayList<HTTPRequest> requests;
-    private Thumbnailer thumbnailer;
 
     private Cancellable cancellable;
 
@@ -47,12 +46,10 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
 
         this.path_root = SERVER_PATH_PREFIX + "/" + name;
 
-        try {
-            this.thumbnailer = new Thumbnailer ();
+        var thumbnailer = Thumbnailer.get_default ();
+        if (thumbnailer != null) {
             this.context.host_path (thumbnailer.directory,
                                     this.path_root + "/thumbnails");
-        } catch (ThumbnailerError err) {
-            warning ("No thumbnailer available: %s", err.message);
         }
     }
 
@@ -86,13 +83,15 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS) ||
             item.upnp_class.has_prefix (MediaItem.VIDEO_CLASS) &&
             item.thumbnails.size == 0) {
+            var thumbnailer = Thumbnailer.get_default ();
+
             // Lets see if we can provide the thumbnails
-            if (this.thumbnailer != null) {
+            if (thumbnailer != null) {
                 foreach (var uri in item.uris) {
                     Thumbnail thumbnail = null;
 
                     try {
-                        thumbnail = this.thumbnailer.get_thumbnail (uri);
+                        thumbnail = thumbnailer.get_thumbnail (uri);
                         thumbnail.add_resource (didl_item, "internal");
 
                         // Now create the HTTP URI

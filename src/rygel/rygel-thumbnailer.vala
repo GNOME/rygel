@@ -31,12 +31,15 @@ internal errordomain ThumbnailerError {
  * Provides thumbnails for images and vidoes.
  */
 internal class Rygel.Thumbnailer : GLib.Object {
+    private static Thumbnailer thumbnailer; // Our singleton object
+    private static bool first_time = true;
+
     public string directory;
 
     private Thumbnail template;
     private string extension;
 
-    public Thumbnailer () throws ThumbnailerError {
+    private Thumbnailer () throws ThumbnailerError {
         var dir = Path.build_filename (Environment.get_home_dir (),
                                        ".thumbnails",
                                        "cropped");
@@ -68,6 +71,20 @@ internal class Rygel.Thumbnailer : GLib.Object {
         }
 
         this.directory = dir;
+    }
+
+    public static Thumbnailer? get_default () {
+        if (first_time) {
+            try {
+                thumbnailer = new Thumbnailer ();
+            } catch (ThumbnailerError err) {
+                warning ("No thumbnailer available: %s", err.message);
+            }
+
+            first_time = false;
+        }
+
+        return thumbnailer;
     }
 
     public Thumbnail get_thumbnail (string uri) throws ThumbnailerError {
