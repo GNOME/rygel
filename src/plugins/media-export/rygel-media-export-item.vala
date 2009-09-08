@@ -56,7 +56,7 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
         base (id, parent, info.get_name (), item_class);
 
         this.mime_type = content_type;
-        this.uris.add (file.get_uri ());
+        this.add_uri (file.get_uri (), null);
     }
 
     private void fill_from_tags_as_image (Gst.TagList tag_list) {
@@ -191,7 +191,7 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
                 break;
         }
 
-        this.uris.add (file.get_uri ());
+        this.add_uri (file.get_uri (), null);
     }
 }
 

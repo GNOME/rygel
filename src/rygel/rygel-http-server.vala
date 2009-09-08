@@ -45,12 +45,6 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         this.requests = new ArrayList<HTTPRequest> ();
 
         this.path_root = SERVER_PATH_PREFIX + "/" + name;
-
-        var thumbnailer = Thumbnailer.get_default ();
-        if (thumbnailer != null) {
-            this.context.host_path (thumbnailer.directory,
-                                    this.path_root + "/thumbnails");
-        }
     }
 
     public void run (Cancellable? cancellable) {
@@ -80,37 +74,6 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         base.add_resources (didl_item, item);
 
         // Thumbnails comes in the end
-        if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS) ||
-            item.upnp_class.has_prefix (MediaItem.VIDEO_CLASS) &&
-            item.thumbnails.size == 0) {
-            var thumbnailer = Thumbnailer.get_default ();
-
-            // Lets see if we can provide the thumbnails
-            if (thumbnailer != null) {
-                foreach (var uri in item.uris) {
-                    Thumbnail thumbnail = null;
-
-                    try {
-                        thumbnail = thumbnailer.get_thumbnail (uri);
-                        thumbnail.add_resource (didl_item, "internal");
-
-                        // Now create the HTTP URI
-                        var basename = Path.get_basename (thumbnail.path);
-                        thumbnail.uri = this.create_uri_for_path (
-                                                    "/thumbnails/" + basename);
-                        thumbnail.add_resource (didl_item,
-                                                this.get_protocol ());
-                    } catch (ThumbnailerError err) {}
-
-                    // No error means we found the thumbnail
-                    break;
-                }
-            }
-
-            return; // We won't be here if there were thumbnails provided by
-                    // the item itself
-        }
-
         foreach (var thumbnail in item.thumbnails) {
             if (!is_http_uri (thumbnail.uri)) {
                 var uri = thumbnail.uri; // Save the original URI

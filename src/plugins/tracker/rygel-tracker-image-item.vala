@@ -93,7 +93,7 @@ public class Rygel.TrackerImageItem : Rygel.TrackerItem {
         this.mime_type = values[Metadata.MIME];
         this.author = values[Metadata.CREATOR];
         this.album = values[Metadata.ALBUM];
-        this.uris.add (Filename.to_uri (path, null));
+        this.add_uri (Filename.to_uri (path, null), null);
     }
 }
 

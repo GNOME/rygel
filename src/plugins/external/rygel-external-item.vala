@@ -76,7 +76,7 @@ public class Rygel.ExternalItem : Rygel.MediaItem {
         for (var i = 0; uris[i] != null; i++) {
             var tmp = uris[i].replace ("@ADDRESS@", parent.host_ip);
 
-            this.uris.add (tmp);
+            this.add_uri (tmp, null);
         }
 
         // Optional properties

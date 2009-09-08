@@ -87,7 +87,7 @@ internal class Rygel.Thumbnailer : GLib.Object {
         return thumbnailer;
     }
 
-    public Thumbnail get_thumbnail (string uri) throws ThumbnailerError {
+    public Thumbnail get_thumbnail (string uri) throws Error {
         Thumbnail thumbnail = null;
 
         var path = Checksum.compute_for_string (ChecksumType.MD5, uri) +
@@ -95,7 +95,12 @@ internal class Rygel.Thumbnailer : GLib.Object {
         var full_path = Path.build_filename (this.directory, path);
         var file = File.new_for_path (full_path);
 
-        if (!file.query_exists (null)) {
+        var info = file.query_info (FILE_ATTRIBUTE_ACCESS_CAN_READ + "," +
+                                    FILE_ATTRIBUTE_STANDARD_SIZE,
+                                    FileQueryInfoFlags.NONE,
+                                    null);
+
+        if (!info.get_attribute_boolean (FILE_ATTRIBUTE_ACCESS_CAN_READ)) {
             throw new ThumbnailerError.NO_THUMBNAIL ("No thumbnail available");
         }
 
@@ -105,6 +110,8 @@ internal class Rygel.Thumbnailer : GLib.Object {
         thumbnail.depth = this.template.depth;
         thumbnail.path = path;
         thumbnail.uri = Filename.to_uri (full_path, null);
+        thumbnail.size = (long) info.get_attribute_uint64 (
+                                        FILE_ATTRIBUTE_STANDARD_SIZE);
 
         return thumbnail;
     }
