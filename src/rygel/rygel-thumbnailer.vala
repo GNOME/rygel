@@ -67,7 +67,7 @@ internal class Rygel.Thumbnailer : GLib.Object {
             this.template.width = 124;
             this.template.height = 124;
             this.template.depth = 24;
-            this.extension = ".jpg";
+            this.extension = ".jpeg";
         }
 
         this.directory = dir;
