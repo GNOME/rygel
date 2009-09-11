@@ -364,6 +364,7 @@ public class Rygel.MediaDB : Object {
             warning ("Failed to prepare delete of object %s: %s",
                      id,
                      db.errmsg ());
+            throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
         }
     }
 
@@ -650,6 +651,7 @@ public class Rygel.MediaDB : Object {
             warning ("Failed to get uris for obj %s: %s",
                      obj.id,
                      db.errmsg ());
+            throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
         }
     }
 
@@ -675,7 +677,7 @@ public class Rygel.MediaDB : Object {
                 fill_item (statement, (MediaItem)obj);
                 break;
             default:
-                // should not happen
+                assert_not_reached ();
                 break;
         }
 
@@ -772,6 +774,7 @@ public class Rygel.MediaDB : Object {
             warning ("Failed to get children for obj %s: %s",
                      container_id,
                      db.errmsg ());
+            throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
         }
 
         return children;
@@ -796,6 +799,8 @@ public class Rygel.MediaDB : Object {
             warning ("Could not get child count for object %s: %s",
                      container_id,
                      db.errmsg ());
+
+            throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
         }
 
         return count;
@@ -822,6 +827,8 @@ public class Rygel.MediaDB : Object {
             warning ("Could not get child count for object %s: %s",
                      object_id,
                      db.errmsg ());
+
+            throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
         }
 
         return exists;
