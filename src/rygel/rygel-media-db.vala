@@ -221,7 +221,7 @@ public class Rygel.MediaDB : Object {
 
     private void open_db (string name) {
         var dirname = Path.build_filename (Environment.get_user_cache_dir (),
-                                           Environment.get_prgname ());
+                                           "rygel");
         DirUtils.create_with_parents (dirname, 0750);
         var db_file = Path.build_filename (dirname, "%s.db".printf (name));
         debug ("Using database file %s", db_file);
@@ -682,7 +682,6 @@ public class Rygel.MediaDB : Object {
                 break;
             default:
                 assert_not_reached ();
-                break;
         }
 
         try {
