@@ -752,7 +752,7 @@ public class Rygel.MediaDB : Object {
         item.color_depth = statement.column_int (15);
     }
 
-    public ArrayList<string> get_child_ids (string object_id)
+    public ArrayList<string> get_child_ids (string container_id)
                                                          throws MediaDBError {
         ArrayList<string> children = new ArrayList<string> (str_equal);
         Statement statement;
@@ -762,7 +762,7 @@ public class Rygel.MediaDB : Object {
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            if (statement.bind_text (1, object_id) != Sqlite.OK) {
+            if (statement.bind_text (1, container_id) != Sqlite.OK) {
                 throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
             }
             while ((rc = statement.step ()) == Sqlite.ROW) {
@@ -770,14 +770,14 @@ public class Rygel.MediaDB : Object {
             }
         } else {
             warning ("Failed to get children for obj %s: %s",
-                     object_id,
+                     container_id,
                      db.errmsg ());
         }
 
         return children;
     }
 
-    public int get_child_count (string object_id) throws MediaDBError {
+    public int get_child_count (string container_id) throws MediaDBError {
         Statement statement;
         int count = 0;
         var rc = db.prepare_v2 (CHILDREN_COUNT_STRING,
@@ -785,7 +785,7 @@ public class Rygel.MediaDB : Object {
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            if (statement.bind_text (1, object_id) != Sqlite.OK) {
+            if (statement.bind_text (1, container_id) != Sqlite.OK) {
                 throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
             }
             while ((rc = statement.step ()) == Sqlite.ROW) {
@@ -794,7 +794,7 @@ public class Rygel.MediaDB : Object {
             }
         } else {
             warning ("Could not get child count for object %s: %s",
-                     object_id,
+                     container_id,
                      db.errmsg ());
         }
 
@@ -828,7 +828,7 @@ public class Rygel.MediaDB : Object {
     }
 
 
-    public Gee.ArrayList<MediaObject> get_children (string object_id,
+    public Gee.ArrayList<MediaObject> get_children (string container_id,
                                                       uint offset,
                                                       uint max_count) {
         Statement statement;
@@ -839,7 +839,7 @@ public class Rygel.MediaDB : Object {
                                 out statement,
                                 null);
         if (rc == Sqlite.OK) {
-            if (statement.bind_text (1, object_id) != Sqlite.OK ||
+            if (statement.bind_text (1, container_id) != Sqlite.OK ||
                 statement.bind_int64 (2, (int64) offset) != Sqlite.OK ||
                 statement.bind_int64 (3, (int64) max_count) != Sqlite.OK) {
                 throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
