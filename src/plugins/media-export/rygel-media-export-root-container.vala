@@ -167,7 +167,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 if (parent_container != null) {
                     this.harvest (file, (MediaContainer)parent_container);
                 } else {
-                    // This should not happen
+                    assert_not_reached ();
                 }
                 break;
             case FileMonitorEvent.CHANGES_DONE_HINT:
