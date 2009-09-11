@@ -95,8 +95,8 @@ public class Rygel.MediaExportHarvester : GLib.Object {
 
             if (this.files.get_length() == 0 &&
                     this.containers.get_length () != 0) {
+                this.containers.peek_head ().updated ();
                 this.containers.pop_head ();
-            this.containers.peek_head ().updated ();
             }
         } catch (MediaDBError err) {
             warning("Failed to get children of container %s: %s",

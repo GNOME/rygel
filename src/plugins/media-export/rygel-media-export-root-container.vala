@@ -182,7 +182,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 if (obj != null) {
                     this.media_db.delete_object (obj);
                     if (obj.parent != null) {
-                        parent.updated ();
+                        obj.parent.updated ();
                     }
                 }
                 break;

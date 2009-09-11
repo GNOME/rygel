@@ -36,14 +36,14 @@ rygel_preferences_VALAFLAGS = \
 	--pkg gio-2.0 --pkg gee-1.0 --pkg gtk+-2.0
 
 rygel_preferences_LDADD = $(LIBGUPNP_LIBS) \
-	                  $(LIBGUPNP_AV_LIBS) \
+                          $(LIBGUPNP_AV_LIBS) \
                           $(LIBGSTREAMER_LIBS) \
                           $(GIO_LIBS) \
                           $(GEE_LIBS) \
                           $(UUID_LIBS) \
                           $(LIBSOUP_LIBS) \
                           $(GTK_LIBS) \
-	    		  $(LIBDBUS_GLIB_LIBS) \
+                          $(LIBDBUS_GLIB_LIBS) \
                           -L$(abs_top_builddir)/src/rygel \
                           -lrygel-configuration
 rygel_preferences_LDFLAGS = -export-dynamic
