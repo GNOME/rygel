@@ -25,8 +25,14 @@
 public class Rygel.MediaDBContainer : MediaContainer {
     protected MediaDB media_db;
 
-    public MediaDBContainer (MediaDB media_db, string  id, string title) {
-        var count = media_db.get_child_count (id);
+    public MediaDBContainer (MediaDB media_db, string id, string title) {
+        int count;
+        try {
+            count = media_db.get_child_count (id);
+        } catch (MediaDBError err) {
+            debug("Could not get child count from database: %s", err.message);
+            count = 0;
+        }
         base (id, null, title, count);
 
         this.media_db = media_db;
