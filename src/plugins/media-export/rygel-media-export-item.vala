@@ -89,7 +89,7 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
         tag_list.get_uint (TAG_TRACK_NUMBER, out tmp);
         this.track_number = (int)tmp;
         tag_list.get_uint (TAG_BITRATE, out tmp);
-        this.bitrate = (int)tmp;
+        this.bitrate = (int)tmp / 8;
         tag_list.get_int (MetadataExtractor.TAG_RYGEL_RATE, out this.sample_freq);
 
         GLib.Date? date;
