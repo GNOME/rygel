@@ -64,7 +64,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     public static MediaContainer get_instance() {
         if (MediaExportRootContainer.instance == null) {
             try {
-                var db = MediaDB.create("media-export");
+                var db = MediaDB.create ("media-export");
                 MediaExportRootContainer.instance =
                                              new MediaExportRootContainer (db);
             } catch (MediaDBError err) {
@@ -85,7 +85,14 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         var file = File.new_for_commandline_arg (uri);
         var id = Checksum.compute_for_string (ChecksumType.MD5,
                                               file.get_uri ());
-        this.media_db.delete_by_id (id);
+
+        try {
+            this.media_db.delete_by_id (id);
+        } catch (MediaDBError e) {
+            warning ("Failed to remove item %s: %s",
+                     file.get_uri(),
+                     e.message);
+        }
     }
 
 
@@ -110,23 +117,28 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         } catch (Error error) {
         }
 
-        var ids = media_db.get_child_ids ("0");
-        var uris = get_uris ();
-        foreach (var uri in uris) {
-            var file = File.new_for_commandline_arg (uri);
-            if (file.query_exists (null)) {
-                var id = Checksum.compute_for_string (ChecksumType.MD5,
-                                                      file.get_uri ());
-                ids.remove (id);
-                this.harvest (file);
+        try {
+            var ids = media_db.get_child_ids ("0");
+            var uris = get_uris ();
+            foreach (var uri in uris) {
+                var file = File.new_for_commandline_arg (uri);
+                if (file.query_exists (null)) {
+                    var id = Checksum.compute_for_string (ChecksumType.MD5,
+                            file.get_uri ());
+                    ids.remove (id);
+                    this.harvest (file);
+                }
             }
+            foreach (var id in ids) {
+                debug ("Id %s no longer in config, deleting...",
+                        id);
+                this.media_db.delete_by_id (id);
+            }
+            this.updated ();
+        } catch (MediaDBError e) {
+            warning ("Failed to get children for root container: %s",
+                     e.message);
         }
-        foreach (var id in ids) {
-            debug ("Id %s no longer in config, deleting...",
-                   id);
-            this.media_db.delete_by_id (id);
-        }
-        this.updated ();
     }
 
     private void on_file_harvested (File file) {

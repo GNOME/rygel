@@ -196,7 +196,7 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
         tag_list.get_uint64 (MetadataExtractor.TAG_RYGEL_MTIME,
                              out mtime);
 
-        this.timestamp = (int64) mtime;
+        this.modified = (int64) mtime;
 
         this.add_uri (file.get_uri (), null);
     }

@@ -444,7 +444,7 @@ public class Rygel.MediaDB : Object {
                                 null);
         if (rc == Sqlite.OK) {
             if (statement.bind_text (1, obj.title) != Sqlite.OK ||
-                statement.bind_int64 (2, (int64) obj.timestamp) != Sqlite.OK ||
+                statement.bind_int64 (2, (int64) obj.modified) != Sqlite.OK ||
                 statement.bind_text (3, obj.id) != Sqlite.OK) {
                 throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
             }
@@ -522,7 +522,7 @@ public class Rygel.MediaDB : Object {
                             null);
         if (rc == Sqlite.OK) {
             if (statement.bind_text (1, item.id) != Sqlite.OK ||
-                statement.bind_int64 (5, (int64) item.timestamp) != Sqlite.OK ||
+                statement.bind_int64 (5, (int64) item.modified) != Sqlite.OK ||
                 statement.bind_text (2, item.title) != Sqlite.OK) {
                 throw new MediaDBError.SQLITE_ERROR (db.errmsg ());
             }
@@ -681,7 +681,7 @@ public class Rygel.MediaDB : Object {
 
         try {
             if (obj != null) {
-                obj.timestamp = statement.column_int64 (18);
+                obj.modified = statement.column_int64 (18);
                 add_uris (obj);
             }
         } catch (MediaDBError err) {

@@ -29,7 +29,7 @@ using Gee;
 public abstract class Rygel.MediaObject : GLib.Object {
     public string id;
     public string title;
-    public uint64 timestamp;
+    public uint64 modified;
     public Gee.ArrayList<string> uris;
 
     // You can keep both a unowned and owned ref to parent of this MediaObject.
