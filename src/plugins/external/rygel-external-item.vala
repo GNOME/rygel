@@ -36,7 +36,7 @@ public class Rygel.ExternalItem : Rygel.MediaItem {
     public ExternalItem (string            object_path,
                          ExternalContainer parent)
                          throws GLib.Error {
-        base (object_path,
+        base ("item:" + object_path,
               parent,
               "Unknown",        /* Title Unknown at this point */
               "Unknown");       /* UPnP Class Unknown at this point */

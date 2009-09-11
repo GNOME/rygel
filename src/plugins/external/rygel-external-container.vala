@@ -165,11 +165,12 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         if (obj_paths.len > 0) {
             for (var i = 0; i < obj_paths.len; i++) {
                 var obj_path = (ObjectPath) obj_paths.pdata[i];
-                var container = new ExternalContainer (obj_path,
-                                                       this.service_name,
-                                                       obj_path,
-                                                       this.host_ip,
-                                                       this);
+                var container = new ExternalContainer (
+                                        "container:" + (string) obj_path,
+                                        this.service_name,
+                                        obj_path,
+                                        this.host_ip,
+                                        this);
                 this.media_objects.add (container);
             }
         }
