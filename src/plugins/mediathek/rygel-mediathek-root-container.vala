@@ -28,9 +28,9 @@ public class Rygel.MediathekRootContainer : Rygel.MediaContainer {
     internal SessionAsync session;
     private static MediathekRootContainer instance;
 
-    public override void get_children (uint offset, 
-                                       uint max_count, 
-                                       Cancellable? cancellable, 
+    public override void get_children (uint offset,
+                                       uint max_count,
+                                       Cancellable? cancellable,
                                        AsyncReadyCallback callback)
     {
         uint stop = offset + max_count;
@@ -51,7 +51,7 @@ public class Rygel.MediathekRootContainer : Rygel.MediaContainer {
         return simple_res.data;
     }
 
-    public override void find_object (string id, 
+    public override void find_object (string id,
                                       Cancellable? cancellable,
                                       AsyncReadyCallback callback) {
         var res = new Rygel.SimpleAsyncResult<string> (this,
@@ -61,7 +61,7 @@ public class Rygel.MediathekRootContainer : Rygel.MediaContainer {
         res.complete_in_idle ();
     }
 
-    public override MediaObject? find_object_finish (AsyncResult res) 
+    public override MediaObject? find_object_finish (AsyncResult res)
                                                      throws GLib.Error {
         MediaObject item = null;
         var id = ((Rygel.SimpleAsyncResult<string>) res).data;
