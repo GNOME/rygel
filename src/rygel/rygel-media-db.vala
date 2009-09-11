@@ -641,7 +641,10 @@ public class Rygel.MediaDB : Object {
             }
 
             while ((rc = statement.step ()) == Sqlite.ROW) {
-                obj.uris.add (statement.column_text (0));
+                if (obj is MediaItem)
+                    ((MediaItem) obj).add_uri (statement.column_text (0), null);
+                else
+                    obj.uris.add (statement.column_text (0));
             }
         } else {
             warning ("Failed to get uris for obj %s: %s",
