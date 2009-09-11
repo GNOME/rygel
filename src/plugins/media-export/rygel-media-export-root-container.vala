@@ -146,13 +146,13 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     }
 
     private void harvest (File file, MediaContainer parent = this) {
-        var harvest = new MediaExportHarvester (parent,
+        var harvester = new MediaExportHarvester (parent,
                                                 this.media_db,
                                                 this.extractor,
                                                 this.monitor);
-        harvest.harvested.connect (this.on_file_harvested);
-        this.harvester[file] = harvest;
-        harvest.harvest (file);
+        harvester.harvested.connect (this.on_file_harvested);
+        this.harvester[file] = harvester;
+        harvester.harvest (file);
     }
 
     private void on_file_changed (File             file,
