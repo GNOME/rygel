@@ -89,9 +89,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         try {
             this.media_db.delete_by_id (id);
         } catch (MediaDBError e) {
-            warning ("Failed to remove item %s: %s",
-                     file.get_uri(),
-                     e.message);
+            warning ("Failed to remove uri: %s", e.message);
         }
     }
 
@@ -115,10 +113,17 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         try {
             media_db.save_object (this);
         } catch (Error error) {
+            // do nothing
+        }
+
+        ArrayList<string> ids;
+        try {
+            ids = media_db.get_child_ids ("0");
+        } catch (MediaDBError e) {
+            ids = new ArrayList<string>();
         }
 
         try {
-            var ids = media_db.get_child_ids ("0");
             var uris = get_uris ();
             foreach (var uri in uris) {
                 var file = File.new_for_commandline_arg (uri);
@@ -132,7 +137,11 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
             foreach (var id in ids) {
                 debug ("Id %s no longer in config, deleting...",
                         id);
+            try {
                 this.media_db.delete_by_id (id);
+            } catch (MediaDBError e) {
+                warning ("Failed to remove entry: %s", e.message);
+            }
             }
             this.updated ();
         } catch (MediaDBError e) {
