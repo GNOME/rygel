@@ -43,9 +43,14 @@ internal class Rygel.DummyContainer : NullContainer {
     }
 }
 
-internal struct Rygel.FileQueueEntry  {
+internal class Rygel.FileQueueEntry  {
     public File file;
     public bool update;
+
+    public FileQueueEntry (File file, bool update) {
+        this.file = file;
+        this.update = update;
+    }
 }
 
 public class Rygel.MediaExportHarvester : GLib.Object {
@@ -93,11 +98,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                 this.media_db.delete_by_id (child);
             }
 
-            if (this.files.get_length() == 0 &&
-                    this.containers.get_length () != 0) {
-                this.containers.peek_head ().updated ();
-                this.containers.pop_head ();
-            }
+            do_update ();
         } catch (MediaDBError err) {
             warning("Failed to get children of container %s: %s",
                     container.id,
@@ -117,18 +118,11 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                                                 FILE_ATTRIBUTE_TIME_MODIFIED);
 
             if (mtime > timestamp) {
-                var entry = FileQueueEntry();
-                entry.file = file;
-                entry.update = true;
-
-                this.files.push_tail (entry);
+                this.files.push_tail (new FileQueueEntry (file, true));
                 return true;
             }
         } else {
-            var entry = FileQueueEntry();
-            entry.file = file;
-            entry.update = false;
-            this.files.push_tail (entry);
+            this.files.push_tail (new FileQueueEntry (file, false));
             return true;
         }
 
@@ -301,11 +295,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             }
 
             this.files.pop_head ();
-            if (this.files.get_length () == 0 &&
-                this.containers.get_length () != 0) {
-                this.containers.peek_head ().updated ();
-                this.containers.pop_head ();
-            }
+            do_update ();
             Idle.add(this.on_idle);
         }
     }
@@ -318,15 +308,18 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             return;
         }
         if (file == entry.file) {
-            debug ("failed to harvest file %s", file.get_uri ());
-            // yadda yadda
             this.files.pop_head ();
-            if (this.files.get_length () == 0 &&
-                this.containers.get_length () != 0) {
-                this.containers.peek_head ().updated ();
-                this.containers.pop_head ();
-            }
+            do_update ();
             Idle.add(this.on_idle);
         }
+    }
+
+    private void do_update () {
+        if (this.files.get_length () == 0 &&
+                this.containers.get_length () != 0) {
+            this.containers.peek_head ().updated ();
+            this.containers.pop_head ();
+        }
+
     }
 }
