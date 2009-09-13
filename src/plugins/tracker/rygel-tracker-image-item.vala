@@ -81,9 +81,6 @@ public class Rygel.TrackerImageItem : Rygel.TrackerItem {
         if (values[Metadata.HEIGHT] != "")
             this.height = values[Metadata.HEIGHT].to_int ();
 
-        if (values[Metadata.SIZE] != "")
-            this.size = values[Metadata.SIZE].to_int ();
-
         if (values[Metadata.DATE] != "") {
             this.date = seconds_to_iso8601 (values[Metadata.DATE]);
         } else {
