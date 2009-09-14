@@ -215,7 +215,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
 
         this.child_count = this.containers.size;
         this.props.Get (CONTAINER_IFACE, "ItemCount", out value);
-        this.child_count = value.get_int ();
+        this.child_count += value.get_uint ();
     }
 
     private void on_container_updated (dynamic DBus.Object actual_container) {
