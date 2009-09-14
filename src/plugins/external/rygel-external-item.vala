@@ -33,10 +33,26 @@ public class Rygel.ExternalItem : Rygel.MediaItem {
     private static string OBJECT_IFACE = "org.gnome.UPnP.MediaObject1";
     private static string ITEM_IFACE = "org.gnome.UPnP.MediaItem1";
 
-    public ExternalItem (string            object_path,
-                         ExternalContainer parent)
-                         throws GLib.Error {
-        base ("item:" + object_path,
+    public ExternalItem.for_path (string            object_path,
+                                  ExternalContainer parent) throws GLib.Error {
+        this ("item:" + object_path, object_path, parent);
+    }
+
+    public ExternalItem.for_id (string            id,
+                                ExternalContainer parent) throws GLib.Error {
+        var object_path = id.str ("/");
+        if (object_path == null) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        this (id, object_path, parent);
+    }
+
+    private ExternalItem (string            id,
+                          string            object_path,
+                          ExternalContainer parent)
+                          throws GLib.Error {
+        base (id,
               parent,
               "Unknown",        /* Title Unknown at this point */
               "Unknown");       /* UPnP Class Unknown at this point */
@@ -151,6 +167,10 @@ public class Rygel.ExternalItem : Rygel.MediaItem {
         if (value != null) {
             this.color_depth = value.get_int ();
         }
+    }
+
+    public static bool id_valid (string id) {
+        return id.has_prefix ("item:/");
     }
 }
 
