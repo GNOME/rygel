@@ -123,31 +123,28 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
             ids = new ArrayList<string>();
         }
 
-        try {
-            var uris = get_uris ();
-            foreach (var uri in uris) {
-                var file = File.new_for_commandline_arg (uri);
-                if (file.query_exists (null)) {
-                    var id = Checksum.compute_for_string (ChecksumType.MD5,
-                            file.get_uri ());
-                    ids.remove (id);
-                    this.harvest (file);
-                }
+        var uris = get_uris ();
+        foreach (var uri in uris) {
+            var file = File.new_for_commandline_arg (uri);
+            if (file.query_exists (null)) {
+                var id = Checksum.compute_for_string (ChecksumType.MD5,
+                                                      file.get_uri ());
+                ids.remove (id);
+                this.harvest (file);
             }
-            foreach (var id in ids) {
-                debug ("Id %s no longer in config, deleting...",
-                        id);
+        }
+
+        foreach (var id in ids) {
+            debug ("Id %s no longer in config, deleting...",
+                   id);
             try {
                 this.media_db.delete_by_id (id);
             } catch (MediaDBError e) {
                 warning ("Failed to remove entry: %s", e.message);
             }
-            }
-            this.updated ();
-        } catch (MediaDBError e) {
-            warning ("Failed to get children for root container: %s",
-                     e.message);
         }
+
+        this.updated ();
     }
 
     private void on_file_harvested (File file) {
