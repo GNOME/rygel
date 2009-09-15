@@ -347,6 +347,10 @@ public class Rygel.MediaDB : Object {
     public signal void item_added (string item_id);
     public signal void item_updated (string item_id);
 
+    public signal void container_added (string container_id);
+    public signal void container_removed (string container_id);
+    public signal void container_updated (string container_id);
+
     public void delete_by_id (string id) throws MediaDBError {
         Statement statement;
 
