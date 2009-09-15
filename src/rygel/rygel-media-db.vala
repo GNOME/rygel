@@ -390,7 +390,7 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    private void save_container (MediaContainer container) throws Error {
+    public void save_container (MediaContainer container) throws Error {
         var rc = db.exec ("BEGIN");
         try {
             create_object (container);
@@ -401,7 +401,7 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    private void save_item (MediaItem item) throws Error {
+    public void save_item (MediaItem item) throws Error {
         var rc = db.exec ("BEGIN;");
         try {
             save_metadata (item);
