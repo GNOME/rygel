@@ -258,6 +258,7 @@ public class Rygel.MediaDB : Object {
                                 break;
                             default:
                                 warning ("Cannot upgrade");
+                                db = null;
                                 break;
                         }
                     } else {
