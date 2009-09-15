@@ -202,7 +202,7 @@ public class Rygel.MediaDB : Object {
     private const string UPDATE_V3_V4_STRING_4 =
     "UPDATE Object SET timestamp = 0";
 
-    private void update_v3_v4() {
+    private void update_v3_v4 () {
         if (db.exec ("BEGIN") == Sqlite.OK &&
             db.exec (UPDATE_V3_V4_STRING_1) == Sqlite.OK &&
             db.exec (UPDATE_V3_V4_STRING_2) == Sqlite.OK &&
@@ -254,7 +254,7 @@ public class Rygel.MediaDB : Object {
                         debug ("Older schema detected. Upgrading...");
                         switch (old_version) {
                             case 3:
-                                update_v3_v4();
+                                update_v3_v4 ();
                                 break;
                             default:
                                 warning ("Cannot upgrade");
