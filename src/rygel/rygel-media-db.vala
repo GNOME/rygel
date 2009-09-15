@@ -344,6 +344,8 @@ public class Rygel.MediaDB : Object {
     }
 
     public signal void item_deleted (string item_id);
+    public signal void item_added (string item_id);
+    public signal void item_updated (string item_id);
 
     public void delete_by_id (string id) throws MediaDBError {
         Statement statement;
@@ -373,8 +375,6 @@ public class Rygel.MediaDB : Object {
     public void delete_object (MediaObject obj) throws MediaDBError {
         this.delete_by_id (obj.id);
     }
-
-    public signal void item_added (string item_id);
 
     public void save_object (MediaObject obj) throws Error {
         if (obj is MediaItem) {
@@ -415,7 +415,6 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    public signal void item_updated (string item_id);
 
     public void update_object (MediaObject obj) {
         var rc = db.exec ("BEGIN");
