@@ -29,110 +29,22 @@ using Gee;
 /**
  * Represents the root container for Tracker media content hierarchy.
  */
-public class Rygel.TrackerRootContainer : Rygel.MediaContainer {
-    /* FIXME: Make this a static if you know how to initize it */
-    private ArrayList<TrackerCategory> categories;
-
+public class Rygel.TrackerRootContainer : Rygel.SimpleContainer {
     public TrackerRootContainer (string title) {
-        base.root (title, 0);
+        base.root (title);
 
-        this.categories = new ArrayList<TrackerCategory> ();
-        this.categories.add
-                        (new TrackerImageCategory ("16",
-                                                   this,
-                                                   "All Images"));
-        this.categories.add
-                        (new TrackerMusicCategory ("14",
-                                                   this,
-                                                   "All Music"));
-        this.categories.add
-                        (new TrackerVideoCategory ("15",
-                                                   this,
-                                                   "All Videos"));
+        this.children.add (new TrackerImageCategory ("16",
+                                                     this,
+                                                     "All Images"));
+        this.children.add (new TrackerMusicCategory ("14",
+                                                     this,
+                                                     "All Music"));
+        this.children.add (new TrackerVideoCategory ("15",
+                                                     this,
+                                                     "All Videos"));
 
         // Now we know how many top-level containers we have
-        this.child_count = this.categories.size;
-    }
-
-    public override void get_children (uint               offset,
-                                       uint               max_count,
-                                       Cancellable?       cancellable,
-                                       AsyncReadyCallback callback) {
-        uint start = offset.clamp (0, this.child_count - 1);
-        uint stop = start + max_count;
-        stop = stop.clamp (0, this.child_count);
-
-        var children = this.categories.slice ((int) start, (int) stop);
-
-        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (
-                                        this,
-                                        callback);
-        res.data = children;
-        res.complete_in_idle ();
-    }
-
-    public override Gee.List<MediaObject>? get_children_finish (
-                                                    AsyncResult res)
-                                                    throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
-        return simple_res.data;
-    }
-
-    public override void find_object (string             id,
-                                      Cancellable?       cancellable,
-                                      AsyncReadyCallback callback) {
-        /* First try containers */
-        MediaObject media_object = find_category_by_id (id);
-
-        if (media_object == null) {
-            /* Now try items */
-            var category = get_item_category (id);
-
-            if (category != null) {
-                category.find_object (id, cancellable, callback);
-                return;
-            }
-        }
-
-        var res = new Rygel.SimpleAsyncResult<MediaObject> (this, callback);
-        res.data = media_object;
-        res.complete_in_idle ();
-    }
-
-    public override MediaObject? find_object_finish (AsyncResult res)
-                                                     throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult<MediaObject>) res;
-
-        return simple_res.data;
-    }
-
-    /* Private methods */
-    private TrackerCategory? find_category_by_id (string category_id) {
-        TrackerCategory category;
-
-        category = null;
-
-        foreach (TrackerCategory tmp in this.categories)
-            if (category_id == tmp.id) {
-                category = tmp;
-
-                break;
-            }
-
-        return category;
-    }
-
-    private TrackerCategory? get_item_category (string item_id) {
-        TrackerCategory category = null;
-        foreach (TrackerCategory tmp in this.categories) {
-            if (tmp.is_thy_child (item_id)) {
-                category = tmp;
-
-                break;
-            }
-        }
-
-        return category;
+        this.child_count = this.children.size;
     }
 }
 
