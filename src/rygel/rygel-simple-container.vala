@@ -43,6 +43,10 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
         this.searches = new ArrayList<ObjectSearch> ();
     }
 
+    public SimpleContainer.root (string title) {
+        this ("0", null, title);
+    }
+
     public override void get_children (uint               offset,
                                        uint               max_count,
                                        Cancellable?       cancellable,
