@@ -343,6 +343,10 @@ public class Rygel.MediaDB : Object {
         }
     }
 
+    public signal void object_added (string object_id);
+    public signal void object_removed (string object_id);
+    public signal void object_updated (string object_id);
+
     public signal void item_deleted (string item_id);
     public signal void item_added (string item_id);
     public signal void item_updated (string item_id);
