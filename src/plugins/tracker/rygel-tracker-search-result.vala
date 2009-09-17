@@ -28,9 +28,9 @@ using Gee;
  */
 public class Rygel.TrackerSearchResult :
              Rygel.SimpleAsyncResult<Gee.List<MediaObject>> {
-    public TrackerSearchResult (TrackerCategory    category,
-                                AsyncReadyCallback callback) {
-        base (category, callback);
+    public TrackerSearchResult (TrackerSearchContainer search_container,
+                                AsyncReadyCallback     callback) {
+        base (search_container, callback);
 
         this.data = new ArrayList<MediaObject> ();
     }
@@ -43,14 +43,14 @@ public class Rygel.TrackerSearchResult :
             return;
         }
 
-        TrackerCategory category = (TrackerCategory) this.source_object;
+        var search_container = (TrackerSearchContainer) this.source_object;
 
         /* Iterate through all items */
         for (uint i = 0; i < search_result.length; i++) {
             string child_path = search_result[i][0];
             string[] metadata = this.slice_strv_tail (search_result[i], 2);
 
-            var item = category.create_item (child_path, metadata);
+            var item = search_container.create_item (child_path, metadata);
             this.data.add (item);
         }
 

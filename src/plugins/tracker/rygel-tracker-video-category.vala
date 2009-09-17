@@ -24,7 +24,7 @@
 /**
  * Represents Tracker Video category.
  */
-public class Rygel.TrackerVideoCategory : Rygel.TrackerCategory {
+public class Rygel.TrackerVideoCategory : Rygel.TrackerSearchContainer {
     public TrackerVideoCategory (string         id,
                                  MediaContainer parent,
                                  string         title) {

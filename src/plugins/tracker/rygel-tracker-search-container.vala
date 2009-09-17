@@ -26,9 +26,9 @@ using DBus;
 using Gee;
 
 /**
- * Represents Tracker category.
+ * A container listing a Tracker search result.
  */
-public abstract class Rygel.TrackerCategory : Rygel.MediaContainer {
+public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker";
     private const string TRACKER_PATH = "/org/freedesktop/Tracker";
@@ -46,10 +46,10 @@ public abstract class Rygel.TrackerCategory : Rygel.MediaContainer {
 
     Gee.List<AsyncResult> results;
 
-    public TrackerCategory (string         id,
-                            MediaContainer parent,
-                            string         title,
-                            string         service) {
+    public TrackerSearchContainer (string         id,
+                                   MediaContainer parent,
+                                   string         title,
+                                   string         service) {
         base (id, parent, title, 0);
 
         this.service = service;
@@ -209,15 +209,15 @@ public abstract class Rygel.TrackerCategory : Rygel.MediaContainer {
     private void create_proxies () throws GLib.Error {
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
-        this.metadata = connection.get_object (TrackerCategory.TRACKER_SERVICE,
-                                               TrackerCategory.METADATA_PATH,
-                                               TrackerCategory.METADATA_IFACE);
-        this.search = connection.get_object (TrackerCategory.TRACKER_SERVICE,
-                                             TrackerCategory.SEARCH_PATH,
-                                             TrackerCategory.SEARCH_IFACE);
-        this.tracker = connection.get_object (TrackerCategory.TRACKER_SERVICE,
-                                              TrackerCategory.TRACKER_PATH,
-                                              TrackerCategory.TRACKER_IFACE);
+        this.metadata = connection.get_object (TRACKER_SERVICE,
+                                               METADATA_PATH,
+                                               METADATA_IFACE);
+        this.search = connection.get_object (TRACKER_SERVICE,
+                                             SEARCH_PATH,
+                                             SEARCH_IFACE);
+        this.tracker = connection.get_object (TRACKER_SERVICE,
+                                              TRACKER_PATH,
+                                              TRACKER_IFACE);
     }
 
     private string? get_item_parent_id (string item_id) {

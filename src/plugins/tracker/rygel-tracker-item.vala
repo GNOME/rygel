@@ -30,11 +30,11 @@ using DBus;
 public abstract class Rygel.TrackerItem : Rygel.MediaItem {
     protected string path;
 
-    public TrackerItem (string          id,
-                        string          path,
-                        TrackerCategory parent,
-                        string          upnp_class,
-                        string[]        metadata) {
+    public TrackerItem (string                 id,
+                        string                 path,
+                        TrackerSearchContainer parent,
+                        string                 upnp_class,
+                        string[]               metadata) {
         base (id, parent, "", upnp_class);
 
         this.path = path;

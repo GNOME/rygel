@@ -24,7 +24,7 @@
 /**
  * Represents Tracker Music category.
  */
-public class Rygel.TrackerMusicCategory : Rygel.TrackerCategory {
+public class Rygel.TrackerMusicCategory : Rygel.TrackerSearchContainer {
     public TrackerMusicCategory (string         id,
                                  MediaContainer parent,
                                  string         title) {

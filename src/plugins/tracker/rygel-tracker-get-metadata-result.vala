@@ -28,10 +28,10 @@ public class Rygel.TrackerGetMetadataResult :
              Rygel.SimpleAsyncResult<MediaObject> {
     protected string item_id;
 
-    public TrackerGetMetadataResult (TrackerCategory    category,
-                                     AsyncReadyCallback callback,
-                                     string             item_id) {
-        base (category, callback);
+    public TrackerGetMetadataResult (TrackerSearchContainer search_container,
+                                     AsyncReadyCallback     callback,
+                                     string                 item_id) {
+        base (search_container, callback);
         this.item_id = item_id;
     }
 
@@ -43,10 +43,10 @@ public class Rygel.TrackerGetMetadataResult :
             return;
         }
 
-        TrackerCategory category = (TrackerCategory) this.source_object;
+        var search_container = (TrackerSearchContainer) this.source_object;
 
-        string path = category.get_item_path (item_id);
-        this.data = category.create_item (path, metadata);
+        string path = search_container.get_item_path (item_id);
+        this.data = search_container.create_item (path, metadata);
 
         this.complete ();
     }

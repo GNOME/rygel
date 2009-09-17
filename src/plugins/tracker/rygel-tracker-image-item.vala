@@ -42,10 +42,10 @@ public class Rygel.TrackerImageItem : Rygel.TrackerItem {
         LAST_KEY
     }
 
-    public TrackerImageItem (string          id,
-                             string          path,
-                             TrackerCategory parent,
-                             string[]        metadata) {
+    public TrackerImageItem (string                 id,
+                             string                 path,
+                             TrackerSearchContainer parent,
+                             string[]               metadata) {
         base (id, path, parent, MediaItem.IMAGE_CLASS, metadata);
     }
 
