@@ -42,6 +42,14 @@ public class Rygel.TrackerRootContainer : Rygel.SimpleContainer {
         this.children.add (new TrackerVideoCategory ("15",
                                                      this,
                                                      "Videos"));
+        this.children.add (new TrackerMetadataValues ("Audio:Artist",
+                                                      "17",
+                                                      this,
+                                                      "Artists"));
+        this.children.add (new TrackerMetadataValues ("Audio:Album",
+                                                      "18",
+                                                      this,
+                                                      "Albums"));
 
         // Now we know how many top-level containers we have
         this.child_count = this.children.size;
