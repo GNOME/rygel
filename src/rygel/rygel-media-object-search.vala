@@ -28,7 +28,7 @@ using Gee;
  * A utililty class to easy searching of media objects from a bunch of
  * MediaContainer hierarchies. If search is successful, media_object is set
  * accordingly so if it's null at the completion of the search, it means that
- * search was unsuccesful.
+ * search was unsuccesful. In case of error, the error field is set accordingly.
  */
 internal class Rygel.MediaObjectSearch<G> : GLib.Object, Rygel.StateMachine {
     public string id;
@@ -38,6 +38,7 @@ internal class Rygel.MediaObjectSearch<G> : GLib.Object, Rygel.StateMachine {
     public Cancellable cancellable { get; set; }
 
     public MediaObject media_object;
+    public Error       error;
 
     public MediaObjectSearch (string                    id,
                               ArrayList<MediaContainer> containers,
@@ -76,9 +77,7 @@ internal class Rygel.MediaObjectSearch<G> : GLib.Object, Rygel.StateMachine {
                 this.completed ();
             }
         } catch (Error err) {
-            warning ("Error while searching for '%s': %s\n",
-                     this.id,
-                     err.message);
+            this.error = err;
             this.completed ();
         }
     }

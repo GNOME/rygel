@@ -126,6 +126,7 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
                      MediaObjectSearch<Rygel.SimpleAsyncResult<MediaObject>>;
 
         search.data.data = search.media_object;
+        search.data.error = search.error;
         search.data.complete ();
 
         this.searches.remove (search);
