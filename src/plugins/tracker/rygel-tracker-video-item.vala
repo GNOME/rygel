@@ -45,7 +45,7 @@ public class Rygel.TrackerVideoItem : Rygel.TrackerItem {
                              string          path,
                              TrackerCategory parent,
                              string[]        metadata) {
-        base (id, path, parent, metadata);
+        base (id, path, parent, MediaItem.VIDEO_CLASS, metadata);
     }
 
     public static string[] get_metadata_keys () {

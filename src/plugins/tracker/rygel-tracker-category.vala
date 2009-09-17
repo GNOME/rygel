@@ -44,20 +44,15 @@ public abstract class Rygel.TrackerCategory : Rygel.MediaContainer {
 
     public string category;
 
-    /* UPnP class of items under this container */
-    public string child_class;
-
     Gee.List<AsyncResult> results;
 
     public TrackerCategory (string         id,
                             MediaContainer parent,
                             string         title,
-                            string         category,
-                            string         child_class) {
+                            string         category) {
         base (id, parent, title, 0);
 
         this.category = category;
-        this.child_class = child_class;
 
         try {
             this.create_proxies ();
