@@ -173,9 +173,6 @@ public class Rygel.MetadataExtractor: GLib.Object {
             debug = error.message;
         }
 
-        warning ("Failed to extract metadata from %s: %s\n",
-                  this.playbin.uri, debug);
-
         // signalize error to listeners
         this.error (this.file_queue.peek_head (), error);
 
