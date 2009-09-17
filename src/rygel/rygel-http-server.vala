@@ -34,7 +34,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     public GUPnP.Context context;
     private ArrayList<HTTPRequest> requests;
 
-    private Cancellable cancellable;
+    public Cancellable cancellable { get; set; }
 
     public HTTPServer (ContentDirectory content_dir,
                        string           name) throws GLib.Error {
@@ -42,16 +42,16 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
 
         this.root_container = content_dir.root_container;
         this.context = content_dir.context;
+        this.cancellable = content_dir.cancellable;
         this.requests = new ArrayList<HTTPRequest> ();
 
         this.path_root = SERVER_PATH_PREFIX + "/" + name;
     }
 
-    public void run (Cancellable? cancellable) {
+    public void run () {
         context.server.add_handler (this.path_root, server_handler);
 
-        if (cancellable != null) {
-            this.cancellable = cancellable;
+        if (this.cancellable != null) {
             this.cancellable.cancelled += this.on_cancelled;
         }
     }
@@ -179,7 +179,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         request.completed += this.on_request_completed;
         this.requests.add (request);
 
-        request.run (this.cancellable);
+        request.run ();
     }
 }
 

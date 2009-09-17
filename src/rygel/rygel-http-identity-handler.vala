@@ -26,7 +26,9 @@ using GUPnP;
 // An HTTP request handler that passes the item content through as is.
 internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
 
-    public HTTPIdentityHandler () {}
+    public HTTPIdentityHandler (Cancellable? cancellable) {
+        this.cancellable = cancellable;
+    }
 
     public override void add_response_headers (HTTPRequest request)
                                                throws HTTPRequestError {
@@ -68,7 +70,8 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
                                          request.msg,
                                          request.thumbnail.uri,
                                          request.byte_range,
-                                         request.thumbnail.size);
+                                         request.thumbnail.size,
+                                         this.cancellable);
         }
 
         var item = request.item;
@@ -83,7 +86,8 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
                                      request.msg,
                                      "RygelLiveResponse",
                                      src,
-                                     request.time_range);
+                                     request.time_range,
+                                     this.cancellable);
         } else {
             if (item.uris.size == 0) {
                 throw new HTTPRequestError.NOT_FOUND (
@@ -95,7 +99,8 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
                                          request.msg,
                                          item.uris.get (0),
                                          request.byte_range,
-                                         item.size);
+                                         item.size,
+                                         this.cancellable);
         }
     }
 

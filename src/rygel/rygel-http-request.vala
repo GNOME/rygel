@@ -41,6 +41,8 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     public Soup.Message msg;
     private HashTable<string,string>? query;
 
+    public Cancellable cancellable { get; set; }
+
     private HTTPResponse response;
 
     private string item_id;
@@ -52,13 +54,12 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
     private HTTPRequestHandler request_handler;
 
-    private Cancellable cancellable;
-
     public HTTPRequest (HTTPServer                http_server,
                         Soup.Server               server,
                         Soup.Message              msg,
                         HashTable<string,string>? query) {
         this.http_server = http_server;
+        this.cancellable = http_server.cancellable;
         this.root_container = http_server.root_container;
         this.server = server;
         this.msg = msg;
@@ -66,9 +67,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         this.thumbnail_index = -1;
     }
 
-    public void run (Cancellable? cancellable) {
-        this.cancellable = cancellable;
-
+    public void run () {
         this.server.pause_message (this.msg);
 
         var header = this.msg.request_headers.get (
@@ -87,7 +86,9 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             var target = this.query.lookup ("transcode");
             if (target != null) {
                 var transcoder = this.http_server.get_transcoder (target);
-                this.request_handler = new HTTPTranscodeHandler (transcoder);
+                this.request_handler = new HTTPTranscodeHandler (
+                                        transcoder,
+                                        this.cancellable);
             }
 
             var index = this.query.lookup ("thumbnail");
@@ -102,7 +103,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
 
         if (this.request_handler == null) {
-            this.request_handler = new HTTPIdentityHandler ();
+            this.request_handler = new HTTPIdentityHandler (this.cancellable);
         }
 
         // Fetch the requested item
@@ -132,7 +133,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
             this.response = this.request_handler.render_body (this);
             this.response.completed += on_response_completed;
-            this.response.run (this.cancellable);
+            this.response.run ();
         } catch (Error error) {
             this.handle_error (error);
         }

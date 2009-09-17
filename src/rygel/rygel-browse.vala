@@ -54,21 +54,20 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
     private ServiceAction action;
     private Rygel.DIDLLiteWriter didl_writer;
 
-    private Cancellable cancellable;
+    public Cancellable cancellable { get; set; }
 
     public Browse (ContentDirectory    content_dir,
                    owned ServiceAction action) {
         this.root_container = content_dir.root_container;
         this.system_update_id = content_dir.system_update_id;
+        this.cancellable = content_dir.cancellable;
         this.action = (owned) action;
 
         this.didl_writer =
                 new Rygel.DIDLLiteWriter (content_dir.http_server);
     }
 
-    public void run (Cancellable? cancellable) {
-        this.cancellable = cancellable;
-
+    public void run () {
         /* Start by parsing the 'in' arguments */
         this.parse_args ();
     }

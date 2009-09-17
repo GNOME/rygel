@@ -30,8 +30,10 @@ using GUPnP;
 internal class Rygel.HTTPTranscodeHandler : HTTPRequestHandler {
     private Transcoder transcoder;
 
-    public HTTPTranscodeHandler (Transcoder transcoder) {
+    public HTTPTranscodeHandler (Transcoder   transcoder,
+                                 Cancellable? cancellable) {
         this.transcoder = transcoder;
+        this.cancellable = cancellable;
     }
 
     public override void add_response_headers (HTTPRequest request)
@@ -60,7 +62,8 @@ internal class Rygel.HTTPTranscodeHandler : HTTPRequestHandler {
                                  request.msg,
                                  "RygelLiveResponse",
                                  src,
-                                 request.time_range);
+                                 request.time_range,
+                                 this.cancellable);
     }
 
     protected override DIDLLiteResource add_resource (DIDLLiteItem didl_item,

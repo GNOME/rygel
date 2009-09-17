@@ -27,13 +27,15 @@ internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
     public Soup.Server server { get; private set; }
     protected Soup.Message msg;
 
-    protected Cancellable cancellable;
+    public Cancellable cancellable { get; set; }
 
     public HTTPResponse (Soup.Server  server,
                          Soup.Message msg,
-                         bool         partial) {
+                         bool         partial,
+                         Cancellable? cancellable) {
         this.server = server;
         this.msg = msg;
+        this.cancellable = cancellable;
 
         if (partial) {
             this.msg.set_status (Soup.KnownStatusCode.PARTIAL_CONTENT);
@@ -46,10 +48,9 @@ internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         this.server.request_aborted += on_request_aborted;
     }
 
-    public virtual void run (Cancellable? cancellable) {
-        if (cancellable != null) {
-            this.cancellable = cancellable;
-            cancellable.cancelled += this.on_cancelled;
+    public virtual void run () {
+        if (this.cancellable != null) {
+            this.cancellable.cancelled += this.on_cancelled;
         }
     }
 

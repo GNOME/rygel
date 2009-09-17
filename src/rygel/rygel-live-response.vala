@@ -44,8 +44,9 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
                          Soup.Message msg,
                          string       name,
                          Element      src,
-                         HTTPSeek?    time_range) throws Error {
-        base (server, msg, false);
+                         HTTPSeek?    time_range,
+                         Cancellable? cancellable) throws Error {
+        base (server, msg, false, cancellable);
 
         this.msg.response_headers.set_encoding (Soup.Encoding.EOF);
 
@@ -55,8 +56,8 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         this.time_range = time_range;
     }
 
-    public override void run (Cancellable? cancellable) {
-        base.run (cancellable);
+    public override void run () {
+        base.run ();
 
         // Only bother attempting to seek if the offset is greater than zero.
         if (this.time_range != null && this.time_range.start > 0) {

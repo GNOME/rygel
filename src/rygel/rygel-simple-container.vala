@@ -96,12 +96,12 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
                 }
             }
 
-            var search = new ObjectSearch (id, containers, res);
+            var search = new ObjectSearch (id, containers, res, cancellable);
             search.completed.connect (this.on_object_search_completed);
 
             this.searches.add (search);
 
-            search.run (cancellable);
+            search.run ();
         }
     }
 
@@ -130,20 +130,24 @@ private class Rygel.ObjectSearch : GLib.Object, Rygel.StateMachine {
     public ArrayList<MediaContainer> containers;
     public Rygel.SimpleAsyncResult<MediaObject> res;
 
+    public Cancellable cancellable { get; set; }
+
     public ObjectSearch (string                         id,
                          ArrayList<MediaContainer>      containers,
-                         SimpleAsyncResult<MediaObject> res) {
+                         SimpleAsyncResult<MediaObject> res,
+                         Cancellable?                   cancellable) {
         this.id = id;
         this.containers = containers;
         this.res = res;
+        this.cancellable = cancellable;
     }
 
-    public void run (Cancellable? cancellable) {
+    public void run () {
         var container = this.containers.get (0);
 
         if (container != null) {
             container.find_object (this.id,
-                                   cancellable,
+                                   this.cancellable,
                                    this.on_object_found);
         } else {
             this.completed ();
@@ -160,8 +164,7 @@ private class Rygel.ObjectSearch : GLib.Object, Rygel.StateMachine {
                 // continue the search
                 this.containers.remove_at (0);
 
-                // FIXME: We are loosing the 'cancellable' from the first call
-                this.run (null);
+                this.run ();
             } else {
                 this.completed ();
             }

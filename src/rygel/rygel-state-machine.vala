@@ -28,6 +28,9 @@ public interface Rygel.StateMachine: GLib.Object {
     // Signals
     public signal void completed ();
 
-    public abstract void run (Cancellable? cancellable);
+    // Props
+    public abstract Cancellable cancellable { get; set; }
+
+    public abstract void run ();
 }
 

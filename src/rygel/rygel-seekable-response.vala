@@ -40,8 +40,9 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
                              Soup.Message msg,
                              string       uri,
                              HTTPSeek?    seek,
-                             size_t       file_length) {
-        base (server, msg, seek != null);
+                             size_t       file_length,
+                             Cancellable? cancellable) {
+        base (server, msg, seek != null, cancellable);
 
         this.seek = seek;
         this.total_length = file_length;
@@ -59,7 +60,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
         this.file = File.new_for_uri (uri);
     }
 
-    public override void run (Cancellable? cancellable) {
+    public override void run () {
         this.cancellable = cancellable;
 
         this.file.read_async (this.priority, cancellable, this.on_file_read);
@@ -95,10 +96,10 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
         }
 
         this.input_stream.read_async (this.buffer,
-                                 SeekableResponse.BUFFER_LENGTH,
-                                 this.priority,
-                                 this.cancellable,
-                                 on_contents_read);
+                                      SeekableResponse.BUFFER_LENGTH,
+                                      this.priority,
+                                      this.cancellable,
+                                      on_contents_read);
     }
 
     private void on_contents_read (GLib.Object?     source_object,

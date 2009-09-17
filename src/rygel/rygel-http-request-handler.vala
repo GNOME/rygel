@@ -27,6 +27,8 @@ using GUPnP;
  * HTTP request handler interface.
  */
 internal abstract class Rygel.HTTPRequestHandler: GLib.Object {
+    public Cancellable cancellable { get; set; }
+
     // Add response headers.
     public virtual void add_response_headers (HTTPRequest request)
                                               throws HTTPRequestError {
