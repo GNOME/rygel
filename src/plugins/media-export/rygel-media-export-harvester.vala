@@ -56,8 +56,8 @@ internal class Rygel.FileQueueEntry  {
 public class Rygel.MediaExportHarvester : GLib.Object {
     private MetadataExtractor extractor;
     private MediaDB media_db;
-    private Queue<MediaContainer> containers;
-    private Queue<FileQueueEntry?> files;
+    private GLib.Queue<MediaContainer> containers;
+    private GLib.Queue<FileQueueEntry?> files;
     private File origin;
     private MediaContainer parent;
     private MediaExportRecursiveFileMonitor monitor;
@@ -71,8 +71,8 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         this.media_db = media_db;
         this.extractor.extraction_done.connect (on_extracted_cb);
         this.extractor.error.connect (on_extractor_error_cb);
-        this.files = new Queue<FileQueueEntry?> ();
-        this.containers = new Queue<DummyContainer> ();
+        this.files = new GLib.Queue<FileQueueEntry?> ();
+        this.containers = new GLib.Queue<DummyContainer> ();
         this.origin = null;
         this.monitor = monitor;
     }
