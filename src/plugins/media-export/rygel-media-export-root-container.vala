@@ -58,6 +58,15 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 uris.add (uri);
         }
 
+        // add the uris gotten from DBus interface
+        try {
+            var obj = this.media_db.get_object ("0");
+            if (obj != null && obj.uris != null) {
+                uris.add_all (obj.uris);
+            }
+        } catch (MediaDBError error) {
+        }
+
         return uris;
     }
 
@@ -77,6 +86,8 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     }
 
     public void add_uri (string uri) {
+        this.uris.add (uri);
+        this.media_db.update_object (this);
         var file = File.new_for_commandline_arg (uri);
         this.harvest (file);
     }
@@ -87,6 +98,8 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                                               file.get_uri ());
 
         try {
+            this.uris.remove (uri);
+            this.media_db.update_object (this);
             this.media_db.delete_by_id (id);
         } catch (MediaDBError e) {
             warning ("Failed to remove uri: %s", e.message);
@@ -110,10 +123,13 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
 
         this.service = new MediaExportDBusService (this);
 
-        try {
-            media_db.save_object (this);
-        } catch (Error error) {
-            // do nothing
+        int64 timestamp;
+        if (!this.media_db.exists ("0", out timestamp)) {
+            try {
+                media_db.save_object (this);
+            } catch (Error error) {
+                // do nothing
+            }
         }
 
         ArrayList<string> ids;
