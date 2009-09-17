@@ -96,7 +96,11 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
                 }
             }
 
-            var search = new ObjectSearch (id, containers, res, cancellable);
+            var search = new ObjectSearch<Rygel.SimpleAsyncResult<MediaObject>>
+                                        (id,
+                                         containers,
+                                         res,
+                                         cancellable);
             search.completed.connect (this.on_object_search_completed);
 
             this.searches.add (search);
@@ -117,28 +121,32 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
     }
 
     private void on_object_search_completed (StateMachine state_machine) {
-        var search = state_machine as ObjectSearch;
+        var search = state_machine as
+                     ObjectSearch<Rygel.SimpleAsyncResult<MediaObject>>;
 
-        search.res.complete ();
+        search.data.data = search.media_object;
+        search.data.complete ();
 
         this.searches.remove (search);
     }
 }
 
-private class Rygel.ObjectSearch : GLib.Object, Rygel.StateMachine {
+private class Rygel.ObjectSearch<G> : GLib.Object, Rygel.StateMachine {
     public string id;
     public ArrayList<MediaContainer> containers;
-    public Rygel.SimpleAsyncResult<MediaObject> res;
+    public G data;
 
     public Cancellable cancellable { get; set; }
 
-    public ObjectSearch (string                         id,
-                         ArrayList<MediaContainer>      containers,
-                         SimpleAsyncResult<MediaObject> res,
-                         Cancellable?                   cancellable) {
+    public MediaObject media_object;
+
+    public ObjectSearch (string                    id,
+                         ArrayList<MediaContainer> containers,
+                         G                         data,
+                         Cancellable?              cancellable) {
         this.id = id;
         this.containers = containers;
-        this.res = res;
+        this.data = data;
         this.cancellable = cancellable;
     }
 
@@ -158,9 +166,9 @@ private class Rygel.ObjectSearch : GLib.Object, Rygel.StateMachine {
                                  AsyncResult res) {
         try {
             var container = source_object as MediaContainer;
-            this.res.data = container.find_object_finish (res);
+            this.media_object = container.find_object_finish (res);
 
-            if (this.res.data == null) {
+            if (this.media_object == null) {
                 // continue the search
                 this.containers.remove_at (0);
 
