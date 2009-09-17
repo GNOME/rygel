@@ -397,7 +397,7 @@ public class Rygel.MediaDB : Object {
         } else if (obj is MediaContainer) {
             save_container ((MediaContainer)obj);
         } else {
-            throw new MediaDBError.GENERAL_ERROR ("Invalid object type");
+            throw new MediaDBError.INVALID_TYPE ("Invalid object type");
         }
     }
 
@@ -553,7 +553,7 @@ public class Rygel.MediaDB : Object {
             } else if (item is MediaObject) {
                 rc = statement.bind_int (3, MediaDBObjectType.CONTAINER);
             } else {
-                throw new MediaDBError.GENERAL_ERROR ("Invalid object type");
+                throw new MediaDBError.INVALID_TYPE ("Invalid object type");
             }
 
             if (rc != Sqlite.OK) {
