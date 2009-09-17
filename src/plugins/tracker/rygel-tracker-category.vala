@@ -42,17 +42,17 @@ public abstract class Rygel.TrackerCategory : Rygel.MediaContainer {
     public dynamic DBus.Object search;
     public dynamic DBus.Object tracker;
 
-    public string category;
+    public string service;
 
     Gee.List<AsyncResult> results;
 
     public TrackerCategory (string         id,
                             MediaContainer parent,
                             string         title,
-                            string         category) {
+                            string         service) {
         base (id, parent, title, 0);
 
-        this.category = category;
+        this.service = service;
 
         try {
             this.create_proxies ();
@@ -75,7 +75,7 @@ public abstract class Rygel.TrackerCategory : Rygel.MediaContainer {
             // the hitcount rather than GetHitCount because GetHitCount only
             // allows us to get hit count for Text searches.
             this.search.Query (0,
-                               this.category,
+                               this.service,
                                new string[0],
                                "",
                                new string[0],
@@ -87,8 +87,8 @@ public abstract class Rygel.TrackerCategory : Rygel.MediaContainer {
                                -1,
                                on_search_query_cb);
         } catch (GLib.Error error) {
-            critical ("error getting items under category '%s': %s",
-                      this.category,
+            critical ("error getting items under service '%s': %s",
+                      this.service,
                       error.message);
 
             return;
@@ -98,8 +98,8 @@ public abstract class Rygel.TrackerCategory : Rygel.MediaContainer {
     private void on_search_query_cb (string[][] search_result,
                                      GLib.Error error) {
         if (error != null) {
-            critical ("error getting items under category '%s': %s",
-                      this.category,
+            critical ("error getting items under service '%s': %s",
+                      this.service,
                       error.message);
 
             return;
@@ -119,7 +119,7 @@ public abstract class Rygel.TrackerCategory : Rygel.MediaContainer {
 
         try {
             this.search.Query (0,
-                               this.category,
+                               this.service,
                                this.get_metadata_keys (),
                                "",
                                new string[0],
@@ -167,7 +167,7 @@ public abstract class Rygel.TrackerCategory : Rygel.MediaContainer {
 
             string[] keys = this.get_metadata_keys ();
 
-            this.metadata.Get (this.category, path, keys, res.ready);
+            this.metadata.Get (this.service, path, keys, res.ready);
         } catch (GLib.Error error) {
             res.error = error;
 
