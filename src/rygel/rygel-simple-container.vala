@@ -32,7 +32,7 @@ using Gee;
 public class Rygel.SimpleContainer : Rygel.MediaContainer {
     public ArrayList<MediaObject> children;
 
-    private ArrayList<ObjectSearch> searches;
+    private ArrayList<MediaObjectSearch> searches;
 
     public SimpleContainer (string          id,
                             MediaContainer? parent,
@@ -40,7 +40,7 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
         base (id, parent, title, 0);
 
         this.children = new ArrayList<MediaObject> ();
-        this.searches = new ArrayList<ObjectSearch> ();
+        this.searches = new ArrayList<MediaObjectSearch> ();
     }
 
     public SimpleContainer.root (string title) {
@@ -96,11 +96,12 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
                 }
             }
 
-            var search = new ObjectSearch<Rygel.SimpleAsyncResult<MediaObject>>
-                                        (id,
-                                         containers,
-                                         res,
-                                         cancellable);
+            var search = new MediaObjectSearch
+                                        <Rygel.SimpleAsyncResult<MediaObject>> (
+                                        id,
+                                        containers,
+                                        res,
+                                        cancellable);
             search.completed.connect (this.on_object_search_completed);
 
             this.searches.add (search);
@@ -122,7 +123,7 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
 
     private void on_object_search_completed (StateMachine state_machine) {
         var search = state_machine as
-                     ObjectSearch<Rygel.SimpleAsyncResult<MediaObject>>;
+                     MediaObjectSearch<Rygel.SimpleAsyncResult<MediaObject>>;
 
         search.data.data = search.media_object;
         search.data.complete ();
@@ -131,7 +132,7 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
     }
 }
 
-private class Rygel.ObjectSearch<G> : GLib.Object, Rygel.StateMachine {
+private class Rygel.MediaObjectSearch<G> : GLib.Object, Rygel.StateMachine {
     public string id;
     public ArrayList<MediaContainer> containers;
     public G data;
@@ -140,10 +141,10 @@ private class Rygel.ObjectSearch<G> : GLib.Object, Rygel.StateMachine {
 
     public MediaObject media_object;
 
-    public ObjectSearch (string                    id,
-                         ArrayList<MediaContainer> containers,
-                         G                         data,
-                         Cancellable?              cancellable) {
+    public MediaObjectSearch (string                    id,
+                              ArrayList<MediaContainer> containers,
+                              G                         data,
+                              Cancellable?              cancellable) {
         this.id = id;
         this.containers = containers;
         this.data = data;
