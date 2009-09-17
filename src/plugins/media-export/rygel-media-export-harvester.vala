@@ -218,10 +218,14 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             if (info.get_file_type () == FileType.DIRECTORY) {
                 this.origin = file;
                 monitor.monitor (file);
-                this.containers.push_tail (new DummyContainer (file,
-                                                               this.parent));
+                var container = new DummyContainer (file, this.parent);
+                this.containers.push_tail (container);
 
-                this.media_db.save_object (this.containers.peek_tail ());
+                int64 timestamp;
+                if (!this.media_db.exists (container.id, out timestamp)) {
+                    this.media_db.save_object (container);
+                }
+
                 Idle.add (this.on_idle);
             } else {
                 string id;
@@ -233,7 +237,9 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             }
 
         } catch (Error err) {
-            warning ("Failed to harvest file %s", file.get_uri ());
+            warning ("Failed to harvest file %s: %s",
+                     file.get_uri (),
+                     err.message);
             harvested (file);
         }
     }
