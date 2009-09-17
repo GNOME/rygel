@@ -65,6 +65,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-media-object.vala \
 		    rygel-media-container.vala \
 		    rygel-simple-container.vala \
+		    rygel-media-object-search.vala \
 		    rygel-simple-async-result.vala \
 		    rygel-media-item.vala \
 		    rygel-thumbnail.vala \
