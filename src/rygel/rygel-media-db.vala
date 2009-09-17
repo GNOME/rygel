@@ -320,7 +320,7 @@ public class Rygel.MediaDB : Object {
     public static MediaDB? create_with_factory (string               name,
                                                 MediaDBObjectFactory factory)
                                                 throws MediaDBError          {
-        var instance = new MediaDB (name, new MediaDBObjectFactory());
+        var instance = new MediaDB (name, factory);
         if (instance.db != null) {
             return instance;
         }
