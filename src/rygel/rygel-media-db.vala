@@ -27,7 +27,8 @@ using Sqlite;
 
 public errordomain Rygel.MediaDBError {
     SQLITE_ERROR,
-    GENERAL_ERROR
+    GENERAL_ERROR,
+    INVALID_TYPE
 }
 
 public enum Rygel.MediaDBObjectType {
@@ -347,7 +348,7 @@ public class Rygel.MediaDB : Object {
     public signal void object_removed (string object_id);
     public signal void object_updated (string object_id);
 
-    public signal void item_deleted (string item_id);
+    public signal void item_removed (string item_id);
     public signal void item_added (string item_id);
     public signal void item_updated (string item_id);
 
@@ -355,7 +356,7 @@ public class Rygel.MediaDB : Object {
     public signal void container_removed (string container_id);
     public signal void container_updated (string container_id);
 
-    public void delete_by_id (string id) throws MediaDBError {
+    public void remove_by_id (string id) throws MediaDBError {
         Statement statement;
 
         var rc = db.prepare_v2 ("DELETE FROM Object WHERE upnp_id = ?",
@@ -368,7 +369,7 @@ public class Rygel.MediaDB : Object {
             }
             rc = statement.step ();
             if (rc == Sqlite.DONE || rc == Sqlite.OK) {
-                item_deleted (id);
+                object_removed (id);
                 Idle.add (this.sweeper);
             }
         } else {
@@ -380,8 +381,14 @@ public class Rygel.MediaDB : Object {
     }
 
 
-    public void delete_object (MediaObject obj) throws MediaDBError {
-        this.delete_by_id (obj.id);
+    public void remove_object (MediaObject obj) throws MediaDBError {
+        this.remove_by_id (obj.id);
+        if (obj is MediaItem)
+            item_removed (obj.id);
+        else if (obj is MediaContainer)
+            container_removed (obj.id);
+        else
+            throw new MediaDBError.INVALID_TYPE ("Invalid object type");
     }
 
     public void save_object (MediaObject obj) throws Error {
@@ -413,6 +420,7 @@ public class Rygel.MediaDB : Object {
             save_uris (item);
             rc = db.exec ("COMMIT;");
             if (rc == Sqlite.OK) {
+                object_added (item.id);
                 item_added (item.id);
             }
         } catch (Error error) {
@@ -427,7 +435,7 @@ public class Rygel.MediaDB : Object {
     public void update_object (MediaObject obj) {
         var rc = db.exec ("BEGIN");
         try {
-            delete_uris (obj);
+            remove_uris (obj);
             if (obj is MediaItem) {
                 save_metadata ((MediaItem)obj, UPDATE_META_DATA_STRING);
             }
@@ -435,7 +443,11 @@ public class Rygel.MediaDB : Object {
             save_uris (obj);
             rc = db.exec ("COMMIT");
             if (rc == Sqlite.OK) {
-                item_updated (obj.id);
+                object_updated (obj.id);
+                if (obj is MediaItem)
+                    item_updated (obj.id);
+                else if (obj is MediaContainer)
+                    container_updated (obj.id);
             }
         } catch (Error error) {
             warning ("Failed to add item with id %s: %s",
@@ -466,7 +478,7 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    private void delete_uris (MediaObject obj) throws Error {
+    private void remove_uris (MediaObject obj) throws Error {
         Statement statement;
         var rc = db.prepare_v2 (DELETE_URI_STRING,
                                 -1,
@@ -740,6 +752,25 @@ public class Rygel.MediaDB : Object {
 
         return obj;
     }
+
+    public MediaItem? get_item (string item_id) throws MediaDBError {
+        var obj = get_object (item_id);
+        if (obj != null && !(obj is MediaItem))
+            throw new MediaDBError.INVALID_TYPE("Object with id %s is not a" +
+                                                "MediaItem",
+                                                item_id);
+        return (MediaItem)obj;
+    }
+
+    public MediaContainer? get_container (string container_id) throws MediaDBError {
+        var obj = get_object (container_id);
+        if (obj != null && !(obj is MediaContainer))
+            throw new MediaDBError.INVALID_TYPE("Object with id %s is not a" +
+                                                "MediaContainer",
+                                                container_id);
+        return (MediaContainer)obj;
+    }
+
 
     private void fill_item (Statement statement, MediaItem item) {
         item.author = statement.column_text (7);
