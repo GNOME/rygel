@@ -44,6 +44,8 @@ public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
     public string service;
 
+    public string query_condition;
+
     Gee.List<AsyncResult> results;
 
     public TrackerSearchContainer (string         id,
@@ -53,6 +55,7 @@ public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         base (id, parent, title, 0);
 
         this.service = service;
+        this.query_condition = "";
 
         try {
             this.create_proxies ();
@@ -79,7 +82,7 @@ public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                new string[0],
                                "",
                                new string[0],
-                               "",
+                               this.query_condition,
                                false,
                                new string[0],
                                false,
@@ -123,7 +126,7 @@ public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                this.get_metadata_keys (),
                                "",
                                new string[0],
-                               "",
+                               this.query_condition,
                                false,
                                new string[0],
                                false,
