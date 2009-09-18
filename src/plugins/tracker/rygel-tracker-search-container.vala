@@ -209,18 +209,20 @@ public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     public MediaItem? create_item (string   service,
                                    string   path,
                                    string[] metadata) {
+        var id = this.id + ":" + path;
+
         if (service == TrackerVideoItem.SERVICE) {
-            return new TrackerVideoItem (this.id + ":" + path,
+            return new TrackerVideoItem (id,
                                          path,
                                          this,
                                          metadata);
         } else if (service == TrackerImageItem.SERVICE) {
-            return new TrackerImageItem (this.id + ":" + path,
+            return new TrackerImageItem (id,
                                          path,
                                          this,
                                          metadata);
         } else if (service == TrackerMusicItem.SERVICE) {
-            return new TrackerMusicItem (this.id + ":" + path,
+            return new TrackerMusicItem (id,
                                          path,
                                          this,
                                          metadata);
