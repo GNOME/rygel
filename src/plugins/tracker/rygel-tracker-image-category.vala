@@ -30,9 +30,5 @@ public class Rygel.TrackerImageCategory : Rygel.TrackerSearchContainer {
                                  string         title) {
         base (id, parent, title, TrackerImageItem.SERVICE);
     }
-
-    protected override string[] get_metadata_keys () {
-        return TrackerImageItem.get_metadata_keys ();
-    }
 }
 

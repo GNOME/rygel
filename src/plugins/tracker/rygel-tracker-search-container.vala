@@ -123,7 +123,7 @@ public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         try {
             this.search.Query (0,
                                this.service,
-                               this.get_metadata_keys (),
+                               TrackerItem.get_metadata_keys (),
                                "",
                                new string[0],
                                this.query_condition,
@@ -172,7 +172,7 @@ public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                                     "No such object");
             }
 
-            string[] keys = this.get_metadata_keys ();
+            string[] keys = TrackerItem.get_metadata_keys ();
 
             this.metadata.Get (res.item_service,
                                res.item_path,
@@ -262,7 +262,5 @@ public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                               TRACKER_PATH,
                                               TRACKER_IFACE);
     }
-
-    protected abstract string[] get_metadata_keys ();
 }
 

@@ -30,9 +30,5 @@ public class Rygel.TrackerMusicCategory : Rygel.TrackerSearchContainer {
                                  string         title) {
         base (id, parent, title, TrackerMusicItem.SERVICE);
     }
-
-    protected override string[] get_metadata_keys () {
-        return TrackerMusicItem.get_metadata_keys ();
-    }
 }
 

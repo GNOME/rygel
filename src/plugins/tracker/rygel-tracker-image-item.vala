@@ -30,69 +30,30 @@ using DBus;
 public class Rygel.TrackerImageItem : Rygel.TrackerItem {
     public const string SERVICE = "Images";
 
-    private enum Metadata {
-        FILE_NAME,
-        MIME,
-        SIZE,
-        TITLE,
-        CREATOR,
-        WIDTH,
-        HEIGHT,
-        ALBUM,
-        IMAGE_DATE,
-        DATE,
-        LAST_KEY
-    }
-
     public TrackerImageItem (string                 id,
                              string                 path,
                              TrackerSearchContainer parent,
                              string[]               metadata) {
         base (id, path, parent, MediaItem.IMAGE_CLASS, metadata);
-    }
 
-    public static string[] get_metadata_keys () {
-        string[] keys = new string[Metadata.LAST_KEY];
-        keys[Metadata.FILE_NAME] = "File:Name";
-        keys[Metadata.MIME] = "File:Mime";
-        keys[Metadata.SIZE] = "File:Size";
-        keys[Metadata.TITLE] = "Video:Title";
-        keys[Metadata.CREATOR] = "Image:Creator";
-        keys[Metadata.WIDTH] = "Image:Width";
-        keys[Metadata.HEIGHT] = "Image:Height";
-        keys[Metadata.ALBUM] = "Image:Album";
-        keys[Metadata.IMAGE_DATE] = "Image:Date";
-        keys[Metadata.DATE] = "DC:Date";
-
-        return keys;
-    }
-
-    protected override void init_from_metadata (string[] values) {
-        if (values[Metadata.TITLE] != "")
-            this.title = values[Metadata.TITLE];
+        if (metadata[Metadata.IMAGE_TITLE] != "")
+            this.title = metadata[Metadata.IMAGE_TITLE];
         else
             /* If title wasn't provided, use filename instead */
-            this.title = values[Metadata.FILE_NAME];
+            this.title = metadata[Metadata.FILE_NAME];
 
-        if (values[Metadata.SIZE] != "")
-            this.size = values[Metadata.SIZE].to_int ();
+        if (metadata[Metadata.IMAGE_WIDTH] != "")
+            this.width = metadata[Metadata.IMAGE_WIDTH].to_int ();
 
-        if (values[Metadata.WIDTH] != "")
-            this.width = values[Metadata.WIDTH].to_int ();
+        if (metadata[Metadata.IMAGE_HEIGHT] != "")
+            this.height = metadata[Metadata.IMAGE_HEIGHT].to_int ();
 
-        if (values[Metadata.HEIGHT] != "")
-            this.height = values[Metadata.HEIGHT].to_int ();
-
-        if (values[Metadata.DATE] != "") {
-            this.date = seconds_to_iso8601 (values[Metadata.DATE]);
-        } else {
-            this.date = seconds_to_iso8601 (values[Metadata.IMAGE_DATE]);
+        if (metadata[Metadata.IMAGE_DATE] != "") {
+            this.date = seconds_to_iso8601 (metadata[Metadata.IMAGE_DATE]);
         }
 
-        this.mime_type = values[Metadata.MIME];
-        this.author = values[Metadata.CREATOR];
-        this.album = values[Metadata.ALBUM];
-        this.add_uri (Filename.to_uri (path, null), null);
+        this.author = metadata[Metadata.CREATOR];
+        this.album = metadata[Metadata.IMAGE_ALBUM];
     }
 }
 
