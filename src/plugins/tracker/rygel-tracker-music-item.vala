@@ -28,6 +28,8 @@ using DBus;
  * Represents Tracker music item.
  */
 public class Rygel.TrackerMusicItem : Rygel.TrackerItem {
+    public const string SERVICE = "Music";
+
     private enum Metadata {
         FILE_NAME,
         MIME,

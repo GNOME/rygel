@@ -28,6 +28,8 @@ using DBus;
  * Represents Tracker image item.
  */
 public class Rygel.TrackerImageItem : Rygel.TrackerItem {
+    public const string SERVICE = "Images";
+
     private enum Metadata {
         FILE_NAME,
         MIME,

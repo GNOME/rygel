@@ -28,6 +28,8 @@ using DBus;
  * Represents Tracker video item.
  */
 public class Rygel.TrackerVideoItem : Rygel.TrackerItem {
+    public const string SERVICE = "Videos";
+
     private enum Metadata {
         FILE_NAME,
         MIME,

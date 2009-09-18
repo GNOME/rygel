@@ -28,7 +28,7 @@ public class Rygel.TrackerImageCategory : Rygel.TrackerSearchContainer {
     public TrackerImageCategory (string         id,
                                  MediaContainer parent,
                                  string         title) {
-        base (id, parent, title, "Images");
+        base (id, parent, title, TrackerImageItem.SERVICE);
     }
 
     protected override string[] get_metadata_keys () {

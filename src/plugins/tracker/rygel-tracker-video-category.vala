@@ -28,7 +28,7 @@ public class Rygel.TrackerVideoCategory : Rygel.TrackerSearchContainer {
     public TrackerVideoCategory (string         id,
                                  MediaContainer parent,
                                  string         title) {
-        base (id, parent, title, "Videos");
+        base (id, parent, title, TrackerVideoItem.SERVICE);
     }
 
     protected override string[] get_metadata_keys () {

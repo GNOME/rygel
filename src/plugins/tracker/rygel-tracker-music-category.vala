@@ -28,7 +28,7 @@ public class Rygel.TrackerMusicCategory : Rygel.TrackerSearchContainer {
     public TrackerMusicCategory (string         id,
                                  MediaContainer parent,
                                  string         title) {
-        base (id, parent, title, "Music");
+        base (id, parent, title, TrackerMusicItem.SERVICE);
     }
 
     protected override string[] get_metadata_keys () {
