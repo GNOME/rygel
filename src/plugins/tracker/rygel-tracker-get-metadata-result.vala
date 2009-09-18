@@ -46,7 +46,9 @@ public class Rygel.TrackerGetMetadataResult :
         var search_container = (TrackerSearchContainer) this.source_object;
 
         string path = search_container.get_item_path (item_id);
-        this.data = search_container.create_item (path, metadata);
+        this.data = search_container.create_item (search_container.service,
+                                                  path,
+                                                  metadata);
 
         this.complete ();
     }

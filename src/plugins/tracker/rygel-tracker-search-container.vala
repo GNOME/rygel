@@ -206,6 +206,29 @@ public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         }
     }
 
+    public MediaItem? create_item (string   service,
+                                   string   path,
+                                   string[] metadata) {
+        if (service == TrackerVideoItem.SERVICE) {
+            return new TrackerVideoItem (this.id + ":" + path,
+                                         path,
+                                         this,
+                                         metadata);
+        } else if (service == TrackerImageItem.SERVICE) {
+            return new TrackerImageItem (this.id + ":" + path,
+                                         path,
+                                         this,
+                                         metadata);
+        } else if (service == TrackerMusicItem.SERVICE) {
+            return new TrackerMusicItem (this.id + ":" + path,
+                                         path,
+                                         this,
+                                         metadata);
+        } else {
+            return null;
+        }
+    }
+
     private void create_proxies () throws GLib.Error {
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
@@ -231,6 +254,5 @@ public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     }
 
     protected abstract string[] get_metadata_keys ();
-    protected abstract MediaItem? create_item (string path, string[] metadata);
 }
 

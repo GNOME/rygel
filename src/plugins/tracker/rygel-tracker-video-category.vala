@@ -34,12 +34,5 @@ public class Rygel.TrackerVideoCategory : Rygel.TrackerSearchContainer {
     protected override string[] get_metadata_keys () {
         return TrackerVideoItem.get_metadata_keys ();
     }
-
-    protected override MediaItem? create_item (string path, string[] metadata) {
-        return new TrackerVideoItem (this.id + ":" + path,
-                                     path,
-                                     this,
-                                     metadata);
-    }
 }
 
