@@ -27,6 +27,8 @@
 public class Rygel.TrackerGetMetadataResult :
              Rygel.SimpleAsyncResult<MediaObject> {
     protected string item_id;
+    protected string item_path;
+    protected string item_service;
 
     public TrackerGetMetadataResult (TrackerSearchContainer search_container,
                                      AsyncReadyCallback     callback,
@@ -45,9 +47,8 @@ public class Rygel.TrackerGetMetadataResult :
 
         var search_container = (TrackerSearchContainer) this.source_object;
 
-        string path = search_container.get_item_path (item_id);
-        this.data = search_container.create_item (search_container.service,
-                                                  path,
+        this.data = search_container.create_item (this.item_service,
+                                                  this.item_path,
                                                   metadata);
 
         this.complete ();

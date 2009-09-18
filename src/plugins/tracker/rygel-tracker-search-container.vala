@@ -159,15 +159,22 @@ public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         this.results.add (res);
 
         try {
-            string path = this.get_item_path (id);
-            if (path == null) {
+            string parent_id;
+
+            res.item_path = this.get_item_info (id,
+                                                out parent_id,
+                                                out res.item_service);
+            if (res.item_path == null) {
                 throw new ContentDirectoryError.NO_SUCH_OBJECT (
                                                     "No such object");
             }
 
             string[] keys = this.get_metadata_keys ();
 
-            this.metadata.Get (this.service, path, keys, res.ready);
+            this.metadata.Get (res.item_service,
+                               res.item_path,
+                               keys,
+                               res.ready);
         } catch (GLib.Error error) {
             res.error = error;
 
@@ -187,7 +194,8 @@ public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     }
 
     public bool is_thy_child (string item_id) {
-        var parent_id = this.get_item_parent_id (item_id);
+        string parent_id = null;
+        this.get_item_info (id, out parent_id, out service);
 
         if (parent_id != null && parent_id == this.id) {
             return true;
@@ -196,20 +204,10 @@ public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         }
     }
 
-    public string? get_item_path (string item_id) {
-        var tokens = item_id.split (":", 2);
-
-        if (tokens[0] != null && tokens[1] != null) {
-            return tokens[1];
-        } else {
-            return null;
-        }
-    }
-
     public MediaItem? create_item (string   service,
                                    string   path,
                                    string[] metadata) {
-        var id = this.id + ":" + path;
+        var id = service + ":" + this.id + ":" + path;
 
         if (service == TrackerVideoItem.SERVICE) {
             return new TrackerVideoItem (id,
@@ -231,6 +229,23 @@ public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         }
     }
 
+    // Returns the path, ID of the parent and service this item belongs to, or
+    // null item_id is invalid
+    public string? get_item_info (string     item_id,
+                                  out string parent_id,
+                                  out string service) {
+        var tokens = item_id.split (":", 3);
+
+        if (tokens[0] != null && tokens[1] != null && tokens[2] != null) {
+            service = tokens[0];
+            parent_id = tokens[1];
+
+            return tokens[2];
+        } else {
+            return null;
+        }
+    }
+
     private void create_proxies () throws GLib.Error {
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
@@ -243,16 +258,6 @@ public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         this.tracker = connection.get_object (TRACKER_SERVICE,
                                               TRACKER_PATH,
                                               TRACKER_IFACE);
-    }
-
-    private string? get_item_parent_id (string item_id) {
-        var tokens = item_id.split (":", 2);
-
-        if (tokens[0] != null) {
-            return tokens[0];
-        } else {
-            return null;
-        }
     }
 
     protected abstract string[] get_metadata_keys ();
