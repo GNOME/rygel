@@ -28,7 +28,7 @@ using Gee;
 /**
  * A container listing a Tracker search result.
  */
-public abstract class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
+public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker";
     private const string TRACKER_PATH = "/org/freedesktop/Tracker";
