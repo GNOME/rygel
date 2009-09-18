@@ -87,7 +87,11 @@ public class Rygel.MetadataExtractor: GLib.Object {
         this.register_custom_tag (TAG_RYGEL_MTIME, typeof (uint64));
 
         // setup fake sinks
-        this.playbin = ElementFactory.make ("playbin", null);
+        this.playbin = ElementFactory.make ("playbin2", null);
+        if (this.playbin == null) {
+            this.playbin = ElementFactory.make ("playbin", null);
+        }
+
         this.fakesinks = new Gst.Element[2];
         this.fakesinks[0] = ElementFactory.make ("fakesink", null);
         this.fakesinks[1] = ElementFactory.make ("fakesink", null);
@@ -237,22 +241,13 @@ public class Rygel.MetadataExtractor: GLib.Object {
     }
 
     private void extract_stream_info () {
-        weak GLib.List <dynamic GLib.Object> stream_info = null;
-
-        stream_info = this.playbin.stream_info;
-        return_if_fail (stream_info != null);
-
-        foreach (var info in stream_info) {
-            if (info == null) {
-                continue;
-            }
-
-            extract_av_info (info);
-        }
+        extract_av_info (this.fakesinks[0].get_pad ("sink"),
+                StreamType.VIDEO);
+        extract_av_info (this.fakesinks[1].get_pad ("sink"),
+                StreamType.AUDIO);
     }
 
-    private void extract_av_info (dynamic GLib.Object info) {
-        Pad pad = (Pad) info.object;
+    private void extract_av_info (Pad pad, StreamType type) {
         if (pad == null) {
             return;
         }
@@ -267,7 +262,6 @@ public class Rygel.MetadataExtractor: GLib.Object {
             return;
         }
 
-        StreamType type = info.type;
         if (type == StreamType.AUDIO) {
             this.extract_audio_info (structure);
         } else if (type == StreamType.VIDEO) {
