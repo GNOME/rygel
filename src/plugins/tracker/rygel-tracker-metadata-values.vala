@@ -35,6 +35,13 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
     private const string METADATA_IFACE = "org.freedesktop.Tracker.Metadata";
 
     private const string CATEGORY = "Files";
+    private const string QUERY_CONDITION =
+        "<rdfq:Condition>\n" +
+                "<rdfq:contains>\n" +
+                    "<rdfq:Property name=\"%s\" />\n" +
+                    "<rdf:String>%s</rdf:String>\n" +
+                "</rdfq:contains>\n" +
+        "</rdfq:Condition>";
 
     public dynamic DBus.Object metadata;
 
@@ -83,7 +90,14 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         for (uint i = 0; i < search_result.length; i++) {
             string value = search_result[i][0];
 
-            var container = new SimpleContainer (value, this, value);
+            var query_condition = QUERY_CONDITION.printf (
+                                        this.key,
+                                        Markup.escape_text (value));
+            var container = new TrackerSearchContainer (value,
+                                                        this,
+                                                        value,
+                                                        CATEGORY,
+                                                        query_condition);
 
             this.children.add (container);
         }
