@@ -77,7 +77,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         this.monitor = monitor;
     }
 
-    private void on_close_async (Object obj, AsyncResult res) {
+    private void on_close_async (Object? obj, AsyncResult res) {
         var enumerator = (FileEnumerator) obj;
         try {
             enumerator.close_finish (res);
@@ -129,7 +129,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         return false;
     }
 
-    private void on_next_files_ready (Object obj, AsyncResult res) {
+    private void on_next_files_ready (Object? obj, AsyncResult res) {
         var enumerator = (FileEnumerator) obj;
         try {
             var list = enumerator.next_files_finish (res);
@@ -175,7 +175,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         }
     }
 
-    private void on_enumerate_ready (Object obj, AsyncResult res) {
+    private void on_enumerate_ready (Object? obj, AsyncResult res) {
         var file = (File) obj;
         try {
             var enumerator = file.enumerate_children_finish (res);
@@ -210,7 +210,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         return false;
     }
 
-    private void on_initial_info_ready (Object source, AsyncResult result) {
+    private void on_initial_info_ready (Object? source, AsyncResult result) {
         var file = (File) source;
         try {
             var info = file.query_info_finish (result);

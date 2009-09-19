@@ -60,7 +60,7 @@ public class Rygel.MediaExportRecursiveFileMonitor : Object {
         }
     }
 
-    private void on_info_ready (Object source, AsyncResult res) {
+    private void on_info_ready (Object? source, AsyncResult res) {
         var file = (File) source;
 
         try {
