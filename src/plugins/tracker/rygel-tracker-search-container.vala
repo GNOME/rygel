@@ -73,8 +73,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
             this.results = new Gee.ArrayList<AsyncResult>();
         } catch (DBus.Error error) {
-            critical ("Failed to create to Session bus: %s\n",
-                      error.message);
+            critical ("Failed to connect to session bus: %s\n", error.message);
         }
     }
 
