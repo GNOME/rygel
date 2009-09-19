@@ -80,7 +80,7 @@ public class Rygel.PluginLoader : Object {
                                       on_children_enumerated);
     }
 
-    private void on_children_enumerated (GLib.Object      source_object,
+    private void on_children_enumerated (GLib.Object?     source_object,
                                          GLib.AsyncResult res) {
         File dir = (File) source_object;
         FileEnumerator enumerator;
@@ -101,7 +101,7 @@ public class Rygel.PluginLoader : Object {
                                      on_next_files_enumerated);
     }
 
-    private void on_next_files_enumerated (GLib.Object      source_object,
+    private void on_next_files_enumerated (GLib.Object?     source_object,
                                            GLib.AsyncResult res) {
         FileEnumerator enumerator = (FileEnumerator) source_object;
         File dir = (File) enumerator.get_container ();

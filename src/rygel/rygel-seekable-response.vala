@@ -65,7 +65,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
         this.file.read_async (this.priority, cancellable, this.on_file_read);
     }
 
-    private void on_file_read (GLib.Object      source_object,
+    private void on_file_read (GLib.Object?     source_object,
                                GLib.AsyncResult result) {
         try {
            this.input_stream = this.file.read_finish (result);
@@ -101,7 +101,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
                                  on_contents_read);
     }
 
-    private void on_contents_read (GLib.Object      source_object,
+    private void on_contents_read (GLib.Object?     source_object,
                                    GLib.AsyncResult result) {
         FileInputStream input_stream = (FileInputStream) source_object;
         ssize_t bytes_read;
@@ -125,7 +125,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
         }
     }
 
-    private void on_input_stream_closed (GLib.Object      source_object,
+    private void on_input_stream_closed (GLib.Object?     source_object,
                                          GLib.AsyncResult result) {
         FileInputStream input_stream = (FileInputStream) source_object;
 

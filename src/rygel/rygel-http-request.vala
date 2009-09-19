@@ -138,8 +138,8 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
     }
 
-    private void on_item_found (GLib.Object source_object,
-                                AsyncResult res) {
+    private void on_item_found (GLib.Object? source_object,
+                                AsyncResult  res) {
         var container = (MediaContainer) source_object;
 
         MediaObject media_object;

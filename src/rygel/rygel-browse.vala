@@ -102,7 +102,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
                                          this.on_media_object_found);
     }
 
-    private void on_media_object_found (Object      source_object,
+    private void on_media_object_found (Object?     source_object,
                                         AsyncResult res) {
         var container = (MediaContainer) source_object;
 
@@ -263,7 +263,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
                                 this.on_children_fetched);
     }
 
-    private void on_children_fetched (Object      source_object,
+    private void on_children_fetched (Object?     source_object,
                                       AsyncResult res) {
         var container = (MediaContainer) source_object;
 
