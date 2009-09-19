@@ -62,7 +62,7 @@ internal class Rygel.MediaObjectSearch<G> : GLib.Object, Rygel.StateMachine {
         }
     }
 
-    private void on_object_found (Object      source_object,
+    private void on_object_found (Object?     source_object,
                                   AsyncResult res) {
         try {
             var container = source_object as MediaContainer;
