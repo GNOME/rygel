@@ -174,8 +174,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                                 out parent_id,
                                                 out res.item_service);
             if (res.item_path == null) {
-                throw new ContentDirectoryError.NO_SUCH_OBJECT (
-                                                    "No such object");
+                res.complete_in_idle ();
             }
 
             string[] keys = TrackerItem.get_metadata_keys ();

@@ -41,9 +41,7 @@ public class Rygel.ExternalItem : Rygel.MediaItem {
     public ExternalItem.for_id (string            id,
                                 ExternalContainer parent) throws GLib.Error {
         var object_path = id.str ("/");
-        if (object_path == null) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
-        }
+        assert (object_path != null);
 
         this (id, object_path, parent);
     }
