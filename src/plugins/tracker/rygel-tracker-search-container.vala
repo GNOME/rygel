@@ -174,6 +174,8 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                                 out res.item_service);
             if (res.item_path == null) {
                 res.complete_in_idle ();
+
+                return;
             }
 
             string[] keys = TrackerItem.get_metadata_keys ();
