@@ -51,9 +51,9 @@ internal class Rygel.MediaObjectSearch<G> : GLib.Object, Rygel.StateMachine {
     }
 
     public void run () {
-        var container = this.containers.get (0);
+        if (this.containers.size > 0) {
+            var container = this.containers.get (0);
 
-        if (container != null) {
             container.find_object (this.id,
                                    this.cancellable,
                                    this.on_object_found);
