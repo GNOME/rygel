@@ -46,16 +46,20 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
     public string query_condition;
 
+    public string[] keywords;
+
     Gee.List<AsyncResult> results;
 
     public TrackerSearchContainer (string         id,
                                    MediaContainer parent,
                                    string         title,
                                    string         service,
-                                   string?        query_condition) {
+                                   string?        query_condition,
+                                   string[]       keywords = new string[0]) {
         base (id, parent, title, 0);
 
         this.service = service;
+        this.keywords = keywords;
 
         if (query_condition != null) {
             this.query_condition = query_condition;
@@ -86,7 +90,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                this.service,
                                new string[0],
                                "",
-                               new string[0],
+                               this.keywords,
                                this.query_condition,
                                false,
                                new string[0],
@@ -130,7 +134,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                this.service,
                                TrackerItem.get_metadata_keys (),
                                "",
-                               new string[0],
+                               this.keywords,
                                this.query_condition,
                                false,
                                new string[0],
