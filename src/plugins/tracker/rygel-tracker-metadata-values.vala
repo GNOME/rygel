@@ -90,6 +90,10 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         for (uint i = 0; i < search_result.length; i++) {
             string value = search_result[i][0];
 
+            if (value == "") {
+                continue;
+            }
+
             var query_condition = QUERY_CONDITION.printf (
                                         this.key,
                                         Markup.escape_text (value));
