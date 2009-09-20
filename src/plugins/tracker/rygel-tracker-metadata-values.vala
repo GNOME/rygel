@@ -66,7 +66,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
             this.metadata.GetUniqueValues (SERVICE,
                                            keys,
                                            "",
-                                           true,
+                                           false,
                                            0,
                                            -1,
                                            on_get_unique_values_cb);
