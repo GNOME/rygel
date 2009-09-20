@@ -59,6 +59,7 @@ public class Rygel.TrackerRootContainer : Rygel.SimpleContainer {
                                                       "18",
                                                       this,
                                                       "Albums"));
+        this.children.add (new TrackerKeywords ("19", this));
 
         // Now we know how many top-level containers we have
         this.child_count = this.children.size;
