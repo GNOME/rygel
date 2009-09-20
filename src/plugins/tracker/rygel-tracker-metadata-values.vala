@@ -34,7 +34,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
     private const string METADATA_PATH = "/org/freedesktop/Tracker/Metadata";
     private const string METADATA_IFACE = "org.freedesktop.Tracker.Metadata";
 
-    private const string CATEGORY = "Files";
+    private const string SERVICE = "Files";
     private const string QUERY_CONDITION =
         "<rdfq:Condition>\n" +
                 "<rdfq:contains>\n" +
@@ -63,7 +63,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
             /* FIXME: We need to hook to some tracker signals to keep
              *        this field up2date at all times
              */
-            this.metadata.GetUniqueValues (CATEGORY,
+            this.metadata.GetUniqueValues (SERVICE,
                                            keys,
                                            "",
                                            true,
@@ -96,7 +96,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
             var container = new TrackerSearchContainer (value,
                                                         this,
                                                         value,
-                                                        CATEGORY,
+                                                        SERVICE,
                                                         query_condition);
 
             this.children.add (container);
