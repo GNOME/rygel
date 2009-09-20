@@ -106,7 +106,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         this.updated ();
     }
 
-    private void create_proxies () throws GLib.Error {
+    private void create_proxies () throws DBus.Error {
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
         this.metadata = connection.get_object (TRACKER_SERVICE,
