@@ -54,18 +54,13 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                    MediaContainer parent,
                                    string         title,
                                    string         service,
-                                   string?        query_condition,
+                                   string         query_condition = "",
                                    string[]       keywords = new string[0]) {
         base (id, parent, title, 0);
 
         this.service = service;
         this.keywords = keywords;
-
-        if (query_condition != null) {
-            this.query_condition = query_condition;
-        } else {
-            this.query_condition = "";
-        }
+        this.query_condition = query_condition;
 
         try {
             this.create_proxies ();
