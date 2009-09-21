@@ -879,10 +879,9 @@ public class Rygel.MediaDB : Object {
         return exists;
     }
 
-
     public Gee.ArrayList<MediaObject> get_children (string container_id,
-                                                      uint offset,
-                                                      uint max_count) {
+                                                      long offset,
+                                                      long max_count) {
         Statement statement;
         Gee.ArrayList<MediaObject> children =
                                             new Gee.ArrayList<MediaObject> ();
