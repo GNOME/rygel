@@ -568,7 +568,7 @@ public class Rygel.MediaDB : Object {
             }
 
             if (item.parent == null) {
-                rc = statement.bind_null (5);
+                rc = statement.bind_null (4);
             } else {
                 rc = statement.bind_text (4, item.parent.id);
             }
