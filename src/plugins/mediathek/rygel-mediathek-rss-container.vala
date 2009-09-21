@@ -54,6 +54,8 @@ public class Rygel.MediathekRssContainer : Rygel.SimpleContainer {
         Xml.Doc* doc = Xml.Parser.parse_memory (data, (int) length);
         if (doc != null) {
             this.children.clear ();
+            this.child_count = 0;
+
             var ctx = new XPathContext (doc);
             var xpo = ctx.eval ("/rss/channel/title");
             if (xpo->type == Xml.XPathObjectType.NODESET &&
@@ -70,7 +72,7 @@ public class Rygel.MediathekRssContainer : Rygel.SimpleContainer {
                         var item = 
                                 MediathekVideoItem.create_from_xml (this, 
                                                                     node);
-                        this.children.add (item);
+                        this.add_child (item);
                         ret = true;
                     }
                     catch (MediathekVideoItemError error) {
@@ -84,7 +86,6 @@ public class Rygel.MediathekRssContainer : Rygel.SimpleContainer {
             }
 
             delete doc;
-            this.child_count = children.size;
             this.updated ();
         }
         else {

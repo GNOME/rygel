@@ -62,10 +62,9 @@ public class Rygel.MediathekRootContainer : Rygel.SimpleContainer {
         }
 
         foreach (int id in feeds) {
-            this.children.add (new MediathekRssContainer (this, id));
+            this.add_child (new MediathekRssContainer (this, id));
         }
 
-        this.child_count = this.children.size;
         GLib.Timeout.add_seconds (1800, on_schedule_update);
     }
 }

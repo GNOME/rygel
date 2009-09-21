@@ -48,8 +48,6 @@ public class Rygel.GstLaunchRootContainer : SimpleContainer {
         } catch (Error err) {
             debug ("GstLaunch init failed: %s", err.message);
         }
-
-        this.child_count = this.children.size;
     }
 
     void add_launch_item (string name) {
@@ -61,11 +59,11 @@ public class Rygel.GstLaunchRootContainer : SimpleContainer {
             var launch_line = config.get_string (CONFIG_GROUP,
                                                  "%s_launch".printf (name));
 
-            this.children.add (new GstLaunchItem (name,
-                                                  this,
-                                                  title,
-                                                  mime_type,
-                                                  launch_line));
+            this.add_child (new GstLaunchItem (name,
+                                               this,
+                                               title,
+                                               mime_type,
+                                               launch_line));
         } catch (GLib.Error err) {
             debug ("GstLaunch failed item '%s': %s", name, err.message);
         }

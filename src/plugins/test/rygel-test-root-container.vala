@@ -33,15 +33,12 @@ public class Rygel.TestRootContainer : Rygel.SimpleContainer {
     public TestRootContainer (string title) {
         base.root (title);
 
-        this.children.add (new TestAudioItem ("sinewave",
-                                              this,
-                                              "Sine Wave"));
-        this.children.add (new TestVideoItem ("smtpe",
-                                              this,
-                                              "SMTPE"));
-
-        // Now we know how many top-level children we have
-        this.child_count = this.children.size;
+        this.add_child (new TestAudioItem ("sinewave",
+                                           this,
+                                           "Sine Wave"));
+        this.add_child (new TestVideoItem ("smtpe",
+                                           this,
+                                           "SMTPE"));
     }
 }
 

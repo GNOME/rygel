@@ -47,6 +47,18 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
         this ("0", null, title);
     }
 
+    public void add_child (MediaObject child) {
+        this.children.add (child);
+
+        this.child_count++;
+    }
+
+    public void remove_child (MediaObject child) {
+        this.children.remove (child);
+
+        this.child_count--;
+    }
+
     public override void get_children (uint               offset,
                                        uint               max_count,
                                        Cancellable?       cancellable,

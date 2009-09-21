@@ -103,10 +103,9 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
                                                         SERVICE,
                                                         query_condition);
 
-            this.children.add (container);
+            this.add_child (container);
         }
 
-        this.child_count = this.children.size;
         this.updated ();
     }
 

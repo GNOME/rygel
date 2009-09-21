@@ -33,33 +33,30 @@ public class Rygel.TrackerRootContainer : Rygel.SimpleContainer {
     public TrackerRootContainer (string title) {
         base.root (title);
 
-        this.children.add (new TrackerSearchContainer (
+        this.add_child (new TrackerSearchContainer (
                                         "16",
                                         this,
                                         "Pictures",
                                         TrackerImageItem.SERVICE));
-        this.children.add (new TrackerSearchContainer (
+        this.add_child (new TrackerSearchContainer (
                                         "14",
                                         this,
                                         "Music",
                                         TrackerMusicItem.SERVICE));
-        this.children.add (new TrackerSearchContainer (
+        this.add_child (new TrackerSearchContainer (
                                         "15",
                                         this,
                                         "Videos",
                                         TrackerVideoItem.SERVICE));
-        this.children.add (new TrackerMetadataValues ("Audio:Artist",
-                                                      "17",
-                                                      this,
-                                                      "Artists"));
-        this.children.add (new TrackerMetadataValues ("Audio:Album",
-                                                      "18",
-                                                      this,
-                                                      "Albums"));
-        this.children.add (new TrackerKeywords ("19", this));
-
-        // Now we know how many top-level containers we have
-        this.child_count = this.children.size;
+        this.add_child (new TrackerMetadataValues ("Audio:Artist",
+                                                   "17",
+                                                   this,
+                                                   "Artists"));
+        this.add_child (new TrackerMetadataValues ("Audio:Album",
+                                                   "18",
+                                                   this,
+                                                   "Albums"));
+        this.add_child (new TrackerKeywords ("19", this));
     }
 }
 
