@@ -23,72 +23,14 @@
 using Gee;
 using Soup;
 
-public class Rygel.MediathekRootContainer : Rygel.MediaContainer {
-    private ArrayList<MediathekRssContainer> items;
+public class Rygel.MediathekRootContainer : Rygel.SimpleContainer {
     internal SessionAsync session;
     private static MediathekRootContainer instance;
 
-    public override void get_children (uint offset,
-                                       uint max_count,
-                                       Cancellable? cancellable,
-                                       AsyncReadyCallback callback)
-    {
-        uint stop = offset + max_count;
-        stop = stop.clamp (0, this.child_count);
-        var children = this.items.slice ((int) offset, (int) stop);
-
-        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (this,
-                                                                    callback);
-        res.data = children;
-        res.complete_in_idle ();
-    }
-
-    public override Gee.List<MediaObject>? get_children_finish (
-                                                        AsyncResult res)
-                                                        throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
-
-        return simple_res.data;
-    }
-
-    public override void find_object (string id,
-                                      Cancellable? cancellable,
-                                      AsyncReadyCallback callback) {
-        var res = new Rygel.SimpleAsyncResult<string> (this,
-                                                       callback);
-
-        res.data = id;
-        res.complete_in_idle ();
-    }
-
-    public override MediaObject? find_object_finish (AsyncResult res)
-                                                     throws GLib.Error {
-        MediaObject item = null;
-        var id = ((Rygel.SimpleAsyncResult<string>) res).data;
-
-        foreach (MediathekRssContainer tmp in this.items) {
-            if (id == tmp.id) {
-                item = tmp;
-                break;
-            }
-        }
-
-        if (item == null) {
-            foreach (MediathekRssContainer container in this.items) {
-                item = container.find_object_sync (id);
-                if (item != null) {
-                    break;
-                }
-            }
-        }
-
-        return item;
-    }
-
     private bool on_schedule_update () {
         message("Scheduling update for all feeds....");
-        foreach (MediathekRssContainer container in this.items) {
-            container.update ();
+        foreach (var container in this.children) {
+            ((MediathekRssContainer) container).update ();
         }
 
         return true;
@@ -103,9 +45,8 @@ public class Rygel.MediathekRootContainer : Rygel.MediaContainer {
     }
 
     private MediathekRootContainer () {
-        base.root ("ZDF Mediathek", 0);
+        base.root ("ZDF Mediathek");
         this.session = new Soup.SessionAsync ();
-        this.items = new ArrayList<MediathekRssContainer> ();
         Gee.ArrayList<int> feeds = null;
 
         var config = Rygel.MetaConfig.get_default ();
@@ -121,10 +62,10 @@ public class Rygel.MediathekRootContainer : Rygel.MediaContainer {
         }
 
         foreach (int id in feeds) {
-            this.items.add (new MediathekRssContainer (this, id));
+            this.children.add (new MediathekRssContainer (this, id));
         }
 
-        this.child_count = this.items.size;
+        this.child_count = this.children.size;
         GLib.Timeout.add_seconds (1800, on_schedule_update);
     }
 }

@@ -29,71 +29,19 @@ using Gst;
 /**
  * Represents the root container for Test media content hierarchy.
  */
-public class Rygel.TestRootContainer : Rygel.MediaContainer {
-    private ArrayList<MediaItem> items;
-
+public class Rygel.TestRootContainer : Rygel.SimpleContainer {
     public TestRootContainer (string title) {
-        base.root (title, 0);
+        base.root (title);
 
-        this.items = new ArrayList<MediaItem> ();
-        this.items.add (new TestAudioItem ("sinewave",
-                                           this,
-                                           "Sine Wave"));
-        this.items.add (new TestVideoItem ("smtpe",
-                                           this,
-                                           "SMTPE"));
+        this.children.add (new TestAudioItem ("sinewave",
+                                              this,
+                                              "Sine Wave"));
+        this.children.add (new TestVideoItem ("smtpe",
+                                              this,
+                                              "SMTPE"));
 
-        // Now we know how many top-level items we have
-        this.child_count = this.items.size;
+        // Now we know how many top-level children we have
+        this.child_count = this.children.size;
     }
-
-    public override void get_children (uint               offset,
-                                       uint               max_count,
-                                       Cancellable?       cancellable,
-                                       AsyncReadyCallback callback) {
-        uint stop = offset + max_count;
-
-        stop = stop.clamp (0, this.child_count);
-        var children = this.items.slice ((int) offset, (int) stop);
-
-        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>>
-                                            (this,
-                                             callback);
-        res.data = children;
-        res.complete_in_idle ();
-    }
-
-    public override Gee.List<MediaObject>? get_children_finish (
-                                                         AsyncResult res)
-                                                         throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
-        return simple_res.data;
-    }
-
-    public override void find_object (string             id,
-                                      Cancellable?       cancellable,
-                                      AsyncReadyCallback callback) {
-        var res = new Rygel.SimpleAsyncResult<string> (this, callback);
-
-        res.data = id;
-        res.complete_in_idle ();
-    }
-
-    public override MediaObject? find_object_finish (AsyncResult res)
-                                                     throws Error {
-        MediaItem item = null;
-        var id = ((Rygel.SimpleAsyncResult<string>) res).data;
-
-        foreach (MediaItem tmp in this.items) {
-            if (id == tmp.id) {
-                item = tmp;
-
-                break;
-            }
-        }
-
-        return item;
-    }
-
 }
 

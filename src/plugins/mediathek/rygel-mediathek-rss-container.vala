@@ -24,8 +24,7 @@ using Gee;
 using Soup;
 using Xml;
 
-public class Rygel.MediathekRssContainer : Rygel.MediaContainer {
-    private ArrayList<MediaItem> items;
+public class Rygel.MediathekRssContainer : Rygel.SimpleContainer {
     private uint zdf_content_id;
     private Soup.Date last_modified = null;
 
@@ -54,7 +53,7 @@ public class Rygel.MediathekRssContainer : Rygel.MediaContainer {
         bool ret = false;
         Xml.Doc* doc = Xml.Parser.parse_memory (data, (int) length);
         if (doc != null) {
-            items.clear ();
+            this.children.clear ();
             var ctx = new XPathContext (doc);
             var xpo = ctx.eval ("/rss/channel/title");
             if (xpo->type == Xml.XPathObjectType.NODESET &&
@@ -71,7 +70,7 @@ public class Rygel.MediathekRssContainer : Rygel.MediaContainer {
                         var item = 
                                 MediathekVideoItem.create_from_xml (this, 
                                                                     node);
-                        this.items.add (item);
+                        this.children.add (item);
                         ret = true;
                     }
                     catch (MediathekVideoItemError error) {
@@ -85,7 +84,7 @@ public class Rygel.MediathekRssContainer : Rygel.MediaContainer {
             }
 
             delete doc;
-            this.child_count = items.size;
+            this.child_count = children.size;
             this.updated ();
         }
         else {
@@ -93,56 +92,6 @@ public class Rygel.MediathekRssContainer : Rygel.MediaContainer {
         }
 
         return ret;
-    }
-
-    public override void get_children (uint offset, 
-                                       uint max_count, 
-                                       Cancellable? cancellable, 
-                                       AsyncReadyCallback callback) {
-        uint stop = offset + max_count;
-        stop = stop.clamp (0, this.child_count);
-        var children = this.items.slice ((int) offset, (int) stop);
-
-        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>> (this,
-                                                                    callback);
-        res.data = children;
-        res.complete_in_idle ();
-    }
-
-    public override Gee.List<MediaObject>? get_children_finish (
-                                                            AsyncResult res)
-                                                            throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
-
-        return simple_res.data;
-    }
-
-    public override void find_object (string id, 
-                                      Cancellable? cancellable, 
-                                      AsyncReadyCallback callback) {
-        var res = new Rygel.SimpleAsyncResult<string> (this,
-                                                       callback);
-
-        res.data = id;
-        res.complete_in_idle ();
-    }
-
-    public override MediaObject? find_object_finish (AsyncResult res) 
-                                                     throws GLib.Error {
-        var id = ((Rygel.SimpleAsyncResult<string>) res).data;
-        return find_object_sync (id);
-    }
-
-    public MediaObject? find_object_sync (string id) {
-        MediaItem item = null;
-        foreach (MediaItem tmp in this.items) {
-            if (id == tmp.id) {
-                item = tmp;
-                break;
-            }
-        }
-
-        return item;
     }
 
     public void update () {
@@ -164,10 +113,8 @@ public class Rygel.MediathekRssContainer : Rygel.MediaContainer {
     public MediathekRssContainer (MediaContainer parent, uint id) {
         base ("GroupId:%u".printf(id), 
              parent, 
-             "ZDF Mediathek RSS feed %u".printf(id), 
-             0);
-        this.items = new ArrayList<MediaItem> ();
-        this.child_count = 0;
+             "ZDF Mediathek RSS feed %u".printf(id));
+
         this.zdf_content_id = id;
         update ();
     }
