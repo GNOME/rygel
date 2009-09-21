@@ -407,6 +407,10 @@ public class Rygel.MediaDB : Object {
             create_object (container);
             save_uris (container);
             rc = db.exec ("COMMIT");
+            if (rc == Sqlite.OK) {
+                object_added (container.id);
+                container_added (container.id);
+            }
         } catch (Error error) {
             rc = db.exec ("ROLLBACK");
         }
