@@ -413,6 +413,7 @@ public class Rygel.MediaDB : Object {
             }
         } catch (Error error) {
             rc = db.exec ("ROLLBACK");
+            throw error;
         }
     }
 
@@ -432,11 +433,12 @@ public class Rygel.MediaDB : Object {
                      item.id,
                      error.message);
             rc = db.exec ("ROLLBACK;");
+            throw error;
         }
     }
 
 
-    public void update_object (MediaObject obj) {
+    public void update_object (MediaObject obj) throws Error {
         var rc = db.exec ("BEGIN");
         try {
             remove_uris (obj);
@@ -458,6 +460,7 @@ public class Rygel.MediaDB : Object {
                      obj.id,
                      error.message);
             rc = db.exec ("ROLLBACK");
+            throw error;
         }
     }
 
