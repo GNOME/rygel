@@ -20,6 +20,29 @@
 
 using Gee;
 
+const string DYNAMIC_CONTAINER_ID = "DynamicContainerId";
+
+internal class Rygel.MediaExportDynamicContainer : Rygel.MediaDBContainer {
+    public MediaExportDynamicContainer (       MediaDB media_db,
+                                        MediaContainer parent) {
+        base (media_db, DYNAMIC_CONTAINER_ID, "dynamic");
+        this.parent = parent;
+    }
+
+    public Gee.List<string> get_uris () {
+        var result = new ArrayList<string> ();
+
+        var children = this.media_db.get_children (this.id, -1, -1);
+        if (children != null) {
+            foreach (var child in children) {
+                result.add_all (child.uris);
+            }
+        }
+
+        return result;
+    }
+}
+
 /**
  * Represents the root container.
  */
@@ -28,6 +51,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     private HashMap<File, MediaExportHarvester> harvester;
     private MediaExportRecursiveFileMonitor monitor;
     private MediaExportDBusService service;
+    private MediaExportDynamicContainer dynamic_elements;
 
     private static MediaContainer instance = null;
 
@@ -58,13 +82,9 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 uris.add (uri);
         }
 
-        // add the uris gotten from DBus interface
-        try {
-            var obj = this.media_db.get_object ("0");
-            if (obj != null && obj.uris != null) {
-                uris.add_all (obj.uris);
-            }
-        } catch (MediaDBError error) {
+        var dbus_uris = this.dynamic_elements.get_uris ();
+        if (dbus_uris != null) {
+            uris.add_all (dbus_uris);
         }
 
         return uris;
@@ -86,14 +106,8 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     }
 
     public void add_uri (string uri) {
-        try {
-            this.uris.add (uri);
-            this.media_db.update_object (this);
-            var file = File.new_for_commandline_arg (uri);
-            this.harvest (file);
-        } catch (Error error) {
-            this.uris.remove (uri);
-        }
+        var file = File.new_for_commandline_arg (uri);
+        this.harvest (file, this.dynamic_elements);
     }
 
     public void remove_uri (string uri) {
@@ -102,8 +116,6 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                                               file.get_uri ());
 
         try {
-            this.uris.remove (uri);
-            this.media_db.update_object (this);
             this.media_db.remove_by_id (id);
         } catch (Error e) {
             warning ("Failed to remove uri: %s", e.message);
@@ -126,6 +138,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         this.monitor.changed.connect (this.on_file_changed);
 
         this.service = new MediaExportDBusService (this);
+        this.dynamic_elements = new MediaExportDynamicContainer (db, this);
 
         int64 timestamp;
         if (!this.media_db.exists ("0", out timestamp)) {
@@ -133,6 +146,13 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 media_db.save_object (this);
             } catch (Error error) {
                 // do nothing
+            }
+        }
+
+        if (!this.media_db.exists ("DynamicContainerId", out timestamp)) {
+            try {
+                media_db.save_object (this.dynamic_elements);
+            } catch (Error error) {
             }
         }
 
@@ -155,6 +175,9 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         }
 
         foreach (var id in ids) {
+            if (id == DYNAMIC_CONTAINER_ID)
+                continue;
+
             debug ("Id %s no longer in config, deleting...",
                    id);
             try {
