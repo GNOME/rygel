@@ -57,4 +57,8 @@ public class Rygel.MediaExportDBusService : Object {
     public void RemoveUri (string uri) {
         this.root_container.remove_uri (uri);
     }
+
+    public string[] GetUris () {
+        return this.root_container.get_dynamic_uris ();
+    }
 }
