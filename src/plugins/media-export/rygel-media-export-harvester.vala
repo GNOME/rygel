@@ -95,7 +95,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             }
 
             foreach (var child in children) {
-                this.media_db.delete_by_id (child);
+                this.media_db.remove_by_id (child);
             }
 
             do_update ();

@@ -86,10 +86,14 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     }
 
     public void add_uri (string uri) {
-        this.uris.add (uri);
-        this.media_db.update_object (this);
-        var file = File.new_for_commandline_arg (uri);
-        this.harvest (file);
+        try {
+            this.uris.add (uri);
+            this.media_db.update_object (this);
+            var file = File.new_for_commandline_arg (uri);
+            this.harvest (file);
+        } catch (Error error) {
+            this.uris.remove (uri);
+        }
     }
 
     public void remove_uri (string uri) {
@@ -100,8 +104,8 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         try {
             this.uris.remove (uri);
             this.media_db.update_object (this);
-            this.media_db.delete_by_id (id);
-        } catch (MediaDBError e) {
+            this.media_db.remove_by_id (id);
+        } catch (Error e) {
             warning ("Failed to remove uri: %s", e.message);
         }
     }
@@ -154,7 +158,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
             debug ("Id %s no longer in config, deleting...",
                    id);
             try {
-                this.media_db.delete_by_id (id);
+                this.media_db.remove_by_id (id);
             } catch (MediaDBError e) {
                 warning ("Failed to remove entry: %s", e.message);
             }
@@ -202,7 +206,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 // it may be that files removed are files that are not
                 // in the database, because they're not media files
                 if (obj != null) {
-                    this.media_db.delete_object (obj);
+                    this.media_db.remove_object (obj);
                     if (obj.parent != null) {
                         obj.parent.updated ();
                     }
