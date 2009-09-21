@@ -20,10 +20,8 @@
 
 [DBus (name = "org.gnome.Rygel.MediaExport1")]
 public class Rygel.MediaExportDBusService : Object {
-    private const string RYGEL_MEDIA_EXPORT_SERVICE =
-                                                 "org.gnome.Rygel.MediaExport1";
     private const string RYGEL_MEDIA_EXPORT_PATH =
-                                                 "/org/gnome/Rygel/MediaExport1";
+                                        "/org/gnome/Rygel/MediaExport1";
 
     private MediaExportRootContainer root_container;
 
@@ -32,20 +30,6 @@ public class Rygel.MediaExportDBusService : Object {
         this.root_container = root_container;
 
         var conn = DBus.Bus.get (DBus.BusType. SESSION);
-
-        dynamic DBus.Object bus = conn.get_object ("org.freedesktop.DBus",
-                                                   "/org/freedesktop/DBus",
-                                                   "org.freedesktop.DBus");
-
-        // try to register service in session bus
-        uint request_name_result = bus.request_name (
-                                                    RYGEL_MEDIA_EXPORT_SERVICE,
-                                                    (uint) 0);
-
-        if (request_name_result != DBus.RequestNameReply.PRIMARY_OWNER) {
-            warning ("Failed to start D-Bus service, name '%s' already taken",
-                     RYGEL_MEDIA_EXPORT_SERVICE);
-        }
 
         conn.register_object (RYGEL_MEDIA_EXPORT_PATH, this);
     }
