@@ -116,6 +116,8 @@ AC_ARG_ENABLE(strict-cc,
         enable_strict_cc=no)
 if test "x$enable_strict_cc" = "xyes"; then
         CFLAGS="$CFLAGS -Wall -Werror"
+else
+        CFLAGS="$CFLAGS -w"
 fi
 
 # Run uninstalled
