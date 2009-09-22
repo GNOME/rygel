@@ -23,7 +23,7 @@ using Gee;
 const string DYNAMIC_CONTAINER_ID = "DynamicContainerId";
 
 internal class Rygel.MediaExportDynamicContainer : Rygel.MediaDBContainer {
-    public MediaExportDynamicContainer (       MediaDB media_db,
+    public MediaExportDynamicContainer (MediaDB        media_db,
                                         MediaContainer parent) {
         base (media_db, DYNAMIC_CONTAINER_ID, "dynamic");
         this.parent = parent;
@@ -209,9 +209,9 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
 
     private void harvest (File file, MediaContainer parent = this) {
         var harvester = new MediaExportHarvester (parent,
-                                                this.media_db,
-                                                this.extractor,
-                                                this.monitor);
+                                                  this.media_db,
+                                                  this.extractor,
+                                                  this.monitor);
         harvester.harvested.connect (this.on_file_harvested);
         this.harvester[file] = harvester;
         harvester.harvest (file);
