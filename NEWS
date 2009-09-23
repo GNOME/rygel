@@ -1,3 +1,118 @@
+0.4
+===
+
+Brief summary of changes since 0.3:
+
+- Rygel is no more just a MediaServer but rather a collection of DLNA (UPnP AV)
+  services (devices in UPnP speak).
+- Port to new GUPnP APIs. The biggest advantage of that is that we now have
+  dynamic network support, i-e rygel can attach/detach to/from a network
+  interface as it goes up/down.
+- Support for time-based seeking in transcoded streams.
+- Folder plugin renamed to MediaExport.
+- Nice default title for Tracker and MediaExport.
+- Random tweaks to transcoding pipelines.
+- Provide a DBus service providing two functionalities:
+   * Ability to tell rygel to shutdown. Starting of Rygel is automatically
+     handled by D-Bus since a .service file is provideb by Rygel.
+   * Ability to tell Rygel (MediaExport plugin actually) to (un)export URIs on
+     the fly.
+- Implement enabling/disabling of UPnP in the preferences.
+- Configuration through commandline options.
+- Use a .ini configuration file rather than gconf.
+- Special default configuration for Maemo.
+- Don't spam the user's config directory and instead keep the description files
+  into a separate subdirectory.
+- `make clean` doesn't clean the generated C files anymore.
+- Remove "all rights reserved" part from all copyright headers.
+- Remove integrated DVB plugin as DVBDaemon now implements the external plugin
+  interface and hence dynamically glues to Rygel, just like PulseAudio.
+- New classes to further ease the plugin implementation.
+- MediaExport now uses the new Rygel clases to extract and save media metadata.
+- (Un)pause the SoupMessage at the right time. This was causing a lot of delays
+  when playing media on Sony PS3.
+- Bitrate is supposed to be in bytes/second. Not really but tell that to writers
+  of UPnP specification.
+- Expose transcode formats in the GetProtocolInfo's source argument. This should
+  make Sony Bravia TVs happy.
+- Transcoder URIs are now sorted according to their distance from the original
+  format.
+- Provide "contentFeatures.dlna.org" header in the HTTP responses.
+- Provide DLNA transferMode header in the HTTP responses.
+- Only advertise internal URIs on local loopback interface.
+- Replace 'ip' config by 'interface' so users can bind rygel to interfaces
+  rather than IP.
+- Allow plugins to provide thumbnails.
+- Add thumbnails (if available) for each item if none provided by plugins. This
+  works both on the destkop and maemo.
+- Supress all C compiler warnings by default. These warnings are mostly useless
+  for us since almost all C code is generated.
+- Provide simple and easy options to add and remove files and folders to
+  MediaExport in the Preferences UI.
+- Use Glade to it's max.
+- Preference dialog is now more like a GNOME preferences dialog.
+- Provide .desktop file for preferences dialog.
+- Shave the build output.
+- External plugin:
+  - actually use 'DLNAProfile' property.
+  - Don't load the plugin more than once.
+  - Utilize optional MediaItem properties.
+  - Fetch items on demand.
+  - Fix critical warnings.
+- Tracker plugin:
+  - Better detection of Tracker availability. Apparently ubuntu folks think that
+    providing a .service file is wrong.
+  - Better titles for top-level folders.
+  - More usable hierarchy: Browsing by artists, albums and tags.
+- MediaExport plugin:
+  - notify about updates to containers.
+  - Skip files/folders starting with '.'.
+  - Avoid crash if unknown file is found.
+  - Delete gone directories on new start.
+  - React on deletion of files.
+  - Add recursive file monitoring.
+- Mediathek plugin:
+  - Fix crash if no config is available.
+
+Dependency-related changes:
+
+- Require gupnp >= 0.13
+- Require gupnp-av >= 0.5
+- Require GStreamer >= 0.10.23
+- Require libgee >= 0.3.0
+
+Bugs fixed in this release:
+
+584649 - Folder plugin should not export dot files and directories
+586108 - ID3 information not exported on mp3 files
+588034 - Bad durations for audio video files with media export plugin
+585986 - Some copyright headers claim "all rights reserved"
+585989 - Running "make clean" should leave generated C files in place.
+586134 - Tracker plugin fails if org.freedesktop.Tracker can't be activated,
+         even if tracker is already running
+586243 - GStreamer 0.10.23 required for correct operation of transcoder
+587651 - Support for some MediaItem properties missing
+587855 - HTTP Error responses not sent
+587866 - No way to notify about new sub-containers
+588030 - rygel-preferences crashes if user's config file is missing
+588162 - Support seeking in transcoded content
+589955 - dc:creator never included in DIDL output
+589956 - git ignore rules
+589974 - Set the bitrate for transcoded resources correctly.
+589977 - Rygel not recognised by Sony Bravia televisions
+590643 - refactor HTTP request handling code
+590702 - Rygel should provide thumbnails for items
+591580 - not compatible with Samsung UE46B7070
+593228 - [plugin] new gstlaunch plugin
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+James Henstridge <james@jamesh.id.au>
+Thijs Vermeir <thijsvermeir@gmail.com>
+Ole André Vadla Ravnås <oleavr@gmail.com>
+
 0.3
 ===
 
