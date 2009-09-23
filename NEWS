@@ -6,19 +6,17 @@ Brief summary of changes since 0.3:
 - Rygel is no more just a MediaServer but rather a collection of DLNA (UPnP AV)
   services (devices in UPnP speak).
 - Port to new GUPnP APIs. The biggest advantage of that is that we now have
-  dynamic network support, i-e rygel can attach/detach to/from a network
+  dynamic network support, i-e Rygel can attach/detach to/from a network
   interface as it goes up/down.
 - Support for time-based seeking in transcoded streams.
-- Folder plugin renamed to MediaExport.
-- Nice default title for Tracker and MediaExport.
 - Random tweaks to transcoding pipelines.
 - Provide a DBus service providing two functionalities:
-   * Ability to tell rygel to shutdown. Starting of Rygel is automatically
+   * Ability to tell Rygel to shutdown. Starting of Rygel is automatically
      handled by D-Bus since a .service file is provided by Rygel.
    * Ability to tell Rygel (MediaExport plugin actually) to (un)export URIs on
      the fly.
 - Implement enabling/disabling of UPnP in the preferences.
-- Configuration through commandline options.
+- Configuration through command-line options.
 - Use a .ini configuration file rather than gconf.
 - Special default configuration for Maemo.
 - Don't spam the user's config directory and instead keep the description files
@@ -28,7 +26,6 @@ Brief summary of changes since 0.3:
 - Remove integrated DVB plugin as DVBDaemon now implements the external plugin
   interface and hence dynamically glues to Rygel, just like PulseAudio.
 - New classes to further ease the plugin implementation.
-- MediaExport now uses the new Rygel clases to extract and save media metadata.
 - (Un)pause the SoupMessage at the right time. This was causing a lot of delays
   when playing media on Sony PS3.
 - Bitrate is supposed to be in bytes/second. Not really but tell that to writers
@@ -40,38 +37,42 @@ Brief summary of changes since 0.3:
 - Provide "contentFeatures.dlna.org" header in the HTTP responses.
 - Provide DLNA transferMode header in the HTTP responses.
 - Only advertise internal URIs on local loopback interface.
-- Replace 'ip' config by 'interface' so users can bind rygel to interfaces
+- Replace 'ip' config by 'interface' so users can bind Rygel to interfaces
   rather than IP.
 - Allow plugins to provide thumbnails.
 - Add thumbnails (if available) for each item if none provided by plugins. This
-  works both on the destkop and maemo.
-- Supress all C compiler warnings by default. These warnings are mostly useless
+  works both on the desktop and Maemo.
+- Suppress all C compiler warnings by default. These warnings are mostly useless
   for us since almost all C code is generated.
-- Provide simple and easy options to add and remove files and folders to
-  MediaExport in the Preferences UI.
-- Use Glade to it's max.
 - Preference dialog is now more like a GNOME preferences dialog.
 - Provide .desktop file for preferences dialog.
 - Shave the build output.
-- External plugin:
-  - actually use 'DLNAProfile' property.
-  - Don't load the plugin more than once.
-  - Utilize optional MediaItem properties.
-  - Fetch items on demand.
-  - Fix critical warnings.
+- GstLaunch: New plugin that exposes gstreamer pipelines described using
+  familiar gst-launch syntax in the user configuration.
 - Tracker plugin:
+  - Nicer default title.
   - Better detection of Tracker availability. Apparently ubuntu folks think that
     providing a .service file is wrong.
   - Better titles for top-level folders.
   - More usable hierarchy: Browsing by artists, albums and tags.
-- MediaExport plugin:
+- Folder plugin:
+  - Rename to MediaExport.
+  - Nicer default title.
+  - Use the new Rygel classes to extract, export and save media metadata.
   - notify about updates to containers.
   - Skip files/folders starting with '.'.
   - Avoid crash if unknown file is found.
   - Delete gone directories on new start.
   - React on deletion of files.
   - Add recursive file monitoring.
-  - Export Metadata
+  - Provide simple and easy options to add and remove files and folders from the
+    preferences UI.
+- External plugin:
+  - actually use 'DLNAProfile' property.
+  - Don't load the plugin more than once.
+  - Utilise optional MediaItem properties.
+  - Fetch items on demand.
+  - Fix critical warnings.
 - Mediathek plugin:
   - Fix crash if no config is available.
 
