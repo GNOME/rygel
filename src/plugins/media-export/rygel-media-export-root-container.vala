@@ -20,12 +20,12 @@
 
 using Gee;
 
-const string DYNAMIC_CONTAINER_ID = "DynamicContainerId";
-
 internal class Rygel.MediaExportDynamicContainer : Rygel.MediaDBContainer {
+    public const string ID = "DynamicContainerId";
+
     public MediaExportDynamicContainer (MediaDB        media_db,
                                         MediaContainer parent) {
-        base (media_db, DYNAMIC_CONTAINER_ID, "Dynamic");
+        base (media_db, ID, "Dynamic");
         this.parent = parent;
     }
 
@@ -188,7 +188,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         }
 
         foreach (var id in ids) {
-            if (id == DYNAMIC_CONTAINER_ID)
+            if (id == MediaExportDynamicContainer.ID)
                 continue;
 
             debug ("Id %s no longer in config, deleting...",
