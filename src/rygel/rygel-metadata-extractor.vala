@@ -64,7 +64,8 @@ public class Rygel.MetadataExtractor: GLib.Object {
     private TagList tag_list;
 
     private GLib.Queue<File> file_queue;
-    private Gst.Element[] fakesinks;
+
+    private uint timeout_id;
 
     private static void register_custom_tag (string tag, Type type) {
         Gst.tag_register (tag,
@@ -73,6 +74,30 @@ public class Rygel.MetadataExtractor: GLib.Object {
                           tag,
                           "",
                           Gst.tag_merge_use_first);
+    }
+
+    private void renew_playbin () {
+        // setup fake sinks
+        this.playbin = ElementFactory.make ("playbin2", null);
+        if (this.playbin == null) {
+            this.playbin = ElementFactory.make ("playbin", null);
+        }
+
+        // increase reference count of sinks to workaround
+        // bug #596078
+        var sink = ElementFactory.make ("fakesink", null);
+        sink.ref ();
+        this.playbin.video_sink = sink;
+
+        sink = ElementFactory.make ("fakesink", null);
+        sink.ref ();
+        this.playbin.audio_sink = sink;
+
+        var bus = this.playbin.get_bus ();
+        bus.add_signal_watch ();
+        bus.message["tag"] += this.tag_cb;
+        bus.message["state-changed"] += this.state_changed_cb;
+        bus.message["error"] += this.error_cb;
     }
 
     public MetadataExtractor () {
@@ -86,24 +111,6 @@ public class Rygel.MetadataExtractor: GLib.Object {
         this.register_custom_tag (TAG_RYGEL_DEPTH, typeof (int));
         this.register_custom_tag (TAG_RYGEL_MTIME, typeof (uint64));
 
-        // setup fake sinks
-        this.playbin = ElementFactory.make ("playbin2", null);
-        if (this.playbin == null) {
-            this.playbin = ElementFactory.make ("playbin", null);
-        }
-
-        this.fakesinks = new Gst.Element[2];
-        this.fakesinks[0] = ElementFactory.make ("fakesink", null);
-        this.fakesinks[1] = ElementFactory.make ("fakesink", null);
-        this.playbin.video_sink = this.fakesinks[0];
-        this.playbin.audio_sink = this.fakesinks[1];
-
-        var bus = this.playbin.get_bus ();
-        bus.add_signal_watch ();
-        bus.message["tag"] += this.tag_cb;
-        bus.message["state-changed"] += this.state_changed_cb;
-        bus.message["error"] += this.error_cb;
-
         this.file_queue = new GLib.Queue<File> ();
         this.tag_list = new Gst.TagList ();
     }
@@ -116,12 +123,34 @@ public class Rygel.MetadataExtractor: GLib.Object {
         }
     }
 
+    private bool on_harvesting_timeout () {
+        warning ("Metadata extractor timed out on %s, restarting",
+               this.file_queue.peek_head ().get_uri ());
+        this.playbin.set_state (State.NULL);
+
+        this.error (file_queue.peek_head (),
+                    new IOChannelError.FAILED ("Pipeline stuck while reading file info"));
+        this.file_queue.pop_head ();
+        extract_next ();
+        return false;
+    }
+
     private void extract_next () {
+        if (this.timeout_id != 0)
+            Source.remove (this.timeout_id);
+
         if (this.file_queue.get_length () > 0) {
             try {
                 var item = this.file_queue.peek_head ();
-                this.extract_mime_and_size ();
+                debug ("Scheduling file %s for metadata extraction",
+                       item.get_uri ());
+               this.extract_mime_and_size ();
+                renew_playbin ();
                 this.playbin.uri = item.get_uri ();
+                this.timeout_id = Timeout.add_seconds_full (
+                                                         Priority.DEFAULT,
+                                                         5,
+                                                         on_harvesting_timeout);
                 this.playbin.set_state (State.PAUSED);
             } catch (Error error) {
                 // on error just move to the next uri in queue
@@ -241,9 +270,9 @@ public class Rygel.MetadataExtractor: GLib.Object {
     }
 
     private void extract_stream_info () {
-        extract_av_info (this.fakesinks[0].get_pad ("sink"),
+        extract_av_info (this.playbin.video_sink.get_pad ("sink"),
                 StreamType.VIDEO);
-        extract_av_info (this.fakesinks[1].get_pad ("sink"),
+        extract_av_info (this.playbin.audio_sink.get_pad ("sink"),
                 StreamType.AUDIO);
     }
 
