@@ -14,7 +14,7 @@ Brief summary of changes since 0.3:
 - Random tweaks to transcoding pipelines.
 - Provide a DBus service providing two functionalities:
    * Ability to tell rygel to shutdown. Starting of Rygel is automatically
-     handled by D-Bus since a .service file is provideb by Rygel.
+     handled by D-Bus since a .service file is provided by Rygel.
    * Ability to tell Rygel (MediaExport plugin actually) to (un)export URIs on
      the fly.
 - Implement enabling/disabling of UPnP in the preferences.
@@ -71,6 +71,7 @@ Brief summary of changes since 0.3:
   - Delete gone directories on new start.
   - React on deletion of files.
   - Add recursive file monitoring.
+  - Export Metadata
 - Mediathek plugin:
   - Fix crash if no config is available.
 
