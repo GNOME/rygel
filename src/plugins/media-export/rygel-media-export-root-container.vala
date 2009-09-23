@@ -25,7 +25,7 @@ const string DYNAMIC_CONTAINER_ID = "DynamicContainerId";
 internal class Rygel.MediaExportDynamicContainer : Rygel.MediaDBContainer {
     public MediaExportDynamicContainer (MediaDB        media_db,
                                         MediaContainer parent) {
-        base (media_db, DYNAMIC_CONTAINER_ID, "dynamic");
+        base (media_db, DYNAMIC_CONTAINER_ID, "Dynamic");
         this.parent = parent;
     }
 
