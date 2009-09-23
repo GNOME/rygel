@@ -98,7 +98,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                 this.media_db.remove_by_id (child);
             }
 
-            do_update ();
+            this.do_update ();
         } catch (MediaDBError err) {
             warning("Failed to get children of container %s: %s",
                     container.id,
@@ -240,7 +240,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             warning ("Failed to harvest file %s: %s",
                      file.get_uri (),
                      err.message);
-            harvested (file);
+            this.harvested (file);
         }
     }
 
@@ -301,7 +301,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             }
 
             this.files.pop_head ();
-            do_update ();
+            this.do_update ();
             Idle.add(this.on_idle);
         }
     }
@@ -315,17 +315,16 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         }
         if (file == entry.file) {
             this.files.pop_head ();
-            do_update ();
+            this.do_update ();
             Idle.add(this.on_idle);
         }
     }
 
     private void do_update () {
         if (this.files.get_length () == 0 &&
-                this.containers.get_length () != 0) {
+            this.containers.get_length () != 0) {
             this.containers.peek_head ().updated ();
             this.containers.pop_head ();
         }
-
     }
 }
