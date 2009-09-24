@@ -235,6 +235,10 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         if (message.type == MessageType.EOS) {
             ret = false;
         } else if (message.type == MessageType.STATE_CHANGED) {
+            if (message.src != this.pipeline) {
+                return true;
+            }
+
             if (this.time_range != null && this.time_range.start > 0) {
                 State old_state;
                 State new_state;
