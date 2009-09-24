@@ -44,9 +44,9 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     private const string DBUS_PATH = "/org/freedesktop/DBus";
     private const string DBUS_INTERFACE = "org.freedesktop.DBus";
 
-    private const string RYGEL_SERVICE = "org.gnome.Rygel";
-    private const string RYGEL_PATH = "/org/gnome/Rygel";
-    private const string RYGEL_INTERFACE = "org.gnome.Rygel";
+    private const string RYGEL_SERVICE = "org.gnome.Rygel1";
+    private const string RYGEL_PATH = "/org/gnome/Rygel1";
+    private const string RYGEL_INTERFACE = "org.gnome.Rygel1";
 
     // Our singleton
     private static UserConfig config;
