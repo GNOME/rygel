@@ -23,6 +23,11 @@
 
 public class Rygel.LogHandler : GLib.Object {
     public const string DOMAIN = "Rygel";
+    private const LogLevelFlags DEFAULT_LEVELS = LogLevelFlags.LEVEL_WARNING |
+                                                 LogLevelFlags.LEVEL_CRITICAL |
+                                                 LogLevelFlags.LEVEL_ERROR;
+
+    public LogLevelFlags levels; // Current log levels
 
     private static LogHandler log_handler; // Singleton
 
@@ -38,6 +43,8 @@ public class Rygel.LogHandler : GLib.Object {
         Log.set_handler (DOMAIN,
                          LogLevelFlags.LEVEL_MASK | LogLevelFlags.FLAG_FATAL,
                          this.log_func);
+
+        this.levels = DEFAULT_LEVELS;
     }
 
     private void log_func (string?       log_domain,
@@ -45,7 +52,9 @@ public class Rygel.LogHandler : GLib.Object {
                            string        message) {
         assert (log_domain == DOMAIN);
 
-        // Just forward the message to default domain for now
-        log (null, log_levels, message);
+        if (log_levels in this.levels) {
+            // Just forward the message to default domain for now
+            log (null, log_levels, message);
+        }
     }
 }
