@@ -1,3 +1,28 @@
+0.4.1
+=====
+
+A micro release that fixes some important issues found in the previous release:
+
+- Update the Rygel D-Bus service paths everywhere.
+- Ignore two ignorable errors.
+- Initialize sensitivity of trancoding checkboxes to the same value as that of
+  "Transcoding Support" checkbox.
+- Fix seeking in transcoded streams. Without this fix, the success of seeking
+  was based on pure luck.
+- Correct headers in some files to reflect the correct license: LGPL.
+- No need for DVB configuration anymore.
+
+Bugs fixed in this release:
+
+596211 - Error exiting the prefs
+596213 - Wrong state for checkboxes
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+René Stadler <mail@renestadler.de>
+
 0.4
 ===
 
