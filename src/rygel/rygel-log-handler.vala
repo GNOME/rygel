@@ -41,7 +41,9 @@ public class Rygel.LogHandler : GLib.Object {
 
     private LogHandler () {
         Log.set_handler (DOMAIN,
-                         LogLevelFlags.LEVEL_MASK | LogLevelFlags.FLAG_FATAL,
+                         LogLevelFlags.LEVEL_MASK |
+                         LogLevelFlags.FLAG_FATAL |
+                         LogLevelFlags.FLAG_RECURSION,
                          this.log_func);
 
         this.levels = DEFAULT_LEVELS;
