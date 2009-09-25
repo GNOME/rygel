@@ -25,7 +25,9 @@ public class Rygel.LogHandler : GLib.Object {
     public const string DOMAIN = "Rygel";
     private const LogLevelFlags DEFAULT_LEVELS = LogLevelFlags.LEVEL_WARNING |
                                                  LogLevelFlags.LEVEL_CRITICAL |
-                                                 LogLevelFlags.LEVEL_ERROR;
+                                                 LogLevelFlags.LEVEL_ERROR |
+                                                 LogLevelFlags.LEVEL_MESSAGE |
+                                                 LogLevelFlags.LEVEL_INFO;
 
     public LogLevelFlags levels; // Current log levels
 
