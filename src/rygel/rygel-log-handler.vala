@@ -55,8 +55,8 @@ public class Rygel.LogHandler : GLib.Object {
         assert (log_domain == DOMAIN);
 
         if (log_levels in this.levels) {
-            // Just forward the message to default domain for now
-            log (null, log_levels, message);
+            // Forward the message to default domain
+            Log.default_handler (DOMAIN, log_levels, message, null);
         }
     }
 }
