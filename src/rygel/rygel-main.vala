@@ -32,6 +32,7 @@ public class Rygel.Main : Object {
     private ArrayList <RootDevice> root_devices;
 
     private Configuration config;
+    private LogHandler log_handler;
 
     private MainLoop main_loop;
 
@@ -40,6 +41,7 @@ public class Rygel.Main : Object {
     private Main () throws GLib.Error {
         Environment.set_application_name (_(BuildConfig.PACKAGE_NAME));
 
+        this.log_handler = LogHandler.get_default ();
         this.config = MetaConfig.get_default ();
         this.plugin_loader = new PluginLoader ();
         this.root_devices = new ArrayList <RootDevice> ();
