@@ -289,7 +289,9 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                 // Then symlink the desktop file to user's autostart dir
                 var source_path = Path.build_filename (BuildConfig.DESKTOP_DIR,
                                                        "rygel.desktop");
-                dest.make_symbolic_link (source_path, null);
+                try {
+                    dest.make_symbolic_link (source_path, null);
+                } catch (IOError.EXISTS err) {}
 
                 this.set_bool ("general", ENABLED_KEY, true);
             } else {
@@ -297,7 +299,9 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                 this.rygel_obj.Shutdown ();
 
                 // Then delete the symlink from user's autostart dir
-                dest.delete (null);
+                try {
+                    dest.delete (null);
+                } catch (IOError.NOT_FOUND err) {}
 
                 this.set_bool ("general", ENABLED_KEY, false);
             }
