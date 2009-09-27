@@ -37,6 +37,8 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
     private ListStore liststore;
     private FileChooserDialog dialog;
 
+    private ArrayList<Button> buttons;
+
     public MediaExportPrefSection (Builder    builder,
                                    UserConfig config) {
         base (builder, config, NAME);
@@ -68,14 +70,19 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
         this.dialog.set_current_folder (Environment.get_home_dir ());
         this.dialog.show_hidden = false;
 
+        this.buttons = new ArrayList<Button> ();
+
         var button = (Button) builder.get_object (ADD_BUTTON);
         button.clicked += this.on_add_button_clicked;
+        this.buttons.add (button);
 
         button = (Button) builder.get_object (REMOVE_BUTTON);
         button.clicked += this.on_remove_button_clicked;
+        this.buttons.add (button);
 
         button = (Button) builder.get_object (CLEAR_BUTTON);
         button.clicked += this.on_clear_button_clicked;
+        this.buttons.add (button);
     }
 
     public override void save () {
