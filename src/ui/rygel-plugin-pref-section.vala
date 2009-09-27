@@ -25,10 +25,12 @@ using Gee;
 
 public class Rygel.PluginPrefSection : PreferencesSection {
     const string ENABLED_CHECK = "-enabled-checkbutton";
+    const string TITLE_LABEL = "-title-label";
     const string TITLE_ENTRY = "-title-entry";
 
     private CheckButton enabled_check;
     private Entry title_entry;
+    private Label title_label;
 
     protected ArrayList<Widget> widgets; // All widgets in this section
 
@@ -45,6 +47,9 @@ public class Rygel.PluginPrefSection : PreferencesSection {
         this.title_entry = (Entry) builder.get_object (name.down () +
                                                        TITLE_ENTRY);
         assert (this.title_entry != null);
+        this.title_label = (Label) builder.get_object (name.down () +
+                                                       TITLE_LABEL);
+        assert (this.title_label != null);
 
         this.enabled_check.active = config.get_enabled (name);
 
