@@ -80,6 +80,9 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
         button = (Button) builder.get_object (CLEAR_BUTTON);
         button.clicked += this.on_clear_button_clicked;
         this.widgets.add (button);
+
+        // Initialize the sensitivity of all widgets
+        this.reset_widgets_sensitivity ();
     }
 
     public override void save () {

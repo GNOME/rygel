@@ -61,6 +61,9 @@ public class Rygel.TrackerPrefSection : Rygel.PluginPrefSection {
             this.pictures_check.active = config.get_bool (this.name,
                                                           PICTURES_KEY);
         } catch (Error err) {}
+
+        // Initialize the sensitivity of all widgets
+        this.reset_widgets_sensitivity ();
     }
 
     public override void save () {
