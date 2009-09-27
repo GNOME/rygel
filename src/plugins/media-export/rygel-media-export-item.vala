@@ -77,12 +77,29 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
                         tag_list.get_int (MetadataExtractor.TAG_RYGEL_HEIGHT, out height)) {
                         class_guessed = MediaItem.IMAGE_CLASS;
                     } else {
-                        warning("There's no codec inside and file is no image: " +
-                                "%s", file.get_uri ());
-                        return null;
+                        // if it has width and height and a duration, assume
+                        // it is a video (to capture the MPEG TS without audio
+                        // case)
+                        int64 duration;
+                        if (tag_list.get_int64 (MetadataExtractor.TAG_RYGEL_DURATION,
+                                                out duration)) {
+                            class_guessed = MediaItem.VIDEO_CLASS;
+                        } else {
+                            warning("There's no codec inside and file is no image: " +
+                                    "%s", file.get_uri ());
+                            return null;
+                        }
                     }
                 } else {
-                    class_guessed = MediaItem.AUDIO_CLASS;
+                    // MPEG TS streams seem to miss VIDEO_CODEC; so if we have
+                    // an AUDIO_CODEC and width or height, assume video as
+                    // well
+                    if (tag_list.get_int (MetadataExtractor.TAG_RYGEL_WIDTH, out width) ||
+                        tag_list.get_int (MetadataExtractor.TAG_RYGEL_HEIGHT, out height)) {
+                        class_guessed = MediaItem.VIDEO_CLASS;
+                    } else {
+                        class_guessed = MediaItem.AUDIO_CLASS;
+                    }
                 }
             } else {
                 class_guessed = MediaItem.VIDEO_CLASS;
