@@ -59,66 +59,6 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
         this.add_uri (file.get_uri (), null);
     }
 
-    private void fill_from_tags_as_image (Gst.TagList tag_list) {
-
-        tag_list.get_string (MetadataExtractor.TAG_RYGEL_MIME, out this.mime_type);
-        int64 size;
-        tag_list.get_int64 (MetadataExtractor.TAG_RYGEL_SIZE, out size);
-        this.size = (long) size;
-        tag_list.get_int (MetadataExtractor.TAG_RYGEL_WIDTH, out this.width);
-        tag_list.get_int (MetadataExtractor.TAG_RYGEL_HEIGHT, out this.height);
-        tag_list.get_int (MetadataExtractor.TAG_RYGEL_DEPTH, out this.color_depth);
-    }
-
-    private void fill_from_tags_as_audio (Gst.TagList tag_list) {
-        int64 duration;
-        tag_list.get_int64 (MetadataExtractor.TAG_RYGEL_DURATION, out duration);
-        this.duration = (long) (duration / 1000000000);
-
-        tag_list.get_int (MetadataExtractor.TAG_RYGEL_CHANNELS, out this.n_audio_channels);
-        tag_list.get_string (MetadataExtractor.TAG_RYGEL_MIME, out this.mime_type);
-
-        int64 size;
-        tag_list.get_int64 (MetadataExtractor.TAG_RYGEL_SIZE, out size);
-        this.size = (long) size;
-
-        tag_list.get_string (TAG_ARTIST, out this.author);
-        tag_list.get_string (TAG_ALBUM, out this.album);
-
-        uint tmp;
-        tag_list.get_uint (TAG_TRACK_NUMBER, out tmp);
-        this.track_number = (int)tmp;
-        tag_list.get_uint (TAG_BITRATE, out tmp);
-        this.bitrate = (int)tmp / 8;
-        tag_list.get_int (MetadataExtractor.TAG_RYGEL_RATE, out this.sample_freq);
-
-        GLib.Date? date;
-        if (tag_list.get_date (TAG_DATE, out date)) {
-            char[] datestr = new char[30];
-            date.strftime(datestr, "%F");
-            this.date = (string)datestr;
-        }
-    }
-
-    private void fill_from_tags_as_video (Gst.TagList tag_list) {
-        tag_list.get_string (MetadataExtractor.TAG_RYGEL_MIME,
-                out this.mime_type);
-        int64 size;
-        tag_list.get_int64 (MetadataExtractor.TAG_RYGEL_SIZE,
-                out size);
-        this.size = (long) size;
-        tag_list.get_int (MetadataExtractor.TAG_RYGEL_WIDTH,
-                out this.width);
-        tag_list.get_int (MetadataExtractor.TAG_RYGEL_HEIGHT,
-                out this.height);
-        tag_list.get_int (MetadataExtractor.TAG_RYGEL_DEPTH,
-                out this.color_depth);
-        tag_list.get_int (MetadataExtractor.TAG_RYGEL_CHANNELS,
-                out this.n_audio_channels);
-        tag_list.get_int (MetadataExtractor.TAG_RYGEL_RATE,
-                out this.sample_freq);
-    }
-
     public static MediaItem? create_from_taglist (MediaContainer parent,
                                                   File file,
                                                   Gst.TagList tag_list) {
@@ -177,26 +117,53 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
             title = file.get_basename ();
         }
         base (id, parent, title, upnp_class);
-        switch (upnp_class) {
-            case MediaItem.AUDIO_CLASS:
-            case MediaItem.MUSIC_CLASS:
-                fill_from_tags_as_audio (tag_list);
-                break;
-            case MediaItem.VIDEO_CLASS:
-                fill_from_tags_as_video (tag_list);
-                break;
-            case MediaItem.IMAGE_CLASS:
-                fill_from_tags_as_image (tag_list);
-                break;
-            default:
-                break;
-        }
+
+        tag_list.get_int (MetadataExtractor.TAG_RYGEL_WIDTH, out this.width);
+        tag_list.get_int (MetadataExtractor.TAG_RYGEL_HEIGHT, out this.height);
+        tag_list.get_int (MetadataExtractor.TAG_RYGEL_DEPTH,
+                          out this.color_depth);
+        int64 duration;
+        tag_list.get_int64 (MetadataExtractor.TAG_RYGEL_DURATION,
+                            out duration);
+        this.duration = (duration == -1) ? -1 : (long) (duration / 1000000000);
+
+        tag_list.get_int (MetadataExtractor.TAG_RYGEL_CHANNELS, out this.n_audio_channels);
+
+        tag_list.get_string (TAG_ARTIST, out this.author);
+        tag_list.get_string (TAG_ALBUM, out this.album);
+
+        uint tmp;
+        tag_list.get_uint (TAG_TRACK_NUMBER, out tmp);
+        this.track_number = (int)tmp;
+        tag_list.get_uint (TAG_BITRATE, out tmp);
+        this.bitrate = (int)tmp / 8;
+        tag_list.get_int (MetadataExtractor.TAG_RYGEL_RATE, out this.sample_freq);
+
+
+        int64 size;
+        tag_list.get_int64 (MetadataExtractor.TAG_RYGEL_SIZE, out size);
+        this.size = (long) size;
 
         uint64 mtime;
         tag_list.get_uint64 (MetadataExtractor.TAG_RYGEL_MTIME,
                              out mtime);
-
         this.modified = (int64) mtime;
+
+        GLib.Date? date;
+        if (tag_list.get_date (TAG_DATE, out date)) {
+            char[] datestr = new char[30];
+            date.strftime(datestr, "%F");
+            this.date = (string)datestr;
+        } else {
+            var tv = TimeVal();
+            tv.tv_usec = 0;
+            tv.tv_sec = (long)mtime;
+            this.date = tv.to_iso8601 ();
+        }
+
+
+        tag_list.get_string (MetadataExtractor.TAG_RYGEL_MIME,
+                             out this.mime_type);
 
         this.add_uri (file.get_uri (), null);
     }
