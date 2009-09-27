@@ -108,6 +108,9 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
         base.on_enabled_check_toggled (enabled_check);
 
         this.treeview.sensitive = enabled_check.active;
+        foreach (var button in this.buttons) {
+            button.sensitive = enabled_check.active;
+        }
     }
 
     private void on_add_button_clicked (Button button) {
