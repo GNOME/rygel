@@ -21,6 +21,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 using Gtk;
+using Gee;
 
 public class Rygel.PluginPrefSection : PreferencesSection {
     const string ENABLED_CHECK = "-enabled-checkbutton";
@@ -29,10 +30,14 @@ public class Rygel.PluginPrefSection : PreferencesSection {
     private CheckButton enabled_check;
     private Entry title_entry;
 
+    protected ArrayList<Widget> widgets; // All widgets in this section
+
     public PluginPrefSection (Builder    builder,
                               UserConfig config,
                               string     name) {
         base (config, name);
+
+        this.widgets = new ArrayList<Widget> ();
 
         this.enabled_check = (CheckButton) builder.get_object (name.down () +
                                                                ENABLED_CHECK);
@@ -69,8 +74,11 @@ public class Rygel.PluginPrefSection : PreferencesSection {
         this.config.set_string (this.name, UserConfig.TITLE_KEY, title);
     }
 
-    protected virtual void on_enabled_check_toggled (
-                                CheckButton enabled_check) {
+    protected void on_enabled_check_toggled (CheckButton enabled_check) {
         this.title_entry.sensitive = enabled_check.active;
+
+        foreach (var widget in this.widgets) {
+            widget.sensitive = enabled_check.active;
+        }
     }
 }

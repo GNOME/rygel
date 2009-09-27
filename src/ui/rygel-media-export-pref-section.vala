@@ -37,8 +37,6 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
     private ListStore liststore;
     private FileChooserDialog dialog;
 
-    private ArrayList<Button> buttons;
-
     public MediaExportPrefSection (Builder    builder,
                                    UserConfig config) {
         base (builder, config, NAME);
@@ -56,6 +54,7 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
                                                 "text",
                                                 0,
                                                 null);
+        this.widgets.add (this.treeview);
 
         try {
             var uris = config.get_string_list (this.name, URIS_KEY);
@@ -70,19 +69,17 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
         this.dialog.set_current_folder (Environment.get_home_dir ());
         this.dialog.show_hidden = false;
 
-        this.buttons = new ArrayList<Button> ();
-
         var button = (Button) builder.get_object (ADD_BUTTON);
         button.clicked += this.on_add_button_clicked;
-        this.buttons.add (button);
+        this.widgets.add (button);
 
         button = (Button) builder.get_object (REMOVE_BUTTON);
         button.clicked += this.on_remove_button_clicked;
-        this.buttons.add (button);
+        this.widgets.add (button);
 
         button = (Button) builder.get_object (CLEAR_BUTTON);
         button.clicked += this.on_clear_button_clicked;
-        this.buttons.add (button);
+        this.widgets.add (button);
     }
 
     public override void save () {
@@ -101,16 +98,6 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
         }
 
         this.config.set_string_list (this.name, URIS_KEY, uri_list);
-    }
-
-    protected override void on_enabled_check_toggled (
-                                        CheckButton enabled_check) {
-        base.on_enabled_check_toggled (enabled_check);
-
-        this.treeview.sensitive = enabled_check.active;
-        foreach (var button in this.buttons) {
-            button.sensitive = enabled_check.active;
-        }
     }
 
     private void on_add_button_clicked (Button button) {

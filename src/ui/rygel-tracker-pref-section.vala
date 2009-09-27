@@ -47,6 +47,10 @@ public class Rygel.TrackerPrefSection : Rygel.PluginPrefSection {
         this.pictures_check = (CheckButton) builder.get_object (PICTURES_CHECK);
         assert (this.pictures_check != null);
 
+        this.widgets.add (this.videos_check);
+        this.widgets.add (this.music_check);
+        this.widgets.add (this.pictures_check);
+
         this.videos_check.active = true;
         this.music_check.active = true;
         this.pictures_check.active = true;
@@ -65,14 +69,5 @@ public class Rygel.TrackerPrefSection : Rygel.PluginPrefSection {
         config.set_bool (this.name, VIDEOS_KEY, this.videos_check.active);
         config.set_bool (this.name, MUSIC_KEY, this.music_check.active);
         config.set_bool (this.name, PICTURES_KEY, this.pictures_check.active);
-    }
-
-    protected override void on_enabled_check_toggled (
-                                        CheckButton enabled_check) {
-        base.on_enabled_check_toggled (enabled_check);
-
-        this.videos_check.sensitive = enabled_check.active;
-        this.music_check.sensitive = enabled_check.active;
-        this.pictures_check.sensitive = enabled_check.active;
     }
 }
