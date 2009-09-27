@@ -80,7 +80,8 @@ public class Rygel.PluginPrefSection : PreferencesSection {
     }
 
     protected void on_enabled_check_toggled (CheckButton enabled_check) {
-        this.title_entry.sensitive = enabled_check.active;
+        this.title_entry.sensitive =
+        this.title_label.sensitive = enabled_check.active;
 
         foreach (var widget in this.widgets) {
             widget.sensitive = enabled_check.active;
