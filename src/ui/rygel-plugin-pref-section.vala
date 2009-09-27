@@ -30,7 +30,6 @@ public class Rygel.PluginPrefSection : PreferencesSection {
 
     private CheckButton enabled_check;
     private Entry title_entry;
-    private Label title_label;
 
     protected ArrayList<Widget> widgets; // All widgets in this section
 
@@ -47,9 +46,10 @@ public class Rygel.PluginPrefSection : PreferencesSection {
         this.title_entry = (Entry) builder.get_object (name.down () +
                                                        TITLE_ENTRY);
         assert (this.title_entry != null);
-        this.title_label = (Label) builder.get_object (name.down () +
-                                                       TITLE_LABEL);
-        assert (this.title_label != null);
+        var title_label = (Label) builder.get_object (name.down () +
+                                                      TITLE_LABEL);
+        assert (title_label != null);
+        this.widgets.add (title_label);
 
         this.enabled_check.active = config.get_enabled (name);
 
@@ -80,8 +80,7 @@ public class Rygel.PluginPrefSection : PreferencesSection {
     }
 
     protected void reset_widgets_sensitivity () {
-        this.title_entry.sensitive =
-        this.title_label.sensitive = this.enabled_check.active;
+        this.title_entry.sensitive = this.enabled_check.active;
 
         foreach (var widget in this.widgets) {
             widget.sensitive = enabled_check.active;
