@@ -222,6 +222,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                                   FileMonitorEvent event) {
         switch (event) {
             case FileMonitorEvent.CREATED:
+            case FileMonitorEvent.CHANGES_DONE_HINT:
                 var parent = file.get_parent ();
                 var id = Checksum.compute_for_string (ChecksumType.MD5,
                                                       parent.get_uri ());
@@ -231,8 +232,6 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 } else {
                     assert_not_reached ();
                 }
-                break;
-            case FileMonitorEvent.CHANGES_DONE_HINT:
                 break;
             case FileMonitorEvent.DELETED:
                 var id = Checksum.compute_for_string (ChecksumType.MD5,
