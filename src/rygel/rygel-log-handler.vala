@@ -58,7 +58,10 @@ public class Rygel.LogHandler : GLib.Object {
                          LogLevelFlags.FLAG_RECURSION,
                          this.log_func);
 
-        this.levels = DEFAULT_LEVELS;
+        // Get the allowed log levels from the config
+        var config = MetaConfig.get_default ();
+
+        this.levels = this.log_level_to_flags (config.get_log_level ());
     }
 
     private void log_func (string?       log_domain,

@@ -191,6 +191,25 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         return val;
     }
 
+    public LogLevel get_log_level () throws GLib.Error {
+        LogLevel val = LogLevel.DEFAULT;
+        bool unavailable = true;
+
+        foreach (var config in this.configs) {
+            try {
+                val = config.get_log_level ();
+                unavailable = false;
+                break;
+            } catch (GLib.Error err) {}
+        }
+
+        if (unavailable) {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        }
+
+        return val;
+    }
+
     public bool get_enabled (string section) throws GLib.Error {
         bool val = true;
         bool unavailable = true;

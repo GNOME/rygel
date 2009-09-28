@@ -41,6 +41,8 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static bool no_mp2ts_trans;
     private static bool no_lpcm_trans;
 
+    private static LogLevel log_level = LogLevel.INVALID;
+
     private static bool version;
 
     [CCode (array_length = false, array_null_terminated = true)]
@@ -73,6 +75,9 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
           "Disable mpeg2 transport stream transcoder", null },
         { "disable-lpcm-transcoder", 'l', 0, OptionArg.NONE, ref no_lpcm_trans,
           "Disable Linear PCM transcoder", null },
+        { "log-level", 'g', 0, OptionArg.INT, ref log_level,
+          "Log level. 1=critical,2=error,3=warning,4=message/info,5=debug",
+          "N" },
         { "disable-plugin", 'd', 0, OptionArg.STRING_ARRAY,
           ref disabled_plugins,
           "Disable plugin", "PluginName" },
@@ -142,6 +147,14 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     public bool get_lpcm_transcoder () throws GLib.Error {
         return !no_lpcm_trans;
+    }
+
+    public LogLevel get_log_level () throws GLib.Error {
+        if (this.log_level == LogLevel.INVALID) {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        }
+
+        return log_level;
     }
 
     public bool get_enabled (string section) throws GLib.Error {
