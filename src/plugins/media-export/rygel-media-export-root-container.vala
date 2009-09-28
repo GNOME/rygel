@@ -236,6 +236,9 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
             case FileMonitorEvent.DELETED:
                 var id = Checksum.compute_for_string (ChecksumType.MD5,
                                                       file.get_uri ());
+
+                // the full object is fetched instead of simply calling exists
+                // because we need the parent to signalize the change
                 var obj = this.media_db.get_object (id);
 
                 // it may be that files removed are files that are not
