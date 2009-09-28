@@ -32,7 +32,6 @@ public enum Rygel.LogLevel {
 }
 
 public class Rygel.LogHandler : GLib.Object {
-    public const string DOMAIN = "Rygel";
     private const LogLevelFlags DEFAULT_LEVELS = LogLevelFlags.LEVEL_WARNING |
                                                  LogLevelFlags.LEVEL_CRITICAL |
                                                  LogLevelFlags.LEVEL_ERROR |
@@ -52,11 +51,7 @@ public class Rygel.LogHandler : GLib.Object {
     }
 
     private LogHandler () {
-        Log.set_handler (DOMAIN,
-                         LogLevelFlags.LEVEL_MASK |
-                         LogLevelFlags.FLAG_FATAL |
-                         LogLevelFlags.FLAG_RECURSION,
-                         this.log_func);
+        Log.set_default_handler (this.log_func);
 
         // Get the allowed log levels from the config
         var config = MetaConfig.get_default ();
@@ -67,11 +62,9 @@ public class Rygel.LogHandler : GLib.Object {
     private void log_func (string?       log_domain,
                            LogLevelFlags log_levels,
                            string        message) {
-        assert (log_domain == DOMAIN);
-
         if (log_levels in this.levels) {
             // Forward the message to default domain
-            Log.default_handler (DOMAIN, log_levels, message, null);
+            Log.default_handler (log_domain, log_levels, message, null);
         }
     }
 
