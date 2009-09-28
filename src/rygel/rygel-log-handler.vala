@@ -21,6 +21,16 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+public enum Rygel.LogLevel {
+    INVALID = 0,
+    CRITICAL = 1,
+    ERROR = 2,
+    WARNING = 3,
+    INFO = 4,
+    DEFAULT = 4,
+    DEBUG = 5
+}
+
 public class Rygel.LogHandler : GLib.Object {
     public const string DOMAIN = "Rygel";
     private const LogLevelFlags DEFAULT_LEVELS = LogLevelFlags.LEVEL_WARNING |
@@ -60,5 +70,44 @@ public class Rygel.LogHandler : GLib.Object {
             // Forward the message to default domain
             Log.default_handler (DOMAIN, log_levels, message, null);
         }
+    }
+
+    private LogLevelFlags log_level_to_flags (LogLevel level) {
+        LogLevelFlags flags = DEFAULT_LEVELS;
+
+        switch (level) {
+            case LogLevel.CRITICAL:
+                flags = LogLevelFlags.LEVEL_CRITICAL;
+                break;
+            case LogLevel.ERROR:
+                flags = LogLevelFlags.LEVEL_CRITICAL |
+                        LogLevelFlags.LEVEL_ERROR;
+                break;
+            case LogLevel.WARNING:
+                flags = LogLevelFlags.LEVEL_WARNING |
+                        LogLevelFlags.LEVEL_CRITICAL |
+                        LogLevelFlags.LEVEL_ERROR;
+                break;
+            case LogLevel.INFO:
+                flags = LogLevelFlags.LEVEL_WARNING |
+                        LogLevelFlags.LEVEL_CRITICAL |
+                        LogLevelFlags.LEVEL_ERROR |
+                        LogLevelFlags.LEVEL_MESSAGE |
+                        LogLevelFlags.LEVEL_INFO;
+                break;
+            case LogLevel.DEBUG:
+                flags = LogLevelFlags.LEVEL_WARNING |
+                        LogLevelFlags.LEVEL_CRITICAL |
+                        LogLevelFlags.LEVEL_ERROR |
+                        LogLevelFlags.LEVEL_MESSAGE |
+                        LogLevelFlags.LEVEL_INFO |
+                        LogLevelFlags.LEVEL_DEBUG;
+                break;
+            default:
+                flags = DEFAULT_LEVELS;
+                break;
+        }
+
+        return flags;
     }
 }
