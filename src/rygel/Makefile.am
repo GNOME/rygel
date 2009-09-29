@@ -3,7 +3,7 @@ shareddir = $(abs_top_builddir)/data
 desktopdir = $(shareddir)
 else
 shareddir = $(datadir)/rygel
-desktopdir = $(shareddir)/applications
+desktopdir = $(datadir)/applications
 endif
 
 if UNINSTALLED
