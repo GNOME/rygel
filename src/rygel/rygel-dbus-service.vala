@@ -28,7 +28,7 @@ public class Rygel.DBusService : Object {
 
     private Main main;
 
-    public DBusService (Main main) throws GLib.Error {
+    public DBusService (Main main) throws DBus.Error {
         this.main = main;
 
         var conn = DBus.Bus.get (DBus.BusType. SESSION);
