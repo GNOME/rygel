@@ -81,20 +81,10 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             return;
         }
 
-        if (this.query != null) {
-            this.item_id = this.query.lookup ("itemid");
-            var target = this.query.lookup ("transcode");
-            if (target != null) {
-                var transcoder = this.http_server.get_transcoder (target);
-                this.request_handler = new HTTPTranscodeHandler (
-                                        transcoder,
-                                        this.cancellable);
-            }
-
-            var index = this.query.lookup ("thumbnail");
-            if (index != null) {
-                this.thumbnail_index = index.to_int ();
-            }
+        try {
+            this.parse_query ();
+        } catch (Error err) {
+            warning ("Failed to parse query: %s", err.message);
         }
 
         if (this.item_id == null) {
@@ -165,6 +155,25 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
 
         this.handle_item_request ();
+    }
+
+    private void parse_query () throws Error {
+        if (this.query == null) {
+            return;
+        }
+
+        this.item_id = this.query.lookup ("itemid");
+        var target = this.query.lookup ("transcode");
+        if (target != null) {
+            var transcoder = this.http_server.get_transcoder (target);
+            this.request_handler = new HTTPTranscodeHandler (transcoder,
+                                                             this.cancellable);
+        }
+
+        var index = this.query.lookup ("thumbnail");
+        if (index != null) {
+            this.thumbnail_index = index.to_int ();
+        }
     }
 
     private void handle_error (Error error) {
