@@ -43,13 +43,12 @@ public enum Rygel.MediaDBObjectType {
 public class Rygel.MediaDB : Object {
     private Database db;
     private MediaDBObjectFactory factory;
-    private const string schema_version = "4";
+    private const string schema_version = "5";
     private const string SCHEMA_STRING =
     "CREATE TABLE Schema_Info (version TEXT NOT NULL); " +
     "CREATE TABLE Object_Type (id INTEGER PRIMARY KEY, " +
                               "desc TEXT NOT NULL);" +
-    "CREATE TABLE Meta_Data (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                            "size INTEGER NOT NULL, " +
+    "CREATE TABLE Meta_Data (size INTEGER NOT NULL, " +
                             "mime_type TEXT NOT NULL, " +
                             "duration INTEGER, " +
                             "width INTEGER, " +
@@ -102,6 +101,10 @@ public class Rygel.MediaDB : Object {
     "FOR EACH ROW BEGIN " +
         "DELETE FROM Uri WHERE Uri.object_fk = OLD.upnp_id;" +
     "END;";
+
+    private const string CREATE_INDICES_STRING =
+    "CREATE INDEX idx_parent on Object(parent);" +
+    "CREATE INDEX idx_uri on Uri(object_fk)";
 
 
     private const string INSERT_META_DATA_STRING =
@@ -207,15 +210,28 @@ public class Rygel.MediaDB : Object {
 
     private void update_v3_v4 () {
         try {
-            GLib.Value[] values = { schema_version };
             db.begin ();
             db.exec (UPDATE_V3_V4_STRING_1);
             db.exec (UPDATE_V3_V4_STRING_2);
             db.exec (UPDATE_V3_V4_STRING_3);
             db.exec (UPDATE_V3_V4_STRING_4);
             db.exec (CREATE_TRIGGER_STRING);
-            db.exec ("UPDATE Schema_Info SET version = ?", values);
+            db.exec ("UPDATE Schema_Info SET version = '4'");
             db.commit ();
+        } catch (DatabaseError err) {
+            db.rollback ();
+            warning ("Database upgrade failed: %s", err.message);
+            db = null;
+        }
+    }
+
+    private void update_v4_v5 () {
+        try {
+            db.begin ();
+            db.exec (CREATE_INDICES_STRING);
+            db.exec ("UPDATE Schema_Info SET version = '5'");
+            db.commit ();
+            db.analyze ();
         } catch (DatabaseError err) {
             db.rollback ();
             warning ("Database upgrade failed: %s", err.message);
@@ -247,6 +263,9 @@ public class Rygel.MediaDB : Object {
                         switch (old_version) {
                             case 3:
                                 update_v3_v4 ();
+                                break;
+                            case 4:
+                                update_v4_v5 ();
                                 break;
                             default:
                                 warning ("Cannot upgrade");
@@ -496,7 +515,9 @@ public class Rygel.MediaDB : Object {
             db.begin ();
             db.exec (SCHEMA_STRING);
             db.exec (CREATE_TRIGGER_STRING);
+            db.exec (CREATE_INDICES_STRING);
             db.commit ();
+            db.analyze ();
             return true;
         } catch (Error err) {
             warning ("Failed to create schema: %s", err.message);

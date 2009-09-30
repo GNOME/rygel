@@ -142,10 +142,10 @@ internal class Rygel.Database : Object {
         return this.db.changes ();
     }
 
-    /**
-     * Create a GLib.Value containing a null-pointer
-     * This is used to bind a parameter in a statement with bind_null
-     */
+    public void analyze () {
+        this.db.exec ("ANALYZE");
+    }
+
     public GLib.Value get_null () {
         GLib.Value v = GLib.Value (typeof (void *));
         v.set_pointer (null);
