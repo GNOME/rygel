@@ -882,8 +882,8 @@ public class Rygel.MediaDB : Object {
                                                       long offset,
                                                       long max_count) {
         Statement statement;
-        Gee.ArrayList<MediaObject> children =
-                                            new Gee.ArrayList<MediaObject> ();
+        ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
+        var parent = (MediaContainer) get_object (container_id);
         var rc = db.prepare_v2 (GET_CHILDREN_STRING,
                                 -1,
                                 out statement,
@@ -897,11 +897,11 @@ public class Rygel.MediaDB : Object {
             while ((rc = statement.step ()) == Sqlite.ROW) {
                 var child_id = statement.column_text (17);
                 try {
-                    var parent = get_object (statement.column_text (18));
-                    children.add (get_object_from_statement
-                    ((MediaContainer)parent, child_id, statement));
-                    children[children.size - 1].parent = (MediaContainer)parent;
-                    children[children.size - 1].parent_ref = (MediaContainer)parent;
+                    children.add (get_object_from_statement (parent,
+                                                             child_id,
+                                                             statement));
+                    children[children.size - 1].parent = parent;
+                    children[children.size - 1].parent_ref = parent;
                 } catch (MediaDBError err) {
                     warning ("Could not get parent object: %s", err.message);
                 }
