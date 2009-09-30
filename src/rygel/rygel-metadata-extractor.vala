@@ -130,7 +130,8 @@ public class Rygel.MetadataExtractor: GLib.Object {
         this.playbin.set_state (State.NULL);
 
         this.error (file_queue.peek_head (),
-                    new IOChannelError.FAILED ("Pipeline stuck while reading file info"));
+                    new IOChannelError.FAILED (
+                                "Pipeline stuck while reading file info"));
         this.file_queue.pop_head ();
         extract_next ();
         return false;
