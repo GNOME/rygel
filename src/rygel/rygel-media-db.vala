@@ -320,18 +320,18 @@ public class Rygel.MediaDB : Object {
     }
 
     private bool sweeper () {
-        debug ("Running sweeper");
-        var rc = db.exec (SWEEPER_STRING);
-        if (rc != Sqlite.OK) {
-            warning ("Failed to sweep database");
-            return false;
-        } else {
+        try {
+            debug ("Running sweeper");
+            db.exec (SWEEPER_STRING);
             // if there have been any objects deleted, their children
             // will have nullified parents by the trigger, so we reschedule
             // the idle sweeper
             var changes = db.changes ();
             debug ("Changes in sweeper: %d", changes);
             return changes != 0;
+        } catch (DatabaseError err) {
+            warning ("Failed to sweep database");
+            return false;
         }
     }
 
@@ -347,7 +347,7 @@ public class Rygel.MediaDB : Object {
     public signal void container_removed (string container_id);
     public signal void container_updated (string container_id);
 
-    public void remove_by_id (string id) throws MediaDBError {
+    public void remove_by_id (string id) throws DatabaseError {
         GLib.Value[] values = { id };
         this.db.exec (DELETE_BY_ID_STRING, values);
         object_removed (id);
@@ -355,7 +355,7 @@ public class Rygel.MediaDB : Object {
     }
 
 
-    public void remove_object (MediaObject obj) throws MediaDBError {
+    public void remove_object (MediaObject obj) throws DatabaseError, MediaDBError {
         this.remove_by_id (obj.id);
         if (obj is MediaItem)
             item_removed (obj.id);
@@ -477,8 +477,6 @@ public class Rygel.MediaDB : Object {
     }
 
     private void save_uris (MediaObject obj) throws Error {
-        Statement statement;
-
         foreach (var uri in obj.uris) {
             GLib.Value[] values = { obj.id, uri };
             db.exec (INSERT_URI_STRING, values);
@@ -585,7 +583,7 @@ public class Rygel.MediaDB : Object {
         return obj;
     }
 
-    public MediaItem? get_item (string item_id) throws MediaDBError {
+    public MediaItem? get_item (string item_id) throws DatabaseError, MediaDBError {
         var obj = get_object (item_id);
         if (obj != null && !(obj is MediaItem))
             throw new MediaDBError.INVALID_TYPE("Object with id %s is not a" +
@@ -594,7 +592,8 @@ public class Rygel.MediaDB : Object {
         return (MediaItem)obj;
     }
 
-    public MediaContainer? get_container (string container_id) throws MediaDBError {
+    public MediaContainer? get_container (string container_id)
+                                          throws DatabaseError, MediaDBError {
         var obj = get_object (container_id);
         if (obj != null && !(obj is MediaContainer))
             throw new MediaDBError.INVALID_TYPE("Object with id %s is not a" +
@@ -625,7 +624,7 @@ public class Rygel.MediaDB : Object {
     }
 
     public ArrayList<string> get_child_ids (string container_id)
-                                                         throws MediaDBError {
+                                                         throws DatabaseError {
         ArrayList<string> children = new ArrayList<string> (str_equal);
         GLib.Value[] values = { container_id  };
 
@@ -654,7 +653,7 @@ public class Rygel.MediaDB : Object {
     }
 
     public bool exists (string object_id, out int64 timestamp)
-                                                          throws MediaDBError {
+                                                          throws DatabaseError {
         bool exists = false;
         GLib.Value[] values = { object_id };
         int64 _timestamp = 0;
@@ -673,16 +672,11 @@ public class Rygel.MediaDB : Object {
 
     public Gee.ArrayList<MediaObject> get_children (string container_id,
                                                       long offset,
-                                                      long max_count)
-                                                      throws MediaDBError {
-        ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
+                                                      long max_count) throws
+                                                      Error {
         MediaContainer parent = null;
-        try {
-            parent = (MediaContainer) get_object (container_id);
-        } catch (MediaDBError err) {
-            warning ("Could not get parent object: %s", err.message);
-            return children;
-        }
+        ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
+        parent = (MediaContainer) get_object (container_id);
 
         GLib.Value[] values = { container_id,
                                 (int64) offset,
