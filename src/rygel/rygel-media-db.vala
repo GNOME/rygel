@@ -499,39 +499,16 @@ public class Rygel.MediaDB : Object {
      * @returns: true on success, false on failure
      */
     private bool create_schema () {
-        var rc = db.exec ("BEGIN");
-        if (rc == Sqlite.OK) {
-            rc = db.exec (SCHEMA_STRING);
-            if (rc == Sqlite.OK) {
-                debug ("succeeded in schema creation");
-                rc = db.exec (CREATE_TRIGGER_STRING);
-                if (rc == Sqlite.OK) {
-                    debug ("succeeded in trigger creation");
-                    rc = db.exec ("COMMIT");
-                    if (rc == Sqlite.OK) {
-                        return true;
-                    } else {
-                        warning ("Failed to commit schema: %d %s",
-                                 rc,
-                                 db.errmsg ());
-                    }
-                } else {
-                    warning ("Failed to create triggers: %d %s",
-                             rc,
-                             db.errmsg ());
-                }
-            } else {
-                warning ("Failed to create tables: %d %s",
-                         rc,
-                         db.errmsg ());
-            }
-        } else {
-            warning ("Failed to start transaction: %d %s",
-                     rc,
-                     db.errmsg ());
+        try {
+            db.begin ();
+            db.exec (SCHEMA_STRING);
+            db.exec (CREATE_TRIGGER_STRING);
+            db.commit ();
+            return true;
+        } catch (Error err) {
+            warning ("Failed to create schema: %s", err.message);
+            db.rollback ();
         }
-
-        db.exec ("ROLLBACK");
         return false;
 
    }
