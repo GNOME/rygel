@@ -142,4 +142,22 @@ internal class Rygel.Database : Object {
         v.set_pointer (null);
         return v;
     }
+
+    public void begin () throws DatabaseError {
+        if (this.db.exec ("BEGIN") != Sqlite.OK) {
+            throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
+        }
+    }
+
+    public void commit () throws DatabaseError {
+        if (this.db.exec ("COMMIT") != Sqlite.OK) {
+            throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
+        }
+    }
+
+    public void rollback () throws DatabaseError {
+        if (this.db.exec ("ROLLBACK") != Sqlite.OK) {
+            throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
+        }
+    }
 }
