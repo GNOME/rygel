@@ -206,18 +206,19 @@ public class Rygel.MediaDB : Object {
     "UPDATE Object SET timestamp = 0";
 
     private void update_v3_v4 () {
-        if (db.exec ("BEGIN") == Sqlite.OK &&
-            db.exec (UPDATE_V3_V4_STRING_1) == Sqlite.OK &&
-            db.exec (UPDATE_V3_V4_STRING_2) == Sqlite.OK &&
-            db.exec (UPDATE_V3_V4_STRING_3) == Sqlite.OK &&
-            db.exec (UPDATE_V3_V4_STRING_4) == Sqlite.OK &&
-            db.exec (CREATE_TRIGGER_STRING) == Sqlite.OK &&
-            db.exec ("UPDATE Schema_Info SET version = " +
-                     schema_version) == Sqlite.OK) {
-            db.exec ("COMMIT");
-        } else {
-            db.exec ("ROLLBACK");
-            warning ("Database upgrade failed: %s", db.errmsg());
+        try {
+            GLib.Value[] values = { schema_version };
+            db.begin ();
+            db.exec (UPDATE_V3_V4_STRING_1);
+            db.exec (UPDATE_V3_V4_STRING_2);
+            db.exec (UPDATE_V3_V4_STRING_3);
+            db.exec (UPDATE_V3_V4_STRING_4);
+            db.exec (CREATE_TRIGGER_STRING);
+            db.exec ("UPDATE Schema_Info SET version = ?", values);
+            db.commit ();
+        } catch (DatabaseError err) {
+            db.rollback ();
+            warning ("Database upgrade failed: %s", err.message);
             db = null;
         }
     }
