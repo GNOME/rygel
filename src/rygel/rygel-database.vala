@@ -44,6 +44,10 @@ internal class Rygel.Database : Object {
                      db.errmsg ());
             return;
         }
+        this.db.exec ("PRAGMA cache_size = 32768");
+        this.db.exec ("PRAGMA synchronous = OFF");
+        this.db.exec ("PRAGMA temp_store = MEMORY");
+        this.db.exec ("PRAGMA count_changes = OFF");
     }
 
     public int exec (string        sql,
