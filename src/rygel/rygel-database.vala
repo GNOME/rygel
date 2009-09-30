@@ -51,12 +51,17 @@ internal class Rygel.Database : Object {
                      RowCallback?  callback = null) throws DatabaseError {
         var t = new Timer ();
         int rc;
-        var statement = prepare_statement (sql, values);
-        while ((rc = statement.step ()) == Sqlite.ROW) {
-            if (callback != null) {
-                if (!callback (statement)) {
-                    rc = Sqlite.DONE;
-                    break;
+
+        if (values == null && callback == null) {
+            rc = this.db.exec (sql);
+        } else {
+            var statement = prepare_statement (sql, values);
+            while ((rc = statement.step ()) == Sqlite.ROW) {
+                if (callback != null) {
+                    if (!callback (statement)) {
+                        rc = Sqlite.DONE;
+                        break;
+                    }
                 }
             }
         }
