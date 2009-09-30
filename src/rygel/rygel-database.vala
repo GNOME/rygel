@@ -95,7 +95,7 @@ internal class Rygel.Database : Object {
                     if (values[i].peek_pointer () == null) {
                         rc = statement.bind_null (i + 1);
                     } else {
-                        // WTF?!
+                        assert_not_reached ();
                     }
                 } else {
                     var t = values[i].type ();
