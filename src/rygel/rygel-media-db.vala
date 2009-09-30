@@ -376,64 +376,58 @@ public class Rygel.MediaDB : Object {
     }
 
     public void save_container (MediaContainer container) throws Error {
-        var rc = db.exec ("BEGIN");
         try {
+            db.begin ();
             create_object (container);
             save_uris (container);
-            rc = db.exec ("COMMIT");
-            if (rc == Sqlite.OK) {
-                object_added (container.id);
-                container_added (container.id);
-            }
-        } catch (Error error) {
-            rc = db.exec ("ROLLBACK");
-            throw error;
+            db.commit ();
+            object_added (container.id);
+            container_added (container.id);
+        } catch (DatabaseError err) {
+            db.rollback ();
+            throw err;
         }
     }
 
     public void save_item (MediaItem item) throws Error {
-        var rc = db.exec ("BEGIN;");
         try {
+            db.begin ();
             save_metadata (item);
             create_object (item);
             save_uris (item);
-            rc = db.exec ("COMMIT;");
-            if (rc == Sqlite.OK) {
-                object_added (item.id);
-                item_added (item.id);
-            }
-        } catch (Error error) {
+            db.commit ();
+            object_added (item.id);
+            item_added (item.id);
+        } catch (DatabaseError error) {
             warning ("Failed to add item with id %s: %s",
                      item.id,
                      error.message);
-            rc = db.exec ("ROLLBACK;");
+            db.rollback ();
             throw error;
         }
     }
 
 
     public void update_object (MediaObject obj) throws Error {
-        var rc = db.exec ("BEGIN");
         try {
+            db.begin ();
             remove_uris (obj);
             if (obj is MediaItem) {
                 save_metadata ((MediaItem)obj, UPDATE_META_DATA_STRING);
             }
             update_object_internal (obj);
             save_uris (obj);
-            rc = db.exec ("COMMIT");
-            if (rc == Sqlite.OK) {
-                object_updated (obj.id);
-                if (obj is MediaItem)
-                    item_updated (obj.id);
-                else if (obj is MediaContainer)
-                    container_updated (obj.id);
-            }
+            db.commit ();
+            object_updated (obj.id);
+            if (obj is MediaItem)
+                item_updated (obj.id);
+            else if (obj is MediaContainer)
+                container_updated (obj.id);
         } catch (Error error) {
             warning ("Failed to add item with id %s: %s",
                      obj.id,
                      error.message);
-            rc = db.exec ("ROLLBACK");
+            db.rollback ();
             throw error;
         }
     }
@@ -514,7 +508,7 @@ public class Rygel.MediaDB : Object {
 
    }
 
-    private void add_uris (MediaObject obj) throws MediaDBError {
+    private void add_uris (MediaObject obj) throws DatabaseError {
         GLib.Value[] values = { obj.id };
         this.db.exec (URI_GET_STRING,
                                 values,
@@ -556,14 +550,14 @@ public class Rygel.MediaDB : Object {
                 obj.modified = statement.column_int64 (18);
                 add_uris (obj);
             }
-        } catch (MediaDBError err) {
+        } catch (DatabaseError err) {
             warning ("Failed to load uris from database: %s", err.message);
             obj = null;
         }
         return obj;
     }
 
-    public MediaObject? get_object (string object_id) throws MediaDBError {
+    public MediaObject? get_object (string object_id) throws DatabaseError {
         MediaObject obj = null;
         GLib.Value[] values  = { object_id };
         Rygel.Database.RowCallback cb = (stmt) => {
