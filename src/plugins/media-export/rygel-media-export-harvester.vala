@@ -95,7 +95,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                 this.files.push_tail (new FileQueueEntry (file, false));
                 return true;
             }
-        } catch (MediaDBError err) {
+        } catch (DatabaseError err) {
             warning ("Failed to query database: %s", err.message);
         }
 
@@ -182,7 +182,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             foreach (var child in children) {
                 this.media_db.remove_by_id (child);
             }
-        } catch (MediaDBError err) {
+        } catch (DatabaseError err) {
             warning("Failed to get children of container %s: %s",
                     container.id,
                     err.message);

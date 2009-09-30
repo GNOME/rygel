@@ -32,12 +32,14 @@ internal class Rygel.MediaExportDynamicContainer : Rygel.MediaDBContainer {
     public Gee.List<string> get_uris () {
         var result = new ArrayList<string> ();
 
-        var children = this.media_db.get_children (this.id, -1, -1);
-        if (children != null) {
-            foreach (var child in children) {
-                result.add_all (child.uris);
+        try {
+            var children = this.media_db.get_children (this.id, -1, -1);
+            if (children != null) {
+                foreach (var child in children) {
+                    result.add_all (child.uris);
+                }
             }
-        }
+        } catch (Error err) {}
 
         return result;
     }
@@ -174,7 +176,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         ArrayList<string> ids;
         try {
             ids = media_db.get_child_ids ("0");
-        } catch (MediaDBError e) {
+        } catch (DatabaseError e) {
             ids = new ArrayList<string>();
         }
 
@@ -197,7 +199,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                    id);
             try {
                 this.media_db.remove_by_id (id);
-            } catch (MediaDBError e) {
+            } catch (DatabaseError e) {
                 warning ("Failed to remove entry: %s", e.message);
             }
         }
