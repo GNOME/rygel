@@ -29,9 +29,13 @@ public class Rygel.MediaExportDBusService : Object {
                                                             throws GLib.Error {
         this.root_container = root_container;
 
-        var conn = DBus.Bus.get (DBus.BusType. SESSION);
-
-        conn.register_object (RYGEL_MEDIA_EXPORT_PATH, this);
+        try {
+            var conn = DBus.Bus.get (DBus.BusType. SESSION);
+            if (conn != null)
+                conn.register_object (RYGEL_MEDIA_EXPORT_PATH, this);
+        } catch (DBus.Error err) {
+            warning ("Failed to attach to DBus session bus: %s", err.message);
+        }
     }
 
     public void AddUri (string uri) {
