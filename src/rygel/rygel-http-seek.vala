@@ -175,6 +175,8 @@ internal class Rygel.HTTPSeek : GLib.Object {
 
         if (length > 0) {
             value += "/" + length.to_string();
+        } else {
+            value += "/*";
         }
 
         msg.response_headers.append (header, value);
