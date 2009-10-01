@@ -53,7 +53,9 @@ internal class Rygel.Database : Object {
     public int exec (string        sql,
                      GLib.Value[]? values   = null,
                      RowCallback?  callback = null) throws DatabaseError {
+        #if RYGEL_DEBUG_SQL
         var t = new Timer ();
+        #endif
         int rc;
 
         if (values == null && callback == null) {
@@ -73,7 +75,9 @@ internal class Rygel.Database : Object {
         if (rc != Sqlite.DONE && rc != Sqlite.OK) {
             throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
         }
+        #if RYGEL_DEBUG_SQL
         debug ("Query: %s, Time: %f", sql, t.elapsed ());
+        #endif
 
         return rc;
     }

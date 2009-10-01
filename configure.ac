@@ -53,6 +53,13 @@ AC_SUBST(GLIB_GENMARSHAL)
 AC_ARG_ENABLE(vala,
 	[  --enable-vala          enable checks for vala],,
         enable_vala=no)
+AC_ARG_ENABLE(sql-debugging,
+              [  --enable-sql-debugging         enable SQL statement debugging],,
+                 enable_sql_debugging=no)
+
+if test x$enable_sql_debugging = xyes ; then
+    VALAFLAGS="$VALAFLAGS -D RYGEL_DEBUG_SQL"
+fi
 
 # Vala
 if test x$enable_vala = xyes ; then
@@ -234,6 +241,8 @@ ALL_LINGUAS=""
 AM_GLIB_GNU_GETTEXT
 AM_GLIB_DEFINE_LOCALEDIR([LOCALEDIR])
 
+AC_SUBST(VALAFLAGS)
+
 dnl Shave the output
 AM_SILENT_RULES([yes])
 
@@ -268,6 +277,7 @@ echo "
         uninstalled:            ${enable_uninstalled}
         maemo support:          ${enable_maemo}
         preferences ui          ${BUILD_UI}
+        SQL debugging:          ${enable_sql_debugging}
     Plugins:
         test:                   ${enable_test_plugin}
         tracker:                ${enable_tracker_plugin}
