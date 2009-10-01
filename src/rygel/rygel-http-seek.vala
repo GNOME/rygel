@@ -166,7 +166,7 @@ internal class Rygel.HTTPSeek : GLib.Object {
                 }
             }
 
-            if (end_point >= 0)
+            if (end_point >= 0) {
                 value += end_point.to_string();
             }
 
