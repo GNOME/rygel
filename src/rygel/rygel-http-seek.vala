@@ -164,11 +164,7 @@ internal class Rygel.HTTPSeek : GLib.Object {
         }
 
         if (length > 0) {
-            if (stop >= 0.0) {
-                stop = double.max (stop, (double) length - 1);
-            } else {
-                stop = (double) length - 1;
-            }
+            stop = stop.clamp (start + 1, (double) length - 1);
         }
 
         value += start.to_string () + "-";
