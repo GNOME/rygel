@@ -31,6 +31,7 @@ internal errordomain Rygel.HTTPSeekError {
 internal class Rygel.HTTPSeek : GLib.Object {
     public Format format { get; private set; }
 
+    // These are either number of bytes or microseconds
     public int64 start { get; private set; }
     public int64 stop { get; private set; }
 
@@ -143,38 +144,43 @@ internal class Rygel.HTTPSeek : GLib.Object {
     }
 
     public void add_response_header (Soup.Message msg, int64 length=-1) {
+        string header;
         string value;
+        double start = 0;
+        double stop;
 
         if (this.format == Format.TIME) {
-            // TimeSeekRange.dlna.org: npt=START_TIME-END_TIME
-            value = "npt=%g-".printf ((double) this.start / SECOND);
-            if (this.stop > 0) {
-                value += "%g".printf ((double) this.stop / SECOND);
-            }
-
-            msg.response_headers.append ("TimeSeekRange.dlna.org", value);
+            // TimeSeekRange.dlna.org: npt=START_TIME-END_TIME/DURATION
+            header = "TimeSeekRange.dlna.org";
+            value = "npt=";
+            start = (double) this.start / SECOND;
+            stop = (double) this.stop / SECOND;
         } else {
             // Content-Range: bytes START_BYTE-STOP_BYTE/TOTAL_LENGTH
-            value = "bytes " + this.start.to_string () + "-";
-            var end_point = this.stop;
-
-            if (length > 0) {
-                if (end_point >= 0) {
-                    end_point = int64.max (end_point, length - 1);
-                } else {
-                    end_point = length - 1;
-                }
-            }
-
-            if (end_point >= 0) {
-                value += end_point.to_string();
-            }
-
-            if (length > 0) {
-                value += "/" + length.to_string();
-            }
-
-            msg.response_headers.append ("Content-Range", value);
+            header = "Content-Range";
+            value = "bytes ";
+            start = (double) this.start;
+            stop = (double) this.stop;
         }
+
+        if (length > 0) {
+            if (stop >= 0.0) {
+                stop = double.max (stop, (double) length - 1);
+            } else {
+                stop = (double) length - 1;
+            }
+        }
+
+        value += start.to_string () + "-";
+
+        if (stop >= 0.0) {
+            value += stop.to_string();
+        }
+
+        if (length > 0) {
+            value += "/" + length.to_string();
+        }
+
+        msg.response_headers.append (header, value);
     }
 }
