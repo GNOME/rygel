@@ -161,6 +161,10 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     }
 
     private void on_request_completed (HTTPRequest request) {
+        debug ("HTTP %s request for URI '%s' handled.",
+               request.msg.method,
+               request.msg.get_uri ().to_string (false));
+
         /* Remove the request from our list. */
         this.requests.remove (request);
     }
@@ -170,9 +174,12 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                                  string                    server_path,
                                  HashTable<string,string>? query,
                                  Soup.ClientContext        soup_client) {
-        debug ("HTTP %s request for URI: %s",
+        debug ("HTTP %s request for URI '%s'. Headers:",
                msg.method,
                msg.get_uri ().to_string (false));
+        msg.request_headers.foreach ((name, value) => {
+                debug ("%s : %s", name, value);
+        });
 
         var request = new HTTPRequest (this, server, msg, query);
 

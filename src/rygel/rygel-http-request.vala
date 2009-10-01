@@ -113,6 +113,10 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
             // Add headers
             this.request_handler.add_response_headers (this);
+            debug ("Following HTTP headers appended to response:");
+            this.msg.response_headers.foreach ((name, value) => {
+                    debug ("%s : %s", name, value);
+            });
 
             if (this.msg.method == "HEAD") {
                 // Only headers requested, no need to send contents
@@ -165,6 +169,8 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         this.item_id = this.query.lookup ("itemid");
         var target = this.query.lookup ("transcode");
         if (target != null) {
+            debug ("Transcoding target: %s", target);
+
             var transcoder = this.http_server.get_transcoder (target);
             this.request_handler = new HTTPTranscodeHandler (transcoder,
                                                              this.cancellable);
