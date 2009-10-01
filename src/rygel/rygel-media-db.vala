@@ -273,74 +273,64 @@ public class Rygel.MediaDB : Object {
 
     private void open_db (string name) {
         this.db = new Rygel.Database (name);
-        weak string[] schema_info;
-        int nrows;
-        int ncolumns;
-        // FIXME error message causes segfault
-        var rc = db.get_table ("SELECT version FROM schema_info;",
-                           out schema_info,
-                           out nrows,
-                           out ncolumns,
-                           null);
+        int old_version = -1;
 
-        if (rc == Sqlite.OK) {
-            if (nrows == 1 && ncolumns == 1) {
-                if (schema_info[1] == schema_version) {
-                    debug ("Media DB schema has current version");
-                } else {
-                    int old_version = schema_info[1].to_int();
-                    int current_version = schema_version.to_int();
-                    if (old_version < current_version) {
-                        debug ("Older schema detected. Upgrading...");
-                        switch (old_version) {
-                            case 3:
-                                update_v3_v4 ();
-                                break;
-                            case 4:
-                                update_v4_v5 ();
-                                break;
-                            default:
-                                warning ("Cannot upgrade");
-                                db = null;
-                                break;
-                        }
-                    } else {
-                        warning ("The version \"%d\" of the detected database" +
-                                 " is newer than our supported version \"%d\"",
-                                old_version, current_version);
-                        db = null;
-                    }
-                }
+        try {
+            this.db.exec ("SELECT version FROM schema_info",
+                          null,
+                          (stmt) => {
+                              old_version = stmt.column_int (0);
+                              return false;
+                          });
+            int current_version = schema_version.to_int();
+            if (old_version == current_version) {
+                debug ("Media DB schema has current version");
             } else {
-                warning ("Incompatible schema... cannot proceed");
-                db = null;
-                return;
+                if (old_version < current_version) {
+                    debug ("Older schema detected. Upgrading...");
+                    switch (old_version) {
+                        case 3:
+                            update_v3_v4 ();
+                            break;
+                        case 4:
+                            update_v4_v5 ();
+                            break;
+                        default:
+                            warning ("Cannot upgrade");
+                            db = null;
+                            break;
+                    }
+                } else {
+                    warning ("The version \"%d\" of the detected database" +
+                            " is newer than our supported version \"%d\"",
+                            old_version, current_version);
+                    db = null;
+                }
             }
-        } else {
+        } catch (DatabaseError err) {
             debug ("Could not find schema version; checking for empty database...");
-            rc = db.get_table ("SELECT * FROM sqlite_master",
-                               out schema_info,
-                               out nrows,
-                               out ncolumns,
-                               null);
-            if (rc != Sqlite.OK) {
-                warning ("Something weird going on: %s",
-                         db.errmsg ());
-                this.db = null;
-                return;
-            }
-
-            if (nrows == 0) {
-                debug ("Empty database, creating new schema version %s",
-                       schema_version);
-                if (!create_schema ()) {
+            try {
+                int rows = -1;
+                this.db.exec ("SELECT count(*) FROM sqlite_master",
+                              null,
+                              (stmt) => {
+                                  rows = stmt.column_int (0);
+                              });
+                if (rows == 0) {
+                    debug ("Empty database, creating new schema version %s",
+                            schema_version);
+                    if (!create_schema ()) {
+                        this.db = null;
+                        return;
+                    }
+                } else {
+                    warning ("Incompatible schema... cannot proceed");
                     this.db = null;
                     return;
                 }
-            } else {
-                warning ("Incompatible schema... cannot proceed");
+            } catch (DatabaseError err2) {
+                warning ("Something weird going on: %s", err2.message);
                 this.db = null;
-                return;
             }
         }
     }

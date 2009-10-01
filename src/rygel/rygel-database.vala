@@ -115,29 +115,6 @@ internal class Rygel.Database : Object {
         return statement;
     }
 
-    // compatibility wrapper for transition
-    public weak string errmsg () {
-        return this.db.errmsg ();
-    }
-
-    public int get_table (string sql, out weak string[] schema_info, out int
-        nrows, out int ncolumns, void * foo) {
-        weak string[] _schema_info;
-        int _nrows;
-        int _ncolumns;
-        var ret = this.db.get_table (sql,
-                                     out _schema_info,
-                                     out _nrows,
-                                     out _ncolumns,
-                                     null);
-
-        schema_info = _schema_info;
-        nrows = _nrows;
-        ncolumns = _ncolumns;
-
-        return ret;
-    }
-
     public int changes () {
         return this.db.changes ();
     }
