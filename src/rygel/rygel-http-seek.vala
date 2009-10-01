@@ -92,6 +92,13 @@ internal class Rygel.HTTPSeek : GLib.Object {
         return new HTTPSeek (Format.BYTES, start, stop);
     }
 
+    // FIXME: We are only accepting time range in this format:
+    //
+    // TimeSeekRange.dlna.org : npt=417.33-779.09
+    //
+    // and not
+    //
+    // TimeSeekRange.dlna.org : npt=10:19:25.7-13:23:33.6
     public static HTTPSeek? from_time_range (Soup.Message msg)
                                              throws HTTPSeekError {
         string range, time;
