@@ -45,10 +45,10 @@ public class Rygel.MediaDB : Object {
     private MediaDBObjectFactory factory;
     private const string schema_version = "5";
     private const string SCHEMA_STRING =
-    "CREATE TABLE Schema_Info (version TEXT NOT NULL); " +
-    "CREATE TABLE Object_Type (id INTEGER PRIMARY KEY, " +
+    "CREATE TABLE schema_info (version TEXT NOT NULL); " +
+    "CREATE TABLE object_type (id INTEGER PRIMARY KEY, " +
                               "desc TEXT NOT NULL);" +
-    "CREATE TABLE Meta_Data (size INTEGER NOT NULL, " +
+    "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
                             "mime_type TEXT NOT NULL, " +
                             "duration INTEGER, " +
                             "width INTEGER, " +
@@ -66,21 +66,41 @@ public class Rygel.MediaDB : Object {
                             "object_fk TEXT UNIQUE CONSTRAINT " +
                                 "object_fk_id REFERENCES Object(upnp_id) " +
                                     "ON DELETE CASCADE);" +
-    "CREATE TABLE Object (parent TEXT CONSTRAINT parent_fk_id " +
+    "CREATE TABLE object (parent TEXT CONSTRAINT parent_fk_id " +
                                 "REFERENCES Object(upnp_id), " +
                           "upnp_id TEXT PRIMARY KEY, " +
                           "type_fk INTEGER CONSTRAINT type_fk_id " +
                                 "REFERENCES Object_Type(id), " +
                           "title TEXT NOT NULL, " +
                           "timestamp INTEGER NOT NULL);" +
-    "CREATE TABLE Uri (object_fk TEXT " +
+    "CREATE TABLE uri (object_fk TEXT " +
                         "CONSTRAINT object_fk_id REFERENCES Object(upnp_id) "+
                             "ON DELETE CASCADE, " +
                       "uri TEXT NOT NULL);" +
-    "INSERT INTO Object_Type (id, desc) VALUES (0, 'Container'); " +
-    "INSERT INTO Object_Type (id, desc) VALUES (1, 'Item'); " +
-    "INSERT INTO Schema_Info (version) VALUES ('" + MediaDB.schema_version +
+    "INSERT INTO object_type (id, desc) VALUES (0, 'Container'); " +
+    "INSERT INTO object_type (id, desc) VALUES (1, 'Item'); " +
+    "INSERT INTO schema_info (version) VALUES ('" + MediaDB.schema_version +
                                                 "'); ";
+
+    private const string CREATE_CLOSURE_TABLE =
+    "CREATE TABLE closure (ancestor TEXT, descendant TEXT, depth INTEGER)";
+
+    private const string CREATE_CLOSURE_TRIGGER_STRING =
+    "CREATE TRIGGER trgr_update_closure " +
+    "AFTER INSERT ON Object " +
+    "FOR EACH ROW BEGIN " +
+        "INSERT INTO Closure (ancestor, descendant, depth) " +
+            "VALUES (NEW.upnp_id, NEW.upnp_id, 0); " +
+        "INSERT INTO Closure (ancestor, descendant, depth) " +
+            "SELECT ancestor, NEW.upnp_id, depth + 1 FROM Closure " +
+                "WHERE descendant = NEW.parent;" +
+    "END;" +
+
+    "CREATE TRIGGER trgr_delete_closure " +
+    "AFTER DELETE ON Object " +
+    "FOR EACH ROW BEGIN " +
+        "DELETE FROM Closure WHERE descendant = OLD.upnp_id;" +
+    "END;";
 
     private const string CREATE_TRIGGER_STRING =
     "CREATE TRIGGER trgr_delete_children " +
@@ -93,7 +113,7 @@ public class Rygel.MediaDB : Object {
     "CREATE TRIGGER trgr_delete_metadata " +
     "BEFORE DELETE ON Object " +
     "FOR EACH ROW BEGIN " +
-        "DELETE FROM Meta_Data WHERE Meta_Data.object_fk = OLD.upnp_id; "+
+        "DELETE FROM meta_data WHERE meta_data.object_fk = OLD.upnp_id; "+
     "END;" +
 
     "CREATE TRIGGER trgr_delete_uris " +
@@ -104,11 +124,13 @@ public class Rygel.MediaDB : Object {
 
     private const string CREATE_INDICES_STRING =
     "CREATE INDEX idx_parent on Object(parent);" +
-    "CREATE INDEX idx_uri on Uri(object_fk)";
+    "CREATE INDEX idx_uri_fk on Uri(object_fk);" +
+    "CREATE INDEX idx_meta_data_fk on meta_data(object_fk);" +
+    "CREATE INDEX idx_closure on Closure(descendant,depth);";
 
 
     private const string INSERT_META_DATA_STRING =
-    "INSERT INTO Meta_Data " +
+    "INSERT INTO meta_data " +
         "(size, mime_type, width, height, class, " +
          "author, album, date, bitrate, " +
          "sample_freq, bits_per_sample, channels, " +
@@ -116,7 +138,7 @@ public class Rygel.MediaDB : Object {
          "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     private const string UPDATE_META_DATA_STRING =
-    "UPDATE Meta_Data SET " +
+    "UPDATE meta_data SET " +
          "size = ?, mime_type = ?, width = ?, height = ?, class = ?, " +
          "author = ?, album = ?, date = ?, bitrate = ?, " +
          "sample_freq = ?, bits_per_sample = ?, channels = ?, " +
@@ -139,16 +161,15 @@ public class Rygel.MediaDB : Object {
     private const string DELETE_BY_ID_STRING =
     "DELETE FROM Object WHERE upnp_id = ?";
 
-    private const string GET_OBJECT_STRING =
-    "SELECT type_fk, title, Meta_Data.size, Meta_Data.mime_type, " +
-            "Meta_Data.width, Meta_Data.height, " +
-            "Meta_Data.class, Meta_Data.author, Meta_Data.album, " +
-            "Meta_Data.date, Meta_Data.bitrate, Meta_Data.sample_freq, " +
-            "Meta_Data.bits_per_sample, Meta_Data.channels, " +
-            "Meta_Data.track, Meta_Data.color_depth, Meta_Data.duration, " +
-            "Object.parent " +
-    "FROM Object LEFT OUTER JOIN Meta_Data " +
-        "ON Object.upnp_id = Meta_Data.object_fk WHERE Object.upnp_id = ?";
+    private const string GET_OBJECT_WITH_CLOSURE =
+    "SELECT o.type_fk, o.title, m.size, m.mime_type, m.width, m.height, " +
+            "m.class, m.author, m.album, m.date, m.bitrate, m.sample_freq, " +
+            "m.bits_per_sample, m.channels, m.track, m.color_depth, " +
+            "m.duration, o.parent, o.upnp_id " +
+    "FROM Object o " +
+        "JOIN Closure c ON (o.upnp_id = c.ancestor) " +
+        "LEFT OUTER JOIN meta_data m ON (o.upnp_id = m.object_fk) " +
+            "WHERE c.descendant = ? ORDER BY c.depth DESC";
 
     /**
      * This is the database query used to retrieve the children for a
@@ -161,20 +182,18 @@ public class Rygel.MediaDB : Object {
      *   - and after that alphabetically
      */
     private const string GET_CHILDREN_STRING =
-    "SELECT type_fk, title, Meta_Data.size, Meta_Data.mime_type, " +
-            "Meta_Data.width, Meta_Data.height, " +
-            "Meta_Data.class, Meta_Data.author, Meta_Data.album, " +
-            "Meta_Data.date, Meta_Data.bitrate, Meta_Data.sample_freq, " +
-            "Meta_Data.bits_per_sample, Meta_Data.channels, " +
-            "Meta_Data.track, Meta_Data.color_depth, Meta_Data.duration, " +
-            "upnp_id, Object.parent, Object.timestamp " +
-    "FROM Object LEFT OUTER JOIN Meta_Data " +
-        "ON Object.upnp_id = Meta_Data.object_fk " +
-    "WHERE Object.parent = ? " +
-        "ORDER BY type_fk ASC, " +
-                 "Meta_Data.class ASC, " +
-                 "Meta_Data.track ASC, " +
-                 "title ASC " +
+    "SELECT o.type_fk, o.title, m.size, m.mime_type, " +
+            "m.width, m.height, m.class, m.author, m.album, " +
+            "m.date, m.bitrate, m.sample_freq, m.bits_per_sample, " +
+            "m.channels, m.track, m.color_depth, m.duration, " +
+            "o.upnp_id, o.parent, o.timestamp " +
+    "FROM Object o LEFT OUTER JOIN meta_data m " +
+        "ON o.upnp_id = m.object_fk " +
+    "WHERE o.parent = ? " +
+        "ORDER BY o.type_fk ASC, " +
+                 "m.class ASC, " +
+                 "m.track ASC, " +
+                 "o.title ASC " +
     "LIMIT ?,?";
 
     private const string URI_GET_STRING =
@@ -196,11 +215,11 @@ public class Rygel.MediaDB : Object {
     "SELECT upnp_id FROM OBJECT WHERE parent = ?";
 
     private const string UPDATE_V3_V4_STRING_1 =
-    "ALTER TABLE Meta_Data ADD object_fk TEXT";
+    "ALTER TABLE meta_data ADD object_fk TEXT";
 
     private const string UPDATE_V3_V4_STRING_2 =
-    "UPDATE Meta_Data SET object_fk = " +
-        "(SELECT upnp_id FROM Object WHERE metadata_fk = Meta_Data.id)";
+    "UPDATE meta_data SET object_fk = " +
+        "(SELECT upnp_id FROM Object WHERE metadata_fk = meta_data.id)";
 
     private const string UPDATE_V3_V4_STRING_3 =
     "ALTER TABLE Object ADD timestamp INTEGER";
@@ -216,7 +235,7 @@ public class Rygel.MediaDB : Object {
             db.exec (UPDATE_V3_V4_STRING_3);
             db.exec (UPDATE_V3_V4_STRING_4);
             db.exec (CREATE_TRIGGER_STRING);
-            db.exec ("UPDATE Schema_Info SET version = '4'");
+            db.exec ("UPDATE schema_info SET version = '4'");
             db.commit ();
         } catch (DatabaseError err) {
             db.rollback ();
@@ -228,9 +247,22 @@ public class Rygel.MediaDB : Object {
     private void update_v4_v5 () {
         try {
             db.begin ();
+            db.exec (CREATE_CLOSURE_TABLE);
+            // this is to have the database generate the closure table
+            db.exec ("ALTER TABLE Object RENAME TO _Object");
+            db.exec ("CREATE TABLE Object AS SELECT * FROM _Object");
+            db.exec ("DELETE FROM Object");
+            db.exec (CREATE_CLOSURE_TRIGGER_STRING);
+            db.exec ("INSERT INTO Object SELECT * FROM _Object");
+            db.exec ("DROP TABLE Object");
+            db.exec ("ALTER TABLE _Object RENAME TO Object");
+            // the triggers created above have been dropped automatically
+            // so we need to recreate them
+            db.exec (CREATE_CLOSURE_TRIGGER_STRING);
             db.exec (CREATE_INDICES_STRING);
-            db.exec ("UPDATE Schema_Info SET version = '5'");
+            db.exec ("UPDATE schema_info SET version = '5'");
             db.commit ();
+            db.exec ("VACUUM");
             db.analyze ();
         } catch (DatabaseError err) {
             db.rollback ();
@@ -245,7 +277,7 @@ public class Rygel.MediaDB : Object {
         int nrows;
         int ncolumns;
         // FIXME error message causes segfault
-        var rc = db.get_table ("SELECT version FROM Schema_Info;",
+        var rc = db.get_table ("SELECT version FROM schema_info;",
                            out schema_info,
                            out nrows,
                            out ncolumns,
@@ -515,7 +547,9 @@ public class Rygel.MediaDB : Object {
             db.begin ();
             db.exec (SCHEMA_STRING);
             db.exec (CREATE_TRIGGER_STRING);
+            db.exec (CREATE_CLOSURE_TABLE);
             db.exec (CREATE_INDICES_STRING);
+            db.exec (CREATE_CLOSURE_TRIGGER_STRING);
             db.commit ();
             db.analyze ();
             return true;
@@ -577,30 +611,20 @@ public class Rygel.MediaDB : Object {
     }
 
     public MediaObject? get_object (string object_id) throws DatabaseError {
-        MediaObject obj = null;
-        GLib.Value[] values  = { object_id };
+        GLib.Value[] values = { object_id };
+        MediaObject _parent = null;
         Rygel.Database.RowCallback cb = (stmt) => {
-            MediaContainer parent = null;
-            var parent_id = stmt.column_text (17);
-            if (parent_id != null) {
-                parent = (MediaContainer) get_object (
-                        stmt.column_text (17));
-            } else {
-                if (stmt.column_text (0) != "0") {
-                    warning ("Inconsitent database; non-root element " +
-                            "without parent found. Id is %s",
-                            stmt.column_text (0));
-                }
-            }
-            obj = get_object_from_statement ((MediaContainer) parent,
-                                             object_id,
-                                             stmt);
-            obj.parent_ref = (MediaContainer) parent;
-            obj.parent = obj.parent_ref;
-            return false;
+            var obj = get_object_from_statement ((MediaContainer) _parent,
+                                                 stmt.column_text (18),
+                                                 stmt);
+            obj.parent = (MediaContainer) _parent;
+            obj.parent_ref = (MediaContainer) _parent;
+            _parent = obj;
+            return true;
         };
 
-        this.db.exec (GET_OBJECT_STRING, values, cb);
+        this.db.exec (GET_OBJECT_WITH_CLOSURE, values, cb);
+        var obj = _parent;
         return obj;
     }
 
