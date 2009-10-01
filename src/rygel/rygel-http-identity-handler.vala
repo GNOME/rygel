@@ -50,7 +50,8 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
 
         if (request.thumbnail == null && request.item.should_stream ()) {
             if (request.time_range != null) {
-                request.time_range.add_response_header (request.msg);
+                request.time_range.add_response_header (request.msg,
+                                                        request.item.duration);
             }
         } else {
             request.msg.response_headers.append ("Accept-Ranges", "bytes");
