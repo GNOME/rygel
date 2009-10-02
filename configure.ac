@@ -130,7 +130,7 @@ fi
 
 # Check wether user wants to build UIs
 AC_ARG_WITH( ui,
-  AC_HELP_STRING([--disable-ui],[Do not build UI applications]),
+  AC_HELP_STRING([--without-ui],[Do not build UI applications]),
   try_ui=$withval, try_ui=yes )
 
 HAVE_GTK=no
