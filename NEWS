@@ -1,3 +1,37 @@
+0.4.2
+=====
+
+Brief summary of changes since 0.4.1:
+
+- Ability to specify verbosity of console messages by a number between 0 to 5.
+- Be able to survive unavailability of D-Bus session bus. This should make it
+  easier to setup Rygel on headless NAS machines.
+- MediaExport:
+  - Provide duration and date of media.
+  - Improved guessing for type (UPnP class) of media.
+  - Re-harvest metadata when a file/directory is modified.
+- rygel-preferences:
+  - Fix enabling/disabling of widgets.
+  - Copy the desktop file from correct location.
+  - Speed-up browsing (twice as before).
+- Mediathek and GstLaunch disabled by default in the user configuration.
+- Add GstLaunch to maemo configuration (disabled by default though).
+- Put dbus-glib-1 to the list of vala API dependencies.
+- Fix seek headers.
+- Be more verbose at the end of configure.
+
+Bugs fixed in this release:
+
+596500 - Mpeg TS video files are mistaken for audio files
+596213 - Wrong state for checkboxes
+596327 - Enables some weird plugins by default
+596330 - Missing some metadata
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+
 0.4.1
 =====
 
