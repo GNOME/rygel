@@ -107,7 +107,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     }
 
     private bool is_http_uri (string uri) {
-            return uri.has_prefix ("http:");
+        return Uri.parse_scheme (uri) == "http";
     }
 
     private void on_cancelled (Cancellable cancellable) {

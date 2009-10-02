@@ -206,25 +206,25 @@ public class Rygel.MediaItem : MediaObject {
     }
 
     private string get_protocol_for_uri (string uri) throws Error {
-        if (uri.has_prefix ("http")) {
+        var scheme = Uri.parse_scheme (uri);
+        if (scheme == null) {
+            throw new MediaItemError.BAD_URI ("Bad URI: %s", uri);
+        }
+
+        if (scheme == "http") {
             return "http-get";
-        } else if (uri.has_prefix ("file")) {
+        } else if (scheme == "file") {
             return "internal";
-        } else if (uri.has_prefix ("rtsp")) {
+        } else if (scheme == "rtsp") {
             // FIXME: Assuming that RTSP is always accompanied with RTP over UDP
             return "rtsp-rtp-udp";
         } else {
             // Assume the protocol to be the scheme of the URI
-            var tokens = uri.split (":", 2);
-            if (tokens[0] == null) {
-                throw new MediaItemError.BAD_URI ("Bad URI: %s", uri);
-            }
-
             warning ("Failed to probe protocol for URI %s. Assuming '%s'",
                      uri,
-                     tokens[0]);
+                     scheme);
 
-            return tokens[0];
+            return scheme;
         }
     }
 }
