@@ -251,8 +251,18 @@ echo "
                     ============
 
 
-	Prefix:                 ${prefix}
+        Prefix:                 ${prefix}
         Source code location:   ${srcdir}
         Compiler:               ${CC}
         CFLAGS:                 ${CFLAGS}
+        uninstalled:            ${enable_uninstalled}
+        maemo support:          ${enable_maemo}
+        preferences ui          ${BUILD_UI}
+    Plugins:
+        test:                   ${enable_test_plugin}
+        tracker:                ${enable_tracker_plugin}
+        mediathek:              ${enable_mediathek_plugin}
+        media-export            ${enable_media_export_plugin}
+        external:               ${enable_external_plugin}
+        gstlaunch:              ${enable_gstlaunch_plugin}
 "
