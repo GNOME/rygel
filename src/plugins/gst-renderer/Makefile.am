@@ -9,11 +9,12 @@ plugindir = $(libdir)/rygel-1.0
 plugin_LTLIBRARIES = librygel-gst.la
 
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
-	    $(LIBGUPNP_AV_CFLAGS) \
-	    $(GEE_CFLAGS) \
-	    $(GTK_CFLAGS) \
-	    $(LIBGSTREAMER_CFLAGS) \
-	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"'
+            $(LIBGUPNP_AV_CFLAGS) \
+            $(GEE_CFLAGS) \
+            $(LIBDBUS_GLIB_CFLAGS) \
+            $(GTK_CFLAGS) \
+            $(LIBGSTREAMER_CFLAGS) \
+            -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"'
 
 librygel_gst_la_SOURCES = rygel-gst-connection-manager.vala \
 			  rygel-gst-rendering-control.vala \
@@ -25,13 +26,15 @@ librygel_gst_la_SOURCES = rygel-gst-connection-manager.vala \
 
 librygel_gst_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
                             --vapidir=$(srcdir) \
-	--pkg rygel-1.0 --pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 \
-	--pkg owl-video-widget --pkg gee-1.0 --pkg gstreamer-0.10 \
-	--pkg gconf-2.0 --pkg gtk+-2.0
+                            --pkg rygel-1.0 --pkg cstuff --pkg gupnp-1.0 \
+                            --pkg gupnp-av-1.0 --pkg owl-video-widget \
+                            --pkg gee-1.0 --pkg gstreamer-0.10 \
+                            --pkg gconf-2.0 --pkg gtk+-2.0
 
 librygel_gst_la_LIBADD = $(LIBGUPNP_LIBS) \
                          $(LIBGUPNP_AV_LIBS) \
                          $(LIBGSTREAMER_LIBS) \
+                         $(LIBDBUS_GLIB_LIBS) \
                          $(GEE_LIBS) \
                          $(GTK_LIBS) \
                          $(LIBGCONF_LIBS)
