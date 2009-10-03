@@ -115,10 +115,6 @@ internal class Rygel.Database : Object {
         return statement;
     }
 
-    public int changes () {
-        return this.db.changes ();
-    }
-
     public void analyze () {
         this.db.exec ("ANALYZE");
     }

@@ -103,13 +103,6 @@ public class Rygel.MediaDB : Object {
     "END;";
 
     private const string CREATE_TRIGGER_STRING =
-    "CREATE TRIGGER trgr_delete_children " +
-    "BEFORE DELETE ON Object " +
-    "FOR EACH ROW BEGIN " +
-        "UPDATE Object SET parent = NULL " +
-            "WHERE Object.parent = OLD.upnp_id;" +
-    "END;" +
-
     "CREATE TRIGGER trgr_delete_metadata " +
     "BEFORE DELETE ON Object " +
     "FOR EACH ROW BEGIN " +
@@ -159,7 +152,8 @@ public class Rygel.MediaDB : Object {
     "DELETE FROM Uri WHERE object_fk = ?";
 
     private const string DELETE_BY_ID_STRING =
-    "DELETE FROM Object WHERE upnp_id = ?";
+    "DELETE FROM Object WHERE upnp_id = " +
+        "(SELECT descendant FROM closure WHERE ancestor = ?)";
 
     private const string GET_OBJECT_WITH_CLOSURE =
     "SELECT o.type_fk, o.title, m.size, m.mime_type, m.width, m.height, " +
@@ -208,9 +202,6 @@ public class Rygel.MediaDB : Object {
     private const string OBJECT_DELETE_STRING =
     "DELETE FROM Object WHERE Object.upnp_id = ?";
 
-    private const string SWEEPER_STRING =
-    "DELETE FROM Object WHERE parent IS NULL AND Object.upnp_id != '0'";
-
     private const string GET_CHILD_ID_STRING =
     "SELECT upnp_id FROM OBJECT WHERE parent = ?";
 
@@ -247,6 +238,7 @@ public class Rygel.MediaDB : Object {
     private void update_v4_v5 () {
         try {
             db.begin ();
+            db.exec ("DROP TRIGGER IF EXISTS trgr_delete_children");
             db.exec (CREATE_CLOSURE_TABLE);
             // this is to have the database generate the closure table
             db.exec ("ALTER TABLE Object RENAME TO _Object");
@@ -360,22 +352,6 @@ public class Rygel.MediaDB : Object {
         throw new MediaDBError.GENERAL_ERROR("Invalid database");
     }
 
-    private bool sweeper () {
-        try {
-            debug ("Running sweeper");
-            db.exec (SWEEPER_STRING);
-            // if there have been any objects deleted, their children
-            // will have nullified parents by the trigger, so we reschedule
-            // the idle sweeper
-            var changes = db.changes ();
-            debug ("Changes in sweeper: %d", changes);
-            return changes != 0;
-        } catch (DatabaseError err) {
-            warning ("Failed to sweep database");
-            return false;
-        }
-    }
-
     public signal void object_added (string object_id);
     public signal void object_removed (string object_id);
     public signal void object_updated (string object_id);
@@ -392,7 +368,6 @@ public class Rygel.MediaDB : Object {
         GLib.Value[] values = { id };
         this.db.exec (DELETE_BY_ID_STRING, values);
         object_removed (id);
-        Idle.add (this.sweeper);
     }
 
 
