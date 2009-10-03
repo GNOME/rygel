@@ -65,7 +65,7 @@ public class Rygel.PluginLoader : Object {
     }
 
     public Collection<Plugin> list_plugins () {
-        return this.plugin_hash.get_values ();
+        return this.plugin_hash.values;
     }
 
     private void load_modules_from_dir (File dir) {

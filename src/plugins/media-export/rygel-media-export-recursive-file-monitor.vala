@@ -87,7 +87,7 @@ public class Rygel.MediaExportRecursiveFileMonitor : Object {
         if (this.cancellable != null) {
             this.cancellable.cancel ();
         } else {
-            foreach (var monitor in this.monitors.get_values ()) {
+            foreach (var monitor in this.monitors.values) {
                 monitor.cancel ();
             }
         }
