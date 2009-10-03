@@ -75,16 +75,9 @@ public class Rygel.Main : Object {
 
     private void on_plugin_loaded (PluginLoader plugin_loader,
                                    Plugin       plugin) {
-        // We iterate over the copy of the list rather than list itself because
-        // there is high chances of the original list being modified during the
-        // iteration, which is not allowed by libgee.
-        var factories = new ArrayList <RootDeviceFactory> ();
-        foreach (var factory in this.factories) {
-            factories.add (factory);
-        }
-
-        foreach (var factory in factories) {
-            this.create_device (plugin, factory);
+        var iterator = this.factories.iterator ();
+        while (iterator.next ()) {
+            this.create_device (plugin, iterator.get ());
         }
     }
 
@@ -119,14 +112,9 @@ public class Rygel.Main : Object {
             var factory = new RootDeviceFactory (context);
             this.factories.add (factory);
 
-            // See the comment in on_plugin_loaded method
-            var plugins = new ArrayList <Plugin> ();
-            foreach (var plugin in this.plugin_loader.list_plugins ()) {
-                plugins.add (plugin);
-            }
-
-            foreach (var plugin in plugins) {
-                this.create_device (plugin, factory);
+            var iterator = this.plugin_loader.list_plugins ().iterator ();
+            while (iterator.next ()) {
+                this.create_device (iterator.get (), factory);
             }
         } else {
             debug ("Ignoring network context %s (%s).",
@@ -141,26 +129,18 @@ public class Rygel.Main : Object {
                context.interface,
                context.host_ip);
 
-        var factory_list = new ArrayList <RootDeviceFactory> ();
-        foreach (var factory in this.factories) {
-            if (context == factory.context) {
-                factory_list.add (factory);
+        var factory_iter = this.factories.iterator ();
+        while (factory_iter.next ()) {
+            if (context == factory_iter.get ().context) {
+                factory_iter.remove ();
             }
         }
 
-        foreach (var factory in factory_list) {
-            this.factories.remove (factory);
-        }
-
-        var device_list = new ArrayList <RootDevice> ();
-        foreach (var device in this.root_devices) {
-            if (context == device.context) {
-                device_list.add (device);
+        var device_iter = this.root_devices.iterator ();
+        while (device_iter.next ()) {
+            if (context == device_iter.get ().context) {
+                device_iter.remove ();
             }
-        }
-
-        foreach (var device in device_list) {
-            this.root_devices.remove (device);
         }
     }
 
