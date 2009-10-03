@@ -146,7 +146,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
                 var item = this.file_queue.peek_head ();
                 debug ("Scheduling file %s for metadata extraction",
                        item.get_uri ());
-               this.extract_mime_and_size ();
+                this.extract_mime_and_size ();
                 renew_playbin ();
                 this.playbin.uri = item.get_uri ();
                 this.timeout_id = Timeout.add_seconds_full (
