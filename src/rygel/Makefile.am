@@ -47,6 +47,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-cmdline-config.vala \
 		    rygel-content-directory.vala \
 		    rygel-connection-manager.vala \
+		    rygel-source-connection-manager.vala \
 		    rygel-transcode-manager.vala \
 		    rygel-http-server.vala \
 		    rygel-state-machine.vala \

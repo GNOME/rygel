@@ -77,7 +77,7 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
         resource_info = new ResourceInfo (ConnectionManager.UPNP_ID,
                                           ConnectionManager.UPNP_TYPE,
                                           ConnectionManager.DESCRIPTION_PATH,
-                                          typeof (ConnectionManager));
+                                          typeof (SourceConnectionManager));
         this.add_resource (resource_info);
     }
 
