@@ -57,19 +57,23 @@ internal class Rygel.HTTPTranscodeHandler : HTTPRequestHandler {
             throw new HTTPRequestError.NOT_FOUND ("Not found");
         }
 
-        src = this.transcoder.create_source (item, src);
+        try {
+            src = this.transcoder.create_source (item, src);
 
-        return new LiveResponse (request.server,
-                                 request.msg,
-                                 "RygelLiveResponse",
-                                 src,
-                                 request.time_range,
-                                 this.cancellable);
+            return new LiveResponse (request.server,
+                                     request.msg,
+                                     "RygelLiveResponse",
+                                     src,
+                                     request.time_range,
+                                     this.cancellable);
+        } catch (GLib.Error err) {
+            throw new HTTPRequestError.NOT_FOUND (err.message);
+        }
     }
 
     protected override DIDLLiteResource add_resource (DIDLLiteItem didl_item,
                                                       HTTPRequest  request)
-                                                      throws HTTPRequestError {
+                                                      throws Error {
         return this.transcoder.add_resource (didl_item,
                                              request.item,
                                              request.http_server);

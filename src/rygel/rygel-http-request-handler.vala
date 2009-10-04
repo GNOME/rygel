@@ -45,12 +45,17 @@ internal abstract class Rygel.HTTPRequestHandler: GLib.Object {
         // something better, be my guest and provide a patch.
         var didl_writer = new GUPnP.DIDLLiteWriter (null);
         var didl_item = didl_writer.add_item ();
-        var resource = this.add_resource (didl_item, request);
-        var tokens = resource.protocol_info.to_string ().split (":", 4);
-        assert (tokens.length == 4);
+        try {
+            var resource = this.add_resource (didl_item, request);
+            var tokens = resource.protocol_info.to_string ().split (":", 4);
+            assert (tokens.length == 4);
 
-        request.msg.response_headers.append ("contentFeatures.dlna.org",
-                                             tokens[3]);
+            request.msg.response_headers.append ("contentFeatures.dlna.org",
+                                                 tokens[3]);
+        } catch (Error err) {
+            warning ("Received request for 'contentFeatures.dlna.org' but " +
+                     "failed to provide the value in response headers");
+        }
     }
 
     // Create an HTTPResponse object that will render the body.
@@ -59,5 +64,5 @@ internal abstract class Rygel.HTTPRequestHandler: GLib.Object {
 
     protected abstract DIDLLiteResource add_resource (DIDLLiteItem didl_item,
                                                       HTTPRequest  request)
-                                                      throws HTTPRequestError;
+                                                      throws Error;
 }
