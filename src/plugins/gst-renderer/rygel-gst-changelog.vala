@@ -82,7 +82,7 @@ public class Rygel.GstChangeLog : Object {
         str.append ("<Event xmlns=\"" +
                     "urn:schemas-upnp-org:metadata-1-0/AVT_RCS\">" +
                     "<InstanceID val=\"0\">");
-        foreach (string line in hash.get_values ()) {
+        foreach (string line in hash.values) {
             str.append (line);
         }
         str.append ("</InstanceID></Event>");
