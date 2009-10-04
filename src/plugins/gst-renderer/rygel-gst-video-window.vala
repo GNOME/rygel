@@ -102,6 +102,9 @@ public class Rygel.GstVideoWindow : Window {
 
     public static GstVideoWindow get_default () {
         if (video_window == null) {
+            var args = new string[0];
+            Gtk.init (ref args);
+
             video_window = new GstVideoWindow ();
         }
 
