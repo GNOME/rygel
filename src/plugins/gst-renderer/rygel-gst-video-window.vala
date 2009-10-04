@@ -84,10 +84,6 @@ public class Rygel.GstVideoWindow : Window {
     public string duration { get; private set; }
     public string playback_position { get; private set; }
 
-    construct {
-        this.type = WindowType.TOPLEVEL;
-    }
-
     private GstVideoWindow () {
         this.fullscreen_state = true;
 
