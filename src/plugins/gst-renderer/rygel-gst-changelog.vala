@@ -34,8 +34,8 @@ public class Rygel.GstChangeLog : Object {
 
     private uint timeout_id = 0;
 
-    public GstChangeLog (Service? _service) {
-        service = _service;
+    public GstChangeLog (Service? service) {
+        service = service;
         str = new StringBuilder ();
         hash = new Gee.HashMap<string, string> (str_hash, str_equal, str_equal);
     }
