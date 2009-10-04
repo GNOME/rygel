@@ -62,15 +62,22 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
     }
 
     public Plugin.MediaServer (string  name,
-                               string? title) {
+                               string? title,
+                               Type    content_dir_type) {
         this (MEDIA_SERVER_DESC_PATH, name, title);
 
-        /* Register Rygel.ConnectionManager */
-        var resource_info = new ResourceInfo
-                                (ConnectionManager.UPNP_ID,
-                                 ConnectionManager.UPNP_TYPE,
-                                 ConnectionManager.DESCRIPTION_PATH,
-                                 typeof (ConnectionManager));
+        // MediaServer implementations must implement ContentDirectory service
+        var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
+                                              ContentDirectory.UPNP_TYPE,
+                                              ContentDirectory.DESCRIPTION_PATH,
+                                              content_dir_type);
+        this.add_resource (resource_info);
+
+        // Register Rygel.ConnectionManager
+        resource_info = new ResourceInfo (ConnectionManager.UPNP_ID,
+                                          ConnectionManager.UPNP_TYPE,
+                                          ConnectionManager.DESCRIPTION_PATH,
+                                          typeof (ConnectionManager));
         this.add_resource (resource_info);
     }
 

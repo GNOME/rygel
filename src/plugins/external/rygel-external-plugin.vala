@@ -43,17 +43,9 @@ public class Rygel.ExternalPlugin : Rygel.Plugin {
         props.Get (OBJECT_IFACE, "DisplayName", out value);
         var title = value.get_string ();
 
-        base.MediaServer (service_name, title);
+        base.MediaServer (service_name, title, typeof (ExternalContentDir));
 
         this.service_name = service_name;
         this.root_object = root_object;
-
-        // We only implement a ContentDirectory service
-        var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
-                                              ContentDirectory.UPNP_TYPE,
-                                              ContentDirectory.DESCRIPTION_PATH,
-                                              typeof (ExternalContentDir));
-
-        this.add_resource (resource_info);
     }
 }

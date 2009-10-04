@@ -29,15 +29,9 @@ public class Rygel.TrackerPlugin : Rygel.Plugin {
                                 "/icons/hicolor/48x48/apps/tracker.png";
 
     public TrackerPlugin () {
-        base.MediaServer ("Tracker", "@REALNAME@'s media");
-
-        // We only implement a ContentDirectory service
-        var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
-                                              ContentDirectory.UPNP_TYPE,
-                                              ContentDirectory.DESCRIPTION_PATH,
-                                              typeof (MediaTracker));
-
-        this.add_resource (resource_info);
+        base.MediaServer ("Tracker",
+                          "@REALNAME@'s media",
+                          typeof (MediaTracker));
 
         var icon_info = new IconInfo ("image/png");
 

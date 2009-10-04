@@ -28,16 +28,9 @@ using CStuff;
 
 [ModuleInit]
 public void module_init (PluginLoader loader) {
-    Plugin plugin = new Plugin.MediaServer ("Test", "Test Streams");
-
-    // We only implement a ContentDirectory service
-    var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
-                                          ContentDirectory.UPNP_TYPE,
-                                          ContentDirectory.DESCRIPTION_PATH,
-                                          typeof (TestContentDir));
-
-    plugin.add_resource (resource_info);
-
+    var plugin = new Plugin.MediaServer ("Test",
+                                         "Test Streams",
+                                         typeof (TestContentDir));
     loader.add_plugin (plugin);
 }
 

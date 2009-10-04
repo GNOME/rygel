@@ -29,15 +29,9 @@ using GLib;
  */
 [ModuleInit]
 public void module_init (PluginLoader loader) {
-    var plugin = new Plugin.MediaServer ("MediaExport", "@REALNAME@'s media");
-
-    var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
-                                          ContentDirectory.UPNP_TYPE,
-                                          ContentDirectory.DESCRIPTION_PATH,
+    var plugin = new Plugin.MediaServer ("MediaExport",
+                                         "@REALNAME@'s media",
                                           typeof (Rygel.MediaExportContentDir));
-
-    plugin.add_resource (resource_info);
-
     loader.add_plugin (plugin);
 }
 

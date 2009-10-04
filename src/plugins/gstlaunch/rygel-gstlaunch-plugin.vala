@@ -26,14 +26,9 @@ using CStuff;
 
 [ModuleInit]
 public void module_init (PluginLoader loader) {
-    Plugin plugin = new Plugin.MediaServer ("GstLaunch", "Gst Launch");
-
-    var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
-                                          ContentDirectory.UPNP_TYPE,
-                                          ContentDirectory.DESCRIPTION_PATH,
-                                          typeof (GstLaunchContentDir));
-
-    plugin.add_resource (resource_info);
+    var plugin = new Plugin.MediaServer ("GstLaunch",
+                                         "Gst Launch",
+                                         typeof (GstLaunchContentDir));
     loader.add_plugin (plugin);
 }
 
