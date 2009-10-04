@@ -91,15 +91,14 @@ public class Rygel.GstVideoWindow : Window {
     private GstVideoWindow () {
         this.fullscreen_state = true;
 
-        this.video_widget.eos += this.eos_cb;
-        this.video_widget.notify["duration"] += this.notify_duration_cb;
-        this.video_widget.notify["position"] += this.notify_position_cb;
-
         // Show a video widget
         this.video_widget = new VideoWidget ();
-        this.video_widget.show ();
 
-        this.add (video_widget);
+        this.video_widget.notify["duration"] += this.notify_duration_cb;
+        this.video_widget.notify["position"] += this.notify_position_cb;
+        this.video_widget.eos += this.eos_cb;
+
+        this.add (this.video_widget);
         this.show_all ();
 
         this.key_press_event += this.key_press_callback;
