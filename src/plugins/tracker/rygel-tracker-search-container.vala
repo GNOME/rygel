@@ -160,7 +160,8 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
     public MediaItem? create_item (string   service,
                                    string   path,
-                                   string[] metadata) {
+                                   string[] metadata)
+                                   throws GLib.Error {
         var id = service + ":" + this.id + ":" + path;
 
         if (service == TrackerVideoItem.SERVICE) {

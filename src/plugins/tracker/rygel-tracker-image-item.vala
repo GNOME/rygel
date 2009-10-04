@@ -33,7 +33,8 @@ public class Rygel.TrackerImageItem : Rygel.TrackerItem {
     public TrackerImageItem (string                 id,
                              string                 path,
                              TrackerSearchContainer parent,
-                             string[]               metadata) {
+                             string[]               metadata)
+                             throws GLib.Error {
         base (id, path, parent, MediaItem.IMAGE_CLASS, metadata);
 
         if (metadata[Metadata.IMAGE_TITLE] != "")

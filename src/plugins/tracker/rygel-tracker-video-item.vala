@@ -33,7 +33,8 @@ public class Rygel.TrackerVideoItem : Rygel.TrackerItem {
     public TrackerVideoItem (string                 id,
                              string                 path,
                              TrackerSearchContainer parent,
-                             string[]               metadata) {
+                             string[]               metadata)
+                             throws GLib.Error {
         base (id, path, parent, MediaItem.VIDEO_CLASS, metadata);
 
         if (metadata[Metadata.VIDEO_TITLE] != "")

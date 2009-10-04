@@ -33,7 +33,8 @@ public class Rygel.TrackerMusicItem : Rygel.TrackerItem {
     public TrackerMusicItem (string                 id,
                              string                 path,
                              TrackerSearchContainer parent,
-                             string[]               metadata) {
+                             string[]               metadata)
+                             throws GLib.Error {
         base (id, path, parent, MediaItem.MUSIC_CLASS, metadata);
 
         if (metadata[Metadata.AUDIO_TITLE] != "")
