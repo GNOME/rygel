@@ -51,7 +51,11 @@ public class Rygel.PluginPrefSection : PreferencesSection {
         assert (title_label != null);
         this.widgets.add (title_label);
 
-        this.enabled_check.active = config.get_enabled (name);
+        try {
+            this.enabled_check.active = config.get_enabled (name);
+        } catch (GLib.Error err) {
+            this.enabled_check.active = false;
+        }
 
         string title;
         try {

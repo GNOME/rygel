@@ -63,7 +63,13 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     }
 
     public void set_upnp_enabled (bool value) {
-        if (value != this.get_upnp_enabled ()) {
+        bool enabled = false;
+
+        try {
+            enabled = this.get_upnp_enabled ();
+        } catch (GLib.Error err) {}
+
+        if (value != enabled) {
             this.enable_upnp (value);
         }
     }

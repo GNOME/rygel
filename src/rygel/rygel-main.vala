@@ -109,12 +109,17 @@ public class Rygel.Main : Object {
         } catch (GLib.Error err) {}
 
         if (iface == null || iface == context.interface) {
-            var factory = new RootDeviceFactory (context);
-            this.factories.add (factory);
+            try {
+                var factory = new RootDeviceFactory (context);
+                this.factories.add (factory);
 
-            var iterator = this.plugin_loader.list_plugins ().iterator ();
-            while (iterator.next ()) {
-                this.create_device (iterator.get (), factory);
+                var iterator = this.plugin_loader.list_plugins ().iterator ();
+                while (iterator.next ()) {
+                    this.create_device (iterator.get (), factory);
+                }
+            } catch (GLib.Error err) {
+                warning ("Failed to create root device factory: %s\n",
+                         err.message);
             }
         } else {
             debug ("Ignoring network context %s (%s).",
