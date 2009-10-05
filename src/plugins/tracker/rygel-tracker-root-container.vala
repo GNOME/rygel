@@ -37,17 +37,20 @@ public class Rygel.TrackerRootContainer : Rygel.SimpleContainer {
                                         "16",
                                         this,
                                         "Pictures",
-                                        TrackerImageItem.SERVICE));
+                                        TrackerImageItem.SERVICE,
+                                        new string[0]));
         this.add_child (new TrackerSearchContainer (
                                         "14",
                                         this,
                                         "Music",
-                                        TrackerMusicItem.SERVICE));
+                                        TrackerMusicItem.SERVICE,
+                                        new string[0]));
         this.add_child (new TrackerSearchContainer (
                                         "15",
                                         this,
                                         "Videos",
-                                        TrackerVideoItem.SERVICE));
+                                        TrackerVideoItem.SERVICE,
+                                        new string[0]));
         this.add_child (new TrackerMetadataValues ("Audio:Artist",
                                                    "17",
                                                    this,

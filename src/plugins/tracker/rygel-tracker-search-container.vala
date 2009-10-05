@@ -54,10 +54,11 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                    MediaContainer parent,
                                    string         title,
                                    string         service,
-                                   string         query_condition = "",
-                                   string[]       keywords = new string[0]) {
+                                   string[]       keywords,
+                                   string         query_condition = "") {
         base (id, parent, title, 0);
 
+        this.keywords = keywords;
         this.service = service;
         this.keywords = keywords;
         this.query_condition = query_condition;

@@ -101,6 +101,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
                                                         this,
                                                         value,
                                                         SERVICE,
+                                                        new string[0],
                                                         query_condition);
 
             this.add_child (container);
