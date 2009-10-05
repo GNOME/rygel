@@ -74,6 +74,7 @@ public class Rygel.TrackerKeywords : Rygel.SimpleContainer {
                                                         this,
                                                         keyword,
                                                         SERVICE,
+                                                        "",
                                                         keywords);
 
             this.add_child (container);
