@@ -92,16 +92,16 @@ public class Rygel.GstRenderingControl : Service {
     }
 
     private void query_last_change_cb (GstRenderingControl s,
-                                       string              var,
-                                       ref GLib.Value      val) {
+                                       string              variable,
+                                       ref GLib.Value      value) {
         // Send current state
         var log = new GstChangeLog (null);
 
         log.log_with_channel ("Mute", mute ? "1" : "0", "Master");
         log.log_with_channel ("Volume", this.volume.to_string (), "Master");
 
-        val.init (typeof (string));
-        val.set_string (log.finish ());
+        value.init (typeof (string));
+        value.set_string (log.finish ());
     }
 
     // Error out if InstanceID is not 0

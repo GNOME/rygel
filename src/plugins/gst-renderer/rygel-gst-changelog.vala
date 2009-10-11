@@ -65,15 +65,19 @@ public class Rygel.GstChangeLog : Object {
         }
     }
 
-    public void log (string var, string val) {
-        hash.set (var, "<%s val=\"%s\"/>".printf (var, val));
+    public void log (string variable, string value) {
+        hash.set (variable, "<%s val=\"%s\"/>".printf (variable, value));
 
         ensure_timeout ();
     }
 
-    public void log_with_channel (string var, string val, string channel) {
-        hash.set (var, "<%s val=\"%s\" channel=\"%s\"/>".printf (var, val,
-                                                                 channel));
+    public void log_with_channel (string variable,
+                                  string value,
+                                  string channel) {
+        hash.set (variable,
+                  "<%s val=\"%s\" channel=\"%s\"/>".printf (variable,
+                                                            value,
+                                                            channel));
 
         ensure_timeout ();
     }

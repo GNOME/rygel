@@ -140,7 +140,7 @@ public class Rygel.GstAVTransport : Service {
 
     private void query_last_change_cb (GstAVTransport s,
                                        string         variable,
-                                       ref Value      val) {
+                                       ref Value      value) {
         // Send current state
         GstChangeLog log = new GstChangeLog (null);
 
@@ -169,8 +169,8 @@ public class Rygel.GstAVTransport : Service {
         log.log ("AVTransportURI",               escaped);
         log.log ("NextAVTransportURI",           "NOT_IMPLEMENTED");
 
-        val.init (typeof (string));
-        val.set_string (log.finish ());
+        value.init (typeof (string));
+        value.set_string (log.finish ());
     }
 
     // Error out if InstanceID is not 0
