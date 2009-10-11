@@ -37,7 +37,7 @@ public class Rygel.GstChangeLog : Object {
     public GstChangeLog (Service? service) {
         service = service;
         str = new StringBuilder ();
-        hash = new Gee.HashMap<string, string> (str_hash, str_equal, str_equal);
+        hash = new Gee.HashMap<string, string> ();
     }
 
     ~GstChangeLog () {
