@@ -85,7 +85,7 @@ public class Rygel.GstVideoWindow : Window {
     public string playback_position { get; private set; }
 
     private GstVideoWindow () {
-        this.fullscreen_state = true;
+        this.fullscreen_state = false;
 
         // Show a video widget
         this.video_widget = new VideoWidget ();
