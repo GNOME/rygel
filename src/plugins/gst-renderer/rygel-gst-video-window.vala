@@ -44,10 +44,10 @@ public class Rygel.GstVideoWindow : GLib.Object {
                     this.playbin.set_state (State.NULL);
                 break;
                 case "PAUSED_PLAYBACK":
-                    this.playbin.set_state (State.PLAYING);
+                    this.playbin.set_state (State.PAUSED);
                 break;
                 case "PLAYING":
-                    this.playbin.set_state (State.PAUSED);
+                    this.playbin.set_state (State.PLAYING);
                 break;
                 default:
                 break;
