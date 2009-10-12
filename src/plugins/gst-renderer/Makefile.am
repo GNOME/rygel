@@ -21,13 +21,12 @@ librygel_gst_la_SOURCES = rygel-gst-connection-manager.vala \
 			  rygel-gst-av-transport.vala \
 			  rygel-gst-video-window.vala \
 			  rygel-gst-changelog.vala \
-			  rygel-gst-plugin.vala \
-			  owl-video-widget.c
+			  rygel-gst-plugin.vala
 
 librygel_gst_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
                             --vapidir=$(srcdir) \
                             --pkg rygel-1.0 --pkg cstuff --pkg gupnp-1.0 \
-                            --pkg gupnp-av-1.0 --pkg owl-video-widget \
+                            --pkg gupnp-av-1.0 \
                             --pkg gee-1.0 --pkg gstreamer-0.10 \
                             --pkg gconf-2.0 --pkg gtk+-2.0
 
@@ -41,4 +40,3 @@ librygel_gst_la_LIBADD = $(LIBGUPNP_LIBS) \
 librygel_gst_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
 MAINTAINERCLEANFILES = Makefile.in
-EXTRA_DIST = owl-video-widget.vapi

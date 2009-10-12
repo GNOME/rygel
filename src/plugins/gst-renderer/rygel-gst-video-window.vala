@@ -22,14 +22,12 @@
  * version 2 of the License, or (at your option) any later version.
  */
 
-using Gtk;
 using Gst;
-using Owl;
 
-public class Rygel.GstVideoWindow : Window {
+public class Rygel.GstVideoWindow : GLib.Object {
     private static GstVideoWindow video_window;
 
-    private VideoWidget video_widget;
+    private dynamic Element playbin;
 
     private string _playback_state = "STOPPED";
     public string playback_state {
@@ -42,18 +40,13 @@ public class Rygel.GstVideoWindow : Window {
 
             switch (_playback_state) {
                 case "STOPPED":
-                    this.video_widget.playing = false;
-
-                if (this.video_widget.can_seek) {
-                    this.video_widget.position = 0;
-                }
-
+                    this.playbin.set_state (State.NULL);
                 break;
                 case "PAUSED_PLAYBACK":
-                    this.video_widget.playing = false;
+                    this.playbin.set_state (State.PLAYING);
                 break;
                 case "PLAYING":
-                    this.video_widget.playing = true;
+                    this.playbin.set_state (State.PAUSED);
                 break;
                 default:
                 break;
@@ -63,133 +56,101 @@ public class Rygel.GstVideoWindow : Window {
 
     public string uri {
         get {
-            return this.video_widget.uri;
+            return this.playbin.uri;
         }
 
         set {
-            this.video_widget.uri = value;
+            this.playbin.uri = value;
         }
     }
 
     public double volume {
         get {
-            return this.video_widget.volume;
+            return this.playbin.volume;
         }
 
         set {
-            this.video_widget.volume = value;
+            this.playbin.volume = value;
         }
     }
 
-    public string duration { get; private set; }
-    public string playback_position { get; private set; }
+    public string duration {
+        owned get {
+            var format = Format.TIME;
+            int64 dur;
+
+            if (this.playbin.query_duration (ref format, out dur)) {
+                return Time.to_string ((ClockTime) dur);
+            } else {
+                return "00:00:00";
+            }
+        }
+    }
+
+    public string position {
+        owned get {
+            var format = Format.TIME;
+            int64 pos;
+
+            if (this.playbin.query_position (ref format, out pos)) {
+                return Time.to_string ((ClockTime) pos);
+            } else {
+                return "00:00:00";
+            }
+        }
+    }
 
     private GstVideoWindow () {
-        this.fullscreen_state = false;
+        this.playbin = ElementFactory.make ("playbin2", null);
+        assert (this.playbin != null);
 
-        // Show a video widget
-        this.video_widget = new VideoWidget ();
-
-        this.video_widget.notify["duration"] += this.notify_duration_cb;
-        this.video_widget.notify["position"] += this.notify_position_cb;
-        this.video_widget.eos += this.eos_cb;
-
-        this.add (this.video_widget);
-        this.show_all ();
-
-        this.key_press_event += this.key_press_callback;
+        this.playbin.eos += this.eos_cb;
     }
 
     public static GstVideoWindow get_default () {
         if (video_window == null) {
-            var args = new string[0];
-            Gtk.init (ref args);
-
             video_window = new GstVideoWindow ();
         }
 
         return video_window;
     }
 
-    public bool fullscreen_state {
-        get {
-            if (this.window != null) {
-                return (this.window.get_state () &
-                        Gdk.WindowState.FULLSCREEN) != 0;
-            }
-
-            return false;
-        }
-
-        set {
-            if (value)
-                this.fullscreen ();
-            else {
-                this.unfullscreen ();
-            }
-        }
-    }
-
-    private bool key_press_callback (GstVideoWindow window,
-                                     Gdk.EventKey   event) {
-        switch (event.keyval) {
-            case 0xffc8: /* Gdk.KeySyms.F11 */
-                this.fullscreen_state = ! fullscreen_state;
-                break;
-            case 0xff1b: /* Gdk.KeySyms.Escape */
-                this.fullscreen_state = false;
-                break;
-            default:
-                break;
-        }
-        return false;
-    }
-
-    private void eos_cb (VideoWidget video_widget) {
+    private void eos_cb (Element playbin) {
         this.playback_state = "STOPPED";
     }
 
-    private void notify_duration_cb (VideoWidget video_widget,
-                                     ParamSpec   p) {
-        this.duration = Time.to_string (video_widget.duration);
-    }
-
-    private void notify_position_cb (VideoWidget video_widget,
-                                     ParamSpec   p) {
-        this.playback_position = Time.to_string (video_widget.position);
-    }
-
     public bool seek (string time) {
-        if (this.video_widget.can_seek) {
-            this.video_widget.position = Time.from_string (time);
-
-            return true;
-        } else {
-            return false;
-        }
+        return this.playbin.seek (1.0,
+                                  Format.TIME,
+                                  SeekFlags.FLUSH,
+                                  Gst.SeekType.SET,
+                                  Time.from_string (time),
+                                  Gst.SeekType.NONE,
+                                  -1);
     }
 }
 
-// Helper class for converting between second and string representations
-// of time.
+// Helper class for converting between Gstreamer time units and string
+// representations of time.
 private class Time {
-    public static int from_string (string str) {
-        int hours, minutes, seconds;
+    public static ClockTime from_string (string str) {
+        uint64 hours, minutes, seconds;
 
-        str.scanf ("%d:%2d:%2d%*s", out hours, out minutes, out seconds);
+        str.scanf ("%llu:%2llu:%2llu%*s", out hours, out minutes, out seconds);
 
-        return hours * 3600 + minutes * 60 + seconds;
+        return (ClockTime) ((hours * 3600 + minutes * 60 + seconds) *
+                            Gst.SECOND);
     }
 
-    public static string to_string (int time) {
-        int hours, minutes, seconds;
+    public static string to_string (ClockTime time) {
+        uint64 hours, minutes, seconds;
 
-        hours   = time / 3600;
-        seconds = time % 3600;
+        hours   = time / Gst.SECOND / 3600;
+        seconds = time / Gst.SECOND % 3600;
         minutes = seconds / 60;
         seconds = seconds % 60;
 
-        return "%d:%.2d:%.2d".printf (hours, minutes, seconds);
+        return "%llu:%.2llu:%.2llu".printf (hours, minutes, seconds);
     }
 }
 

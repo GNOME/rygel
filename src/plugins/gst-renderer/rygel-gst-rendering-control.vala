@@ -23,6 +23,7 @@
  */
 
 using GUPnP;
+using Rygel;
 
 public class Rygel.GstRenderingControl : Service {
     public const string UPNP_ID = "urn:upnp-org:serviceId:RenderingControl";
@@ -241,11 +242,11 @@ public class Rygel.GstRenderingControl : Service {
 // of volume.
 private class Volume {
     public static double from_percentage (uint percentage) {
-        return ((double) percentage / 100.0) * 4.0;
+        return (double) percentage / 100.0;
     }
 
     public static uint to_percentage (double volume) {
-        return (uint) ((volume / 4.0) * 100.0);
+        return (uint) (volume * 100.0);
     }
 }
 
