@@ -208,13 +208,19 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     }
 
     private void harvest (File file, MediaContainer parent = this) {
-        var harvester = new MediaExportHarvester (parent,
-                                                  this.media_db,
-                                                  this.extractor,
-                                                  this.monitor);
-        harvester.harvested.connect (this.on_file_harvested);
-        this.harvester[file] = harvester;
-        harvester.harvest (file);
+        if (!this.harvester.contains (file)) {
+            var harvester = new MediaExportHarvester (parent,
+                                                      this.media_db,
+                                                      this.extractor,
+                                                      this.monitor);
+            harvester.harvested.connect (this.on_file_harvested);
+            this.harvester[file] = harvester;
+            harvester.harvest (file);
+        } else {
+            warning ("%s already scheduled for harvesting. Check config " +
+                     "for duplicates.",
+                     file.get_uri ());
+        }
     }
 
     private void on_file_changed (File             file,
