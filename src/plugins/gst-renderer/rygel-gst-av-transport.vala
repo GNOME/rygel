@@ -59,16 +59,35 @@ public class Rygel.GstAVTransport : Service {
 
     private string _metadata = "";
     public string metadata {
-        get {
-            return _metadata;
+        owned get {
+            if (this._metadata != null) {
+                return Markup.escape_text (this._metadata);
+            } else {
+                return "";
+            }
         }
 
         set {
             _metadata = value;
 
-            string escaped = Markup.escape_text (_metadata, -1);
+            this.changelog.log ("CurrentTrackMetadata", this.metadata);
+        }
+    }
 
-            this.changelog.log ("CurrentTrackMetadata", escaped);
+    public string uri {
+        owned get {
+            if (this.video_window.uri != null) {
+                return Markup.escape_text (this.video_window.uri);
+            } else {
+                return "";
+            }
+        }
+
+        set {
+            this.video_window.uri = value;
+
+            this.changelog.log ("CurrentTrackURI", this.uri);
+            this.changelog.log ("AVTransportURI", this.uri);
         }
     }
 
@@ -133,7 +152,6 @@ public class Rygel.GstAVTransport : Service {
         action_invoked["Next"]                  += next_cb;
         action_invoked["Previous"]              += previous_cb;
 
-        this.video_window.notify["uri"] += this.notify_uri_cb;
         this.video_window.notify["playback-state"] += this.notify_state_cb;
         this.video_window.notify["duration"] += this.notify_duration_cb;
     }
@@ -143,8 +161,6 @@ public class Rygel.GstAVTransport : Service {
                                        ref Value      value) {
         // Send current state
         GstChangeLog log = new GstChangeLog (null);
-
-        string escaped;
 
         log.log ("TransportState",
                  this.video_window.playback_state);
@@ -162,11 +178,9 @@ public class Rygel.GstAVTransport : Service {
         log.log ("CurrentTrack",                 this.track.to_string ());
         log.log ("CurrentTrackDuration",         this.video_window.duration);
         log.log ("CurrentMediaDuration",         this.video_window.duration);
-        escaped = Markup.escape_text (this.metadata, -1);
-        log.log ("CurrentTrackMetadata",         escaped);
-        escaped = Markup.escape_text (this.video_window.uri, -1);
-        log.log ("CurrentTrackURI",              escaped);
-        log.log ("AVTransportURI",               escaped);
+        log.log ("CurrentTrackMetadata",         this.metadata);
+        log.log ("CurrentTrackURI",              this.uri);
+        log.log ("AVTransportURI",               this.uri);
         log.log ("NextAVTransportURI",           "NOT_IMPLEMENTED");
 
         value.init (typeof (string));
@@ -198,7 +212,7 @@ public class Rygel.GstAVTransport : Service {
         action.get ("CurrentURI",         typeof (string), out _uri,
                     "CurrentURIMetaData", typeof (string), out _metadata);
 
-        this.video_window.uri = _uri;
+        this.uri = _uri;
         this.metadata = _metadata;
 
         action.return ();
@@ -210,6 +224,7 @@ public class Rygel.GstAVTransport : Service {
             return;
         }
 
+
         action.set ("NrTracks",
                         typeof (uint),
                         this.n_tracks,
@@ -218,7 +233,7 @@ public class Rygel.GstAVTransport : Service {
                         this.video_window.duration,
                     "CurrentURI",
                         typeof (string),
-                        Markup.escape_text (this.video_window.uri, -1),
+                        this.uri,
                     "CurrentURIMetaData",
                         typeof (string),
                         this.metadata,
@@ -277,7 +292,7 @@ public class Rygel.GstAVTransport : Service {
                         this.metadata,
                     "TrackURI",
                         typeof (string),
-                        Markup.escape_text (this.video_window.uri, -1),
+                        this.uri,
                     "RelTime",
                         typeof (string),
                         this.video_window.position,
@@ -397,14 +412,6 @@ public class Rygel.GstAVTransport : Service {
     private void notify_state_cb (GstVideoWindow video_window,
                                   ParamSpec      p) {
         this.changelog.log ("TransportState", this.video_window.playback_state);
-    }
-
-    private void notify_uri_cb (GstVideoWindow video_window,
-                                ParamSpec      p) {
-        var escaped = Markup.escape_text (video_window.uri, -1);
-
-        this.changelog.log ("CurrentTrackURI", escaped);
-        this.changelog.log ("AVTransportURI", escaped);
     }
 
     private void notify_duration_cb (GstVideoWindow window,
