@@ -23,6 +23,7 @@
  */
 
 using GUPnP;
+using Gee;
 
 // Helper class for building LastChange messages
 public class Rygel.GstChangeLog : Object {
@@ -32,47 +33,47 @@ public class Rygel.GstChangeLog : Object {
 
     private StringBuilder str;
 
-    private Gee.HashMap<string, string> hash;
+    private HashMap<string, string> hash;
 
     private uint timeout_id = 0;
 
     public GstChangeLog (Service? service, string service_ns) {
-        service = service;
+        this.service = service;
         this.service_ns = service_ns;
-        str = new StringBuilder ();
-        hash = new Gee.HashMap<string, string> ();
+        this.str = new StringBuilder ();
+        this.hash = new HashMap<string, string> ();
     }
 
     ~GstChangeLog () {
-        if (timeout_id != 0) {
-            Source.remove (timeout_id);
+        if (this.timeout_id != 0) {
+            Source.remove (this.timeout_id);
         }
     }
 
     private bool timeout () {
         // Emit notification
-        service.notify ("LastChange", typeof (string), finish ());
+        this.service.notify ("LastChange", typeof (string), finish ());
         debug ("LastChange sent");
 
         // Reset
-        hash.clear ();
-        str.erase (0, -1);
-        timeout_id = 0;
+        this.hash.clear ();
+        this.str.erase (0, -1);
+        this.timeout_id = 0;
 
         return false;
     }
 
     private void ensure_timeout () {
         // Make sure we have a notification timeout
-        if (service != null && timeout_id == 0) {
+        if (this.service != null && this.timeout_id == 0) {
             debug ("Setting up timeout for LastChange");
-            timeout_id = Timeout.add (200, timeout);
+            this.timeout_id = Timeout.add (200, timeout);
         }
     }
 
     public void log (string variable, string value) {
         debug (@"'%s = %s' logged", variable, value);
-        hash.set (variable, "<%s val=\"%s\"/>".printf (variable, value));
+        this.hash.set (variable, "<%s val=\"%s\"/>".printf (variable, value));
 
         ensure_timeout ();
     }
@@ -80,23 +81,23 @@ public class Rygel.GstChangeLog : Object {
     public void log_with_channel (string variable,
                                   string value,
                                   string channel) {
-        hash.set (variable,
-                  "<%s val=\"%s\" channel=\"%s\"/>".printf (variable,
-                                                            value,
-                                                            channel));
+        this.hash.set (variable,
+                       "<%s val=\"%s\" channel=\"%s\"/>".printf (variable,
+                                                                 value,
+                                                                 channel));
 
         ensure_timeout ();
     }
 
     public string finish () {
-        str.append ("<Event xmlns=\"" +
-                    this.service_ns +
-                    "\"><InstanceID val=\"0\">");
-        foreach (string line in hash.values) {
-            str.append (line);
+        this.str.append ("<Event xmlns=\"" +
+                         this.service_ns +
+                         "\"><InstanceID val=\"0\">");
+        foreach (string line in this.hash.values) {
+            this.str.append (line);
         }
-        str.append ("</InstanceID></Event>");
+        this.str.append ("</InstanceID></Event>");
 
-        return str.str;
+        return this.str.str;
     }
 }

@@ -39,7 +39,7 @@ public class Rygel.GstVideoWindow : GLib.Object {
             debug ("Changing playback state to %s..", value);
             this._playback_state = value;
 
-            switch (_playback_state) {
+            switch (this._playback_state) {
                 case "STOPPED":
                     this.playbin.set_state (State.NULL);
                 break;

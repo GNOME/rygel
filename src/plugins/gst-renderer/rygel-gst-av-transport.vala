@@ -36,26 +36,26 @@ public class Rygel.GstAVTransport : Service {
     private uint _n_tracks = 0;
     public uint n_tracks {
         get {
-            return _n_tracks;
+            return this._n_tracks;
         }
 
         set {
-            _n_tracks = value;
+            this._n_tracks = value;
 
-            this.changelog.log ("NumberOfTracks", _n_tracks.to_string ());
+            this.changelog.log ("NumberOfTracks", this._n_tracks.to_string ());
         }
     }
 
     private uint _track = 0;
     public uint track {
         get {
-            return _track;
+            return this._track;
         }
 
         set {
-            _track = value;
+            this._track = value;
 
-            this.changelog.log ("CurrentTrack", _track.to_string ());
+            this.changelog.log ("CurrentTrack", this._track.to_string ());
         }
     }
 
@@ -70,7 +70,7 @@ public class Rygel.GstAVTransport : Service {
         }
 
         set {
-            _metadata = value;
+            this._metadata = value;
 
             this.changelog.log ("CurrentTrackMetadata", this.metadata);
         }
@@ -96,39 +96,39 @@ public class Rygel.GstAVTransport : Service {
     private string _status = "OK";
     public string status {
         get {
-            return _status;
+            return this._status;
         }
 
         set {
-            _status = value;
+            this._status = value;
 
-            this.changelog.log ("TransportStatus", _status);
+            this.changelog.log ("TransportStatus", this._status);
         }
     }
 
     private string _speed = "1";
     public string speed {
         get {
-            return _speed;
+            return this._speed;
         }
 
         set {
-            _speed = value;
+            this._speed = value;
 
-            this.changelog.log ("TransportPlaySpeed", _speed);
+            this.changelog.log ("TransportPlaySpeed", this._speed);
         }
     }
 
     private string _mode = "NORMAL";
     public string mode {
         get {
-            return _mode;
+            return this._mode;
         }
 
         set {
-            _mode = value;
+            this._mode = value;
 
-            this.changelog.log ("CurrentPlayMode", _mode);
+            this.changelog.log ("CurrentPlayMode", this._mode);
         }
     }
 

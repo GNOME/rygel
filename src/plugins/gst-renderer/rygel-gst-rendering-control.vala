@@ -36,11 +36,11 @@ public class Rygel.GstRenderingControl : Service {
     private bool _mute = false;
     public bool mute {
         get {
-            return _mute;
+            return this._mute;
         }
 
         set {
-            _mute = value;
+            this._mute = value;
 
             if (this._mute) {
                 this.video_window.volume = 0;
@@ -57,11 +57,11 @@ public class Rygel.GstRenderingControl : Service {
     private uint _volume = 0;
     public uint volume {
         get {
-            return _volume;
+            return this._volume;
         }
 
         set {
-            _volume = value;
+            this._volume = value;
 
             if (!this.mute) {
                 this.video_window.volume = Volume.from_percentage (this.volume);
@@ -100,7 +100,7 @@ public class Rygel.GstRenderingControl : Service {
         // Send current state
         var log = new GstChangeLog (null, LAST_CHANGE_NS);
 
-        log.log_with_channel ("Mute", mute ? "1" : "0", "Master");
+        log.log_with_channel ("Mute", this.mute ? "1" : "0", "Master");
         log.log_with_channel ("Volume", this.volume.to_string (), "Master");
 
         value.init (typeof (string));
