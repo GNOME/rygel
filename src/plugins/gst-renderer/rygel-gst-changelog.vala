@@ -52,6 +52,7 @@ public class Rygel.GstChangeLog : Object {
     private bool timeout () {
         // Emit notification
         service.notify ("LastChange", typeof (string), finish ());
+        debug ("LastChange sent");
 
         // Reset
         hash.clear ();
@@ -64,11 +65,13 @@ public class Rygel.GstChangeLog : Object {
     private void ensure_timeout () {
         // Make sure we have a notification timeout
         if (service != null && timeout_id == 0) {
+            debug ("Setting up timeout for LastChange");
             timeout_id = Timeout.add (200, timeout);
         }
     }
 
     public void log (string variable, string value) {
+        debug (@"'%s = %s' logged", variable, value);
         hash.set (variable, "<%s val=\"%s\"/>".printf (variable, value));
 
         ensure_timeout ();
