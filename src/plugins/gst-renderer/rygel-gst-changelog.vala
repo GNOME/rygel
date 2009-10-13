@@ -28,14 +28,17 @@ using GUPnP;
 public class Rygel.GstChangeLog : Object {
     public unowned Service service { get; set; }
 
+    private string service_ns;
+
     private StringBuilder str;
 
     private Gee.HashMap<string, string> hash;
 
     private uint timeout_id = 0;
 
-    public GstChangeLog (Service? service) {
+    public GstChangeLog (Service? service, string service_ns) {
         service = service;
+        this.service_ns = service_ns;
         str = new StringBuilder ();
         hash = new Gee.HashMap<string, string> ();
     }
@@ -84,8 +87,8 @@ public class Rygel.GstChangeLog : Object {
 
     public string finish () {
         str.append ("<Event xmlns=\"" +
-                    "urn:schemas-upnp-org:metadata-1-0/AVT_RCS\">" +
-                    "<InstanceID val=\"0\">");
+                    this.service_ns +
+                    "\"><InstanceID val=\"0\">");
         foreach (string line in hash.values) {
             str.append (line);
         }

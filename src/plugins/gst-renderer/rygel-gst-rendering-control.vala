@@ -30,6 +30,8 @@ public class Rygel.GstRenderingControl : Service {
     public const string UPNP_TYPE =
                     "urn:schemas-upnp-org:service:RenderingControl:2";
     public const string DESCRIPTION_PATH = "xml/RenderingControl2.xml";
+    public const string LAST_CHANGE_NS =
+                    "urn:schemas-upnp-org:metadata-1-0/RCS/";
 
     private bool _mute = false;
     public bool mute {
@@ -77,7 +79,7 @@ public class Rygel.GstRenderingControl : Service {
     private GstVideoWindow video_window;
 
     public override void constructed () {
-        this.changelog = new GstChangeLog (this);
+        this.changelog = new GstChangeLog (this, LAST_CHANGE_NS);
         this.video_window = GstVideoWindow.get_default ();
 
         query_variable["LastChange"] += query_last_change_cb;
@@ -96,7 +98,7 @@ public class Rygel.GstRenderingControl : Service {
                                        string              variable,
                                        ref GLib.Value      value) {
         // Send current state
-        var log = new GstChangeLog (null);
+        var log = new GstChangeLog (null, LAST_CHANGE_NS);
 
         log.log_with_channel ("Mute", mute ? "1" : "0", "Master");
         log.log_with_channel ("Volume", this.volume.to_string (), "Master");

@@ -29,6 +29,8 @@ public class Rygel.GstAVTransport : Service {
     public const string UPNP_TYPE =
                     "urn:schemas-upnp-org:service:AVTransport:2";
     public const string DESCRIPTION_PATH = "xml/AVTransport2.xml";
+    public const string LAST_CHANGE_NS =
+                    "urn:schemas-upnp-org:metadata-1-0/AVT/";
 
     // The setters below update the LastChange message
     private uint _n_tracks = 0;
@@ -134,7 +136,7 @@ public class Rygel.GstAVTransport : Service {
     private GstVideoWindow video_window;
 
     public override void constructed () {
-        this.changelog = new GstChangeLog (this);
+        this.changelog = new GstChangeLog (this, LAST_CHANGE_NS);
         this.video_window = GstVideoWindow.get_default ();
 
         query_variable["LastChange"] += query_last_change_cb;
@@ -160,7 +162,7 @@ public class Rygel.GstAVTransport : Service {
                                        string         variable,
                                        ref Value      value) {
         // Send current state
-        GstChangeLog log = new GstChangeLog (null);
+        GstChangeLog log = new GstChangeLog (null, LAST_CHANGE_NS);
 
         log.log ("TransportState",
                  this.video_window.playback_state);
