@@ -150,23 +150,25 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         this.monitor = new MediaExportRecursiveFileMonitor (null);
         this.monitor.changed.connect (this.on_file_changed);
 
-        this.service = new MediaExportDBusService (this);
+        try {
+            this.service = new MediaExportDBusService (this);
+        } catch (Error err) {
+            warning ("Failed to create MediaExport DBus service: %s",
+                     err.message);
+        }
         this.dynamic_elements = new MediaExportDynamicContainer (db, this);
 
-        int64 timestamp;
-        if (!this.media_db.exists ("0", out timestamp)) {
-            try {
+        try {
+            int64 timestamp;
+            if (!this.media_db.exists ("0", out timestamp)) {
                 media_db.save_object (this);
-            } catch (Error error) {
-                // do nothing
             }
-        }
 
-        if (!this.media_db.exists ("DynamicContainerId", out timestamp)) {
-            try {
+            if (!this.media_db.exists ("DynamicContainerId", out timestamp)) {
                 media_db.save_object (this.dynamic_elements);
-            } catch (Error error) {
             }
+        } catch (Error error) {
+            // do nothing
         }
 
         ArrayList<string> ids;

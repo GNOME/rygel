@@ -113,17 +113,21 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                                              out string id) {
         id = Checksum.compute_for_string (ChecksumType.MD5, file.get_uri ());
         int64 timestamp;
-        if (this.media_db.exists (id, out timestamp)) {
-            int64 mtime = (int64) info.get_attribute_uint64 (
+        try {
+            if (this.media_db.exists (id, out timestamp)) {
+                int64 mtime = (int64) info.get_attribute_uint64 (
                                                 FILE_ATTRIBUTE_TIME_MODIFIED);
 
-            if (mtime > timestamp) {
-                this.files.push_tail (new FileQueueEntry (file, true));
+                if (mtime > timestamp) {
+                    this.files.push_tail (new FileQueueEntry (file, true));
+                    return true;
+                }
+            } else {
+                this.files.push_tail (new FileQueueEntry (file, false));
                 return true;
             }
-        } else {
-            this.files.push_tail (new FileQueueEntry (file, false));
-            return true;
+        } catch (MediaDBError err) {
+            warning ("Failed to query database: %s", err.message);
         }
 
         return false;
