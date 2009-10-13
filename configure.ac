@@ -198,9 +198,9 @@ AC_ARG_ENABLE(mediathek-plugin,
         enable_mediathek_plugin=no)
 
 # Build GstLaunch plugin
-AC_ARG_ENABLE(gstlaunch-plugin,
-	[  --enable-gstlaunch-plugin          build Gstreamer launchline plugin],,
-        enable_gstlaunch_plugin=no)
+AC_ARG_ENABLE(gst-launch-plugin,
+	[  --enable-gst-launch-plugin          build Gstreamer launchline plugin],,
+        enable_gst_launch_plugin=no)
 
 
 AC_SUBST(abs_top_builddir)
@@ -213,7 +213,7 @@ AM_CONDITIONAL([BUILD_TRACKER_PLUGIN],
 AM_CONDITIONAL([BUILD_MEDIATHEK_PLUGIN], [test "x$enable_mediathek_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_MEDIA_EXPORT_PLUGIN], [test "x$enable_media_export_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_EXTERNAL_PLUGIN], [test "x$enable_external_plugin" = "xyes"])
-AM_CONDITIONAL([BUILD_GSTLAUNCH_PLUGIN], [test "x$enable_gstlaunch_plugin" = "xyes"])
+AM_CONDITIONAL([BUILD_GST_LAUNCH_PLUGIN], [test "x$enable_gst_launch_plugin" = "xyes"])
 
 # Gettext
 GETTEXT_PACKAGE=rygel
@@ -236,7 +236,7 @@ src/ui/Makefile
 src/plugins/Makefile
 src/plugins/media-export/Makefile
 src/plugins/external/Makefile
-src/plugins/gstlaunch/Makefile
+src/plugins/gst-launch/Makefile
 src/plugins/mediathek/Makefile
 src/plugins/tracker/Makefile
 src/plugins/test/Makefile
@@ -264,5 +264,5 @@ echo "
         mediathek:              ${enable_mediathek_plugin}
         media-export            ${enable_media_export_plugin}
         external:               ${enable_external_plugin}
-        gstlaunch:              ${enable_gstlaunch_plugin}
+        gst-launch:             ${enable_gst_launch_plugin}
 "
