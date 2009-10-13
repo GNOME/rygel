@@ -107,7 +107,9 @@ public class Rygel.GstVideoWindow : GLib.Object {
         this.playbin = ElementFactory.make ("playbin2", null);
         assert (this.playbin != null);
 
-        this.playbin.eos += this.eos_cb;
+        // Bus handler
+        var bus = this.playbin.get_bus ();
+        bus.add_watch (this.bus_handler);
     }
 
     public static GstVideoWindow get_default () {
@@ -116,10 +118,6 @@ public class Rygel.GstVideoWindow : GLib.Object {
         }
 
         return video_window;
-    }
-
-    private void eos_cb (Element playbin) {
-        this.playback_state = "STOPPED";
     }
 
     public bool seek (string time) {
@@ -131,6 +129,16 @@ public class Rygel.GstVideoWindow : GLib.Object {
                                   Time.from_string (time),
                                   Gst.SeekType.NONE,
                                   -1);
+    }
+
+    private bool bus_handler (Bus     bus,
+                              Message message) {
+        if (message.type == MessageType.EOS) {
+            debug ("EOS");
+            this.playback_state = "STOPPED";
+        }
+
+        return true;
     }
 }
 
