@@ -195,6 +195,11 @@ AC_ARG_ENABLE(external-plugin,
 	[  --enable-external-plugin          build External plugin],,
         enable_external_plugin=yes)
 
+# Build GstRenderer plugin
+AC_ARG_ENABLE(gst-renderer-plugin,
+	[  --enable-gst-renderer_plugin          build Gstreamer Renderer plugin],,
+        enable_gst_renderer_plugin=yes)
+
 # Build Mediathek plugin
 AC_ARG_ENABLE(mediathek-plugin,
 	[  --enable-mediathek-plugin          build Mediathek plugin],,
@@ -216,6 +221,7 @@ AM_CONDITIONAL([BUILD_TRACKER_PLUGIN],
 AM_CONDITIONAL([BUILD_MEDIATHEK_PLUGIN], [test "x$enable_mediathek_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_MEDIA_EXPORT_PLUGIN], [test "x$enable_media_export_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_EXTERNAL_PLUGIN], [test "x$enable_external_plugin" = "xyes"])
+AM_CONDITIONAL([BUILD_GST_RENDERER_PLUGIN], [test "x$enable_gst_renderer_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_GST_LAUNCH_PLUGIN], [test "x$enable_gst_launch_plugin" = "xyes"])
 
 # Gettext

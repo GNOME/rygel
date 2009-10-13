@@ -22,7 +22,7 @@ if BUILD_GST_LAUNCH_PLUGIN
 GST_LAUNCH_PLUGIN = gst-launch
 endif
 
-if BUILD_UI
+if BUILD_GST_RENDERER_PLUGIN
 GST_RENDERER = gst-renderer
 endif
 
