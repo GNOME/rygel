@@ -84,8 +84,8 @@ public interface FreeDesktop.DBusObject: DBus.Object {
                                                     string old_owner,
                                                     string new_owner);
 
-    public abstract string[] list_names () throws DBus.Error;
-    public abstract string[] list_activatable_names () throws DBus.Error;
+    public abstract async string[] list_names () throws DBus.Error;
+    public abstract async string[] list_activatable_names () throws DBus.Error;
 }
 
 [DBus (name = "org.freedesktop.DBus.Properties")]

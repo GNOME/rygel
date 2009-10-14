@@ -57,11 +57,11 @@ public class ExternalPluginFactory {
                                                as DBusObject;
         this.loader = loader;
 
-        this.load_plugins ();
+        this.load_plugins.begin ();
     }
 
-    private void load_plugins () throws DBus.Error {
-        var services = this.dbus_obj.list_names ();
+    private async void load_plugins () throws DBus.Error {
+        var services = yield this.dbus_obj.list_names ();
 
         foreach (var service in services) {
             if (service.has_prefix (SERVICE_PREFIX) &&
@@ -71,11 +71,11 @@ public class ExternalPluginFactory {
             }
         }
 
-        this.load_activatable_plugins ();
+        yield this.load_activatable_plugins ();
     }
 
-    private void load_activatable_plugins () throws DBus.Error {
-        var services = this.dbus_obj.list_activatable_names ();
+    private async void load_activatable_plugins () throws DBus.Error {
+        var services = yield this.dbus_obj.list_activatable_names ();
 
         foreach (var service in services) {
             if (service.has_prefix (SERVICE_PREFIX) &&
