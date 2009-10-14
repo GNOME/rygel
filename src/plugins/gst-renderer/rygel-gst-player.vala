@@ -24,8 +24,8 @@
 
 using Gst;
 
-public class Rygel.GstVideoWindow : GLib.Object {
-    private static GstVideoWindow video_window;
+public class Rygel.GstPlayer : GLib.Object {
+    private static GstPlayer player;
 
     private dynamic Element playbin;
 
@@ -103,7 +103,7 @@ public class Rygel.GstVideoWindow : GLib.Object {
         }
     }
 
-    private GstVideoWindow () {
+    private GstPlayer () {
         this.playbin = ElementFactory.make ("playbin2", null);
         assert (this.playbin != null);
 
@@ -112,12 +112,12 @@ public class Rygel.GstVideoWindow : GLib.Object {
         bus.add_watch (this.bus_handler);
     }
 
-    public static GstVideoWindow get_default () {
-        if (video_window == null) {
-            video_window = new GstVideoWindow ();
+    public static GstPlayer get_default () {
+        if (player == null) {
+            player = new GstPlayer ();
         }
 
-        return video_window;
+        return player;
     }
 
     public bool seek (string time) {

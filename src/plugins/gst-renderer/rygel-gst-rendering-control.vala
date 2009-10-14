@@ -43,9 +43,9 @@ public class Rygel.GstRenderingControl : Service {
             this._mute = value;
 
             if (this._mute) {
-                this.video_window.volume = 0;
+                this.player.volume = 0;
             } else {
-                this.video_window.volume = Volume.from_percentage (this.volume);
+                this.player.volume = Volume.from_percentage (this.volume);
             }
 
             this.changelog.log_with_channel ("Mute",
@@ -64,7 +64,7 @@ public class Rygel.GstRenderingControl : Service {
             this._volume = value;
 
             if (!this.mute) {
-                this.video_window.volume = Volume.from_percentage (this.volume);
+                this.player.volume = Volume.from_percentage (this.volume);
             }
 
             this.changelog.log_with_channel ("Volume",
@@ -76,11 +76,11 @@ public class Rygel.GstRenderingControl : Service {
     private string preset_name_list = "";
 
     private GstChangeLog changelog;
-    private GstVideoWindow video_window;
+    private GstPlayer player;
 
     public override void constructed () {
         this.changelog = new GstChangeLog (this, LAST_CHANGE_NS);
-        this.video_window = GstVideoWindow.get_default ();
+        this.player = GstPlayer.get_default ();
 
         query_variable["LastChange"].connect (this.query_last_change_cb);
 
@@ -91,7 +91,7 @@ public class Rygel.GstRenderingControl : Service {
         action_invoked["GetVolume"].connect (this.get_volume_cb);
         action_invoked["SetVolume"].connect (this.set_volume_cb);
 
-        this._volume = Volume.to_percentage (this.video_window.volume);
+        this._volume = Volume.to_percentage (this.player.volume);
     }
 
     private void query_last_change_cb (Service        service,

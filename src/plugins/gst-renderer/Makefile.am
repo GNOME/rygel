@@ -18,7 +18,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 librygel_gst_la_SOURCES = rygel-gst-connection-manager.vala \
 			  rygel-gst-rendering-control.vala \
 			  rygel-gst-av-transport.vala \
-			  rygel-gst-video-window.vala \
+			  rygel-gst-player.vala \
 			  rygel-gst-changelog.vala \
 			  rygel-gst-plugin.vala
 

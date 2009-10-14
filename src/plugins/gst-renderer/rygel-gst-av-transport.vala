@@ -78,15 +78,15 @@ public class Rygel.GstAVTransport : Service {
 
     public string uri {
         owned get {
-            if (this.video_window.uri != null) {
-                return Markup.escape_text (this.video_window.uri);
+            if (this.player.uri != null) {
+                return Markup.escape_text (this.player.uri);
             } else {
                 return "";
             }
         }
 
         set {
-            this.video_window.uri = value;
+            this.player.uri = value;
 
             this.changelog.log ("CurrentTrackURI", this.uri);
             this.changelog.log ("AVTransportURI", this.uri);
@@ -133,11 +133,11 @@ public class Rygel.GstAVTransport : Service {
     }
 
     private GstChangeLog changelog;
-    private GstVideoWindow video_window;
+    private GstPlayer player;
 
     public override void constructed () {
         this.changelog = new GstChangeLog (this, LAST_CHANGE_NS);
-        this.video_window = GstVideoWindow.get_default ();
+        this.player = GstPlayer.get_default ();
 
         query_variable["LastChange"].connect (this.query_last_change_cb);
 
@@ -157,10 +157,8 @@ public class Rygel.GstAVTransport : Service {
         action_invoked["Next"].connect (this.next_cb);
         action_invoked["Previous"].connect (this.previous_cb);
 
-        this.video_window.notify["playback-state"].connect (
-                                        this.notify_state_cb);
-        this.video_window.notify["duration"].connect (
-                                        this.notify_duration_cb);
+        this.player.notify["playback-state"].connect (this.notify_state_cb);
+        this.player.notify["duration"].connect (this.notify_duration_cb);
     }
 
     private void query_last_change_cb (Service        service,
@@ -169,8 +167,7 @@ public class Rygel.GstAVTransport : Service {
         // Send current state
         GstChangeLog log = new GstChangeLog (null, LAST_CHANGE_NS);
 
-        log.log ("TransportState",
-                 this.video_window.playback_state);
+        log.log ("TransportState",               this.player.playback_state);
         log.log ("TransportStatus",              this.status);
         log.log ("PlaybackStorageMedium",        "NOT_IMPLEMENTED");
         log.log ("RecordStorageMedium",          "NOT_IMPLEMENTED");
@@ -183,8 +180,8 @@ public class Rygel.GstAVTransport : Service {
         log.log ("PossibleRecordQualityMode",    "NOT_IMPLEMENTED");
         log.log ("NumberOfTracks",               this.n_tracks.to_string ());
         log.log ("CurrentTrack",                 this.track.to_string ());
-        log.log ("CurrentTrackDuration",         this.video_window.duration);
-        log.log ("CurrentMediaDuration",         this.video_window.duration);
+        log.log ("CurrentTrackDuration",         this.player.duration);
+        log.log ("CurrentMediaDuration",         this.player.duration);
         log.log ("CurrentTrackMetadata",         this.metadata);
         log.log ("CurrentTrackURI",              this.uri);
         log.log ("AVTransportURI",               this.uri);
@@ -237,7 +234,7 @@ public class Rygel.GstAVTransport : Service {
                         this.n_tracks,
                     "MediaDuration",
                         typeof (string),
-                        this.video_window.duration,
+                        this.player.duration,
                     "CurrentURI",
                         typeof (string),
                         this.uri,
@@ -271,7 +268,7 @@ public class Rygel.GstAVTransport : Service {
 
         action.set ("CurrentTransportState",
                         typeof (string),
-                        this.video_window.playback_state,
+                        this.player.playback_state,
                     "CurrentTransportStatus",
                         typeof (string),
                         this.status,
@@ -293,7 +290,7 @@ public class Rygel.GstAVTransport : Service {
                         this.track,
                     "TrackDuration",
                         typeof (string),
-                        this.video_window.duration,
+                        this.player.duration,
                     "TrackMetaData",
                         typeof (string),
                         this.metadata,
@@ -302,10 +299,10 @@ public class Rygel.GstAVTransport : Service {
                         this.uri,
                     "RelTime",
                         typeof (string),
-                        this.video_window.position,
+                        this.player.position,
                     "AbsTime",
                         typeof (string),
-                        this.video_window.position,
+                        this.player.position,
                     "RelCount",
                         typeof (int),
                         int.MAX,
@@ -346,7 +343,7 @@ public class Rygel.GstAVTransport : Service {
             return;
         }
 
-        this.video_window.playback_state = "STOPPED";
+        this.player.playback_state = "STOPPED";
 
         action.return ();
     }
@@ -365,7 +362,7 @@ public class Rygel.GstAVTransport : Service {
             return;
         }
 
-        this.video_window.playback_state = "PLAYING";
+        this.player.playback_state = "PLAYING";
 
         action.return ();
     }
@@ -375,7 +372,7 @@ public class Rygel.GstAVTransport : Service {
             return;
         }
 
-        this.video_window.playback_state = "PAUSED_PLAYBACK";
+        this.player.playback_state = "PAUSED_PLAYBACK";
 
         action.return ();
     }
@@ -392,7 +389,7 @@ public class Rygel.GstAVTransport : Service {
         switch (unit) {
         case "ABS_TIME":
         case "REL_TIME":
-            if (!this.video_window.seek (target)) {
+            if (!this.player.seek (target)) {
                 action.return_error (710, "Seek mode not supported");
 
                 return;
@@ -416,14 +413,14 @@ public class Rygel.GstAVTransport : Service {
         action.return_error (701, "Transition not available");
     }
 
-    private void notify_state_cb (Object    video_window,
+    private void notify_state_cb (Object    player,
                                   ParamSpec p) {
-        this.changelog.log ("TransportState", this.video_window.playback_state);
+        this.changelog.log ("TransportState", this.player.playback_state);
     }
 
     private void notify_duration_cb (Object    window,
                                      ParamSpec p) {
-        this.changelog.log ("CurrentTrackDuration", this.video_window.duration);
-        this.changelog.log ("CurrentMediaDuration", this.video_window.duration);
+        this.changelog.log ("CurrentTrackDuration", this.player.duration);
+        this.changelog.log ("CurrentMediaDuration", this.player.duration);
     }
 }
