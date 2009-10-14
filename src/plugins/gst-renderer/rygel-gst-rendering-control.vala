@@ -82,21 +82,21 @@ public class Rygel.GstRenderingControl : Service {
         this.changelog = new GstChangeLog (this, LAST_CHANGE_NS);
         this.video_window = GstVideoWindow.get_default ();
 
-        query_variable["LastChange"] += query_last_change_cb;
+        query_variable["LastChange"].connect (query_last_change_cb);
 
-        action_invoked["ListPresets"]  += list_presets_cb;
-        action_invoked["SelectPreset"] += select_preset_cb;
-        action_invoked["GetMute"]      += get_mute_cb;
-        action_invoked["SetMute"]      += set_mute_cb;
-        action_invoked["GetVolume"]    += get_volume_cb;
-        action_invoked["SetVolume"]    += set_volume_cb;
+        action_invoked["ListPresets"].connect (list_presets_cb);
+        action_invoked["SelectPreset"].connect (select_preset_cb);
+        action_invoked["GetMute"].connect (get_mute_cb);
+        action_invoked["SetMute"].connect (set_mute_cb);
+        action_invoked["GetVolume"].connect (get_volume_cb);
+        action_invoked["SetVolume"].connect (set_volume_cb);
 
         this._volume = Volume.to_percentage (this.video_window.volume);
     }
 
-    private void query_last_change_cb (GstRenderingControl s,
-                                       string              variable,
-                                       ref GLib.Value      value) {
+    private void query_last_change_cb (Service        service,
+                                       string         variable,
+                                       ref GLib.Value value) {
         // Send current state
         var log = new GstChangeLog (null, LAST_CHANGE_NS);
 
@@ -121,7 +121,7 @@ public class Rygel.GstRenderingControl : Service {
         return true;
     }
 
-    private void list_presets_cb (GstRenderingControl s,
+    private void list_presets_cb (Service             service,
                                   owned ServiceAction action) {
         if (!check_instance_id (action)) {
             return;
@@ -134,7 +134,7 @@ public class Rygel.GstRenderingControl : Service {
         action.return ();
     }
 
-    private void select_preset_cb (GstRenderingControl s,
+    private void select_preset_cb (Service             service,
                                    owned ServiceAction action) {
         if (!check_instance_id (action)) {
             return;
@@ -166,7 +166,7 @@ public class Rygel.GstRenderingControl : Service {
         return true;
     }
 
-    private void get_mute_cb (GstRenderingControl s,
+    private void get_mute_cb (Service             service,
                               owned ServiceAction action) {
         if (!check_instance_id (action)) {
             return;
@@ -181,7 +181,7 @@ public class Rygel.GstRenderingControl : Service {
         action.return ();
     }
 
-    private void set_mute_cb (GstRenderingControl s,
+    private void set_mute_cb (Service             service,
                               owned ServiceAction action) {
         if (!check_instance_id (action)) {
             return;
@@ -200,7 +200,7 @@ public class Rygel.GstRenderingControl : Service {
         action.return ();
     }
 
-    private void get_volume_cb (GstRenderingControl s,
+    private void get_volume_cb (Service             service,
                                 owned ServiceAction action) {
         if (!check_instance_id (action)) {
             return;
@@ -215,7 +215,7 @@ public class Rygel.GstRenderingControl : Service {
         action.return ();
     }
 
-    private void set_volume_cb (GstRenderingControl s,
+    private void set_volume_cb (Service             service,
                                 owned ServiceAction action) {
         if (!check_instance_id (action)) {
             return;
