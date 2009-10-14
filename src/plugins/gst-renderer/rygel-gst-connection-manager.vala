@@ -1,7 +1,10 @@
 /*
  * Copyright (C) 2008 OpenedHand Ltd.
+ * Copyright (C) 2009 Nokia Corporation.
  *
  * Author: Jorn Baayen <jorn@openedhand.com>
+ *         Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *                               <zeeshan.ali@nokia.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
