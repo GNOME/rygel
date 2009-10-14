@@ -25,6 +25,7 @@
 using Rygel;
 using Gee;
 using CStuff;
+using FreeDesktop;
 
 private ExternalPluginFactory plugin_factory;
 
@@ -41,36 +42,26 @@ public void module_init (PluginLoader loader) {
 public class ExternalPluginFactory {
     private const string DBUS_SERVICE = "org.freedesktop.DBus";
     private const string DBUS_OBJECT = "/org/freedesktop/DBus";
-    private const string DBUS_IFACE = "org.freedesktop.DBus";
 
     private const string SERVICE_PREFIX = "org.gnome.UPnP.MediaServer1.";
 
-    dynamic DBus.Object dbus_obj;
-    DBus.Connection     connection;
-    PluginLoader        loader;
-
-    bool activatable; // Indicated if we have listed activatable services yet
+    DBusObject dbus_obj;
+    DBus.Connection  connection;
+    PluginLoader     loader;
 
     public ExternalPluginFactory (PluginLoader loader) throws DBus.Error {
         this.connection = DBus.Bus.get (DBus.BusType.SESSION);
 
         this.dbus_obj = connection.get_object (DBUS_SERVICE,
-                                               DBUS_OBJECT,
-                                               DBUS_IFACE);
+                                               DBUS_OBJECT)
+                                               as DBusObject;
         this.loader = loader;
 
-        this.activatable = false;
-        dbus_obj.ListNames (this.list_names_cb);
+        this.load_plugins ();
     }
 
-    private void list_names_cb (string[]   services,
-                                GLib.Error err) {
-        if (err != null) {
-            critical ("Failed to fetch list of external services: %s\n",
-                      err.message);
-
-            return;
-        }
+    private void load_plugins () throws DBus.Error {
+        var services = this.dbus_obj.list_names ();
 
         foreach (var service in services) {
             if (service.has_prefix (SERVICE_PREFIX) &&
@@ -80,21 +71,27 @@ public class ExternalPluginFactory {
             }
         }
 
-        if (this.activatable) {
-            // Activatable services are already taken-care of, now we can
-            // just relax but keep a watch on bus for plugins coming and
-            // going away on the fly.
-            dbus_obj.NameOwnerChanged += this.name_owner_changed;
-        } else {
-            dbus_obj.ListActivatableNames (this.list_names_cb);
-            this.activatable = true;
-        }
+        this.load_activatable_plugins ();
     }
 
-    private void name_owner_changed (dynamic DBus.Object dbus_obj,
-                                     string              name,
-                                     string              old_owner,
-                                     string              new_owner) {
+    private void load_activatable_plugins () throws DBus.Error {
+        var services = this.dbus_obj.list_activatable_names ();
+
+        foreach (var service in services) {
+            if (service.has_prefix (SERVICE_PREFIX) &&
+                this.loader.get_plugin_by_name (service) == null) {
+                this.loader.add_plugin (new ExternalPlugin (this.connection,
+                                                            service));
+            }
+        }
+
+        this.dbus_obj.name_owner_changed += this.name_owner_changed;
+    }
+
+    private void name_owner_changed (DBusObject dbus_obj,
+                                     string     name,
+                                     string     old_owner,
+                                     string     new_owner) {
         var plugin = this.loader.get_plugin_by_name (name);
 
         if (plugin != null) {

@@ -23,27 +23,20 @@
  */
 
 public class Rygel.ExternalPlugin : Rygel.Plugin {
-    // class-wide constants
-    private const string PROPS_IFACE = "org.freedesktop.DBus.Properties";
-    private const string OBJECT_IFACE = "org.gnome.UPnP.MediaObject1";
-
     public string service_name;
     public string root_object;
 
-    public ExternalPlugin (DBus.Connection     connection,
-                           string              service_name) {
+    public ExternalPlugin (DBus.Connection connection,
+                           string          service_name) {
         // org.gnome.UPnP.MediaServer1.NAME => /org/gnome/UPnP/MediaServer1/NAME
         var root_object = "/" + service_name.replace (".", "/");
 
         // Create proxy to MediaObject iface to get the display name through
-        dynamic DBus.Object props = connection.get_object (service_name,
-                                                           root_object,
-                                                           PROPS_IFACE);
-        Value value;
-        props.Get (OBJECT_IFACE, "DisplayName", out value);
-        var title = value.get_string ();
-
-        base.MediaServer (service_name, title, typeof (ExternalContentDir));
+        var obj = (ExternalMediaObject) connection.get_object (service_name,
+                                                               root_object);
+        base.MediaServer (service_name,
+                          obj.display_name,
+                          typeof (ExternalContentDir));
 
         this.service_name = service_name;
         this.root_object = root_object;

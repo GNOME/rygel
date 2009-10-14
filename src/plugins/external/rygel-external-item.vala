@@ -24,12 +24,12 @@
 
 using GUPnP;
 using DBus;
+using FreeDesktop;
 
 /**
  * Represents External item.
  */
 public class Rygel.ExternalItem : Rygel.MediaItem {
-    private static string PROPS_IFACE = "org.freedesktop.DBus.Properties";
     private static string OBJECT_IFACE = "org.gnome.UPnP.MediaObject1";
     private static string ITEM_IFACE = "org.gnome.UPnP.MediaItem1";
 
@@ -57,17 +57,16 @@ public class Rygel.ExternalItem : Rygel.MediaItem {
 
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
-        dynamic DBus.Object props = connection.get_object (parent.service_name,
-                                                           object_path,
-                                                           PROPS_IFACE);
+        var props = connection.get_object (parent.service_name,
+                                           object_path)
+                                          as Properties;
 
-        HashTable<string,Value?> object_props = props.GetAll (OBJECT_IFACE);
+        var object_props = props.get_all (OBJECT_IFACE);
 
         var value = object_props.lookup ("DisplayName");
         this.title = parent.substitute_keywords (value.get_string ());
 
-        HashTable<string,Value?> item_props;
-        props.GetAll (ITEM_IFACE, out item_props);
+        var item_props = props.get_all (ITEM_IFACE);
 
         value = item_props.lookup ("Type");
         string type = value.get_string ();
