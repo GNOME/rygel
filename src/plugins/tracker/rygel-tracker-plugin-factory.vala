@@ -32,39 +32,29 @@ private TrackerPluginFactory plugin_factory;
 public void module_init (PluginLoader loader) {
     try {
         plugin_factory = new TrackerPluginFactory (loader);
-    } catch (DBus.Error error) {
-        critical ("Failed to fetch list of external services: %s\n",
-                error.message);
+    } catch (DBus.Error err) {
+        warning ("Failed to start Tracker service: " +
+                 err.message +
+                 ". Tracker plugin disabled.");
     }
 }
 
 public class TrackerPluginFactory {
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker";
     private const string TRACKER_OBJECT = "/org/freedesktop/Tracker";
-    private const string TRACKER_IFACE = "org.freedesktop.Tracker";
 
-    dynamic DBus.Object tracker;
-    PluginLoader        loader;
+    TrackerIface tracker;
+    PluginLoader loader;
 
     public TrackerPluginFactory (PluginLoader loader) throws DBus.Error {
         var connection = DBus.Bus.get (DBus.BusType.SESSION);
 
         this.tracker = connection.get_object (TRACKER_SERVICE,
-                                              TRACKER_OBJECT,
-                                              TRACKER_IFACE);
+                                              TRACKER_OBJECT)
+                                              as TrackerIface;
         this.loader = loader;
 
-        tracker.GetVersion (this.get_version_cb);
-    }
-
-    private void get_version_cb (int32 version, GLib.Error err) {
-        if (err != null) {
-            warning ("Failed to start Tracker service: %s\n",
-                     err.message);
-            warning ("Tracker plugin disabled.\n");
-
-            return;
-        }
+        this.tracker.get_version ();
 
         this.loader.add_plugin (new TrackerPlugin ());
     }

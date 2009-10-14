@@ -32,7 +32,6 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker";
     private const string METADATA_PATH = "/org/freedesktop/Tracker/Metadata";
-    private const string METADATA_IFACE = "org.freedesktop.Tracker.Metadata";
 
     private const string SERVICE = "Files";
     private const string QUERY_CONDITION =
@@ -43,7 +42,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
                 "</rdfq:equals>\n" +
         "</rdfq:Condition>";
 
-    public dynamic DBus.Object metadata;
+    public TrackerMetadataIface metadata;
 
     public string key;
 
@@ -57,28 +56,28 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
 
         try {
             this.create_proxies ();
+        } catch (DBus.Error error) {
+            critical ("Failed to create to Session bus: %s\n",
+                      error.message);
 
+            return;
+        }
+
+        string[,] values;
+
+        try {
             var keys = new string[] { this.key };
 
             /* FIXME: We need to hook to some tracker signals to keep
              *        this field up2date at all times
              */
-            this.metadata.GetUniqueValues (SERVICE,
-                                           keys,
-                                           "",
-                                           false,
-                                           0,
-                                           -1,
-                                           on_get_unique_values_cb);
-        } catch (GLib.Error error) {
-            critical ("Failed to create to Session bus: %s\n",
-                      error.message);
-        }
-    }
-
-    private void on_get_unique_values_cb (string[][] search_result,
-                                          GLib.Error error) {
-        if (error != null) {
+            values = this.metadata.get_unique_values (SERVICE,
+                                                    keys,
+                                                    "",
+                                                    false,
+                                                    0,
+                                                    -1);
+        } catch (DBus.Error error) {
             critical ("error getting all values for '%s': %s",
                       this.key,
                       error.message);
@@ -87,8 +86,8 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         }
 
         /* Iterate through all the values */
-        for (uint i = 0; i < search_result.length; i++) {
-            string value = search_result[i][0];
+        for (uint i = 0; i < values.length[0]; i++) {
+            string value = values[i, 0];
 
             if (value == "") {
                 continue;
@@ -113,8 +112,8 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
         this.metadata = connection.get_object (TRACKER_SERVICE,
-                                               METADATA_PATH,
-                                               METADATA_IFACE);
+                                               METADATA_PATH)
+                                               as TrackerMetadataIface;
     }
 }
 

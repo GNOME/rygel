@@ -15,14 +15,13 @@ librygel_media_tracker_la_SOURCES = \
 				    rygel-tracker-metadata-values.vala \
 				    rygel-tracker-keywords.vala \
 				    rygel-tracker-search-container.vala \
-				    rygel-tracker-search-result.vala \
-				    rygel-tracker-get-metadata-result.vala \
 				    rygel-tracker-item.vala \
 				    rygel-tracker-video-item.vala \
 				    rygel-tracker-music-item.vala \
 				    rygel-tracker-image-item.vala \
 				    rygel-tracker-plugin.vala \
-				    rygel-tracker-plugin-factory.vala
+				    rygel-tracker-plugin-factory.vala \
+				    rygel-tracker-interfaces.vala
 
 librygel_media_tracker_la_VALAFLAGS = \
 	--vapidir=$(top_srcdir)/src/rygel \

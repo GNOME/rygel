@@ -32,12 +32,11 @@ public class Rygel.TrackerKeywords : Rygel.SimpleContainer {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker";
     private const string KEYWORDS_PATH = "/org/freedesktop/Tracker/Keywords";
-    private const string KEYWORDS_IFACE = "org.freedesktop.Tracker.Keywords";
 
     private const string SERVICE = "Files";
     private const string TITLE = "Tags";
 
-    public dynamic DBus.Object keywords;
+    public TrackerKeywordsIface keywords;
 
     public TrackerKeywords (string         id,
                             MediaContainer parent) {
@@ -45,28 +44,29 @@ public class Rygel.TrackerKeywords : Rygel.SimpleContainer {
 
         try {
             this.create_proxies ();
+        } catch (DBus.Error error) {
+            critical ("Failed to create to Session bus: %s\n",
+                      error.message);
 
+            return;
+        }
+
+        string[,] keywords_list;
+
+        try {
             /* FIXME: We need to hook to some tracker signals to keep
              *        this field up2date at all times
              */
-            this.keywords.GetList (SERVICE, on_get_keywords_cb);
-        } catch (GLib.Error error) {
-            critical ("Failed to create to Session bus: %s\n",
-                      error.message);
-        }
-    }
-
-    private void on_get_keywords_cb (string[][] keywords_list,
-                                     GLib.Error error) {
-        if (error != null) {
+            keywords_list = this.keywords.get_list (SERVICE);
+        } catch (DBus.Error error) {
             critical ("error getting all keywords: %s", error.message);
 
             return;
         }
 
         /* Iterate through all the values */
-        for (uint i = 0; i < keywords_list.length; i++) {
-            string keyword = keywords_list[i][0];
+        for (uint i = 0; i < keywords_list.length[0]; i++) {
+            string keyword = keywords_list[i, 0];
 
             var keywords = new string[] { keyword };
 
@@ -87,8 +87,8 @@ public class Rygel.TrackerKeywords : Rygel.SimpleContainer {
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
         this.keywords = connection.get_object (TRACKER_SERVICE,
-                                               KEYWORDS_PATH,
-                                               KEYWORDS_IFACE);
+                                               KEYWORDS_PATH)
+                                               as TrackerKeywordsIface;
     }
 }
 
