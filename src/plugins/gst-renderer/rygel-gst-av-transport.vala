@@ -139,22 +139,23 @@ public class Rygel.GstAVTransport : Service {
         this.changelog = new GstChangeLog (this, LAST_CHANGE_NS);
         this.video_window = GstVideoWindow.get_default ();
 
-        query_variable["LastChange"].connect (query_last_change_cb);
+        query_variable["LastChange"].connect (this.query_last_change_cb);
 
-        action_invoked["SetAVTransportURI"].connect (set_av_transport_uri_cb);
-        action_invoked["GetMediaInfo"].connect (get_media_info_cb);
-        action_invoked["GetTransportInfo"].connect (get_transport_info_cb);
-        action_invoked["GetPositionInfo"].connect (get_position_info_cb);
+        action_invoked["SetAVTransportURI"].connect (
+                                        this.set_av_transport_uri_cb);
+        action_invoked["GetMediaInfo"].connect (this.get_media_info_cb);
+        action_invoked["GetTransportInfo"].connect (this.get_transport_info_cb);
+        action_invoked["GetPositionInfo"].connect (this.get_position_info_cb);
         action_invoked["GetDeviceCapabilities"].connect (
-                                        get_device_capabilities_cb);
+                                        this.get_device_capabilities_cb);
         action_invoked["GetTransportSettings"].connect (
-                                        get_transport_settings_cb);
-        action_invoked["Stop"].connect (stop_cb);
-        action_invoked["Play"].connect (play_cb);
-        action_invoked["Pause"].connect (pause_cb);
-        action_invoked["Seek"].connect (seek_cb);
-        action_invoked["Next"].connect (next_cb);
-        action_invoked["Previous"].connect (previous_cb);
+                                        this.get_transport_settings_cb);
+        action_invoked["Stop"].connect (this.stop_cb);
+        action_invoked["Play"].connect (this.play_cb);
+        action_invoked["Pause"].connect (this.pause_cb);
+        action_invoked["Seek"].connect (this.seek_cb);
+        action_invoked["Next"].connect (this.next_cb);
+        action_invoked["Previous"].connect (this.previous_cb);
 
         this.video_window.notify["playback-state"].connect (
                                         this.notify_state_cb);
@@ -209,7 +210,7 @@ public class Rygel.GstAVTransport : Service {
 
     private void set_av_transport_uri_cb (Service             service,
                                           owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 
@@ -226,7 +227,7 @@ public class Rygel.GstAVTransport : Service {
 
     private void get_media_info_cb (Service             service,
                                     owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 
@@ -264,7 +265,7 @@ public class Rygel.GstAVTransport : Service {
 
     private void get_transport_info_cb (Service             service,
                                         owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 
@@ -283,7 +284,7 @@ public class Rygel.GstAVTransport : Service {
 
     private void get_position_info_cb (Service             service,
                                        owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 
@@ -317,7 +318,7 @@ public class Rygel.GstAVTransport : Service {
 
     private void get_device_capabilities_cb (Service             service,
                                              owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 
@@ -330,7 +331,7 @@ public class Rygel.GstAVTransport : Service {
 
     private void get_transport_settings_cb (Service             service,
                                             owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 
@@ -341,7 +342,7 @@ public class Rygel.GstAVTransport : Service {
     }
 
     private void stop_cb (Service service, owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 
@@ -351,7 +352,7 @@ public class Rygel.GstAVTransport : Service {
     }
 
     private void play_cb (Service service, owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 
@@ -370,7 +371,7 @@ public class Rygel.GstAVTransport : Service {
     }
 
     private void pause_cb (Service service, owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 
@@ -380,7 +381,7 @@ public class Rygel.GstAVTransport : Service {
     }
 
     private void seek_cb (Service service, owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 

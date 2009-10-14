@@ -82,14 +82,14 @@ public class Rygel.GstRenderingControl : Service {
         this.changelog = new GstChangeLog (this, LAST_CHANGE_NS);
         this.video_window = GstVideoWindow.get_default ();
 
-        query_variable["LastChange"].connect (query_last_change_cb);
+        query_variable["LastChange"].connect (this.query_last_change_cb);
 
-        action_invoked["ListPresets"].connect (list_presets_cb);
-        action_invoked["SelectPreset"].connect (select_preset_cb);
-        action_invoked["GetMute"].connect (get_mute_cb);
-        action_invoked["SetMute"].connect (set_mute_cb);
-        action_invoked["GetVolume"].connect (get_volume_cb);
-        action_invoked["SetVolume"].connect (set_volume_cb);
+        action_invoked["ListPresets"].connect (this.list_presets_cb);
+        action_invoked["SelectPreset"].connect (this.select_preset_cb);
+        action_invoked["GetMute"].connect (this.get_mute_cb);
+        action_invoked["SetMute"].connect (this.set_mute_cb);
+        action_invoked["GetVolume"].connect (this.get_volume_cb);
+        action_invoked["SetVolume"].connect (this.set_volume_cb);
 
         this._volume = Volume.to_percentage (this.video_window.volume);
     }
@@ -123,7 +123,7 @@ public class Rygel.GstRenderingControl : Service {
 
     private void list_presets_cb (Service             service,
                                   owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 
@@ -136,7 +136,7 @@ public class Rygel.GstRenderingControl : Service {
 
     private void select_preset_cb (Service             service,
                                    owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 
@@ -168,7 +168,7 @@ public class Rygel.GstRenderingControl : Service {
 
     private void get_mute_cb (Service             service,
                               owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 
@@ -183,7 +183,7 @@ public class Rygel.GstRenderingControl : Service {
 
     private void set_mute_cb (Service             service,
                               owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 
@@ -202,7 +202,7 @@ public class Rygel.GstRenderingControl : Service {
 
     private void get_volume_cb (Service             service,
                                 owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 
@@ -217,7 +217,7 @@ public class Rygel.GstRenderingControl : Service {
 
     private void set_volume_cb (Service             service,
                                 owned ServiceAction action) {
-        if (!check_instance_id (action)) {
+        if (!this.check_instance_id (action)) {
             return;
         }
 

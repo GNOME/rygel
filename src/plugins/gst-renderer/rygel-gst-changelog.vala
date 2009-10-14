@@ -52,7 +52,7 @@ public class Rygel.GstChangeLog : Object {
 
     private bool timeout () {
         // Emit notification
-        this.service.notify ("LastChange", typeof (string), finish ());
+        this.service.notify ("LastChange", typeof (string), this.finish ());
         debug ("LastChange sent");
 
         // Reset
@@ -67,7 +67,7 @@ public class Rygel.GstChangeLog : Object {
         // Make sure we have a notification timeout
         if (this.service != null && this.timeout_id == 0) {
             debug ("Setting up timeout for LastChange");
-            this.timeout_id = Timeout.add (200, timeout);
+            this.timeout_id = Timeout.add (200, this.timeout);
         }
     }
 
@@ -75,7 +75,7 @@ public class Rygel.GstChangeLog : Object {
         debug (@"'%s = %s' logged", variable, value);
         this.hash.set (variable, "<%s val=\"%s\"/>".printf (variable, value));
 
-        ensure_timeout ();
+        this.ensure_timeout ();
     }
 
     public void log_with_channel (string variable,
@@ -86,7 +86,7 @@ public class Rygel.GstChangeLog : Object {
                                                                  value,
                                                                  channel));
 
-        ensure_timeout ();
+        this.ensure_timeout ();
     }
 
     public string finish () {
