@@ -67,7 +67,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
      *
      * return A list of media objects.
      */
-    public abstract Gee.List<MediaObject>? get_children (
+    public async abstract Gee.List<MediaObject>? get_children (
                                         uint               offset,
                                         uint               max_count,
                                         Cancellable?       cancellable)
@@ -83,9 +83,9 @@ public abstract class Rygel.MediaContainer : MediaObject {
     *
     * return the found media object.
     */
-    public abstract MediaObject? find_object (string       id,
-                                              Cancellable? cancellable)
-                                              throws Error;
+    public async abstract MediaObject? find_object (string       id,
+                                                    Cancellable? cancellable)
+                                                    throws Error;
 
     /**
      * Method to be be called each time this container is updated (metadata

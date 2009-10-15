@@ -63,6 +63,10 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
             return;
         }
 
+        this.fetch_metadata_values.begin ();
+    }
+
+    private async void fetch_metadata_values () {
         string[,] values;
 
         try {
@@ -71,12 +75,12 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
             /* FIXME: We need to hook to some tracker signals to keep
              *        this field up2date at all times
              */
-            values = this.metadata.get_unique_values (SERVICE,
-                                                    keys,
-                                                    "",
-                                                    false,
-                                                    0,
-                                                    -1);
+            values = yield this.metadata.get_unique_values (SERVICE,
+                                                            keys,
+                                                            "",
+                                                            false,
+                                                            0,
+                                                            -1);
         } catch (DBus.Error error) {
             critical ("error getting all values for '%s': %s",
                       this.key,

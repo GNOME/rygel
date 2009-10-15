@@ -67,7 +67,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         this.thumbnail_index = -1;
     }
 
-    public void run () {
+    public async void run () {
         this.server.pause_message (this.msg);
 
         var header = this.msg.request_headers.get (
@@ -96,10 +96,15 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             this.request_handler = new HTTPIdentityHandler (this.cancellable);
         }
 
+        yield this.find_item ();
+    }
+
+    public async void find_item () {
         // Fetch the requested item
         MediaObject media_object;
         try {
-            media_object = this.root_container.find_object (this.item_id, null);
+            media_object = yield this.root_container.find_object (this.item_id,
+                                                                  null);
         } catch (Error err) {
             this.handle_error (err);
             return;
@@ -118,14 +123,14 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             this.thumbnail = this.item.thumbnails.get (this.thumbnail_index);
         }
 
-        this.handle_item_request ();
+        yield this.handle_item_request ();
     }
 
     private void on_response_completed (HTTPResponse response) {
         this.end (Soup.KnownStatusCode.NONE);
     }
 
-    private void handle_item_request () {
+    private async void handle_item_request () {
         try {
             this.byte_range = HTTPSeek.from_byte_range(this.msg);
             this.time_range = HTTPSeek.from_time_range(this.msg);
@@ -146,7 +151,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
             this.response = this.request_handler.render_body (this);
             this.response.completed += on_response_completed;
-            this.response.run ();
+            yield this.response.run ();
         } catch (Error error) {
             this.handle_error (error);
         }

@@ -60,9 +60,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
         this.file = File.new_for_uri (uri);
     }
 
-    public override void run () {
-        this.cancellable = cancellable;
-
+    public override async void run () {
         this.file.read_async (this.priority, cancellable, this.on_file_read);
     }
 

@@ -30,7 +30,7 @@ internal class Rygel.NullContainer : MediaContainer {
         base.root ("MediaExport", 0);
     }
 
-    public override Gee.List<MediaObject>? get_children (
+    public override async Gee.List<MediaObject>? get_children (
                                         uint         offset,
                                         uint         max_count,
                                         Cancellable? cancellable)
@@ -38,9 +38,9 @@ internal class Rygel.NullContainer : MediaContainer {
         return new Gee.ArrayList<MediaObject>();
     }
 
-    public override MediaObject? find_object (string       id,
-                                              Cancellable? cancellable)
-                                              throws Error {
+    public override async MediaObject? find_object (string       id,
+                                                    Cancellable? cancellable)
+                                                    throws Error {
         return null;
     }
 

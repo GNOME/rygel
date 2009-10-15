@@ -56,9 +56,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         this.time_range = time_range;
     }
 
-    public override void run () {
-        base.run ();
-
+    public override async void run () {
         // Only bother attempting to seek if the offset is greater than zero.
         if (this.time_range != null && this.time_range.start > 0) {
             this.pipeline.set_state (State.PAUSED);

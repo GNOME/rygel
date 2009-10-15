@@ -56,7 +56,7 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
         this.child_count--;
     }
 
-    public override Gee.List<MediaObject>? get_children (
+    public override async Gee.List<MediaObject>? get_children (
                                         uint         offset,
                                         uint         max_count,
                                         Cancellable? cancellable)
@@ -67,9 +67,9 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
         return this.children.slice ((int) offset, (int) stop);
     }
 
-    public override MediaObject? find_object (string       id,
-                                              Cancellable? cancellable)
-                                              throws Error {
+    public override async MediaObject? find_object (string       id,
+                                                    Cancellable? cancellable)
+                                                    throws Error {
         MediaObject child = null;
 
         foreach (var tmp in this.children) {
@@ -81,15 +81,25 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
         }
 
         if (child == null) {
-            // Recurse into the child containers
-            foreach (var tmp in this.children) {
-                if (tmp is MediaContainer) {
-                    var container = tmp as MediaContainer;
+            child = yield this.find_object_in_children (id, cancellable);
+        }
 
-                    child = container.find_object (id, cancellable);
-                    if (child != null) {
-                        break;
-                    }
+        return child;
+    }
+
+    public async MediaObject? find_object_in_children (string       id,
+                                                       Cancellable? cancellable)
+                                                       throws Error {
+        MediaObject child = null;
+
+        // Recurse into the child containers
+        foreach (var tmp in this.children) {
+            if (tmp is MediaContainer) {
+                var container = tmp as MediaContainer;
+
+                child = yield container.find_object (id, cancellable);
+                if (child != null) {
+                    break;
                 }
             }
         }

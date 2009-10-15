@@ -56,7 +56,6 @@ public class Rygel.ContentDirectory: Service {
     private bool clear_updated_containers;
     private uint update_notify_id;
 
-    private ArrayList<Browse> browses;
     internal Cancellable cancellable;
 
     public uint32 system_update_id;
@@ -80,7 +79,6 @@ public class Rygel.ContentDirectory: Service {
             return;
         }
 
-        this.browses = new ArrayList<Browse> ();
         this.updated_containers =  new ArrayList<MediaContainer> ();
 
         this.root_container.container_updated += on_container_updated;
@@ -120,7 +118,7 @@ public class Rygel.ContentDirectory: Service {
         this.action_invoked["GetFeatureList"] += this.get_feature_list_cb;
         this.query_variable["FeatureList"] += this.query_feature_list;
 
-        this.http_server.run ();
+        this.http_server.run.begin ();
     }
 
     ~ContentDirectory () {
@@ -133,10 +131,7 @@ public class Rygel.ContentDirectory: Service {
                                     owned ServiceAction action) {
         Browse browse = new Browse (this, action);
 
-        this.browses.add (browse);
-        browse.completed += this.on_browse_completed;
-
-        browse.run ();
+        browse.run.begin ();
     }
 
     /* GetSystemUpdateID action implementation */
@@ -220,10 +215,6 @@ public class Rygel.ContentDirectory: Service {
         /* Set action return arguments */
         value.init (typeof (string));
         value.set_string (this.feature_list);
-    }
-
-    private void on_browse_completed (Browse browse) {
-        this.browses.remove (browse);
     }
 
     private string create_container_update_ids () {

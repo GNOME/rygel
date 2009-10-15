@@ -62,28 +62,28 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
             /* FIXME: We need to hook to some tracker signals to keep
              *        this field up2date at all times
              */
-            this.get_children_count ();
+            this.get_children_count.begin ();
         } catch (DBus.Error error) {
             critical ("Failed to connect to session bus: %s\n", error.message);
         }
     }
 
-    private void get_children_count () {
+    private async void get_children_count () {
         try {
             // We are performing actual search (though an optimized one) to get
             // the hitcount rather than GetHitCount because GetHitCount only
             // allows us to get hit count for Text searches.
-            var search_result = this.search.query (0,
-                                                   this.service,
-                                                   new string[0],
-                                                   "",
-                                                   this.keywords,
-                                                   this.query_condition,
-                                                   false,
-                                                   new string[0],
-                                                   false,
-                                                   0,
-                                                   -1);
+            var search_result = yield this.search.query (0,
+                                                         this.service,
+                                                         new string[0],
+                                                         "",
+                                                         this.keywords,
+                                                         this.query_condition,
+                                                         false,
+                                                         new string[0],
+                                                         false,
+                                                         0,
+                                                         -1);
 
             this.child_count = search_result.length[0];
             this.updated ();
@@ -96,24 +96,24 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         }
     }
 
-    public override Gee.List<MediaObject>? get_children (
+    public override async Gee.List<MediaObject>? get_children (
                                         uint               offset,
                                         uint               max_count,
                                         Cancellable?       cancellable)
                                         throws GLib.Error {
         string[] keys = TrackerItem.get_metadata_keys ();
 
-        var search_result = this.search.query (0,
-                                               this.service,
-                                               keys,
-                                               "",
-                                               this.keywords,
-                                               this.query_condition,
-                                               false,
-                                               new string[0],
-                                               false,
-                                               (int) offset,
-                                               (int) max_count);
+        var search_result = yield this.search.query (0,
+                                                     this.service,
+                                                     keys,
+                                                     "",
+                                                     this.keywords,
+                                                     this.query_condition,
+                                                     false,
+                                                     new string[0],
+                                                     false,
+                                                     (int) offset,
+                                                     (int) max_count);
 
         var children = new ArrayList<MediaObject> ();
         /* Iterate through all items */
@@ -129,9 +129,9 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         return children;
     }
 
-    public override MediaObject? find_object (string       id,
-                                              Cancellable? cancellable)
-                                              throws GLib.Error {
+    public override async MediaObject? find_object (string       id,
+                                                    Cancellable? cancellable)
+                                                    throws GLib.Error {
         string parent_id;
         string service;
 
@@ -142,7 +142,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
         string[] keys = TrackerItem.get_metadata_keys ();
 
-        var values = this.metadata.get (service, path, keys);
+        var values = yield this.metadata.get (service, path, keys);
 
         return this.create_item (service, path, values);
     }

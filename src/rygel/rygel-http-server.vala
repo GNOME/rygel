@@ -32,7 +32,6 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     // Reference to root container of associated ContentDirectory
     public MediaContainer root_container;
     public GUPnP.Context context;
-    private ArrayList<HTTPRequest> requests;
 
     public Cancellable cancellable { get; set; }
 
@@ -43,12 +42,11 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         this.root_container = content_dir.root_container;
         this.context = content_dir.context;
         this.cancellable = content_dir.cancellable;
-        this.requests = new ArrayList<HTTPRequest> ();
 
         this.path_root = SERVER_PATH_PREFIX + "/" + name;
     }
 
-    public void run () {
+    public async void run () {
         context.server.add_handler (this.path_root, server_handler);
 
         if (this.cancellable != null) {
@@ -164,9 +162,6 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         debug ("HTTP %s request for URI '%s' handled.",
                request.msg.method,
                request.msg.get_uri ().to_string (false));
-
-        /* Remove the request from our list. */
-        this.requests.remove (request);
     }
 
     private void server_handler (Soup.Server               server,
@@ -184,9 +179,8 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         var request = new HTTPRequest (this, server, msg, query);
 
         request.completed += this.on_request_completed;
-        this.requests.add (request);
 
-        request.run ();
+        request.run.begin ();
     }
 }
 

@@ -43,7 +43,7 @@ public class Rygel.MediaDBContainer : MediaContainer {
         this.child_count = media_db.get_child_count (this.id);
     }
 
-    public override Gee.List<MediaObject>? get_children (
+    public override async Gee.List<MediaObject>? get_children (
                                         uint               offset,
                                         uint               max_count,
                                         Cancellable?       cancellable)
@@ -58,7 +58,7 @@ public class Rygel.MediaDBContainer : MediaContainer {
         return children;
     }
 
-    public override MediaObject? find_object (string       id,
+    public override async MediaObject? find_object (string       id,
                                               Cancellable? cancellable)
                                               throws GLib.Error {
         return media_db.get_object (id);

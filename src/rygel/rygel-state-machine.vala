@@ -31,6 +31,6 @@ public interface Rygel.StateMachine: GLib.Object {
     // Props
     public abstract Cancellable cancellable { get; set; }
 
-    public abstract void run ();
+    public async abstract void run ();
 }
 

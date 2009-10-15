@@ -72,7 +72,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         }
     }
 
-    public override Gee.List<MediaObject>? get_children (
+    public override async Gee.List<MediaObject>? get_children (
                                         uint         offset,
                                         uint         max_count,
                                         Cancellable? cancellable)
@@ -86,7 +86,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         var obj_paths = this.actual_container.items;
         foreach (var obj_path in obj_paths) {
             try {
-                var item = new ExternalItem.for_path (obj_path, this);
+                var item = yield ExternalItem.create_for_path (obj_path, this);
 
                 media_objects.add (item);
             } catch (GLib.Error err) {
@@ -102,12 +102,12 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         return media_objects.slice ((int) offset, (int) stop);
     }
 
-    public override MediaObject? find_object (string       id,
-                                              Cancellable? cancellable)
-                                              throws GLib.Error {
+    public override async MediaObject? find_object (string       id,
+                                                    Cancellable? cancellable)
+                                                    throws GLib.Error {
         MediaObject media_object = find_container (id);
         if (media_object == null && ExternalItem.id_valid (id)) {
-            media_object = new ExternalItem.for_id (id, this);
+            media_object = yield ExternalItem.create_for_id (id, this);
         }
 
         return media_object;

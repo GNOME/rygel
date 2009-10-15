@@ -25,42 +25,42 @@ using DBus;
 
 [DBus (name = "org.freedesktop.Tracker")]
 public interface Rygel.TrackerIface : DBus.Object {
-    public abstract int get_version () throws DBus.Error;
+    public abstract async int get_version () throws DBus.Error;
 }
 
 [DBus (name = "org.freedesktop.Tracker.Keywords")]
 public interface Rygel.TrackerKeywordsIface : DBus.Object {
-    public abstract string[,] get_list (string service) throws DBus.Error;
+    public abstract async string[,] get_list (string service) throws DBus.Error;
 }
 
 [DBus (name = "org.freedesktop.Tracker.Metadata")]
 public interface Rygel.TrackerMetadataIface: DBus.Object {
-    public abstract string[,] get_unique_values (string   service,
-                                                 string[] meta_types,
-                                                 string   query,
-                                                 bool     descending,
-                                                 int      offset,
-                                                 int      max_hits)
-                                                 throws DBus.Error;
+    public abstract async string[,] get_unique_values (string   service,
+                                                       string[] meta_types,
+                                                       string   query,
+                                                       bool     descending,
+                                                       int      offset,
+                                                       int      max_hits)
+                                                       throws DBus.Error;
 
-    public abstract string[] @get (string   service_type,
-                                   string   uri,
-                                   string[] keys)
-                                   throws DBus.Error;
+    public abstract async string[] @get (string   service_type,
+                                         string   uri,
+                                         string[] keys)
+                                         throws DBus.Error;
 }
 
 [DBus (name = "org.freedesktop.Tracker.Search")]
 public interface Rygel.TrackerSearchIface: DBus.Object {
-    public abstract string[,] query (int live_query_id,
-                                     string   service,
-                                     string[] fields,
-                                     string   search_text,
-                                     string[] keywords,
-                                     string   query_condition,
-                                     bool     sort_by_service,
-                                     string[] sort_fields,
-                                     bool     sort_descending,
-                                     int      offset,
-                                     int      max_hits)
-                                     throws DBus.Error;
+    public abstract async string[,] query (int live_query_id,
+                                           string   service,
+                                           string[] fields,
+                                           string   search_text,
+                                           string[] keywords,
+                                           string   query_condition,
+                                           bool     sort_by_service,
+                                           string[] sort_fields,
+                                           bool     sort_descending,
+                                           int      offset,
+                                           int      max_hits)
+                                           throws DBus.Error;
 }

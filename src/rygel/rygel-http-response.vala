@@ -46,13 +46,13 @@ internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         this.msg.response_body.set_accumulate (false);
 
         this.server.request_aborted += on_request_aborted;
-    }
 
-    public virtual void run () {
         if (this.cancellable != null) {
             this.cancellable.cancelled += this.on_cancelled;
         }
     }
+
+    public abstract async void run ();
 
     private void on_cancelled (Cancellable cancellable) {
         this.end (true, Soup.KnownStatusCode.CANCELLED);

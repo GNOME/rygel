@@ -33,40 +33,55 @@ public class Rygel.ExternalItem : Rygel.MediaItem {
     private static string OBJECT_IFACE = "org.gnome.UPnP.MediaObject1";
     private static string ITEM_IFACE = "org.gnome.UPnP.MediaItem1";
 
-    public ExternalItem.for_path (string            object_path,
-                                  ExternalContainer parent) throws GLib.Error {
-        this ("item:" + object_path, object_path, parent);
+    public static async ExternalItem create_for_path (
+                                        string            object_path,
+                                        ExternalContainer parent)
+                                        throws GLib.Error {
+        return yield create ("item:" + object_path, object_path, parent);
     }
 
-    public ExternalItem.for_id (string            id,
-                                ExternalContainer parent) throws GLib.Error {
+    public static async ExternalItem create_for_id (string            id,
+                                                    ExternalContainer parent)
+                                                    throws GLib.Error {
         var object_path = id.str ("/");
         assert (object_path != null);
 
-        this (id, object_path, parent);
+        return yield create (id, object_path, parent);
     }
 
-    private ExternalItem (string            id,
-                          string            object_path,
-                          ExternalContainer parent)
+    private static async ExternalItem create (string            id,
+                                              string            object_path,
+                                              ExternalContainer parent)
+                                              throws GLib.Error {
+        DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
+
+        var props = connection.get_object (parent.service_name,
+                                           object_path)
+                                           as Properties;
+
+        var object_props = yield props.get_all (OBJECT_IFACE);
+        var item_props = yield props.get_all (ITEM_IFACE);
+
+        return new ExternalItem (id,
+                                 object_path,
+                                 parent,
+                                 object_props,
+                                 item_props);
+    }
+
+    private ExternalItem (string                   id,
+                          string                   object_path,
+                          ExternalContainer        parent,
+                          HashTable<string,Value?> object_props,
+                          HashTable<string,Value?> item_props)
                           throws GLib.Error {
         base (id,
               parent,
               "Unknown",        /* Title Unknown at this point */
               "Unknown");       /* UPnP Class Unknown at this point */
 
-        DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
-
-        var props = connection.get_object (parent.service_name,
-                                           object_path)
-                                          as Properties;
-
-        var object_props = props.get_all (OBJECT_IFACE);
-
         var value = object_props.lookup ("DisplayName");
         this.title = parent.substitute_keywords (value.get_string ());
-
-        var item_props = props.get_all (ITEM_IFACE);
 
         value = item_props.lookup ("Type");
         string type = value.get_string ();

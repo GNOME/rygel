@@ -90,6 +90,6 @@ public interface FreeDesktop.DBusObject: DBus.Object {
 
 [DBus (name = "org.freedesktop.DBus.Properties")]
 public interface FreeDesktop.Properties: DBus.Object {
-    public abstract HashTable<string,Value?> get_all (string iface)
-                                                      throws DBus.Error;
+    public abstract async HashTable<string,Value?> get_all (string iface)
+                                                            throws DBus.Error;
 }

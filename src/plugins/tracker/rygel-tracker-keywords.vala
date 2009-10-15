@@ -51,13 +51,17 @@ public class Rygel.TrackerKeywords : Rygel.SimpleContainer {
             return;
         }
 
+        this.fetch_keywords.begin ();
+    }
+
+    private async void fetch_keywords () {
         string[,] keywords_list;
 
         try {
             /* FIXME: We need to hook to some tracker signals to keep
              *        this field up2date at all times
              */
-            keywords_list = this.keywords.get_list (SERVICE);
+            keywords_list = yield this.keywords.get_list (SERVICE);
         } catch (DBus.Error error) {
             critical ("error getting all keywords: %s", error.message);
 
