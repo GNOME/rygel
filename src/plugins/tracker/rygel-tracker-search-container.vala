@@ -32,11 +32,8 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker";
     private const string TRACKER_PATH = "/org/freedesktop/Tracker";
-    private const string TRACKER_IFACE = "org.freedesktop.Tracker";
     private const string SEARCH_PATH = "/org/freedesktop/Tracker/Search";
-    private const string SEARCH_IFACE = "org.freedesktop.Tracker.Search";
     private const string METADATA_PATH = "/org/freedesktop/Tracker/Metadata";
-    private const string METADATA_IFACE = "org.freedesktop.Tracker.Metadata";
 
     public TrackerMetadataIface metadata;
     public TrackerSearchIface search;
