@@ -32,15 +32,12 @@ using Gee;
 public class Rygel.SimpleContainer : Rygel.MediaContainer {
     public ArrayList<MediaObject> children;
 
-    private ArrayList<MediaObjectSearch> searches;
-
     public SimpleContainer (string          id,
                             MediaContainer? parent,
                             string          title) {
         base (id, parent, title, 0);
 
         this.children = new ArrayList<MediaObject> ();
-        this.searches = new ArrayList<MediaObjectSearch> ();
     }
 
     public SimpleContainer.root (string title) {
@@ -59,33 +56,20 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
         this.child_count--;
     }
 
-    public override void get_children (uint               offset,
-                                       uint               max_count,
-                                       Cancellable?       cancellable,
-                                       AsyncReadyCallback callback) {
+    public override Gee.List<MediaObject>? get_children (
+                                        uint         offset,
+                                        uint         max_count,
+                                        Cancellable? cancellable)
+                                        throws Error {
         uint stop = offset + max_count;
         stop = stop.clamp (0, this.child_count);
 
-        var media_objects = this.children.slice ((int) offset, (int) stop);
-
-        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>>
-                                                (this, callback);
-        res.data = media_objects;
-        res.complete_in_idle ();
+        return this.children.slice ((int) offset, (int) stop);
     }
 
-    public override Gee.List<MediaObject>? get_children_finish (
-                                                         AsyncResult res)
-                                                         throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
-        return simple_res.data;
-    }
-
-    public override void find_object (string             id,
-                                      Cancellable?       cancellable,
-                                      AsyncReadyCallback callback) {
-        var res = new Rygel.SimpleAsyncResult<MediaObject> (this, callback);
-
+    public override MediaObject? find_object (string       id,
+                                              Cancellable? cancellable)
+                                              throws Error {
         MediaObject child = null;
 
         foreach (var tmp in this.children) {
@@ -96,51 +80,20 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
             }
         }
 
-        if (child != null) {
-            res.data = child;
-            res.complete_in_idle ();
-        } else {
-            var containers = new ArrayList<MediaContainer> ();
-
+        if (child == null) {
+            // Recurse into the child containers
             foreach (var tmp in this.children) {
                 if (tmp is MediaContainer) {
-                    containers.add (tmp as MediaContainer);
+                    var container = tmp as MediaContainer;
+
+                    child = container.find_object (id, cancellable);
+                    if (child != null) {
+                        break;
+                    }
                 }
             }
-
-            var search = new MediaObjectSearch
-                                        <Rygel.SimpleAsyncResult<MediaObject>> (
-                                        id,
-                                        containers,
-                                        res,
-                                        cancellable);
-            search.completed.connect (this.on_object_search_completed);
-
-            this.searches.add (search);
-
-            search.run ();
         }
-    }
 
-    public override MediaObject? find_object_finish (AsyncResult res)
-                                                     throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult<MediaObject>) res;
-
-        if (simple_res.error != null) {
-            throw simple_res.error;
-        } else {
-            return simple_res.data;
-        }
-    }
-
-    private void on_object_search_completed (StateMachine state_machine) {
-        var search = state_machine as
-                     MediaObjectSearch<Rygel.SimpleAsyncResult<MediaObject>>;
-
-        search.data.data = search.media_object;
-        search.data.error = search.error;
-        search.data.complete ();
-
-        this.searches.remove (search);
+        return child;
     }
 }

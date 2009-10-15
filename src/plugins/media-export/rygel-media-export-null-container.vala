@@ -30,28 +30,17 @@ internal class Rygel.NullContainer : MediaContainer {
         base.root ("MediaExport", 0);
     }
 
-    public override void get_children (uint               offset,
-                                       uint               max_count,
-                                       Cancellable?       cancellable,
-                                       AsyncReadyCallback callback) {
-        var res = new SimpleAsyncResult<int> (this, callback);
-        res.complete_in_idle ();
-    }
-
-    public override Gee.List<MediaObject>? get_children_finish (AsyncResult res)
-                                                                 throws Error {
+    public override Gee.List<MediaObject>? get_children (
+                                        uint         offset,
+                                        uint         max_count,
+                                        Cancellable? cancellable)
+                                        throws Error {
         return new Gee.ArrayList<MediaObject>();
     }
 
-    public override void find_object (string             id,
-                                      Cancellable?       cancellable,
-                                      AsyncReadyCallback callback) {
-        var res = new SimpleAsyncResult<int> (this, callback);
-        res.complete_in_idle ();
-    }
-
-    public override MediaObject? find_object_finish (AsyncResult res)
-                                                                 throws Error {
+    public override MediaObject? find_object (string       id,
+                                              Cancellable? cancellable)
+                                              throws Error {
         return null;
     }
 

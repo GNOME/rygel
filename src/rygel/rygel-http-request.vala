@@ -97,9 +97,28 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
 
         // Fetch the requested item
-        this.root_container.find_object (this.item_id,
-                                         null,
-                                         this.on_item_found);
+        MediaObject media_object;
+        try {
+            media_object = this.root_container.find_object (this.item_id, null);
+        } catch (Error err) {
+            this.handle_error (err);
+            return;
+        }
+
+        if (media_object == null || !(media_object is MediaItem)) {
+            this.handle_error (new HTTPRequestError.NOT_FOUND (
+                                        "requested item '%s' not found",
+                                        this.item_id));
+            return;
+        }
+
+        this.item = (MediaItem) media_object;
+
+        if (this.thumbnail_index >= 0) {
+            this.thumbnail = this.item.thumbnails.get (this.thumbnail_index);
+        }
+
+        this.handle_item_request ();
     }
 
     private void on_response_completed (HTTPResponse response) {
@@ -131,34 +150,6 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         } catch (Error error) {
             this.handle_error (error);
         }
-    }
-
-    private void on_item_found (GLib.Object? source_object,
-                                AsyncResult  res) {
-        var container = (MediaContainer) source_object;
-
-        MediaObject media_object;
-        try {
-            media_object = container.find_object_finish (res);
-        } catch (Error err) {
-            this.handle_error (err);
-            return;
-        }
-
-        if (media_object == null || !(media_object is MediaItem)) {
-            this.handle_error (new HTTPRequestError.NOT_FOUND (
-                                        "requested item '%s' not found",
-                                        this.item_id));
-            return;
-        }
-
-        this.item = (MediaItem) media_object;
-
-        if (this.thumbnail_index >= 0) {
-            this.thumbnail = this.item.thumbnails.get (this.thumbnail_index);
-        }
-
-        this.handle_item_request ();
     }
 
     private void parse_query () throws Error {

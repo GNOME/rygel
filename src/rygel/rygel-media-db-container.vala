@@ -43,42 +43,25 @@ public class Rygel.MediaDBContainer : MediaContainer {
         this.child_count = media_db.get_child_count (this.id);
     }
 
-    public override void get_children (uint               offset,
-                                       uint               max_count,
-                                       Cancellable?       cancellable,
-                                       AsyncReadyCallback callback) {
-        var res = new SimpleAsyncResult<Gee.ArrayList<MediaObject>>
-                                                            (this,
-                                                             callback);
-        res.data = this.media_db.get_children (this.id,
-                                               offset,
-                                               max_count);
-        res.complete_in_idle ();
-    }
-
-    public override Gee.List<MediaObject>? get_children_finish (
-                                                           AsyncResult res)
-                                                           throws GLib.Error {
-        var result = (SimpleAsyncResult<Gee.ArrayList<MediaObject>>)res;
-
-        foreach (var obj in result.data) {
-            obj.parent = this;
+    public override Gee.List<MediaObject>? get_children (
+                                        uint               offset,
+                                        uint               max_count,
+                                        Cancellable?       cancellable)
+                                        throws GLib.Error {
+        var children = this.media_db.get_children (this.id,
+                                                   offset,
+                                                   max_count);
+        foreach (var child in children) {
+            child.parent = this;
         }
-        return result.data;
+
+        return children;
     }
 
-
-    public override void find_object (string             id,
-                                      Cancellable?       cancellable,
-                                      AsyncReadyCallback callback) {
-        var res = new SimpleAsyncResult<MediaObject> (this, callback);
-
-        res.data = media_db.get_object (id);
-        res.complete_in_idle ();
-    }
-
-    public override MediaObject? find_object_finish (AsyncResult res) {
-        return ((SimpleAsyncResult<MediaObject>)res).data;
+    public override MediaObject? find_object (string       id,
+                                              Cancellable? cancellable)
+                                              throws GLib.Error {
+        return media_db.get_object (id);
     }
 }
 

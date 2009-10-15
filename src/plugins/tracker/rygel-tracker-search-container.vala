@@ -47,8 +47,6 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
     public string[] keywords;
 
-    Gee.List<AsyncResult> results;
-
     public TrackerSearchContainer (string         id,
                                    MediaContainer parent,
                                    string         title,
@@ -68,8 +66,6 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
              *        this field up2date at all times
              */
             this.get_children_count ();
-
-            this.results = new Gee.ArrayList<AsyncResult>();
         } catch (DBus.Error error) {
             critical ("Failed to connect to session bus: %s\n", error.message);
         }
@@ -103,101 +99,55 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         }
     }
 
-    public override void get_children (uint               offset,
-                                       uint               max_count,
-                                       Cancellable?       cancellable,
-                                       AsyncReadyCallback callback) {
-        var res = new SimpleAsyncResult<ArrayList<MediaObject>> (this,
-                                                                 callback);
-        res.data = new ArrayList<MediaObject> ();
-        this.results.add (res);
+    public override Gee.List<MediaObject>? get_children (
+                                        uint               offset,
+                                        uint               max_count,
+                                        Cancellable?       cancellable)
+                                        throws GLib.Error {
+        string[] keys = TrackerItem.get_metadata_keys ();
 
-        try {
-            string[] keys = TrackerItem.get_metadata_keys ();
+        var search_result = this.search.query (0,
+                                               this.service,
+                                               keys,
+                                               "",
+                                               this.keywords,
+                                               this.query_condition,
+                                               false,
+                                               new string[0],
+                                               false,
+                                               (int) offset,
+                                               (int) max_count);
 
-            var search_result = this.search.query (0,
-                                                   this.service,
-                                                   keys,
-                                                   "",
-                                                   this.keywords,
-                                                   this.query_condition,
-                                                   false,
-                                                   new string[0],
-                                                   false,
-                                                   (int) offset,
-                                                   (int) max_count);
+        var children = new ArrayList<MediaObject> ();
+        /* Iterate through all items */
+        for (uint i = 0; i < search_result.length[0]; i++) {
+            string path = search_result[i, 0];
+            string service = search_result[i, 1];
+            string[] metadata = this.slice_strvv_tail (search_result, i, 2);
 
-            /* Iterate through all items */
-            for (uint i = 0; i < search_result.length[0]; i++) {
-                string path = search_result[i, 0];
-                string service = search_result[i, 1];
-                string[] metadata = this.slice_strvv_tail (search_result, i, 2);
-
-                var item = this.create_item (service, path, metadata);
-                res.data.add (item);
-            }
-        } catch (GLib.Error error) {
-            res.error = error;
+            var item = this.create_item (service, path, metadata);
+            children.add (item);
         }
 
-        res.complete_in_idle ();
+        return children;
     }
 
-    public override Gee.List<MediaObject>? get_children_finish (
-                                                         AsyncResult res)
-                                                         throws GLib.Error {
-        var search_res = res as SimpleAsyncResult<ArrayList<MediaObject>>;
+    public override MediaObject? find_object (string       id,
+                                              Cancellable? cancellable)
+                                              throws GLib.Error {
+        string parent_id;
+        string service;
 
-        this.results.remove (search_res);
-
-        if (search_res.error != null) {
-            throw search_res.error;
-        } else {
-            return search_res.data;
-        }
-    }
-
-    public override void find_object (string             id,
-                                      Cancellable?       cancellable,
-                                      AsyncReadyCallback callback) {
-        var res = new SimpleAsyncResult<MediaObject> (this, callback);
-
-        this.results.add (res);
-
-        try {
-            string parent_id;
-            string service;
-
-            var path = this.get_item_info (id, out parent_id, out service);
-            if (path == null) {
-                res.complete_in_idle ();
-
-                return;
-            }
-
-            string[] keys = TrackerItem.get_metadata_keys ();
-
-            var values = this.metadata.get (service, path, keys);
-
-            res.data = this.create_item (service, path, values);
-        } catch (DBus.Error error) {
-            res.error = error;
+        var path = this.get_item_info (id, out parent_id, out service);
+        if (path == null) {
+            return null;
         }
 
-        res.complete_in_idle ();
-    }
+        string[] keys = TrackerItem.get_metadata_keys ();
 
-    public override MediaObject? find_object_finish (AsyncResult res)
-                                                     throws GLib.Error {
-        var metadata_res = res as SimpleAsyncResult<MediaObject>;
+        var values = this.metadata.get (service, path, keys);
 
-        this.results.remove (metadata_res);
-
-        if (metadata_res.error != null) {
-            throw metadata_res.error;
-        } else {
-            return metadata_res.data;
-        }
+        return this.create_item (service, path, values);
     }
 
     public bool is_thy_child (string item_id) {

@@ -72,10 +72,11 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         }
     }
 
-    public override void get_children (uint               offset,
-                                       uint               max_count,
-                                       Cancellable?       cancellable,
-                                       AsyncReadyCallback callback) {
+    public override Gee.List<MediaObject>? get_children (
+                                        uint         offset,
+                                        uint         max_count,
+                                        Cancellable? cancellable)
+                                        throws GLib.Error {
         var media_objects = new ArrayList <MediaObject> ();
 
         // First add the child containers
@@ -98,48 +99,18 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         uint stop = offset + max_count;
         stop = stop.clamp (0, this.child_count);
 
-        var children = media_objects.slice ((int) offset, (int) stop);
-
-        var res = new Rygel.SimpleAsyncResult<Gee.List<MediaObject>>
-                                                (this, callback);
-        res.data = children;
-        res.complete_in_idle ();
+        return media_objects.slice ((int) offset, (int) stop);
     }
 
-    public override Gee.List<MediaObject>? get_children_finish (
-                                                         AsyncResult res)
-                                                         throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult<Gee.List<MediaObject>>) res;
-        return simple_res.data;
-    }
-
-    public override void find_object (string             id,
-                                      Cancellable?       cancellable,
-                                      AsyncReadyCallback callback) {
-        var res = new Rygel.SimpleAsyncResult<MediaObject> (this, callback);
-
+    public override MediaObject? find_object (string       id,
+                                              Cancellable? cancellable)
+                                              throws GLib.Error {
         MediaObject media_object = find_container (id);
         if (media_object == null && ExternalItem.id_valid (id)) {
-            try {
-                media_object = new ExternalItem.for_id (id, this);
-            } catch (GLib.Error err) {
-                res.error = err;
-            }
+            media_object = new ExternalItem.for_id (id, this);
         }
 
-        res.data = media_object;
-        res.complete_in_idle ();
-    }
-
-    public override MediaObject? find_object_finish (AsyncResult res)
-                                                     throws GLib.Error {
-        var simple_res = (Rygel.SimpleAsyncResult<MediaObject>) res;
-
-        if (simple_res.error != null) {
-            throw simple_res.error;
-        } else {
-            return simple_res.data;
-        }
+        return media_object;
     }
 
     public string substitute_keywords (string title) {

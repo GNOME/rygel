@@ -59,29 +59,19 @@ public abstract class Rygel.MediaContainer : MediaObject {
     }
 
     /**
-     * Fetches the list of media objects directly under this container and
-     * calls callback once the result is ready.
+     * Fetches the list of media objects directly under this container.
      *
      * @param offet zero-based index of the first item to return
      * @param max_count maximum number of objects to return
      * @param cancellable optional cancellable for this operation
-     * @param callback function to call when result is ready
-     */
-    public abstract void get_children (uint               offset,
-                                       uint               max_count,
-                                       Cancellable?       cancellable,
-                                       AsyncReadyCallback callback);
-
-    /**
-     * Finishes the operation started by #get_children.
-     *
-     * @param res an AsyncResult
      *
      * return A list of media objects.
      */
-    public abstract Gee.List<MediaObject>? get_children_finish (
-                                                    AsyncResult res)
-                                                    throws Error;
+    public abstract Gee.List<MediaObject>? get_children (
+                                        uint               offset,
+                                        uint               max_count,
+                                        Cancellable?       cancellable)
+                                        throws Error;
 
    /**
     * Recursively searches for media object with the given id in this
@@ -91,20 +81,11 @@ public abstract class Rygel.MediaContainer : MediaObject {
     * @param cancellable optional cancellable for this operation
     * @param callback function to call when result is ready
     *
+    * return the found media object.
     */
-    public abstract void find_object (string             id,
-                                      Cancellable?       cancellable,
-                                      AsyncReadyCallback callback);
-
-    /**
-     * Finishes the search operation started by #find_object.
-     *
-     * @param res an AsyncResult
-     *
-     * return the found media object.
-     */
-    public abstract MediaObject? find_object_finish (AsyncResult res)
-                                                     throws Error;
+    public abstract MediaObject? find_object (string       id,
+                                              Cancellable? cancellable)
+                                              throws Error;
 
     /**
      * Method to be be called each time this container is updated (metadata
