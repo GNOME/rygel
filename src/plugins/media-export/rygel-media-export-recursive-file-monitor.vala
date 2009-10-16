@@ -57,11 +57,13 @@ public class Rygel.MediaExportRecursiveFileMonitor : Object {
         }
     }
 
-    private void on_info_ready (Object? source, AsyncResult res) {
-        var file = (File) source;
-
+    public async void monitor (File file) {
         try {
-            var info = file.query_info_finish (res);
+            var info = yield file.query_info_async (
+                                                 FILE_ATTRIBUTE_STANDARD_TYPE,
+                                                 FileQueryInfoFlags.NONE,
+                                                 Priority.DEFAULT,
+                                                 null);
             if (info.get_file_type () == FileType.DIRECTORY) {
                 var file_monitor = file.monitor_directory (
                                                          FileMonitorFlags.NONE,
@@ -69,18 +71,9 @@ public class Rygel.MediaExportRecursiveFileMonitor : Object {
                 this.monitors.set (file, file_monitor);
                 file_monitor.changed.connect (this.on_monitor_changed);
             }
-        } catch (Error error) {
-            warning ("Failed to get file info for %s",
-                     file.get_uri ());
+        } catch (Error err) {
+            warning ("Failed to get file info for %s", file.get_uri ());
         }
-    }
-
-    public void monitor (File file) {
-        file.query_info_async (FILE_ATTRIBUTE_STANDARD_TYPE,
-                               FileQueryInfoFlags.NONE,
-                               Priority.DEFAULT,
-                               null,
-                               this.on_info_ready);
     }
 
     public void cancel () {
