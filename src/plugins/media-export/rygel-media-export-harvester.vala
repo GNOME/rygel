@@ -167,7 +167,6 @@ public class Rygel.MediaExportHarvester : GLib.Object {
 
         cleanup_database (this.containers.peek_head() as DummyContainer);
         this.do_update ();
-        Idle.add(this.on_idle);
     }
 
     void cleanup_database (DummyContainer container) {
@@ -292,7 +291,6 @@ public class Rygel.MediaExportHarvester : GLib.Object {
 
             this.files.pop_head ();
             this.do_update ();
-            Idle.add(this.on_idle);
         }
     }
 
@@ -306,7 +304,6 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         if (file == entry.file) {
             this.files.pop_head ();
             this.do_update ();
-            Idle.add(this.on_idle);
         }
     }
 
@@ -316,5 +313,6 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             this.containers.peek_head ().updated ();
             this.containers.pop_head ();
         }
+        Idle.add(this.on_idle);
     }
 }
