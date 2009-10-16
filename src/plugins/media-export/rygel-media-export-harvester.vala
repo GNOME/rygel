@@ -144,19 +144,19 @@ public class Rygel.MediaExportHarvester : GLib.Object {
     private async void enumerate_directory (File directory) {
         try {
             var enumerator = yield directory.enumerate_children_async (
-                    FILE_ATTRIBUTE_STANDARD_TYPE + "," +
-                    FILE_ATTRIBUTE_STANDARD_NAME + "," +
-                    FILE_ATTRIBUTE_TIME_MODIFIED,
-                    FileQueryInfoFlags.NONE,
-                    Priority.DEFAULT,
-                    null);
+                                          FILE_ATTRIBUTE_STANDARD_TYPE + "," +
+                                          FILE_ATTRIBUTE_STANDARD_NAME + "," +
+                                          FILE_ATTRIBUTE_TIME_MODIFIED,
+                                          FileQueryInfoFlags.NONE,
+                                          Priority.DEFAULT,
+                                          null);
 
 
             GLib.List<FileInfo> list = null;
             do {
                 list = yield enumerator.next_files_async (10,
-                        Priority.DEFAULT,
-                        null);
+                                                          Priority.DEFAULT,
+                                                          null);
             } while (process_children (list));
 
             yield enumerator.close_async (Priority.DEFAULT, null);
@@ -307,12 +307,18 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         }
     }
 
+    /**
+     * If all files of a container were processed, notify the container
+     * about this and set the updating signal.
+     * Reschedule the iteration and extraction
+     */
     private void do_update () {
         if (this.files.get_length () == 0 &&
             this.containers.get_length () != 0) {
             this.containers.peek_head ().updated ();
             this.containers.pop_head ();
         }
+
         Idle.add(this.on_idle);
     }
 }
