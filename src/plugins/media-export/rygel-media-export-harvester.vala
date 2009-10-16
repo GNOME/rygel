@@ -72,7 +72,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         this.extractor.extraction_done.connect (on_extracted_cb);
         this.extractor.error.connect (on_extractor_error_cb);
         this.files = new GLib.Queue<FileQueueEntry> ();
-        this.containers = new GLib.Queue<DummyContainer> ();
+        this.containers = new GLib.Queue<MediaContainer> ();
         this.origin = null;
         this.monitor = monitor;
     }
