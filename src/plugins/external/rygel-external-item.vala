@@ -62,18 +62,30 @@ public class Rygel.ExternalItem : Rygel.MediaItem {
         var object_props = yield props.get_all (OBJECT_IFACE);
         var item_props = yield props.get_all (ITEM_IFACE);
 
+        ExternalThumbnail thumbnail = null;
+        var value = item_props.lookup ("Thumbnail");
+        if (value != null) {
+            var thumbnail_path = value.get_string ();
+
+            thumbnail = yield ExternalThumbnail.create (thumbnail_path,
+                                                        parent.service_name,
+                                                        parent.host_ip);
+        }
+
         return new ExternalItem (id,
                                  object_path,
                                  parent,
                                  object_props,
-                                 item_props);
+                                 item_props,
+                                 thumbnail);
     }
 
     private ExternalItem (string                   id,
                           string                   object_path,
                           ExternalContainer        parent,
                           HashTable<string,Value?> object_props,
-                          HashTable<string,Value?> item_props)
+                          HashTable<string,Value?> item_props,
+                          Thumbnail?               thumbnail)
                           throws GLib.Error {
         base (id,
               parent,
@@ -178,6 +190,10 @@ public class Rygel.ExternalItem : Rygel.MediaItem {
         value = item_props.lookup ("ColorDepth");
         if (value != null) {
             this.color_depth = value.get_int ();
+        }
+
+        if (thumbnail != null) {
+            this.thumbnails.add (thumbnail);
         }
     }
 
