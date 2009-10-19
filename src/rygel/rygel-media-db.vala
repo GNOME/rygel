@@ -880,7 +880,8 @@ public class Rygel.MediaDB : Object {
 
     public Gee.ArrayList<MediaObject> get_children (string container_id,
                                                       long offset,
-                                                      long max_count) {
+                                                      long max_count)
+                                                      throws MediaDBError {
         Statement statement;
         ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
         MediaContainer parent = null;
