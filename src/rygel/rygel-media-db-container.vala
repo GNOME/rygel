@@ -40,7 +40,13 @@ public class Rygel.MediaDBContainer : MediaContainer {
 
     private void on_db_container_updated (MediaContainer container,
                                           MediaContainer container_updated) {
-        this.child_count = media_db.get_child_count (this.id);
+        try {
+            this.child_count = media_db.get_child_count (this.id);
+        } catch (MediaDBError e) {
+            debug("Could not get child count from database: %s",
+                  e.message);
+            this.child_count = 0;
+        }
     }
 
     public override async Gee.List<MediaObject>? get_children (
