@@ -61,24 +61,25 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
     }
 
     public override async void run () {
-        this.file.read_async (this.priority, cancellable, this.on_file_read);
-    }
-
-    private void on_file_read (GLib.Object?     source_object,
-                               GLib.AsyncResult result) {
         try {
-           this.input_stream = this.file.read_finish (result);
+           this.input_stream = yield this.file.read_async (this.priority,
+                                                           this.cancellable);
         } catch (Error err) {
             warning ("Failed to read from URI: %s: %s\n",
                      file.get_uri (),
                      err.message);
             this.end (false, Soup.KnownStatusCode.NOT_FOUND);
+
             return;
         }
 
-        if (seek != null) {
+        yield this.perform_seek ();
+    }
+
+    private async void perform_seek () {
+        if (this.seek != null) {
             try {
-                this.input_stream.seek (seek.start,
+                this.input_stream.seek (this.seek.start,
                                         SeekType.SET,
                                         this.cancellable);
             } catch (Error err) {
@@ -93,43 +94,38 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
             }
         }
 
-        this.input_stream.read_async (this.buffer,
-                                      SeekableResponse.BUFFER_LENGTH,
-                                      this.priority,
-                                      this.cancellable,
-                                      on_contents_read);
+        yield this.read_contents ();
     }
 
-    private void on_contents_read (GLib.Object?     source_object,
-                                   GLib.AsyncResult result) {
-        FileInputStream input_stream = (FileInputStream) source_object;
+    private async void read_contents () {
         ssize_t bytes_read;
 
         try {
-           bytes_read = input_stream.read_finish (result);
+           bytes_read = yield this.input_stream.read_async (
+                                        this.buffer,
+                                        SeekableResponse.BUFFER_LENGTH,
+                                        this.priority,
+                                        this.cancellable);
         } catch (Error err) {
             warning ("Failed to read contents from URI: %s: %s\n",
                      this.file.get_uri (),
                      err.message);
             this.end (false, Soup.KnownStatusCode.NOT_FOUND);
+
             return;
         }
 
         if (bytes_read > 0) {
             this.push_data (this.buffer, bytes_read);
         } else {
-            input_stream.close_async (this.priority,
-                                      this.cancellable,
-                                      on_input_stream_closed);
+            yield this.close_stream ();
         }
     }
 
-    private void on_input_stream_closed (GLib.Object?     source_object,
-                                         GLib.AsyncResult result) {
-        FileInputStream input_stream = (FileInputStream) source_object;
-
-        try  {
-            input_stream.close_finish (result);
+    private async void close_stream () {
+        try {
+            yield this.input_stream.close_async (this.priority,
+                                                 this.cancellable);
         } catch (Error err) {
             warning ("Failed to close stream to URI %s: %s\n",
                      this.file.get_uri (),
@@ -140,11 +136,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
     }
 
     private void on_wrote_chunk (Soup.Message msg) {
-        this.input_stream.read_async (this.buffer,
-                                      SeekableResponse.BUFFER_LENGTH,
-                                      this.priority,
-                                      this.cancellable,
-                                      this.on_contents_read);
+        this.read_contents.begin ();
     }
 
     private int get_requested_priority () {
