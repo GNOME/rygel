@@ -192,6 +192,16 @@ public class Rygel.ExternalItem : Rygel.MediaItem {
             this.color_depth = value.get_int ();
         }
 
+        value = item_props.lookup ("PixelWidth");
+        if (value != null) {
+            this.pixel_width = value.get_int ();
+        }
+
+        value = item_props.lookup ("PixelHeight");
+        if (value != null) {
+            this.pixel_height = value.get_int ();
+        }
+
         if (thumbnail != null) {
             this.thumbnails.add (thumbnail);
         }
