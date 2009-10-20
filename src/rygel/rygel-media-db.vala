@@ -609,7 +609,7 @@ public class Rygel.MediaDB : Object {
             throw new MediaDBError.INVALID_TYPE("Object with id %s is not a" +
                                                 "MediaContainer",
                                                 container_id);
-        return (MediaContainer)obj;
+        return (MediaContainer) obj;
     }
 
 
@@ -641,8 +641,8 @@ public class Rygel.MediaDB : Object {
         this.db.exec (GET_CHILD_ID_STRING,
                       values,
                       (stmt) => {
-                                    children.add (stmt.column_text (0));
-                        return true;
+                          children.add (stmt.column_text (0));
+                          return true;
                       });
 
         return children;
