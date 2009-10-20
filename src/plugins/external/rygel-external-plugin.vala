@@ -25,25 +25,39 @@
 using FreeDesktop;
 
 public class Rygel.ExternalPlugin : Rygel.Plugin {
+    private static string OBJECT_IFACE = "org.gnome.UPnP.MediaObject1";
+    private static string CONTAINER_IFACE = "org.gnome.UPnP.MediaContainer1";
     private static string ITEM_IFACE = "org.gnome.UPnP.MediaItem1";
 
     public string service_name;
     public string root_object;
 
-    public static async ExternalPlugin create (DBus.Connection connection,
-                                               string          service_name) {
+    public static async ExternalPlugin? create (DBus.Connection connection,
+                                                string          service_name)
+                                                throws DBus.Error {
         // org.gnome.UPnP.MediaServer1.NAME => /org/gnome/UPnP/MediaServer1/NAME
         var root_object = "/" + service_name.replace (".", "/");
 
         // Create proxy to MediaObject iface to get the display name through
-        var root_container = connection.get_object (service_name,
-                                                    root_object)
-                                                    as ExternalMediaContainer;
+        var props = connection.get_object (service_name,
+                                           root_object)
+                                           as Properties;
 
-        var icon = yield fetch_icon (connection, service_name, root_container);
+        var object_props = yield props.get_all (OBJECT_IFACE);
+        var container_props = yield props.get_all (CONTAINER_IFACE);
+
+        var icon = yield fetch_icon (connection, service_name, container_props);
+
+        string title;
+        var value = object_props.lookup ("DisplayName");
+        if (value != null) {
+            title = value.get_string ();
+        } else {
+            title = service_name;
+        }
 
         return new ExternalPlugin (service_name,
-                                   root_container.display_name,
+                                   title,
                                    root_object,
                                    icon);
     }
@@ -63,15 +77,19 @@ public class Rygel.ExternalPlugin : Rygel.Plugin {
         }
     }
 
-    public static async IconInfo? fetch_icon (
-                                        DBus.Connection        connection,
-                                        string                 service_name,
-                                        ExternalMediaContainer root_container) {
-        if (root_container.icon == null)
+    public static async IconInfo? fetch_icon (DBus.Connection connection,
+                                              string          service_name,
+                                              HashTable<string,Value?>
+                                                              container_props) {
+        var value = container_props.lookup ("Icon");
+        if (value == null) {
+            // Seems no icon is provided, nevermind
             return null;
+        }
 
+        var icon_path = value.get_string ();
         var props = connection.get_object (service_name,
-                                           root_container.icon)
+                                           icon_path)
                                            as Properties;
 
         HashTable<string,Value?> item_props;
@@ -83,7 +101,7 @@ public class Rygel.ExternalPlugin : Rygel.Plugin {
             return null;
         }
 
-        var value = item_props.lookup ("MIMEType");
+        value = item_props.lookup ("MIMEType");
         var icon = new IconInfo (value.get_string ());
 
         value = item_props.lookup ("URLs");
