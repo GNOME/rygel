@@ -66,8 +66,7 @@ public class ExternalPluginFactory {
         foreach (var service in services) {
             if (service.has_prefix (SERVICE_PREFIX) &&
                 this.loader.get_plugin_by_name (service) == null) {
-                this.loader.add_plugin (new ExternalPlugin (this.connection,
-                                                            service));
+                yield this.load_plugin (this.connection, service);
             }
         }
 
@@ -80,8 +79,7 @@ public class ExternalPluginFactory {
         foreach (var service in services) {
             if (service.has_prefix (SERVICE_PREFIX) &&
                 this.loader.get_plugin_by_name (service) == null) {
-                this.loader.add_plugin (new ExternalPlugin (this.connection,
-                                                            service));
+                yield this.load_plugin (this.connection, service);
             }
         }
 
@@ -106,8 +104,14 @@ public class ExternalPluginFactory {
             }
         } else if (name.has_prefix (SERVICE_PREFIX)) {
                 // Ah, new plugin available, lets use it
-                this.loader.add_plugin (new ExternalPlugin (this.connection,
-                                                            name));
+                this.load_plugin.begin (this.connection, name);
         }
+    }
+
+    private async void load_plugin (DBus.Connection connection,
+                                    string          service_name) {
+        var plugin = yield ExternalPlugin.create (connection, service_name);
+
+        this.loader.add_plugin (plugin);
     }
 }
