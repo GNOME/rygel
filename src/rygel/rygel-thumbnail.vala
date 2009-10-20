@@ -26,7 +26,6 @@ using GUPnP;
  * Represents a picture or video thumbnail.
  */
 public class Rygel.Thumbnail : Rygel.IconInfo {
-    public string uri;
     public string dlna_profile;
 
     public Thumbnail (string mime_type = "image/jpeg",

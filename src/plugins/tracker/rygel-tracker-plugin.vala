@@ -35,12 +35,16 @@ public class Rygel.TrackerPlugin : Rygel.Plugin {
 
         var icon_info = new IconInfo ("image/png");
 
-        icon_info.path = ICON;
-        icon_info.width = 48;
-        icon_info.height = 48;
-        icon_info.depth = 24;
+        try {
+            icon_info.uri = Filename.to_uri (ICON, null);
+            icon_info.width = 48;
+            icon_info.height = 48;
+            icon_info.depth = 24;
 
-        this.add_icon (icon_info);
+            this.add_icon (icon_info);
+        } catch (ConvertError err) {
+            warning ("Error creating URI from %s: %s", ICON, err.message);
+        }
     }
 }
 

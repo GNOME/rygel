@@ -26,16 +26,15 @@
  */
 public class Rygel.IconInfo {
     public string mime_type;
-    public string path;
+    public string uri;
 
-    public long size = -1;       // Size in bytes
-    public int width = -1;       // Width in pixels
-    public int height = -1;      // Height in pixels
-    public int depth = -1; // depth of pixels in bytes
+    public long size = -1;   // Size in bytes
+    public int width = -1;   // Width in pixels
+    public int height = -1;  // Height in pixels
+    public int depth = -1;   // depth of pixels in bytes
 
     public IconInfo (string mime_type) {
         this.mime_type = mime_type;
-        this.path = path;
     }
 }
 
