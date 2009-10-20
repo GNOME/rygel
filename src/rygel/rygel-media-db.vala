@@ -486,7 +486,7 @@ public class Rygel.MediaDB : Object {
                                 (item is MediaItem)
                                            ? (int) MediaDBObjectType.ITEM
                                            : (int) MediaDBObjectType.CONTAINER,
-                                item.parent == null ? this.db.get_null () :
+                                item.parent == null ? Database.null () :
                                                       item.parent.id,
                                 (int64) item.modified };
         this.db.exec (INSERT_OBJECT_STRING, values);

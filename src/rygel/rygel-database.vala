@@ -119,7 +119,7 @@ internal class Rygel.Database : Object {
         this.db.exec ("ANALYZE");
     }
 
-    public GLib.Value get_null () {
+    public static GLib.Value @null () {
         GLib.Value v = GLib.Value (typeof (void *));
         v.set_pointer (null);
         return v;
