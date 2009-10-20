@@ -39,7 +39,7 @@ public void module_init (PluginLoader loader) {
     }
 }
 
-public class ExternalPluginFactory {
+public class Rygel.ExternalPluginFactory {
     private const string DBUS_SERVICE = "org.freedesktop.DBus";
     private const string DBUS_OBJECT = "/org/freedesktop/DBus";
 
