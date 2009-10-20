@@ -21,7 +21,8 @@ librygel_external_la_SOURCES = rygel-external-content-dir.vala \
 			       rygel-external-thumbnail.vala \
 			       rygel-external-plugin.vala \
 			       rygel-external-interfaces.vala \
-			       rygel-external-plugin-factory.vala
+			       rygel-external-plugin-factory.vala \
+			       rygel-external-icon-factory.vala
 
 rygel-external.stamp: $(librygel_external_la_VALASOURCES)
 librygel_external_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \

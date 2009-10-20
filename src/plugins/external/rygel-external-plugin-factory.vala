@@ -45,16 +45,17 @@ public class ExternalPluginFactory {
 
     private static string OBJECT_IFACE = "org.gnome.UPnP.MediaObject1";
     private static string CONTAINER_IFACE = "org.gnome.UPnP.MediaContainer1";
-    private static string ITEM_IFACE = "org.gnome.UPnP.MediaItem1";
 
     private const string SERVICE_PREFIX = "org.gnome.UPnP.MediaServer1.";
 
-    DBusObject      dbus_obj;
-    DBus.Connection connection;
-    PluginLoader    loader;
+    DBusObject          dbus_obj;
+    DBus.Connection     connection;
+    PluginLoader        loader;
+    ExternalIconFactory icon_factory;
 
     public ExternalPluginFactory (PluginLoader loader) throws DBus.Error {
         this.connection = DBus.Bus.get (DBus.BusType.SESSION);
+        this.icon_factory = new ExternalIconFactory (this.connection);
 
         this.dbus_obj = connection.get_object (DBUS_SERVICE,
                                                DBUS_OBJECT)
@@ -136,7 +137,8 @@ public class ExternalPluginFactory {
             return;
         }
 
-        var icon = yield fetch_icon (connection, service_name, container_props);
+        var icon = yield this.icon_factory.create (service_name,
+                                                   container_props);
 
         string title;
         var value = object_props.lookup ("DisplayName");
@@ -152,61 +154,5 @@ public class ExternalPluginFactory {
                                          icon);
 
         this.loader.add_plugin (plugin);
-    }
-
-    public async IconInfo? fetch_icon (DBus.Connection connection,
-                                       string          service_name,
-                                       HashTable<string,Value?>
-                                                       container_props) {
-        var value = container_props.lookup ("Icon");
-        if (value == null) {
-            // Seems no icon is provided, nevermind
-            return null;
-        }
-
-        var icon_path = value.get_string ();
-        var props = connection.get_object (service_name,
-                                           icon_path)
-                                           as Properties;
-
-        HashTable<string,Value?> item_props;
-        try {
-            item_props = yield props.get_all (ITEM_IFACE);
-        } catch (DBus.Error err) {
-            warning ("Error fetching icon properties from %s", service_name);
-
-            return null;
-        }
-
-        value = item_props.lookup ("MIMEType");
-        var icon = new IconInfo (value.get_string ());
-
-        value = item_props.lookup ("URLs");
-        weak string[] uris = (string[]) value.get_boxed ();
-        if (uris != null && uris[0] != null) {
-            icon.uri = uris[0];
-        }
-
-        value = item_props.lookup ("Size");
-        if (value != null) {
-            icon.size = value.get_int ();
-        }
-
-        value = item_props.lookup ("Width");
-        if (value != null) {
-            icon.width = value.get_int ();
-        }
-
-        value = item_props.lookup ("Height");
-        if (value != null) {
-            icon.height = value.get_int ();
-        }
-
-        value = item_props.lookup ("ColorDepth");
-        if (value != null) {
-            icon.depth = value.get_int ();
-        }
-
-        return icon;
     }
 }
