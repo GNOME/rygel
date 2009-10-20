@@ -57,9 +57,9 @@ public class Rygel.ExternalPluginFactory {
         this.connection = DBus.Bus.get (DBus.BusType.SESSION);
         this.icon_factory = new ExternalIconFactory (this.connection);
 
-        this.dbus_obj = connection.get_object (DBUS_SERVICE,
-                                               DBUS_OBJECT)
-                                               as DBusObject;
+        this.dbus_obj = this.connection.get_object (DBUS_SERVICE,
+                                                    DBUS_OBJECT)
+                                                    as DBusObject;
         this.loader = loader;
 
         this.load_plugins.begin ();
@@ -71,7 +71,7 @@ public class Rygel.ExternalPluginFactory {
         foreach (var service in services) {
             if (service.has_prefix (SERVICE_PREFIX) &&
                 this.loader.get_plugin_by_name (service) == null) {
-                yield this.load_plugin (this.connection, service);
+                yield this.load_plugin (service);
             }
         }
 
@@ -84,7 +84,7 @@ public class Rygel.ExternalPluginFactory {
         foreach (var service in services) {
             if (service.has_prefix (SERVICE_PREFIX) &&
                 this.loader.get_plugin_by_name (service) == null) {
-                yield this.load_plugin (this.connection, service);
+                yield this.load_plugin (service);
             }
         }
 
@@ -109,19 +109,18 @@ public class Rygel.ExternalPluginFactory {
             }
         } else if (name.has_prefix (SERVICE_PREFIX)) {
                 // Ah, new plugin available, lets use it
-                this.load_plugin.begin (this.connection, name);
+                this.load_plugin.begin (name);
         }
     }
 
-    private async void load_plugin (DBus.Connection connection,
-                                    string          service_name) {
+    private async void load_plugin (string service_name) {
         // org.gnome.UPnP.MediaServer1.NAME => /org/gnome/UPnP/MediaServer1/NAME
         var root_object = "/" + service_name.replace (".", "/");
 
         // Create proxy to MediaObject iface to get the display name through
-        var props = connection.get_object (service_name,
-                                           root_object)
-                                           as Properties;
+        var props = this.connection.get_object (service_name,
+                                                root_object)
+                                                as Properties;
 
         HashTable<string,Value?> object_props;
         HashTable<string,Value?> container_props;
