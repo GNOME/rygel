@@ -45,9 +45,9 @@ public class ExternalPluginFactory {
 
     private const string SERVICE_PREFIX = "org.gnome.UPnP.MediaServer1.";
 
-    DBusObject dbus_obj;
-    DBus.Connection  connection;
-    PluginLoader     loader;
+    DBusObject      dbus_obj;
+    DBus.Connection connection;
+    PluginLoader    loader;
 
     public ExternalPluginFactory (PluginLoader loader) throws DBus.Error {
         this.connection = DBus.Bus.get (DBus.BusType.SESSION);
