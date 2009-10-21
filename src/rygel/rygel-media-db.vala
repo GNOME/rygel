@@ -303,7 +303,8 @@ public class Rygel.MediaDB : Object {
             debug ("Could not find schema version; checking for empty database...");
             try {
                 int rows = -1;
-                this.db.exec ("SELECT count(*) FROM sqlite_master",
+                this.db.exec ("SELECT count(type) FROM sqlite_master " +
+                              "WHERE rowid=1",
                               null,
                               (stmt) => {
                                   rows = stmt.column_int (0);
