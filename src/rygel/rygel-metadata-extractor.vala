@@ -68,6 +68,8 @@ public class Rygel.MetadataExtractor: GLib.Object {
 
     private uint timeout_id;
 
+    private static ElementFactory factory;
+
     private static void register_custom_tag (string tag, Type type) {
         Gst.tag_register (tag,
                           TagFlag.META,
@@ -79,10 +81,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
 
     private void renew_playbin () {
         // setup fake sinks
-        this.playbin = ElementFactory.make ("playbin2", null);
-        if (this.playbin == null) {
-            this.playbin = ElementFactory.make ("playbin", null);
-        }
+        this.playbin = this.factory.create ("tag_reader");
 
         // increase reference count of sinks to workaround
         // bug #596078
@@ -101,7 +100,31 @@ public class Rygel.MetadataExtractor: GLib.Object {
         bus.message["error"] += this.error_cb;
     }
 
-    public MetadataExtractor () {
+    public static MetadataExtractor? create() {
+        if (MetadataExtractor.factory == null) {
+            debug ("Checking for gstreamer playbin...");
+            var factory = ElementFactory.find("playbin2");
+            if (factory != null) {
+                debug ("Using playbin2");
+            } else {
+                debug ("Could not create Playbin2, trying Playbin");
+                factory = ElementFactory.find ("playbin");
+
+                if (factory != null) {
+                    debug ("Using playbin");
+                } else {
+                    critical ("Could not find any playbin. " +
+                            "Please check your gstreamer setup");
+                    return null;
+                }
+            }
+            MetadataExtractor.factory = factory;
+        }
+
+        return new MetadataExtractor ();
+    }
+
+    MetadataExtractor () {
         this.register_custom_tag (TAG_RYGEL_SIZE, typeof (int64));
         this.register_custom_tag (TAG_RYGEL_DURATION, typeof (int64));
         this.register_custom_tag (TAG_RYGEL_MIME, typeof (string));

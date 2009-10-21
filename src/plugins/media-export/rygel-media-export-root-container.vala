@@ -144,7 +144,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     private MediaExportRootContainer (MediaDB db) {
         base (db, "0", "MediaExportRoot");
 
-        this.extractor = new MetadataExtractor ();
+        this.extractor = MetadataExtractor.create ();
 
         this.harvester = new HashMap<File,MediaExportHarvester> (file_hash,
                                                                  file_equal);
@@ -212,7 +212,13 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     }
 
     private void harvest (File file, MediaContainer parent = this) {
-        if (!this.harvester.contains (file)) {
+        if (this.extractor == null) {
+            warning ("No Metadata extractor available. Will not crawl");
+            return;
+        }
+
+        if (this.extractor != null &&
+            !this.harvester.contains (file)) {
             var harvester = new MediaExportHarvester (parent,
                                                       this.media_db,
                                                       this.extractor,
