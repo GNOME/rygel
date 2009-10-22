@@ -577,20 +577,19 @@ public class Rygel.MediaDB : Object {
 
     public MediaObject? get_object (string object_id) throws DatabaseError {
         GLib.Value[] values = { object_id };
-        MediaObject _parent = null;
+        MediaObject parent = null;
         Rygel.Database.RowCallback cb = (stmt) => {
-            var obj = get_object_from_statement ((MediaContainer) _parent,
+            var obj = get_object_from_statement ((MediaContainer) parent,
                                                  stmt.column_text (18),
                                                  stmt);
-            obj.parent = (MediaContainer) _parent;
-            obj.parent_ref = (MediaContainer) _parent;
-            _parent = obj;
+            obj.parent = (MediaContainer) parent;
+            obj.parent_ref = (MediaContainer) parent;
+            parent = obj;
             return true;
         };
 
         this.db.exec (GET_OBJECT_WITH_CLOSURE, values, cb);
-        var obj = _parent;
-        return obj;
+        return parent;
     }
 
     public MediaItem? get_item (string item_id) throws DatabaseError, MediaDBError {
@@ -666,17 +665,18 @@ public class Rygel.MediaDB : Object {
                                                           throws DatabaseError {
         bool exists = false;
         GLib.Value[] values = { object_id };
-        int64 _timestamp = 0;
+        int64 tmp_timestamp = 0;
 
         this.db.exec (OBJECT_EXISTS_STRING,
                       values,
                       (stmt) => {
                         exists = stmt.column_int (0) == 1;
-                        _timestamp = stmt.column_int64 (1);
+                        tmp_timestamp = stmt.column_int64 (1);
                         return false;
                       });
+
         // out parameters are not allowed to be captured
-        timestamp = _timestamp;
+        timestamp = tmp_timestamp;
         return exists;
     }
 
