@@ -54,8 +54,6 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
             this.total_length = file_length;
         }
 
-        msg.wrote_chunk += on_wrote_chunk;
-
         this.buffer = new char[SeekableResponse.BUFFER_LENGTH];
         this.file = File.new_for_uri (uri);
     }
@@ -94,18 +92,12 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
             }
         }
 
-        yield this.read_contents ();
+        yield this.start_reading ();
     }
 
-    private async void read_contents () {
-        ssize_t bytes_read;
-
+    private async void start_reading () {
         try {
-           bytes_read = yield this.input_stream.read_async (
-                                        this.buffer,
-                                        SeekableResponse.BUFFER_LENGTH,
-                                        this.priority,
-                                        this.cancellable);
+            yield this.read_contents ();
         } catch (Error err) {
             warning ("Failed to read contents from URI: %s: %s\n",
                      this.file.get_uri (),
@@ -115,10 +107,32 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
             return;
         }
 
-        if (bytes_read > 0) {
+        yield this.close_stream ();
+    }
+
+    private async void read_contents () throws Error {
+        var bytes_read = yield this.input_stream.read_async (
+                                        this.buffer,
+                                        SeekableResponse.BUFFER_LENGTH,
+                                        this.priority,
+                                        this.cancellable);
+        SourceFunc cb = read_contents.callback;
+        this.msg.wrote_chunk.connect ((msg) => {
+                cb ();
+        });
+
+        while (bytes_read > 0) {
             this.push_data (this.buffer, bytes_read);
-        } else {
-            yield this.close_stream ();
+
+            // We return from this call when wrote_chunk signal is emitted
+            // and the handler we installed before the loop is called for it.
+            yield;
+
+            bytes_read = yield this.input_stream.read_async (
+                                        this.buffer,
+                                        SeekableResponse.BUFFER_LENGTH,
+                                        this.priority,
+                                        this.cancellable);
         }
     }
 
@@ -133,10 +147,6 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
         }
 
         this.end (false, Soup.KnownStatusCode.NONE);
-    }
-
-    private void on_wrote_chunk (Soup.Message msg) {
-        this.read_contents.begin ();
     }
 
     private int get_requested_priority () {
