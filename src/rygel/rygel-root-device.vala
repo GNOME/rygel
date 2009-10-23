@@ -36,13 +36,11 @@ public class Rygel.RootDevice: GUPnP.RootDevice {
                        XMLDoc        description_doc,
                        string        description_path,
                        string        description_dir) {
-        this.resource_factory = plugin;
-        this.root_device = null;
-        this.context = context;
-
-        this.description_doc = description_doc;
-        this.description_path = description_path;
-        this.description_dir = description_dir;
+        Object (context : context,
+                resource_factory : plugin,
+                description_doc : description_doc,
+                description_path: description_path,
+                description_dir: description_dir);
 
         this.services = new ArrayList<ServiceInfo> ();
 
