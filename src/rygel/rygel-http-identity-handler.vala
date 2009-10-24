@@ -56,6 +56,8 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
         } else {
             request.msg.response_headers.append ("Accept-Ranges", "bytes");
             if (request.byte_range != null) {
+                request.msg.response_headers.set_content_length (
+                                                   request.byte_range.length);
                 request.byte_range.add_response_header (request.msg, size);
             }
         }

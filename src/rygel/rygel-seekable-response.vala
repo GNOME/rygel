@@ -110,10 +110,15 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
         yield this.close_stream ();
     }
 
+    private size_t bytes_to_read () {
+        return size_t.min (this.total_length,
+                           SeekableResponse.BUFFER_LENGTH);
+    }
+
     private async void read_contents () throws Error {
         var bytes_read = yield this.input_stream.read_async (
                                         this.buffer,
-                                        SeekableResponse.BUFFER_LENGTH,
+                                        this.bytes_to_read (),
                                         this.priority,
                                         this.cancellable);
         SourceFunc cb = read_contents.callback;
@@ -123,6 +128,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
 
         while (bytes_read > 0) {
             this.push_data (this.buffer, bytes_read);
+            this.total_length -= bytes_read;
 
             // We return from this call when wrote_chunk signal is emitted
             // and the handler we installed before the loop is called for it.
@@ -130,7 +136,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
 
             bytes_read = yield this.input_stream.read_async (
                                         this.buffer,
-                                        SeekableResponse.BUFFER_LENGTH,
+                                        this.bytes_to_read (),
                                         this.priority,
                                         this.cancellable);
         }
