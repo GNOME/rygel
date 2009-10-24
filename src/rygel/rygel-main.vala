@@ -77,7 +77,7 @@ public class Rygel.Main : Object {
                                    Plugin       plugin) {
         var iterator = this.factories.iterator ();
         while (iterator.next ()) {
-            this.create_device (plugin, iterator.get ());
+            this.create_device.begin (plugin, iterator.get ());
         }
     }
 
@@ -115,7 +115,7 @@ public class Rygel.Main : Object {
 
                 var iterator = this.plugin_loader.list_plugins ().iterator ();
                 while (iterator.next ()) {
-                    this.create_device (iterator.get (), factory);
+                    this.create_device.begin (iterator.get (), factory);
                 }
             } catch (GLib.Error err) {
                 warning ("Failed to create root device factory: %s\n",
@@ -149,8 +149,17 @@ public class Rygel.Main : Object {
         }
     }
 
-    private void create_device (Plugin            plugin,
-                                RootDeviceFactory factory) {
+    private async void create_device (Plugin            plugin,
+                                      RootDeviceFactory factory) {
+        // The call to factory.create(), although synchronous spins the
+        // the mainloop and therefore might in turn triger some of the signal
+        // handlers here that modify one of the lists that we might be iterating
+        // while this function is called. Modification of an ArrayList while
+        // iterating it is currently unsuppored and leads to a crash and that is
+        // why defer to mainloop here.
+        Idle.add (create_device.callback);
+        yield;
+
         try {
             var device = factory.create (plugin);
 
