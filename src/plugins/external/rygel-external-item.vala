@@ -62,14 +62,15 @@ public class Rygel.ExternalItem : Rygel.MediaItem {
         var object_props = yield props.get_all (OBJECT_IFACE);
         var item_props = yield props.get_all (ITEM_IFACE);
 
-        ExternalThumbnail thumbnail = null;
+        Thumbnail thumbnail = null;
         var value = item_props.lookup ("Thumbnail");
         if (value != null) {
             var thumbnail_path = value.get_string ();
 
-            thumbnail = yield ExternalThumbnail.create (thumbnail_path,
-                                                        parent.service_name,
-                                                        parent.host_ip);
+            var factory = new ExternalThumbnailFactory ();
+            thumbnail = yield factory.create (thumbnail_path,
+                                              parent.service_name,
+                                              parent.host_ip);
         }
 
         return new ExternalItem (id,
