@@ -86,7 +86,8 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         var obj_paths = this.actual_container.items;
         foreach (var obj_path in obj_paths) {
             try {
-                var item = yield ExternalItem.create_for_path (obj_path, this);
+                var factory = new ExternalItemFactory ();
+                var item = yield factory.create_for_path (obj_path, this);
 
                 media_objects.add (item);
             } catch (GLib.Error err) {
@@ -106,8 +107,9 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
                                                     Cancellable? cancellable)
                                                     throws GLib.Error {
         MediaObject media_object = find_container (id);
-        if (media_object == null && ExternalItem.id_valid (id)) {
-            media_object = yield ExternalItem.create_for_id (id, this);
+        if (media_object == null && ExternalItemFactory.id_valid (id)) {
+            var factory = new ExternalItemFactory ();
+            media_object = yield factory.create_for_id (id, this);
         }
 
         return media_object;
