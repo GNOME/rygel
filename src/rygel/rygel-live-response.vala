@@ -40,6 +40,8 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
 
     private HTTPSeek time_range;
 
+    private SourceFunc continuation;
+
     public LiveResponse (Soup.Server  server,
                          Soup.Message msg,
                          string       name,
@@ -63,6 +65,10 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         } else {
             this.pipeline.set_state (State.PLAYING);
         }
+
+        this.continuation = run.callback;
+
+        yield;
     }
 
     public override void end (bool aborted, uint status) {
@@ -78,6 +84,8 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         }
 
         base.end (aborted, status);
+
+        this.continuation ();
     }
 
     private void prepare_pipeline (string name,
