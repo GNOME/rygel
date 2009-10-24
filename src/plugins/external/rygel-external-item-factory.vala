@@ -178,10 +178,8 @@ public class Rygel.ExternalItemFactory {
 
         value = item_props.lookup ("Thumbnail");
         if (value != null) {
-            var thumbnail_path = value.get_string ();
-
             var factory = new ExternalThumbnailFactory ();
-            var thumbnail = yield factory.create (thumbnail_path,
+            var thumbnail = yield factory.create (value.get_string (),
                                                   parent.service_name,
                                                   parent.host_ip);
             item.thumbnails.add (thumbnail);
