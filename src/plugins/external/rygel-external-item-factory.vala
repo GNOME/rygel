@@ -98,7 +98,6 @@ public class Rygel.ExternalItemFactory {
         // FIXME: Handle:
         //
         // MeidaItem1.Genre
-        // MediaItem1.Thumbnail
         // MediaItem1.AlbumArt
         //
 
