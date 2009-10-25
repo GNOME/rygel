@@ -67,7 +67,7 @@ public class Rygel.ExternalItemFactory {
                                   "Unknown"); /* UPnP Class Unknown atm */
 
         var value = object_props.lookup ("DisplayName");
-        item.title = parent.substitute_keywords (value.get_string ());
+        item.title = value.get_string ();
 
         value = item_props.lookup ("Type");
         string type = value.get_string ();

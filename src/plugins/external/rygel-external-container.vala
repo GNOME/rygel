@@ -115,17 +115,6 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         return media_object;
     }
 
-    public string substitute_keywords (string title) {
-        var new_title = title.replace ("@REALNAME@",
-                                       Environment.get_real_name ());
-        new_title = new_title.replace ("@USERNAME@",
-                                       Environment.get_user_name ());
-        new_title = new_title.replace ("@HOSTNAME@",
-                                       Environment.get_host_name ());
-
-        return new_title;
-    }
-
     // Private methods
     private MediaContainer? find_container (string id) {
         MediaContainer container = null;

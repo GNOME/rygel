@@ -28,7 +28,6 @@ using Gee;
  */
 public abstract class Rygel.MediaObject : GLib.Object {
     public string id;
-    public string title;
     public uint64 modified;
     public Gee.ArrayList<string> uris;
 
@@ -42,6 +41,22 @@ public abstract class Rygel.MediaObject : GLib.Object {
     // mandatory.
     public unowned MediaContainer parent;
     public MediaContainer parent_ref;
+
+    private string _title;
+    public string title {
+        get {
+            return _title;
+        }
+
+        set {
+            this._title = value.replace ("@REALNAME@",
+                                         Environment.get_real_name ());
+            _title = _title.replace ("@USERNAME@",
+                                     Environment.get_user_name ());
+            _title = _title.replace ("@HOSTNAME@",
+                                     Environment.get_host_name ());
+        }
+    }
 
     construct {
         uris = new ArrayList<string> ();
