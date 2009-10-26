@@ -285,4 +285,5 @@ echo "
         media-export            ${enable_media_export_plugin}
         external:               ${enable_external_plugin}
         gst-launch:             ${enable_gst_launch_plugin}
+        gst-renderer:           ${enable_gst_renderer_plugin}
 "
