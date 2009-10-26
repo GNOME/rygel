@@ -1,3 +1,59 @@
+0.4.4
+=====
+
+Brief summary of changes since 0.4.2:
+
+- Provide a gstreamer-based MediaRenderer plugin. This is mostly code stolen (
+  and heavily adapted) from gupnp-media-renderer except that it doesn't depend
+  on libowl-av and/or gtk+.
+- More ease for MediaServer implementors.
+- Better error handling.
+- Make sure no message is suppressed until we know what level of console output
+  user wants.
+- Make use of vala's async support to simplify code quite a bit.
+- Plugins should load xml files from source tree when built with
+  '--enable-uninstalled' configure flag.
+- Build with no optimizations in debug mode.
+- Use closure table to speed up object lookup and deletion.
+- Add build option for SQL debugging.
+- Workaround a crasher bug (#3774) in sqlite 3.6.12.
+- Use vala's static client D-Bus syntax.
+- Early ignorance of disabled plugins. This not only speeds-up startup a bit but
+  also rids us of redundant debug messages.
+- MediaExport:
+  - Nicely handle unavailability of gstreamer's playbin(2) element.
+  - Fix a potential crasher.
+- Tracker:
+  - Use multidimensional arrays to deal with search results. This combined with
+    static client D-Bus syntax gives us quite a speed boost.
+  - Handle item creation error.
+- External:
+  - Allow applications to provide custom thumbnails for items.
+  - Support pixel-aspect-ratio properties.
+  - All D-Bus operations are now done asynchronously.
+  - Make use of plugin icon if provided.
+  - Move magic string substitution to core so other plugins can benefit from it.
+- Lots of other improvements and bug fixes.
+
+Dependency-related changes:
+
+- Require and adapt to libgee >= 0.5.
+- Require and adapt to valac >= 0.7.8.
+- Require gst-interfaces >= 0.10.23.
+
+Bugs fixed in this release:
+
+597276 - Rygel crash on startup
+587649 - thumbnails not published for external media servers
+589959 - External plugin should query media servers on demand
+598005 - unable to load media-tracker plugin
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+Thijs Vermeir <thijsvermeir@gmail.com>
+
 0.4.2
 =====
 
