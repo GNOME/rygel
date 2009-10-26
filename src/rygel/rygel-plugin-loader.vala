@@ -54,10 +54,20 @@ public class Rygel.PluginLoader : Object {
     }
 
     public void add_plugin (Plugin plugin) {
-        this.plugin_hash.set (plugin.name, plugin);
+        bool enabled = true;
+        try {
+            var config = MetaConfig.get_default ();
+            enabled = config.get_enabled (plugin.name);
+        } catch (GLib.Error err) {}
 
-        debug ("New plugin '%s' available", plugin.name);
-        this.plugin_available (plugin);
+        if (enabled) {
+            debug ("New plugin '%s' available", plugin.name);
+            this.plugin_hash.set (plugin.name, plugin);
+            this.plugin_available (plugin);
+        } else {
+            debug ("Plugin '%s' disabled in user configuration, ignoring..",
+                   plugin.name);
+        }
     }
 
     public Plugin? get_plugin_by_name (string name) {

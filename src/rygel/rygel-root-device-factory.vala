@@ -27,7 +27,6 @@ using CStuff;
 
 public errordomain RootDeviceFactoryError {
     XML_PARSE,
-    PLUGIN_DISABLED
 }
 
 /**
@@ -52,16 +51,6 @@ public class Rygel.RootDeviceFactory {
     }
 
     public RootDevice create (Plugin plugin) throws GLib.Error {
-        bool enabled = true;
-        try {
-            enabled = this.config.get_enabled (plugin.name);
-        } catch (GLib.Error err) {}
-
-        if (!enabled) {
-            throw new RootDeviceFactoryError.PLUGIN_DISABLED (
-                            "Plugin disabled in user configuration.");
-        }
-
         string modified_desc = plugin.name + ".xml";
         string desc_path = Path.build_filename (this.desc_dir,
                                                 modified_desc);
