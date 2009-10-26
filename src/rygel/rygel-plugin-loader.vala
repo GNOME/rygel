@@ -61,7 +61,7 @@ public class Rygel.PluginLoader : Object {
         } catch (GLib.Error err) {}
 
         if (enabled) {
-            debug ("New plugin '%s' available", plugin.name);
+            message ("New plugin '%s' available", plugin.name);
             this.plugin_hash.set (plugin.name, plugin);
             this.plugin_available (plugin);
         } else {
