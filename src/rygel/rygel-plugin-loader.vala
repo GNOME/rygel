@@ -50,7 +50,7 @@ public class Rygel.PluginLoader : Object {
         File dir = File.new_for_path (BuildConfig.PLUGIN_DIR);
         assert (dir != null && is_dir (dir));
 
-        this.load_modules_from_dir (dir);
+        this.load_modules_from_dir.begin (dir);
     }
 
     public void add_plugin (Plugin plugin) {
@@ -78,47 +78,24 @@ public class Rygel.PluginLoader : Object {
         return this.plugin_hash.values;
     }
 
-    private void load_modules_from_dir (File dir) {
+    private async void load_modules_from_dir (File dir) {
         string attributes = FILE_ATTRIBUTE_STANDARD_NAME + "," +
                             FILE_ATTRIBUTE_STANDARD_TYPE + "," +
                             FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE;
 
-        dir.enumerate_children_async (attributes,
-                                      FileQueryInfoFlags.NONE,
-                                      Priority.DEFAULT,
-                                      null,
-                                      on_children_enumerated);
-    }
-
-    private void on_children_enumerated (GLib.Object?     source_object,
-                                         GLib.AsyncResult res) {
-        File dir = (File) source_object;
+        GLib.List<FileInfo> infos;
         FileEnumerator enumerator;
 
         try {
-            enumerator = dir.enumerate_children_finish (res);
-        } catch (Error error) {
-            critical ("Error listing contents of directory '%s': %s\n",
-                      dir.get_path (),
-                      error.message);
+            enumerator = yield dir.enumerate_children_async (
+                                        attributes,
+                                        FileQueryInfoFlags.NONE,
+                                        Priority.DEFAULT,
+                                        null);
 
-            return;
-        }
-
-        enumerator.next_files_async (int.MAX,
-                                     Priority.DEFAULT,
-                                     null,
-                                     on_next_files_enumerated);
-    }
-
-    private void on_next_files_enumerated (GLib.Object?     source_object,
-                                           GLib.AsyncResult res) {
-        FileEnumerator enumerator = (FileEnumerator) source_object;
-        File dir = (File) enumerator.get_container ();
-
-        GLib.List<FileInfo> infos;
-        try {
-            infos = enumerator.next_files_finish (res);
+            infos = yield enumerator.next_files_async (int.MAX,
+                                                       Priority.DEFAULT,
+                                                       null);
         } catch (Error error) {
             critical ("Error listing contents of directory '%s': %s\n",
                       dir.get_path (),
@@ -138,7 +115,7 @@ public class Rygel.PluginLoader : Object {
 
             if (file_type == FileType.DIRECTORY) {
                 // Recurse into directories
-                this.load_modules_from_dir (file);
+                this.load_modules_from_dir.begin (file);
             } else if (mime == "application/x-sharedlib") {
                 // Seems like we found a module
                 this.load_module_from_file (file_path);
