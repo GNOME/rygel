@@ -39,7 +39,6 @@ Dependency-related changes:
 
 - Require and adapt to libgee >= 0.5.
 - Require and adapt to valac >= 0.7.8.
-- Require gst-interfaces >= 0.10.23.
 
 Bugs fixed in this release:
 
