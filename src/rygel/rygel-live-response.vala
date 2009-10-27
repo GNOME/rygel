@@ -128,7 +128,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         var sink = this.pipeline.get_by_name (SINK_NAME);
         Pad sink_pad;
 
-        dynamic Element depay = this.get_rtp_depayloader (caps);
+        dynamic Element depay = GstUtils.get_rtp_depayloader (caps);
         if (depay != null) {
             this.pipeline.add (depay);
             if (!depay.link (sink)) {
@@ -155,65 +155,6 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         if (depay != null) {
             depay.sync_state_with_parent ();
         }
-    }
-
-    private bool need_rtp_depayloader (Caps caps) {
-        var structure = caps.get_structure (0);
-        return structure.get_name () == "application/x-rtp";
-    }
-
-    private dynamic Element? get_rtp_depayloader (Caps caps) {
-        if (!need_rtp_depayloader (caps)) {
-            return null;
-        }
-
-        unowned Registry registry = Registry.get_default ();
-        var features = registry.feature_filter (this.rtp_depay_filter, false);
-
-        return get_best_depay (features, caps);
-    }
-
-    private dynamic Element? get_best_depay (GLib.List<PluginFeature> features,
-                                             Caps                     caps) {
-        var relevant_factories = new GLib.List<ElementFactory> ();
-
-        // First construct a list of relevant factories
-        foreach (PluginFeature feature in features) {
-            var factory = (ElementFactory) feature;
-            if (factory.can_sink_caps (caps)) {
-               relevant_factories.append (factory);
-            }
-        }
-
-        if (relevant_factories.length () == 0) {
-            // No relevant factory available, hence no depayloader
-            return null;
-        }
-
-        // Then sort the list through their ranks
-        relevant_factories.sort (this.compare_factories);
-
-        // create an element of the top ranking factory and return it
-        var factory = relevant_factories.data;
-
-        return ElementFactory.make (factory.get_name (), null);
-    }
-
-    private bool rtp_depay_filter (PluginFeature feature) {
-        if (!feature.get_type ().is_a (typeof (ElementFactory))) {
-            return false;
-        }
-
-        var factory = (ElementFactory) feature;
-
-        return factory.get_klass ().contains ("Depayloader");
-    }
-
-    private static int compare_factories (void *a, void *b) {
-        ElementFactory factory_a = (ElementFactory) a;
-        ElementFactory factory_b = (ElementFactory) b;
-
-        return (int) (factory_b.get_rank () - factory_a.get_rank ());
     }
 
     private void on_new_buffer (Element sink,

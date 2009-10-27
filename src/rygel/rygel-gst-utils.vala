@@ -41,4 +41,64 @@ internal abstract class Rygel.GstUtils {
         Message msg = new Message.error (dest, error, error.message);
         dest.post_message (msg);
     }
+
+    public static dynamic Element? get_rtp_depayloader (Caps caps) {
+        if (!need_rtp_depayloader (caps)) {
+            return null;
+        }
+
+        unowned Registry registry = Registry.get_default ();
+        var features = registry.feature_filter (rtp_depay_filter, false);
+
+        return get_best_depay (features, caps);
+    }
+
+    private static bool need_rtp_depayloader (Caps caps) {
+        var structure = caps.get_structure (0);
+        return structure.get_name () == "application/x-rtp";
+    }
+
+    private static dynamic Element? get_best_depay (
+                                        GLib.List<PluginFeature> features,
+                                        Caps                     caps) {
+        var relevant_factories = new GLib.List<ElementFactory> ();
+
+        // First construct a list of relevant factories
+        foreach (PluginFeature feature in features) {
+            var factory = (ElementFactory) feature;
+            if (factory.can_sink_caps (caps)) {
+               relevant_factories.append (factory);
+            }
+        }
+
+        if (relevant_factories.length () == 0) {
+            // No relevant factory available, hence no depayloader
+            return null;
+        }
+
+        // Then sort the list through their ranks
+        relevant_factories.sort (compare_factories);
+
+        // create an element of the top ranking factory and return it
+        var factory = relevant_factories.data;
+
+        return ElementFactory.make (factory.get_name (), null);
+    }
+
+    private static bool rtp_depay_filter (PluginFeature feature) {
+        if (!feature.get_type ().is_a (typeof (ElementFactory))) {
+            return false;
+        }
+
+        var factory = (ElementFactory) feature;
+
+        return factory.get_klass ().contains ("Depayloader");
+    }
+
+    private static int compare_factories (void *a, void *b) {
+        ElementFactory factory_a = (ElementFactory) a;
+        ElementFactory factory_b = (ElementFactory) b;
+
+        return (int) (factory_b.get_rank () - factory_a.get_rank ());
+    }
 }
