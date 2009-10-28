@@ -43,7 +43,9 @@ public class Rygel.ContentDirectory: Service {
     public const string UPNP_TYPE =
                     "urn:schemas-upnp-org:service:ContentDirectory:2";
     public const string DESCRIPTION_PATH = "xml/ContentDirectory.xml";
-    private const string SEARCH_CAPS = "";
+    private const string SEARCH_CAPS = "@id,@parentID,@refID," +
+                                       "upnp:class,dc:title,dc:creator," +
+                                       "res,res@protocolInfo";
 
     protected string feature_list;
     protected string sort_caps;
