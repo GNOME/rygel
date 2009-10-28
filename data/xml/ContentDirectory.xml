@@ -97,7 +97,6 @@ feature provided by your editor.
 			<dataType>ui4</dataType>
 		</stateVariable>
 
-<!-- Optional state variables that are not implemented yet
 		<stateVariable>
 			<Optional/>
 			<name>A_ARG_TYPE_SearchCriteria</name>
@@ -105,6 +104,7 @@ feature provided by your editor.
 			<dataType>string</dataType>
 		</stateVariable>
 
+<!-- Optional state variables that are not implemented yet
 		<stateVariable>
 			<Optional/>
 			<name>SortExtensionCapabilities</name>
@@ -271,19 +271,6 @@ feature provided by your editor.
 			</argumentList>
 		</action>
 
-<!-- Optional actions that are not implemented yet
-                <action>
-			<Optional/>
-			<name>GetSortExtensionCapabilities</name>
-			<argumentList>
-				<argument>
-					<name>SortExtensionCaps</name>
-					<direction>out</direction>
-					<relatedStateVariable>SortExtensionCapabilities</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-
 		<action>
 			<Optional/>
 			<name>Search</name>
@@ -337,6 +324,19 @@ feature provided by your editor.
 					<name>UpdateID</name>
 					<direction>out</direction>
 					<relatedStateVariable>A_ARG_TYPE_UpdateID</relatedStateVariable>
+				</argument>
+			</argumentList>
+		</action>
+
+<!-- Optional actions that are not implemented yet
+                <action>
+			<Optional/>
+			<name>GetSortExtensionCapabilities</name>
+			<argumentList>
+				<argument>
+					<name>SortExtensionCaps</name>
+					<direction>out</direction>
+					<relatedStateVariable>SortExtensionCapabilities</relatedStateVariable>
 				</argument>
 			</argumentList>
 		</action>
