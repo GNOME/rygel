@@ -95,6 +95,7 @@ public class Rygel.ContentDirectory: Service {
         this.sort_caps = "";
 
         this.action_invoked["Browse"] += this.browse_cb;
+        this.action_invoked["Search"] += this.search_cb;
 
         /* Connect SystemUpdateID related signals */
         this.action_invoked["GetSystemUpdateID"] +=
@@ -133,6 +134,14 @@ public class Rygel.ContentDirectory: Service {
         Browse browse = new Browse (this, action);
 
         browse.run.begin ();
+    }
+
+    /* Search action implementation */
+    private virtual void search_cb (ContentDirectory    content_dir,
+                                    owned ServiceAction action) {
+        var search = new Search (this, action);
+
+        search.run.begin ();
     }
 
     /* GetSystemUpdateID action implementation */

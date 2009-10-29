@@ -71,6 +71,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-thumbnail.vala \
 		    rygel-thumbnailer.vala \
 		    rygel-browse.vala \
+		    rygel-search.vala \
 		    rygel-didl-lite-writer.vala \
 		    rygel-transcoder.vala \
 		    rygel-mp2ts-transcoder.vala \
