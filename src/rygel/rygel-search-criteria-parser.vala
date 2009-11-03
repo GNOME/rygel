@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008 Nokia Corporation.
- * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
+ * Copyright (C) 2009 Nokia Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *
