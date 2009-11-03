@@ -132,3 +132,13 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
     }
 }
 
+// FIXME: Braces are not really expressions so we must stop using these
+// classes as soon as we figure a way to not use the same stack for expressions
+// and braces.
+private class Rygel.OpenningBrace: Rygel.SearchExpression<void *,
+                                                          void *,
+                                                          void *> {}
+private class Rygel.ClosingBrace: Rygel.SearchExpression<void *,
+                                                         void *,
+                                                         void *> {}
+

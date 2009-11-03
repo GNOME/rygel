@@ -48,13 +48,3 @@ public class Rygel.LogicalExpression :
               Rygel.SearchExpression<LogicalOperator,
                                      SearchExpression,
                                      SearchExpression> {}
-
-// FIXME: Braces are not really expressions so we must stop using these
-// classes as soon as we figure a way to not use the same stack for expressions
-// and braces.
-internal class Rygel.OpenningBrace: Rygel.SearchExpression<void *,
-                                                           void *,
-                                                           void *> {}
-internal class Rygel.ClosingBrace: Rygel.SearchExpression<void *,
-                                                          void *,
-                                                          void *> {}
