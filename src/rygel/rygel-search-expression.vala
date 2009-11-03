@@ -39,12 +39,24 @@ public abstract class Rygel.SearchExpression<G,H,I> {
     public bool fullfills (MediaObject media_object) {
         return true;
     }
+
+    public abstract string to_string ();
 }
 
 public class Rygel.AtomicExpression :
-              Rygel.SearchExpression<SearchCriteriaOp,string,string> {}
+              Rygel.SearchExpression<SearchCriteriaOp,string,string> {
+    public override string to_string () {
+        return "%s %d %s".printf (this.operand1, this.op, this.operand2);
+    }
+}
 
 public class Rygel.LogicalExpression :
               Rygel.SearchExpression<LogicalOperator,
                                      SearchExpression,
-                                     SearchExpression> {}
+                                     SearchExpression> {
+    public override string to_string () {
+        return "(%s %d %s)".printf (this.operand1.to_string (),
+                                    this.op,
+                                    this.operand2.to_string ());
+    }
+}

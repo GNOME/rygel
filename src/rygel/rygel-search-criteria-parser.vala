@@ -149,8 +149,17 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
 // and braces.
 private class Rygel.OpenningBrace: Rygel.SearchExpression<void *,
                                                           void *,
-                                                          void *> {}
+                                                          void *> {
+    public override string to_string () {
+        assert_not_reached ();
+    }
+}
+
 private class Rygel.ClosingBrace: Rygel.SearchExpression<void *,
                                                          void *,
-                                                         void *> {}
+                                                         void *> {
+    public override string to_string () {
+        assert_not_reached ();
+    }
+}
 
