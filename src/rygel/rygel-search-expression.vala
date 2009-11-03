@@ -36,7 +36,7 @@ public abstract class Rygel.SearchExpression<G,H,I> {
     public H operand1;
     public I operand2;
 
-    public bool fullfills (MediaObject media_object) {
+    public bool satisfied_by (MediaObject media_object) {
         return true;
     }
 
