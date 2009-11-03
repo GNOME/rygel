@@ -107,18 +107,28 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
         if (stack_top != null) {
             this.exp_stack.poll_tail (); // Pop last expression
             this.exp_stack.poll_tail (); // Pop opening brace
-            expression.operand1 = stack_top;
+
+            // Put new Logical expression on the top of the stack
             this.exp_stack.offer_tail (expression);
+
+            // Make the previous expression on the stack it's first argument
+            expression.operand1 = stack_top;
         } else {
+            // Nothing on the stack? This must mean this is a logical expression
+            // combining the expression tree and the next expression that we
+            // haven't yet parsed.
             expression.operand1 = this.expression;
             this.expression = expression;
         }
     }
 
     private void on_end_parens (GUPnP.SearchCriteriaParser parser) {
+        // Closing parenthesis means the expression on the stack is complete so
+        // first we pop that from the stack.
         var inner_exp = this.exp_stack.poll_tail ();
         var outer_exp = this.exp_stack.peek_tail () as LogicalExpression;
         if (outer_exp == null) {
+            // Stack is now empty, go for the expression tree!
             if (this.expression != null) {
                 outer_exp = this.expression as LogicalExpression;
             } else {
@@ -127,6 +137,8 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
         }
 
         if (outer_exp != null) {
+            // Either there was an incomplete expression either on the stack
+            // or the expression tree so we just complete that.
             outer_exp.operand2 = inner_exp;
         }
     }
