@@ -25,7 +25,7 @@ using GUPnP;
 using Gee;
 
 /**
- * Parses a search criteria string and creates SearchCriteria as a result.
+ * Parses a search criteria string and creates SearchExpression as a result.
  */
 internal class Rygel.SearchCriteriaParser : Object, StateMachine {
     // The original string representation received from client

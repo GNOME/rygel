@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008 Nokia Corporation.
- * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
+ * Copyright (C) 2009 Nokia Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *
@@ -23,37 +22,23 @@
 
 using GUPnP;
 
-/**
- * Represents SearchCriteria string in Search action of ContentDirectory.
- */
-public class Rygel.SearchCriteria : GLib.Object {
-    // The original string representation received from client
-    public string str;
-
-    public SearchExpression expression; // The root expression
-
-    internal SearchCriteria (string           str,
-                             SearchExpression expression)
-                             throws Error {
-        this.str = str;
-        this.expression = expression;
-    }
-
-    public bool fullfills (MediaObject media_object) {
-        return true;
-    }
-}
-
 public enum Rygel.LogicalOperator {
     AND,
     OR
 }
 
+/**
+ * Represents a SearchExpression tree.
+ */
 public class Rygel.SearchExpression<G,H,I> {
     public G op; // Operator
 
     public H operand1;
     public I operand2;
+
+    public bool fullfills (MediaObject media_object) {
+        return true;
+    }
 }
 
 public class Rygel.AtomicExpression :
