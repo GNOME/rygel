@@ -150,6 +150,10 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
 private class Rygel.OpenningBrace: Rygel.SearchExpression<void *,
                                                           void *,
                                                           void *> {
+    public override async bool satisfied_by (MediaObject media_object) {
+        assert_not_reached ();
+    }
+
     public override string to_string () {
         assert_not_reached ();
     }
@@ -158,6 +162,10 @@ private class Rygel.OpenningBrace: Rygel.SearchExpression<void *,
 private class Rygel.ClosingBrace: Rygel.SearchExpression<void *,
                                                          void *,
                                                          void *> {
+    public override async bool satisfied_by (MediaObject media_object) {
+        assert_not_reached ();
+    }
+
     public override string to_string () {
         assert_not_reached ();
     }
