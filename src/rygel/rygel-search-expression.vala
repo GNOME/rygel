@@ -42,7 +42,7 @@ public abstract class Rygel.SearchExpression<G,H,I> {
 }
 
 public class Rygel.AtomicExpression :
-              Rygel.SearchExpression<SearchCriteriaOp,string,string> {
+             Rygel.SearchExpression<SearchCriteriaOp,string,string> {
     public override async bool satisfied_by (MediaObject media_object) {
         return true;
     }
@@ -53,9 +53,9 @@ public class Rygel.AtomicExpression :
 }
 
 public class Rygel.LogicalExpression :
-              Rygel.SearchExpression<LogicalOperator,
-                                     SearchExpression,
-                                     SearchExpression> {
+             Rygel.SearchExpression<LogicalOperator,
+                                    SearchExpression,
+                                    SearchExpression> {
     public override async bool satisfied_by (MediaObject media_object) {
         return true;
     }
