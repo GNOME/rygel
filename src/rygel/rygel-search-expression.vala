@@ -30,7 +30,7 @@ public enum Rygel.LogicalOperator {
 /**
  * Represents a SearchExpression tree.
  */
-public class Rygel.SearchExpression<G,H,I> {
+public abstract class Rygel.SearchExpression<G,H,I> {
     public G op; // Operator
 
     public H operand1;
