@@ -49,6 +49,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.title = title;
         this.child_count = child_count;
         this.update_id = 0;
+        this.upnp_class = "object.container.storageFolder";
 
         this.container_updated += on_container_updated;
     }
