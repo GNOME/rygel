@@ -73,6 +73,8 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-browse.vala \
 		    rygel-search.vala \
 		    rygel-search-expression.vala \
+		    rygel-atomic-expression.vala \
+		    rygel-logical-expression.vala \
 		    rygel-search-criteria-parser.vala \
 		    rygel-didl-lite-writer.vala \
 		    rygel-transcoder.vala \
