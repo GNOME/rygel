@@ -36,14 +36,14 @@ public abstract class Rygel.SearchExpression<G,H,I> {
     public H operand1;
     public I operand2;
 
-    public abstract async bool satisfied_by (MediaObject media_object);
+    public abstract bool satisfied_by (MediaObject media_object);
 
     public abstract string to_string ();
 }
 
 public class Rygel.AtomicExpression :
              Rygel.SearchExpression<SearchCriteriaOp,string,string> {
-    public override async bool satisfied_by (MediaObject media_object) {
+    public override bool satisfied_by (MediaObject media_object) {
         switch (this.operand1) {
         case "@id":
             return this.compare_string (media_object.id);
@@ -114,7 +114,7 @@ public class Rygel.LogicalExpression :
              Rygel.SearchExpression<LogicalOperator,
                                     SearchExpression,
                                     SearchExpression> {
-    public override async bool satisfied_by (MediaObject media_object) {
+    public override bool satisfied_by (MediaObject media_object) {
         return true;
     }
 
