@@ -40,7 +40,6 @@ public class Rygel.MediaItem : MediaObject {
     public string author;
     public string album;
     public string date;
-    public string upnp_class;
 
     // Resource info
     public string mime_type;

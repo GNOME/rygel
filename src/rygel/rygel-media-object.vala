@@ -28,6 +28,7 @@ using Gee;
  */
 public abstract class Rygel.MediaObject : GLib.Object {
     public string id;
+    public string upnp_class;
     public uint64 modified;
     public Gee.ArrayList<string> uris;
 
