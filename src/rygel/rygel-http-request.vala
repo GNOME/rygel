@@ -80,11 +80,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             return;
         }
 
-        try {
-            this.parse_query ();
-        } catch (Error err) {
-            warning ("Failed to parse query: %s", err.message);
-        }
+        this.parse_uri ();
 
         if (this.item_id == null) {
             this.handle_error (new HTTPRequestError.NOT_FOUND ("Not Found"));
@@ -159,24 +155,29 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
     }
 
-    private void parse_query () throws Error {
-        if (this.query == null) {
-            return;
-        }
-
-        this.item_id = this.query.lookup ("itemid");
-        var target = this.query.lookup ("transcode");
-        if (target != null) {
-            debug ("Transcoding target: %s", target);
-
-            var transcoder = this.http_server.get_transcoder (target);
-            this.handler = new HTTPTranscodeHandler (transcoder,
-                                                     this.cancellable);
-        }
-
-        var index = this.query.lookup ("thumbnail");
-        if (index != null) {
-            this.thumbnail_index = index.to_int ();
+    private void parse_uri () {
+        // do not decode the path here as it may contain encoded slashes
+        var request_uri = this.msg.get_uri ().path.replace (this.http_server.path_root, "");
+        var parts = request_uri.split ("/");
+        if (parts.length < 2 && parts.length % 2 != 0)
+            warning ("Invalid uri %s", request_uri);
+        else {
+            this.item_id = Soup.URI.decode (parts[1]);
+            for (int i = 2; i < parts.length - 1; i += 2) {
+                switch (parts[i]) {
+                    case "transcoded":
+                        var transcoder = this.http_server.get_transcoder (
+                                               Soup.URI.decode (parts[i + 1]));
+                        this.handler = new HTTPTranscodeHandler (transcoder,
+                                                                 this.cancellable);
+                    break;
+                    case "thumbnail":
+                        this.thumbnail_index = parts[i + 1].to_int ();
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 

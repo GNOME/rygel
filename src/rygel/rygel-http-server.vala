@@ -27,7 +27,7 @@ using Gee;
 
 internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     private const string SERVER_PATH_PREFIX = "/RygelHTTPServer";
-    private string path_root;
+    public string path_root { get; private set; }
 
     // Reference to root container of associated ContentDirectory
     public MediaContainer root_container;
@@ -129,14 +129,13 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                                                   string?   transcode_target,
                                                   out string protocol) {
         string escaped = Uri.escape_string (item.id, "", true);
-        string query = "?itemid=" + escaped;
-        if (thumbnail_index >= 0) {
-            query += "&thumbnail=" + thumbnail_index.to_string ();
-        }
+        string query = "/" + escaped;
 
         if (transcode_target != null) {
             escaped = Uri.escape_string (transcode_target, "", true);
-            query += "&transcode=" + escaped;
+            query += "/transcoded/" + escaped;
+        } else if (thumbnail_index >= 0) {
+            query += "/thumbnail/" + thumbnail_index.to_string ();
         }
 
         protocol = "http-get";
