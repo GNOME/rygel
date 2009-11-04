@@ -115,7 +115,16 @@ public class Rygel.LogicalExpression :
                                     SearchExpression,
                                     SearchExpression> {
     public override bool satisfied_by (MediaObject media_object) {
-        return true;
+        switch (this.op) {
+        case LogicalOperator.AND:
+            return this.operand1.satisfied_by (media_object) &&
+                   this.operand2.satisfied_by (media_object);
+        case LogicalOperator.OR:
+            return this.operand1.satisfied_by (media_object) ||
+                   this.operand2.satisfied_by (media_object);
+        default:
+            return false;
+        }
     }
 
     public override string to_string () {
