@@ -82,8 +82,8 @@ internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
                             out this.sort_criteria);
 
         try {
-            if (this.container_id == null) {
-                // Sorry we can't do anything without ContainerID
+            if (this.container_id == null || this.search_criteria == null) {
+                // Sorry we can't do anything without these two parameters
                 throw new ContentDirectoryError.NO_SUCH_OBJECT (
                                         "No such container");
             }
