@@ -24,7 +24,7 @@ using GUPnP;
 
 // Represents a search expression that consists of two strings joined by a
 // relational operator.
-public class Rygel.AtomicExpression :
+public class Rygel.RelationalExpression :
              Rygel.SearchExpression<SearchCriteriaOp,string,string> {
     public override bool satisfied_by (MediaObject media_object) {
         switch (this.operand1) {

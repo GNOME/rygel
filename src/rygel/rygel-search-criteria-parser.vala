@@ -71,8 +71,8 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
                                 SearchCriteriaOp           op,
                                 string                     value,
                                 void                      *err) {
-        // Atomic expression from out POV
-        var expression = new AtomicExpression ();
+        // Relational expression from out POV
+        var expression = new RelationalExpression ();
         expression.op = op;
         expression.operand1 = property;
         expression.operand2 = value;
