@@ -75,8 +75,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
                                         throws Error;
 
    /**
-    * Recursively searches for media object with the given id in this
-    * container and calls callback when the result is available.
+    * Recursively searches for media object with the given id in this container.
     *
     * @param id ID of the media object to search for
     * @param cancellable optional cancellable for this operation
