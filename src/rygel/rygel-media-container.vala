@@ -110,7 +110,19 @@ public abstract class Rygel.MediaContainer : MediaObject {
                                         throws Error {
         var result = new ArrayList<MediaObject> ();
 
-        var children = yield this.get_children (0, uint.MAX, cancellable);
+        var children = yield this.get_children (0,
+                                                this.child_count,
+                                                cancellable);
+
+        // The maximum number of results we need to be able to slice-out
+        // the needed portion from it.
+        uint limit;
+        if (offset > 0 || max_count > 0) {
+            limit = offset + max_count;
+        } else {
+            limit = 0; // No limits on searches
+        }
+
         foreach (var child in children) {
             if (child is MediaContainer) {
                 // First search inside the child container
@@ -119,7 +131,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
                 var child_result = yield container.search (expression,
                                                            0,
-                                                           0,
+                                                           limit,
                                                            out tmp,
                                                            cancellable);
 
@@ -130,12 +142,16 @@ public abstract class Rygel.MediaContainer : MediaObject {
             if (expression.satisfied_by (child)) {
                 result.add (child);
             }
+
+            if (limit > 0 && limit <= result.size) {
+                break;
+            }
         }
 
         total_matches = result.size;
 
         // See if we need to slice the results
-        if (total_matches > 0 && (offset != 0 || max_count != 0)) {
+        if (total_matches > 0 && limit > 0) {
             uint start;
             uint stop;
 
