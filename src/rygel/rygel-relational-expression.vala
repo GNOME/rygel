@@ -84,9 +84,9 @@ public class Rygel.RelationalExpression :
         case SearchCriteriaOp.EQ:
             return this.operand2 == str;
         case SearchCriteriaOp.CONTAINS:
-            return this.operand2.contains (str);
+            return str.contains (this.operand2);
         case SearchCriteriaOp.DERIVED_FROM:
-            return this.operand2.has_prefix (str);
+            return str.has_prefix (this.operand2);
         default:
             return false;
         }
