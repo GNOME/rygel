@@ -112,25 +112,24 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
         var children = yield this.get_children (0, uint.MAX, cancellable);
         foreach (var child in children) {
+            if (child is MediaContainer) {
+                // First search inside the child container
+                var container = child as MediaContainer;
+                uint tmp;
+
+                var child_result = yield container.search (expression,
+                                                           0,
+                                                           0,
+                                                           out tmp,
+                                                           cancellable);
+
+                result.add_all (child_result);
+            }
+
+            // Then check if child itself satisfies search criteria
             if (expression.satisfied_by (child)) {
                 result.add (child);
             }
-
-            if (!(child is MediaContainer)) {
-                continue;
-            }
-
-            // Now continue the search inside the child container
-            var container = child as MediaContainer;
-            uint tmp;
-
-            var child_result = yield container.search (expression,
-                                                       0,
-                                                       0,
-                                                       out tmp,
-                                                       cancellable);
-
-            result.add_all (child_result);
         }
 
         total_matches = result.size;
