@@ -118,12 +118,20 @@ internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
         return media_object as MediaContainer;
     }
 
-    private async ArrayList<MediaObject> fetch_results (
-                                        MediaContainer container) throws Error {
+    private async Gee.List<MediaObject> fetch_results (
+                                        MediaContainer container)
+                                        throws Error {
         this.update_id = container.update_id;
 
-        var results = new ArrayList<MediaObject> ();
-        this.number_returned = this.total_matches = results.size;
+        var parser = new Rygel.SearchCriteriaParser (this.search_criteria);
+        yield parser.run ();
+
+        var results = yield container.search (parser.expression,
+                                              this.index,
+                                              this.requested_count,
+                                              out this.total_matches,
+                                              this.cancellable);
+        this.number_returned = results.size;
 
         return results;
     }

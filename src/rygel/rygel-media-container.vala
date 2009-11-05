@@ -21,6 +21,7 @@
  */
 
 using GUPnP;
+using Gee;
 
 /**
  * Represents a container (folder) for media items and containers. Provides
@@ -86,6 +87,69 @@ public abstract class Rygel.MediaContainer : MediaObject {
     public async abstract MediaObject? find_object (string       id,
                                                     Cancellable? cancellable)
                                                     throws Error;
+
+    /**
+     * Recursively searches for all media objects the satisfy the given search
+     * expression in this container.
+     *
+     * @param expression the search expression
+     * @param offet zero-based index of the first object to return
+     * @param max_count maximum number of objects to return
+     * @param total_matches the actual number of objects that satisfy the given
+     *        search expression
+     * @param cancellable optional cancellable for this operation
+     *
+     * return A list of media objects.
+     */
+    public virtual async Gee.List<MediaObject>? search (
+                                        SearchExpression   expression,
+                                        uint               offset,
+                                        uint               max_count,
+                                        out uint           total_matches,
+                                        Cancellable?       cancellable)
+                                        throws Error {
+        var result = new ArrayList<MediaObject> ();
+
+        var children = yield this.get_children (0, uint.MAX, cancellable);
+        foreach (var child in children) {
+            if (expression.satisfied_by (child)) {
+                result.add (child);
+            }
+
+            if (!(child is MediaContainer)) {
+                continue;
+            }
+
+            // Now continue the search inside the child container
+            var container = child as MediaContainer;
+            uint tmp;
+
+            var child_result = yield container.search (expression,
+                                                       0,
+                                                       0,
+                                                       out tmp,
+                                                       cancellable);
+
+            result.add_all (child_result);
+        }
+
+        total_matches = result.size;
+
+        // See if we need to slice the results
+        if (total_matches > 0 && (offset != 0 || max_count != 0)) {
+            uint stop;
+
+            if (max_count != 0) {
+                stop = offset + max_count;
+            } else {
+                stop = total_matches - 1;
+            }
+
+            return result.slice ((int) offset, (int) stop);
+        } else {
+            return result;
+        }
+    }
 
     /**
      * Method to be be called each time this container is updated (metadata
