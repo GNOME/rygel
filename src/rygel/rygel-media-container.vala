@@ -136,15 +136,18 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
         // See if we need to slice the results
         if (total_matches > 0 && (offset != 0 || max_count != 0)) {
+            uint start;
             uint stop;
 
+            start = offset.clamp (0, total_matches - 1);
+
             if (max_count != 0) {
-                stop = offset + max_count;
+                stop = start + max_count;
             } else {
                 stop = total_matches - 1;
             }
 
-            return result.slice ((int) offset, (int) stop);
+            return result.slice ((int) start, (int) stop);
         } else {
             return result;
         }
