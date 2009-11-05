@@ -35,8 +35,8 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     private const string SEARCH_PATH = "/org/freedesktop/Tracker/Search";
     private const string METADATA_PATH = "/org/freedesktop/Tracker/Metadata";
 
-    public TrackerMetadataIface metadata;
-    public TrackerSearchIface search;
+    public TrackerMetadataIface metadata_proxy;
+    public TrackerSearchIface search_proxy;
 
     public string service;
 
@@ -73,17 +73,18 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
             // We are performing actual search (though an optimized one) to get
             // the hitcount rather than GetHitCount because GetHitCount only
             // allows us to get hit count for Text searches.
-            var search_result = yield this.search.query (0,
-                                                         this.service,
-                                                         new string[0],
-                                                         "",
-                                                         this.keywords,
-                                                         this.query_condition,
-                                                         false,
-                                                         new string[0],
-                                                         false,
-                                                         0,
-                                                         -1);
+            var search_result = yield this.search_proxy.query (
+                                        0,
+                                        this.service,
+                                        new string[0],
+                                        "",
+                                        this.keywords,
+                                        this.query_condition,
+                                        false,
+                                        new string[0],
+                                        false,
+                                        0,
+                                        -1);
 
             this.child_count = search_result.length[0];
             this.updated ();
@@ -103,17 +104,18 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                         throws GLib.Error {
         string[] keys = TrackerItem.get_metadata_keys ();
 
-        var search_result = yield this.search.query (0,
-                                                     this.service,
-                                                     keys,
-                                                     "",
-                                                     this.keywords,
-                                                     this.query_condition,
-                                                     false,
-                                                     new string[0],
-                                                     false,
-                                                     (int) offset,
-                                                     (int) max_count);
+        var search_result = yield this.search_proxy.query (
+                                        0,
+                                        this.service,
+                                        keys,
+                                        "",
+                                        this.keywords,
+                                        this.query_condition,
+                                        false,
+                                        new string[0],
+                                        false,
+                                        (int) offset,
+                                        (int) max_count);
 
         var children = new ArrayList<MediaObject> ();
         /* Iterate through all items */
@@ -142,7 +144,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
         string[] keys = TrackerItem.get_metadata_keys ();
 
-        var values = yield this.metadata.get (service, path, keys);
+        var values = yield this.metadata_proxy.get (service, path, keys);
 
         return this.create_item (service, path, values);
     }
@@ -204,12 +206,12 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     private void create_proxies () throws DBus.Error {
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
-        this.metadata = connection.get_object (TRACKER_SERVICE,
-                                               METADATA_PATH)
-                                               as TrackerMetadataIface;
-        this.search = connection.get_object (TRACKER_SERVICE,
-                                             SEARCH_PATH)
-                                             as TrackerSearchIface;
+        this.metadata_proxy = connection.get_object (TRACKER_SERVICE,
+                                                     METADATA_PATH)
+                                                     as TrackerMetadataIface;
+        this.search_proxy = connection.get_object (TRACKER_SERVICE,
+                                                   SEARCH_PATH)
+                                                   as TrackerSearchIface;
     }
 
     /**
