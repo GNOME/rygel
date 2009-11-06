@@ -144,24 +144,12 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
     }
 }
 
-// FIXME: Braces are not really expressions so we must stop using these
+// FIXME: Openning brace is not really an expression so we must stop using this
 // classes as soon as we figure a way to not use the same stack for expressions
 // and braces.
 private class Rygel.OpenningBrace: Rygel.SearchExpression<void *,
                                                           void *,
                                                           void *> {
-    public override bool satisfied_by (MediaObject media_object) {
-        assert_not_reached ();
-    }
-
-    public override string to_string () {
-        assert_not_reached ();
-    }
-}
-
-private class Rygel.ClosingBrace: Rygel.SearchExpression<void *,
-                                                         void *,
-                                                         void *> {
     public override bool satisfied_by (MediaObject media_object) {
         assert_not_reached ();
     }
