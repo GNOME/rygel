@@ -131,6 +131,12 @@ internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
                                               this.requested_count,
                                               out this.total_matches,
                                               this.cancellable);
+        if (results.size == 0) {
+            throw new ContentDirectoryError.CANT_PROCESS (
+                                        "No objects found that could setisfy" +
+                                        " the given search criteria.");
+        }
+
         this.number_returned = results.size;
 
         return results;
