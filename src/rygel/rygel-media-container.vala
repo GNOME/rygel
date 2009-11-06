@@ -95,8 +95,10 @@ public abstract class Rygel.MediaContainer : MediaObject {
      * @param expression the search expression
      * @param offet zero-based index of the first object to return
      * @param max_count maximum number of objects to return
-     * @param total_matches the actual number of objects that satisfy the given
-     *        search expression
+     * @param total_matches sets it to the actual number of objects that satisfy
+     *                      the given search expression. If it is not possible
+     *                      to compute this value (in a timely mannger), it is
+     *                      set to '0'.
      * @param cancellable optional cancellable for this operation
      *
      * return A list of media objects.
@@ -148,23 +150,27 @@ public abstract class Rygel.MediaContainer : MediaObject {
             }
         }
 
-        total_matches = result.size;
-
         // See if we need to slice the results
-        if (total_matches > 0 && limit > 0) {
+        if (result.size > 0 && limit > 0) {
             uint start;
             uint stop;
 
-            start = offset.clamp (0, total_matches - 1);
+            start = offset.clamp (0, result.size - 1);
 
             if (max_count != 0) {
                 stop = start + max_count;
             } else {
-                stop = total_matches - 1;
+                stop = result.size - 1;
             }
+
+            // Since we limited our search, we don't know how many objects
+            // actually satisfy the give search expression
+            total_matches = 0;
 
             return result.slice ((int) start, (int) stop);
         } else {
+            total_matches = result.size;
+
             return result;
         }
     }
