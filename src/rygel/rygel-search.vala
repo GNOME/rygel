@@ -170,15 +170,13 @@ internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
     }
 
     private void handle_error (Error error) {
+        warning ("Failed to search in '%s': %s\n",
+                 this.container_id,
+                 error.message);
+
         if (error is ContentDirectoryError) {
-            warning ("Failed to search in '%s': %s\n",
-                     this.container_id,
-                     error.message);
             this.action.return_error (error.code, error.message);
         } else {
-            warning ("Failed to browse '%s': %s\n",
-                     this.container_id,
-                     error.message);
             this.action.return_error (701, error.message);
         }
 
