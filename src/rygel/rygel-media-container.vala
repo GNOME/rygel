@@ -92,7 +92,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
      * Recursively searches for all media objects the satisfy the given search
      * expression in this container.
      *
-     * @param expression the search expression
+     * @param expression the search expression or `null` for wildcard
      * @param offet zero-based index of the first object to return
      * @param max_count maximum number of objects to return
      * @param total_matches sets it to the actual number of objects that satisfy
@@ -141,7 +141,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
             }
 
             // Then check if child itself satisfies search criteria
-            if (expression.satisfied_by (child)) {
+            if (expression == null || expression.satisfied_by (child)) {
                 result.add (child);
             }
 

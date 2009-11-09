@@ -43,6 +43,11 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
 
     // This implementation is not really async
     public async void run () {
+        if (this.str == "*") {
+            // Wildcard
+            this.completed ();
+        }
+
         var parser = new GUPnP.SearchCriteriaParser ();
 
         parser.expression.connect (this.on_expression);
