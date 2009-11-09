@@ -86,6 +86,11 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
             } else if (this.expression is LogicalExpression) {
                 // The previous expression must have lacked the 2nd operand
                 var l_expression = this.expression as LogicalExpression;
+                if (l_expression.operand2 != null &&
+                    l_expression.operand2 is LogicalExpression) {
+                    l_expression = l_expression.operand2 as LogicalExpression;
+                }
+
                 l_expression.operand2 = expression;
             }
         } else if (stack_top is OpenningBrace) {
@@ -105,20 +110,38 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
 
         var stack_top = this.exp_stack.peek_tail ();
         if (stack_top != null) {
-            this.exp_stack.poll_tail (); // Pop last expression
-            this.exp_stack.poll_tail (); // Pop opening brace
+            if (lop == LogicalOperator.AND && stack_top is LogicalExpression) {
+                // AND has precedence over OR
+                var previous = stack_top as LogicalExpression;
 
-            // Put new Logical expression on the top of the stack
-            this.exp_stack.offer_tail (expression);
+                expression.operand1 = previous.operand2;
+                previous.operand2 = expression;
+            } else {
+                this.exp_stack.poll_tail (); // Pop last expression
+                this.exp_stack.poll_tail (); // Pop opening brace
 
-            // Make the previous expression on the stack it's first argument
-            expression.operand1 = stack_top;
+                // Put new Logical expression on the top of the stack
+                this.exp_stack.offer_tail (expression);
+
+                // Make the previous expression on the stack it's first argument
+                expression.operand1 = stack_top;
+            }
         } else {
-            // Nothing on the stack? This must mean this is a logical expression
-            // combining the expression tree and the next expression that we
-            // haven't yet parsed.
-            expression.operand1 = this.expression;
-            this.expression = expression;
+            // Nothing on the stack?
+            if (lop == LogicalOperator.AND &&
+                this.expression is LogicalExpression) {
+                // AND has precedence over OR
+                var previous = this.expression as LogicalExpression;
+
+                expression.operand1 = previous.operand2;
+                previous.operand2 = expression;
+            } else {
+                // This must mean this is a logical expression combining the
+                // expression tree and the next expression that we haven't yet
+                // parsed.
+                expression.operand1 = this.expression;
+                this.expression = expression;
+            }
         }
     }
 
