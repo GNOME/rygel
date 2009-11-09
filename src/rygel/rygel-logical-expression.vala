@@ -45,8 +45,14 @@ public class Rygel.LogicalExpression :
     }
 
     public override string to_string () {
-        return "(%s %d %s)".printf (this.operand1.to_string (),
+        var operand1 = (this.operand1 != null)?
+                        this.operand1.to_string ():
+                        "none";
+        var operand2 = (this.operand2 != null)?
+                        this.operand2.to_string ():
+                        "none";
+        return "(%s %d %s)".printf (operand1,
                                     this.op,
-                                    this.operand2.to_string ());
+                                    operand2);
     }
 }
