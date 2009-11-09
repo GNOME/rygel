@@ -88,6 +88,8 @@ internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
                                         "No such container");
             }
 
+            debug ("Executing search request: %s", this.search_criteria);
+
             var container = yield this.fetch_container ();
             var results = yield this.fetch_results (container);
 
