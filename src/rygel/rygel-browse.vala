@@ -72,7 +72,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
         yield this.parse_args ();
     }
 
-    private void got_media_object () {
+    private async void got_media_object () {
         if (this.media_object == null) {
             this.handle_error (
                 new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
@@ -92,7 +92,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
         if (this.object_id == this.root_container.id) {
             this.media_object = this.root_container;
 
-            this.got_media_object ();
+            yield this.got_media_object ();
             return;
         }
 
@@ -105,7 +105,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
             return;
         }
 
-        this.got_media_object ();
+        yield this.got_media_object ();
     }
 
     private void handle_metadata_request () {
@@ -129,7 +129,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
         this.conclude ();
     }
 
-    private void handle_children_request () {
+    private async void handle_children_request () {
         if (!(this.media_object is MediaContainer)) {
             this.handle_error (
                 new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
@@ -145,7 +145,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
             this.requested_count = this.total_matches;
         }
 
-        this.fetch_children.begin ();
+        yield this.fetch_children ();
     }
 
     private async void parse_args () {
