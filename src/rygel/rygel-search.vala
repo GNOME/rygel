@@ -126,6 +126,10 @@ internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
         var parser = new Rygel.SearchCriteriaParser (this.search_criteria);
         yield parser.run ();
 
+        if (parser.err != null) {
+            throw parser.err;
+        }
+
         var results = yield container.search (parser.expression,
                                               this.index,
                                               this.requested_count,
