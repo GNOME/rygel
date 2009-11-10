@@ -141,22 +141,8 @@ public abstract class Rygel.MediaContainer : MediaObject {
             limit = 0; // No limits on searches
         }
 
+        // First add relavant children
         foreach (var child in children) {
-            if (child is MediaContainer) {
-                // First search inside the child container
-                var container = child as MediaContainer;
-                uint tmp;
-
-                var child_result = yield container.search (expression,
-                                                           0,
-                                                           limit,
-                                                           out tmp,
-                                                           cancellable);
-
-                result.add_all (child_result);
-            }
-
-            // Then check if child itself satisfies search criteria
             if (expression == null || expression.satisfied_by (child)) {
                 result.add (child);
             }
@@ -164,6 +150,17 @@ public abstract class Rygel.MediaContainer : MediaObject {
             if (limit > 0 && result.size >= limit) {
                 break;
             }
+        }
+
+        if (limit == 0 || result.size < limit) {
+            // Then search in the children
+            var child_limit = (limit == 0)? 0: limit - result.size;
+
+            var child_results = yield this.search_in_children (expression,
+                                                               children,
+                                                               child_limit,
+                                                               cancellable);
+            result.add_all (child_results);
         }
 
         // See if we need to slice the results
@@ -189,6 +186,36 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
             return result;
         }
+    }
+
+    private async Gee.List<MediaObject> search_in_children (
+                                        SearchExpression      expression,
+                                        Gee.List<MediaObject> children,
+                                        uint                  limit,
+                                        Cancellable?          cancellable)
+                                        throws Error {
+        var result = new ArrayList<MediaObject> ();
+
+        foreach (var child in children) {
+            if (child is MediaContainer) {
+                var container = child as MediaContainer;
+                uint tmp;
+
+                var child_result = yield container.search (expression,
+                                                           0,
+                                                           limit,
+                                                           out tmp,
+                                                           cancellable);
+
+                result.add_all (child_result);
+            }
+
+            if (limit > 0 && result.size >= limit) {
+                break;
+            }
+        }
+
+        return result;
     }
 
     /**
