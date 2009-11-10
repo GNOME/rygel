@@ -145,7 +145,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
                 result.add (child);
             }
 
-            if (limit > 0 && limit <= result.size) {
+            if (limit > 0 && result.size >= limit) {
                 break;
             }
         }
