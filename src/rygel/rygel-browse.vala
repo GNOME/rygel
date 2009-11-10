@@ -47,7 +47,6 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
 
     // The media object corresponding to object_id
     private bool fetch_metadata;
-    private MediaObject media_object;
 
     private MediaContainer root_container;
     private uint32 system_update_id;
@@ -68,87 +67,33 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
     }
 
     public async void run () {
+        try {
+            this.parse_args ();
+
+            var media_object = yield this.fetch_media_object ();
+
+            Gee.List<MediaObject> results;
+            if (this.fetch_metadata) {
+                // BrowseMetadata
+                results = this.handle_metadata_request (media_object);
+            } else {
+                // BrowseDirectChildren
+                results = yield this.handle_children_request (media_object);
+            }
+
+            foreach (var result in results) {
+                this.didl_writer.serialize (result);
+            }
+
+            // Conclude the successful Browse action
+            this.conclude ();
+        } catch (Error err) {
+            this.handle_error (err);
+        }
+    }
+
+    private async void parse_args () throws Error {
         /* Start by parsing the 'in' arguments */
-        yield this.parse_args ();
-    }
-
-    private async void got_media_object () {
-        if (this.media_object == null) {
-            this.handle_error (
-                new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
-            return;
-        }
-
-        if (this.fetch_metadata) {
-            // BrowseMetadata
-            this.handle_metadata_request ();
-        } else {
-            // BrowseDirectChildren
-            this.handle_children_request ();
-        }
-    }
-
-    private async void fetch_media_object () {
-        if (this.object_id == this.root_container.id) {
-            this.media_object = this.root_container;
-
-            yield this.got_media_object ();
-            return;
-        }
-
-        try {
-            this.media_object = yield this.root_container.find_object (
-                                        this.object_id,
-                                        this.cancellable);
-        } catch (Error err) {
-            this.handle_error (err);
-            return;
-        }
-
-        yield this.got_media_object ();
-    }
-
-    private void handle_metadata_request () {
-        if (this.media_object is MediaContainer) {
-            this.update_id = ((MediaContainer) this.media_object).update_id;
-        } else {
-            this.update_id = uint32.MAX;
-        }
-
-        try {
-            this.didl_writer.serialize (this.media_object);
-        } catch (Error err) {
-            this.handle_error (err);
-            return;
-        }
-
-        this.number_returned = 1;
-        this.total_matches = 1;
-
-        // Conclude the successful Browse action
-        this.conclude ();
-    }
-
-    private async void handle_children_request () {
-        if (!(this.media_object is MediaContainer)) {
-            this.handle_error (
-                new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
-            return;
-        }
-
-        var container = (MediaContainer) this.media_object;
-        this.total_matches = container.child_count;
-        this.update_id = container.update_id;
-
-        if (this.requested_count == 0) {
-            // No max count requested, try to fetch all children
-            this.requested_count = this.total_matches;
-        }
-
-        yield this.fetch_children ();
-    }
-
-    private async void parse_args () {
         this.action.get ("ObjectID", typeof (string), out this.object_id,
                     "BrowseFlag", typeof (string), out this.browse_flag,
                     "Filter", typeof (string), out this.filter,
@@ -164,10 +109,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
                    this.browse_flag == "BrowseMetadata") {
             this.fetch_metadata = true;
         } else {
-            this.fetch_metadata = false;
-            this.handle_error (
-                    new ContentDirectoryError.INVALID_ARGS ("Invalid Args"));
-            return;
+            throw new ContentDirectoryError.INVALID_ARGS ("Invalid Args");
         }
 
         /* ObjectID */
@@ -180,12 +122,66 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
 
         if (this.object_id == null) {
             // Sorry we can't do anything without ObjectID
-            this.handle_error (
-                new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
-            return;
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+    }
+
+    private async MediaObject fetch_media_object () throws Error {
+        if (this.object_id == this.root_container.id) {
+            return this.root_container;
+        } else {
+            var media_object = yield this.root_container.find_object (
+                                        this.object_id,
+                                        this.cancellable);
+            if (media_object == null) {
+                throw new ContentDirectoryError.NO_SUCH_OBJECT (
+                                        "No such object");
+            }
+
+            return media_object;
+        }
+    }
+
+    private Gee.List<MediaObject> handle_metadata_request (
+                                        MediaObject media_object)
+                                        throws Error {
+        if (media_object is MediaContainer) {
+            this.update_id = ((MediaContainer) media_object).update_id;
+        } else {
+            this.update_id = uint32.MAX;
         }
 
-        yield this.fetch_media_object ();
+        this.number_returned = 1;
+        this.total_matches = 1;
+
+        var results = new ArrayList<MediaObject> ();
+        results.add (media_object);
+
+        return results;
+    }
+
+    private async Gee.List<MediaObject> handle_children_request (
+                                        MediaObject media_object)
+                                        throws Error {
+        if (!(media_object is MediaContainer)) {
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+        }
+
+        var container = (MediaContainer) media_object;
+        this.total_matches = container.child_count;
+        this.update_id = container.update_id;
+
+        if (this.requested_count == 0) {
+            // No max count requested, try to fetch all children
+            this.requested_count = this.total_matches;
+        }
+
+        var children = yield container.get_children (this.index,
+                                                     this.requested_count,
+                                                     this.cancellable);
+        this.number_returned = children.size;
+
+        return children;
     }
 
     private void conclude () {
@@ -223,42 +219,6 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
         }
 
         this.completed ();
-    }
-
-    private void serialize_children (Gee.List<MediaObject>? children) {
-        if (children == null) {
-            this.handle_error (
-                new ContentDirectoryError.NO_SUCH_OBJECT ("No such object"));
-            return;
-        }
-
-        /* serialize all children */
-        for (int i = 0; i < children.size; i++) {
-            try {
-                this.didl_writer.serialize (children[i]);
-            } catch (Error err) {
-                this.handle_error (err);
-                return;
-            }
-        }
-
-        // Conclude the successful Browse action
-        this.conclude ();
-    }
-
-    private async void fetch_children () {
-        var container = (MediaContainer) this.media_object;
-
-        try {
-            var children = yield container.get_children (this.index,
-                                                         this.requested_count,
-                                                         this.cancellable);
-            this.number_returned = children.size;
-
-            this.serialize_children (children);
-        } catch (Error err) {
-            this.handle_error (err);
-        }
     }
 }
 
