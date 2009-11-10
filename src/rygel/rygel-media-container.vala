@@ -26,8 +26,7 @@ using Gee;
 /**
  * Represents a container (folder) for media items and containers. Provides
  * basic serialization (to DIDLLiteWriter) implementation. Deriving classes
- * are supposed to provide working implementations of get_children and
- * find_object.
+ * are supposed to provide working implementations of get_children.
  */
 public abstract class Rygel.MediaContainer : MediaObject {
     /**
@@ -84,9 +83,26 @@ public abstract class Rygel.MediaContainer : MediaObject {
     *
     * return the found media object.
     */
-    public async abstract MediaObject? find_object (string       id,
-                                                    Cancellable? cancellable)
-                                                    throws Error;
+    public async virtual MediaObject? find_object (string       id,
+                                                   Cancellable? cancellable)
+                                                   throws Error {
+        var expression = new RelationalExpression ();
+        expression.op = SearchCriteriaOp.EQ;
+        expression.operand1 = "@id";
+        expression.operand2 = id;
+
+        uint total_matches;
+        var results = yield this.search (expression,
+                                         0,
+                                         1,
+                                         out total_matches,
+                                         cancellable);
+        if (results.size > 0) {
+            return results[0];
+        } else {
+            return null;
+        }
+    }
 
     /**
      * Recursively searches for all media objects the satisfy the given search

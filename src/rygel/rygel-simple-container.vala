@@ -66,44 +66,4 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
 
         return this.children.slice ((int) offset, (int) stop);
     }
-
-    public override async MediaObject? find_object (string       id,
-                                                    Cancellable? cancellable)
-                                                    throws Error {
-        MediaObject child = null;
-
-        foreach (var tmp in this.children) {
-            if (id == tmp.id) {
-                child = tmp;
-
-                break;
-            }
-        }
-
-        if (child == null) {
-            child = yield this.find_object_in_children (id, cancellable);
-        }
-
-        return child;
-    }
-
-    public async MediaObject? find_object_in_children (string       id,
-                                                       Cancellable? cancellable)
-                                                       throws Error {
-        MediaObject child = null;
-
-        // Recurse into the child containers
-        foreach (var tmp in this.children) {
-            if (tmp is MediaContainer) {
-                var container = tmp as MediaContainer;
-
-                child = yield container.find_object (id, cancellable);
-                if (child != null) {
-                    break;
-                }
-            }
-        }
-
-        return child;
-    }
 }

@@ -63,12 +63,6 @@ public class Rygel.MediaDBContainer : MediaContainer {
 
         return children;
     }
-
-    public override async MediaObject? find_object (string       id,
-                                              Cancellable? cancellable)
-                                              throws GLib.Error {
-        return media_db.get_object (id);
-    }
 }
 
 

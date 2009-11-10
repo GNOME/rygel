@@ -37,11 +37,4 @@ internal class Rygel.NullContainer : MediaContainer {
                                         throws Error {
         return new Gee.ArrayList<MediaObject>();
     }
-
-    public override async MediaObject? find_object (string       id,
-                                                    Cancellable? cancellable)
-                                                    throws Error {
-        return null;
-    }
-
 }
