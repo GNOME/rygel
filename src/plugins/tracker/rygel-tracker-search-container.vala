@@ -98,9 +98,9 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     }
 
     public override async Gee.List<MediaObject>? get_children (
-                                        uint               offset,
-                                        uint               max_count,
-                                        Cancellable?       cancellable)
+                                        uint         offset,
+                                        uint         max_count,
+                                        Cancellable? cancellable)
                                         throws GLib.Error {
         string[] keys = TrackerItem.get_metadata_keys ();
 
