@@ -149,17 +149,6 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         return this.create_item (service, path, values);
     }
 
-    public bool is_thy_child (string item_id) {
-        string parent_id = null;
-        this.get_item_info (id, out parent_id, out service);
-
-        if (parent_id != null && parent_id == this.id) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public MediaItem? create_item (string   service,
                                    string   path,
                                    string[] metadata)
