@@ -151,22 +151,94 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         return children;
     }
 
-    public override async MediaObject? find_object (string       id,
-                                                    Cancellable? cancellable)
-                                                    throws GLib.Error {
-        string parent_id;
-        string service;
+    public override async Gee.List<MediaObject>? search (
+                                        SearchExpression expression,
+                                        uint             offset,
+                                        uint             max_count,
+                                        out uint         total_matches,
+                                        Cancellable?     cancellable)
+                                        throws GLib.Error {
+        string query = this.create_query_from_expression (expression);
+        var results = new ArrayList<MediaObject> ();
 
-        var path = this.get_item_info (id, out parent_id, out service);
-        if (path == null) {
-            return null;
+        if (query == null) {
+            /* FIXME: chain-up when bug#601558 is fixed
+            return yield base.search (expression,
+                                  offset,
+                                  max_count,
+                                  total_matches,
+                                  cancellable);*/
+            return results;
         }
 
         string[] keys = TrackerItem.get_metadata_keys ();
 
-        var values = yield this.metadata_proxy.get (service, path, keys);
+        var search_result = yield this.search_proxy.query (
+                                        0,
+                                        this.service,
+                                        keys,
+                                        "",
+                                        this.keywords,
+                                        query,
+                                        false,
+                                        new string[0],
+                                        false,
+                                        (int) offset,
+                                        (int) max_count);
 
-        return this.create_item (service, path, values);
+        /* Iterate through all items */
+        for (uint i = 0; i < search_result.length[0]; i++) {
+            string path = search_result[i, 0];
+            string service = search_result[i, 1];
+            string[] metadata = this.slice_strvv_tail (search_result, i, 2);
+
+            var item = this.create_item (service, path, metadata);
+            results.add (item);
+        }
+
+        total_matches = results.size;
+
+        return results;
+    }
+
+    private string? create_query_from_expression (SearchExpression expression) {
+        string query = null;
+
+        if (expression != null && expression is RelationalExpression) {
+            var rel_expression = expression as RelationalExpression;
+            if (rel_expression.operand1 == "@id") {
+                string parent_id;
+                string service;
+
+                var path = this.get_item_info (rel_expression.operand2,
+                                               out parent_id,
+                                               out service);
+                if (path != null) {
+                    var search_condition =
+                                        "<rdfq:equals>\n" +
+                                            "<rdfq:Property " +
+                                                "name=\"File:Path\" />\n" +
+                                            "<rdf:String>" + path +
+                                            "</rdf:String>\n" +
+                                         "</rdfq:equals>\n";
+
+                    if (this.query_condition != "") {
+                        query = "<rdfq:Condition>\n" +
+                                    "<rdfq:and>\n" +
+                                        search_condition +
+                                        this.query_condition +
+                                    "</rdfq:and>\n" +
+                                "</rdfq:Condition>";
+                    } else {
+                        query = "<rdfq:Condition>\n" +
+                                    search_condition +
+                                "</rdfq:Condition>";
+                    }
+                }
+            }
+        }
+
+        return query;
     }
 
     public MediaItem? create_item (string   service,
