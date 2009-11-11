@@ -35,12 +35,10 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
 
     private const string SERVICE = "Files";
     private const string QUERY_CONDITION =
-        "<rdfq:Condition>\n" +
-                "<rdfq:equals>\n" +
-                    "<rdfq:Property name=\"%s\" />\n" +
-                    "<rdf:String>%s</rdf:String>\n" +
-                "</rdfq:equals>\n" +
-        "</rdfq:Condition>";
+                                        "<rdfq:equals>\n" +
+                                            "<rdfq:Property name=\"%s\" />\n" +
+                                            "<rdf:String>%s</rdf:String>\n" +
+                                        "</rdfq:equals>\n";
 
     public TrackerMetadataIface metadata;
 

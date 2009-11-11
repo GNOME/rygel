@@ -73,13 +73,23 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
             // We are performing actual search (though an optimized one) to get
             // the hitcount rather than GetHitCount because GetHitCount only
             // allows us to get hit count for Text searches.
+            string query;
+
+            if (this.query_condition != "") {
+                query = "<rdfq:Condition>\n" +
+                            this.query_condition +
+                        "</rdfq:Condition>";
+            } else {
+                query = "";
+            }
+
             var search_result = yield this.search_proxy.query (
                                         0,
                                         this.service,
                                         new string[0],
                                         "",
                                         this.keywords,
-                                        this.query_condition,
+                                        query,
                                         false,
                                         new string[0],
                                         false,
@@ -104,13 +114,23 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                         throws GLib.Error {
         string[] keys = TrackerItem.get_metadata_keys ();
 
+        string query;
+
+        if (this.query_condition != "") {
+            query = "<rdfq:Condition>\n" +
+                        this.query_condition +
+                    "</rdfq:Condition>";
+        } else {
+            query = "";
+        }
+
         var search_result = yield this.search_proxy.query (
                                         0,
                                         this.service,
                                         keys,
                                         "",
                                         this.keywords,
-                                        this.query_condition,
+                                        query,
                                         false,
                                         new string[0],
                                         false,
