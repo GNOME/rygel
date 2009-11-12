@@ -204,57 +204,61 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     private string? create_query_from_expression (SearchExpression expression) {
         string query = null;
 
-        if (expression != null && expression is RelationalExpression) {
-            var rel_expression = expression as RelationalExpression;
-            if (rel_expression.operand1 == "@id") {
-                string parent_id;
-                string service;
+        if (expression == null || !(expression is RelationalExpression)) {
+            return query;
+        }
 
-                var path = this.get_item_info (rel_expression.operand2,
-                                               out parent_id,
-                                               out service);
-                if (path != null && parent_id != null && parent_id == this.id) {
-                    var dir = Path.get_dirname (path);
-                    var basename = Path.get_basename (path);
+        var rel_expression = expression as RelationalExpression;
+        if (rel_expression.operand1 == "@id") {
+            string parent_id;
+            string service;
 
-                    var search_condition =
+            var path = this.get_item_info (rel_expression.operand2,
+                                           out parent_id,
+                                           out service);
+            if (path != null && parent_id != null && parent_id == this.id) {
+                var dir = Path.get_dirname (path);
+                var basename = Path.get_basename (path);
+
+                var search_condition =
                                         "<rdfq:and>\n" +
                                             "<rdfq:equals>\n" +
                                                 "<rdfq:Property " +
                                                     "name=\"File:Path\" />\n" +
-                                                    "<rdf:String>" + dir +
-                                                    "</rdf:String>\n" +
+                                                "<rdf:String>" +
+                                                    dir +
+                                                "</rdf:String>\n" +
                                             "</rdfq:equals>\n" +
                                             "<rdfq:equals>\n" +
                                                 "<rdfq:Property " +
                                                     "name=\"File:Name\" />\n" +
-                                                    "<rdf:String>" + basename +
-                                                    "</rdf:String>\n" +
+                                                "<rdf:String>" +
+                                                    basename +
+                                                "</rdf:String>\n" +
                                             "</rdfq:equals>\n" +
                                         "</rdfq:and>\n";
 
-                    if (this.query_condition != "") {
-                        query = "<rdfq:Condition>\n" +
-                                    "<rdfq:and>\n" +
-                                        search_condition +
-                                        this.query_condition +
-                                    "</rdfq:and>\n" +
-                                "</rdfq:Condition>";
-                    } else {
-                        query = "<rdfq:Condition>\n" +
-                                    search_condition +
-                                "</rdfq:Condition>";
-                    }
-                }
-            } else if (rel_expression.operand1 == "@parentID" &&
-                       rel_expression.compare_string (this.id)) {
                 if (this.query_condition != "") {
                     query = "<rdfq:Condition>\n" +
-                                this.query_condition +
+                                "<rdfq:and>\n" +
+                                    search_condition +
+                                    this.query_condition +
+                                "</rdfq:and>\n" +
                             "</rdfq:Condition>";
                 } else {
-                    query = "";
+                    query = "<rdfq:Condition>\n" +
+                                search_condition +
+                            "</rdfq:Condition>";
                 }
+            }
+        } else if (rel_expression.operand1 == "@parentID" &&
+                   rel_expression.compare_string (this.id)) {
+            if (this.query_condition != "") {
+                query = "<rdfq:Condition>\n" +
+                            this.query_condition +
+                        "</rdfq:Condition>";
+            } else {
+                query = "";
             }
         }
 
