@@ -278,10 +278,10 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         }
     }
 
-    public MediaItem? create_item (string   service,
-                                   string   path,
-                                   string[] metadata)
-                                   throws GLib.Error {
+    private MediaItem? create_item (string   service,
+                                    string   path,
+                                    string[] metadata)
+                                    throws GLib.Error {
         var id = service + ":" + this.id + ":" + path;
 
         if (service == TrackerVideoItem.SERVICE) {
@@ -306,9 +306,9 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
     // Returns the path, ID of the parent and service this item belongs to, or
     // null item_id is invalid
-    public string? get_item_info (string     item_id,
-                                  out string parent_id,
-                                  out string service) {
+    private string? get_item_info (string     item_id,
+                                   out string parent_id,
+                                   out string service) {
         var tokens = item_id.split (":", 3);
 
         if (tokens[0] != null && tokens[1] != null && tokens[2] != null) {
