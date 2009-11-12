@@ -212,47 +212,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         var query_op = this.get_op_for_expression (rel_expression);
 
         if (rel_expression.operand1 == "@id" && query_op != null) {
-            string parent_id;
-            string service;
-
-            var path = this.get_item_info (rel_expression.operand2,
-                                           out parent_id,
-                                           out service);
-            if (path != null && parent_id != null && parent_id == this.id) {
-                var dir = Path.get_dirname (path);
-                var basename = Path.get_basename (path);
-
-                var search_condition =
-                                        "<rdfq:and>\n" +
-                                            "<" + query_op + ">\n" +
-                                                "<rdfq:Property " +
-                                                    "name=\"File:Path\" />\n" +
-                                                "<rdf:String>" +
-                                                    dir +
-                                                "</rdf:String>\n" +
-                                            "</" + query_op + ">\n" +
-                                            "<" + query_op + ">\n" +
-                                                "<rdfq:Property " +
-                                                    "name=\"File:Name\" />\n" +
-                                                "<rdf:String>" +
-                                                    basename +
-                                                "</rdf:String>\n" +
-                                            "</" + query_op + ">\n" +
-                                        "</rdfq:and>\n";
-
-                if (this.query_condition != "") {
-                    query = "<rdfq:Condition>\n" +
-                                "<rdfq:and>\n" +
-                                    search_condition +
-                                    this.query_condition +
-                                "</rdfq:and>\n" +
-                            "</rdfq:Condition>";
-                } else {
-                    query = "<rdfq:Condition>\n" +
-                                search_condition +
-                            "</rdfq:Condition>";
-                }
-            }
+            query = create_query_for_id (rel_expression, query_op);
         } else if (rel_expression.operand1 == "@parentID" &&
                    rel_expression.compare_string (this.id)) {
             if (this.query_condition != "") {
@@ -261,6 +221,54 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                         "</rdfq:Condition>";
             } else {
                 query = "";
+            }
+        }
+
+        return query;
+    }
+
+    private string? create_query_for_id (RelationalExpression expression,
+                                         string               query_op) {
+        string query = null;
+        string parent_id;
+        string service;
+
+        var path = this.get_item_info (expression.operand2,
+                                       out parent_id,
+                                       out service);
+
+        if (path != null && parent_id != null && parent_id == this.id) {
+            var dir = Path.get_dirname (path);
+            var basename = Path.get_basename (path);
+
+            var search_condition = "<rdfq:and>\n" +
+                                        "<" + query_op + ">\n" +
+                                            "<rdfq:Property " +
+                                                "name=\"File:Path\" />\n" +
+                                            "<rdf:String>" +
+                                                dir +
+                                            "</rdf:String>\n" +
+                                        "</" + query_op + ">\n" +
+                                        "<" + query_op + ">\n" +
+                                            "<rdfq:Property " +
+                                                "name=\"File:Name\" />\n" +
+                                            "<rdf:String>" +
+                                                basename +
+                                            "</rdf:String>\n" +
+                                        "</" + query_op + ">\n" +
+                                   "</rdfq:and>\n";
+
+            if (this.query_condition != "") {
+                query = "<rdfq:Condition>\n" +
+                            "<rdfq:and>\n" +
+                                search_condition +
+                                this.query_condition +
+                            "</rdfq:and>\n" +
+                        "</rdfq:Condition>";
+            } else {
+                query = "<rdfq:Condition>\n" +
+                            search_condition +
+                        "</rdfq:Condition>";
             }
         }
 
