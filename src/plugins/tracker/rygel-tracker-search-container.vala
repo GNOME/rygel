@@ -209,7 +209,9 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         }
 
         var rel_expression = expression as RelationalExpression;
-        if (rel_expression.operand1 == "@id") {
+        var query_op = this.get_op_for_expression (rel_expression);
+
+        if (rel_expression.operand1 == "@id" && query_op != null) {
             string parent_id;
             string service;
 
@@ -222,20 +224,20 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
                 var search_condition =
                                         "<rdfq:and>\n" +
-                                            "<rdfq:equals>\n" +
+                                            "<" + query_op + ">\n" +
                                                 "<rdfq:Property " +
                                                     "name=\"File:Path\" />\n" +
                                                 "<rdf:String>" +
                                                     dir +
                                                 "</rdf:String>\n" +
-                                            "</rdfq:equals>\n" +
-                                            "<rdfq:equals>\n" +
+                                            "</" + query_op + ">\n" +
+                                            "<" + query_op + ">\n" +
                                                 "<rdfq:Property " +
                                                     "name=\"File:Name\" />\n" +
                                                 "<rdf:String>" +
                                                     basename +
                                                 "</rdf:String>\n" +
-                                            "</rdfq:equals>\n" +
+                                            "</" + query_op + ">\n" +
                                         "</rdfq:and>\n";
 
                 if (this.query_condition != "") {
@@ -263,6 +265,17 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         }
 
         return query;
+    }
+
+    private string? get_op_for_expression (RelationalExpression expression) {
+        switch (expression.op) {
+        case SearchCriteriaOp.EQ:
+            return "rdfq:equals";
+        case SearchCriteriaOp.CONTAINS:
+            return "rdfq:contains";
+        default:
+            return null;
+        }
     }
 
     public MediaItem? create_item (string   service,
