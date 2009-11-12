@@ -214,13 +214,24 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                                out parent_id,
                                                out service);
                 if (path != null) {
+                    var dir = Path.get_dirname (path);
+                    var basename = Path.get_basename (path);
+
                     var search_condition =
-                                        "<rdfq:equals>\n" +
-                                            "<rdfq:Property " +
-                                                "name=\"File:Path\" />\n" +
-                                            "<rdf:String>" + path +
-                                            "</rdf:String>\n" +
-                                         "</rdfq:equals>\n";
+                                        "<rdfq:and>\n" +
+                                            "<rdfq:equals>\n" +
+                                                "<rdfq:Property " +
+                                                    "name=\"File:Path\" />\n" +
+                                                    "<rdf:String>" + dir +
+                                                    "</rdf:String>\n" +
+                                            "</rdfq:equals>\n" +
+                                            "<rdfq:equals>\n" +
+                                                "<rdfq:Property " +
+                                                    "name=\"File:Name\" />\n" +
+                                                    "<rdf:String>" + basename +
+                                                    "</rdf:String>\n" +
+                                            "</rdfq:equals>\n" +
+                                        "</rdfq:and>\n";
 
                     if (this.query_condition != "") {
                         query = "<rdfq:Condition>\n" +
