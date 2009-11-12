@@ -213,7 +213,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                 var path = this.get_item_info (rel_expression.operand2,
                                                out parent_id,
                                                out service);
-                if (path != null) {
+                if (path != null && parent_id != null && parent_id == this.id) {
                     var dir = Path.get_dirname (path);
                     var basename = Path.get_basename (path);
 
