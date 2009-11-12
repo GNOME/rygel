@@ -35,7 +35,6 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     private const string SEARCH_PATH = "/org/freedesktop/Tracker/Search";
     private const string METADATA_PATH = "/org/freedesktop/Tracker/Metadata";
 
-    public TrackerMetadataIface metadata_proxy;
     public TrackerSearchIface search_proxy;
 
     public string service;
@@ -332,9 +331,6 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     private void create_proxies () throws DBus.Error {
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
-        this.metadata_proxy = connection.get_object (TRACKER_SERVICE,
-                                                     METADATA_PATH)
-                                                     as TrackerMetadataIface;
         this.search_proxy = connection.get_object (TRACKER_SERVICE,
                                                    SEARCH_PATH)
                                                    as TrackerSearchIface;
