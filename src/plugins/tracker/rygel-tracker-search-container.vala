@@ -247,7 +247,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                     }
                 }
             } else if (rel_expression.operand1 == "@parentID" &&
-                       rel_expression.operand2 == this.id) {
+                       rel_expression.compare_string (this.id)) {
                 if (this.query_condition != "") {
                     query = "<rdfq:Condition>\n" +
                                 this.query_condition +
