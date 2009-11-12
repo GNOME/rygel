@@ -246,6 +246,15 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                 "</rdfq:Condition>";
                     }
                 }
+            } else if (rel_expression.operand1 == "@parentID" &&
+                       rel_expression.operand2 == this.id) {
+                if (this.query_condition != "") {
+                    query = "<rdfq:Condition>\n" +
+                                this.query_condition +
+                            "</rdfq:Condition>";
+                } else {
+                    query = "";
+                }
             }
         }
 
