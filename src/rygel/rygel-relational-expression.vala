@@ -73,7 +73,7 @@ public class Rygel.RelationalExpression :
         return ret;
     }
 
-    private bool compare_string (string? str) {
+    public bool compare_string (string? str) {
         switch (this.op) {
         case SearchCriteriaOp.EXISTS:
             if (this.operand2 == "true") {
