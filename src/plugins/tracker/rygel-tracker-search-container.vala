@@ -111,43 +111,18 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                         uint         max_count,
                                         Cancellable? cancellable)
                                         throws GLib.Error {
-        string[] keys = TrackerItem.get_metadata_keys ();
+        var expression = new RelationalExpression ();
+        expression.op = SearchCriteriaOp.EQ;
+        expression.operand1 = "@parentID";
+        expression.operand2 = this.id;
 
-        string query;
+        uint total_matches;
 
-        if (this.query_condition != "") {
-            query = "<rdfq:Condition>\n" +
-                        this.query_condition +
-                    "</rdfq:Condition>";
-        } else {
-            query = "";
-        }
-
-        var search_result = yield this.search_proxy.query (
-                                        0,
-                                        this.service,
-                                        keys,
-                                        "",
-                                        this.keywords,
-                                        query,
-                                        false,
-                                        new string[0],
-                                        false,
-                                        (int) offset,
-                                        (int) max_count);
-
-        var children = new ArrayList<MediaObject> ();
-        /* Iterate through all items */
-        for (uint i = 0; i < search_result.length[0]; i++) {
-            string path = search_result[i, 0];
-            string service = search_result[i, 1];
-            string[] metadata = this.slice_strvv_tail (search_result, i, 2);
-
-            var item = this.create_item (service, path, metadata);
-            children.add (item);
-        }
-
-        return children;
+        return yield this.search (expression,
+                                  offset,
+                                  max_count,
+                                  out total_matches,
+                                  cancellable);
     }
 
     public override async Gee.List<MediaObject>? search (
