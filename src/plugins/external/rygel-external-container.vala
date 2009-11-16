@@ -103,36 +103,68 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         return media_objects.slice ((int) offset, (int) stop);
     }
 
-    public override async MediaObject? find_object (string       id,
-                                                    Cancellable? cancellable)
-                                                    throws GLib.Error {
-        MediaObject media_object = find_container (id);
-        if (media_object == null && ExternalItemFactory.id_valid (id)) {
-            var factory = new ExternalItemFactory ();
-            media_object = yield factory.create_for_id (id, this);
+    public override async Gee.List<MediaObject>? search (
+                                        SearchExpression expression,
+                                        uint             offset,
+                                        uint             max_count,
+                                        out uint         total_matches,
+                                        Cancellable?     cancellable)
+                                        throws GLib.Error {
+        var results = new ArrayList<MediaObject> ();
+
+        /* We only deal with relational expression */
+        if (expression == null || !(expression is RelationalExpression)) {
+            return yield base.search (expression,
+                                      offset,
+                                      max_count,
+                                      out total_matches,
+                                      cancellable);
         }
 
-        return media_object;
+        var rel_expression = expression as RelationalExpression;
+        var id = rel_expression.operand2;
+
+        /* We only deal with search for a particular item */
+        if (rel_expression.operand1 != "@id" ||
+            rel_expression.op != SearchCriteriaOp.EQ ||
+            !is_direct_child (id)) {
+            return yield base.search (expression,
+                                      offset,
+                                      max_count,
+                                      out total_matches,
+                                      cancellable);
+        }
+
+        var factory = new ExternalItemFactory ();
+
+        if (ExternalItemFactory.id_valid (id)) {
+            var media_object = yield factory.create_for_id (id, this);
+            results.add (media_object);
+        } else {
+            foreach (var container in this.containers) {
+                if (container.id == id) {
+                    results.add (container);
+                }
+            }
+        }
+
+        total_matches = results.size;
+
+        return results;
     }
 
-    // Private methods
-    private MediaContainer? find_container (string id) {
-        MediaContainer container = null;
-
-        foreach (var tmp in this.containers) {
-            if (id == tmp.id) {
-                container = tmp;
-            } else {
-                // Check it's children
-                container = tmp.find_container (id);
+    private bool is_direct_child (string id) {
+        if (ExternalItemFactory.id_valid (id)) {
+            return true;
+        } else {
+            foreach (var container in this.containers) {
+                if (container.id == id) {
+                    return true;
+                }
             }
 
-            if (container != null) {
-                break;
-            }
+            return false;
         }
-
-        return container;
     }
 
     private void update_container () throws GLib.Error {
