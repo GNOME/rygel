@@ -84,8 +84,12 @@ public class Rygel.ExternalItemFactory {
         value = item_props.lookup ("MIMEType");
         item.mime_type = value.get_string ();
 
-        value = item_props.lookup ("URLs");
-        weak string[] uris = (string[]) value.get_boxed ();
+        // FIXME: Get this value through the props until bug#602003 is fixed
+        // value = item_props.lookup ("URLs");
+        var item_iface = connection.get_object (parent.service_name,
+                                                object_path)
+                                                as ExternalMediaItem;
+        string[] uris = item_iface.urls;
 
         for (var i = 0; uris[i] != null; i++) {
             var tmp = uris[i].replace ("@ADDRESS@", parent.host_ip);
