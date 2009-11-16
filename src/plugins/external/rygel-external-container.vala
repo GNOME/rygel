@@ -84,9 +84,9 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
 
         // Then get and add the child items
         var obj_paths = this.actual_container.items;
+        var factory = new ExternalItemFactory ();
         foreach (var obj_path in obj_paths) {
             try {
-                var factory = new ExternalItemFactory ();
                 var item = yield factory.create_for_path (obj_path, this);
 
                 media_objects.add (item);
