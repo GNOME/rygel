@@ -83,9 +83,9 @@ public abstract class Rygel.MediaContainer : MediaObject {
     *
     * return the found media object.
     */
-    public async virtual MediaObject? find_object (string       id,
-                                                   Cancellable? cancellable)
-                                                   throws Error {
+    internal async MediaObject? find_object (string       id,
+                                             Cancellable? cancellable)
+                                             throws Error {
         var expression = new RelationalExpression ();
         expression.op = SearchCriteriaOp.EQ;
         expression.operand1 = "@id";
