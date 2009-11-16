@@ -74,36 +74,6 @@ public abstract class Rygel.MediaContainer : MediaObject {
                                         Cancellable?       cancellable)
                                         throws Error;
 
-   /**
-    * Recursively searches for media object with the given id in this container.
-    *
-    * @param id ID of the media object to search for
-    * @param cancellable optional cancellable for this operation
-    * @param callback function to call when result is ready
-    *
-    * return the found media object.
-    */
-    internal async MediaObject? find_object (string       id,
-                                             Cancellable? cancellable)
-                                             throws Error {
-        var expression = new RelationalExpression ();
-        expression.op = SearchCriteriaOp.EQ;
-        expression.operand1 = "@id";
-        expression.operand2 = id;
-
-        uint total_matches;
-        var results = yield this.search (expression,
-                                         0,
-                                         1,
-                                         out total_matches,
-                                         cancellable);
-        if (results.size > 0) {
-            return results[0];
-        } else {
-            return null;
-        }
-    }
-
     /**
      * Recursively searches for all media objects the satisfy the given search
      * expression in this container.
@@ -188,6 +158,50 @@ public abstract class Rygel.MediaContainer : MediaObject {
         }
     }
 
+    /**
+     * Method to be be called each time this container is updated (metadata
+     * changes for this container, items under it gets removed/added or their
+     * metadata changes etc).
+     *
+     * @param container the container that just got updated.
+     */
+    public void updated () {
+        this.update_id++;
+
+        // Emit the signal that will start the bump-up process for this event.
+        this.container_updated (this);
+    }
+
+   /**
+    * Recursively searches for media object with the given id in this container.
+    *
+    * @param id ID of the media object to search for
+    * @param cancellable optional cancellable for this operation
+    * @param callback function to call when result is ready
+    *
+    * return the found media object.
+    */
+    internal async MediaObject? find_object (string       id,
+                                             Cancellable? cancellable)
+                                             throws Error {
+        var expression = new RelationalExpression ();
+        expression.op = SearchCriteriaOp.EQ;
+        expression.operand1 = "@id";
+        expression.operand2 = id;
+
+        uint total_matches;
+        var results = yield this.search (expression,
+                                         0,
+                                         1,
+                                         out total_matches,
+                                         cancellable);
+        if (results.size > 0) {
+            return results[0];
+        } else {
+            return null;
+        }
+    }
+
     private async Gee.List<MediaObject> search_in_children (
                                         SearchExpression      expression,
                                         Gee.List<MediaObject> children,
@@ -216,20 +230,6 @@ public abstract class Rygel.MediaContainer : MediaObject {
         }
 
         return result;
-    }
-
-    /**
-     * Method to be be called each time this container is updated (metadata
-     * changes for this container, items under it gets removed/added or their
-     * metadata changes etc).
-     *
-     * @param container the container that just got updated.
-     */
-    public void updated () {
-        this.update_id++;
-
-        // Emit the signal that will start the bump-up process for this event.
-        this.container_updated (this);
     }
 
     /**
