@@ -290,12 +290,14 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     }
 
     private void enable_upnp (bool enable) {
-        var dest_path = Path.build_filename (Environment.get_user_config_dir (),
-                                             "autostart",
-                                             "rygel.desktop");
-        var dest = File.new_for_path (dest_path);
-
+        var dest_dir = Path.build_filename (Environment.get_user_config_dir (),
+                                             "autostart");
         try {
+            this.ensure_dir_exists (dest_dir);
+
+            var dest_path = Path.build_filename (dest_dir, "rygel.desktop");
+            var dest = File.new_for_path (dest_path);
+
             if (enable) {
                 uint32 res;
 
@@ -332,6 +334,14 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                      enable? "start": "stop",
                      err.message);
         }
+    }
+
+    private void ensure_dir_exists (string dir_path) throws GLib.Error {
+        var dir = File.new_for_path (dir_path);
+
+        try {
+            dir.make_directory (null);
+        } catch (IOError.EXISTS err) { /* Thats OK */ }
     }
 }
 
