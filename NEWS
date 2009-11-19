@@ -1,3 +1,37 @@
+0.4.6
+=====
+
+Brief summary of changes since 0.4.4:
+
+- Implement optional UPnP Search action. This is not only a must have feature
+  for a commercial MediaServer but is also a big first step towards proper
+  XBox 360 support.
+- Simplify Browse action handling.
+- Simplify MediaServer plugin implementation.
+- Make sure autostart dir exists before attempting to write to it.
+- Fix a potential crash that is trigered by MediaContainer reporting incorrect
+  (higher) number of children.
+- External:
+  - Work around (vala) bug#602003.
+  - Optimizations and code clean-ups.
+- Tracker:
+  - Provide an efficient Search implementation using Tracker's search API.
+  - Minor code clean-ups.
+
+Dependency-related changes:
+
+- Require gupnp-av >= 0.5.2.
+- Require gupnp-vala >= 0.6.2.
+- Require valac >= 0.7.9.
+
+Bugs fixed in this release:
+
+600256 - Segfault when trying to access a stream
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 0.4.4
 =====
 
