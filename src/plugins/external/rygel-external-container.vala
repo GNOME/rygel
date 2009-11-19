@@ -98,7 +98,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         }
 
         uint stop = offset + max_count;
-        stop = stop.clamp (0, this.child_count);
+        stop = stop.clamp (0, media_objects.size);
 
         return media_objects.slice ((int) offset, (int) stop);
     }
