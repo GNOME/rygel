@@ -81,15 +81,12 @@ public class Rygel.MediaDBContainer : MediaContainer {
         for (int i = 0; i < args.n_values; i++)
             debug ("Arg %d: %s", i, args.get_nth(i).get_string());
 
-        var children = this.media_db.get_children_with_filter (filter,
-                                                               args,
-                                                               this.id,
-                                                               offset,
-                                                               max_count);
-        foreach (var child in children) {
-            child.parent = this;
-        }
-
+        var children = this.media_db.get_children_with_filter (
+                                            filter,
+                                            args,
+                                            this.id,
+                                            offset,
+                                            max_count == 0 ? -1 :  max_count);
         return children;
     }
 
