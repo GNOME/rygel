@@ -190,6 +190,24 @@ public class Rygel.MediaDB : Object {
                  "o.title ASC " +
     "LIMIT ?,?";
 
+    private const string GET_CHILDREN_STRING_WITH_FILTER =
+    "SELECT o.type_fk, o.title, m.size, m.mime_type, " +
+            "m.width, m.height, m.class, m.author, m.album, " +
+            "m.date, m.bitrate, m.sample_freq, m.bits_per_sample, " +
+            "m.channels, m.track, m.color_depth, m.duration, " +
+            "o.upnp_id, o.parent, o.timestamp " +
+    "FROM Object o " +
+        "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
+        "LEFT OUTER JOIN meta_data m " +
+            "ON o.upnp_id = m.object_fk " +
+    "WHERE %s " +
+        "ORDER BY o.type_fk ASC, " +
+                 "m.class ASC, " +
+                 "m.track ASC, " +
+                 "o.title ASC " +
+    "LIMIT ?,?";
+
+
     private const string URI_GET_STRING =
     "SELECT uri FROM Uri WHERE Uri.object_fk = ?";
 
@@ -704,6 +722,39 @@ public class Rygel.MediaDB : Object {
         };
 
         this.db.exec (GET_CHILDREN_STRING, values, cb);
+        return children;
+    }
+
+    public Gee.ArrayList<MediaObject> get_children_with_filter (
+                                                 string filter,
+                                                 GLib.ValueArray args,
+                                                 string container_id,
+                                                 long offset,
+                                                 long max_count) throws Error {
+        ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
+        GLib.Value v = container_id;
+        args.prepend (v);
+        v = offset;
+        args.append (v);
+        v = max_count;
+        args.append (v);
+
+        debug ("Parameters to bind: %u", args.n_values);
+
+        Rygel.Database.RowCallback cb = (stmt) => {
+            var child_id = stmt.column_text (17);
+            var parent_id = stmt.column_text (18);
+            var parent = (MediaContainer) get_object (parent_id);
+            children.add (get_object_from_statement (parent,
+                                                     child_id,
+                                                     stmt));
+            children[children.size - 1].parent = parent;
+            children[children.size - 1].parent_ref = parent;
+
+            return true;
+        };
+
+        this.db.exec (GET_CHILDREN_STRING_WITH_FILTER.printf(filter), args.values, cb);
         return children;
     }
 }
