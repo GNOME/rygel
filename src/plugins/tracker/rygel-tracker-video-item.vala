@@ -28,7 +28,7 @@ using DBus;
  * Represents Tracker video item.
  */
 public class Rygel.TrackerVideoItem : Rygel.TrackerItem {
-    public const string SERVICE = "Videos";
+    public const string CATEGORY = "nmm:Video";
 
     public TrackerVideoItem (string                 id,
                              string                 path,
@@ -37,25 +37,20 @@ public class Rygel.TrackerVideoItem : Rygel.TrackerItem {
                              throws GLib.Error {
         base (id, path, parent, MediaItem.VIDEO_CLASS, metadata);
 
-        if (metadata[Metadata.VIDEO_TITLE] != "")
-            this.title = metadata[Metadata.VIDEO_TITLE];
+        if (metadata[Metadata.TITLE] != "")
+            this.title = metadata[Metadata.TITLE];
         else
             /* If title wasn't provided, use filename instead */
             this.title = metadata[Metadata.FILE_NAME];
 
-        if (metadata[Metadata.VIDEO_WIDTH] != "")
-            this.width = metadata[Metadata.VIDEO_WIDTH].to_int ();
+        if (metadata[Metadata.WIDTH] != "")
+            this.width = metadata[Metadata.WIDTH].to_int ();
 
-        if (metadata[Metadata.VIDEO_HEIGHT] != "")
-            this.height = metadata[Metadata.VIDEO_HEIGHT].to_int ();
+        if (metadata[Metadata.HEIGHT] != "")
+            this.height = metadata[Metadata.HEIGHT].to_int ();
 
-        if (metadata[Metadata.VIDEO_DURATION] != "")
-            this.duration = metadata[Metadata.VIDEO_DURATION].to_int ();
-
-        if (metadata[Metadata.VIDEO_DURATION] != "")
-            this.duration = metadata[Metadata.VIDEO_DURATION].to_int ();
-
-        this.author = metadata[Metadata.AUTHOR];
+        if (metadata[Metadata.DURATION] != "")
+            this.duration = metadata[Metadata.DURATION].to_int ();
     }
 }
 

@@ -28,7 +28,7 @@ using DBus;
  * Represents Tracker music item.
  */
 public class Rygel.TrackerMusicItem : Rygel.TrackerItem {
-    public const string SERVICE = "Music";
+    public const string CATEGORY = "nmm:MusicPiece";
 
     public TrackerMusicItem (string                 id,
                              string                 path,
@@ -37,25 +37,23 @@ public class Rygel.TrackerMusicItem : Rygel.TrackerItem {
                              throws GLib.Error {
         base (id, path, parent, MediaItem.MUSIC_CLASS, metadata);
 
-        if (metadata[Metadata.AUDIO_TITLE] != "")
-            this.title = metadata[Metadata.AUDIO_TITLE];
+        if (metadata[Metadata.TITLE] != "")
+            this.title = metadata[Metadata.TITLE];
         else
             /* If title wasn't provided, use filename instead */
             this.title = metadata[Metadata.FILE_NAME];
 
-        if (metadata[Metadata.AUDIO_DURATION] != "")
-            this.duration = metadata[Metadata.AUDIO_DURATION].to_int ();
+        if (metadata[Metadata.DURATION] != "")
+            this.duration = metadata[Metadata.DURATION].to_int ();
 
-        if (metadata[Metadata.TRACK_NUM] != "")
-            this.track_number = metadata[Metadata.TRACK_NUM].to_int ();
+        if (metadata[Metadata.AUDIO_TRACK_NUM] != "")
+            this.track_number = metadata[Metadata.AUDIO_TRACK_NUM].to_int ();
 
-        if (metadata[Metadata.RELEASE] != "") {
-            this.date = seconds_to_iso8601 (metadata[Metadata.RELEASE]);
-        } else {
-            this.date = seconds_to_iso8601 (metadata[Metadata.DATE_ADDED]);
+        if (metadata[Metadata.DATE] != "") {
+            this.date = seconds_to_iso8601 (metadata[Metadata.DATE]);
         }
 
-        this.author = metadata[Metadata.ARTIST];
+        this.author = metadata[Metadata.AUDIO_ARTIST];
         this.album = metadata[Metadata.AUDIO_ALBUM];
     }
 }

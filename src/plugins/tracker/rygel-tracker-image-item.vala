@@ -28,7 +28,7 @@ using DBus;
  * Represents Tracker image item.
  */
 public class Rygel.TrackerImageItem : Rygel.TrackerItem {
-    public const string SERVICE = "Images";
+    public const string CATEGORY = "nmm:Photo";
 
     public TrackerImageItem (string                 id,
                              string                 path,
@@ -37,24 +37,21 @@ public class Rygel.TrackerImageItem : Rygel.TrackerItem {
                              throws GLib.Error {
         base (id, path, parent, MediaItem.IMAGE_CLASS, metadata);
 
-        if (metadata[Metadata.IMAGE_TITLE] != "")
-            this.title = metadata[Metadata.IMAGE_TITLE];
+        if (metadata[Metadata.TITLE] != "")
+            this.title = metadata[Metadata.TITLE];
         else
             /* If title wasn't provided, use filename instead */
             this.title = metadata[Metadata.FILE_NAME];
 
-        if (metadata[Metadata.IMAGE_WIDTH] != "")
-            this.width = metadata[Metadata.IMAGE_WIDTH].to_int ();
+        if (metadata[Metadata.WIDTH] != "")
+            this.width = metadata[Metadata.WIDTH].to_int ();
 
-        if (metadata[Metadata.IMAGE_HEIGHT] != "")
-            this.height = metadata[Metadata.IMAGE_HEIGHT].to_int ();
+        if (metadata[Metadata.HEIGHT] != "")
+            this.height = metadata[Metadata.HEIGHT].to_int ();
 
-        if (metadata[Metadata.IMAGE_DATE] != "") {
-            this.date = seconds_to_iso8601 (metadata[Metadata.IMAGE_DATE]);
+        if (metadata[Metadata.DATE] != "") {
+            this.date = seconds_to_iso8601 (metadata[Metadata.DATE]);
         }
-
-        this.author = metadata[Metadata.CREATOR];
-        this.album = metadata[Metadata.IMAGE_ALBUM];
     }
 }
 

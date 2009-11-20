@@ -26,73 +26,17 @@ using DBus;
 using Gee;
 
 /**
- * Container listing all available keywords (tags) in Tracker DB.
+ * Container listing all available photo tags in Tracker DB.
  */
-public class Rygel.TrackerKeywords : Rygel.SimpleContainer {
+public class Rygel.TrackerKeywords : Rygel.TrackerMetadataValues {
     /* class-wide constants */
-    private const string TRACKER_SERVICE = "org.freedesktop.Tracker";
-    private const string KEYWORDS_PATH = "/org/freedesktop/Tracker/Keywords";
-
-    private const string SERVICE = "Files";
     private const string TITLE = "Tags";
-
-    public TrackerKeywordsIface keywords;
+    private const string CATEGORY = "nmm:Photo";
+    private const string[] KEY_CHAIN = { "nao:hasTag", "nao:prefLabel", null };
 
     public TrackerKeywords (string         id,
                             MediaContainer parent) {
-        base (id, parent, TITLE);
-
-        try {
-            this.create_proxies ();
-        } catch (DBus.Error error) {
-            critical ("Failed to create to Session bus: %s\n",
-                      error.message);
-
-            return;
-        }
-
-        this.fetch_keywords.begin ();
-    }
-
-    private async void fetch_keywords () {
-        string[,] keywords_list;
-
-        try {
-            /* FIXME: We need to hook to some tracker signals to keep
-             *        this field up2date at all times
-             */
-            keywords_list = yield this.keywords.get_list (SERVICE);
-        } catch (DBus.Error error) {
-            critical ("error getting all keywords: %s", error.message);
-
-            return;
-        }
-
-        /* Iterate through all the values */
-        for (uint i = 0; i < keywords_list.length[0]; i++) {
-            string keyword = keywords_list[i, 0];
-
-            var keywords = new string[] { keyword };
-
-            var container = new TrackerSearchContainer (keyword,
-                                                        this,
-                                                        keyword,
-                                                        SERVICE,
-                                                        "",
-                                                        keywords);
-
-            this.add_child (container);
-        }
-
-        this.updated ();
-    }
-
-    private void create_proxies () throws DBus.Error {
-        DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
-
-        this.keywords = connection.get_object (TRACKER_SERVICE,
-                                               KEYWORDS_PATH)
-                                               as TrackerKeywordsIface;
+        base (id, parent, TITLE, CATEGORY, KEY_CHAIN);
     }
 }
 

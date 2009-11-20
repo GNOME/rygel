@@ -37,25 +37,34 @@ public class Rygel.TrackerRootContainer : Rygel.SimpleContainer {
                                         "16",
                                         this,
                                         "Pictures",
-                                        TrackerImageItem.SERVICE));
+                                        TrackerImageItem.CATEGORY));
         this.add_child (new TrackerSearchContainer (
                                         "14",
                                         this,
                                         "Music",
-                                        TrackerMusicItem.SERVICE));
+                                        TrackerMusicItem.CATEGORY));
         this.add_child (new TrackerSearchContainer (
                                         "15",
                                         this,
                                         "Videos",
-                                        TrackerVideoItem.SERVICE));
-        this.add_child (new TrackerMetadataValues ("Audio:Artist",
-                                                   "17",
+                                        TrackerVideoItem.CATEGORY));
+
+        var key_chain = new string[] { "nmm:performer",
+                                       "nmm:artistName",
+                                       null };
+        this.add_child (new TrackerMetadataValues ("17",
                                                    this,
-                                                   "Artists"));
-        this.add_child (new TrackerMetadataValues ("Audio:Album",
-                                                   "18",
+                                                   "Artists",
+                                                   TrackerMusicItem.CATEGORY,
+                                                   key_chain));
+
+        key_chain = new string[] { "nmm:musicAlbum", "nmm:albumTitle", null };
+        this.add_child (new TrackerMetadataValues ("18",
                                                    this,
-                                                   "Albums"));
+                                                   "Albums",
+                                                   TrackerMusicItem.CATEGORY,
+                                                   key_chain));
+
         this.add_child (new TrackerKeywords ("19", this));
     }
 }

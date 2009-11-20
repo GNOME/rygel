@@ -30,27 +30,28 @@ using Gee;
  */
 public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
     /* class-wide constants */
-    private const string TRACKER_SERVICE = "org.freedesktop.Tracker";
-    private const string METADATA_PATH = "/org/freedesktop/Tracker/Metadata";
+    private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
+    private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
+    private const string ITEM_VARIABLE = "?item";
 
-    private const string SERVICE = "Files";
-    private const string QUERY_CONDITION =
-                                        "<rdfq:equals>\n" +
-                                            "<rdfq:Property name=\"%s\" />\n" +
-                                            "<rdf:String>%s</rdf:String>\n" +
-                                        "</rdfq:equals>\n";
+    private string category;
 
-    public TrackerMetadataIface metadata;
+    // In tracker 0.7, we might don't get values of keys in place so you need a
+    // chain of keys to reach to final destination. For instances:
+    // nmm:Performer -> nmm:artistName
+    public string[] key_chain;
 
-    public string key;
+    private TrackerResourcesIface resources;
 
-    public TrackerMetadataValues (string         key,
-                                  string         id,
+    public TrackerMetadataValues (string         id,
                                   MediaContainer parent,
-                                  string         title) {
+                                  string         title,
+                                  string         category,
+                                  string[]       key_chain) {
         base (id, parent, title);
 
-        this.key = key;
+        this.category = category;
+        this.key_chain = key_chain;
 
         try {
             this.create_proxies ();
@@ -65,44 +66,78 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
     }
 
     private async void fetch_metadata_values () {
+        int i;
+        var mandatory = new ArrayList<TrackerQueryTriplet> ();
+
+        // All variables used in the query
+        var num_keys = this.key_chain.length - 1;
+        var variables = new string[num_keys];
+        for (i = 0; i < num_keys; i++) {
+            variables[i] = "?" + key_chain[i].replace (":", "_");
+
+            string subject;
+            if (i == 0) {
+                subject = null;
+            } else {
+                subject = variables[i - 1];
+            }
+
+            mandatory.add (new TrackerQueryTriplet (subject,
+                                                    this.key_chain[i],
+                                                    variables[i],
+                                                    false));
+        }
+
+        mandatory.insert (0, new TrackerQueryTriplet (ITEM_VARIABLE,
+                                                      "a",
+                                                      this.category,
+                                                      false));
+
+        // Variables to select from query
+        var selected = new ArrayList<string> ();
+        // Last variable is the only thing we are interested in the result
+        var last_variable = variables[num_keys - 1];
+        selected.add ("DISTINCT " + last_variable);
+
+        var query = new TrackerQuery (selected,
+                                      mandatory,
+                                      null,
+                                      null,
+                                      last_variable);
+
         string[,] values;
-
         try {
-            var keys = new string[] { this.key };
-
             /* FIXME: We need to hook to some tracker signals to keep
              *        this field up2date at all times
              */
-            values = yield this.metadata.get_unique_values (SERVICE,
-                                                            keys,
-                                                            "",
-                                                            false,
-                                                            0,
-                                                            -1);
+            debug ("Executing SPARQL query: %s", query.to_string ());
+            values = yield this.resources.sparql_query (query.to_string ());
         } catch (DBus.Error error) {
             critical ("error getting all values for '%s': %s",
-                      this.key,
+                      string.joinv (" -> ", this.key_chain),
                       error.message);
 
             return;
         }
 
         /* Iterate through all the values */
-        for (uint i = 0; i < values.length[0]; i++) {
+        for (i = 0; i < values.length[0]; i++) {
             string value = values[i, 0];
 
             if (value == "") {
                 continue;
             }
 
-            var query_condition = QUERY_CONDITION.printf (
-                                        this.key,
-                                        Markup.escape_text (value));
+            // The child container can use the same mandatory triplets we used
+            // in our query except that last value is now fixed
+            mandatory.last ().obj = "\"" + value + "\"";
+
             var container = new TrackerSearchContainer (value,
                                                         this,
                                                         value,
-                                                        SERVICE,
-                                                        query_condition);
+                                                        this.category,
+                                                        mandatory,
+                                                        null);
 
             this.add_child (container);
         }
@@ -113,9 +148,9 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
     private void create_proxies () throws DBus.Error {
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
-        this.metadata = connection.get_object (TRACKER_SERVICE,
-                                               METADATA_PATH)
-                                               as TrackerMetadataIface;
+        this.resources = connection.get_object (TRACKER_SERVICE,
+                                                RESOURCES_PATH)
+                                                as TrackerResourcesIface;
     }
 }
 

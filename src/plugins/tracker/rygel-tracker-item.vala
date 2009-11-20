@@ -30,33 +30,22 @@ using DBus;
 public abstract class Rygel.TrackerItem : Rygel.MediaItem {
     protected enum Metadata {
         FILE_NAME,
+        TITLE,
         MIME,
         SIZE,
         DATE,
 
-        // Image
-        IMAGE_TITLE,
-        IMAGE_WIDTH,
-        IMAGE_HEIGHT,
-        IMAGE_ALBUM,
-        IMAGE_DATE,
-        CREATOR,
+        // Image and Video
+        HEIGHT,
+        WIDTH,
+
+        // Audio and Video
+        DURATION,
 
         // Audio
-        AUDIO_TITLE,
-        AUDIO_DURATION,
         AUDIO_ALBUM,
-        ARTIST,
-        TRACK_NUM,
-        RELEASE,
-        DATE_ADDED,
-
-        // Video
-        VIDEO_TITLE,
-        VIDEO_WIDTH,
-        VIDEO_HEIGHT,
-        VIDEO_DURATION,
-        AUTHOR,
+        AUDIO_ARTIST,
+        AUDIO_TRACK_NUM,
 
         LAST_KEY
     }
@@ -86,36 +75,29 @@ public abstract class Rygel.TrackerItem : Rygel.MediaItem {
 
     public static string[] get_metadata_keys () {
         string[] keys = new string[Metadata.LAST_KEY];
-        keys[Metadata.FILE_NAME] = "File:Name";
-        keys[Metadata.MIME] = "File:Mime";
-        keys[Metadata.SIZE] = "File:Size";
-        keys[Metadata.DATE] = "DC:Date";
+        keys[Metadata.FILE_NAME] = "nfo:fileName";
+        keys[Metadata.TITLE] = "nie:title";
+        keys[Metadata.MIME] = "nie:mimeType";
+        keys[Metadata.SIZE] = "nfo:fileSize";
+        keys[Metadata.DATE] = "dc:date";
 
-        // Image metadata
-        keys[Metadata.IMAGE_TITLE] = "Image:Title";
-        keys[Metadata.CREATOR] = "Image:Creator";
-        keys[Metadata.IMAGE_WIDTH] = "Image:Width";
-        keys[Metadata.IMAGE_HEIGHT] = "Image:Height";
-        keys[Metadata.IMAGE_ALBUM] = "Image:Album";
-        keys[Metadata.IMAGE_DATE] = "Image:Date";
+        // Image and Video metadata
+        keys[Metadata.WIDTH] = "nfo:width";
+        keys[Metadata.HEIGHT] = "nfo:height";
+
+        // Audio and Video metadata
+        keys[Metadata.DURATION] = "nmm:length";
 
         // Audio metadata
-        keys[Metadata.AUDIO_TITLE] = "Audio:Title";
-        keys[Metadata.AUDIO_DURATION] = "Audio:Duration";
-        keys[Metadata.ARTIST] = "Audio:Artist";
-        keys[Metadata.AUDIO_ALBUM] = "Audio:Album";
-        keys[Metadata.TRACK_NUM] = "Audio:TrackNo";
-        keys[Metadata.RELEASE] = "Audio:ReleaseDate";
-        keys[Metadata.DATE_ADDED] = "Audio:DateAdded";
-
-        // Video metadata
-        keys[Metadata.VIDEO_DURATION] = "Video:Duration";
-        keys[Metadata.VIDEO_TITLE] = "Video:Title";
-        keys[Metadata.AUTHOR] = "Video:Author";
-        keys[Metadata.VIDEO_WIDTH] = "Video:Width";
-        keys[Metadata.VIDEO_HEIGHT] = "Video:Height";
+        keys[Metadata.AUDIO_ARTIST] = "nmm:performer";
+        keys[Metadata.AUDIO_ALBUM] = "nmm:musicAlbum";
+        keys[Metadata.AUDIO_TRACK_NUM] = "nmm:trackNumber";
 
         return keys;
+    }
+
+    public int get_num_metadata_keys () {
+        return Metadata.LAST_KEY;
     }
 
     protected string seconds_to_iso8601 (string seconds) {

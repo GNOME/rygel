@@ -40,21 +40,22 @@ public void module_init (PluginLoader loader) {
 }
 
 public class TrackerPluginFactory {
-    private const string TRACKER_SERVICE = "org.freedesktop.Tracker";
-    private const string TRACKER_OBJECT = "/org/freedesktop/Tracker";
+    private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
+    private const string STATISTICS_OBJECT =
+                                        "/org/freedesktop/Tracker1/Statistics";
 
-    TrackerIface tracker;
+    TrackerStatsIface stats;
     PluginLoader loader;
 
     public TrackerPluginFactory (PluginLoader loader) throws DBus.Error {
         var connection = DBus.Bus.get (DBus.BusType.SESSION);
 
-        this.tracker = connection.get_object (TRACKER_SERVICE,
-                                              TRACKER_OBJECT)
-                                              as TrackerIface;
+        this.stats = connection.get_object (TRACKER_SERVICE,
+                                            STATISTICS_OBJECT)
+                                            as TrackerStatsIface;
         this.loader = loader;
 
-        this.tracker.get_version ();
+        this.stats.get_statistics ();
 
         this.loader.add_plugin (new TrackerPlugin ());
     }
