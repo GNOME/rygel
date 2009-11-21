@@ -75,6 +75,12 @@ public class Rygel.MediaDBContainer : MediaContainer {
         var args = new GLib.ValueArray(0);
         var filter = this.search_expression_to_sql (expression, args);
 
+        if (filter == null) {
+            // use basic search
+            total_matches = 0;
+            return new Gee.ArrayList<MediaObject>();
+        }
+
         debug ("Orignal search: %s", expression.to_string());
         debug ("Parsed search expression: %s", filter);
 
