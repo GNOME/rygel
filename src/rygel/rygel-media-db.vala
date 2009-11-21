@@ -190,7 +190,7 @@ public class Rygel.MediaDB : Object {
                  "o.title ASC " +
     "LIMIT ?,?";
 
-    private const string GET_CHILDREN_STRING_WITH_FILTER =
+    private const string GET_OBJECTS_STRING_WITH_FILTER =
     "SELECT o.type_fk, o.title, m.size, m.mime_type, " +
             "m.width, m.height, m.class, m.author, m.album, " +
             "m.date, m.bitrate, m.sample_freq, m.bits_per_sample, " +
@@ -725,7 +725,7 @@ public class Rygel.MediaDB : Object {
         return children;
     }
 
-    public Gee.ArrayList<MediaObject> get_children_with_filter (
+    public Gee.ArrayList<MediaObject> get_objects_by_filter (
                                                  string filter,
                                                  GLib.ValueArray args,
                                                  string container_id,
@@ -744,17 +744,22 @@ public class Rygel.MediaDB : Object {
         Rygel.Database.RowCallback cb = (stmt) => {
             var child_id = stmt.column_text (17);
             var parent_id = stmt.column_text (18);
-            var parent = (MediaContainer) get_object (parent_id);
-            children.add (get_object_from_statement (parent,
-                                                     child_id,
-                                                     stmt));
-            children[children.size - 1].parent = parent;
-            children[children.size - 1].parent_ref = parent;
+            try {
+                var parent = (MediaContainer) get_object (parent_id);
+                children.add (get_object_from_statement (parent,
+                            child_id,
+                            stmt));
+                children[children.size - 1].parent = parent;
+                children[children.size - 1].parent_ref = parent;
 
-            return true;
+                return true;
+            } catch (DatabaseError e) {
+                warning ("Failed to get parent item: %s", e.message);
+                return false;
+            }
         };
 
-        this.db.exec (GET_CHILDREN_STRING_WITH_FILTER.printf(filter), args.values, cb);
+        this.db.exec (GET_OBJECTS_STRING_WITH_FILTER.printf(filter), args.values, cb);
         return children;
     }
 }
