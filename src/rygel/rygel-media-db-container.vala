@@ -72,6 +72,7 @@ public class Rygel.MediaDBContainer : MediaContainer {
                                         out uint         total_matches,
                                         Cancellable?     cancellable)
                                         throws GLib.Error {
+
         var args = new GLib.ValueArray(0);
         var filter = this.search_expression_to_sql (expression, args);
 
@@ -97,6 +98,16 @@ public class Rygel.MediaDBContainer : MediaContainer {
         return children;
     }
 
+    private string? logexp_to_sql (LogicalExpression? exp,
+                                   GLib.ValueArray args) {
+        string left = search_expression_to_sql (exp.operand1, args);
+        string right = search_expression_to_sql (exp.operand2, args);
+        return "(%s %s %s)".printf (
+                                  left,
+                                  exp.op == LogicalOperator.AND ? "AND" : "OR",
+                                  right);
+    }
+
     private string? search_expression_to_sql (SearchExpression? expression,
                                               GLib.ValueArray args) {
         string result = null;
@@ -105,113 +116,103 @@ public class Rygel.MediaDBContainer : MediaContainer {
             return result;
 
         if (expression is LogicalExpression) {
-            var exp = (LogicalExpression) expression;
-            string left = search_expression_to_sql (exp.operand1, args);
-            string right = search_expression_to_sql (exp.operand2, args);
-            result = "(%s %s %s)".printf (left,
-                          expression.op == LogicalOperator.AND ? "AND" : "OR",
-                          right);
+            return logexp_to_sql ((LogicalExpression) expression, args);
         } else {
-            var exp = (RelationalExpression) expression;
-            string column = null;
-            string func = null;
-            switch (exp.operand1)
-            {
-                case "@id":
-                    column = "o.upnp_id";
-                    break;
-                case "@parentID":
-                    column = "o.parent";
-                    break;
-                case "upnp:class":
-                    column = "m.class";
-                    break;
-                case "dc:title":
-                    column = "o.title";
-                    break;
-                case "dc:creator":
-                    column = "m.author";
-                    break;
-                case "dc:date":
-                    column = "m.date";
-                    break;
-                default:
-                    warning("Unsupported thing");
-                    break;
-            }
-            if (column == null)
-                return result;
+            return relexp_to_sql ((RelationalExpression) expression, args);
+        }
+    }
 
-            switch (exp.op) {
-/*                case SearchCriteriaOp.EXISTS:
-                    if (op.operand2 == "true")
-                        func = "=";
-                    else
-                        func = "!=";
-                    break; */
-                case SearchCriteriaOp.EQ:
-                    func = "=";
-                    GLib.Value v;
-                    v = exp.operand2;
-                    args.append (v);
-                    break;
-                case SearchCriteriaOp.NEQ:
-                    func = "=";
-                    GLib.Value v;
-                    v = exp.operand2;
-                    args.append (v);
-                    break;
-                case SearchCriteriaOp.LESS:
-                    func = "<";
-                    GLib.Value v;
-                    v = exp.operand2;
-                    args.append (v);
-                    break;
-                case SearchCriteriaOp.LEQ:
-                    func = "<=";
-                    GLib.Value v;
-                    v = exp.operand2;
-                    args.append (v);
-                    break;
-                case SearchCriteriaOp.GREATER:
-                    func = ">";
-                    GLib.Value v;
-                    v = exp.operand2;
-                    args.append (v);
-                    break;
-                case SearchCriteriaOp.GEQ:
-                    func = ">=";
-                    GLib.Value v;
-                    v = exp.operand2;
-                    args.append (v);
-                    break;
-                case SearchCriteriaOp.CONTAINS:
-                    func = "LIKE";
-                    GLib.Value v;
-                    v = "%%%s%%".printf(exp.operand2);
-                    args.append (v);
-                    break;
-                case SearchCriteriaOp.DOES_NOT_CONTAIN:
-                    func = "NOT LIKE";
-                    GLib.Value v;
-                    v = "%%%s%%".printf(exp.operand2);
-                    args.append (v);
-                    break;
-                case SearchCriteriaOp.DERIVED_FROM:
-                    func = "LIKE";
-                    GLib.Value v;
-                    v = "%s%%".printf(exp.operand2);
-                    args.append (v);
-                    break;
-                default:
-                    warning ("Unsupported op %d", exp.op);
-                    break;
-            }
+    private string? map_operand_to_column (string operand) {
+        string column = null;
 
-            result = "%s %s ?".printf(column, func);
+        switch (operand) {
+            case "@id":
+                column = "o.upnp_id";
+                break;
+            case "@parentID":
+                column = "o.parent";
+                break;
+            case "upnp:class":
+                column = "m.class";
+                break;
+            case "dc:title":
+                column = "o.title";
+                break;
+            case "dc:creator":
+                column = "m.author";
+                break;
+            case "dc:date":
+                column = "m.date";
+                break;
+            default:
+                warning("Unsupported: %s", operand);
+                break;
         }
 
-        return result;
+        return column;
+    }
+
+    private string? relexp_to_sql (RelationalExpression? exp,
+                                   GLib.ValueArray args) {
+        string func = null;
+        GLib.Value? v = null;
+
+        string column = map_operand_to_column (exp.operand1);
+        if (column == null)
+            return null;
+
+        switch (exp.op) {
+            case SearchCriteriaOp.EXISTS:
+                if (exp.operand2 == "true")
+                    func = "IS NOT NULL AND %s != ''";
+                else
+                    func = "IS NULL OR %s = ''";
+                break;
+            case SearchCriteriaOp.EQ:
+                func = "=";
+                v = exp.operand2;
+                break;
+            case SearchCriteriaOp.NEQ:
+                func = "=";
+                v = exp.operand2;
+                break;
+            case SearchCriteriaOp.LESS:
+                func = "<";
+                v = exp.operand2;
+                break;
+            case SearchCriteriaOp.LEQ:
+                func = "<=";
+                v = exp.operand2;
+                break;
+            case SearchCriteriaOp.GREATER:
+                func = ">";
+                v = exp.operand2;
+                break;
+            case SearchCriteriaOp.GEQ:
+                func = ">=";
+                v = exp.operand2;
+                break;
+            case SearchCriteriaOp.CONTAINS:
+                func = "LIKE";
+                v = "%%%s%%".printf(exp.operand2);
+                break;
+            case SearchCriteriaOp.DOES_NOT_CONTAIN:
+                func = "NOT LIKE";
+                v = "%%%s%%".printf(exp.operand2);
+                break;
+            case SearchCriteriaOp.DERIVED_FROM:
+                func = "LIKE";
+                v = "%s%%".printf(exp.operand2);
+                break;
+            default:
+                warning ("Unsupported op %d", exp.op);
+                break;
+        }
+
+        if (v != null)
+            args.append (v);
+
+        return "%s %s ?".printf(column, func);
     }
 }
 
