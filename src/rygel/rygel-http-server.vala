@@ -128,19 +128,12 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                                                   int       thumbnail_index,
                                                   string?   transcode_target,
                                                   out string protocol) {
-        string escaped = Uri.escape_string (item.id, "", true);
-        string query = "/" + escaped;
 
-        if (transcode_target != null) {
-            escaped = Uri.escape_string (transcode_target, "", true);
-            query += "/transcoded/" + escaped;
-        } else if (thumbnail_index >= 0) {
-            query += "/thumbnail/" + thumbnail_index.to_string ();
-        }
+        var uri = new ItemUri (item.id, thumbnail_index, transcode_target);
 
         protocol = "http-get";
 
-        return create_uri_for_path (query);
+        return create_uri_for_path (uri.to_string());
     }
 
     internal override string get_protocol () {
