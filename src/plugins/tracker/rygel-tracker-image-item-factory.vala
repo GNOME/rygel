@@ -28,6 +28,13 @@ using DBus;
  * Tracker image item factory.
  */
 public class Rygel.TrackerImageItemFactory : Rygel.TrackerItemFactory {
+    private enum ImageMetadata {
+        HEIGHT = Metadata.LAST_KEY,
+        WIDTH,
+
+        LAST_KEY
+    }
+
     private const string CATEGORY = "nmm:Photo";
 
     public TrackerImageItemFactory () {
@@ -41,17 +48,27 @@ public class Rygel.TrackerImageItemFactory : Rygel.TrackerItemFactory {
                                       throws GLib.Error {
         var item = base.create (id, path, parent, metadata);
 
-        if (metadata[Metadata.WIDTH] != "")
-            item.width = metadata[Metadata.WIDTH].to_int ();
+        if (metadata[ImageMetadata.WIDTH] != "")
+            item.width = metadata[ImageMetadata.WIDTH].to_int ();
 
-        if (metadata[Metadata.HEIGHT] != "")
-            item.height = metadata[Metadata.HEIGHT].to_int ();
-
-        if (metadata[Metadata.DATE] != "") {
-            item.date = seconds_to_iso8601 (metadata[Metadata.DATE]);
-        }
+        if (metadata[ImageMetadata.HEIGHT] != "")
+            item.height = metadata[ImageMetadata.HEIGHT].to_int ();
 
         return item;
+    }
+
+    public override string[] get_metadata_keys () {
+        var base_keys = base.get_metadata_keys ();
+
+        var keys = new string[ImageMetadata.LAST_KEY];
+        for (var i = 0; i < base_keys.length; i++) {
+            keys[i] = base_keys[i];
+        }
+
+        keys[ImageMetadata.WIDTH] = "nfo:width";
+        keys[ImageMetadata.HEIGHT] = "nfo:height";
+
+        return keys;
     }
 }
 

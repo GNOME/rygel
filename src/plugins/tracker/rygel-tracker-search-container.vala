@@ -66,7 +66,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                                     false));
 
         var optional = new TrackerQueryTriplets ();
-        foreach (var key in TrackerItemFactory.get_metadata_keys ()) {
+        foreach (var key in this.item_factory.get_metadata_keys ()) {
             var variable = "?" + key.replace (":", "_");
 
             variables.add (variable);

@@ -35,18 +35,6 @@ public abstract class Rygel.TrackerItemFactory {
         SIZE,
         DATE,
 
-        // Image and Video
-        HEIGHT,
-        WIDTH,
-
-        // Audio and Video
-        DURATION,
-
-        // Audio
-        AUDIO_ALBUM,
-        AUDIO_ARTIST,
-        AUDIO_TRACK_NUM,
-
         LAST_KEY
     }
 
@@ -85,25 +73,13 @@ public abstract class Rygel.TrackerItemFactory {
         return item;
     }
 
-    public static string[] get_metadata_keys () {
+    public virtual string[] get_metadata_keys () {
         string[] keys = new string[Metadata.LAST_KEY];
         keys[Metadata.FILE_NAME] = "nfo:fileName";
         keys[Metadata.TITLE] = "nie:title";
         keys[Metadata.MIME] = "nie:mimeType";
         keys[Metadata.SIZE] = "nfo:fileSize";
         keys[Metadata.DATE] = "dc:date";
-
-        // Image and Video metadata
-        keys[Metadata.WIDTH] = "nfo:width";
-        keys[Metadata.HEIGHT] = "nfo:height";
-
-        // Audio and Video metadata
-        keys[Metadata.DURATION] = "nmm:length";
-
-        // Audio metadata
-        keys[Metadata.AUDIO_ARTIST] = "nmm:performer";
-        keys[Metadata.AUDIO_ALBUM] = "nmm:musicAlbum";
-        keys[Metadata.AUDIO_TRACK_NUM] = "nmm:trackNumber";
 
         return keys;
     }

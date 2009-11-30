@@ -28,6 +28,14 @@ using DBus;
  * Tracker video item factory.
  */
 public class Rygel.TrackerVideoItemFactory : Rygel.TrackerItemFactory {
+    private enum VideoMetadata {
+        HEIGHT = Metadata.LAST_KEY,
+        WIDTH,
+        DURATION,
+
+        LAST_KEY
+    }
+
     private const string CATEGORY = "nmm:Video";
 
     public TrackerVideoItemFactory () {
@@ -41,16 +49,31 @@ public class Rygel.TrackerVideoItemFactory : Rygel.TrackerItemFactory {
                                       throws GLib.Error {
         var item = base.create (id, path, parent, metadata);
 
-        if (metadata[Metadata.WIDTH] != "")
-            item.width = metadata[Metadata.WIDTH].to_int ();
+        if (metadata[VideoMetadata.WIDTH] != "")
+            item.width = metadata[VideoMetadata.WIDTH].to_int ();
 
-        if (metadata[Metadata.HEIGHT] != "")
-            item.height = metadata[Metadata.HEIGHT].to_int ();
+        if (metadata[VideoMetadata.HEIGHT] != "")
+            item.height = metadata[VideoMetadata.HEIGHT].to_int ();
 
-        if (metadata[Metadata.DURATION] != "")
-            item.duration = metadata[Metadata.DURATION].to_int ();
+        if (metadata[VideoMetadata.DURATION] != "")
+            item.duration = metadata[VideoMetadata.DURATION].to_int ();
 
         return item;
+    }
+
+    public override string[] get_metadata_keys () {
+        var base_keys = base.get_metadata_keys ();
+
+        var keys = new string[VideoMetadata.LAST_KEY];
+        for (var i = 0; i < base_keys.length; i++) {
+            keys[i] = base_keys[i];
+        }
+
+        keys[VideoMetadata.WIDTH] = "nfo:width";
+        keys[VideoMetadata.HEIGHT] = "nfo:height";
+        keys[VideoMetadata.DURATION] = "nmm:length";
+
+        return keys;
     }
 }
 

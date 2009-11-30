@@ -28,6 +28,15 @@ using DBus;
  * Tracker music item factory.
  */
 public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
+    private enum MusicMetadata {
+        DURATION = Metadata.LAST_KEY,
+        AUDIO_ALBUM,
+        AUDIO_ARTIST,
+        AUDIO_TRACK_NUM,
+
+        LAST_KEY
+    }
+
     private const string CATEGORY = "nmm:MusicPiece";
 
     public TrackerMusicItemFactory () {
@@ -41,20 +50,34 @@ public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
                                       throws GLib.Error {
         var item = base.create (id, path, parent, metadata);
 
-        if (metadata[Metadata.DURATION] != "")
-            item.duration = metadata[Metadata.DURATION].to_int ();
+        if (metadata[MusicMetadata.DURATION] != "")
+            item.duration = metadata[MusicMetadata.DURATION].to_int ();
 
-        if (metadata[Metadata.AUDIO_TRACK_NUM] != "")
-            item.track_number = metadata[Metadata.AUDIO_TRACK_NUM].to_int ();
-
-        if (metadata[Metadata.DATE] != "") {
-            item.date = seconds_to_iso8601 (metadata[Metadata.DATE]);
+        if (metadata[MusicMetadata.AUDIO_TRACK_NUM] != "") {
+            var track_number = metadata[MusicMetadata.AUDIO_TRACK_NUM];
+            item.track_number = track_number.to_int ();
         }
 
-        item.author = metadata[Metadata.AUDIO_ARTIST];
-        item.album = metadata[Metadata.AUDIO_ALBUM];
+        item.author = metadata[MusicMetadata.AUDIO_ARTIST];
+        item.album = metadata[MusicMetadata.AUDIO_ALBUM];
 
         return item;
+    }
+
+    public override string[] get_metadata_keys () {
+        var base_keys = base.get_metadata_keys ();
+
+        var keys = new string[MusicMetadata.LAST_KEY];
+        for (var i = 0; i < base_keys.length; i++) {
+            keys[i] = base_keys[i];
+        }
+
+        keys[MusicMetadata.DURATION] = "nmm:length";
+        keys[MusicMetadata.AUDIO_ARTIST] = "nmm:performer";
+        keys[MusicMetadata.AUDIO_ALBUM] = "nmm:musicAlbum";
+        keys[MusicMetadata.AUDIO_TRACK_NUM] = "nmm:trackNumber";
+
+        return keys;
     }
 }
 
