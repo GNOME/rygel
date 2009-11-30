@@ -28,7 +28,11 @@ using DBus;
  * Tracker music item factory.
  */
 public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
-    public const string CATEGORY = "nmm:MusicPiece";
+    private const string CATEGORY = "nmm:MusicPiece";
+
+    public TrackerMusicItemFactory () {
+        base (CATEGORY);
+    }
 
     public override MediaItem create (string                 id,
                                       string                 path,

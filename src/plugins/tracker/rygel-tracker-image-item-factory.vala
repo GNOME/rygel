@@ -28,7 +28,11 @@ using DBus;
  * Tracker image item factory.
  */
 public class Rygel.TrackerImageItemFactory : Rygel.TrackerItemFactory {
-    public const string CATEGORY = "nmm:Photo";
+    private const string CATEGORY = "nmm:Photo";
+
+    public TrackerImageItemFactory () {
+        base (CATEGORY);
+    }
 
     public override MediaItem create (string                 id,
                                       string                 path,

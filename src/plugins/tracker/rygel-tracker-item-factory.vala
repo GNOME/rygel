@@ -50,6 +50,12 @@ public abstract class Rygel.TrackerItemFactory {
         LAST_KEY
     }
 
+    public string category;
+
+    public TrackerItemFactory (string category) {
+        this.category = category;
+    }
+
     public virtual MediaItem create (string                 id,
                                      string                 path,
                                      TrackerSearchContainer parent,
