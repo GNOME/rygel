@@ -95,7 +95,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
     private async void get_children_count () {
         try {
-            var query = new TrackerQuery.from_template (this.query);
+            var query = new TrackerQuery.clone (this.query);
 
             query.variables = new ArrayList<string> ();
             query.variables.add ("COUNT(" + ITEM_VARIABLE + ") AS x");
@@ -193,7 +193,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
             return null;
         }
 
-        var query = new TrackerQuery.from_template (this.query);
+        var query = new TrackerQuery.clone (this.query);
 
         if (filter != null) {
             var filters = query.filters;

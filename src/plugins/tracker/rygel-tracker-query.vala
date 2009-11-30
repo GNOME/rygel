@@ -64,14 +64,14 @@ public class Rygel.TrackerQuery {
         this.max_count = max_count;
     }
 
-    public TrackerQuery.from_template (TrackerQuery template) {
-        this (template.variables,
-              template.mandatory,
-              template.optional,
-              template.filters,
-              template.order_by,
-              template.offset,
-              template.max_count);
+    public TrackerQuery.clone (TrackerQuery query) {
+        this (this.copy_str_list (query.variables),
+              new TrackerQueryTriplets.clone (query.mandatory),
+              new TrackerQueryTriplets.clone (query.optional),
+              this.copy_str_list (query.filters),
+              query.order_by,
+              query.offset,
+              query.max_count);
     }
 
     public string to_string () {
@@ -123,6 +123,14 @@ public class Rygel.TrackerQuery {
         }
 
         return str;
+    }
+
+    private ArrayList<string> copy_str_list (Gee.List<string> str_list) {
+        var copy = new ArrayList<string> ();
+
+        copy.add_all (str_list);
+
+        return copy;
     }
 }
 
