@@ -146,6 +146,13 @@ public class Rygel.TrackerQueryTriplet {
         this.optional = optional;
     }
 
+    public TrackerQueryTriplet.clone (TrackerQueryTriplet triplet) {
+        this (triplet.subject,
+              triplet.predicate,
+              triplet.obj,
+              triplet.optional);
+    }
+
     public string to_string () {
         string str = "";
 
@@ -170,4 +177,12 @@ public class Rygel.TrackerQueryTriplet {
 /**
  * Represents a list of SPARQL Triplet
  */
-public class Rygel.TrackerQueryTriplets : ArrayList<TrackerQueryTriplet> {}
+public class Rygel.TrackerQueryTriplets : ArrayList<TrackerQueryTriplet> {
+    public TrackerQueryTriplets.clone (TrackerQueryTriplets triplets) {
+        base ();
+
+        foreach (var triplet in triplets) {
+            this.add (new TrackerQueryTriplet.clone (triplet));
+        }
+    }
+}
