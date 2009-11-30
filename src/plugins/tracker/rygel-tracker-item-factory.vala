@@ -108,10 +108,6 @@ public abstract class Rygel.TrackerItemFactory {
         return keys;
     }
 
-    public int get_num_metadata_keys () {
-        return Metadata.LAST_KEY;
-    }
-
     protected string seconds_to_iso8601 (string seconds) {
         string date;
 

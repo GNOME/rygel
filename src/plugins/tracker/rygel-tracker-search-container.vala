@@ -168,8 +168,9 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         for (uint i = 0; i < search_result.length[0]; i++) {
             string uri = search_result[i, 0];
             string[] metadata = this.slice_strvv_tail (search_result, i, 1);
+            var id = this.id + ":" + uri;
 
-            var item = this.create_item (uri, metadata);
+            var item = this.item_factory.create (id, uri, this, metadata);
             results.add (item);
         }
 
@@ -233,17 +234,6 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         }
 
         return filter;
-    }
-
-    private MediaItem? create_item (string   uri,
-                                    string[] metadata)
-                                    throws GLib.Error {
-        var id = this.id + ":" + uri;
-
-        return this.item_factory.create (id,
-                                         uri,
-                                         this,
-                                         metadata);
     }
 
     // Returns the URI and the ID of the parent this item belongs to, or null
