@@ -40,14 +40,12 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
     private TrackerResourcesIface resources;
 
-    public TrackerSearchContainer (string                         id,
-                                   MediaContainer                 parent,
-                                   string                         title,
-                                   string                         category,
-                                   ArrayList<TrackerQueryTriplet> mandatory =
-                                        new ArrayList<TrackerQueryTriplet> (),
-                                   ArrayList<string>?             filters =
-                                        null) {
+    public TrackerSearchContainer (string                id,
+                                   MediaContainer        parent,
+                                   string                title,
+                                   string                category,
+                                   TrackerQueryTriplets? mandatory = null,
+                                   ArrayList<string>?    filters = null) {
         base (id, parent, title, 0);
 
         this.category = category;
@@ -55,12 +53,17 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         var variables = new ArrayList<string> ();
         variables.add (ITEM_VARIABLE);
 
-        mandatory.add (new TrackerQueryTriplet (ITEM_VARIABLE,
-                                                "a",
-                                                category,
-                                                false));
+        var our_mandatory = new TrackerQueryTriplets ();
+        if (mandatory != null) {
+            our_mandatory.add_all (mandatory);
+        }
 
-        var optional = new ArrayList<TrackerQueryTriplet> ();
+        our_mandatory.add (new TrackerQueryTriplet (ITEM_VARIABLE,
+                                                    "a",
+                                                    category,
+                                                    false));
+
+        var optional = new TrackerQueryTriplets ();
         foreach (var key in TrackerItem.get_metadata_keys ()) {
             var variable = "?" + key.replace (":", "_");
 
@@ -73,7 +76,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         }
 
         this.query = new TrackerQuery (variables,
-                                       mandatory,
+                                       our_mandatory,
                                        optional,
                                        filters,
                                        ITEM_VARIABLE);
@@ -96,7 +99,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
             query.variables = new ArrayList<string> ();
             query.variables.add ("COUNT(" + ITEM_VARIABLE + ") AS x");
-            query.optional = new ArrayList<TrackerQueryTriplet> ();
+            query.optional = new TrackerQueryTriplets ();
 
             var query_str = query.to_string ();
 

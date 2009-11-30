@@ -26,8 +26,8 @@ using Gee;
  * Represents Tracker SPARQL query
  */
 public class Rygel.TrackerQuery {
-    public ArrayList<TrackerQueryTriplet> mandatory;
-    public ArrayList<TrackerQueryTriplet> optional;
+    public TrackerQueryTriplets mandatory;
+    public TrackerQueryTriplets optional;
 
     public ArrayList<string> variables;
     public ArrayList<string> filters;
@@ -36,20 +36,20 @@ public class Rygel.TrackerQuery {
     public int offset;
     public int max_count;
 
-    public TrackerQuery (ArrayList<string>               variables,
-                         ArrayList<TrackerQueryTriplet>  mandatory,
-                         ArrayList<TrackerQueryTriplet>? optional,
-                         ArrayList<string>?              filters,
-                         string?                         order_by = null,
-                         int                             offset = 0,
-                         int                             max_count = -1) {
+    public TrackerQuery (ArrayList<string>     variables,
+                         TrackerQueryTriplets  mandatory,
+                         TrackerQueryTriplets? optional,
+                         ArrayList<string>?    filters,
+                         string?               order_by = null,
+                         int                   offset = 0,
+                         int                   max_count = -1) {
         this.variables = variables;
         this.mandatory = mandatory;
 
         if (optional != null) {
             this.optional = optional;
         } else {
-            this.optional = new ArrayList<TrackerQueryTriplet> ();
+            this.optional = new TrackerQueryTriplets ();
         }
 
         if (filters != null) {
@@ -105,7 +105,7 @@ public class Rygel.TrackerQuery {
         return query;
     }
 
-    private string serialize_triplets (Gee.List<TrackerQueryTriplet> triplets) {
+    private string serialize_triplets (TrackerQueryTriplets triplets) {
         string str = "";
 
         for (int i = 0; i < triplets.size; i++) {
@@ -166,3 +166,8 @@ public class Rygel.TrackerQueryTriplet {
         return str;
     }
 }
+
+/**
+ * Represents a list of SPARQL Triplet
+ */
+public class Rygel.TrackerQueryTriplets : ArrayList<TrackerQueryTriplet> {}

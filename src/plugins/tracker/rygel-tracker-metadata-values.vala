@@ -67,7 +67,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
 
     private async void fetch_metadata_values () {
         int i;
-        var mandatory = new ArrayList<TrackerQueryTriplet> ();
+        var mandatory = new TrackerQueryTriplets ();
 
         // All variables used in the query
         var num_keys = this.key_chain.length - 1;
