@@ -84,7 +84,7 @@ public abstract class Rygel.TrackerItemFactory {
         return keys;
     }
 
-    protected string seconds_to_iso8601 (string seconds) {
+    private string seconds_to_iso8601 (string seconds) {
         string date;
 
         if (seconds != "") {
