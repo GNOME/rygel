@@ -25,26 +25,34 @@ using GUPnP;
 using DBus;
 
 /**
- * Represents Tracker video item.
+ * Tracker image item factory.
  */
-public class Rygel.TrackerVideoItem : Rygel.TrackerItem {
-    public const string CATEGORY = "nmm:Video";
+public class Rygel.TrackerImageItemFactory : Rygel.TrackerItemFactory {
+    public const string CATEGORY = "nmm:Photo";
 
-    public TrackerVideoItem (string                 id,
-                             string                 path,
-                             TrackerSearchContainer parent,
-                             string[]               metadata)
-                             throws GLib.Error {
-        base (id, path, parent, MediaItem.VIDEO_CLASS, metadata);
+    public override MediaItem create (string                 id,
+                                      string                 path,
+                                      TrackerSearchContainer parent,
+                                      string?                upnp_class,
+                                      string[]               metadata)
+                                      throws GLib.Error {
+        var item = base.create (id,
+                                path,
+                                parent,
+                                MediaItem.IMAGE_CLASS,
+                                metadata);
 
         if (metadata[Metadata.WIDTH] != "")
-            this.width = metadata[Metadata.WIDTH].to_int ();
+            item.width = metadata[Metadata.WIDTH].to_int ();
 
         if (metadata[Metadata.HEIGHT] != "")
-            this.height = metadata[Metadata.HEIGHT].to_int ();
+            item.height = metadata[Metadata.HEIGHT].to_int ();
 
-        if (metadata[Metadata.DURATION] != "")
-            this.duration = metadata[Metadata.DURATION].to_int ();
+        if (metadata[Metadata.DATE] != "") {
+            item.date = seconds_to_iso8601 (metadata[Metadata.DATE]);
+        }
+
+        return item;
     }
 }
 

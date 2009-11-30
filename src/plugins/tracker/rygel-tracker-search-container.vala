@@ -66,7 +66,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                                     false));
 
         var optional = new TrackerQueryTriplets ();
-        foreach (var key in TrackerItem.get_metadata_keys ()) {
+        foreach (var key in TrackerItemFactory.get_metadata_keys ()) {
             var variable = "?" + key.replace (":", "_");
 
             variables.add (variable);
@@ -240,24 +240,22 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                     throws GLib.Error {
         var id = this.id + ":" + uri;
 
-        if (this.category == TrackerVideoItem.CATEGORY) {
-            return new TrackerVideoItem (id,
-                                         uri,
-                                         this,
-                                         metadata);
-        } else if (this.category == TrackerImageItem.CATEGORY) {
-            return new TrackerImageItem (id,
-                                         uri,
-                                         this,
-                                         metadata);
-        } else if (this.category == TrackerMusicItem.CATEGORY) {
-            return new TrackerMusicItem (id,
-                                         uri,
-                                         this,
-                                         metadata);
+        TrackerItemFactory factory;
+        if (this.category == TrackerVideoItemFactory.CATEGORY) {
+            factory = new TrackerVideoItemFactory ();
+        } else if (this.category == TrackerImageItemFactory.CATEGORY) {
+            factory = new TrackerImageItemFactory ();
+        } else if (this.category == TrackerMusicItemFactory.CATEGORY) {
+            factory = new TrackerMusicItemFactory ();
         } else {
             return null;
         }
+
+        return factory.create (id,
+                               uri,
+                               this,
+                               null,
+                               metadata);
     }
 
     // Returns the URI and the ID of the parent this item belongs to, or null

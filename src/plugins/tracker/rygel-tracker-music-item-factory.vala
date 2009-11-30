@@ -25,30 +25,37 @@ using GUPnP;
 using DBus;
 
 /**
- * Represents Tracker music item.
+ * Tracker music item factory.
  */
-public class Rygel.TrackerMusicItem : Rygel.TrackerItem {
+public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
     public const string CATEGORY = "nmm:MusicPiece";
 
-    public TrackerMusicItem (string                 id,
-                             string                 path,
-                             TrackerSearchContainer parent,
-                             string[]               metadata)
-                             throws GLib.Error {
-        base (id, path, parent, MediaItem.MUSIC_CLASS, metadata);
+    public override MediaItem create (string                 id,
+                                      string                 path,
+                                      TrackerSearchContainer parent,
+                                      string?                upnp_class,
+                                      string[]               metadata)
+                                      throws GLib.Error {
+        var item = base.create (id,
+                                path,
+                                parent,
+                                MediaItem.MUSIC_CLASS,
+                                metadata);
 
         if (metadata[Metadata.DURATION] != "")
-            this.duration = metadata[Metadata.DURATION].to_int ();
+            item.duration = metadata[Metadata.DURATION].to_int ();
 
         if (metadata[Metadata.AUDIO_TRACK_NUM] != "")
-            this.track_number = metadata[Metadata.AUDIO_TRACK_NUM].to_int ();
+            item.track_number = metadata[Metadata.AUDIO_TRACK_NUM].to_int ();
 
         if (metadata[Metadata.DATE] != "") {
-            this.date = seconds_to_iso8601 (metadata[Metadata.DATE]);
+            item.date = seconds_to_iso8601 (metadata[Metadata.DATE]);
         }
 
-        this.author = metadata[Metadata.AUDIO_ARTIST];
-        this.album = metadata[Metadata.AUDIO_ALBUM];
+        item.author = metadata[Metadata.AUDIO_ARTIST];
+        item.album = metadata[Metadata.AUDIO_ALBUM];
+
+        return item;
     }
 }
 

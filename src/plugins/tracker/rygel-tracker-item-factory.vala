@@ -25,9 +25,9 @@ using GUPnP;
 using DBus;
 
 /**
- * Represents Tracker item.
+ * Abstract Tracker item factory.
  */
-public abstract class Rygel.TrackerItem : Rygel.MediaItem {
+public abstract class Rygel.TrackerItemFactory {
     protected enum Metadata {
         FILE_NAME,
         TITLE,
@@ -50,33 +50,31 @@ public abstract class Rygel.TrackerItem : Rygel.MediaItem {
         LAST_KEY
     }
 
-    protected string path;
-
-    public TrackerItem (string                 id,
-                        string                 path,
-                        TrackerSearchContainer parent,
-                        string                 upnp_class,
-                        string[]               metadata)
-                        throws GLib.Error {
-        base (id, parent, "", upnp_class);
-
-        this.path = path;
+    public virtual MediaItem create (string                 id,
+                                     string                 path,
+                                     TrackerSearchContainer parent,
+                                     string?                upnp_class,
+                                     string[]               metadata)
+                                     throws GLib.Error {
+        var item = new MediaItem (id, parent, "", upnp_class);
 
         if (metadata[Metadata.TITLE] != "")
-            this.title = metadata[Metadata.TITLE];
+            item.title = metadata[Metadata.TITLE];
         else
             /* If title wasn't provided, use filename instead */
-            this.title = metadata[Metadata.FILE_NAME];
+            item.title = metadata[Metadata.FILE_NAME];
 
         if (metadata[Metadata.SIZE] != "")
-            this.size = metadata[Metadata.SIZE].to_int ();
+            item.size = metadata[Metadata.SIZE].to_int ();
 
         if (metadata[Metadata.DATE] != "")
-            this.date = seconds_to_iso8601 (metadata[Metadata.DATE]);
+            item.date = seconds_to_iso8601 (metadata[Metadata.DATE]);
 
-        this.mime_type = metadata[Metadata.MIME];
+        item.mime_type = metadata[Metadata.MIME];
 
-        this.add_uri (Filename.to_uri (path, null), null);
+        item.add_uri (Filename.to_uri (path, null), null);
+
+        return item;
     }
 
     public static string[] get_metadata_keys () {

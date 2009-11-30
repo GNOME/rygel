@@ -16,10 +16,10 @@ librygel_media_tracker_la_SOURCES = \
 				    rygel-tracker-keywords.vala \
 				    rygel-tracker-search-container.vala \
 				    rygel-tracker-query.vala \
-				    rygel-tracker-item.vala \
-				    rygel-tracker-video-item.vala \
-				    rygel-tracker-music-item.vala \
-				    rygel-tracker-image-item.vala \
+				    rygel-tracker-item-factory.vala \
+				    rygel-tracker-video-item-factory.vala \
+				    rygel-tracker-music-item-factory.vala \
+				    rygel-tracker-image-item-factory.vala \
 				    rygel-tracker-plugin.vala \
 				    rygel-tracker-plugin-factory.vala \
 				    rygel-tracker-interfaces.vala
