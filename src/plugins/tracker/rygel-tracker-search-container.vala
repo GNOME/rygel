@@ -53,9 +53,11 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         var variables = new ArrayList<string> ();
         variables.add (ITEM_VARIABLE);
 
-        var our_mandatory = new TrackerQueryTriplets ();
+        TrackerQueryTriplets our_mandatory;
         if (mandatory != null) {
-            our_mandatory.add_all (mandatory);
+            our_mandatory = mandatory;
+        } else {
+            our_mandatory = new TrackerQueryTriplets ();
         }
 
         our_mandatory.add (new TrackerQueryTriplet (ITEM_VARIABLE,
