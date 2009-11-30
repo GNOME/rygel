@@ -31,20 +31,15 @@ public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
     private const string CATEGORY = "nmm:MusicPiece";
 
     public TrackerMusicItemFactory () {
-        base (CATEGORY);
+        base (CATEGORY, MediaItem.MUSIC_CLASS);
     }
 
     public override MediaItem create (string                 id,
                                       string                 path,
                                       TrackerSearchContainer parent,
-                                      string?                upnp_class,
                                       string[]               metadata)
                                       throws GLib.Error {
-        var item = base.create (id,
-                                path,
-                                parent,
-                                MediaItem.MUSIC_CLASS,
-                                metadata);
+        var item = base.create (id, path, parent, metadata);
 
         if (metadata[Metadata.DURATION] != "")
             item.duration = metadata[Metadata.DURATION].to_int ();

@@ -31,20 +31,15 @@ public class Rygel.TrackerVideoItemFactory : Rygel.TrackerItemFactory {
     private const string CATEGORY = "nmm:Video";
 
     public TrackerVideoItemFactory () {
-        base (CATEGORY);
+        base (CATEGORY, MediaItem.VIDEO_CLASS);
     }
 
     public override MediaItem create (string                 id,
                                       string                 path,
                                       TrackerSearchContainer parent,
-                                      string?                upnp_class,
                                       string[]               metadata)
                                       throws GLib.Error {
-        var item = base.create (id,
-                                path,
-                                parent,
-                                MediaItem.VIDEO_CLASS,
-                                metadata);
+        var item = base.create (id, path, parent, metadata);
 
         if (metadata[Metadata.WIDTH] != "")
             item.width = metadata[Metadata.WIDTH].to_int ();

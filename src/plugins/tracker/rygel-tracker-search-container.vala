@@ -243,7 +243,6 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         return this.item_factory.create (id,
                                          uri,
                                          this,
-                                         null,
                                          metadata);
     }
 

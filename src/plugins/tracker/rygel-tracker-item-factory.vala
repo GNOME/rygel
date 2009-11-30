@@ -51,18 +51,20 @@ public abstract class Rygel.TrackerItemFactory {
     }
 
     public string category;
+    public string upnp_class;
 
-    public TrackerItemFactory (string category) {
+    public TrackerItemFactory (string category,
+                               string upnp_class) {
         this.category = category;
+        this.upnp_class = upnp_class;
     }
 
     public virtual MediaItem create (string                 id,
                                      string                 path,
                                      TrackerSearchContainer parent,
-                                     string?                upnp_class,
                                      string[]               metadata)
                                      throws GLib.Error {
-        var item = new MediaItem (id, parent, "", upnp_class);
+        var item = new MediaItem (id, parent, "", this.upnp_class);
 
         if (metadata[Metadata.TITLE] != "")
             item.title = metadata[Metadata.TITLE];
