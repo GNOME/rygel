@@ -31,12 +31,11 @@ using Gee;
 public class Rygel.TrackerKeywords : Rygel.TrackerMetadataValues {
     /* class-wide constants */
     private const string TITLE = "Tags";
-    private const string CATEGORY = "nmm:Photo";
     private const string[] KEY_CHAIN = { "nao:hasTag", "nao:prefLabel", null };
 
     public TrackerKeywords (string         id,
                             MediaContainer parent) {
-        base (id, parent, TITLE, CATEGORY, KEY_CHAIN);
+        base (id, parent, TITLE, new TrackerImageItemFactory (), KEY_CHAIN);
     }
 }
 

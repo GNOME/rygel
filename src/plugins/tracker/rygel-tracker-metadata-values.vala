@@ -34,7 +34,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
     private const string ITEM_VARIABLE = "?item";
 
-    private string category;
+    private TrackerItemFactory item_factory;
 
     // In tracker 0.7, we might don't get values of keys in place so you need a
     // chain of keys to reach to final destination. For instances:
@@ -43,14 +43,14 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
 
     private TrackerResourcesIface resources;
 
-    public TrackerMetadataValues (string         id,
-                                  MediaContainer parent,
-                                  string         title,
-                                  string         category,
-                                  string[]       key_chain) {
+    public TrackerMetadataValues (string             id,
+                                  MediaContainer     parent,
+                                  string             title,
+                                  TrackerItemFactory item_factory,
+                                  string[]           key_chain) {
         base (id, parent, title);
 
-        this.category = category;
+        this.item_factory = item_factory;
         this.key_chain = key_chain;
 
         try {
@@ -88,10 +88,11 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
                                                     false));
         }
 
-        mandatory.insert (0, new TrackerQueryTriplet (ITEM_VARIABLE,
-                                                      "a",
-                                                      this.category,
-                                                      false));
+        mandatory.insert (0, new TrackerQueryTriplet (
+                                        ITEM_VARIABLE,
+                                        "a",
+                                        this.item_factory.category,
+                                        false));
 
         // Variables to select from query
         var selected = new ArrayList<string> ();
@@ -136,7 +137,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
             var container = new TrackerSearchContainer (value,
                                                         this,
                                                         value,
-                                                        this.category,
+                                                        this.item_factory,
                                                         child_mandatory,
                                                         null);
 

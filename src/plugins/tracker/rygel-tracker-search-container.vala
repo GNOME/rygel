@@ -36,19 +36,19 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     private const string ITEM_VARIABLE = "?item";
 
     public TrackerQuery query;
-    public string category;
+    public TrackerItemFactory item_factory;
 
     private TrackerResourcesIface resources;
 
     public TrackerSearchContainer (string                id,
                                    MediaContainer        parent,
                                    string                title,
-                                   string                category,
+                                   TrackerItemFactory    item_factory,
                                    TrackerQueryTriplets? mandatory = null,
                                    ArrayList<string>?    filters = null) {
         base (id, parent, title, 0);
 
-        this.category = category;
+        this.item_factory = item_factory;
 
         var variables = new ArrayList<string> ();
         variables.add (ITEM_VARIABLE);
@@ -62,7 +62,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
         our_mandatory.add (new TrackerQueryTriplet (ITEM_VARIABLE,
                                                     "a",
-                                                    category,
+                                                    item_factory.category,
                                                     false));
 
         var optional = new TrackerQueryTriplets ();
@@ -112,7 +112,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
             this.updated ();
         } catch (GLib.Error error) {
             critical ("error getting item count under category '%s': %s",
-                      this.category,
+                      this.item_factory.category,
                       error.message);
 
             return;
@@ -240,22 +240,11 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                     throws GLib.Error {
         var id = this.id + ":" + uri;
 
-        TrackerItemFactory factory;
-        if (this.category == TrackerVideoItemFactory.CATEGORY) {
-            factory = new TrackerVideoItemFactory ();
-        } else if (this.category == TrackerImageItemFactory.CATEGORY) {
-            factory = new TrackerImageItemFactory ();
-        } else if (this.category == TrackerMusicItemFactory.CATEGORY) {
-            factory = new TrackerMusicItemFactory ();
-        } else {
-            return null;
-        }
-
-        return factory.create (id,
-                               uri,
-                               this,
-                               null,
-                               metadata);
+        return this.item_factory.create (id,
+                                         uri,
+                                         this,
+                                         null,
+                                         metadata);
     }
 
     // Returns the URI and the ID of the parent this item belongs to, or null
