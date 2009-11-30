@@ -37,12 +37,6 @@ public class Rygel.TrackerVideoItem : Rygel.TrackerItem {
                              throws GLib.Error {
         base (id, path, parent, MediaItem.VIDEO_CLASS, metadata);
 
-        if (metadata[Metadata.TITLE] != "")
-            this.title = metadata[Metadata.TITLE];
-        else
-            /* If title wasn't provided, use filename instead */
-            this.title = metadata[Metadata.FILE_NAME];
-
         if (metadata[Metadata.WIDTH] != "")
             this.width = metadata[Metadata.WIDTH].to_int ();
 

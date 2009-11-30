@@ -37,12 +37,6 @@ public class Rygel.TrackerMusicItem : Rygel.TrackerItem {
                              throws GLib.Error {
         base (id, path, parent, MediaItem.MUSIC_CLASS, metadata);
 
-        if (metadata[Metadata.TITLE] != "")
-            this.title = metadata[Metadata.TITLE];
-        else
-            /* If title wasn't provided, use filename instead */
-            this.title = metadata[Metadata.FILE_NAME];
-
         if (metadata[Metadata.DURATION] != "")
             this.duration = metadata[Metadata.DURATION].to_int ();
 

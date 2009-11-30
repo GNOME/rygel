@@ -62,6 +62,12 @@ public abstract class Rygel.TrackerItem : Rygel.MediaItem {
 
         this.path = path;
 
+        if (metadata[Metadata.TITLE] != "")
+            this.title = metadata[Metadata.TITLE];
+        else
+            /* If title wasn't provided, use filename instead */
+            this.title = metadata[Metadata.FILE_NAME];
+
         if (metadata[Metadata.SIZE] != "")
             this.size = metadata[Metadata.SIZE].to_int ();
 
