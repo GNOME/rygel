@@ -67,7 +67,7 @@ public class Rygel.TrackerRootContainer : Rygel.SimpleContainer {
                                         new TrackerMusicItemFactory (),
                                         key_chain));
 
-        this.add_child (new TrackerKeywords ("19", this));
+        this.add_child (new TrackerTags ("19", this));
     }
 }
 

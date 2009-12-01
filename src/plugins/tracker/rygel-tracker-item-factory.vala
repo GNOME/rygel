@@ -79,7 +79,7 @@ public abstract class Rygel.TrackerItemFactory {
         keys[Metadata.TITLE] = "nie:title";
         keys[Metadata.MIME] = "nie:mimeType";
         keys[Metadata.SIZE] = "nfo:fileSize";
-        keys[Metadata.DATE] = "dc:date";
+        keys[Metadata.DATE] = "nie:contentCreated";
 
         return keys;
     }

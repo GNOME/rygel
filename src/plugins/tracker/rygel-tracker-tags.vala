@@ -28,13 +28,13 @@ using Gee;
 /**
  * Container listing all available photo tags in Tracker DB.
  */
-public class Rygel.TrackerKeywords : Rygel.TrackerMetadataValues {
+public class Rygel.TrackerTags : Rygel.TrackerMetadataValues {
     /* class-wide constants */
     private const string TITLE = "Tags";
     private const string[] KEY_CHAIN = { "nao:hasTag", "nao:prefLabel", null };
 
-    public TrackerKeywords (string         id,
-                            MediaContainer parent) {
+    public TrackerTags (string         id,
+                        MediaContainer parent) {
         base (id, parent, TITLE, new TrackerImageItemFactory (), KEY_CHAIN);
     }
 }

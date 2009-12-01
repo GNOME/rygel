@@ -13,7 +13,7 @@ librygel_media_tracker_la_SOURCES = \
 				    rygel-media-tracker.vala \
 				    rygel-tracker-root-container.vala \
 				    rygel-tracker-metadata-values.vala \
-				    rygel-tracker-keywords.vala \
+				    rygel-tracker-tags.vala \
 				    rygel-tracker-search-container.vala \
 				    rygel-tracker-query.vala \
 				    rygel-tracker-item-factory.vala \
