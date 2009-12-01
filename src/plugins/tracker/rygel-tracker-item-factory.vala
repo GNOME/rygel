@@ -64,7 +64,7 @@ public abstract class Rygel.TrackerItemFactory {
             item.size = metadata[Metadata.SIZE].to_int ();
 
         if (metadata[Metadata.DATE] != "")
-            item.date = seconds_to_iso8601 (metadata[Metadata.DATE]);
+            item.date = metadata[Metadata.DATE];
 
         item.mime_type = metadata[Metadata.MIME];
 
@@ -82,23 +82,6 @@ public abstract class Rygel.TrackerItemFactory {
         keys[Metadata.DATE] = "dc:date";
 
         return keys;
-    }
-
-    private string seconds_to_iso8601 (string seconds) {
-        string date;
-
-        if (seconds != "") {
-            TimeVal tv = TimeVal ();
-
-            tv.tv_sec = seconds.to_int ();
-            tv.tv_usec = 0;
-
-            date = tv.to_iso8601 ();
-        } else {
-            date = "";
-        }
-
-        return date;
     }
 }
 
