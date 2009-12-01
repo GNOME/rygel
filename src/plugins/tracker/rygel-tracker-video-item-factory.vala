@@ -43,11 +43,11 @@ public class Rygel.TrackerVideoItemFactory : Rygel.TrackerItemFactory {
     }
 
     public override MediaItem create (string                 id,
-                                      string                 path,
+                                      string                 uri,
                                       TrackerSearchContainer parent,
                                       string[]               metadata)
                                       throws GLib.Error {
-        var item = base.create (id, path, parent, metadata);
+        var item = base.create (id, uri, parent, metadata);
 
         if (metadata[VideoMetadata.WIDTH] != "")
             item.width = metadata[VideoMetadata.WIDTH].to_int ();

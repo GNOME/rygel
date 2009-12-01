@@ -44,11 +44,11 @@ public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
     }
 
     public override MediaItem create (string                 id,
-                                      string                 path,
+                                      string                 uri,
                                       TrackerSearchContainer parent,
                                       string[]               metadata)
                                       throws GLib.Error {
-        var item = base.create (id, path, parent, metadata);
+        var item = base.create (id, uri, parent, metadata);
 
         if (metadata[MusicMetadata.DURATION] != "")
             item.duration = metadata[MusicMetadata.DURATION].to_int ();

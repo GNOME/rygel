@@ -48,7 +48,7 @@ public abstract class Rygel.TrackerItemFactory {
     }
 
     public virtual MediaItem create (string                 id,
-                                     string                 path,
+                                     string                 uri,
                                      TrackerSearchContainer parent,
                                      string[]               metadata)
                                      throws GLib.Error {
@@ -68,7 +68,7 @@ public abstract class Rygel.TrackerItemFactory {
 
         item.mime_type = metadata[Metadata.MIME];
 
-        item.add_uri (Filename.to_uri (path, null), null);
+        item.add_uri (uri, null);
 
         return item;
     }
