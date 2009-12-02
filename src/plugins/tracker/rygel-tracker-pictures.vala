@@ -1,8 +1,8 @@
 /*
- * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
- * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2009 Nokia Corporation.
  *
- * Author: Zeeshan Ali <zeenix@gmail.com>
+ * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *                               <zeeshan.ali@nokia.com>
  *
  * This file is part of Rygel.
  *
@@ -21,22 +21,20 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using GUPnP;
-using DBus;
 using Gee;
 
 /**
- * Container listing all available photo tags in Tracker DB.
+ * Container listing Pictures content hierarchy.
  */
-public class Rygel.TrackerTags : Rygel.TrackerMetadataValues {
-    /* class-wide constants */
-    private const string TITLE = "Tags";
-    private const string[] KEY_CHAIN = { "nao:hasTag", "nao:prefLabel", null };
+public class Rygel.TrackerPictures : Rygel.SimpleContainer {
+    public TrackerPictures (string         id,
+                            MediaContainer parent,
+                            string         title) {
+        base (id, parent, title);
 
-    public TrackerTags (string             id,
-                        MediaContainer     parent,
-                        TrackerItemFactory item_factory) {
-        base (id, parent, TITLE, item_factory, KEY_CHAIN);
+        var item_factory = new TrackerPictureItemFactory ();
+
+        this.add_child (new TrackerTags ("19", this, item_factory));
     }
 }
 

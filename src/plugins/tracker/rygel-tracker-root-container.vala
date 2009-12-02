@@ -34,18 +34,13 @@ public class Rygel.TrackerRootContainer : Rygel.SimpleContainer {
         base.root (title);
 
         this.add_child (new TrackerSearchContainer (
-                                        "16",
-                                        this,
-                                        "Pictures",
-                                        new TrackerPictureItemFactory ()));
-        this.add_child (new TrackerSearchContainer (
                                         "15",
                                         this,
                                         "Videos",
                                         new TrackerVideoItemFactory ()));
 
         this.add_child (new TrackerMusic ("14", this, "Music"));
-        this.add_child (new TrackerTags ("19", this));
+        this.add_child (new TrackerPictures ("16", this, "Pictures"));
     }
 }
 
