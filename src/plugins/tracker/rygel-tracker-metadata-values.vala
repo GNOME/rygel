@@ -111,8 +111,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
             /* FIXME: We need to hook to some tracker signals to keep
              *        this field up2date at all times
              */
-            debug ("Executing SPARQL query: %s", query.to_string ());
-            values = yield this.resources.sparql_query (query.to_string ());
+            values = yield query.execute (this.resources);
         } catch (DBus.Error error) {
             critical ("error getting all values for '%s': %s",
                       string.joinv (" -> ", this.key_chain),

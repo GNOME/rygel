@@ -108,10 +108,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
             query.variables.add ("COUNT(" + ITEM_VARIABLE + ") AS x");
             query.optional = new TrackerQueryTriplets ();
 
-            var query_str = query.to_string ();
-
-            debug ("Executing SPARQL query: %s", query_str);
-            var result = yield this.resources.sparql_query (query_str);
+            var result = yield query.execute (this.resources);
 
             this.child_count = result[0,0].to_int ();
             this.updated ();
@@ -164,10 +161,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
             return results;
         }
 
-        var query_str = query.to_string ();
-
-        debug ("Executing SPARQL query: %s", query_str);
-        var search_result = yield this.resources.sparql_query (query_str);
+        var search_result = yield query.execute (this.resources);
 
         /* Iterate through all items */
         for (uint i = 0; i < search_result.length[0]; i++) {
