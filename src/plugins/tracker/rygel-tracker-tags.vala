@@ -26,7 +26,7 @@ using DBus;
 using Gee;
 
 /**
- * Container listing all available photo tags in Tracker DB.
+ * Container listing all available tag labels in Tracker DB.
  */
 public class Rygel.TrackerTags : Rygel.TrackerMetadataValues {
     /* class-wide constants */
