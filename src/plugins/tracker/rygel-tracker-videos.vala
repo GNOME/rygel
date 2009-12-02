@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
- * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2009 Nokia Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
@@ -22,20 +21,20 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using GUPnP;
-using DBus;
 using Gee;
 
 /**
- * Represents the root container for Tracker media content hierarchy.
+ * Container listing video content hierarchy.
  */
-public class Rygel.TrackerRootContainer : Rygel.SimpleContainer {
-    public TrackerRootContainer (string title) {
-        base.root (title);
+public class Rygel.TrackerVideos : Rygel.SimpleContainer {
+    public TrackerVideos (string         id,
+                          MediaContainer parent,
+                          string         title) {
+        base (id, parent, title);
 
-        this.add_child (new TrackerMusic ("14", this, "Music"));
-        this.add_child (new TrackerVideos ("15", this, "Vidoes"));
-        this.add_child (new TrackerPictures ("16", this, "Pictures"));
+        var item_factory = new TrackerVideoItemFactory ();
+
+        this.add_child (new TrackerTags ("20", this, item_factory));
     }
 }
 
