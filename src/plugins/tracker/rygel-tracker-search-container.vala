@@ -186,18 +186,18 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         }
 
         var rel_expression = expression as RelationalExpression;
-        string filter = null;
+        var query = new TrackerQuery.clone (this.query);
 
         if (rel_expression.operand1 == "@id") {
-            filter = create_filter_for_id (rel_expression);
+            var filter = create_filter_for_id (rel_expression);
+            if (filter != null) {
+                query.filters.add (filter);
+            } else {
+                return null;
+            }
         } else if (rel_expression.operand1 == "@parentID" &&
                    !rel_expression.compare_string (this.id)) {
             return null;
-        }
-
-        var query = new TrackerQuery.clone (this.query);
-        if (filter != null) {
-            query.filters.add (filter);
         }
 
         query.offset = offset;
