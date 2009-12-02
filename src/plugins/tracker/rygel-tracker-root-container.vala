@@ -39,34 +39,12 @@ public class Rygel.TrackerRootContainer : Rygel.SimpleContainer {
                                         "Pictures",
                                         new TrackerImageItemFactory ()));
         this.add_child (new TrackerSearchContainer (
-                                        "14",
-                                        this,
-                                        "Music",
-                                        new TrackerMusicItemFactory ()));
-        this.add_child (new TrackerSearchContainer (
                                         "15",
                                         this,
                                         "Videos",
                                         new TrackerVideoItemFactory ()));
 
-        var key_chain = new string[] { "nmm:performer",
-                                       "nmm:artistName",
-                                       null };
-        this.add_child (new TrackerMetadataValues (
-                                        "17",
-                                        this,
-                                        "Artists",
-                                        new TrackerMusicItemFactory (),
-                                        key_chain));
-
-        key_chain = new string[] { "nmm:musicAlbum", "nmm:albumTitle", null };
-        this.add_child (new TrackerMetadataValues (
-                                        "18",
-                                        this,
-                                        "Albums",
-                                        new TrackerMusicItemFactory (),
-                                        key_chain));
-
+        this.add_child (new TrackerMusic ("14", this, "Music"));
         this.add_child (new TrackerTags ("19", this));
     }
 }

@@ -12,6 +12,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 librygel_media_tracker_la_SOURCES = \
 				    rygel-media-tracker.vala \
 				    rygel-tracker-root-container.vala \
+				    rygel-tracker-music.vala \
 				    rygel-tracker-metadata-values.vala \
 				    rygel-tracker-tags.vala \
 				    rygel-tracker-search-container.vala \
