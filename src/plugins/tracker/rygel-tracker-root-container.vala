@@ -37,7 +37,7 @@ public class Rygel.TrackerRootContainer : Rygel.SimpleContainer {
                                         "16",
                                         this,
                                         "Pictures",
-                                        new TrackerImageItemFactory ()));
+                                        new TrackerPictureItemFactory ()));
         this.add_child (new TrackerSearchContainer (
                                         "15",
                                         this,

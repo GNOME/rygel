@@ -35,7 +35,7 @@ public class Rygel.TrackerTags : Rygel.TrackerMetadataValues {
 
     public TrackerTags (string         id,
                         MediaContainer parent) {
-        base (id, parent, TITLE, new TrackerImageItemFactory (), KEY_CHAIN);
+        base (id, parent, TITLE, new TrackerPictureItemFactory (), KEY_CHAIN);
     }
 }
 

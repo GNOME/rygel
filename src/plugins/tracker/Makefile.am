@@ -22,7 +22,7 @@ librygel_media_tracker_la_SOURCES = \
 				    rygel-tracker-item-factory.vala \
 				    rygel-tracker-video-item-factory.vala \
 				    rygel-tracker-music-item-factory.vala \
-				    rygel-tracker-image-item-factory.vala \
+				    rygel-tracker-picture-item-factory.vala \
 				    rygel-tracker-plugin.vala \
 				    rygel-tracker-plugin-factory.vala \
 				    rygel-tracker-interfaces.vala

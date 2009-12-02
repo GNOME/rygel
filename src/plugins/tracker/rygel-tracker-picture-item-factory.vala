@@ -25,10 +25,10 @@ using GUPnP;
 using DBus;
 
 /**
- * Tracker image item factory.
+ * Tracker picture item factory.
  */
-public class Rygel.TrackerImageItemFactory : Rygel.TrackerItemFactory {
-    private enum ImageMetadata {
+public class Rygel.TrackerPictureItemFactory : Rygel.TrackerItemFactory {
+    private enum PictureMetadata {
         HEIGHT = Metadata.LAST_KEY,
         WIDTH,
 
@@ -37,7 +37,7 @@ public class Rygel.TrackerImageItemFactory : Rygel.TrackerItemFactory {
 
     private const string CATEGORY = "nmm:Photo";
 
-    public TrackerImageItemFactory () {
+    public TrackerPictureItemFactory () {
         base (CATEGORY, MediaItem.IMAGE_CLASS);
     }
 
@@ -48,11 +48,11 @@ public class Rygel.TrackerImageItemFactory : Rygel.TrackerItemFactory {
                                       throws GLib.Error {
         var item = base.create (id, uri, parent, metadata);
 
-        if (metadata[ImageMetadata.WIDTH] != "")
-            item.width = metadata[ImageMetadata.WIDTH].to_int ();
+        if (metadata[PictureMetadata.WIDTH] != "")
+            item.width = metadata[PictureMetadata.WIDTH].to_int ();
 
-        if (metadata[ImageMetadata.HEIGHT] != "")
-            item.height = metadata[ImageMetadata.HEIGHT].to_int ();
+        if (metadata[PictureMetadata.HEIGHT] != "")
+            item.height = metadata[PictureMetadata.HEIGHT].to_int ();
 
         return item;
     }
@@ -60,13 +60,13 @@ public class Rygel.TrackerImageItemFactory : Rygel.TrackerItemFactory {
     public override string[] get_metadata_keys () {
         var base_keys = base.get_metadata_keys ();
 
-        var keys = new string[ImageMetadata.LAST_KEY];
+        var keys = new string[PictureMetadata.LAST_KEY];
         for (var i = 0; i < base_keys.length; i++) {
             keys[i] = base_keys[i];
         }
 
-        keys[ImageMetadata.WIDTH] = "nfo:width";
-        keys[ImageMetadata.HEIGHT] = "nfo:height";
+        keys[PictureMetadata.WIDTH] = "nfo:width";
+        keys[PictureMetadata.HEIGHT] = "nfo:height";
 
         return keys;
     }
