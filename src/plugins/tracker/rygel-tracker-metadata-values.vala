@@ -138,8 +138,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
                                                         this,
                                                         value,
                                                         this.item_factory,
-                                                        child_mandatory,
-                                                        null);
+                                                        child_mandatory);
 
             this.add_child (container);
         }
