@@ -137,16 +137,20 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
             var title = this.title_func (value);
 
             // The child container can use the same mandatory triplets we used
-            // in our query except that last value is now fixed
+            // in our query.
             var child_mandatory = new TrackerQueryTriplets.clone (mandatory);
-            child_mandatory.last ().obj = "\"" + value + "\"";
+
+            // However we constrain the object of our last mandatory triplet.
+            var filters = new ArrayList<string> ();
+            var filter = child_mandatory.last ().obj +  " = \"" + value + "\"";
+            filters.add (filter);
 
             var container = new TrackerSearchContainer (value,
                                                         this,
                                                         title,
                                                         this.item_factory,
                                                         child_mandatory,
-                                                        null);
+                                                        filters);
 
             this.add_child (container);
         }
