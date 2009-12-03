@@ -220,7 +220,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                     break;
                 }
 
-                filter = ITEM_VARIABLE + " = " + uri;
+                filter = ITEM_VARIABLE + " = <" + uri + ">";
                 break;
             case SearchCriteriaOp.CONTAINS:
                 filter = "regex(" + ITEM_VARIABLE + ", " +

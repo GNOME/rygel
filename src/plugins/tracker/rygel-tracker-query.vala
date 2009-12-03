@@ -94,8 +94,16 @@ public class Rygel.TrackerQuery {
                  " . " +
                  this.serialize_triplets (this.optional);
 
-        foreach (var filter in this.filters) {
-            query += " " + filter;
+        if (this.filters.size > 0) {
+            query += " FILTER (";
+            for (var i = 0; i < this.filters.size; i++) {
+                query += this.filters[i];
+
+                if (i < this.filters.size - 1) {
+                    query += " && ";
+                }
+            }
+            query += ")";
         }
 
         query += " }";
