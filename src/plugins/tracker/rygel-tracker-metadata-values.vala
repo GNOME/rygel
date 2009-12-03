@@ -35,6 +35,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
     private const string ITEM_VARIABLE = "?item";
 
     public delegate string TitleFunc (string value);
+    public delegate string FilterFunc (string variable, string value);
 
     private TrackerItemFactory item_factory;
 
@@ -43,6 +44,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
     // nmm:Performer -> nmm:artistName
     public string[] key_chain;
     public TitleFunc title_func;
+    public FilterFunc filter_func;
 
     private TrackerResourcesIface resources;
 
@@ -52,12 +54,15 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
                                   TrackerItemFactory item_factory,
                                   string[]           key_chain,
                                   TitleFunc?         title_func =
-                                        default_title_func) {
+                                        default_title_func,
+                                  FilterFunc?        filter_func =
+                                        default_filter_func) {
         base (id, parent, title);
 
         this.item_factory = item_factory;
         this.key_chain = key_chain;
         this.title_func = title_func;
+        this.filter_func = filter_func;
 
         try {
             this.create_proxies ();
@@ -142,7 +147,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
 
             // However we constrain the object of our last mandatory triplet.
             var filters = new ArrayList<string> ();
-            var filter = child_mandatory.last ().obj +  " = \"" + value + "\"";
+            var filter = this.filter_func (child_mandatory.last ().obj, value);
             filters.add (filter);
 
             var container = new TrackerSearchContainer (value,
@@ -160,6 +165,10 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
 
     public static string default_title_func (string value) {
         return value;
+    }
+
+    public static string default_filter_func (string variable, string value) {
+        return variable + " = \"" + value + "\"";
     }
 
     private void create_proxies () throws DBus.Error {
