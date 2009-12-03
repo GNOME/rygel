@@ -46,7 +46,8 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                    MediaContainer        parent,
                                    string                title,
                                    TrackerItemFactory    item_factory,
-                                   TrackerQueryTriplets? mandatory = null) {
+                                   TrackerQueryTriplets? mandatory = null,
+                                   ArrayList<string>?    filters = null) {
         base (id, parent, title, 0);
 
         this.item_factory = item_factory;
@@ -85,7 +86,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         this.query = new TrackerQuery (variables,
                                        our_mandatory,
                                        optional,
-                                       null,
+                                       filters,
                                        MODIFIED_VARIABLE);
 
         try {
@@ -191,7 +192,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         if (rel_expression.operand1 == "@id") {
             var filter = create_filter_for_id (rel_expression);
             if (filter != null) {
-                query.filters.add (filter);
+                query.filters.insert (0, filter);
             } else {
                 return null;
             }
