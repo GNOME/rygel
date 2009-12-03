@@ -34,12 +34,15 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
     private const string ITEM_VARIABLE = "?item";
 
+    public delegate string TitleFunc (string value);
+
     private TrackerItemFactory item_factory;
 
     // In tracker 0.7, we might don't get values of keys in place so you need a
     // chain of keys to reach to final destination. For instances:
     // nmm:Performer -> nmm:artistName
     public string[] key_chain;
+    public TitleFunc title_func;
 
     private TrackerResourcesIface resources;
 
@@ -47,11 +50,14 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
                                   MediaContainer     parent,
                                   string             title,
                                   TrackerItemFactory item_factory,
-                                  string[]           key_chain) {
+                                  string[]           key_chain,
+                                  TitleFunc?         title_func =
+                                        default_title_func) {
         base (id, parent, title);
 
         this.item_factory = item_factory;
         this.key_chain = key_chain;
+        this.title_func = title_func;
 
         try {
             this.create_proxies ();
@@ -128,6 +134,8 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
                 continue;
             }
 
+            var title = this.title_func (value);
+
             // The child container can use the same mandatory triplets we used
             // in our query except that last value is now fixed
             var child_mandatory = new TrackerQueryTriplets.clone (mandatory);
@@ -135,7 +143,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
 
             var container = new TrackerSearchContainer (value,
                                                         this,
-                                                        value,
+                                                        title,
                                                         this.item_factory,
                                                         child_mandatory,
                                                         null);
@@ -144,6 +152,10 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         }
 
         this.updated ();
+    }
+
+    public static string default_title_func (string value) {
+        return value;
     }
 
     private void create_proxies () throws DBus.Error {
