@@ -34,7 +34,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
     private const string ITEM_VARIABLE = "?item";
 
-    public delegate string TitleFunc (string value);
+    public delegate string IDFunc (string value);
     public delegate string FilterFunc (string variable, string value);
 
     private TrackerItemFactory item_factory;
@@ -43,7 +43,8 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
     // chain of keys to reach to final destination. For instances:
     // nmm:Performer -> nmm:artistName
     public string[] key_chain;
-    public TitleFunc title_func;
+    public IDFunc id_func;
+    public IDFunc title_func;
     public FilterFunc filter_func;
 
     private TrackerResourcesIface resources;
@@ -53,14 +54,17 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
                                   string             title,
                                   TrackerItemFactory item_factory,
                                   string[]           key_chain,
-                                  TitleFunc?         title_func =
-                                        default_title_func,
+                                  IDFunc?            id_func =
+                                        default_id_func,
+                                  IDFunc?            title_func =
+                                        default_id_func,
                                   FilterFunc?        filter_func =
                                         default_filter_func) {
         base (id, parent, title);
 
         this.item_factory = item_factory;
         this.key_chain = key_chain;
+        this.id_func = id_func;
         this.title_func = title_func;
         this.filter_func = filter_func;
 
@@ -139,6 +143,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
                 continue;
             }
 
+            var id = this.id_func (value);
             var title = this.title_func (value);
 
             // The child container can use the same mandatory triplets we used
@@ -150,7 +155,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
             var filter = this.filter_func (child_mandatory.last ().obj, value);
             filters.add (filter);
 
-            var container = new TrackerSearchContainer (value,
+            var container = new TrackerSearchContainer (id,
                                                         this,
                                                         title,
                                                         this.item_factory,
@@ -163,7 +168,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         this.updated ();
     }
 
-    public static string default_title_func (string value) {
+    public static string default_id_func (string value) {
         return value;
     }
 
