@@ -49,6 +49,10 @@ public class Rygel.TrackerMusic : Rygel.SimpleContainer {
                                                    item_factory,
                                                    key_chain));
         this.add_child (new TrackerTags ("21", this, item_factory));
+        this.add_child (new TrackerSearchContainer ("26",
+                                                    this,
+                                                    "All",
+                                                    item_factory));
     }
 }
 

@@ -38,6 +38,10 @@ public class Rygel.TrackerPictures : Rygel.SimpleContainer {
 
         this.add_child (new TrackerTags ("19", this, item_factory));
         this.add_child (new TrackerYears ("22", this, item_factory));
+        this.add_child (new TrackerSearchContainer ("25",
+                                                    this,
+                                                    "All",
+                                                    item_factory));
     }
 }
 
