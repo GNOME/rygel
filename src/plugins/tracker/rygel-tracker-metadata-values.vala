@@ -144,6 +144,10 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
             }
 
             var id = this.id_func (value);
+            if (!this.is_child_id_unique (id)) {
+                continue;
+            }
+
             var title = this.title_func (value);
 
             // The child container can use the same mandatory triplets we used
@@ -182,6 +186,20 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         this.resources = connection.get_object (TRACKER_SERVICE,
                                                 RESOURCES_PATH)
                                                 as TrackerResourcesIface;
+    }
+
+    private bool is_child_id_unique (string child_id) {
+        var unique = true;
+
+        foreach (var child in this.children) {
+            if (child.id == child_id) {
+                unique = false;
+
+                break;
+            }
+        }
+
+        return unique;
     }
 }
 
