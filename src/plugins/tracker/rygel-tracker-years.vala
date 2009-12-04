@@ -24,20 +24,37 @@
 using Gee;
 
 /**
- * Container listing Pictures content hierarchy.
+ * Container listing content hierarchy by year of creation.
  */
-public class Rygel.TrackerPictures : Rygel.SimpleContainer {
+public class Rygel.TrackerYears : Rygel.TrackerMetadataValues {
     private const string[] KEY_CHAIN = { "nie:contentCreated", null };
 
-    public TrackerPictures (string         id,
-                            MediaContainer parent,
-                            string         title) {
-        base (id, parent, title);
+    public TrackerYears (string             id,
+                         MediaContainer     parent,
+                         TrackerItemFactory item_factory) {
+        base (id,
+              parent,
+              "Year",
+              item_factory,
+              KEY_CHAIN,
+              year_id_func,
+              year_id_func,
+              year_filter_func);
+    }
 
-        var item_factory = new TrackerPictureItemFactory ();
+    private static string year_id_func (string value) {
+        return value.ndup (4);
+    }
 
-        this.add_child (new TrackerTags ("19", this, item_factory));
-        this.add_child (new TrackerYears ("22", this, item_factory));
+    private static string year_filter_func (string variable, string value) {
+        var year = year_id_func (value);
+        var next_year = (year.to_int () + 1).to_string ();
+
+        year += "-01-01T00:00:00Z";
+        next_year += "-01-01T00:00:00Z";
+
+        return variable + " > \"" + year + "\" && " +
+               variable + " < \"" + next_year + "\"";
     }
 }
 

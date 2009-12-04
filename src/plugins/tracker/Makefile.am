@@ -17,6 +17,7 @@ librygel_media_tracker_la_SOURCES = \
 				    rygel-tracker-pictures.vala \
 				    rygel-tracker-metadata-values.vala \
 				    rygel-tracker-tags.vala \
+				    rygel-tracker-years.vala \
 				    rygel-tracker-search-container.vala \
 				    rygel-tracker-query.vala \
 				    rygel-tracker-query-triplet.vala \
