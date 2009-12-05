@@ -35,15 +35,17 @@ internal class Rygel.ItemUri : Object {
 
     public ItemUri.from_string (string uri, string server_root = "") {
         // do not decode the path here as it may contain encoded slashes
+        this.thumbnail_index = -1;
+        this.transcode_target = null;
         var request_uri = uri.replace (server_root, "");
         var parts = request_uri.split ("/");
-        if (parts.length < 2 && parts.length % 2 != 0)
+        if (parts.length < 2 || parts.length % 2 == 0)
             warning ("Invalid uri %s", request_uri);
         else {
-            for (int i = 0; i < parts.length - 1; i += 2) {
+            for (int i = 1; i < parts.length - 1; i += 2) {
                 switch (parts[i]) {
                     case "item":
-                        this.item_id = Soup.URI.decode (parts[1]);
+                        this.item_id = Soup.URI.decode (parts[i + 1]);
                         break;
                     case "transcoded":
                         this.transcode_target = Soup.URI.decode (parts[i + 1]);
@@ -60,7 +62,7 @@ internal class Rygel.ItemUri : Object {
 
     public string to_string() {
         string escaped = Uri.escape_string (item_id, "", true);
-        string query = "/" + escaped;
+        string query = "/item/" + escaped;
 
         if (transcode_target != null) {
             escaped = Uri.escape_string (transcode_target, "", true);
