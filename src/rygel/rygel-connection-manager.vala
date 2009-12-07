@@ -104,7 +104,7 @@ public class Rygel.ConnectionManager : Service {
             return;
         }
 
-        action.set ("ResID",                 typeof (int),    -1,
+        action.set ("RcsID",                 typeof (int),    -1,
                     "AVTransportID",         typeof (int),    -1,
                     "ProtocolInfo",          typeof (string), "",
                     "PeerConnectionManager", typeof (string), "",
