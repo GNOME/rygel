@@ -45,7 +45,13 @@ internal class Rygel.ItemUri : Object {
             for (int i = 1; i < parts.length - 1; i += 2) {
                 switch (parts[i]) {
                     case "item":
-                        this.item_id = Soup.URI.decode (parts[i + 1]);
+                        StringBuilder sb = new StringBuilder ();
+                        size_t len;
+                        var data = Base64.decode (
+                                               Soup.URI.decode (parts[i + 1]),
+                                               out len);
+                        sb.append_len ((string) data, (ssize_t) len);
+                        this.item_id = sb.str;
                         break;
                     case "transcoded":
                         this.transcode_target = Soup.URI.decode (parts[i + 1]);
@@ -61,7 +67,13 @@ internal class Rygel.ItemUri : Object {
     }
 
     public string to_string() {
-        string escaped = Uri.escape_string (item_id, "", true);
+        // there seems to be a problem converting strings properly to arrays
+        // you need to call to_utf8() and assign it to a variable to make it
+        // work properly
+        var data = this.item_id.to_utf8 ();
+        var escaped = Uri.escape_string (Base64.encode ((uchar[]) data),
+                                         "",
+                                         true);
         string query = "/item/" + escaped;
 
         if (transcode_target != null) {
