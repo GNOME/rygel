@@ -143,7 +143,7 @@ internal class Rygel.HTTPSeek : GLib.Object {
         return new HTTPSeek (Format.TIME, start, stop);
     }
 
-    public void add_response_header (Soup.Message msg, int64 length) {
+    public void add_response_headers (Soup.Message msg, int64 length) {
         string header;
         string value;
         double start = 0;
