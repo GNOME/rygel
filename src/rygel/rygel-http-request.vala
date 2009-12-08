@@ -131,9 +131,9 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
     private async void handle_item_request () {
         try {
-            if (this.thumbnail == null && this.item.should_stream ()) {
+            if (HTTPTimeSeek.needed (this)) {
                 this.seek = new HTTPTimeSeek (this);
-            } else {
+            } else if (HTTPByteSeek.needed (this)) {
                 this.seek = new HTTPByteSeek (this);
             }
 
