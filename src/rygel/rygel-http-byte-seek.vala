@@ -1,0 +1,106 @@
+/*
+ * Copyright (C) 2009 Nokia Corporation.
+ *
+ * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *                               <zeeshan.ali@nokia.com>
+ *
+ * This file is part of Rygel.
+ *
+ * Rygel is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Rygel is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ */
+
+using Gst;
+
+internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
+    public HTTPByteSeek (HTTPRequest request) throws HTTPSeekError {
+        string range, pos;
+        string[] range_tokens;
+        int64 start = 0, length;
+
+        if (request.thumbnail != null) {
+            length = request.thumbnail.size;
+        } else {
+            length = request.item.size;
+        }
+        var stop = length - 1;
+
+        range = request.msg.request_headers.get ("Range");
+        if (range != null) {
+            // We have a Range header. Parse.
+            if (!range.has_prefix ("bytes=")) {
+                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                                                       range);
+            }
+
+            range_tokens = range.offset (6).split ("-", 2);
+            if (range_tokens[0] == null || range_tokens[1] == null) {
+                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                                                       range);
+            }
+
+            // Get first byte position
+            pos = range_tokens[0];
+            if (pos[0].isdigit ()) {
+                start = pos.to_int64 ();
+            } else if (pos  != "") {
+                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                                                       range);
+            }
+
+            // Get last byte position if specified
+            pos = range_tokens[1];
+            if (pos[0].isdigit ()) {
+                stop = pos.to_int64 ();
+                if (stop < start) {
+                    throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                                                           range);
+                }
+            } else if (pos != "") {
+                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                                                       range);
+            }
+        }
+
+        base (request.msg,
+              Format.BYTES,
+              start,
+              stop,
+              length);
+    }
+
+    public override void add_response_headers () {
+        // Content-Range: bytes START_BYTE-STOP_BYTE/TOTAL_LENGTH
+        var range = "bytes ";
+        double start = (double) this.start;
+        double stop = (double) this.stop;
+
+        this.msg.response_headers.append ("Accept-Ranges", "bytes");
+
+        range += start.to_string () + "-";
+
+        if (stop >= 0.0) {
+            range += stop.to_string ();
+        }
+
+        if (this.length > 0) {
+            range += "/" + this.length.to_string ();
+        } else {
+            range += "/*";
+        }
+
+        this.msg.response_headers.append ("Content-Range", range);
+        this.msg.response_headers.set_content_length (this.length);
+    }
+}
