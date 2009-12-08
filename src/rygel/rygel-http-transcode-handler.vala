@@ -40,8 +40,8 @@ internal class Rygel.HTTPTranscodeHandler : HTTPRequestHandler {
                                                throws HTTPRequestError {
         request.msg.response_headers.append ("Content-Type",
                                              this.transcoder.mime_type);
-        if (request.time_range != null) {
-            request.time_range.add_response_headers ();
+        if (request.seek != null) {
+            request.seek.add_response_headers ();
         }
 
         // Chain-up
@@ -63,7 +63,7 @@ internal class Rygel.HTTPTranscodeHandler : HTTPRequestHandler {
                                      request.msg,
                                      "RygelLiveResponse",
                                      src,
-                                     request.time_range,
+                                     request.seek,
                                      this.cancellable);
         } catch (GLib.Error err) {
             throw new HTTPRequestError.NOT_FOUND (err.message);

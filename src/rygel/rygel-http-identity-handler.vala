@@ -40,14 +40,8 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
                                                  request.item.mime_type);
         }
 
-        if (request.thumbnail == null && request.item.should_stream ()) {
-            if (request.time_range != null) {
-                request.time_range.add_response_headers ();
-            }
-        } else {
-            if (request.byte_range != null) {
-                request.byte_range.add_response_headers ();
-            }
+        if (request.seek != null) {
+            request.seek.add_response_headers ();
         }
 
         // Chain-up
@@ -80,7 +74,7 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
             return new SeekableResponse (request.server,
                                          request.msg,
                                          request.thumbnail.uri,
-                                         request.byte_range,
+                                         request.seek,
                                          request.thumbnail.size,
                                          this.cancellable);
         }
@@ -97,7 +91,7 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
                                      request.msg,
                                      "RygelLiveResponse",
                                      src,
-                                     request.time_range,
+                                     request.seek,
                                      this.cancellable);
         } else {
             if (item.uris.size == 0) {
@@ -109,7 +103,7 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
             return new SeekableResponse (request.server,
                                          request.msg,
                                          item.uris.get (0),
-                                         request.byte_range,
+                                         request.seek,
                                          item.size,
                                          this.cancellable);
         }
