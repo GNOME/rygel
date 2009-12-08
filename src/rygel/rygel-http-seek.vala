@@ -29,33 +29,37 @@ internal errordomain Rygel.HTTPSeekError {
 }
 
 internal class Rygel.HTTPSeek : GLib.Object {
+    public Soup.Message msg { get; private set; }
     public Format format { get; private set; }
 
     // These are either number of bytes or microseconds
     public int64 start { get; private set; }
     public int64 stop { get; private set; }
+    public int64 length { get; private set; }
 
-    public int64 length {
-        get {
-            return this.stop + 1 - this.start;
-        }
-    }
-
-    public HTTPSeek (Format format,
-                     int64  start,
-                     int64  stop) {
+    public HTTPSeek (Soup.Message msg,
+                     Format       format,
+                     int64        start,
+                     int64        stop,
+                     int64        length) {
+        this.msg = msg;
         this.format = format;
         this.start = start;
         this.stop = stop;
+        this.length = length;
+
+        if (length > 0) {
+            this.stop = stop.clamp (start + 1, length - 1);
+        }
     }
 
-    public static HTTPSeek? from_byte_range (Soup.Message msg)
+    public static HTTPSeek? from_byte_range (HTTPRequest request)
                                              throws HTTPSeekError {
         string range, pos;
         string[] range_tokens;
         int64 start = 0, stop = -1;
 
-        range = msg.request_headers.get ("Range");
+        range = request.msg.request_headers.get ("Range");
         if (range == null) {
             return null;
         }
@@ -78,6 +82,13 @@ internal class Rygel.HTTPSeek : GLib.Object {
             throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
         }
 
+        int64 length;
+        if (request.thumbnail != null) {
+            length = request.thumbnail.size;
+        } else {
+            length = request.item.size;
+        }
+
         // Get last byte position if specified
         pos = range_tokens[1];
         if (pos[0].isdigit ()) {
@@ -86,11 +97,17 @@ internal class Rygel.HTTPSeek : GLib.Object {
                 throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
                                                        range);
             }
-        } else if (pos != "") {
+        } else if (pos == "") {
+            stop = length - 1;
+        } else {
             throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
         }
 
-        return new HTTPSeek (Format.BYTES, start, stop);
+        return new HTTPSeek (request.msg,
+                             Format.BYTES,
+                             start,
+                             stop,
+                             length);
     }
 
     // FIXME: We are only accepting time range in this format:
@@ -100,13 +117,13 @@ internal class Rygel.HTTPSeek : GLib.Object {
     // and not
     //
     // TimeSeekRange.dlna.org : npt=10:19:25.7-13:23:33.6
-    public static HTTPSeek? from_time_range (Soup.Message msg)
+    public static HTTPSeek? from_time_range (HTTPRequest request)
                                              throws HTTPSeekError {
         string range, time;
         string[] range_tokens;
         int64 start = 0, stop = -1;
 
-        range = msg.request_headers.get ("TimeSeekRange.dlna.org");
+        range = request.msg.request_headers.get ("TimeSeekRange.dlna.org");
         if (range == null) {
             return null;
         }
@@ -136,14 +153,20 @@ internal class Rygel.HTTPSeek : GLib.Object {
                 throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
                                                        range);
             }
-        } else if (time != "") {
+        } else if (time == "") {
+            stop = request.item.duration - 1;
+        } else {
             throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
         }
 
-        return new HTTPSeek (Format.TIME, start, stop);
+        return new HTTPSeek (request.msg,
+                             Format.TIME,
+                             start,
+                             stop,
+                             request.item.duration);
     }
 
-    public void add_response_headers (Soup.Message msg, int64 length) {
+    public void add_response_headers () {
         string header;
         string value;
         double start = 0;
@@ -161,10 +184,7 @@ internal class Rygel.HTTPSeek : GLib.Object {
             value = "bytes ";
             start = (double) this.start;
             stop = (double) this.stop;
-        }
 
-        if (length > 0) {
-            stop = stop.clamp (start + 1, (double) length - 1);
         }
 
         value += start.to_string () + "-";
@@ -173,12 +193,13 @@ internal class Rygel.HTTPSeek : GLib.Object {
             value += stop.to_string();
         }
 
-        if (length > 0) {
-            value += "/" + length.to_string();
+        if (this.length > 0) {
+            value += "/" + this.length.to_string ();
         } else {
             value += "/*";
         }
 
-        msg.response_headers.append (header, value);
+        this.msg.response_headers.append (header, value);
+        this.msg.response_headers.set_content_length (this.length);
     }
 }
