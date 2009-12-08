@@ -49,8 +49,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     private int thumbnail_index;
     public MediaItem item;
     public Thumbnail thumbnail;
-    public HTTPSeek byte_range;
-    public HTTPSeek time_range;
+    public HTTPSeek seek;
 
     private HTTPRequestHandler request_handler;
 
@@ -132,8 +131,11 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
     private async void handle_item_request () {
         try {
-            this.byte_range = HTTPSeek.from_byte_range (this);
-            this.time_range = HTTPSeek.from_time_range (this);
+            if (this.thumbnail == null && this.item.should_stream ()) {
+                this.seek = HTTPSeek.from_time_range (this);
+            } else {
+                this.seek = HTTPSeek.from_byte_range (this);
+            }
 
             // Add headers
             this.request_handler.add_response_headers (this);
