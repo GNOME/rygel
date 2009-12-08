@@ -57,11 +57,22 @@ internal class Rygel.HTTPSeek : GLib.Object {
                                              throws HTTPSeekError {
         string range, pos;
         string[] range_tokens;
-        int64 start = 0, stop = -1;
+        int64 start = 0, length;
+
+        if (request.thumbnail != null) {
+            length = request.thumbnail.size;
+        } else {
+            length = request.item.size;
+        }
+        var stop = length - 1;
 
         range = request.msg.request_headers.get ("Range");
         if (range == null) {
-            return null;
+            return new HTTPSeek (request.msg,
+                                 Format.BYTES,
+                                 start,
+                                 stop,
+                                 length);
         }
 
         // We have a Range header. Parse.
@@ -82,13 +93,6 @@ internal class Rygel.HTTPSeek : GLib.Object {
             throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
         }
 
-        int64 length;
-        if (request.thumbnail != null) {
-            length = request.thumbnail.size;
-        } else {
-            length = request.item.size;
-        }
-
         // Get last byte position if specified
         pos = range_tokens[1];
         if (pos[0].isdigit ()) {
@@ -97,9 +101,7 @@ internal class Rygel.HTTPSeek : GLib.Object {
                 throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
                                                        range);
             }
-        } else if (pos == "") {
-            stop = length - 1;
-        } else {
+        } else if (pos != "") {
             throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
         }
 
