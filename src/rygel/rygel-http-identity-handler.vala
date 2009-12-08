@@ -32,20 +32,12 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
 
     public override void add_response_headers (HTTPRequest request)
                                                throws HTTPRequestError {
-        long size;
-        string mime_type;
-
         if (request.thumbnail != null) {
-            size = request.thumbnail.size;
-            mime_type= request.thumbnail.mime_type;
+            request.msg.response_headers.append ("Content-Type",
+                                                 request.thumbnail.mime_type);
         } else {
-            size = request.item.size;
-            mime_type= request.item.mime_type;
-        }
-
-        request.msg.response_headers.append ("Content-Type", mime_type);
-        if (size >= 0) {
-            request.msg.response_headers.set_content_length (size);
+            request.msg.response_headers.append ("Content-Type",
+                                                 request.item.mime_type);
         }
 
         if (request.thumbnail == null && request.item.should_stream ()) {
@@ -53,12 +45,7 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
                 request.time_range.add_response_headers ();
             }
         } else {
-            request.msg.response_headers.append ("Accept-Ranges", "bytes");
             if (request.byte_range != null) {
-                var length = request.byte_range.length;
-                if (length > 0) {
-                    request.msg.response_headers.set_content_length (length);
-                }
                 request.byte_range.add_response_headers ();
             }
         }

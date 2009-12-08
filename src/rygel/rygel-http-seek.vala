@@ -185,6 +185,7 @@ internal class Rygel.HTTPSeek : GLib.Object {
             start = (double) this.start;
             stop = (double) this.stop;
 
+            this.msg.response_headers.append ("Accept-Ranges", "bytes");
         }
 
         value += start.to_string () + "-";
