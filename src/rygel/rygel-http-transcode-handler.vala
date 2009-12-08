@@ -41,8 +41,7 @@ internal class Rygel.HTTPTranscodeHandler : HTTPRequestHandler {
         request.msg.response_headers.append ("Content-Type",
                                              this.transcoder.mime_type);
         if (request.time_range != null) {
-            request.time_range.add_response_headers (request.msg,
-                                                     request.item.duration);
+            request.time_range.add_response_headers ();
         }
 
         // Chain-up

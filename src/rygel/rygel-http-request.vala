@@ -132,8 +132,8 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
     private async void handle_item_request () {
         try {
-            this.byte_range = HTTPSeek.from_byte_range(this.msg);
-            this.time_range = HTTPSeek.from_time_range(this.msg);
+            this.byte_range = HTTPSeek.from_byte_range (this);
+            this.time_range = HTTPSeek.from_time_range (this);
 
             // Add headers
             this.request_handler.add_response_headers (this);
