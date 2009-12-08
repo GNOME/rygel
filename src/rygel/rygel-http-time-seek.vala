@@ -77,6 +77,10 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
               request.item.duration);
     }
 
+    public static bool needed (HTTPRequest request) {
+        return request.thumbnail == null && request.item.should_stream ();
+    }
+
     public override void add_response_headers () {
         // TimeSeekRange.dlna.org: npt=START_TIME-END_TIME/DURATION
         var range = "npt=";

@@ -80,6 +80,10 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
               length);
     }
 
+    public static bool needed (HTTPRequest request) {
+        return true;
+    }
+
     public override void add_response_headers () {
         // Content-Range: bytes START_BYTE-STOP_BYTE/TOTAL_LENGTH
         var range = "bytes ";
