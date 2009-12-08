@@ -190,7 +190,7 @@ internal class Rygel.HTTPSeek : GLib.Object {
         value += start.to_string () + "-";
 
         if (stop >= 0.0) {
-            value += stop.to_string();
+            value += stop.to_string ();
         }
 
         if (this.length > 0) {
