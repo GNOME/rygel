@@ -51,7 +51,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     public Thumbnail thumbnail;
     public HTTPSeek seek;
 
-    private HTTPRequestHandler request_handler;
+    public HTTPRequestHandler request_handler;
 
     public HTTPRequest (HTTPServer                http_server,
                         Soup.Server               server,
