@@ -21,8 +21,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Gst;
-
 internal errordomain Rygel.HTTPSeekError {
     INVALID_RANGE = Soup.KnownStatusCode.BAD_REQUEST,
     OUT_OF_RANGE = Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE,
@@ -30,7 +28,6 @@ internal errordomain Rygel.HTTPSeekError {
 
 internal abstract class Rygel.HTTPSeek : GLib.Object {
     public Soup.Message msg { get; private set; }
-    public Format format { get; private set; }
 
     // These are either number of bytes or microseconds
     public int64 start { get; private set; }
@@ -38,12 +35,10 @@ internal abstract class Rygel.HTTPSeek : GLib.Object {
     public int64 length { get; private set; }
 
     public HTTPSeek (Soup.Message msg,
-                     Format       format,
                      int64        start,
                      int64        stop,
                      int64        length) {
         this.msg = msg;
-        this.format = format;
         this.start = start;
         this.stop = stop;
         this.length = length;

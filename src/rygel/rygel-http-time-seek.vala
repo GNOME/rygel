@@ -71,7 +71,6 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
         }
 
         base (request.msg,
-              Format.TIME,
               start,
               stop,
               request.item.duration);
