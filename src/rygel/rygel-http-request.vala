@@ -51,7 +51,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     public Thumbnail thumbnail;
     public HTTPSeek seek;
 
-    public HTTPRequestHandler request_handler;
+    public HTTPRequestHandler handler;
 
     public HTTPRequest (HTTPServer                http_server,
                         Soup.Server               server,
@@ -91,8 +91,8 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             return;
         }
 
-        if (this.request_handler == null) {
-            this.request_handler = new HTTPIdentityHandler (this.cancellable);
+        if (this.handler == null) {
+            this.handler = new HTTPIdentityHandler (this.cancellable);
         }
 
         yield this.find_item ();
@@ -138,7 +138,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             }
 
             // Add headers
-            this.request_handler.add_response_headers (this);
+            this.handler.add_response_headers (this);
             debug ("Following HTTP headers appended to response:");
             this.msg.response_headers.foreach ((name, value) => {
                     debug ("%s : %s", name, value);
@@ -151,7 +151,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
                 return;
             }
 
-            this.response = this.request_handler.render_body (this);
+            this.response = this.handler.render_body (this);
             this.response.completed += on_response_completed;
             yield this.response.run ();
         } catch (Error error) {
@@ -170,8 +170,8 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             debug ("Transcoding target: %s", target);
 
             var transcoder = this.http_server.get_transcoder (target);
-            this.request_handler = new HTTPTranscodeHandler (transcoder,
-                                                             this.cancellable);
+            this.handler = new HTTPTranscodeHandler (transcoder,
+                                                     this.cancellable);
         }
 
         var index = this.query.lookup ("thumbnail");
