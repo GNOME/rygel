@@ -27,14 +27,14 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
     public HTTPByteSeek (HTTPRequest request) throws HTTPSeekError {
         string range, pos;
         string[] range_tokens;
-        int64 start = 0, length;
+        int64 start = 0, total_length;
 
         if (request.thumbnail != null) {
-            length = request.thumbnail.size;
+            total_length = request.thumbnail.size;
         } else {
-            length = request.item.size;
+            total_length = request.item.size;
         }
-        var stop = length - 1;
+        var stop = total_length - 1;
 
         range = request.msg.request_headers.get ("Range");
         if (range != null) {
@@ -77,7 +77,7 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
               Format.BYTES,
               start,
               stop,
-              length);
+              total_length);
     }
 
     public static bool needed (HTTPRequest request) {
