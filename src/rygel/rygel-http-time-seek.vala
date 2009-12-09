@@ -78,7 +78,11 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
     }
 
     public static bool needed (HTTPRequest request) {
-        return request.thumbnail == null && request.item.should_stream ();
+        var range = request.msg.request_headers.get ("TimeSeekRange.dlna.org");
+
+        return range != null &&
+               (request.request_handler is HTTPTranscodeHandler ||
+                (request.thumbnail == null && request.item.should_stream ()));
     }
 
     public override void add_response_headers () {

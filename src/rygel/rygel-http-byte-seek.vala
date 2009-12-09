@@ -81,7 +81,8 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
     }
 
     public static bool needed (HTTPRequest request) {
-        return true;
+        return request.item.size > 0 ||
+               (request.thumbnail != null && request.thumbnail.size > 0);
     }
 
     public override void add_response_headers () {
