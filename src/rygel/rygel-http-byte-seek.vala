@@ -21,8 +21,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Gst;
-
 internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
     public HTTPByteSeek (HTTPRequest request) throws HTTPSeekError {
         string range, pos;
@@ -74,7 +72,6 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
         }
 
         base (request.msg,
-              Format.BYTES,
               start,
               stop,
               total_length);
