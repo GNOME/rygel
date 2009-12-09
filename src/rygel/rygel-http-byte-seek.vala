@@ -90,19 +90,11 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
 
         this.msg.response_headers.append ("Accept-Ranges", "bytes");
 
-        range += start.to_string () + "-";
-
-        if (stop >= 0.0) {
-            range += stop.to_string ();
-        }
-
-        if (this.length > 0) {
-            range += "/" + this.length.to_string ();
-        } else {
-            range += "/*";
-        }
-
+        range += start.to_string () + "-" +
+                 stop.to_string () + "/" +
+                 this.length.to_string ();
         this.msg.response_headers.append ("Content-Range", range);
+
         this.msg.response_headers.set_content_length (this.length);
     }
 }
