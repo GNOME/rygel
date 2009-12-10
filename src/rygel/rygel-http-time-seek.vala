@@ -89,14 +89,11 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
 
     public override void add_response_headers () {
         // TimeSeekRange.dlna.org: npt=START_TIME-END_TIME/DURATION
-        var range = "npt=";
         double start = (double) this.start / SECOND;
         double stop = (double) this.stop / SECOND;
         double length = (double) this.length / SECOND;
 
-        range += start.to_string () + "-" +
-                 stop.to_string () + "/" +
-                 length.to_string ();
+        var range = "npt=%.2f-%.2f/%.2f".printf (start, stop, length);
 
         this.msg.response_headers.append ("TimeSeekRange.dlna.org", range);
     }
