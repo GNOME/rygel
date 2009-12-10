@@ -34,41 +34,44 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
     public HTTPTimeSeek (HTTPRequest request) throws HTTPSeekError {
         string range, time;
         string[] range_tokens;
-        int64 start = 0, stop = -1;
+        int64 start = 0;
         int64 duration = request.item.duration * SECOND;
+        int64 stop = duration - 10 * MSECOND;
 
         range = request.msg.request_headers.get ("TimeSeekRange.dlna.org");
-        assert (range != null);
-
-        if (!range.has_prefix ("npt=")) {
-            throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
-        }
-
-        range_tokens = range.offset (4).split ("-", 2);
-        if (range_tokens[0] == null || range_tokens[1] == null) {
-            throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
-        }
-
-        // Get start time
-        time = range_tokens[0];
-        if (time[0].isdigit ()) {
-            start = (int64) (time.to_double () * SECOND);
-        } else if (time != "") {
-            throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
-        }
-
-        // Get end time
-        time = range_tokens[1];
-        if (time[0].isdigit()) {
-            stop = (int64) (time.to_double () * SECOND);
-            if (stop < start) {
+        if (range != null) {
+            if (!range.has_prefix ("npt=")) {
                 throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
                                                        range);
             }
-        } else if (time == "") {
-            stop = request.item.duration - 1;
-        } else {
-            throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'", range);
+
+            range_tokens = range.offset (4).split ("-", 2);
+            if (range_tokens[0] == null || range_tokens[1] == null) {
+                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                                                       range);
+            }
+
+            // Get start time
+            time = range_tokens[0];
+            if (time[0].isdigit ()) {
+                start = (int64) (time.to_double () * SECOND);
+            } else if (time != "") {
+                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                                                       range);
+            }
+
+            // Get end time
+            time = range_tokens[1];
+            if (time[0].isdigit()) {
+                stop = (int64) (time.to_double () * SECOND);
+                if (stop < start) {
+                    throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                                                           range);
+                }
+            } else if (time != "") {
+                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                                                       range);
+            }
         }
 
         base (request.msg,
@@ -78,11 +81,10 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
     }
 
     public static bool needed (HTTPRequest request) {
-        var range = request.msg.request_headers.get ("TimeSeekRange.dlna.org");
-
-        return range != null &&
+        return request.item.duration > 0 &&
                (request.handler is HTTPTranscodeHandler ||
-                (request.thumbnail == null && request.item.should_stream ()));
+                (request.thumbnail == null &&
+                 request.item.should_stream ()));
     }
 
     public override void add_response_headers () {
@@ -90,18 +92,11 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
         var range = "npt=";
         double start = (double) this.start / SECOND;
         double stop = (double) this.stop / SECOND;
+        double length = (double) this.length / SECOND;
 
-        range += start.to_string () + "-";
-
-        if (stop >= 0.0) {
-            range += stop.to_string ();
-        }
-
-        if (this.length > 0) {
-            range += "/" + this.length.to_string ();
-        } else {
-            range += "/*";
-        }
+        range += start.to_string () + "-" +
+                 stop.to_string () + "/" +
+                 length.to_string ();
 
         this.msg.response_headers.append ("TimeSeekRange.dlna.org", range);
     }
