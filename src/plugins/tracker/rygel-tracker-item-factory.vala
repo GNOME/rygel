@@ -72,15 +72,18 @@ public abstract class Rygel.TrackerItemFactory {
         return item;
     }
 
-    public virtual ArrayList<string> get_metadata_keys () {
-        var keys = new ArrayList<string> ();
-        keys.add ("nfo:fileName");        // Metadata.FILE_NAME
-        keys.add ("nie:title");           // Metadata.TITLE
-        keys.add ("nie:mimeType");        // Metadata.MIME
-        keys.add ("nfo:fileSize");        // Metadata.SIZE
-        keys.add ("nie:contentCreated");  // Metadata.DATE
+    public virtual ArrayList<ArrayList<string>> get_metadata_key_chains () {
+        var keys = new ArrayList<ArrayList<string>> ();
 
-        assert (keys.size == Metadata.LAST_KEY);
+        for (var i = 0; i < Metadata.LAST_KEY; i++) {
+            keys.add (new ArrayList<string> ());
+        }
+
+        keys[Metadata.FILE_NAME].add ("nfo:fileName");
+        keys[Metadata.TITLE].add ("nie:title");
+        keys[Metadata.MIME].add ("nie:mimeType");
+        keys[Metadata.SIZE].add ("nfo:fileSize");
+        keys[Metadata.DATE].add ("nie:contentCreated");
 
         return keys;
     }

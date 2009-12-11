@@ -72,15 +72,30 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                                     false));
 
         var optional = new TrackerQueryTriplets ();
-        foreach (var key in this.item_factory.get_metadata_keys ()) {
-            var variable = "?" + key.replace (":", "_");
+        foreach (var chain in this.item_factory.get_metadata_key_chains ()) {
+            string next_subject = null;
 
-            variables.add (variable);
+            foreach (var key in chain) {
+                var variable = "?" + key.replace (":", "_");
 
-            var triplet = new TrackerQueryTriplet (ITEM_VARIABLE,
-                                                   key,
-                                                   variable);
-            optional.add (triplet);
+                string subject;
+                if (key == chain.first ()) {
+                    subject = ITEM_VARIABLE;
+                } else {
+                    subject = next_subject;
+                }
+
+                var triplet = new TrackerQueryTriplet (subject,
+                                                       key,
+                                                       variable);
+                optional.add (triplet);
+
+                if (key == chain.last ()) {
+                    variables.add (variable);
+                }
+
+                next_subject = variable;
+            }
         }
 
         this.query = new TrackerQuery (variables,

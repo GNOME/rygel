@@ -56,13 +56,15 @@ public class Rygel.TrackerPictureItemFactory : Rygel.TrackerItemFactory {
         return item;
     }
 
-    public override ArrayList<string> get_metadata_keys () {
-        var keys = base.get_metadata_keys ();
+    public override ArrayList<ArrayList<string>> get_metadata_key_chains () {
+        var keys = base.get_metadata_key_chains ();
 
-        keys.add ("nfo:width");  // PictureMetadata.WIDTH
-        keys.add ("nfo:height"); // PictureMetadata.HEIGHT
+        for (var i = keys.size; i < PictureMetadata.LAST_KEY; i++) {
+            keys.add (new ArrayList<string> ());
+        }
 
-        assert (keys.size == PictureMetadata.LAST_KEY);
+        keys[PictureMetadata.WIDTH].add ("nfo:width");
+        keys[PictureMetadata.HEIGHT].add ("nfo:height");
 
         return keys;
     }

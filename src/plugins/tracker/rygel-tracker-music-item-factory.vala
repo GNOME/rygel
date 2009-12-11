@@ -63,15 +63,17 @@ public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
         return item;
     }
 
-    public override ArrayList<string> get_metadata_keys () {
-        var keys = base.get_metadata_keys ();
+    public override ArrayList<ArrayList<string>> get_metadata_key_chains () {
+        var keys = base.get_metadata_key_chains ();
 
-        keys.add ("nmm:length");      // MusicMetadata.DURATION
-        keys.add ("nmm:performer");   // MusicMetadata.AUDIO_ARTIST
-        keys.add ("nmm:musicAlbum");  // MusicMetadata.AUDIO_ALBUM
-        keys.add ("nmm:trackNumber"); // MusicMetadata.AUDIO_TRACK_NUM
+        for (var i = keys.size; i < MusicMetadata.LAST_KEY; i++) {
+            keys.add (new ArrayList<string> ());
+        }
 
-        assert (keys.size == MusicMetadata.LAST_KEY);
+        keys[MusicMetadata.DURATION].add ("nmm:length");
+        keys[MusicMetadata.AUDIO_ARTIST].add ("nmm:performer");
+        keys[MusicMetadata.AUDIO_ALBUM].add ("nmm:musicAlbum");
+        keys[MusicMetadata.AUDIO_TRACK_NUM].add ("nmm:trackNumber");
 
         return keys;
     }

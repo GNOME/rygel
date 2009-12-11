@@ -60,14 +60,16 @@ public class Rygel.TrackerVideoItemFactory : Rygel.TrackerItemFactory {
         return item;
     }
 
-    public override ArrayList<string> get_metadata_keys () {
-        var keys = base.get_metadata_keys ();
+    public override ArrayList<ArrayList<string>> get_metadata_key_chains () {
+        var keys = base.get_metadata_key_chains ();
 
-        keys.add ("nfo:width");  // VideoMetadata.WIDTH
-        keys.add ("nfo:height"); // VideoMetadata.HEIGHT
-        keys.add ("nmm:length"); // VideoMetadata.DURATION
+        for (var i = keys.size; i < VideoMetadata.LAST_KEY; i++) {
+            keys.add (new ArrayList<string> ());
+        }
 
-        assert (keys.size == VideoMetadata.LAST_KEY);
+        keys[VideoMetadata.WIDTH].add ("nfo:width");
+        keys[VideoMetadata.HEIGHT].add ("nfo:height");
+        keys[VideoMetadata.DURATION].add ("nmm:length");
 
         return keys;
     }
