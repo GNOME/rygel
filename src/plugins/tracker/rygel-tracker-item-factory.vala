@@ -23,6 +23,7 @@
 
 using GUPnP;
 using DBus;
+using Gee;
 
 /**
  * Abstract Tracker item factory.
@@ -73,13 +74,15 @@ public abstract class Rygel.TrackerItemFactory {
         return item;
     }
 
-    public virtual string[] get_metadata_keys () {
-        string[] keys = new string[Metadata.LAST_KEY];
-        keys[Metadata.FILE_NAME] = "nfo:fileName";
-        keys[Metadata.TITLE] = "nie:title";
-        keys[Metadata.MIME] = "nie:mimeType";
-        keys[Metadata.SIZE] = "nfo:fileSize";
-        keys[Metadata.DATE] = "nie:contentCreated";
+    public virtual ArrayList<string> get_metadata_keys () {
+        var keys = new ArrayList<string> ();
+        keys.add ("nfo:fileName");        // Metadata.FILE_NAME
+        keys.add ("nie:title");           // Metadata.TITLE
+        keys.add ("nie:mimeType");        // Metadata.MIME
+        keys.add ("nfo:fileSize");        // Metadata.SIZE
+        keys.add ("nie:contentCreated");  // Metadata.DATE
+
+        assert (keys.size == Metadata.LAST_KEY);
 
         return keys;
     }

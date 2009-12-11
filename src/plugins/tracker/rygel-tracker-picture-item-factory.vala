@@ -23,6 +23,7 @@
 
 using GUPnP;
 using DBus;
+using Gee;
 
 /**
  * Tracker picture item factory.
@@ -57,16 +58,13 @@ public class Rygel.TrackerPictureItemFactory : Rygel.TrackerItemFactory {
         return item;
     }
 
-    public override string[] get_metadata_keys () {
-        var base_keys = base.get_metadata_keys ();
+    public override ArrayList<string> get_metadata_keys () {
+        var keys = base.get_metadata_keys ();
 
-        var keys = new string[PictureMetadata.LAST_KEY];
-        for (var i = 0; i < base_keys.length; i++) {
-            keys[i] = base_keys[i];
-        }
+        keys.add ("nfo:width");  // PictureMetadata.WIDTH
+        keys.add ("nfo:height"); // PictureMetadata.HEIGHT
 
-        keys[PictureMetadata.WIDTH] = "nfo:width";
-        keys[PictureMetadata.HEIGHT] = "nfo:height";
+        assert (keys.size == PictureMetadata.LAST_KEY);
 
         return keys;
     }

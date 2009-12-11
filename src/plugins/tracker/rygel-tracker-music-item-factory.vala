@@ -23,6 +23,7 @@
 
 using GUPnP;
 using DBus;
+using Gee;
 
 /**
  * Tracker music item factory.
@@ -64,18 +65,15 @@ public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
         return item;
     }
 
-    public override string[] get_metadata_keys () {
-        var base_keys = base.get_metadata_keys ();
+    public override ArrayList<string> get_metadata_keys () {
+        var keys = base.get_metadata_keys ();
 
-        var keys = new string[MusicMetadata.LAST_KEY];
-        for (var i = 0; i < base_keys.length; i++) {
-            keys[i] = base_keys[i];
-        }
+        keys.add ("nmm:length");      // MusicMetadata.DURATION
+        keys.add ("nmm:performer");   // MusicMetadata.AUDIO_ARTIST
+        keys.add ("nmm:musicAlbum");  // MusicMetadata.AUDIO_ALBUM
+        keys.add ("nmm:trackNumber"); // MusicMetadata.AUDIO_TRACK_NUM
 
-        keys[MusicMetadata.DURATION] = "nmm:length";
-        keys[MusicMetadata.AUDIO_ARTIST] = "nmm:performer";
-        keys[MusicMetadata.AUDIO_ALBUM] = "nmm:musicAlbum";
-        keys[MusicMetadata.AUDIO_TRACK_NUM] = "nmm:trackNumber";
+        assert (keys.size == MusicMetadata.LAST_KEY);
 
         return keys;
     }

@@ -23,6 +23,7 @@
 
 using GUPnP;
 using DBus;
+using Gee;
 
 /**
  * Tracker video item factory.
@@ -61,17 +62,14 @@ public class Rygel.TrackerVideoItemFactory : Rygel.TrackerItemFactory {
         return item;
     }
 
-    public override string[] get_metadata_keys () {
-        var base_keys = base.get_metadata_keys ();
+    public override ArrayList<string> get_metadata_keys () {
+        var keys = base.get_metadata_keys ();
 
-        var keys = new string[VideoMetadata.LAST_KEY];
-        for (var i = 0; i < base_keys.length; i++) {
-            keys[i] = base_keys[i];
-        }
+        keys.add ("nfo:width");  // VideoMetadata.WIDTH
+        keys.add ("nfo:height"); // VideoMetadata.HEIGHT
+        keys.add ("nmm:length"); // VideoMetadata.DURATION
 
-        keys[VideoMetadata.WIDTH] = "nfo:width";
-        keys[VideoMetadata.HEIGHT] = "nfo:height";
-        keys[VideoMetadata.DURATION] = "nmm:length";
+        assert (keys.size == VideoMetadata.LAST_KEY);
 
         return keys;
     }
