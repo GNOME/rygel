@@ -72,7 +72,9 @@ public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
 
         keys[MusicMetadata.DURATION].add ("nmm:length");
         keys[MusicMetadata.AUDIO_ARTIST].add ("nmm:performer");
+        keys[MusicMetadata.AUDIO_ARTIST].add ("nmm:artistName");
         keys[MusicMetadata.AUDIO_ALBUM].add ("nmm:musicAlbum");
+        keys[MusicMetadata.AUDIO_ALBUM].add ("nmm:albumTitle");
         keys[MusicMetadata.AUDIO_TRACK_NUM].add ("nmm:trackNumber");
 
         return keys;
