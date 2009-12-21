@@ -73,30 +73,17 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
         var optional = new TrackerQueryTriplets ();
         foreach (var chain in this.item_factory.get_metadata_key_chains ()) {
-            string next_subject = null;
+            var key = chain.last ();
+            var variable = "?" + key.replace (":", "_");
 
-            foreach (var key in chain) {
-                var variable = "?" + key.replace (":", "_");
+            variables.add (variable);
 
-                string subject;
-                if (key == chain.first ()) {
-                    subject = ITEM_VARIABLE;
-                } else {
-                    subject = next_subject;
-                }
+            var triplet = this.triplet_from_chain (chain,
+                                                   variable,
+                                                   ITEM_VARIABLE);
 
-                var triplet = new TrackerQueryTriplet (subject,
-                                                       key,
-                                                       variable);
-                if (!our_mandatory.contains (triplet)) {
-                    optional.add (triplet);
-                }
-
-                if (key == chain.last ()) {
-                    variables.add (variable);
-                }
-
-                next_subject = variable;
+            if (!our_mandatory.contains (triplet)) {
+                optional.add (triplet);
             }
         }
 
@@ -116,6 +103,31 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         } catch (DBus.Error error) {
             critical ("Failed to connect to session bus: %s\n", error.message);
         }
+    }
+
+    private TrackerQueryTriplet triplet_from_chain (
+                                        Gee.List<string> chain,
+                                        string?          variable = null,
+                                        string?          subject = null) {
+        var key = chain.first ();
+
+        TrackerQueryTriplet triplet;
+
+        if (chain.size == 1) {
+            triplet = new TrackerQueryTriplet (subject,
+                                               key,
+                                               variable,
+                                               subject != null);
+        } else {
+            var child_chain = chain.slice (chain.index_of (key) + 1,
+                                           chain.size);
+
+            var child = this.triplet_from_chain (child_chain, variable);
+
+            triplet = new TrackerQueryTriplet.chain (subject, key, child);
+        }
+
+        return triplet;
     }
 
     private async void get_children_count () {
