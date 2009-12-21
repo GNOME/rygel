@@ -32,6 +32,8 @@ public class Rygel.TrackerQueryTriplet {
 
     public bool optional;
 
+    public TrackerQueryTriplet next;
+
     public TrackerQueryTriplet (string? subject,
                                 string  predicate,
                                 string  obj,
@@ -42,19 +44,43 @@ public class Rygel.TrackerQueryTriplet {
         this.optional = optional;
     }
 
+    public TrackerQueryTriplet.chain (string?             subject,
+                                      string              predicate,
+                                      TrackerQueryTriplet next,
+                                      bool                optional = true) {
+        this.subject = subject;
+        this.predicate = predicate;
+        this.next = next;
+        this.optional = optional;
+    }
+
     public TrackerQueryTriplet.clone (TrackerQueryTriplet triplet) {
-        this (triplet.subject,
-              triplet.predicate,
-              triplet.obj,
-              triplet.optional);
+        this.subject = triplet.subject;
+        this.predicate = triplet.predicate;
+        this.optional = triplet.optional;
+
+        if (triplet.next != null) {
+            this.next = triplet.next;
+        } else {
+            this.obj = triplet.obj;
+        }
     }
 
     public static bool equal_func (TrackerQueryTriplet a,
                                    TrackerQueryTriplet b) {
+        bool chain_equal;
+
+        if (a.next != null && b.next != null) {
+            chain_equal = equal_func (a.next, b.next);
+        } else {
+            chain_equal = a.next == b.next;
+        }
+
         return a.subject == b.subject &&
                a.obj == b.obj &&
                a.predicate == b.predicate &&
-               a.optional == b.optional;
+               a.optional == b.optional &&
+               chain_equal;
     }
 
     public string to_string () {
@@ -68,7 +94,13 @@ public class Rygel.TrackerQueryTriplet {
             str += " " + subject;
         }
 
-        str += " " + predicate + " " + obj;
+        str += " " + predicate;
+
+        if (this.next != null) {
+            str += " [ " + this.next.to_string () + " ] ";
+        } else {
+            str += " " + this.obj;
+        }
 
         if (this.optional) {
             str += " }";
