@@ -88,7 +88,9 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                 var triplet = new TrackerQueryTriplet (subject,
                                                        key,
                                                        variable);
-                optional.add (triplet);
+                if (!our_mandatory.contains (triplet)) {
+                    optional.add (triplet);
+                }
 
                 if (key == chain.last ()) {
                     variables.add (variable);

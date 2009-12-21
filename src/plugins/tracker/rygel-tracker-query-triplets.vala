@@ -26,8 +26,12 @@ using Gee;
  * Represents a list of SPARQL Triplet
  */
 public class Rygel.TrackerQueryTriplets : ArrayList<TrackerQueryTriplet> {
+    public TrackerQueryTriplets () {
+        base ((EqualFunc) TrackerQueryTriplet.equal_func);
+    }
+
     public TrackerQueryTriplets.clone (TrackerQueryTriplets triplets) {
-        base ();
+        base ((EqualFunc) TrackerQueryTriplet.equal_func);
 
         foreach (var triplet in triplets) {
             this.add (new TrackerQueryTriplet.clone (triplet));

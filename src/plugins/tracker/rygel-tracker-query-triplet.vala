@@ -49,6 +49,14 @@ public class Rygel.TrackerQueryTriplet {
               triplet.optional);
     }
 
+    public static bool equal_func (TrackerQueryTriplet a,
+                                   TrackerQueryTriplet b) {
+        return a.subject == b.subject &&
+               a.obj == b.obj &&
+               a.predicate == b.predicate &&
+               a.optional == b.optional;
+    }
+
     public string to_string () {
         string str = "";
 
