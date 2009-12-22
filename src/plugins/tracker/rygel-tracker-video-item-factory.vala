@@ -39,6 +39,14 @@ public class Rygel.TrackerVideoItemFactory : Rygel.TrackerItemFactory {
 
     public TrackerVideoItemFactory () {
         base (CATEGORY, MediaItem.VIDEO_CLASS);
+
+        for (var i = this.key_chains.size; i < VideoMetadata.LAST_KEY; i++) {
+            this.key_chains.add (new ArrayList<string> ());
+        }
+
+        this.key_chains[VideoMetadata.WIDTH].add ("nfo:width");
+        this.key_chains[VideoMetadata.HEIGHT].add ("nfo:height");
+        this.key_chains[VideoMetadata.DURATION].add ("nmm:length");
     }
 
     public override MediaItem create (string                 id,
@@ -58,20 +66,6 @@ public class Rygel.TrackerVideoItemFactory : Rygel.TrackerItemFactory {
             item.duration = metadata[VideoMetadata.DURATION].to_int ();
 
         return item;
-    }
-
-    public override ArrayList<ArrayList<string>> get_metadata_key_chains () {
-        var keys = base.get_metadata_key_chains ();
-
-        for (var i = keys.size; i < VideoMetadata.LAST_KEY; i++) {
-            keys.add (new ArrayList<string> ());
-        }
-
-        keys[VideoMetadata.WIDTH].add ("nfo:width");
-        keys[VideoMetadata.HEIGHT].add ("nfo:height");
-        keys[VideoMetadata.DURATION].add ("nmm:length");
-
-        return keys;
     }
 }
 

@@ -40,10 +40,24 @@ public abstract class Rygel.TrackerItemFactory {
     public string category;
     public string upnp_class;
 
+    public ArrayList<ArrayList<string>> key_chains;
+
     public TrackerItemFactory (string category,
                                string upnp_class) {
         this.category = category;
         this.upnp_class = upnp_class;
+
+        this.key_chains = new ArrayList<ArrayList<string>> ();
+
+        for (var i = 0; i < Metadata.LAST_KEY; i++) {
+            this.key_chains.add (new ArrayList<string> ());
+        }
+
+        this.key_chains[Metadata.FILE_NAME].add ("nfo:fileName");
+        this.key_chains[Metadata.TITLE].add ("nie:title");
+        this.key_chains[Metadata.MIME].add ("nie:mimeType");
+        this.key_chains[Metadata.SIZE].add ("nfo:fileSize");
+        this.key_chains[Metadata.DATE].add ("nie:contentCreated");
     }
 
     public virtual MediaItem create (string                 id,
@@ -70,22 +84,6 @@ public abstract class Rygel.TrackerItemFactory {
         item.add_uri (uri, null);
 
         return item;
-    }
-
-    public virtual ArrayList<ArrayList<string>> get_metadata_key_chains () {
-        var keys = new ArrayList<ArrayList<string>> ();
-
-        for (var i = 0; i < Metadata.LAST_KEY; i++) {
-            keys.add (new ArrayList<string> ());
-        }
-
-        keys[Metadata.FILE_NAME].add ("nfo:fileName");
-        keys[Metadata.TITLE].add ("nie:title");
-        keys[Metadata.MIME].add ("nie:mimeType");
-        keys[Metadata.SIZE].add ("nfo:fileSize");
-        keys[Metadata.DATE].add ("nie:contentCreated");
-
-        return keys;
     }
 }
 

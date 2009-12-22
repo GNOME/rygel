@@ -40,6 +40,17 @@ public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
 
     public TrackerMusicItemFactory () {
         base (CATEGORY, MediaItem.MUSIC_CLASS);
+
+        for (var i = this.key_chains.size; i < MusicMetadata.LAST_KEY; i++) {
+            this.key_chains.add (new ArrayList<string> ());
+        }
+
+        this.key_chains[MusicMetadata.DURATION].add ("nmm:length");
+        this.key_chains[MusicMetadata.AUDIO_ARTIST].add ("nmm:performer");
+        this.key_chains[MusicMetadata.AUDIO_ARTIST].add ("nmm:artistName");
+        this.key_chains[MusicMetadata.AUDIO_ALBUM].add ("nmm:musicAlbum");
+        this.key_chains[MusicMetadata.AUDIO_ALBUM].add ("nmm:albumTitle");
+        this.key_chains[MusicMetadata.AUDIO_TRACK_NUM].add ("nmm:trackNumber");
     }
 
     public override MediaItem create (string                 id,
@@ -61,23 +72,6 @@ public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
         item.album = metadata[MusicMetadata.AUDIO_ALBUM];
 
         return item;
-    }
-
-    public override ArrayList<ArrayList<string>> get_metadata_key_chains () {
-        var keys = base.get_metadata_key_chains ();
-
-        for (var i = keys.size; i < MusicMetadata.LAST_KEY; i++) {
-            keys.add (new ArrayList<string> ());
-        }
-
-        keys[MusicMetadata.DURATION].add ("nmm:length");
-        keys[MusicMetadata.AUDIO_ARTIST].add ("nmm:performer");
-        keys[MusicMetadata.AUDIO_ARTIST].add ("nmm:artistName");
-        keys[MusicMetadata.AUDIO_ALBUM].add ("nmm:musicAlbum");
-        keys[MusicMetadata.AUDIO_ALBUM].add ("nmm:albumTitle");
-        keys[MusicMetadata.AUDIO_TRACK_NUM].add ("nmm:trackNumber");
-
-        return keys;
     }
 }
 

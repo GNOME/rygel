@@ -72,7 +72,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                                     false));
 
         var optional = new TrackerQueryTriplets ();
-        foreach (var chain in this.item_factory.get_metadata_key_chains ()) {
+        foreach (var chain in this.item_factory.key_chains) {
             var key = chain.last ();
             var variable = "?" + key.replace (":", "_");
 
