@@ -1,3 +1,17 @@
+0.4.8
+=====
+
+A bug-fix release in stable 0.4.x series to fix seeking in general and playback
+for clients that always seek (Sony PS3).
+
+Dependency-related changes:
+
+- Require valac >= 0.7.10.
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 0.4.6
 =====
 
