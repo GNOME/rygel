@@ -33,3 +33,22 @@ public interface Rygel.TrackerResourcesIface: DBus.Object {
     public abstract async string[,] sparql_query (string query)
                                                   throws DBus.Error;
 }
+
+[DBus (name = "org.freedesktop.Tracker1.Resources.Class")]
+public interface Rygel.TrackerResourcesClassIface: DBus.Object {
+    public abstract signal void subjects_added (string[] subjects);
+    public abstract signal void subjects_removed (string[] subjects);
+    public abstract signal void subjects_changed (string[] before,
+                                                  string[] after);
+}
+
+namespace Rygel {
+    public const string RESOURCES_CLASS_PATH = "/org/freedesktop/Tracker1/" +
+                                               "Resources/Classes/";
+    public const string MUSIC_RESOURCES_CLASS_PATH = RESOURCES_CLASS_PATH +
+                                                     "nmm/MusicPiece";
+    public const string VIDEO_RESOURCES_CLASS_PATH = RESOURCES_CLASS_PATH +
+                                                     "nmm/Video";
+    public const string PHOTO_RESOURCES_CLASS_PATH = RESOURCES_CLASS_PATH +
+                                                     "nfo/Image";
+}
