@@ -102,52 +102,6 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         }
     }
 
-    private TrackerQueryTriplet triplet_from_chain (
-                                        Gee.List<string> chain,
-                                        string?          variable = null,
-                                        string?          subject = null) {
-        var key = chain.first ();
-
-        TrackerQueryTriplet triplet;
-
-        if (chain.size == 1) {
-            triplet = new TrackerQueryTriplet (subject,
-                                               key,
-                                               variable,
-                                               subject != null);
-        } else {
-            var child_chain = chain.slice (chain.index_of (key) + 1,
-                                           chain.size);
-
-            var child = this.triplet_from_chain (child_chain, variable);
-
-            triplet = new TrackerQueryTriplet.chain (subject, key, child);
-        }
-
-        return triplet;
-    }
-
-    private async void get_children_count () {
-        try {
-            var query = new TrackerQuery.clone (this.query);
-
-            query.variables = new ArrayList<string> ();
-            query.variables.add ("COUNT(" + ITEM_VARIABLE + ") AS x");
-            query.optional = new TrackerQueryTriplets ();
-
-            var result = yield query.execute (this.resources);
-
-            this.child_count = result[0,0].to_int ();
-            this.updated ();
-        } catch (GLib.Error error) {
-            critical ("error getting item count under category '%s': %s",
-                      this.item_factory.category,
-                      error.message);
-
-            return;
-        }
-    }
-
     public override async Gee.List<MediaObject>? get_children (
                                         uint         offset,
                                         uint         max_count,
@@ -203,6 +157,52 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         total_matches = results.size;
 
         return results;
+    }
+
+    private TrackerQueryTriplet triplet_from_chain (
+                                        Gee.List<string> chain,
+                                        string?          variable = null,
+                                        string?          subject = null) {
+        var key = chain.first ();
+
+        TrackerQueryTriplet triplet;
+
+        if (chain.size == 1) {
+            triplet = new TrackerQueryTriplet (subject,
+                                               key,
+                                               variable,
+                                               subject != null);
+        } else {
+            var child_chain = chain.slice (chain.index_of (key) + 1,
+                                           chain.size);
+
+            var child = this.triplet_from_chain (child_chain, variable);
+
+            triplet = new TrackerQueryTriplet.chain (subject, key, child);
+        }
+
+        return triplet;
+    }
+
+    private async void get_children_count () {
+        try {
+            var query = new TrackerQuery.clone (this.query);
+
+            query.variables = new ArrayList<string> ();
+            query.variables.add ("COUNT(" + ITEM_VARIABLE + ") AS x");
+            query.optional = new TrackerQueryTriplets ();
+
+            var result = yield query.execute (this.resources);
+
+            this.child_count = result[0,0].to_int ();
+            this.updated ();
+        } catch (GLib.Error error) {
+            critical ("error getting item count under category '%s': %s",
+                      this.item_factory.category,
+                      error.message);
+
+            return;
+        }
     }
 
     private TrackerQuery? create_query (SearchExpression expression,
