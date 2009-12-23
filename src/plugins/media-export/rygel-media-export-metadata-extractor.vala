@@ -26,15 +26,6 @@
 using Gst;
 using Gee;
 
-private enum Gst.StreamType {
-    UNKNOWN = 0,
-    AUDIO   = 1,    /* an audio stream */
-    VIDEO   = 2,    /* a video stream */
-    TEXT    = 3,    /* a subtitle/text stream */
-    SUBPICTURE = 4, /* a subtitle in picture-form */
-    ELEMENT = 5     /* stream handled by an element */
-}
-
 /**
  * Metadata extractor based on Gstreamer. Just set the URI of the media on the
  * uri property, it will extact the metadata for you and emit signal
@@ -50,8 +41,8 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     public const string TAG_RYGEL_DEPTH = "rygel-depth";
     public const string TAG_RYGEL_MTIME = "rygel-mtime";
 
-    /* TODO: Use tagbin instead once it's ready */
-    private dynamic Gst.Element playbin;
+    private const Quark _STREAM_TOPOLOGY_QUARK =
+                                        Quark.from_string ("stream-topology");
 
     /* Signals */
     public signal void extraction_done (File file, Gst.TagList tag_list);
@@ -61,13 +52,13 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
      */
     public signal void error (File file, Error err);
 
-    private TagList tag_list;
-
-    private GLib.Queue<File> file_queue;
-
-    private uint timeout_id;
-
-    private static ElementFactory factory;
+    private Gst.Discoverer discoverer;
+    /**
+     * We export a File-based API but GstDiscoverer works with URIs, so
+     * we store uri->File mappings in this hashmap
+     */
+    private HashMap<string, File> file_hash;
+    private uint64 timeout = 10; /* seconds */
 
     private static void register_custom_tag (string tag, Type type) {
         Gst.tag_register (tag,
@@ -78,48 +69,8 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                           Gst.tag_merge_use_first);
     }
 
-    private void renew_playbin () {
-        if (this.factory != null) {
-            // setup fake sinks
-            this.playbin = this.factory.create ("tag_reader");
-
-            var sink = ElementFactory.make ("fakesink", null);
-            sink.ref_sink ();
-            this.playbin.video_sink = sink;
-
-            sink = ElementFactory.make ("fakesink", null);
-            sink.ref_sink ();
-            this.playbin.audio_sink = sink;
-
-            var bus = this.playbin.get_bus ();
-            bus.add_signal_watch ();
-            bus.message["tag"].connect (this.tag_cb);
-            if (factory.get_element_type ().name () == "GstPlayBin2") {
-                bus.message["element"].connect (this.element_message_cb);
-            } else {
-                bus.message["state-changed"].connect (this.state_changed_cb);
-            }
-            bus.message["error"].connect (this.error_cb);
-        }
-    }
-
-    private void create_playbin_factory () {
-        debug ("Checking for gstreamer element 'playbin'...");
-        var factory = ElementFactory.find ("playbin2");
-        if (factory != null) {
-            debug (_("Using playbin2"));
-        } else {
-            debug (_("Could not create Playbin2, trying Playbin"));
-            factory = ElementFactory.find ("playbin");
-
-            if (factory != null) {
-                debug (_("Using playbin"));
-            } else {
-                warning (_("Could not find any playbin.") + " " +
-                        _("Please check your gstreamer setup"));
-            }
-        }
-        MetadataExtractor.factory = factory;
+    public static MetadataExtractor? create () {
+        return new MetadataExtractor ();
     }
 
     public MetadataExtractor () {
@@ -132,258 +83,188 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         this.register_custom_tag (TAG_RYGEL_DEPTH, typeof (int));
         this.register_custom_tag (TAG_RYGEL_MTIME, typeof (uint64));
 
-        this.file_queue = new GLib.Queue<File> ();
-        this.tag_list = new Gst.TagList ();
+        this.file_hash = new HashMap<string, File> ();
 
-        var config = MetaConfig.get_default ();
-        bool extract_metadata;
+        this.discoverer = new Gst.Discoverer ((ClockTime)
+                                              (this.timeout * 1000000000ULL));
+        this.discoverer.discovered.connect (on_discovered);
+        this.discoverer.start ();
+    }
 
-        try {
-            extract_metadata = config.get_bool ("MediaExport",
-                                                "extract-metadata");
-        } catch (Error error) {
-            extract_metadata = false;
+    ~MetadataExtractor () {
+        this.discoverer.stop ();
+    }
+
+    private void on_discovered (string               uri,
+                                Structure            info,
+                                GLib.Error           err,
+                                Gst.DiscovererResult res) {
+        assert (this.file_hash.has_key (uri));
+
+        File file = this.file_hash.get (uri);
+        TagList tag_list = new TagList ();
+
+        this.file_hash.unset (uri);
+
+        if ((res & Gst.DiscovererResult.TIMEOUT) != 0) {
+            this.error (file,
+                        new IOChannelError.FAILED ("Pipeline stuckwhile" +
+                                                   "reading file info"));
+            return;
+        } else if ((res & Gst.DiscovererResult.ERROR) != 0) {
+            this.error (file, err);
+            return;
         }
 
-        // lazy-create factory
-        if (extract_metadata && factory == null) {
-            create_playbin_factory ();
+        try {
+            this.extract_mime_and_size (file, tag_list);
+            this.extract_duration (info, tag_list);
+            this.extract_stream_info (info, tag_list);
+            this.extraction_done (file, tag_list);
+        } catch (Error e) {
+            /* Passthrough */
         }
     }
 
     public void extract (File file) {
-        var trigger_run = this.file_queue.get_length () == 0;
-        this.file_queue.push_tail (file);
-        if (trigger_run) {
-            this.extract_next ();
-        }
+        string uri = file.get_uri ();
+        this.file_hash.set (uri, file);
+        this.discoverer.append_uri (uri);
     }
 
-    private bool on_harvesting_timeout () {
-        warning (_("Metadata extractor timed out on %s, restarting"),
-                 this.file_queue.peek_head ().get_uri ());
-        this.playbin.set_state (State.NULL);
+    private void extract_mime_and_size (File    file,
+                                        TagList tag_list) throws Error {
+        FileInfo file_info;
 
-        var message = _("Pipeline stuck while reading file info");
-        this.error (file_queue.peek_head (),
-                    new IOChannelError.FAILED (message));
-        this.file_queue.pop_head ();
-        extract_next ();
+        try {
+            file_info = file.query_info (FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE
+                                         + "," +
+                                         FILE_ATTRIBUTE_STANDARD_SIZE + "," +
+                                         FILE_ATTRIBUTE_TIME_MODIFIED,
+                                         FileQueryInfoFlags.NONE,
+                                         null);
+        } catch (Error error) {
+            warning (_("Failed to query content type for '%s'"),
+                     file.get_uri ());
 
-        return false;
-    }
+            // signal error to parent
+            this.error (file, error);
 
-    private void extract_next () {
-        if (this.timeout_id != 0) {
-            Source.remove (this.timeout_id);
+            throw error;
         }
 
-        if (this.file_queue.get_length () > 0) {
-            this.tag_list = new Gst.TagList ();
-            var item = this.file_queue.peek_head ();
-            try {
-                debug (_("Scheduling file %s for metadata extraction"),
-                       item.get_uri ());
-                this.extract_mime_and_size ();
-                if (this.factory != null) {
-                    renew_playbin ();
-                    this.playbin.uri = item.get_uri ();
-                    this.timeout_id = Timeout.add_seconds_full (
-                                        Priority.DEFAULT,
-                                        5,
-                                        on_harvesting_timeout);
-                    this.playbin.set_state (State.PAUSED);
-                } else {
-                    Idle.add (() => {
-                        extraction_done (this.file_queue.pop_head (),
-                                         this.tag_list);
-                        this.extract_next ();
+        string content_type = file_info.get_content_type ();
+        string mime = g_content_type_get_mime_type (content_type);
 
-                        return false;
-                    });
+        if (mime != null) {
+            /* add custom mime tag to tag list */
+            tag_list.add (TagMergeMode.REPLACE, TAG_RYGEL_MIME, mime);
+        }
+
+        var size = file_info.get_size ();
+        tag_list.add (TagMergeMode.REPLACE, TAG_RYGEL_SIZE, size);
+
+        var mtime = file_info.get_attribute_uint64 (
+                                        FILE_ATTRIBUTE_TIME_MODIFIED);
+        tag_list.add (TagMergeMode.REPLACE, TAG_RYGEL_MTIME, mtime);
+    }
+
+    private void extract_duration (Structure info, TagList tag_list) {
+        ClockTime duration;
+        this.discoverer.results_get_duration (info, out duration);
+
+        tag_list.add (TagMergeMode.REPLACE,
+                      TAG_DURATION,
+                      info.duration);
+    }
+
+    /*
+     * Collect Caps from the stream information so we can extract bitrate,
+     * height, width, etc.
+     */
+    private ArrayList<Gst.Caps> get_caps (Structure info) {
+        ArrayList<Gst.Caps> caps_list = new ArrayList<Gst.Caps> ();
+        ArrayList<Structure> struct_list = new ArrayList<Structure> ();
+
+        struct_list.add (info);
+
+        for (int i = 0; i < struct_list.size; i++) {
+            Structure st = struct_list[i];
+
+            for (int f = 0; f < st.n_fields (); f++) {
+                string name = st.nth_field_name (f);
+                Quark field = Quark.from_string (name);
+                Gst.Value v = st.get_value (name);
+
+                if (field == MetadataExtractor._STREAM_TOPOLOGY_QUARK) {
+                    /* We don't care about the stream topology caps */
+                    continue;
+                } else if (v.holds (typeof (Gst.List))) {
+                    for (int j = 0; j < v.list_get_size (); j++) {
+                        Gst.Value item_value = v.list_get_value (j);
+
+                        if (item_value.type ().name () == "GstStructure")
+                            struct_list.add (item_value.get_structure ());
+                        else if (item_value.holds (typeof (Gst.Caps)))
+                            caps_list.add (item_value.get_caps ());
+                    }
+                } else if (v.type ().name () == "GstStructure") {
+                    /*
+                     * This should be v.holds (typeof (Gst.Structure)), but
+                     * requires a bug fix in GStreamer VAPI, which should hit
+                     * master soon
+                     */
+                    struct_list.add (v.get_structure ());
+                } else if (v.holds (typeof (Gst.Caps))) {
+                    caps_list.add (v.get_caps ());
                 }
-            } catch (Error error) {
-                // Translators: first parameter is file uri, second is error
-                // message
-                warning (_("Failed to extract metadata from %s: %s"),
-                         item.get_uri (),
-                         error.message);
+            }
+        }
 
-                // on error just move to the next uri in queue
-                Idle.add (() => {
-                    this.error (this.file_queue.pop_head (), error);
-                    this.extract_next ();
+        return caps_list;
+    }
 
-                    return false;
-                });
+    private void extract_stream_info (Structure info, TagList tag_list) {
+        ArrayList<Gst.Caps> caps_list = get_caps (info);
+
+        foreach (Gst.Caps caps in caps_list) {
+            Structure caps_struct = caps.get_structure (0);
+            string name = caps_struct.get_name ();
+
+            if (name.has_prefix ("video")) {
+                extract_video_info (caps_struct, tag_list);
+            } else if (name.has_prefix ("audio")) {
+                extract_audio_info (caps_struct, tag_list);
             }
         }
     }
 
-    /* Callback for tags found by playbin */
-    private void tag_cb (Gst.Bus     bus,
-                         Gst.Message message) {
-        TagList new_tag_list;
-
-        message.parse_tag (out new_tag_list);
-        this.tag_list = new_tag_list.merge (this.tag_list,
-                                            TagMergeMode.REPLACE);
+    private void extract_audio_info (Structure structure,
+                                     TagList tag_list) {
+        this.extract_int_value (structure, tag_list,"rate", TAG_RYGEL_RATE);
+        this.extract_int_value (structure,
+                                tag_list,
+                                "channels",
+                                TAG_RYGEL_CHANNELS);
     }
 
-    private void element_message_cb (Gst.Bus bus,
-                                     Message message) {
-        if (message.src != this.playbin) {
-            return;
-        }
-
-        if (message.get_structure ().get_name () == "playbin2-stream-changed") {
-            this.extract_duration ();
-            this.extract_stream_info ();
-
-            /* No hopes of getting any tags after this point */
-            this.extraction_done (this.file_queue.peek_head (), tag_list);
-            this.playbin.set_state (State.NULL);
-            this.file_queue.pop_head ();
-            this.extract_next ();
-        }
-    }
-
-    /* Callback for state-change in playbin */
-    private void state_changed_cb (Gst.Bus     bus,
-                                   Gst.Message message) {
-        if (message.src != this.playbin) {
-            return;
-        }
-
-        State new_state;
-        State old_state;
-
-        message.parse_state_changed (out old_state, out new_state, null);
-        if (new_state == State.PAUSED && old_state == State.READY) {
-            this.extract_duration ();
-            this.extract_stream_info ();
-
-            /* No hopes of getting any tags after this point */
-            this.extraction_done (this.file_queue.peek_head (), tag_list);
-            this.playbin.set_state (State.NULL);
-            this.file_queue.pop_head ();
-            this.extract_next ();
-        }
-    }
-
-    /* Callback for errors in playbin */
-    private void error_cb (Gst.Bus     bus,
-                           Gst.Message message) {
-
-        return_if_fail (this.file_queue.get_length () != 0);
-
-        Error error = null;
-        string debug;
-
-        message.parse_error (out error, out debug);
-        if (error != null) {
-            debug = error.message;
-        }
-
-        // signalize error to listeners
-        this.error (this.file_queue.peek_head (), error);
-
-        /* We have a list of URIs to harvest, so lets jump to next one */
-        this.playbin.set_state (State.NULL);
-        this.file_queue.pop_head ();
-        this.extract_next ();
-    }
-
-    private void extract_mime_and_size () throws Error {
-        var file = this.file_queue.peek_head ();
-        FileInfo file_info;
-
-        file_info = file.query_info (FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE
-                                     + "," +
-                                     FILE_ATTRIBUTE_STANDARD_SIZE + "," +
-                                     FILE_ATTRIBUTE_TIME_MODIFIED,
-                                     FileQueryInfoFlags.NONE,
-                                     null);
-
-        string content_type = file_info.get_content_type ();
-        string mime = g_content_type_get_mime_type (content_type);
-        if (mime != null) {
-            /* add custom mime tag to tag list */
-            this.tag_list.add (TagMergeMode.REPLACE,
-                               TAG_RYGEL_MIME,
-                               mime);
-        }
-
-        var size = file_info.get_size ();
-        this.tag_list.add (TagMergeMode.REPLACE,
-                           TAG_RYGEL_SIZE,
-                           size);
-
-        var mtime = file_info.get_attribute_uint64 (
-                                                FILE_ATTRIBUTE_TIME_MODIFIED);
-        this.tag_list.add (TagMergeMode.REPLACE,
-                           TAG_RYGEL_MTIME,
-                           mtime);
-    }
-
-    private void extract_duration () {
-        int64 duration;
-
-        Format format = Format.TIME;
-        if (this.playbin.query_duration (ref format, out duration)) {
-            this.tag_list.add (TagMergeMode.REPLACE,
-                               TAG_DURATION,
-                               duration);
-        }
-    }
-
-    private void extract_stream_info () {
-        extract_av_info (this.playbin.video_sink.get_pad ("sink"),
-                StreamType.VIDEO);
-        extract_av_info (this.playbin.audio_sink.get_pad ("sink"),
-                StreamType.AUDIO);
-    }
-
-    private void extract_av_info (Pad pad, StreamType type) {
-        if (pad == null) {
-            return;
-        }
-
-        Gst.Caps caps = pad.get_negotiated_caps ();
-        if (caps == null) {
-            return;
-        }
-
-        weak Structure structure = caps.get_structure (0);
-        if (structure == null) {
-            return;
-        }
-
-        if (type == StreamType.AUDIO) {
-            this.extract_audio_info (structure);
-        } else if (type == StreamType.VIDEO) {
-            this.extract_video_info (structure);
-        }
-    }
-
-    private void extract_audio_info (Structure structure) {
-        this.extract_int_value (structure, "channels", TAG_RYGEL_CHANNELS);
-        this.extract_int_value (structure, "rate", TAG_RYGEL_RATE);
-    }
-
-    private void extract_video_info (Structure structure) {
-        this.extract_int_value (structure, "width", TAG_RYGEL_WIDTH);
-        this.extract_int_value (structure, "height", TAG_RYGEL_HEIGHT);
-        this.extract_int_value (structure, "depth", TAG_RYGEL_DEPTH);
+    private void extract_video_info (Structure structure, TagList tag_list) {
+        this.extract_int_value (structure, tag_list, "depth", TAG_RYGEL_DEPTH);
+        this.extract_int_value (structure, tag_list, "width", TAG_RYGEL_WIDTH);
+        this.extract_int_value (structure,
+                                tag_list,
+                                "height",
+                                TAG_RYGEL_HEIGHT);
     }
 
     private void extract_int_value (Structure structure,
-                                    string key,
-                                    string tag) {
-        int tag_value;
+                                    TagList   tag_list,
+                                    string    key,
+                                    string    tag) {
+        int val;
 
-        if (structure.get_int (key, out tag_value)) {
-            tag_list.add (TagMergeMode.REPLACE, tag, tag_value);
+        if (structure.get_int (key, out val)) {
+            tag_list.add (TagMergeMode.REPLACE, tag, val);
         }
     }
 }
