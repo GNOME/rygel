@@ -33,9 +33,28 @@ public class Rygel.TrackerRootContainer : Rygel.SimpleContainer {
     public TrackerRootContainer (string title) {
         base.root (title);
 
-        this.add_child (new TrackerMusic ("14", this, "Music"));
-        this.add_child (new TrackerVideos ("15", this, "Videos"));
-        this.add_child (new TrackerPictures ("16", this, "Pictures"));
+        if (this.get_bool_config_without_error ("share-music")) {
+            this.add_child (new TrackerMusic ("14", this, "Music"));
+        }
+
+        if (this.get_bool_config_without_error ("share-videos")) {
+            this.add_child (new TrackerVideos ("15", this, "Videos"));
+        }
+
+        if (this.get_bool_config_without_error ("share-pictures")) {
+            this.add_child (new TrackerPictures ("16", this, "Pictures"));
+        }
+    }
+
+    private bool get_bool_config_without_error (string key) {
+        var value = true;
+        var config = MetaConfig.get_default ();
+
+        try {
+            value = config.get_bool ("Tracker", key);
+        } catch (GLib.Error error) {}
+
+        return value;
     }
 }
 
