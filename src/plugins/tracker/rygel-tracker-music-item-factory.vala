@@ -39,7 +39,7 @@ public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
     private const string CATEGORY = "nmm:MusicPiece";
 
     public TrackerMusicItemFactory () {
-        base (CATEGORY, MediaItem.MUSIC_CLASS);
+        base (CATEGORY, MediaItem.MUSIC_CLASS, MUSIC_RESOURCES_CLASS_PATH);
 
         for (var i = this.key_chains.size; i < MusicMetadata.LAST_KEY; i++) {
             this.key_chains.add (new ArrayList<string> ());

@@ -48,6 +48,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
     public FilterFunc filter_func;
 
     private TrackerResourcesIface resources;
+    private TrackerResourcesClassIface resources_class;
 
     public TrackerMetadataValues (string             id,
                                   MediaContainer     parent,
@@ -78,9 +79,14 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         }
 
         this.fetch_metadata_values.begin ();
+
+        this.hook_to_changes ();
     }
 
     private async void fetch_metadata_values () {
+        // First thing, clear the existing hierarchy, if any
+        this.clear ();
+
         int i;
         var mandatory = new TrackerQueryTriplets ();
 
@@ -123,9 +129,6 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
 
         string[,] values;
         try {
-            /* FIXME: We need to hook to some tracker signals to keep
-             *        this field up2date at all times
-             */
             values = yield query.execute (this.resources);
         } catch (DBus.Error error) {
             critical ("error getting all values for '%s': %s",
@@ -186,6 +189,23 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         this.resources = connection.get_object (TRACKER_SERVICE,
                                                 RESOURCES_PATH)
                                                 as TrackerResourcesIface;
+        this.resources_class = connection.get_object (
+                                        TRACKER_SERVICE,
+                                        this.item_factory.resources_class_path)
+                                        as TrackerResourcesClassIface;
+    }
+
+    private void hook_to_changes () {
+        // For any changes in subjects, just recreate hierarchy
+        this.resources_class.subjects_added.connect ((subjects) => {
+            this.fetch_metadata_values.begin ();
+        });
+        this.resources_class.subjects_removed.connect ((subjects) => {
+            this.fetch_metadata_values.begin ();
+        });
+        this.resources_class.subjects_changed.connect ((before, after) => {
+            this.fetch_metadata_values.begin ();
+        });
     }
 
     private bool is_child_id_unique (string child_id) {

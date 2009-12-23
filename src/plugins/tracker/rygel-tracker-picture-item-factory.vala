@@ -37,7 +37,7 @@ public class Rygel.TrackerPictureItemFactory : Rygel.TrackerItemFactory {
     private const string CATEGORY = "nmm:Photo";
 
     public TrackerPictureItemFactory () {
-        base (CATEGORY, MediaItem.IMAGE_CLASS);
+        base (CATEGORY, MediaItem.IMAGE_CLASS, PHOTO_RESOURCES_CLASS_PATH);
 
         for (var i = this.key_chains.size; i < PictureMetadata.LAST_KEY; i++) {
             this.key_chains.add (new ArrayList<string> ());

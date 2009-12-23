@@ -96,9 +96,6 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         try {
             this.create_proxies ();
 
-            /* FIXME: We need to hook to some tracker signals to keep
-             *        this field up2date at all times
-             */
             this.get_children_count.begin ();
         } catch (DBus.Error error) {
             critical ("Failed to connect to session bus: %s\n", error.message);
