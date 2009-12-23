@@ -107,12 +107,16 @@ rygel_VALAFLAGS = \
 	-H rygel.h -C --library=rygel-1.0 --vapidir=$(srcdir) --thread \
 	--pkg rygel-build-config --pkg rygel-misc --pkg gupnp-1.0 \
 	--pkg gupnp-av-1.0 --pkg dbus-glib-1 --pkg gstreamer-0.10 \
-	--pkg gio-2.0 --pkg gee-1.0 --pkg posix -g
+	--pkg gio-2.0 --pkg gee-1.0 --pkg posix \
+	--pkg gstreamer-convenience-libs-0.10 \
+	-g
+# Note:  `-- the -g needs to be at the end of VALAFLAGS to not break make dist
 
 rygel_LDADD = librygel-configuration.a \
 	      $(LIBGUPNP_LIBS) \
 	      $(LIBGUPNP_AV_LIBS) \
 	      $(LIBGSTREAMER_LIBS) \
+	      $(GST_CONVENIENCE_LIBS) -lgstdiscoverer-0.10 \
 	      $(GIO_LIBS) \
 	      $(GEE_LIBS) \
 	      $(UUID_LIBS) \

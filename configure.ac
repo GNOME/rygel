@@ -26,6 +26,7 @@ GUPNP_AV_REQUIRED=0.5.7
 GUPNP_VALA_REQUIRED=0.6.7
 DBUS_GLIB_REQUIRED=0.74
 GSTREAMER_REQUIRED=0.10.23
+GST_CONVENIENCE_LIBS_REQUIRED=0.10.0.1
 GIO_REQUIRED=2.16
 GEE_REQUIRED=0.5.0
 UUID_REQUIRED=1.41.3
@@ -37,6 +38,7 @@ PKG_CHECK_MODULES(LIBGUPNP, gupnp-1.0 >= $GUPNP_REQUIRED)
 PKG_CHECK_MODULES(LIBGUPNP_AV, gupnp-av-1.0 >= $GUPNP_AV_REQUIRED)
 PKG_CHECK_MODULES(LIBDBUS_GLIB, dbus-glib-1 >= $DBUS_GLIB_REQUIRED)
 PKG_CHECK_MODULES(LIBGSTREAMER, gstreamer-0.10 >= $GSTREAMER_REQUIRED)
+PKG_CHECK_MODULES(GST_CONVENIENCE_LIBS, gstreamer-convenience-libs-0.10 >= $GST_CONVENIENCE_LIBS_REQUIRED)
 PKG_CHECK_MODULES(LIBGIO, gio-2.0 >= $GIO_REQUIRED)
 PKG_CHECK_MODULES(GEE, gee-1.0 >= $GEE_REQUIRED)
 PKG_CHECK_MODULES(UUID, uuid >= $UUID_REQUIRED)
@@ -99,6 +101,10 @@ if test x$enable_vala = xyes ; then
     AC_CHECK_FILE("${VAPIDIR}/gstreamer-0.10.vapi",
                   true,
                   [AC_MSG_ERROR("Unable to find Vala bindings for gstreamer-0.10")])
+
+    AC_CHECK_FILE("${VAPIDIR}/gstreamer-convenience-libs-0.10.vapi",
+                  true,
+                  [AC_MSG_ERROR("Unable to find Vala bindings for gstreamer-convenience-libs-0.10")])
 
     AC_CHECK_FILE("${VAPIDIR}/gio-2.0.vapi",
                   true,
