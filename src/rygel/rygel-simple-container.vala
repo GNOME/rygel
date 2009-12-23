@@ -56,6 +56,12 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
         this.child_count--;
     }
 
+    public void clear () {
+        this.children.clear ();
+
+        this.child_count = 0;
+    }
+
     public override async Gee.List<MediaObject>? get_children (
                                         uint         offset,
                                         uint         max_count,
