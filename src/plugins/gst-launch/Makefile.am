@@ -15,7 +15,7 @@ librygel_gst_launch_la_SOURCES = rygel-gst-launch-plugin.vala \
 				rygel-gst-launch-content-dir.vala \
 				rygel-gst-launch-item.vala
 
-librygel_gst_launch_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
+librygel_gst_launch_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel -g \
 			     --pkg rygel-1.0 --pkg cstuff --pkg gconf-2.0 \
 			     --pkg gupnp-1.0 --pkg gupnp-av-1.0 \
 			     --pkg dbus-glib-1 --pkg gee-1.0 --pkg gstreamer-0.10
