@@ -39,29 +39,34 @@ internal class Rygel.HTTPItemURI : Object {
         this.transcode_target = null;
         var request_uri = uri.replace (server_root, "");
         var parts = request_uri.split ("/");
-        if (parts.length < 2 || parts.length % 2 == 0)
+
+        if (parts.length < 2 || parts.length % 2 == 0) {
             warning ("Invalid uri %s", request_uri);
-        else {
-            for (int i = 1; i < parts.length - 1; i += 2) {
-                switch (parts[i]) {
-                    case "item":
-                        StringBuilder sb = new StringBuilder ();
-                        size_t len;
-                        var data = Base64.decode (
-                                               Soup.URI.decode (parts[i + 1]),
-                                               out len);
-                        sb.append_len ((string) data, (ssize_t) len);
-                        this.item_id = sb.str;
-                        break;
-                    case "transcoded":
-                        this.transcode_target = Soup.URI.decode (parts[i + 1]);
-                        break;
-                    case "thumbnail":
-                        this.thumbnail_index = parts[i + 1].to_int ();
-                        break;
-                    default:
-                        break;
-                }
+
+            return;
+        }
+
+        for (int i = 1; i < parts.length - 1; i += 2) {
+            switch (parts[i]) {
+                case "item":
+                    size_t len;
+                    var data = Base64.decode (Soup.URI.decode (parts[i + 1]),
+                                              out len);
+                    StringBuilder builder = new StringBuilder ();
+                    builder.append_len ((string) data, (ssize_t) len);
+                    this.item_id = builder.str;
+
+                    break;
+                case "transcoded":
+                    this.transcode_target = Soup.URI.decode (parts[i + 1]);
+
+                    break;
+                case "thumbnail":
+                    this.thumbnail_index = parts[i + 1].to_int ();
+
+                    break;
+                default:
+                    break;
             }
         }
     }
