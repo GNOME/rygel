@@ -81,8 +81,8 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
 
         try {
-            var uri = new ItemUri.from_string (this.msg.uri.path,
-                                               this.http_server.path_root);
+            var uri = new HTTPItemURI.from_string (this.msg.uri.path,
+                                                   this.http_server.path_root);
 
             this.item_id = uri.item_id;
             this.thumbnail_index = uri.thumbnail_index;

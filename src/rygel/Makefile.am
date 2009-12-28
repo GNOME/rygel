@@ -36,7 +36,7 @@ BUILT_SOURCES = rygel-1.0.vapi \
 		rygel.h
 
 rygel_SOURCES = $(VAPI_SOURCE_FILES) \
-		rygel-item-uri.vala \
+		rygel-http-item-uri.vala \
 		rygel-dbus-service.vala \
 		rygel-root-device.vala \
 		rygel-root-device-factory.vala \

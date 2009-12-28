@@ -20,20 +20,20 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-internal class Rygel.ItemUri : Object {
+internal class Rygel.HTTPItemURI : Object {
     public string item_id;
     public int thumbnail_index;
     public string? transcode_target;
 
-    public ItemUri (string item_id,
-                    int thumbnail_index = -1,
-                    string ? transcode_target = null) {
+    public HTTPItemURI (string item_id,
+                        int thumbnail_index = -1,
+                        string ? transcode_target = null) {
         this.item_id = item_id;
         this.thumbnail_index = thumbnail_index;
         this.transcode_target = transcode_target;
     }
 
-    public ItemUri.from_string (string uri, string server_root = "") {
+    public HTTPItemURI.from_string (string uri, string server_root = "") {
         // do not decode the path here as it may contain encoded slashes
         this.thumbnail_index = -1;
         this.transcode_target = null;

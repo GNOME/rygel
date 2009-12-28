@@ -129,7 +129,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                                                   string?   transcode_target,
                                                   out string protocol) {
 
-        var uri = new ItemUri (item.id, thumbnail_index, transcode_target);
+        var uri = new HTTPItemURI (item.id, thumbnail_index, transcode_target);
 
         protocol = "http-get";
 
