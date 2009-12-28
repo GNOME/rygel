@@ -23,7 +23,7 @@ librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
 				   rygel-media-export-harvester.vala \
 				   rygel-media-export-item.vala
 
-librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
+librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel -g \
 				     --pkg dbus-glib-1 \
                                      --pkg rygel-1.0 \
                                      --pkg cstuff \

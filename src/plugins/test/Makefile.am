@@ -22,7 +22,7 @@ librygel_test_la_SOURCES = rygel-test-content-dir.vala \
 			   rygel-test-video-item.vala \
 			   rygel-test-plugin.vala
 
-librygel_test_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
+librygel_test_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel -g \
 			     --pkg rygel-1.0 --pkg cstuff --pkg gconf-2.0 \
 			     --pkg gupnp-1.0 --pkg gupnp-av-1.0 \
 			     --pkg dbus-glib-1 --pkg gee-1.0 --pkg gstreamer-0.10
