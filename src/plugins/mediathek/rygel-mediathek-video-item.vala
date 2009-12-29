@@ -34,7 +34,7 @@ public class Rygel.MediathekVideoItem : Rygel.MediaItem {
              title, 
              MediaItem.VIDEO_CLASS);
 
-        this.mime_type = "video/x-ms-asf";
+        this.mime_type = "video/x-ms-wmv";
         this.author = "ZDF - Zweites Deutsches Fernsehen";
     }
 
