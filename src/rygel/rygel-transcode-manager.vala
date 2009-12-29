@@ -49,6 +49,10 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
                 transcoders.add (new MP2TSTranscoder(MP2TSProfile.SD));
                 transcoders.add (new MP2TSTranscoder(MP2TSProfile.HD));
             }
+
+            if (config.get_wmv_transcoder ()) {
+                transcoders.add (new WMVTranscoder ());
+            }
         }
     }
 

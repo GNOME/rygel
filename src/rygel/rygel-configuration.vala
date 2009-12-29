@@ -47,6 +47,8 @@ public interface Rygel.Configuration : GLib.Object {
 
     public abstract bool get_lpcm_transcoder () throws GLib.Error;
 
+    public abstract bool get_wmv_transcoder () throws GLib.Error;
+
     public abstract LogLevel get_log_level () throws GLib.Error;
 
     public abstract bool get_enabled (string section) throws GLib.Error;

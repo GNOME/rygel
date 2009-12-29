@@ -39,6 +39,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                                                     "enable-mp2ts-transcoder";
     protected static const string LPCM_TRANSCODER_KEY =
                                                     "enable-lpcm-transcoder";
+    protected static const string WMV_TRANSCODER_KEY = "enable-wmv-transcoder";
     protected static const string LOG_LEVEL_KEY = "log-level";
 
     private const string DBUS_SERVICE = "org.freedesktop.DBus";
@@ -120,6 +121,14 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
     public void set_lpcm_transcoder (bool value) {
         this.set_bool ("general", LPCM_TRANSCODER_KEY, value);
+    }
+
+    public bool get_wmv_transcoder () throws GLib.Error {
+        return this.get_bool ("general", WMV_TRANSCODER_KEY);
+    }
+
+    public void set_wmv_transcoder (bool value) {
+        this.set_bool ("general", WMV_TRANSCODER_KEY, value);
     }
 
     public LogLevel get_log_level () throws GLib.Error {

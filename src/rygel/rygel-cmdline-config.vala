@@ -40,6 +40,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static bool no_mp3_trans;
     private static bool no_mp2ts_trans;
     private static bool no_lpcm_trans;
+    private static bool no_wmv_trans;
 
     private static LogLevel log_level = LogLevel.INVALID;
 
@@ -75,6 +76,8 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
           "Disable mpeg2 transport stream transcoder", null },
         { "disable-lpcm-transcoder", 'l', 0, OptionArg.NONE, ref no_lpcm_trans,
           "Disable Linear PCM transcoder", null },
+        { "disable-wmv-transcoder", 'l', 0, OptionArg.NONE, ref no_wmv_trans,
+          "Disable WMV transcoder", null },
         { "log-level", 'g', 0, OptionArg.INT, ref log_level,
           "Log level. 1=critical,2=error,3=warning,4=message/info,5=debug",
           "N" },
@@ -163,6 +166,10 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         } else {
             return false;
         }
+    }
+
+    public bool get_wmv_transcoder () throws GLib.Error {
+        return !no_wmv_trans;
     }
 
     public LogLevel get_log_level () throws GLib.Error {
