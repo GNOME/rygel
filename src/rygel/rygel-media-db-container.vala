@@ -173,7 +173,7 @@ public class Rygel.MediaDBContainer : MediaContainer {
                 v = exp.operand2;
                 break;
             case SearchCriteriaOp.NEQ:
-                func = "=";
+                func = "!=";
                 v = exp.operand2;
                 break;
             case SearchCriteriaOp.LESS:
