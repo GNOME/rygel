@@ -904,4 +904,25 @@ public class Rygel.MediaDB : Object {
         return "%s %s ?".printf (column, func);
     }
 
+    public Gee.List<string> get_meta_data_column_by_filter (
+                                       string          column,
+                                       string          filter,
+                                       GLib.ValueArray args,
+                                       long            offset,
+                                       long            max_count) throws Error {
+        GLib.Value v = offset;
+        args.append (v);
+        v = max_count;
+        args.append (v);
+        var data = new ArrayList<string> ();
+        Rygel.Database.RowCallback cb = (stmt) => {
+            data.add (stmt.column_text (0));
+        };
+
+        this.db.exec (("SELECT DISTINCT %s FROM meta_data AS m %s " +
+                      "ORDER BY %s LIMIT ?,?").printf(column, filter, column),
+                      args.values, cb);
+
+        return data;
+    }
 }
