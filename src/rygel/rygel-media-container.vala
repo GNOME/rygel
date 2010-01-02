@@ -140,10 +140,10 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
             start = offset.clamp (0, result.size - 1);
 
-            if (max_count != 0) {
+            if (max_count != 0 && start + max_count <= result.size) {
                 stop = start + max_count;
             } else {
-                stop = result.size - 1;
+                stop = result.size;
             }
 
             // Since we limited our search, we don't know how many objects
