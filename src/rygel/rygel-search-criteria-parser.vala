@@ -23,6 +23,15 @@
 using GUPnP;
 using Gee;
 
+errordomain Rygel.SearchCriteriaError {
+    SYNTAX_ERROR
+}
+
+internal struct Rygel.SearchCriteriaSymbol {
+    public string symbol;
+    public int value;
+}
+
 /**
  * Parses a search criteria string and creates SearchExpression as a result.
  */
@@ -32,13 +41,57 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
     public SearchExpression expression; // The root expression
     public Error err;
 
-    private LinkedList<SearchExpression> exp_stack;
-
     public Cancellable cancellable { get; set; }
+
+    private Scanner scanner;
+    private enum Symbol {
+        ASTERISK = TokenType.LAST + 11,
+        AND      = TokenType.LAST + 12,
+        OR       = TokenType.LAST + 13,
+        TRUE     = TokenType.LAST + 14,
+        FALSE    = TokenType.LAST + 15
+    }
+
+    private const SearchCriteriaSymbol[] symbols = {
+        { "*",              (int) Symbol.ASTERISK },
+        { "and",            (int) Symbol.AND },
+        { "or",             (int) Symbol.OR },
+        { "=",              (int) SearchCriteriaOp.EQ },
+        { "!=",             (int) SearchCriteriaOp.NEQ },
+        { "<",              (int) SearchCriteriaOp.LESS },
+        { "<=",             (int) SearchCriteriaOp.LEQ },
+        { ">",              (int) SearchCriteriaOp.GREATER },
+        { ">=",             (int) SearchCriteriaOp.GEQ },
+        { "contains",       (int) SearchCriteriaOp.CONTAINS },
+        { "doesNotContain", (int) SearchCriteriaOp.DOES_NOT_CONTAIN },
+        { "derivedfrom",    (int) SearchCriteriaOp.DERIVED_FROM },
+        { "exists",         (int) SearchCriteriaOp.EXISTS },
+        { "true",           (int) Symbol.TRUE },
+        { "false",          (int) Symbol.FALSE }
+    };
+
+    construct  {
+        scanner = new Scanner (null);
+        scanner.config.cset_skip_characters = " \t\n\r\012" +
+                                              "\013\014\015";
+        scanner.config.scan_identifier_1char = true;
+        scanner.config.cset_identifier_first = CharacterSet.a_2_z +
+                                               "_*<>=!@" +
+                                               CharacterSet.A_2_Z;
+        scanner.config.cset_identifier_nth   = CharacterSet.a_2_z + "_" +
+                                               CharacterSet.DIGITS + "=:@" +
+                                               CharacterSet.A_2_Z +
+                                               CharacterSet.LATINS +
+                                               CharacterSet.LATINC;
+        scanner.config.symbol_2_token        = true;
+
+        foreach (SearchCriteriaSymbol s in symbols) {
+            scanner.scope_add_symbol (0, s.symbol, s.value.to_pointer ());
+        }
+    }
 
     public SearchCriteriaParser (string str) throws Error {
         this.str = str;
-        this.exp_stack = new LinkedList<SearchExpression> ();
     }
 
     // This implementation is not really async
@@ -48,142 +101,107 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
             this.completed ();
         }
 
-        var parser = new GUPnP.SearchCriteriaParser ();
-
-        parser.expression.connect (this.on_expression);
-        parser.begin_parens.connect (() => {
-            this.exp_stack.offer_tail (new OpenningBrace ());
-        });
-        parser.end_parens.connect (this.on_end_parens);
-        parser.conjunction.connect (() => {
-            this.handle_logical_operator (LogicalOperator.AND);
-        });
-        parser.disjunction.connect (() => {
-            this.handle_logical_operator (LogicalOperator.OR);
-        });
-
+        this.scanner.input_text (this.str, (uint) this.str.length);
+        this.scanner.get_next_token ();
         try {
-            parser.parse_text (this.str);
+            this.expression = this.or_expression ();
         } catch (Error err) {
             this.err = err;
         }
-
         this.completed ();
     }
 
-    private bool on_expression (GUPnP.SearchCriteriaParser parser,
-                                string                     property,
-                                SearchCriteriaOp           op,
-                                string                     value,
-                                void                      *err) {
-        // Relational expression from out POV
-        var expression = new RelationalExpression ();
-        expression.op = op;
-        expression.operand1 = property;
-        expression.operand2 = value;
+    private SearchExpression? and_expression () throws Error {
+        var exp = relational_expression ();
+        while (this.scanner.token == (int) Symbol.AND) {
+            this.scanner.get_next_token ();
+            var exp2 = new LogicalExpression();
+            exp2.operand1 = exp;
+            exp2.op = LogicalOperator.AND;
+            exp2.operand2 = relational_expression ();
+            exp = exp2;
+        }
 
-        // Now lets decide where to place this expression
-        var stack_top = this.exp_stack.peek_tail ();
-        if (stack_top == null) {
-            if (this.expression == null) {
-                // Top-level expression
-                this.expression = expression;
-            } else if (this.expression is LogicalExpression) {
-                // The previous expression must have lacked the 2nd operand
-                var l_expression = this.expression as LogicalExpression;
-                if (l_expression.operand2 != null &&
-                    l_expression.operand2 is LogicalExpression) {
-                    l_expression = l_expression.operand2 as LogicalExpression;
+        return exp;
+    }
+
+    private SearchExpression? relational_expression () throws Error {
+        var exp = new RelationalExpression ();
+        if (this.scanner.token == TokenType.IDENTIFIER) {
+            exp.operand1 = this.scanner.value.identifier;
+            this.scanner.get_next_token ();
+            if (this.scanner.token == (int) SearchCriteriaOp.EQ ||
+                this.scanner.token == (int) SearchCriteriaOp.NEQ ||
+                this.scanner.token == (int) SearchCriteriaOp.LESS ||
+                this.scanner.token == (int) SearchCriteriaOp.LEQ ||
+                this.scanner.token == (int) SearchCriteriaOp.GREATER ||
+                this.scanner.token == (int) SearchCriteriaOp.GEQ ||
+                this.scanner.token == (int) SearchCriteriaOp.CONTAINS ||
+                this.scanner.token == (int) SearchCriteriaOp.DOES_NOT_CONTAIN ||
+                this.scanner.token == (int) SearchCriteriaOp.DERIVED_FROM) {
+               exp.op = (SearchCriteriaOp) this.scanner.token;
+               this.scanner.get_next_token ();
+               if (this.scanner.token == TokenType.STRING) {
+                   exp.operand2 = this.scanner.value.string;
+                   this.scanner.get_next_token ();
+
+                   return exp;
+               } else {
+                    throw new SearchCriteriaError.SYNTAX_ERROR (
+                                 "relational_expression: expected \"string\"");
+               }
+            } else if (this.scanner.token == (int) SearchCriteriaOp.EXISTS) {
+                exp.op = (SearchCriteriaOp) this.scanner.token;
+                this.scanner.get_next_token ();
+                if (this.scanner.token == (int) Symbol.TRUE) {
+                    exp.operand2 = "true";
+                    this.scanner.get_next_token ();
+
+                    return exp;
+                } else if (this.scanner.token == (int) Symbol.FALSE) {
+                    exp.operand2 = "false";
+                    this.scanner.get_next_token ();
+
+                    return exp;
+                } else {
+                    throw new SearchCriteriaError.SYNTAX_ERROR (
+                                 "relational_expression: expected true|false");
                 }
-
-                l_expression.operand2 = expression;
-            }
-        } else if (stack_top is OpenningBrace) {
-            this.exp_stack.offer_tail (expression);
-        } else if (stack_top is LogicalExpression) {
-            // The previous expression must have lacked the 2nd operand
-            var l_expression = stack_top as LogicalExpression;
-            l_expression.operand2 = expression;
-        }
-
-        return true;
-    }
-
-    private void handle_logical_operator (LogicalOperator lop) {
-        var expression = new LogicalExpression ();
-        expression.op = lop;
-
-        var stack_top = this.exp_stack.peek_tail ();
-        if (stack_top != null) {
-            if (lop == LogicalOperator.AND && stack_top is LogicalExpression) {
-                // AND has precedence over OR
-                var previous = stack_top as LogicalExpression;
-
-                expression.operand1 = previous.operand2;
-                previous.operand2 = expression;
             } else {
-                this.exp_stack.poll_tail (); // Pop last expression
-                this.exp_stack.poll_tail (); // Pop opening brace
-
-                // Put new Logical expression on the top of the stack
-                this.exp_stack.offer_tail (expression);
-
-                // Make the previous expression on the stack it's first argument
-                expression.operand1 = stack_top;
+                throw new SearchCriteriaError.SYNTAX_ERROR (
+                                   "relational_expression: expected operator");
             }
+        } else if (this.scanner.token == TokenType.LEFT_PAREN) {
+            this.scanner.get_next_token ();
+            var exp2 = this.or_expression ();
+            if (this.scanner.token != TokenType.RIGHT_PAREN) {
+                throw new SearchCriteriaError.SYNTAX_ERROR (
+                                          "relational_expression: expected )");
+            } else {
+                this.scanner.get_next_token ();
+
+                return exp2;
+            }
+
         } else {
-            // Nothing on the stack?
-            if (lop == LogicalOperator.AND &&
-                this.expression is LogicalExpression) {
-                // AND has precedence over OR
-                var previous = this.expression as LogicalExpression;
-
-                expression.operand1 = previous.operand2;
-                previous.operand2 = expression;
-            } else {
-                // This must mean this is a logical expression combining the
-                // expression tree and the next expression that we haven't yet
-                // parsed.
-                expression.operand1 = this.expression;
-                this.expression = expression;
-            }
+            throw new SearchCriteriaError.SYNTAX_ERROR (
+                            "relational_expression: expected identifier or (");
         }
     }
 
-    private void on_end_parens (GUPnP.SearchCriteriaParser parser) {
-        // Closing parenthesis means the expression on the stack is complete so
-        // first we pop that from the stack.
-        var inner_exp = this.exp_stack.poll_tail ();
-        var outer_exp = this.exp_stack.peek_tail () as LogicalExpression;
-        if (outer_exp == null) {
-            // Stack is now empty, go for the expression tree!
-            if (this.expression != null) {
-                outer_exp = this.expression as LogicalExpression;
-            } else {
-                this.expression = inner_exp;
-            }
+    private SearchExpression? or_expression () throws Error {
+        var exp = and_expression ();
+        while (this.scanner.token == (int) Symbol.OR) {
+            this.scanner.get_next_token ();
+            var exp2 = new LogicalExpression();
+            exp2.operand1 = exp;
+            exp2.op = LogicalOperator.OR;
+            exp2.operand2 = and_expression ();
+            exp = exp2;
         }
 
-        if (outer_exp != null) {
-            // Either there was an incomplete expression either on the stack
-            // or the expression tree so we just complete that.
-            outer_exp.operand2 = inner_exp;
-        }
-    }
-}
-
-// FIXME: Openning brace is not really an expression so we must stop using this
-// classes as soon as we figure a way to not use the same stack for expressions
-// and braces.
-private class Rygel.OpenningBrace: Rygel.SearchExpression<void *,
-                                                          void *,
-                                                          void *> {
-    public override bool satisfied_by (MediaObject media_object) {
-        assert_not_reached ();
+        return exp;
     }
 
-    public override string to_string () {
-        assert_not_reached ();
-    }
 }
 
