@@ -39,8 +39,9 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
         //          the parts not prefixed by virtual-folder: are URL-escaped
         base (media_db, id, name);
         var args = id.split(",");
-        var exp = new RelationalExpression ();
-        for (int i = args.length - 2; i >= 1; i -= 2) {
+        for (int i = args.length - 1 - args.length % 2; i >= 1 - args.length %
+        2; i -= 2) {
+            var exp = new RelationalExpression ();
             exp.operand1 = args[i - 1].replace ("virtual-container:", "");
             exp.op = SearchCriteriaOp.EQ;
             exp.operand2 = args[i];
@@ -49,6 +50,7 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
                 exp2.operand1 = this.expression;
                 exp2.operand2 = exp;
                 exp2.op = LogicalOperator.AND;
+                this.expression = exp2;
             } else {
                 this.expression = exp;
             }
