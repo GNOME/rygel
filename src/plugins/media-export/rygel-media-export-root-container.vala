@@ -108,13 +108,15 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 case "object.container.album.musicAlbum":
                     return new MediaExportQueryContainer (
                                        this.media_db,
-                                       "virtual-container:upnp:album",
+                                       MediaExportQueryContainer.register_virtual_container
+                                       ("virtual-container:upnp:album"),
                                        "Albums");
 
                 case "object.container.person.musicArtist":
                     return new MediaExportQueryContainer (
                                        this.media_db,
-                                       "virtual-container:dc:creator",
+                                       MediaExportQueryContainer.register_virtual_container
+                                       ("virtual-container:dc:creator"),
                                        "Artists");
                 default:
                     return null;
@@ -149,7 +151,9 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
             if (exp.operand1 == "@id" &&
                 exp.op == SearchCriteriaOp.EQ &&
                 exp.operand2.has_prefix ("virtual-container:")) {
-                var args = exp.operand2.split(",");
+                var real_id = MediaExportQueryContainer.get_virtual_container_definition
+                (exp.operand2);
+                var args = real_id.split(",");
                 query_cont = new MediaExportQueryContainer (this.media_db,
                                                             exp.operand2,
                                                             args[args.length-1]);
@@ -181,14 +185,16 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
             if (cont != null) {
                 string new_id = "virtual-container:" + exp_.operand1 +
                                 "," + exp_.operand2 +
-                                cont.id.replace ("virtual-container:", ",");
+                                cont.plaintext_id.replace ("virtual-container:", ",");
                 debug ("Translated search request to %s", new_id);
+                new_id = MediaExportQueryContainer.register_virtual_container
+                (new_id);
                 var query_cont_ = new MediaExportQueryContainer (this.media_db,
                                                             new_id,
                                                             exp_.operand2);
                 var list_ = yield query_cont_.get_children (offset, max_count, cancellable);
                 foreach (MediaObject o2 in list_) {
-                    o2.upnp_class = exp_.operand1;
+                    o2.upnp_class = expa.operand2;
                 }
                 total_matches = list_.size;
                 return list_;

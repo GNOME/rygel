@@ -26,6 +26,8 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
     private bool item_container;
     private string attribute;
     private SearchExpression expression;
+    private static HashMap<string,string> virtual_container_map = null;
+    public string plaintext_id;
 
     public MediaExportQueryContainer (MediaDB media_db,
                                       string  id,
@@ -45,9 +47,9 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
         //          the parts not prefixed by virtual-folder: are URL-escaped
         base (media_db, id, name);
 
-        var args = id.split(",");
-
-
+        this.plaintext_id = get_virtual_container_definition (id);
+        debug ("plaintext id is: %s", this.plaintext_id);
+        var args = this.plaintext_id.split(",");
 
         // build SearchExpression from container-id
         int i = args.length - 1 - args.length % 2;
@@ -132,11 +134,12 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
                                     offset,
                                     max_objects);
         foreach (var meta_data in data) {
-                if (meta_data == null) {
-                    continue;
-                }
+            if (meta_data == null) {
+                continue;
+            }
 
-            var new_id = this.id + "," + meta_data;
+            var new_id = this.plaintext_id + "," + meta_data;
+            new_id = register_virtual_container (new_id);
             var container = new MediaExportQueryContainer (this.media_db,
                                                            new_id,
                                                            meta_data);
@@ -146,5 +149,28 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
         }
 
         return children;
+    }
+
+    public static string register_virtual_container (string id) {
+        var md5 = Checksum.compute_for_string (ChecksumType.MD5, id);
+        if (virtual_container_map == null) {
+            virtual_container_map = new HashMap<string,string> ();
+        }
+        if (!virtual_container_map.has_key (md5)) {
+            virtual_container_map[md5] = id;
+            debug ("registering %s for %s", md5, id);
+        }
+
+        return PREFIX + md5;
+    }
+
+    public static string? get_virtual_container_definition (string hash) {
+        var id = hash.replace(PREFIX, "");
+        if (virtual_container_map != null &&
+            virtual_container_map.has_key (id)) {
+            return virtual_container_map[id];
+        }
+
+        return null;
     }
 }
