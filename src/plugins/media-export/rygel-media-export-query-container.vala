@@ -113,13 +113,13 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
                                        args,
                                        offset,
                                        max_count == 0 ? -1 : max_count);
-            foreach (string foo in data) {
-                if (foo == null)
+            foreach (string meta_data in data) {
+                if (meta_data == null)
                     continue;
-                var new_id = this.id + "," + foo;
+                var new_id = this.id + "," + meta_data;
                 var container = new MediaExportQueryContainer (this.media_db,
-                        new_id,
-                        foo);
+                                                               new_id,
+                                                               meta_data);
                 container.parent = this;
                 container.parent_ref = this;
                 children.add (container);
