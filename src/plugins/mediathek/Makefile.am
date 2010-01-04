@@ -22,7 +22,7 @@ librygel_mediathek_la_SOURCES = rygel-mediathek-asx-playlist.vala \
 				rygel-mediathek-root-container.vala \
 				rygel-mediathek-rss-container.vala
 
-librygel_mediathek_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel -g \
+librygel_mediathek_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
 				  --pkg rygel-1.0 \
 				  --pkg cstuff \
 				  --pkg gupnp-1.0 \
@@ -30,7 +30,7 @@ librygel_mediathek_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel -g \
 				  --pkg libsoup-2.4 \
 				  --pkg gee-1.0 \
 				  --pkg libxml-2.0 \
-				  --pkg gconf-2.0
+				  --pkg gconf-2.0 -g
 
 librygel_mediathek_la_LIBADD = $(LIBGUPNP_LIBS) \
 			       $(LIBGUPNP_AV_LIBS) \
