@@ -23,10 +23,10 @@ librygel_gst_renderer_la_SOURCES = rygel-gst-connection-manager.vala \
 				   rygel-gst-plugin.vala
 
 librygel_gst_renderer_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
-                     	             --vapidir=$(srcdir) -g \
+                     	             --vapidir=$(srcdir) \
 				     --pkg rygel-1.0 --pkg cstuff \
 				     --pkg gupnp-1.0 --pkg gupnp-av-1.0 \
-				     --pkg gee-1.0 --pkg gstreamer-0.10
+				     --pkg gee-1.0 --pkg gstreamer-0.10 -g
 
 librygel_gst_renderer_la_LIBADD = $(LIBGUPNP_LIBS) \
                     	          $(LIBGUPNP_AV_LIBS) \

@@ -23,7 +23,7 @@ librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
 				   rygel-media-export-harvester.vala \
 				   rygel-media-export-item.vala
 
-librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel -g \
+librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
 				     --pkg dbus-glib-1 \
                                      --pkg rygel-1.0 \
                                      --pkg cstuff \
@@ -31,7 +31,7 @@ librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel -g \
                                      --pkg gupnp-av-1.0 \
                                      --pkg libsoup-2.4 \
                                      --pkg gee-1.0 \
-                                     --pkg libxml-2.0
+                                     --pkg libxml-2.0 -g
 
 librygel_media_export_la_LIBADD = $(LIBGUPNP_LIBS) \
 				  $(LIBGUPNP_AV_LIBS) \

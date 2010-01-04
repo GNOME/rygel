@@ -25,11 +25,11 @@ librygel_external_la_SOURCES = rygel-external-content-dir.vala \
 			       rygel-external-icon-factory.vala
 
 rygel-external.stamp: $(librygel_external_la_VALASOURCES)
-librygel_external_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel -g \
+librygel_external_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
 				 --pkg rygel-1.0 --pkg cstuff --pkg gupnp-1.0 \
 				 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
 				 --pkg gee-1.0 --pkg gstreamer-0.10 \
-				 --pkg gconf-2.0
+				 --pkg gconf-2.0 -g
 
 librygel_external_la_LIBADD = $(LIBGUPNP_LIBS) \
                               $(LIBGUPNP_AV_LIBS) \
