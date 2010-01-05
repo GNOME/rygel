@@ -42,7 +42,9 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
                              HTTPSeek?    seek,
                              size_t       file_length,
                              Cancellable? cancellable) {
-        base (server, msg, seek != null, cancellable);
+        var partial = seek != null && seek.length < file_length;
+
+        base (server, msg, partial, cancellable);
 
         this.seek = seek;
         this.total_length = file_length;
