@@ -58,6 +58,20 @@ if test x$enable_sql_debugging = xyes ; then
     VALAFLAGS="$VALAFLAGS -D RYGEL_DEBUG_SQL"
 fi
 
+# Enable check for Vala even if not asked to do so if stamp files are absent.
+if test ! -e src/rygel/rygel_vala.stamp -o \
+        ! -e src/rygel/librygel_configuration_a_vala.stamp -o \
+        ! -e src/ui/rygel_preferences_vala.stamp -o \
+        ! -e src/plugins/gst-renderer/librygel_gst_renderer_la_vala.stamp -o \
+        ! -e src/plugins/tracker/librygel_media_tracker_la_vala.stamp -o \
+        ! -e src/plugins/test/librygel_test_la_vala.stamp -o \
+        ! -e src/plugins/media-export/librygel_media_export_la_vala.stamp -o \
+        ! -e src/plugins/mediathek/librygel_mediathek_la_vala.stamp -o \
+        ! -e src/plugins/gst-launch/librygel_gst_launch_la_vala.stamp -o \
+        ! -e src/plugins/external/librygel_external_la_vala.stamp ; then
+    enable_vala=yes
+fi
+
 # Vala
 if test x$enable_vala = xyes ; then
     # check for vala
