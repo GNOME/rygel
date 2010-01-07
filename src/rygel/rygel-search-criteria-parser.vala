@@ -172,8 +172,9 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
 
                    return exp;
                } else {
-                    throw new SearchCriteriaError.SYNTAX_ERROR (
-                                 "relational_expression: expected \"string\"");
+                    throw new SearchCriteriaError.SYNTAX_ERROR (this.context +
+                                                                ": expected " +
+                                                                "\"STRING\"");
                }
             } else if (this.token == SearchCriteriaSymbol.EXISTS) {
                 exp.op = (SearchCriteriaOp) this.scanner.token;
@@ -189,19 +190,22 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
 
                     return exp;
                 } else {
-                    throw new SearchCriteriaError.SYNTAX_ERROR (
-                                 "relational_expression: expected true|false");
+                    throw new SearchCriteriaError.SYNTAX_ERROR (this.context +
+                                                                ": expected " +
+                                                                "\"true\"|\"" +
+                                                                "false\"");
                 }
             } else {
-                throw new SearchCriteriaError.SYNTAX_ERROR (
-                                   "relational_expression: expected operator");
+                throw new SearchCriteriaError.SYNTAX_ERROR (this.context +
+                                                            ": expected " +
+                                                            "operator");
             }
         } else if (this.scanner.token == TokenType.LEFT_PAREN) {
             this.scanner.get_next_token ();
             var exp2 = this.parse_or_expression ();
             if (this.scanner.token != TokenType.RIGHT_PAREN) {
-                throw new SearchCriteriaError.SYNTAX_ERROR (
-                                          "relational_expression: expected )");
+                throw new SearchCriteriaError.SYNTAX_ERROR (this.context +
+                                                            ": expected ')'");
             } else {
                 this.scanner.get_next_token ();
 
@@ -209,8 +213,9 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
             }
 
         } else {
-            throw new SearchCriteriaError.SYNTAX_ERROR (
-                            "relational_expression: expected identifier or (");
+            throw new SearchCriteriaError.SYNTAX_ERROR (this.context +
+                                                        ": expected " +
+                                                        "identifier or '('");
         }
     }
 
