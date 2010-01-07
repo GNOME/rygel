@@ -27,7 +27,7 @@ errordomain Rygel.SearchCriteriaError {
     SYNTAX_ERROR
 }
 
-internal struct Rygel.SearchCriteriaSymbol {
+private struct Rygel.SearchCriteriaSymbol {
     public string symbol;
     public int value;
 }
