@@ -121,28 +121,28 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
         this.scanner.input_text (this.str, (uint) this.str.length);
         this.scanner.get_next_token ();
         try {
-            this.expression = this.or_expression ();
+            this.expression = this.parse_or_expression ();
         } catch (Error err) {
             this.err = err;
         }
         this.completed ();
     }
 
-    private SearchExpression? and_expression () throws Error {
-        var exp = relational_expression ();
+    private SearchExpression? parse_and_expression () throws Error {
+        var exp = this.parse_rel_expression ();
         while (this.token == SearchCriteriaSymbol.AND) {
             this.scanner.get_next_token ();
             var exp2 = new LogicalExpression();
             exp2.operand1 = exp;
             exp2.op = LogicalOperator.AND;
-            exp2.operand2 = relational_expression ();
+            exp2.operand2 = this.parse_rel_expression ();
             exp = exp2;
         }
 
         return exp;
     }
 
-    private SearchExpression? relational_expression () throws Error {
+    private SearchExpression? parse_rel_expression () throws Error {
         var exp = new RelationalExpression ();
         if (this.scanner.token == TokenType.IDENTIFIER) {
             exp.operand1 = this.scanner.value.identifier;
@@ -191,7 +191,7 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
             }
         } else if (this.scanner.token == TokenType.LEFT_PAREN) {
             this.scanner.get_next_token ();
-            var exp2 = this.or_expression ();
+            var exp2 = this.parse_or_expression ();
             if (this.scanner.token != TokenType.RIGHT_PAREN) {
                 throw new SearchCriteriaError.SYNTAX_ERROR (
                                           "relational_expression: expected )");
@@ -207,14 +207,14 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
         }
     }
 
-    private SearchExpression? or_expression () throws Error {
-        var exp = and_expression ();
+    private SearchExpression? parse_or_expression () throws Error {
+        var exp = this.parse_and_expression ();
         while (this.token == SearchCriteriaSymbol.OR) {
             this.scanner.get_next_token ();
             var exp2 = new LogicalExpression();
             exp2.operand1 = exp;
             exp2.op = LogicalOperator.OR;
-            exp2.operand2 = and_expression ();
+            exp2.operand2 = this.parse_and_expression ();
             exp = exp2;
         }
 
