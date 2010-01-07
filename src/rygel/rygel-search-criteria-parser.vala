@@ -68,6 +68,13 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
         }
     }
 
+    private string context {
+        owned get {
+            return this.scanner.line.to_string () + "." +
+                   this.scanner.position.to_string ();
+        }
+    }
+
     private Scanner scanner;
 
     private const SearchCriteriaToken[] tokens = {
