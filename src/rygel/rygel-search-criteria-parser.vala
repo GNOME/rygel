@@ -70,7 +70,8 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
         { "false",          (int) Symbol.FALSE }
     };
 
-    construct  {
+    public SearchCriteriaParser (string str) throws Error {
+        this.str = str;
         scanner = new Scanner (null);
         scanner.config.cset_skip_characters = " \t\n\r\012" +
                                               "\013\014\015";
@@ -88,10 +89,6 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
         foreach (SearchCriteriaSymbol s in symbols) {
             scanner.scope_add_symbol (0, s.symbol, s.value.to_pointer ());
         }
-    }
-
-    public SearchCriteriaParser (string str) throws Error {
-        this.str = str;
     }
 
     // This implementation is not really async
