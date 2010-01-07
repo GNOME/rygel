@@ -232,5 +232,6 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
 
         return exp;
     }
+
 }
 
