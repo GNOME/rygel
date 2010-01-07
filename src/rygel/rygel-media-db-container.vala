@@ -77,48 +77,59 @@ public class Rygel.MediaDBContainer : MediaContainer {
         var filter = this.search_expression_to_sql (expression, args);
 
         if (filter == null) {
-            // use basic search
             total_matches = 0;
-            return new Gee.ArrayList<MediaObject>();
+
+            return new Gee.ArrayList<MediaObject> ();
         }
 
-        debug ("Orignal search: %s", expression.to_string());
+        debug ("Orignal search: %s", expression.to_string ());
         debug ("Parsed search expression: %s", filter);
 
-        for (int i = 0; i < args.n_values; i++)
-            debug ("Arg %d: %s", i, args.get_nth(i).get_string());
+        for (int i = 0; i < args.n_values; i++) {
+            debug ("Arg %d: %s", i, args.get_nth (i).get_string ());
+        }
 
-        var children = this.media_db.get_objects_by_filter (
-                                             filter,
-                                             args,
-                                             this.id,
-                                             offset,
-                                             max_count == 0 ? -1 : max_count);
+        var max_objects = max_count;
+        if (max_objects == 0) {
+            max_objects = -1;
+        }
+
+        var children = this.media_db.get_objects_by_filter (filter,
+                                                            args,
+                                                            this.id,
+                                                            offset,
+                                                            max_objects);
         total_matches = children.size;
+
         return children;
     }
 
     private string? logexp_to_sql (LogicalExpression? exp,
-                                   GLib.ValueArray args) {
+                                   GLib.ValueArray    args) {
         string left = search_expression_to_sql (exp.operand1, args);
         string right = search_expression_to_sql (exp.operand2, args);
-        return "(%s %s %s)".printf (
-                                  left,
-                                  exp.op == LogicalOperator.AND ? "AND" : "OR",
-                                  right);
+        string op;
+        if (exp.op == LogicalOperator.AND) {
+            op = "AND";
+        } else {
+            op = "OR";
+        }
+
+        return "(%s %s %s)".printf (left, op, right);
     }
 
     private string? search_expression_to_sql (SearchExpression? expression,
-                                              GLib.ValueArray args) {
+                                              GLib.ValueArray   args) {
         string result = null;
 
-        if (expression == null)
+        if (expression == null) {
             return result;
+        }
 
         if (expression is LogicalExpression) {
-            return logexp_to_sql ((LogicalExpression) expression, args);
+            return logexp_to_sql (expression as LogicalExpression, args);
         } else {
-            return relexp_to_sql ((RelationalExpression) expression, args);
+            return relexp_to_sql (expression as RelationalExpression, args);
         }
     }
 
@@ -145,7 +156,7 @@ public class Rygel.MediaDBContainer : MediaContainer {
                 column = "m.date";
                 break;
             default:
-                warning("Unsupported: %s", operand);
+                warning ("Unsupported: %s", operand);
                 break;
         }
 
@@ -153,13 +164,14 @@ public class Rygel.MediaDBContainer : MediaContainer {
     }
 
     private string? relexp_to_sql (RelationalExpression? exp,
-                                   GLib.ValueArray args) {
+                                   GLib.ValueArray       args) {
         string func = null;
         GLib.Value? v = null;
 
         string column = map_operand_to_column (exp.operand1);
-        if (column == null)
+        if (column == null) {
             return null;
+        }
 
         switch (exp.op) {
             case SearchCriteriaOp.EXISTS:
@@ -194,26 +206,25 @@ public class Rygel.MediaDBContainer : MediaContainer {
                 break;
             case SearchCriteriaOp.CONTAINS:
                 func = "LIKE";
-                v = "%%%s%%".printf(exp.operand2);
+                v = "%%%s%%".printf (exp.operand2);
                 break;
             case SearchCriteriaOp.DOES_NOT_CONTAIN:
                 func = "NOT LIKE";
-                v = "%%%s%%".printf(exp.operand2);
+                v = "%%%s%%".printf (exp.operand2);
                 break;
             case SearchCriteriaOp.DERIVED_FROM:
                 func = "LIKE";
-                v = "%s%%".printf(exp.operand2);
+                v = "%s%%".printf (exp.operand2);
                 break;
             default:
                 warning ("Unsupported op %d", exp.op);
                 break;
         }
 
-        if (v != null)
+        if (v != null) {
             args.append (v);
+        }
 
-        return "%s %s ?".printf(column, func);
+        return "%s %s ?".printf (column, func);
     }
 }
-
-
