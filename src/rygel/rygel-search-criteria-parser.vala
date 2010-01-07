@@ -27,9 +27,28 @@ errordomain Rygel.SearchCriteriaError {
     SYNTAX_ERROR
 }
 
-private struct Rygel.SearchCriteriaSymbol {
-    public string symbol;
-    public int value;
+private enum Rygel.SearchCriteriaSymbol {
+    EQ = SearchCriteriaOp.EQ,
+    NEQ,
+    LESS,
+    LEQ,
+    GREATER,
+    GEQ,
+    CONTAINS,
+    DOES_NOT_CONTAIN,
+    DERIVED_FROM,
+    EXISTS,
+
+    ASTERISK,
+    AND,
+    OR,
+    TRUE,
+    FALSE
+}
+
+private struct Rygel.SearchCriteriaToken {
+    public string str_symbol;
+    public SearchCriteriaSymbol symbol;
 }
 
 /**
@@ -43,31 +62,30 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
 
     public Cancellable cancellable { get; set; }
 
-    private Scanner scanner;
-    private enum Symbol {
-        ASTERISK = TokenType.LAST + 11,
-        AND      = TokenType.LAST + 12,
-        OR       = TokenType.LAST + 13,
-        TRUE     = TokenType.LAST + 14,
-        FALSE    = TokenType.LAST + 15
+    private SearchCriteriaSymbol token {
+        get {
+            return (SearchCriteriaSymbol) this.scanner.token;
+        }
     }
 
-    private const SearchCriteriaSymbol[] symbols = {
-        { "*",              (int) Symbol.ASTERISK },
-        { "and",            (int) Symbol.AND },
-        { "or",             (int) Symbol.OR },
-        { "=",              (int) SearchCriteriaOp.EQ },
-        { "!=",             (int) SearchCriteriaOp.NEQ },
-        { "<",              (int) SearchCriteriaOp.LESS },
-        { "<=",             (int) SearchCriteriaOp.LEQ },
-        { ">",              (int) SearchCriteriaOp.GREATER },
-        { ">=",             (int) SearchCriteriaOp.GEQ },
-        { "contains",       (int) SearchCriteriaOp.CONTAINS },
-        { "doesNotContain", (int) SearchCriteriaOp.DOES_NOT_CONTAIN },
-        { "derivedfrom",    (int) SearchCriteriaOp.DERIVED_FROM },
-        { "exists",         (int) SearchCriteriaOp.EXISTS },
-        { "true",           (int) Symbol.TRUE },
-        { "false",          (int) Symbol.FALSE }
+    private Scanner scanner;
+
+    private const SearchCriteriaToken[] tokens = {
+        { "=",              SearchCriteriaSymbol.EQ },
+        { "!=",             SearchCriteriaSymbol.NEQ },
+        { "<",              SearchCriteriaSymbol.LESS },
+        { "<=",             SearchCriteriaSymbol.LEQ },
+        { ">",              SearchCriteriaSymbol.GREATER },
+        { ">=",             SearchCriteriaSymbol.GEQ },
+        { "contains",       SearchCriteriaSymbol.CONTAINS },
+        { "doesNotContain", SearchCriteriaSymbol.DOES_NOT_CONTAIN },
+        { "derivedfrom",    SearchCriteriaSymbol.DERIVED_FROM },
+        { "exists",         SearchCriteriaSymbol.EXISTS },
+        { "*",              SearchCriteriaSymbol.ASTERISK },
+        { "and",            SearchCriteriaSymbol.AND },
+        { "or",             SearchCriteriaSymbol.OR },
+        { "true",           SearchCriteriaSymbol.TRUE },
+        { "false",          SearchCriteriaSymbol.FALSE }
     };
 
     public SearchCriteriaParser (string str) throws Error {
@@ -86,8 +104,10 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
                                                CharacterSet.LATINC;
         scanner.config.symbol_2_token        = true;
 
-        foreach (SearchCriteriaSymbol s in symbols) {
-            scanner.scope_add_symbol (0, s.symbol, s.value.to_pointer ());
+        foreach (var token in tokens) {
+            scanner.scope_add_symbol (0,
+                                      token.str_symbol,
+                                      ((int) token.symbol).to_pointer ());
         }
     }
 
@@ -110,7 +130,7 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
 
     private SearchExpression? and_expression () throws Error {
         var exp = relational_expression ();
-        while (this.scanner.token == (int) Symbol.AND) {
+        while (this.token == SearchCriteriaSymbol.AND) {
             this.scanner.get_next_token ();
             var exp2 = new LogicalExpression();
             exp2.operand1 = exp;
@@ -127,17 +147,18 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
         if (this.scanner.token == TokenType.IDENTIFIER) {
             exp.operand1 = this.scanner.value.identifier;
             this.scanner.get_next_token ();
-            if (this.scanner.token == (int) SearchCriteriaOp.EQ ||
-                this.scanner.token == (int) SearchCriteriaOp.NEQ ||
-                this.scanner.token == (int) SearchCriteriaOp.LESS ||
-                this.scanner.token == (int) SearchCriteriaOp.LEQ ||
-                this.scanner.token == (int) SearchCriteriaOp.GREATER ||
-                this.scanner.token == (int) SearchCriteriaOp.GEQ ||
-                this.scanner.token == (int) SearchCriteriaOp.CONTAINS ||
-                this.scanner.token == (int) SearchCriteriaOp.DOES_NOT_CONTAIN ||
-                this.scanner.token == (int) SearchCriteriaOp.DERIVED_FROM) {
-               exp.op = (SearchCriteriaOp) this.scanner.token;
-               this.scanner.get_next_token ();
+
+            if (this.token == SearchCriteriaSymbol.EQ ||
+                this.token == SearchCriteriaSymbol.NEQ ||
+                this.token == SearchCriteriaSymbol.LESS ||
+                this.token == SearchCriteriaSymbol.LEQ ||
+                this.token == SearchCriteriaSymbol.GREATER ||
+                this.token == SearchCriteriaSymbol.GEQ ||
+                this.token == SearchCriteriaSymbol.CONTAINS ||
+                this.token == SearchCriteriaSymbol.DOES_NOT_CONTAIN ||
+                this.token == SearchCriteriaSymbol.DERIVED_FROM) {
+                exp.op = (SearchCriteriaOp) this.scanner.token;
+                this.scanner.get_next_token ();
                if (this.scanner.token == TokenType.STRING) {
                    exp.operand2 = this.scanner.value.string;
                    this.scanner.get_next_token ();
@@ -147,15 +168,15 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
                     throw new SearchCriteriaError.SYNTAX_ERROR (
                                  "relational_expression: expected \"string\"");
                }
-            } else if (this.scanner.token == (int) SearchCriteriaOp.EXISTS) {
+            } else if (this.token == SearchCriteriaSymbol.EXISTS) {
                 exp.op = (SearchCriteriaOp) this.scanner.token;
                 this.scanner.get_next_token ();
-                if (this.scanner.token == (int) Symbol.TRUE) {
+                if (this.token == SearchCriteriaSymbol.TRUE) {
                     exp.operand2 = "true";
                     this.scanner.get_next_token ();
 
                     return exp;
-                } else if (this.scanner.token == (int) Symbol.FALSE) {
+                } else if (this.token == SearchCriteriaSymbol.FALSE) {
                     exp.operand2 = "false";
                     this.scanner.get_next_token ();
 
@@ -188,7 +209,7 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
 
     private SearchExpression? or_expression () throws Error {
         var exp = and_expression ();
-        while (this.scanner.token == (int) Symbol.OR) {
+        while (this.token == SearchCriteriaSymbol.OR) {
             this.scanner.get_next_token ();
             var exp2 = new LogicalExpression();
             exp2.operand1 = exp;
@@ -199,6 +220,5 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
 
         return exp;
     }
-
 }
 
