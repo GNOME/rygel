@@ -198,7 +198,8 @@ public class Rygel.MediaItem : MediaObject {
 
         if (!this.should_stream ()) {
             protocol_info.dlna_operation = DLNAOperation.RANGE;
-            protocol_info.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE;
+            protocol_info.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE |
+                                        DLNAFlags.CONNECTION_STALL;
         }
 
         return protocol_info;
