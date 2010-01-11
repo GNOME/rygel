@@ -45,8 +45,6 @@ internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
 
         this.msg.response_body.set_accumulate (false);
 
-        this.server.request_aborted += on_request_aborted;
-
         if (this.cancellable != null) {
             this.cancellable.cancelled += this.on_cancelled;
         }
@@ -56,14 +54,6 @@ internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
 
     private void on_cancelled (Cancellable cancellable) {
         this.end (true, Soup.KnownStatusCode.CANCELLED);
-    }
-
-    private void on_request_aborted (Soup.Server        server,
-                                     Soup.Message       msg,
-                                     Soup.ClientContext client) {
-        // Ignore if message isn't ours
-        if (msg == this.msg)
-            this.end (true, Soup.KnownStatusCode.NONE);
     }
 
     public void push_data (void *data, size_t length) {
