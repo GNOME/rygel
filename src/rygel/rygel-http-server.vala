@@ -50,6 +50,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
 
     public async void run () {
         context.server.add_handler (this.path_root, server_handler);
+        context.server.request_aborted.connect (this.on_request_aborted);
 
         if (this.cancellable != null) {
             this.cancellable.cancelled += this.on_cancelled;
@@ -178,6 +179,21 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         this.requests.add (request);
 
         request.run.begin ();
+    }
+
+    private void on_request_aborted (Soup.Server        server,
+                                     Soup.Message       message,
+                                     Soup.ClientContext client) {
+        foreach (var request in this.requests) {
+            if (request.msg == message) {
+                request.cancellable.cancel ();
+                debug ("HTTP client aborted %s request for URI '%s'.",
+                       request.msg.method,
+                       request.msg.get_uri ().to_string (false));
+
+                break;
+            }
+        }
     }
 }
 
