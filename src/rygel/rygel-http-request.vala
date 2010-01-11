@@ -58,7 +58,7 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
                         Soup.Message              msg,
                         HashTable<string,string>? query) {
         this.http_server = http_server;
-        this.cancellable = http_server.cancellable;
+        this.cancellable = new Cancellable ();
         this.root_container = http_server.root_container;
         this.server = server;
         this.msg = msg;
