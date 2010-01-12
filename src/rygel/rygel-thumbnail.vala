@@ -60,7 +60,8 @@ public class Rygel.Thumbnail : Rygel.IconInfo {
         protocol_info.protocol = protocol;
         protocol_info.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE |
                                     DLNAFlags.BACKGROUND_TRANSFER_MODE |
-                                    DLNAFlags.CONNECTION_STALL;
+                                    DLNAFlags.CONNECTION_STALL |
+                                    DLNAFlags.DLNA_V15;
 
         return protocol_info;
     }

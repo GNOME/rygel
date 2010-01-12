@@ -189,6 +189,7 @@ public class Rygel.MediaItem : MediaObject {
         protocol_info.mime_type = this.mime_type;
         protocol_info.dlna_profile = this.dlna_profile;
         protocol_info.protocol = protocol;
+        protocol_info.dlna_flags = DLNAFlags.DLNA_V15;
 
         if (this.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
             protocol_info.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;

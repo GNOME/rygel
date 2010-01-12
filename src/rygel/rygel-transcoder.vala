@@ -77,7 +77,8 @@ internal abstract class Rygel.Transcoder : GLib.Object {
         protocol_info.dlna_profile = this.dlna_profile;
         protocol_info.dlna_conversion = DLNAConversion.TRANSCODED;
         protocol_info.dlna_flags = DLNAFlags.STREAMING_TRANSFER_MODE |
-                                   DLNAFlags.SENDER_PACED;
+                                   DLNAFlags.SENDER_PACED |
+                                   DLNAFlags.DLNA_V15;
         protocol_info.dlna_operation = DLNAOperation.TIMESEEK;
 
         return res;
