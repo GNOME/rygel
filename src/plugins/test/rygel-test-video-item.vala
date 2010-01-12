@@ -45,7 +45,7 @@ public class Rygel.TestVideoItem : Rygel.TestItem {
 
     public override Element? create_stream_source () {
         try {
-            return Gst.parse_bin_from_description (PIPELINE, true);
+            return parse_bin_from_description (PIPELINE, true);
         } catch (Error err) {
             warning ("Required plugin missing (%s)", err.message);
 
