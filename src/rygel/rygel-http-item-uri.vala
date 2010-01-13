@@ -48,11 +48,9 @@ internal class Rygel.HTTPItemURI : Object {
         for (int i = 1; i < parts.length - 1; i += 2) {
             switch (parts[i]) {
                 case "item":
-                    size_t len;
-                    var data = Base64.decode (Soup.URI.decode (parts[i + 1]),
-                                              out len);
+                    var data = Base64.decode (Soup.URI.decode (parts[i + 1]));
                     StringBuilder builder = new StringBuilder ();
-                    builder.append_len ((string) data, (ssize_t) len);
+                    builder.append ((string) data);
                     this.item_id = builder.str;
 
                     break;
