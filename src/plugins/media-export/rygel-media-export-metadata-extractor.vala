@@ -117,7 +117,9 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             this.extract_stream_info (info, tag_list);
             this.extraction_done (file, tag_list);
         } catch (Error e) {
-            /* Passthrough */
+            debug ("Unable to extract metadata for %s: %s\n",
+                   info.uri,
+                   err.message);
         }
     }
 
