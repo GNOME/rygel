@@ -51,8 +51,9 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
     private Gst.Discoverer discoverer;
     /**
-     * We export a File-based API but GstDiscoverer works with URIs, so
-     * we store uri->File mappings in this hashmap
+     * We export a GLib.File-based API but GstDiscoverer works with URIs, so
+     * we store uri->GLib.File mappings in this hashmap, so that we can get
+     * the GLib.File back from the URI in on_discovered().
      */
     private HashMap<string, File> file_hash;
     private uint64 timeout = 10; /* seconds */
