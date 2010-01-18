@@ -40,8 +40,6 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
 
     private SourceFunc run_continue;
 
-    private MainLoop buffer_loop;
-
     public LiveResponse (Soup.Server  server,
                          Soup.Message msg,
                          string       name,
@@ -54,8 +52,6 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
 
         this.prepare_pipeline (name, src);
         this.time_range = time_range;
-
-        this.buffer_loop = new MainLoop (null, false);
     }
 
     public override async void run () {
@@ -67,15 +63,11 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         }
 
         this.run_continue = run.callback;
-        this.msg.wrote_chunk.connect (this.on_wrote_chunk);
 
         yield;
     }
 
     public override void end (bool aborted, uint status) {
-        this.msg.wrote_chunk.disconnect (this.on_wrote_chunk);
-
-        this.buffer_loop.quit ();
         this.pipeline.set_state (State.NULL);
 
         if (!aborted) {
@@ -160,17 +152,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
     private void on_new_buffer (Element sink,
                                 Buffer  buffer,
                                 Pad     pad) {
-        if (this.cancellable.is_cancelled ()) {
-            return;
-        }
-
         this.push_data (buffer.data, buffer.size);
-
-        this.buffer_loop.run ();
-    }
-
-    private void on_wrote_chunk (Soup.Message msg) {
-        this.buffer_loop.quit ();
     }
 
     private bool bus_handler (Gst.Bus     bus,
