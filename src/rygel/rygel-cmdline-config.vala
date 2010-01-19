@@ -134,19 +134,35 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     }
 
     public bool get_transcoding () throws GLib.Error {
-        return !no_transcoding;
+        if (!no_transcoding) {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        } else {
+            return false;
+        }
     }
 
     public bool get_mp3_transcoder () throws GLib.Error {
-        return !no_mp3_trans;
+        if (!no_mp3_trans) {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        } else {
+            return false;
+        }
     }
 
     public bool get_mp2ts_transcoder () throws GLib.Error {
-        return !no_mp2ts_trans;
+        if (!no_mp2ts_trans) {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        } else {
+            return false;
+        }
     }
 
     public bool get_lpcm_transcoder () throws GLib.Error {
-        return !no_lpcm_trans;
+        if (!no_lpcm_trans) {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        } else {
+            return false;
+        }
     }
 
     public LogLevel get_log_level () throws GLib.Error {
