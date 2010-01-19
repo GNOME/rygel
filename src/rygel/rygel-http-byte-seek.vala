@@ -78,7 +78,8 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
     }
 
     public static bool needed (HTTPRequest request) {
-        return request.item.size > 0 ||
+        return (request.item.size > 0 &&
+                request.handler is HTTPIdentityHandler) ||
                (request.thumbnail != null && request.thumbnail.size > 0);
     }
 
