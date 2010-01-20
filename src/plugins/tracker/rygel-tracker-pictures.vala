@@ -42,6 +42,15 @@ public class Rygel.TrackerPictures : Rygel.SimpleContainer {
                                                     this,
                                                     "All",
                                                     item_factory));
+        try {
+            var dir = Environment.get_user_special_dir (UserDirectory.PICTURES);
+            var uri = Filename.to_uri (dir, null);
+
+            this.uris.add (uri);
+        } catch (ConvertError error) {
+            warning ("Failed to get URI for pictures directory: %s",
+                     error.message);
+        }
     }
 }
 

@@ -40,6 +40,15 @@ public class Rygel.TrackerVideos : Rygel.SimpleContainer {
                                                     this,
                                                     "All",
                                                     item_factory));
+        try {
+            var dir = Environment.get_user_special_dir (UserDirectory.VIDEOS);
+            var uri = Filename.to_uri (dir, null);
+
+            this.uris.add (uri);
+        } catch (ConvertError error) {
+            warning ("Failed to get URI for videos directory: %s",
+                     error.message);
+        }
     }
 }
 
