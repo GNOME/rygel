@@ -106,7 +106,7 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         didl_container.title = container.title;
         didl_container.child_count = container.child_count;
         didl_container.upnp_class = container.upnp_class;
-        didl_container.restricted = false;
+        didl_container.restricted = container.uris.size <= 0;
         didl_container.searchable = true;
     }
 }
