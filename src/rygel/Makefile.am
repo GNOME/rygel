@@ -13,6 +13,7 @@ endif
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
+	    $(LIBGSTDISCOVERER_FLAGS) \
 	    $(GIO_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(UUID_CFLAGS) \
@@ -108,7 +109,7 @@ rygel_VALAFLAGS = \
 	--pkg rygel-build-config --pkg rygel-misc --pkg gupnp-1.0 \
 	--pkg gupnp-av-1.0 --pkg dbus-glib-1 --pkg gstreamer-0.10 \
 	--pkg gio-2.0 --pkg gee-1.0 --pkg posix \
-	--pkg gstreamer-convenience-libs-0.10 \
+	--pkg gstreamer-discoverer-0.10 \
 	-g
 # Note:  `-- the -g needs to be at the end of VALAFLAGS to not break make dist
 
@@ -116,7 +117,7 @@ rygel_LDADD = librygel-configuration.a \
 	      $(LIBGUPNP_LIBS) \
 	      $(LIBGUPNP_AV_LIBS) \
 	      $(LIBGSTREAMER_LIBS) \
-	      $(GST_CONVENIENCE_LIBS) -lgstdiscoverer-0.10 \
+	      $(LIBGSTDISCOVERER_LIBS) \
 	      $(GIO_LIBS) \
 	      $(GEE_LIBS) \
 	      $(UUID_LIBS) \
