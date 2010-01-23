@@ -43,8 +43,6 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
     public Cancellable cancellable { get; set; }
 
-    private HTTPResponse response;
-
     private string item_id;
     private int thumbnail_index;
     public MediaItem item;
@@ -135,10 +133,6 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         yield this.handle_item_request ();
     }
 
-    private void on_response_completed (HTTPResponse response) {
-        this.end (Soup.KnownStatusCode.NONE);
-    }
-
     private async void handle_item_request () {
         try {
             if (HTTPTimeSeek.needed (this)) {
@@ -161,9 +155,11 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
                 return;
             }
 
-            this.response = this.handler.render_body (this);
-            this.response.completed += on_response_completed;
-            yield this.response.run ();
+            var response = this.handler.render_body (this);
+
+            yield response.run ();
+
+            this.end (Soup.KnownStatusCode.NONE);
         } catch (Error error) {
             this.handle_error (error);
         }
