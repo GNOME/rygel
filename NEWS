@@ -1,3 +1,30 @@
+0.4.10
+======
+
+Another release in the stable 0.4.x series. Changes since 0.4.8:
+
+- Restart application on SIGHUP.
+- Fix cancellation of HTTP streams and in turn a critical leak.
+- Correct condition for byte-seeking.
+- Correctly handle boolean commandline options.
+- Enable check for Vala if any stamp file is absent.
+- Fix condition for partial content transfer.
+- Correct linker argument order. This should fix the build issue on Gentoo.
+- Work-around for an automake bug.
+- Limit search slice to result size.
+- Fix a spelling mistake in error message.
+- Tell valac to put debugging symbols to generated code so gdb can refer to
+  lines in the Vala source code.
+
+Bug fixes in this release:
+
+601395 - restart on SIGHUP 
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+
 0.4.8
 =====
 
