@@ -29,7 +29,8 @@
 #include <glib.h>
 #include <uuid/uuid.h>
 
-typedef void (* ApplicationExitCb)      (gpointer user_data);
+typedef void (* ApplicationExitCb)      (gboolean restart,
+                                         gpointer user_data);
 
 G_GNUC_INTERNAL xmlNode *
 get_xml_element                         (xmlNode *node,
@@ -41,6 +42,9 @@ generate_random_udn                     (void);
 G_GNUC_INTERNAL void
 on_application_exit                     (ApplicationExitCb app_exit_cb,
                                          gpointer          user_data);
+
+G_GNUC_INTERNAL void
+restart_application                     (const char **args);
 
 #endif /* __CSTUFF_H__ */
 
