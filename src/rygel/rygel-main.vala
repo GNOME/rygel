@@ -37,6 +37,7 @@ public class Rygel.Main : Object {
     private MainLoop main_loop;
 
     private int exit_code;
+    public bool restart;
 
     private Main () throws GLib.Error {
         Environment.set_application_name (_(BuildConfig.PACKAGE_NAME));
@@ -58,6 +59,7 @@ public class Rygel.Main : Object {
 
     public void exit (int exit_code) {
         this.exit_code = exit_code;
+
         this.main_loop.quit ();
     }
 
@@ -69,7 +71,9 @@ public class Rygel.Main : Object {
         return this.exit_code;
     }
 
-    private void application_exit_cb () {
+    private void application_exit_cb (bool restart) {
+        this.restart = restart;
+
         this.exit (0);
     }
 
@@ -188,6 +192,8 @@ public class Rygel.Main : Object {
         Main main;
         DBusService service;
 
+        var original_args = args;
+
         try {
             // Parse commandline options
             CmdlineConfig.parse_args (ref args);
@@ -209,6 +215,10 @@ public class Rygel.Main : Object {
         }
 
         int exit_code = main.run ();
+
+        if (main.restart) {
+            Utils.restart_application (original_args);
+        }
 
         return exit_code;
     }

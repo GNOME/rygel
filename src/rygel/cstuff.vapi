@@ -60,10 +60,16 @@ namespace CStuff {
         [CCode (cname = "generate_random_udn", cheader_filename = "cstuff.h")]
         public static string generate_random_udn ();
 
-        public delegate void ApplicationExitCb ();
+        public delegate void ApplicationExitCb (bool restart);
 
         [CCode (cname = "on_application_exit", cheader_filename = "cstuff.h")]
         public static void on_application_exit
                                         (ApplicationExitCb app_exit_cb);
+
+        [CCode (cname = "restart_application", cheader_filename = "cstuff.h")]
+        public static void restart_application (
+                                        [CCode (array_length = false,
+                                         array_null_terminated = true)]
+                                        string[] args);
     }
 }

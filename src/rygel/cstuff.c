@@ -78,7 +78,11 @@ generate_random_udn (void)
 static void
 signal_handler (int signum)
 {
-        on_app_exit (data);
+        gboolean restart;
+
+        restart = (signum == SIGHUP);
+
+        on_app_exit (restart, data);
 }
 
 void
@@ -92,5 +96,10 @@ on_application_exit (ApplicationExitCb app_exit_cb,
         memset (&sig_action, 0, sizeof (sig_action));
         sig_action.sa_handler = signal_handler;
         sigaction (SIGINT, &sig_action, NULL);
+        sigaction (SIGHUP, &sig_action, NULL);
 }
 
+void
+restart_application (const char **args) {
+        execvp (args[0], args);
+}
