@@ -24,13 +24,16 @@ internal class Rygel.HTTPItemURI : Object {
     public string item_id;
     public int thumbnail_index;
     public string? transcode_target;
+    public HTTPServer http_server;
 
-    public HTTPItemURI (string item_id,
-                        int thumbnail_index = -1,
-                        string ? transcode_target = null) {
+    public HTTPItemURI (string     item_id,
+                        HTTPServer http_server,
+                        int        thumbnail_index = -1,
+                        string?    transcode_target = null) {
         this.item_id = item_id;
         this.thumbnail_index = thumbnail_index;
         this.transcode_target = transcode_target;
+        this.http_server = http_server;
     }
 
     public HTTPItemURI.from_string (string uri, string server_root = "") {

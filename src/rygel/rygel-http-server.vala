@@ -125,7 +125,10 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     internal override string create_uri_for_item (MediaItem item,
                                                   int       thumbnail_index,
                                                   string?   transcode_target) {
-        var uri = new HTTPItemURI (item.id, thumbnail_index, transcode_target);
+        var uri = new HTTPItemURI (item.id,
+                                   this,
+                                   thumbnail_index,
+                                   transcode_target);
 
         return create_uri_for_path (uri.to_string());
     }
