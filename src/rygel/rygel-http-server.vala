@@ -115,13 +115,6 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         this.completed ();
     }
 
-    private string create_uri_for_path (string path) {
-        return "http://%s:%u%s%s".printf (this.context.host_ip,
-                                          this.context.port,
-                                          this.path_root,
-                                          path);
-    }
-
     internal override string create_uri_for_item (MediaItem item,
                                                   int       thumbnail_index,
                                                   string?   transcode_target) {
@@ -130,7 +123,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                                    thumbnail_index,
                                    transcode_target);
 
-        return create_uri_for_path (uri.to_string());
+        return uri.to_string ();
     }
 
     internal override string get_protocol () {

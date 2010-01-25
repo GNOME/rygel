@@ -79,15 +79,22 @@ internal class Rygel.HTTPItemURI : Object {
         var escaped = Uri.escape_string (Base64.encode ((uchar[]) data),
                                          "",
                                          true);
-        string query = "/item/" + escaped;
+        string path = "/item/" + escaped;
 
         if (transcode_target != null) {
             escaped = Uri.escape_string (transcode_target, "", true);
-            query += "/transcoded/" + escaped;
+            path += "/transcoded/" + escaped;
         } else if (thumbnail_index >= 0) {
-            query += "/thumbnail/" + thumbnail_index.to_string ();
+            path += "/thumbnail/" + thumbnail_index.to_string ();
         }
 
-        return query;
+        return this.create_uri_for_path (path);
+    }
+
+    private string create_uri_for_path (string path) {
+        return "http://%s:%u%s%s".printf (this.http_server.context.host_ip,
+                                          this.http_server.context.port,
+                                          this.http_server.path_root,
+                                          path);
     }
 }
