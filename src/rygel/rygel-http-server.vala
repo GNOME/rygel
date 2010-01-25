@@ -64,7 +64,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
      */
     internal override void add_resources (DIDLLiteItem didl_item,
                                           MediaItem    item)
-                                throws Error {
+                                          throws Error {
         if (!this.http_uri_present (item)) {
             // Create the HTTP proxy URI
             var uri = this.create_uri_for_item (item, -1, null);
