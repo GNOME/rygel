@@ -54,8 +54,7 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
 
     public abstract string create_uri_for_item (MediaItem  item,
                                                 int        thumbnail_index,
-                                                string?    transcode_target,
-                                                out string protocol);
+                                                string?    transcode_target);
 
     public virtual void add_resources (DIDLLiteItem didl_item,
                                        MediaItem    item)

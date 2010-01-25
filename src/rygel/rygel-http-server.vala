@@ -67,9 +67,8 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                                 throws Error {
         if (!this.http_uri_present (item)) {
             // Create the HTTP proxy URI
-            string protocol;
-            var uri = this.create_uri_for_item (item, -1, null, out protocol);
-            item.add_resource (didl_item, uri, protocol);
+            var uri = this.create_uri_for_item (item, -1, null);
+            item.add_resource (didl_item, uri, this.get_protocol ());
         }
 
         base.add_resources (didl_item, item);
@@ -79,13 +78,9 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
             if (!is_http_uri (thumbnail.uri)) {
                 var uri = thumbnail.uri; // Save the original URI
                 var index = item.thumbnails.index_of (thumbnail);
-                string protocol;
 
-                thumbnail.uri = this.create_uri_for_item (item,
-                                                          index,
-                                                          null,
-                                                          out protocol);
-                thumbnail.add_resource (didl_item, protocol);
+                thumbnail.uri = this.create_uri_for_item (item, index, null);
+                thumbnail.add_resource (didl_item,  this.get_protocol ());
 
                 // Now restore the original URI
                 thumbnail.uri = uri;
@@ -129,12 +124,8 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
 
     internal override string create_uri_for_item (MediaItem item,
                                                   int       thumbnail_index,
-                                                  string?   transcode_target,
-                                                  out string protocol) {
-
+                                                  string?   transcode_target) {
         var uri = new HTTPItemURI (item.id, thumbnail_index, transcode_target);
-
-        protocol = "http-get";
 
         return create_uri_for_path (uri.to_string());
     }
