@@ -81,11 +81,11 @@ internal class Rygel.HTTPItemURI : Object {
                                          true);
         string path = "/item/" + escaped;
 
-        if (transcode_target != null) {
-            escaped = Uri.escape_string (transcode_target, "", true);
+        if (this.transcode_target != null) {
+            escaped = Uri.escape_string (this.transcode_target, "", true);
             path += "/transcoded/" + escaped;
-        } else if (thumbnail_index >= 0) {
-            path += "/thumbnail/" + thumbnail_index.to_string ();
+        } else if (this.thumbnail_index >= 0) {
+            path += "/thumbnail/" + this.thumbnail_index.to_string ();
         }
 
         return this.create_uri_for_path (path);
