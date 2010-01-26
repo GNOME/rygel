@@ -64,6 +64,8 @@ public class Rygel.MediaItem : MediaObject {
 
     public ArrayList<Thumbnail> thumbnails;
 
+    internal bool place_holder = false;
+
     public MediaItem (string         id,
                       MediaContainer parent,
                       string         title,

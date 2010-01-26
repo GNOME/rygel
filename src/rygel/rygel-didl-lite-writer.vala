@@ -85,13 +85,18 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
             didl_item.date = item.date;
         }
 
-        // Add the transcoded/proxy URIs first
-        this.http_server.add_resources (didl_item, item);
+        if (item.place_holder) {
+            this.http_server.add_proxy_resource (didl_item, item);
+        } else {
+            // Add the transcoded/proxy URIs first
+            this.http_server.add_resources (didl_item, item);
 
-        var internal_allowed = this.http_server.context.interface == "lo" ||
+            // then original URIs
+            bool internal_allowed;
+            internal_allowed = this.http_server.context.interface == "lo" ||
                                this.http_server.context.host_ip == "127.0.0.1";
-        // then original URIs
-        item.add_resources (didl_item, internal_allowed);
+            item.add_resources (didl_item, internal_allowed);
+        }
     }
 
     private void serialize_container (MediaContainer container) throws Error {
