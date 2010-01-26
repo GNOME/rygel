@@ -75,6 +75,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-thumbnailer.vala \
 		    rygel-browse.vala \
 		    rygel-search.vala \
+		    rygel-item-creator.vala \
 		    rygel-search-expression.vala \
 		    rygel-relational-expression.vala \
 		    rygel-logical-expression.vala \

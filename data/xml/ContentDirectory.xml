@@ -328,19 +328,6 @@ feature provided by your editor.
 			</argumentList>
 		</action>
 
-<!-- Optional actions that are not implemented yet
-                <action>
-			<Optional/>
-			<name>GetSortExtensionCapabilities</name>
-			<argumentList>
-				<argument>
-					<name>SortExtensionCaps</name>
-					<direction>out</direction>
-					<relatedStateVariable>SortExtensionCapabilities</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-
 		<action>
 			<Optional/>
 			<name>CreateObject</name>
@@ -364,6 +351,19 @@ feature provided by your editor.
 					<name>Result</name>
 					<direction>out</direction>
 					<relatedStateVariable>A_ARG_TYPE_Result</relatedStateVariable>
+				</argument>
+			</argumentList>
+		</action>
+
+<!-- Optional actions that are not implemented yet
+                <action>
+			<Optional/>
+			<name>GetSortExtensionCapabilities</name>
+			<argumentList>
+				<argument>
+					<name>SortExtensionCaps</name>
+					<direction>out</direction>
+					<relatedStateVariable>SortExtensionCapabilities</relatedStateVariable>
 				</argument>
 			</argumentList>
 		</action>

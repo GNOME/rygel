@@ -30,6 +30,7 @@ using Gee;
  */
 public errordomain Rygel.ContentDirectoryError {
     NO_SUCH_OBJECT = 701,
+    RESTRICTED_PARENT = 713,
     CANT_PROCESS = 720,
     INVALID_ARGS = 402
 }
@@ -97,6 +98,7 @@ public class Rygel.ContentDirectory: Service {
 
         this.action_invoked["Browse"] += this.browse_cb;
         this.action_invoked["Search"] += this.search_cb;
+        this.action_invoked["CreateObject"] += this.create_object_cb;
 
         /* Connect SystemUpdateID related signals */
         this.action_invoked["GetSystemUpdateID"] +=
@@ -143,6 +145,14 @@ public class Rygel.ContentDirectory: Service {
         var search = new Search (this, action);
 
         search.run.begin ();
+    }
+
+    /* CreateObject action implementation */
+    private virtual void create_object_cb (ContentDirectory    content_dir,
+                                           owned ServiceAction action) {
+        var creator = new ItemCreator (this, action);
+
+        creator.run.begin ();
     }
 
     /* GetSystemUpdateID action implementation */
