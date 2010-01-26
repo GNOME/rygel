@@ -66,9 +66,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                                           MediaItem    item)
                                           throws Error {
         if (!this.http_uri_present (item)) {
-            // Create the HTTP proxy URI
-            var uri = this.create_uri_for_item (item, -1, null);
-            item.add_resource (didl_item, uri, this.get_protocol ());
+            this.add_proxy_resource (didl_item, item);
         }
 
         base.add_resources (didl_item, item);
@@ -86,6 +84,17 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                 thumbnail.uri = uri;
             }
         }
+    }
+
+    internal void add_proxy_resource (DIDLLiteItem didl_item,
+                                      MediaItem    item)
+                                      throws Error {
+        var uri = this.create_uri_for_item (item, -1, null);
+
+        item.add_resource (didl_item,
+                           uri.to_string (),
+                           this.get_protocol (),
+                           uri.to_string ());
     }
 
     private bool http_uri_present (MediaItem item) {

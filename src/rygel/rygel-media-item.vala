@@ -156,12 +156,17 @@ public class Rygel.MediaItem : MediaObject {
 
     internal DIDLLiteResource add_resource (DIDLLiteItem didl_item,
                                             string?      uri,
-                                            string       protocol)
+                                            string       protocol,
+                                            string?      import_uri = null)
                                             throws Error {
         var res = didl_item.add_resource ();
 
         if (uri != null) {
             res.uri = uri;
+        }
+
+        if (import_uri != null) {
+            res.import_uri = import_uri;
         }
 
         res.size = this.size;
