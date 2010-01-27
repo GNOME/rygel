@@ -236,120 +236,17 @@ public class Rygel.MediaDB : Object {
     private const string UPDATE_V3_V4_STRING_4 =
     "UPDATE Object SET timestamp = 0";
 
-    private void update_v3_v4 () {
-        try {
-            db.begin ();
-            db.exec (UPDATE_V3_V4_STRING_1);
-            db.exec (UPDATE_V3_V4_STRING_2);
-            db.exec (UPDATE_V3_V4_STRING_3);
-            db.exec (UPDATE_V3_V4_STRING_4);
-            db.exec (CREATE_TRIGGER_STRING);
-            db.exec ("UPDATE schema_info SET version = '4'");
-            db.commit ();
-        } catch (DatabaseError err) {
-            db.rollback ();
-            warning ("Database upgrade failed: %s", err.message);
-            db = null;
-        }
-    }
+    public signal void object_added (string object_id);
+    public signal void object_removed (string object_id);
+    public signal void object_updated (string object_id);
 
-    private void update_v4_v5 () {
-        try {
-            db.begin ();
-            db.exec ("DROP TRIGGER IF EXISTS trgr_delete_children");
-            db.exec (CREATE_CLOSURE_TABLE);
-            // this is to have the database generate the closure table
-            db.exec ("ALTER TABLE Object RENAME TO _Object");
-            db.exec ("CREATE TABLE Object AS SELECT * FROM _Object");
-            db.exec ("DELETE FROM Object");
-            db.exec (CREATE_CLOSURE_TRIGGER_STRING);
-            db.exec ("INSERT INTO Object SELECT * FROM _Object");
-            db.exec ("DROP TABLE Object");
-            db.exec ("ALTER TABLE _Object RENAME TO Object");
-            // the triggers created above have been dropped automatically
-            // so we need to recreate them
-            db.exec (CREATE_CLOSURE_TRIGGER_STRING);
-            db.exec (CREATE_INDICES_STRING);
-            db.exec ("UPDATE schema_info SET version = '5'");
-            db.commit ();
-            db.exec ("VACUUM");
-            db.analyze ();
-        } catch (DatabaseError err) {
-            db.rollback ();
-            warning ("Database upgrade failed: %s", err.message);
-            db = null;
-        }
-    }
+    public signal void item_removed (string item_id);
+    public signal void item_added (string item_id);
+    public signal void item_updated (string item_id);
 
-    private void open_db (string name) {
-        this.db = new Rygel.Database (name);
-        int old_version = -1;
-
-        try {
-            this.db.exec ("SELECT version FROM schema_info",
-                          null,
-                          (stmt) => {
-                              old_version = stmt.column_int (0);
-                              return false;
-                          });
-            int current_version = schema_version.to_int();
-            if (old_version == current_version) {
-                debug ("Media DB schema has current version");
-            } else {
-                if (old_version < current_version) {
-                    debug ("Older schema detected. Upgrading...");
-                    switch (old_version) {
-                        case 3:
-                            update_v3_v4 ();
-                            break;
-                        case 4:
-                            update_v4_v5 ();
-                            break;
-                        default:
-                            warning ("Cannot upgrade");
-                            db = null;
-                            break;
-                    }
-                } else {
-                    warning ("The version \"%d\" of the detected database" +
-                            " is newer than our supported version \"%d\"",
-                            old_version, current_version);
-                    db = null;
-                }
-            }
-        } catch (DatabaseError err) {
-            debug ("Could not find schema version; checking for empty database...");
-            try {
-                int rows = -1;
-                this.db.exec ("SELECT count(type) FROM sqlite_master " +
-                              "WHERE rowid=1",
-                              null,
-                              (stmt) => {
-                                  rows = stmt.column_int (0);
-                              });
-                if (rows == 0) {
-                    debug ("Empty database, creating new schema version %s",
-                            schema_version);
-                    if (!create_schema ()) {
-                        this.db = null;
-                        return;
-                    }
-                } else {
-                    warning ("Incompatible schema... cannot proceed");
-                    this.db = null;
-                    return;
-                }
-            } catch (DatabaseError err2) {
-                warning ("Something weird going on: %s", err2.message);
-                this.db = null;
-            }
-        }
-    }
-
-    private MediaDB (string name, MediaDBObjectFactory factory) {
-        open_db (name);
-        this.factory = factory;
-    }
+    public signal void container_added (string container_id);
+    public signal void container_removed (string container_id);
+    public signal void container_updated (string container_id);
 
     public static MediaDB? create (string name) throws MediaDBError {
         var instance = new MediaDB (name, new MediaDBObjectFactory());
@@ -371,18 +268,6 @@ public class Rygel.MediaDB : Object {
         throw new MediaDBError.GENERAL_ERROR("Invalid database");
     }
 
-    public signal void object_added (string object_id);
-    public signal void object_removed (string object_id);
-    public signal void object_updated (string object_id);
-
-    public signal void item_removed (string item_id);
-    public signal void item_added (string item_id);
-    public signal void item_updated (string item_id);
-
-    public signal void container_added (string container_id);
-    public signal void container_removed (string container_id);
-    public signal void container_updated (string container_id);
-
     public void remove_by_id (string id) throws DatabaseError {
         GLib.Value[] values = { id };
         this.db.exec (DELETE_BY_ID_STRING, values);
@@ -390,7 +275,8 @@ public class Rygel.MediaDB : Object {
     }
 
 
-    public void remove_object (MediaObject obj) throws DatabaseError, MediaDBError {
+    public void remove_object (MediaObject obj) throws DatabaseError,
+                                                       MediaDBError {
         this.remove_by_id (obj.id);
         if (obj is MediaItem)
             item_removed (obj.id);
@@ -442,7 +328,6 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-
     public void update_object (MediaObject obj) throws Error {
         try {
             db.begin ();
@@ -467,6 +352,259 @@ public class Rygel.MediaDB : Object {
         }
     }
 
+    public MediaObject? get_object (string object_id) throws DatabaseError {
+        GLib.Value[] values = { object_id };
+        MediaObject parent = null;
+        Rygel.Database.RowCallback cb = (stmt) => {
+            var obj = get_object_from_statement ((MediaContainer) parent,
+                                                 stmt.column_text (18),
+                                                 stmt);
+            obj.parent = (MediaContainer) parent;
+            obj.parent_ref = (MediaContainer) parent;
+            parent = obj;
+            return true;
+        };
+
+        this.db.exec (GET_OBJECT_WITH_CLOSURE, values, cb);
+        return parent;
+    }
+
+    public MediaItem? get_item (string item_id)
+                                throws DatabaseError, MediaDBError {
+        var obj = get_object (item_id);
+        if (obj != null && !(obj is MediaItem))
+            throw new MediaDBError.INVALID_TYPE("Object with id %s is not a" +
+                                                "MediaItem",
+                                                item_id);
+        return (MediaItem)obj;
+    }
+
+    public MediaContainer? get_container (string container_id)
+                                          throws DatabaseError, MediaDBError {
+        var obj = get_object (container_id);
+        if (obj != null && !(obj is MediaContainer))
+            throw new MediaDBError.INVALID_TYPE("Object with id %s is not a" +
+                                                "MediaContainer",
+                                                container_id);
+        return (MediaContainer) obj;
+    }
+
+    public int get_child_count (string container_id) throws DatabaseError {
+        int count = 0;
+        GLib.Value[] values = { container_id  };
+
+        this.db.exec (CHILDREN_COUNT_STRING,
+                      values,
+                      (stmt) => {
+                          count = stmt.column_int (0);
+                          return false;
+                      });
+
+        return count;
+    }
+
+    public bool exists (string    object_id,
+                        out int64 timestamp) throws DatabaseError {
+        bool exists = false;
+        GLib.Value[] values = { object_id };
+        int64 tmp_timestamp = 0;
+
+        this.db.exec (OBJECT_EXISTS_STRING,
+                      values,
+                      (stmt) => {
+                        exists = stmt.column_int (0) == 1;
+                        tmp_timestamp = stmt.column_int64 (1);
+                        return false;
+                      });
+
+        // out parameters are not allowed to be captured
+        timestamp = tmp_timestamp;
+        return exists;
+    }
+
+    public Gee.ArrayList<MediaObject> get_children (string container_id,
+                                                    long offset,
+                                                    long max_count)
+                                                    throws Error {
+        MediaContainer parent = null;
+        ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
+        parent = (MediaContainer) get_object (container_id);
+
+        GLib.Value[] values = { container_id,
+                                (int64) offset,
+                                (int64) max_count };
+        Rygel.Database.RowCallback cb = (stmt) => {
+            var child_id = stmt.column_text (17);
+            children.add (get_object_from_statement (parent,
+                                                     child_id,
+                                                     stmt));
+            children[children.size - 1].parent = parent;
+            children[children.size - 1].parent_ref = parent;
+
+            return true;
+        };
+
+        this.db.exec (GET_CHILDREN_STRING, values, cb);
+        return children;
+    }
+
+    public Gee.ArrayList<MediaObject> get_objects_by_filter (
+                                        string          filter,
+                                        GLib.ValueArray args,
+                                        string          container_id,
+                                        long            offset,
+                                        long            max_count)
+                                        throws Error {
+        ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
+        GLib.Value v = container_id;
+        args.prepend (v);
+        v = offset;
+        args.append (v);
+        v = max_count;
+        args.append (v);
+
+        debug ("Parameters to bind: %u", args.n_values);
+
+        Rygel.Database.RowCallback cb = (stmt) => {
+            var child_id = stmt.column_text (17);
+            var parent_id = stmt.column_text (18);
+            try {
+                var parent = (MediaContainer) get_object (parent_id);
+                children.add (get_object_from_statement (parent,
+                            child_id,
+                            stmt));
+                children[children.size - 1].parent = parent;
+                children[children.size - 1].parent_ref = parent;
+
+                return true;
+            } catch (DatabaseError e) {
+                warning ("Failed to get parent item: %s", e.message);
+                return false;
+            }
+        };
+
+        this.db.exec (GET_OBJECTS_STRING_WITH_FILTER.printf (filter),
+                      args.values,
+                      cb);
+        return children;
+    }
+
+    private MediaDB (string name, MediaDBObjectFactory factory) {
+        open_db (name);
+        this.factory = factory;
+    }
+
+    private void open_db (string name) {
+        this.db = new Rygel.Database (name);
+        int old_version = -1;
+
+        try {
+            this.db.exec ("SELECT version FROM schema_info",
+                          null,
+                          (stmt) => {
+                              old_version = stmt.column_int (0);
+                              return false;
+                          });
+            int current_version = schema_version.to_int();
+            if (old_version == current_version) {
+                debug ("Media DB schema has current version");
+            } else {
+                if (old_version < current_version) {
+                    debug ("Older schema detected. Upgrading...");
+                    switch (old_version) {
+                        case 3:
+                            update_v3_v4 ();
+                            break;
+                        case 4:
+                            update_v4_v5 ();
+                            break;
+                        default:
+                            warning ("Cannot upgrade");
+                            db = null;
+                            break;
+                    }
+                } else {
+                    warning ("The version \"%d\" of the detected database" +
+                            " is newer than our supported version \"%d\"",
+                            old_version, current_version);
+                    db = null;
+                }
+            }
+        } catch (DatabaseError err) {
+            debug ("Could not find schema version;" +
+                   " checking for empty database...");
+            try {
+                int rows = -1;
+                this.db.exec ("SELECT count(type) FROM sqlite_master " +
+                              "WHERE rowid=1",
+                              null,
+                              (stmt) => {
+                                  rows = stmt.column_int (0);
+                              });
+                if (rows == 0) {
+                    debug ("Empty database, creating new schema version %s",
+                            schema_version);
+                    if (!create_schema ()) {
+                        this.db = null;
+                        return;
+                    }
+                } else {
+                    warning ("Incompatible schema... cannot proceed");
+                    this.db = null;
+                    return;
+                }
+            } catch (DatabaseError err2) {
+                warning ("Something weird going on: %s", err2.message);
+                this.db = null;
+            }
+        }
+    }
+
+    private void update_v3_v4 () {
+        try {
+            db.begin ();
+            db.exec (UPDATE_V3_V4_STRING_1);
+            db.exec (UPDATE_V3_V4_STRING_2);
+            db.exec (UPDATE_V3_V4_STRING_3);
+            db.exec (UPDATE_V3_V4_STRING_4);
+            db.exec (CREATE_TRIGGER_STRING);
+            db.exec ("UPDATE schema_info SET version = '4'");
+            db.commit ();
+        } catch (DatabaseError err) {
+            db.rollback ();
+            warning ("Database upgrade failed: %s", err.message);
+            db = null;
+        }
+    }
+
+    private void update_v4_v5 () {
+        try {
+            db.begin ();
+            db.exec ("DROP TRIGGER IF EXISTS trgr_delete_children");
+            db.exec (CREATE_CLOSURE_TABLE);
+            // this is to have the database generate the closure table
+            db.exec ("ALTER TABLE Object RENAME TO _Object");
+            db.exec ("CREATE TABLE Object AS SELECT * FROM _Object");
+            db.exec ("DELETE FROM Object");
+            db.exec (CREATE_CLOSURE_TRIGGER_STRING);
+            db.exec ("INSERT INTO Object SELECT * FROM _Object");
+            db.exec ("DROP TABLE Object");
+            db.exec ("ALTER TABLE _Object RENAME TO Object");
+            // the triggers created above have been dropped automatically
+            // so we need to recreate them
+            db.exec (CREATE_CLOSURE_TRIGGER_STRING);
+            db.exec (CREATE_INDICES_STRING);
+            db.exec ("UPDATE schema_info SET version = '5'");
+            db.commit ();
+            db.exec ("VACUUM");
+            db.analyze ();
+        } catch (DatabaseError err) {
+            db.rollback ();
+            warning ("Database upgrade failed: %s", err.message);
+            db = null;
+        }
+    }
+
     private void update_object_internal (MediaObject obj) throws Error {
         GLib.Value[] values = { obj.title, (int64) obj.modified, obj.id };
         this.db.exec (UPDATE_OBJECT_STRING, values);
@@ -478,8 +616,8 @@ public class Rygel.MediaDB : Object {
     }
 
     private void save_metadata (MediaItem item,
-                                string sql = INSERT_META_DATA_STRING)
-                                                                throws Error {
+                                string    sql = INSERT_META_DATA_STRING)
+                                throws Error {
         GLib.Value[] values = { item.size,
                                 item.mime_type,
                                 item.width,
@@ -548,18 +686,20 @@ public class Rygel.MediaDB : Object {
     private void add_uris (MediaObject obj) throws DatabaseError {
         GLib.Value[] values = { obj.id };
         this.db.exec (URI_GET_STRING,
-                                values,
-                                (stmt) => {
-                                    if (obj is MediaItem)
-                                        ((MediaItem) obj).add_uri (stmt.column_text (0), null);
-                                    else
-                                        obj.uris.add (stmt.column_text (0));
-                                });
+                      values,
+                      (stmt) => {
+                          if (obj is MediaItem) {
+                              ((MediaItem) obj).add_uri (stmt.column_text (0),
+                                                         null);
+                          } else {
+                              obj.uris.add (stmt.column_text (0));
+                          }
+                      });
     }
 
     private MediaObject? get_object_from_statement (MediaContainer? parent,
-                                                    string object_id,
-                                                    Statement statement) {
+                                                    string          object_id,
+                                                    Statement       statement) {
         MediaObject obj = null;
         switch (statement.column_int (0)) {
             case 0:
@@ -594,43 +734,6 @@ public class Rygel.MediaDB : Object {
         return obj;
     }
 
-    public MediaObject? get_object (string object_id) throws DatabaseError {
-        GLib.Value[] values = { object_id };
-        MediaObject parent = null;
-        Rygel.Database.RowCallback cb = (stmt) => {
-            var obj = get_object_from_statement ((MediaContainer) parent,
-                                                 stmt.column_text (18),
-                                                 stmt);
-            obj.parent = (MediaContainer) parent;
-            obj.parent_ref = (MediaContainer) parent;
-            parent = obj;
-            return true;
-        };
-
-        this.db.exec (GET_OBJECT_WITH_CLOSURE, values, cb);
-        return parent;
-    }
-
-    public MediaItem? get_item (string item_id) throws DatabaseError, MediaDBError {
-        var obj = get_object (item_id);
-        if (obj != null && !(obj is MediaItem))
-            throw new MediaDBError.INVALID_TYPE("Object with id %s is not a" +
-                                                "MediaItem",
-                                                item_id);
-        return (MediaItem)obj;
-    }
-
-    public MediaContainer? get_container (string container_id)
-                                          throws DatabaseError, MediaDBError {
-        var obj = get_object (container_id);
-        if (obj != null && !(obj is MediaContainer))
-            throw new MediaDBError.INVALID_TYPE("Object with id %s is not a" +
-                                                "MediaContainer",
-                                                container_id);
-        return (MediaContainer) obj;
-    }
-
-
     private void fill_item (Statement statement, MediaItem item) {
         item.author = statement.column_text (7);
         item.album = statement.column_text (8);
@@ -652,7 +755,7 @@ public class Rygel.MediaDB : Object {
     }
 
     public ArrayList<string> get_child_ids (string container_id)
-                                                         throws DatabaseError {
+                                            throws DatabaseError {
         ArrayList<string> children = new ArrayList<string> (str_equal);
         GLib.Value[] values = { container_id  };
 
@@ -663,103 +766,6 @@ public class Rygel.MediaDB : Object {
                           return true;
                       });
 
-        return children;
-    }
-
-    public int get_child_count (string container_id) throws DatabaseError {
-        int count = 0;
-        GLib.Value[] values = { container_id  };
-
-        this.db.exec (CHILDREN_COUNT_STRING,
-                      values,
-                      (stmt) => {
-                          count = stmt.column_int (0);
-                          return false;
-                      });
-
-        return count;
-    }
-
-    public bool exists (string object_id, out int64 timestamp)
-                                                          throws DatabaseError {
-        bool exists = false;
-        GLib.Value[] values = { object_id };
-        int64 tmp_timestamp = 0;
-
-        this.db.exec (OBJECT_EXISTS_STRING,
-                      values,
-                      (stmt) => {
-                        exists = stmt.column_int (0) == 1;
-                        tmp_timestamp = stmt.column_int64 (1);
-                        return false;
-                      });
-
-        // out parameters are not allowed to be captured
-        timestamp = tmp_timestamp;
-        return exists;
-    }
-
-    public Gee.ArrayList<MediaObject> get_children (string container_id,
-                                                      long offset,
-                                                      long max_count) throws
-                                                      Error {
-        MediaContainer parent = null;
-        ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
-        parent = (MediaContainer) get_object (container_id);
-
-        GLib.Value[] values = { container_id,
-                                (int64) offset,
-                                (int64) max_count };
-        Rygel.Database.RowCallback cb = (stmt) => {
-            var child_id = stmt.column_text (17);
-            children.add (get_object_from_statement (parent,
-                                                     child_id,
-                                                     stmt));
-            children[children.size - 1].parent = parent;
-            children[children.size - 1].parent_ref = parent;
-
-            return true;
-        };
-
-        this.db.exec (GET_CHILDREN_STRING, values, cb);
-        return children;
-    }
-
-    public Gee.ArrayList<MediaObject> get_objects_by_filter (
-                                                 string filter,
-                                                 GLib.ValueArray args,
-                                                 string container_id,
-                                                 long offset,
-                                                 long max_count) throws Error {
-        ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
-        GLib.Value v = container_id;
-        args.prepend (v);
-        v = offset;
-        args.append (v);
-        v = max_count;
-        args.append (v);
-
-        debug ("Parameters to bind: %u", args.n_values);
-
-        Rygel.Database.RowCallback cb = (stmt) => {
-            var child_id = stmt.column_text (17);
-            var parent_id = stmt.column_text (18);
-            try {
-                var parent = (MediaContainer) get_object (parent_id);
-                children.add (get_object_from_statement (parent,
-                            child_id,
-                            stmt));
-                children[children.size - 1].parent = parent;
-                children[children.size - 1].parent_ref = parent;
-
-                return true;
-            } catch (DatabaseError e) {
-                warning ("Failed to get parent item: %s", e.message);
-                return false;
-            }
-        };
-
-        this.db.exec (GET_OBJECTS_STRING_WITH_FILTER.printf(filter), args.values, cb);
         return children;
     }
 }
