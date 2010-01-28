@@ -31,7 +31,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
     // and not
     //
     // TimeSeekRange.dlna.org : npt=10:19:25.7-13:23:33.6
-    public HTTPTimeSeek (HTTPRequest request) throws HTTPSeekError {
+    public HTTPTimeSeek (HTTPGet request) throws HTTPSeekError {
         string range, time;
         string[] range_tokens;
         int64 start = 0;
@@ -80,7 +80,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
               duration);
     }
 
-    public static bool needed (HTTPRequest request) {
+    public static bool needed (HTTPGet request) {
         return request.item.duration > 0 &&
                (request.handler is HTTPTranscodeHandler ||
                 (request.thumbnail == null &&

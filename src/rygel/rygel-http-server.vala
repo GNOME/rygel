@@ -169,7 +169,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                 debug ("%s : %s", name, value);
         });
 
-        var request = new HTTPRequest (this, server, msg, query);
+        var request = new HTTPGet (this, server, msg, query);
 
         request.completed += this.on_request_completed;
         this.requests.add (request);

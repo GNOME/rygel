@@ -24,13 +24,13 @@
 using GUPnP;
 
 // An HTTP request handler that passes the item content through as is.
-internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
+internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
 
     public HTTPIdentityHandler (Cancellable? cancellable) {
         this.cancellable = cancellable;
     }
 
-    public override void add_response_headers (HTTPRequest request)
+    public override void add_response_headers (HTTPGet request)
                                                throws HTTPRequestError {
         if (request.thumbnail != null) {
             request.msg.response_headers.append ("Content-Type",
@@ -48,7 +48,7 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
         base.add_response_headers (request);
     }
 
-    public override HTTPResponse render_body (HTTPRequest request)
+    public override HTTPResponse render_body (HTTPGet request)
                                               throws HTTPRequestError {
         try {
             return this.render_body_real (request);
@@ -58,7 +58,7 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
     }
 
     protected override DIDLLiteResource add_resource (DIDLLiteItem didl_item,
-                                                      HTTPRequest  request)
+                                                      HTTPGet      request)
                                                       throws Error {
         var protocol = request.http_server.get_protocol ();
 
@@ -69,7 +69,7 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPRequestHandler {
         }
     }
 
-    private HTTPResponse render_body_real (HTTPRequest request) throws Error {
+    private HTTPResponse render_body_real (HTTPGet request) throws Error {
         if (request.thumbnail != null) {
             return new SeekableResponse (request.server,
                                          request.msg,

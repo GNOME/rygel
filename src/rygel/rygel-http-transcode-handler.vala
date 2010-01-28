@@ -27,7 +27,7 @@ using GUPnP;
 /**
  * The handler for HTTP transcoding requests.
  */
-internal class Rygel.HTTPTranscodeHandler : HTTPRequestHandler {
+internal class Rygel.HTTPTranscodeHandler : HTTPGetHandler {
     private Transcoder transcoder;
 
     public HTTPTranscodeHandler (Transcoder   transcoder,
@@ -36,7 +36,7 @@ internal class Rygel.HTTPTranscodeHandler : HTTPRequestHandler {
         this.cancellable = cancellable;
     }
 
-    public override void add_response_headers (HTTPRequest request)
+    public override void add_response_headers (HTTPGet request)
                                                throws HTTPRequestError {
         request.msg.response_headers.append ("Content-Type",
                                              this.transcoder.mime_type);
@@ -48,7 +48,7 @@ internal class Rygel.HTTPTranscodeHandler : HTTPRequestHandler {
         base.add_response_headers (request);
     }
 
-    public override HTTPResponse render_body (HTTPRequest request)
+    public override HTTPResponse render_body (HTTPGet request)
                                               throws HTTPRequestError {
         var item = request.item;
         var src = item.create_stream_source ();
@@ -71,7 +71,7 @@ internal class Rygel.HTTPTranscodeHandler : HTTPRequestHandler {
     }
 
     protected override DIDLLiteResource add_resource (DIDLLiteItem didl_item,
-                                                      HTTPRequest  request)
+                                                      HTTPGet      request)
                                                       throws Error {
         return this.transcoder.add_resource (didl_item,
                                              request.item,

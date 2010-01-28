@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008, 2009 Nokia Corporation.
+ * Copyright (C) 2008-2010 Nokia Corporation.
  * Copyright (C) 2006, 2007, 2008 OpenedHand Ltd.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
@@ -23,8 +23,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Gst;
-
 internal errordomain Rygel.HTTPRequestError {
     UNACCEPTABLE = Soup.KnownStatusCode.NOT_ACCEPTABLE,
     BAD_REQUEST = Soup.KnownStatusCode.BAD_REQUEST,
@@ -32,9 +30,9 @@ internal errordomain Rygel.HTTPRequestError {
 }
 
 /**
- * Responsible for handling HTTP client requests.
+ * Base class for HTTP client requests.
  */
-internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
+internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     public unowned HTTPServer http_server;
     private MediaContainer root_container;
     public Soup.Server server;
@@ -43,13 +41,8 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
     public Cancellable cancellable { get; set; }
 
-    private string item_id;
-    private int thumbnail_index;
+    protected HTTPItemURI uri;
     public MediaItem item;
-    public Thumbnail thumbnail;
-    public HTTPSeek seek;
-
-    public HTTPRequestHandler handler;
 
     public HTTPRequest (HTTPServer                http_server,
                         Soup.Server               server,
@@ -61,111 +54,49 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         this.server = server;
         this.msg = msg;
         this.query = query;
-        this.thumbnail_index = -1;
     }
 
     public async void run () {
-        this.server.pause_message (this.msg);
+        yield this.handle ();
+    }
 
-        var header = this.msg.request_headers.get (
-                                        "getcontentFeatures.dlna.org");
+    protected virtual async void handle () {
+        this.uri = new HTTPItemURI.from_string (this.msg.uri.path,
+                                                this.http_server.path_root);
 
-        /* We only entertain 'HEAD' and 'GET' requests */
-        if ((this.msg.method != "HEAD" && this.msg.method != "GET") ||
-            (header != null && header != "1")) {
-            this.handle_error (
-                        new HTTPRequestError.BAD_REQUEST ("Invalid Request"));
-            return;
-        }
-
-        try {
-            var uri = new HTTPItemURI.from_string (this.msg.uri.path,
-                                                   this.http_server.path_root);
-
-            this.item_id = uri.item_id;
-            this.thumbnail_index = uri.thumbnail_index;
-            if (uri.transcode_target != null) {
-                var transcoder = this.http_server.get_transcoder (
-                                                        uri.transcode_target);
-                this.handler = new HTTPTranscodeHandler (transcoder,
-                                                         this.cancellable);
-            }
-        } catch (Error err) {
-            warning ("Failed to parse query: %s", err.message);
-        }
-
-
-        if (this.item_id == null) {
+        if (this.uri.item_id == null) {
             this.handle_error (new HTTPRequestError.NOT_FOUND ("Not Found"));
+
             return;
         }
 
-        if (this.handler == null) {
-            this.handler = new HTTPIdentityHandler (this.cancellable);
-        }
         yield this.find_item ();
     }
 
-    public async void find_item () {
+    protected virtual async void find_item () {
         // Fetch the requested item
         MediaObject media_object;
         try {
-            media_object = yield this.root_container.find_object (this.item_id,
-                                                                  null);
+            media_object = yield this.root_container.find_object (
+                                        this.uri.item_id,
+                                        null);
         } catch (Error err) {
             this.handle_error (err);
+
             return;
         }
 
         if (media_object == null || !(media_object is MediaItem)) {
             this.handle_error (new HTTPRequestError.NOT_FOUND (
                                         "requested item '%s' not found",
-                                        this.item_id));
+                                        this.uri.item_id));
             return;
         }
 
         this.item = (MediaItem) media_object;
-
-        if (this.thumbnail_index >= 0) {
-            this.thumbnail = this.item.thumbnails.get (this.thumbnail_index);
-        }
-
-        yield this.handle_item_request ();
     }
 
-    private async void handle_item_request () {
-        try {
-            if (HTTPTimeSeek.needed (this)) {
-                this.seek = new HTTPTimeSeek (this);
-            } else if (HTTPByteSeek.needed (this)) {
-                this.seek = new HTTPByteSeek (this);
-            }
-
-            // Add headers
-            this.handler.add_response_headers (this);
-            debug ("Following HTTP headers appended to response:");
-            this.msg.response_headers.foreach ((name, value) => {
-                    debug ("%s : %s", name, value);
-            });
-
-            if (this.msg.method == "HEAD") {
-                // Only headers requested, no need to send contents
-                this.server.unpause_message (this.msg);
-                this.end (Soup.KnownStatusCode.OK);
-                return;
-            }
-
-            var response = this.handler.render_body (this);
-
-            yield response.run ();
-
-            this.end (Soup.KnownStatusCode.NONE);
-        } catch (Error error) {
-            this.handle_error (error);
-        }
-    }
-
-    private void handle_error (Error error) {
+    protected virtual void handle_error (Error error) {
         warning ("%s", error.message);
 
         uint status;
@@ -175,11 +106,10 @@ internal class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             status = Soup.KnownStatusCode.NOT_FOUND;
         }
 
-        this.server.unpause_message (this.msg);
         this.end (status);
     }
 
-    public void end (uint status) {
+    protected void end (uint status) {
         if (status != Soup.KnownStatusCode.NONE) {
             this.msg.set_status (status);
         }

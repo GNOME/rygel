@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008, 2009 Nokia Corporation.
+ * Copyright (C) 2008-2010 Nokia Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
@@ -24,13 +24,13 @@
 using GUPnP;
 
 /**
- * HTTP request handler interface.
+ * HTTP GET request handler interface.
  */
-internal abstract class Rygel.HTTPRequestHandler: GLib.Object {
+internal abstract class Rygel.HTTPGetHandler: GLib.Object {
     public Cancellable cancellable { get; set; }
 
     // Add response headers.
-    public virtual void add_response_headers (HTTPRequest request)
+    public virtual void add_response_headers (HTTPGet request)
                                               throws HTTPRequestError {
         var mode = request.msg.request_headers.get ("transferMode.dlna.org");
         if (mode != null) {
@@ -59,10 +59,10 @@ internal abstract class Rygel.HTTPRequestHandler: GLib.Object {
     }
 
     // Create an HTTPResponse object that will render the body.
-    public abstract HTTPResponse render_body (HTTPRequest request)
+    public abstract HTTPResponse render_body (HTTPGet request)
                                               throws HTTPRequestError;
 
     protected abstract DIDLLiteResource add_resource (DIDLLiteItem didl_item,
-                                                      HTTPRequest  request)
+                                                      HTTPGet      request)
                                                       throws Error;
 }

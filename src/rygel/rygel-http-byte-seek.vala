@@ -22,7 +22,7 @@
  */
 
 internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
-    public HTTPByteSeek (HTTPRequest request) throws HTTPSeekError {
+    public HTTPByteSeek (HTTPGet request) throws HTTPSeekError {
         string range, pos;
         string[] range_tokens;
         int64 start = 0, total_length;
@@ -77,7 +77,7 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
               total_length);
     }
 
-    public static bool needed (HTTPRequest request) {
+    public static bool needed (HTTPGet request) {
         return (request.item.size > 0 &&
                 request.handler is HTTPIdentityHandler) ||
                (request.thumbnail != null && request.thumbnail.size > 0);
