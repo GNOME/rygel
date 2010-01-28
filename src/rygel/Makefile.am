@@ -56,6 +56,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-http-request.vala \
 		    rygel-http-get-handler.vala \
 		    rygel-http-get.vala \
+		    rygel-http-post.vala \
 		    rygel-http-identity-handler.vala \
 		    rygel-http-transcode-handler.vala \
 		    rygel-http-seek.vala \

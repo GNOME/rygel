@@ -51,6 +51,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     public async void run () {
         context.server.add_handler (this.path_root, server_handler);
         context.server.request_aborted.connect (this.on_request_aborted);
+        context.server.request_started.connect (this.on_request_started);
 
         if (this.cancellable != null) {
             this.cancellable.cancelled += this.on_cancelled;
@@ -189,6 +190,26 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
 
                 break;
             }
+        }
+    }
+
+    private void on_request_started (Soup.Server        server,
+                                     Soup.Message       message,
+                                     Soup.ClientContext client) {
+        message.got_headers.connect (this.on_got_headers);
+    }
+
+    private void on_got_headers (Soup.Message msg) {
+        if (msg.method == "POST" &&
+            msg.uri.path.has_prefix (this.path_root)) {
+            debug ("HTTP POST request for URI '%s'",
+                   msg.get_uri ().to_string (false));
+            var request = new HTTPPost (this, this.context.server, msg);
+
+            request.completed += this.on_request_completed;
+            this.requests.add (request);
+
+            request.run.begin ();
         }
     }
 }
