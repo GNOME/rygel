@@ -61,11 +61,11 @@ internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     }
 
     protected virtual async void handle () {
-        this.uri = new HTTPItemURI.from_string (this.msg.uri.path,
-                                                this.http_server.path_root);
-
-        if (this.uri.item_id == null) {
-            this.handle_error (new HTTPRequestError.NOT_FOUND ("Not Found"));
+        try {
+            this.uri = new HTTPItemURI.from_string (this.msg.uri.path,
+                                                    this.http_server.path_root);
+        } catch (Error error) {
+            this.handle_error (error);
 
             return;
         }

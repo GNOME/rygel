@@ -36,7 +36,8 @@ internal class Rygel.HTTPItemURI : Object {
         this.http_server = http_server;
     }
 
-    public HTTPItemURI.from_string (string uri, string server_root = "") {
+    public HTTPItemURI.from_string (string uri, string server_root = "")
+                                    throws HTTPRequestError {
         // do not decode the path here as it may contain encoded slashes
         this.thumbnail_index = -1;
         this.transcode_target = null;
@@ -68,6 +69,10 @@ internal class Rygel.HTTPItemURI : Object {
                 default:
                     break;
             }
+        }
+
+        if (this.item_id == null) {
+            throw new HTTPRequestError.NOT_FOUND ("Not Found");
         }
     }
 
