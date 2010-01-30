@@ -183,7 +183,7 @@ public class Rygel.MediaDB : Object {
     "LIMIT ?,?";
 
     private const string GET_OBJECTS_STRING_WITH_FILTER =
-    "SELECT o.type_fk, o.title, m.size, m.mime_type, " +
+    "SELECT DISTINCT o.type_fk, o.title, m.size, m.mime_type, " +
             "m.width, m.height, m.class, m.author, m.album, " +
             "m.date, m.bitrate, m.sample_freq, m.bits_per_sample, " +
             "m.channels, m.track, m.color_depth, m.duration, " +
@@ -192,6 +192,7 @@ public class Rygel.MediaDB : Object {
         "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
         "LEFT OUTER JOIN meta_data m " +
             "ON o.upnp_id = m.object_fk " +
+        "LEFT OUTER JOIN Uri u ON u.object_fk = o.upnp_id " +
     "WHERE %s " +
         "ORDER BY o.type_fk ASC, " +
                  "m.class ASC, " +
@@ -817,6 +818,9 @@ public class Rygel.MediaDB : Object {
         string column = null;
 
         switch (operand) {
+            case "res":
+                column = "u.uri";
+                break;
             case "@id":
                 column = "o.upnp_id";
                 break;
