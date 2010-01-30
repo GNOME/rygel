@@ -822,6 +822,7 @@ public class Rygel.MediaDB : Object {
             case "dc:title":
                 column = "o.title";
                 break;
+            case "upnp:artist":
             case "dc:creator":
                 column = "m.author";
                 break;
