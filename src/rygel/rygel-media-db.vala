@@ -828,6 +828,9 @@ public class Rygel.MediaDB : Object {
             case "dc:date":
                 column = "m.date";
                 break;
+            case "upnp:album":
+                column = "m.album";
+                break;
             default:
                 warning ("Unsupported: %s", operand);
                 break;
