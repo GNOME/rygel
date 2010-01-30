@@ -239,26 +239,6 @@ public class Rygel.MediaDB : Object {
     public signal void container_removed (string container_id);
     public signal void container_updated (string container_id);
 
-    public static MediaDB? create (string name) throws MediaDBError {
-        var instance = new MediaDB (name, new MediaDBObjectFactory());
-        if (instance.db != null) {
-            return instance;
-        }
-
-        throw new MediaDBError.GENERAL_ERROR("Invalid database");
-    }
-
-    public static MediaDB? create_with_factory (string               name,
-                                                MediaDBObjectFactory factory)
-                                                throws MediaDBError          {
-        var instance = new MediaDB (name, factory);
-        if (instance.db != null) {
-            return instance;
-        }
-
-        throw new MediaDBError.GENERAL_ERROR("Invalid database");
-    }
-
     public void remove_by_id (string id) throws DatabaseError {
         GLib.Value[] values = { id };
         this.db.exec (DELETE_BY_ID_STRING, values);
@@ -480,12 +460,18 @@ public class Rygel.MediaDB : Object {
         return children;
     }
 
-    private MediaDB (string name, MediaDBObjectFactory factory) {
+    public MediaDB (string name) throws Error {
         open_db (name);
+        this.factory = new MediaDBObjectFactory ();
+    }
+
+    public MediaDB.with_factory (string               name,
+                                 MediaDBObjectFactory factory) throws Error {
+        this.open_db (name);
         this.factory = factory;
     }
 
-    private void open_db (string name) {
+    private void open_db (string name) throws Error {
         this.db = new Rygel.Database (name);
         int old_version = -1;
 
@@ -518,7 +504,9 @@ public class Rygel.MediaDB : Object {
                     warning ("The version \"%d\" of the detected database" +
                             " is newer than our supported version \"%d\"",
                             old_version, current_version);
-                    db = null;
+                    this.db = null;
+                    throw new MediaDBError.GENERAL_ERROR("Database format" +
+                            " not supported");
                 }
             }
         } catch (DatabaseError err) {
@@ -549,6 +537,7 @@ public class Rygel.MediaDB : Object {
             } catch (DatabaseError err2) {
                 warning ("Something weird going on: %s", err2.message);
                 this.db = null;
+                throw new MediaDBError.GENERAL_ERROR("Invalid database");
             }
         }
     }
