@@ -20,31 +20,6 @@
 
 using Gee;
 
-internal class Rygel.MediaExportDynamicContainer : Rygel.MediaDBContainer {
-    public const string ID = "DynamicContainerId";
-
-    public MediaExportDynamicContainer (MediaDB        media_db,
-                                        MediaContainer parent) {
-        base (media_db, ID, "Dynamic");
-        this.parent = parent;
-    }
-
-    public Gee.List<string> get_uris () {
-        var result = new ArrayList<string> ();
-
-        try {
-            var children = this.media_db.get_children (this.id, -1, -1);
-            if (children != null) {
-                foreach (var child in children) {
-                    result.add_all (child.uris);
-                }
-            }
-        } catch (Error err) {}
-
-        return result;
-    }
-}
-
 /**
  * Represents the root container.
  */

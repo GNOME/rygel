@@ -21,38 +21,6 @@
 using GLib;
 using Gee;
 
-internal class Rygel.DummyContainer : NullContainer {
-    public File file;
-    public ArrayList<string> seen_children;
-
-    public DummyContainer (File file, MediaContainer parent) {
-        var id = Checksum.compute_for_string (ChecksumType.MD5,
-                                              file.get_uri ());
-        this.id = id;
-        this.parent = parent;
-        this.title = file.get_basename ();
-        this.child_count = 0;
-        this.parent_ref = parent;
-        this.file = file;
-        this.uris.add (file.get_uri ());
-        this.seen_children = new ArrayList<string> (str_equal);
-    }
-
-    public void seen (string id) {
-        seen_children.add (id);
-    }
-}
-
-internal class Rygel.FileQueueEntry  {
-    public File file;
-    public bool update;
-
-    public FileQueueEntry (File file, bool update) {
-        this.file = file;
-        this.update = update;
-    }
-}
-
 public class Rygel.MediaExportHarvester : GLib.Object {
     private MetadataExtractor extractor;
     private MediaDB media_db;
