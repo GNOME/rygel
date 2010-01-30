@@ -925,4 +925,27 @@ public class Rygel.MediaDB : Object {
 
         return data;
     }
+
+    public Gee.List<string> get_object_attribute_by_search_expression (
+                                       string           attribute,
+                                       SearchExpression expression,
+                                       long             offset,
+                                       long             max_count) throws Error {
+        var args = new ValueArray (0);
+        var filter = this.search_expression_to_sql (expression, args);
+        if (filter != null) {
+            filter = " WHERE %s ".printf (filter);
+        } else {
+            filter = "";
+        }
+
+        debug ("Parsed filter: %s", filter);
+
+        var column = this.map_operand_to_column (attribute);
+        return this.get_meta_data_column_by_filter (column,
+                                                    filter,
+                                                    args,
+                                                    offset,
+                                                    max_count);
+    }
 }
