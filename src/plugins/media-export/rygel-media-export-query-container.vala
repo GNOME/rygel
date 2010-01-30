@@ -81,21 +81,26 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
                                         out uint         total_matches,
                                         Cancellable?     cancellable)
                                         throws GLib.Error {
-        var exp = new LogicalExpression ();
-        exp.operand1 = this.expression;
-        exp.op = LogicalOperator.AND;
-        exp.operand2 = expression;
-        Gee.List<MediaObject> list;
-        var old_id = this.id;
-        this.id = "0";
-        list = yield base.search (exp,
-                                  offset,
-                                  max_count,
-                                  out total_matches,
-                                  cancellable);
-        this.id = old_id;
+        var combined_expression = new LogicalExpression ();
+        combined_expression.operand1 = this.expression;
+        combined_expression.op = LogicalOperator.AND;
+        combined_expression.operand2 = expression;
 
-        return list;
+        var max_objects = max_count;
+        if (max_objects == 0) {
+            max_objects = -1;
+        }
+
+        var children = this.media_db.get_objects_by_search_expression (
+                                                          combined_expression,
+                                                          "0",
+                                                          offset,
+                                                          max_objects);
+
+        total_matches = children.size;
+
+        return children;
+
     }
 
     public override async Gee.List<MediaObject>? get_children (
