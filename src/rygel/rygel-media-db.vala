@@ -777,7 +777,7 @@ public class Rygel.MediaDB : Object {
         return children;
     }
 
-    private string? search_expression_to_sql (SearchExpression? expression,
+    public string? search_expression_to_sql (SearchExpression? expression,
                                              GLib.ValueArray   args)
                                              throws Error {
         if (expression == null) {
@@ -805,7 +805,7 @@ public class Rygel.MediaDB : Object {
         return "(%s %s %s)".printf (left, op, right);
     }
 
-    private string? map_operand_to_column (string operand) throws Error {
+    public string? map_operand_to_column (string operand) throws Error {
         string column = null;
 
         switch (operand) {
