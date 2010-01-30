@@ -23,7 +23,7 @@ using GUPnP;
 
 internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
     private bool item_container;
-    private string column;
+    private string attribute;
     private SearchExpression expression;
 
     public MediaExportQueryContainer (MediaDB media_db,
@@ -68,9 +68,8 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
             this.item_container = true;
         } else {
             this.item_container = false;
-            var operand = args[args.length - 1].replace("virtual-container:",
-                                                         "");
-            this.column = this.media_db.map_operand_to_column (operand);
+            this.attribute =
+                    args[args.length - 1].replace("virtual-container:", "");
         }
     }
 
@@ -119,18 +118,9 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
 
         var children = new ArrayList<MediaObject> ();
         try {
-            var args = new ValueArray (0);
-            var filter = this.media_db.search_expression_to_sql (
+            var data = this.media_db.get_object_attribute_by_search_expression (
+                                        this.attribute,
                                         this.expression,
-                                        args);
-            if (filter != null) {
-                filter = " WHERE %s ".printf (filter);
-            }
-            debug ("parsed filter: %s", filter);
-            var data = this.media_db.get_meta_data_column_by_filter (
-                                        this.column,
-                                        filter == null ? "" : filter,
-                                        args,
                                         offset,
                                         max_count == 0 ? -1 : max_count);
             foreach (string meta_data in data) {
