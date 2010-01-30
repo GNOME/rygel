@@ -72,159 +72,19 @@ public class Rygel.MediaDBContainer : MediaContainer {
                                         out uint         total_matches,
                                         Cancellable?     cancellable)
                                         throws GLib.Error {
-
-        var args = new GLib.ValueArray(0);
-        var filter = this.search_expression_to_sql (expression, args);
-
-        if (filter == null) {
-            total_matches = 0;
-
-            return new Gee.ArrayList<MediaObject> ();
-        }
-
-        debug ("Orignal search: %s", expression.to_string ());
-        debug ("Parsed search expression: %s", filter);
-
-        for (int i = 0; i < args.n_values; i++) {
-            debug ("Arg %d: %s", i, args.get_nth (i).get_string ());
-        }
-
         var max_objects = max_count;
         if (max_objects == 0) {
             max_objects = -1;
         }
 
-        var children = this.media_db.get_objects_by_filter (filter,
-                                                            args,
-                                                            this.id,
-                                                            offset,
-                                                            max_objects);
+        var children = this.media_db.get_objects_by_search_expression (
+                                                                expression,
+                                                                this.id,
+                                                                offset,
+                                                                max_objects);
+
         total_matches = children.size;
 
         return children;
-    }
-
-    private string? logexp_to_sql (LogicalExpression? exp,
-                                   GLib.ValueArray    args) {
-        string left = search_expression_to_sql (exp.operand1, args);
-        string right = search_expression_to_sql (exp.operand2, args);
-        string op;
-        if (exp.op == LogicalOperator.AND) {
-            op = "AND";
-        } else {
-            op = "OR";
-        }
-
-        return "(%s %s %s)".printf (left, op, right);
-    }
-
-    private string? search_expression_to_sql (SearchExpression? expression,
-                                              GLib.ValueArray   args) {
-        string result = null;
-
-        if (expression == null) {
-            return result;
-        }
-
-        if (expression is LogicalExpression) {
-            return logexp_to_sql (expression as LogicalExpression, args);
-        } else {
-            return relexp_to_sql (expression as RelationalExpression, args);
-        }
-    }
-
-    private string? map_operand_to_column (string operand) {
-        string column = null;
-
-        switch (operand) {
-            case "@id":
-                column = "o.upnp_id";
-                break;
-            case "@parentID":
-                column = "o.parent";
-                break;
-            case "upnp:class":
-                column = "m.class";
-                break;
-            case "dc:title":
-                column = "o.title";
-                break;
-            case "dc:creator":
-                column = "m.author";
-                break;
-            case "dc:date":
-                column = "m.date";
-                break;
-            default:
-                warning ("Unsupported: %s", operand);
-                break;
-        }
-
-        return column;
-    }
-
-    private string? relexp_to_sql (RelationalExpression? exp,
-                                   GLib.ValueArray       args) {
-        string func = null;
-        GLib.Value? v = null;
-
-        string column = map_operand_to_column (exp.operand1);
-        if (column == null) {
-            return null;
-        }
-
-        switch (exp.op) {
-            case SearchCriteriaOp.EXISTS:
-                if (exp.operand2 == "true")
-                    func = "IS NOT NULL AND %s != ''";
-                else
-                    func = "IS NULL OR %s = ''";
-                break;
-            case SearchCriteriaOp.EQ:
-                func = "=";
-                v = exp.operand2;
-                break;
-            case SearchCriteriaOp.NEQ:
-                func = "!=";
-                v = exp.operand2;
-                break;
-            case SearchCriteriaOp.LESS:
-                func = "<";
-                v = exp.operand2;
-                break;
-            case SearchCriteriaOp.LEQ:
-                func = "<=";
-                v = exp.operand2;
-                break;
-            case SearchCriteriaOp.GREATER:
-                func = ">";
-                v = exp.operand2;
-                break;
-            case SearchCriteriaOp.GEQ:
-                func = ">=";
-                v = exp.operand2;
-                break;
-            case SearchCriteriaOp.CONTAINS:
-                func = "LIKE";
-                v = "%%%s%%".printf (exp.operand2);
-                break;
-            case SearchCriteriaOp.DOES_NOT_CONTAIN:
-                func = "NOT LIKE";
-                v = "%%%s%%".printf (exp.operand2);
-                break;
-            case SearchCriteriaOp.DERIVED_FROM:
-                func = "LIKE";
-                v = "%s%%".printf (exp.operand2);
-                break;
-            default:
-                warning ("Unsupported op %d", exp.op);
-                break;
-        }
-
-        if (v != null) {
-            args.append (v);
-        }
-
-        return "%s %s ?".printf (column, func);
     }
 }
