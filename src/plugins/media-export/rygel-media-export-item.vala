@@ -172,9 +172,7 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
             date.strftime(datestr, "%F");
             this.date = (string)datestr;
         } else {
-            var tv = TimeVal();
-            tv.tv_usec = 0;
-            tv.tv_sec = (long)mtime;
+            TimeVal tv = { (long)mtime, 0 };
             this.date = tv.to_iso8601 ();
         }
 

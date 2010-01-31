@@ -34,7 +34,7 @@ public class Rygel.MediathekRssContainer : Rygel.SimpleContainer {
                 message("Feed has not changed, nothing to do");
                 break;
             case 200:
-                if (parse_response (msg.response_body.data, 
+                if (parse_response ((string) msg.response_body.data,
                                     (size_t) msg.response_body.length)) {
                     last_modified = new Soup.Date.from_string(
                                             msg.response_headers.get ("Date"));
