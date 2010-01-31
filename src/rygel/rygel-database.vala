@@ -52,17 +52,22 @@ internal class Rygel.Database : Object {
 
     public int exec (string        sql,
                      GLib.Value[]? values   = null,
-                     RowCallback?  callback = null) throws DatabaseError {
+                     RowCallback?  callback = null,
+                     Cancellable?  cancellable = null) throws DatabaseError {
         #if RYGEL_DEBUG_SQL
         var t = new Timer ();
         #endif
         int rc;
 
-        if (values == null && callback == null) {
+        if (values == null && callback == null && cancellable == null) {
             rc = this.db.exec (sql);
         } else {
             var statement = prepare_statement (sql, values);
             while ((rc = statement.step ()) == Sqlite.ROW) {
+                if (cancellable != null && cancellable.is_cancelled ()) {
+                    break;
+                }
+
                 if (callback != null) {
                     if (!callback (statement)) {
                         rc = Sqlite.DONE;
