@@ -251,12 +251,13 @@ public class Rygel.MediaDB : Object {
     public void remove_object (MediaObject obj) throws DatabaseError,
                                                        MediaDBError {
         this.remove_by_id (obj.id);
-        if (obj is MediaItem)
+        if (obj is MediaItem) {
             item_removed (obj.id);
-        else if (obj is MediaContainer)
+        } else if (obj is MediaContainer) {
             container_removed (obj.id);
-        else
+        } else {
             throw new MediaDBError.INVALID_TYPE ("Invalid object type");
+        }
     }
 
     public void save_object (MediaObject obj) throws Error {
