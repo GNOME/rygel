@@ -167,11 +167,11 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         try {
             int64 timestamp;
             if (!this.media_db.exists ("0", out timestamp)) {
-                media_db.save_object (this);
+                media_db.save_container (this);
             }
 
             if (!this.media_db.exists ("DynamicContainerId", out timestamp)) {
-                media_db.save_object (this.dynamic_elements);
+                media_db.save_container (this.dynamic_elements);
             }
         } catch (Error error) {
             // do nothing

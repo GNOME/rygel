@@ -127,7 +127,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                     int64 timestamp;
                     if (!this.media_db.exists (container.id,
                                                out timestamp)) {
-                        this.media_db.save_object (container);
+                        this.media_db.save_container (container);
                     }
                 } catch (Error err) {
                     warning ("Failed to update database: %s",
@@ -251,7 +251,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
 
                 int64 timestamp;
                 if (!this.media_db.exists (container.id, out timestamp)) {
-                    this.media_db.save_object (container);
+                    this.media_db.save_container (container);
                 }
 
                 Idle.add (this.on_idle);
@@ -298,7 +298,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                     if (entry.update) {
                         this.media_db.update_object (item);
                     } else {
-                        this.media_db.save_object (item);
+                        this.media_db.save_item (item);
                     }
                 } catch (Error error) {
                     // Ignore it for now

@@ -260,16 +260,6 @@ public class Rygel.MediaDB : Object {
         }
     }
 
-    public void save_object (MediaObject obj) throws Error {
-        if (obj is MediaItem) {
-            save_item ((MediaItem)obj);
-        } else if (obj is MediaContainer) {
-            save_container ((MediaContainer)obj);
-        } else {
-            throw new MediaDBError.INVALID_TYPE ("Invalid object type");
-        }
-    }
-
     public void save_container (MediaContainer container) throws Error {
         try {
             db.begin ();
