@@ -31,7 +31,7 @@ internal class Rygel.Database : Object {
 
     public delegate bool RowCallback (Sqlite.Statement stmt);
 
-    public Database(string name) {
+    public Database (string name) {
         var dirname = Path.build_filename (Environment.get_user_cache_dir (),
                                            "rygel");
         DirUtils.create_with_parents (dirname, 0750);
@@ -42,6 +42,7 @@ internal class Rygel.Database : Object {
             warning ("Failed to open database: %d, %s",
                      rc,
                      db.errmsg ());
+
             return;
         }
         this.db.exec ("PRAGMA cache_size = 32768");
@@ -51,8 +52,8 @@ internal class Rygel.Database : Object {
     }
 
     public int exec (string        sql,
-                     GLib.Value[]? values   = null,
-                     RowCallback?  callback = null,
+                     GLib.Value[]? values      = null,
+                     RowCallback?  callback    = null,
                      Cancellable?  cancellable = null) throws DatabaseError {
         #if RYGEL_DEBUG_SQL
         var t = new Timer ();
@@ -87,8 +88,9 @@ internal class Rygel.Database : Object {
         return rc;
     }
 
-    Statement prepare_statement (string sql, GLib.Value[]? values = null)
-                                                         throws DatabaseError {
+    private Statement prepare_statement (string        sql,
+                                         GLib.Value[]? values = null)
+                                         throws DatabaseError {
         Statement statement;
         var rc = db.prepare_v2 (sql, -1, out statement, null);
         if (rc != Sqlite.OK)
