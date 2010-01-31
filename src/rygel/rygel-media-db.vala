@@ -703,8 +703,8 @@ public class Rygel.MediaDB : Object {
                       values,
                       (stmt) => {
                           if (obj is MediaItem) {
-                              ((MediaItem) obj).add_uri (stmt.column_text (0),
-                                                         null);
+                              var item = obj as MediaItem;
+                              item.add_uri (stmt.column_text (0), null);
                           } else {
                               obj.uris.add (stmt.column_text (0));
                           }
