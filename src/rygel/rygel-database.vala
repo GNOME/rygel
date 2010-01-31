@@ -23,6 +23,7 @@
 using Sqlite;
 
 public errordomain Rygel.DatabaseError {
+    IO_ERROR,
     SQLITE_ERROR
 }
 
@@ -31,7 +32,7 @@ internal class Rygel.Database : Object {
 
     public delegate bool RowCallback (Sqlite.Statement stmt);
 
-    public Database (string name) {
+    public Database (string name) throws DatabaseError {
         var dirname = Path.build_filename (Environment.get_user_cache_dir (),
                                            "rygel");
         DirUtils.create_with_parents (dirname, 0750);
@@ -39,12 +40,13 @@ internal class Rygel.Database : Object {
         debug ("Using database file %s", db_file);
         var rc = Sqlite.Database.open (db_file, out this.db);
         if (rc != Sqlite.OK) {
-            warning ("Failed to open database: %d, %s",
-                     rc,
-                     db.errmsg ());
+            var msg = "Failed to open database: %d, %s".printf (
+                       rc,
+                       db.errmsg ());
 
-            return;
+            throw new DatabaseError.IO_ERROR (msg);
         }
+
         this.db.exec ("PRAGMA cache_size = 32768");
         this.db.exec ("PRAGMA synchronous = OFF");
         this.db.exec ("PRAGMA temp_store = MEMORY");
