@@ -121,22 +121,13 @@ public class Rygel.MediaDB : Object {
     "CREATE INDEX idx_meta_data_fk on meta_data(object_fk);" +
     "CREATE INDEX idx_closure on Closure(descendant,depth);";
 
-
-    private const string INSERT_META_DATA_STRING =
-    "INSERT INTO meta_data " +
+    private const string SAVE_META_DATA_STRING =
+    "INSERT OR REPLACE INTO meta_data " +
         "(size, mime_type, width, height, class, " +
          "author, album, date, bitrate, " +
          "sample_freq, bits_per_sample, channels, " +
          "track, color_depth, duration, object_fk) VALUES " +
          "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-
-    private const string UPDATE_META_DATA_STRING =
-    "UPDATE meta_data SET " +
-         "size = ?, mime_type = ?, width = ?, height = ?, class = ?, " +
-         "author = ?, album = ?, date = ?, bitrate = ?, " +
-         "sample_freq = ?, bits_per_sample = ?, channels = ?, " +
-         "track = ?, color_depth = ?, duration = ? " +
-         "WHERE object_fk = ?";
 
     private const string INSERT_OBJECT_STRING =
     "INSERT INTO Object (upnp_id, title, type_fk, parent, timestamp) " +
@@ -333,7 +324,7 @@ public class Rygel.MediaDB : Object {
             db.begin ();
             remove_uris (obj);
             if (obj is MediaItem) {
-                save_metadata ((MediaItem)obj, UPDATE_META_DATA_STRING);
+                save_metadata ((MediaItem) obj);
             }
             update_object_internal (obj);
             save_uris (obj);
@@ -616,9 +607,7 @@ public class Rygel.MediaDB : Object {
         this.db.exec (DELETE_URI_STRING, values);
     }
 
-    private void save_metadata (MediaItem item,
-                                string    sql = INSERT_META_DATA_STRING)
-                                throws Error {
+    private void save_metadata (MediaItem item) throws Error {
         GLib.Value[] values = { item.size,
                                 item.mime_type,
                                 item.width,
@@ -635,7 +624,7 @@ public class Rygel.MediaDB : Object {
                                 item.color_depth,
                                 item.duration,
                                 item.id };
-        this.db.exec (sql, values);
+        this.db.exec (SAVE_META_DATA_STRING, values);
     }
 
     private void create_object (MediaObject item) throws Error {
