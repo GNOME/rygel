@@ -787,10 +787,8 @@ public class Rygel.MediaDB : Object {
 
     private string? search_expression_to_sql (SearchExpression? expression,
                                               GLib.ValueArray   args) {
-        string result = null;
-
         if (expression == null) {
-            return result;
+            return null;
         }
 
         if (expression is LogicalExpression) {
