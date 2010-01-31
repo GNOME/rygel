@@ -22,8 +22,8 @@
 
 
 using Gee;
-using Sqlite;
 using GUPnP;
+using Sqlite;
 
 public errordomain Rygel.MediaDBError {
     SQLITE_ERROR,
@@ -42,7 +42,7 @@ public enum Rygel.MediaDBObjectType {
  * MediaDB is a sqlite3 backed persistent storage of media objects
  */
 public class Rygel.MediaDB : Object {
-    private Database db;
+    private Rygel.Database db;
     private MediaDBObjectFactory factory;
     private const string schema_version = "5";
     private const string SCHEMA_STRING =
