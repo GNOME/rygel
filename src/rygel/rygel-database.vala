@@ -27,11 +27,28 @@ public errordomain Rygel.DatabaseError {
     SQLITE_ERROR
 }
 
+/**
+ * This class is a thin wrapper around SQLite's database object.
+ *
+ * It adds statement preparation based on GValue and a cancellable exec
+ * function.
+ */
 internal class Rygel.Database : Object {
     private Sqlite.Database db;
 
+    /**
+     * Callback to pass to exec
+     *
+     * @return true, if you want the query to continue, false otherwise
+     */
     public delegate bool RowCallback (Sqlite.Statement stmt);
 
+    /**
+     * Open a database in the user's cache directory as defined by XDG
+     *
+     * @param name of the database, used to build full path
+     * (<cache-dir>/rygel/<name>.db)
+     */
     public Database (string name) throws DatabaseError {
         var dirname = Path.build_filename (Environment.get_user_cache_dir (),
                                            "rygel");
@@ -53,6 +70,20 @@ internal class Rygel.Database : Object {
         this.db.exec ("PRAGMA count_changes = OFF");
     }
 
+    /**
+     * Execute a cancellable SQL statement.
+     *
+     * The supplied values are bound to the SQL statement and the RowCallback
+     * is called on every row of the resultset.
+     *
+     * @param sql statement to execute
+     * @param values array of values to bind to the SQL statement or null if
+     * none
+     * @param callback to call on each row of the result set or null if none
+     * necessary
+     * @param cancellable to cancel the running query or null if none
+     * necessary
+     */
     public int exec (string        sql,
                      GLib.Value[]? values      = null,
                      RowCallback?  callback    = null,
@@ -90,6 +121,20 @@ internal class Rygel.Database : Object {
         return rc;
     }
 
+    /**
+     * Prepare a SQLite statement from a SQL string
+     *
+     * This function uses the type of the GValue passed in values to determine
+     * which _bind function to use.
+     *
+     * Supported types are: int, long, int64, string and pointer.
+     * @note the only pointer supported is the null pointer as provided by
+     * Database.@null. This is a special value to bind a column to NULL
+     *
+     * @param sql statement to execute
+     * @param values array of values to bind to the SQL statement or null if
+     * none
+     */
     private Statement prepare_statement (string        sql,
                                          GLib.Value[]? values = null)
                                          throws DatabaseError {
@@ -128,28 +173,44 @@ internal class Rygel.Database : Object {
         return statement;
     }
 
+    /**
+     * Analyze triggers of database
+     */
     public void analyze () {
         this.db.exec ("ANALYZE");
     }
 
+    /**
+     * Special GValue to pass to exec or prepare_statement to bind a column to
+     * NULL
+     */
     public static GLib.Value @null () {
         GLib.Value v = GLib.Value (typeof (void *));
         v.set_pointer (null);
         return v;
     }
 
+    /**
+     * Start a transaction
+     */
     public void begin () throws DatabaseError {
         if (this.db.exec ("BEGIN") != Sqlite.OK) {
             throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
         }
     }
 
+    /**
+     * Commit a transaction
+     */
     public void commit () throws DatabaseError {
         if (this.db.exec ("COMMIT") != Sqlite.OK) {
             throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
         }
     }
 
+    /**
+     * Rollback a transaction
+     */
     public void rollback () {
         if (this.db.exec ("ROLLBACK") != Sqlite.OK) {
             critical ("Failed to rollback transaction: %s",
