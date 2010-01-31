@@ -540,6 +540,7 @@ public class Rygel.MediaDB : Object {
                               null,
                               (stmt) => {
                                   rows = stmt.column_int (0);
+                                  return false;
                               });
                 if (rows == 0) {
                     debug ("Empty database, creating new schema version %s",
@@ -694,6 +695,7 @@ public class Rygel.MediaDB : Object {
                           } else {
                               obj.uris.add (stmt.column_text (0));
                           }
+                          return true;
                       });
     }
 

@@ -70,7 +70,7 @@ public class Rygel.MediathekAsxPlaylist : Object {
                 // lowercase all tags using regex and \L\E syntax
                 var normalizer = new Regex ("(<[/]?)([a-zA-Z:]+)");
                 string normalized_content = 
-                        normalizer.replace (message.response_body.data,
+                        normalizer.replace ((string)message.response_body.data,
                                             (long)message.response_body.length,
                                             0, 
                                             "\\1\\L\\2\\E");
