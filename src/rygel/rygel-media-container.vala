@@ -277,27 +277,5 @@ public abstract class Rygel.MediaContainer : MediaObject {
             this.parent.container_updated (updated_container);
         }
     }
-
-    /**
-     * Fetches a File object for any writable URI available for this container.
-     *
-     * @param cancellable A GLib.Cancellable
-     */
-    private async File? get_writable (Cancellable? cancellable) throws Error {
-        foreach (var uri in this.uris) {
-            var file = File.new_for_uri (uri);
-
-            var info = yield file.query_info_async (
-                                        FILE_ATTRIBUTE_ACCESS_CAN_WRITE,
-                                        FileQueryInfoFlags.NONE,
-                                        Priority.DEFAULT,
-                                        cancellable);
-            if (info.get_attribute_boolean (FILE_ATTRIBUTE_ACCESS_CAN_WRITE)) {
-                return file;
-            }
-        }
-
-        return null;
-    }
 }
 
