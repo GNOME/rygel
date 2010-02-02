@@ -170,12 +170,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                 debug ("%s : %s", name, value);
         });
 
-        var request = new HTTPGet (this, server, msg, query);
-
-        request.completed += this.on_request_completed;
-        this.requests.add (request);
-
-        request.run.begin ();
+        this.queue_request (new HTTPGet (this, server, msg, query));
     }
 
     private void on_request_aborted (Soup.Server        server,
@@ -204,13 +199,15 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
             msg.uri.path.has_prefix (this.path_root)) {
             debug ("HTTP POST request for URI '%s'",
                    msg.get_uri ().to_string (false));
-            var request = new HTTPPost (this, this.context.server, msg);
 
-            request.completed += this.on_request_completed;
-            this.requests.add (request);
-
-            request.run.begin ();
+            this.queue_request (new HTTPPost (this, this.context.server, msg));
         }
+    }
+
+    private void queue_request (HTTPRequest request) {
+        request.completed += this.on_request_completed;
+        this.requests.add (request);
+        request.run.begin ();
     }
 }
 
