@@ -79,9 +79,9 @@ public class Rygel.MediathekAsxPlaylist : Object {
                                                (int)normalized_content.length);
 
                 if (doc != null) {
-                    var ctx = new XPathContext (doc);
+                    var ctx = new XPath.Context (doc);
                     var xpo = ctx.eval ("/asx/entry/ref/@href");
-                    if (xpo->type == XPathObjectType.NODESET) {
+                    if (xpo->type == XPath.ObjectType.NODESET) {
                         for (int i = 0; i < xpo->nodesetval->length (); i++) {
                             var item = xpo->nodesetval->item (i);
                             uris.add (item->children->content);
