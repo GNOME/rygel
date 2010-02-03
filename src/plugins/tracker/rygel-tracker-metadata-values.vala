@@ -121,11 +121,11 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         var last_variable = variables[num_keys - 1];
         selected.add ("DISTINCT " + last_variable);
 
-        var query = new TrackerQuery (selected,
-                                      mandatory,
-                                      null,
-                                      null,
-                                      last_variable);
+        var query = new TrackerSelectionQuery (selected,
+                                               mandatory,
+                                               null,
+                                               null,
+                                               last_variable);
 
         string[,] values;
         try {

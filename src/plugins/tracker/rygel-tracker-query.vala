@@ -25,25 +25,12 @@ using Gee;
 /**
  * Represents Tracker SPARQL query
  */
-public class Rygel.TrackerQuery {
+public abstract class Rygel.TrackerQuery {
     public TrackerQueryTriplets mandatory;
     public TrackerQueryTriplets optional;
 
-    public ArrayList<string> variables;
-    public ArrayList<string> filters;
-
-    public string order_by;
-    public int offset;
-    public int max_count;
-
-    public TrackerQuery (ArrayList<string>     variables,
-                         TrackerQueryTriplets  mandatory,
-                         TrackerQueryTriplets? optional,
-                         ArrayList<string>?    filters,
-                         string?               order_by = null,
-                         int                   offset = 0,
-                         int                   max_count = -1) {
-        this.variables = variables;
+    public TrackerQuery (TrackerQueryTriplets  mandatory,
+                         TrackerQueryTriplets? optional) {
         this.mandatory = mandatory;
 
         if (optional != null) {
@@ -51,27 +38,6 @@ public class Rygel.TrackerQuery {
         } else {
             this.optional = new TrackerQueryTriplets ();
         }
-
-        if (filters != null) {
-            this.filters = filters;
-        } else {
-            this.filters = new ArrayList<string> ();
-        }
-
-        this.order_by = order_by;
-
-        this.offset = offset;
-        this.max_count = max_count;
-    }
-
-    public TrackerQuery.clone (TrackerQuery query) {
-        this (this.copy_str_list (query.variables),
-              new TrackerQueryTriplets.clone (query.mandatory),
-              new TrackerQueryTriplets.clone (query.optional),
-              this.copy_str_list (query.filters),
-              query.order_by,
-              query.offset,
-              query.max_count);
     }
 
     public async string[,] execute (TrackerResourcesIface resources)
@@ -82,43 +48,12 @@ public class Rygel.TrackerQuery {
         return yield resources.sparql_query (str);
     }
 
-    public string to_string () {
-        string query = "SELECT";
-
-        foreach (var variable in this.variables) {
-            query += " " + variable;
-        }
-
-        query += " WHERE { " +
-                 this.serialize_triplets (this.mandatory) +
-                 " . " +
-                 this.serialize_triplets (this.optional);
-
-        if (this.filters.size > 0) {
-            query += " FILTER (";
-            for (var i = 0; i < this.filters.size; i++) {
-                query += this.filters[i];
-
-                if (i < this.filters.size - 1) {
-                    query += " && ";
-                }
-            }
-            query += ")";
-        }
-
-        query += " }";
-
-        if (this.order_by != null) {
-            query += " ORDER BY " + order_by;
-        }
-
-        query += " OFFSET " + this.offset.to_string ();
-
-        if (this.max_count != -1) {
-            query += " LIMIT " + this.max_count.to_string ();
-        }
-
-        return query;
+    // Deriving classes should override this method and complete it by
+    // adding the first part of the query
+    public virtual string to_string () {
+        return this.serialize_triplets (this.mandatory) +
+               " . " +
+               this.serialize_triplets (this.optional);
     }
 
     private string serialize_triplets (TrackerQueryTriplets triplets) {
@@ -139,13 +74,5 @@ public class Rygel.TrackerQuery {
         }
 
         return str;
-    }
-
-    private ArrayList<string> copy_str_list (Gee.List<string> str_list) {
-        var copy = new ArrayList<string> ();
-
-        copy.add_all (str_list);
-
-        return copy;
     }
 }

@@ -37,7 +37,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     private const string MODIFIED_PREDICATE = "nfo:fileLastModified";
     private const string MODIFIED_VARIABLE = "?modified";
 
-    public TrackerQuery query;
+    public TrackerSelectionQuery query;
     public TrackerItemFactory item_factory;
 
     private TrackerResourcesIface resources;
@@ -87,11 +87,11 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
             }
         }
 
-        this.query = new TrackerQuery (variables,
-                                       our_mandatory,
-                                       optional,
-                                       filters,
-                                       MODIFIED_VARIABLE);
+        this.query = new TrackerSelectionQuery (variables,
+                                                our_mandatory,
+                                                optional,
+                                                filters,
+                                                MODIFIED_VARIABLE);
 
         try {
             this.create_proxies ();
@@ -186,7 +186,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
     private async void get_children_count () {
         try {
-            var query = new TrackerQuery.clone (this.query);
+            var query = new TrackerSelectionQuery.clone (this.query);
 
             query.variables = new ArrayList<string> ();
             query.variables.add ("COUNT(" + ITEM_VARIABLE + ") AS x");
@@ -205,15 +205,15 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         }
     }
 
-    private TrackerQuery? create_query (SearchExpression expression,
-                                        int              offset,
-                                        int              max_count) {
+    private TrackerSelectionQuery? create_query (SearchExpression expression,
+                                                 int              offset,
+                                                 int              max_count) {
         if (expression == null || !(expression is RelationalExpression)) {
             return null;
         }
 
         var rel_expression = expression as RelationalExpression;
-        var query = new TrackerQuery.clone (this.query);
+        var query = new TrackerSelectionQuery.clone (this.query);
 
         if (rel_expression.operand1 == "@id") {
             var filter = create_filter_for_id (rel_expression);

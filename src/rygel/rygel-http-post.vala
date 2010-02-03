@@ -83,7 +83,6 @@ internal class Rygel.HTTPPost : HTTPRequest {
     }
 
     private void on_got_chunk (Message msg, Buffer chunk) {
-
         this.write_chunk.begin (chunk);
     }
 
