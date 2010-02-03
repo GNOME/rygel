@@ -263,7 +263,7 @@ public class Rygel.RootDeviceFactory {
         int res = -1;
 
         if (f != null)
-            res = Xml.Doc.dump (f, doc.doc);
+            res = doc.doc.dump (f);
 
         if (f == null || res == -1) {
             string message = "Failed to write modified description" +
