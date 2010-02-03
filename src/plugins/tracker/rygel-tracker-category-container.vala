@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2010 Nokia Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
@@ -24,25 +24,24 @@
 using Gee;
 
 /**
- * Container listing video content hierarchy.
+ * Container listing content hierarchy for a specific category.
  */
-public class Rygel.TrackerVideos : Rygel.TrackerCategoryContainer {
-    public TrackerVideos (string         id,
-                          MediaContainer parent,
-                          string         title) {
-        base (id,
-              parent,
-              title,
-              Environment.get_user_special_dir (UserDirectory.VIDEOS));
+public class Rygel.TrackerCategoryContainer : Rygel.SimpleContainer {
+    public TrackerCategoryContainer (string         id,
+                                     MediaContainer parent,
+                                     string         title,
+                                     string         upload_dir) {
+        base (id, parent, title);
 
-        var item_factory = new TrackerVideoItemFactory ();
+        try {
+            var uri = Filename.to_uri (upload_dir, null);
 
-        this.add_child (new TrackerTags ("20", this, item_factory));
-        this.add_child (new TrackerYears ("23", this, item_factory));
-        this.add_child (new TrackerSearchContainer ("24",
-                                                    this,
-                                                    "All",
-                                                    item_factory));
+            this.uris.add (uri);
+        } catch (ConvertError error) {
+            warning ("Failed to contstruct URI for directory '%s': %s",
+                     upload_dir,
+                     error.message);
+        }
     }
 }
 

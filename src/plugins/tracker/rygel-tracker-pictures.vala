@@ -26,13 +26,16 @@ using Gee;
 /**
  * Container listing Pictures content hierarchy.
  */
-public class Rygel.TrackerPictures : Rygel.SimpleContainer {
+public class Rygel.TrackerPictures : Rygel.TrackerCategoryContainer {
     private const string[] KEY_CHAIN = { "nie:contentCreated", null };
 
     public TrackerPictures (string         id,
                             MediaContainer parent,
                             string         title) {
-        base (id, parent, title);
+        base (id,
+              parent,
+              title,
+              Environment.get_user_special_dir (UserDirectory.PICTURES));
 
         var item_factory = new TrackerPictureItemFactory ();
 
@@ -42,15 +45,6 @@ public class Rygel.TrackerPictures : Rygel.SimpleContainer {
                                                     this,
                                                     "All",
                                                     item_factory));
-        try {
-            var dir = Environment.get_user_special_dir (UserDirectory.PICTURES);
-            var uri = Filename.to_uri (dir, null);
-
-            this.uris.add (uri);
-        } catch (ConvertError error) {
-            warning ("Failed to get URI for pictures directory: %s",
-                     error.message);
-        }
     }
 }
 

@@ -26,11 +26,14 @@ using Gee;
 /**
  * Container listing Music content hierarchy.
  */
-public class Rygel.TrackerMusic : Rygel.SimpleContainer {
+public class Rygel.TrackerMusic : Rygel.TrackerCategoryContainer {
     public TrackerMusic (string         id,
                          MediaContainer parent,
                          string         title) {
-        base (id, parent, title);
+        base (id,
+              parent,
+              title,
+              Environment.get_user_special_dir (UserDirectory.MUSIC));
 
         var item_factory = new TrackerMusicItemFactory ();
         var key_chain = new string[] { "nmm:performer",
@@ -53,15 +56,6 @@ public class Rygel.TrackerMusic : Rygel.SimpleContainer {
                                                     this,
                                                     "All",
                                                     item_factory));
-        try {
-            var dir = Environment.get_user_special_dir (UserDirectory.MUSIC);
-            var uri = Filename.to_uri (dir, null);
-
-            this.uris.add (uri);
-        } catch (ConvertError error) {
-            warning ("Failed to get URI for music directory: %s",
-                     error.message);
-        }
     }
 }
 
