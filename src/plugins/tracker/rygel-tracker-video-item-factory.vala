@@ -38,7 +38,10 @@ public class Rygel.TrackerVideoItemFactory : Rygel.TrackerItemFactory {
     private const string CATEGORY = "nmm:Video";
 
     public TrackerVideoItemFactory () {
-        base (CATEGORY, MediaItem.VIDEO_CLASS, VIDEO_RESOURCES_CLASS_PATH);
+        base (CATEGORY,
+              MediaItem.VIDEO_CLASS,
+              VIDEO_RESOURCES_CLASS_PATH,
+              Environment.get_user_special_dir (UserDirectory.VIDEOS));
 
         for (var i = this.key_chains.size; i < VideoMetadata.LAST_KEY; i++) {
             this.key_chains.add (new ArrayList<string> ());
