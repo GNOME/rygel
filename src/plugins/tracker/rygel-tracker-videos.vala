@@ -30,19 +30,14 @@ public class Rygel.TrackerVideos : Rygel.TrackerCategoryContainer {
     public TrackerVideos (string         id,
                           MediaContainer parent,
                           string         title) {
-        base (id,
-              parent,
-              title,
-              Environment.get_user_special_dir (UserDirectory.VIDEOS));
+        base (id, parent, title, new TrackerVideoItemFactory ());
 
-        var item_factory = new TrackerVideoItemFactory ();
-
-        this.add_child (new TrackerTags ("20", this, item_factory));
-        this.add_child (new TrackerYears ("23", this, item_factory));
+        this.add_child (new TrackerTags ("20", this, this.item_factory));
+        this.add_child (new TrackerYears ("23", this, this.item_factory));
         this.add_child (new TrackerSearchContainer ("24",
                                                     this,
                                                     "All",
-                                                    item_factory));
+                                                    this.item_factory));
     }
 }
 

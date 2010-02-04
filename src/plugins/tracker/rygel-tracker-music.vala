@@ -30,32 +30,28 @@ public class Rygel.TrackerMusic : Rygel.TrackerCategoryContainer {
     public TrackerMusic (string         id,
                          MediaContainer parent,
                          string         title) {
-        base (id,
-              parent,
-              title,
-              Environment.get_user_special_dir (UserDirectory.MUSIC));
+        base (id, parent, title, new TrackerMusicItemFactory ());
 
-        var item_factory = new TrackerMusicItemFactory ();
         var key_chain = new string[] { "nmm:performer",
                                        "nmm:artistName",
                                        null };
         this.add_child (new TrackerMetadataValues ("17",
                                                    this,
                                                    "Artists",
-                                                   item_factory,
+                                                   this.item_factory,
                                                    key_chain));
 
         key_chain = new string[] { "nmm:musicAlbum", "nmm:albumTitle", null };
         this.add_child (new TrackerMetadataValues ("18",
                                                    this,
                                                    "Albums",
-                                                   item_factory,
+                                                   this.item_factory,
                                                    key_chain));
         this.add_child (new TrackerTags ("21", this, item_factory));
         this.add_child (new TrackerSearchContainer ("26",
                                                     this,
                                                     "All",
-                                                    item_factory));
+                                                    this.item_factory));
     }
 }
 

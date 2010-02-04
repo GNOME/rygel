@@ -27,19 +27,23 @@ using Gee;
  * Container listing content hierarchy for a specific category.
  */
 public class Rygel.TrackerCategoryContainer : Rygel.SimpleContainer {
-    public TrackerCategoryContainer (string         id,
-                                     MediaContainer parent,
-                                     string         title,
-                                     string         upload_dir) {
+    public TrackerItemFactory item_factory;
+
+    public TrackerCategoryContainer (string             id,
+                                     MediaContainer     parent,
+                                     string             title,
+                                     TrackerItemFactory item_factory) {
         base (id, parent, title);
 
+        this.item_factory = item_factory;
+
         try {
-            var uri = Filename.to_uri (upload_dir, null);
+            var uri = Filename.to_uri (item_factory.upload_dir, null);
 
             this.uris.add (uri);
         } catch (ConvertError error) {
             warning ("Failed to contstruct URI for directory '%s': %s",
-                     upload_dir,
+                     item_factory.upload_dir,
                      error.message);
         }
     }
