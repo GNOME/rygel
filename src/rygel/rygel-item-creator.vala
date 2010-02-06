@@ -118,7 +118,9 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             this.action.return_error (701, error.message);
         }
 
-        warning ("Failed to create '%s': %s", this.item.id, error.message);
+        warning ("Failed to create item under '%s': %s",
+                 this.container_id,
+                 error.message);
 
         this.completed ();
     }
