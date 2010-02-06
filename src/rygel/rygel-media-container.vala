@@ -187,6 +187,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
                                  cancellable);
         var uri = file.get_uri ();
         item.id = uri;
+        item.uris.add (uri);
     }
 
     /**
