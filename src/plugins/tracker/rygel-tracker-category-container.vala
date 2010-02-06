@@ -39,12 +39,28 @@ public class Rygel.TrackerCategoryContainer : Rygel.SimpleContainer {
 
         try {
             var uri = Filename.to_uri (item_factory.upload_dir, null);
-
             this.uris.add (uri);
         } catch (ConvertError error) {
             warning ("Failed to contstruct URI for directory '%s': %s",
                      item_factory.upload_dir,
                      error.message);
+        }
+    }
+
+    public async override void add_item (MediaItem    item,
+                                         Cancellable? cancellable)
+                                         throws Error {
+        assert (this.uris.size > 0);
+
+        yield base.add_item (item, cancellable);
+        assert (item.uris.size > 0);
+
+        var creation = new TrackerItemCreation (item, this, cancellable);
+
+        yield creation.run ();
+
+        if (creation.error != null) {
+            throw creation.error;
         }
     }
 }

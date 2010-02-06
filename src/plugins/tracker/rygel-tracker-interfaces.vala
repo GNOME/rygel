@@ -32,6 +32,7 @@ public interface Rygel.TrackerStatsIface : DBus.Object {
 public interface Rygel.TrackerResourcesIface: DBus.Object {
     public abstract async string[,] sparql_query (string query)
                                                   throws DBus.Error;
+    public abstract async void sparql_update (string query) throws DBus.Error;
 }
 
 [DBus (name = "org.freedesktop.Tracker1.Resources.Class")]
