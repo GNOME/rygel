@@ -142,12 +142,12 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
             return results;
         }
 
-        var search_result = yield query.execute (this.resources);
+        yield query.execute (this.resources);
 
         /* Iterate through all items */
-        for (uint i = 0; i < search_result.length[0]; i++) {
-            string uri = search_result[i, 0];
-            string[] metadata = this.slice_strvv_tail (search_result, i, 1);
+        for (uint i = 0; i < query.result.length[0]; i++) {
+            string uri = query.result[i, 0];
+            string[] metadata = this.slice_strvv_tail (query.result, i, 1);
             var id = this.id + ":" + uri;
 
             var item = this.item_factory.create (id, uri, this, metadata);
@@ -192,9 +192,9 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
             query.variables.add ("COUNT(" + ITEM_VARIABLE + ") AS x");
             query.optional = new TrackerQueryTriplets ();
 
-            var result = yield query.execute (this.resources);
+            yield query.execute (this.resources);
 
-            this.child_count = result[0,0].to_int ();
+            this.child_count = query.result[0,0].to_int ();
             this.updated ();
         } catch (GLib.Error error) {
             critical ("error getting item count under category '%s': %s",

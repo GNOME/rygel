@@ -40,13 +40,8 @@ public abstract class Rygel.TrackerQuery {
         }
     }
 
-    public async string[,] execute (TrackerResourcesIface resources)
-                                    throws DBus.Error {
-        var str = this.to_string ();
-
-        debug ("Executing SPARQL query: %s", str);
-        return yield resources.sparql_query (str);
-    }
+    public abstract async void execute (TrackerResourcesIface resources)
+                                        throws DBus.Error;
 
     // Deriving classes should override this method and complete it by
     // adding the first part of the query

@@ -127,9 +127,8 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
                                                null,
                                                last_variable);
 
-        string[,] values;
         try {
-            values = yield query.execute (this.resources);
+            yield query.execute (this.resources);
         } catch (DBus.Error error) {
             critical ("error getting all values for '%s': %s",
                       string.joinv (" -> ", this.key_chain),
@@ -139,8 +138,8 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         }
 
         /* Iterate through all the values */
-        for (i = 0; i < values.length[0]; i++) {
-            string value = values[i, 0];
+        for (i = 0; i < query.result.length[0]; i++) {
+            string value = query.result[i, 0];
 
             if (value == "") {
                 continue;

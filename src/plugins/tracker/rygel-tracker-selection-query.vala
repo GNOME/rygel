@@ -33,6 +33,8 @@ public class Rygel.TrackerSelectionQuery : Rygel.TrackerQuery {
     public int offset;
     public int max_count;
 
+    public string[,] result;
+
     public TrackerSelectionQuery (ArrayList<string>     variables,
                                   TrackerQueryTriplets  mandatory,
                                   TrackerQueryTriplets? optional,
@@ -62,6 +64,15 @@ public class Rygel.TrackerSelectionQuery : Rygel.TrackerQuery {
               query.order_by,
               query.offset,
               query.max_count);
+    }
+
+    public override async void execute (TrackerResourcesIface resources)
+                                        throws DBus.Error {
+        var str = this.to_string ();
+
+        debug ("Executing SPARQL query: %s", str);
+
+        result = yield resources.sparql_query (str);
     }
 
     public override string to_string () {
