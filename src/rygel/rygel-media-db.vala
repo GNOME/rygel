@@ -28,7 +28,8 @@ using Sqlite;
 public errordomain Rygel.MediaDBError {
     SQLITE_ERROR,
     GENERAL_ERROR,
-    INVALID_TYPE
+    INVALID_TYPE,
+    UNSUPPORTED
 }
 
 public enum Rygel.MediaDBObjectType {
@@ -777,7 +778,8 @@ public class Rygel.MediaDB : Object {
     }
 
     private string? search_expression_to_sql (SearchExpression? expression,
-                                              GLib.ValueArray   args) {
+                                             GLib.ValueArray   args)
+                                             throws Error {
         if (expression == null) {
             return null;
         }
@@ -790,7 +792,7 @@ public class Rygel.MediaDB : Object {
     }
 
     private string? logexp_to_sql (LogicalExpression? exp,
-                                   GLib.ValueArray    args) {
+                                   GLib.ValueArray    args) throws Error {
         string left = search_expression_to_sql (exp.operand1, args);
         string right = search_expression_to_sql (exp.operand2, args);
         string op;
@@ -803,7 +805,7 @@ public class Rygel.MediaDB : Object {
         return "(%s %s %s)".printf (left, op, right);
     }
 
-    private string? map_operand_to_column (string operand) {
+    private string? map_operand_to_column (string operand) throws Error {
         string column = null;
 
         switch (operand) {
@@ -833,22 +835,19 @@ public class Rygel.MediaDB : Object {
                 column = "m.album";
                 break;
             default:
-                warning ("Unsupported: %s", operand);
-                break;
+                var msg = "Unsupported column %s".printf (operand);
+                throw new MediaDBError.UNSUPPORTED (msg);
         }
 
         return column;
     }
 
     private string? relexp_to_sql (RelationalExpression? exp,
-                                   GLib.ValueArray       args) {
+                                   GLib.ValueArray       args) throws Error {
         string func = null;
         GLib.Value? v = null;
 
         string column = map_operand_to_column (exp.operand1);
-        if (column == null) {
-            return null;
-        }
 
         switch (exp.op) {
             case SearchCriteriaOp.EXISTS:
