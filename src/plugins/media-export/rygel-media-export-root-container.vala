@@ -95,7 +95,9 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     public static MediaContainer get_instance() {
         if (MediaExportRootContainer.instance == null) {
             try {
-                var db = MediaDB.create ("media-export");
+                var db = MediaDB.create_with_factory (
+                                        "media-export",
+                                        new MediaExportObjectFactory ());
                 MediaExportRootContainer.instance =
                                              new MediaExportRootContainer (db);
             } catch (MediaDBError err) {

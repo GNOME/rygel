@@ -21,7 +21,8 @@ librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
 				   rygel-media-export-dbus-service.vala \
 				   rygel-media-export-recursive-file-monitor.vala \
 				   rygel-media-export-harvester.vala \
-				   rygel-media-export-item.vala
+				   rygel-media-export-item.vala \
+				   rygel-media-export-object-factory.vala
 
 librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
 				     --pkg dbus-glib-1 \
