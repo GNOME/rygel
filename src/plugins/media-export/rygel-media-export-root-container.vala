@@ -100,6 +100,30 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         }
     }
 
+    MediaExportQueryContainer? search_to_virtual_container (
+                                       RelationalExpression exp) {
+        if (exp.operand1 == "upnp:class" &&
+            exp.op == SearchCriteriaOp.EQ) {
+            switch (exp.operand2) {
+                case "object.container.album.musicAlbum":
+                    return new MediaExportQueryContainer (
+                                       this.media_db,
+                                       "virtual-container:upnp:album",
+                                       "Albums");
+
+                case "object.container.person.musicArtist":
+                    return new MediaExportQueryContainer (
+                                       this.media_db,
+                                       "virtual-container:dc:creator",
+                                       "Artists");
+                default:
+                    return null;
+            }
+        }
+
+        return null;
+    }
+
     public override async Gee.List<MediaObject>? search (
                                         SearchExpression expression,
                                         uint             offset,
@@ -109,57 +133,73 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                                         throws GLib.Error {
         if (expression is RelationalExpression) {
             var exp = expression as RelationalExpression;
-                MediaExportQueryContainer query_cont;
-                Gee.List<MediaObject> list;
-            if (exp.operand1 == "upnp:class" &&
-                exp.op == SearchCriteriaOp.EQ) {
-                switch (exp.operand2) {
-                    case "object.container.album.musicAlbum":
-                        query_cont = new MediaExportQueryContainer (this.media_db,
-                                                                    "upnp:album",
-                                                                    "Albums");
-                        query_cont.parent = this;
-                        list = yield query_cont.get_children (offset, max_count, cancellable);
-                        foreach (MediaObject o1 in list) {
-                            o1.upnp_class =
-                            "object.container.album.musicAlbum";
-                        }
-                        total_matches = list.size;
-                        return list;
-                    case "object.container.person.musicArtist":
-                        query_cont = new MediaExportQueryContainer (this.media_db,
-                                                                    "upnp:author",
-                                                                    "Artists");
-                        query_cont.parent = this;
-                        list = yield query_cont.get_children (offset, max_count, cancellable);
-                        foreach (MediaObject o2 in list) {
-                            o2.upnp_class =
-                                "object.container.person.musicArtist";
-                        }
-                        total_matches = list.size;
-                        return list;
-                    default:
-                        break;
+            Gee.List<MediaObject> list;
+
+            var query_cont = search_to_virtual_container (exp);
+            if (query_cont != null) {
+                query_cont.parent = this;
+                list = yield query_cont.get_children (offset, max_count, cancellable);
+                foreach (MediaObject o1 in list) {
+                    o1.upnp_class = exp.operand2;
                 }
+                total_matches = list.size;
+                return list;
             }
 
             if (exp.operand1 == "@id" &&
                 exp.op == SearchCriteriaOp.EQ &&
-                exp.operand2.has_prefix ("upnp:")) {
-                    var args = exp.operand2.split(",");
-                    query_cont = new MediaExportQueryContainer (this.media_db,
-                                                                exp.operand2,
-                                                                args[args.length-1]);
-                    query_cont.parent = this;
-                    list = new ArrayList<MediaObject> ();
-                    list.add (query_cont);
-                    total_matches = list.size;
-                    return list;
-                }
+                exp.operand2.has_prefix ("virtual-container:")) {
+                var args = exp.operand2.split(",");
+                query_cont = new MediaExportQueryContainer (this.media_db,
+                                                            exp.operand2,
+                                                            args[args.length-1]);
+                query_cont.parent = this;
+                list = new ArrayList<MediaObject> ();
+                list.add (query_cont);
+                total_matches = list.size;
+                return list;
+            }
         }
 
-        return yield base.search (expression, offset, max_count, out total_matches,
-        cancellable);
+        if (expression is LogicalExpression &&
+            expression.operand1 is RelationalExpression &&
+            expression.operand2 is RelationalExpression &&
+            ((LogicalExpression) expression).op == LogicalOperator.AND) {
+            var expa = expression.operand1 as RelationalExpression;
+            var expb = expression.operand2 as RelationalExpression;
+            var cont = search_to_virtual_container (expa);
+            RelationalExpression exp_ = null;
+            if (cont == null) {
+                cont = search_to_virtual_container (expb);
+                if (cont != null) {
+                    exp_ = expa;
+                }
+            } else {
+                exp_ = expb;
+            }
+
+            if (cont != null) {
+                string new_id = "virtual-container:" + exp_.operand1 +
+                                "," + exp_.operand2 +
+                                cont.id.replace ("virtual-container:", ",");
+                debug ("Translated search request to %s", new_id);
+                var query_cont_ = new MediaExportQueryContainer (this.media_db,
+                                                            new_id,
+                                                            exp_.operand2);
+                var list_ = yield query_cont_.get_children (offset, max_count, cancellable);
+                foreach (MediaObject o2 in list_) {
+                    o2.upnp_class = exp_.operand1;
+                }
+                total_matches = list_.size;
+                return list_;
+            }
+        }
+
+        return yield base.search (expression,
+                                  offset,
+                                  max_count,
+                                  out total_matches,
+                                  cancellable);
     }
 
 
