@@ -1,7 +1,10 @@
 /*
  * Copyright (C) 2010 Jens Georg <mail@jensge.org>.
+ * Copyright (C) 2010 Nokia Corporation.
  *
  * Author: Jens Georg <mail@jensge.org>
+ *         Zeeshan Ali (Khattak) <zeeshan.ali@nokia.com>
+ *                               <zeeshanak@gnome.org>
  *
  * This file is part of Rygel.
  *
@@ -19,12 +22,20 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
+internal class Rygel.MediaExportWritableContainer : MediaDBContainer {
+    public MediaExportWritableContainer (MediaDB media_db,
+                                         string  id,
+                                         string  title) {
+        base (media_db, id, title);
+    }
 
-internal class Rygel.MediaExportObjectFactory : MediaDBObjectFactory {
-    public override MediaContainer get_container (MediaDB media_db,
-                                                  string  id,
-                                                  string  title,
-                                                  uint    child_count) {
-        return new MediaExportWritableContainer (media_db, id, title);
+    public override async void add_item (MediaItem    item,
+                                         Cancellable? cancellable)
+                                         throws Error {
+        yield base.add_item (item, cancellable);
+
+        item.parent = this;
+        item.id = Checksum.compute_for_string (ChecksumType.MD5, item.uris[0]);
+        this.media_db.save_item (item);
     }
 }
