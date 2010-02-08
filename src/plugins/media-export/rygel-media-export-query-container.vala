@@ -24,38 +24,43 @@ using GUPnP;
 internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
     private bool item_container;
     private string column;
-    private string filter;
     private SearchExpression expression;
 
     public MediaExportQueryContainer (MediaDB media_db, string id, string name) {
         // parse the id
         // Following the schema:
-        // upnp:<class> -> get all of that class (eg. Albums)
-        // upnp:<class>,<item> -> get all that is contained in that class
+        // virtual-folder:<class> -> get all of that class (eg. Albums)
+        // virtual-folder:<class>,<item> -> get all that is contained in that class
         // If an item suffix is present, the children are items, otherwise
         // containers
-        // example: upnp:album -> All albums
-        //          upnp:album,The White Album -> All tracks of the White Album
-        //          upnp:author,The Beatles,upnp:album -> All Albums by the Beatles
-        //          the parts not prefixed by upnp: are URL-escaped
+        // example: virtual-folder:upnp:album -> All albums
+        //          virtual-folder:upnp:album,The White Album -> All tracks of the White Album
+        //          virtual-folder:dc:creator,The Beatles,upnp:album -> All Albums by the Beatles
+        //          the parts not prefixed by virtual-folder: are URL-escaped
         base (media_db, id, name);
         var args = id.split(",");
+        var exp = new RelationalExpression ();
+        for (int i = args.length - 2; i >= 1; i -= 2) {
+            exp.operand1 = args[i - 1].replace ("virtual-container:", "");
+            exp.op = SearchCriteriaOp.EQ;
+            exp.operand2 = args[i];
+            if (this.expression != null) {
+                var exp2 = new LogicalExpression ();
+                exp2.operand1 = this.expression;
+                exp2.operand2 = exp;
+                exp2.op = LogicalOperator.AND;
+            } else {
+                this.expression = exp;
+            }
+        }
+
         if (args.length % 2 == 0) {
             // we will contain items
             this.item_container = true;
-            // TODO prepare search expression
-            var exp = new RelationalExpression ();
-            if (args[0] == "upnp:author")
-                exp.operand1 = "dc:creator";
-            else
-                exp.operand1 = args[0];
-            exp.op = SearchCriteriaOp.EQ;
-            exp.operand2 = args[1];
-            this.expression = exp;
         } else {
-            this.filter = "";
             this.item_container = false;
-            this.column = args[0].replace("upnp:", "");
+            this.column = this.media_db.map_operand_to_column (
+                           args[args.length - 1].replace("virtual-container:", ""));
         }
     }
 
@@ -94,24 +99,29 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
 
         var children = new ArrayList<MediaObject> ();
         try {
-        var data = this.media_db.get_meta_data_column_by_filter (
+            var args = new ValueArray (0);
+            var filter = this.media_db.search_expression_to_sql (this.expression, args);
+            if (filter != null) {
+                filter = " WHERE %s ".printf (filter);
+            }
+            debug ("parsed filter: %s", filter);
+            var data = this.media_db.get_meta_data_column_by_filter (
                                        this.column,
-                                       this.filter,
-                                       new ValueArray (0),
+                                       filter == null ? "" : filter,
+                                       args,
                                        offset,
-                                       max_count);
-       foreach (string foo in data) {
-            debug ("Got child: %s", foo);
-            if (foo == null)
-                continue;
-            var new_id = this.id + "," + foo;
-            var container = new MediaExportQueryContainer (this.media_db,
-                                                           new_id,
-                                                           foo);
-            container.parent = this;
-            container.parent_ref = this;
-            children.add (container);
-        }
+                                       max_count == 0 ? -1 : max_count);
+            foreach (string foo in data) {
+                if (foo == null)
+                    continue;
+                var new_id = this.id + "," + foo;
+                var container = new MediaExportQueryContainer (this.media_db,
+                        new_id,
+                        foo);
+                container.parent = this;
+                container.parent_ref = this;
+                children.add (container);
+            }
         } catch (GLib.Error err) {
             warning ("Failed to query meta data: %s", err.message);
             throw err;
