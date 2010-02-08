@@ -19,6 +19,7 @@
  */
 
 using Gee;
+using GUPnP;
 
 /**
  * Represents the root container.
@@ -98,6 +99,69 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
             warning ("Failed to remove uri: %s", e.message);
         }
     }
+
+    public override async Gee.List<MediaObject>? search (
+                                        SearchExpression expression,
+                                        uint             offset,
+                                        uint             max_count,
+                                        out uint         total_matches,
+                                        Cancellable?     cancellable)
+                                        throws GLib.Error {
+        if (expression is RelationalExpression) {
+            var exp = expression as RelationalExpression;
+                MediaExportQueryContainer query_cont;
+                Gee.List<MediaObject> list;
+            if (exp.operand1 == "upnp:class" &&
+                exp.op == SearchCriteriaOp.EQ) {
+                switch (exp.operand2) {
+                    case "object.container.album.musicAlbum":
+                        query_cont = new MediaExportQueryContainer (this.media_db,
+                                                                    "upnp:album",
+                                                                    "Albums");
+                        query_cont.parent = this;
+                        list = yield query_cont.get_children (offset, max_count, cancellable);
+                        foreach (MediaObject o1 in list) {
+                            o1.upnp_class =
+                            "object.container.album.musicAlbum";
+                        }
+                        total_matches = list.size;
+                        return list;
+                    case "object.container.person.musicArtist":
+                        query_cont = new MediaExportQueryContainer (this.media_db,
+                                                                    "upnp:author",
+                                                                    "Artists");
+                        query_cont.parent = this;
+                        list = yield query_cont.get_children (offset, max_count, cancellable);
+                        foreach (MediaObject o2 in list) {
+                            o2.upnp_class =
+                                "object.container.person.musicArtist";
+                        }
+                        total_matches = list.size;
+                        return list;
+                    default:
+                        break;
+                }
+            }
+
+            if (exp.operand1 == "@id" &&
+                exp.op == SearchCriteriaOp.EQ &&
+                exp.operand2.has_prefix ("upnp:")) {
+                    var args = exp.operand2.split(",");
+                    query_cont = new MediaExportQueryContainer (this.media_db,
+                                                                exp.operand2,
+                                                                args[args.length-1]);
+                    query_cont.parent = this;
+                    list = new ArrayList<MediaObject> ();
+                    list.add (query_cont);
+                    total_matches = list.size;
+                    return list;
+                }
+        }
+
+        return yield base.search (expression, offset, max_count, out total_matches,
+        cancellable);
+    }
+
 
     public string[] get_dynamic_uris () {
         string[] result = new string[0];
