@@ -296,10 +296,10 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 virtual_container.parent = this;
                 try {
                     this.media_db.save_container (virtual_container);
-                    ids.remove (id);
                 } catch (Error db_err) {
                     // do nothing
                 }
+                ids.remove (id);
             }
         } catch (Error error) {
             warning ("Got error while trying to find virtual folders: %s",
