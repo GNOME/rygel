@@ -74,6 +74,37 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
             }
             i += 2;
         }
+        this.child_count = this.count_children ();
+        debug ("We have %u children", this.child_count);
+    }
+
+    private uint count_children () {
+        try {
+            if (this.pattern == "") {
+                var children = this.media_db.get_objects_by_search_expression (
+                        this.expression,
+                        "0",
+                        0,
+                        -1);
+                return (uint) children.size;
+            } else {
+                uint retval = 0;
+                var data = this.media_db.get_object_attribute_by_search_expression (
+                        this.attribute,
+                        this.expression,
+                        0,
+                        -1);
+                foreach (var meta_data in data) {
+                    if (meta_data != null) {
+                        retval++;
+                    }
+                }
+
+                return retval;
+            }
+        } catch (Error e) {
+            return 0;
+        }
     }
 
     public override async Gee.List<MediaObject>? search (
