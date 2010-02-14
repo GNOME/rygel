@@ -210,6 +210,8 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     }
 
     private void on_file_harvested (File file) {
+        message ("'%s' harvested", file.get_uri ());
+
         this.harvester.remove (file);
     }
 
