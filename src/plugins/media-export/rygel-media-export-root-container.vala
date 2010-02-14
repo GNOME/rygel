@@ -95,11 +95,8 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     public static MediaContainer get_instance() {
         if (MediaExportRootContainer.instance == null) {
             try {
-                var db = MediaDB.create_with_factory (
-                                        "media-export",
-                                        new MediaExportObjectFactory ());
                 MediaExportRootContainer.instance =
-                                             new MediaExportRootContainer (db);
+                                             new MediaExportRootContainer ();
             } catch (MediaDBError err) {
                 warning("Failed to create instance of database");
                 MediaExportRootContainer.instance = new NullContainer ();
@@ -143,7 +140,10 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
     /**
      * Create a new root container.
      */
-    private MediaExportRootContainer (MediaDB db) {
+    private MediaExportRootContainer () throws MediaDBError {
+        var object_factory = new MediaExportObjectFactory ();
+        var db = MediaDB.create_with_factory ("media-export", object_factory);
+
         base (db, "0", "MediaExportRoot");
 
         this.extractor = MetadataExtractor.create ();
