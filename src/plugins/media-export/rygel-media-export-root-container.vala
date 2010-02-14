@@ -219,8 +219,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
             return;
         }
 
-        if (this.extractor != null &&
-            !this.harvester.contains (file)) {
+        if (!this.harvester.contains (file)) {
             var harvester = new MediaExportHarvester (parent,
                                                       this.media_db,
                                                       this.extractor,
