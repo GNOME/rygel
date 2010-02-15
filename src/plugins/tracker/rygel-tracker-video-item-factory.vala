@@ -49,7 +49,7 @@ public class Rygel.TrackerVideoItemFactory : Rygel.TrackerItemFactory {
 
         this.key_chains[VideoMetadata.WIDTH].add ("nfo:width");
         this.key_chains[VideoMetadata.HEIGHT].add ("nfo:height");
-        this.key_chains[VideoMetadata.DURATION].add ("nmm:length");
+        this.key_chains[VideoMetadata.DURATION].add ("nfo:duration");
     }
 
     public override MediaItem create (string                 id,

@@ -36,6 +36,8 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     private const string ITEM_VARIABLE = "?item";
     private const string MODIFIED_PREDICATE = "nfo:fileLastModified";
     private const string MODIFIED_VARIABLE = "?modified";
+    private const string URL_PREDICATE = "nie:url";
+    private const string URL_VARIABLE = "?url";
 
     public TrackerSelectionQuery query;
     public TrackerItemFactory item_factory;
@@ -54,6 +56,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
         var variables = new ArrayList<string> ();
         variables.add (ITEM_VARIABLE);
+        variables.add (URL_VARIABLE);
 
         TrackerQueryTriplets our_mandatory;
         if (mandatory != null) {
@@ -69,6 +72,10 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         our_mandatory.add (new TrackerQueryTriplet (ITEM_VARIABLE,
                                                     MODIFIED_PREDICATE,
                                                     MODIFIED_VARIABLE,
+                                                    false));
+        our_mandatory.add (new TrackerQueryTriplet (ITEM_VARIABLE,
+                                                    URL_PREDICATE,
+                                                    URL_VARIABLE,
                                                     false));
 
         var optional = new TrackerQueryTriplets ();
@@ -146,9 +153,9 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
         /* Iterate through all items */
         for (uint i = 0; i < query.result.length[0]; i++) {
-            string uri = query.result[i, 0];
-            string[] metadata = this.slice_strvv_tail (query.result, i, 1);
-            var id = this.id + ":" + uri;
+            var id = this.id + ":" + query.result[i, 0];
+            var uri = query.result[i, 1];
+            string[] metadata = this.slice_strvv_tail (query.result, i, 2);
 
             var item = this.item_factory.create (id, uri, this, metadata);
             results.add (item);
@@ -240,13 +247,13 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
             case SearchCriteriaOp.EQ:
                 string parent_id;
 
-                var uri = this.get_item_info (expression.operand2,
+                var urn = this.get_item_info (expression.operand2,
                                               out parent_id);
-                if (uri == null || parent_id == null || parent_id != this.id) {
+                if (urn == null || parent_id == null || parent_id != this.id) {
                     break;
                 }
 
-                filter = ITEM_VARIABLE + " = <" + uri + ">";
+                filter = ITEM_VARIABLE + " = <" + urn + ">";
                 break;
             case SearchCriteriaOp.CONTAINS:
                 filter = "regex(" + ITEM_VARIABLE + ", " +
@@ -258,7 +265,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         return filter;
     }
 
-    // Returns the URI and the ID of the parent this item belongs to, or null
+    // Returns the URN and the ID of the parent this item belongs to, or null
     // if item_id is invalid
     private string? get_item_info (string     item_id,
                                    out string parent_id) {

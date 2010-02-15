@@ -48,7 +48,7 @@ public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
             this.key_chains.add (new ArrayList<string> ());
         }
 
-        this.key_chains[MusicMetadata.DURATION].add ("nmm:length");
+        this.key_chains[MusicMetadata.DURATION].add ("nfo:duration");
         this.key_chains[MusicMetadata.AUDIO_ARTIST].add ("nmm:performer");
         this.key_chains[MusicMetadata.AUDIO_ARTIST].add ("nmm:artistName");
         this.key_chains[MusicMetadata.AUDIO_ALBUM].add ("nmm:musicAlbum");
