@@ -32,6 +32,11 @@ public class Rygel.TrackerMusic : Rygel.TrackerCategoryContainer {
                          string         title) {
         base (id, parent, title, new TrackerMusicItemFactory ());
 
+        this.add_child (new TrackerSearchContainer ("26",
+                                                    this,
+                                                    "All",
+                                                    this.item_factory));
+
         var key_chain = new string[] { "nmm:performer",
                                        "nmm:artistName",
                                        null };
@@ -48,10 +53,6 @@ public class Rygel.TrackerMusic : Rygel.TrackerCategoryContainer {
                                                    this.item_factory,
                                                    key_chain));
         this.add_child (new TrackerTags ("21", this, item_factory));
-        this.add_child (new TrackerSearchContainer ("26",
-                                                    this,
-                                                    "All",
-                                                    this.item_factory));
     }
 }
 
