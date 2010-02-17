@@ -52,13 +52,8 @@ public class Rygel.TrackerCategoryContainer : Rygel.SimpleContainer {
                                          throws Error {
         assert (this.uris.size > 0);
 
-        yield base.add_item (item, cancellable);
-        assert (item.uris.size > 0);
-
         var creation = new TrackerItemCreation (item, this, cancellable);
-
         yield creation.run ();
-
         if (creation.error != null) {
             throw creation.error;
         }

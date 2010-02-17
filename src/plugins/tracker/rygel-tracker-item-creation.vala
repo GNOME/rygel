@@ -21,9 +21,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-public errordomain TrackerItemCreationError {
-    TIMEOUT
-}
+using GUPnP;
 
 /**
  * StateMachine interface.
@@ -32,7 +30,8 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
-    private const uint ITEM_CREATION_TIMEOUT = 5;
+    private const string MINER_SERVICE = "org.freedesktop.Tracker1.Miner.Files";
+    private const string MINER_PATH = "/org/freedesktop/Tracker1/Miner/Files";
 
     public Cancellable cancellable { get; set; }
     public Error error { get; set; }
@@ -40,9 +39,7 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
     private MediaItem item;
     private TrackerCategoryContainer category_container;
     private TrackerResourcesIface resources;
-
-    private SourceFunc run_continue = null;
-    private bool added = false;
+    private TrackerMinerIface miner;
 
     public TrackerItemCreation (MediaItem                item,
                                 TrackerCategoryContainer category_container,
@@ -55,81 +52,48 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
     }
 
     public async void run () {
-        this.item.id = "<" + this.item.uris[0] + ">";
-
-        var category = this.category_container.item_factory.category;
-        var query = new TrackerInsertionQuery (this.item, category);
-
-        var handler_id = this.category_container.container_updated.connect
-                                        (this.on_container_updated);
-
         try {
+            var dir = yield this.category_container.get_writable (cancellable);
+            if (dir == null) {
+                throw new ContentDirectoryError.RESTRICTED_PARENT (
+                                        "Object creation in %s no allowed",
+                                        this.category_container.id);
+            }
+
+            var file = dir.get_child_for_display_name (this.item.title);
+            this.item.uris.add (file.get_uri ());
+
+            // First create the item in Tracker store
+            var category = this.category_container.item_factory.category;
+            var query = new TrackerInsertionQuery (this.item, category);
             yield query.execute (this.resources);
-        } catch (DBus.Error error) {
+
+            // Then tell Tracker's Miner to ignore the next update
+            var uris = new string[] { this.item.uris[0] };
+            yield this.miner.ignore_next_update (uris);
+
+            // Now create the actual file
+            yield file.create_async (FileCreateFlags.NONE,
+                                     Priority.DEFAULT,
+                                     cancellable);
+
+            var expression = new RelationalExpression ();
+            expression.op = SearchCriteriaOp.EQ;
+            expression.operand1 = "res";
+            expression.operand2 = this.item.uris[0];
+            uint total_matches;
+            var search_results = yield this.category_container.search (
+                                        expression,
+                                        0,
+                                        1,
+                                        out total_matches,
+                                        this.cancellable);
+
+            var new_item = search_results[0] as MediaItem;
+            this.item.id = new_item.id;
+            this.item.parent = new_item.parent;
+        } catch (GLib.Error error) {
             this.error = error;
-
-            return;
-        }
-
-        if (!added) {
-            // The new item still haven't been picked up, lets wait for it
-            // a bit
-            this.run_continue = this.run.callback;
-
-            Timeout.add_seconds (ITEM_CREATION_TIMEOUT,
-                                 this.on_item_creation_timeout);
-
-            yield;
-        }
-
-        SignalHandler.disconnect (this.category_container, handler_id);
-    }
-
-    private void on_container_updated (MediaContainer updated_container) {
-        this.on_container_updated_async.begin (updated_container);
-    }
-
-    private bool on_item_creation_timeout () {
-        this.run_continue ();
-        this.error = new TrackerItemCreationError.TIMEOUT (
-                                        "Timeout while waiting for item" +
-                                        "creation signal from Tracker");
-
-        return false;
-    }
-
-    private async void on_container_updated_async (
-                                        MediaContainer updated_container) {
-        Gee.List<MediaObject> children;
-
-        try {
-            children = yield updated_container.get_children (0,
-                                                             -1,
-                                                             this.cancellable);
-        } catch (Error error) {
-            warning ("Error listing children of '%s': %s",
-                     updated_container.id,
-                     error.message);
-
-            return;
-        }
-
-        foreach (var child in children) {
-            foreach (var uri in child.uris) {
-                if (uri == this.item.uris[0]) {
-                    added = true;
-
-                    break;
-                }
-            }
-
-            if (added) {
-                if (this.run_continue != null) {
-                    this.run_continue ();
-                }
-
-                break;
-            }
         }
     }
 
@@ -139,6 +103,9 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
         this.resources = connection.get_object (TRACKER_SERVICE,
                                                 RESOURCES_PATH)
                                                 as TrackerResourcesIface;
+        this.miner = connection.get_object (MINER_SERVICE,
+                                            MINER_PATH)
+                                            as TrackerMinerIface;
     }
 }
 
