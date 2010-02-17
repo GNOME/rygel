@@ -220,16 +220,17 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         var rel_expression = expression as RelationalExpression;
         var query = new TrackerSelectionQuery.clone (this.query);
 
-        if (rel_expression.operand1 == "@id") {
-            var filter = create_filter_for_id (rel_expression);
+        if (rel_expression.operand1 == "@parentID") {
+            if (!rel_expression.compare_string (this.id)) {
+                return null;
+            }
+        } else {
+            var filter = create_filter_for_child (rel_expression);
             if (filter != null) {
                 query.filters.insert (0, filter);
             } else {
                 return null;
             }
-        } else if (rel_expression.operand1 == "@parentID" &&
-                   !rel_expression.compare_string (this.id)) {
-            return null;
         }
 
         query.offset = offset;
@@ -238,24 +239,45 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         return query;
     }
 
-    private string? create_filter_for_id (RelationalExpression expression) {
+    private string? create_filter_for_child (RelationalExpression expression) {
         string filter = null;
+        string variable = null;
+        string value = null;
+
+        if (expression.operand1 == "@id") {
+            variable = ITEM_VARIABLE;
+
+            string parent_id;
+
+            var urn = this.get_item_info (expression.operand2, out parent_id);
+            if (urn == null || parent_id == null || parent_id != this.id) {
+                return null;
+            }
+
+            switch (expression.op) {
+                case SearchCriteriaOp.EQ:
+                    value = "<" + urn + ">";
+                    break;
+                case SearchCriteriaOp.CONTAINS:
+                    value = expression.operand2;
+                    break;
+            }
+        } else if (expression.operand1 == "res") {
+            variable = URL_VARIABLE;
+            value = "\"" + expression.operand2 + "\"";
+        }
+
+        if (variable == null || value == null) {
+            return null;
+        }
 
         switch (expression.op) {
             case SearchCriteriaOp.EQ:
-                string parent_id;
-
-                var urn = this.get_item_info (expression.operand2,
-                                              out parent_id);
-                if (urn == null || parent_id == null || parent_id != this.id) {
-                    break;
-                }
-
-                filter = ITEM_VARIABLE + " = <" + urn + ">";
+                filter = variable + " = " + value;
                 break;
             case SearchCriteriaOp.CONTAINS:
-                filter = "regex(" + ITEM_VARIABLE + ", " +
-                                    expression.operand2 +
+                filter = "regex(" + variable + ", " +
+                                    Regex.escape_string (value) +
                          ")";
                 break;
         }
