@@ -26,25 +26,41 @@ using Gee;
  * Represents Tracker SPARQL Insertion query
  */
 public class Rygel.TrackerInsertionQuery : Rygel.TrackerQuery {
+    private const string TEMP_ID = "x";
+    private const string QUERY_ID = "_:" + TEMP_ID;
+
     public string id;
 
     public TrackerInsertionQuery (MediaItem item, string category) {
         var triplets = new TrackerQueryTriplets ();
-        triplets.add (new TrackerQueryTriplet (item.id,
+        triplets.add (new TrackerQueryTriplet (QUERY_ID,
                                                "a",
                                                category,
                                                false));
-        triplets.add (new TrackerQueryTriplet (item.id,
+        triplets.add (new TrackerQueryTriplet (QUERY_ID,
+                                               "a",
+                                               "nie:DataObject",
+                                               false));
+        triplets.add (new TrackerQueryTriplet (QUERY_ID,
+                                               "a",
+                                               "nfo:FileDataObject",
+                                               false));
+        triplets.add (new TrackerQueryTriplet (QUERY_ID,
                                                "nie:mimeType",
                                                "\"" + item.mime_type + "\"",
                                                false));
-        triplets.add (new TrackerQueryTriplet (item.id,
+        triplets.add (new TrackerQueryTriplet (QUERY_ID,
                                                "nie:url",
                                                "\"" + item.uris[0] + "\"",
                                                false));
-        base (triplets, null);
 
-        this.id = item.id;
+        var now = TimeVal ();
+        triplets.add (new TrackerQueryTriplet (QUERY_ID,
+                                               "nfo:fileLastModified",
+                                               "\"" + now.to_iso8601 () + "\"",
+                                               false));
+
+        base (triplets, null);
     }
 
     public override async void execute (TrackerResourcesIface resources)
@@ -53,10 +69,12 @@ public class Rygel.TrackerInsertionQuery : Rygel.TrackerQuery {
 
         debug ("Executing SPARQL query: %s", str);
 
-        yield resources.sparql_update (str);
+        var result = yield resources.sparql_update_blank (str);
+
+        this.id = result[0,0].lookup (TEMP_ID);
     }
 
     public override string to_string () {
-        return "INSERT INTO " +  this.id + " { " + base.to_string () + " }";
+        return "INSERT { " + base.to_string () + " }";
     }
 }
