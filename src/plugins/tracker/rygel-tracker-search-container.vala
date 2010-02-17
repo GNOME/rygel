@@ -140,13 +140,11 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                        (int) offset,
                                        (int) max_count);
         if (query == null) {
-            /* FIXME: chain-up when bug#601558 is fixed
             return yield base.search (expression,
-                                  offset,
-                                  max_count,
-                                  total_matches,
-                                  cancellable);*/
-            return results;
+                                      offset,
+                                      max_count,
+                                      out total_matches,
+                                      cancellable);
         }
 
         yield query.execute (this.resources);
