@@ -53,48 +53,60 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
 
     public async void run () {
         try {
-            var dir = yield this.category_container.get_writable (cancellable);
-            if (dir == null) {
-                throw new ContentDirectoryError.RESTRICTED_PARENT (
-                                        "Object creation in %s no allowed",
-                                        this.category_container.id);
-            }
+            var file = yield this.prepare_file ();
 
-            var file = dir.get_child_for_display_name (this.item.title);
-            this.item.uris.add (file.get_uri ());
+            yield this.create_entry_in_store ();
 
-            // First create the item in Tracker store
-            var category = this.category_container.item_factory.category;
-            var query = new TrackerInsertionQuery (this.item, category);
-            yield query.execute (this.resources);
-
-            // Then tell Tracker's Miner to ignore the next update
             var uris = new string[] { this.item.uris[0] };
             yield this.miner.ignore_next_update (uris);
-
-            // Now create the actual file
             yield file.create_async (FileCreateFlags.NONE,
                                      Priority.DEFAULT,
                                      cancellable);
 
-            var expression = new RelationalExpression ();
-            expression.op = SearchCriteriaOp.EQ;
-            expression.operand1 = "res";
-            expression.operand2 = this.item.uris[0];
-            uint total_matches;
-            var search_results = yield this.category_container.search (
+            var new_item = yield this.get_new_item ();
+            this.item.id = new_item.id;
+            this.item.parent = new_item.parent;
+        } catch (GLib.Error error) {
+            this.error = error;
+        }
+    }
+
+    private async File prepare_file () throws Error {
+        var dir = yield this.category_container.get_writable (cancellable);
+        if (dir == null) {
+            throw new ContentDirectoryError.RESTRICTED_PARENT (
+                    "Object creation in %s no allowed",
+                    this.category_container.id);
+        }
+
+        var file = dir.get_child_for_display_name (this.item.title);
+
+        this.item.uris.add (file.get_uri ());
+
+        return file;
+    }
+
+    private async void create_entry_in_store () throws Error {
+        var category = this.category_container.item_factory.category;
+        var query = new TrackerInsertionQuery (this.item, category);
+
+        yield query.execute (this.resources);
+    }
+
+    private async MediaItem get_new_item () throws Error {
+        var expression = new RelationalExpression ();
+        expression.op = SearchCriteriaOp.EQ;
+        expression.operand1 = "res";
+        expression.operand2 = this.item.uris[0];
+        uint total_matches;
+        var search_results = yield this.category_container.search (
                                         expression,
                                         0,
                                         1,
                                         out total_matches,
                                         this.cancellable);
 
-            var new_item = search_results[0] as MediaItem;
-            this.item.id = new_item.id;
-            this.item.parent = new_item.parent;
-        } catch (GLib.Error error) {
-            this.error = error;
-        }
+        return search_results[0] as MediaItem;
     }
 
     private void create_proxies () throws DBus.Error {
