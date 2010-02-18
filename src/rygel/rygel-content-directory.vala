@@ -326,7 +326,7 @@ public class Rygel.ContentDirectory: Service {
         var ids = "";
 
         foreach (var import in this.active_imports) {
-            if (!import.complete) {
+            if (import.status != TransferStatus.COMPLETED) {
                 if (ids != "") {
                     ids += ",";
                 }

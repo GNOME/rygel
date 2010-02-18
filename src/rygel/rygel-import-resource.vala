@@ -23,6 +23,13 @@
 
 using GUPnP;
 
+internal enum Rygel.TransferStatus {
+    COMPLETED,
+    ERROR,
+    IN_PROGRESS,
+    STOPPED
+}
+
 /**
  * Responsible for handling ImportResource action.
  */
@@ -36,7 +43,23 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
     // Out arguments
     public uint32 transfer_id;
 
-    public bool complete;
+    public TransferStatus status;
+
+    public string status_as_string {
+        get {
+            switch (this.status) {
+                case TransferStatus.COMPLETED:
+                    return "COMPLETED";
+                case TransferStatus.ERROR:
+                    return "ERROR";
+                case TransferStatus.IN_PROGRESS:
+                    return "IN_PROGRESS";
+                case TransferStatus.STOPPED:
+                default:
+                    return "STOPPED";
+            }
+        }
+    }
 
     public Cancellable cancellable { get; set; }
 
@@ -58,6 +81,8 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
 
         this.bytes_copied = 0;
         this.bytes_total = 0;
+
+        this.status = TransferStatus.IN_PROGRESS;
     }
 
     public async void run () {
@@ -81,6 +106,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
                      error.message);
 
             this.action.return_error (719, error.message);
+            this.status = TransferStatus.ERROR;
 
             return;
         }
@@ -99,9 +125,10 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
                                           this.copy_progress_cb);
         } catch (Error err) {
             warning ("%s", err.message);
+            this.status = TransferStatus.ERROR;
         }
 
-        this.complete = true;
+        this.status = TransferStatus.COMPLETED;
 
         debug ("Import of '%s' to '%s' completed",
                source_uri,
