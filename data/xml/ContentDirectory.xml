@@ -104,6 +104,20 @@ feature provided by your editor.
 			<dataType>string</dataType>
 		</stateVariable>
 
+		<stateVariable>
+			<Optional/>
+			<name>A_ARG_TYPE_URI</name>
+			<sendEventsAttribute>no</sendEventsAttribute>
+			<dataType>uri</dataType>
+		</stateVariable>
+
+		<stateVariable>
+			<Optional/>
+			<name>A_ARG_TYPE_TransferID</name>
+			<sendEventsAttribute>no</sendEventsAttribute>
+			<dataType>ui4</dataType>
+		</stateVariable>
+
 <!-- Optional state variables that are not implemented yet
 		<stateVariable>
 			<Optional/>
@@ -117,13 +131,6 @@ feature provided by your editor.
 			<name>TransferIDs</name>
 			<sendEventsAttribute>yes</sendEventsAttribute>
 			<dataType>string</dataType>
-		</stateVariable>
-
-		<stateVariable>
-			<Optional/>
-			<name>A_ARG_TYPE_TransferID</name>
-			<sendEventsAttribute>no</sendEventsAttribute>
-			<dataType>ui4</dataType>
 		</stateVariable>
 
 		<stateVariable>
@@ -158,13 +165,6 @@ feature provided by your editor.
 			<name>A_ARG_TYPE_TagValueList</name>
 			<sendEventsAttribute>no</sendEventsAttribute>
 			<dataType>string</dataType>
-		</stateVariable>
-
-		<stateVariable>
-			<Optional/>
-			<name>A_ARG_TYPE_URI</name>
-			<sendEventsAttribute>no</sendEventsAttribute>
-			<dataType>uri</dataType>
 		</stateVariable>
 -->
 	</serviceStateTable>
@@ -355,6 +355,28 @@ feature provided by your editor.
 			</argumentList>
 		</action>
 
+		<action>
+			<Optional/>
+			<name>ImportResource</name>
+			<argumentList>
+				<argument>
+					<name>SourceURI</name>
+					<direction>in</direction>
+					<relatedStateVariable>A_ARG_TYPE_URI</relatedStateVariable>
+				</argument>
+				<argument>
+					<name>DestinationURI</name>
+					<direction>in</direction>
+					<relatedStateVariable>A_ARG_TYPE_URI</relatedStateVariable>
+				</argument>
+				<argument>
+					<name>TransferID</name>
+					<direction>out</direction>
+					<relatedStateVariable>A_ARG_TYPE_TransferID</relatedStateVariable>
+				</argument>
+			</argumentList>
+		</action>
+
 <!-- Optional actions that are not implemented yet
                 <action>
 			<Optional/>
@@ -420,28 +442,6 @@ feature provided by your editor.
 					<name>NewObjectID</name>
 					<direction>out</direction>
 					<relatedStateVariable>A_ARG_TYPE_ObjectID</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-
-		<action>
-			<Optional/>
-			<name>ImportResource</name>
-			<argumentList>
-				<argument>
-					<name>SourceURI</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_URI</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>DestinationURI</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_URI</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>TransferID</name>
-					<direction>out</direction>
-					<relatedStateVariable>A_ARG_TYPE_TransferID</relatedStateVariable>
 				</argument>
 			</argumentList>
 		</action>

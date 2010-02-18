@@ -99,6 +99,7 @@ public class Rygel.ContentDirectory: Service {
         this.action_invoked["Browse"] += this.browse_cb;
         this.action_invoked["Search"] += this.search_cb;
         this.action_invoked["CreateObject"] += this.create_object_cb;
+        this.action_invoked["ImportResource"] += this.import_resource_cb;
 
         /* Connect SystemUpdateID related signals */
         this.action_invoked["GetSystemUpdateID"] +=
@@ -153,6 +154,14 @@ public class Rygel.ContentDirectory: Service {
         var creator = new ItemCreator (this, action);
 
         creator.run.begin ();
+    }
+
+    /* ImportResource action implementation */
+    private virtual void import_resource_cb (ContentDirectory    content_dir,
+                                             owned ServiceAction action) {
+        var import = new ImportResource (this, action);
+
+        import.run.begin ();
     }
 
     /* GetSystemUpdateID action implementation */
