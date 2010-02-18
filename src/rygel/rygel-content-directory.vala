@@ -57,6 +57,8 @@ public class Rygel.ContentDirectory: Service {
     public MediaContainer root_container;
     private ArrayList<MediaContainer> updated_containers;
 
+    private ArrayList<ImportResource> active_imports;
+
     private bool clear_updated_containers;
     private uint update_notify_id;
 
@@ -84,6 +86,7 @@ public class Rygel.ContentDirectory: Service {
         }
 
         this.updated_containers =  new ArrayList<MediaContainer> ();
+        this.active_imports = new ArrayList<ImportResource> ();
 
         this.root_container.container_updated += on_container_updated;
 
@@ -161,7 +164,20 @@ public class Rygel.ContentDirectory: Service {
                                              owned ServiceAction action) {
         var import = new ImportResource (this, action);
 
+        import.completed += this.on_import_completed;
+        this.active_imports.add (import);
+
         import.run.begin ();
+    }
+
+    private void on_import_completed (ImportResource import) {
+        // According to CDS specs (v3 section 2.4.17), we must not immediately
+        // remove the import from out memory
+        Timeout.add_seconds (30, () => {
+                this.active_imports.remove (import);
+
+                return false;
+        });
     }
 
     /* GetSystemUpdateID action implementation */
