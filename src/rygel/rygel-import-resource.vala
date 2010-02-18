@@ -107,6 +107,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
 
             this.action.return_error (719, error.message);
             this.status = TransferStatus.ERROR;
+            this.completed ();
 
             return;
         }
