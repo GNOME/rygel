@@ -103,6 +103,8 @@ public class Rygel.ContentDirectory: Service {
         this.action_invoked["Search"] += this.search_cb;
         this.action_invoked["CreateObject"] += this.create_object_cb;
         this.action_invoked["ImportResource"] += this.import_resource_cb;
+        this.action_invoked["GetTransferProgress"] +=
+                                        this.get_transfer_progress_cb;
 
         this.query_variable["TransferIDs"] += this.query_transfer_ids;
 
@@ -182,6 +184,37 @@ public class Rygel.ContentDirectory: Service {
                                      ref GLib.Value   value) {
         value.init (typeof (string));
         value.set_string (this.create_transfer_ids ());
+    }
+
+    /* GetTransferProgress action implementation */
+    private virtual void get_transfer_progress_cb (
+                                        ContentDirectory    content_dir,
+                                        owned ServiceAction action) {
+        uint32 transfer_id;
+
+        action.get ("TransferID",
+                        typeof (uint32),
+                        out transfer_id);
+
+        foreach (var import in this.active_imports) {
+            if (import.transfer_id == transfer_id) {
+                action.set ("TransferStatus",
+                                typeof (string),
+                                import.status_as_string,
+                            "TransferLength",
+                                typeof (int64),
+                                import.bytes_copied,
+                            "TransferTotal",
+                                typeof (int64),
+                                import.bytes_total);
+                action.return ();
+
+                return;
+            }
+        }
+
+        // Reaching here means we didn't find the transfer of interest
+        action.return_error (717, "No such file transfer");
     }
 
     /* GetSystemUpdateID action implementation */

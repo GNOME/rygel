@@ -125,14 +125,6 @@ feature provided by your editor.
 			<dataType>string</dataType>
 		</stateVariable>
 
-<!-- Optional state variables that are not implemented yet
-		<stateVariable>
-			<Optional/>
-			<name>SortExtensionCapabilities</name>
-			<sendEventsAttribute>no</sendEventsAttribute>
-			<dataType>string</dataType>
-		</stateVariable>
-
 		<stateVariable>
 			<Optional/>
 			<name>A_ARG_TYPE_TransferStatus</name>
@@ -156,6 +148,14 @@ feature provided by your editor.
 		<stateVariable>
 			<Optional/>
 			<name>A_ARG_TYPE_TransferTotal</name>
+			<sendEventsAttribute>no</sendEventsAttribute>
+			<dataType>string</dataType>
+		</stateVariable>
+
+<!-- Optional state variables that are not implemented yet
+		<stateVariable>
+			<Optional/>
+			<name>SortExtensionCapabilities</name>
 			<sendEventsAttribute>no</sendEventsAttribute>
 			<dataType>string</dataType>
 		</stateVariable>
@@ -377,6 +377,33 @@ feature provided by your editor.
 			</argumentList>
 		</action>
 
+		<action>
+			<Optional/>
+			<name>GetTransferProgress</name>
+			<argumentList>
+				<argument>
+					<name>TransferID</name>
+					<direction>in</direction>
+					<relatedStateVariable>A_ARG_TYPE_TransferID</relatedStateVariable>
+				</argument>
+				<argument>
+					<name>TransferStatus</name>
+					<direction>out</direction>
+					<relatedStateVariable>A_ARG_TYPE_TransferStatus</relatedStateVariable>
+				</argument>
+				<argument>
+					<name>TransferLength</name>
+					<direction>out</direction>
+					<relatedStateVariable>A_ARG_TYPE_TransferLength</relatedStateVariable>
+				</argument>
+				<argument>
+					<name>TransferTotal</name>
+					<direction>out</direction>
+					<relatedStateVariable>A_ARG_TYPE_TransferTotal</relatedStateVariable>
+				</argument>
+			</argumentList>
+		</action>
+
 <!-- Optional actions that are not implemented yet
                 <action>
 			<Optional/>
@@ -488,33 +515,6 @@ feature provided by your editor.
 					<name>TransferID</name>
 					<direction>in</direction>
 					<relatedStateVariable>A_ARG_TYPE_TransferID</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-
-		<action>
-			<Optional/>
-			<name>GetTransferProgress</name>
-			<argumentList>
-				<argument>
-					<name>TransferID</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_TransferID</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>TransferStatus</name>
-					<direction>out</direction>
-					<relatedStateVariable>A_ARG_TYPE_TransferStatus</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>TransferLength</name>
-					<direction>out</direction>
-					<relatedStateVariable>A_ARG_TYPE_TransferLength</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>TransferTotal</name>
-					<direction>out</direction>
-					<relatedStateVariable>A_ARG_TYPE_TransferTotal</relatedStateVariable>
 				</argument>
 			</argumentList>
 		</action>
