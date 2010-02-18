@@ -44,6 +44,8 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
     public uint32 transfer_id;
 
     public TransferStatus status;
+    public int64 bytes_copied;
+    public int64 bytes_total;
 
     public string status_as_string {
         get {
@@ -66,8 +68,6 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
     private HTTPServer http_server;
     private MediaContainer root_container;
     private ServiceAction action;
-    private int64 bytes_copied;
-    private int64 bytes_total;
 
     public ImportResource (ContentDirectory    content_dir,
                            owned ServiceAction action) {
