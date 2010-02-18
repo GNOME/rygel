@@ -118,18 +118,18 @@ feature provided by your editor.
 			<dataType>ui4</dataType>
 		</stateVariable>
 
+		<stateVariable>
+			<Optional/>
+			<name>TransferIDs</name>
+			<sendEventsAttribute>yes</sendEventsAttribute>
+			<dataType>string</dataType>
+		</stateVariable>
+
 <!-- Optional state variables that are not implemented yet
 		<stateVariable>
 			<Optional/>
 			<name>SortExtensionCapabilities</name>
 			<sendEventsAttribute>no</sendEventsAttribute>
-			<dataType>string</dataType>
-		</stateVariable>
-
-		<stateVariable>
-			<Optional/>
-			<name>TransferIDs</name>
-			<sendEventsAttribute>yes</sendEventsAttribute>
 			<dataType>string</dataType>
 		</stateVariable>
 

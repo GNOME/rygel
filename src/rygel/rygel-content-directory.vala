@@ -104,6 +104,8 @@ public class Rygel.ContentDirectory: Service {
         this.action_invoked["CreateObject"] += this.create_object_cb;
         this.action_invoked["ImportResource"] += this.import_resource_cb;
 
+        this.query_variable["TransferIDs"] += this.query_transfer_ids;
+
         /* Connect SystemUpdateID related signals */
         this.action_invoked["GetSystemUpdateID"] +=
                                                 this.get_system_update_id_cb;
@@ -168,9 +170,17 @@ public class Rygel.ContentDirectory: Service {
         this.active_imports.add (import);
 
         import.run.begin ();
+
+        this.notify ("TransferIDs",
+                        typeof (string),
+                        this.create_transfer_ids ());
     }
 
     private void on_import_completed (ImportResource import) {
+        this.notify ("TransferIDs",
+                        typeof (string),
+                        this.create_transfer_ids ());
+
         // According to CDS specs (v3 section 2.4.17), we must not immediately
         // remove the import from out memory
         Timeout.add_seconds (30, () => {
@@ -178,6 +188,14 @@ public class Rygel.ContentDirectory: Service {
 
                 return false;
         });
+    }
+
+    /* Query TransferIDs */
+    private void query_transfer_ids (ContentDirectory content_dir,
+                                     string           variable,
+                                     ref GLib.Value   value) {
+        value.init (typeof (string));
+        value.set_string (this.create_transfer_ids ());
     }
 
     /* GetSystemUpdateID action implementation */
@@ -316,6 +334,22 @@ public class Rygel.ContentDirectory: Service {
         this.update_notify_id = 0;
 
         return false;
+    }
+
+    private string create_transfer_ids () {
+        var ids = "";
+
+        foreach (var import in this.active_imports) {
+            if (!import.complete) {
+                if (ids != "") {
+                    ids += ",";
+                }
+
+                ids += import.transfer_id.to_string ();
+            }
+        }
+
+        return ids;
     }
 }
 
