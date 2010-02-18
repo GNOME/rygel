@@ -176,20 +176,6 @@ public class Rygel.ContentDirectory: Service {
                         this.create_transfer_ids ());
     }
 
-    private void on_import_completed (ImportResource import) {
-        this.notify ("TransferIDs",
-                        typeof (string),
-                        this.create_transfer_ids ());
-
-        // According to CDS specs (v3 section 2.4.17), we must not immediately
-        // remove the import from out memory
-        Timeout.add_seconds (30, () => {
-                this.active_imports.remove (import);
-
-                return false;
-        });
-    }
-
     /* Query TransferIDs */
     private void query_transfer_ids (ContentDirectory content_dir,
                                      string           variable,
@@ -350,6 +336,20 @@ public class Rygel.ContentDirectory: Service {
         }
 
         return ids;
+    }
+
+    private void on_import_completed (ImportResource import) {
+        this.notify ("TransferIDs",
+                        typeof (string),
+                        this.create_transfer_ids ());
+
+        // According to CDS specs (v3 section 2.4.17), we must not immediately
+        // remove the import from out memory
+        Timeout.add_seconds (30, () => {
+                this.active_imports.remove (import);
+
+                return false;
+        });
     }
 }
 
