@@ -37,10 +37,7 @@ public class Rygel.TrackerCategoryContainer : Rygel.SimpleContainer {
 
         this.item_factory = item_factory;
 
-        this.add_child (new TrackerSearchContainer (this.id + "All",
-                                                    this,
-                                                    "All",
-                                                    this.item_factory));
+        this.add_child (new TrackerCategoryAllContainer (this));
 
         try {
             var uri = Filename.to_uri (item_factory.upload_dir, null);
