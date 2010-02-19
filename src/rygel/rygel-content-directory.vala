@@ -192,55 +192,36 @@ public class Rygel.ContentDirectory: Service {
     private virtual void get_transfer_progress_cb (
                                         ContentDirectory    content_dir,
                                         owned ServiceAction action) {
-        uint32 transfer_id;
+        var import = find_import_for_action (action);
+        if (import != null) {
+            action.set ("TransferStatus",
+                            typeof (string),
+                            import.status_as_string,
+                        "TransferLength",
+                            typeof (int64),
+                            import.bytes_copied,
+                        "TransferTotal",
+                            typeof (int64),
+                            import.bytes_total);
 
-        action.get ("TransferID",
-                        typeof (uint32),
-                        out transfer_id);
-
-        foreach (var import in this.active_imports) {
-            if (import.transfer_id == transfer_id) {
-                action.set ("TransferStatus",
-                                typeof (string),
-                                import.status_as_string,
-                            "TransferLength",
-                                typeof (int64),
-                                import.bytes_copied,
-                            "TransferTotal",
-                                typeof (int64),
-                                import.bytes_total);
-                action.return ();
-
-                return;
-            }
+            action.return ();
+        } else {
+            action.return_error (717, "No such file transfer");
         }
-
-        // Reaching here means we didn't find the transfer of interest
-        action.return_error (717, "No such file transfer");
     }
 
     /* StopTransferResource action implementation */
     private virtual void stop_transfer_resource_cb (
                                         ContentDirectory    content_dir,
                                         owned ServiceAction action) {
-        uint32 transfer_id;
+        var import = find_import_for_action (action);
+        if (import != null) {
+            import.cancellable.cancel ();
 
-        action.get ("TransferID",
-                        typeof (uint32),
-                        out transfer_id);
-
-        foreach (var import in this.active_imports) {
-            if (import.transfer_id == transfer_id) {
-                import.cancellable.cancel ();
-
-                action.return ();
-
-                return;
-            }
+            action.return ();
+        } else {
+            action.return_error (717, "No such file transfer");
         }
-
-        // Reaching here means we didn't find the transfer of interest
-        action.return_error (717, "No such file transfer");
     }
 
     /* GetSystemUpdateID action implementation */
@@ -409,6 +390,25 @@ public class Rygel.ContentDirectory: Service {
 
                 return false;
         });
+    }
+
+    private ImportResource? find_import_for_action (ServiceAction action) {
+        ImportResource ret = null;
+        uint32 transfer_id;
+
+        action.get ("TransferID",
+                        typeof (uint32),
+                        out transfer_id);
+
+        foreach (var import in this.active_imports) {
+            if (import.transfer_id == transfer_id) {
+                ret = import;
+
+                break;
+            }
+        }
+
+        return ret;
     }
 }
 
