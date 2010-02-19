@@ -37,16 +37,16 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
     public Error error { get; set; }
 
     private MediaItem item;
-    private TrackerCategoryContainer category_container;
+    private TrackerCategoryAllContainer container;
     private TrackerResourcesIface resources;
     private TrackerMinerIface miner;
 
-    public TrackerItemCreation (MediaItem                item,
-                                TrackerCategoryContainer category_container,
-                                Cancellable?             cancellable)
+    public TrackerItemCreation (MediaItem                   item,
+                                TrackerCategoryAllContainer container,
+                                Cancellable?                cancellable)
                                 throws Error {
         this.item = item;
-        this.category_container = category_container;
+        this.container = container;
         this.cancellable = cancellable;
         this.create_proxies ();
     }
@@ -65,18 +65,18 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
 
             var new_item = yield this.get_new_item ();
             this.item.id = new_item.id;
-            this.item.parent = new_item.parent;
+            this.item.parent = container;
         } catch (GLib.Error error) {
             this.error = error;
         }
     }
 
     private async File prepare_file () throws Error {
-        var dir = yield this.category_container.get_writable (cancellable);
+        var dir = yield this.container.get_writable (cancellable);
         if (dir == null) {
             throw new ContentDirectoryError.RESTRICTED_PARENT (
                     "Object creation in %s no allowed",
-                    this.category_container.id);
+                    this.container.id);
         }
 
         var file = dir.get_child_for_display_name (this.item.title);
@@ -87,7 +87,7 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
     }
 
     private async void create_entry_in_store () throws Error {
-        var category = this.category_container.item_factory.category;
+        var category = this.container.item_factory.category;
         var query = new TrackerInsertionQuery (this.item, category);
 
         yield query.execute (this.resources);
@@ -99,12 +99,11 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
         expression.operand1 = "res";
         expression.operand2 = this.item.uris[0];
         uint total_matches;
-        var search_results = yield this.category_container.search (
-                                        expression,
-                                        0,
-                                        1,
-                                        out total_matches,
-                                        this.cancellable);
+        var search_results = yield this.container.search (expression,
+                                                          0,
+                                                          1,
+                                                          out total_matches,
+                                                          this.cancellable);
 
         return search_results[0] as MediaItem;
     }
