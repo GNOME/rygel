@@ -35,14 +35,14 @@ public class Rygel.TrackerMusic : Rygel.TrackerCategoryContainer {
         var key_chain = new string[] { "nmm:performer",
                                        "nmm:artistName",
                                        null };
-        this.add_child (new TrackerMetadataValues ("17",
+        this.add_child (new TrackerMetadataValues (id + "Artists",
                                                    this,
                                                    "Artists",
                                                    this.item_factory,
                                                    key_chain));
 
         key_chain = new string[] { "nmm:musicAlbum", "nmm:albumTitle", null };
-        this.add_child (new TrackerMetadataValues ("18",
+        this.add_child (new TrackerMetadataValues (id + "Albums",
                                                    this,
                                                    "Albums",
                                                    this.item_factory,
