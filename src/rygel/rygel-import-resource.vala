@@ -73,7 +73,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
                            owned ServiceAction action) {
         this.root_container = content_dir.root_container;
         this.http_server = content_dir.http_server;
-        this.cancellable = content_dir.cancellable;
+        this.cancellable = new Cancellable ();
         this.action = (owned) action;
 
         last_transfer_id++;
@@ -83,6 +83,10 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         this.bytes_total = 0;
 
         this.status = TransferStatus.IN_PROGRESS;
+
+        content_dir.cancellable.cancelled.connect (() => {
+            this.cancellable.cancel ();
+        });
     }
 
     public async void run () {
