@@ -55,7 +55,7 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
         try {
             var file = yield this.prepare_file ();
 
-            yield this.create_entry_in_store ();
+            var urn = yield this.create_entry_in_store ();
 
             var uris = new string[] { this.item.uris[0] };
             yield this.miner.ignore_next_update (uris);
@@ -63,8 +63,7 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
                                      Priority.DEFAULT,
                                      cancellable);
 
-            var new_item = yield this.get_new_item ();
-            this.item.id = new_item.id;
+            this.item.id = container.create_child_id_for_urn (urn);
             this.item.parent = container;
         } catch (GLib.Error error) {
             this.error = error;
@@ -86,26 +85,13 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
         return file;
     }
 
-    private async void create_entry_in_store () throws Error {
+    private async string create_entry_in_store () throws Error {
         var category = this.container.item_factory.category;
         var query = new TrackerInsertionQuery (this.item, category);
 
         yield query.execute (this.resources);
-    }
 
-    private async MediaItem get_new_item () throws Error {
-        var expression = new RelationalExpression ();
-        expression.op = SearchCriteriaOp.EQ;
-        expression.operand1 = "res";
-        expression.operand2 = this.item.uris[0];
-        uint total_matches;
-        var search_results = yield this.container.search (expression,
-                                                          0,
-                                                          1,
-                                                          out total_matches,
-                                                          this.cancellable);
-
-        return search_results[0] as MediaItem;
+        return query.id;
     }
 
     private void create_proxies () throws DBus.Error {
