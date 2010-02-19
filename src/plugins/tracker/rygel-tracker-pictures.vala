@@ -34,8 +34,8 @@ public class Rygel.TrackerPictures : Rygel.TrackerCategoryContainer {
                             string         title) {
         base (id, parent, title, new TrackerPictureItemFactory ());
 
-        this.add_child (new TrackerTags ("19", this, this.item_factory));
-        this.add_child (new TrackerYears ("22", this, this.item_factory));
+        this.add_child (new TrackerTags (this, this.item_factory));
+        this.add_child (new TrackerYears (this, this.item_factory));
     }
 }
 

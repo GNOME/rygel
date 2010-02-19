@@ -29,10 +29,9 @@ using Gee;
 public class Rygel.TrackerYears : Rygel.TrackerMetadataValues {
     private const string[] KEY_CHAIN = { "nie:contentCreated", null };
 
-    public TrackerYears (string             id,
-                         MediaContainer     parent,
+    public TrackerYears (MediaContainer     parent,
                          TrackerItemFactory item_factory) {
-        base (id,
+        base (parent.id + "Year",
               parent,
               "Year",
               item_factory,

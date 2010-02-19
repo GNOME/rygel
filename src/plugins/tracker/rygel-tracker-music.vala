@@ -47,7 +47,7 @@ public class Rygel.TrackerMusic : Rygel.TrackerCategoryContainer {
                                                    "Albums",
                                                    this.item_factory,
                                                    key_chain));
-        this.add_child (new TrackerTags ("21", this, item_factory));
+        this.add_child (new TrackerTags (this, item_factory));
     }
 }
 

@@ -33,10 +33,9 @@ public class Rygel.TrackerTags : Rygel.TrackerMetadataValues {
     private const string TITLE = "Tags";
     private const string[] KEY_CHAIN = { "nao:hasTag", "nao:prefLabel", null };
 
-    public TrackerTags (string             id,
-                        MediaContainer     parent,
+    public TrackerTags (MediaContainer     parent,
                         TrackerItemFactory item_factory) {
-        base (id, parent, TITLE, item_factory, KEY_CHAIN);
+        base (parent.id + TITLE, parent, TITLE, item_factory, KEY_CHAIN);
     }
 }
 
