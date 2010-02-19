@@ -32,10 +32,6 @@ public class Rygel.TrackerVideos : Rygel.TrackerCategoryContainer {
                           string         title) {
         base (id, parent, title, new TrackerVideoItemFactory ());
 
-        this.add_child (new TrackerSearchContainer ("24",
-                                                    this,
-                                                    "All",
-                                                    this.item_factory));
         this.add_child (new TrackerTags ("20", this, this.item_factory));
         this.add_child (new TrackerYears ("23", this, this.item_factory));
     }
