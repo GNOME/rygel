@@ -151,7 +151,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
         /* Iterate through all items */
         for (uint i = 0; i < query.result.length[0]; i++) {
-            var id = this.id + ":" + query.result[i, 0];
+            var id = this.create_child_id_for_urn (query.result[i, 0]);
             var uri = query.result[i, 1];
             string[] metadata = this.slice_strvv_tail (query.result, i, 2);
 
@@ -162,6 +162,10 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         total_matches = results.size;
 
         return results;
+    }
+
+    public string create_child_id_for_urn (string urn) {
+        return this.id + ":" + urn;
     }
 
     private TrackerQueryTriplet triplet_from_chain (
