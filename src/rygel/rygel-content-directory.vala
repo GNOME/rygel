@@ -105,6 +105,8 @@ public class Rygel.ContentDirectory: Service {
         this.action_invoked["ImportResource"] += this.import_resource_cb;
         this.action_invoked["GetTransferProgress"] +=
                                         this.get_transfer_progress_cb;
+        this.action_invoked["StopTransferResource"] +=
+                                        this.stop_transfer_resource_cb;
 
         this.query_variable["TransferIDs"] += this.query_transfer_ids;
 
@@ -207,6 +209,30 @@ public class Rygel.ContentDirectory: Service {
                             "TransferTotal",
                                 typeof (int64),
                                 import.bytes_total);
+                action.return ();
+
+                return;
+            }
+        }
+
+        // Reaching here means we didn't find the transfer of interest
+        action.return_error (717, "No such file transfer");
+    }
+
+    /* StopTransferResource action implementation */
+    private virtual void stop_transfer_resource_cb (
+                                        ContentDirectory    content_dir,
+                                        owned ServiceAction action) {
+        uint32 transfer_id;
+
+        action.get ("TransferID",
+                        typeof (uint32),
+                        out transfer_id);
+
+        foreach (var import in this.active_imports) {
+            if (import.transfer_id == transfer_id) {
+                import.cancellable.cancel ();
+
                 action.return ();
 
                 return;

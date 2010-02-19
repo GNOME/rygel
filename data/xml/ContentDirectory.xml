@@ -404,6 +404,18 @@ feature provided by your editor.
 			</argumentList>
 		</action>
 
+		<action>
+			<Optional/>
+			<name>StopTransferResource</name>
+			<argumentList>
+				<argument>
+					<name>TransferID</name>
+					<direction>in</direction>
+					<relatedStateVariable>A_ARG_TYPE_TransferID</relatedStateVariable>
+				</argument>
+			</argumentList>
+		</action>
+
 <!-- Optional actions that are not implemented yet
                 <action>
 			<Optional/>
@@ -503,18 +515,6 @@ feature provided by your editor.
 					<name>ResourceURI</name>
 					<direction>in</direction>
 					<relatedStateVariable>A_ARG_TYPE_URI</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-
-		<action>
-			<Optional/>
-			<name>StopTransferResource</name>
-			<argumentList>
-				<argument>
-					<name>TransferID</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_TransferID</relatedStateVariable>
 				</argument>
 			</argumentList>
 		</action>
