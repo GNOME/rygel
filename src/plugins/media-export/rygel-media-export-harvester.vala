@@ -277,6 +277,10 @@ public class Rygel.MediaExportHarvester : GLib.Object {
     }
 
     private void on_extracted_cb (File file, Gst.TagList tag_list) {
+        if (this.cancellable.is_cancelled ()) {
+            harvested (this.origin);
+        }
+
         var entry = this.files.peek_head ();
         if (entry == null) {
             // this event may be triggered by another instance
