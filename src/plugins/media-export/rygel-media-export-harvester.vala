@@ -61,6 +61,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
     private File origin;
     private MediaContainer parent;
     private MediaExportRecursiveFileMonitor monitor;
+    public Cancellable cancellable;
 
     public MediaExportHarvester (MediaContainer parent,
                                  MediaDB media_db,
@@ -75,6 +76,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         this.containers = new GLib.Queue<MediaContainer> ();
         this.origin = null;
         this.monitor = monitor;
+        this.cancellable = new Cancellable ();
     }
 
     private bool push_if_changed_or_unknown (File       file,
@@ -103,7 +105,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
     }
 
     private bool process_children (GLib.List<FileInfo>? list) {
-        if (list == null)
+        if (list == null || this.cancellable.is_cancelled())
             return false;
 
         foreach (var info in list) {
@@ -149,17 +151,17 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                                           FILE_ATTRIBUTE_TIME_MODIFIED,
                                           FileQueryInfoFlags.NONE,
                                           Priority.DEFAULT,
-                                          null);
+                                          this.cancellable);
 
 
             GLib.List<FileInfo> list = null;
             do {
                 list = yield enumerator.next_files_async (10,
                                                           Priority.DEFAULT,
-                                                          null);
+                                                          this.cancellable);
             } while (process_children (list));
 
-            yield enumerator.close_async (Priority.DEFAULT, null);
+            yield enumerator.close_async (Priority.DEFAULT, this.cancellable);
         } catch (Error err) {
             warning ("failed to enumerate directory: %s",
                      err.message);
@@ -191,6 +193,11 @@ public class Rygel.MediaExportHarvester : GLib.Object {
     }
 
     private bool on_idle () {
+        if (this.cancellable.is_cancelled ()) {
+
+            return false;
+        }
+
         if (this.files.get_length () > 0) {
             var candidate = this.files.peek_head ().file;
             this.extractor.extract (candidate);
@@ -227,13 +234,14 @@ public class Rygel.MediaExportHarvester : GLib.Object {
      */
     public async void harvest (File file) {
         try {
+            this.cancellable.reset ();
             var info = yield file.query_info_async (
                                           FILE_ATTRIBUTE_STANDARD_NAME + "," +
                                           FILE_ATTRIBUTE_STANDARD_TYPE + "," +
                                           FILE_ATTRIBUTE_TIME_MODIFIED,
                                           FileQueryInfoFlags.NONE,
                                           Priority.DEFAULT,
-                                          null);
+                                          this.cancellable);
 
             if (info.get_file_type () == FileType.DIRECTORY) {
                 this.origin = file;
