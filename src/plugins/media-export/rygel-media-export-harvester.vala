@@ -261,6 +261,10 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                     Idle.add (this.on_idle);
                     this.origin = file;
                     this.containers.push_tail (this.parent);
+                } else {
+                    debug ("File %s does not need harvesting",
+                           file.get_uri ());
+                    harvested (file);
                 }
             }
 
