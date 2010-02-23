@@ -1,3 +1,38 @@
+0.5.0
+=====
+
+The first release in the unstable 0.5.x series. Changes since 0.4.6 that were
+not provided by any subsequent 0.4.x releases:
+
+- New URI generation scheme that avoids problematic characters which makes some
+  crappy renderers choke.
+- Allow creation of new media items and tranfering data into existing ones (
+  upload). This is relavent to, and works for both MediaExport and Tracker.
+- Implement GetTransferProgress and StopTransferResource actions.
+- Advertise:
+  - support for connection stalling.
+  - live response to be sender-paced.
+- Rewrite SearchCriteria parser to make it more reliable.
+- Tracker:
+  - Port to the Tracker 0.7 APIs.
+  - Provide richer & more intuitive media hierarchy.
+  - Signal container update on changes to subjects.
+  - Act on config options allowing user to define which categories to share.
+  - Support for search by URI.
+  - Descriptive IDs for containers.
+- MediaExport
+  - Implement custom search that translates to an SQLite query and therefore
+    performs much faster than before.
+  - Print message on console when harvesting is done.
+  - Don't modify DB if harvester was cancelled.
+  - Cancel harvester before starting new one.
+- Lots of non-functional improvements and fixes.
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+
 0.4.6
 =====
 
