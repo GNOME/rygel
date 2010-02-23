@@ -40,6 +40,9 @@ public abstract class Rygel.MediaContainer : MediaObject {
     public int child_count;
     public uint32 update_id;
 
+    // List of classes that an object in this container could be created of
+    public ArrayList<string> create_classes;
+
     public MediaContainer (string          id,
                            MediaContainer? parent,
                            string          title,
@@ -52,6 +55,8 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.upnp_class = "object.container.storageFolder";
 
         this.container_updated.connect (on_container_updated);
+
+        this.create_classes = new ArrayList<string> ();
     }
 
     public MediaContainer.root (string title,

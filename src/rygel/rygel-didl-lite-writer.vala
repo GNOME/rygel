@@ -113,5 +113,14 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         didl_container.upnp_class = container.upnp_class;
         didl_container.restricted = container.uris.size <= 0;
         didl_container.searchable = true;
+
+        if (!didl_container.restricted) {
+            weak Xml.Node node = (Xml.Node) didl_container.xml_node;
+            weak Xml.Ns ns = (Xml.Ns) didl_container.upnp_namespace;
+
+            foreach (var create_class in container.create_classes) {
+                node.new_child (ns, "CreateClass", create_class);
+            }
+        }
     }
 }
