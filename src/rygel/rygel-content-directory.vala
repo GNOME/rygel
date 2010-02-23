@@ -144,32 +144,32 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* Browse action implementation */
-    private virtual void browse_cb (ContentDirectory    content_dir,
-                                    owned ServiceAction action) {
+    private void browse_cb (ContentDirectory    content_dir,
+                            owned ServiceAction action) {
         Browse browse = new Browse (this, action);
 
         browse.run.begin ();
     }
 
     /* Search action implementation */
-    private virtual void search_cb (ContentDirectory    content_dir,
-                                    owned ServiceAction action) {
+    private void search_cb (ContentDirectory    content_dir,
+                            owned ServiceAction action) {
         var search = new Search (this, action);
 
         search.run.begin ();
     }
 
     /* CreateObject action implementation */
-    private virtual void create_object_cb (ContentDirectory    content_dir,
-                                           owned ServiceAction action) {
+    private void create_object_cb (ContentDirectory    content_dir,
+                                   owned ServiceAction action) {
         var creator = new ItemCreator (this, action);
 
         creator.run.begin ();
     }
 
     /* ImportResource action implementation */
-    private virtual void import_resource_cb (ContentDirectory    content_dir,
-                                             owned ServiceAction action) {
+    private void import_resource_cb (ContentDirectory    content_dir,
+                                     owned ServiceAction action) {
         var import = new ImportResource (this, action);
 
         import.completed += this.on_import_completed;
@@ -191,9 +191,8 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* GetTransferProgress action implementation */
-    private virtual void get_transfer_progress_cb (
-                                        ContentDirectory    content_dir,
-                                        owned ServiceAction action) {
+    private void get_transfer_progress_cb (ContentDirectory    content_dir,
+                                           owned ServiceAction action) {
         var import = find_import_for_action (action);
         if (import != null) {
             action.set ("TransferStatus",
@@ -213,9 +212,8 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* StopTransferResource action implementation */
-    private virtual void stop_transfer_resource_cb (
-                                        ContentDirectory    content_dir,
-                                        owned ServiceAction action) {
+    private void stop_transfer_resource_cb (ContentDirectory    content_dir,
+                                            owned ServiceAction action) {
         var import = find_import_for_action (action);
         if (import != null) {
             import.cancellable.cancel ();
