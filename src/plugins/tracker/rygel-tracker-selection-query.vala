@@ -57,10 +57,10 @@ public class Rygel.TrackerSelectionQuery : Rygel.TrackerQuery {
     }
 
     public TrackerSelectionQuery.clone (TrackerSelectionQuery query) {
-        this (this.copy_str_list (query.variables),
+        this (copy_str_list (query.variables),
               new TrackerQueryTriplets.clone (query.mandatory),
               new TrackerQueryTriplets.clone (query.optional),
-              this.copy_str_list (query.filters),
+              copy_str_list (query.filters),
               query.order_by,
               query.offset,
               query.max_count);
@@ -111,7 +111,7 @@ public class Rygel.TrackerSelectionQuery : Rygel.TrackerQuery {
         return query;
     }
 
-    private ArrayList<string> copy_str_list (Gee.List<string> str_list) {
+     private static ArrayList<string> copy_str_list (Gee.List<string> str_list) {
         var copy = new ArrayList<string> ();
 
         copy.add_all (str_list);
