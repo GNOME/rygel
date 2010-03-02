@@ -44,10 +44,10 @@ public abstract class Rygel.TrackerItemFactory {
 
     public ArrayList<ArrayList<string>> key_chains;
 
-    public TrackerItemFactory (string category,
-                               string upnp_class,
-                               string resources_class_path,
-                               string upload_dir) {
+    public TrackerItemFactory (string  category,
+                               string  upnp_class,
+                               string  resources_class_path,
+                               string? upload_dir) {
         this.category = category;
         this.upnp_class = upnp_class;
         this.resources_class_path = resources_class_path;
