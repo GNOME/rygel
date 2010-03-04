@@ -44,6 +44,8 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     private static LogLevel log_level = LogLevel.INVALID;
 
+    private static string plugin_path;
+
     private static bool version;
 
     [CCode (array_length = false, array_null_terminated = true)]
@@ -81,6 +83,8 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         { "log-level", 'g', 0, OptionArg.INT, ref log_level,
           "Log level. 1=critical,2=error,3=warning,4=message/info,5=debug",
           "N" },
+        { "plugin-path", 'u', 0, OptionArg.STRING, ref plugin_path,
+          "Plugin Path", "PLUGIN_PATH" },
         { "disable-plugin", 'd', 0, OptionArg.STRING_ARRAY,
           ref disabled_plugins,
           "Disable plugin", "PluginName" },
@@ -178,6 +182,14 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         }
 
         return log_level;
+    }
+
+    public string get_plugin_path () throws GLib.Error {
+        if (plugin_path == null) {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        }
+
+        return plugin_path;
     }
 
     public bool get_enabled (string section) throws GLib.Error {

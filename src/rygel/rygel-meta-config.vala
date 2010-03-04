@@ -230,6 +230,25 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         return val;
     }
 
+    public string get_plugin_path () throws GLib.Error {
+        string val = null;
+        bool unavailable = true;
+
+        foreach (var config in this.configs) {
+            try {
+                val = config.get_plugin_path ();
+                unavailable = false;
+                break;
+            } catch (GLib.Error err) {}
+        }
+
+        if (unavailable) {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        }
+
+        return val;
+    }
+
     public bool get_enabled (string section) throws GLib.Error {
         bool val = true;
         bool unavailable = true;

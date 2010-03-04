@@ -41,6 +41,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                                                     "enable-lpcm-transcoder";
     protected static const string WMV_TRANSCODER_KEY = "enable-wmv-transcoder";
     protected static const string LOG_LEVEL_KEY = "log-level";
+    protected static const string PLUGIN_PATH_KEY = "plugin-path";
 
     private const string DBUS_SERVICE = "org.freedesktop.DBus";
     private const string DBUS_PATH = "/org/freedesktop/DBus";
@@ -136,6 +137,10 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                                         LOG_LEVEL_KEY,
                                         LogLevel.INVALID,
                                         LogLevel.DEBUG);
+    }
+
+    public string get_plugin_path () throws GLib.Error {
+        return this.get_string ("general", PLUGIN_PATH_KEY);
     }
 
     public static UserConfig get_default () throws Error {

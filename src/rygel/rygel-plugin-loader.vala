@@ -47,7 +47,15 @@ public class Rygel.PluginLoader : Object {
     public void load_plugins () {
         assert (Module.supported());
 
-        File dir = File.new_for_path (BuildConfig.PLUGIN_DIR);
+        string path;
+        try {
+            var config = MetaConfig.get_default ();
+            path = config.get_plugin_path ();
+        } catch (Error error) {
+            path = BuildConfig.PLUGIN_DIR;
+        }
+
+        File dir = File.new_for_path (path);
         assert (dir != null && is_dir (dir));
 
         this.load_modules_from_dir.begin (dir);

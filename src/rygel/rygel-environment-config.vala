@@ -40,6 +40,7 @@ public class Rygel.EnvironmentConfig : GLib.Object, Configuration {
     private static string MP2TS_TRANSCODING_ENV = RYGEL_PREFIX + "_MP2TS_TRANS";
     private static string WMV_TRANSCODING_ENV = RYGEL_PREFIX + "_WMV_TRANS";
     private static string LOG_LEVEL_ENV = RYGEL_PREFIX + "_LOG";
+    private static string PLUGIN_PATH_ENV = RYGEL_PREFIX + "_PLUGIN_PATH";
 
     // Our singleton
     private static EnvironmentConfig config;
@@ -89,6 +90,10 @@ public class Rygel.EnvironmentConfig : GLib.Object, Configuration {
         return (LogLevel) this.get_int_variable (LOG_LEVEL_ENV,
                                                 LogLevel.CRITICAL,
                                                 LogLevel.DEBUG);
+    }
+
+    public string get_plugin_path () throws GLib.Error {
+        return this.get_string_variable (PLUGIN_PATH_ENV);
     }
 
     public bool get_enabled (string section) throws GLib.Error {

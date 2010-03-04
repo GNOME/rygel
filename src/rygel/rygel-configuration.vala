@@ -51,6 +51,8 @@ public interface Rygel.Configuration : GLib.Object {
 
     public abstract LogLevel get_log_level () throws GLib.Error;
 
+    public abstract string get_plugin_path () throws GLib.Error;
+
     public abstract bool get_enabled (string section) throws GLib.Error;
 
     public abstract string get_title (string section) throws GLib.Error;
