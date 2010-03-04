@@ -50,6 +50,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         this.configs = new ArrayList<Configuration> ();
 
         this.configs.add (CmdlineConfig.get_default ());
+        this.configs.add (EnvironmentConfig.get_default ());
         try {
             var user_config = UserConfig.get_default ();
             this.configs.add (user_config);

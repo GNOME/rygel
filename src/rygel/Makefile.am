@@ -43,6 +43,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-user-config.vala \
 		    rygel-meta-config.vala \
 		    rygel-cmdline-config.vala \
+		    rygel-environment-config.vala \
 		    rygel-content-directory.vala \
 		    rygel-connection-manager.vala \
 		    rygel-source-connection-manager.vala \
@@ -128,6 +129,7 @@ librygel_configuration_a_SOURCES = rygel-configuration.c \
 				   rygel-user-config.c \
 				   rygel-meta-config.c \
 				   rygel-cmdline-config.c \
+				   rygel-environment-config.c \
 				   cstuff.c
 
 MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
