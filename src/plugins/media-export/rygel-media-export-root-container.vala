@@ -153,13 +153,15 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 exp.operand2.has_prefix ("virtual-container:")) {
                 var real_id = MediaExportQueryContainer.get_virtual_container_definition
                 (exp.operand2);
-                var args = real_id.split(",");
-                query_cont = new MediaExportQueryContainer (this.media_db,
-                                                            exp.operand2,
-                                                            args[args.length-1]);
-                query_cont.parent = this;
                 list = new ArrayList<MediaObject> ();
-                list.add (query_cont);
+                if (real_id != null) {
+                    var args = real_id.split(",");
+                    query_cont = new MediaExportQueryContainer (this.media_db,
+                                                                exp.operand2,
+                                                                args[args.length-1]);
+                    query_cont.parent = this;
+                    list.add (query_cont);
+                }
                 total_matches = list.size;
                 return list;
             }
