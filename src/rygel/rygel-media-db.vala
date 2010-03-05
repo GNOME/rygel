@@ -929,10 +929,10 @@ public class Rygel.MediaDB : Object {
     }
 
     public Gee.List<string> get_object_attribute_by_search_expression (
-                                       string           attribute,
-                                       SearchExpression expression,
-                                       long             offset,
-                                       long             max_count) throws Error {
+                                       string            attribute,
+                                       SearchExpression? expression,
+                                       long              offset,
+                                       long              max_count) throws Error {
         var args = new ValueArray (0);
         var filter = this.search_expression_to_sql (expression, args);
         if (filter != null) {
