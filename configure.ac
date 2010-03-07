@@ -273,6 +273,7 @@ src/plugins/test/Makefile
 data/Makefile
 data/xml/Makefile
 rygel-1.0.pc
+tests/Makefile
 ])
 
 echo "
