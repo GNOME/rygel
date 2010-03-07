@@ -917,6 +917,8 @@ public class Rygel.MediaDB : Object {
         var data = new ArrayList<string> ();
         Rygel.Database.RowCallback cb = (stmt) => {
             data.add (stmt.column_text (0));
+
+            return true;
         };
 
         this.db.exec (("SELECT DISTINCT %s FROM meta_data AS m %s " +
