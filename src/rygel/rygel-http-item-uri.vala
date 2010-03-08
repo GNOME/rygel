@@ -36,12 +36,15 @@ internal class Rygel.HTTPItemURI : Object {
         this.http_server = http_server;
     }
 
-    public HTTPItemURI.from_string (string uri, string server_root = "")
+    public HTTPItemURI.from_string (string     uri,
+                                    HTTPServer http_server)
                                     throws HTTPRequestError {
         // do not decode the path here as it may contain encoded slashes
         this.thumbnail_index = -1;
         this.transcode_target = null;
-        var request_uri = uri.replace (server_root, "");
+        this.http_server = http_server;
+
+        var request_uri = uri.replace (http_server.path_root, "");
         var parts = request_uri.split ("/");
 
         if (parts.length < 2 || parts.length % 2 == 0) {

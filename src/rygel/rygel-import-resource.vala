@@ -143,7 +143,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
 
     private async string get_original_uri () throws Error {
         var uri = new HTTPItemURI.from_string (this.destination_uri,
-                                               this.http_server.path_root);
+                                               this.http_server);
         var media_object = yield this.root_container.find_object (uri.item_id,
                                                                   null);
 
