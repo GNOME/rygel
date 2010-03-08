@@ -90,6 +90,18 @@ internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
 
             debug ("Executing search request: %s", this.search_criteria);
 
+            // do magic translation for XBox
+            string agent = this.action.get_message ().request_headers.get ("User-Agent");
+            if (agent.has_prefix ("Xbox/")) {
+                if (container_id == "1" ||
+                    container_id == "4" ||
+                    container_id == "5" ||
+                    container_id == "6" ||
+                    container_id == "7") {
+                    container_id = "0";
+                }
+            }
+
             var container = yield this.fetch_container ();
             var results = yield this.fetch_results (container);
 

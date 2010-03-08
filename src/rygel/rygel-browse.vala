@@ -117,6 +117,12 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
             this.action.get ("ContainerID",
                              typeof (string),
                              out this.object_id);
+            // Map some special browse requests to browse on the root folder
+            if (this.object_id == "15" ||
+                this.object_id == "14" ||
+                this.object_id == "16") {
+                this.object_id = "0";
+            }
         }
 
         if (this.object_id == null) {
