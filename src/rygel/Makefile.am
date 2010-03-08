@@ -96,6 +96,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-metadata-extractor.vala \
 		    rygel-media-db-container.vala \
 		    rygel-media-db-object-factory.vala \
+		    rygel-media-receiver-registrar.vala \
 		    rygel-log-handler.vala
 
 rygel_VALAFLAGS = \
