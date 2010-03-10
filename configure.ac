@@ -1,7 +1,7 @@
 AC_PREREQ(2.53)
 AC_INIT([rygel],
 	m4_esyscmd([GNOME_TAG_PATTERN=RYGEL build-aux/git-version-gen .tarball-version]),
-	[http://live.gnome.org/Rygel])
+	[http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel])
 AC_CONFIG_AUX_DIR([build-aux])
 
 # require automake-1.11 for vala support
