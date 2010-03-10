@@ -1,7 +1,10 @@
 /*
  * Copyright (C) 2009 Jens Georg <mail@jensge.org>.
+ * Copyright (C) 2010 Nokia Corporation.
  *
- * Author: Jens Georg <mail@jensge.org>
+ * Authors: Jens Georg <mail@jensge.org>
+ *          Zeeshan Ali (Khattak) <zeeshan.ali@nokia.com>
+ *                                <zeeshanak@gnome.org>
  *
  * This file is part of Rygel.
  *
