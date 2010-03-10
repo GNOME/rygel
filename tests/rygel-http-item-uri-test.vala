@@ -4,6 +4,10 @@ public errordomain Rygel.HTTPRequestError {
     NOT_FOUND = Soup.KnownStatusCode.NOT_FOUND
 }
 
+public errordomain Rygel.TestError {
+    SKIP
+}
+
 public class Rygel.HTTPServer : GLib.Object {
     private const string SERVER_PATH = "/RygelHTTPServer/Rygel/Test";
 
@@ -11,9 +15,14 @@ public class Rygel.HTTPServer : GLib.Object {
 
     public GUPnP.Context context;
 
-    public HTTPServer () throws Error {
+    public HTTPServer () throws TestError {
         this.path_root = SERVER_PATH;
-        this.context = new GUPnP.Context (null, "lo", 0);
+
+        try {
+            this.context = new GUPnP.Context (null, "lo", 0);
+        } catch (Error error) {
+            throw new TestError.SKIP ("Network context not available");
+        }
 
         assert (this.context != null);
         assert (this.context.host_ip != null);
@@ -33,6 +42,10 @@ public class Rygel.HTTPItemURITest : GLib.Object {
             var test = new HTTPItemURITest ();
 
             test.run ();
+        } catch (TestError error) {
+            // FIXME: We should catch the exact error but currently valac issues
+            // unreachable warning if we do so.
+            return 77;
         } catch (Error error) {
             critical ("%s", error.message);
 
@@ -54,7 +67,7 @@ public class Rygel.HTTPItemURITest : GLib.Object {
         }
     }
 
-    private HTTPItemURITest () throws Error {
+    private HTTPItemURITest () throws TestError {
         this.server = new HTTPServer ();
     }
 
