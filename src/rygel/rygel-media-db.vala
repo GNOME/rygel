@@ -414,7 +414,7 @@ public class Rygel.MediaDB : Object {
     }
 
     public Gee.List<MediaObject> get_objects_by_search_expression (
-                                        SearchExpression expression,
+                                        SearchExpression? expression,
                                         string           container_id,
                                         uint             offset,
                                         uint             max_count)
