@@ -55,9 +55,10 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
         int i = args.length - 1 - args.length % 2;
         while (i >= 1 - args.length % 2) {
             var exp = new RelationalExpression ();
-            exp.operand1 = args[i - 1].replace (PREFIX, "");
+            var op1 = args[i - 1].replace (PREFIX, "");
+            exp.operand1 = Uri.unescape_string (op1);
             exp.op = SearchCriteriaOp.EQ;
-            exp.operand2 = args[i];
+            exp.operand2 = Uri.unescape_string (args[i]);
             if (this.expression != null) {
                 var exp2 = new LogicalExpression ();
                 exp2.operand1 = this.expression;
@@ -138,7 +139,8 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
                 continue;
             }
 
-            var new_id = this.plaintext_id + "," + meta_data;
+            var new_id = this.plaintext_id + ",";
+            new_id += Uri.escape_string (meta_data, "", true);
             new_id = register_virtual_container (new_id);
             var container = new MediaExportQueryContainer (this.media_db,
                                                            new_id,

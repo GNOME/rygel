@@ -185,8 +185,8 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
             }
 
             if (cont != null) {
-                string new_id = "virtual-container:" + exp_.operand1 +
-                                "," + exp_.operand2 +
+                string new_id = "virtual-container:" + exp_.operand1 + "," +
+                                Uri.escape_string (exp_.operand2, "", true) +
                                 cont.plaintext_id.replace ("virtual-container:", ",");
                 debug ("Translated search request to %s", new_id);
                 new_id = MediaExportQueryContainer.register_virtual_container
