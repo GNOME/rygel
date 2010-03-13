@@ -21,17 +21,17 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-public errordomain Rygel.HTTPRequestError {
+private errordomain Rygel.HTTPRequestError {
     UNACCEPTABLE = Soup.KnownStatusCode.NOT_ACCEPTABLE,
     BAD_REQUEST = Soup.KnownStatusCode.BAD_REQUEST,
     NOT_FOUND = Soup.KnownStatusCode.NOT_FOUND
 }
 
-public errordomain Rygel.TestError {
+private errordomain Rygel.TestError {
     SKIP
 }
 
-public class Rygel.HTTPServer : GLib.Object {
+private class Rygel.HTTPServer : GLib.Object {
     private const string SERVER_PATH = "/RygelHTTPServer/Rygel/Test";
 
     public string path_root { get; private set; }
@@ -53,7 +53,7 @@ public class Rygel.HTTPServer : GLib.Object {
     }
 }
 
-public class Rygel.HTTPItemURITest : GLib.Object {
+private class Rygel.HTTPItemURITest : GLib.Object {
     private const string ITEM_ID = "HELLO";
     private const int THUMBNAIL_INDEX = 1;
     private const string TRANSCODE_TARGET = "MP3";
