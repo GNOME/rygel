@@ -65,9 +65,7 @@ private class Rygel.HTTPItemURITest : GLib.Object {
             var test = new HTTPItemURITest ();
 
             test.run ();
-        } catch (TestError error) {
-            // FIXME: We should catch the exact error but currently valac issues
-            // unreachable warning if we do so.
+        } catch (TestError.SKIP error) {
             return 77;
         } catch (Error error) {
             critical ("%s", error.message);
