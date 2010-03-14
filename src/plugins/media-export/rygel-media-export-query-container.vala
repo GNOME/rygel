@@ -119,18 +119,19 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
         try {
             if (this.pattern == "") {
                 var children = this.media_db.get_objects_by_search_expression (
-                        this.expression,
-                        "0",
-                        0,
-                        -1);
+                                        this.expression,
+                                        "0",
+                                        0,
+                                        -1);
                 return (uint) children.size;
             } else {
                 uint retval = 0;
                 var data = this.media_db.get_object_attribute_by_search_expression (
-                        this.attribute,
-                        this.expression,
-                        0,
-                        -1);
+                                        this.attribute,
+                                        this.expression,
+                                        0,
+                                        -1);
+
                 foreach (var meta_data in data) {
                     if (meta_data != null) {
                         retval++;
@@ -193,10 +194,10 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
 
         var children = new ArrayList<MediaObject> ();
         var data = this.media_db.get_object_attribute_by_search_expression (
-                                    this.attribute,
-                                    this.expression,
-                                    offset,
-                                    max_objects);
+                                       this.attribute,
+                                       this.expression,
+                                       offset,
+                                       max_objects);
         foreach (var meta_data in data) {
             if (meta_data == null) {
                 continue;
