@@ -289,6 +289,13 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
             foreach (var container in virtual_containers) {
                 var info = container.split ("=");
                 var id = MediaExportQueryContainer.PREFIX + info[1];
+                if (!MediaExportQueryContainer.validate_virtual_id (id)) {
+                    warning ("%s is not a valid virtual id", id);
+
+                    continue;
+                }
+                id = MediaExportQueryContainer.register_id (id);
+
                 var virtual_container = new MediaExportQueryContainer (
                                         this.media_db,
                                         id,
