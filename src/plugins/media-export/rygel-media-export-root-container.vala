@@ -109,14 +109,14 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                     return new MediaExportQueryContainer (
                                        this.media_db,
                                        MediaExportQueryContainer.register_virtual_container
-                                       ("virtual-container:upnp:album"),
+                                       ("virtual-container:upnp:album,?"),
                                        "Albums");
 
                 case "object.container.person.musicArtist":
                     return new MediaExportQueryContainer (
                                        this.media_db,
                                        MediaExportQueryContainer.register_virtual_container
-                                       ("virtual-container:dc:creator"),
+                                       ("virtual-container:dc:creator,?,upnp:album,?"),
                                        "Artists");
                 default:
                     return null;
@@ -189,8 +189,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                                 Uri.escape_string (exp_.operand2, "", true) +
                                 cont.plaintext_id.replace ("virtual-container:", ",");
                 debug ("Translated search request to %s", new_id);
-                new_id = MediaExportQueryContainer.register_virtual_container
-                (new_id);
+                new_id = MediaExportQueryContainer.register_virtual_container (new_id);
                 var query_cont_ = new MediaExportQueryContainer (this.media_db,
                                                             new_id,
                                                             exp_.operand2);
