@@ -467,11 +467,18 @@ public class Rygel.MediaDB : Object {
             var parent_id = stmt.column_text (18);
             try {
                 var parent = (MediaContainer) get_object (parent_id);
-                children.add (get_object_from_statement (parent,
-                            child_id,
-                            stmt));
-                children[children.size - 1].parent = parent;
-                children[children.size - 1].parent_ref = parent;
+                if (parent != null) {
+                    children.add (get_object_from_statement (parent,
+                                                             child_id,
+                                                             stmt));
+                    children[children.size - 1].parent = parent;
+                    children[children.size - 1].parent_ref = parent;
+                } else {
+                    warning ("Inconsistent database: item %s " +
+                             "has no parent %s",
+                             child_id,
+                             parent_id);
+                }
 
                 return true;
             } catch (DatabaseError e) {
