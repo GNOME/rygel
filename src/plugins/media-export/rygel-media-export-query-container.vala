@@ -142,7 +142,7 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
                 children.add (container);
             }
         } catch (GLib.Error error) {
-            warning ("Failed to query meta data: %s", err.message);
+            warning ("Failed to query meta data: %s", error.message);
 
             throw error;
         }
