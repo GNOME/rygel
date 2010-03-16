@@ -30,8 +30,8 @@ internal errordomain Rygel.GstError {
 
 internal abstract class Rygel.GstUtils {
     public static Element create_element (string factoryname,
-                                             string? name)
-                                             throws Error {
+                                          string? name)
+                                          throws Error {
         Element element = ElementFactory.make (factoryname, name);
         if (element == null) {
             throw new GstError.MISSING_PLUGIN ("Required element factory " +
