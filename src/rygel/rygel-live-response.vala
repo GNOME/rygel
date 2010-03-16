@@ -26,11 +26,6 @@ using GUPnP;
 using Gee;
 using Gst;
 
-internal errordomain Rygel.LiveResponseError {
-    MISSING_PLUGIN,
-    LINK
-}
-
 internal class Rygel.LiveResponse : Rygel.HTTPResponse {
     private const string SINK_NAME = "fakesink";
 
@@ -90,8 +85,8 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         dynamic Element sink = ElementFactory.make ("fakesink", SINK_NAME);
 
         if (sink == null) {
-            throw new LiveResponseError.MISSING_PLUGIN (
-                                    "Required plugin 'fakesink' missing");
+            throw new GstError.MISSING_PLUGIN ("Required plugin " +
+                                               "'fakesink' missing");
         }
 
         sink.signal_handoffs = true;
@@ -108,9 +103,9 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         } else {
             // static pads? easy!
             if (!src.link (sink)) {
-                throw new LiveResponseError.LINK ("Failed to link %s to %s",
-                                                  src.name,
-                                                  sink.name);
+                throw new GstError.LINK ("Failed to link " +
+                                         src.name + " to " +
+                                         sink.name);
             }
         }
 

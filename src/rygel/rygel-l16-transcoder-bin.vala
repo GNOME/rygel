@@ -62,10 +62,10 @@ internal class Rygel.L16TranscoderBin : Gst.Bin {
 
         if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
             GstUtils.post_error (this,
-                                 new LiveResponseError.LINK (
-                                                "Failed to link pad %s to %s",
-                                                new_pad.name,
-                                                enc_pad.name));
+                                 new GstError.LINK ("Failed to link pad " +
+                                                    new_pad.name +
+                                                    " to " +
+                                                    enc_pad.name));
             return;
         }
     }
