@@ -33,23 +33,13 @@ TESTS = $(check_PROGRAMS)
 rygel_http_item_uri_test_SOURCES = rygel-http-item-uri-test.vala \
                                    rygel-http-item-uri.vala
 
-noinst_LTLIBRARIES = librygel-http-response.la
-librygel_http_response_la_SOURCES = rygel-http-response.vala \
-				    rygel-http-seek.vala \
-				    rygel-state-machine.vala \
-				    rygel-gst-utils.vala
-librygel_http_response_la_VALAFLAGS = $(AM_VALAFLAGS) \
-				     --header rygel-http-response-external.h \
-				     -h rygel-http-response-internal.h \
-				     --internal-vapi rygel-http-response.vapi
-
-rygel_http_response_test_SOURCES = rygel-http-response-test.vala
-rygel_http_response_test_VALAFLAGS = $(AM_VALAFLAGS) --vapidir $(srcdir) \
-				     --pkg rygel-http-response
-rygel_http_response_test_LDADD = $(LDADD) librygel-http-response.la
+rygel_http_response_test_SOURCES = rygel-http-response-test.vala \
+				   rygel-http-response.vala \
+				   rygel-state-machine.vala
 
 rygel_live_response_test_SOURCES = rygel-live-response-test.vala \
-				   rygel-live-response.vala
-rygel_live_response_test_VALAFLAGS = $(AM_VALAFLAGS) --vapidir $(srcdir) \
-				     --pkg rygel-http-response
-rygel_live_response_test_LDADD = $(LDADD) librygel-http-response.la
+				   rygel-live-response.vala \
+                                   rygel-http-response_live-response.vala \
+				   rygel-state-machine_live-response.vala \
+				   rygel-http-seek.vala \
+				   rygel-gst-utils.vala
