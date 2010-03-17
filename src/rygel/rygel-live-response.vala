@@ -67,6 +67,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
 
         if (!aborted) {
             this.msg.response_body.complete ();
+            this.server.unpause_message (this.msg);
         }
 
         base.end (aborted, status);
