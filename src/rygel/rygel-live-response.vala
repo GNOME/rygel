@@ -33,7 +33,6 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
 
     private HTTPSeek time_range;
 
-    private uint idle_id;
     private SourceFunc run_continue;
 
     public LiveResponse (Soup.Server  server,
@@ -65,11 +64,6 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
 
     public override void end (bool aborted, uint status) {
         this.pipeline.set_state (State.NULL);
-
-        if (this.idle_id != 0) {
-           Source.remove (this.idle_id);
-           this.idle_id = 0;
-        }
 
         if (!aborted) {
             this.msg.response_body.complete ();
@@ -153,11 +147,9 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
     private void on_new_buffer (Element sink,
                                 Buffer  buffer,
                                 Pad     pad) {
-        this.idle_id = Idle.add_full (Priority.HIGH_IDLE,
-                                      () => {
+        Idle.add_full (Priority.HIGH_IDLE,
+                       () => {
             this.push_data (buffer.data, buffer.size);
-
-            this.idle_id = 0;
 
             return false;
         });
@@ -208,7 +200,12 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         }
 
         if (!ret) {
-            this.end (false, Soup.KnownStatusCode.NONE);
+                Idle.add_full (Priority.HIGH_IDLE,
+                               () => {
+                    this.end (false, Soup.KnownStatusCode.NONE);
+
+                    return false;
+                });
         }
 
         return ret;
