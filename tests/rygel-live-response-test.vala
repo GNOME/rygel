@@ -41,14 +41,17 @@ public class Rygel.LiveResponseTest : GLib.Object {
 
     private dynamic Element src;
 
+    private Cancellable cancellable;
     private Error error;
 
     public static int main (string[] args) {
         Gst.init (ref args);
 
         try {
-            var test = new LiveResponseTest ();
+            var test = new LiveResponseTest.complete ();
+            test.run ();
 
+            test = new LiveResponseTest.abort ();
             test.run ();
         } catch (TestError.SKIP error) {
             return error.code;
@@ -61,21 +64,36 @@ public class Rygel.LiveResponseTest : GLib.Object {
         return 0;
     }
 
-    private LiveResponseTest () throws Error {
+    private LiveResponseTest (Cancellable? cancellable = null) throws Error {
+        this.cancellable = cancellable;
+
         this.server = new HTTPServer ();
         this.client = new HTTPClient (this.server.context,
                                       this.server.uri,
-                                      MAX_BYTES);
+                                      MAX_BYTES,
+                                      cancellable != null);
         this.main_loop = new MainLoop (null, false);
         this.src = GstUtils.create_element ("audiotestsrc", null);
+    }
+
+    private LiveResponseTest.complete () throws Error {
+        this ();
+
         this.src.blocksize = BLOCK_SIZE;
         this.src.num_buffers = MAX_BUFFERS;
+    }
+
+    private LiveResponseTest.abort () throws Error {
+        this (new Cancellable ());
     }
 
     private void run () throws Error {
         Timeout.add_seconds (3, this.on_timeout);
         this.server.message_received.connect (this.on_message_received);
-        this.client.completed.connect (this.on_client_completed);
+        this.server.message_aborted.connect (this.on_message_aborted);
+        if (this.cancellable == null) {
+            this.client.completed.connect (this.on_client_completed);
+        }
 
         this.client.run.begin ();
 
@@ -98,15 +116,24 @@ public class Rygel.LiveResponseTest : GLib.Object {
                                              "TestingLiveResponse",
                                              this.src,
                                              null,
-                                             null);
+                                             this.cancellable);
 
             response.run.begin ();
+
+            if (this.cancellable != null) {
+                response.completed.connect (this.on_client_completed);
+            }
         } catch (Error error) {
             this.error = error;
             this.main_loop.quit ();
 
             return;
         }
+    }
+
+    private void on_message_aborted (HTTPServer   server,
+                                     Soup.Message msg) {
+        this.cancellable.cancel ();
     }
 
     private bool on_timeout () {
@@ -131,6 +158,7 @@ private class Rygel.HTTPServer : GLib.Object {
     }
 
     public signal void message_received (Soup.Message message);
+    public signal void message_aborted (Soup.Message message);
 
     public HTTPServer () throws TestError {
         try {
@@ -144,6 +172,7 @@ private class Rygel.HTTPServer : GLib.Object {
         assert (this.context.port > 0);
 
         this.context.server.add_handler (SERVER_PATH, this.server_cb);
+        this.context.server.request_aborted.connect (this.on_request_aborted);
     }
 
     private void server_cb (Server        server,
@@ -152,6 +181,12 @@ private class Rygel.HTTPServer : GLib.Object {
                             HashTable?    query,
                             ClientContext client) {
         this.message_received (msg);
+    }
+
+    private void on_request_aborted (Soup.Server        server,
+                                     Soup.Message       message,
+                                     Soup.ClientContext client) {
+        this.message_aborted (message);
     }
 }
 
@@ -164,13 +199,19 @@ private class Rygel.HTTPClient : GLib.Object, StateMachine {
 
     public HTTPClient (GUPnP.Context context,
                        string        uri,
-                       size_t        total_bytes) {
+                       size_t        total_bytes,
+                       bool          active) {
         this.context = context;
         this.total_bytes = total_bytes;
 
         this.msg = new Soup.Message ("HTTP",  uri);
         assert (this.msg != null);
         this.msg.response_body.set_accumulate (false);
+
+        if (active) {
+            this.cancellable = new Cancellable ();
+            this.cancellable.cancelled += this.on_cancelled;
+        }
     }
 
     public async void run () {
@@ -179,9 +220,16 @@ private class Rygel.HTTPClient : GLib.Object, StateMachine {
 
         this.msg.got_chunk.connect ((msg, chunk) => {
             bytes_received += chunk.length;
+
+            if (bytes_received >= this.total_bytes &&
+                this.cancellable != null) {
+                bytes_received = bytes_received.clamp (0, this.total_bytes);
+
+                this.cancellable.cancel ();
+            }
         });
 
-        this.context.session.queue_message (this.msg, (msg, chunk) => {
+        this.context.session.queue_message (this.msg, (session, msg) => {
             assert (bytes_received == this.total_bytes);
 
             run_continue ();
@@ -190,5 +238,10 @@ private class Rygel.HTTPClient : GLib.Object, StateMachine {
         yield;
 
         this.completed ();
+    }
+
+    private void on_cancelled (Cancellable cancellable) {
+        this.context.session.cancel_message (this.msg,
+                                             KnownStatusCode.CANCELLED);
     }
 }
