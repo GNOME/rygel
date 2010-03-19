@@ -1,0 +1,1 @@
+../src/rygel/rygel-http-byte-seek.vala

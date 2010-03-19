@@ -27,7 +27,8 @@ AM_VALAFLAGS = --disable-warnings --thread \
 
 check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-http-response-test \
-		 rygel-live-response-test
+		 rygel-live-response-test \
+		 rygel-http-byte-seek-test
 TESTS = $(check_PROGRAMS)
 
 rygel_http_item_uri_test_SOURCES = rygel-http-item-uri-test.vala \
@@ -41,5 +42,9 @@ rygel_live_response_test_SOURCES = rygel-live-response-test.vala \
 				   rygel-live-response.vala \
                                    rygel-http-response_live-response.vala \
 				   rygel-state-machine_live-response.vala \
-				   rygel-http-seek.vala \
+				   rygel-http-seek_live-response.vala \
 				   rygel-gst-utils.vala
+
+rygel_http_byte_seek_test_SOURCES = rygel-http-byte-seek-test.vala \
+				    rygel-http-byte-seek.vala \
+				    rygel-http-seek.vala
