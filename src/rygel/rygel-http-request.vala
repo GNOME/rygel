@@ -37,23 +37,20 @@ internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     private MediaContainer root_container;
     public Soup.Server server;
     public Soup.Message msg;
-    private HashTable<string,string>? query;
 
     public Cancellable cancellable { get; set; }
 
     protected HTTPItemURI uri;
     public MediaItem item;
 
-    public HTTPRequest (HTTPServer                http_server,
-                        Soup.Server               server,
-                        Soup.Message              msg,
-                        HashTable<string,string>? query) {
+    public HTTPRequest (HTTPServer   http_server,
+                        Soup.Server  server,
+                        Soup.Message msg) {
         this.http_server = http_server;
         this.cancellable = new Cancellable ();
         this.root_container = http_server.root_container;
         this.server = server;
         this.msg = msg;
-        this.query = query;
     }
 
     public async void run () {

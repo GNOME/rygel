@@ -170,7 +170,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                 debug ("%s : %s", name, value);
         });
 
-        this.queue_request (new HTTPGet (this, server, msg, query));
+        this.queue_request (new HTTPGet (this, server, msg));
     }
 
     private void on_request_aborted (Soup.Server        server,

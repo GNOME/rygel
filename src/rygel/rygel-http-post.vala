@@ -37,7 +37,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
     public HTTPPost (HTTPServer   http_server,
                      Soup.Server  server,
                      Soup.Message msg) {
-        base (http_server, server, msg, null);
+        base (http_server, server, msg);
     }
 
     protected override async void handle () {

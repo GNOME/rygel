@@ -36,11 +36,10 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
     public HTTPGetHandler handler;
 
-    public HTTPGet (HTTPServer                http_server,
-                    Soup.Server               server,
-                    Soup.Message              msg,
-                    HashTable<string,string>? query) {
-        base (http_server, server, msg, query);
+    public HTTPGet (HTTPServer   http_server,
+                    Soup.Server  server,
+                    Soup.Message msg) {
+        base (http_server, server, msg);
 
         this.thumbnail_index = -1;
     }
