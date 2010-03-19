@@ -28,7 +28,7 @@ private errordomain Rygel.TestError {
 private class Rygel.HTTPIdentityHandler : GLib.Object {}
 
 private class Rygel.MediaItem : GLib.Object {
-    public int64 size = 1024;
+    public int64 size = 2048;
 }
 
 private class Rygel.Thumbnail : GLib.Object {
@@ -36,7 +36,7 @@ private class Rygel.Thumbnail : GLib.Object {
 }
 
 private class Rygel.Subtitle : GLib.Object {
-    public int64 size = 1024;
+    public int64 size = 512;
 }
 
 private class Rygel.HTTPGet : GLib.Object {
@@ -49,26 +49,35 @@ private class Rygel.HTTPGet : GLib.Object {
 
     public HTTPIdentityHandler handler;
 
-    public HTTPGet () {
+    public HTTPGet (Thumbnail? thumbnail, Subtitle? subtitle) {
         this.msg = new Soup.Message ("HTTP", ITEM_URI);
         this.item = new MediaItem ();
         this.handler = new HTTPIdentityHandler ();
+        this.thumbnail = thumbnail;
+        this.subtitle = subtitle;
     }
 
-    public HTTPGet.seek_start (int64 start) {
-        this ();
+    public HTTPGet.seek_start (int64      start,
+                               Thumbnail? thumbnail,
+                               Subtitle?  subtitle) {
+        this (thumbnail, subtitle);
 
         this.add_headers (start, -1);
     }
 
-    public HTTPGet.seek_stop (int64 stop) {
-        this ();
+    public HTTPGet.seek_stop (int64      stop,
+                              Thumbnail? thumbnail,
+                              Subtitle?  subtitle) {
+        this (thumbnail, subtitle);
 
         this.add_headers (0, stop);
     }
 
-    public HTTPGet.seek_start_stop (int64 start, int64 stop) {
-        this ();
+    public HTTPGet.seek_start_stop (int64      start,
+                                    int64      stop,
+                                    Thumbnail? thumbnail,
+                                    Subtitle?  subtitle) {
+        this (thumbnail, subtitle);
 
         this.add_headers (start, stop);
     }
@@ -98,10 +107,17 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
     }
 
     public void run () throws HTTPSeekError {
-        this.test_no_seek ();
-        this.test_start_only_seek ();
-        this.test_stop_only_seek ();
-        this.test_start_stop_seek ();
+        var thumbnails = new Thumbnail[] { null, new Thumbnail () };
+        var subtitles = new Subtitle[] { null, new Subtitle () };
+
+        foreach (var thumbnail in thumbnails) {
+            foreach (var subtitle in subtitles) {
+                this.test_no_seek (thumbnail, subtitle);
+                this.test_start_only_seek (thumbnail, subtitle);
+                this.test_stop_only_seek (thumbnail, subtitle);
+                this.test_start_stop_seek (thumbnail, subtitle);
+            }
+        }
     }
 
     private HTTPByteSeekTest () {
@@ -109,26 +125,54 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
                                       RegexCompileFlags.CASELESS);
     }
 
-    private void test_no_seek () throws HTTPSeekError {
-        var request = new HTTPGet ();
+    private void test_no_seek (Thumbnail? thumbnail,
+                               Subtitle?  subtitle) throws HTTPSeekError {
+        var request = new HTTPGet (thumbnail, subtitle);
 
-        this.test_seek (request, 0, request.item.size - 1);
+        int64 size;
+        if (request.thumbnail != null) {
+            size = request.thumbnail.size;
+        } else if (request.subtitle != null) {
+            size = request.subtitle.size;
+        } else {
+            size = request.item.size;
+        }
+
+        this.test_seek (request, 0, size - 1);
     }
 
-    private void test_start_only_seek () throws HTTPSeekError {
-        var request = new HTTPGet.seek_start (128);
+    private void test_start_only_seek (Thumbnail? thumbnail,
+                                       Subtitle?  subtitle)
+                                       throws HTTPSeekError {
+        var request = new HTTPGet.seek_start (128, thumbnail, subtitle);
 
-        this.test_seek (request, 128, request.item.size - 1);
+        int64 size;
+        if (request.thumbnail != null) {
+            size = request.thumbnail.size;
+        } else if (request.subtitle != null) {
+            size = request.subtitle.size;
+        } else {
+            size = request.item.size;
+        }
+
+        this.test_seek (request, 128, size - 1);
     }
 
-    private void test_stop_only_seek () throws HTTPSeekError {
-        var request = new HTTPGet.seek_stop (128);
+    private void test_stop_only_seek (Thumbnail? thumbnail,
+                                      Subtitle?  subtitle)
+                                      throws HTTPSeekError {
+        var request = new HTTPGet.seek_stop (128, thumbnail, subtitle);
 
         this.test_seek (request, 0, 128);
     }
 
-    private void test_start_stop_seek () throws HTTPSeekError {
-        var request = new HTTPGet.seek_start_stop (128, 256);
+    private void test_start_stop_seek (Thumbnail? thumbnail,
+                                       Subtitle?  subtitle)
+                                       throws HTTPSeekError {
+        var request = new HTTPGet.seek_start_stop (128,
+                                                   256,
+                                                   thumbnail,
+                                                   subtitle);
 
         this.test_seek (request, 128, 256);
     }
@@ -144,7 +188,14 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
         assert (seek != null);
         assert (seek.start == start);
         assert (seek.stop == stop);
-        assert (seek.length == request.item.size);
+
+        if (request.thumbnail != null) {
+            assert (seek.length == request.thumbnail.size);
+        } else if (request.subtitle != null) {
+            assert (seek.length == request.subtitle.size);
+        } else {
+            assert (seek.length == request.item.size);
+        }
 
         var header = request.msg.response_headers.get ("Accept-Ranges");
         assert (header == "bytes");
