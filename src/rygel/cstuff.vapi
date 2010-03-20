@@ -55,8 +55,8 @@ namespace CStuff {
      */
     public class Utils {
         [CCode (cname = "get_xml_element", cheader_filename = "cstuff.h")]
-        public static weak Xml.Node * get_xml_element (Xml.Node node,
-                                                       ...);
+        public static unowned Xml.Node * get_xml_element (Xml.Node node,
+                                                          ...);
         [CCode (cname = "generate_random_udn", cheader_filename = "cstuff.h")]
         public static string generate_random_udn ();
 

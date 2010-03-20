@@ -189,7 +189,7 @@ public class Rygel.Main : Object {
     }
 
     private static int main (string[] args) {
-        Main main;
+        Main main = null;
         DBusService service;
 
         var original_args = args;
