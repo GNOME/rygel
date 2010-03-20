@@ -13,6 +13,10 @@ This includes disabling any automatic tab-to-space conversion
 feature provided by your editor.
 ================================================================-->
 <scpd xmlns="urn:schemas-upnp-org:service-1-0">
+	<specVersion>
+		<major>1</major>
+		<minor>0</minor>
+	</specVersion>
 	<serviceStateTable>
 		<stateVariable>
 			<name>SourceProtocolInfo</name>
