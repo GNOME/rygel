@@ -145,7 +145,7 @@ public class Rygel.MediaDB : Object {
     "DELETE FROM Uri WHERE object_fk = ?";
 
     private const string DELETE_BY_ID_STRING =
-    "DELETE FROM Object WHERE upnp_id = " +
+    "DELETE FROM Object WHERE upnp_id IN " +
         "(SELECT descendant FROM closure WHERE ancestor = ?)";
 
     private const string GET_OBJECT_WITH_CLOSURE =
