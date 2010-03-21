@@ -248,7 +248,6 @@ public class Rygel.MediaDB : Object {
         object_removed (id);
     }
 
-
     public void remove_object (MediaObject obj) throws DatabaseError,
                                                        MediaDBError {
         this.remove_by_id (obj.id);
@@ -269,9 +268,10 @@ public class Rygel.MediaDB : Object {
             db.commit ();
             object_added (container.id);
             container_added (container.id);
-        } catch (DatabaseError err) {
+        } catch (DatabaseError error) {
             db.rollback ();
-            throw err;
+
+            throw error;
         }
     }
 
@@ -289,6 +289,7 @@ public class Rygel.MediaDB : Object {
                      item.id,
                      error.message);
             db.rollback ();
+
             throw error;
         }
     }
@@ -298,7 +299,7 @@ public class Rygel.MediaDB : Object {
             db.begin ();
             remove_uris (obj);
             if (obj is MediaItem) {
-                save_metadata ((MediaItem) obj);
+                save_metadata (obj as MediaItem);
             }
             update_object_internal (obj);
             save_uris (obj);
@@ -313,6 +314,7 @@ public class Rygel.MediaDB : Object {
                      obj.id,
                      error.message);
             db.rollback ();
+
             throw error;
         }
     }
@@ -321,47 +323,54 @@ public class Rygel.MediaDB : Object {
         GLib.Value[] values = { object_id };
         MediaObject parent = null;
         Rygel.Database.RowCallback cb = (stmt) => {
-            var obj = get_object_from_statement ((MediaContainer) parent,
+            var obj = get_object_from_statement (parent as MediaContainer,
                                                  stmt.column_text (18),
                                                  stmt);
             obj.parent = (MediaContainer) parent;
             obj.parent_ref = (MediaContainer) parent;
             parent = obj;
+
             return true;
         };
 
         this.db.exec (GET_OBJECT_WITH_CLOSURE, values, cb);
+
         return parent;
     }
 
     public MediaItem? get_item (string item_id)
                                 throws DatabaseError, MediaDBError {
         var obj = get_object (item_id);
-        if (obj != null && !(obj is MediaItem))
-            throw new MediaDBError.INVALID_TYPE("Object with id %s is not a" +
-                                                "MediaItem",
-                                                item_id);
+        if (obj != null && !(obj is MediaItem)) {
+            throw new MediaDBError.INVALID_TYPE ("Object with id %s is not a" +
+                                                 "MediaItem",
+                                                 item_id);
+        }
+
         return (MediaItem)obj;
     }
 
     public MediaContainer? get_container (string container_id)
                                           throws DatabaseError, MediaDBError {
         var obj = get_object (container_id);
-        if (obj != null && !(obj is MediaContainer))
-            throw new MediaDBError.INVALID_TYPE("Object with id %s is not a" +
-                                                "MediaContainer",
-                                                container_id);
+        if (obj != null && !(obj is MediaContainer)) {
+            throw new MediaDBError.INVALID_TYPE ("Object with id %s is not a" +
+                                                 "MediaContainer",
+                                                 container_id);
+        }
+
         return (MediaContainer) obj;
     }
 
     public int get_child_count (string container_id) throws DatabaseError {
         int count = 0;
-        GLib.Value[] values = { container_id  };
+        GLib.Value[] values = { container_id };
 
         this.db.exec (CHILDREN_COUNT_STRING,
                       values,
                       (stmt) => {
                           count = stmt.column_int (0);
+
                           return false;
                       });
 
@@ -377,9 +386,10 @@ public class Rygel.MediaDB : Object {
         this.db.exec (OBJECT_EXISTS_STRING,
                       values,
                       (stmt) => {
-                        exists = stmt.column_int (0) == 1;
-                        tmp_timestamp = stmt.column_int64 (1);
-                        return false;
+                          exists = stmt.column_int (0) == 1;
+                          tmp_timestamp = stmt.column_int64 (1);
+
+                          return false;
                       });
 
         // out parameters are not allowed to be captured
@@ -410,6 +420,7 @@ public class Rygel.MediaDB : Object {
         };
 
         this.db.exec (GET_CHILDREN_STRING, values, cb);
+
         return children;
     }
 
@@ -419,7 +430,7 @@ public class Rygel.MediaDB : Object {
                                         uint             offset,
                                         uint             max_count)
                                         throws Error {
-        var args = new GLib.ValueArray(0);
+        var args = new GLib.ValueArray (0);
         var filter = this.search_expression_to_sql (expression, args);
 
         if (filter == null) {
@@ -481,8 +492,9 @@ public class Rygel.MediaDB : Object {
                 }
 
                 return true;
-            } catch (DatabaseError e) {
-                warning ("Failed to get parent item: %s", e.message);
+            } catch (DatabaseError error) {
+                warning ("Failed to get parent item: %s", error.message);
+
                 return false;
             }
         };
@@ -490,6 +502,7 @@ public class Rygel.MediaDB : Object {
         this.db.exec (GET_OBJECTS_STRING_WITH_FILTER.printf (filter),
                       args.values,
                       cb);
+
         return children;
     }
 
@@ -513,9 +526,10 @@ public class Rygel.MediaDB : Object {
                           null,
                           (stmt) => {
                               old_version = stmt.column_int (0);
+
                               return false;
                           });
-            int current_version = schema_version.to_int();
+            int current_version = schema_version.to_int ();
             if (old_version == current_version) {
                 debug ("Media DB schema has current version");
             } else {
@@ -535,11 +549,13 @@ public class Rygel.MediaDB : Object {
                     }
                 } else {
                     warning ("The version \"%d\" of the detected database" +
-                            " is newer than our supported version \"%d\"",
-                            old_version, current_version);
+                             " is newer than our supported version \"%d\"",
+                             old_version,
+                             current_version);
                     this.db = null;
-                    throw new MediaDBError.GENERAL_ERROR("Database format" +
-                            " not supported");
+
+                    throw new MediaDBError.GENERAL_ERROR ("Database format" +
+                                                          " not supported");
                 }
             }
         } catch (DatabaseError err) {
@@ -560,17 +576,20 @@ public class Rygel.MediaDB : Object {
                             schema_version);
                     if (!create_schema ()) {
                         this.db = null;
+
                         return;
                     }
                 } else {
                     warning ("Incompatible schema... cannot proceed");
                     this.db = null;
+
                     return;
                 }
-            } catch (DatabaseError err2) {
-                warning ("Something weird going on: %s", err2.message);
+            } catch (DatabaseError error) {
+                warning ("Something weird going on: %s", error.message);
                 this.db = null;
-                throw new MediaDBError.GENERAL_ERROR("Invalid database");
+
+                throw new MediaDBError.GENERAL_ERROR ("Invalid database");
             }
         }
     }
@@ -585,9 +604,9 @@ public class Rygel.MediaDB : Object {
             db.exec (CREATE_TRIGGER_STRING);
             db.exec ("UPDATE schema_info SET version = '4'");
             db.commit ();
-        } catch (DatabaseError err) {
+        } catch (DatabaseError error) {
             db.rollback ();
-            warning ("Database upgrade failed: %s", err.message);
+            warning ("Database upgrade failed: %s", error.message);
             db = null;
         }
     }
@@ -651,13 +670,23 @@ public class Rygel.MediaDB : Object {
     }
 
     private void create_object (MediaObject item) throws Error {
+        int type = MediaDBObjectType.CONTAINER;
+        GLib.Value parent;
+
+        if (item is MediaItem) {
+            type = MediaDBObjectType.ITEM;
+        }
+
+        if (item.parent == null) {
+            parent = Database.@null ();
+        } else {
+            parent = item.parent.id;
+        }
+
         GLib.Value[] values = { item.id,
                                 item.title,
-                                (item is MediaItem)
-                                           ? (int) MediaDBObjectType.ITEM
-                                           : (int) MediaDBObjectType.CONTAINER,
-                                item.parent == null ? Database.null () :
-                                                      item.parent.id,
+                                type,
+                                parent,
                                 (int64) item.modified };
         this.db.exec (INSERT_OBJECT_STRING, values);
     }
@@ -687,13 +716,14 @@ public class Rygel.MediaDB : Object {
             db.exec (CREATE_CLOSURE_TRIGGER_STRING);
             db.commit ();
             db.analyze ();
+
             return true;
         } catch (Error err) {
             warning ("Failed to create schema: %s", err.message);
             db.rollback ();
         }
-        return false;
 
+        return false;
    }
 
     private void add_uris (MediaObject obj) throws DatabaseError {
@@ -720,18 +750,18 @@ public class Rygel.MediaDB : Object {
             case 0:
                 // this is a container
                 obj = factory.get_container (this,
-                        object_id,
-                        statement.column_text (1),
-                        0);
+                                             object_id,
+                                             statement.column_text (1),
+                                             0);
                 break;
             case 1:
                 // this is an item
                 obj = factory.get_item (this,
-                        parent,
-                        object_id,
-                        statement.column_text (1),
-                        statement.column_text (6));
-                fill_item (statement, (MediaItem)obj);
+                                        parent,
+                                        object_id,
+                                        statement.column_text (1),
+                                        statement.column_text (6));
+                fill_item (statement, obj as MediaItem);
                 break;
             default:
                 assert_not_reached ();
@@ -759,7 +789,7 @@ public class Rygel.MediaDB : Object {
         item.size = (long)statement.column_int64 (2);
         item.bitrate = statement.column_int (10);
 
-        item.sample_freq = statement.column_int(11);
+        item.sample_freq = statement.column_int (11);
         item.bits_per_sample = statement.column_int (12);
         item.n_audio_channels = statement.column_int (13);
         item.track_number = statement.column_int (14);
@@ -778,6 +808,7 @@ public class Rygel.MediaDB : Object {
                       values,
                       (stmt) => {
                           children.add (stmt.column_text (0));
+
                           return true;
                       });
 
@@ -803,6 +834,7 @@ public class Rygel.MediaDB : Object {
         string left = search_expression_to_sql (exp.operand1, args);
         string right = search_expression_to_sql (exp.operand2, args);
         string op;
+
         if (exp.op == LogicalOperator.AND) {
             op = "AND";
         } else {
@@ -843,6 +875,7 @@ public class Rygel.MediaDB : Object {
                 break;
             default:
                 var msg = "Unsupported column %s".printf (operand);
+
                 throw new MediaDBError.UNSUPPORTED (msg);
         }
 
@@ -858,10 +891,11 @@ public class Rygel.MediaDB : Object {
 
         switch (exp.op) {
             case SearchCriteriaOp.EXISTS:
-                if (exp.operand2 == "true")
+                if (exp.operand2 == "true") {
                     func = "IS NOT NULL AND %s != ''";
-                else
+                } else {
                     func = "IS NULL OR %s = ''";
+                }
                 break;
             case SearchCriteriaOp.EQ:
                 func = "=";
@@ -912,11 +946,12 @@ public class Rygel.MediaDB : Object {
     }
 
     public Gee.List<string> get_meta_data_column_by_filter (
-                                       string          column,
-                                       string          filter,
-                                       GLib.ValueArray args,
-                                       long            offset,
-                                       long            max_count) throws Error {
+                                        string          column,
+                                        string          filter,
+                                        GLib.ValueArray args,
+                                        long            offset,
+                                        long            max_count)
+                                        throws Error {
         GLib.Value v = offset;
         args.append (v);
         v = max_count;
@@ -936,10 +971,11 @@ public class Rygel.MediaDB : Object {
     }
 
     public Gee.List<string> get_object_attribute_by_search_expression (
-                                       string            attribute,
-                                       SearchExpression? expression,
-                                       long              offset,
-                                       long              max_count) throws Error {
+                                        string            attribute,
+                                        SearchExpression? expression,
+                                        long              offset,
+                                        long              max_count)
+                                        throws Error {
         var args = new ValueArray (0);
         var filter = this.search_expression_to_sql (expression, args);
         if (filter != null) {
@@ -951,6 +987,7 @@ public class Rygel.MediaDB : Object {
         debug ("Parsed filter: %s", filter);
 
         var column = this.map_operand_to_column (attribute);
+
         return this.get_meta_data_column_by_filter (column,
                                                     filter,
                                                     args,

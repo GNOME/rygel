@@ -105,6 +105,7 @@ internal class Rygel.Database : Object {
                 if (callback != null) {
                     if (!callback (statement)) {
                         rc = Sqlite.DONE;
+
                         break;
                     }
                 }
@@ -187,6 +188,7 @@ internal class Rygel.Database : Object {
     public static GLib.Value @null () {
         GLib.Value v = GLib.Value (typeof (void *));
         v.set_pointer (null);
+
         return v;
     }
 
