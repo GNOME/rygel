@@ -97,25 +97,25 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
         this.test_start_stop_seek ();
     }
 
-    public void test_no_seek () throws HTTPSeekError {
+    private void test_no_seek () throws HTTPSeekError {
         var request = new HTTPGet ();
 
         this.test_seek (request, 0, request.item.size - 1);
     }
 
-    public void test_start_only_seek () throws HTTPSeekError {
+    private void test_start_only_seek () throws HTTPSeekError {
         var request = new HTTPGet.seek_start (128);
 
         this.test_seek (request, 128, request.item.size - 1);
     }
 
-    public void test_stop_only_seek () throws HTTPSeekError {
+    private void test_stop_only_seek () throws HTTPSeekError {
         var request = new HTTPGet.seek_stop (128);
 
         this.test_seek (request, 0, 128);
     }
 
-    public void test_start_stop_seek () throws HTTPSeekError {
+    private void test_start_stop_seek () throws HTTPSeekError {
         var request = new HTTPGet.seek_start_stop (128, 256);
 
         this.test_seek (request, 128, 256);
