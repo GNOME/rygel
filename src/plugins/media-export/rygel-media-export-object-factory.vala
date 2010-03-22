@@ -25,6 +25,10 @@ internal class Rygel.MediaExportObjectFactory : MediaDBObjectFactory {
                                                   string  id,
                                                   string  title,
                                                   uint    child_count) {
-        return new MediaExportWritableContainer (media_db, id, title);
+        if (id.has_prefix (MediaExportQueryContainer.PREFIX)) {
+            return new MediaExportQueryContainer (media_db, id, title);
+        } else {
+            return new MediaExportWritableContainer (media_db, id, title);
+        }
     }
 }
