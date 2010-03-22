@@ -74,6 +74,8 @@ private class Rygel.HTTPGet : GLib.Object {
 }
 
 private class Rygel.HTTPByteSeekTest : GLib.Object {
+    private Regex range_regex;
+
     public static int main (string[] args) {
         try {
             var test = new HTTPByteSeekTest ();
@@ -95,6 +97,11 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
         this.test_start_only_seek ();
         this.test_stop_only_seek ();
         this.test_start_stop_seek ();
+    }
+
+    private HTTPByteSeekTest () {
+        this.range_regex = new Regex ("bytes +[0-9]+-[0-9]+/[0-9]+",
+                                      RegexCompileFlags.CASELESS);
     }
 
     private void test_no_seek () throws HTTPSeekError {
@@ -138,6 +145,7 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
         assert (header == "bytes");
         header = request.msg.response_headers.get ("Content-Range");
         assert (header != null);
+        assert (this.range_regex.match (header));
 
         assert (request.msg.response_headers.get_content_length () ==
                 seek.stop - seek.start);
