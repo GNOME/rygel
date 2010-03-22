@@ -22,6 +22,7 @@ using Gee;
 using GUPnP;
 
 internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
+    public static const string PREFIX = "virtual-container:";
     private bool item_container;
     private string attribute;
     private SearchExpression expression;
@@ -45,11 +46,14 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
         base (media_db, id, name);
 
         var args = id.split(",");
-        for (int i = args.length - 1 - args.length % 2;
-             i >= 1 - args.length % 2;
-             i -= 2) {
+
+
+
+        // build SearchExpression from container-id
+        int i = args.length - 1 - args.length % 2;
+        while (i >= 1 - args.length % 2) {
             var exp = new RelationalExpression ();
-            exp.operand1 = args[i - 1].replace ("virtual-container:", "");
+            exp.operand1 = args[i - 1].replace (PREFIX, "");
             exp.op = SearchCriteriaOp.EQ;
             exp.operand2 = args[i];
             if (this.expression != null) {
@@ -61,6 +65,8 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
             } else {
                 this.expression = exp;
             }
+
+            i -= 2;
         }
 
         if (args.length % 2 == 0) {
@@ -68,8 +74,7 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
             this.item_container = true;
         } else {
             this.item_container = false;
-            this.attribute =
-                    args[args.length - 1].replace("virtual-container:", "");
+            this.attribute = args[args.length - 1].replace (PREFIX, "");
         }
     }
 
@@ -99,7 +104,6 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
         total_matches = children.size;
 
         return children;
-
     }
 
     public override async Gee.List<MediaObject>? get_children (
@@ -108,38 +112,37 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
                                        Cancellable?     cancellable)
                                        throws GLib.Error {
         if (item_container) {
-            uint foobar;
+            uint total_matches;
             return yield this.search (this.expression,
                                       offset,
                                       max_count,
-                                      out foobar,
+                                      out total_matches,
                                       cancellable);
         }
 
+        var max_objects = max_count;
+        if (max_objects == 0) {
+            max_objects = -1;
+        }
+
         var children = new ArrayList<MediaObject> ();
-        try {
-            var data = this.media_db.get_object_attribute_by_search_expression (
-                                        this.attribute,
-                                        this.expression,
-                                        offset,
-                                        max_count == 0 ? -1 : max_count);
-            foreach (string meta_data in data) {
+        var data = this.media_db.get_object_attribute_by_search_expression (
+                                    this.attribute,
+                                    this.expression,
+                                    offset,
+                                    max_objects);
+        foreach (var meta_data in data) {
                 if (meta_data == null) {
                     continue;
                 }
 
-                var new_id = this.id + "," + meta_data;
-                var container = new MediaExportQueryContainer (this.media_db,
-                                                               new_id,
-                                                               meta_data);
-                container.parent = this;
-                container.parent_ref = this;
-                children.add (container);
-            }
-        } catch (GLib.Error error) {
-            warning ("Failed to query meta data: %s", error.message);
-
-            throw error;
+            var new_id = this.id + "," + meta_data;
+            var container = new MediaExportQueryContainer (this.media_db,
+                                                           new_id,
+                                                           meta_data);
+            container.parent = this;
+            container.parent_ref = this;
+            children.add (container);
         }
 
         return children;
