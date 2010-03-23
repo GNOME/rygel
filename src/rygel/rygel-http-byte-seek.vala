@@ -86,14 +86,15 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
     public override void add_response_headers () {
         // Content-Range: bytes START_BYTE-STOP_BYTE/TOTAL_LENGTH
         var range = "bytes ";
+        unowned Soup.MessageHeaders headers = this.msg.response_headers;
 
-        this.msg.response_headers.append ("Accept-Ranges", "bytes");
+        headers.append ("Accept-Ranges", "bytes");
 
         range += this.start.to_string () + "-" +
                  this.stop.to_string () + "/" +
                  this.length.to_string ();
-        this.msg.response_headers.append ("Content-Range", range);
+        headers.append ("Content-Range", range);
 
-        this.msg.response_headers.set_content_length (this.stop - this.start);
+        headers.set_content_length (this.stop - this.start);
     }
 }
