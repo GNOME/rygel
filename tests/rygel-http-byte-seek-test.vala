@@ -148,6 +148,6 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
         assert (this.range_regex.match (header));
 
         assert (request.msg.response_headers.get_content_length () ==
-                seek.stop - seek.start);
+                seek.stop + 1 - seek.start);
     }
 }

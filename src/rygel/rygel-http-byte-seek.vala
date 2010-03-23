@@ -95,6 +95,6 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
                  this.length.to_string ();
         headers.append ("Content-Range", range);
 
-        headers.set_content_length (this.stop - this.start);
+        headers.set_content_length (this.stop + 1 - this.start);
     }
 }
