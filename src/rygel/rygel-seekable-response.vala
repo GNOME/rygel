@@ -25,7 +25,7 @@
 using GUPnP;
 
 internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
-    private const size_t BUFFER_LENGTH = 4096;
+    private const size_t BUFFER_LENGTH = 65536;
 
     private HTTPSeek seek;
     private File file;
