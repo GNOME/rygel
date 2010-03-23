@@ -38,7 +38,7 @@ public class Rygel.TrackerPictureItemFactory : Rygel.TrackerItemFactory {
 
     public TrackerPictureItemFactory () {
         base (CATEGORY,
-              MediaItem.IMAGE_CLASS,
+              MediaItem.PHOTO_CLASS,
               PHOTO_RESOURCES_CLASS_PATH,
               Environment.get_user_special_dir (UserDirectory.PICTURES));
 

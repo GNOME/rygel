@@ -44,7 +44,7 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
         } else if (content_type.has_prefix ("audio/")) {
             item_class = MediaItem.AUDIO_CLASS;
         } else if (content_type.has_prefix ("image/")) {
-            item_class = MediaItem.IMAGE_CLASS;
+            item_class = MediaItem.PHOTO_CLASS;
         }
 
         if (item_class == null) {
@@ -75,7 +75,7 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
                 if (!tag_list.get_string (TAG_AUDIO_CODEC, out codec)) {
                     if (tag_list.get_int (MetadataExtractor.TAG_RYGEL_WIDTH, out width) ||
                         tag_list.get_int (MetadataExtractor.TAG_RYGEL_HEIGHT, out height)) {
-                        class_guessed = MediaItem.IMAGE_CLASS;
+                        class_guessed = MediaItem.PHOTO_CLASS;
                     } else {
                         // if it has width and height and a duration, assume
                         // it is a video (to capture the MPEG TS without audio

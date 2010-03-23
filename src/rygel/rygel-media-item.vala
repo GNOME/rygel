@@ -33,6 +33,7 @@ private errordomain Rygel.MediaItemError {
  */
 public class Rygel.MediaItem : MediaObject {
     public static const string IMAGE_CLASS = "object.item.imageItem";
+    public static const string PHOTO_CLASS = "object.item.imageItem.photo";
     public static const string VIDEO_CLASS = "object.item.videoItem";
     public static const string AUDIO_CLASS = "object.item.audioItem";
     public static const string MUSIC_CLASS = "object.item.audioItem.musicTrack";
