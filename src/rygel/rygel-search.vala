@@ -96,8 +96,7 @@ internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
             debug ("Executing search request: %s", this.search_criteria);
 
             if (this.xbox_hacks != null) {
-                this.container_id = this.xbox_hacks.translate_container_id (
-                                        this.container_id);
+                this.xbox_hacks.translate_container_id (ref this.container_id);
             }
 
             var container = yield this.fetch_container ();

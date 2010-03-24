@@ -34,15 +34,13 @@ internal class Rygel.XBoxHacks : GLib.Object {
         }
     }
 
-    public string translate_container_id (string container_id) {
+    public void translate_container_id (ref string container_id) {
         if (container_id == "1" ||
             container_id == "4" ||
             container_id == "5" ||
             container_id == "6" ||
             container_id == "7") {
-            return "0";
-        } else {
-            return container_id;
+            container_id = "0";
         }
     }
 
