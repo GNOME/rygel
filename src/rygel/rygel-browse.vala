@@ -52,6 +52,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
     private uint32 system_update_id;
     private ServiceAction action;
     private Rygel.DIDLLiteWriter didl_writer;
+    private XBoxHacks xbox_hacks;
 
     public Cancellable cancellable { get; set; }
 
@@ -63,6 +64,10 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
         this.action = (owned) action;
 
         this.didl_writer = new Rygel.DIDLLiteWriter (content_dir.http_server);
+
+        try {
+            this.xbox_hacks = new XBoxHacks (action.get_message ());
+        } catch { /* This just means we are not dealing with Xbox, yay! */ }
     }
 
     public async void run () {
@@ -81,6 +86,10 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
             }
 
             foreach (var result in results) {
+                if (result is MediaItem && this.xbox_hacks != null) {
+                    this.xbox_hacks.apply (result as MediaItem);
+                }
+
                 this.didl_writer.serialize (result);
             }
 
