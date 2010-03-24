@@ -57,8 +57,7 @@ internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
         this.cancellable = content_dir.cancellable;
         this.action = (owned) action;
 
-        this.didl_writer =
-                new Rygel.DIDLLiteWriter (content_dir.http_server);
+        this.didl_writer = new Rygel.DIDLLiteWriter (content_dir.http_server);
 
         try {
             this.xbox_hacks = new XBoxHacks (action.get_message ());

@@ -52,8 +52,7 @@ public class Rygel.RootDeviceFactory {
 
     public RootDevice create (Plugin plugin) throws GLib.Error {
         string modified_desc = plugin.name + ".xml";
-        string desc_path = Path.build_filename (this.desc_dir,
-                                                modified_desc);
+        var desc_path = Path.build_filename (this.desc_dir, modified_desc);
 
         /* Create the description xml */
         var doc = this.create_desc (plugin, desc_path);
