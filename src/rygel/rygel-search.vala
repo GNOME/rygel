@@ -60,7 +60,7 @@ internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
         this.didl_writer = new Rygel.DIDLLiteWriter (content_dir.http_server);
 
         try {
-            this.xbox_hacks = new XBoxHacks (action.get_message ());
+            this.xbox_hacks = new XBoxHacks.for_action (this.action);
         } catch { /* This just means we are not dealing with Xbox, yay! */ }
     }
 

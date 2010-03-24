@@ -22,14 +22,16 @@
  */
 
 using Soup;
+using GUPnP;
 
 internal errordomain Rygel.XBoxHacksError {
     NA
 }
 
 internal class Rygel.XBoxHacks : GLib.Object {
-    public XBoxHacks (Message msg) throws XBoxHacksError {
-        if (!msg.request_headers.get ("User-Agent").contains ("XBox")) {
+    public XBoxHacks.for_action (ServiceAction action) throws XBoxHacksError {
+        var agent = action.get_message ().request_headers.get ("User-Agent");
+        if (!agent.contains ("XBox")) {
             throw new XBoxHacksError.NA ("Not Applicable");
         }
     }
