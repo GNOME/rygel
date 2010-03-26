@@ -31,7 +31,7 @@ internal errordomain Rygel.XBoxHacksError {
 internal class Rygel.XBoxHacks : GLib.Object {
     public XBoxHacks.for_action (ServiceAction action) throws XBoxHacksError {
         var agent = action.get_message ().request_headers.get ("User-Agent");
-        if (!agent.contains ("XBox")) {
+        if (!agent.contains ("Xbox")) {
             throw new XBoxHacksError.NA ("Not Applicable");
         }
     }
