@@ -133,15 +133,19 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                                         out uint         total_matches,
                                         Cancellable?     cancellable)
                                         throws GLib.Error {
+        Gee.List<MediaObject> list;
+        MediaExportQueryContainer query_container;
+
         if (expression is RelationalExpression) {
             var exp = expression as RelationalExpression;
-            Gee.List<MediaObject> list;
 
-            var query_cont = search_to_virtual_container (exp);
-            if (query_cont != null) {
-                query_cont.parent = this;
-                list = yield query_cont.get_children (offset, max_count, cancellable);
-                foreach (MediaObject o1 in list) {
+            query_container = search_to_virtual_container (exp);
+            if (query_container != null) {
+                query_container.parent = this;
+                list = yield query_container.get_children (offset,
+                                                           max_count,
+                                                           cancellable);
+                foreach (var o1 in list) {
                     o1.upnp_class = exp.operand2;
                 }
                 total_matches = list.size;
@@ -150,55 +154,67 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
 
             if (exp.operand1 == "@id" &&
                 exp.op == SearchCriteriaOp.EQ &&
-                exp.operand2.has_prefix ("virtual-container:")) {
+                exp.operand2.has_prefix (MediaExportQueryContainer.PREFIX)) {
                 var real_id = MediaExportQueryContainer.get_virtual_container_definition
                 (exp.operand2);
                 list = new ArrayList<MediaObject> ();
                 if (real_id != null) {
-                    var args = real_id.split(",");
-                    query_cont = new MediaExportQueryContainer (this.media_db,
-                                                                exp.operand2,
-                                                                args[args.length-1]);
-                    query_cont.parent = this;
-                    list.add (query_cont);
+                    var args = real_id.split (",");
+                    query_container = new MediaExportQueryContainer (
+                                        this.media_db,
+                                        exp.operand2,
+                                        args[args.length - 1]);
+                    query_container.parent = this;
+                    list.add (query_container);
                 }
                 total_matches = list.size;
                 return list;
             }
         }
 
-        if (expression is LogicalExpression &&
-            expression.operand1 is RelationalExpression &&
-            expression.operand2 is RelationalExpression &&
-            ((LogicalExpression) expression).op == LogicalOperator.AND) {
-            var expa = expression.operand1 as RelationalExpression;
-            var expb = expression.operand2 as RelationalExpression;
-            var cont = search_to_virtual_container (expa);
-            RelationalExpression exp_ = null;
-            if (cont == null) {
-                cont = search_to_virtual_container (expb);
-                if (cont != null) {
-                    exp_ = expa;
+        if (expression is LogicalExpression) {
+            var logical_expression = expression as LogicalExpression;
+            if (logical_expression.operand1 is RelationalExpression &&
+                logical_expression.operand2 is RelationalExpression &&
+                logical_expression.op == LogicalOperator.AND) {
+                var expa = logical_expression.operand1 as RelationalExpression;
+                var expb = logical_expression.operand2 as RelationalExpression;
+                query_container = search_to_virtual_container (expa);
+                RelationalExpression exp_ = null;
+                if (query_container == null) {
+                    query_container = search_to_virtual_container (expb);
+                    if (query_container != null) {
+                        exp_ = expa;
+                    }
+                } else {
+                    exp_ = expb;
                 }
-            } else {
-                exp_ = expb;
-            }
 
-            if (cont != null) {
-                string new_id = "virtual-container:" + exp_.operand1 + "," +
-                                Uri.escape_string (exp_.operand2, "", true) +
-                                cont.plaintext_id.replace ("virtual-container:", ",");
-                debug ("Translated search request to %s", new_id);
-                new_id = MediaExportQueryContainer.register_id (new_id);
-                var query_cont_ = new MediaExportQueryContainer (this.media_db,
-                                                            new_id,
-                                                            exp_.operand2);
-                var list_ = yield query_cont_.get_children (offset, max_count, cancellable);
-                foreach (MediaObject o2 in list_) {
-                    o2.upnp_class = expa.operand2;
+                if (query_container != null) {
+                    var last_argument = query_container.plaintext_id.replace (
+                                        MediaExportQueryContainer.PREFIX,
+                                        "");
+                    var new_id = MediaExportQueryContainer.PREFIX;
+                    new_id += exp_.operand1 + "," +
+                              Uri.escape_string (exp_.operand2, "", true) +
+                              last_argument;
+                    debug ("Translated search request to %s", new_id);
+                    new_id = MediaExportQueryContainer.register_id (new_id);
+                    query_container = new MediaExportQueryContainer (
+                                        this.media_db,
+                                        new_id,
+                                        exp_.operand2);
+
+                    list = yield query_container.get_children (offset,
+                                                               max_count,
+                                                               cancellable);
+                    foreach (var o2 in list) {
+                        o2.upnp_class = expa.operand2;
+                    }
+                    total_matches = list.size;
+                    return list;
                 }
-                total_matches = list_.size;
-                return list_;
+
             }
         }
 
