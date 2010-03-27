@@ -385,28 +385,39 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 var parent = file.get_parent ();
                 var id = Checksum.compute_for_string (ChecksumType.MD5,
                                                       parent.get_uri ());
-                var parent_container = this.media_db.get_object (id);
-                if (parent_container != null) {
-                    this.harvest (file, (MediaContainer)parent_container);
-                } else {
-                    assert_not_reached ();
+                try {
+                    var parent_container = this.media_db.get_object (id);
+                    if (parent_container != null) {
+                        this.harvest (file, (MediaContainer)parent_container);
+                    } else {
+                        assert_not_reached ();
+                    }
+                } catch (Rygel.DatabaseError error) {
+                    warning ("Error while getting parent container for " +
+                             "filesystem event: %s",
+                             error.message);
                 }
                 break;
             case FileMonitorEvent.DELETED:
                 var id = Checksum.compute_for_string (ChecksumType.MD5,
                                                       file.get_uri ());
 
-                // the full object is fetched instead of simply calling exists
-                // because we need the parent to signalize the change
-                var obj = this.media_db.get_object (id);
+                try {
+                    // the full object is fetched instead of simply calling exists
+                    // because we need the parent to signalize the change
+                    var obj = this.media_db.get_object (id);
 
-                // it may be that files removed are files that are not
-                // in the database, because they're not media files
-                if (obj != null) {
-                    this.media_db.remove_object (obj);
-                    if (obj.parent != null) {
-                        obj.parent.updated ();
+                    // it may be that files removed are files that are not
+                    // in the database, because they're not media files
+                    if (obj != null) {
+                        this.media_db.remove_object (obj);
+                        if (obj.parent != null) {
+                            obj.parent.updated ();
+                        }
                     }
+                } catch (Error error) {
+                    warning ("Error removing object from database: %s",
+                             error.message);
                 }
                 break;
             default:
