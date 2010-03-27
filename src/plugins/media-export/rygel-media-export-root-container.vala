@@ -227,16 +227,9 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
 
 
     public string[] get_dynamic_uris () {
-        string[] result = new string[0];
         var dynamic_uris = this.dynamic_elements.get_uris ();
 
-        // copy by hand, to_array does not work due to
-        // vala bug 568972
-        foreach (string uri in dynamic_uris) {
-            result += uri;
-        }
-
-        return result;
+        return dynamic_uris.to_array ();
     }
 
 
