@@ -48,19 +48,14 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         // either an error occured or the gconf key is not set
         if (uris.size == 0) {
             debug("Nothing configured, using XDG special directories");
-            var uri = Environment.get_user_special_dir (UserDirectory.MUSIC);
-            if (uri != null) {
-                uris.add (uri);
-            }
-
-            uri = Environment.get_user_special_dir (UserDirectory.PICTURES);
-            if (uri != null) {
-                uris.add (uri);
-            }
-
-            uri = Environment.get_user_special_dir (UserDirectory.VIDEOS);
-            if (uri != null) {
-                uris.add (uri);
+            UserDirectory[] xdg_directories = { UserDirectory.MUSIC,
+                                                UserDirectory.PICTURES,
+                                                UserDirectory.VIDEOS };
+            foreach (var directory in xdg_directories) {
+                var uri = Environment.get_user_special_dir (directory);
+                if (uri != null) {
+                    uris.add (uri);
+                }
             }
         }
 
