@@ -207,7 +207,7 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
             // pattern contains URL escaped text. This means it might
             // contain '%' chars which will makes sprintf crash
             new_id = this.pattern.replace ("%s", new_id);
-            new_id = register_id (new_id);
+            register_id (ref new_id);
             var container = new MediaExportQueryContainer (this.media_db,
                                                            new_id,
                                                            meta_data);
@@ -219,7 +219,7 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
         return children;
     }
 
-    public static string register_id (string id) {
+    public static void register_id (ref string id) {
         var md5 = Checksum.compute_for_string (ChecksumType.MD5, id);
         if (virtual_container_map == null) {
             virtual_container_map = new HashMap<string,string> ();
@@ -229,7 +229,7 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
             debug ("registering %s for %s", md5, id);
         }
 
-        return PREFIX + md5;
+        id = PREFIX + md5;
     }
 
     public static string? get_virtual_container_definition (string hash) {

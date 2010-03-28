@@ -106,18 +106,20 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
             exp.op == SearchCriteriaOp.EQ) {
             switch (exp.operand2) {
                 case "object.container.album.musicAlbum":
-                    return new MediaExportQueryContainer (
-                                       this.media_db,
-                                       MediaExportQueryContainer.register_id
-                                       ("virtual-container:upnp:album,?"),
-                                       "Albums");
+                    string id = "virtual-container:upnp:album,?";
+                    MediaExportQueryContainer.register_id (ref id);
+
+                    return new MediaExportQueryContainer (this.media_db,
+                                                          id,
+                                                          "Albums");
 
                 case "object.container.person.musicArtist":
-                    return new MediaExportQueryContainer (
-                                       this.media_db,
-                                       MediaExportQueryContainer.register_id
-                                       ("virtual-container:dc:creator,?,upnp:album,?"),
-                                       "Artists");
+                    string id = "virtual-container:dc:creator,?,upnp:album,?";
+                    MediaExportQueryContainer.register_id (ref id);
+
+                    return new MediaExportQueryContainer (this.media_db,
+                                                          id,
+                                                          "Artists");
                 default:
                     return null;
             }
@@ -199,7 +201,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                               Uri.escape_string (exp_.operand2, "", true) +
                               last_argument;
                     debug ("Translated search request to %s", new_id);
-                    new_id = MediaExportQueryContainer.register_id (new_id);
+                    MediaExportQueryContainer.register_id (ref new_id);
                     query_container = new MediaExportQueryContainer (
                                         this.media_db,
                                         new_id,
@@ -303,7 +305,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
 
                     continue;
                 }
-                id = MediaExportQueryContainer.register_id (id);
+                MediaExportQueryContainer.register_id (ref id);
 
                 var virtual_container = new MediaExportQueryContainer (
                                         this.media_db,
