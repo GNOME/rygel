@@ -386,12 +386,11 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 var id = Checksum.compute_for_string (ChecksumType.MD5,
                                                       parent.get_uri ());
                 try {
-                    var parent_container = this.media_db.get_object (id);
-                    if (parent_container != null) {
-                        this.harvest (file, (MediaContainer)parent_container);
-                    } else {
-                        assert_not_reached ();
-                    }
+                    var parent_container = this.media_db.get_object (id)
+                                           as MediaContainer;
+                    assert (parent_container != null);
+
+                    this.harvest (file, parent_container);
                 } catch (Rygel.DatabaseError error) {
                     warning ("Error while getting parent container for " +
                              "filesystem event: %s",
