@@ -126,6 +126,19 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         return null;
     }
 
+    private bool is_find_object (SearchExpression search_expression,
+                                 out string       id) {
+        if (!(search_expression is RelationalExpression)) {
+            return false;
+        }
+
+        var expression = search_expression as RelationalExpression;
+        id = expression.operand2;
+
+        return (expression.operand1 == "@id" &&
+                expression.op == SearchCriteriaOp.EQ);
+    }
+
     public override async Gee.List<MediaObject>? search (
                                         SearchExpression expression,
                                         uint             offset,
@@ -135,6 +148,20 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                                         throws GLib.Error {
         Gee.List<MediaObject> list;
         MediaExportQueryContainer query_container;
+        string id;
+
+        if (is_find_object (expression, out id) &&
+            id.has_prefix (MediaExportQueryContainer.PREFIX)) {
+            query_container = new MediaExportQueryContainer (this.media_db,
+                                                             id);
+            query_container.parent = this;
+
+            list = new ArrayList<MediaObject> ();
+            list.add (query_container);
+            total_matches = list.size;
+
+            return list;
+        }
 
         if (expression is RelationalExpression) {
             var exp = expression as RelationalExpression;
@@ -147,26 +174,6 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                                                            cancellable);
                 foreach (var o1 in list) {
                     o1.upnp_class = exp.operand2;
-                }
-                total_matches = list.size;
-
-                return list;
-            }
-
-            if (exp.operand1 == "@id" &&
-                exp.op == SearchCriteriaOp.EQ &&
-                exp.operand2.has_prefix (MediaExportQueryContainer.PREFIX)) {
-                var real_id = MediaExportQueryContainer.get_virtual_container_definition
-                (exp.operand2);
-                list = new ArrayList<MediaObject> ();
-                if (real_id != null) {
-                    var args = real_id.split (",");
-                    query_container = new MediaExportQueryContainer (
-                                        this.media_db,
-                                        exp.operand2,
-                                        args[args.length - 1]);
-                    query_container.parent = this;
-                    list.add (query_container);
                 }
                 total_matches = list.size;
 
