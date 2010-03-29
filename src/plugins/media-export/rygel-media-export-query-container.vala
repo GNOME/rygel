@@ -68,7 +68,7 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
 
     public MediaExportQueryContainer (MediaDB media_db,
                                       string  id,
-                                      string  name) {
+                                      string  name = "") {
         // parse the id
         // Following the schema:
         // virtual-folder:<class>,? -> get all of that class (eg. Albums)
@@ -102,6 +102,9 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
         while (i < args.length) {
             if (args[i + 1] != "?") {
                 update_search_expression (args[i], args[i + 1]);
+                if (name == "") {
+                    this.title = args[i + 1];
+                }
             } else {
                 args[i + 1] = "%s";
                 this.attribute = args[i].replace (PREFIX, "");
