@@ -181,42 +181,48 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
                                        uint             max_count,
                                        Cancellable?     cancellable)
                                        throws GLib.Error {
+        Gee.List<MediaObject> children;
+
         if (pattern == "") {
+            // this "duplicates" the search expression but using the same
+            // search expression in a conjunction shouldn't do any harm
             uint total_matches;
-            return yield this.search (this.expression,
-                                      offset,
-                                      max_count,
-                                      out total_matches,
-                                      cancellable);
-        }
-
-        var max_objects = max_count;
-        if (max_objects == 0) {
-            max_objects = -1;
-        }
-
-        var children = new ArrayList<MediaObject> ();
-        var data = this.media_db.get_object_attribute_by_search_expression (
-                                       this.attribute,
-                                       this.expression,
-                                       offset,
-                                       max_objects);
-        foreach (var meta_data in data) {
-            if (meta_data == null) {
-                continue;
+            children = yield this.search (this.expression,
+                                          offset,
+                                          max_count,
+                                          out total_matches,
+                                          cancellable);
+        } else {
+            var max_objects = max_count;
+            if (max_objects == 0) {
+                max_objects = -1;
             }
 
-            var new_id = Uri.escape_string (meta_data, "", true);
-            // pattern contains URL escaped text. This means it might
-            // contain '%' chars which will makes sprintf crash
-            new_id = this.pattern.replace ("%s", new_id);
-            register_id (ref new_id);
-            var container = new MediaExportQueryContainer (this.media_db,
-                                                           new_id,
-                                                           meta_data);
-            container.parent = this;
-            container.parent_ref = this;
-            children.add (container);
+            children = new ArrayList<MediaObject> ();
+            var data = this.media_db.get_object_attribute_by_search_expression (
+                                        this.attribute,
+                                        this.expression,
+                                        offset,
+                                        max_objects);
+            foreach (var meta_data in data) {
+                if (meta_data == null) {
+                    continue;
+                }
+
+                var new_id = Uri.escape_string (meta_data, "", true);
+                // pattern contains URL escaped text. This means it might
+                // contain '%' chars which will makes sprintf crash
+                new_id = this.pattern.replace ("%s", new_id);
+                register_id (ref new_id);
+                var container = new MediaExportQueryContainer (this.media_db,
+                                                               new_id,
+                                                               meta_data);
+                children.add (container);
+            }
+        }
+
+        foreach (var child in children) {
+            child.parent = this;
         }
 
         return children;
