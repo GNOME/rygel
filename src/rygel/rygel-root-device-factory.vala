@@ -58,11 +58,17 @@ internal class Rygel.RootDeviceFactory {
         /* Create the description xml */
         var doc = this.create_desc (plugin, desc_path, template_path);
 
-        return new RootDevice (this.context,
-                               plugin,
-                               doc,
-                               desc_path,
-                               BuildConfig.DATA_DIR);
+        var device = new RootDevice (this.context,
+                                     plugin,
+                                     doc,
+                                     desc_path,
+                                     BuildConfig.DATA_DIR);
+
+        /* Now apply the Xbox hacks */
+        var xbox_hacks = new XBoxHacks ();
+        xbox_hacks.apply_on_device (device, desc_path);
+
+        return device;
     }
 
     private XMLDoc create_desc (Plugin plugin,
