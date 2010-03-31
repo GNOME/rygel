@@ -51,11 +51,12 @@ internal class Rygel.RootDeviceFactory {
     }
 
     public RootDevice create (Plugin plugin) throws GLib.Error {
-        string modified_desc = plugin.name + ".xml";
-        var desc_path = Path.build_filename (this.desc_dir, modified_desc);
+        var desc_path = Path.build_filename (this.desc_dir,
+                                             plugin.name + ".xml");
+        var template_path = plugin.desc_path;
 
         /* Create the description xml */
-        var doc = this.create_desc (plugin, desc_path);
+        var doc = this.create_desc (plugin, desc_path, template_path);
 
         return new RootDevice (this.context,
                                plugin,
@@ -65,17 +66,16 @@ internal class Rygel.RootDeviceFactory {
     }
 
     private XMLDoc create_desc (Plugin plugin,
-                                string desc_path) throws GLib.Error {
-        string path;
+                                string desc_path,
+                                string template_path) throws GLib.Error {
+        XMLDoc doc;
 
         if (this.check_path_exist (desc_path)) {
-            path = desc_path;
+            doc = new XMLDoc.from_path (desc_path);
         } else {
             /* Use the template */
-            path = plugin.desc_path;
+            doc = new XMLDoc.from_path (template_path);
         }
-
-        var doc = new XMLDoc.from_path (path);
 
         /* Modify description to include Plugin-specific stuff */
         this.prepare_desc_for_plugin (doc, plugin);
