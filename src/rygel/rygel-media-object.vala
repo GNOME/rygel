@@ -41,7 +41,17 @@ public abstract class Rygel.MediaObject : GLib.Object {
     // You must set 'parent' if you set 'parent_ref' but the opposite is not
     // mandatory.
     public unowned MediaContainer parent;
-    public MediaContainer parent_ref;
+    private MediaContainer _parent_ref;
+    public MediaContainer parent_ref {
+        get {
+            return this._parent_ref;
+        }
+
+        set {
+            this.parent = value;
+            this._parent_ref = value;
+        }
+    }
 
     private string _title;
     public string title {
