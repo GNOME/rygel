@@ -148,7 +148,7 @@ public class Rygel.MediaDB : Object {
     "DELETE FROM Object WHERE upnp_id IN " +
         "(SELECT descendant FROM closure WHERE ancestor = ?)";
 
-    private const string GET_OBJECT_WITH_CLOSURE =
+    private const string GET_OBJECT_WITH_PATH =
     "SELECT o.type_fk, o.title, m.size, m.mime_type, m.width, m.height, " +
             "m.class, m.author, m.album, m.date, m.bitrate, m.sample_freq, " +
             "m.bits_per_sample, m.channels, m.track, m.color_depth, " +
@@ -183,7 +183,8 @@ public class Rygel.MediaDB : Object {
                  "o.title ASC " +
     "LIMIT ?,?";
 
-    private const string GET_OBJECTS_STRING_WITH_FILTER =
+    // The uris are joined in to be able to filter by "ref"
+    private const string GET_OBJECTS_BY_FILTER_STRING =
     "SELECT DISTINCT o.type_fk, o.title, m.size, m.mime_type, " +
             "m.width, m.height, m.class, m.author, m.album, " +
             "m.date, m.bitrate, m.sample_freq, m.bits_per_sample, " +
@@ -211,9 +212,6 @@ public class Rygel.MediaDB : Object {
     private const string OBJECT_EXISTS_STRING =
     "SELECT COUNT(upnp_id), timestamp FROM Object WHERE Object.upnp_id = ?";
 
-    private const string OBJECT_DELETE_STRING =
-    "DELETE FROM Object WHERE Object.upnp_id = ?";
-
     private const string GET_CHILD_ID_STRING =
     "SELECT upnp_id FROM OBJECT WHERE parent = ?";
 
@@ -229,6 +227,10 @@ public class Rygel.MediaDB : Object {
 
     private const string UPDATE_V3_V4_STRING_4 =
     "UPDATE Object SET timestamp = 0";
+
+    private const string GET_META_DATA_COLUMN_STRING =
+    "SELECT DISTINCT %s FROM meta_data AS m %s " +
+        "ORDER BY %s LIMIT ?,?";
 
     public signal void object_added (string object_id);
     public signal void object_removed (string object_id);
@@ -333,7 +335,7 @@ public class Rygel.MediaDB : Object {
             return true;
         };
 
-        this.db.exec (GET_OBJECT_WITH_CLOSURE, values, cb);
+        this.db.exec (GET_OBJECT_WITH_PATH, values, cb);
 
         return parent;
     }
@@ -499,7 +501,7 @@ public class Rygel.MediaDB : Object {
             }
         };
 
-        this.db.exec (GET_OBJECTS_STRING_WITH_FILTER.printf (filter),
+        this.db.exec (GET_OBJECTS_BY_FILTER_STRING.printf (filter),
                       args.values,
                       cb);
 
@@ -963,9 +965,8 @@ public class Rygel.MediaDB : Object {
             return true;
         };
 
-        this.db.exec (("SELECT DISTINCT %s FROM meta_data AS m %s " +
-                      "ORDER BY %s LIMIT ?,?").printf(column, filter, column),
-                      args.values, cb);
+        var sql = GET_META_DATA_COLUMN_STRING.printf (column, filter, column);
+        this.db.exec (sql, args.values, cb);
 
         return data;
     }
