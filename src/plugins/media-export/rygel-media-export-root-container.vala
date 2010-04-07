@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009 Jens Georg <mail@jensge.org>.
+ * Copyright (C) 2009,2010 Jens Georg <mail@jensge.org>.
  *
  * This file is part of Rygel.
  *
@@ -98,7 +98,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         }
     }
 
-    MediaExportQueryContainer? search_to_virtual_container (
+    private MediaExportQueryContainer? search_to_virtual_container (
                                        RelationalExpression expression) {
         if (expression.operand1 == "upnp:class" &&
             expression.op == SearchCriteriaOp.EQ) {
@@ -126,6 +126,15 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         return null;
     }
 
+    /**
+     * Check if the passed search expression is a simple find_object
+     * operation.
+     * (@id = id)
+     *
+     * @param search_expression expression to test
+     * @param id containts id of container on successful return
+     * @return true if expression was a find object
+     */
     private bool is_find_object (SearchExpression search_expression,
                                  out string       id) {
         if (!(search_expression is RelationalExpression)) {
@@ -139,6 +148,71 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 expression.op == SearchCriteriaOp.EQ);
     }
 
+    /**
+     * Check if a passed search expression is a simple search in a virtual
+     * container.
+     *
+     * @param expression the expression to check
+     * @param new_id contains the id of the virtual container constructed from
+     *               the search
+     * @param upnp_class contains the class of the container the search was
+     *                   looking in
+     * @return true if it was a search in virtual container, false otherwise.
+     * @note This works single level only. Enough to satisfy Xbox music
+     *       browsing, but may need refinement
+     */
+    private bool is_search_in_virtual_container (
+                                        SearchExpression   expression,
+                                        out MediaContainer container) {
+        RelationalExpression virtual_expression = null;
+        MediaExportQueryContainer query_container;
+
+        if (!(expression is LogicalExpression)) {
+            return false;
+        }
+
+        var logical_expression = expression as LogicalExpression;
+
+        if (!(logical_expression.operand1 is RelationalExpression &&
+            logical_expression.operand2 is RelationalExpression &&
+            logical_expression.op == LogicalOperator.AND)) {
+
+            return false;
+        }
+
+        var left_expression = logical_expression.operand1 as RelationalExpression;
+        var right_expression = logical_expression.operand2 as RelationalExpression;
+
+        query_container = search_to_virtual_container (left_expression);
+        if (query_container == null) {
+            query_container = search_to_virtual_container (right_expression);
+            if (query_container != null) {
+                virtual_expression = left_expression;
+            } else {
+                return false;
+            }
+        } else {
+            virtual_expression = right_expression;
+        }
+
+        var last_argument = query_container.plaintext_id.replace (
+                                        MediaExportQueryContainer.PREFIX,
+                                        "");
+
+        var escaped_detail = Uri.escape_string (virtual_expression.operand2,
+                                                "",
+                                                true);
+        var new_id = "%s%s,%s,%s".printf (MediaExportQueryContainer.PREFIX,
+                                          virtual_expression.operand1,
+                                          escaped_detail,
+                                          last_argument);
+
+        MediaExportQueryContainer.register_id (ref new_id);
+        container = new MediaExportQueryContainer (this.media_db, new_id);
+
+        return true;
+    }
+
     public override async Gee.List<MediaObject>? search (
                                         SearchExpression expression,
                                         uint             offset,
@@ -147,8 +221,9 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                                         Cancellable?     cancellable)
                                         throws GLib.Error {
         Gee.List<MediaObject> list;
-        MediaExportQueryContainer query_container;
+        MediaContainer query_container = null;
         string id;
+        string upnp_class = null;
 
         if (is_find_object (expression, out id) &&
             id.has_prefix (MediaExportQueryContainer.PREFIX)) {
@@ -164,74 +239,36 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         }
 
         if (expression is RelationalExpression) {
-            var exp = expression as RelationalExpression;
+            var relational_expression = expression as RelationalExpression;
 
-            query_container = search_to_virtual_container (exp);
-            if (query_container != null) {
-                query_container.parent = this;
-                list = yield query_container.get_children (offset,
-                                                           max_count,
-                                                           cancellable);
-                foreach (var o1 in list) {
-                    o1.upnp_class = exp.operand2;
-                }
-                total_matches = list.size;
-
-                return list;
-            }
+            query_container = search_to_virtual_container (
+                                        relational_expression);
+            upnp_class = relational_expression.operand2;
+        } else if (is_search_in_virtual_container (expression,
+                                                   out query_container)) {
+            // do nothing. query_container is filled then
         }
 
-        if (expression is LogicalExpression) {
-            var logical_expression = expression as LogicalExpression;
-            if (logical_expression.operand1 is RelationalExpression &&
-                logical_expression.operand2 is RelationalExpression &&
-                logical_expression.op == LogicalOperator.AND) {
-                var expa = logical_expression.operand1 as RelationalExpression;
-                var expb = logical_expression.operand2 as RelationalExpression;
-                query_container = search_to_virtual_container (expa);
-                RelationalExpression exp_ = null;
-                if (query_container == null) {
-                    query_container = search_to_virtual_container (expb);
-                    if (query_container != null) {
-                        exp_ = expa;
-                    }
-                } else {
-                    exp_ = expb;
-                }
+        if (query_container != null) {
+            list = yield query_container.get_children (offset,
+                                                       max_count,
+                                                       cancellable);
+            total_matches = list.size;
 
-                if (query_container != null) {
-                    var last_argument = query_container.plaintext_id.replace (
-                                        MediaExportQueryContainer.PREFIX,
-                                        "");
-                    var new_id = MediaExportQueryContainer.PREFIX;
-                    new_id += exp_.operand1 + "," +
-                              Uri.escape_string (exp_.operand2, "", true) +
-                              last_argument;
-                    debug ("Translated search request to %s", new_id);
-                    MediaExportQueryContainer.register_id (ref new_id);
-                    query_container = new MediaExportQueryContainer (
-                                        this.media_db,
-                                        new_id,
-                                        exp_.operand2);
-
-                    list = yield query_container.get_children (offset,
-                                                               max_count,
-                                                               cancellable);
-                    foreach (var o2 in list) {
-                        o2.upnp_class = expa.operand2;
-                    }
-                    total_matches = list.size;
-
-                    return list;
+            if (upnp_class != null) {
+                foreach (var object in list) {
+                    object.upnp_class = upnp_class;
                 }
             }
-        }
 
-        return yield base.search (expression,
-                                  offset,
-                                  max_count,
-                                  out total_matches,
-                                  cancellable);
+            return list;
+        } else {
+            return yield base.search (expression,
+                                      offset,
+                                      max_count,
+                                      out total_matches,
+                                      cancellable);
+        }
     }
 
 
@@ -253,8 +290,8 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
 
         this.extractor = MetadataExtractor.create ();
 
-        this.harvester = new HashMap<File,MediaExportHarvester> (file_hash,
-                                                                 file_equal);
+        this.harvester = new HashMap<File, MediaExportHarvester> (file_hash,
+                                                                  file_equal);
         this.harvester_trash = new ArrayList<MediaExportHarvester> ();
 
         this.monitor = new MediaExportRecursiveFileMonitor (null);
