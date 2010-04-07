@@ -26,15 +26,18 @@
 internal class Rygel.HTTPItemURI : Object {
     public string item_id;
     public int thumbnail_index;
+    public int subtitle_index;
     public string? transcode_target;
     public HTTPServer http_server;
 
     public HTTPItemURI (string     item_id,
                         HTTPServer http_server,
                         int        thumbnail_index = -1,
+                        int        subtitle_index = -1,
                         string?    transcode_target = null) {
         this.item_id = item_id;
         this.thumbnail_index = thumbnail_index;
+        this.subtitle_index = subtitle_index;
         this.transcode_target = transcode_target;
         this.http_server = http_server;
     }
@@ -44,6 +47,7 @@ internal class Rygel.HTTPItemURI : Object {
                                     throws HTTPRequestError {
         // do not decode the path here as it may contain encoded slashes
         this.thumbnail_index = -1;
+        this.subtitle_index = -1;
         this.transcode_target = null;
         this.http_server = http_server;
 
@@ -72,6 +76,10 @@ internal class Rygel.HTTPItemURI : Object {
                     this.thumbnail_index = parts[i + 1].to_int ();
 
                     break;
+                case "subtitle":
+                    this.subtitle_index = parts[i + 1].to_int ();
+
+                    break;
                 default:
                     break;
             }
@@ -97,6 +105,8 @@ internal class Rygel.HTTPItemURI : Object {
             path += "/transcoded/" + escaped;
         } else if (this.thumbnail_index >= 0) {
             path += "/thumbnail/" + this.thumbnail_index.to_string ();
+        } else if (this.subtitle_index >= 0) {
+            path += "/subtitle/" + this.subtitle_index.to_string ();
         }
 
         return this.create_uri_for_path (path);

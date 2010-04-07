@@ -32,7 +32,10 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
 
     public override void add_response_headers (HTTPGet request)
                                                throws HTTPRequestError {
-        if (request.thumbnail != null) {
+        if (request.subtitle != null) {
+           request.msg.response_headers.append ("Content-Type",
+                                                request.subtitle.mime_type);
+        } else if (request.thumbnail != null) {
             request.msg.response_headers.append ("Content-Type",
                                                  request.thumbnail.mime_type);
         } else {
@@ -70,7 +73,14 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
     }
 
     private HTTPResponse render_body_real (HTTPGet request) throws Error {
-        if (request.thumbnail != null) {
+        if (request.subtitle != null) {
+            return new SeekableResponse (request.server,
+                                         request.msg,
+                                         request.subtitle.uri,
+                                         request.seek,
+                                         request.subtitle.size,
+                                         this.cancellable);
+        } else if (request.thumbnail != null) {
             return new SeekableResponse (request.server,
                                          request.msg,
                                          request.thumbnail.uri,

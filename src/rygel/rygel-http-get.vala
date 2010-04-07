@@ -30,9 +30,11 @@ using Gst;
  */
 internal class Rygel.HTTPGet : HTTPRequest {
     public Thumbnail thumbnail;
+    public Subtitle subtitle;
     public HTTPSeek seek;
 
     private int thumbnail_index;
+    private int subtitle_index;
 
     public HTTPGetHandler handler;
 
@@ -42,6 +44,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
         base (http_server, server, msg);
 
         this.thumbnail_index = -1;
+        this.subtitle_index = -1;
     }
 
     protected override async void handle () {
@@ -84,6 +87,8 @@ internal class Rygel.HTTPGet : HTTPRequest {
         if (this.uri.thumbnail_index >= 0) {
             this.thumbnail = this.item.thumbnails.get (
                                         this.uri.thumbnail_index);
+        } else if (this.uri.subtitle_index >= 0) {
+            this.subtitle = this.item.subtitles.get (this.uri.subtitle_index);
         }
     }
 

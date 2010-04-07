@@ -29,6 +29,8 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
 
         if (request.thumbnail != null) {
             total_length = request.thumbnail.size;
+        } else if (request.subtitle != null) {
+            total_length = request.subtitle.size;
         } else {
             total_length = request.item.size;
         }
@@ -80,7 +82,8 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
     public static bool needed (HTTPGet request) {
         return (request.item.size > 0 &&
                 request.handler is HTTPIdentityHandler) ||
-               (request.thumbnail != null && request.thumbnail.size > 0);
+               (request.thumbnail != null && request.thumbnail.size > 0) ||
+               (request.subtitle != null && request.subtitle.size > 0);
     }
 
     public override void add_response_headers () {

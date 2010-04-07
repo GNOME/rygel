@@ -66,6 +66,23 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     internal override void add_resources (DIDLLiteItem didl_item,
                                           MediaItem    item)
                                           throws Error {
+        // Subtitles first
+        foreach (var subtitle in item.subtitles) {
+            if (!is_http_uri (subtitle.uri)) {
+                var uri = subtitle.uri; // Save the original URI
+                var index = item.subtitles.index_of (subtitle);
+
+                subtitle.uri = this.create_uri_for_item (item,
+                                                         -1,
+                                                         index,
+                                                         null);
+                subtitle.add_didl_node (didl_item);
+
+                // Now restore the original URI
+                subtitle.uri = uri;
+            }
+        }
+
         if (!this.http_uri_present (item)) {
             this.add_proxy_resource (didl_item, item);
         }
@@ -78,7 +95,10 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                 var uri = thumbnail.uri; // Save the original URI
                 var index = item.thumbnails.index_of (thumbnail);
 
-                thumbnail.uri = this.create_uri_for_item (item, index, null);
+                thumbnail.uri = this.create_uri_for_item (item,
+                                                          index,
+                                                          -1,
+                                                          null);
                 thumbnail.add_resource (didl_item,  this.get_protocol ());
 
                 // Now restore the original URI
@@ -90,7 +110,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     internal void add_proxy_resource (DIDLLiteItem didl_item,
                                       MediaItem    item)
                                       throws Error {
-        var uri = this.create_uri_for_item (item, -1, null);
+        var uri = this.create_uri_for_item (item, -1, -1, null);
 
         item.add_resource (didl_item,
                            uri.to_string (),
@@ -127,10 +147,12 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
 
     internal override string create_uri_for_item (MediaItem item,
                                                   int       thumbnail_index,
+                                                  int       subtitle_index,
                                                   string?   transcode_target) {
         var uri = new HTTPItemURI (item.id,
                                    this,
                                    thumbnail_index,
+                                   subtitle_index,
                                    transcode_target);
 
         return uri.to_string ();

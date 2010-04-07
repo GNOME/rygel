@@ -75,6 +75,8 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-media-item.vala \
 		    rygel-thumbnail.vala \
 		    rygel-thumbnailer.vala \
+		    rygel-subtitle.vala \
+		    rygel-subtitle-manager.vala \
 		    rygel-browse.vala \
 		    rygel-search.vala \
 			rygel-xbox-hacks.vala \

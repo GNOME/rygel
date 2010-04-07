@@ -64,6 +64,7 @@ public class Rygel.MediaItem : MediaObject {
     public int color_depth = -1;
 
     public ArrayList<Thumbnail> thumbnails;
+    public ArrayList<Subtitle> subtitles;
 
     internal bool place_holder = false;
 
@@ -77,6 +78,7 @@ public class Rygel.MediaItem : MediaObject {
         this.upnp_class = upnp_class;
 
         this.thumbnails = new ArrayList<Thumbnail> ();
+        this.subtitles = new ArrayList<Subtitle> ();
     }
 
     // Live media items need to provide a nice working implementation of this
@@ -127,6 +129,19 @@ public class Rygel.MediaItem : MediaObject {
                 this.thumbnails.add (thumb);
             } catch (Error err) {}
         }
+
+        if (this.upnp_class.has_prefix (MediaItem.VIDEO_CLASS)) {
+            var subtitle_manager = SubtitleManager.get_default ();
+
+            if (subtitle_manager == null) {
+                return;
+            }
+
+            try {
+                var subtitle = subtitle_manager.get_subtitle (uri);
+                this.subtitles.add (subtitle);
+            } catch (Error err) {}
+        }
     }
 
     internal int compare_transcoders (void *a, void *b) {
@@ -140,6 +155,14 @@ public class Rygel.MediaItem : MediaObject {
     internal void add_resources (DIDLLiteItem didl_item,
                                  bool         allow_internal)
                                  throws Error {
+        foreach (var subtitle in this.subtitles) {
+            var protocol = this.get_protocol_for_uri (subtitle.uri);
+
+            if (allow_internal || protocol != "internal") {
+                subtitle.add_didl_node (didl_item);
+            }
+        }
+
         foreach (var uri in this.uris) {
             var protocol = this.get_protocol_for_uri (uri);
 

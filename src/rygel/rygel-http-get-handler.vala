@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2008-2010 Nokia Corporation.
+ * Copyright (C) 2010 Andreas Henriksson <andreas@fatal.se>
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
@@ -55,6 +56,19 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
         } catch (Error err) {
             warning ("Received request for 'contentFeatures.dlna.org' but " +
                      "failed to provide the value in response headers");
+        }
+
+        // Handle Samsung DLNA TV proprietary subtitle headers
+        if (request.msg.request_headers.get ("getCaptionInfo.sec") != null &&
+            request.item.subtitles.size > 0) {
+                var caption_uri = request.http_server.create_uri_for_item (
+                                        request.item,
+                                        -1,
+                                        0, // FIXME: offer first subtitle only?
+                                        null);
+
+                request.msg.response_headers.append ("CaptionInfo.sec",
+                                                     caption_uri);
         }
     }
 
