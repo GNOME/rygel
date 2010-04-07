@@ -99,7 +99,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                                                           index,
                                                           -1,
                                                           null);
-                thumbnail.add_resource (didl_item,  this.get_protocol ());
+                thumbnail.add_resource (didl_item, this.get_protocol ());
 
                 // Now restore the original URI
                 thumbnail.uri = uri;
