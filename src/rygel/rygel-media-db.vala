@@ -540,7 +540,34 @@ public class Rygel.MediaDB : Object {
                           });
             int current_version = schema_version.to_int ();
             if (old_version == current_version) {
+                bool schema_ok = true;
+
                 debug ("Media DB schema has current version");
+                debug ("Checking for consistent schema...");
+                db.exec ("SELECT count(*) FROM sqlite_master WHERE sql " +
+                         "LIKE 'CREATE TABLE Meta_Data%object_fk TEXT " +
+                         "UNIQUE%'",
+                         null,
+                         (statement) => {
+                             schema_ok = statement.column_int (0) == 1;
+
+                             return false;
+                         });
+                if (!schema_ok) {
+                    try {
+                        message ("Found faulty schema, forcing full reindex");
+                        db.begin ();
+                        db.exec ("DELETE FROM Object WHERE upnp_id IN (" +
+                                 "SELECT DISTINCT object_fk FROM meta_data)");
+                        db.exec ("DROP TABLE Meta_Data");
+                        db.exec (CREATE_META_DATA_TABLE_STRING);
+                        db.commit ();
+                    } catch (Error error) {
+                        db.rollback ();
+                        warning ("Failed to force reindex to fix database: " +
+                                 error.message);
+                    }
+                }
             } else {
                 if (old_version < current_version) {
                     debug ("Older schema detected. Upgrading...");
