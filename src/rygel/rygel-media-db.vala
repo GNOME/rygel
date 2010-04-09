@@ -46,10 +46,7 @@ public class Rygel.MediaDB : Object {
     private Rygel.Database db;
     private MediaDBObjectFactory factory;
     private const string schema_version = "5";
-    private const string SCHEMA_STRING =
-    "CREATE TABLE schema_info (version TEXT NOT NULL); " +
-    "CREATE TABLE object_type (id INTEGER PRIMARY KEY, " +
-                              "desc TEXT NOT NULL);" +
+    private const string CREATE_META_DATA_TABLE_STRING =
     "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
                             "mime_type TEXT NOT NULL, " +
                             "duration INTEGER, " +
@@ -67,7 +64,13 @@ public class Rygel.MediaDB : Object {
                             "color_depth INTEGER, " +
                             "object_fk TEXT UNIQUE CONSTRAINT " +
                                 "object_fk_id REFERENCES Object(upnp_id) " +
-                                    "ON DELETE CASCADE);" +
+                                    "ON DELETE CASCADE);";
+
+    private const string SCHEMA_STRING =
+    "CREATE TABLE schema_info (version TEXT NOT NULL); " +
+    "CREATE TABLE object_type (id INTEGER PRIMARY KEY, " +
+                              "desc TEXT NOT NULL);" +
+    CREATE_META_DATA_TABLE_STRING +
     "CREATE TABLE object (parent TEXT CONSTRAINT parent_fk_id " +
                                 "REFERENCES Object(upnp_id), " +
                           "upnp_id TEXT PRIMARY KEY, " +
@@ -104,6 +107,7 @@ public class Rygel.MediaDB : Object {
         "DELETE FROM Closure WHERE descendant = OLD.upnp_id;" +
     "END;";
 
+    // these triggers emulate ON DELETE CASCADE
     private const string CREATE_TRIGGER_STRING =
     "CREATE TRIGGER trgr_delete_metadata " +
     "BEFORE DELETE ON Object " +
@@ -214,9 +218,6 @@ public class Rygel.MediaDB : Object {
 
     private const string GET_CHILD_ID_STRING =
     "SELECT upnp_id FROM OBJECT WHERE parent = ?";
-
-    private const string UPDATE_V3_V4_STRING_1 =
-    "ALTER TABLE meta_data ADD object_fk TEXT";
 
     private const string UPDATE_V3_V4_STRING_2 =
     "UPDATE meta_data SET object_fk = " +
@@ -546,6 +547,9 @@ public class Rygel.MediaDB : Object {
                     switch (old_version) {
                         case 3:
                             update_v3_v4 ();
+                            if (this.db != null) {
+                                update_v4_v5 ();
+                            }
                             break;
                         case 4:
                             update_v4_v5 ();
@@ -605,8 +609,17 @@ public class Rygel.MediaDB : Object {
     private void update_v3_v4 () {
         try {
             db.begin ();
-            db.exec (UPDATE_V3_V4_STRING_1);
-            db.exec (UPDATE_V3_V4_STRING_2);
+            db.exec ("ALTER TABLE Meta_Data RENAME TO _Meta_Data");
+            db.exec (CREATE_META_DATA_TABLE_STRING);
+            db.exec ("INSERT INTO meta_data (size, mime_type, duration, " +
+                     "width, height, class, author, album, date, " +
+                     "bitrate, sample_freq, bits_per_sample, channels, " +
+                     "track, color_depth, object_fk) SELECT size, " +
+                     "mime_type, duration, width, height, class, author, " +
+                     "album, date, bitrate, sample_freq, bits_per_sample, " +
+                     "channels, track, color_depth, o.upnp_id FROM " +
+                     "_Meta_Data JOIN object o ON id = o.metadata_fk");
+            db.exec ("DROP TABLE _Meta_Data");
             db.exec (UPDATE_V3_V4_STRING_3);
             db.exec (UPDATE_V3_V4_STRING_4);
             db.exec (CREATE_TRIGGER_STRING);
