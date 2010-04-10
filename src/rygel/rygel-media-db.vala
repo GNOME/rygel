@@ -660,6 +660,7 @@ public class Rygel.MediaDB : Object {
     }
 
     private void update_v4_v5 () {
+        Gee.Queue<string> queue = new LinkedList<string> ();
         try {
             db.begin ();
             db.exec ("DROP TRIGGER IF EXISTS trgr_delete_children");
@@ -669,7 +670,26 @@ public class Rygel.MediaDB : Object {
             db.exec ("CREATE TABLE Object AS SELECT * FROM _Object");
             db.exec ("DELETE FROM Object");
             db.exec (CREATE_CLOSURE_TRIGGER_STRING);
-            db.exec ("INSERT INTO Object SELECT * FROM _Object");
+            db.exec ("INSERT INTO _Object (upnp_id, type_fk, title, " +
+                     "timestamp) VALUES ('0', 0, 'Root', 0)");
+            db.exec ("INSERT INTO Object (upnp_id, type_fk, title, " +
+                     "timestamp) VALUES ('0', 0, 'Root', 0)");
+
+            queue.offer ("0");
+            while (!queue.is_empty) {
+                GLib.Value[] args = { queue.poll () };
+                db.exec ("SELECT upnp_id FROM _Object WHERE parent = ?",
+                         args,
+                         (statement) => {
+                            queue.offer (statement.column_text (0));
+
+                            return true;
+                         });
+
+                db.exec ("INSERT INTO Object SELECT * FROM _OBJECT " +
+                         "WHERE parent = ?",
+                         args);
+            }
             db.exec ("DROP TABLE Object");
             db.exec ("ALTER TABLE _Object RENAME TO Object");
             // the triggers created above have been dropped automatically
