@@ -182,7 +182,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         }
 
         this.child_count = this.containers.size +
-                           this.actual_container.item_count;
+                           (int) this.actual_container.item_count;
     }
 
     private void on_updated (ExternalMediaContainer actual_container) {

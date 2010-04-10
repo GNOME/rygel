@@ -115,7 +115,7 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
         debug ("We have %u children", this.child_count);
     }
 
-    private uint count_children () {
+    private int count_children () {
         try {
             if (this.pattern == "") {
                 var children = this.media_db.get_objects_by_search_expression (
@@ -123,9 +123,9 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
                                         "0",
                                         0,
                                         -1);
-                return (uint) children.size;
+                return children.size;
             } else {
-                uint retval = 0;
+                int retval = 0;
                 var data = this.media_db.get_object_attribute_by_search_expression (
                                         this.attribute,
                                         this.expression,

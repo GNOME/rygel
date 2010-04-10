@@ -37,13 +37,13 @@ public abstract class Rygel.MediaContainer : MediaObject {
      */
     public signal void container_updated (MediaContainer container);
 
-    public uint child_count;
+    public int child_count;
     public uint32 update_id;
 
     public MediaContainer (string          id,
                            MediaContainer? parent,
                            string          title,
-                           uint            child_count) {
+                           int             child_count) {
         this.id = id;
         this.parent = parent;
         this.title = title;
@@ -55,7 +55,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
     }
 
     public MediaContainer.root (string title,
-                                uint   child_count) {
+                                int    child_count) {
         this ("0", null, title, child_count);
     }
 
