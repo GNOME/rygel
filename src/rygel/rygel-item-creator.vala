@@ -22,6 +22,10 @@
 
 using GUPnP;
 
+private errordomain Rygel.ItemCreatorError {
+    PARSE
+}
+
 /**
  * CreateObject action implementation.
  */
@@ -59,6 +63,11 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                     this.didl_item = didl_item;
             });
             this.didl_parser.parse_didl (this.elements);
+            if (this.didl_item == null) {
+                throw new ItemCreatorError.PARSE ("Failed to find any item " +
+                                                  "in DIDL-Lite from client: " +
+                                                  this.elements);
+            }
 
             this.item = new MediaItem (didl_item.id,
                                        container,
