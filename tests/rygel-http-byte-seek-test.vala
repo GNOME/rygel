@@ -35,12 +35,17 @@ private class Rygel.Thumbnail : GLib.Object {
     public int64 size = 1024;
 }
 
+private class Rygel.Subtitle : GLib.Object {
+    public int64 size = 1024;
+}
+
 private class Rygel.HTTPGet : GLib.Object {
     public const string ITEM_URI = "http://DoesntMatterWhatThisIs";
 
     public Soup.Message msg;
     public MediaItem item;
     public Thumbnail thumbnail;
+    public Subtitle subtitle;
 
     public HTTPIdentityHandler handler;
 

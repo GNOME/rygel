@@ -56,6 +56,7 @@ private class Rygel.HTTPServer : GLib.Object {
 private class Rygel.HTTPItemURITest : GLib.Object {
     private const string ITEM_ID = "HELLO";
     private const int THUMBNAIL_INDEX = 1;
+    private const int SUBTITLE_INDEX = 1;
     private const string TRANSCODE_TARGET = "MP3";
 
     private HTTPServer server;
@@ -80,6 +81,7 @@ private class Rygel.HTTPItemURITest : GLib.Object {
         var uris = new HTTPItemURI[] {
             this.test_construction (),
             this.test_construction_with_thumbnail (),
+            this.test_construction_with_subtitle (),
             this.test_construction_with_transcoder () };
 
         foreach (var uri in uris) {
@@ -99,6 +101,15 @@ private class Rygel.HTTPItemURITest : GLib.Object {
         return uri;
     }
 
+    private HTTPItemURI test_construction_with_subtitle () {
+        var uri = new HTTPItemURI (ITEM_ID,
+                                   this.server,
+                                   SUBTITLE_INDEX);
+        assert (uri != null);
+
+        return uri;
+    }
+
     private HTTPItemURI test_construction_with_thumbnail () {
         var uri = new HTTPItemURI (ITEM_ID,
                                    this.server,
@@ -112,6 +123,7 @@ private class Rygel.HTTPItemURITest : GLib.Object {
         var uri = new HTTPItemURI (ITEM_ID,
                                    this.server,
                                    THUMBNAIL_INDEX,
+                                   -1,
                                    TRANSCODE_TARGET);
         assert (uri != null);
 
