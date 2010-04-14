@@ -1,3 +1,58 @@
+0.5.2
+=====
+
+Another release in the unstable 0.5.x series. Changes since 0.5.0:
+
+- Add support for Xbox 360 and Window Media Player 11.
+- Add support for subtitles. Currently only useful for certain Samsung DLNA TVs.
+- Add Windows Media Video (WMV) transcoder.
+- Add unit tests for a few modules.
+- Fix some (potential) crashes.
+- Make database operations cancellable.
+- Throw error on database creation failure.
+- Simpler (hopefully) build rules.
+- Fix race-condition in streaming code so we don't terminate the connection
+  before all the bytes are sent to the client.
+- Fix leaking of HTTP messages of live streams on termination.
+- Fix 'Content-Length' header values for partial requests.
+- Fix parsing of search expression containing characters not within the original
+  latin1 range.
+- Use bigger (64Ki) buffers when streaming media to reduce cpu usage and
+  therefore improve battery life.
+- Include spec version in description document.
+- Remove now unneeded work-around for vala bug#568972.
+- Advertize photos with their specific class, i-e 'photo' rather than 'image'.
+- MediaExport:
+  - Implement search by URIs.
+  - Implement search by album.
+  - Error-out on invalid search expression.
+  - Add support for virtual containers. This allows creation of metadata-based
+    hierarchies in the user-config.
+  - Fix deletion of containers.
+  - URI-escape meta-data fields.
+  - Catch previously uncaught exceptions.
+  - Fix upgrade of database from older schemas.
+- Lots of code clean-ups and documentation fixes.
+
+Dependency-related changes:
+
+- Require gupnp >= 0.13.3.
+- Require gupnp-av >= 0.5.5.
+- Require gupnp-vala >= 0.6.5.
+- Require valac >= 0.8.0.
+
+Bugs fixed in this release:
+
+608886 - media export plugin corrupts its database when you change directories
+609944 - Files not harvested on update
+606305 - Samsung subtitles
+
+All contributors to this release:
+
+Jens Georg <mail@jensge.org>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Cyrille Chepelov <cyrille.chepelov@keyconsulting.fr>
+
 0.5.0
 =====
 
