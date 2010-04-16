@@ -35,6 +35,7 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
 
     public string name;
     public string title;
+    public string description;
 
     // Path to description document
     public string desc_path;
@@ -46,10 +47,12 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
 
     public Plugin (string  desc_path,
                    string  name,
-                   string? title) {
+                   string? title,
+                   string? description = null) {
         this.desc_path = desc_path;
         this.name = name;
         this.title = title;
+        this.description = description;
 
         this.available = true;
 
@@ -63,8 +66,9 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
 
     public Plugin.MediaServer (string  name,
                                string? title,
-                               Type    content_dir_type) {
-        this (MEDIA_SERVER_DESC_PATH, name, title);
+                               Type    content_dir_type,
+                               string? description = null) {
+        this (MEDIA_SERVER_DESC_PATH, name, title, description);
 
         // MediaServer implementations must implement ContentDirectory service
         var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,

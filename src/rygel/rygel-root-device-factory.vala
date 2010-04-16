@@ -109,6 +109,10 @@ internal class Rygel.RootDeviceFactory {
                                         plugin.name,
                                         plugin.title);
 
+        if (plugin.description != null) {
+            this.set_description (device_element, plugin.description);
+        }
+
         /* Then list each icon */
         this.add_icons_to_desc (device_element, plugin);
 
@@ -160,6 +164,20 @@ internal class Rygel.RootDeviceFactory {
 
             element->set_content (udn);
         }
+    }
+
+    private void set_description (Xml.Node *device_element,
+                                  string    description) {
+        Xml.Node *element = Utils.get_xml_element (device_element,
+                                                   "modelDescription",
+                                                   null);
+        if (element == null) {
+            warning ("Element /root/device/modelDescription not found.");
+
+            return;
+        }
+
+        element->set_content (description);
     }
 
     private void add_services_to_desc (Xml.Node *device_element,
