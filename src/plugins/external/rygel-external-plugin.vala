@@ -34,7 +34,8 @@ public class Rygel.ExternalPlugin : Rygel.Plugin {
                            IconInfo? icon) {
         base.MediaServer (service_name,
                           title,
-                          typeof (ExternalContentDir));
+                          typeof (ExternalContentDir),
+                          "Rygel External " + title);
 
         this.service_name = service_name;
         this.root_object = root_object;
