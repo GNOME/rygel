@@ -243,14 +243,13 @@ AM_CONDITIONAL([BUILD_GST_RENDERER_PLUGIN], [test "x$enable_gst_renderer_plugin"
 AM_CONDITIONAL([BUILD_GST_LAUNCH_PLUGIN], [test "x$enable_gst_launch_plugin" = "xyes"])
 
 # Gettext
-GETTEXT_PACKAGE=rygel
+GETTEXT_PACKAGE=AC_PACKAGE_NAME
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, ["$GETTEXT_PACKAGE"], 
   [Define the gettext package to be used])
 
-ALL_LINGUAS=""
 AM_GLIB_GNU_GETTEXT
-AM_GLIB_DEFINE_LOCALEDIR([LOCALEDIR])
+IT_PROG_INTLTOOL([0.35.0])
 
 AC_SUBST(VALAFLAGS)
 
@@ -272,6 +271,7 @@ src/plugins/gst-renderer/Makefile
 src/plugins/test/Makefile
 data/Makefile
 data/xml/Makefile
+po/Makefile.in
 rygel-1.0.pc
 tests/Makefile
 ])
