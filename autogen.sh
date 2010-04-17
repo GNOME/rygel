@@ -1,7 +1,10 @@
 #! /bin/sh
-mkdir -p m4
-autoreconf -v --install || exit 1
-glib-gettextize --force --copy || exit 1
-./configure --enable-vala --enable-maintainer-mode --enable-debug \
-            --enable-test-plugin --enable-mediathek-plugin \
-	    --enable-gst-launch-plugin "$@"
+
+which gnome-autogen.sh || {
+    echo "You need to install gnome-common from the GNOME git"
+    exit 1
+}
+
+. gnome-autogen.sh --enable-vala --enable-maintainer-mode --enable-debug \
+                   --enable-test-plugin --enable-mediathek-plugin \
+                   --enable-gst-launch-plugin "$@"
