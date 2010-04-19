@@ -83,6 +83,8 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
                                         SeekType.SET,
                                         this.cancellable);
             } catch (Error err) {
+                // Failed to seek to media segment (defined by first and last
+                // byte positions).
                 warning (_("Failed to seek to %s-%s on URI %s: %s"),
                          seek.start.to_string (),
                          seek.stop.to_string (),

@@ -30,6 +30,8 @@ public class Rygel.TrackerPlugin : Rygel.Plugin {
 
     public TrackerPlugin () {
         base.MediaServer ("Tracker",
+                           // @REALNAME@ is substituted for user's real name
+                           // and it doesn't need translation.
                           _("@REALNAME@'s media"),
                           typeof (MediaTracker));
 

@@ -80,6 +80,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         dynamic Element sink = ElementFactory.make ("fakesink", SINK_NAME);
 
         if (sink == null) {
+            // 'fakesink' should not be translated
             throw new GstError.MISSING_PLUGIN (_("Plugin 'fakesink' missing"));
         }
 
