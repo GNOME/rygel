@@ -115,7 +115,10 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
             i += 2;
         }
         this.child_count = this.count_children ();
-        debug (_("We have %u children"), this.child_count);
+        debug (ngettext ("We have %u child.",
+                         "We have %u children.",
+                         this.child_count),
+                         this.child_count);
     }
 
     private int count_children () {
