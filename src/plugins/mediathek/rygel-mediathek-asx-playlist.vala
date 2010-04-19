@@ -91,7 +91,7 @@ public class Rygel.MediathekAsxPlaylist : Object {
                 else {
                     throw new 
                         MediathekAsxPlaylistError.XML_ERROR (
-                                                  _("Could not received XML"));
+                                                  _("Could not fetch XML"));
                 }
             }
             catch (RegexError error) { }

@@ -214,7 +214,7 @@ internal class Rygel.Database : Object {
      */
     public void rollback () {
         if (this.db.exec ("ROLLBACK") != Sqlite.OK) {
-            critical (_("Failed to rollback transaction: %s"),
+            critical (_("Failed to roll back transaction: %s"),
                       db.errmsg ());
         }
     }

@@ -72,8 +72,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         try {
             this.create_proxies ();
         } catch (DBus.Error error) {
-            critical (_("Failed to create to Session bus: %s"),
-                      error.message);
+            critical (_("Failed to connect to session bus: %s"), error.message);
 
             return;
         }

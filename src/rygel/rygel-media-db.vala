@@ -449,7 +449,7 @@ public class Rygel.MediaDB : Object {
             return new Gee.ArrayList<MediaObject> ();
         }
 
-        debug (_("Orignal search: %s"), expression.to_string ());
+        debug (_("Original search: %s"), expression.to_string ());
         debug (_("Parsed search expression: %s"), filter);
 
         for (int i = 0; i < args.n_values; i++) {
