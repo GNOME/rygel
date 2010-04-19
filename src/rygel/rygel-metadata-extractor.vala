@@ -113,7 +113,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
                 if (factory != null) {
                     debug (_("Using playbin"));
                 } else {
-                    critical (_("Could not find any playbin. ") +
+                    critical (_("Could not find any playbin.") + " " +
                               _("Please check your gstreamer setup"));
                     return null;
                 }
