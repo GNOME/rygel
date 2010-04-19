@@ -138,7 +138,7 @@
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
                             <property name="xpad">12</property>
-                            <property name="label" translatable="yes">_Port</property>
+                            <property name="label" translatable="yes" comments="Network Port">_Port</property>
                             <property name="use_underline">True</property>
                             <property name="mnemonic_widget">port-spinbutton</property>
                           </object>
@@ -154,7 +154,7 @@
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
                             <property name="xpad">12</property>
-                            <property name="label" translatable="yes">_Interface</property>
+                            <property name="label" translatable="yes" comments="Network Interface">_Interface</property>
                             <property name="use_underline">True</property>
                           </object>
                           <packing>
