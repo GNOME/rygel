@@ -85,12 +85,10 @@ internal class Rygel.MP2TSTranscoderBin : Gst.Bin {
         encoder.link (this.muxer);
 
         if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
-            GstUtils.post_error (this,
-                                 new GstError.LINK (_("Failed to link pad" +
-                                                      " %s to %s"),
-                                                    new_pad.name,
-                                                    enc_pad.name));
-            return;
+            var error = new GstError.LINK (_("Failed to link pad %s to %s"),
+                                           new_pad.name,
+                                           enc_pad.name);
+            GstUtils.post_error (this, error);
         }
     }
 }

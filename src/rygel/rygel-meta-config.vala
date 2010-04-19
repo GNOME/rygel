@@ -242,9 +242,9 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         }
 
         if (unavailable) {
-            throw new ConfigurationError.NO_VALUE_SET (_("No value available" +
-                                                         " for '%s/enabled'"),
-                                                       section);
+            throw new ConfigurationError.NO_VALUE_SET (
+                                        _("No value set for '%s/enabled'"),
+                                        section);
         }
 
         return val;
@@ -261,9 +261,9 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         }
 
         if (val == null) {
-            throw new ConfigurationError.NO_VALUE_SET (_("No value available" +
-                                                         " for '%s/enabled'"),
-                                                       section);
+            throw new ConfigurationError.NO_VALUE_SET (
+                                        _("No value set for '%s/enabled'"),
+                                        section);
         }
 
         return val;

@@ -59,8 +59,7 @@ public class Rygel.LogHandler : GLib.Object {
         } catch (Error err) {
             this.levels = DEFAULT_LEVELS;
 
-            warning (_("Failed to get log level from" +
-                       " configuration sources: %s"),
+            warning (_("Failed to get log level from configuration: %s"),
                      err.message);
         }
 

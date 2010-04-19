@@ -437,8 +437,8 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
 
                     this.harvest (file, parent_container);
                 } catch (Rygel.DatabaseError error) {
-                    warning (_("Error while getting parent container for " +
-                               "filesystem event: %s"),
+                    warning (_("Error fetching object '%s' from database: %s"),
+                             id,
                              error.message);
                 }
                 break;

@@ -105,9 +105,9 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
                                      this.cancellable);
         } else {
             if (item.uris.size == 0) {
-                throw new HTTPRequestError.NOT_FOUND (_("Requested item '%s' " +
-                                                        "didn't provide a URI"),
-                                                      item.id);
+                throw new HTTPRequestError.NOT_FOUND (
+                                        _("Item '%s' didn't provide a URI"),
+                                        item.id);
             }
 
             return new SeekableResponse (request.server,

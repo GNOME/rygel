@@ -99,9 +99,9 @@ public class Rygel.MediathekVideoItem : Rygel.MediaItem {
                         }
                     }
                     else {
-                        throw new MediathekVideoItemError.XML_PARSE_ERROR (
-                                        _("Invalid or no namespace" +
-                                          " on group node"));
+                        var msg = _("Invalid or no namespace on group node");
+
+                        throw new MediathekVideoItemError.XML_PARSE_ERROR (msg);
                     }
                     break;
                 default:
@@ -110,14 +110,14 @@ public class Rygel.MediathekVideoItem : Rygel.MediaItem {
 
         }
         if (title == null) {
-            throw new MediathekVideoItemError.XML_PARSE_ERROR (_("Could not " +
-                                                                 "find title"));
+            throw new MediathekVideoItemError.XML_PARSE_ERROR (
+                                        _("Could not find title"));
         }
 
 
         if (asx == null) {
-            throw new MediathekVideoItemError.XML_PARSE_ERROR (_("Could not " +
-                                                                 "find uris"));
+            throw new MediathekVideoItemError.XML_PARSE_ERROR (
+                                        _("Could not find URIs"));
         }
 
         video_item = new MediathekVideoItem (parent, title);

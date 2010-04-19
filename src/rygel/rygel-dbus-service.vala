@@ -42,8 +42,7 @@ public class Rygel.DBusService : Object {
                                                      (uint) 0);
 
         if (request_name_result != DBus.RequestNameReply.PRIMARY_OWNER) {
-            warning (_("Failed to start D-Bus service," +
-                       " name '%s' already taken"),
+            warning ("Failed to start D-Bus service  name '%s' already taken",
                      RYGEL_SERVICE);
         } else {
             conn.register_object (RYGEL_PATH, this);

@@ -136,8 +136,8 @@ public class Rygel.PluginLoader : Object {
         void* function;
 
         if (!module.symbol("module_init", out function)) {
-            warning (_("Failed to find entry point function 'module_init'" +
-                       " in module loaded from path '%s': %s"),
+            warning (_("Failed to find entry point function '%s' in '%s': %s"),
+                     "module_init",
                      file_path,
                      Module.error ());
 

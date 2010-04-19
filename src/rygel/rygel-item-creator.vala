@@ -64,10 +64,9 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             });
             this.didl_parser.parse_didl (this.elements);
             if (this.didl_item == null) {
-                throw new ItemCreatorError.PARSE (
-                                        _("Failed to find any item in " +
-                                          "DIDL-Lite from client: '%s'"),
-                                        this.elements);
+                var message = _("No items in DIDL-Lite from client: '%s'");
+
+                throw new ItemCreatorError.PARSE (message, this.elements);
             }
 
             this.item = new MediaItem (didl_item.id,

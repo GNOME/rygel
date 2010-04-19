@@ -49,8 +49,7 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
 
         if (item_class == null) {
             item_class = MediaItem.AUDIO_CLASS;
-            warning (_("Failed to detect UPnP class for '%s'," +
-                       " assuming it's '%s'"),
+            warning (_("Failed to detect UPnP class for '%s', assuming '%s'"),
                      file.get_uri (),
                      item_class);
         }
@@ -87,8 +86,7 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
                                                 out duration)) {
                             class_guessed = MediaItem.VIDEO_CLASS;
                         } else {
-                            warning(_("There's no codec inside and file" +
-                                      " is no image: %s"),
+                            warning(_("File '%s' is of unknown format/type."),
                                     file.get_uri ());
                             return null;
                         }

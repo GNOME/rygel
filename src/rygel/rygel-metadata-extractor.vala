@@ -113,8 +113,8 @@ public class Rygel.MetadataExtractor: GLib.Object {
                 if (factory != null) {
                     debug (_("Using playbin"));
                 } else {
-                    critical (_("Could not find any playbin. " +
-                                "Please check your gstreamer setup"));
+                    critical (_("Could not find any playbin. ") +
+                              _("Please check your gstreamer setup"));
                     return null;
                 }
             }
@@ -152,9 +152,9 @@ public class Rygel.MetadataExtractor: GLib.Object {
                  this.file_queue.peek_head ().get_uri ());
         this.playbin.set_state (State.NULL);
 
+        var message = _("Pipeline stuck while reading file info");
         this.error (file_queue.peek_head (),
-                    new IOChannelError.FAILED (_("Pipeline stuck while" +
-                                                 " reading file info")));
+                    new IOChannelError.FAILED (message));
         this.file_queue.pop_head ();
         extract_next ();
         return false;

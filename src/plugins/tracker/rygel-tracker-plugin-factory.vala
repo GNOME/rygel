@@ -33,9 +33,8 @@ public void module_init (PluginLoader loader) {
     try {
         plugin_factory = new TrackerPluginFactory (loader);
     } catch (DBus.Error err) {
-        warning (_("Failed to start Tracker service: ") +
-                 err.message +
-                 _(". Tracker plugin disabled."));
+        warning (_("Failed to start Tracker service: %s. Plugin disabled.") +
+                 err.message);
     }
 }
 

@@ -145,10 +145,9 @@ internal class Rygel.XBoxHacks : GLib.Object {
             res = doc.doc.dump (f);
 
         if (f == null || res == -1) {
-            throw new IOError.FAILED (_("Failed to write modified" +
-                                        " description to %s."),
-                                      desc_path);
+            var message = _("Failed to write modified description to %s.");
 
+            throw new IOError.FAILED (message, desc_path);
         }
     }
 }

@@ -98,8 +98,7 @@ public class Rygel.MediathekAsxPlaylist : Object {
         }
         else {
             throw new MediathekAsxPlaylistError.NETWORK_ERROR (
-                                        _("Could not download playlist: " +
-                                          ", error code was %u (%s)"),
+                                        _("Playlist download failed: %u (%s)"),
                                         message.status_code,
                                         Soup.status_get_phrase (
                                                         message.status_code));

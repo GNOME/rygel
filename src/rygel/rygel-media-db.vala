@@ -348,8 +348,7 @@ public class Rygel.MediaDB : Object {
                                 throws DatabaseError, MediaDBError {
         var object = get_object (item_id);
         if (object != null && !(object is MediaItem)) {
-            throw new MediaDBError.INVALID_TYPE (_("Object with id %s is not" +
-                                                   " a MediaItem"),
+            throw new MediaDBError.INVALID_TYPE (_("Object %s is not an item"),
                                                  item_id);
         }
 

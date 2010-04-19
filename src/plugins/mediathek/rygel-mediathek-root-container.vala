@@ -57,8 +57,7 @@ public class Rygel.MediathekRootContainer : Rygel.SimpleContainer {
         }
 
         if (feeds.size == 0) {
-            message (_("Could not get RSS items from configuration," +
-                       " using defaults"));
+            message (_("Could not get RSS from configuration, using defaults"));
             feeds.add (508);
         }
 

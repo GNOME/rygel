@@ -210,9 +210,9 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         var val = this.key_file.get_string (section, key);
 
         if (val == null || val == "") {
-            throw new ConfigurationError.NO_VALUE_SET (_("No value available" +
-                                                         " for '%s'"),
-                                                       key);
+            throw new ConfigurationError.NO_VALUE_SET (
+                                        _("No value available for '%s'"),
+                                        key);
         }
 
         return val;
@@ -239,9 +239,9 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         int val = this.key_file.get_integer (section, key);
 
         if (val == 0 || val < min || val > max) {
-            throw new ConfigurationError.VALUE_OUT_OF_RANGE (_("Value of '%s'" +
-                                                               " out of range"),
-                                                             key);
+            throw new ConfigurationError.VALUE_OUT_OF_RANGE (
+                                        _("Value of '%s' out of range"),
+                                        key);
         }
 
         return val;

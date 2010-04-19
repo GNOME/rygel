@@ -80,8 +80,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         dynamic Element sink = ElementFactory.make ("fakesink", SINK_NAME);
 
         if (sink == null) {
-            throw new GstError.MISSING_PLUGIN (_("Required plugin " +
-                                                 "'fakesink' missing"));
+            throw new GstError.MISSING_PLUGIN (_("Plugin 'fakesink' missing"));
         }
 
         sink.signal_handoffs = true;

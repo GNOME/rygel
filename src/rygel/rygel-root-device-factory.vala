@@ -289,10 +289,9 @@ internal class Rygel.RootDeviceFactory {
             res = doc.doc.dump (f);
 
         if (f == null || res == -1) {
-            string message = _("Failed to write modified description" +
-                               " to %s.\n").printf (desc_path);
+            var message = _("Failed to write modified description to %s");
 
-            throw new IOError.FAILED (message);
+            throw new IOError.FAILED (message, desc_path);
         }
     }
 
