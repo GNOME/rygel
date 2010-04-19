@@ -13,7 +13,8 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
-	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"'
+	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"' \
+	    -include config.h
 
 librygel_external_la_SOURCES = rygel-external-content-dir.vala \
 			       rygel-external-container.vala \

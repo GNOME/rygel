@@ -14,7 +14,8 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel \
-	    -DDATA_DIR='"$(shareddir)"'
+	    -DDATA_DIR='"$(shareddir)"' \
+	    -include config.h
 
 librygel_mediathek_la_SOURCES = rygel-mediathek-asx-playlist.vala \
 				rygel-mediathek-plugin.vala \

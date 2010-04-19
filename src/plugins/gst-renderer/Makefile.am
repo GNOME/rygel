@@ -13,7 +13,8 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
             $(GEE_CFLAGS) \
             $(LIBDBUS_GLIB_CFLAGS) \
             $(LIBGSTREAMER_CFLAGS) \
-            -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"'
+            -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"' \
+	    -include config.h
 
 librygel_gst_renderer_la_SOURCES = rygel-gst-connection-manager.vala \
 				   rygel-gst-rendering-control.vala \

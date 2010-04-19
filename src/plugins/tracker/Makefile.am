@@ -7,7 +7,8 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
 	    $(GEE_CFLAGS) \
-	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"'
+	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"' \
+	    -include config.h
 
 librygel_media_tracker_la_SOURCES = \
 				    rygel-media-tracker.vala \
