@@ -53,7 +53,7 @@ internal class Rygel.Thumbnailer : GLib.Object {
             file = File.new_for_path (dir);
 
             if (!file.query_exists (null)) {
-                var message = _("Failed to find thumbnails directory.");
+                var message = _("Failed to find thumbnails folder.");
 
                 throw new ThumbnailerError.NO_DIR (message);
             } else {

@@ -130,7 +130,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
 
             yield enumerator.close_async (Priority.DEFAULT, this.cancellable);
         } catch (Error err) {
-            warning (_("failed to enumerate directory: %s"), err.message);
+            warning (_("failed to enumerate folder: %s"), err.message);
         }
 
         cleanup_database (this.containers.peek_head() as DummyContainer);

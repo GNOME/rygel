@@ -97,7 +97,7 @@ public class Rygel.PluginLoader : Object {
                                                        Priority.DEFAULT,
                                                        null);
         } catch (Error error) {
-            critical (_("Error listing contents of directory '%s': %s"),
+            critical (_("Error listing contents of folder '%s': %s"),
                       dir.get_path (),
                       error.message);
 

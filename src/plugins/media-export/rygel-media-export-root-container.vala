@@ -47,7 +47,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
 
         // either an error occured or the gconf key is not set
         if (uris.size == 0) {
-            debug(_("Nothing configured, using XDG special directories"));
+            debug(_("Nothing configured, using XDG special folders"));
             UserDirectory[] xdg_directories = { UserDirectory.MUSIC,
                                                 UserDirectory.PICTURES,
                                                 UserDirectory.VIDEOS };
