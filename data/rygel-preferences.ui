@@ -249,7 +249,7 @@
                     <property name="row_spacing">6</property>
                     <child>
                       <object class="GtkCheckButton" id="tracker-enabled-checkbutton">
-                        <property name="label" translatable="yes">T_racker</property>
+                        <property name="label">T_racker</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
