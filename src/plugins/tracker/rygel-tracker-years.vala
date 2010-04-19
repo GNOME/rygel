@@ -33,7 +33,7 @@ public class Rygel.TrackerYears : Rygel.TrackerMetadataValues {
                          TrackerItemFactory item_factory) {
         base (parent.id + "Year",
               parent,
-              "Year",
+              _("Year"),
               item_factory,
               KEY_CHAIN,
               year_id_func,

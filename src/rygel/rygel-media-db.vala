@@ -260,7 +260,7 @@ public class Rygel.MediaDB : Object {
         } else if (object is MediaContainer) {
             container_removed (object.id);
         } else {
-            throw new MediaDBError.INVALID_TYPE ("Invalid object type");
+            throw new MediaDBError.INVALID_TYPE (_("Invalid object type"));
         }
     }
 
@@ -289,7 +289,7 @@ public class Rygel.MediaDB : Object {
             object_added (item.id);
             item_added (item.id);
         } catch (DatabaseError error) {
-            warning ("Failed to add item with id %s: %s",
+            warning (_("Failed to add item with id %s: %s"),
                      item.id,
                      error.message);
             db.rollback ();
@@ -315,7 +315,7 @@ public class Rygel.MediaDB : Object {
                 container_updated (object.id);
             }
         } catch (Error error) {
-            warning ("Failed to add item with id %s: %s",
+            warning (_("Failed to add item with id %s: %s"),
                      object.id,
                      error.message);
             db.rollback ();
@@ -348,8 +348,8 @@ public class Rygel.MediaDB : Object {
                                 throws DatabaseError, MediaDBError {
         var object = get_object (item_id);
         if (object != null && !(object is MediaItem)) {
-            throw new MediaDBError.INVALID_TYPE ("Object with id %s is not a" +
-                                                 "MediaItem",
+            throw new MediaDBError.INVALID_TYPE (_("Object with id %s is not" +
+                                                   " a MediaItem"),
                                                  item_id);
         }
 
@@ -450,8 +450,8 @@ public class Rygel.MediaDB : Object {
             return new Gee.ArrayList<MediaObject> ();
         }
 
-        debug ("Orignal search: %s", expression.to_string ());
-        debug ("Parsed search expression: %s", filter);
+        debug (_("Orignal search: %s"), expression.to_string ());
+        debug (_("Parsed search expression: %s"), filter);
 
         for (int i = 0; i < args.n_values; i++) {
             debug ("Arg %d: %s", i, args.get_nth (i).get_string ());

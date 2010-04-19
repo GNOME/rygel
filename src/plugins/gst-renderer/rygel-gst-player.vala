@@ -39,7 +39,7 @@ public class Rygel.GstPlayer : GLib.Object {
         }
 
         set {
-            debug ("Changing playback state to %s..", value);
+            debug (_("Changing playback state to %s.."), value);
             this._playback_state = value;
 
             switch (this._playback_state) {
@@ -65,7 +65,7 @@ public class Rygel.GstPlayer : GLib.Object {
 
         set {
             this.playbin.uri = value;
-            debug ("URI set to %s.", value);
+            debug (_("URI set to %s."), value);
         }
     }
 
@@ -76,7 +76,7 @@ public class Rygel.GstPlayer : GLib.Object {
 
         set {
             this.playbin.volume = value;
-            debug ("volume set to %f.", value);
+            debug (_("volume set to %f."), value);
         }
     }
 
@@ -124,7 +124,7 @@ public class Rygel.GstPlayer : GLib.Object {
     }
 
     public bool seek (string time) {
-        debug ("Seeking to %s.", time);
+        debug (_("Seeking to %s."), time);
         return this.playbin.seek (1.0,
                                   Format.TIME,
                                   SeekFlags.FLUSH,

@@ -99,7 +99,7 @@ internal class Rygel.RootDeviceFactory {
                                                 "device",
                                                 null);
         if (device_element == null) {
-            warning ("Element /root/device not found.");
+            warning (_("Element /root/device not found."));
 
             return;
         }
@@ -132,7 +132,7 @@ internal class Rygel.RootDeviceFactory {
                                                    "friendlyName",
                                                    null);
         if (element == null) {
-            warning ("Element /root/device/friendlyName not found.");
+            warning (_("Element /root/device/friendlyName not found."));
 
             return;
         }
@@ -153,7 +153,7 @@ internal class Rygel.RootDeviceFactory {
         /* UDN */
         element = Utils.get_xml_element (device_element, "UDN");
         if (element == null) {
-            warning ("Element /root/device/UDN not found.");
+            warning (_("Element /root/device/UDN not found."));
 
             return;
         }
@@ -172,7 +172,7 @@ internal class Rygel.RootDeviceFactory {
                                                    "modelDescription",
                                                    null);
         if (element == null) {
-            warning ("Element /root/device/modelDescription not found.");
+            warning (_("Element /root/device/modelDescription not found."));
 
             return;
         }
@@ -186,7 +186,7 @@ internal class Rygel.RootDeviceFactory {
                                                              "serviceList",
                                                              null);
         if (service_list_node == null) {
-            warning ("Element /root/device/serviceList not found.");
+            warning (_("Element /root/device/serviceList not found."));
 
             return;
         }
@@ -227,7 +227,7 @@ internal class Rygel.RootDeviceFactory {
     private void add_icons_to_desc (Xml.Node *device_element,
                                     Plugin    plugin) {
         if (plugin.icon_infos == null || plugin.icon_infos.size == 0) {
-            debug ("No icon provided by %s.", plugin.name);
+            debug (_("No icon provided by %s."), plugin.name);
 
             return;
         }
@@ -289,8 +289,8 @@ internal class Rygel.RootDeviceFactory {
             res = doc.doc.dump (f);
 
         if (f == null || res == -1) {
-            string message = "Failed to write modified description" +
-                             " to %s.\n".printf (desc_path);
+            string message = _("Failed to write modified description" +
+                               " to %s.\n").printf (desc_path);
 
             throw new IOError.FAILED (message);
         }

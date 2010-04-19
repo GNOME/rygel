@@ -85,7 +85,7 @@ internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
         if (media_object == null || !(media_object is MediaItem)) {
             this.handle_error (new HTTPRequestError.NOT_FOUND (
-                                        "requested item '%s' not found",
+                                        _("Requested item '%s' not found"),
                                         this.uri.item_id));
             return;
         }

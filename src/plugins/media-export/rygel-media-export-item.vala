@@ -49,8 +49,10 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
 
         if (item_class == null) {
             item_class = MediaItem.AUDIO_CLASS;
-            warning ("Failed to detect UPnP class for '%s', assuming it's '%s'",
-                     file.get_uri (), item_class);
+            warning (_("Failed to detect UPnP class for '%s'," +
+                       " assuming it's '%s'"),
+                     file.get_uri (),
+                     item_class);
         }
 
         base (id, parent, info.get_name (), item_class);
@@ -85,8 +87,9 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
                                                 out duration)) {
                             class_guessed = MediaItem.VIDEO_CLASS;
                         } else {
-                            warning("There's no codec inside and file is no image: " +
-                                    "%s", file.get_uri ());
+                            warning(_("There's no codec inside and file" +
+                                      " is no image: %s"),
+                                    file.get_uri ());
                             return null;
                         }
                     }
@@ -106,7 +109,7 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
             }
         } else {
             // throw error. Taglist can't be empty
-            warning("Got empty taglist for file %s", file.get_uri ());
+            warning(_("Got empty taglist for file %s"), file.get_uri ());
             return null;
         }
 

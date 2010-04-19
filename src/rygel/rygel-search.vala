@@ -89,10 +89,10 @@ internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
             if (this.container_id == null || this.search_criteria == null) {
                 // Sorry we can't do anything without these two parameters
                 throw new ContentDirectoryError.NO_SUCH_OBJECT (
-                                        "No such container");
+                                        _("No such container"));
             }
 
-            debug ("Executing search request: %s", this.search_criteria);
+            debug (_("Executing search request: %s"), this.search_criteria);
 
             if (this.xbox_hacks != null) {
                 this.xbox_hacks.translate_container_id (ref this.container_id);
@@ -126,7 +126,7 @@ internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
                                         this.cancellable);
         if (media_object == null || !(media_object is MediaContainer)) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT (
-                    "Specified container does not exist.");
+                    _("Specified container does not exist."));
         }
 
         return media_object as MediaContainer;
@@ -151,8 +151,8 @@ internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
                                               this.cancellable);
         if (results.size == 0) {
             throw new ContentDirectoryError.CANT_PROCESS (
-                                        "No objects found that could satisfy" +
-                                        " the given search criteria.");
+                                        _("No objects found that could " +
+                                          "satisfy given search criteria."));
         }
 
         this.number_returned = results.size;
@@ -182,7 +182,7 @@ internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
     }
 
     private void handle_error (Error error) {
-        warning ("Failed to search in '%s': %s\n",
+        warning (_("Failed to search in '%s': %s"),
                  this.container_id,
                  error.message);
 

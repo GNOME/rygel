@@ -58,8 +58,8 @@ internal class Rygel.HTTPGet : HTTPRequest {
         /* We only entertain 'HEAD' and 'GET' requests */
         if ((this.msg.method != "HEAD" && this.msg.method != "GET") ||
             (header != null && header != "1")) {
-            this.handle_error (
-                        new HTTPRequestError.BAD_REQUEST ("Invalid Request"));
+            this.handle_error (new HTTPRequestError.BAD_REQUEST (
+                                        _("Invalid Request")));
             return;
         }
 
@@ -71,7 +71,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
                                                          this.cancellable);
             }
         } catch (Error err) {
-            warning ("Failed to parse query: %s", err.message);
+            warning (_("Failed to parse query: %s"), err.message);
         }
 
         if (this.handler == null) {
@@ -102,7 +102,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
             // Add headers
             this.handler.add_response_headers (this);
-            debug ("Following HTTP headers appended to response:");
+            debug (_("Following HTTP headers appended to response:"));
             this.msg.response_headers.foreach ((name, value) => {
                     debug ("%s : %s", name, value);
             });

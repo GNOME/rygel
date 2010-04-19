@@ -47,7 +47,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
 
             range_tokens = range.offset (4).split ("-", 2);
             if (range_tokens[0] == null || range_tokens[1] == null) {
-                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
                                                        range);
             }
 
@@ -56,7 +56,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
             if (time[0].isdigit ()) {
                 start = (int64) (time.to_double () * SECOND);
             } else if (time != "") {
-                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
                                                        range);
             }
 
@@ -65,11 +65,12 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
             if (time[0].isdigit()) {
                 stop = (int64) (time.to_double () * SECOND);
                 if (stop < start) {
-                    throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
-                                                           range);
+                    throw new HTTPSeekError.INVALID_RANGE (
+                                        _("Invalid Range '%s'"),
+                                        range);
                 }
             } else if (time != "") {
-                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
                                                        range);
             }
         }

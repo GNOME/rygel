@@ -35,7 +35,7 @@ public class Rygel.TrackerCategoryAllContainer : Rygel.TrackerSearchContainer {
             var uri = Filename.to_uri (item_factory.upload_dir, null);
             this.uris.add (uri);
         } catch (ConvertError error) {
-            warning ("Failed to contstruct URI for directory '%s': %s",
+            warning (_("Failed to contstruct URI for directory '%s': %s"),
                      item_factory.upload_dir,
                      error.message);
         }

@@ -116,7 +116,7 @@ public class Rygel.GstRenderingControl : Service {
 
         action.get ("InstanceID", typeof (uint), out instance_id);
         if (instance_id != 0) {
-            action.return_error (702, "Invalid InstanceID");
+            action.return_error (702, _("Invalid InstanceID"));
 
             return false;
         }
@@ -147,7 +147,7 @@ public class Rygel.GstRenderingControl : Service {
 
         action.get ("PresetName", typeof (string), out preset_name);
         if (preset_name != "") {
-            action.return_error (701, "Invalid Name");
+            action.return_error (701, _("Invalid Name"));
 
             return;
         }
@@ -161,7 +161,7 @@ public class Rygel.GstRenderingControl : Service {
 
         action.get ("Channel", typeof (string), out channel);
         if (channel != "Master") {
-            action.return_error (501, "Action Failed");
+            action.return_error (501, _("Action Failed"));
 
             return false;
         }
@@ -232,7 +232,7 @@ public class Rygel.GstRenderingControl : Service {
 
         action.get ("DesiredVolume", typeof (uint), out volume);
         if (volume > 100) {
-            action.return_error (501, "Action Failed");
+            action.return_error (501, _("Action Failed"));
 
             return;
         }

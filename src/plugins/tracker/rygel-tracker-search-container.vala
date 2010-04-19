@@ -105,7 +105,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
             this.get_children_count.begin ();
         } catch (DBus.Error error) {
-            critical ("Failed to connect to session bus: %s\n", error.message);
+            critical (_("Failed to connect to session bus: %s"), error.message);
         }
     }
 
@@ -206,7 +206,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
             this.child_count = query.result[0,0].to_int ();
             this.updated ();
         } catch (GLib.Error error) {
-            critical ("error getting item count under category '%s': %s",
+            critical (_("Error getting item count under category '%s': %s"),
                       this.item_factory.category,
                       error.message);
 

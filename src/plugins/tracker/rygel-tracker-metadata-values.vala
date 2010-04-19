@@ -72,7 +72,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         try {
             this.create_proxies ();
         } catch (DBus.Error error) {
-            critical ("Failed to create to Session bus: %s\n",
+            critical (_("Failed to create to Session bus: %s"),
                       error.message);
 
             return;
@@ -130,7 +130,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         try {
             yield query.execute (this.resources);
         } catch (DBus.Error error) {
-            critical ("error getting all values for '%s': %s",
+            critical (_("Error getting all values for '%s': %s"),
                       string.joinv (" -> ", this.key_chain),
                       error.message);
 

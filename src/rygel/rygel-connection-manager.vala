@@ -99,7 +99,7 @@ public class Rygel.ConnectionManager : Service {
 
         action.get ("ConnectionID", typeof (int), out connection_id);
         if (connection_id != 0) {
-            action.return_error (706, "Invalid connection reference");
+            action.return_error (706, _("Invalid connection reference"));
 
             return;
         }

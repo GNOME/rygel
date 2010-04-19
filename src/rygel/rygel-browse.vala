@@ -117,7 +117,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
                    this.browse_flag == "BrowseMetadata") {
             this.fetch_metadata = true;
         } else {
-            throw new ContentDirectoryError.INVALID_ARGS ("Invalid Args");
+            throw new ContentDirectoryError.INVALID_ARGS (_("Invalid Args"));
         }
 
         /* ObjectID */
@@ -136,7 +136,8 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
 
         if (this.object_id == null) {
             // Sorry we can't do anything without ObjectID
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+            throw new ContentDirectoryError.NO_SUCH_OBJECT (
+                                        _("No such object"));
         }
     }
 
@@ -149,7 +150,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
                                         this.cancellable);
             if (media_object == null) {
                 throw new ContentDirectoryError.NO_SUCH_OBJECT (
-                                        "No such object");
+                                        _("No such object"));
             }
 
             return media_object;
@@ -178,7 +179,8 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
                                         MediaObject media_object)
                                         throws Error {
         if (!(media_object is MediaContainer)) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT ("No such object");
+            throw new ContentDirectoryError.NO_SUCH_OBJECT (
+                                        _("No such object"));
         }
 
         var container = (MediaContainer) media_object;
@@ -221,12 +223,12 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
 
     private void handle_error (Error error) {
         if (error is ContentDirectoryError) {
-            warning ("Failed to browse '%s': %s\n",
+            warning (_("Failed to browse '%s': %s\n"),
                      this.object_id,
                      error.message);
             this.action.return_error (error.code, error.message);
         } else {
-            warning ("Failed to browse '%s': %s\n",
+            warning (_("Failed to browse '%s': %s\n"),
                      this.object_id,
                      error.message);
             this.action.return_error (701, error.message);

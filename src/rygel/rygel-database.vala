@@ -54,14 +54,13 @@ internal class Rygel.Database : Object {
                                            "rygel");
         DirUtils.create_with_parents (dirname, 0750);
         var db_file = Path.build_filename (dirname, "%s.db".printf (name));
-        debug ("Using database file %s", db_file);
+        debug (_("Using database file %s"), db_file);
         var rc = Sqlite.Database.open (db_file, out this.db);
         if (rc != Sqlite.OK) {
-            var msg = "Failed to open database: %d, %s".printf (
-                       rc,
-                       db.errmsg ());
-
-            throw new DatabaseError.IO_ERROR (msg);
+            throw new DatabaseError.IO_ERROR (_("Failed to open database: " +
+                                                "%d (%s)"),
+                                              rc,
+                                              db.errmsg ());
         }
 
         this.db.exec ("PRAGMA cache_size = 32768");
@@ -116,7 +115,7 @@ internal class Rygel.Database : Object {
             throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
         }
         #if RYGEL_DEBUG_SQL
-        debug ("Query: %s, Time: %f", sql, t.elapsed ());
+        debug (_("Query: %s, Time: %f"), sql, t.elapsed ());
         #endif
 
         return rc;
@@ -162,7 +161,7 @@ internal class Rygel.Database : Object {
                     }
                 } else {
                     var t = values[i].type ();
-                    warning ("Unsupported type %s", t.name ());
+                    warning (_("Unsupported type %s"), t.name ());
                     assert_not_reached ();
                 }
                 if (rc != Sqlite.OK) {
@@ -215,7 +214,7 @@ internal class Rygel.Database : Object {
      */
     public void rollback () {
         if (this.db.exec ("ROLLBACK") != Sqlite.OK) {
-            critical ("Failed to rollback transaction: %s",
+            critical (_("Failed to rollback transaction: %s"),
                       db.errmsg ());
         }
     }

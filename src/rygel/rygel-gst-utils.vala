@@ -34,8 +34,9 @@ internal abstract class Rygel.GstUtils {
                                           throws Error {
         Element element = ElementFactory.make (factoryname, name);
         if (element == null) {
-            throw new GstError.MISSING_PLUGIN ("Required element factory " +
-                                               factoryname + " missing");
+            throw new GstError.MISSING_PLUGIN (_("Required element factory" +
+                                                 " %s missing"),
+                                               factoryname);
         }
 
         return element;

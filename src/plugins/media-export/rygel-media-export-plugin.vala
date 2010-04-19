@@ -30,8 +30,8 @@ using GLib;
 [ModuleInit]
 public void module_init (PluginLoader loader) {
     var plugin = new Plugin.MediaServer ("MediaExport",
-                                         "@REALNAME@'s media",
-                                          typeof (Rygel.MediaExportContentDir));
+                                         _("@REALNAME@'s media"),
+                                         typeof (Rygel.MediaExportContentDir));
     loader.add_plugin (plugin);
 }
 

@@ -53,8 +53,8 @@ internal class Rygel.Thumbnailer : GLib.Object {
             file = File.new_for_path (dir);
 
             if (!file.query_exists (null)) {
-                throw new ThumbnailerError.NO_DIR (
-                                        "Failed to find thumbnails directory");
+                throw new ThumbnailerError.NO_DIR (_("Failed to find " +
+                                                     "thumbnails directory."));
             } else {
                 this.template.mime_type = "image/png";
                 this.template.dlna_profile = "PNG_TN";
@@ -78,7 +78,7 @@ internal class Rygel.Thumbnailer : GLib.Object {
             try {
                 thumbnailer = new Thumbnailer ();
             } catch (ThumbnailerError err) {
-                warning ("No thumbnailer available: %s", err.message);
+                warning (_("No thumbnailer available: %s"), err.message);
             }
 
             first_time = false;
@@ -101,7 +101,8 @@ internal class Rygel.Thumbnailer : GLib.Object {
                                     null);
 
         if (!info.get_attribute_boolean (FILE_ATTRIBUTE_ACCESS_CAN_READ)) {
-            throw new ThumbnailerError.NO_THUMBNAIL ("No thumbnail available");
+            throw new ThumbnailerError.NO_THUMBNAIL (
+                                        _("No thumbnail available"));
         }
 
         thumbnail = new Thumbnail ();

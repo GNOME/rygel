@@ -45,7 +45,7 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
             this.serialize_container ((MediaContainer) media_object);
         } else {
             throw new DIDLLiteWriterError.UNSUPPORTED_OBJECT (
-                "Unable to serialize unsupported object");
+                _("Unable to serialize unsupported object"));
         }
     }
 

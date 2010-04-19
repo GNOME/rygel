@@ -242,7 +242,7 @@ public class Rygel.MediaItem : MediaObject {
     private string get_protocol_for_uri (string uri) throws Error {
         var scheme = Uri.parse_scheme (uri);
         if (scheme == null) {
-            throw new MediaItemError.BAD_URI ("Bad URI: %s", uri);
+            throw new MediaItemError.BAD_URI (_("Bad URI: %s"), uri);
         }
 
         if (scheme == "http") {
@@ -254,7 +254,7 @@ public class Rygel.MediaItem : MediaObject {
             return "rtsp-rtp-udp";
         } else {
             // Assume the protocol to be the scheme of the URI
-            warning ("Failed to probe protocol for URI %s. Assuming '%s'",
+            warning (_("Failed to probe protocol for URI %s. Assuming '%s'"),
                      uri,
                      scheme);
 

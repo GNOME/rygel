@@ -63,7 +63,7 @@ internal class Rygel.SubtitleManager : GLib.Object {
 
         if (!info.get_attribute_boolean (FILE_ATTRIBUTE_ACCESS_CAN_READ)) {
             throw new SubtitleManagerError.NO_SUBTITLE (
-                                            "No subtitle available");
+                                            _("No subtitle available"));
         }
 
         var subtitle = new Subtitle ();

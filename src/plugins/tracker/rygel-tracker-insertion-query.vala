@@ -67,7 +67,7 @@ public class Rygel.TrackerInsertionQuery : Rygel.TrackerQuery {
                                         throws DBus.Error {
         var str = this.to_string ();
 
-        debug ("Executing SPARQL query: %s", str);
+        debug (_("Executing SPARQL query: %s"), str);
 
         var result = yield resources.sparql_update_blank (str);
 

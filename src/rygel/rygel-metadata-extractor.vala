@@ -102,19 +102,19 @@ public class Rygel.MetadataExtractor: GLib.Object {
 
     public static MetadataExtractor? create() {
         if (MetadataExtractor.factory == null) {
-            debug ("Checking for gstreamer playbin...");
+            debug (_("Checking for gstreamer playbin..."));
             var factory = ElementFactory.find("playbin2");
             if (factory != null) {
-                debug ("Using playbin2");
+                debug (_("Using playbin2"));
             } else {
-                debug ("Could not create Playbin2, trying Playbin");
+                debug (_("Could not create Playbin2, trying Playbin"));
                 factory = ElementFactory.find ("playbin");
 
                 if (factory != null) {
-                    debug ("Using playbin");
+                    debug (_("Using playbin"));
                 } else {
-                    critical ("Could not find any playbin. " +
-                            "Please check your gstreamer setup");
+                    critical (_("Could not find any playbin. " +
+                                "Please check your gstreamer setup"));
                     return null;
                 }
             }
@@ -148,13 +148,13 @@ public class Rygel.MetadataExtractor: GLib.Object {
     }
 
     private bool on_harvesting_timeout () {
-        warning ("Metadata extractor timed out on %s, restarting",
-               this.file_queue.peek_head ().get_uri ());
+        warning (_("Metadata extractor timed out on %s, restarting"),
+                 this.file_queue.peek_head ().get_uri ());
         this.playbin.set_state (State.NULL);
 
         this.error (file_queue.peek_head (),
-                    new IOChannelError.FAILED (
-                                "Pipeline stuck while reading file info"));
+                    new IOChannelError.FAILED (_("Pipeline stuck while" +
+                                                 " reading file info")));
         this.file_queue.pop_head ();
         extract_next ();
         return false;
@@ -167,7 +167,7 @@ public class Rygel.MetadataExtractor: GLib.Object {
         if (this.file_queue.get_length () > 0) {
             try {
                 var item = this.file_queue.peek_head ();
-                debug ("Scheduling file %s for metadata extraction",
+                debug (_("Scheduling file %s for metadata extraction"),
                        item.get_uri ());
                 this.extract_mime_and_size ();
                 renew_playbin ();
@@ -253,8 +253,8 @@ public class Rygel.MetadataExtractor: GLib.Object {
                                          FileQueryInfoFlags.NONE,
                                          null);
         } catch (Error error) {
-            warning ("Failed to query content type for '%s'\n",
-                      file.get_uri ());
+            warning (_("Failed to query content type for '%s'"),
+                     file.get_uri ());
 
             // signal error to parent
             this.error (file, error);

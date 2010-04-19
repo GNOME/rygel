@@ -67,7 +67,7 @@ public class Rygel.PreferencesDialog : GLib.Object {
 
             dialog.run ();
         } catch (Error err) {
-            error ("Failed to create preferences dialog: %s\n", err.message);
+            error (_("Failed to create preferences dialog: %s"), err.message);
         }
 
         return 0;

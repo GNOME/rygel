@@ -65,7 +65,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
            this.input_stream = yield this.file.read_async (this.priority,
                                                            this.cancellable);
         } catch (Error err) {
-            warning ("Failed to read from URI: %s: %s\n",
+            warning (_("Failed to read from URI: %s: %s"),
                      file.get_uri (),
                      err.message);
             this.end (false, Soup.KnownStatusCode.NOT_FOUND);
@@ -83,7 +83,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
                                         SeekType.SET,
                                         this.cancellable);
             } catch (Error err) {
-                warning ("Failed to seek to %s-%s on URI %s: %s\n",
+                warning (_("Failed to seek to %s-%s on URI %s: %s"),
                          seek.start.to_string (),
                          seek.stop.to_string (),
                          file.get_uri (),
@@ -103,7 +103,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
         } catch (IOError.CANCELLED cancelled_err) {
             // This is OK
         } catch (Error err) {
-            warning ("Failed to read contents from URI: %s: %s\n",
+            warning (_("Failed to read contents from URI: %s: %s"),
                      this.file.get_uri (),
                      err.message);
             this.end (false, Soup.KnownStatusCode.NOT_FOUND);
@@ -155,7 +155,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
             yield this.input_stream.close_async (this.priority,
                                                  this.cancellable);
         } catch (Error err) {
-            warning ("Failed to close stream to URI %s: %s\n",
+            warning (_("Failed to close stream to URI %s: %s"),
                      this.file.get_uri (),
                      err.message);
         }

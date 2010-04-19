@@ -66,7 +66,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                 return true;
             }
         } catch (DatabaseError err) {
-            warning ("Failed to query database: %s", err.message);
+            warning (_("Failed to query database: %s"), err.message);
         }
 
         return false;
@@ -98,8 +98,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                         this.media_db.save_container (container);
                     }
                 } catch (Error err) {
-                    warning ("Failed to update database: %s",
-                             err.message);
+                    warning (_("Failed to update database: %s"), err.message);
                 }
             } else {
                 string id;
@@ -131,8 +130,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
 
             yield enumerator.close_async (Priority.DEFAULT, this.cancellable);
         } catch (Error err) {
-            warning ("failed to enumerate directory: %s",
-                     err.message);
+            warning (_("failed to enumerate directory: %s"), err.message);
         }
 
         cleanup_database (this.containers.peek_head() as DummyContainer);
@@ -153,7 +151,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                 this.media_db.remove_by_id (child);
             }
         } catch (DatabaseError err) {
-            warning("Failed to get children of container %s: %s",
+            warning(_("Failed to get children of container %s: %s"),
                     container.id,
                     err.message);
         }
@@ -230,14 +228,14 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                     this.origin = file;
                     this.containers.push_tail (this.parent);
                 } else {
-                    debug ("File %s does not need harvesting",
+                    debug (_("File %s does not need harvesting"),
                            file.get_uri ());
                     harvested (file);
                 }
             }
 
         } catch (Error err) {
-            warning ("Failed to harvest file %s: %s",
+            warning (_("Failed to harvest file %s: %s"),
                      file.get_uri (),
                      err.message);
             harvested (file);

@@ -91,16 +91,18 @@ public class Rygel.MediathekAsxPlaylist : Object {
                 else {
                     throw new 
                         MediathekAsxPlaylistError.XML_ERROR (
-                                                  "Could not received XML");
+                                                  _("Could not received XML"));
                 }
             }
             catch (RegexError error) { }
         }
         else {
             throw new MediathekAsxPlaylistError.NETWORK_ERROR (
-                 "Could not download playlist, error code was %u (%s)".printf (
-                 message.status_code, 
-                 Soup.status_get_phrase (message.status_code)));
+                                        _("Could not download playlist: " +
+                                          ", error code was %u (%s)"),
+                                        message.status_code,
+                                        Soup.status_get_phrase (
+                                                        message.status_code));
         }
     }
 }

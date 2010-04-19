@@ -44,20 +44,20 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
         var args = id.split(",");
 
         if ((args.length % 2) != 0) {
-            warning ("Id does not contain pairs");
+            warning (_("Id does not contain pairs"));
 
             return false;
         }
 
         for (int i = 0; i < args.length; i += 2) {
             if (args[i] == "" || args[i + 1] == "") {
-                warning ("Empty part not allowed in virtual id");
+                warning (_("Empty part not allowed in virtual id"));
 
                 return false;
             }
 
             if (args[i] == "?") {
-                warning ("Placeholder can only be on second place");
+                warning (_("Placeholder can only be on second place"));
 
                 return false;
             }
@@ -115,7 +115,7 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
             i += 2;
         }
         this.child_count = this.count_children ();
-        debug ("We have %u children", this.child_count);
+        debug (_("We have %u children"), this.child_count);
     }
 
     private int count_children () {
@@ -235,7 +235,7 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
         }
         if (!virtual_container_map.has_key (md5)) {
             virtual_container_map[md5] = id;
-            debug ("registering %s for %s", md5, id);
+            debug (_("Registering %s for %s"), md5, id);
         }
 
         id = PREFIX + md5;

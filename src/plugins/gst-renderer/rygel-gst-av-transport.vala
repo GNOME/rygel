@@ -200,7 +200,7 @@ public class Rygel.GstAVTransport : Service {
 
         action.get ("InstanceID", typeof (uint), out instance_id);
         if (instance_id != 0) {
-            action.return_error (718, "Invalid InstanceID");
+            action.return_error (718, _("Invalid InstanceID"));
 
             return false;
         }
@@ -360,7 +360,7 @@ public class Rygel.GstAVTransport : Service {
 
         action.get ("Speed", typeof (string), out speed);
         if (speed != "1") {
-            action.return_error (717, "Play speed not supported");
+            action.return_error (717, _("Play speed not supported"));
 
             return;
         }
@@ -393,7 +393,7 @@ public class Rygel.GstAVTransport : Service {
         case "ABS_TIME":
         case "REL_TIME":
             if (!this.player.seek (target)) {
-                action.return_error (710, "Seek mode not supported");
+                action.return_error (710, _("Seek mode not supported"));
 
                 return;
             }
@@ -402,18 +402,18 @@ public class Rygel.GstAVTransport : Service {
 
             return;
         default:
-            action.return_error (710, "Seek mode not supported");
+            action.return_error (710, _("Seek mode not supported"));
 
             return;
         }
     }
 
     private void next_cb (Service service, owned ServiceAction action) {
-        action.return_error (701, "Transition not available");
+        action.return_error (701, _("Transition not available"));
     }
 
     private void previous_cb (Service service, owned ServiceAction action) {
-        action.return_error (701, "Transition not available");
+        action.return_error (701, _("Transition not available"));
     }
 
     private void notify_state_cb (Object    player,

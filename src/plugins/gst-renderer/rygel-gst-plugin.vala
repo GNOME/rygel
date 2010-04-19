@@ -33,7 +33,7 @@ public void module_init (PluginLoader loader) {
 
     var plugin = new Plugin (MEDIA_RENDERER_DESC_PATH,
                              "GstRenderer",
-                             "GStreamer Renderer");
+                             _("GStreamer Renderer"));
 
     plugin.add_resource (new ResourceInfo (ConnectionManager.UPNP_ID,
                                            ConnectionManager.UPNP_TYPE,

@@ -81,7 +81,7 @@ public class Rygel.ContentDirectory: Service {
         try {
             this.http_server = new HTTPServer (this, this.get_type ().name ());
         } catch (GLib.Error err) {
-            critical ("Failed to create HTTP server for %s: %s",
+            critical (_("Failed to create HTTP server for %s: %s"),
                       this.get_type ().name (),
                       err.message);
             return;
@@ -207,7 +207,7 @@ public class Rygel.ContentDirectory: Service {
 
             action.return ();
         } else {
-            action.return_error (717, "No such file transfer");
+            action.return_error (717, _("No such file transfer"));
         }
     }
 
@@ -220,7 +220,7 @@ public class Rygel.ContentDirectory: Service {
 
             action.return ();
         } else {
-            action.return_error (717, "No such file transfer");
+            action.return_error (717, _("No such file transfer"));
         }
     }
 

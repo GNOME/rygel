@@ -177,7 +177,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
         var dir = yield this.get_writable (cancellable);
         if (dir == null) {
            throw new ContentDirectoryError.RESTRICTED_PARENT (
-                                        "Object creation in %s no allowed",
+                                        _("Object creation in %s no allowed"),
                                         this.id);
         }
 

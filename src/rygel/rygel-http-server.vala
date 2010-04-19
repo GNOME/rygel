@@ -175,7 +175,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     private void on_request_completed (HTTPRequest request) {
         this.requests.remove (request);
 
-        debug ("HTTP %s request for URI '%s' handled.",
+        debug (_("HTTP %s request for URI '%s' handled."),
                request.msg.method,
                request.msg.get_uri ().to_string (false));
     }
@@ -185,7 +185,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                                  string                    server_path,
                                  HashTable<string,string>? query,
                                  Soup.ClientContext        soup_client) {
-        debug ("HTTP %s request for URI '%s'. Headers:",
+        debug (_("HTTP %s request for URI '%s'. Headers:"),
                msg.method,
                msg.get_uri ().to_string (false));
         msg.request_headers.foreach ((name, value) => {
@@ -201,7 +201,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         foreach (var request in this.requests) {
             if (request.msg == message) {
                 request.cancellable.cancel ();
-                debug ("HTTP client aborted %s request for URI '%s'.",
+                debug (_("HTTP client aborted %s request for URI '%s'."),
                        request.msg.method,
                        request.msg.get_uri ().to_string (false));
 
@@ -219,7 +219,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     private void on_got_headers (Soup.Message msg) {
         if (msg.method == "POST" &&
             msg.uri.path.has_prefix (this.path_root)) {
-            debug ("HTTP POST request for URI '%s'",
+            debug (_("HTTP POST request for URI '%s'"),
                    msg.get_uri ().to_string (false));
 
             this.queue_request (new HTTPPost (this, this.context.server, msg));

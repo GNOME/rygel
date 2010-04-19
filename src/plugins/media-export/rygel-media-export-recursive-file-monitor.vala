@@ -44,7 +44,7 @@ public class Rygel.MediaExportRecursiveFileMonitor : Object {
             case FileMonitorEvent.DELETED:
                 var file_monitor = this.monitors.get (file);
                 if (file_monitor != null) {
-                    debug ("Directory %s gone, removing watch",
+                    debug (_("Directory %s gone, removing watch"),
                            file.get_uri ());
                     this.monitors.remove (file);
                     file_monitor.cancel ();
@@ -72,7 +72,7 @@ public class Rygel.MediaExportRecursiveFileMonitor : Object {
                 file_monitor.changed.connect (this.on_monitor_changed);
             }
         } catch (Error err) {
-            warning ("Failed to get file info for %s", file.get_uri ());
+            warning (_("Failed to get file info for %s"), file.get_uri ());
         }
     }
 

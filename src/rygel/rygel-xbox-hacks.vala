@@ -40,7 +40,7 @@ internal class Rygel.XBoxHacks : GLib.Object {
     public XBoxHacks.for_action (ServiceAction action) throws XBoxHacksError {
         var agent = action.get_message ().request_headers.get ("User-Agent");
         if (!agent.contains ("Xbox")) {
-            throw new XBoxHacksError.NA ("Not Applicable");
+            throw new XBoxHacksError.NA (_("Not Applicable"));
         }
     }
 
@@ -145,10 +145,10 @@ internal class Rygel.XBoxHacks : GLib.Object {
             res = doc.doc.dump (f);
 
         if (f == null || res == -1) {
-            string message = "Failed to write modified description" +
-                             " to %s.\n".printf (desc_path);
+            throw new IOError.FAILED (_("Failed to write modified" +
+                                        " description to %s."),
+                                      desc_path);
 
-            throw new IOError.FAILED (message);
         }
     }
 }

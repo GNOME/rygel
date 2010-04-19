@@ -89,7 +89,7 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
 
         if (transcoder == null) {
             throw new HTTPRequestError.NOT_FOUND (
-                            "No transcoder available for target format '%s'",
+                            _("No transcoder available for target format '%s'"),
                             target);
         }
 

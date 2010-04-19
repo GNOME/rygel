@@ -67,9 +67,9 @@ internal class Rygel.MP3TranscoderBin : Gst.Bin {
 
         if (new_pad.link (enc_pad) != PadLinkReturn.OK) {
             GstUtils.post_error (this,
-                                 new GstError.LINK ("Failed to link pad " +
-                                                    new_pad.name +
-                                                    " to " +
+                                 new GstError.LINK (_("Failed to link pad" +
+                                                      "%s to %s"),
+                                                    new_pad.name,
                                                     enc_pad.name));
             return;
         }

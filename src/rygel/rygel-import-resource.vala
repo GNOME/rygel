@@ -105,7 +105,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         try {
             destination_uri = yield this.get_original_uri ();
         } catch (Error error) {
-            warning ("Failed to get original URI for '%s': %s",
+            warning (_("Failed to get original URI for '%s': %s"),
                      this.destination_uri,
                      error.message);
 
@@ -135,7 +135,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
 
         this.status = TransferStatus.COMPLETED;
 
-        debug ("Import of '%s' to '%s' completed",
+        debug (_("Import of '%s' to '%s' completed"),
                source_uri,
                destination_uri);
         this.completed ();

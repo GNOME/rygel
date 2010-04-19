@@ -53,7 +53,7 @@ internal class Rygel.HTTPTranscodeHandler : HTTPGetHandler {
         var item = request.item;
         var src = item.create_stream_source ();
         if (src == null) {
-            throw new HTTPRequestError.NOT_FOUND ("Not found");
+            throw new HTTPRequestError.NOT_FOUND (_("Not found"));
         }
 
         try {

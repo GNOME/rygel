@@ -74,8 +74,8 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
         var dir = yield this.container.get_writable (cancellable);
         if (dir == null) {
             throw new ContentDirectoryError.RESTRICTED_PARENT (
-                    "Object creation in %s no allowed",
-                    this.container.id);
+                                        _("Object creation in %s no allowed"),
+                                        this.container.id);
         }
 
         var file = dir.get_child_for_display_name (this.item.title);

@@ -80,8 +80,8 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         dynamic Element sink = ElementFactory.make ("fakesink", SINK_NAME);
 
         if (sink == null) {
-            throw new GstError.MISSING_PLUGIN ("Required plugin " +
-                                               "'fakesink' missing");
+            throw new GstError.MISSING_PLUGIN (_("Required plugin " +
+                                                 "'fakesink' missing"));
         }
 
         sink.signal_handoffs = true;
@@ -98,8 +98,8 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         } else {
             // static pads? easy!
             if (!src.link (sink)) {
-                throw new GstError.LINK ("Failed to link " +
-                                         src.name + " to " +
+                throw new GstError.LINK (_("Failed to link %s to %s"),
+                                         src.name,
                                          sink.name);
             }
         }
@@ -120,7 +120,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         if (depay != null) {
             this.pipeline.add (depay);
             if (!depay.link (sink)) {
-                critical ("Failed to link %s to %s",
+                critical (_("Failed to link %s to %s"),
                           depay.name,
                           sink.name);
                 this.end (false, Soup.KnownStatusCode.NONE);
@@ -133,7 +133,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         }
 
         if (src_pad.link (sink_pad) != PadLinkReturn.OK) {
-            critical ("Failed to link pad %s to %s",
+            critical (_("Failed to link pad %s to %s"),
                       src_pad.name,
                       sink_pad.name);
             this.end (false, Soup.KnownStatusCode.NONE);
@@ -187,14 +187,14 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
 
             if (message.type == MessageType.ERROR) {
                 message.parse_error (out err, out err_msg);
-                critical ("Error from pipeline %s:%s",
+                critical (_("Error from pipeline %s: %s"),
                           this.pipeline.name,
                           err_msg);
 
                 ret = false;
             } else if (message.type == MessageType.WARNING) {
                 message.parse_warning (out err, out err_msg);
-                warning ("Warning from pipeline %s:%s",
+                warning (_("Warning from pipeline %s: %s"),
                          this.pipeline.name,
                          err_msg);
             }
@@ -228,7 +228,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
                                  this.time_range.start,
                                  stop_type,
                                  this.time_range.stop)) {
-            warning ("Failed to seek to offset %lld", this.time_range.start);
+            warning (_("Failed to seek to offset %lld"), this.time_range.start);
 
             this.end (false,
                       Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);

@@ -31,7 +31,7 @@ public class Rygel.MediathekRssContainer : Rygel.SimpleContainer {
     private void on_feed_got (Soup.Session session, Soup.Message msg) {
         switch (msg.status_code) {
             case 304:
-                message("Feed has not changed, nothing to do");
+                message(_("Feed has not changed, nothing to do"));
                 break;
             case 200:
                 if (parse_response ((string) msg.response_body.data,
@@ -42,7 +42,7 @@ public class Rygel.MediathekRssContainer : Rygel.SimpleContainer {
                 break;
             default:
                 // TODO Need to handle redirects....
-                warning("Got unexpected response %u (%s)",
+                warning(_("Got unexpected response %u (%s)"),
                         msg.status_code,
                         Soup.status_get_phrase (msg.status_code));
                 break;
@@ -76,20 +76,20 @@ public class Rygel.MediathekRssContainer : Rygel.SimpleContainer {
                         ret = true;
                     }
                     catch (MediathekVideoItemError error) {
-                        warning ("Error creating video item: %s",
+                        warning (_("Error creating video item: %s"),
                                  error.message);
                     }
                 }
             }
             else {
-                warning ("XPath query failed");
+                warning (_("XPath query failed"));
             }
 
             delete doc;
             this.updated ();
         }
         else {
-            warning ("Failed to parse doc");
+            warning (_("Failed to parse doc"));
         }
 
         return ret;
@@ -100,7 +100,7 @@ public class Rygel.MediathekRssContainer : Rygel.SimpleContainer {
             "http://www.zdf.de/ZDFmediathek/content/%u?view=rss".printf(
                                                             zdf_content_id)); 
         if (last_modified != null) {
-            debug ("Requesting change since %s", 
+            debug (_("Requesting change since %s"),
                    last_modified.to_string(DateFormat.HTTP));
             message.request_headers.append("If-Modified-Since", 
                    last_modified.to_string(DateFormat.HTTP));
@@ -112,9 +112,9 @@ public class Rygel.MediathekRssContainer : Rygel.SimpleContainer {
     }
 
     public MediathekRssContainer (MediaContainer parent, uint id) {
-        base ("GroupId:%u".printf(id), 
+        base ("GroupId:%u".printf(id),
              parent, 
-             "ZDF Mediathek RSS feed %u".printf(id));
+             _("ZDF Mediathek RSS feed %u").printf (id));
 
         this.zdf_content_id = id;
         update ();

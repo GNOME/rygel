@@ -104,7 +104,7 @@ public class Rygel.Main : Object {
                                        GUPnP.Context        context) {
         string iface = null;
 
-        debug ("new network context %s (%s) available.",
+        debug (_("new network context %s (%s) available."),
                context.interface,
                context.host_ip);
 
@@ -122,11 +122,11 @@ public class Rygel.Main : Object {
                     this.create_device.begin (iterator.get (), factory);
                 }
             } catch (GLib.Error err) {
-                warning ("Failed to create root device factory: %s\n",
+                warning (_("Failed to create root device factory: %s"),
                          err.message);
             }
         } else {
-            debug ("Ignoring network context %s (%s).",
+            debug (_("Ignoring network context %s (%s)."),
                    context.interface,
                    context.host_ip);
         }
@@ -134,7 +134,7 @@ public class Rygel.Main : Object {
 
     private void on_context_unavailable (GUPnP.ContextManager manager,
                                          GUPnP.Context        context) {
-        debug ("Network context %s (%s) now unavailable.",
+        debug (_("Network context %s (%s) now unavailable."),
                context.interface,
                context.host_ip);
 
@@ -173,9 +173,9 @@ public class Rygel.Main : Object {
 
             plugin.notify["available"] += this.on_plugin_notify;
         } catch (GLib.Error error) {
-            warning ("Failed to create RootDevice for %s. Reason: %s\n",
-                    plugin.name,
-                    error.message);
+            warning (_("Failed to create RootDevice for %s. Reason: %s"),
+                     plugin.name,
+                     error.message);
         }
     }
 
@@ -205,7 +205,7 @@ public class Rygel.Main : Object {
             main = new Main ();
             service = new DBusService (main);
         } catch (DBus.Error err) {
-            warning ("Failed to start D-Bus service: %s", err.message);
+            warning (_("Failed to start D-Bus service: %s"), err.message);
         } catch (CmdlineConfigError.VERSION_ONLY err) {
             return 0;
         } catch (GLib.Error err) {

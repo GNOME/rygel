@@ -117,12 +117,12 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     // Why would someone lauch rygel to kill itself?
     public bool get_upnp_enabled () throws GLib.Error {
-        throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
     }
 
     public string get_interface () throws GLib.Error {
         if (iface == null) {
-            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
 
         return iface;
@@ -130,7 +130,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     public int get_port () throws GLib.Error {
         if (this.port == -1) {
-            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
 
         return port;
@@ -138,7 +138,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     public bool get_transcoding () throws GLib.Error {
         if (!no_transcoding) {
-            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         } else {
             return false;
         }
@@ -146,7 +146,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     public bool get_mp3_transcoder () throws GLib.Error {
         if (!no_mp3_trans) {
-            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         } else {
             return false;
         }
@@ -154,7 +154,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     public bool get_mp2ts_transcoder () throws GLib.Error {
         if (!no_mp2ts_trans) {
-            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         } else {
             return false;
         }
@@ -162,7 +162,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     public bool get_lpcm_transcoder () throws GLib.Error {
         if (!no_lpcm_trans) {
-            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         } else {
             return false;
         }
@@ -174,7 +174,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     public LogLevel get_log_level () throws GLib.Error {
         if (this.log_level == LogLevel.INVALID) {
-            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
 
         return log_level;
@@ -192,7 +192,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         if (disabled) {
             return false;
         } else {
-            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
     }
 
@@ -211,7 +211,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         if (title != null) {
             return title;
         } else {
-            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
     }
 
@@ -235,7 +235,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         if (value != null) {
             return value;
         } else {
-            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
     }
 
@@ -261,7 +261,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         if (value != null) {
             return value;
         } else {
-            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
     }
 
@@ -290,7 +290,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         if (value_set) {
             return value;
         } else {
-            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
     }
 
@@ -316,7 +316,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         if (value != null) {
             return value;
         } else {
-            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
     }
 
@@ -341,7 +341,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         if (value_set) {
             return value;
         } else {
-            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
     }
 }

@@ -40,13 +40,13 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
         if (range != null) {
             // We have a Range header. Parse.
             if (!range.has_prefix ("bytes=")) {
-                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
                                                        range);
             }
 
             range_tokens = range.offset (6).split ("-", 2);
             if (range_tokens[0] == null || range_tokens[1] == null) {
-                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
                                                        range);
             }
 
@@ -55,7 +55,7 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
             if (pos[0].isdigit ()) {
                 start = pos.to_int64 ();
             } else if (pos  != "") {
-                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
                                                        range);
             }
 
@@ -64,11 +64,12 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
             if (pos[0].isdigit ()) {
                 stop = pos.to_int64 ();
                 if (stop < start) {
-                    throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
-                                                           range);
+                    throw new HTTPSeekError.INVALID_RANGE (
+                                        _("Invalid Range '%s'"),
+                                        range);
                 }
             } else if (pos != "") {
-                throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
+                throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
                                                        range);
             }
         }
