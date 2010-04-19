@@ -117,7 +117,8 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
                    this.browse_flag == "BrowseMetadata") {
             this.fetch_metadata = true;
         } else {
-            throw new ContentDirectoryError.INVALID_ARGS (_("Invalid Args"));
+            throw new ContentDirectoryError.INVALID_ARGS (
+                                        _("Invalid Arguments"));
         }
 
         /* ObjectID */

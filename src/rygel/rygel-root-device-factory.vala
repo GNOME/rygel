@@ -99,7 +99,7 @@ internal class Rygel.RootDeviceFactory {
                                                 "device",
                                                 null);
         if (device_element == null) {
-            warning (_("Element /root/device not found."));
+            warning (_("XML node '%s' not found."), "/root/device");
 
             return;
         }
@@ -132,7 +132,8 @@ internal class Rygel.RootDeviceFactory {
                                                    "friendlyName",
                                                    null);
         if (element == null) {
-            warning (_("Element /root/device/friendlyName not found."));
+            warning (_("XML node '%s' not found."),
+                       "/root/device/friendlyName");
 
             return;
         }
@@ -153,7 +154,7 @@ internal class Rygel.RootDeviceFactory {
         /* UDN */
         element = Utils.get_xml_element (device_element, "UDN");
         if (element == null) {
-            warning (_("Element /root/device/UDN not found."));
+            warning (_("XML node '%s' not found."), "/root/device/UDN");
 
             return;
         }
@@ -172,7 +173,8 @@ internal class Rygel.RootDeviceFactory {
                                                    "modelDescription",
                                                    null);
         if (element == null) {
-            warning (_("Element /root/device/modelDescription not found."));
+            warning (_("XML node '%s' not found."),
+                       "/root/device/modelDescription");
 
             return;
         }
@@ -186,7 +188,7 @@ internal class Rygel.RootDeviceFactory {
                                                              "serviceList",
                                                              null);
         if (service_list_node == null) {
-            warning (_("Element /root/device/serviceList not found."));
+            warning (_("XML node '%s' not found."), "/root/device/serviceList");
 
             return;
         }

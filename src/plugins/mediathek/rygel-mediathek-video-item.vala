@@ -61,7 +61,7 @@ public class Rygel.MediathekVideoItem : Rygel.MediaItem {
             }
             else {
                 throw new MediathekVideoItemError.XML_PARSE_ERROR (
-                                        _("group node has url property"));
+                                        _("group node has no 'url' property"));
             }
         }
         else {
