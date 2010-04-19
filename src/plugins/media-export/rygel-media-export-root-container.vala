@@ -94,7 +94,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
         try {
             this.media_db.remove_by_id (id);
         } catch (Error error) {
-            warning (_("Failed to remove uri: %s"), error.message);
+            warning (_("Failed to remove URI: %s"), error.message);
         }
     }
 
@@ -343,7 +343,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 var info = container.split ("=");
                 var id = MediaExportQueryContainer.PREFIX + info[1];
                 if (!MediaExportQueryContainer.validate_virtual_id (id)) {
-                    warning (_("%s is not a valid virtual id"), id);
+                    warning (_("%s is not a valid virtual ID"), id);
 
                     continue;
                 }
@@ -370,7 +370,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
                 continue;
             }
 
-            debug (_("Id %s no longer in config, deleting..."), id);
+            debug (_("ID %s no longer in config, deleting..."), id);
             try {
                 this.media_db.remove_by_id (id);
             } catch (DatabaseError error) {

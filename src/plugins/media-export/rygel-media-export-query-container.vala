@@ -44,14 +44,14 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
         var args = id.split(",");
 
         if ((args.length % 2) != 0) {
-            warning (_("Id does not contain pairs"));
+            warning (_("ID does not contain pairs"));
 
             return false;
         }
 
         for (int i = 0; i < args.length; i += 2) {
             if (args[i] == "" || args[i + 1] == "") {
-                warning (_("Empty part not allowed in virtual id"));
+                warning (_("Empty part not allowed in virtual ID"));
 
                 return false;
             }
@@ -91,7 +91,7 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
         base (media_db, id, name);
 
         this.plaintext_id = get_virtual_container_definition (id);
-        debug ("plaintext id is: %s", this.plaintext_id);
+        debug ("plaintext ID is: %s", this.plaintext_id);
         var args = this.plaintext_id.split(",");
 
         if ((args.length % 2) != 0) {

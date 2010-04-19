@@ -289,7 +289,7 @@ public class Rygel.MediaDB : Object {
             object_added (item.id);
             item_added (item.id);
         } catch (DatabaseError error) {
-            warning (_("Failed to add item with id %s: %s"),
+            warning (_("Failed to add item with ID %s: %s"),
                      item.id,
                      error.message);
             db.rollback ();
@@ -315,7 +315,7 @@ public class Rygel.MediaDB : Object {
                 container_updated (object.id);
             }
         } catch (Error error) {
-            warning (_("Failed to add item with id %s: %s"),
+            warning (_("Failed to add item with ID %s: %s"),
                      object.id,
                      error.message);
             db.rollback ();
