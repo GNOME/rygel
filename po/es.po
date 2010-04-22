@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-04-19 23:01+0000\n"
-"PO-Revision-Date: 2010-04-20 08:12+0200\n"
+"POT-Creation-Date: 2010-04-20 06:13+0000\n"
+"PO-Revision-Date: 2010-04-22 08:29+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -259,7 +259,6 @@ msgstr "Falló al crear una instancia de la base de datos"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:97
 #, c-format
-#| msgid "Failed to browse '%s': %s\n"
 msgid "Failed to remove URI: %s"
 msgstr "Falló al quitar el URI: %s"
 
@@ -406,7 +405,6 @@ msgstr ""
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:38
 #, c-format
-#| msgid "Failed to browse '%s': %s\n"
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "Falló al construir el URI para la carpeta «%s»: %s"
 
@@ -454,7 +452,6 @@ msgid "Year"
 msgstr "Año"
 
 #: ../src/rygel/rygel-browse.vala:121
-#| msgid "Invalid Name"
 msgid "Invalid Arguments"
 msgstr "Argumentos no válidos"
 
@@ -716,7 +713,6 @@ msgstr ""
 
 #: ../src/rygel/rygel-media-db.vala:292 ../src/rygel/rygel-media-db.vala:318
 #, c-format
-#| msgid "Failed to browse '%s': %s\n"
 msgid "Failed to add item with ID %s: %s"
 msgstr "Falló al añadir el elemento con ID %s: %s"
 
@@ -852,21 +848,21 @@ msgstr ""
 #: ../src/rygel/rygel-root-device-factory.vala:232
 #, c-format
 msgid "No icon provided by %s."
-msgstr ""
+msgstr "%s no proporcionó ningún icono."
 
 #: ../src/rygel/rygel-root-device-factory.vala:294
 #, c-format
 msgid "Failed to write modified description to %s"
-msgstr ""
+msgstr "Falló al escribir la descripción modificada en %s"
 
 #: ../src/rygel/rygel-search.vala:92
 msgid "No such container"
-msgstr ""
+msgstr "No existe tal contenedor"
 
 #: ../src/rygel/rygel-search.vala:95
 #, c-format
 msgid "Executing search request: %s"
-msgstr ""
+msgstr "Ejecutando la consulta de búsqueda: %s"
 
 #: ../src/rygel/rygel-search.vala:129
 msgid "Specified container does not exist."
@@ -909,7 +905,7 @@ msgstr "No existen subtítulos disponibles"
 
 #: ../src/rygel/rygel-thumbnailer.vala:56
 msgid "Failed to find thumbnails folder."
-msgstr ""
+msgstr "Falló al buscar la carpeta de miniaturas."
 
 #: ../src/rygel/rygel-thumbnailer.vala:82
 #, c-format
@@ -928,12 +924,12 @@ msgstr ""
 #: ../src/rygel/rygel-user-config.vala:163
 #, c-format
 msgid "Loaded user configuration from file '%s'"
-msgstr ""
+msgstr "Configuración de usuario cargada del archivo «%s»"
 
 #: ../src/rygel/rygel-user-config.vala:194
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
-msgstr ""
+msgstr "Falló al guardar los datos de configuración en el archivo «%s»: %s"
 
 #: ../src/rygel/rygel-user-config.vala:214
 #, c-format
@@ -949,7 +945,7 @@ msgstr "El valor «%s» está fuera de rango"
 #: ../src/rygel/rygel-user-config.vala:345
 #, c-format
 msgid "Failed to %s Rygel service: %s"
-msgstr ""
+msgstr "Falló al %s el servicio Rygel: %s"
 
 #: ../src/rygel/rygel-xbox-hacks.vala:43
 msgid "Not Applicable"
@@ -958,9 +954,9 @@ msgstr "No es aplicable"
 #: ../src/rygel/rygel-xbox-hacks.vala:148
 #, c-format
 msgid "Failed to write modified description to %s."
-msgstr ""
+msgstr "Falló al escribir la descripción modificada en %s."
 
 #: ../src/ui/rygel-preferences-dialog.vala:70
 #, c-format
 msgid "Failed to create preferences dialog: %s"
-msgstr ""
+msgstr "Falló al crear el diálogo de preferencias: %s"
