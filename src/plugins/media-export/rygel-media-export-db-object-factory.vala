@@ -32,7 +32,7 @@
  * MediaDB is holding a reference to the factory; this is done to
  * prevent circular references
  */
-public class Rygel.MediaDBObjectFactory : Object {
+public class Rygel.MediaExportDBObjectFactory : Object {
     /**
      * Return a new instance of DatabaseBackedMediaContainer
      *
@@ -40,11 +40,12 @@ public class Rygel.MediaDBObjectFactory : Object {
      * @param title title of the container
      * @param child_count number of children in the container
      */
-    public virtual MediaContainer get_container (MediaDB media_db,
-                                                 string  id,
-                                                 string  title,
-                                                 uint    child_count) {
-        return new MediaDBContainer (media_db, id, title);
+    public virtual MediaContainer get_container (
+                                        MediaExportMediaCache media_db,
+                                        string                id,
+                                        string                title,
+                                        uint                  child_count) {
+        return new MediaExportDBContainer (media_db, id, title);
     }
 
     /**
@@ -55,11 +56,11 @@ public class Rygel.MediaDBObjectFactory : Object {
      * @param title title of the item
      * @param upnp_class upnp_class of the item
      */
-    public virtual MediaItem get_item (MediaDB        media_db,
-                                       MediaContainer parent,
-                                       string         id,
-                                       string         title,
-                                       string         upnp_class) {
+    public virtual MediaItem get_item (MediaExportMediaCache media_db,
+                                       MediaContainer        parent,
+                                       string                id,
+                                       string                title,
+                                       string                upnp_class) {
         return new MediaItem (id, parent, title, upnp_class);
     }
 }

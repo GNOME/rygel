@@ -24,8 +24,8 @@ using GUPnP;
 /**
  * Represents the root container.
  */
-public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
-    private MetadataExtractor extractor;
+public class Rygel.MediaExportRootContainer : Rygel.MediaExportDBContainer {
+    private MediaExportMetadataExtractor extractor;
     private HashMap<File, MediaExportHarvester> harvester;
     private MediaExportRecursiveFileMonitor monitor;
     private MediaExportDBusService service;
@@ -284,11 +284,12 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaDBContainer {
      */
     private MediaExportRootContainer () throws Error {
         var object_factory = new MediaExportObjectFactory ();
-        var db = new MediaDB.with_factory ("media-export", object_factory);
+        var db = new MediaExportMediaCache.with_factory ("media-export",
+                                                         object_factory);
 
         base (db, "0", "MediaExportRoot");
 
-        this.extractor = MetadataExtractor.create ();
+        this.extractor = MediaExportMetadataExtractor.create ();
 
         this.harvester = new HashMap<File, MediaExportHarvester> (file_hash,
                                                                   file_equal);

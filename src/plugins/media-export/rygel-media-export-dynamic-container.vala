@@ -19,11 +19,11 @@
  */
 using Gee;
 
-internal class Rygel.MediaExportDynamicContainer : Rygel.MediaDBContainer {
+internal class Rygel.MediaExportDynamicContainer : Rygel.MediaExportDBContainer {
     public const string ID = "DynamicContainerId";
 
-    public MediaExportDynamicContainer (MediaDB        media_db,
-                                        MediaContainer parent) {
+    public MediaExportDynamicContainer (MediaExportMediaCache media_db,
+                                        MediaContainer        parent) {
         base (media_db, ID, "Dynamic");
         this.parent = parent;
     }

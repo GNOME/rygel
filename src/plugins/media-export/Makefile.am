@@ -12,12 +12,18 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
+	    $(LIBSQLITE3_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(UUID_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"' \
 	    -include config.h
 
 librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
+				   rygel-media-export-database.vala \
+				   rygel-media-export-db-container.vala \
+				   rygel-media-export-db-object-factory.vala \
+				   rygel-media-export-media-cache.vala \
+				   rygel-media-export-metadata-extractor.vala \
 				   rygel-media-export-null-container.vala \
 				   rygel-media-export-dummy-container.vala \
 				   rygel-media-export-dynamic-container.vala \
@@ -39,12 +45,14 @@ librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
                                      --pkg gupnp-av-1.0 \
                                      --pkg libsoup-2.4 \
                                      --pkg gee-1.0 \
-                                     --pkg libxml-2.0 -g
+                                     --pkg libxml-2.0 \
+                                     --pkg sqlite3 -g
 
 librygel_media_export_la_LIBADD = $(LIBGUPNP_LIBS) \
 				  $(LIBGUPNP_AV_LIBS) \
 				  $(LIBDBUS_GLIB_LIBS) \
 				  $(LIBGSTREAMER_LIBS) \
+				  $(LIBSQLITE3_LIBS) \
 				  $(GEE_LIBS) \
 				  $(UUID_LIBS)
 librygel_media_export_la_LDFLAGS = -shared -fPIC -module -avoid-version

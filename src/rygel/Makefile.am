@@ -18,7 +18,6 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(UUID_CFLAGS) \
 	    $(LIBSOUP_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
-	    $(LIBSQLITE3_CFLAGS) \
 	    -I$(top_srcdir) \
 	    -DDATA_DIR='"$(shareddir)"' -DSYS_CONFIG_DIR='"$(sysconfdir)"'\
 	    -DPLUGIN_DIR='"$(plugindir)"' -DDESKTOP_DIR='"$(desktopdir)"'\
@@ -38,7 +37,6 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-dbus-service.vala \
 		rygel-root-device.vala \
 		rygel-root-device-factory.vala \
-		rygel-database.vala \
 		rygel-main.vala
 
 VAPI_SOURCE_FILES = rygel-configuration.vala \
@@ -97,17 +95,13 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-wmv-transcoder.vala \
 		    rygel-wmv-transcoder-bin.vala \
 		    rygel-gst-utils.vala \
-		    rygel-media-db.vala \
-		    rygel-metadata-extractor.vala \
-		    rygel-media-db-container.vala \
-		    rygel-media-db-object-factory.vala \
 		    rygel-media-receiver-registrar.vala \
 		    rygel-log-handler.vala
 
 rygel_VALAFLAGS = \
 	-H rygel.h -C --library=rygel-1.0 --vapidir=$(srcdir) --thread \
 	--pkg cstuff --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
-	--pkg gstreamer-0.10 --pkg gio-2.0 --pkg gee-1.0 --pkg sqlite3 -g
+	--pkg gstreamer-0.10 --pkg gio-2.0 --pkg gee-1.0 -g
 
 rygel_LDADD = librygel-configuration.a \
 	      $(LIBGUPNP_LIBS) \
@@ -117,8 +111,7 @@ rygel_LDADD = librygel-configuration.a \
 	      $(GEE_LIBS) \
 	      $(UUID_LIBS) \
 	      $(LIBSOUP_LIBS) \
-	      $(LIBDBUS_GLIB_LIBS) \
-	      $(LIBSQLITE3_LIBS)
+	      $(LIBDBUS_GLIB_LIBS)
 
 rygel_LDFLAGS = -export-dynamic
 

@@ -40,11 +40,11 @@ public enum Rygel.MediaDBObjectType {
 /**
  * Persistent storage of media objects
  *
- * MediaDB is a sqlite3 backed persistent storage of media objects
+ *  MediaExportDB is a sqlite3 backed persistent storage of media objects
  */
-public class Rygel.MediaDB : Object {
-    private Rygel.Database db;
-    private MediaDBObjectFactory factory;
+public class Rygel.MediaExportMediaCache : Object {
+    private MediaExportDatabase db;
+    private MediaExportDBObjectFactory factory;
     private const string schema_version = "5";
     private const string CREATE_META_DATA_TABLE_STRING =
     "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
@@ -84,8 +84,8 @@ public class Rygel.MediaDB : Object {
                       "uri TEXT NOT NULL);" +
     "INSERT INTO object_type (id, desc) VALUES (0, 'Container'); " +
     "INSERT INTO object_type (id, desc) VALUES (1, 'Item'); " +
-    "INSERT INTO schema_info (version) VALUES ('" + MediaDB.schema_version +
-                                                "'); ";
+    "INSERT INTO schema_info (version) VALUES ('" +
+    MediaExportMediaCache.schema_version + "'); ";
 
     private const string CREATE_CLOSURE_TABLE =
     "CREATE TABLE closure (ancestor TEXT, descendant TEXT, depth INTEGER)";
@@ -328,7 +328,7 @@ public class Rygel.MediaDB : Object {
         GLib.Value[] values = { object_id };
         MediaObject parent = null;
 
-        Rygel.Database.RowCallback cb = (statement) => {
+        MediaExportDatabase.RowCallback cb = (statement) => {
             var parent_container = parent as MediaContainer;
             var object = get_object_from_statement (parent_container,
                                                     statement.column_text (18),
@@ -413,7 +413,7 @@ public class Rygel.MediaDB : Object {
         GLib.Value[] values = { container_id,
                                 (int64) offset,
                                 (int64) max_count };
-        Rygel.Database.RowCallback callback = (statement) => {
+        MediaExportDatabase.RowCallback callback = (statement) => {
             var child_id = statement.column_text (17);
             children.add (get_object_from_statement (parent,
                                                      child_id,
@@ -482,7 +482,7 @@ public class Rygel.MediaDB : Object {
 
         debug ("Parameters to bind: %u", args.n_values);
 
-        Rygel.Database.RowCallback callback = (statement) => {
+        MediaExportDatabase.RowCallback callback = (statement) => {
             var child_id = statement.column_text (17);
             var parent_id = statement.column_text (18);
             try {
@@ -514,19 +514,21 @@ public class Rygel.MediaDB : Object {
         return children;
     }
 
-    public MediaDB (string name) throws Error {
+    public MediaExportMediaCache (string name) throws Error {
         this.open_db (name);
-        this.factory = new MediaDBObjectFactory ();
+        this.factory = new MediaExportDBObjectFactory ();
     }
 
-    public MediaDB.with_factory (string               name,
-                                 MediaDBObjectFactory factory) throws Error {
+    public MediaExportMediaCache.with_factory (
+                                        string                     name,
+                                        MediaExportDBObjectFactory factory)
+                                        throws Error {
         this.open_db (name);
         this.factory = factory;
     }
 
     private void open_db (string name) throws Error {
-        this.db = new Rygel.Database (name);
+        this.db = new MediaExportDatabase (name);
         int old_version = -1;
 
         try {
@@ -747,7 +749,7 @@ public class Rygel.MediaDB : Object {
         }
 
         if (item.parent == null) {
-            parent = Database.@null ();
+            parent = MediaExportDatabase.@null ();
         } else {
             parent = item.parent.id;
         }
@@ -1034,7 +1036,7 @@ public class Rygel.MediaDB : Object {
         args.append (v);
 
         var data = new ArrayList<string> ();
-        Rygel.Database.RowCallback callback = (statement) => {
+        MediaExportDatabase.RowCallback callback = (statement) => {
             data.add (statement.column_text (0));
 
             return true;

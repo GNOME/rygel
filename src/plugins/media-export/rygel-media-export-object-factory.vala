@@ -20,11 +20,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-internal class Rygel.MediaExportObjectFactory : MediaDBObjectFactory {
-    public override MediaContainer get_container (MediaDB media_db,
-                                                  string  id,
-                                                  string  title,
-                                                  uint    child_count) {
+internal class Rygel.MediaExportObjectFactory : MediaExportDBObjectFactory {
+    public override MediaContainer get_container (
+                                        MediaExportMediaCache media_db,
+                                        string                id,
+                                        string                title,
+                                        uint                  child_count) {
         if (id.has_prefix (MediaExportQueryContainer.PREFIX)) {
             return new MediaExportQueryContainer (media_db, id, title);
         } else {

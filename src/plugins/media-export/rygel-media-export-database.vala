@@ -33,7 +33,7 @@ public errordomain Rygel.DatabaseError {
  * It adds statement preparation based on GValue and a cancellable exec
  * function.
  */
-internal class Rygel.Database : Object {
+internal class Rygel.MediaExportDatabase : Object {
     private Sqlite.Database db;
 
     /**
@@ -49,7 +49,7 @@ internal class Rygel.Database : Object {
      * @param name of the database, used to build full path
      * (<cache-dir>/rygel/<name>.db)
      */
-    public Database (string name) throws DatabaseError {
+    public MediaExportDatabase (string name) throws DatabaseError {
         var dirname = Path.build_filename (Environment.get_user_cache_dir (),
                                            "rygel");
         DirUtils.create_with_parents (dirname, 0750);

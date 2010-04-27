@@ -21,7 +21,7 @@
 using Gee;
 using GUPnP;
 
-internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
+internal class Rygel.MediaExportQueryContainer : Rygel.MediaExportDBContainer {
     public static const string PREFIX = "virtual-container:";
     private string attribute;
     private SearchExpression expression;
@@ -66,9 +66,9 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaDBContainer {
         return true;
     }
 
-    public MediaExportQueryContainer (MediaDB media_db,
-                                      string  id,
-                                      string  name = "") {
+    public MediaExportQueryContainer (MediaExportMediaCache media_db,
+                                      string                id,
+                                      string                name = "") {
         // parse the id
         // Following the schema:
         // virtual-folder:<class>,? -> get all of that class (eg. Albums)

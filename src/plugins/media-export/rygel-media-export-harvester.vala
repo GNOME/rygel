@@ -22,8 +22,8 @@ using GLib;
 using Gee;
 
 public class Rygel.MediaExportHarvester : GLib.Object {
-    private MetadataExtractor extractor;
-    private MediaDB media_db;
+    private MediaExportMetadataExtractor extractor;
+    private MediaExportMediaCache media_db;
     private GLib.Queue<MediaContainer> containers;
     private GLib.Queue<FileQueueEntry?> files;
     private File origin;
@@ -31,9 +31,9 @@ public class Rygel.MediaExportHarvester : GLib.Object {
     private MediaExportRecursiveFileMonitor monitor;
     public Cancellable cancellable;
 
-    public MediaExportHarvester (MediaContainer parent,
-                                 MediaDB media_db,
-                                 MetadataExtractor extractor,
+    public MediaExportHarvester (MediaContainer                  parent,
+                                 MediaExportMediaCache           media_db,
+                                 MediaExportMetadataExtractor    extractor,
                                  MediaExportRecursiveFileMonitor monitor) {
         this.parent = parent;
         this.extractor = extractor;

@@ -28,6 +28,12 @@ using Gst;
  * Represents MediaExport item.
  */
 public class Rygel.MediaExportItem : Rygel.MediaItem {
+    private const string TAG_WIDTH =
+                                  MediaExportMetadataExtractor.TAG_RYGEL_WIDTH;
+    private const string TAG_HEIGHT =
+                                 MediaExportMetadataExtractor.TAG_RYGEL_HEIGHT;
+    private const string TAG_DURATION =
+                               MediaExportMetadataExtractor.TAG_RYGEL_DURATION;
     public MediaExportItem (MediaContainer parent,
                             File           file,
                             FileInfo       info) {
@@ -74,15 +80,15 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
 
             if (!tag_list.get_string (TAG_VIDEO_CODEC, out codec)) {
                 if (!tag_list.get_string (TAG_AUDIO_CODEC, out codec)) {
-                    if (tag_list.get_int (MetadataExtractor.TAG_RYGEL_WIDTH, out width) ||
-                        tag_list.get_int (MetadataExtractor.TAG_RYGEL_HEIGHT, out height)) {
+                    if (tag_list.get_int (TAG_WIDTH, out width) ||
+                        tag_list.get_int (TAG_HEIGHT, out height)) {
                         class_guessed = MediaItem.PHOTO_CLASS;
                     } else {
                         // if it has width and height and a duration, assume
                         // it is a video (to capture the MPEG TS without audio
                         // case)
                         int64 duration;
-                        if (tag_list.get_int64 (MetadataExtractor.TAG_RYGEL_DURATION,
+                        if (tag_list.get_int64 (TAG_DURATION,
                                                 out duration)) {
                             class_guessed = MediaItem.VIDEO_CLASS;
                         } else {
@@ -95,8 +101,8 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
                     // MPEG TS streams seem to miss VIDEO_CODEC; so if we have
                     // an AUDIO_CODEC and width or height, assume video as
                     // well
-                    if (tag_list.get_int (MetadataExtractor.TAG_RYGEL_WIDTH, out width) ||
-                        tag_list.get_int (MetadataExtractor.TAG_RYGEL_HEIGHT, out height)) {
+                    if (tag_list.get_int (TAG_WIDTH, out width) ||
+                        tag_list.get_int (TAG_HEIGHT, out height)) {
                         class_guessed = MediaItem.VIDEO_CLASS;
                     } else {
                         class_guessed = MediaItem.AUDIO_CLASS;
@@ -136,16 +142,17 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
         }
         base (id, parent, title, upnp_class);
 
-        tag_list.get_int (MetadataExtractor.TAG_RYGEL_WIDTH, out this.width);
-        tag_list.get_int (MetadataExtractor.TAG_RYGEL_HEIGHT, out this.height);
-        tag_list.get_int (MetadataExtractor.TAG_RYGEL_DEPTH,
+        tag_list.get_int (TAG_WIDTH, out this.width);
+        tag_list.get_int (TAG_HEIGHT, out this.height);
+        tag_list.get_int (MediaExportMetadataExtractor.TAG_RYGEL_DEPTH,
                           out this.color_depth);
         int64 duration;
-        tag_list.get_int64 (MetadataExtractor.TAG_RYGEL_DURATION,
+        tag_list.get_int64 (MediaExportMetadataExtractor.TAG_RYGEL_DURATION,
                             out duration);
         this.duration = (duration == -1) ? -1 : (long) (duration / 1000000000);
 
-        tag_list.get_int (MetadataExtractor.TAG_RYGEL_CHANNELS, out this.n_audio_channels);
+        tag_list.get_int (MediaExportMetadataExtractor.TAG_RYGEL_CHANNELS,
+                          out this.n_audio_channels);
 
         tag_list.get_string (TAG_ARTIST, out this.author);
         tag_list.get_string (TAG_ALBUM, out this.album);
@@ -155,15 +162,17 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
         this.track_number = (int)tmp;
         tag_list.get_uint (TAG_BITRATE, out tmp);
         this.bitrate = (int)tmp / 8;
-        tag_list.get_int (MetadataExtractor.TAG_RYGEL_RATE, out this.sample_freq);
+        tag_list.get_int (MediaExportMetadataExtractor.TAG_RYGEL_RATE,
+                          out this.sample_freq);
 
 
         int64 size;
-        tag_list.get_int64 (MetadataExtractor.TAG_RYGEL_SIZE, out size);
+        tag_list.get_int64 (MediaExportMetadataExtractor.TAG_RYGEL_SIZE,
+                            out size);
         this.size = (long) size;
 
         uint64 mtime;
-        tag_list.get_uint64 (MetadataExtractor.TAG_RYGEL_MTIME,
+        tag_list.get_uint64 (MediaExportMetadataExtractor.TAG_RYGEL_MTIME,
                              out mtime);
         this.modified = (int64) mtime;
 
@@ -178,7 +187,7 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
         }
 
 
-        tag_list.get_string (MetadataExtractor.TAG_RYGEL_MIME,
+        tag_list.get_string (MediaExportMetadataExtractor.TAG_RYGEL_MIME,
                              out this.mime_type);
 
         this.add_uri (file.get_uri (), null);

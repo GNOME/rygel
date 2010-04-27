@@ -22,10 +22,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
-internal class Rygel.MediaExportWritableContainer : MediaDBContainer {
-    public MediaExportWritableContainer (MediaDB media_db,
-                                         string  id,
-                                         string  title) {
+internal class Rygel.MediaExportWritableContainer : MediaExportDBContainer {
+    public MediaExportWritableContainer (MediaExportMediaCache media_db,
+                                         string                id,
+                                         string                title) {
         base (media_db, id, title);
     }
 
