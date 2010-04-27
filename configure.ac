@@ -41,7 +41,6 @@ PKG_CHECK_MODULES(LIBGIO, gio-2.0 >= $GIO_REQUIRED)
 PKG_CHECK_MODULES(GEE, gee-1.0 >= $GEE_REQUIRED)
 PKG_CHECK_MODULES(UUID, uuid >= $UUID_REQUIRED)
 PKG_CHECK_MODULES(LIBSOUP, libsoup-2.4 >= $LIBSOUP_REQUIRED)
-PKG_CHECK_MODULES(LIBSQLITE3, sqlite3 >= $LIBSQLITE3_REQUIRED)
 
 # glib-genmarshal
 GLIB_GENMARSHAL=`pkg-config --variable=glib_genmarshal glib-2.0`
@@ -241,6 +240,11 @@ AM_CONDITIONAL([BUILD_MEDIA_EXPORT_PLUGIN], [test "x$enable_media_export_plugin"
 AM_CONDITIONAL([BUILD_EXTERNAL_PLUGIN], [test "x$enable_external_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_GST_RENDERER_PLUGIN], [test "x$enable_gst_renderer_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_GST_LAUNCH_PLUGIN], [test "x$enable_gst_launch_plugin" = "xyes"])
+
+if test "x$enable_media_export_plugin" = "xyes";
+then
+    PKG_CHECK_MODULES(LIBSQLITE3, sqlite3 >= $LIBSQLITE3_REQUIRED)
+fi
 
 # Gettext
 GETTEXT_PACKAGE=AC_PACKAGE_NAME
