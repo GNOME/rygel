@@ -375,7 +375,7 @@ msgstr "Razčlenjevanje dokumenta je spodletelo"
 #: ../src/plugins/mediathek/rygel-mediathek-rss-container.vala:103
 #, c-format
 msgid "Requesting change since %s"
-msgstr "Zahtevanje spremembe od %d"
+msgstr "Zahtevanje spremembe od %s"
 
 #: ../src/plugins/mediathek/rygel-mediathek-rss-container.vala:117
 #, c-format
@@ -650,7 +650,7 @@ msgstr "Ustvarjanje predmeta pod '%s' je spodletelo: %s"
 #: ../src/rygel/rygel-wmv-transcoder-bin.vala:86
 #, c-format
 msgid "Failed to link pad %s to %s"
-msgstr "Napaka med povezovanjem %s z %S"
+msgstr "Napaka med povezovanjem %s z %s"
 
 #. 'fakesink' should not be translated
 #: ../src/rygel/rygel-live-response.vala:84
