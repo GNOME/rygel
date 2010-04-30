@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../data/rygel-preferences.ui.h:1
 msgid "<b>Network Options</b>"
-msgstr "<b>Možnosti omrežja>/b>"
+msgstr "<b>Možnosti omrežja></b>"
 
 #: ../data/rygel-preferences.ui.h:2
 msgid "General"
