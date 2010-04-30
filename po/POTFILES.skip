@@ -3,6 +3,10 @@ src/plugins/gst-renderer/rygel-gst-changelog.c
 src/plugins/gst-renderer/rygel-gst-player.c
 src/plugins/gst-renderer/rygel-gst-plugin.c
 src/plugins/gst-renderer/rygel-gst-rendering-control.c
+src/plugins/media-export/rygel-media-export-database.c
+src/plugins/media-export/rygel-media-export-db.c
+src/plugins/media-export/rygel-media-export-media-cache.c
+src/plugins/media-export/rygel-media-export-metadata-extractor.c
 src/plugins/media-export/rygel-media-export-dbus-service.c
 src/plugins/media-export/rygel-media-export-harvester.c
 src/plugins/media-export/rygel-media-export-item.c
@@ -29,7 +33,6 @@ src/rygel/rygel-browse.c
 src/rygel/rygel-cmdline-config.c
 src/rygel/rygel-connection-manager.c
 src/rygel/rygel-content-directory.c
-src/rygel/rygel-database.c
 src/rygel/rygel-didl-lite-writer.c
 src/rygel/rygel-gst-utils.c
 src/rygel/rygel-http-byte-seek.c
@@ -48,7 +51,6 @@ src/rygel/rygel-live-response.c
 src/rygel/rygel-log-handler.c
 src/rygel/rygel-main.c
 src/rygel/rygel-media-container.c
-src/rygel/rygel-media-db.c
 src/rygel/rygel-media-item.c
 src/rygel/rygel-meta-config.c
 src/rygel/rygel-metadata-extractor.c

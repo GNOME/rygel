@@ -27,6 +27,11 @@ src/plugins/gst-renderer/rygel-gst-connection-manager.vala
 src/plugins/gst-renderer/rygel-gst-player.vala
 src/plugins/gst-renderer/rygel-gst-plugin.vala
 src/plugins/gst-renderer/rygel-gst-rendering-control.vala
+src/plugins/media-export/rygel-media-export-database.vala
+src/plugins/media-export/rygel-media-export-db-container.vala
+src/plugins/media-export/rygel-media-export-db-object-factory.vala
+src/plugins/media-export/rygel-media-export-metadata-extractor.vala
+src/plugins/media-export/rygel-media-export-media-cache.vala
 src/plugins/media-export/rygel-media-export-dbus-service.vala
 src/plugins/media-export/rygel-media-export-dummy-container.vala
 src/plugins/media-export/rygel-media-export-dynamic-container.vala
@@ -80,7 +85,6 @@ src/rygel/rygel-cmdline-config.vala
 src/rygel/rygel-configuration.vala
 src/rygel/rygel-connection-manager.vala
 src/rygel/rygel-content-directory.vala
-src/rygel/rygel-database.vala
 src/rygel/rygel-dbus-service.vala
 src/rygel/rygel-didl-lite-writer.vala
 src/rygel/rygel-gst-utils.vala
@@ -106,14 +110,10 @@ src/rygel/rygel-log-handler.vala
 src/rygel/rygel-logical-expression.vala
 src/rygel/rygel-main.vala
 src/rygel/rygel-media-container.vala
-src/rygel/rygel-media-db-container.vala
-src/rygel/rygel-media-db-object-factory.vala
-src/rygel/rygel-media-db.vala
 src/rygel/rygel-media-item.vala
 src/rygel/rygel-media-object.vala
 src/rygel/rygel-media-receiver-registrar.vala
 src/rygel/rygel-meta-config.vala
-src/rygel/rygel-metadata-extractor.vala
 src/rygel/rygel-mp2ts-transcoder-bin.vala
 src/rygel/rygel-mp2ts-transcoder.vala
 src/rygel/rygel-mp3-transcoder-bin.vala
