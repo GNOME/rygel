@@ -67,8 +67,8 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
     }
 
     public static MediaItem? create_from_taglist (MediaContainer parent,
-                                                  File file,
-                                                  Gst.TagList tag_list) {
+                                                  File           file,
+                                                  Gst.TagList    tag_list) {
         string id = Checksum.compute_for_string (ChecksumType.MD5,
                                                  file.get_uri ());
         int width = -1;
@@ -94,6 +94,7 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
                         } else {
                             warning(_("File '%s' is of unknown format/type."),
                                     file.get_uri ());
+
                             return null;
                         }
                     }
@@ -114,6 +115,7 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
         } else {
             // throw error. Taglist can't be empty
             warning(_("Got empty taglist for file %s"), file.get_uri ());
+
             return null;
         }
 
@@ -125,10 +127,10 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
     }
 
     private MediaExportItem.from_taglist (MediaContainer parent,
-                                          string id,
-                                          File file,
-                                          Gst.TagList tag_list,
-                                          string upnp_class) {
+                                          string         id,
+                                          File           file,
+                                          Gst.TagList    tag_list,
+                                          string         upnp_class) {
         string title = null;
         if (upnp_class == MediaItem.AUDIO_CLASS ||
             upnp_class == MediaItem.MUSIC_CLASS) {
@@ -159,9 +161,9 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
 
         uint tmp;
         tag_list.get_uint (TAG_TRACK_NUMBER, out tmp);
-        this.track_number = (int)tmp;
+        this.track_number = (int) tmp;
         tag_list.get_uint (TAG_BITRATE, out tmp);
-        this.bitrate = (int)tmp / 8;
+        this.bitrate = (int) tmp / 8;
         tag_list.get_int (MediaExportMetadataExtractor.TAG_RYGEL_RATE,
                           out this.sample_freq);
 
@@ -179,10 +181,10 @@ public class Rygel.MediaExportItem : Rygel.MediaItem {
         GLib.Date? date;
         if (tag_list.get_date (TAG_DATE, out date)) {
             char[] datestr = new char[30];
-            date.strftime(datestr, "%F");
-            this.date = (string)datestr;
+            date.strftime (datestr, "%F");
+            this.date = (string) datestr;
         } else {
-            TimeVal tv = { (long)mtime, 0 };
+            TimeVal tv = { (long) mtime, 0 };
             this.date = tv.to_iso8601 ();
         }
 
