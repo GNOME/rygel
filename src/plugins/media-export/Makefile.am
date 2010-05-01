@@ -13,6 +13,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
 	    $(GEE_CFLAGS) \
+	    $(UUID_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"' \
 	    -include config.h
 
@@ -44,7 +45,8 @@ librygel_media_export_la_LIBADD = $(LIBGUPNP_LIBS) \
 				  $(LIBGUPNP_AV_LIBS) \
 				  $(LIBDBUS_GLIB_LIBS) \
 				  $(LIBGSTREAMER_LIBS) \
-				  $(GEE_LIBS)
+				  $(GEE_LIBS) \
+				  $(UUID_LIBS)
 librygel_media_export_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
 MAINTAINERCLEANFILES = Makefile.in
