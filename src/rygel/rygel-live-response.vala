@@ -28,12 +28,18 @@ using Gst;
 
 internal class Rygel.LiveResponse : Rygel.HTTPResponse {
     private const string SINK_NAME = "fakesink";
+    // High and low threshold for number of buffered chunks
+    private const uint MAX_BUFFERED_CHUNKS = 32;
+    private const uint MIN_BUFFERED_CHUNKS = 4;
 
     private Pipeline pipeline;
 
     private HTTPSeek time_range;
 
     private SourceFunc run_continue;
+
+    private size_t buffered;
+    private bool out_of_sync;
 
     public LiveResponse (Soup.Server  server,
                          Soup.Message msg,
@@ -47,9 +53,14 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
 
         this.prepare_pipeline (name, src);
         this.time_range = time_range;
+
+        this.buffered = 0;
+        this.out_of_sync = false;
     }
 
     public override async void run () {
+        this.msg.wrote_chunk.connect (this.on_wrote_chunk);
+
         // Only bother attempting to seek if the offset is greater than zero.
         if (this.time_range != null && this.time_range.start > 0) {
             this.pipeline.set_state (State.PAUSED);
@@ -64,6 +75,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
 
     public override void end (bool aborted, uint status) {
         this.pipeline.set_state (State.NULL);
+        this.msg.wrote_chunk.disconnect (this.on_wrote_chunk);
 
         if (!aborted) {
             this.msg.response_body.complete ();
@@ -151,9 +163,25 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         Idle.add_full (Priority.HIGH_IDLE,
                        () => {
             this.push_data (buffer.data, buffer.size);
+            this.buffered++;
+
+            if (this.buffered > MAX_BUFFERED_CHUNKS) {
+                // Client is either not reading (Paused) or not fast enough
+                this.pipeline.set_state (State.PAUSED);
+                this.out_of_sync = true;
+            }
 
             return false;
         });
+    }
+
+    private void on_wrote_chunk (Soup.Message msg) {
+        this.buffered--;
+
+        if (out_of_sync && this.buffered < MIN_BUFFERED_CHUNKS) {
+            this.pipeline.set_state (State.PLAYING);
+            this.out_of_sync = false;
+        }
     }
 
     private bool bus_handler (Gst.Bus     bus,
