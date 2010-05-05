@@ -1,4 +1,4 @@
-SUBDIRS = xml
+SUBDIRS = xml icons
 
 if ENABLE_MAEMO
 configfile = rygel-maemo.conf
@@ -39,6 +39,8 @@ CLEANFILES = $(dbusservice_DATA) $(desktop_DATA) rygel.conf
 EXTRA_DIST = rygel-maemo.conf \
 	     rygel-default.conf \
 	     $(dbusservice_in_files) \
-	     $(desktop_in_files)
+	     $(desktop_in_files) \
+	     $(pixmaps_DATA)
+
 
 MAINTAINERCLEANFILES = Makefile.in

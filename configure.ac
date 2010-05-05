@@ -271,6 +271,10 @@ src/plugins/gst-renderer/Makefile
 src/plugins/test/Makefile
 data/Makefile
 data/xml/Makefile
+data/icons/Makefile
+data/icons/256x256/Makefile
+data/icons/32x32/Makefile
+data/icons/scalable/Makefile
 po/Makefile.in
 rygel-1.0.pc
 tests/Makefile
