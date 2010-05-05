@@ -1,14 +1,10 @@
 if UNINSTALLED
 shareddir = $(abs_top_builddir)/data
 desktopdir = $(shareddir)
+plugindir = $(abs_top_builddir)/src/plugins
 else
 shareddir = $(datadir)/rygel
 desktopdir = $(datadir)/applications
-endif
-
-if UNINSTALLED
-plugindir = $(abs_top_builddir)/src/plugins
-else
 plugindir = $(libdir)/rygel-1.0
 endif
 
