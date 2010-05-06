@@ -60,12 +60,22 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                 if (mtime > timestamp) {
                     this.files.push_tail (new FileQueueEntry (file, true));
                     return true;
+                } else {
+                    // check size
+                    var size = info.get_size ();
+                    var item = media_db.get_item (id);
+                    if (item.size != size) {
+                        this.files.push_tail (new FileQueueEntry (file,
+                                                                  true));
+
+                        return true;
+                    }
                 }
             } else {
                 this.files.push_tail (new FileQueueEntry (file, false));
                 return true;
             }
-        } catch (DatabaseError err) {
+        } catch (Error err) {
             warning (_("Failed to query database: %s"), err.message);
         }
 
@@ -115,7 +125,8 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             var enumerator = yield directory.enumerate_children_async (
                                           FILE_ATTRIBUTE_STANDARD_TYPE + "," +
                                           FILE_ATTRIBUTE_STANDARD_NAME + "," +
-                                          FILE_ATTRIBUTE_TIME_MODIFIED,
+                                          FILE_ATTRIBUTE_TIME_MODIFIED + "," +
+                                          FILE_ATTRIBUTE_STANDARD_SIZE,
                                           FileQueryInfoFlags.NONE,
                                           Priority.DEFAULT,
                                           this.cancellable);
@@ -204,7 +215,8 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             var info = yield file.query_info_async (
                                           FILE_ATTRIBUTE_STANDARD_NAME + "," +
                                           FILE_ATTRIBUTE_STANDARD_TYPE + "," +
-                                          FILE_ATTRIBUTE_TIME_MODIFIED,
+                                          FILE_ATTRIBUTE_TIME_MODIFIED + "," +
+                                          FILE_ATTRIBUTE_STANDARD_SIZE,
                                           FileQueryInfoFlags.NONE,
                                           Priority.DEFAULT,
                                           this.cancellable);
