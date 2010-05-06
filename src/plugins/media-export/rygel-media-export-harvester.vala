@@ -55,10 +55,11 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         try {
             if (this.media_db.exists (id, out timestamp)) {
                 int64 mtime = (int64) info.get_attribute_uint64 (
-                                                FILE_ATTRIBUTE_TIME_MODIFIED);
+                                        FILE_ATTRIBUTE_TIME_MODIFIED);
 
                 if (mtime > timestamp) {
                     this.files.push_tail (new FileQueueEntry (file, true));
+
                     return true;
                 } else {
                     // check size
@@ -73,25 +74,27 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                 }
             } else {
                 this.files.push_tail (new FileQueueEntry (file, false));
+
                 return true;
             }
-        } catch (Error err) {
-            warning (_("Failed to query database: %s"), err.message);
+        } catch (Error error) {
+            warning (_("Failed to query database: %s"), error.message);
         }
 
         return false;
     }
 
     private bool process_children (GLib.List<FileInfo>? list) {
-        if (list == null || this.cancellable.is_cancelled())
+        if (list == null || this.cancellable.is_cancelled()) {
             return false;
+        }
 
         foreach (var info in list) {
             if (info.get_name ()[0] == '.') {
                 continue;
             }
             var parent_container =
-                (DummyContainer)this.containers.peek_head ();
+                (DummyContainer) this.containers.peek_head ();
 
             var dir = parent_container.file;
             var file = dir.get_child (info.get_name ());
@@ -123,14 +126,13 @@ public class Rygel.MediaExportHarvester : GLib.Object {
     private async void enumerate_directory (File directory) {
         try {
             var enumerator = yield directory.enumerate_children_async (
-                                          FILE_ATTRIBUTE_STANDARD_TYPE + "," +
-                                          FILE_ATTRIBUTE_STANDARD_NAME + "," +
-                                          FILE_ATTRIBUTE_TIME_MODIFIED + "," +
-                                          FILE_ATTRIBUTE_STANDARD_SIZE,
-                                          FileQueryInfoFlags.NONE,
-                                          Priority.DEFAULT,
-                                          this.cancellable);
-
+                                        FILE_ATTRIBUTE_STANDARD_TYPE + "," +
+                                        FILE_ATTRIBUTE_STANDARD_NAME + "," +
+                                        FILE_ATTRIBUTE_TIME_MODIFIED + "," +
+                                        FILE_ATTRIBUTE_STANDARD_SIZE,
+                                        FileQueryInfoFlags.NONE,
+                                        Priority.DEFAULT,
+                                        this.cancellable);
 
             GLib.List<FileInfo> list = null;
             do {
@@ -171,7 +173,6 @@ public class Rygel.MediaExportHarvester : GLib.Object {
 
     private bool on_idle () {
         if (this.cancellable.is_cancelled ()) {
-
             return false;
         }
 
@@ -179,7 +180,8 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             var candidate = this.files.peek_head ().file;
             this.extractor.extract (candidate);
         } else if (this.containers.get_length () > 0) {
-            var directory = ((DummyContainer)this.containers.peek_head ()).file;
+            var container = this.containers.peek_head () as DummyContainer;
+            var directory = container.file;
             enumerate_directory (directory);
         } else {
             // nothing to do
@@ -213,13 +215,13 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         try {
             this.cancellable.reset ();
             var info = yield file.query_info_async (
-                                          FILE_ATTRIBUTE_STANDARD_NAME + "," +
-                                          FILE_ATTRIBUTE_STANDARD_TYPE + "," +
-                                          FILE_ATTRIBUTE_TIME_MODIFIED + "," +
-                                          FILE_ATTRIBUTE_STANDARD_SIZE,
-                                          FileQueryInfoFlags.NONE,
-                                          Priority.DEFAULT,
-                                          this.cancellable);
+                                        FILE_ATTRIBUTE_STANDARD_NAME + "," +
+                                        FILE_ATTRIBUTE_STANDARD_TYPE + "," +
+                                        FILE_ATTRIBUTE_TIME_MODIFIED + "," +
+                                        FILE_ATTRIBUTE_STANDARD_SIZE,
+                                        FileQueryInfoFlags.NONE,
+                                        Priority.DEFAULT,
+                                        this.cancellable);
 
             if (info.get_file_type () == FileType.DIRECTORY) {
                 this.origin = file;
@@ -297,6 +299,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             // just ignore it
             return;
         }
+
         if (file == entry.file) {
             this.files.pop_head ();
             this.do_update ();
@@ -315,6 +318,6 @@ public class Rygel.MediaExportHarvester : GLib.Object {
             this.containers.pop_head ();
         }
 
-        Idle.add(this.on_idle);
+        Idle.add (this.on_idle);
     }
 }
