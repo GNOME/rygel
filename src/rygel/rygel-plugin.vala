@@ -33,6 +33,19 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
     private static const string MEDIA_SERVER_DESC_PATH =
                                 BuildConfig.DATA_DIR + "/xml/MediaServer2.xml";
 
+    private static const string ICON_BIG = "file://" +
+                                           BuildConfig.ICON_DIR +
+                                           "/256x256/apps/rygel.png";
+    private static const string ICON_SMALL = "file://" +
+                                             BuildConfig.ICON_DIR +
+                                             "/32x32/apps/rygel.png";
+    private static const string ICON_MIME = "image/png";
+    private static const int ICON_DEPTH = 32;
+    private static const int ICON_BIG_WIDTH = 256;
+    private static const int ICON_BIG_HEIGHT = 256;
+    private static const int ICON_SMALL_WIDTH = 32;
+    private static const int ICON_SMALL_HEIGHT = 32;
+
     public string name;
     public string title;
     public string description;
@@ -44,6 +57,8 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
 
     public ArrayList<ResourceInfo> resource_infos;
     public ArrayList<IconInfo> icon_infos;
+
+    public ArrayList<IconInfo> default_icons;
 
     public Plugin (string  desc_path,
                    string  name,
@@ -62,6 +77,21 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
 
         this.resource_infos = new ArrayList<ResourceInfo> ();
         this.icon_infos = new ArrayList<IconInfo> ();
+        this.default_icons = new ArrayList<IconInfo> ();
+
+        var icon = new IconInfo (ICON_MIME);
+        icon.uri = ICON_BIG;
+        icon.width = ICON_BIG_WIDTH;
+        icon.height = ICON_BIG_HEIGHT;
+        icon.depth = ICON_DEPTH;
+        this.default_icons.add (icon);
+
+        icon = new IconInfo (ICON_MIME);
+        icon.uri = ICON_SMALL;
+        icon.width = ICON_SMALL_WIDTH;
+        icon.height = ICON_SMALL_HEIGHT;
+        icon.depth = ICON_DEPTH;
+        this.default_icons.add (icon);
     }
 
     public Plugin.MediaServer (string  name,

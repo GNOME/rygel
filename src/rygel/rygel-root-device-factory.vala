@@ -228,10 +228,13 @@ internal class Rygel.RootDeviceFactory {
 
     private void add_icons_to_desc (Xml.Node *device_element,
                                     Plugin    plugin) {
-        if (plugin.icon_infos == null || plugin.icon_infos.size == 0) {
-            debug (_("No icon provided by %s."), plugin.name);
+        var icons = plugin.icon_infos;
 
-            return;
+        if (icons == null || icons.size == 0) {
+            debug (_("No icon provided by plugin '%s'. Using Rygel logo.."),
+                   plugin.name);
+
+            icons = plugin.default_icons;
         }
 
         Xml.Node *icon_list_node = Utils.get_xml_element (device_element,
@@ -244,8 +247,8 @@ internal class Rygel.RootDeviceFactory {
             icon_list_node->set_content ("");
         }
 
-        foreach (IconInfo icon_info in plugin.icon_infos) {
-            add_icon_to_desc (icon_list_node, icon_info, plugin);
+        foreach (var icon in icons) {
+            add_icon_to_desc (icon_list_node, icon, plugin);
         }
     }
 
