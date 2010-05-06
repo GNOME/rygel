@@ -96,7 +96,11 @@ public class Rygel.MediaExportMetadataExtractor: GLib.Object {
         var bus = this.playbin.get_bus ();
         bus.add_signal_watch ();
         bus.message["tag"] += this.tag_cb;
-        bus.message["state-changed"] += this.state_changed_cb;
+        if (factory.get_element_type ().name () == "GstPlayBin2") {
+            bus.message["element"] += this.element_message_cb;
+        } else {
+            bus.message["state-changed"] += this.state_changed_cb;
+        }
         bus.message["error"] += this.error_cb;
     }
 
@@ -192,6 +196,25 @@ public class Rygel.MediaExportMetadataExtractor: GLib.Object {
         message.parse_tag (out new_tag_list);
         this.tag_list = new_tag_list.merge (this.tag_list,
                                             TagMergeMode.REPLACE);
+    }
+
+    private void element_message_cb (Bus     bus,
+                                     Message message) {
+        if (message.src != this.playbin) {
+            return;
+        }
+
+        if (message.structure.get_name () == "playbin2-stream-changed") {
+            this.extract_duration ();
+            this.extract_stream_info ();
+
+            /* No hopes of getting any tags after this point */
+            this.extraction_done (this.file_queue.peek_head (), tag_list);
+            this.playbin.set_state (State.NULL);
+            this.tag_list = new Gst.TagList ();
+            this.file_queue.pop_head ();
+            this.extract_next ();
+        }
     }
 
     /* Callback for state-change in playbin */
