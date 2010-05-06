@@ -30,6 +30,12 @@ public class Rygel.MediaExportHarvester : GLib.Object {
     private MediaContainer parent;
     private MediaExportRecursiveFileMonitor monitor;
     public Cancellable cancellable;
+    private const string HARVESTER_ATTRIBUTES =
+                                        FILE_ATTRIBUTE_STANDARD_NAME + "," +
+                                        FILE_ATTRIBUTE_STANDARD_TYPE + "," +
+                                        FILE_ATTRIBUTE_TIME_MODIFIED + "," +
+                                        FILE_ATTRIBUTE_STANDARD_SIZE;
+
 
     public MediaExportHarvester (MediaContainer                  parent,
                                  MediaExportMediaCache           media_db,
@@ -126,10 +132,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
     private async void enumerate_directory (File directory) {
         try {
             var enumerator = yield directory.enumerate_children_async (
-                                        FILE_ATTRIBUTE_STANDARD_TYPE + "," +
-                                        FILE_ATTRIBUTE_STANDARD_NAME + "," +
-                                        FILE_ATTRIBUTE_TIME_MODIFIED + "," +
-                                        FILE_ATTRIBUTE_STANDARD_SIZE,
+                                        HARVESTER_ATTRIBUTES,
                                         FileQueryInfoFlags.NONE,
                                         Priority.DEFAULT,
                                         this.cancellable);
@@ -215,10 +218,7 @@ public class Rygel.MediaExportHarvester : GLib.Object {
         try {
             this.cancellable.reset ();
             var info = yield file.query_info_async (
-                                        FILE_ATTRIBUTE_STANDARD_NAME + "," +
-                                        FILE_ATTRIBUTE_STANDARD_TYPE + "," +
-                                        FILE_ATTRIBUTE_TIME_MODIFIED + "," +
-                                        FILE_ATTRIBUTE_STANDARD_SIZE,
+                                        HARVESTER_ATTRIBUTES,
                                         FileQueryInfoFlags.NONE,
                                         Priority.DEFAULT,
                                         this.cancellable);
