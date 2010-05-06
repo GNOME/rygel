@@ -1,7 +1,9 @@
 if UNINSTALLED
 shareddir = $(abs_top_builddir)/data
+icondir = $(shareddir)/icons
 else
 shareddir = $(datadir)/rygel
+icondir = $(datadir)/icons/hicolor
 endif
 
 rygeldir = $(top_srcdir)/src/rygel
@@ -16,7 +18,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBSOUP_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
 	    -I$(top_srcdir) -I$(rygeldir) -DDATA_DIR='"$(shareddir)"' \
-	    -include config.h
+	    -DICON_DIR='"$(icondir)"' -include config.h
 
 bin_PROGRAMS = rygel-preferences
 

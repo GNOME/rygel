@@ -27,6 +27,7 @@ using CStuff;
 public class Rygel.PreferencesDialog : GLib.Object {
     const string UI_FILE = BuildConfig.DATA_DIR + "/rygel-preferences.ui";
     const string DIALOG = "preferences-dialog";
+    const string ICON = BuildConfig.ICON_DIR + "/32x32/apps/rygel.png";
 
     UserConfig config;
     Builder builder;
@@ -41,6 +42,8 @@ public class Rygel.PreferencesDialog : GLib.Object {
 
         this.dialog = (Dialog) this.builder.get_object (DIALOG);
         assert (this.dialog != null);
+
+        this.dialog.set_icon_from_file (ICON);
 
         this.sections = new ArrayList<PreferencesSection> ();
         this.sections.add (new GeneralPrefSection (this.builder, this.config));
