@@ -45,7 +45,7 @@ public enum Rygel.MediaDBObjectType {
 public class Rygel.MediaExport.MediaCache : Object {
     private Database db;
     private DBObjectFactory factory;
-    private const string schema_version = "5";
+    private const string schema_version = "6";
     private const string CREATE_META_DATA_TABLE_STRING =
     "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
                             "mime_type TEXT NOT NULL, " +
@@ -68,22 +68,14 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     private const string SCHEMA_STRING =
     "CREATE TABLE schema_info (version TEXT NOT NULL); " +
-    "CREATE TABLE object_type (id INTEGER PRIMARY KEY, " +
-                              "desc TEXT NOT NULL);" +
     CREATE_META_DATA_TABLE_STRING +
     "CREATE TABLE object (parent TEXT CONSTRAINT parent_fk_id " +
                                 "REFERENCES Object(upnp_id), " +
                           "upnp_id TEXT PRIMARY KEY, " +
-                          "type_fk INTEGER CONSTRAINT type_fk_id " +
-                                "REFERENCES Object_Type(id), " +
+                          "type_fk INTEGER, " +
                           "title TEXT NOT NULL, " +
-                          "timestamp INTEGER NOT NULL);" +
-    "CREATE TABLE uri (object_fk TEXT " +
-                        "CONSTRAINT object_fk_id REFERENCES Object(upnp_id) "+
-                            "ON DELETE CASCADE, " +
-                      "uri TEXT NOT NULL);" +
-    "INSERT INTO object_type (id, desc) VALUES (0, 'Container'); " +
-    "INSERT INTO object_type (id, desc) VALUES (1, 'Item'); " +
+                          "timestamp INTEGER NOT NULL, " +
+                          "uri TEXT);" +
     "INSERT INTO schema_info (version) VALUES ('" +
     MediaCache.schema_version + "'); ";
 
@@ -113,17 +105,10 @@ public class Rygel.MediaExport.MediaCache : Object {
     "BEFORE DELETE ON Object " +
     "FOR EACH ROW BEGIN " +
         "DELETE FROM meta_data WHERE meta_data.object_fk = OLD.upnp_id; "+
-    "END;" +
-
-    "CREATE TRIGGER trgr_delete_uris " +
-    "BEFORE DELETE ON Object " +
-    "FOR EACH ROW BEGIN " +
-        "DELETE FROM Uri WHERE Uri.object_fk = OLD.upnp_id;" +
     "END;";
 
     private const string CREATE_INDICES_STRING =
     "CREATE INDEX idx_parent on Object(parent);" +
-    "CREATE INDEX idx_uri_fk on Uri(object_fk);" +
     "CREATE INDEX idx_meta_data_fk on meta_data(object_fk);" +
     "CREATE INDEX idx_closure on Closure(descendant,depth);";
 
@@ -136,17 +121,11 @@ public class Rygel.MediaExport.MediaCache : Object {
          "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     private const string INSERT_OBJECT_STRING =
-    "INSERT INTO Object (upnp_id, title, type_fk, parent, timestamp) " +
-        "VALUES (?,?,?,?,?)";
+    "INSERT INTO Object (upnp_id, title, type_fk, parent, timestamp, uri) " +
+        "VALUES (?,?,?,?,?,?)";
 
     private const string UPDATE_OBJECT_STRING =
-    "UPDATE Object SET title = ?, timestamp = ? WHERE upnp_id = ?";
-
-    private const string INSERT_URI_STRING =
-    "INSERT INTO Uri (object_fk, uri) VALUES (?,?)";
-
-    private const string DELETE_URI_STRING =
-    "DELETE FROM Uri WHERE object_fk = ?";
+    "UPDATE Object SET title = ?, timestamp = ?, uri = ? WHERE upnp_id = ?";
 
     private const string DELETE_BY_ID_STRING =
     "DELETE FROM Object WHERE upnp_id IN " +
@@ -156,7 +135,7 @@ public class Rygel.MediaExport.MediaCache : Object {
     "SELECT o.type_fk, o.title, m.size, m.mime_type, m.width, m.height, " +
             "m.class, m.author, m.album, m.date, m.bitrate, m.sample_freq, " +
             "m.bits_per_sample, m.channels, m.track, m.color_depth, " +
-            "m.duration, o.parent, o.upnp_id " +
+            "m.duration, o.parent, o.upnp_id, o.uri " +
     "FROM Object o " +
         "JOIN Closure c ON (o.upnp_id = c.ancestor) " +
         "LEFT OUTER JOIN meta_data m ON (o.upnp_id = m.object_fk) " +
@@ -177,7 +156,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             "m.width, m.height, m.class, m.author, m.album, " +
             "m.date, m.bitrate, m.sample_freq, m.bits_per_sample, " +
             "m.channels, m.track, m.color_depth, m.duration, " +
-            "o.upnp_id, o.parent, o.timestamp " +
+            "o.upnp_id, o.parent, o.timestamp, o.uri " +
     "FROM Object o LEFT OUTER JOIN meta_data m " +
         "ON o.upnp_id = m.object_fk " +
     "WHERE o.parent = ? " +
@@ -193,12 +172,11 @@ public class Rygel.MediaExport.MediaCache : Object {
             "m.width, m.height, m.class, m.author, m.album, " +
             "m.date, m.bitrate, m.sample_freq, m.bits_per_sample, " +
             "m.channels, m.track, m.color_depth, m.duration, " +
-            "o.upnp_id, o.parent, o.timestamp " +
+            "o.upnp_id, o.parent, o.timestamp, o.uri " +
     "FROM Object o " +
         "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
         "LEFT OUTER JOIN meta_data m " +
             "ON o.upnp_id = m.object_fk " +
-        "LEFT OUTER JOIN Uri u ON u.object_fk = o.upnp_id " +
     "WHERE %s " +
         "ORDER BY o.type_fk ASC, " +
                  "m.class ASC, " +
@@ -206,9 +184,6 @@ public class Rygel.MediaExport.MediaCache : Object {
                  "o.title ASC " +
     "LIMIT ?,?";
 
-
-    private const string URI_GET_STRING =
-    "SELECT uri FROM Uri WHERE Uri.object_fk = ?";
 
     private const string CHILDREN_COUNT_STRING =
     "SELECT COUNT(upnp_id) FROM Object WHERE Object.parent = ?";
@@ -268,7 +243,6 @@ public class Rygel.MediaExport.MediaCache : Object {
         try {
             db.begin ();
             create_object (container);
-            save_uris (container);
             db.commit ();
             object_added (container.id);
             container_added (container.id);
@@ -284,7 +258,6 @@ public class Rygel.MediaExport.MediaCache : Object {
             db.begin ();
             save_metadata (item);
             create_object (item);
-            save_uris (item);
             db.commit ();
             object_added (item.id);
             item_added (item.id);
@@ -301,12 +274,10 @@ public class Rygel.MediaExport.MediaCache : Object {
     public void update_object (MediaObject object) throws Error {
         try {
             db.begin ();
-            remove_uris (object);
             if (object is MediaItem) {
                 save_metadata (object as Rygel.MediaItem);
             }
             update_object_internal (object);
-            save_uris (object);
             db.commit ();
             object_updated (object.id);
             if (object is MediaItem) {
@@ -577,9 +548,18 @@ public class Rygel.MediaExport.MediaCache : Object {
                             if (this.db != null) {
                                 update_v4_v5 ();
                             }
+                            if (this.db != null) {
+                                update_v5_v6 ();
+                            }
                             break;
                         case 4:
                             update_v4_v5 ();
+                            if (this.db != null) {
+                                update_v5_v6 ();
+                            }
+                            break;
+                        case 5:
+                            update_v5_v6 ();
                             break;
                         default:
                             warning ("Cannot upgrade");
@@ -707,16 +687,33 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
     }
 
+    private void update_v5_v6 () {
+        try {
+            db.begin ();
+            db.exec ("DROP TABLE object_type");
+            db.exec ("ALTER TABLE Object ADD COLUMN uri TEXT");
+            db.exec ("UPDATE Object SET uri = (SELECT uri " +
+                     "FROM uri WHERE Uri.object_fk == Object.upnp_id LIMIT 1)");
+            db.exec ("DROP TRIGGER IF EXISTS trgr_delete_uris");
+            db.exec ("DROP INDEX IF EXISTS idx_uri_fk");
+            db.exec ("DROP TABLE Uri");
+            db.exec ("UPDATE schema_info SET version = '6'");
+            db.commit ();
+            db.exec ("VACUUM");
+            db.analyze ();
+        } catch (DatabaseError error) {
+            db.rollback ();
+            warning ("Database upgrade failed: %s", error.message);
+            db = null;
+        }
+    }
+
     private void update_object_internal (MediaObject object) throws Error {
         GLib.Value[] values = { object.title,
                                 (int64) object.modified,
-                                object.id };
+                                object.id,
+                                object.uris.size == 0 ? null : object.uris[0]};
         this.db.exec (UPDATE_OBJECT_STRING, values);
-    }
-
-    private void remove_uris (MediaObject object) throws Error {
-        GLib.Value[] values = { object.id };
-        this.db.exec (DELETE_URI_STRING, values);
     }
 
     private void save_metadata (Rygel.MediaItem item) throws Error {
@@ -757,15 +754,10 @@ public class Rygel.MediaExport.MediaCache : Object {
                                 item.title,
                                 type,
                                 parent,
-                                (int64) item.modified };
+                                (int64) item.modified,
+                                item.uris.size == 0 ? null : item.uris[0]
+                              };
         this.db.exec (INSERT_OBJECT_STRING, values);
-    }
-
-    private void save_uris (MediaObject object) throws Error {
-        foreach (var uri in object.uris) {
-            GLib.Value[] values = { object.id, uri };
-            this.db.exec (INSERT_URI_STRING, values);
-        }
     }
 
     /**
@@ -796,22 +788,6 @@ public class Rygel.MediaExport.MediaCache : Object {
         return false;
    }
 
-    private void add_uris (MediaObject object) throws DatabaseError {
-        GLib.Value[] values = { object.id };
-        this.db.exec (URI_GET_STRING,
-                      values,
-                      (statement) => {
-                          if (object is MediaItem) {
-                              var item = object as MediaItem;
-                              item.add_uri (statement.column_text (0), null);
-                          } else {
-                              object.uris.add (statement.column_text (0));
-                          }
-
-                          return true;
-                      });
-    }
-
     private MediaObject? get_object_from_statement (MediaContainer? parent,
                                                     string          object_id,
                                                     Statement       statement) {
@@ -823,6 +799,10 @@ public class Rygel.MediaExport.MediaCache : Object {
                                                 object_id,
                                                 statement.column_text (1),
                                                 0);
+                var uri = statement.column_text (20);
+                if (uri != null) {
+                    object.uris.add (uri);
+                }
                 break;
             case 1:
                 // this is an item
@@ -832,20 +812,19 @@ public class Rygel.MediaExport.MediaCache : Object {
                                            statement.column_text (1),
                                            statement.column_text (6));
                 fill_item (statement, object as MediaItem);
+                var uri = statement.column_text (20);
+                if (uri != null) {
+                    (object as MediaItem).add_uri (uri, null);
+                }
                 break;
             default:
                 assert_not_reached ();
         }
 
-        try {
-            if (object != null) {
-                object.modified = statement.column_int64 (18);
-                add_uris (object);
-            }
-        } catch (DatabaseError error) {
-            warning ("Failed to load uris from database: %s", error.message);
-            object = null;
+        if (object != null) {
+            object.modified = statement.column_int64 (18);
         }
+
         return object;
     }
 
@@ -925,7 +904,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
         switch (operand) {
             case "res":
-                column = "u.uri";
+                column = "o.uri";
                 break;
             case "@id":
                 column = "o.upnp_id";
