@@ -21,14 +21,14 @@
 using GLib;
 using Gee;
 
-public class Rygel.MediaExportHarvester : GLib.Object {
-    private MediaExportMetadataExtractor extractor;
-    private MediaExportMediaCache media_db;
+public class Rygel.MediaExport.Harvester : GLib.Object {
+    private MetadataExtractor extractor;
+    private MediaCache media_db;
     private GLib.Queue<MediaContainer> containers;
     private GLib.Queue<FileQueueEntry?> files;
     private File origin;
     private MediaContainer parent;
-    private MediaExportRecursiveFileMonitor monitor;
+    private RecursiveFileMonitor monitor;
     public Cancellable cancellable;
     private const string HARVESTER_ATTRIBUTES =
                                         FILE_ATTRIBUTE_STANDARD_NAME + "," +
@@ -37,10 +37,10 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                                         FILE_ATTRIBUTE_STANDARD_SIZE;
 
 
-    public MediaExportHarvester (MediaContainer                  parent,
-                                 MediaExportMediaCache           media_db,
-                                 MediaExportMetadataExtractor    extractor,
-                                 MediaExportRecursiveFileMonitor monitor) {
+    public Harvester (MediaContainer       parent,
+                      MediaCache           media_db,
+                      MetadataExtractor    extractor,
+                      RecursiveFileMonitor monitor) {
         this.parent = parent;
         this.extractor = extractor;
         this.media_db = media_db;

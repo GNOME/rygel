@@ -19,14 +19,13 @@
  */
 
 [DBus (name = "org.gnome.Rygel.MediaExport1")]
-public class Rygel.MediaExportDBusService : Object {
+public class Rygel.MediaExport.DBusService : Object {
     private const string RYGEL_MEDIA_EXPORT_PATH =
                                         "/org/gnome/Rygel/MediaExport1";
 
-    private MediaExportRootContainer root_container;
+    private RootContainer root_container;
 
-    public MediaExportDBusService (MediaExportRootContainer root_container)
-                                                            throws GLib.Error {
+    public DBusService (RootContainer root_container) throws GLib.Error {
         this.root_container = root_container;
 
         try {

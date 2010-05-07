@@ -40,7 +40,7 @@ private enum Gst.StreamType {
  * uri property, it will extact the metadata for you and emit signal
  * metadata_available for each key/value pair extracted.
  */
-public class Rygel.MediaExportMetadataExtractor: GLib.Object {
+public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     public const string TAG_RYGEL_SIZE = "rygel-size";
     public const string TAG_RYGEL_DURATION = "rygel-duration";
     public const string TAG_RYGEL_MIME = "rygel-mime";
@@ -104,8 +104,8 @@ public class Rygel.MediaExportMetadataExtractor: GLib.Object {
         bus.message["error"] += this.error_cb;
     }
 
-    public static MediaExportMetadataExtractor? create() {
-        if (MediaExportMetadataExtractor.factory == null) {
+    public static MetadataExtractor? create() {
+        if (factory == null) {
             debug ("Checking for gstreamer element 'playbin'...");
             var factory = ElementFactory.find("playbin2");
             if (factory != null) {
@@ -122,13 +122,13 @@ public class Rygel.MediaExportMetadataExtractor: GLib.Object {
                     return null;
                 }
             }
-            MediaExportMetadataExtractor.factory = factory;
+            MetadataExtractor.factory = factory;
         }
 
-        return new MediaExportMetadataExtractor ();
+        return new MetadataExtractor ();
     }
 
-    MediaExportMetadataExtractor () {
+    private MetadataExtractor () {
         this.register_custom_tag (TAG_RYGEL_SIZE, typeof (int64));
         this.register_custom_tag (TAG_RYGEL_DURATION, typeof (int64));
         this.register_custom_tag (TAG_RYGEL_MIME, typeof (string));

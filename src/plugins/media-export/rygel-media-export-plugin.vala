@@ -31,12 +31,12 @@ using GLib;
 public void module_init (PluginLoader loader) {
     var plugin = new Plugin.MediaServer ("MediaExport",
                                          _("@REALNAME@'s media"),
-                                         typeof (Rygel.MediaExportContentDir));
+                                         typeof (Rygel.MediaExport.ContentDir));
     loader.add_plugin (plugin);
 }
 
-public class Rygel.MediaExportContentDir : ContentDirectory {
+public class Rygel.MediaExport.ContentDir : ContentDirectory {
     public override MediaContainer? create_root_container () {
-        return MediaExportRootContainer.get_instance ();
+        return RootContainer.get_instance ();
     }
 }

@@ -22,15 +22,15 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
-internal class Rygel.MediaExportWritableContainer : MediaExportDBContainer {
-    public MediaExportWritableContainer (MediaExportMediaCache media_db,
-                                         string                id,
-                                         string                title) {
+internal class Rygel.MediaExport.WritableContainer : DBContainer {
+    public WritableContainer (MediaCache media_db,
+                              string     id,
+                              string     title) {
         base (media_db, id, title);
     }
 
-    public override async void add_item (MediaItem    item,
-                                         Cancellable? cancellable)
+    public override async void add_item (Rygel.MediaItem    item,
+                                         Cancellable?       cancellable)
                                          throws Error {
         yield base.add_item (item, cancellable);
 

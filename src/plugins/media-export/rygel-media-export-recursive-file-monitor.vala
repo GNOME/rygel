@@ -22,11 +22,11 @@
 using Gee;
 using Rygel;
 
-public class Rygel.MediaExportRecursiveFileMonitor : Object {
+public class Rygel.MediaExport.RecursiveFileMonitor : Object {
     private Cancellable cancellable;
     HashMap<File, FileMonitor> monitors;
 
-    public MediaExportRecursiveFileMonitor (Cancellable? cancellable) {
+    public RecursiveFileMonitor (Cancellable? cancellable) {
         this.cancellable = cancellable;
         this.monitors = new HashMap<File, FileMonitor> (GLib.file_hash,
                                                         GLib.file_equal);

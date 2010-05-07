@@ -32,7 +32,7 @@
  * MediaDB is holding a reference to the factory; this is done to
  * prevent circular references
  */
-public class Rygel.MediaExportDBObjectFactory : Object {
+public class Rygel.MediaExport.DBObjectFactory : Object {
     /**
      * Return a new instance of DatabaseBackedMediaContainer
      *
@@ -41,11 +41,11 @@ public class Rygel.MediaExportDBObjectFactory : Object {
      * @param child_count number of children in the container
      */
     public virtual MediaContainer get_container (
-                                        MediaExportMediaCache media_db,
-                                        string                id,
-                                        string                title,
-                                        uint                  child_count) {
-        return new MediaExportDBContainer (media_db, id, title);
+                                        MediaCache media_db,
+                                        string     id,
+                                        string     title,
+                                        uint       child_count) {
+        return new DBContainer (media_db, id, title);
     }
 
     /**
@@ -56,11 +56,11 @@ public class Rygel.MediaExportDBObjectFactory : Object {
      * @param title title of the item
      * @param upnp_class upnp_class of the item
      */
-    public virtual MediaItem get_item (MediaExportMediaCache media_db,
-                                       MediaContainer        parent,
-                                       string                id,
-                                       string                title,
-                                       string                upnp_class) {
-        return new MediaItem (id, parent, title, upnp_class);
+    public virtual Rygel.MediaItem get_item (MediaCache     media_db,
+                                       MediaContainer parent,
+                                       string         id,
+                                       string         title,
+                                       string         upnp_class) {
+        return new Rygel.MediaItem (id, parent, title, upnp_class);
     }
 }

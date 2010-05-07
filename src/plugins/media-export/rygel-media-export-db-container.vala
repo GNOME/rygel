@@ -21,10 +21,10 @@
  */
 using GUPnP;
 
-public class Rygel.MediaExportDBContainer : MediaContainer {
-    protected MediaExportMediaCache media_db;
+public class Rygel.MediaExport.DBContainer : MediaContainer {
+    protected MediaCache media_db;
 
-    public MediaExportDBContainer (MediaExportMediaCache media_db, string id, string title) {
+    public DBContainer (MediaCache media_db, string id, string title) {
         int count;
         try {
             count = media_db.get_child_count (id);

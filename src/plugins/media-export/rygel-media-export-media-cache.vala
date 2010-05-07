@@ -42,9 +42,9 @@ public enum Rygel.MediaDBObjectType {
  *
  *  MediaExportDB is a sqlite3 backed persistent storage of media objects
  */
-public class Rygel.MediaExportMediaCache : Object {
-    private MediaExportDatabase db;
-    private MediaExportDBObjectFactory factory;
+public class Rygel.MediaExport.MediaCache : Object {
+    private Database db;
+    private DBObjectFactory factory;
     private const string schema_version = "5";
     private const string CREATE_META_DATA_TABLE_STRING =
     "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
@@ -85,7 +85,7 @@ public class Rygel.MediaExportMediaCache : Object {
     "INSERT INTO object_type (id, desc) VALUES (0, 'Container'); " +
     "INSERT INTO object_type (id, desc) VALUES (1, 'Item'); " +
     "INSERT INTO schema_info (version) VALUES ('" +
-    MediaExportMediaCache.schema_version + "'); ";
+    MediaCache.schema_version + "'); ";
 
     private const string CREATE_CLOSURE_TABLE =
     "CREATE TABLE closure (ancestor TEXT, descendant TEXT, depth INTEGER)";
@@ -279,7 +279,7 @@ public class Rygel.MediaExportMediaCache : Object {
         }
     }
 
-    public void save_item (MediaItem item) throws Error {
+    public void save_item (Rygel.MediaItem item) throws Error {
         try {
             db.begin ();
             save_metadata (item);
@@ -303,7 +303,7 @@ public class Rygel.MediaExportMediaCache : Object {
             db.begin ();
             remove_uris (object);
             if (object is MediaItem) {
-                save_metadata (object as MediaItem);
+                save_metadata (object as Rygel.MediaItem);
             }
             update_object_internal (object);
             save_uris (object);
@@ -328,7 +328,7 @@ public class Rygel.MediaExportMediaCache : Object {
         GLib.Value[] values = { object_id };
         MediaObject parent = null;
 
-        MediaExportDatabase.RowCallback cb = (statement) => {
+        Database.RowCallback cb = (statement) => {
             var parent_container = parent as MediaContainer;
             var object = get_object_from_statement (parent_container,
                                                     statement.column_text (18),
@@ -413,7 +413,7 @@ public class Rygel.MediaExportMediaCache : Object {
         GLib.Value[] values = { container_id,
                                 (int64) offset,
                                 (int64) max_count };
-        MediaExportDatabase.RowCallback callback = (statement) => {
+        Database.RowCallback callback = (statement) => {
             var child_id = statement.column_text (17);
             children.add (get_object_from_statement (parent,
                                                      child_id,
@@ -482,7 +482,7 @@ public class Rygel.MediaExportMediaCache : Object {
 
         debug ("Parameters to bind: %u", args.n_values);
 
-        MediaExportDatabase.RowCallback callback = (statement) => {
+        Database.RowCallback callback = (statement) => {
             var child_id = statement.column_text (17);
             var parent_id = statement.column_text (18);
             try {
@@ -514,21 +514,20 @@ public class Rygel.MediaExportMediaCache : Object {
         return children;
     }
 
-    public MediaExportMediaCache (string name) throws Error {
+    public MediaCache (string name) throws Error {
         this.open_db (name);
-        this.factory = new MediaExportDBObjectFactory ();
+        this.factory = new DBObjectFactory ();
     }
 
-    public MediaExportMediaCache.with_factory (
-                                        string                     name,
-                                        MediaExportDBObjectFactory factory)
-                                        throws Error {
+    public MediaCache.with_factory (string          name,
+                                    DBObjectFactory factory)
+                                    throws Error {
         this.open_db (name);
         this.factory = factory;
     }
 
     private void open_db (string name) throws Error {
-        this.db = new MediaExportDatabase (name);
+        this.db = new Database (name);
         int old_version = -1;
 
         try {
@@ -720,7 +719,7 @@ public class Rygel.MediaExportMediaCache : Object {
         this.db.exec (DELETE_URI_STRING, values);
     }
 
-    private void save_metadata (MediaItem item) throws Error {
+    private void save_metadata (Rygel.MediaItem item) throws Error {
         GLib.Value[] values = { item.size,
                                 item.mime_type,
                                 item.width,
@@ -749,7 +748,7 @@ public class Rygel.MediaExportMediaCache : Object {
         }
 
         if (item.parent == null) {
-            parent = MediaExportDatabase.@null ();
+            parent = Database.@null ();
         } else {
             parent = item.parent.id;
         }
@@ -1036,7 +1035,7 @@ public class Rygel.MediaExportMediaCache : Object {
         args.append (v);
 
         var data = new ArrayList<string> ();
-        MediaExportDatabase.RowCallback callback = (statement) => {
+        Database.RowCallback callback = (statement) => {
             data.add (statement.column_text (0));
 
             return true;

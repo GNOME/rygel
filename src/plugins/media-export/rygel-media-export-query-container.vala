@@ -21,7 +21,7 @@
 using Gee;
 using GUPnP;
 
-internal class Rygel.MediaExportQueryContainer : Rygel.MediaExportDBContainer {
+internal class Rygel.MediaExport.QueryContainer : DBContainer {
     public static const string PREFIX = "virtual-container:";
     private string attribute;
     private SearchExpression expression;
@@ -66,9 +66,9 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaExportDBContainer {
         return true;
     }
 
-    public MediaExportQueryContainer (MediaExportMediaCache media_db,
-                                      string                id,
-                                      string                name = "") {
+    public QueryContainer (MediaCache media_db,
+                           string     id,
+                           string     name = "") {
         // parse the id
         // Following the schema:
         // virtual-folder:<class>,? -> get all of that class (eg. Albums)
@@ -213,9 +213,9 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaExportDBContainer {
                 // contain '%' chars which will makes sprintf crash
                 new_id = this.pattern.replace ("%s", new_id);
                 register_id (ref new_id);
-                var container = new MediaExportQueryContainer (this.media_db,
-                                                               new_id,
-                                                               meta_data);
+                var container = new QueryContainer (this.media_db,
+                                                    new_id,
+                                                    meta_data);
                 children.add (container);
             }
         }

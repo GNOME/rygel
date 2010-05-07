@@ -24,13 +24,13 @@ using GUPnP;
 /**
  * Represents the root container.
  */
-public class Rygel.MediaExportRootContainer : Rygel.MediaExportDBContainer {
-    private MediaExportMetadataExtractor extractor;
-    private HashMap<File, MediaExportHarvester> harvester;
-    private MediaExportRecursiveFileMonitor monitor;
-    private MediaExportDBusService service;
-    private MediaExportDynamicContainer dynamic_elements;
-    private Gee.List<MediaExportHarvester> harvester_trash;
+public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
+    private MetadataExtractor extractor;
+    private HashMap<File, Harvester> harvester;
+    private RecursiveFileMonitor monitor;
+    private DBusService service;
+    private DynamicContainer dynamic_elements;
+    private Gee.List<Harvester> harvester_trash;
 
     private static MediaContainer instance = null;
 
@@ -68,17 +68,16 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaExportDBContainer {
     }
 
     public static MediaContainer get_instance() {
-        if (MediaExportRootContainer.instance == null) {
+        if (RootContainer.instance == null) {
             try {
-                MediaExportRootContainer.instance =
-                                             new MediaExportRootContainer ();
+                RootContainer.instance = new RootContainer ();
             } catch (Error error) {
                 warning(_("Failed to create instance of database"));
-                MediaExportRootContainer.instance = new NullContainer ();
+                RootContainer.instance = new NullContainer ();
             }
         }
 
-        return MediaExportRootContainer.instance;
+        return RootContainer.instance;
     }
 
     public void add_uri (string uri) {
@@ -98,26 +97,26 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaExportDBContainer {
         }
     }
 
-    private MediaExportQueryContainer? search_to_virtual_container (
+    private QueryContainer? search_to_virtual_container (
                                        RelationalExpression expression) {
         if (expression.operand1 == "upnp:class" &&
             expression.op == SearchCriteriaOp.EQ) {
             switch (expression.operand2) {
                 case "object.container.album.musicAlbum":
                     string id = "virtual-container:upnp:album,?";
-                    MediaExportQueryContainer.register_id (ref id);
+                    QueryContainer.register_id (ref id);
 
-                    return new MediaExportQueryContainer (this.media_db,
-                                                          id,
-                                                          _("Albums"));
+                    return new QueryContainer (this.media_db,
+                                               id,
+                                               _("Albums"));
 
                 case "object.container.person.musicArtist":
                     string id = "virtual-container:dc:creator,?,upnp:album,?";
-                    MediaExportQueryContainer.register_id (ref id);
+                    QueryContainer.register_id (ref id);
 
-                    return new MediaExportQueryContainer (this.media_db,
-                                                          id,
-                                                          _("Artists"));
+                    return new QueryContainer (this.media_db,
+                                               id,
+                                               _("Artists"));
                 default:
                     return null;
             }
@@ -165,7 +164,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaExportDBContainer {
                                         SearchExpression   expression,
                                         out MediaContainer container) {
         RelationalExpression virtual_expression = null;
-        MediaExportQueryContainer query_container;
+        QueryContainer query_container;
 
         if (!(expression is LogicalExpression)) {
             return false;
@@ -196,19 +195,19 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaExportDBContainer {
         }
 
         var last_argument = query_container.plaintext_id.replace (
-                                        MediaExportQueryContainer.PREFIX,
+                                        QueryContainer.PREFIX,
                                         "");
 
         var escaped_detail = Uri.escape_string (virtual_expression.operand2,
                                                 "",
                                                 true);
-        var new_id = "%s%s,%s,%s".printf (MediaExportQueryContainer.PREFIX,
+        var new_id = "%s%s,%s,%s".printf (QueryContainer.PREFIX,
                                           virtual_expression.operand1,
                                           escaped_detail,
                                           last_argument);
 
-        MediaExportQueryContainer.register_id (ref new_id);
-        container = new MediaExportQueryContainer (this.media_db, new_id);
+        QueryContainer.register_id (ref new_id);
+        container = new QueryContainer (this.media_db, new_id);
 
         return true;
     }
@@ -226,9 +225,8 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaExportDBContainer {
         string upnp_class = null;
 
         if (is_find_object (expression, out id) &&
-            id.has_prefix (MediaExportQueryContainer.PREFIX)) {
-            query_container = new MediaExportQueryContainer (this.media_db,
-                                                             id);
+            id.has_prefix (QueryContainer.PREFIX)) {
+            query_container = new QueryContainer (this.media_db, id);
             query_container.parent = this;
 
             list = new ArrayList<MediaObject> ();
@@ -282,29 +280,27 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaExportDBContainer {
     /**
      * Create a new root container.
      */
-    private MediaExportRootContainer () throws Error {
-        var object_factory = new MediaExportObjectFactory ();
-        var db = new MediaExportMediaCache.with_factory ("media-export",
-                                                         object_factory);
+    private RootContainer () throws Error {
+        var object_factory = new ObjectFactory ();
+        var db = new MediaCache.with_factory ("media-export", object_factory);
 
         base (db, "0", "MediaExportRoot");
 
-        this.extractor = MediaExportMetadataExtractor.create ();
+        this.extractor = MetadataExtractor.create ();
 
-        this.harvester = new HashMap<File, MediaExportHarvester> (file_hash,
-                                                                  file_equal);
-        this.harvester_trash = new ArrayList<MediaExportHarvester> ();
+        this.harvester = new HashMap<File, Harvester> (file_hash, file_equal);
+        this.harvester_trash = new ArrayList<Harvester> ();
 
-        this.monitor = new MediaExportRecursiveFileMonitor (null);
+        this.monitor = new RecursiveFileMonitor (null);
         this.monitor.changed.connect (this.on_file_changed);
 
         try {
-            this.service = new MediaExportDBusService (this);
+            this.service = new DBusService (this);
         } catch (Error err) {
             warning (_("Failed to create MediaExport DBus service: %s"),
                      err.message);
         }
-        this.dynamic_elements = new MediaExportDynamicContainer (db, this);
+        this.dynamic_elements = new DynamicContainer (db, this);
 
         try {
             int64 timestamp;
@@ -342,15 +338,15 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaExportDBContainer {
                                         "virtual-folders");
             foreach (var container in virtual_containers) {
                 var info = container.split ("=");
-                var id = MediaExportQueryContainer.PREFIX + info[1];
-                if (!MediaExportQueryContainer.validate_virtual_id (id)) {
+                var id = QueryContainer.PREFIX + info[1];
+                if (!QueryContainer.validate_virtual_id (id)) {
                     warning (_("%s is not a valid virtual ID"), id);
 
                     continue;
                 }
-                MediaExportQueryContainer.register_id (ref id);
+                QueryContainer.register_id (ref id);
 
-                var virtual_container = new MediaExportQueryContainer (
+                var virtual_container = new QueryContainer (
                                         this.media_db,
                                         id,
                                         info[0]);
@@ -367,7 +363,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaExportDBContainer {
         }
 
         foreach (var id in ids) {
-            if (id == MediaExportDynamicContainer.ID) {
+            if (id == DynamicContainer.ID) {
                 continue;
             }
 
@@ -382,15 +378,15 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaExportDBContainer {
         this.updated ();
     }
 
-    private void on_file_harvested (MediaExportHarvester harvester,
-                                    File                 file) {
+    private void on_file_harvested (Harvester harvester,
+                                    File      file) {
         message (_("'%s' harvested"), file.get_uri ());
 
         this.harvester.remove (file);
     }
 
-    private void on_remove_cancelled_harvester (MediaExportHarvester harvester,
-                                                File                 file) {
+    private void on_remove_cancelled_harvester (Harvester harvester,
+                                                File      file) {
         this.harvester_trash.remove (harvester);
     }
 
@@ -410,10 +406,10 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaExportDBContainer {
             this.harvester_trash.add (harvester);
         }
 
-        var harvester = new MediaExportHarvester (parent,
-                                                  this.media_db,
-                                                  this.extractor,
-                                                  this.monitor);
+        var harvester = new Harvester (parent,
+                                       this.media_db,
+                                       this.extractor,
+                                       this.monitor);
         harvester.harvested.connect (this.on_file_harvested);
         this.harvester[file] = harvester;
         harvester.harvest (file);
@@ -437,7 +433,7 @@ public class Rygel.MediaExportRootContainer : Rygel.MediaExportDBContainer {
                     assert (parent_container != null);
 
                     this.harvest (file, parent_container);
-                } catch (Rygel.DatabaseError error) {
+                } catch (DatabaseError error) {
                     warning (_("Error fetching object '%s' from database: %s"),
                              id,
                              error.message);

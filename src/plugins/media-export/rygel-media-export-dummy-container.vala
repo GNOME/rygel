@@ -19,7 +19,7 @@
  */
 using Gee;
 
-internal class Rygel.DummyContainer : NullContainer {
+internal class Rygel.MediaExport.DummyContainer : NullContainer {
     public File file;
     public ArrayList<string> seen_children;
 
