@@ -542,29 +542,25 @@ public class Rygel.MediaExport.MediaCache : Object {
             } else {
                 if (old_version < current_version) {
                     debug ("Older schema detected. Upgrading...");
-                    switch (old_version) {
-                        case 3:
-                            update_v3_v4 ();
-                            if (this.db != null) {
-                                update_v4_v5 ();
+                    while (old_version < current_version) {
+                        if (this.db != null) {
+                            switch (old_version) {
+                                case 3:
+                                    update_v3_v4 ();
+                                    break;
+                                case 4:
+                                    update_v4_v5 ();
+                                    break;
+                                case 5:
+                                    update_v5_v6 ();
+                                    break;
+                                default:
+                                    warning ("Cannot upgrade");
+                                    db = null;
+                                    break;
                             }
-                            if (this.db != null) {
-                                update_v5_v6 ();
-                            }
-                            break;
-                        case 4:
-                            update_v4_v5 ();
-                            if (this.db != null) {
-                                update_v5_v6 ();
-                            }
-                            break;
-                        case 5:
-                            update_v5_v6 ();
-                            break;
-                        default:
-                            warning ("Cannot upgrade");
-                            db = null;
-                            break;
+                            old_version++;
+                        }
                     }
                 } else {
                     warning ("The version \"%d\" of the detected database" +
