@@ -34,7 +34,7 @@ public errordomain Rygel.CmdlineConfigError {
  */
 public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static string iface;
-    private static int port = -1;
+    private static int port;
 
     private static bool no_transcoding;
     private static bool no_mp3_trans;
@@ -129,7 +129,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     }
 
     public int get_port () throws GLib.Error {
-        if (this.port == -1) {
+        if (this.port <= 0) {
             throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
 
