@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-05-01 08:00+0000\n"
-"PO-Revision-Date: 2010-05-01 23:25+0100\n"
+"POT-Creation-Date: 2010-05-06 01:05+0000\n"
+"PO-Revision-Date: 2010-05-08 23:39+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German <translation-team-de@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,8 @@ msgstr "Ti_tel"
 
 #: ../data/rygel-preferences.ui.h:13
 #, no-c-format
-msgid "Write %u for username, %n for real name of the user and %h for host name"
+msgid ""
+"Write %u for username, %n for real name of the user and %h for host name"
 msgstr ""
 "Schreiben Sie %u als Benutzername, %n als echter Name und %h als Rechnername"
 
@@ -645,7 +646,7 @@ msgstr "Objekt unter »%s« konnte nicht erstellt werden: %s"
 
 # Ich glaube bei Audio/Videoströmen sind Pads so eine Art Daten- oder Zeiteinheiten
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-live-response.vala:136
+#: ../src/rygel/rygel-live-response.vala:148
 #: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:88
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
@@ -655,27 +656,27 @@ msgid "Failed to link pad %s to %s"
 msgstr "Verknüpfen von Pad %s nach %s ist fehlgeschlagen"
 
 #. 'fakesink' should not be translated
-#: ../src/rygel/rygel-live-response.vala:84
+#: ../src/rygel/rygel-live-response.vala:96
 msgid "Plugin 'fakesink' missing"
 msgstr "Plugin »fakesink« fehlt"
 
-#: ../src/rygel/rygel-live-response.vala:101
-#: ../src/rygel/rygel-live-response.vala:123
+#: ../src/rygel/rygel-live-response.vala:113
+#: ../src/rygel/rygel-live-response.vala:135
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Verknüpfung von %s nach %s konnte nicht erstellt werden"
 
-#: ../src/rygel/rygel-live-response.vala:190
+#: ../src/rygel/rygel-live-response.vala:218
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Fehler in Weiterleitung %s: %s"
 
-#: ../src/rygel/rygel-live-response.vala:197
+#: ../src/rygel/rygel-live-response.vala:225
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Warnung von Weiterleitung %s: %s"
 
-#: ../src/rygel/rygel-live-response.vala:231
+#: ../src/rygel/rygel-live-response.vala:259
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Suche der Position %lld ist fehlgeschlagen"
@@ -856,12 +857,11 @@ msgstr "Geladene Modulquelle: »%s«"
 msgid "XML node '%s' not found."
 msgstr "XML-Knoten »%s« wurde nicht gefunden."
 
-#: ../src/rygel/rygel-root-device-factory.vala:232
-#, c-format
-msgid "No icon provided by %s."
-msgstr "Von %s wurde kein Symbol bereitgestellt."
+#: ../src/rygel/rygel-root-device-factory.vala:234
+msgid "No icon provided by plugin '%s'. Using Rygel logo.."
+msgstr "Von Plugin »%s« wurde kein Symbol bereitgestellt. Das Rygel-Logo wird verwendet."
 
-#: ../src/rygel/rygel-root-device-factory.vala:294
+#: ../src/rygel/rygel-root-device-factory.vala:297
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Geänderte Beschreibung konnte nicht in %s gespeichert werden"
