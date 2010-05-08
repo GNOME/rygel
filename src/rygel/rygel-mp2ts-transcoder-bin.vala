@@ -42,7 +42,8 @@ internal class Rygel.MP2TSTranscoderBin : Gst.Bin {
                                Element         src,
                                MP2TSTranscoder transcoder)
                                throws Error {
-        Element decodebin = GstUtils.create_element (DECODEBIN, DECODEBIN);
+        dynamic Element decodebin = GstUtils.create_element (DECODEBIN,
+                                                             DECODEBIN);
         var mp3_transcoder = new MP3Transcoder (MP3Layer.TWO);
         this.audio_enc = mp3_transcoder.create_encoder (item,
                                                         null,
@@ -62,6 +63,19 @@ internal class Rygel.MP2TSTranscoderBin : Gst.Bin {
         this.add_pad (ghost);
 
         decodebin.pad_added += this.decodebin_pad_added;
+        decodebin.autoplug_continue += this.autoplug_continue;
+    }
+
+    private bool autoplug_continue (Element decodebin,
+                                    Pad     new_pad,
+                                    Caps    caps) {
+        var muxer_pad = this.muxer.get_compatible_pad (new_pad, null);
+
+        if (muxer_pad == null) {
+            return true;
+        } else {
+            return new_pad.link (muxer_pad) != PadLinkReturn.OK;
+        }
     }
 
     private void decodebin_pad_added (Element decodebin, Pad new_pad) {
