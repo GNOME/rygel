@@ -23,6 +23,7 @@ librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
 				   rygel-media-export-db-container.vala \
 				   rygel-media-export-db-object-factory.vala \
 				   rygel-media-export-media-cache.vala \
+				   rygel-media-export-media-cache-upgrader.vala \
 				   rygel-media-export-metadata-extractor.vala \
 				   rygel-media-export-null-container.vala \
 				   rygel-media-export-dummy-container.vala \

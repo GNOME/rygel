@@ -45,8 +45,8 @@ public enum Rygel.MediaDBObjectType {
 public class Rygel.MediaExport.MediaCache : Object {
     private Database db;
     private DBObjectFactory factory;
-    private const string schema_version = "6";
-    private const string CREATE_META_DATA_TABLE_STRING =
+    internal const string schema_version = "6";
+    internal const string CREATE_META_DATA_TABLE_STRING =
     "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
                             "mime_type TEXT NOT NULL, " +
                             "duration INTEGER, " +
@@ -184,7 +184,6 @@ public class Rygel.MediaExport.MediaCache : Object {
                  "o.title ASC " +
     "LIMIT ?,?";
 
-
     private const string CHILDREN_COUNT_STRING =
     "SELECT COUNT(upnp_id) FROM Object WHERE Object.parent = ?";
 
@@ -193,16 +192,6 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     private const string GET_CHILD_ID_STRING =
     "SELECT upnp_id FROM OBJECT WHERE parent = ?";
-
-    private const string UPDATE_V3_V4_STRING_2 =
-    "UPDATE meta_data SET object_fk = " +
-        "(SELECT upnp_id FROM Object WHERE metadata_fk = meta_data.id)";
-
-    private const string UPDATE_V3_V4_STRING_3 =
-    "ALTER TABLE Object ADD timestamp INTEGER";
-
-    private const string UPDATE_V3_V4_STRING_4 =
-    "UPDATE Object SET timestamp = 0";
 
     private const string GET_META_DATA_COLUMN_STRING =
     "SELECT DISTINCT %s FROM meta_data AS m %s " +
@@ -500,78 +489,23 @@ public class Rygel.MediaExport.MediaCache : Object {
     private void open_db (string name) throws Error {
         this.db = new Database (name);
         int old_version = -1;
+        int current_version = schema_version.to_int ();
 
         try {
-            this.db.exec ("SELECT version FROM schema_info",
-                          null,
-                          (statement) => {
-                              old_version = statement.column_int (0);
-
-                              return false;
-                          });
-            int current_version = schema_version.to_int ();
-            if (old_version == current_version) {
-                bool schema_ok = true;
-
-                debug ("Media DB schema has current version");
-                debug ("Checking for consistent schema...");
-                db.exec ("SELECT count(*) FROM sqlite_master WHERE sql " +
-                         "LIKE 'CREATE TABLE Meta_Data%object_fk TEXT " +
-                         "UNIQUE%'",
-                         null,
-                         (statement) => {
-                             schema_ok = statement.column_int (0) == 1;
-
-                             return false;
-                         });
-                if (!schema_ok) {
-                    try {
-                        message ("Found faulty schema, forcing full reindex");
-                        db.begin ();
-                        db.exec ("DELETE FROM Object WHERE upnp_id IN (" +
-                                 "SELECT DISTINCT object_fk FROM meta_data)");
-                        db.exec ("DROP TABLE Meta_Data");
-                        db.exec (CREATE_META_DATA_TABLE_STRING);
-                        db.commit ();
-                    } catch (Error error) {
-                        db.rollback ();
-                        warning ("Failed to force reindex to fix database: " +
-                                 error.message);
-                    }
-                }
+            var upgrader = new MediaCacheUpgrader (this.db);
+            if (upgrader.needs_upgrade (out old_version)) {
+                upgrader.upgrade (old_version);
+            } else if (old_version == current_version) {
+                upgrader.fix_schema ();
             } else {
-                if (old_version < current_version) {
-                    debug ("Older schema detected. Upgrading...");
-                    while (old_version < current_version) {
-                        if (this.db != null) {
-                            switch (old_version) {
-                                case 3:
-                                    update_v3_v4 ();
-                                    break;
-                                case 4:
-                                    update_v4_v5 ();
-                                    break;
-                                case 5:
-                                    update_v5_v6 ();
-                                    break;
-                                default:
-                                    warning ("Cannot upgrade");
-                                    db = null;
-                                    break;
-                            }
-                            old_version++;
-                        }
-                    }
-                } else {
-                    warning ("The version \"%d\" of the detected database" +
-                             " is newer than our supported version \"%d\"",
-                             old_version,
-                             current_version);
-                    this.db = null;
+                warning ("The version \"%d\" of the detected database" +
+                         " is newer than our supported version \"%d\"",
+                         old_version,
+                         current_version);
+                this.db = null;
 
-                    throw new MediaDBError.GENERAL_ERROR ("Database format" +
+                throw new MediaDBError.GENERAL_ERROR ("Database format" +
                                                           " not supported");
-                }
             }
         } catch (DatabaseError error) {
             debug ("Could not find schema version;" +
@@ -606,101 +540,6 @@ public class Rygel.MediaExport.MediaCache : Object {
 
                 throw new MediaDBError.GENERAL_ERROR ("Invalid database");
             }
-        }
-    }
-
-    private void update_v3_v4 () {
-        try {
-            db.begin ();
-            db.exec ("ALTER TABLE Meta_Data RENAME TO _Meta_Data");
-            db.exec (CREATE_META_DATA_TABLE_STRING);
-            db.exec ("INSERT INTO meta_data (size, mime_type, duration, " +
-                     "width, height, class, author, album, date, " +
-                     "bitrate, sample_freq, bits_per_sample, channels, " +
-                     "track, color_depth, object_fk) SELECT size, " +
-                     "mime_type, duration, width, height, class, author, " +
-                     "album, date, bitrate, sample_freq, bits_per_sample, " +
-                     "channels, track, color_depth, o.upnp_id FROM " +
-                     "_Meta_Data JOIN object o ON id = o.metadata_fk");
-            db.exec ("DROP TABLE _Meta_Data");
-            db.exec (UPDATE_V3_V4_STRING_3);
-            db.exec (UPDATE_V3_V4_STRING_4);
-            db.exec (CREATE_TRIGGER_STRING);
-            db.exec ("UPDATE schema_info SET version = '4'");
-            db.commit ();
-        } catch (DatabaseError error) {
-            db.rollback ();
-            warning ("Database upgrade failed: %s", error.message);
-            db = null;
-        }
-    }
-
-    private void update_v4_v5 () {
-        Gee.Queue<string> queue = new LinkedList<string> ();
-        try {
-            db.begin ();
-            db.exec ("DROP TRIGGER IF EXISTS trgr_delete_children");
-            db.exec (CREATE_CLOSURE_TABLE);
-            // this is to have the database generate the closure table
-            db.exec ("ALTER TABLE Object RENAME TO _Object");
-            db.exec ("CREATE TABLE Object AS SELECT * FROM _Object");
-            db.exec ("DELETE FROM Object");
-            db.exec (CREATE_CLOSURE_TRIGGER_STRING);
-            db.exec ("INSERT INTO _Object (upnp_id, type_fk, title, " +
-                     "timestamp) VALUES ('0', 0, 'Root', 0)");
-            db.exec ("INSERT INTO Object (upnp_id, type_fk, title, " +
-                     "timestamp) VALUES ('0', 0, 'Root', 0)");
-
-            queue.offer ("0");
-            while (!queue.is_empty) {
-                GLib.Value[] args = { queue.poll () };
-                db.exec ("SELECT upnp_id FROM _Object WHERE parent = ?",
-                         args,
-                         (statement) => {
-                            queue.offer (statement.column_text (0));
-
-                            return true;
-                         });
-
-                db.exec ("INSERT INTO Object SELECT * FROM _OBJECT " +
-                         "WHERE parent = ?",
-                         args);
-            }
-            db.exec ("DROP TABLE Object");
-            db.exec ("ALTER TABLE _Object RENAME TO Object");
-            // the triggers created above have been dropped automatically
-            // so we need to recreate them
-            db.exec (CREATE_CLOSURE_TRIGGER_STRING);
-            db.exec (CREATE_INDICES_STRING);
-            db.exec ("UPDATE schema_info SET version = '5'");
-            db.commit ();
-            db.exec ("VACUUM");
-            db.analyze ();
-        } catch (DatabaseError err) {
-            db.rollback ();
-            warning ("Database upgrade failed: %s", err.message);
-            db = null;
-        }
-    }
-
-    private void update_v5_v6 () {
-        try {
-            db.begin ();
-            db.exec ("DROP TABLE object_type");
-            db.exec ("ALTER TABLE Object ADD COLUMN uri TEXT");
-            db.exec ("UPDATE Object SET uri = (SELECT uri " +
-                     "FROM uri WHERE Uri.object_fk == Object.upnp_id LIMIT 1)");
-            db.exec ("DROP TRIGGER IF EXISTS trgr_delete_uris");
-            db.exec ("DROP INDEX IF EXISTS idx_uri_fk");
-            db.exec ("DROP TABLE Uri");
-            db.exec ("UPDATE schema_info SET version = '6'");
-            db.commit ();
-            db.exec ("VACUUM");
-            db.analyze ();
-        } catch (DatabaseError error) {
-            db.rollback ();
-            warning ("Database upgrade failed: %s", error.message);
-            db = null;
         }
     }
 
