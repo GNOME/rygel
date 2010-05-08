@@ -197,35 +197,14 @@ public class Rygel.MediaExport.MediaCache : Object {
     "SELECT DISTINCT %s FROM meta_data AS m %s " +
         "ORDER BY %s LIMIT ?,?";
 
-    public signal void object_added (string object_id);
-    public signal void object_removed (string object_id);
-    public signal void object_updated (string object_id);
-
-    public signal void item_removed (string item_id);
-    public signal void item_added (string item_id);
-    public signal void item_updated (string item_id);
-
-    public signal void container_added (string container_id);
-    public signal void container_removed (string container_id);
-    public signal void container_updated (string container_id);
-
     public void remove_by_id (string id) throws DatabaseError {
         GLib.Value[] values = { id };
         this.db.exec (DELETE_BY_ID_STRING, values);
-        object_removed (id);
     }
 
     public void remove_object (MediaObject object) throws DatabaseError,
                                                           MediaDBError {
         this.remove_by_id (object.id);
-
-        if (object is MediaItem) {
-            item_removed (object.id);
-        } else if (object is MediaContainer) {
-            container_removed (object.id);
-        } else {
-            throw new MediaDBError.INVALID_TYPE (_("Invalid object type"));
-        }
     }
 
     public void save_container (MediaContainer container) throws Error {
@@ -233,8 +212,6 @@ public class Rygel.MediaExport.MediaCache : Object {
             db.begin ();
             create_object (container);
             db.commit ();
-            object_added (container.id);
-            container_added (container.id);
         } catch (DatabaseError error) {
             db.rollback ();
 
@@ -248,8 +225,6 @@ public class Rygel.MediaExport.MediaCache : Object {
             save_metadata (item);
             create_object (item);
             db.commit ();
-            object_added (item.id);
-            item_added (item.id);
         } catch (DatabaseError error) {
             warning (_("Failed to add item with ID %s: %s"),
                      item.id,
@@ -268,12 +243,6 @@ public class Rygel.MediaExport.MediaCache : Object {
             }
             update_object_internal (object);
             db.commit ();
-            object_updated (object.id);
-            if (object is MediaItem) {
-                item_updated (object.id);
-            } else if (object is MediaContainer) {
-                container_updated (object.id);
-            }
         } catch (Error error) {
             warning (_("Failed to add item with ID %s: %s"),
                      object.id,
