@@ -90,11 +90,18 @@ public class Rygel.MediaItem : MediaObject {
             src = Element.make_from_uri (URIType.SRC, this.uris.get (0), null);
         }
 
-        if (src != null &&
-            src.get_class ().find_property ("tcp-timeout") != null) {
-            // For rtspsrc since some RTSP sources takes a while to start
-            // transmitting
-            src.tcp_timeout = (int64) 60000000;
+        if (src != null) {
+            if (src.get_class ().find_property ("blocksize") != null) {
+                // The default is usually 4KiB which is not really big enough
+                // for most cases so we set this to 65KiB.
+                src.blocksize = (long) 65536;
+            }
+
+            if (src.get_class ().find_property ("tcp-timeout") != null) {
+                // For rtspsrc since some RTSP sources takes a while to start
+                // transmitting
+                src.tcp_timeout = (int64) 60000000;
+            }
         }
 
         return src;
