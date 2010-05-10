@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-04-22 06:33+0000\n"
-"PO-Revision-Date: 2010-05-01 10:00+0200\n"
+"POT-Creation-Date: 2010-05-06 01:05+0000\n"
+"PO-Revision-Date: 2010-05-10 20:12+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -363,16 +363,16 @@ msgstr ""
 
 #: ../src/plugins/mediathek/rygel-mediathek-rss-container.vala:85
 msgid "XPath query failed"
-msgstr ""
+msgstr "Falló la consulta a XPath"
 
 #: ../src/plugins/mediathek/rygel-mediathek-rss-container.vala:92
 msgid "Failed to parse doc"
-msgstr ""
+msgstr "Falló al analizar el documento"
 
 #: ../src/plugins/mediathek/rygel-mediathek-rss-container.vala:103
 #, c-format
 msgid "Requesting change since %s"
-msgstr ""
+msgstr "Solicitando cambio desde %s"
 
 #: ../src/plugins/mediathek/rygel-mediathek-rss-container.vala:117
 #, c-format
@@ -385,11 +385,11 @@ msgstr ""
 
 #: ../src/plugins/mediathek/rygel-mediathek-video-item.vala:64
 msgid "group node has no 'url' property"
-msgstr ""
+msgstr "el grupo nodo no tiene una propiedad «url»"
 
 #: ../src/plugins/mediathek/rygel-mediathek-video-item.vala:69
 msgid "invalid or no namespace"
-msgstr ""
+msgstr "espacio de nombres no válido o inexistente"
 
 #: ../src/plugins/mediathek/rygel-mediathek-video-item.vala:102
 msgid "Invalid or no namespace on group node"
@@ -397,11 +397,11 @@ msgstr ""
 
 #: ../src/plugins/mediathek/rygel-mediathek-video-item.vala:114
 msgid "Could not find title"
-msgstr ""
+msgstr "No se pudo encontrar el título"
 
 #: ../src/plugins/mediathek/rygel-mediathek-video-item.vala:120
 msgid "Could not find URIs"
-msgstr ""
+msgstr "No se pudieron encontrar los URI"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:38
 #, c-format
@@ -412,20 +412,20 @@ msgstr "Falló al construir el URI para la carpeta «%s»: %s"
 #: ../src/plugins/tracker/rygel-tracker-selection-query.vala:73
 #, c-format
 msgid "Executing SPARQL query: %s"
-msgstr ""
+msgstr "Ejecutando la consulta SPARQL: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-item-creation.vala:77
 #: ../src/rygel/rygel-media-container.vala:180
 #, c-format
 msgid "Object creation in %s not allowed"
-msgstr ""
+msgstr "No se permite la creación de objetos en %s"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:75
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:108
 #: ../src/rygel/rygel-user-config.vala:177
 #, c-format
 msgid "Failed to connect to session bus: %s"
-msgstr ""
+msgstr "Falló al conectar con el bus de sesión: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:132
 #, c-format
@@ -637,7 +637,7 @@ msgid "Failed to create item under '%s': %s"
 msgstr ""
 
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-live-response.vala:136
+#: ../src/rygel/rygel-live-response.vala:148
 #: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:88
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
@@ -647,27 +647,27 @@ msgid "Failed to link pad %s to %s"
 msgstr ""
 
 #. 'fakesink' should not be translated
-#: ../src/rygel/rygel-live-response.vala:84
+#: ../src/rygel/rygel-live-response.vala:96
 msgid "Plugin 'fakesink' missing"
 msgstr ""
 
-#: ../src/rygel/rygel-live-response.vala:101
-#: ../src/rygel/rygel-live-response.vala:123
+#: ../src/rygel/rygel-live-response.vala:113
+#: ../src/rygel/rygel-live-response.vala:135
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr ""
 
-#: ../src/rygel/rygel-live-response.vala:190
+#: ../src/rygel/rygel-live-response.vala:218
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-live-response.vala:197
+#: ../src/rygel/rygel-live-response.vala:225
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-live-response.vala:231
+#: ../src/rygel/rygel-live-response.vala:259
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr ""
@@ -845,12 +845,14 @@ msgstr ""
 msgid "XML node '%s' not found."
 msgstr ""
 
-#: ../src/rygel/rygel-root-device-factory.vala:232
+#: ../src/rygel/rygel-root-device-factory.vala:234
 #, c-format
-msgid "No icon provided by %s."
-msgstr "%s no proporcionó ningún icono."
+#| msgid "No icon provided by %s."
+msgid "No icon provided by plugin '%s'. Using Rygel logo.."
+msgstr ""
+"El complemento %s no proporcionó ningún icono. Usando el logotipo de Rygel…"
 
-#: ../src/rygel/rygel-root-device-factory.vala:294
+#: ../src/rygel/rygel-root-device-factory.vala:297
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Falló al escribir la descripción modificada en %s"
