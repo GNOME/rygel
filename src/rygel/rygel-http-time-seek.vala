@@ -85,6 +85,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
         return request.item.duration > 0 &&
                (request.handler is HTTPTranscodeHandler ||
                 (request.thumbnail == null &&
+                 request.subtitle == null &&
                  request.item.should_stream ()));
     }
 
