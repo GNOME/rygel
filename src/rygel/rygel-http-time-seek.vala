@@ -36,7 +36,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
         string[] range_tokens;
         int64 start = 0;
         int64 duration = request.item.duration * SECOND;
-        int64 stop = duration - 10 * MSECOND;
+        int64 stop = duration - SECOND;
 
         range = request.msg.request_headers.get ("TimeSeekRange.dlna.org");
         if (range != null) {
