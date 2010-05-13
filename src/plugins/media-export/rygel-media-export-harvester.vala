@@ -25,7 +25,7 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
     private MetadataExtractor extractor;
     private MediaCache media_db;
     private GLib.Queue<MediaContainer> containers;
-    private GLib.Queue<FileQueueEntry?> files;
+    private Gee.Queue<File> files;
     private File origin;
     private MediaContainer parent;
     private RecursiveFileMonitor monitor;
@@ -46,7 +46,7 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
         this.media_db = media_db;
         this.extractor.extraction_done.connect (on_extracted_cb);
         this.extractor.error.connect (on_extractor_error_cb);
-        this.files = new GLib.Queue<FileQueueEntry> ();
+        this.files = new LinkedList<File> ();
         this.containers = new GLib.Queue<MediaContainer> ();
         this.origin = null;
         this.monitor = monitor;
@@ -64,7 +64,7 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
                                         FILE_ATTRIBUTE_TIME_MODIFIED);
 
                 if (mtime > timestamp) {
-                    this.files.push_tail (new FileQueueEntry (file, true));
+                    this.files.offer (file);
 
                     return true;
                 } else {
@@ -72,14 +72,13 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
                     var size = info.get_size ();
                     var item = media_db.get_item (id);
                     if (item.size != size) {
-                        this.files.push_tail (new FileQueueEntry (file,
-                                                                  true));
+                        this.files.offer (file);
 
                         return true;
                     }
                 }
             } else {
-                this.files.push_tail (new FileQueueEntry (file, false));
+                this.files.offer (file);
 
                 return true;
             }
@@ -179,8 +178,8 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
             return false;
         }
 
-        if (this.files.get_length () > 0) {
-            var candidate = this.files.peek_head ().file;
+        if (this.files.size > 0) {
+            var candidate = this.files.peek ();
             this.extractor.extract (candidate);
         } else if (this.containers.get_length () > 0) {
             var container = this.containers.peek_head () as DummyContainer;
@@ -263,13 +262,13 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
             harvested (this.origin);
         }
 
-        var entry = this.files.peek_head ();
+        var entry = this.files.peek ();
         if (entry == null) {
             // this event may be triggered by another instance
             // just ignore it
            return;
         }
-        if (file == entry.file) {
+        if (file == entry) {
             var item = MediaExportItem.create_from_taglist (
                                                this.containers.peek_head (),
                                                file,
@@ -277,31 +276,27 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
             if (item != null) {
                 item.parent_ref = this.containers.peek_head ();
                 try {
-                    if (entry.update) {
-                        this.media_db.update_object (item);
-                    } else {
-                        this.media_db.save_item (item);
-                    }
+                    this.media_db.save_item (item);
                 } catch (Error error) {
                     // Ignore it for now
                 }
             }
 
-            this.files.pop_head ();
+            this.files.poll ();
             this.do_update ();
         }
     }
 
     private void on_extractor_error_cb (File file, Error error) {
-        var entry = this.files.peek_head ();
+        var entry = this.files.peek ();
         if (entry == null) {
             // this event may be triggered by another instance
             // just ignore it
             return;
         }
 
-        if (file == entry.file) {
-            this.files.pop_head ();
+        if (file == entry) {
+            this.files.poll ();
             this.do_update ();
         }
     }
@@ -312,7 +307,7 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
      * Reschedule the iteration and extraction
      */
     private void do_update () {
-        if (this.files.get_length () == 0 &&
+        if (this.files.size == 0 &&
             this.containers.get_length () != 0) {
             this.containers.peek_head ().updated ();
             this.containers.pop_head ();

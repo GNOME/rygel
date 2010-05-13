@@ -33,7 +33,6 @@ librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
 				   rygel-media-export-dbus-service.vala \
 				   rygel-media-export-recursive-file-monitor.vala \
 				   rygel-media-export-harvester.vala \
-				   rygel-media-export-file-queue-entry.vala \
 				   rygel-media-export-item.vala \
 				   rygel-media-export-writable-container.vala \
 				   rygel-media-export-object-factory.vala

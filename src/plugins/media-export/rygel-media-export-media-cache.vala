@@ -121,11 +121,8 @@ public class Rygel.MediaExport.MediaCache : Object {
          "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     private const string INSERT_OBJECT_STRING =
-    "INSERT INTO Object (upnp_id, title, type_fk, parent, timestamp, uri) " +
+    "INSERT OR REPLACE INTO Object (upnp_id, title, type_fk, parent, timestamp, uri) " +
         "VALUES (?,?,?,?,?,?)";
-
-    private const string UPDATE_OBJECT_STRING =
-    "UPDATE Object SET title = ?, timestamp = ?, uri = ? WHERE upnp_id = ?";
 
     private const string DELETE_BY_ID_STRING =
     "DELETE FROM Object WHERE upnp_id IN " +
@@ -228,24 +225,6 @@ public class Rygel.MediaExport.MediaCache : Object {
         } catch (DatabaseError error) {
             warning (_("Failed to add item with ID %s: %s"),
                      item.id,
-                     error.message);
-            db.rollback ();
-
-            throw error;
-        }
-    }
-
-    public void update_object (MediaObject object) throws Error {
-        try {
-            db.begin ();
-            if (object is MediaItem) {
-                save_metadata (object as Rygel.MediaItem);
-            }
-            update_object_internal (object);
-            db.commit ();
-        } catch (Error error) {
-            warning (_("Failed to add item with ID %s: %s"),
-                     object.id,
                      error.message);
             db.rollback ();
 
@@ -510,14 +489,6 @@ public class Rygel.MediaExport.MediaCache : Object {
                 throw new MediaDBError.GENERAL_ERROR ("Invalid database");
             }
         }
-    }
-
-    private void update_object_internal (MediaObject object) throws Error {
-        GLib.Value[] values = { object.title,
-                                (int64) object.modified,
-                                object.id,
-                                object.uris.size == 0 ? null : object.uris[0]};
-        this.db.exec (UPDATE_OBJECT_STRING, values);
     }
 
     private void save_metadata (Rygel.MediaItem item) throws Error {
