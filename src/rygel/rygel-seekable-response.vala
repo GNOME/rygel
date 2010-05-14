@@ -118,7 +118,6 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
                                         this.bytes_to_read (),
                                         this.priority,
                                         this.cancellable);
-        this.run_continue = read_contents.callback;
         this.msg.wrote_chunk.connect ((msg) => {
             if (this.run_continue != null) {
                 this.run_continue ();
@@ -129,9 +128,11 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
             this.push_data (this.buffer, bytes_read);
             this.total_length -= bytes_read;
 
+            this.run_continue = read_contents.callback;
             // We return from this call when wrote_chunk signal is emitted
             // and the handler we installed before the loop is called for it.
             yield;
+            this.run_continue = null;
 
             if (this.cancellable != null && this.cancellable.is_cancelled ()) {
                 break;
