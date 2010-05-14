@@ -37,6 +37,9 @@ public class Rygel.LiveResponseTest : GLib.Object {
     private HTTPServer server;
     private HTTPClient client;
 
+    private bool server_done;
+    private bool client_done;
+
     private MainLoop main_loop;
 
     private dynamic Element src;
@@ -93,6 +96,8 @@ public class Rygel.LiveResponseTest : GLib.Object {
         this.server.message_aborted.connect (this.on_message_aborted);
         if (this.cancellable == null) {
             this.client.completed.connect (this.on_client_completed);
+        } else {
+            this.client_done = true;
         }
 
         this.client.run.begin ();
@@ -105,7 +110,19 @@ public class Rygel.LiveResponseTest : GLib.Object {
     }
 
     private void on_client_completed (StateMachine client) {
-        this.main_loop.quit ();
+        if (this.server_done) {
+            this.main_loop.quit ();
+        }
+
+        this.client_done = true;
+    }
+
+    private void on_response_completed (StateMachine response) {
+        if (this.client_done) {
+            this.main_loop.quit ();
+        }
+
+        this.server_done = true;
     }
 
     private void on_message_received (HTTPServer   server,
@@ -120,9 +137,7 @@ public class Rygel.LiveResponseTest : GLib.Object {
 
             response.run.begin ();
 
-            if (this.cancellable != null) {
-                response.completed.connect (this.on_client_completed);
-            }
+            response.completed.connect (this.on_response_completed);
         } catch (Error error) {
             this.error = error;
             this.main_loop.quit ();
@@ -180,6 +195,7 @@ private class Rygel.HTTPServer : GLib.Object {
                             string        path,
                             HashTable?    query,
                             ClientContext client) {
+        this.context.server.pause_message (msg);
         this.message_received (msg);
     }
 
@@ -243,5 +259,6 @@ private class Rygel.HTTPClient : GLib.Object, StateMachine {
     private void on_cancelled (Cancellable cancellable) {
         this.context.session.cancel_message (this.msg,
                                              KnownStatusCode.CANCELLED);
+        this.completed ();
     }
 }
