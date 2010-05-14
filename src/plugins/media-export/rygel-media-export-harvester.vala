@@ -90,7 +90,7 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
     }
 
     private bool process_children (GLib.List<FileInfo>? list) {
-        if (list == null || this.cancellable.is_cancelled()) {
+        if (list == null || this.cancellable.is_cancelled ()) {
             return false;
         }
 
@@ -148,7 +148,7 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
             warning (_("failed to enumerate folder: %s"), err.message);
         }
 
-        cleanup_database (this.containers.peek_head() as DummyContainer);
+        cleanup_database (this.containers.peek_head () as DummyContainer);
         this.do_update ();
     }
 
@@ -166,9 +166,9 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
                 this.media_db.remove_by_id (child);
             }
         } catch (DatabaseError err) {
-            warning(_("Failed to get children of container %s: %s"),
-                    container.id,
-                    err.message);
+            warning (_("Failed to get children of container %s: %s"),
+                     container.id,
+                     err.message);
         }
 
     }

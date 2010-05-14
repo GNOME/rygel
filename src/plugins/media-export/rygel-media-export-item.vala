@@ -60,7 +60,7 @@ public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
                             string content_type;
                             tag_list.get_string (MetadataExtractor.TAG_RYGEL_MIME,
                                                  out content_type);
-                            warning(_("File '%s' is of unknown format/type."),
+                            warning (_("File '%s' is of unknown format/type."),
                                     file.get_uri ());
                             warning (_("Trying to guess from content type %s"),
                                     content_type);
@@ -96,7 +96,7 @@ public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
             }
         } else {
             // throw error. Taglist can't be empty
-            warning(_("Got empty taglist for file %s"), file.get_uri ());
+            warning (_("Got empty taglist for file %s"), file.get_uri ());
 
             return null;
         }

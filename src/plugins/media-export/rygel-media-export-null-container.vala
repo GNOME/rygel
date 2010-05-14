@@ -35,6 +35,6 @@ internal class Rygel.NullContainer : MediaContainer {
                                         uint         max_count,
                                         Cancellable? cancellable)
                                         throws Error {
-        return new Gee.ArrayList<MediaObject>();
+        return new Gee.ArrayList<MediaObject> ();
     }
 }

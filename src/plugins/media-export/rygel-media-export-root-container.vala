@@ -47,7 +47,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
 
         // either an error occured or the gconf key is not set
         if (uris.size == 0) {
-            debug(_("Nothing configured, using XDG special folders"));
+            debug (_("Nothing configured, using XDG special folders"));
             UserDirectory[] xdg_directories = { UserDirectory.MUSIC,
                                                 UserDirectory.PICTURES,
                                                 UserDirectory.VIDEOS };
@@ -67,12 +67,12 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         return uris;
     }
 
-    public static MediaContainer get_instance() {
+    public static MediaContainer get_instance () {
         if (RootContainer.instance == null) {
             try {
                 RootContainer.instance = new RootContainer ();
             } catch (Error error) {
-                warning(_("Failed to create instance of database"));
+                warning (_("Failed to create instance of database"));
                 RootContainer.instance = new NullContainer ();
             }
         }

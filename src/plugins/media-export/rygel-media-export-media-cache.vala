@@ -326,7 +326,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             children.add (get_object_from_statement (parent,
                                                      child_id,
                                                      statement));
-            children.last() .parent_ref = parent;
+            children.last () .parent_ref = parent;
 
             return true;
         };

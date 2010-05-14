@@ -145,7 +145,7 @@ internal class Rygel.MediaExport.Database : Object {
 
         if (values != null) {
             for (int i = 0; i < values.length; i++) {
-                if (values[i].holds(typeof (int))) {
+                if (values[i].holds (typeof (int))) {
                     rc = statement.bind_int (i + 1, values[i].get_int ());
                 } else if (values[i].holds (typeof (int64))) {
                     rc = statement.bind_int64 (i + 1, values[i].get_int64 ());
