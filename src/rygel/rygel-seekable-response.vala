@@ -122,11 +122,6 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
         this.msg.wrote_chunk.connect ((msg) => {
                 cb ();
         });
-        if (this.cancellable != null) {
-            this.cancellable.cancelled.connect (() => {
-                cb ();
-            });
-        }
 
         while (bytes_read > 0) {
             this.push_data (this.buffer, bytes_read);
@@ -154,7 +149,9 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
                      err.message);
         }
 
-        this.end (false, Soup.KnownStatusCode.NONE);
+        if (this.cancellable == null || !this.cancellable.is_cancelled ()) {
+            this.end (false, Soup.KnownStatusCode.NONE);
+        }
     }
 
     private int get_requested_priority () {
