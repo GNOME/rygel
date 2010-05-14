@@ -21,6 +21,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+// This module contains the common code between the test cases for
+// HTTPResponse subclasses.
 using Soup;
 
 public errordomain Rygel.TestError {
@@ -28,100 +30,107 @@ public errordomain Rygel.TestError {
     TIMEOUT
 }
 
-public class Rygel.HTTPResponseTest : GLib.Object {
-    private HTTPServer server;
-    private HTTPClient client;
+public abstract class Rygel.HTTPResponseTest : GLib.Object {
+    private static const long MAX_BYTES = 1024;
+
+    protected HTTPServer server;
+    protected HTTPClient client;
+
+    private bool server_done;
+    private bool client_done;
 
     private MainLoop main_loop;
 
-    public static int main (string[] args) {
-        try {
-            var test = new HTTPResponseTest ();
+    protected Cancellable cancellable;
+    private Error error;
 
-            test.run ();
-        } catch (TestError.SKIP error) {
-            return error.code;
-        } catch (Error error) {
-            critical ("%s", error.message);
+    public HTTPResponseTest (Cancellable? cancellable = null) throws Error {
+        this.cancellable = cancellable;
 
-            return -1;
-        }
-
-        return 0;
-    }
-
-    private HTTPResponseTest () throws TestError {
         this.server = new HTTPServer ();
-        this.client = new HTTPClient (this.server.context);
+        this.client = new HTTPClient (this.server.context,
+                                      this.server.uri,
+                                      MAX_BYTES,
+                                      cancellable != null);
         this.main_loop = new MainLoop (null, false);
     }
 
-    private void run () throws Error {
-        Error error = null;
+    public HTTPResponseTest.complete () throws Error {
+        this ();
+    }
 
-        Timeout.add_seconds (3, () => {
-            error = new TestError.TIMEOUT ("Timeout");
-            this.main_loop.quit ();
+    public HTTPResponseTest.abort () throws Error {
+        this (new Cancellable ());
+    }
 
-            return false;
-        });
-
+    public virtual void run () throws Error {
+        Timeout.add_seconds (3, this.on_timeout);
         this.server.message_received.connect (this.on_message_received);
+        this.server.message_aborted.connect (this.on_message_aborted);
+        if (this.cancellable == null) {
+            this.client.completed.connect (this.on_client_completed);
+        } else {
+            this.client_done = true;
+        }
 
-        this.client.run.begin (this.server.uri);
+        this.client.run.begin ();
 
         this.main_loop.run ();
 
-        if (error != null) {
-            throw error;
+        if (this.error != null) {
+            throw this.error;
         }
     }
 
-    private void on_message_received (HTTPServer server,
-                                      Message    msg) {
-        var response = new HTTPDummyResponse (this.server.context.server,
-                                              msg,
-                                              false,
-                                              null);
+    internal abstract HTTPResponse create_response (Soup.Message msg)
+                                                    throws Error;
 
-        response.completed.connect (() => {
+    private void on_client_completed (StateMachine client) {
+        if (this.server_done) {
             this.main_loop.quit ();
-        });
+        }
 
-        response.run.begin ();
+        this.client_done = true;
+    }
+
+    private void on_response_completed (StateMachine response) {
+        if (this.client_done) {
+            this.main_loop.quit ();
+        }
+
+        this.server_done = true;
+    }
+
+    private void on_message_received (HTTPServer   server,
+                                      Soup.Message msg) {
+        try {
+            var response = this.create_response (msg);
+
+            response.run.begin ();
+
+            response.completed.connect (this.on_response_completed);
+        } catch (Error error) {
+            this.error = error;
+            this.main_loop.quit ();
+
+            return;
+        }
+    }
+
+    private void on_message_aborted (HTTPServer   server,
+                                     Soup.Message msg) {
+        this.cancellable.cancel ();
+    }
+
+    private bool on_timeout () {
+        this.error = new TestError.TIMEOUT ("Timeout");
+        this.main_loop.quit ();
+
+        return false;
     }
 }
 
-private class Rygel.HTTPDummyResponse : Rygel.HTTPResponse {
-    public static const string RESPONSE_DATA = "THIS IS VALA!";
-
-    public HTTPDummyResponse (Soup.Server  server,
-                              Soup.Message msg,
-                              bool         partial,
-                              Cancellable? cancellable) {
-        base (server, msg, partial, cancellable);
-    }
-
-    public override async void run () {
-        this.server.pause_message (this.msg);
-
-        SourceFunc run_continue = run.callback;
-
-        Idle.add (() => {
-            run_continue ();
-
-            return false;
-        });
-
-        yield;
-
-        this.push_data (RESPONSE_DATA, RESPONSE_DATA.length);
-
-        this.end (false, Soup.KnownStatusCode.NONE);
-    }
-}
-
-private class Rygel.HTTPServer : GLib.Object {
+public class Rygel.HTTPServer : GLib.Object {
     private const string SERVER_PATH = "/RygelHTTPServer/Rygel/Test";
 
     public GUPnP.Context context;
@@ -134,7 +143,8 @@ private class Rygel.HTTPServer : GLib.Object {
         }
     }
 
-    public signal void message_received (Message message);
+    public signal void message_received (Soup.Message message);
+    public signal void message_aborted (Soup.Message message);
 
     public HTTPServer () throws TestError {
         try {
@@ -148,39 +158,78 @@ private class Rygel.HTTPServer : GLib.Object {
         assert (this.context.port > 0);
 
         this.context.server.add_handler (SERVER_PATH, this.server_cb);
+        this.context.server.request_aborted.connect (this.on_request_aborted);
     }
 
     private void server_cb (Server        server,
-                            Message       msg,
+                            Soup.Message  msg,
                             string        path,
                             HashTable?    query,
                             ClientContext client) {
+        this.context.server.pause_message (msg);
         this.message_received (msg);
+    }
+
+    private void on_request_aborted (Soup.Server        server,
+                                     Soup.Message       message,
+                                     Soup.ClientContext client) {
+        this.message_aborted (message);
     }
 }
 
-private class Rygel.HTTPClient : GLib.Object {
+public class Rygel.HTTPClient : GLib.Object, StateMachine {
     public GUPnP.Context context;
+    public Soup.Message msg;
+    public size_t total_bytes;
 
-    public HTTPClient (GUPnP.Context context) {
+    public Cancellable cancellable { get; set; }
+
+    public HTTPClient (GUPnP.Context context,
+                       string        uri,
+                       size_t        total_bytes,
+                       bool          active) {
         this.context = context;
+        this.total_bytes = total_bytes;
+
+        this.msg = new Soup.Message ("HTTP",  uri);
+        assert (this.msg != null);
+        this.msg.response_body.set_accumulate (false);
+
+        if (active) {
+            this.cancellable = new Cancellable ();
+            this.cancellable.cancelled += this.on_cancelled;
+        }
     }
 
-    public async void run (string uri) {
-        var msg = new Message ("HTTP",  uri);
-        assert (msg != null);
-
+    public async void run () {
         SourceFunc run_continue = run.callback;
+        size_t bytes_received = 0;
 
-        this.context.session.queue_message (msg, (m) => {
-            assert (msg.response_body.length ==
-                    HTTPDummyResponse.RESPONSE_DATA.length);
-            assert ((string) msg.response_body ==
-                    HTTPDummyResponse.RESPONSE_DATA);
+        this.msg.got_chunk.connect ((msg, chunk) => {
+            bytes_received += chunk.length;
+
+            if (bytes_received >= this.total_bytes &&
+                this.cancellable != null) {
+                bytes_received = bytes_received.clamp (0, this.total_bytes);
+
+                this.cancellable.cancel ();
+            }
+        });
+
+        this.context.session.queue_message (this.msg, (session, msg) => {
+            assert (bytes_received == this.total_bytes);
 
             run_continue ();
         });
 
         yield;
+
+        this.completed ();
+    }
+
+    private void on_cancelled (Cancellable cancellable) {
+        this.context.session.cancel_message (this.msg,
+                                             KnownStatusCode.CANCELLED);
+        this.completed ();
     }
 }

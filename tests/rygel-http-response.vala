@@ -1,1 +1,0 @@
-../src/rygel/rygel-http-response.vala
