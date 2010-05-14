@@ -286,7 +286,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
 
         base (db, "0", "MediaExportRoot");
 
-        this.extractor = MetadataExtractor.create ();
+        this.extractor = new MetadataExtractor ();
 
         this.harvester = new HashMap<File, Harvester> (file_hash, file_equal);
         this.harvester_trash = new ArrayList<Harvester> ();

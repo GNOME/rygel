@@ -106,40 +106,26 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         }
     }
 
-    public static MetadataExtractor? create() {
-        var config = MetaConfig.get_default ();
-        bool extract_metadata;
+    private void create_playbin_factory () {
+        debug ("Checking for gstreamer element 'playbin'...");
+        var factory = ElementFactory.find("playbin2");
+        if (factory != null) {
+            debug (_("Using playbin2"));
+        } else {
+            debug (_("Could not create Playbin2, trying Playbin"));
+            factory = ElementFactory.find ("playbin");
 
-        try {
-            extract_metadata = config.get_bool ("MediaExport",
-                                                "extract-metadata");
-        } catch (Error error) {
-            extract_metadata = false;
-        }
-
-        if (factory == null && extract_metadata) {
-            debug ("Checking for gstreamer element 'playbin'..."));
-            var factory = ElementFactory.find("playbin2");
             if (factory != null) {
-                debug (_("Using playbin2"));
+                debug (_("Using playbin"));
             } else {
-                debug (_("Could not create Playbin2, trying Playbin"));
-                factory = ElementFactory.find ("playbin");
-
-                if (factory != null) {
-                    debug (_("Using playbin"));
-                } else {
-                    warning (_("Could not find any playbin.") + " " +
-                              _("Please check your gstreamer setup"));
-                }
+                warning (_("Could not find any playbin.") + " " +
+                        _("Please check your gstreamer setup"));
             }
-            MetadataExtractor.factory = factory;
         }
-
-        return new MetadataExtractor ();
+        MetadataExtractor.factory = factory;
     }
 
-    private MetadataExtractor () {
+    public MetadataExtractor () {
         this.register_custom_tag (TAG_RYGEL_SIZE, typeof (int64));
         this.register_custom_tag (TAG_RYGEL_DURATION, typeof (int64));
         this.register_custom_tag (TAG_RYGEL_MIME, typeof (string));
@@ -152,6 +138,21 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
         this.file_queue = new GLib.Queue<File> ();
         this.tag_list = new Gst.TagList ();
+
+        var config = MetaConfig.get_default ();
+        bool extract_metadata;
+
+        try {
+            extract_metadata = config.get_bool ("MediaExport",
+                                                "extract-metadata");
+        } catch (Error error) {
+            extract_metadata = false;
+        }
+
+        // lazy-create factory
+        if (extract_metadata && factory == null) {
+            create_playbin_factory ();
+        }
     }
 
     public void extract (File file) {
