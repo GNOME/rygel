@@ -68,3 +68,10 @@ src/rygel/rygel-wma-transcoder-bin.c
 src/rygel/rygel-wmv-transcoder-bin.c
 src/rygel/rygel-xbox-hacks.c
 src/ui/rygel-preferences-dialog.c
+data/rygel.desktop.in
+tests/rygel-gst-utils.c
+tests/rygel-http-byte-seek.c
+tests/rygel-http-item-uri.c
+tests/rygel-http-time-seek.c
+tests/rygel-live-response.c
+tests/rygel-seekable-response.c
