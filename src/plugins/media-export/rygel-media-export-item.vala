@@ -30,7 +30,6 @@ using Gst;
 public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
     private const string TAG_WIDTH = MetadataExtractor.TAG_RYGEL_WIDTH;
     private const string TAG_HEIGHT = MetadataExtractor.TAG_RYGEL_HEIGHT;
-    private const string TAG_DURATION = MetadataExtractor.TAG_RYGEL_DURATION;
 
     public static MediaExportItem? create_from_taglist (MediaContainer parent,
                                                   File           file,
@@ -131,9 +130,8 @@ public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
         tag_list.get_int (TAG_HEIGHT, out this.height);
         tag_list.get_int (MetadataExtractor.TAG_RYGEL_DEPTH,
                           out this.color_depth);
-        int64 duration;
-        tag_list.get_int64 (MetadataExtractor.TAG_RYGEL_DURATION,
-                            out duration);
+        uint64 duration;
+        tag_list.get_uint64 (TAG_DURATION, out duration);
         this.duration = (duration == -1) ? -1 : (long) (duration / 1000000000);
 
         tag_list.get_int (MetadataExtractor.TAG_RYGEL_CHANNELS,

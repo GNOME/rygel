@@ -42,7 +42,6 @@ private enum Gst.StreamType {
  */
 public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     public const string TAG_RYGEL_SIZE = "rygel-size";
-    public const string TAG_RYGEL_DURATION = "rygel-duration";
     public const string TAG_RYGEL_MIME = "rygel-mime";
     public const string TAG_RYGEL_CHANNELS = "rygel-channels";
     public const string TAG_RYGEL_RATE = "rygel-rate";
@@ -127,7 +126,6 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
     public MetadataExtractor () {
         this.register_custom_tag (TAG_RYGEL_SIZE, typeof (int64));
-        this.register_custom_tag (TAG_RYGEL_DURATION, typeof (int64));
         this.register_custom_tag (TAG_RYGEL_MIME, typeof (string));
         this.register_custom_tag (TAG_RYGEL_CHANNELS, typeof (int));
         this.register_custom_tag (TAG_RYGEL_RATE, typeof (int));
@@ -335,7 +333,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         Format format = Format.TIME;
         if (this.playbin.query_duration (ref format, out duration)) {
             this.tag_list.add (TagMergeMode.REPLACE,
-                               TAG_RYGEL_DURATION,
+                               TAG_DURATION,
                                duration);
         }
     }
