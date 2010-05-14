@@ -181,8 +181,8 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         }
 
         if (this.file_queue.get_length () > 0) {
+            var item = this.file_queue.peek_head ();
             try {
-                var item = this.file_queue.peek_head ();
                 debug (_("Scheduling file %s for metadata extraction"),
                        item.get_uri ());
                 this.extract_mime_and_size ();
@@ -205,8 +205,19 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                     });
                 }
             } catch (Error error) {
+                // Translators: first parameter is file uri, second is error
+                // message
+                warning (_("Failed to extract metadata from %s: %s"),
+                         item.get_uri (),
+                         error.message);
+
                 // on error just move to the next uri in queue
-                this.extract_next ();
+                Idle.add (() => {
+                    this.error (this.file_queue.pop_head (), error);
+                    this.extract_next ();
+
+                    return false;
+                });
             }
         }
     }
