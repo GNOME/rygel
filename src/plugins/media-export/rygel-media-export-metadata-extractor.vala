@@ -300,22 +300,12 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         var file = this.file_queue.peek_head ();
         FileInfo file_info;
 
-        try {
-            file_info = file.query_info (FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE
-                                         + "," +
-                                         FILE_ATTRIBUTE_STANDARD_SIZE + "," +
-                                         FILE_ATTRIBUTE_TIME_MODIFIED,
-                                         FileQueryInfoFlags.NONE,
-                                         null);
-        } catch (Error error) {
-            warning (_("Failed to query content type for '%s'"),
-                     file.get_uri ());
-
-            // signal error to parent
-            this.error (file, error);
-
-            throw error;
-        }
+        file_info = file.query_info (FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE
+                                     + "," +
+                                     FILE_ATTRIBUTE_STANDARD_SIZE + "," +
+                                     FILE_ATTRIBUTE_TIME_MODIFIED,
+                                     FileQueryInfoFlags.NONE,
+                                     null);
 
         weak string content_type = file_info.get_content_type ();
         weak string mime = g_content_type_get_mime_type (content_type);
