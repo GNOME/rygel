@@ -29,6 +29,8 @@ internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
 
     public Cancellable cancellable { get; set; }
 
+    protected SourceFunc run_continue;
+
     public HTTPResponse (Soup.Server  server,
                          Soup.Message msg,
                          bool         partial,
@@ -65,6 +67,10 @@ internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
     }
 
     public virtual void end (bool aborted, uint status) {
+        if (this.run_continue != null) {
+            this.run_continue ();
+        }
+
         if (status != Soup.KnownStatusCode.NONE) {
             this.msg.set_status (status);
         }

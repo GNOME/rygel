@@ -36,8 +36,6 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
 
     private HTTPSeek time_range;
 
-    private SourceFunc run_continue;
-
     private size_t buffered;
     private bool out_of_sync;
 
@@ -83,8 +81,6 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         }
 
         base.end (aborted, status);
-
-        this.run_continue ();
     }
 
     private void prepare_pipeline (string name,

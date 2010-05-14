@@ -118,9 +118,11 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
                                         this.bytes_to_read (),
                                         this.priority,
                                         this.cancellable);
-        SourceFunc cb = read_contents.callback;
+        this.run_continue = read_contents.callback;
         this.msg.wrote_chunk.connect ((msg) => {
-                cb ();
+            if (this.run_continue != null) {
+                this.run_continue ();
+            }
         });
 
         while (bytes_read > 0) {
