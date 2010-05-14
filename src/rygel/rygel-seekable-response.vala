@@ -39,22 +39,16 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
     public SeekableResponse (Soup.Server  server,
                              Soup.Message msg,
                              string       uri,
-                             HTTPSeek?    seek,
+                             HTTPSeek     seek,
                              size_t       file_length,
                              Cancellable? cancellable) {
-        var partial = seek != null && seek.length < file_length;
+        var partial = seek.length < file_length;
 
         base (server, msg, partial, cancellable);
 
         this.seek = seek;
-        this.total_length = file_length;
         this.priority = this.get_requested_priority ();
-
-        if (seek != null) {
-            this.total_length = (size_t) seek.length;
-        } else {
-            this.total_length = file_length;
-        }
+        this.total_length = (size_t) seek.length;
 
         this.buffer = new char[SeekableResponse.BUFFER_LENGTH];
         this.file = File.new_for_uri (uri);
@@ -77,23 +71,21 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
     }
 
     private async void perform_seek () {
-        if (this.seek != null) {
-            try {
-                this.input_stream.seek (this.seek.start,
-                                        SeekType.SET,
-                                        this.cancellable);
-            } catch (Error err) {
-                // Failed to seek to media segment (defined by first and last
-                // byte positions).
-                warning (_("Failed to seek to %s-%s on URI %s: %s"),
-                         seek.start.to_string (),
-                         seek.stop.to_string (),
-                         file.get_uri (),
-                         err.message);
-                this.end (false,
-                          Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
-                return;
-            }
+        try {
+            this.input_stream.seek (this.seek.start,
+                                    SeekType.SET,
+                                    this.cancellable);
+        } catch (Error err) {
+            // Failed to seek to media segment (defined by first and last
+            // byte positions).
+            warning (_("Failed to seek to %s-%s on URI %s: %s"),
+                     seek.start.to_string (),
+                     seek.stop.to_string (),
+                     file.get_uri (),
+                     err.message);
+            this.end (false,
+                      Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
+            return;
         }
 
         yield this.start_reading ();
