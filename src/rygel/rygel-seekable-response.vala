@@ -133,6 +133,10 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
             // and the handler we installed before the loop is called for it.
             yield;
 
+            if (this.cancellable != null && this.cancellable.is_cancelled ()) {
+                break;
+            }
+
             bytes_read = yield this.input_stream.read_async (
                                         this.buffer,
                                         this.bytes_to_read (),
