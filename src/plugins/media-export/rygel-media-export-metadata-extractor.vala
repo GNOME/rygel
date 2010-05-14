@@ -80,28 +80,30 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     }
 
     private void renew_playbin () {
-        // setup fake sinks
-        this.playbin = this.factory.create ("tag_reader");
+        if (this.factory != null) {
+            // setup fake sinks
+            this.playbin = this.factory.create ("tag_reader");
 
-        // increase reference count of sinks to workaround
-        // bug #596078
-        var sink = ElementFactory.make ("fakesink", null);
-        sink.ref ();
-        this.playbin.video_sink = sink;
+            // increase reference count of sinks to workaround
+            // bug #596078
+            var sink = ElementFactory.make ("fakesink", null);
+            sink.ref ();
+            this.playbin.video_sink = sink;
 
-        sink = ElementFactory.make ("fakesink", null);
-        sink.ref ();
-        this.playbin.audio_sink = sink;
+            sink = ElementFactory.make ("fakesink", null);
+            sink.ref ();
+            this.playbin.audio_sink = sink;
 
-        var bus = this.playbin.get_bus ();
-        bus.add_signal_watch ();
-        bus.message["tag"] += this.tag_cb;
-        if (factory.get_element_type ().name () == "GstPlayBin2") {
-            bus.message["element"] += this.element_message_cb;
-        } else {
-            bus.message["state-changed"] += this.state_changed_cb;
+            var bus = this.playbin.get_bus ();
+            bus.add_signal_watch ();
+            bus.message["tag"] += this.tag_cb;
+            if (factory.get_element_type ().name () == "GstPlayBin2") {
+                bus.message["element"] += this.element_message_cb;
+            } else {
+                bus.message["state-changed"] += this.state_changed_cb;
+            }
+            bus.message["error"] += this.error_cb;
         }
-        bus.message["error"] += this.error_cb;
     }
 
     public static MetadataExtractor? create() {
@@ -117,9 +119,8 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                 if (factory != null) {
                     debug (_("Using playbin"));
                 } else {
-                    critical (_("Could not find any playbin.") + " " +
+                    warning (_("Could not find any playbin.") + " " +
                               _("Please check your gstreamer setup"));
-                    return null;
                 }
             }
             MetadataExtractor.factory = factory;
@@ -174,13 +175,24 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                 debug (_("Scheduling file %s for metadata extraction"),
                        item.get_uri ());
                 this.extract_mime_and_size ();
-                renew_playbin ();
-                this.playbin.uri = item.get_uri ();
-                this.timeout_id = Timeout.add_seconds_full (
-                                                         Priority.DEFAULT,
-                                                         5,
-                                                         on_harvesting_timeout);
-                this.playbin.set_state (State.PAUSED);
+                if (this.factory != null) {
+                    renew_playbin ();
+                    this.playbin.uri = item.get_uri ();
+                    this.timeout_id = Timeout.add_seconds_full (
+                                        Priority.DEFAULT,
+                                        5,
+                                        on_harvesting_timeout);
+                    this.playbin.set_state (State.PAUSED);
+                } else {
+                    Idle.add (() => {
+                        extraction_done (this.file_queue.pop_head (),
+                                         this.tag_list);
+                        this.tag_list = new Gst.TagList ();
+                        this.extract_next ();
+
+                        return false;
+                    });
+                }
             } catch (Error error) {
                 // on error just move to the next uri in queue
                 this.extract_next ();

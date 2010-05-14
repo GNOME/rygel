@@ -32,38 +32,6 @@ public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
     private const string TAG_HEIGHT = MetadataExtractor.TAG_RYGEL_HEIGHT;
     private const string TAG_DURATION = MetadataExtractor.TAG_RYGEL_DURATION;
 
-    public MediaExportItem (MediaContainer parent,
-                      File           file,
-                      FileInfo       info) {
-        string content_type = info.get_content_type ();
-        string item_class = null;
-        string id = Checksum.compute_for_string (ChecksumType.MD5,
-                                                 info.get_name ());
-
-        // use heuristics based on content type; will use MediaHarvester
-        // when it's ready
-
-        if (content_type.has_prefix ("video/")) {
-            item_class = Rygel.MediaItem.VIDEO_CLASS;
-        } else if (content_type.has_prefix ("audio/")) {
-            item_class = Rygel.MediaItem.AUDIO_CLASS;
-        } else if (content_type.has_prefix ("image/")) {
-            item_class = Rygel.MediaItem.PHOTO_CLASS;
-        }
-
-        if (item_class == null) {
-            item_class = Rygel.MediaItem.AUDIO_CLASS;
-            warning (_("Failed to detect UPnP class for '%s', assuming '%s'"),
-                     file.get_uri (),
-                     item_class);
-        }
-
-        base (id, parent, info.get_name (), item_class);
-
-        this.mime_type = content_type;
-        this.add_uri (file.get_uri (), null);
-    }
-
     public static MediaExportItem? create_from_taglist (MediaContainer parent,
                                                   File           file,
                                                   Gst.TagList    tag_list) {
@@ -90,10 +58,27 @@ public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
                                                 out duration)) {
                             class_guessed = Rygel.MediaItem.VIDEO_CLASS;
                         } else {
+                            string content_type;
+                            tag_list.get_string (MetadataExtractor.TAG_RYGEL_MIME,
+                                                 out content_type);
                             warning(_("File '%s' is of unknown format/type."),
                                     file.get_uri ());
+                            warning (_("Trying to guess from content type %s"),
+                                    content_type);
+                            if (content_type.has_prefix ("video/")) {
+                                class_guessed = Rygel.MediaItem.VIDEO_CLASS;
+                            } else if (content_type.has_prefix ("audio/")) {
+                                class_guessed = Rygel.MediaItem.AUDIO_CLASS;
+                            } else if (content_type.has_prefix ("image/")) {
+                                class_guessed = Rygel.MediaItem.PHOTO_CLASS;
+                            }
 
-                            return null;
+                            if (class_guessed == null) {
+                                class_guessed = Rygel.MediaItem.AUDIO_CLASS;
+                                warning (_("Failed to detect UPnP class for '%s', assuming '%s'"),
+                                         file.get_uri (),
+                                         class_guessed);
+                            }
                         }
                     }
                 } else {
@@ -117,18 +102,18 @@ public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
             return null;
         }
 
-        return new MediaExportItem.from_taglist (parent,
-                                                 id,
-                                                 file,
-                                                 tag_list,
-                                                 class_guessed);
+        return new MediaExportItem (parent,
+                                    id,
+                                    file,
+                                    tag_list,
+                                    class_guessed);
     }
 
-    private MediaExportItem.from_taglist (MediaContainer parent,
-                                          string         id,
-                                          File           file,
-                                          Gst.TagList    tag_list,
-                                          string         upnp_class) {
+    private MediaExportItem (MediaContainer parent,
+                             string         id,
+                             File           file,
+                             Gst.TagList    tag_list,
+                             string         upnp_class) {
         string title = null;
         if (upnp_class == Rygel.MediaItem.AUDIO_CLASS ||
             upnp_class == Rygel.MediaItem.MUSIC_CLASS) {
