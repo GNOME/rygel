@@ -181,6 +181,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         }
 
         if (this.file_queue.get_length () > 0) {
+            this.tag_list = new Gst.TagList ();
             var item = this.file_queue.peek_head ();
             try {
                 debug (_("Scheduling file %s for metadata extraction"),
@@ -198,7 +199,6 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                     Idle.add (() => {
                         extraction_done (this.file_queue.pop_head (),
                                          this.tag_list);
-                        this.tag_list = new Gst.TagList ();
                         this.extract_next ();
 
                         return false;
@@ -245,7 +245,6 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             /* No hopes of getting any tags after this point */
             this.extraction_done (this.file_queue.peek_head (), tag_list);
             this.playbin.set_state (State.NULL);
-            this.tag_list = new Gst.TagList ();
             this.file_queue.pop_head ();
             this.extract_next ();
         }
@@ -269,7 +268,6 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             /* No hopes of getting any tags after this point */
             this.extraction_done (this.file_queue.peek_head (), tag_list);
             this.playbin.set_state (State.NULL);
-            this.tag_list = new Gst.TagList ();
             this.file_queue.pop_head ();
             this.extract_next ();
         }
@@ -294,7 +292,6 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
         /* We have a list of URIs to harvest, so lets jump to next one */
         this.playbin.set_state (State.NULL);
-        this.tag_list = new Gst.TagList ();
         this.file_queue.pop_head ();
         this.extract_next ();
     }
