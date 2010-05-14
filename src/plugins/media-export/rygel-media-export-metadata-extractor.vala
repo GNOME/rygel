@@ -171,12 +171,14 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                     new IOChannelError.FAILED (message));
         this.file_queue.pop_head ();
         extract_next ();
+
         return false;
     }
 
     private void extract_next () {
-        if (this.timeout_id != 0)
+        if (this.timeout_id != 0) {
             Source.remove (this.timeout_id);
+        }
 
         if (this.file_queue.get_length () > 0) {
             try {
@@ -241,8 +243,9 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     /* Callback for state-change in playbin */
     private void state_changed_cb (Gst.Bus     bus,
                                    Gst.Message message) {
-        if (message.src != this.playbin)
+        if (message.src != this.playbin) {
             return;
+        }
 
         State new_state;
         State old_state;
@@ -265,7 +268,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     private void error_cb (Gst.Bus     bus,
                            Gst.Message message) {
 
-        return_if_fail (this.file_queue.get_length() != 0);
+        return_if_fail (this.file_queue.get_length () != 0);
 
         Error error = null;
         string debug;
@@ -320,7 +323,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                            TAG_RYGEL_SIZE,
                            size);
 
-        var mtime = file_info.get_attribute_uint64(
+        var mtime = file_info.get_attribute_uint64 (
                                                 FILE_ATTRIBUTE_TIME_MODIFIED);
         this.tag_list.add (TagMergeMode.REPLACE,
                            TAG_RYGEL_MTIME,
@@ -381,12 +384,10 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     private void extract_int_value (Structure structure,
                                     string key,
                                     string tag) {
-        int val;
+        int tag_value;
 
-        if (structure.get_int (key, out val)) {
-            tag_list.add (TagMergeMode.REPLACE,
-                          tag,
-                          val);
+        if (structure.get_int (key, out tag_value)) {
+            tag_list.add (TagMergeMode.REPLACE, tag, tag_value);
         }
     }
 }
