@@ -1,3 +1,60 @@
+0.6.0
+=====
+
+This release marks the start of the new stable release-cycle. Changes since
+0.5.2:
+
+- Localization:
+  - Fix translation framework.
+  - Mark all (possibly) user-visible string for translation.
+  - Use more translator-friendly language.
+  - Provide comments for translators.
+  - Correctly case abbreviations.
+  - Translations:
+    - German (de) 100%
+    - Slovenian (sl): 100%
+    - Spanish (es): 57%
+- Fix time-seeking.
+- Fix a potential race-condition in aborted HTTP requests.
+- Don't stream if request is for subtitles.
+- Use bigger (64Ki) buffers when streaming from gstreamer source element.
+- Remux only if transcoding is not needed.
+- Configuration option for specifying plugin load path.
+- Add configuration from Environment.
+- Fix port specification through commandline.
+- Add and expose Rygel logo.
+- Pause streaming pipeline when/if client isn't reading fast enough.
+- Add more unit tests.
+- Use gnome-autogen.sh.
+- Add missing libuuid to build and linker flags for all plugins.
+- Plugins are now able to provide a model description.
+- MediaExport:
+  - File size change suggests file change.
+  - Move media DB and metadata harvesting code from core to module as this is
+    the only module that is using it.
+- External plugin now sets model description.
+- Lots of non-functional improvements and fixes.
+
+Dependency-related changes:
+
+- Sqlite now only needed for media-export plugin.
+
+Bugs fixed in this release:
+
+617762 Wrong file size exported to PS3
+590649 LiveResponse does not rate limit the GStreamer pipeline
+615834 Uses ALL_LINGUAS in configure.ac
+616189 Translation issues
+617750 Only re-encode audio and video when necessary
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+Mario Blättermann <mariobl@gnome.org>
+Jorge González <jorgegonz@svn.gnome.org>
+Andrej Žnidaršič <andrej.znidarsic@gmail.com>
+
 0.5.2
 =====
 
