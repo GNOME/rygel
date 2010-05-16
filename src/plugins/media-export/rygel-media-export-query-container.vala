@@ -120,12 +120,11 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
     private int count_children () {
         try {
             if (this.pattern == "") {
-                var children = this.media_db.get_objects_by_search_expression (
+                return (int) this.media_db.get_object_count_by_search_expression (
                                         this.expression,
                                         "0",
                                         0,
                                         -1);
-                return children.size;
             } else {
                 int retval = 0;
                 var data = this.media_db.get_object_attribute_by_search_expression (

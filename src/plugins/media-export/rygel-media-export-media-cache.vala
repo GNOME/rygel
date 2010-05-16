@@ -181,6 +181,16 @@ public class Rygel.MediaExport.MediaCache : Object {
                  "o.title ASC " +
     "LIMIT ?,?";
 
+    // The uris are joined in to be able to filter by "ref"
+    private const string GET_OBJECT_COUNT_BY_FILTER_STRING =
+    "SELECT COUNT(o.type_fk) FROM Object o " +
+        "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
+        "JOIN meta_data m " +
+            "ON o.upnp_id = m.object_fk " +
+    "WHERE %s " +
+    "LIMIT ?,?";
+
+
     private const string CHILDREN_COUNT_STRING =
     "SELECT COUNT(upnp_id) FROM Object WHERE Object.parent = ?";
 
@@ -372,6 +382,67 @@ public class Rygel.MediaExport.MediaCache : Object {
                                            offset,
                                            max_objects);
     }
+
+    public long get_object_count_by_search_expression (
+                                        SearchExpression? expression,
+                                        string            container_id,
+                                        uint              offset,
+                                        uint              max_count)
+                                        throws Error {
+        var args = new GLib.ValueArray (0);
+        var filter = this.search_expression_to_sql (expression, args);
+
+        if (filter == null) {
+            return 0;
+        }
+
+        debug (_("Original search: %s"), expression.to_string ());
+        debug (_("Parsed search expression: %s"), filter);
+
+        for (int i = 0; i < args.n_values; i++) {
+            debug ("Arg %d: %s", i, args.get_nth (i).get_string ());
+        }
+
+        var max_objects = modify_limit (max_count);
+
+        return this.get_object_count_by_filter (filter,
+                                                args,
+                                                container_id,
+                                                offset,
+                                                max_objects);
+    }
+
+    public long get_object_count_by_filter (
+                                        string          filter,
+                                        GLib.ValueArray args,
+                                        string          container_id,
+                                        long            offset,
+                                        long            max_count)
+                                        throws Error {
+        GLib.Value v = container_id;
+        args.prepend (v);
+        v = offset;
+        args.append (v);
+        v = max_count;
+        args.append (v);
+        long count = 0;
+
+        debug ("%s %ld %ld", container_id, offset, max_count);
+        debug ("Parameters to bind: %u", args.n_values);
+
+        Database.RowCallback callback = (statement) => {
+            count = statement.column_int (0);
+
+            return false;
+        };
+
+        this.db.exec (GET_OBJECT_COUNT_BY_FILTER_STRING.printf (filter),
+                      args.values,
+                      callback);
+
+        return count;
+    }
+
 
     public Gee.ArrayList<MediaObject> get_objects_by_filter (
                                         string          filter,
