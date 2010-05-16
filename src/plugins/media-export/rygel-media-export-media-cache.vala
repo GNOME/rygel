@@ -175,7 +175,8 @@ public class Rygel.MediaExport.MediaCache : Object {
         "LEFT OUTER JOIN meta_data m " +
             "ON o.upnp_id = m.object_fk " +
     "WHERE %s " +
-        "ORDER BY o.type_fk ASC, " +
+        "ORDER BY o.parent ASC, " +
+                 "o.type_fk ASC, " +
                  "m.class ASC, " +
                  "m.track ASC, " +
                  "o.title ASC " +
@@ -427,7 +428,6 @@ public class Rygel.MediaExport.MediaCache : Object {
         args.append (v);
         long count = 0;
 
-        debug ("%s %ld %ld", container_id, offset, max_count);
         debug ("Parameters to bind: %u", args.n_values);
 
         Database.RowCallback callback = (statement) => {
@@ -458,6 +458,8 @@ public class Rygel.MediaExport.MediaCache : Object {
         args.append (v);
         v = max_count;
         args.append (v);
+        var last_parent = "";
+        MediaContainer parent = null;
 
         debug ("Parameters to bind: %u", args.n_values);
 
@@ -465,7 +467,11 @@ public class Rygel.MediaExport.MediaCache : Object {
             var child_id = statement.column_text (17);
             var parent_id = statement.column_text (18);
             try {
-                var parent = get_object (parent_id) as MediaContainer;
+                if (parent_id != last_parent) {
+                    parent = get_object (parent_id) as MediaContainer;
+                    last_parent = parent_id;
+                }
+
                 if (parent != null) {
                     children.add (get_object_from_statement (parent,
                                                              child_id,
