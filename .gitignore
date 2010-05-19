@@ -33,6 +33,7 @@ libtool
 Makefile.in
 Makefile
 po/Makefile.in.in
+po/POTFILES
 rygel-1.0.pc
 src/rygel/rygel
 src/rygel/rygel-1.0.vapi
