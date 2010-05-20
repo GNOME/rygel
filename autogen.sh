@@ -5,6 +5,7 @@ which gnome-autogen.sh || {
     exit 1
 }
 
+mkdir m4
 gnome-autogen.sh --enable-vala --enable-maintainer-mode --enable-debug \
                  --enable-test-plugin --enable-mediathek-plugin \
                  --enable-gst-launch-plugin "$@"
