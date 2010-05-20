@@ -35,8 +35,8 @@ public class Rygel.Thumbnail : Rygel.IconInfo {
         this.dlna_profile = dlna_profile;
     }
 
-    internal DIDLLiteResource add_resource (DIDLLiteItem didl_item,
-                                            string       protocol) {
+    internal virtual DIDLLiteResource? add_resource (DIDLLiteItem didl_item,
+                                                     string       protocol) {
         var res = didl_item.add_resource ();
 
         res.uri = this.uri;

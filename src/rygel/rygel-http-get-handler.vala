@@ -48,11 +48,13 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
         var didl_item = didl_writer.add_item ();
         try {
             var resource = this.add_resource (didl_item, request);
-            var tokens = resource.protocol_info.to_string ().split (":", 4);
-            assert (tokens.length == 4);
+            if (resource != null) {
+                var tokens = resource.protocol_info.to_string ().split (":", 4);
+                assert (tokens.length == 4);
 
-            request.msg.response_headers.append ("contentFeatures.dlna.org",
-                                                 tokens[3]);
+                request.msg.response_headers.append ("contentFeatures.dlna.org",
+                                                     tokens[3]);
+            }
         } catch (Error err) {
             warning ("Received request for 'contentFeatures.dlna.org' but " +
                        "failed to provide the value in response headers");
