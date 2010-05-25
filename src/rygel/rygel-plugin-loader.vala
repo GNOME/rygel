@@ -87,6 +87,8 @@ public class Rygel.PluginLoader : Object {
     }
 
     private async void load_modules_from_dir (File dir) {
+        debug (_("Searching for modules in folder '%s' .."), dir.get_path ());
+
         string attributes = FILE_ATTRIBUTE_STANDARD_NAME + "," +
                             FILE_ATTRIBUTE_STANDARD_TYPE + "," +
                             FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE;
@@ -129,6 +131,9 @@ public class Rygel.PluginLoader : Object {
                 this.load_module_from_file (file_path);
             }
         }
+
+        debug (_("Finished searching for modules in folder '%s'"),
+               dir.get_path ());
     }
 
     private void load_module_from_file (string file_path) {
