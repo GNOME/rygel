@@ -26,6 +26,8 @@ using Gee;
 using GUPnP;
 
 public class Rygel.Main : Object {
+    private static int PLUGIN_TIMEOUT = 5;
+
     private PluginLoader plugin_loader;
     private ContextManager context_manager;
     private ArrayList <RootDeviceFactory> factories;
@@ -65,6 +67,17 @@ public class Rygel.Main : Object {
 
     private int run () {
         this.plugin_loader.load_plugins ();
+
+        Timeout.add_seconds (PLUGIN_TIMEOUT, () => {
+            if (this.plugin_loader.list_plugins ().size == 0) {
+                warning (_("No plugins found in %d seconds, giving up.."),
+                         PLUGIN_TIMEOUT);
+
+                this.exit (-82);
+            }
+
+            return false;
+        });
 
         this.main_loop.run ();
 
