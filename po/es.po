@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-05-10 18:13+0000\n"
-"PO-Revision-Date: 2010-05-14 17:57+0200\n"
+"POT-Creation-Date: 2010-05-25 00:33+0000\n"
+"PO-Revision-Date: 2010-05-25 18:39+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -66,6 +66,8 @@ msgstr "Tít_ulo"
 msgid ""
 "Write %u for username, %n for real name of the user and %h for host name"
 msgstr ""
+"Escribir %u para el nombre de usuario, %n para el nombre real del usuario y %"
+"h para el nombre del equipo"
 
 #: ../data/rygel-preferences.ui.h:14
 msgid "_Enable UPnP/DLNA"
@@ -95,7 +97,7 @@ msgstr "_Puerto"
 
 #: ../data/rygel-preferences.ui.h:22
 msgid "_Transcoding support"
-msgstr ""
+msgstr "Soporte para _transcodificación"
 
 #: ../data/rygel-preferences.ui.h:23
 msgid "_URIs"
@@ -127,7 +129,7 @@ msgstr ""
 #: ../src/plugins/gst-renderer/rygel-gst-player.vala:42
 #, c-format
 msgid "Changing playback state to %s.."
-msgstr ""
+msgstr "Cambiando el estado de reproducción a %s…"
 
 #: ../src/plugins/gst-renderer/rygel-gst-player.vala:68
 #, c-format
@@ -221,7 +223,7 @@ msgid "Scheduling file %s for metadata extraction"
 msgstr ""
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:256
-#: ../src/rygel/rygel-plugin-loader.vala:174
+#: ../src/rygel/rygel-plugin-loader.vala:179
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr ""
@@ -706,7 +708,7 @@ msgid "Failed to create item under '%s': %s"
 msgstr ""
 
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-live-response.vala:148
+#: ../src/rygel/rygel-live-response.vala:144
 #: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
@@ -716,27 +718,27 @@ msgid "Failed to link pad %s to %s"
 msgstr ""
 
 #. 'fakesink' should not be translated
-#: ../src/rygel/rygel-live-response.vala:96
+#: ../src/rygel/rygel-live-response.vala:92
 msgid "Plugin 'fakesink' missing"
 msgstr ""
 
-#: ../src/rygel/rygel-live-response.vala:113
-#: ../src/rygel/rygel-live-response.vala:135
+#: ../src/rygel/rygel-live-response.vala:109
+#: ../src/rygel/rygel-live-response.vala:131
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr ""
 
-#: ../src/rygel/rygel-live-response.vala:218
+#: ../src/rygel/rygel-live-response.vala:214
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-live-response.vala:225
+#: ../src/rygel/rygel-live-response.vala:221
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-live-response.vala:259
+#: ../src/rygel/rygel-live-response.vala:255
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr ""
@@ -746,32 +748,37 @@ msgstr ""
 msgid "Failed to get log level from configuration: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-main.vala:107
+#: ../src/rygel/rygel-main.vala:73
+#, c-format
+msgid "No plugins found in %d seconds, giving up.."
+msgstr ""
+
+#: ../src/rygel/rygel-main.vala:120
 #, c-format
 msgid "new network context %s (%s) available."
 msgstr ""
 
-#: ../src/rygel/rygel-main.vala:125
+#: ../src/rygel/rygel-main.vala:138
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-main.vala:129
+#: ../src/rygel/rygel-main.vala:142
 #, c-format
 msgid "Ignoring network context %s (%s)."
 msgstr ""
 
-#: ../src/rygel/rygel-main.vala:137
+#: ../src/rygel/rygel-main.vala:150
 #, c-format
 msgid "Network context %s (%s) now unavailable."
 msgstr ""
 
-#: ../src/rygel/rygel-main.vala:176
+#: ../src/rygel/rygel-main.vala:189
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-main.vala:208
+#: ../src/rygel/rygel-main.vala:221
 #, c-format
 msgid "Failed to start D-Bus service: %s"
 msgstr ""
@@ -817,22 +824,32 @@ msgstr ""
 msgid "Plugin '%s' disabled in user configuration, ignoring.."
 msgstr ""
 
-#: ../src/rygel/rygel-plugin-loader.vala:108
+#: ../src/rygel/rygel-plugin-loader.vala:90
+#, c-format
+msgid "Searching for modules in folder '%s' .."
+msgstr ""
+
+#: ../src/rygel/rygel-plugin-loader.vala:110
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr ""
 
-#: ../src/rygel/rygel-plugin-loader.vala:137
+#: ../src/rygel/rygel-plugin-loader.vala:135
+#, c-format
+msgid "Finished searching for modules in folder '%s'"
+msgstr ""
+
+#: ../src/rygel/rygel-plugin-loader.vala:142
 #, c-format
 msgid "Failed to load module from path '%s' : %s"
 msgstr ""
 
-#: ../src/rygel/rygel-plugin-loader.vala:147
+#: ../src/rygel/rygel-plugin-loader.vala:152
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr ""
 
-#: ../src/rygel/rygel-plugin-loader.vala:163
+#: ../src/rygel/rygel-plugin-loader.vala:168
 #, c-format
 msgid "Loaded module source: '%s'"
 msgstr ""
@@ -879,24 +896,24 @@ msgstr "Ningún objeto satisface el criterio de búsqueda proporcionado."
 msgid "Failed to search in '%s': %s"
 msgstr "Falló al buscar en «%s»: %s"
 
-#: ../src/rygel/rygel-seekable-response.vala:68
+#: ../src/rygel/rygel-seekable-response.vala:62
 #, c-format
 msgid "Failed to read from URI: %s: %s"
 msgstr "Falló al leer del URI: %s: %s"
 
 #. Failed to seek to media segment (defined by first and last
 #. byte positions).
-#: ../src/rygel/rygel-seekable-response.vala:88
+#: ../src/rygel/rygel-seekable-response.vala:81
 #, c-format
 msgid "Failed to seek to %s-%s on URI %s: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-seekable-response.vala:108
+#: ../src/rygel/rygel-seekable-response.vala:100
 #, c-format
 msgid "Failed to read contents from URI: %s: %s"
 msgstr "Falló al leer el contenido del URI: %s: %s"
 
-#: ../src/rygel/rygel-seekable-response.vala:160
+#: ../src/rygel/rygel-seekable-response.vala:154
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
 msgstr "Falló al cerrar el flujo en el URI %s: %s"
