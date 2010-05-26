@@ -30,6 +30,8 @@ private errordomain Rygel.ItemCreatorError {
  * CreateObject action implementation.
  */
 internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
+    private static PatternSpec comment_pattern = new PatternSpec ("*<!--*-->*");
+
     // In arguments
     public string container_id;
     public string elements;
@@ -94,6 +96,9 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         if (this.elements == null) {
             throw new ContentDirectoryError.BAD_METADATA (
                                         _("'Elements' argument missing."));
+        } else if (comment_pattern.match_string (this.elements)) {
+            throw new ContentDirectoryError.BAD_METADATA (
+                                        _("Comments not allowed in XML"));
         }
 
         if (this.container_id == null) {
