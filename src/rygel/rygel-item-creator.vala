@@ -91,7 +91,12 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         this.action.get ("ContainerID", typeof (string), out this.container_id,
                          "Elements", typeof (string), out this.elements);
 
-        if (this.container_id == null || this.elements == null) {
+        if (this.elements == null) {
+            throw new ContentDirectoryError.BAD_METADATA (
+                                        _("'Elements' argument missing."));
+        }
+
+        if (this.container_id == null) {
             // Sorry we can't do anything without ContainerID
             throw new ContentDirectoryError.NO_SUCH_OBJECT (
                                         _("No such object"));

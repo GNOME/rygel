@@ -30,6 +30,7 @@ using Gee;
  */
 public errordomain Rygel.ContentDirectoryError {
     NO_SUCH_OBJECT = 701,
+    BAD_METADATA = 712,
     RESTRICTED_PARENT = 713,
     CANT_PROCESS = 720,
     INVALID_ARGS = 402
