@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-05-06 23:42+0000\n"
+"POT-Creation-Date: 2010-05-25 16:40+0000\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
+"Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -222,7 +222,7 @@ msgid "Scheduling file %s for metadata extraction"
 msgstr "Razporejanje datoteke %s za izločanje metapodatkov "
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:256
-#: ../src/rygel/rygel-plugin-loader.vala:166
+#: ../src/rygel/rygel-plugin-loader.vala:179
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Poizvedba vrste vsebine za '%s' je spodletela"
@@ -316,7 +316,7 @@ msgstr "ID ne vsebuje parov"
 
 #: ../src/plugins/media-export/rygel-media-export-query-container.vala:54
 msgid "Empty part not allowed in virtual ID"
-msgstr "Prazen del ni dovoljen v navideznemu ID-ju"
+msgstr "Prazen del ni dovoljen v navidezno določenem ID"
 
 #: ../src/plugins/media-export/rygel-media-export-query-container.vala:60
 msgid "Placeholder can only be on second place"
@@ -519,7 +519,7 @@ msgstr "Ustvarjanje predmeta v %s ni dovoljeno"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:75
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:108
-#: ../src/rygel/rygel-user-config.vala:177
+#: ../src/rygel/rygel-user-config.vala:182
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr "Povezovanje z vodilom seje je spodletelo: %s"
@@ -566,30 +566,30 @@ msgstr "Ni takšnega predmeta"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Brskanje '%s' je spodletelo: %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:120
-#: ../src/rygel/rygel-cmdline-config.vala:125
-#: ../src/rygel/rygel-cmdline-config.vala:133
-#: ../src/rygel/rygel-cmdline-config.vala:141
-#: ../src/rygel/rygel-cmdline-config.vala:149
-#: ../src/rygel/rygel-cmdline-config.vala:157
-#: ../src/rygel/rygel-cmdline-config.vala:165
-#: ../src/rygel/rygel-cmdline-config.vala:177
-#: ../src/rygel/rygel-cmdline-config.vala:195
-#: ../src/rygel/rygel-cmdline-config.vala:214
-#: ../src/rygel/rygel-cmdline-config.vala:238
-#: ../src/rygel/rygel-cmdline-config.vala:264
-#: ../src/rygel/rygel-cmdline-config.vala:293
-#: ../src/rygel/rygel-cmdline-config.vala:319
-#: ../src/rygel/rygel-cmdline-config.vala:344
-#: ../src/rygel/rygel-meta-config.vala:74
-#: ../src/rygel/rygel-meta-config.vala:93
-#: ../src/rygel/rygel-meta-config.vala:112
-#: ../src/rygel/rygel-meta-config.vala:131
-#: ../src/rygel/rygel-meta-config.vala:150
-#: ../src/rygel/rygel-meta-config.vala:169
-#: ../src/rygel/rygel-meta-config.vala:188
-#: ../src/rygel/rygel-meta-config.vala:207
-#: ../src/rygel/rygel-meta-config.vala:226
+#: ../src/rygel/rygel-cmdline-config.vala:124
+#: ../src/rygel/rygel-cmdline-config.vala:129
+#: ../src/rygel/rygel-cmdline-config.vala:137
+#: ../src/rygel/rygel-cmdline-config.vala:145
+#: ../src/rygel/rygel-cmdline-config.vala:153
+#: ../src/rygel/rygel-cmdline-config.vala:161
+#: ../src/rygel/rygel-cmdline-config.vala:169
+#: ../src/rygel/rygel-cmdline-config.vala:181
+#: ../src/rygel/rygel-cmdline-config.vala:207
+#: ../src/rygel/rygel-cmdline-config.vala:226
+#: ../src/rygel/rygel-cmdline-config.vala:250
+#: ../src/rygel/rygel-cmdline-config.vala:276
+#: ../src/rygel/rygel-cmdline-config.vala:305
+#: ../src/rygel/rygel-cmdline-config.vala:331
+#: ../src/rygel/rygel-cmdline-config.vala:356
+#: ../src/rygel/rygel-meta-config.vala:75
+#: ../src/rygel/rygel-meta-config.vala:94
+#: ../src/rygel/rygel-meta-config.vala:113
+#: ../src/rygel/rygel-meta-config.vala:132
+#: ../src/rygel/rygel-meta-config.vala:151
+#: ../src/rygel/rygel-meta-config.vala:170
+#: ../src/rygel/rygel-meta-config.vala:189
+#: ../src/rygel/rygel-meta-config.vala:208
+#: ../src/rygel/rygel-meta-config.vala:227
 msgid "No value available"
 msgstr "Nobena vrednost ni na voljo"
 
@@ -712,37 +712,37 @@ msgid "Failed to create item under '%s': %s"
 msgstr "Ustvarjanje predmeta pod '%s' je spodletelo: %s"
 
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-live-response.vala:148
-#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:88
+#: ../src/rygel/rygel-live-response.vala:144
+#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
-#: ../src/rygel/rygel-wmv-transcoder-bin.vala:86
+#: ../src/rygel/rygel-wmv-transcoder-bin.vala:100
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Napaka med povezovanjem %s z %s"
 
 #. 'fakesink' should not be translated
-#: ../src/rygel/rygel-live-response.vala:96
+#: ../src/rygel/rygel-live-response.vala:92
 msgid "Plugin 'fakesink' missing"
 msgstr "Vstavek 'fakesink' manjka"
 
-#: ../src/rygel/rygel-live-response.vala:113
-#: ../src/rygel/rygel-live-response.vala:135
+#: ../src/rygel/rygel-live-response.vala:109
+#: ../src/rygel/rygel-live-response.vala:131
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Povezovanje %s z %s je spodletelo"
 
-#: ../src/rygel/rygel-live-response.vala:218
+#: ../src/rygel/rygel-live-response.vala:214
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Napaka iz cevovoda %s: %s"
 
-#: ../src/rygel/rygel-live-response.vala:225
+#: ../src/rygel/rygel-live-response.vala:221
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Opozorilo iz cevovoda %s: %s"
 
-#: ../src/rygel/rygel-live-response.vala:259
+#: ../src/rygel/rygel-live-response.vala:255
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Iskanje na odmik %lld je spodletelo"
@@ -752,93 +752,108 @@ msgstr "Iskanje na odmik %lld je spodletelo"
 msgid "Failed to get log level from configuration: %s"
 msgstr "Pridobivanje ravni dnevnika iz nastavitev je spodletelo: %s"
 
-#: ../src/rygel/rygel-main.vala:107
+#: ../src/rygel/rygel-main.vala:73
+#, c-format
+msgid "No plugins found in %d seconds, giving up.."
+msgstr "V %d sekundah ni bilo mogoče najti vstavkov, prenehanje iskanja ..."
+
+#: ../src/rygel/rygel-main.vala:120
 #, c-format
 msgid "new network context %s (%s) available."
 msgstr "nova omrežna vsebina %s (%s) je na voljo."
 
-#: ../src/rygel/rygel-main.vala:125
+#: ../src/rygel/rygel-main.vala:138
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Ustvarjanje tovarne korenske naprave je spodletelo: %s"
 
-#: ../src/rygel/rygel-main.vala:129
+#: ../src/rygel/rygel-main.vala:142
 #, c-format
 msgid "Ignoring network context %s (%s)."
 msgstr "Izpuščanje vsebine omrežja %s (%s)."
 
-#: ../src/rygel/rygel-main.vala:137
+#: ../src/rygel/rygel-main.vala:150
 #, c-format
 msgid "Network context %s (%s) now unavailable."
 msgstr "Vsebina omrežja %s (%s) sedaj ni na voljo."
 
-#: ../src/rygel/rygel-main.vala:176
+#: ../src/rygel/rygel-main.vala:189
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Ustvarjanje RootDevice za %s je spodletelo: Vzrok: %s"
 
-#: ../src/rygel/rygel-main.vala:208
+#: ../src/rygel/rygel-main.vala:221
 #, c-format
 msgid "Failed to start D-Bus service: %s"
 msgstr "Zaganjanje storitve D-Bus je spodletelo: %s"
 
-#: ../src/rygel/rygel-media-item.vala:245
+#: ../src/rygel/rygel-media-item.vala:253
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Slab naslov URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:257
+#: ../src/rygel/rygel-media-item.vala:265
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Neuspešno preiskovanje protokola za naslov URI %s. Uporabljeno bo '%s'"
 
-#: ../src/rygel/rygel-meta-config.vala:57
+#: ../src/rygel/rygel-meta-config.vala:58
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Nalaganje uporabniških nastavitev je spodletelo: %s"
 
-#: ../src/rygel/rygel-meta-config.vala:246
-#: ../src/rygel/rygel-meta-config.vala:265
+#: ../src/rygel/rygel-meta-config.vala:266
+#: ../src/rygel/rygel-meta-config.vala:285
 #, c-format
 msgid "No value set for '%s/enabled'"
 msgstr "Ni nastavljene vrednosti za '%s/enabled'"
 
-#: ../src/rygel/rygel-meta-config.vala:285
-#: ../src/rygel/rygel-meta-config.vala:307
-#: ../src/rygel/rygel-meta-config.vala:333
-#: ../src/rygel/rygel-meta-config.vala:355
-#: ../src/rygel/rygel-meta-config.vala:379
+#: ../src/rygel/rygel-meta-config.vala:305
+#: ../src/rygel/rygel-meta-config.vala:327
+#: ../src/rygel/rygel-meta-config.vala:353
+#: ../src/rygel/rygel-meta-config.vala:375
+#: ../src/rygel/rygel-meta-config.vala:399
 #, c-format
 msgid "No value available for '%s/%s'"
 msgstr "Ni vrednosti na voljo za '%s/%s'"
 
-#: ../src/rygel/rygel-plugin-loader.vala:64
+#: ../src/rygel/rygel-plugin-loader.vala:72
 #, c-format
 msgid "New plugin '%s' available"
 msgstr "Nov vstavek '%s' je na voljo"
 
-#: ../src/rygel/rygel-plugin-loader.vala:68
+#: ../src/rygel/rygel-plugin-loader.vala:76
 #, c-format
 msgid "Plugin '%s' disabled in user configuration, ignoring.."
 msgstr "Vstavek '%s' je med nastavitvami onemogočen, zato bo prezrt ..."
 
-#: ../src/rygel/rygel-plugin-loader.vala:100
+#: ../src/rygel/rygel-plugin-loader.vala:90
+#, c-format
+msgid "Searching for modules in folder '%s' .."
+msgstr "Iskanje modulov v mapi '%s' ..."
+
+#: ../src/rygel/rygel-plugin-loader.vala:110
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Napaka med izpisovanjem vsebine mape '%s': %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:129
+#: ../src/rygel/rygel-plugin-loader.vala:135
+#, c-format
+msgid "Finished searching for modules in folder '%s'"
+msgstr "Iskanje modulov v mapi '%s' je končano"
+
+#: ../src/rygel/rygel-plugin-loader.vala:142
 #, c-format
 msgid "Failed to load module from path '%s' : %s"
 msgstr "Nalaganje modula iz poti '%s' je spodletelo: %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:139
+#: ../src/rygel/rygel-plugin-loader.vala:152
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Iskanje funkcije vstopne točke '%s' v '%s' je spodletelo: %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:155
+#: ../src/rygel/rygel-plugin-loader.vala:168
 #, c-format
 msgid "Loaded module source: '%s'"
 msgstr "Naložen je vir modula: '%s'"
@@ -884,24 +899,24 @@ msgstr "Noben predmet ne zadostuje podanim kriterijem iskanja."
 msgid "Failed to search in '%s': %s"
 msgstr "Iskanje v '%s' je spodletelo: %s"
 
-#: ../src/rygel/rygel-seekable-response.vala:68
+#: ../src/rygel/rygel-seekable-response.vala:62
 #, c-format
 msgid "Failed to read from URI: %s: %s"
 msgstr "Branje iz naslova URI je spodletelo: %s: %s"
 
 #. Failed to seek to media segment (defined by first and last
 #. byte positions).
-#: ../src/rygel/rygel-seekable-response.vala:88
+#: ../src/rygel/rygel-seekable-response.vala:81
 #, c-format
 msgid "Failed to seek to %s-%s on URI %s: %s"
 msgstr "Iskanje do %s-%s na URI je spodletelo: %s: %s"
 
-#: ../src/rygel/rygel-seekable-response.vala:108
+#: ../src/rygel/rygel-seekable-response.vala:100
 #, c-format
 msgid "Failed to read contents from URI: %s: %s"
 msgstr "Branje vsebine iz naslova URI je spodletelo: %s: %s"
 
-#: ../src/rygel/rygel-seekable-response.vala:160
+#: ../src/rygel/rygel-seekable-response.vala:154
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
 msgstr "Zapiranje pretoka do naslova URI %s je spodletelo: %s"
@@ -928,28 +943,28 @@ msgstr "Sličice niso na voljo"
 msgid "No transcoder available for target format '%s'"
 msgstr "Za ciljno obliko '%s' ni na voljo ustreznega prekodirnika"
 
-#: ../src/rygel/rygel-user-config.vala:163
+#: ../src/rygel/rygel-user-config.vala:168
 #, c-format
 msgid "Loaded user configuration from file '%s'"
 msgstr "Uporabniške nastavitve so naložene iz datoteke '%s'"
 
-#: ../src/rygel/rygel-user-config.vala:194
+#: ../src/rygel/rygel-user-config.vala:199
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr "Shranjevanje podatkov nastavitev v datoteko '%s' je spodletelo: %s"
 
-#: ../src/rygel/rygel-user-config.vala:214
+#: ../src/rygel/rygel-user-config.vala:219
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Za '%s' ni na voljo nobene vrednosti"
 
-#: ../src/rygel/rygel-user-config.vala:243
+#: ../src/rygel/rygel-user-config.vala:248
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Vrednost '%s' je izven obsega"
 
 #. Failed to start/stop Rygel service
-#: ../src/rygel/rygel-user-config.vala:345
+#: ../src/rygel/rygel-user-config.vala:350
 #, c-format
 msgid "Failed to %s Rygel service: %s"
 msgstr "%s storitve Rygel je spodletelo: %s"
