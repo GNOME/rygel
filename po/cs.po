@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-17 00:38+0200\n"
-"PO-Revision-Date: 2010-05-16 23:24+0200\n"
+"POT-Creation-Date: 2010-05-31 23:16+0200\n"
+"PO-Revision-Date: 2010-05-17 08:05+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -224,7 +224,7 @@ msgid "Scheduling file %s for metadata extraction"
 msgstr "Plánuje se soubor %s pro zjištění metadat"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:256
-#: ../src/rygel/rygel-plugin-loader.vala:174
+#: ../src/rygel/rygel-plugin-loader.vala:179
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Selhal dotaz na typ obsahu pro „%s“"
@@ -751,32 +751,37 @@ msgstr "Selhal přesun na pozici %lld"
 msgid "Failed to get log level from configuration: %s"
 msgstr "Selhalo zjištění úrovně evidence z nastavení: %s"
 
-#: ../src/rygel/rygel-main.vala:107
+#: ../src/rygel/rygel-main.vala:73
+#, c-format
+msgid "No plugins found in %d seconds, giving up.."
+msgstr ""
+
+#: ../src/rygel/rygel-main.vala:120
 #, c-format
 msgid "new network context %s (%s) available."
 msgstr "dostupný nový síťový kontext %s (%s)."
 
-#: ../src/rygel/rygel-main.vala:125
+#: ../src/rygel/rygel-main.vala:138
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Selhalo vytvoření generátoru kořenových zařízení: %s"
 
-#: ../src/rygel/rygel-main.vala:129
+#: ../src/rygel/rygel-main.vala:142
 #, c-format
 msgid "Ignoring network context %s (%s)."
 msgstr "Ignoruje se síťový kontext %s (%s)."
 
-#: ../src/rygel/rygel-main.vala:137
+#: ../src/rygel/rygel-main.vala:150
 #, c-format
 msgid "Network context %s (%s) now unavailable."
 msgstr "Síťový kontext %s (%s) není právě dostupný."
 
-#: ../src/rygel/rygel-main.vala:176
+#: ../src/rygel/rygel-main.vala:189
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Selhalo vytvoření kořenového zařízení pro %s. Důvod: %s"
 
-#: ../src/rygel/rygel-main.vala:208
+#: ../src/rygel/rygel-main.vala:221
 #, c-format
 msgid "Failed to start D-Bus service: %s"
 msgstr "Selhalo spuštění služby D-Bus: %s"
@@ -823,22 +828,32 @@ msgstr "Dostupný nový zásuvný modul „%s“"
 msgid "Plugin '%s' disabled in user configuration, ignoring.."
 msgstr "Zásuvný modul „%s“ zakázán v uživatelském nastavení, ignoruje se…"
 
-#: ../src/rygel/rygel-plugin-loader.vala:108
+#: ../src/rygel/rygel-plugin-loader.vala:90
+#, c-format
+msgid "Searching for modules in folder '%s' .."
+msgstr ""
+
+#: ../src/rygel/rygel-plugin-loader.vala:110
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Chyba při výpisu obsahu složky „%s“: %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:137
+#: ../src/rygel/rygel-plugin-loader.vala:135
+#, c-format
+msgid "Finished searching for modules in folder '%s'"
+msgstr ""
+
+#: ../src/rygel/rygel-plugin-loader.vala:142
 #, c-format
 msgid "Failed to load module from path '%s' : %s"
 msgstr "Selhalo načtení modulu z cesty „%s“: %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:147
+#: ../src/rygel/rygel-plugin-loader.vala:152
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Selhalo nalezení vstupního bodu funkce „%s“ v „%s“: %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:163
+#: ../src/rygel/rygel-plugin-loader.vala:168
 #, c-format
 msgid "Loaded module source: '%s'"
 msgstr "Načten zdroj modulu: „%s“"
@@ -853,9 +868,9 @@ msgid "XML node '%s' not found."
 msgstr "Uzel XML „%s“ nenalezen."
 
 #: ../src/rygel/rygel-root-device-factory.vala:234
-#, fuzzy, c-format
+#, c-format
 msgid "No icon provided by plugin '%s'. Using Rygel logo.."
-msgstr "%s neposkytuje žádnou ikonu."
+msgstr "Zásuvný modul „%s“ neposkytuje žádnou ikonu. Použije se logo Rygel…"
 
 #: ../src/rygel/rygel-root-device-factory.vala:297
 #, c-format
