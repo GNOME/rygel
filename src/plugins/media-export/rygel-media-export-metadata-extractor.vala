@@ -49,7 +49,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
      */
     public signal void error (File file, Error err);
 
-    private Gst.Discoverer discoverer;
+    private GUPnP.DLNADiscoverer discoverer;
     /**
      * We export a GLib.File-based API but GstDiscoverer works with URIs, so
      * we store uri->GLib.File mappings in this hashmap, so that we can get
@@ -83,9 +83,9 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
         this.file_hash = new HashMap<string, File> ();
 
-        this.discoverer = new Gst.Discoverer ((ClockTime)
+        this.discoverer = new GUPnP.DLNADiscoverer ((ClockTime)
                                               (this.timeout * 1000000000ULL));
-        this.discoverer.discovered.connect (on_discovered);
+        this.discoverer.done.connect (on_done);
         this.discoverer.start ();
     }
 
@@ -93,33 +93,33 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         this.discoverer.stop ();
     }
 
-    private void on_discovered (owned Gst.DiscovererInformation info,
-                                GLib.Error                      err) {
-        assert (this.file_hash.has_key (info.uri));
+    private void on_done (GUPnP.DLNAProfile profile,
+                          GLib.Error        err) {
+        assert (this.file_hash.has_key (profile.info.uri));
 
-        File file = this.file_hash.get (info.uri);
+        File file = this.file_hash.get (profile.info.uri);
         TagList tag_list = new TagList ();
 
-        this.file_hash.unset (info.uri);
+        this.file_hash.unset (profile.info.uri);
 
-        if ((info.result & Gst.DiscovererResult.TIMEOUT) != 0) {
+        if ((profile.info.result & Gst.DiscovererResult.TIMEOUT) != 0) {
             this.error (file,
                         new IOChannelError.FAILED ("Pipeline stuckwhile" +
                                                    "reading file info"));
             return;
-        } else if ((info.result & Gst.DiscovererResult.ERROR) != 0) {
+        } else if ((profile.info.result & Gst.DiscovererResult.ERROR) != 0) {
             this.error (file, err);
             return;
         }
 
         try {
             this.extract_mime_and_size (file, tag_list);
-            this.extract_duration (info, tag_list);
-            this.extract_stream_info (info, tag_list);
+            this.extract_duration (profile.info, tag_list);
+            this.extract_stream_info (profile.info, tag_list);
             this.extraction_done (file, tag_list);
         } catch (Error e) {
             debug ("Unable to extract metadata for %s: %s\n",
-                   info.uri,
+                   profile.info.uri,
                    err.message);
         }
     }
@@ -127,7 +127,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     public void extract (File file) {
         string uri = file.get_uri ();
         this.file_hash.set (uri, file);
-        this.discoverer.append_uri (uri);
+        this.discoverer.discover_uri (uri);
     }
 
     private void extract_mime_and_size (File    file,
