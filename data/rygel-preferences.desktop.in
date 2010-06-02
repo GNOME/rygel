@@ -5,6 +5,7 @@ Name[en_GB]=Rygel Preferences
 GenericName=UPnP/DLNA Preferences
 GenericName[en_GB]=UPnP/DLNA Preferences
 Categories=Settings;X-GNOME-PersonalSettings;
+Icon=rygel
 Exec=rygel-preferences
 Terminal=false
 Type=Application
