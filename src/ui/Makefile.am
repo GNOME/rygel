@@ -1,9 +1,9 @@
 if UNINSTALLED
 shareddir = $(abs_top_builddir)/data
-icondir = $(shareddir)/icons
+icondir = $(shareddir)/icons/32x32
 else
 shareddir = $(datadir)/rygel
-icondir = $(datadir)/icons/hicolor
+icondir = $(datadir)/icons/hicolor/32x32/apps
 endif
 
 rygeldir = $(top_srcdir)/src/rygel

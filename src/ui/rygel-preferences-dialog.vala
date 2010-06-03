@@ -27,7 +27,7 @@ using CStuff;
 public class Rygel.PreferencesDialog : GLib.Object {
     const string UI_FILE = BuildConfig.DATA_DIR + "/rygel-preferences.ui";
     const string DIALOG = "preferences-dialog";
-    const string ICON = BuildConfig.ICON_DIR + "/32x32/apps/rygel.png";
+    const string ICON = BuildConfig.ICON_DIR + "/rygel.png";
 
     UserConfig config;
     Builder builder;
