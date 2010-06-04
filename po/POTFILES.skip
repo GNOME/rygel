@@ -80,3 +80,8 @@ tests/rygel-http-item-uri.c
 tests/rygel-http-time-seek.c
 tests/rygel-live-response.c
 tests/rygel-seekable-response.c
+tests/rygel-http-byte-seek_http-get.c
+tests/rygel-http-get.c
+tests/rygel-http-item-uri_http-get.c
+tests/rygel-http-request_http-get.c
+tests/rygel-http-time-seek_http-get.c
