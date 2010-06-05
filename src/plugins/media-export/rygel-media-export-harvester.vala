@@ -240,6 +240,8 @@ public class Rygel.MediaExportHarvester : GLib.Object {
                     this.origin = file;
                     this.containers.push_tail (this.parent);
                 } else {
+                    // 'Harvesting' here means extraction of metadata (title,
+                    // codec, bitrate etc) from media files.
                     debug (_("File %s does not need harvesting"),
                            file.get_uri ());
                     harvested (file);
