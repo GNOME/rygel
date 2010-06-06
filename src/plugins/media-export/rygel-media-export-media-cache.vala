@@ -458,7 +458,6 @@ public class Rygel.MediaExport.MediaCache : Object {
         args.append (v);
         v = max_count;
         args.append (v);
-        var last_parent = "";
         MediaContainer parent = null;
 
         debug ("Parameters to bind: %u", args.n_values);
@@ -467,9 +466,9 @@ public class Rygel.MediaExport.MediaCache : Object {
             var child_id = statement.column_text (17);
             var parent_id = statement.column_text (18);
             try {
-                if (parent_id != last_parent) {
-                    parent = get_object (parent_id) as MediaContainer;
-                    last_parent = parent_id;
+                if (parent == null || parent_id != parent.id) {
+                    parent = new NullContainer ();
+                    parent.id = parent_id;
                 }
 
                 if (parent != null) {
