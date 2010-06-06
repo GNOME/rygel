@@ -129,7 +129,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         "(SELECT descendant FROM closure WHERE ancestor = ?)";
 
     private const string GET_OBJECT_WITH_PATH =
-    "SELECT o.type_fk, o.title, m.size, m.mime_type, m.width, m.height, " +
+    "SELECT DISTINCT o.type_fk, o.title, m.size, m.mime_type, m.width, m.height, " +
             "m.class, m.author, m.album, m.date, m.bitrate, m.sample_freq, " +
             "m.bits_per_sample, m.channels, m.track, m.color_depth, " +
             "m.duration, o.parent, o.upnp_id, o.uri " +
