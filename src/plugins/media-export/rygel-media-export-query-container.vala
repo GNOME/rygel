@@ -164,12 +164,11 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
         }
 
         var children = this.media_db.get_objects_by_search_expression (
-                                                          combined_expression,
-                                                          "0",
-                                                          offset,
-                                                          max_objects);
-
-        total_matches = children.size;
+                                        combined_expression,
+                                        "0",
+                                        offset,
+                                        max_objects,
+                                        out total_matches);
 
         return children;
     }

@@ -188,8 +188,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
         "JOIN meta_data m " +
             "ON o.upnp_id = m.object_fk " +
-    "WHERE %s " +
-    "LIMIT ?,?";
+    "WHERE %s ";
 
 
     private const string CHILDREN_COUNT_STRING =
@@ -359,7 +358,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                                         SearchExpression? expression,
                                         string            container_id,
                                         uint              offset,
-                                        uint              max_count)
+                                        uint              max_count,
+                                        out uint          total_matches)
                                         throws Error {
         var args = new GLib.ValueArray (0);
         var filter = this.search_expression_to_sql (expression, args);
@@ -376,6 +376,11 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
 
         var max_objects = modify_limit (max_count);
+        total_matches = (uint) get_object_count_by_filter (filter,
+                                                           args,
+                                                           container_id,
+                                                           offset,
+                                                           max_objects);
 
         return this.get_objects_by_filter (filter,
                                            args,
@@ -422,10 +427,6 @@ public class Rygel.MediaExport.MediaCache : Object {
                                         throws Error {
         GLib.Value v = container_id;
         args.prepend (v);
-        v = offset;
-        args.append (v);
-        v = max_count;
-        args.append (v);
         long count = 0;
 
         debug ("Parameters to bind: %u", args.n_values);
@@ -452,9 +453,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                         long            max_count)
                                         throws Error {
         ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
-        GLib.Value v = container_id;
-        args.prepend (v);
-        v = offset;
+        GLib.Value v = offset;
         args.append (v);
         v = max_count;
         args.append (v);
