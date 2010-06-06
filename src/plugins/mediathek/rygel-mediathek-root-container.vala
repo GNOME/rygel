@@ -28,7 +28,7 @@ public class Rygel.MediathekRootContainer : Rygel.SimpleContainer {
     private static MediathekRootContainer instance;
 
     private bool on_schedule_update () {
-        message(_("Scheduling update for all feeds...."));
+        message("Scheduling update for all feeds....");
         foreach (var container in this.children) {
             ((MediathekRssContainer) container).update ();
         }
@@ -57,7 +57,7 @@ public class Rygel.MediathekRootContainer : Rygel.SimpleContainer {
         }
 
         if (feeds.size == 0) {
-            message (_("Could not get RSS from configuration, using defaults"));
+            message ("Could not get RSS from configuration, using defaults");
             feeds.add (508);
         }
 

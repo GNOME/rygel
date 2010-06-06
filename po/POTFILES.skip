@@ -14,6 +14,11 @@ src/plugins/media-export/rygel-media-export-plugin.c
 src/plugins/media-export/rygel-media-export-query-container.c
 src/plugins/media-export/rygel-media-export-recursive-file-monitor.c
 src/plugins/media-export/rygel-media-export-root-container.c
+src/plugins/mediathek/rygel-mediathek-asx-playlist.vala
+src/plugins/mediathek/rygel-mediathek-plugin.vala
+src/plugins/mediathek/rygel-mediathek-root-container.vala
+src/plugins/mediathek/rygel-mediathek-rss-container.vala
+src/plugins/mediathek/rygel-mediathek-video-item.vala
 src/plugins/mediathek/rygel-mediathek-asx-playlist.c
 src/plugins/mediathek/rygel-mediathek-plugin.c
 src/plugins/mediathek/rygel-mediathek-root-container.c
