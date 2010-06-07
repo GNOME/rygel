@@ -102,7 +102,7 @@ public class Rygel.MediaExportMetadataExtractor: GLib.Object {
 
     public static MediaExportMetadataExtractor? create() {
         if (MediaExportMetadataExtractor.factory == null) {
-            debug (_("Checking for gstreamer playbin..."));
+            debug ("Checking for gstreamer element 'playbin'...");
             var factory = ElementFactory.find("playbin2");
             if (factory != null) {
                 debug (_("Using playbin2"));

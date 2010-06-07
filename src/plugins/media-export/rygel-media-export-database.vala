@@ -115,7 +115,7 @@ internal class Rygel.MediaExportDatabase : Object {
             throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
         }
         #if RYGEL_DEBUG_SQL
-        debug (_("Query: %s, Time: %f"), sql, t.elapsed ());
+        debug ("Query: %s, Time: %f", sql, t.elapsed ());
         #endif
 
         return rc;

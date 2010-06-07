@@ -115,10 +115,6 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaExportDBContainer {
             i += 2;
         }
         this.child_count = this.count_children ();
-        debug (ngettext ("We have %u child.",
-                         "We have %u children.",
-                         this.child_count),
-                         this.child_count);
     }
 
     private int count_children () {
@@ -238,7 +234,7 @@ internal class Rygel.MediaExportQueryContainer : Rygel.MediaExportDBContainer {
         }
         if (!virtual_container_map.has_key (md5)) {
             virtual_container_map[md5] = id;
-            debug (_("Registering %s for %s"), md5, id);
+            debug ("Registering %s for %s", md5, id);
         }
 
         id = PREFIX + md5;

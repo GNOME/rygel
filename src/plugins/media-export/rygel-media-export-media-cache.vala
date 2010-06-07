@@ -449,8 +449,8 @@ public class Rygel.MediaExportMediaCache : Object {
             return new Gee.ArrayList<MediaObject> ();
         }
 
-        debug (_("Original search: %s"), expression.to_string ());
-        debug (_("Parsed search expression: %s"), filter);
+        debug ("Original search: %s", expression.to_string ());
+        debug ("Parsed search expression: %s", filter);
 
         for (int i = 0; i < args.n_values; i++) {
             debug ("Arg %d: %s", i, args.get_nth (i).get_string ());
