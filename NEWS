@@ -1,3 +1,57 @@
+0.7.0
+=====
+
+This release marks the start of the new unstable release-cycle. This is also the
+release cycle that will be integrated into GNOME 2.31 (and 3.0 eventually).
+Changes since 0.6.0:
+
+- Exit on failure to load any plugins in 5 seconds.
+- Add icon to preferences UI's desktop file.
+- Correct error on missing 'Elements' node in 'CreateObject' action from client.
+- Advertize upload features in 'X_DLNACAP' in device description.
+- Remove comments from description files as per DLNA requirement (7.2.30.1).
+- Don't allow comments in DIDL-Lite from client either. This is to satisfy the
+  DLNA Confirmation Test Tool rather than DLNA itself.
+- Don't advertize unimplemented actions.
+- autogen.sh should create m4 directory if it doesn't exist already.
+- Correct Icon path in preferences UI for uninstalled case.
+- Specify on debug log where rygel is currently looking for plugins.
+- Localization:
+  - Don't translate all strings in media-export plugin.
+  - No need to translate Mediathek plugin.
+  - Add Hebrew translation.
+  - Add Swedish translation.
+  - Add Czech translation.
+  - More Spanish translations.
+  - More Slovenian translations.
+  - More German translations.
+- MediaExport:
+  - Fix search result. Search was returning the the result for the current
+    limits, not the overall result count. This lead to strange behaviour on
+    e.g. XBox 360.
+  - Optimize searches. Noticable speed improvements on XBox music browsing.
+  - Fix broken SQL query to get object by path.
+  - Remove redundant custom tag for duration.
+  - Make harvesting of metadata optional.
+  - Re-enable simple mode which means we exporting media on the UPnP network
+    even if no meta-data extractor is available.
+  - Remove redundant URI table from database.
+  - Work around a problem in GStreamer element playbin2.
+  - Explain the term 'harvest' for translators.
+  - Many non-functional improvements.
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+Andrej Žnidaršič <andrej.znidarsic@gmail.com>
+Daniel Nylander <po@danielnylander.se>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Jorge González <jorgegonz@svn.gnome.org>
+Mario Blättermann <mariobl@gnome.org>
+Petr Kovar <pknbe@volny.cz>
+Yaron Shahrabani <sh.yaron@gmail.com>
+
 0.6.0
 =====
 
