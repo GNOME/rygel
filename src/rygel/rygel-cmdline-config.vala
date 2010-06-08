@@ -173,7 +173,11 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     }
 
     public bool get_wmv_transcoder () throws GLib.Error {
-        return !no_wmv_trans;
+        if (!no_wmv_trans) {
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
+        } else {
+            return false;
+        }
     }
 
     public LogLevel get_log_level () throws GLib.Error {
