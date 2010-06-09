@@ -85,3 +85,6 @@ tests/rygel-http-get.c
 tests/rygel-http-item-uri_http-get.c
 tests/rygel-http-request_http-get.c
 tests/rygel-http-time-seek_http-get.c
+tests/rygel-http-item-uri_http-post.c
+tests/rygel-http-post.c
+tests/rygel-http-request_http-post.c

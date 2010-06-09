@@ -30,7 +30,8 @@ check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-seekable-response-test \
 		 rygel-http-byte-seek-test \
 		 rygel-http-time-seek-test \
-		 rygel-http-get-test
+		 rygel-http-get-test \
+		 rygel-http-post-test
 
 TESTS = $(check_PROGRAMS)
 
@@ -68,3 +69,9 @@ rygel_http_get_test_SOURCES = rygel-http-get-test.vala \
 			      rygel-http-time-seek_http-get.vala \
 			      rygel-http-byte-seek_http-get.vala \
 			      rygel-http-seek_http-get.vala
+
+rygel_http_post_test_SOURCES = rygel-http-post-test.vala \
+			       rygel-http-post.vala \
+			       rygel-http-request_http-post.vala \
+			       rygel-http-item-uri_http-post.vala \
+			       rygel-state-machine_http-post.vala

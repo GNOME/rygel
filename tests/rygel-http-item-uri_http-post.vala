@@ -1,0 +1,1 @@
+../src/rygel/rygel-http-item-uri.vala
