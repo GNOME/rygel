@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-04 01:06+0300\n"
-"PO-Revision-Date: 2010-06-04 01:01+0200\n"
+"POT-Creation-Date: 2010-06-10 12:14+0300\n"
+"PO-Revision-Date: 2010-06-10 12:15+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Gezer <sh.yaron@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -169,11 +169,6 @@ msgstr "נעשה שימוש בקובץ מסד הנתונים %s"
 msgid "Failed to open database: %d (%s)"
 msgstr "ארע כשל בפתיחת מסד הנתונים: %d‏ (%s)"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:118
-#, c-format
-msgid "Query: %s, Time: %f"
-msgstr "שאילתה: %s, שעה: %f"
-
 #: ../src/plugins/media-export/rygel-media-export-database.vala:164
 #, c-format
 msgid "Unsupported type %s"
@@ -184,122 +179,121 @@ msgstr "סוג בלתי נתמך %s"
 msgid "Failed to roll back transaction: %s"
 msgstr "ארע כשל בהחזרת ההעברה: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:105
-msgid "Checking for gstreamer playbin..."
-msgstr "מתבצע חיפוש אחר playbin של gstreamer..."
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:108
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:112
 msgid "Using playbin2"
 msgstr "נעשה שימוש ב־playbin2"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:110
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:114
 msgid "Could not create Playbin2, trying Playbin"
 msgstr "לא ניתן ליצור את Playbin2, מנסה את Playbin"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:114
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:118
 msgid "Using playbin"
 msgstr "נעשה שימוש ב־playbin"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:116
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:120
 msgid "Could not find any playbin."
 msgstr "לא ניתן למצוא playbin כלל."
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:117
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:121
 msgid "Please check your gstreamer setup"
 msgstr "יש לבדוק את התקנת ה־gstreamer שלך"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:151
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:165
 #, c-format
 msgid "Metadata extractor timed out on %s, restarting"
 msgstr "פג הזמן לפעולת מחלץ נתוני העל ב־%s, מופעל מחדש"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:155
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:169
 msgid "Pipeline stuck while reading file info"
 msgstr "צינורית הפקודות נתקעה בעת קריאת נתוני הקובץ"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:170
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:187
 #, c-format
 msgid "Scheduling file %s for metadata extraction"
 msgstr "מתבצע תזמון לחילוץ נתוני על מהקובץ %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:256
-#: ../src/rygel/rygel-plugin-loader.vala:179
+#. Translators: first parameter is file uri, second is error
+#. message
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:210
 #, c-format
-msgid "Failed to query content type for '%s'"
-msgstr "ארע כשל בתשאול סוג התוכן עבור '%s'"
+msgid "Failed to extract metadata from %s: %s"
+msgstr "ארע כשל בחילוץ נתוני העל מ־%s:‏ %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:263
-msgid "Invalid object type"
-msgstr "סוג העצם אינו תקני"
-
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:292
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:318
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:236
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "ארע כשל בהוספת פריט עם מספר זיהוי %s:‏ %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:351
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:269
 #, c-format
 msgid "Object %s is not an item"
 msgstr "העצם %s איננו פריט"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:452
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:405
 #, c-format
 msgid "Original search: %s"
 msgstr "החיפוש המקורי: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:453
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:406
 #, c-format
 msgid "Parsed search expression: %s"
 msgstr "התבצע ניתוח של ביטוי החיפוש: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:37
+#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:36
 #, c-format
 msgid "Failed to attach to DBus session bus: %s"
 msgstr "ארע כשל בהצטרפות לאפיק ההפעלה של DBus:‏ %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:79
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:86
 #, c-format
 msgid "Failed to query database: %s"
 msgstr "ארע כשל בתשאול מסד הנתונים: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:111
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:119
 #, c-format
 msgid "Failed to update database: %s"
 msgstr "ארע כשל בעדכון מסד הנתונים: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:144
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:148
 #, c-format
 msgid "failed to enumerate folder: %s"
 msgstr "ארע כשל במניית התיקייה: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:165
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:169
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "ארע כשל בקבלת הצאצא של המכל %s:‏ %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:243
+#. 'Harvesting' here means extraction of metadata (title,
+#. codec, bitrate etc) from media files.
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:246
 #, c-format
 msgid "File %s does not need harvesting"
 msgstr "הקובץ %s אינו זקוק לקצירה"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:250
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:253
 #, c-format
 msgid "Failed to harvest file %s: %s"
 msgstr "ארע כשל בקצירת הקובץ %s:‏ %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item.vala:58
-#, c-format
-msgid "Failed to detect UPnP class for '%s', assuming '%s'"
-msgstr "ארע כשל באיתור מחלקת ה־UPnP עבור '%s', מניח כי מדובר ב־'%s'"
-
-#: ../src/plugins/media-export/rygel-media-export-item.vala:95
+#: ../src/plugins/media-export/rygel-media-export-item.vala:63
 #, c-format
 msgid "File '%s' is of unknown format/type."
 msgstr "הקובץ '%s' הוא מסוג/פורמט בלתי ידוע."
 
+#: ../src/plugins/media-export/rygel-media-export-item.vala:65
+#, c-format
+msgid "Trying to guess from content type %s"
+msgstr "מתבצע ניסיון לניחוש מסוג התוכן '%s'"
+
+#: ../src/plugins/media-export/rygel-media-export-item.vala:77
+#, c-format
+msgid "Failed to detect UPnP class for '%s', assuming '%s'"
+msgstr "ארע כשל באיתור מחלקת ה־UPnP עבור '%s', מניח כי מדובר ב־'%s'"
+
 #. throw error. Taglist can't be empty
-#: ../src/plugins/media-export/rygel-media-export-item.vala:117
+#: ../src/plugins/media-export/rygel-media-export-item.vala:99
 #, c-format
 msgid "Got empty taglist for file %s"
 msgstr "התקבלה רשימת תגיות ריקה עבור הקובץ %s"
@@ -323,18 +317,6 @@ msgstr "החלק הריק אינו מורשה במזהה וירטואלי"
 msgid "Placeholder can only be on second place"
 msgstr "ממלא המקום יכול להיות רק במקום השני"
 
-#: ../src/plugins/media-export/rygel-media-export-query-container.vala:118
-#, c-format
-msgid "We have %u child."
-msgid_plural "We have %u children."
-msgstr[0] "יש לנו צאצא אחד."
-msgstr[1] "יש לנו %u צאצאים."
-
-#: ../src/plugins/media-export/rygel-media-export-query-container.vala:241
-#, c-format
-msgid "Registering %s for %s"
-msgstr "מתבצע רישום של %s עבור %s"
-
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:47
 #, c-format
 msgid "Directory %s gone, removing watch"
@@ -349,155 +331,77 @@ msgstr "ארע כשל בקבלת המידע עבור %s"
 msgid "Nothing configured, using XDG special folders"
 msgstr "שום דבר לא הוגדר, נעשה שימוש בתיקיות המיוחדות של XDG"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:76
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:75
 msgid "Failed to create instance of database"
 msgstr "ארע כשל ביציאת מופיע של מסד הנתונים"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:97
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:96
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "ארע כשל בהסרת הכתובת: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:112
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:111
 #: ../src/plugins/tracker/rygel-tracker-music.vala:47
 msgid "Albums"
 msgstr "אלבומים"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:120
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:119
 #: ../src/plugins/tracker/rygel-tracker-music.vala:40
 msgid "Artists"
 msgstr "אמנים"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:304
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:300
 #, c-format
 msgid "Failed to create MediaExport DBus service: %s"
 msgstr "ארע כשל ביצירת שירות ה־D-Bus לייצוא מדיה: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:347
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:343
 #, c-format
 msgid "%s is not a valid virtual ID"
 msgstr "%s אינו מספר זיהוי וירטואלי תקני"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:365
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:361
 #, c-format
 msgid "Got error while trying to find virtual folders: %s"
 msgstr "התקבלה שגיאה בעת הניסיון למציאת תיקיות וירטואליות: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:374
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:370
 #, c-format
 msgid "ID %s no longer in config, deleting..."
 msgstr "מספר הזיהוי %s אינה נמצאת עוד בתצורה, מוחק..."
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:378
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:374
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "ארע כשל בהסרת הרשומה: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:387
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:383
 #, c-format
 msgid "'%s' harvested"
 msgstr "'%s' נקצר"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:399
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:395
 msgid "No Metadata extractor available. Will not crawl"
 msgstr "אין מחלץ נתוני על זמין. לא יתבצע אחזור מידע"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:405
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:401
 msgid "Already harvesting; cancelling"
 msgstr "כבר מתבצע קציר; מבטל"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:428
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:424
 #, c-format
 msgid "Trying to harvest %s because of %d"
 msgstr "מתבצע ניסיון לקצירת %s עקב %d"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:441
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:437
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "ארעה שגיאה בקבלת העצם '%s' ממסד הנתונים: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:465
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:461
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "ארעה שגיאה בעת הסרת העצם ממסד הנתונים: %s"
-
-#: ../src/plugins/mediathek/rygel-mediathek-asx-playlist.vala:94
-msgid "Could not fetch XML"
-msgstr "לא ניתן לקבל את ה־XML"
-
-#: ../src/plugins/mediathek/rygel-mediathek-asx-playlist.vala:101
-#, c-format
-msgid "Playlist download failed: %u (%s)"
-msgstr "הורדת רשימת ההשמעה נכשלה: %u‏ (%s)"
-
-#: ../src/plugins/mediathek/rygel-mediathek-plugin.vala:29
-msgid "ZDF Mediathek"
-msgstr "ZDF Mediathek"
-
-#: ../src/plugins/mediathek/rygel-mediathek-root-container.vala:31
-msgid "Scheduling update for all feeds...."
-msgstr "מתבצע תזמון עדכונים עבור כל הערוצים...."
-
-#: ../src/plugins/mediathek/rygel-mediathek-root-container.vala:60
-msgid "Could not get RSS from configuration, using defaults"
-msgstr "לא ניתן לקבל את ה־RSS מהתצורה, נעשה שימוש בברירות מחדל"
-
-#: ../src/plugins/mediathek/rygel-mediathek-rss-container.vala:34
-msgid "Feed has not changed, nothing to do"
-msgstr "הערוץ לא השתנה, אין מה לעשות"
-
-#. TODO Need to handle redirects....
-#: ../src/plugins/mediathek/rygel-mediathek-rss-container.vala:45
-#, c-format
-msgid "Got unexpected response %u (%s)"
-msgstr "התקבלה תגובה בלתי צפויה %u‏ (%s)"
-
-#: ../src/plugins/mediathek/rygel-mediathek-rss-container.vala:79
-#, c-format
-msgid "Error creating video item: %s"
-msgstr "שגיאה ביצירת פריט הווידאו: %s"
-
-#: ../src/plugins/mediathek/rygel-mediathek-rss-container.vala:85
-msgid "XPath query failed"
-msgstr "שאילתת ה־XPath"
-
-#: ../src/plugins/mediathek/rygel-mediathek-rss-container.vala:92
-msgid "Failed to parse doc"
-msgstr "ארע כשל בניתוח המסמך"
-
-#: ../src/plugins/mediathek/rygel-mediathek-rss-container.vala:103
-#, c-format
-msgid "Requesting change since %s"
-msgstr "בקשת שינוי מאז %s"
-
-#: ../src/plugins/mediathek/rygel-mediathek-rss-container.vala:117
-#, c-format
-msgid "ZDF Mediathek RSS feed %u"
-msgstr "ערוץ ה־RSS של ZDF Mediathek‏ %u"
-
-#: ../src/plugins/mediathek/rygel-mediathek-video-item.vala:38
-msgid "ZDF - Second German TV Channel Streams"
-msgstr "ZDF - תזרימי הטלוויזיה של הערוץ הגרמני השני"
-
-#: ../src/plugins/mediathek/rygel-mediathek-video-item.vala:64
-msgid "group node has no 'url' property"
-msgstr "למפרק הקבוצה אין תכונת 'url'"
-
-#: ../src/plugins/mediathek/rygel-mediathek-video-item.vala:69
-msgid "invalid or no namespace"
-msgstr "שם המרחב פגום או חסר"
-
-#: ../src/plugins/mediathek/rygel-mediathek-video-item.vala:102
-msgid "Invalid or no namespace on group node"
-msgstr "שם המרחב פגום או חסר במפרק הקבוצה"
-
-#: ../src/plugins/mediathek/rygel-mediathek-video-item.vala:114
-msgid "Could not find title"
-msgstr "לא ניתן למצוא כותרת"
-
-#: ../src/plugins/mediathek/rygel-mediathek-video-item.vala:120
-msgid "Could not find URIs"
-msgstr "לא ניתן למצוא כתובות"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:38
 #, c-format
@@ -569,14 +473,15 @@ msgstr "ארע כשל בסיור ב־'%s':‏ %s\n"
 #: ../src/rygel/rygel-cmdline-config.vala:153
 #: ../src/rygel/rygel-cmdline-config.vala:161
 #: ../src/rygel/rygel-cmdline-config.vala:169
-#: ../src/rygel/rygel-cmdline-config.vala:181
-#: ../src/rygel/rygel-cmdline-config.vala:207
-#: ../src/rygel/rygel-cmdline-config.vala:226
-#: ../src/rygel/rygel-cmdline-config.vala:250
-#: ../src/rygel/rygel-cmdline-config.vala:276
-#: ../src/rygel/rygel-cmdline-config.vala:305
-#: ../src/rygel/rygel-cmdline-config.vala:331
-#: ../src/rygel/rygel-cmdline-config.vala:356
+#: ../src/rygel/rygel-cmdline-config.vala:177
+#: ../src/rygel/rygel-cmdline-config.vala:185
+#: ../src/rygel/rygel-cmdline-config.vala:211
+#: ../src/rygel/rygel-cmdline-config.vala:230
+#: ../src/rygel/rygel-cmdline-config.vala:254
+#: ../src/rygel/rygel-cmdline-config.vala:280
+#: ../src/rygel/rygel-cmdline-config.vala:309
+#: ../src/rygel/rygel-cmdline-config.vala:335
+#: ../src/rygel/rygel-cmdline-config.vala:360
 #: ../src/rygel/rygel-meta-config.vala:75
 #: ../src/rygel/rygel-meta-config.vala:94
 #: ../src/rygel/rygel-meta-config.vala:113
@@ -862,6 +767,11 @@ msgstr "ארע כשל במציאת פונקציית נקודת הרשומה '%s'
 msgid "Loaded module source: '%s'"
 msgstr "נטען מקור המודול: '%s'"
 
+#: ../src/rygel/rygel-plugin-loader.vala:179
+#, c-format
+msgid "Failed to query content type for '%s'"
+msgstr "ארע כשל בתשאול סוג התוכן עבור '%s'"
+
 #: ../src/rygel/rygel-root-device-factory.vala:102
 #: ../src/rygel/rygel-root-device-factory.vala:135
 #: ../src/rygel/rygel-root-device-factory.vala:157
@@ -986,3 +896,74 @@ msgstr "ארע כשל בכתיבת התיאור לאחר השינוי אל %s."
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "ארע כשל ביצירת דו־שיח ההעדפות: %s"
+
+#~ msgid "Query: %s, Time: %f"
+#~ msgstr "שאילתה: %s, שעה: %f"
+
+#~ msgid "Checking for gstreamer playbin..."
+#~ msgstr "מתבצע חיפוש אחר playbin של gstreamer..."
+
+#~ msgid "Invalid object type"
+#~ msgstr "סוג העצם אינו תקני"
+
+#~ msgid "We have %u child."
+#~ msgid_plural "We have %u children."
+#~ msgstr[0] "יש לנו צאצא אחד."
+#~ msgstr[1] "יש לנו %u צאצאים."
+
+#~ msgid "Registering %s for %s"
+#~ msgstr "מתבצע רישום של %s עבור %s"
+
+#~ msgid "Could not fetch XML"
+#~ msgstr "לא ניתן לקבל את ה־XML"
+
+#~ msgid "Playlist download failed: %u (%s)"
+#~ msgstr "הורדת רשימת ההשמעה נכשלה: %u‏ (%s)"
+
+#~ msgid "ZDF Mediathek"
+#~ msgstr "ZDF Mediathek"
+
+#~ msgid "Scheduling update for all feeds...."
+#~ msgstr "מתבצע תזמון עדכונים עבור כל הערוצים...."
+
+#~ msgid "Could not get RSS from configuration, using defaults"
+#~ msgstr "לא ניתן לקבל את ה־RSS מהתצורה, נעשה שימוש בברירות מחדל"
+
+#~ msgid "Feed has not changed, nothing to do"
+#~ msgstr "הערוץ לא השתנה, אין מה לעשות"
+
+#~ msgid "Got unexpected response %u (%s)"
+#~ msgstr "התקבלה תגובה בלתי צפויה %u‏ (%s)"
+
+#~ msgid "Error creating video item: %s"
+#~ msgstr "שגיאה ביצירת פריט הווידאו: %s"
+
+#~ msgid "XPath query failed"
+#~ msgstr "שאילתת ה־XPath"
+
+#~ msgid "Failed to parse doc"
+#~ msgstr "ארע כשל בניתוח המסמך"
+
+#~ msgid "Requesting change since %s"
+#~ msgstr "בקשת שינוי מאז %s"
+
+#~ msgid "ZDF Mediathek RSS feed %u"
+#~ msgstr "ערוץ ה־RSS של ZDF Mediathek‏ %u"
+
+#~ msgid "ZDF - Second German TV Channel Streams"
+#~ msgstr "ZDF - תזרימי הטלוויזיה של הערוץ הגרמני השני"
+
+#~ msgid "group node has no 'url' property"
+#~ msgstr "למפרק הקבוצה אין תכונת 'url'"
+
+#~ msgid "invalid or no namespace"
+#~ msgstr "שם המרחב פגום או חסר"
+
+#~ msgid "Invalid or no namespace on group node"
+#~ msgstr "שם המרחב פגום או חסר במפרק הקבוצה"
+
+#~ msgid "Could not find title"
+#~ msgstr "לא ניתן למצוא כותרת"
+
+#~ msgid "Could not find URIs"
+#~ msgstr "לא ניתן למצוא כתובות"
