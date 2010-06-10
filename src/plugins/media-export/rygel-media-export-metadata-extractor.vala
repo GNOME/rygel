@@ -93,33 +93,33 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         this.discoverer.stop ();
     }
 
-    private void on_done (GUPnP.DLNAProfile profile,
-                          GLib.Error        err) {
-        assert (this.file_hash.has_key (profile.info.uri));
+    private void on_done (GUPnP.DLNAInformation dlna,
+                          GLib.Error        	err) {
+        assert (this.file_hash.has_key (dlna.info.uri));
 
-        File file = this.file_hash.get (profile.info.uri);
+        File file = this.file_hash.get (dlna.info.uri);
         TagList tag_list = new TagList ();
 
-        this.file_hash.unset (profile.info.uri);
+        this.file_hash.unset (dlna.info.uri);
 
-        if ((profile.info.result & Gst.DiscovererResult.TIMEOUT) != 0) {
+        if ((dlna.info.result & Gst.DiscovererResult.TIMEOUT) != 0) {
             this.error (file,
                         new IOChannelError.FAILED ("Pipeline stuckwhile" +
                                                    "reading file info"));
             return;
-        } else if ((profile.info.result & Gst.DiscovererResult.ERROR) != 0) {
+        } else if ((dlna.info.result & Gst.DiscovererResult.ERROR) != 0) {
             this.error (file, err);
             return;
         }
 
         try {
             this.extract_mime_and_size (file, tag_list);
-            this.extract_duration (profile.info, tag_list);
-            this.extract_stream_info (profile.info, tag_list);
+            this.extract_duration (dlna.info, tag_list);
+            this.extract_stream_info (dlna.info, tag_list);
             this.extraction_done (file, tag_list);
         } catch (Error e) {
             debug ("Unable to extract metadata for %s: %s\n",
-                   profile.info.uri,
+                   dlna.info.uri,
                    err.message);
         }
     }
