@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2009 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
- * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2009,2010 Nokia Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
@@ -43,10 +43,10 @@ public class Rygel.ExternalPluginFactory {
     private const string DBUS_SERVICE = "org.freedesktop.DBus";
     private const string DBUS_OBJECT = "/org/freedesktop/DBus";
 
-    private static string OBJECT_IFACE = "org.gnome.UPnP.MediaObject1";
-    private static string CONTAINER_IFACE = "org.gnome.UPnP.MediaContainer1";
+    private static string OBJECT_IFACE = "org.gnome.UPnP.MediaObject2";
+    private static string CONTAINER_IFACE = "org.gnome.UPnP.MediaContainer2";
 
-    private const string SERVICE_PREFIX = "org.gnome.UPnP.MediaServer1.";
+    private const string SERVICE_PREFIX = "org.gnome.UPnP.MediaServer2.";
 
     DBusObject          dbus_obj;
     DBus.Connection     connection;

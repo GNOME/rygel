@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2009,2010 Nokia Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
@@ -23,34 +23,73 @@
 
 using DBus;
 
-[DBus (name = "org.gnome.UPnP.MediaObject1")]
+[DBus (name = "org.gnome.UPnP.MediaObject2")]
 public interface Rygel.ExternalMediaObject : DBus.Object {
+    public static const string[] PROPERTIES = { "Parent",
+                                                "Type",
+                                                "Path",
+                                                "DisplayName" };
+
     public abstract ObjectPath parent { owned get; set; }
     public abstract string display_name { owned get; set; }
+    [DBus (name = "Type")]
+    public abstract string object_type { owned get; set; }
 }
 
-[DBus (name = "org.gnome.UPnP.MediaContainer1")]
+[DBus (name = "org.gnome.UPnP.MediaContainer2")]
 public interface Rygel.ExternalMediaContainer : DBus.Object,
                                                 ExternalMediaObject {
+    public static const string[] PROPERTIES = { "ChildCount" };
+
     public abstract signal void updated ();
 
-    public abstract ObjectPath[] items { owned get; set; }
+    //public abstract ObjectPath[] items { owned get; set; }
     public abstract ObjectPath[] containers { owned get; set; }
 
+    public abstract uint child_count { get; set; }
     public abstract uint item_count { get; set; }
     public abstract uint container_count { get; set; }
+    public abstract bool searchable { get; set; }
+
+    public abstract async HashTable<string,Value?>[] list_children (
+                                        uint     offset,
+                                        uint     max_count,
+                                        string[] filter) throws DBus.Error;
 
     // Optional API
+    public abstract async HashTable<string,Value?>[] search_objects (
+                                        string   query,
+                                        uint     offset,
+                                        uint     max_count,
+                                        string[] filter) throws DBus.Error;
+
     public abstract ObjectPath icon { owned get; set; }
 }
 
-[DBus (name = "org.gnome.UPnP.MediaItem1")]
+[DBus (name = "org.gnome.UPnP.MediaItem2")]
 public interface Rygel.ExternalMediaItem : DBus.Object, ExternalMediaObject {
+    public static const string[] PROPERTIES = { "URLs",
+                                                "MIMEType",
+                                                "DLNAProfile",
+                                                "Size",
+                                                "Artist",
+                                                "Album",
+                                                "Date",
+                                                "Duration",
+                                                "Bitrate",
+                                                "SampleRate",
+                                                "BitsPerSample",
+                                                "Width",
+                                                "Height",
+                                                "ColorDepth",
+                                                "PixelWidth",
+                                                "PixelHeight",
+                                                "Thumbnail",
+                                                "AlbumArt" };
+
     [DBus (name = "URLs")]
     public abstract string[] urls { owned get; set; }
     public abstract string mime_type { owned get; set; }
-    [DBus (name = "Type")]
-    public abstract string media_type { owned get; set; }
 
     // Optional API
     public abstract int size { get; set; }

@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2009 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
- * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2009,2010 Nokia Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
@@ -30,69 +30,45 @@ using FreeDesktop;
  * Creates item for external plugins.
  */
 public class Rygel.ExternalItemFactory {
-    private static string OBJECT_IFACE = "org.gnome.UPnP.MediaObject1";
-    private static string ITEM_IFACE = "org.gnome.UPnP.MediaItem1";
-
-    public async MediaItem create_for_path (string            object_path,
-                                            ExternalContainer parent)
-                                            throws GLib.Error {
-        return yield this.create ("item:" + object_path, object_path, parent);
-    }
-
-    public async MediaItem create_for_id (string            id,
-                                          ExternalContainer parent)
-                                          throws GLib.Error {
-        var object_path = id.str ("/");
-        assert (object_path != null);
-
-        return yield this.create (id, object_path, parent);
-    }
-
-    private async MediaItem create (string            id,
-                                    string            object_path,
-                                    ExternalContainer parent)
-                                    throws GLib.Error {
-        DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
-
-        var props = connection.get_object (parent.service_name,
-                                           object_path)
-                                           as Properties;
-
-        var object_props = yield props.get_all (OBJECT_IFACE);
-        var item_props = yield props.get_all (ITEM_IFACE);
+    public async MediaItem create (string                   id,
+                                   HashTable<string,Value?> props,
+                                   string                   service_name,
+                                   string                   host_ip,
+                                   MediaContainer           parent)
+                                   throws GLib.Error {
+        var connection = DBus.Bus.get (DBus.BusType.SESSION);
 
         var item = new MediaItem (id,
                                   parent,
                                   "Unknown",  /* Title Unknown atm */
                                   "Unknown"); /* UPnP Class Unknown atm */
 
-        var value = object_props.lookup ("DisplayName");
+        var value = props.lookup ("DisplayName");
         item.title = value.get_string ();
 
-        value = item_props.lookup ("Type");
+        value = props.lookup ("Type");
         string type = value.get_string ();
-        if (type == "audio") {
+        if (type.has_prefix ("audio")) {
             item.upnp_class = MediaItem.AUDIO_CLASS;
-        } else if (type == "music") {
+        } else if (type.has_prefix ("music")) {
             item.upnp_class = MediaItem.MUSIC_CLASS;
-        } else if (type == "video") {
+        } else if (type.has_prefix ("video")) {
             item.upnp_class = MediaItem.VIDEO_CLASS;
         } else {
             item.upnp_class = MediaItem.IMAGE_CLASS;
         }
 
-        value = item_props.lookup ("MIMEType");
+        value = props.lookup ("MIMEType");
         item.mime_type = value.get_string ();
 
         // FIXME: Get this value through the props until bug#602003 is fixed
-        // value = item_props.lookup ("URLs");
-        var item_iface = connection.get_object (parent.service_name,
-                                                object_path)
-                                                as ExternalMediaItem;
+        // value = props.lookup ("URLs");
+        var item_iface = connection.get_object (service_name, id)
+                         as ExternalMediaItem;
         string[] uris = item_iface.urls;
 
         for (var i = 0; uris[i] != null; i++) {
-            var tmp = uris[i].replace ("@ADDRESS@", parent.host_ip);
+            var tmp = uris[i].replace ("@ADDRESS@", host_ip);
 
             item.add_uri (tmp, null);
         }
@@ -105,94 +81,90 @@ public class Rygel.ExternalItemFactory {
         // MediaItem1.AlbumArt
         //
 
-        value = item_props.lookup ("DLNAProfile");
+        value = props.lookup ("DLNAProfile");
         if (value != null) {
             item.dlna_profile = value.get_string ();
         }
 
-        value = item_props.lookup ("Size");
+        value = props.lookup ("Size");
         if (value != null) {
             item.size = value.get_int ();
         }
 
-        value = item_props.lookup ("Artist");
+        value = props.lookup ("Artist");
         if (value != null) {
             item.author = value.get_string ();
         }
 
-        value = item_props.lookup ("Album");
+        value = props.lookup ("Album");
         if (value != null) {
             item.album = value.get_string ();
         }
 
-        value = item_props.lookup ("Date");
+        value = props.lookup ("Date");
         if (value != null) {
             item.date = value.get_string ();
         }
 
         // Properties specific to video and audio/music
 
-        value = item_props.lookup ("Duration");
+        value = props.lookup ("Duration");
         if (value != null) {
             item.duration = value.get_int ();
         }
 
-        value = item_props.lookup ("Bitrate");
+        value = props.lookup ("Bitrate");
         if (value != null) {
             item.bitrate = value.get_int ();
         }
 
-        value = item_props.lookup ("SampleRate");
+        value = props.lookup ("SampleRate");
         if (value != null) {
             item.sample_freq = value.get_int ();
         }
 
-        value = item_props.lookup ("BitsPerSample");
+        value = props.lookup ("BitsPerSample");
         if (value != null) {
             item.bits_per_sample = value.get_int ();
         }
 
         // Properties specific to video and image
 
-        value = item_props.lookup ("Width");
+        value = props.lookup ("Width");
         if (value != null) {
             item.width = value.get_int ();
         }
 
-        value = item_props.lookup ("Height");
+        value = props.lookup ("Height");
         if (value != null) {
             item.height = value.get_int ();
         }
 
-        value = item_props.lookup ("ColorDepth");
+        value = props.lookup ("ColorDepth");
         if (value != null) {
             item.color_depth = value.get_int ();
         }
 
-        value = item_props.lookup ("PixelWidth");
+        value = props.lookup ("PixelWidth");
         if (value != null) {
             item.pixel_width = value.get_int ();
         }
 
-        value = item_props.lookup ("PixelHeight");
+        value = props.lookup ("PixelHeight");
         if (value != null) {
             item.pixel_height = value.get_int ();
         }
 
-        value = item_props.lookup ("Thumbnail");
+        value = props.lookup ("Thumbnail");
         if (value != null) {
             var factory = new ExternalThumbnailFactory ();
             var thumbnail = yield factory.create (value.get_string (),
-                                                  parent.service_name,
-                                                  parent.host_ip);
+                                                  service_name,
+                                                  host_ip);
             item.thumbnails.add (thumbnail);
         }
 
         return item;
-    }
-
-    public static bool id_valid (string id) {
-        return id.has_prefix ("item:/");
     }
 }
 

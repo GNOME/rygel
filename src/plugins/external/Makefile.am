@@ -19,6 +19,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 
 librygel_external_la_SOURCES = rygel-external-content-dir.vala \
 			       rygel-external-container.vala \
+			       rygel-external-dummy-container.vala \
 			       rygel-external-item-factory.vala \
 			       rygel-external-thumbnail-factory.vala \
 			       rygel-external-plugin.vala \

@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2009 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
- * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2009,2010 Nokia Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
@@ -34,11 +34,24 @@ public class Rygel.ExternalContentDir : Rygel.ContentDirectory {
     public override MediaContainer? create_root_container () {
         var plugin = (ExternalPlugin) this.root_device.resource_factory;
 
+        Connection connection;
+
+        try {
+            connection = Bus.get (DBus.BusType.SESSION);
+        } catch (DBus.Error err) {
+            // By this time plugin should have successfully accessed the
+            // the session bus, so this in theory can not fail.
+            assert_not_reached ();
+        }
+
+        var actual_container = connection.get_object (plugin.service_name,
+                                                      plugin.root_object)
+                                                      as ExternalMediaContainer;
+
         return new ExternalContainer ("0",
                                       plugin.service_name,
-                                      plugin.root_object,
                                       this.context.host_ip,
-                                      null);
+                                      actual_container);
     }
 }
 
