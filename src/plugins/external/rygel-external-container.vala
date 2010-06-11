@@ -44,7 +44,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
                               string             object_path,
                               string             host_ip,
                               ExternalContainer? parent) {
-        base (id, parent, "Uknown", 0);
+        base (id, parent, "Unknown", 0);
 
         this.service_name = service_name;
         this.object_path = object_path;
