@@ -52,9 +52,9 @@ public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
                         // if it has width and height and a duration, assume
                         // it is a video (to capture the MPEG TS without audio
                         // case)
-                        int64 duration;
-                        if (tag_list.get_int64 (TAG_DURATION,
-                                                out duration)) {
+                        uint64 duration;
+                        if (tag_list.get_uint64 (TAG_DURATION,
+                                                 out duration)) {
                             class_guessed = Rygel.MediaItem.VIDEO_CLASS;
                         } else {
                             string content_type;
