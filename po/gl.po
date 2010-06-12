@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-12 18:03+0200\n"
-"PO-Revision-Date: 2010-06-12 18:22+0200\n"
+"POT-Creation-Date: 2010-06-12 19:31+0200\n"
+"PO-Revision-Date: 2010-06-12 19:29+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome@g11.net>\n"
 "MIME-Version: 1.0\n"
@@ -405,46 +405,48 @@ msgstr "Produciuse un fallo ao eliminar o obxecto desde a base de datos: %s"
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:38
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
-msgstr ""
+msgstr "Produciuse un fallo ao construir o URI para o cartafol «%s»: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-insertion-query.vala:70
 #: ../src/plugins/tracker/rygel-tracker-selection-query.vala:73
 #, c-format
 msgid "Executing SPARQL query: %s"
-msgstr ""
+msgstr "Executando a consulta SPARQL: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-item-creation.vala:77
 #: ../src/rygel/rygel-media-container.vala:180
 #, c-format
 msgid "Object creation in %s not allowed"
-msgstr ""
+msgstr "A creación do obxecto en %s non está permitida"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:75
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:108
 #: ../src/rygel/rygel-user-config.vala:182
 #, c-format
 msgid "Failed to connect to session bus: %s"
-msgstr ""
+msgstr "Produciuse un fallo ao conectarse ao bus de sesió: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:132
 #, c-format
 msgid "Error getting all values for '%s': %s"
-msgstr ""
+msgstr "Produciuse un erro ao obter todos os valores para «%s»: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:36
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr ""
+"Produciuse un fallo ao iniciar o servizo Tracker: %s. Engadido desactivado."
 
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:48
 #, c-format
 msgid "Error creating URI from %s: %s"
-msgstr ""
+msgstr "Produciuse un fallo ao crear o URI desde %s: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:209
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr ""
+"Produciuse un fallo ao obter a contía de elementos baixo a categoría «%s»: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-years.vala:36
 msgid "Year"
@@ -574,22 +576,22 @@ msgstr "O elemento «%s» solicitado non se encontrou"
 #: ../src/rygel/rygel-http-server.vala:178
 #, c-format
 msgid "HTTP %s request for URI '%s' handled."
-msgstr ""
+msgstr "Xestionouse a solicitude HTTP %s para o URI «%s»"
 
 #: ../src/rygel/rygel-http-server.vala:188
 #, c-format
 msgid "HTTP %s request for URI '%s'. Headers:"
-msgstr ""
+msgstr "Solicitude HTTP %s para o URI «%s». Cabeceiras:"
 
 #: ../src/rygel/rygel-http-server.vala:204
 #, c-format
 msgid "HTTP client aborted %s request for URI '%s'."
-msgstr ""
+msgstr "O cliente HTTP abortou a solicitude %s para o URI «%s»."
 
 #: ../src/rygel/rygel-http-server.vala:222
 #, c-format
 msgid "HTTP POST request for URI '%s'"
-msgstr ""
+msgstr "Solicitude POST HTTP para o URI «%s»"
 
 #: ../src/rygel/rygel-import-resource.vala:108
 #, c-format
@@ -604,20 +606,20 @@ msgstr "Completouse a importación de «%s» a «%s»"
 #: ../src/rygel/rygel-item-creator.vala:69
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
-msgstr ""
+msgstr "Non hai elementos en DIDL-Lite desde o cliente «%s»"
 
 #: ../src/rygel/rygel-item-creator.vala:98
 msgid "'Elements' argument missing."
-msgstr ""
+msgstr "Falta o argumento «Elements»"
 
 #: ../src/rygel/rygel-item-creator.vala:101
 msgid "Comments not allowed in XML"
-msgstr ""
+msgstr "Non se permiten os comentarios no XML"
 
 #: ../src/rygel/rygel-item-creator.vala:142
 #, c-format
 msgid "Failed to create item under '%s': %s"
-msgstr ""
+msgstr "Produciuse un fallo ao crear o elemento baixo «%s»: %s"
 
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
 #: ../src/rygel/rygel-live-response.vala:144
@@ -659,6 +661,7 @@ msgstr "Produciuse un fallo ao buscar ao desprazamento: %lld"
 #, c-format
 msgid "Failed to get log level from configuration: %s"
 msgstr ""
+"Produciuse un fallo ao obter o nivel de rexistro desde a configuración: %s"
 
 #: ../src/rygel/rygel-main.vala:73
 #, c-format
@@ -704,7 +707,7 @@ msgstr "URI erróneo: %s"
 #: ../src/rygel/rygel-media-item.vala:265
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr ""
+msgstr "Produciuse un fallo ao probar o protocolo para o URI %s. Asumindo «%s»"
 
 #: ../src/rygel/rygel-meta-config.vala:58
 #, c-format
@@ -724,7 +727,7 @@ msgstr ""
 #: ../src/rygel/rygel-meta-config.vala:399
 #, c-format
 msgid "No value available for '%s/%s'"
-msgstr ""
+msgstr "Non hai un valor dispoñíbel para «%s/%s»"
 
 #: ../src/rygel/rygel-plugin-loader.vala:72
 #, c-format
@@ -855,7 +858,7 @@ msgstr "Non está dispoñíbel a miniatura"
 #: ../src/rygel/rygel-transcode-manager.vala:92
 #, c-format
 msgid "No transcoder available for target format '%s'"
-msgstr ""
+msgstr "Non hai un transcodificador dispoñíbel par ao formato destino «%s»"
 
 #: ../src/rygel/rygel-user-config.vala:168
 #, c-format
