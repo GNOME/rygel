@@ -38,8 +38,6 @@ public class Rygel.ExternalItemFactory {
                                    string                   host_ip,
                                    MediaContainer           parent)
                                    throws GLib.Error {
-        var connection = DBus.Bus.get (DBus.BusType.SESSION);
-
         var item = new MediaItem (id,
                                   parent,
                                   title,
@@ -60,6 +58,7 @@ public class Rygel.ExternalItemFactory {
 
         // FIXME: Get this value through the props until bug#602003 is fixed
         // value = props.lookup ("URLs");
+        var connection = DBus.Bus.get (DBus.BusType.SESSION);
         var item_iface = connection.get_object (service_name, id)
                          as ExternalMediaItem;
         string[] uris = item_iface.urls;
