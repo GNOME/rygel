@@ -25,6 +25,7 @@
 
 using Gst;
 using Gee;
+using GUPnP;
 
 /**
  * Metadata extractor based on Gstreamer. Just set the URI of the media on the

@@ -13,7 +13,6 @@ endif
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
-	    $(LIBGSTDISCOVERER_FLAGS) \
 	    $(GIO_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(UUID_CFLAGS) \
@@ -117,7 +116,6 @@ rygel_LDADD = librygel-configuration.a \
 	      $(LIBGUPNP_LIBS) \
 	      $(LIBGUPNP_AV_LIBS) \
 	      $(LIBGSTREAMER_LIBS) \
-	      $(LIBGSTDISCOVERER_LIBS) \
 	      $(GIO_LIBS) \
 	      $(GEE_LIBS) \
 	      $(UUID_LIBS) \

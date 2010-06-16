@@ -10,8 +10,8 @@ plugin_LTLIBRARIES = librygel-media-export.la
 
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
+	    $(LIBGUPNP_DLNA_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
-	    $(LIBGSTREAMER_CFLAGS) \
 	    $(LIBSQLITE3_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(UUID_CFLAGS) \
@@ -42,6 +42,7 @@ librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
                                      --pkg rygel-1.0 \
                                      --pkg gupnp-1.0 \
                                      --pkg gupnp-av-1.0 \
+                                     --pkg gupnp-dlna-1.0 \
                                      --pkg libsoup-2.4 \
                                      --pkg gee-1.0 \
                                      --pkg libxml-2.0 \
@@ -49,6 +50,7 @@ librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
 
 librygel_media_export_la_LIBADD = $(LIBGUPNP_LIBS) \
 				  $(LIBGUPNP_AV_LIBS) \
+				  $(LIBGUPNP_DLNA_LIBS) \
 				  $(LIBDBUS_GLIB_LIBS) \
 				  $(LIBGSTREAMER_LIBS) \
 				  $(LIBSQLITE3_LIBS) \
