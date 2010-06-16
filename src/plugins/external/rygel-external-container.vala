@@ -157,8 +157,9 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
             }
 
             if (media_object == null) {
+                var title = props.lookup ("DisplayName").get_string ();
+
                 if (type == "container") {
-                    var title = props.lookup ("DisplayName").get_string ();
                     var child_count = props.lookup ("ChildCount").get_uint ();
 
                     media_object = new ExternalDummyContainer (
@@ -170,6 +171,8 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
                     // Its an item then
                     media_object = yield this.item_factory.create (
                                         id,
+                                        type,
+                                        title,
                                         props,
                                         this.service_name,
                                         this.host_ip,

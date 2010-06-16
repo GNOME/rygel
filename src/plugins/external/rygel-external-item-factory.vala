@@ -31,6 +31,8 @@ using FreeDesktop;
  */
 public class Rygel.ExternalItemFactory {
     public async MediaItem create (string                   id,
+                                   string                   type,
+                                   string                   title,
                                    HashTable<string,Value?> props,
                                    string                   service_name,
                                    string                   host_ip,
@@ -40,14 +42,9 @@ public class Rygel.ExternalItemFactory {
 
         var item = new MediaItem (id,
                                   parent,
-                                  "Unknown",  /* Title Unknown atm */
+                                  title,
                                   "Unknown"); /* UPnP Class Unknown atm */
 
-        var value = props.lookup ("DisplayName");
-        item.title = value.get_string ();
-
-        value = props.lookup ("Type");
-        string type = value.get_string ();
         if (type.has_prefix ("audio")) {
             item.upnp_class = MediaItem.AUDIO_CLASS;
         } else if (type.has_prefix ("music")) {
@@ -58,7 +55,7 @@ public class Rygel.ExternalItemFactory {
             item.upnp_class = MediaItem.IMAGE_CLASS;
         }
 
-        value = props.lookup ("MIMEType");
+        var value = props.lookup ("MIMEType");
         item.mime_type = value.get_string ();
 
         // FIXME: Get this value through the props until bug#602003 is fixed
