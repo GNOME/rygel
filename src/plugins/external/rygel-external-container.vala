@@ -148,7 +148,9 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
             if (parent != null) {
                 parent_container = parent;
             } else {
-                parent_container = new ExternalDummyContainer (id,
+                var parent_id = props.lookup ("Parent").get_string ();
+
+                parent_container = new ExternalDummyContainer (parent_id,
                                                                "LaLaLa",
                                                                0,
                                                                null);
