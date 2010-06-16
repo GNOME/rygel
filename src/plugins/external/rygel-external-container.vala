@@ -37,6 +37,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
 
     private ExternalItemFactory item_factory;
     private ArrayList<ExternalContainer> containers;
+    private Connection connection;
 
     private bool searchable;
 
@@ -59,6 +60,8 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         this.containers = new ArrayList<ExternalContainer> ();
 
         try {
+            this.connection = Bus.get (DBus.BusType.SESSION);
+
             this.update_container ();
 
             this.actual_container.updated += this.on_updated;
@@ -189,12 +192,10 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
     private void update_container () throws GLib.Error {
         this.containers.clear ();
 
-        var connection = DBus.Bus.get (DBus.BusType.SESSION);
-
         var container_paths = this.actual_container.containers;
         foreach (var container_path in container_paths) {
             // Create proxy to MediaContainer iface
-            var actual_container = connection.get_object (
+            var actual_container = this.connection.get_object (
                                         this.service_name,
                                         container_path)
                                         as ExternalMediaContainer;
