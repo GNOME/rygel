@@ -25,6 +25,7 @@
 using GUPnP;
 using DBus;
 using Gee;
+using FreeDesktop;
 
 /**
  * Represents an external container.
@@ -132,6 +133,55 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         total_matches = result.length;
 
         return yield this.create_media_objects (result);
+    }
+
+    public override async MediaObject? find_object (string       id,
+                                                    Cancellable? cancellable)
+                                                    throws GLib.Error {
+        MediaObject media_object = null;
+
+        // Create proxy to MediaObject iface
+        var actual_object = this.connection.get_object (this.service_name, id)
+                            as ExternalMediaObject;
+
+        if (actual_object.object_type == "container") {
+            media_object = this.find_container_by_id (id);
+
+            if (media_object == null) {
+                // Not a child container, lets search in child containers then
+                foreach (var container in this.containers) {
+                    media_object = yield container.find_object (id,
+                                                                cancellable);
+
+                    if (media_object != null) {
+                        break;
+                    }
+                }
+            }
+        } else {
+            var parent_container = new ExternalDummyContainer
+                                        ((string) actual_object.parent,
+                                         "LaLaLa",
+                                         0,
+                                         null);
+
+            var props_iface = this.connection.get_object (this.service_name, id)
+                              as Properties;
+
+            var props = yield props_iface.get_all (ExternalMediaItem.IFACE);
+
+            // Its an item then
+            media_object = yield this.item_factory.create (
+                                        id,
+                                        actual_object.object_type,
+                                        actual_object.display_name,
+                                        props,
+                                        this.service_name,
+                                        this.host_ip,
+                                        parent_container);
+        }
+
+        return media_object;
     }
 
     private async Gee.List<MediaObject> create_media_objects (
