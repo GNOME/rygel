@@ -38,20 +38,19 @@ public class Rygel.ExternalItemFactory {
                                    string                   host_ip,
                                    MediaContainer           parent)
                                    throws GLib.Error {
-        var item = new MediaItem (id,
-                                  parent,
-                                  title,
-                                  "Unknown"); /* UPnP Class Unknown atm */
+        string upnp_class;
 
         if (type.has_prefix ("audio")) {
-            item.upnp_class = MediaItem.AUDIO_CLASS;
+            upnp_class = MediaItem.AUDIO_CLASS;
         } else if (type.has_prefix ("music")) {
-            item.upnp_class = MediaItem.MUSIC_CLASS;
+            upnp_class = MediaItem.MUSIC_CLASS;
         } else if (type.has_prefix ("video")) {
-            item.upnp_class = MediaItem.VIDEO_CLASS;
+            upnp_class = MediaItem.VIDEO_CLASS;
         } else {
-            item.upnp_class = MediaItem.IMAGE_CLASS;
+            upnp_class = MediaItem.IMAGE_CLASS;
         }
+
+        var item = new MediaItem (id, parent, title, upnp_class);
 
         var value = props.lookup ("MIMEType");
         item.mime_type = value.get_string ();
