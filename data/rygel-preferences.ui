@@ -370,11 +370,11 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="vbox4">
+                          <object class="GtkVButtonBox" id="vbuttonbox1">
                             <property name="visible">True</property>
                             <property name="orientation">vertical</property>
-                            <property name="spacing">6</property>
-                            <property name="homogeneous">True</property>
+                            <property name="spacing">5</property>
+                            <property name="layout_style">start</property>
                             <child>
                               <object class="GtkButton" id="add-button">
                                 <property name="label">gtk-add</property>
