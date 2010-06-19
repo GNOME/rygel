@@ -238,7 +238,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             return;
         }
 
-        if (message.structure.get_name () == "playbin2-stream-changed") {
+        if (message.get_structure ().get_name () == "playbin2-stream-changed") {
             this.extract_duration ();
             this.extract_stream_info ();
 
