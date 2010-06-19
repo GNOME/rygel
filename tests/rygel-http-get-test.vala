@@ -264,7 +264,7 @@ public class Rygel.Subtitle {
 }
 
 internal class Rygel.HTTPResponse : Rygel.StateMachine, GLib.Object {
-    public abstract Cancellable cancellable { get; set; }
+    public Cancellable cancellable { get; set; }
 
     private Soup.Message msg;
     private Soup.Server server;
