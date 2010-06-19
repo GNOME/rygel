@@ -27,7 +27,6 @@ using GLib;
  * Simple plugin which exposes the media contents of a directory via UPnP.
  *
  */
-[ModuleInit]
 public void module_init (PluginLoader loader) {
     var plugin = new Plugin.MediaServer ("MediaExport",
                                          _("@REALNAME@'s media"),

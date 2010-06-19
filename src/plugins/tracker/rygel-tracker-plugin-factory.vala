@@ -28,7 +28,6 @@ using CStuff;
 
 private TrackerPluginFactory plugin_factory;
 
-[ModuleInit]
 public void module_init (PluginLoader loader) {
     try {
         plugin_factory = new TrackerPluginFactory (loader);

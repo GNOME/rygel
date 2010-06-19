@@ -23,7 +23,6 @@
 using Rygel;
 using GUPnP;
 
-[ModuleInit]
 public void module_init (PluginLoader loader) {
     var plugin = new Plugin.MediaServer ("ZDFMediathek",
                                          "ZDF Mediathek",
