@@ -39,7 +39,8 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     // HD
     private const int[] WIDTH = {640, 1280};
     private const int[] HEIGHT = {480, 720};
-    private const string[] PROFILES = {"MPEG_TS_SD_US", "MPEG_TS_HD_US"};
+    private const int[] FRAME_RATE = {25, 30};
+    private const string[] PROFILES = {"MPEG_TS_SD_EU_ISO", "MPEG_TS_HD_US"};
     private const int BITRATE = 3000000;
 
     private const string VIDEO_ENCODER = "ffenc_mpeg2video";
@@ -143,7 +144,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
                                         HEIGHT[this.profile],
                                     "framerate",
                                         typeof (Fraction),
-                                        30,
+                                        FRAME_RATE[this.profile],
                                         1,
                                     "pixel-aspect-ratio",
                                         typeof (Fraction),
