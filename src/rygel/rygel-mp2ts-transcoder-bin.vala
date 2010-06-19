@@ -63,6 +63,8 @@ internal class Rygel.MP2TSTranscoderBin : Gst.Bin {
         this.add_pad (ghost);
 
         decodebin.pad_added.connect (this.decodebin_pad_added);
+        // FIXME: Use 'connect' syntax & remove the ugly annotation on the
+        //        callback once bug#622089 is fixed.
         Signal.connect_object (decodebin,
                                "autoplug-continue",
                                (Callback) this.autoplug_continue,
