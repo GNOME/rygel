@@ -348,13 +348,22 @@
                         <property name="visible">True</property>
                         <property name="spacing">12</property>
                         <child>
-                          <object class="GtkTreeView" id="uris-treeview">
+                          <object class="GtkScrolledWindow" id="scrolledwindow1">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="model">uris-liststore</property>
-                            <property name="headers_visible">False</property>
-                            <property name="headers_clickable">False</property>
-                            <property name="fixed_height_mode">True</property>
+                            <property name="hscrollbar_policy">automatic</property>
+                            <property name="vscrollbar_policy">automatic</property>
+                            <property name="shadow_type">in</property>
+                            <child>
+                              <object class="GtkTreeView" id="uris-treeview">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="model">uris-liststore</property>
+                                <property name="headers_visible">False</property>
+                                <property name="search_column">0</property>
+                                <property name="fixed_height_mode">True</property>
+                              </object>
+                            </child>
                           </object>
                           <packing>
                             <property name="position">0</property>
