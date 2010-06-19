@@ -63,9 +63,14 @@ internal class Rygel.MP2TSTranscoderBin : Gst.Bin {
         this.add_pad (ghost);
 
         decodebin.pad_added += this.decodebin_pad_added;
-        decodebin.autoplug_continue += this.autoplug_continue;
+        Signal.connect_object (decodebin,
+                               "autoplug-continue",
+                               (Callback) this.autoplug_continue,
+                               this,
+                               ConnectFlags.AFTER);
     }
 
+    [CCode (instance_pos = -1)]
     private bool autoplug_continue (Element decodebin,
                                     Pad     new_pad,
                                     Caps    caps) {

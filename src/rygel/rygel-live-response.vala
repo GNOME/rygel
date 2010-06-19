@@ -93,7 +93,11 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         }
 
         sink.signal_handoffs = true;
-        sink.handoff += this.on_new_buffer;
+        Signal.connect_object (sink,
+                               "handoff",
+                               (Callback) this.on_new_buffer,
+                               this,
+                               ConnectFlags.AFTER);
 
         this.pipeline = new Pipeline (name);
         assert (this.pipeline != null);
@@ -153,6 +157,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         }
     }
 
+    [CCode (instance_pos = -1)]
     private void on_new_buffer (Element sink,
                                 Buffer  buffer,
                                 Pad     pad) {
