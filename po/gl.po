@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-12 19:31+0200\n"
-"PO-Revision-Date: 2010-06-12 19:29+0200\n"
+"POT-Creation-Date: 2010-06-19 15:38+0200\n"
+"PO-Revision-Date: 2010-06-19 15:45+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome@g11.net>\n"
 "MIME-Version: 1.0\n"
@@ -145,7 +145,7 @@ msgstr "volume estabelecido a %f."
 msgid "Seeking to %s."
 msgstr "Buscando até %s"
 
-#: ../src/plugins/gst-renderer/rygel-gst-plugin.vala:36
+#: ../src/plugins/gst-renderer/rygel-gst-plugin.vala:35
 msgid "GStreamer Renderer"
 msgstr "Renderizador de GStreamer"
 
@@ -299,7 +299,7 @@ msgstr "Obtívose unha lista de etiquetas baleiras para o ficheiro %s"
 
 #. @REALNAME@ is substituted for user's real name
 #. and it doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-plugin.vala:33
+#: ../src/plugins/media-export/rygel-media-export-plugin.vala:32
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:35
 msgid "@REALNAME@'s media"
 msgstr "Multimedia de @REALNAME@"
@@ -314,7 +314,7 @@ msgstr "O ID virtual non permite unha parte baleira"
 
 #: ../src/plugins/media-export/rygel-media-export-query-container.vala:60
 msgid "Placeholder can only be on second place"
-msgstr ""
+msgstr "O marcador de posición só pode estar no segundo lugar"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:47
 #, c-format
@@ -381,7 +381,7 @@ msgstr "«%s» recolectado"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:395
 msgid "No Metadata extractor available. Will not crawl"
-msgstr ""
+msgstr "Non hai ningún extractor de metadatos. Non se analizará"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:401
 msgid "Already harvesting; cancelling"
@@ -414,7 +414,7 @@ msgid "Executing SPARQL query: %s"
 msgstr "Executando a consulta SPARQL: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-item-creation.vala:77
-#: ../src/rygel/rygel-media-container.vala:180
+#: ../src/rygel/rygel-media-container.vala:211
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "A creación do obxecto en %s non está permitida"
@@ -431,7 +431,7 @@ msgstr "Produciuse un fallo ao conectarse ao bus de sesió: %s"
 msgid "Error getting all values for '%s': %s"
 msgstr "Produciuse un erro ao obter todos os valores para «%s»: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:36
+#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr ""
@@ -495,7 +495,7 @@ msgstr "Produciuse un fallo ao explorar «%s»: %s\n"
 msgid "No value available"
 msgstr "Non está dispoñíbel o valor"
 
-#: ../src/rygel/rygel-connection-manager.vala:102
+#: ../src/rygel/rygel-connection-manager.vala:103
 msgid "Invalid connection reference"
 msgstr "Referencia de conexión inválida"
 
@@ -504,8 +504,8 @@ msgstr "Referencia de conexión inválida"
 msgid "Failed to create HTTP server for %s: %s"
 msgstr "Produciuse un fallo ao crear o servidor HTTP para %s: %s"
 
-#: ../src/rygel/rygel-content-directory.vala:211
-#: ../src/rygel/rygel-content-directory.vala:224
+#: ../src/rygel/rygel-content-directory.vala:213
+#: ../src/rygel/rygel-content-directory.vala:226
 msgid "No such file transfer"
 msgstr "Non existe tal transferencia de ficheiro"
 
@@ -542,7 +542,7 @@ msgstr "Produciuse un fallo ao analizar a consulta: %s"
 
 #: ../src/rygel/rygel-http-get.vala:105
 msgid "Following HTTP headers appended to response:"
-msgstr ""
+msgstr "As seguintes cabeceiras HTTP engadiranse á resposta:"
 
 #: ../src/rygel/rygel-http-identity-handler.vala:97
 #: ../src/rygel/rygel-http-transcode-handler.vala:56
@@ -573,22 +573,22 @@ msgstr "Non está dispoñíbel un URI escribíbel para %s"
 msgid "Requested item '%s' not found"
 msgstr "O elemento «%s» solicitado non se encontrou"
 
-#: ../src/rygel/rygel-http-server.vala:178
+#: ../src/rygel/rygel-http-server.vala:180
 #, c-format
 msgid "HTTP %s request for URI '%s' handled."
 msgstr "Xestionouse a solicitude HTTP %s para o URI «%s»"
 
-#: ../src/rygel/rygel-http-server.vala:188
+#: ../src/rygel/rygel-http-server.vala:190
 #, c-format
 msgid "HTTP %s request for URI '%s'. Headers:"
 msgstr "Solicitude HTTP %s para o URI «%s». Cabeceiras:"
 
-#: ../src/rygel/rygel-http-server.vala:204
+#: ../src/rygel/rygel-http-server.vala:206
 #, c-format
 msgid "HTTP client aborted %s request for URI '%s'."
 msgstr "O cliente HTTP abortou a solicitude %s para o URI «%s»."
 
-#: ../src/rygel/rygel-http-server.vala:222
+#: ../src/rygel/rygel-http-server.vala:224
 #, c-format
 msgid "HTTP POST request for URI '%s'"
 msgstr "Solicitude POST HTTP para o URI «%s»"
@@ -596,7 +596,7 @@ msgstr "Solicitude POST HTTP para o URI «%s»"
 #: ../src/rygel/rygel-import-resource.vala:108
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
-msgstr ""
+msgstr "Produciuse un fallo ao obter o URI orixinal para «%s»: %s"
 
 #: ../src/rygel/rygel-import-resource.vala:138
 #, c-format
@@ -622,37 +622,37 @@ msgid "Failed to create item under '%s': %s"
 msgstr "Produciuse un fallo ao crear o elemento baixo «%s»: %s"
 
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-live-response.vala:144
-#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
+#: ../src/rygel/rygel-live-response.vala:148
+#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:107
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
-#: ../src/rygel/rygel-wmv-transcoder-bin.vala:100
+#: ../src/rygel/rygel-wmv-transcoder-bin.vala:105
 #, c-format
 msgid "Failed to link pad %s to %s"
-msgstr ""
+msgstr "Produciuse un fallo ao ligar o recheo %s a %s"
 
 #. 'fakesink' should not be translated
 #: ../src/rygel/rygel-live-response.vala:92
 msgid "Plugin 'fakesink' missing"
-msgstr ""
+msgstr "Falta o engadido «fakesink»"
 
-#: ../src/rygel/rygel-live-response.vala:109
-#: ../src/rygel/rygel-live-response.vala:131
+#: ../src/rygel/rygel-live-response.vala:113
+#: ../src/rygel/rygel-live-response.vala:135
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Produciuse un fallo ao ligar %s a %s"
 
-#: ../src/rygel/rygel-live-response.vala:214
+#: ../src/rygel/rygel-live-response.vala:219
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Erro desde a tubería %s: %s"
 
-#: ../src/rygel/rygel-live-response.vala:221
+#: ../src/rygel/rygel-live-response.vala:226
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Aviso desde a tubería %s: %s"
 
-#: ../src/rygel/rygel-live-response.vala:255
+#: ../src/rygel/rygel-live-response.vala:260
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Produciuse un fallo ao buscar ao desprazamento: %lld"
@@ -691,12 +691,12 @@ msgstr "O contexto de rede %s (%s) está agora dispoñíbel."
 #: ../src/rygel/rygel-main.vala:189
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
-msgstr ""
+msgstr "Produciuse un fallo ao crear o RootDevice para %s. Razón: %s"
 
-#: ../src/rygel/rygel-main.vala:221
+#: ../src/rygel/rygel-main.vala:223
 #, c-format
 msgid "Failed to start D-Bus service: %s"
-msgstr ""
+msgstr "Produciuse unf allo ao iniciar o servizo de D-Bus: %s"
 
 #: ../src/rygel/rygel-media-item.vala:253
 #, c-format
@@ -712,13 +712,13 @@ msgstr "Produciuse un fallo ao probar o protocolo para o URI %s. Asumindo «%s»
 #: ../src/rygel/rygel-meta-config.vala:58
 #, c-format
 msgid "Failed to load user configuration: %s"
-msgstr ""
+msgstr "Produciuse un fallo ao cargar a configuración do usuario: %s"
 
 #: ../src/rygel/rygel-meta-config.vala:266
 #: ../src/rygel/rygel-meta-config.vala:285
 #, c-format
 msgid "No value set for '%s/enabled'"
-msgstr ""
+msgstr "Non se estabeleceu o valor para «%s/enabled»"
 
 #: ../src/rygel/rygel-meta-config.vala:305
 #: ../src/rygel/rygel-meta-config.vala:327
@@ -737,7 +737,7 @@ msgstr "Está dispoñíbel o engadido «%s» novo"
 #: ../src/rygel/rygel-plugin-loader.vala:76
 #, c-format
 msgid "Plugin '%s' disabled in user configuration, ignoring.."
-msgstr ""
+msgstr "O engadido «%s» desactivouse na configuración do usuario, ignorando..."
 
 #: ../src/rygel/rygel-plugin-loader.vala:90
 #, c-format
@@ -752,22 +752,24 @@ msgstr "Produciuse un erro ao mostrar os contidos do cartafol «%s»: %s"
 #: ../src/rygel/rygel-plugin-loader.vala:135
 #, c-format
 msgid "Finished searching for modules in folder '%s'"
-msgstr ""
+msgstr "Rematou a busca dos módulos no cartafol «%s»"
 
 #: ../src/rygel/rygel-plugin-loader.vala:142
 #, c-format
 msgid "Failed to load module from path '%s' : %s"
-msgstr ""
+msgstr "Produciuse un fallo ao cargar o módulo desde o camiño «%s»: %s"
 
 #: ../src/rygel/rygel-plugin-loader.vala:152
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr ""
+"Produciuse un fallo ao encontrar a función do punto de entrada  «%s» en «%s»: %"
+"s"
 
 #: ../src/rygel/rygel-plugin-loader.vala:168
 #, c-format
 msgid "Loaded module source: '%s'"
-msgstr ""
+msgstr "Orixe do módulo cargada: «%s»"
 
 #: ../src/rygel/rygel-plugin-loader.vala:179
 #, c-format
@@ -792,7 +794,7 @@ msgstr ""
 #: ../src/rygel/rygel-root-device-factory.vala:297
 #, c-format
 msgid "Failed to write modified description to %s"
-msgstr ""
+msgstr "Produciuse un fallo ao gravar a descrición modificada en %s"
 
 #: ../src/rygel/rygel-search.vala:92
 msgid "No such container"
@@ -844,7 +846,7 @@ msgstr "Non hai subtítulos dispoñíbeis"
 
 #: ../src/rygel/rygel-thumbnailer.vala:56
 msgid "Failed to find thumbnails folder."
-msgstr ""
+msgstr "Produciuse un fallo ao encontrar o cartafol de miniaturas."
 
 #: ../src/rygel/rygel-thumbnailer.vala:82
 #, c-format
