@@ -106,7 +106,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
 
         if (src.numpads == 0) {
             // Seems source uses dynamic pads, link when pad available
-            src.pad_added += this.src_pad_added;
+            src.pad_added.connect (this.src_pad_added);
         } else {
             // static pads? easy!
             if (!src.link (sink)) {

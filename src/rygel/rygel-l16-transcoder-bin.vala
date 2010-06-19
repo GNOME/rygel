@@ -51,7 +51,7 @@ internal class Rygel.L16TranscoderBin : Gst.Bin {
         var ghost = new GhostPad (null, src_pad);
         this.add_pad (ghost);
 
-        decodebin.pad_added += this.decodebin_pad_added;
+        decodebin.pad_added.connect (this.decodebin_pad_added);
     }
 
     private void decodebin_pad_added (Element decodebin, Pad new_pad) {

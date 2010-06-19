@@ -43,42 +43,43 @@ public class Rygel.ConnectionManager : Service {
         this.source_protocol_info = "";
         this.connection_ids       = "0";
 
-        this.query_variable["SourceProtocolInfo"] +=
-                        this.query_source_protocol_info_cb;
-        this.query_variable["SinkProtocolInfo"] +=
-                        this.query_sink_protocol_info_cb;
-        this.query_variable["CurrentConnectionIDs"] +=
-                        this.query_current_connection_ids_cb;
+        this.query_variable["SourceProtocolInfo"].connect (
+                                        this.query_source_protocol_info_cb);
+        this.query_variable["SinkProtocolInfo"].connect (
+                                        this.query_sink_protocol_info_cb);
+        this.query_variable["CurrentConnectionIDs"].connect (
+                                        this.query_current_connection_ids_cb);
 
-        this.action_invoked["GetProtocolInfo"] += this.get_protocol_info_cb;
-        this.action_invoked["GetCurrentConnectionIDs"] +=
-                        this.get_current_connection_ids_cb;
-        this.action_invoked["GetCurrentConnectionInfo"] +=
-                        this.get_current_connection_info_cb;
+        this.action_invoked["GetProtocolInfo"].connect (
+                                        this.get_protocol_info_cb);
+        this.action_invoked["GetCurrentConnectionIDs"].connect (
+                                        this.get_current_connection_ids_cb);
+        this.action_invoked["GetCurrentConnectionInfo"].connect (
+                                        this.get_current_connection_info_cb);
     }
 
-    private void query_source_protocol_info_cb (ConnectionManager cm,
-                                                string            var,
-                                                ref Value         val) {
+    private void query_source_protocol_info_cb (Service   cm,
+                                                string    var,
+                                                ref Value val) {
         val.init (typeof (string));
         val.set_string (source_protocol_info);
     }
 
-    private void query_sink_protocol_info_cb (ConnectionManager cm,
-                                              string            var,
-                                              ref Value         val) {
+    private void query_sink_protocol_info_cb (Service   cm,
+                                              string    var,
+                                              ref Value val) {
         val.init (typeof (string));
         val.set_string (sink_protocol_info);
     }
 
-    private void query_current_connection_ids_cb (ConnectionManager cm,
-                                                  string            var,
-                                                  ref Value         val) {
+    private void query_current_connection_ids_cb (Service   cm,
+                                                  string    var,
+                                                  ref Value val) {
         val.init (typeof (string));
         val.set_string (connection_ids);
     }
 
-    private void get_protocol_info_cb (ConnectionManager   cm,
+    private void get_protocol_info_cb (Service             cm,
                                        owned ServiceAction action) {
         action.set ("Source", typeof (string), source_protocol_info,
                     "Sink",   typeof (string), sink_protocol_info);
@@ -86,14 +87,14 @@ public class Rygel.ConnectionManager : Service {
         action.return ();
     }
 
-    private void get_current_connection_ids_cb (ConnectionManager   cm,
+    private void get_current_connection_ids_cb (Service             cm,
                                                 owned ServiceAction action) {
         action.set ("ConnectionIDs", typeof (string), connection_ids);
 
         action.return ();
     }
 
-    private void get_current_connection_info_cb (ConnectionManager   cm,
+    private void get_current_connection_info_cb (Service             cm,
                                                  owned ServiceAction action) {
         int connection_id;
 

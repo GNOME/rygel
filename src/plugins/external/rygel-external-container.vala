@@ -65,7 +65,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
 
             this.update_container ();
 
-            this.actual_container.updated += this.on_updated;
+            this.actual_container.updated.connect (this.on_updated);
         } catch (GLib.Error err) {
             critical ("Failed to fetch information about container '%s': %s",
                       actual_container.get_path (),

@@ -54,7 +54,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         context.server.request_started.connect (this.on_request_started);
 
         if (this.cancellable != null) {
-            this.cancellable.cancelled += this.on_cancelled;
+            this.cancellable.cancelled.connect (this.on_cancelled);
         }
     }
 
@@ -172,7 +172,9 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         return protocol_info;
     }
 
-    private void on_request_completed (HTTPRequest request) {
+    private void on_request_completed (StateMachine machine) {
+        var request = machine as HTTPRequest;
+
         this.requests.remove (request);
 
         debug (_("HTTP %s request for URI '%s' handled."),
@@ -227,7 +229,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     }
 
     private void queue_request (HTTPRequest request) {
-        request.completed += this.on_request_completed;
+        request.completed.connect (this.on_request_completed);
         this.requests.add (request);
         request.run.begin ();
     }

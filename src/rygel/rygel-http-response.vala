@@ -48,7 +48,7 @@ internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         this.msg.response_body.set_accumulate (false);
 
         if (this.cancellable != null) {
-            this.cancellable.cancelled += this.on_cancelled;
+            this.cancellable.cancelled.connect (this.on_cancelled);
         }
     }
 

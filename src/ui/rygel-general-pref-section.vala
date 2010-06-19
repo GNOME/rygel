@@ -93,7 +93,7 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
             this.lpcm_check.active = this.config.get_lpcm_transcoder ();
         } catch (GLib.Error err) {}
 
-        this.trans_check.toggled += this.on_trans_check_toggled;
+        this.trans_check.toggled.connect (this.on_trans_check_toggled);
 
         this.context_manager.context_available.connect (
                                         this.on_context_available);
@@ -115,7 +115,7 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
         this.config.set_lpcm_transcoder (this.lpcm_check.active);
     }
 
-    private void on_trans_check_toggled (CheckButton trans_check) {
+    private void on_trans_check_toggled (ToggleButton trans_check) {
         this.mp3_check.sensitive =
         this.mp2ts_check.sensitive =
         this.lpcm_check.sensitive = trans_check.active;

@@ -60,7 +60,7 @@ internal class Rygel.WMVTranscoderBin : Gst.Bin {
         var ghost = new GhostPad (null, src_pad);
         this.add_pad (ghost);
 
-        decodebin.pad_added += this.decodebin_pad_added;
+        decodebin.pad_added.connect (this.decodebin_pad_added);
         Signal.connect_object (decodebin,
                                "autoplug-continue",
                                (Callback) this.autoplug_continue,

@@ -95,13 +95,13 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
             var bus = this.playbin.get_bus ();
             bus.add_signal_watch ();
-            bus.message["tag"] += this.tag_cb;
+            bus.message["tag"].connect (this.tag_cb);
             if (factory.get_element_type ().name () == "GstPlayBin2") {
-                bus.message["element"] += this.element_message_cb;
+                bus.message["element"].connect (this.element_message_cb);
             } else {
-                bus.message["state-changed"] += this.state_changed_cb;
+                bus.message["state-changed"].connect (this.state_changed_cb);
             }
-            bus.message["error"] += this.error_cb;
+            bus.message["error"].connect (this.error_cb);
         }
     }
 

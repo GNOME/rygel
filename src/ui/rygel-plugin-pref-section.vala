@@ -69,7 +69,7 @@ public class Rygel.PluginPrefSection : PreferencesSection {
         title = title.replace ("@HOSTNAME@", "%h");
         this.title_entry.set_text (title);
 
-        this.enabled_check.toggled += this.on_enabled_check_toggled;
+        this.enabled_check.toggled.connect (this.on_enabled_check_toggled);
     }
 
     public override void save () {
@@ -91,7 +91,7 @@ public class Rygel.PluginPrefSection : PreferencesSection {
         }
     }
 
-    private void on_enabled_check_toggled (CheckButton enabled_check) {
+    private void on_enabled_check_toggled (ToggleButton enabled_check) {
         this.reset_widgets_sensitivity ();
     }
 }

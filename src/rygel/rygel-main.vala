@@ -54,7 +54,7 @@ public class Rygel.Main : Object {
 
         this.exit_code = 0;
 
-        this.plugin_loader.plugin_available += this.on_plugin_loaded;
+        this.plugin_loader.plugin_available.connect (this.on_plugin_loaded);
 
         Utils.on_application_exit (this.application_exit_cb);
     }
@@ -184,7 +184,7 @@ public class Rygel.Main : Object {
 
             this.root_devices.add (device);
 
-            plugin.notify["available"] += this.on_plugin_notify;
+            plugin.notify["available"].connect (this.on_plugin_notify);
         } catch (GLib.Error error) {
             warning (_("Failed to create RootDevice for %s. Reason: %s"),
                      plugin.name,
@@ -192,8 +192,10 @@ public class Rygel.Main : Object {
         }
     }
 
-    private void on_plugin_notify (Plugin    plugin,
+    private void on_plugin_notify (Object    obj,
                                    ParamSpec spec) {
+        var plugin = obj as Plugin;
+
         foreach (var device in this.root_devices) {
             if (device.resource_factory == plugin) {
                 device.available = plugin.available;

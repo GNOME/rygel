@@ -71,15 +71,15 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
         this.dialog.show_hidden = false;
 
         var button = (Button) builder.get_object (ADD_BUTTON);
-        button.clicked += this.on_add_button_clicked;
+        button.clicked.connect (this.on_add_button_clicked);
         this.widgets.add (button);
 
         button = (Button) builder.get_object (REMOVE_BUTTON);
-        button.clicked += this.on_remove_button_clicked;
+        button.clicked.connect (this.on_remove_button_clicked);
         this.widgets.add (button);
 
         button = (Button) builder.get_object (CLEAR_BUTTON);
-        button.clicked += this.on_clear_button_clicked;
+        button.clicked.connect (this.on_clear_button_clicked);
         this.widgets.add (button);
 
         var label = (Label) builder.get_object (URIS_LABEL);

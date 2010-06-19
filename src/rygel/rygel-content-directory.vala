@@ -91,7 +91,7 @@ public class Rygel.ContentDirectory: Service {
         this.updated_containers =  new ArrayList<MediaContainer> ();
         this.active_imports = new ArrayList<ImportResource> ();
 
-        this.root_container.container_updated += on_container_updated;
+        this.root_container.container_updated.connect (on_container_updated);
 
         this.feature_list =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
@@ -102,39 +102,41 @@ public class Rygel.ContentDirectory: Service {
             "</Features>";
         this.sort_caps = "";
 
-        this.action_invoked["Browse"] += this.browse_cb;
-        this.action_invoked["Search"] += this.search_cb;
-        this.action_invoked["CreateObject"] += this.create_object_cb;
-        this.action_invoked["ImportResource"] += this.import_resource_cb;
-        this.action_invoked["GetTransferProgress"] +=
-                                        this.get_transfer_progress_cb;
-        this.action_invoked["StopTransferResource"] +=
-                                        this.stop_transfer_resource_cb;
+        this.action_invoked["Browse"].connect (this.browse_cb);
+        this.action_invoked["Search"].connect (this.search_cb);
+        this.action_invoked["CreateObject"].connect (this.create_object_cb);
+        this.action_invoked["ImportResource"].connect (this.import_resource_cb);
+        this.action_invoked["GetTransferProgress"].connect (
+                                        this.get_transfer_progress_cb);
+        this.action_invoked["StopTransferResource"].connect (
+                                        this.stop_transfer_resource_cb);
 
-        this.query_variable["TransferIDs"] += this.query_transfer_ids;
+        this.query_variable["TransferIDs"].connect (this.query_transfer_ids);
 
         /* Connect SystemUpdateID related signals */
-        this.action_invoked["GetSystemUpdateID"] +=
-                                                this.get_system_update_id_cb;
-        this.query_variable["SystemUpdateID"] += this.query_system_update_id;
-        this.query_variable["ContainerUpdateIDs"] +=
-                                                this.query_container_update_ids;
+        this.action_invoked["GetSystemUpdateID"].connect (
+                                        this.get_system_update_id_cb);
+        this.query_variable["SystemUpdateID"].connect (
+                                        this.query_system_update_id);
+        this.query_variable["ContainerUpdateIDs"].connect (
+                                        this.query_container_update_ids);
 
         /* Connect SearchCapabilities related signals */
-        this.action_invoked["GetSearchCapabilities"] +=
-                                                this.get_search_capabilities_cb;
-        this.query_variable["SearchCapabilities"] +=
-                                                this.query_search_capabilities;
+        this.action_invoked["GetSearchCapabilities"].connect (
+                                        this.get_search_capabilities_cb);
+        this.query_variable["SearchCapabilities"].connect (
+                                        this.query_search_capabilities);
 
         /* Connect SortCapabilities related signals */
-        this.action_invoked["GetSortCapabilities"] +=
-                                                this.get_sort_capabilities_cb;
-        this.query_variable["SortCapabilities"] +=
-                                                this.query_sort_capabilities;
+        this.action_invoked["GetSortCapabilities"].connect (
+                                        this.get_sort_capabilities_cb);
+        this.query_variable["SortCapabilities"].connect (
+                                        this.query_sort_capabilities);
 
         /* Connect FeatureList related signals */
-        this.action_invoked["GetFeatureList"] += this.get_feature_list_cb;
-        this.query_variable["FeatureList"] += this.query_feature_list;
+        this.action_invoked["GetFeatureList"].connect (
+                                        this.get_feature_list_cb);
+        this.query_variable["FeatureList"].connect (this.query_feature_list);
 
         this.http_server.run.begin ();
     }
@@ -145,7 +147,7 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* Browse action implementation */
-    private void browse_cb (ContentDirectory    content_dir,
+    private void browse_cb (Service             content_dir,
                             owned ServiceAction action) {
         Browse browse = new Browse (this, action);
 
@@ -153,7 +155,7 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* Search action implementation */
-    private void search_cb (ContentDirectory    content_dir,
+    private void search_cb (Service             content_dir,
                             owned ServiceAction action) {
         var search = new Search (this, action);
 
@@ -161,7 +163,7 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* CreateObject action implementation */
-    private void create_object_cb (ContentDirectory    content_dir,
+    private void create_object_cb (Service             content_dir,
                                    owned ServiceAction action) {
         var creator = new ItemCreator (this, action);
 
@@ -169,11 +171,11 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* ImportResource action implementation */
-    private void import_resource_cb (ContentDirectory    content_dir,
+    private void import_resource_cb (Service             content_dir,
                                      owned ServiceAction action) {
         var import = new ImportResource (this, action);
 
-        import.completed += this.on_import_completed;
+        import.completed.connect (this.on_import_completed);
         this.active_imports.add (import);
 
         import.run.begin ();
@@ -184,7 +186,7 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* Query TransferIDs */
-    private void query_transfer_ids (ContentDirectory content_dir,
+    private void query_transfer_ids (Service          content_dir,
                                      string           variable,
                                      ref GLib.Value   value) {
         value.init (typeof (string));
@@ -192,7 +194,7 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* GetTransferProgress action implementation */
-    private void get_transfer_progress_cb (ContentDirectory    content_dir,
+    private void get_transfer_progress_cb (Service             content_dir,
                                            owned ServiceAction action) {
         var import = find_import_for_action (action);
         if (import != null) {
@@ -213,7 +215,7 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* StopTransferResource action implementation */
-    private void stop_transfer_resource_cb (ContentDirectory    content_dir,
+    private void stop_transfer_resource_cb (Service             content_dir,
                                             owned ServiceAction action) {
         var import = find_import_for_action (action);
         if (import != null) {
@@ -226,7 +228,7 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* GetSystemUpdateID action implementation */
-    private void get_system_update_id_cb (ContentDirectory    content_dir,
+    private void get_system_update_id_cb (Service             content_dir,
                                           owned ServiceAction action) {
         /* Set action return arguments */
         action.set ("Id", typeof (uint32), this.system_update_id);
@@ -235,18 +237,18 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* Query GetSystemUpdateID */
-    private void query_system_update_id (ContentDirectory content_dir,
-                                         string           variable,
-                                         ref GLib.Value   value) {
+    private void query_system_update_id (Service        content_dir,
+                                         string         variable,
+                                         ref GLib.Value value) {
         /* Set action return arguments */
         value.init (typeof (uint32));
         value.set_uint (this.system_update_id);
     }
 
     /* Query ContainerUpdateIDs */
-    private void query_container_update_ids (ContentDirectory content_dir,
-                                             string           variable,
-                                             ref GLib.Value   value) {
+    private void query_container_update_ids (Service        content_dir,
+                                             string         variable,
+                                             ref GLib.Value value) {
         var update_ids = this.create_container_update_ids ();
 
         /* Set action return arguments */
@@ -255,7 +257,7 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* action GetSearchCapabilities implementation */
-    private void get_search_capabilities_cb (ContentDirectory    content_dir,
+    private void get_search_capabilities_cb (Service             content_dir,
                                              owned ServiceAction action) {
         /* Set action return arguments */
         action.set ("SearchCaps", typeof (string), SEARCH_CAPS);
@@ -264,16 +266,16 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* Query SearchCapabilities */
-    private void query_search_capabilities (ContentDirectory content_dir,
-                                            string           variable,
-                                            ref GLib.Value   value) {
+    private void query_search_capabilities (Service        content_dir,
+                                            string         variable,
+                                            ref GLib.Value value) {
         /* Set action return arguments */
         value.init (typeof (string));
         value.set_string (SEARCH_CAPS);
     }
 
     /* action GetSortCapabilities implementation */
-    private void get_sort_capabilities_cb (ContentDirectory    content_dir,
+    private void get_sort_capabilities_cb (Service             content_dir,
                                            owned ServiceAction action) {
         /* Set action return arguments */
         action.set ("SortCaps", typeof (string), this.sort_caps);
@@ -282,16 +284,16 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* Query SortCapabilities */
-    private void query_sort_capabilities (ContentDirectory content_dir,
-                                          string           variable,
-                                          ref GLib.Value   value) {
+    private void query_sort_capabilities (Service        content_dir,
+                                          string         variable,
+                                          ref GLib.Value value) {
         /* Set action return arguments */
         value.init (typeof (string));
         value.set_string (this.sort_caps);
     }
 
     /* action GetFeatureList implementation */
-    private void get_feature_list_cb (ContentDirectory    content_dir,
+    private void get_feature_list_cb (Service             content_dir,
                                       owned ServiceAction action) {
         /* Set action return arguments */
         action.set ("FeatureList", typeof (string), this.feature_list);
@@ -300,9 +302,9 @@ public class Rygel.ContentDirectory: Service {
     }
 
     /* Query FeatureList */
-    private void query_feature_list (ContentDirectory content_dir,
-                                     string           variable,
-                                     ref GLib.Value   value) {
+    private void query_feature_list (Service        content_dir,
+                                     string         variable,
+                                     ref GLib.Value value) {
         /* Set action return arguments */
         value.init (typeof (string));
         value.set_string (this.feature_list);
@@ -379,7 +381,9 @@ public class Rygel.ContentDirectory: Service {
         return ids;
     }
 
-    private void on_import_completed (ImportResource import) {
+    private void on_import_completed (StateMachine machine) {
+        var import = machine as ImportResource;
+
         this.notify ("TransferIDs",
                         typeof (string),
                         this.create_transfer_ids ());

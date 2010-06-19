@@ -87,7 +87,7 @@ public class Rygel.ExternalPluginFactory {
             }
         }
 
-        this.dbus_obj.name_owner_changed += this.name_owner_changed;
+        this.dbus_obj.name_owner_changed.connect (this.name_owner_changed);
     }
 
     private void name_owner_changed (DBusObject dbus_obj,

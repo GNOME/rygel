@@ -34,21 +34,21 @@ public class Rygel.MediaReceiverRegistrar: Service {
                     "xml/X_MS_MediaReceiverRegistrar1.xml";
 
     public override void constructed () {
-        this.action_invoked["IsAuthorized"] += this.is_authorized_cb;
-        this.action_invoked["IsValidated"] += this.is_authorized_cb;
-        this.action_invoked["RegisterDevice"] += this.register_device_cb;
+        this.action_invoked["IsAuthorized"].connect (this.is_authorized_cb);
+        this.action_invoked["IsValidated"].connect (this.is_authorized_cb);
+        this.action_invoked["RegisterDevice"].connect (this.register_device_cb);
     }
 
     /* IsAuthorized and IsValided action implementations (fake) */
-    private void is_authorized_cb (MediaReceiverRegistrar registrar,
-                                   owned ServiceAction    action) {
+    private void is_authorized_cb (Service             registrar,
+                                   owned ServiceAction action) {
         action.set ("Result", typeof (int), 1);
 
         action.return ();
     }
 
-    private void register_device_cb (MediaReceiverRegistrar registrar,
-                                     owned ServiceAction    action) {
+    private void register_device_cb (Service             registrar,
+                                     owned ServiceAction action) {
         action.set ("RegistrationRespMsg",
                     typeof (string),
                     "WhatisSupposedToBeHere");
