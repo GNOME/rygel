@@ -24,7 +24,6 @@
 
 using Rygel;
 using Gee;
-using CStuff;
 
 public void module_init (PluginLoader loader) {
     string MEDIA_RENDERER_DESC_PATH = BuildConfig.DATA_DIR +

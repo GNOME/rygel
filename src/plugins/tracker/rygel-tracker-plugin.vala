@@ -21,7 +21,6 @@
  */
 
 using Gee;
-using CStuff;
 
 public class Rygel.TrackerPlugin : Rygel.Plugin {
     // class-wide constants

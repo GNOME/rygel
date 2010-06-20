@@ -22,7 +22,6 @@
  */
 using Gtk;
 using Gee;
-using CStuff;
 
 public class Rygel.PreferencesDialog : GLib.Object {
     const string UI_FILE = BuildConfig.DATA_DIR + "/rygel-preferences.ui";

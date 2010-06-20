@@ -24,7 +24,6 @@
 
 using Rygel;
 using Gee;
-using CStuff;
 
 private TrackerPluginFactory plugin_factory;
 
