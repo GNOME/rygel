@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2008,2010 Nokia Corporation.
  * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
@@ -20,18 +21,43 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+using Posix;
+
 /**
- * Glue's our C code to Vala world.
+ * Handles Posix signals.
  */
-namespace CStuff {
-    /**
-     * Provides utility functions implemented in C.
-     */
-    public class Utils {
-        [CCode (cname = "get_xml_element", cheader_filename = "cstuff.h")]
-        public static unowned Xml.Node * get_xml_element (Xml.Node node,
-                                                          ...);
-        [CCode (cname = "generate_random_udn", cheader_filename = "cstuff.h")]
-        public static string generate_random_udn ();
+public class Rygel.SignalHandler : GLib.Object {
+    private static SignalHandler handler;
+
+    public signal void exit ();
+    public signal void restart ();
+
+    private sigaction_t action;
+
+    public static SignalHandler get_default () {
+        if (handler == null) {
+            handler = new SignalHandler ();
+        }
+
+        return handler;
+    }
+
+    private SignalHandler () {
+        this.action = sigaction_t ();
+
+        this.action.sa_handler = this.signal_handler;
+
+        /* Hook the handler for SIGTERM */
+        sigaction (SIGINT, this.action, null);
+        sigaction (SIGHUP, this.action, null);
+    }
+
+    private static void signal_handler (int signum) {
+        if (signum == SIGHUP) {
+            handler.restart ();
+        } else {
+            handler.exit ();
+        }
     }
 }
+

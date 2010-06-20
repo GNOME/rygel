@@ -21,14 +21,19 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using CStuff;
 using Gee;
 using GUPnP;
+
+namespace Posix {
+    [CCode (cheader_filename = "unistd.h")]
+    public extern int execvp (string file, string[] argv);
+}
 
 public class Rygel.Main : Object {
     private static int PLUGIN_TIMEOUT = 5;
 
     private PluginLoader plugin_loader;
+    private SignalHandler signal_handler;
     private ContextManager context_manager;
     private ArrayList <RootDeviceFactory> factories;
     private ArrayList <RootDevice> root_devices;
@@ -56,7 +61,9 @@ public class Rygel.Main : Object {
 
         this.plugin_loader.plugin_available.connect (this.on_plugin_loaded);
 
-        Utils.on_application_exit (this.application_exit_cb);
+        this.signal_handler = SignalHandler.get_default ();
+        this.signal_handler.exit.connect (this.application_exit_cb);
+        this.signal_handler.restart.connect (this.application_restart_cb);
     }
 
     public void exit (int exit_code) {
@@ -84,9 +91,13 @@ public class Rygel.Main : Object {
         return this.exit_code;
     }
 
-    private void application_exit_cb (bool restart) {
-        this.restart = restart;
+    private void application_restart_cb () {
+        this.restart = true;
 
+        this.exit (0);
+    }
+
+    private void application_exit_cb () {
         this.exit (0);
     }
 
@@ -232,7 +243,7 @@ public class Rygel.Main : Object {
         int exit_code = main.run ();
 
         if (main.restart) {
-            Utils.restart_application (original_args);
+            Posix.execvp (original_args[0], original_args);
         }
 
         return exit_code;

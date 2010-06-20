@@ -111,6 +111,9 @@ if test x$enable_vala = xyes ; then
     AC_CHECK_FILE("${VAPIDIR}/sqlite3.vapi",
                   true,
                   [AC_MSG_ERROR("Unable to find Vala bindings for sqlite3")])
+    AC_CHECK_FILE("${VAPIDIR}/posix.vapi",
+                  true,
+                  [AC_MSG_ERROR("Unable to find Vala bindings for POSIX")])
 else
     VAPIDIR=`echo ${datadir}/vala/vapi`
 fi
