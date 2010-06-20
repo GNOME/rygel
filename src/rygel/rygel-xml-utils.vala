@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2008,2010 Nokia Corporation.
  * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
@@ -20,15 +21,32 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+using Xml;
+
 /**
- * Glue's our C code to Vala world.
+ * XML utility API.
  */
-namespace CStuff {
-    /**
-     * Provides utility functions implemented in C.
-     */
-    public class Utils {
-        [CCode (cname = "generate_random_udn", cheader_filename = "cstuff.h")]
-        public static string generate_random_udn ();
+public class Rygel.XMLUtils {
+    /* Copy-paste from gupnp and ported to Vala. */
+    public static Xml.Node* get_element (Xml.Node *node, ...) {
+        Xml.Node *ret = node;
+
+        var list = va_list ();
+
+        while (true) {
+            string arg = list.arg ();
+            if (arg == null)
+                break;
+
+            for (ret = ret->children; ret != null; ret = ret->next)
+                if (arg == ret->name)
+                    break;
+
+            if (ret == null)
+                break;
+        }
+
+        return ret;
     }
 }
+

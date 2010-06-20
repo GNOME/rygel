@@ -25,35 +25,6 @@
 #include <cstuff.h>
 #include <string.h>
 
-/* Copy-paste from gupnp. */
-xmlNode *
-get_xml_element (xmlNode *node,
-                 ...)
-{
-        va_list var_args;
-
-        va_start (var_args, node);
-
-        while (TRUE) {
-                const char *arg;
-
-                arg = va_arg (var_args, const char *);
-                if (!arg)
-                        break;
-
-                for (node = node->children; node; node = node->next)
-                        if (!strcmp (arg, (char *) node->name))
-                                break;
-
-                if (!node)
-                        break;
-        }
-
-        va_end (var_args);
-
-        return node;
-}
-
 char *
 generate_random_udn (void)
 {

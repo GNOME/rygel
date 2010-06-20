@@ -37,6 +37,7 @@ rygel_SOURCES = $(VAPI_SOURCE_FILES) \
 		rygel-dbus-service.vala \
 		rygel-root-device.vala \
 		rygel-root-device-factory.vala \
+		rygel-xml-utils.vala \
 		rygel-signal-handler.vala \
 		rygel-main.vala
 

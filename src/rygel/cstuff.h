@@ -29,10 +29,6 @@
 #include <glib.h>
 #include <uuid/uuid.h>
 
-G_GNUC_INTERNAL xmlNode *
-get_xml_element                         (xmlNode *node,
-                                         ...);
-
 G_GNUC_INTERNAL char *
 generate_random_udn                     (void);
 

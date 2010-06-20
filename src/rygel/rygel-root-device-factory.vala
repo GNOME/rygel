@@ -94,10 +94,10 @@ internal class Rygel.RootDeviceFactory {
     private void prepare_desc_for_plugin (XMLDoc doc, Plugin plugin) {
         Xml.Node *device_element;
 
-        device_element = Utils.get_xml_element ((Xml.Node *) doc.doc,
-                                                "root",
-                                                "device",
-                                                null);
+        device_element = XMLUtils.get_element ((Xml.Node *) doc.doc,
+                                               "root",
+                                               "device",
+                                               null);
         if (device_element == null) {
             warning (_("XML node '%s' not found."), "/root/device");
 
@@ -128,9 +128,9 @@ internal class Rygel.RootDeviceFactory {
                                             string    plugin_name,
                                             string    plugin_title) {
         /* friendlyName */
-        Xml.Node *element = Utils.get_xml_element (device_element,
-                                                   "friendlyName",
-                                                   null);
+        Xml.Node *element = XMLUtils.get_element (device_element,
+                                                  "friendlyName",
+                                                  null);
         if (element == null) {
             warning (_("XML node '%s' not found."),
                        "/root/device/friendlyName");
@@ -152,7 +152,7 @@ internal class Rygel.RootDeviceFactory {
         element->set_content (title);
 
         /* UDN */
-        element = Utils.get_xml_element (device_element, "UDN");
+        element = XMLUtils.get_element (device_element, "UDN");
         if (element == null) {
             warning (_("XML node '%s' not found."), "/root/device/UDN");
 
@@ -169,9 +169,9 @@ internal class Rygel.RootDeviceFactory {
 
     private void set_description (Xml.Node *device_element,
                                   string    description) {
-        Xml.Node *element = Utils.get_xml_element (device_element,
-                                                   "modelDescription",
-                                                   null);
+        Xml.Node *element = XMLUtils.get_element (device_element,
+                                                  "modelDescription",
+                                                  null);
         if (element == null) {
             warning (_("XML node '%s' not found."),
                        "/root/device/modelDescription");
@@ -184,9 +184,9 @@ internal class Rygel.RootDeviceFactory {
 
     private void add_services_to_desc (Xml.Node *device_element,
                                        Plugin    plugin) {
-        Xml.Node *service_list_node = Utils.get_xml_element (device_element,
-                                                             "serviceList",
-                                                             null);
+        Xml.Node *service_list_node = XMLUtils.get_element (device_element,
+                                                            "serviceList",
+                                                            null);
         if (service_list_node == null) {
             warning (_("XML node '%s' not found."), "/root/device/serviceList");
 
@@ -237,9 +237,9 @@ internal class Rygel.RootDeviceFactory {
             icons = plugin.default_icons;
         }
 
-        Xml.Node *icon_list_node = Utils.get_xml_element (device_element,
-                                                          "iconList",
-                                                          null);
+        Xml.Node *icon_list_node = XMLUtils.get_element (device_element,
+                                                         "iconList",
+                                                         null);
         if (icon_list_node == null) {
             icon_list_node = device_element->new_child (null, "iconList", null);
         } else {
