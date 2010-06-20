@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel 2.31.x\n"
-"Report-Msgid-Bugs-To:\n"
-"POT-Creation-Date: 2010-06-20 11:45+0200\n"
-"PO-Revision-Date: 2010-06-20 11:55+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-06-20 18:05+0200\n"
+"PO-Revision-Date: 2010-06-20 18:08+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,8 @@ msgstr "Ti_ttel"
 #, no-c-format
 msgid ""
 "Write %u for username, %n for real name of the user and %h for host name"
-msgstr "Skriv %u for brukernavn, %n for brukers virkelige navn og %h for vertsnavn"
+msgstr ""
+"Skriv %u for brukernavn, %n for brukers virkelige navn og %h for vertsnavn"
 
 #: ../data/rygel-preferences.ui.h:14
 msgid "_Enable UPnP/DLNA"
@@ -185,22 +186,20 @@ msgid "Using playbin2"
 msgstr "Bruker playbin2"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:114
-#, fuzzy
 msgid "Could not create Playbin2, trying Playbin"
-msgstr "Kunne ikke opprette AvahiEntryGroup for publisering"
+msgstr "Kunne ikke lage Playbin2 - prøver Playbin"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:118
 msgid "Using playbin"
 msgstr "Bruker playbin"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:120
-#, fuzzy
 msgid "Could not find any playbin."
-msgstr "Fant ikke midlertidig plass!"
+msgstr "Fant ikke playbin."
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:121
 msgid "Please check your gstreamer setup"
-msgstr ""
+msgstr "Vennligst sjekk ditt GStreamer-oppsett"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:165
 #, c-format
@@ -259,7 +258,7 @@ msgid "Failed to update database: %s"
 msgstr "Klarte ikke å oppdatere database: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:148
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgid "failed to enumerate folder: %s"
 msgstr "Klarte ikke å opprette opptaker: %s"
 
@@ -625,11 +624,11 @@ msgid "Failed to create item under '%s': %s"
 msgstr "Klarte ikke å opprette opptaker: %s"
 
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-live-response.vala:148
-#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:107
+#: ../src/rygel/rygel-live-response.vala:150
+#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:109
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
-#: ../src/rygel/rygel-wmv-transcoder-bin.vala:105
+#: ../src/rygel/rygel-wmv-transcoder-bin.vala:107
 #, fuzzy, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Kunne ikke starte avspilling av %s"
@@ -639,23 +638,23 @@ msgstr "Kunne ikke starte avspilling av %s"
 msgid "Plugin 'fakesink' missing"
 msgstr ""
 
-#: ../src/rygel/rygel-live-response.vala:113
-#: ../src/rygel/rygel-live-response.vala:135
+#: ../src/rygel/rygel-live-response.vala:115
+#: ../src/rygel/rygel-live-response.vala:137
 #, fuzzy, c-format
 msgid "Failed to link %s to %s"
 msgstr "Kunne ikke starte avspilling av %s"
 
-#: ../src/rygel/rygel-live-response.vala:219
+#: ../src/rygel/rygel-live-response.vala:221
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-live-response.vala:226
+#: ../src/rygel/rygel-live-response.vala:228
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-live-response.vala:260
+#: ../src/rygel/rygel-live-response.vala:262
 #, fuzzy, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Klarte ikke å opprette opptaker: %s"
