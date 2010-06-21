@@ -232,7 +232,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                                             TagMergeMode.REPLACE);
     }
 
-    private void element_message_cb (Bus     bus,
+    private void element_message_cb (Gst.Bus bus,
                                      Message message) {
         if (message.src != this.playbin) {
             return;

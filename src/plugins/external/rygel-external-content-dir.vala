@@ -37,7 +37,7 @@ public class Rygel.ExternalContentDir : Rygel.ContentDirectory {
         Connection connection;
 
         try {
-            connection = Bus.get (DBus.BusType.SESSION);
+            connection = DBus.Bus.get (DBus.BusType.SESSION);
         } catch (DBus.Error err) {
             // By this time plugin should have successfully accessed the
             // the session bus, so this in theory can not fail.

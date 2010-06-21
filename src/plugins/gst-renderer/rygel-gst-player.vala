@@ -134,7 +134,7 @@ public class Rygel.GstPlayer : GLib.Object {
                                   -1);
     }
 
-    private bool bus_handler (Bus     bus,
+    private bool bus_handler (Gst.Bus bus,
                               Message message) {
         if (message.type == MessageType.EOS) {
             debug ("EOS");

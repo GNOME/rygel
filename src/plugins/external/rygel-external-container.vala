@@ -61,7 +61,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         this.containers = new ArrayList<ExternalContainer> ();
 
         try {
-            this.connection = Bus.get (DBus.BusType.SESSION);
+            this.connection = DBus.Bus.get (DBus.BusType.SESSION);
 
             this.update_container ();
 
