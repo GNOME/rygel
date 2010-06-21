@@ -32,7 +32,7 @@ internal class Rygel.MediaExport.DummyContainer : NullContainer {
         this.child_count = 0;
         this.parent_ref = parent;
         this.file = file;
-        this.uris.add (file.get_uri ());
+        this.set_uri (file.get_uri ());
         this.seen_children = new ArrayList<string> (str_equal);
     }
 

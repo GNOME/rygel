@@ -33,7 +33,10 @@ public class Rygel.TrackerCategoryAllContainer : Rygel.TrackerSearchContainer {
 
         try {
             var uri = Filename.to_uri (item_factory.upload_dir, null);
-            this.uris.add (uri);
+            var create_classes = new ArrayList<string> ();
+
+            create_classes.add (item_factory.upnp_class);
+            this.set_uri (uri, create_classes);
         } catch (ConvertError error) {
             warning (_("Failed to construct URI for folder '%s': %s"),
                      item_factory.upload_dir,

@@ -53,10 +53,9 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.child_count = child_count;
         this.update_id = 0;
         this.upnp_class = "object.container.storageFolder";
+        this.create_classes = new ArrayList<string> ();
 
         this.container_updated.connect (on_container_updated);
-
-        this.create_classes = new ArrayList<string> ();
     }
 
     public MediaContainer.root (string title,
@@ -238,6 +237,27 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
         // Emit the signal that will start the bump-up process for this event.
         this.container_updated (this);
+    }
+
+    /**
+     * Sets the URI of this container and optionally the create_classes.
+     *
+     * @param uri the URI to set.
+     * @param create_classes list of item classes.
+     */
+    public void set_uri (string uri, ArrayList<string>? create_classes = null) {
+        this.uris.clear ();
+        this.uris.add (uri);
+
+        this.create_classes.clear ();
+
+        if (create_classes != null) {
+            this.create_classes.add_all (create_classes);
+        } else {
+            this.create_classes.add (MediaItem.IMAGE_CLASS);
+            this.create_classes.add (MediaItem.VIDEO_CLASS);
+            this.create_classes.add (MediaItem.AUDIO_CLASS);
+        }
     }
 
     private async Gee.List<MediaObject> search_in_children (
