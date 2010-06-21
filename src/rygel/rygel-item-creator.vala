@@ -109,9 +109,32 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
     }
 
     private async MediaContainer fetch_container () throws Error {
-        var media_object = yield this.content_dir.root_container.find_object (
+        MediaObject media_object = null;
+
+        if (this.container_id == "DLNA.ORG_AnyContainer") {
+            var expression = new RelationalExpression ();
+            expression.op = SearchCriteriaOp.DERIVED_FROM;
+            expression.operand1 = "upnp:createClass";
+            expression.operand2 = didl_item.upnp_class;
+
+            uint total_matches;
+
+            var result = yield this.content_dir.root_container.search (
+                                        expression,
+                                        0,
+                                        1,
+                                        out total_matches,
+                                        this.cancellable);
+            if (result.size > 0) {
+                media_object = result[0];
+                this.container_id = media_object.id;
+            }
+        } else {
+            media_object = yield this.content_dir.root_container.find_object (
                                         this.container_id,
                                         this.cancellable);
+        }
+
         if (media_object == null || !(media_object is MediaContainer)) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT (
                                         _("No such object"));
