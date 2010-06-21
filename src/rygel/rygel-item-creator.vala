@@ -59,8 +59,6 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         try {
             this.parse_args ();
 
-            var container = yield this.fetch_container ();
-
             this.didl_parser.item_available.connect ((didl_item) => {
                     this.didl_item = didl_item;
             });
@@ -70,6 +68,8 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
 
                 throw new ItemCreatorError.PARSE (message, this.elements);
             }
+
+            var container = yield this.fetch_container ();
 
             this.item = new MediaItem (didl_item.id,
                                        container,
