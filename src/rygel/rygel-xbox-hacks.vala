@@ -23,7 +23,6 @@
 
 using Soup;
 using GUPnP;
-using CStuff;
 
 internal errordomain Rygel.XBoxHacksError {
     NA

@@ -22,8 +22,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using CStuff;
-
 public errordomain Rygel.ConfigurationError {
     NO_VALUE_SET,
     VALUE_OUT_OF_RANGE

@@ -23,7 +23,6 @@
 
 using Gee;
 using GUPnP;
-using CStuff;
 
 /**
  * Represents a Rygel plugin. Plugins are supposed to provide an object of this

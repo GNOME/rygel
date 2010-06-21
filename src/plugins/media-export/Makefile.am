@@ -40,7 +40,6 @@ librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
 librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
 				     --pkg dbus-glib-1 \
                                      --pkg rygel-1.0 \
-                                     --pkg cstuff \
                                      --pkg gupnp-1.0 \
                                      --pkg gupnp-av-1.0 \
                                      --pkg libsoup-2.4 \

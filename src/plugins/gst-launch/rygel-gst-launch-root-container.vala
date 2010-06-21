@@ -24,7 +24,6 @@ using Rygel;
 using GUPnP;
 using Gee;
 using Gst;
-using CStuff;
 
 /**
  * Represents the root container for GstLaunch content hierarchy.

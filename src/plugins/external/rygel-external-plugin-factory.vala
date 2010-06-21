@@ -24,7 +24,6 @@
 
 using Rygel;
 using Gee;
-using CStuff;
 using FreeDesktop;
 
 private ExternalPluginFactory plugin_factory;

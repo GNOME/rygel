@@ -22,7 +22,6 @@
 
 using Rygel;
 using Gee;
-using CStuff;
 
 public void module_init (PluginLoader loader) {
     var plugin = new Plugin.MediaServer ("GstLaunch",

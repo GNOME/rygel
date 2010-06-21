@@ -22,7 +22,6 @@
  */
 
 using GUPnP;
-using CStuff;
 using Gee;
 
 /**

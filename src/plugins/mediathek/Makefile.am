@@ -26,7 +26,6 @@ librygel_mediathek_la_SOURCES = rygel-mediathek-asx-playlist.vala \
 
 librygel_mediathek_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
 				  --pkg rygel-1.0 \
-				  --pkg cstuff \
 				  --pkg gupnp-1.0 \
 				  --pkg gupnp-av-1.0 \
 				  --pkg libsoup-2.4 \

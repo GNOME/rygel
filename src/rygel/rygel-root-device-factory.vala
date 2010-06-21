@@ -1,9 +1,11 @@
 /*
- * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2008-2010 Nokia Corporation.
  * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
+ * Copyright (C) 2007 OpenedHand Ltd.
  *
- * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
- *                               <zeeshan.ali@nokia.com>
+ * Authors: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *                                <zeeshan.ali@nokia.com>
+ *          Jorn Baayen <jorn@openedhand.com>
  *
  * This file is part of Rygel.
  *
@@ -23,7 +25,15 @@
  */
 
 using GUPnP;
-using CStuff;
+
+[CCode (cname = "uuid_generate", cheader_filename = "uuid/uuid.h")]
+public extern static void uuid_generate ([CCode (array_length = false)]
+                                         uchar[] uuid);
+[CCode (cname = "uuid_unparse", cheader_filename = "uuid/uuid.h")]
+public extern static void uuid_unparse ([CCode (array_length = false)]
+                                        uchar[] uuid,
+                                        [CCode (array_length = false)]
+                                        uchar[] output);
 
 public errordomain RootDeviceFactoryError {
     XML_PARSE,
@@ -161,7 +171,7 @@ internal class Rygel.RootDeviceFactory {
 
         var udn = element->get_content ();
         if (udn == null || udn == "") {
-            udn = Utils.generate_random_udn ();
+            udn = this.generate_random_udn ();
 
             element->set_content (udn);
         }
@@ -312,6 +322,17 @@ internal class Rygel.RootDeviceFactory {
 
             file.make_directory (null);
         }
+    }
+
+    private string generate_random_udn () {
+        var udn = new uchar[50];
+        var id = new uchar[16];
+
+        /* Generate new UUID */
+        uuid_generate (id);
+        uuid_unparse (id, udn);
+
+        return "uuid:" + (string) udn;
     }
 }
 

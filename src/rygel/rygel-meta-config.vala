@@ -23,7 +23,6 @@
  */
 
 using Gee;
-using CStuff;
 
 /**
  * Manages all the configuration sources for Rygel.
