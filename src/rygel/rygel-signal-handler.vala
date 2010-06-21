@@ -27,36 +27,30 @@ using Posix;
  * Handles Posix signals.
  */
 public class Rygel.SignalHandler : GLib.Object {
-    private static SignalHandler handler;
+    private static Main main = null;
+    private static sigaction_t action;
 
-    public signal void exit ();
-    public signal void restart ();
+    public static void setup (Main _main) {
+        main = _main;
 
-    private sigaction_t action;
+        action = sigaction_t ();
 
-    public static SignalHandler get_default () {
-        if (handler == null) {
-            handler = new SignalHandler ();
-        }
-
-        return handler;
-    }
-
-    private SignalHandler () {
-        this.action = sigaction_t ();
-
-        this.action.sa_handler = this.signal_handler;
+        action.sa_handler = signal_handler;
 
         /* Hook the handler for SIGTERM */
-        sigaction (SIGINT, this.action, null);
-        sigaction (SIGHUP, this.action, null);
+        sigaction (SIGINT, action, null);
+        sigaction (SIGHUP, action, null);
+    }
+
+    public static void cleanup () {
+        main = null;
     }
 
     private static void signal_handler (int signum) {
         if (signum == SIGHUP) {
-            handler.restart ();
+            main.restart ();
         } else {
-            handler.exit ();
+            main.exit (0);
         }
     }
 }

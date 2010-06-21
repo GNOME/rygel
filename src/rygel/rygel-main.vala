@@ -33,7 +33,6 @@ public class Rygel.Main : Object {
     private static int PLUGIN_TIMEOUT = 5;
 
     private PluginLoader plugin_loader;
-    private SignalHandler signal_handler;
     private ContextManager context_manager;
     private ArrayList <RootDeviceFactory> factories;
     private ArrayList <RootDevice> root_devices;
@@ -44,7 +43,7 @@ public class Rygel.Main : Object {
     private MainLoop main_loop;
 
     private int exit_code;
-    public bool restart;
+    public bool need_restart;
 
     private Main () throws GLib.Error {
         Environment.set_application_name (_(BuildConfig.PACKAGE_NAME));
@@ -61,15 +60,21 @@ public class Rygel.Main : Object {
 
         this.plugin_loader.plugin_available.connect (this.on_plugin_loaded);
 
-        this.signal_handler = SignalHandler.get_default ();
-        this.signal_handler.exit.connect (this.application_exit_cb);
-        this.signal_handler.restart.connect (this.application_restart_cb);
+        SignalHandler.setup (this);
     }
 
     public void exit (int exit_code) {
         this.exit_code = exit_code;
 
         this.main_loop.quit ();
+
+        SignalHandler.cleanup ();
+    }
+
+    public void restart () {
+        this.need_restart = true;
+
+        this.exit (0);
     }
 
     private int run () {
@@ -89,16 +94,6 @@ public class Rygel.Main : Object {
         this.main_loop.run ();
 
         return this.exit_code;
-    }
-
-    private void application_restart_cb () {
-        this.restart = true;
-
-        this.exit (0);
-    }
-
-    private void application_exit_cb () {
-        this.exit (0);
     }
 
     private void on_plugin_loaded (PluginLoader plugin_loader,
@@ -242,7 +237,7 @@ public class Rygel.Main : Object {
 
         int exit_code = main.run ();
 
-        if (main.restart) {
+        if (main.need_restart) {
             Posix.execvp (original_args[0], original_args);
         }
 
