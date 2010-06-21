@@ -38,6 +38,13 @@ public class Rygel.RelationalExpression :
             return this.compare_string (media_object.upnp_class);
         case "dc:title":
             return this.compare_string (media_object.title);
+        case "upnp:createClass":
+            if (!(media_object is MediaContainer)) {
+                return false;
+            }
+
+            var container = media_object as MediaContainer;
+            return this.compare_create_class (container);
         case "dc:creator":
             if (!(media_object is MediaItem)) {
                 return false;
@@ -56,6 +63,20 @@ public class Rygel.RelationalExpression :
 
     public override string to_string () {
         return "%s %d %s".printf (this.operand1, this.op, this.operand2);
+    }
+
+    private bool compare_create_class (MediaContainer container) {
+        var ret = false;
+
+        foreach (var create_class in container.create_classes) {
+            if (this.compare_string (create_class)) {
+                ret = true;
+
+                break;
+            }
+        }
+
+        return ret;
     }
 
     private bool compare_resource (MediaObject media_object) {
