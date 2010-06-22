@@ -103,7 +103,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 
 rygel_VALAFLAGS = \
 	-H rygel.h -C --library=rygel-1.0 --vapidir=$(srcdir) --thread \
-	--pkg rygel-build-config --pkg gupnp-1.0 \
+	--pkg rygel-build-config --pkg rygel-misc --pkg gupnp-1.0 \
 	--pkg gupnp-av-1.0 --pkg dbus-glib-1 --pkg gstreamer-0.10 \
 	--pkg gio-2.0 --pkg gee-1.0 --pkg posix -g
 
@@ -136,6 +136,7 @@ librygel_configuration_a_SOURCES = rygel-configuration.c \
 
 MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
 EXTRA_DIST = rygel-build-config.vapi \
+             rygel-misc.vapi \
              $(VAPI_FILES) \
              $(DEPS_FILES) \
              $(BUILT_SOURCES)

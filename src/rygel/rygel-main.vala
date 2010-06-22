@@ -24,11 +24,6 @@
 using Gee;
 using GUPnP;
 
-namespace Posix {
-    [CCode (cheader_filename = "unistd.h")]
-    public extern int execvp (string file, string[] argv);
-}
-
 public class Rygel.Main : Object {
     private static int PLUGIN_TIMEOUT = 5;
 
@@ -238,7 +233,7 @@ public class Rygel.Main : Object {
         int exit_code = main.run ();
 
         if (main.need_restart) {
-            Posix.execvp (original_args[0], original_args);
+            Misc.Posix.execvp (original_args[0], original_args);
         }
 
         return exit_code;
