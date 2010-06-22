@@ -30,7 +30,7 @@ GIO_REQUIRED=2.16
 GEE_REQUIRED=0.5.0
 UUID_REQUIRED=1.41.3
 LIBSOUP_REQUIRED=2.26.0
-GTK_REQUIRED=2.16
+GTK_REQUIRED=2.90.3
 LIBSQLITE3_REQUIRED=3.5
 
 PKG_CHECK_MODULES(LIBGUPNP, gupnp-1.0 >= $GUPNP_REQUIRED)
@@ -159,18 +159,18 @@ AC_ARG_WITH( ui,
 HAVE_GTK=no
 if test x$try_ui = xyes ; then
     dnl check for gtk
-    PKG_CHECK_MODULES(GTK, gtk+-2.0 >= $GTK_REQUIRED ,
+    PKG_CHECK_MODULES(GTK, gtk+-3.0 >= $GTK_REQUIRED ,
       [
         AC_SUBST(GTK_CFLAGS)
         AC_SUBST(GTK_LIBS)
         if test x$enable_vala = xyes ; then
-                AC_CHECK_FILE("${VAPIDIR}/gtk+-2.0.vapi",
+                AC_CHECK_FILE("${VAPIDIR}/gtk+-3.0.vapi",
                   [
                         HAVE_GTK=yes
                   ],
                   [
                         HAVE_GTK=no
-                        AC_MSG_ERROR("Unable to find Vala bindings for gtk+-2.0")
+                        AC_MSG_ERROR("Unable to find Vala bindings for gtk+-3.0")
                   ])
         else
                 HAVE_GTK=yes
