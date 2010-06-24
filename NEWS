@@ -1,3 +1,61 @@
+0.7.1
+=====
+
+A new release in the current unstable 0.7.x series for upcoming GNOME 2.31.4
+release.
+
+- Implement DLNA's 'AnyContainer' upload extenstion. This allows clients to
+  upload items without having to specify target container. Currently it only
+  works for the Tracker backend.
+- Report types of items that could be created/uploaded in a container and allow
+  clients to search containers by this property.
+- Port last bits of C code to Vala. Now Rygel is completely written in Vala.
+- Make Rygel build/work against both current stable and unstable Vala releases.
+- Offer SD transcoding in EU profile. Seems certain Sony Bravia TVs only
+  support EU profiles. With this change, they should at least be able to use the
+  SD transcoding.
+- Two more unit tests.
+- Provide default configuration for WMV transcoding.
+- Correctly handle boolean commandline option for disabling WMV transcoder.
+- External:
+  - Port the external plugin to use the new D-Bus MediaServer specification:
+    http://live.gnome.org/Rygel/MediaServer2Spec. The new specification is meant
+    to be very generic and scale well to large media hierarchies.
+  - Make use of search API when implemented by the external application.
+  - Various other performance improvements.
+- Preferences UI:
+  - Improve resize behavior.
+  - Add missing bevel to URI tree view.
+  - Replace GtkVBox by GtkVButtonBox where appropriate.
+- Localization:
+  - Added Punjabi Translation.
+  - Updated Norwegian bokmål translation.
+  - Updated Galician translations.
+  - Updated Spanish translation.
+  - Updated Hebrew translation.
+- Various non-functional improvements.
+
+Dependency-related changes:
+
+- Require gtk+-3.0 >= 2.90.3.
+- Require gupnp-av >= 0.5.7.
+- Require gupnp-vala >= 0.6.7.
+
+Bugs fixed in this release:
+
+593628 - mp2ts transcoder not working with certain Bravia TV models.
+596214 - URI table is missing bevel.
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Eric Anderson <ejona86@gmail.com>
+A S Alam <aalam@users.sf.net>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Jorge González <jorgegonz@svn.gnome.org>
+Kjartan Maraas <kmaraas@gnome.org>
+Yaron Shahrabani <sh.yaron@gmail.com>
+
 0.7.0
 =====
 
