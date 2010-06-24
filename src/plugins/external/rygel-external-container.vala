@@ -122,8 +122,9 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
             filter += item_prop;
         }
 
+        var ext_expression = this.translate_expression (expression);
         var result = yield this.actual_container.search_objects (
-                                        expression.to_string (),
+                                        ext_expression.to_string (),
                                         offset,
                                         max_count,
                                         filter);
@@ -306,6 +307,50 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         }
 
         return target;
+    }
+
+    private SearchExpression translate_expression (
+                                        SearchExpression upnp_expression) {
+        if (upnp_expression is RelationalExpression) {
+            var expression = upnp_expression as RelationalExpression;
+            var ext_expression = new RelationalExpression ();
+            ext_expression.op = expression.op;
+            ext_expression.operand1 = this.translate_property (
+                                        expression.operand1);
+            ext_expression.operand2 = expression.operand2;
+
+            return ext_expression;
+        } else {
+            var expression = upnp_expression as LogicalExpression;
+            var ext_expression = new LogicalExpression ();
+
+            ext_expression.op = expression.op;
+            ext_expression.operand1 = this.translate_expression (
+                                        expression.operand1);
+            ext_expression.operand2 = this.translate_expression (
+                                        expression.operand2);
+
+            return ext_expression;
+        }
+    }
+
+    public string translate_property (string property) {
+        switch (property) {
+        case "@id":
+            return "Path";
+        case "@parentID":
+            return "Parent";
+        case "dc:title":
+            return "DisplayName";
+        case "dc:creator":
+        case "upnp:artist":
+        case "upnp:author":
+            return "Artist";
+        case "upnp:album":
+            return "Album";
+        default:
+            return property;
+        }
     }
 }
 
