@@ -45,6 +45,7 @@ public class Rygel.ExternalPluginFactory {
     private static string CONTAINER_IFACE = "org.gnome.UPnP.MediaContainer2";
 
     private const string SERVICE_PREFIX = "org.gnome.UPnP.MediaServer2.";
+    private const string GRILO_UPNP_PREFIX = SERVICE_PREFIX + "grl_upnp";
 
     DBusObject          dbus_obj;
     DBus.Connection     connection;
@@ -112,6 +113,11 @@ public class Rygel.ExternalPluginFactory {
     }
 
     private async void load_plugin (string service_name) {
+        if (service_name.has_prefix (GRILO_UPNP_PREFIX)) {
+            // We don't entertain UPnP sources
+            return;
+        }
+
         // org.gnome.UPnP.MediaServer1.NAME => /org/gnome/UPnP/MediaServer1/NAME
         var root_object = "/" + service_name.replace (".", "/");
 
