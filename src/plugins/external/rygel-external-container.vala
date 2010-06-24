@@ -62,15 +62,11 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
 
         try {
             this.connection = DBus.Bus.get (DBus.BusType.SESSION);
-
-            this.update_container ();
-
-            this.actual_container.updated.connect (this.on_updated);
         } catch (GLib.Error err) {
-            critical ("Failed to fetch information about container '%s': %s",
-                      actual_container.get_path (),
-                      err.message);
+            critical ("Failed to connect to session bus: %s", err.message);
         }
+
+        this.update_container.begin (true);
     }
 
     public override async Gee.List<MediaObject>? get_children (
@@ -241,7 +237,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         return media_objects;
     }
 
-    private void update_container () throws GLib.Error {
+    private async void refresh_child_containers () throws GLib.Error {
         this.containers.clear ();
 
         var container_paths = this.actual_container.containers;
@@ -261,10 +257,10 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         }
     }
 
-    private void on_updated (ExternalMediaContainer actual_container) {
+    private async void update_container (bool connect_signal = false) {
         try {
             // Update our information about the container
-            this.update_container ();
+            yield this.refresh_child_containers ();
         } catch (GLib.Error err) {
             warning ("Failed to update information about container '%s': %s",
                      this.actual_container.get_path (),
@@ -273,6 +269,14 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
 
         // and signal the clients
         this.updated ();
+
+        if (connect_signal) {
+            this.actual_container.updated.connect (this.on_updated);
+        }
+    }
+
+    private void on_updated (ExternalMediaContainer actual_container) {
+        this.update_container.begin ();
     }
 
     private MediaContainer find_container_by_id (string id) {
