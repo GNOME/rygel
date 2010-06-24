@@ -34,24 +34,13 @@ public class Rygel.ExternalContentDir : Rygel.ContentDirectory {
     public override MediaContainer? create_root_container () {
         var plugin = (ExternalPlugin) this.root_device.resource_factory;
 
-        Connection connection;
-
-        try {
-            connection = DBus.Bus.get (DBus.BusType.SESSION);
-        } catch (DBus.Error err) {
-            // By this time plugin should have successfully accessed the
-            // the session bus, so this in theory can not fail.
-            assert_not_reached ();
-        }
-
-        var actual_container = connection.get_object (plugin.service_name,
-                                                      plugin.root_object)
-                                                      as ExternalMediaContainer;
-
         return new ExternalContainer ("0",
+                                      plugin.title,
+                                      plugin.child_count,
+                                      plugin.searchable,
                                       plugin.service_name,
                                       this.context.host_ip,
-                                      actual_container);
+                                      null);
     }
 }
 

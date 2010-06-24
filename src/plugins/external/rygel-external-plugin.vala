@@ -28,8 +28,14 @@ public class Rygel.ExternalPlugin : Rygel.Plugin {
     public string service_name;
     public string root_object;
 
+    // Root container properties
+    public uint child_count;
+    public bool searchable;
+
     public ExternalPlugin (string    service_name,
                            string    title,
+                           uint      child_count,
+                           bool      searchable,
                            string    root_object,
                            IconInfo? icon) {
         base.MediaServer (service_name,
@@ -38,6 +44,8 @@ public class Rygel.ExternalPlugin : Rygel.Plugin {
                           "Rygel External " + title);
 
         this.service_name = service_name;
+        this.child_count = child_count;
+        this.searchable = searchable;
         this.root_object = root_object;
         if (icon != null) {
             this.add_icon (icon);

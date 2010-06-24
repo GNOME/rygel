@@ -151,8 +151,13 @@ public class Rygel.ExternalPluginFactory {
             title = service_name;
         }
 
+        var child_count = container_props.lookup ("ChildCount").get_uint ();
+        var searchable = container_props.lookup ("Searchable").get_boolean ();
+
         var plugin = new ExternalPlugin (service_name,
                                          title,
+                                         child_count,
+                                         searchable,
                                          root_object,
                                          icon);
 

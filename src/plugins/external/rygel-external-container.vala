@@ -42,22 +42,18 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
 
     private bool searchable;
 
-    public ExternalContainer (string                 id,
-                              string                 service_name,
-                              string                 host_ip,
-                              ExternalMediaContainer actual_container,
-                              ExternalContainer?     parent = null) {
-        base (id,
-              parent,
-              actual_container.display_name,
-              (int) actual_container.child_count);
+    public ExternalContainer (string             id,
+                              string             title,
+                              uint               child_count,
+                              bool               searchable,
+                              string             service_name,
+                              string             host_ip,
+                              ExternalContainer? parent = null) {
+        base (id, parent, title, (int) child_count);
 
         this.service_name = service_name;
         this.host_ip = host_ip;
-        this.actual_container = actual_container;
-        this.searchable = actual_container.searchable;
         this.item_factory = new ExternalItemFactory ();
-
         this.containers = new ArrayList<ExternalContainer> ();
 
         try {
@@ -65,6 +61,11 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         } catch (GLib.Error err) {
             critical ("Failed to connect to session bus: %s", err.message);
         }
+
+        // Create proxy to MediaContainer iface
+        this.actual_container = this.connection.get_object (this.service_name,
+                                                            id)
+                                as ExternalMediaContainer;
 
         this.update_container.begin (true);
     }
@@ -238,20 +239,34 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
     }
 
     private async void refresh_child_containers () throws GLib.Error {
+        string[] filter = {};
+
+        foreach (var object_prop in ExternalMediaObject.PROPERTIES) {
+            filter += object_prop;
+        }
+
+        foreach (var container_prop in ExternalMediaContainer.PROPERTIES) {
+            filter += container_prop;
+        }
+
+        var children_props = yield this.actual_container.list_containers (
+                                        0,
+                                        0,
+                                        filter);
         this.containers.clear ();
 
-        var container_paths = this.actual_container.containers;
-        foreach (var container_path in container_paths) {
-            // Create proxy to MediaContainer iface
-            var actual_container = this.connection.get_object (
-                                        this.service_name,
-                                        container_path)
-                                        as ExternalMediaContainer;
+        foreach (var props in children_props) {
+            var id = props.lookup ("Path").get_string ();
+            var title = props.lookup ("DisplayName").get_string ();
+            var child_count = props.lookup ("ChildCount").get_uint ();
+            var searchable = props.lookup ("Searchable").get_boolean ();
 
-            var container = new ExternalContainer (container_path,
+            var container = new ExternalContainer (id,
+                                                   title,
+                                                   child_count,
+                                                   searchable,
                                                    this.service_name,
                                                    this.host_ip,
-                                                   actual_container,
                                                    this);
             this.containers.add (container);
         }

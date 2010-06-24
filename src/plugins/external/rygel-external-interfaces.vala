@@ -41,12 +41,9 @@ public interface Rygel.ExternalMediaObject : DBus.Object {
 public interface Rygel.ExternalMediaContainer : DBus.Object,
                                                 ExternalMediaObject {
     public static const string IFACE = "org.gnome.UPnP.MediaContainer2";
-    public static const string[] PROPERTIES = { "ChildCount" };
+    public static const string[] PROPERTIES = { "ChildCount", "Searchable" };
 
     public abstract signal void updated ();
-
-    //public abstract ObjectPath[] items { owned get; set; }
-    public abstract ObjectPath[] containers { owned get; set; }
 
     public abstract uint child_count { get; set; }
     public abstract uint item_count { get; set; }
@@ -54,6 +51,14 @@ public interface Rygel.ExternalMediaContainer : DBus.Object,
     public abstract bool searchable { get; set; }
 
     public abstract async HashTable<string,Value?>[] list_children (
+                                        uint     offset,
+                                        uint     max_count,
+                                        string[] filter) throws DBus.Error;
+    public abstract async HashTable<string,Value?>[] list_containers (
+                                        uint     offset,
+                                        uint     max_count,
+                                        string[] filter) throws DBus.Error;
+    public abstract async HashTable<string,Value?>[] list_items (
                                         uint     offset,
                                         uint     max_count,
                                         string[] filter) throws DBus.Error;
