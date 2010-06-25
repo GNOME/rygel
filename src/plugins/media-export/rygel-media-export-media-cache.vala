@@ -29,7 +29,7 @@ public errordomain Rygel.MediaDBError {
     SQLITE_ERROR,
     GENERAL_ERROR,
     INVALID_TYPE,
-    UNSUPPORTED
+    UNSUPPORTED_SEARCH
 }
 
 public enum Rygel.MediaDBObjectType {
@@ -781,7 +781,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             default:
                 var message = "Unsupported column %s".printf (operand);
 
-                throw new MediaDBError.UNSUPPORTED (message);
+                throw new MediaDBError.UNSUPPORTED_SEARCH (message);
         }
 
         return column;
