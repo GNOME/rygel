@@ -29,6 +29,7 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
     private File origin;
     private MediaContainer parent;
     private RecursiveFileMonitor monitor;
+    private Regex file_filter;
     public Cancellable cancellable;
     private const string HARVESTER_ATTRIBUTES =
                                         FILE_ATTRIBUTE_STANDARD_NAME + "," +
@@ -51,6 +52,25 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
         this.origin = null;
         this.monitor = monitor;
         this.cancellable = new Cancellable ();
+        var config = MetaConfig.get_default ();
+
+        try {
+            var extensions = config.get_string_list ("MediaExport",
+                                                     "include-filter");
+
+            // never trust user input
+            string[] escaped_extensions = new string[0];
+            foreach (var extension in extensions) {
+                escaped_extensions += Regex.escape_string (extension);
+            }
+
+            var list = string.joinv ("|", escaped_extensions);
+            file_filter = new Regex ("(%s)$".printf (list),
+                                     RegexCompileFlags.CASELESS |
+                                     RegexCompileFlags.OPTIMIZE);
+        } catch (Error error) {
+            file_filter = null;
+        }
     }
 
     private bool push_if_changed_or_unknown (File       file,
@@ -120,6 +140,13 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
                 }
             } else {
                 string id;
+
+                // Let's see if the file is wanted
+                if (file_filter != null &&
+                    !file_filter.match (file.get_uri ())) {
+                    continue;
+                }
+
                 push_if_changed_or_unknown (file, info, out id);
                 parent_container.seen (id);
             }
