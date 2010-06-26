@@ -60,9 +60,9 @@ public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
                             string content_type;
                             tag_list.get_string (MetadataExtractor.TAG_RYGEL_MIME,
                                                  out content_type);
-                            warning (_("File '%s' is of unknown format/type."),
+                            debug (_("File '%s' is of unknown format/type."),
                                     file.get_uri ());
-                            warning (_("Trying to guess from content type %s"),
+                            debug (_("Trying to guess from content type %s"),
                                     content_type);
                             if (content_type.has_prefix ("video/")) {
                                 class_guessed = Rygel.MediaItem.VIDEO_CLASS;
