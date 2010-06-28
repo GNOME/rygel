@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-06-07 14:26+0000\n"
-"PO-Revision-Date: 2010-06-16 06:25+0200\n"
+"POT-Creation-Date: 2010-06-16 04:25+0000\n"
+"PO-Revision-Date: 2010-06-28 04:38+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -217,7 +217,6 @@ msgstr "Planificando el archivo %s para la extracción de metadatos"
 #. message
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:210
 #, c-format
-#| msgid "Failed to read from URI: %s: %s"
 msgid "Failed to extract metadata from %s: %s"
 msgstr "Falló al extraer los metadatos de %s: %s"
 
@@ -285,7 +284,6 @@ msgstr "El archivo «%s» es de un tipo/formato desconocido."
 
 #: ../src/plugins/media-export/rygel-media-export-item.vala:65
 #, c-format
-#| msgid "Failed to query content type for '%s'"
 msgid "Trying to guess from content type %s"
 msgstr "Intentando averiguar el tipo de contenido de %s"
 
@@ -475,14 +473,15 @@ msgstr "Falló al examinar «%s»: %s\n"
 #: ../src/rygel/rygel-cmdline-config.vala:153
 #: ../src/rygel/rygel-cmdline-config.vala:161
 #: ../src/rygel/rygel-cmdline-config.vala:169
-#: ../src/rygel/rygel-cmdline-config.vala:181
-#: ../src/rygel/rygel-cmdline-config.vala:207
-#: ../src/rygel/rygel-cmdline-config.vala:226
-#: ../src/rygel/rygel-cmdline-config.vala:250
-#: ../src/rygel/rygel-cmdline-config.vala:276
-#: ../src/rygel/rygel-cmdline-config.vala:305
-#: ../src/rygel/rygel-cmdline-config.vala:331
-#: ../src/rygel/rygel-cmdline-config.vala:356
+#: ../src/rygel/rygel-cmdline-config.vala:177
+#: ../src/rygel/rygel-cmdline-config.vala:185
+#: ../src/rygel/rygel-cmdline-config.vala:211
+#: ../src/rygel/rygel-cmdline-config.vala:230
+#: ../src/rygel/rygel-cmdline-config.vala:254
+#: ../src/rygel/rygel-cmdline-config.vala:280
+#: ../src/rygel/rygel-cmdline-config.vala:309
+#: ../src/rygel/rygel-cmdline-config.vala:335
+#: ../src/rygel/rygel-cmdline-config.vala:360
 #: ../src/rygel/rygel-meta-config.vala:75
 #: ../src/rygel/rygel-meta-config.vala:94
 #: ../src/rygel/rygel-meta-config.vala:113
@@ -516,7 +515,7 @@ msgstr ""
 #: ../src/rygel/rygel-gst-utils.vala:38
 #, c-format
 msgid "Required element %s missing"
-msgstr ""
+msgstr "Falta el elemento requerido %s"
 
 #: ../src/rygel/rygel-http-byte-seek.vala:43
 #: ../src/rygel/rygel-http-byte-seek.vala:49
@@ -529,7 +528,7 @@ msgstr ""
 #: ../src/rygel/rygel-http-time-seek.vala:73
 #, c-format
 msgid "Invalid Range '%s'"
-msgstr ""
+msgstr "Rango «%s» no válido"
 
 #: ../src/rygel/rygel-http-get.vala:62
 msgid "Invalid Request"
@@ -538,7 +537,7 @@ msgstr "Petición no válida"
 #: ../src/rygel/rygel-http-get.vala:74
 #, c-format
 msgid "Failed to parse query: %s"
-msgstr ""
+msgstr "Falló al analizar la consulta: %s"
 
 #: ../src/rygel/rygel-http-get.vala:105
 msgid "Following HTTP headers appended to response:"
@@ -566,12 +565,12 @@ msgstr "No se encontró"
 #: ../src/rygel/rygel-http-post.vala:54
 #, c-format
 msgid "No writable URI for %s available"
-msgstr ""
+msgstr "No existe un URI escribible para %s"
 
 #: ../src/rygel/rygel-http-request.vala:88
 #, c-format
 msgid "Requested item '%s' not found"
-msgstr ""
+msgstr "No se encontró el elemento requerido «%s»"
 
 #: ../src/rygel/rygel-http-server.vala:178
 #, c-format
@@ -685,7 +684,7 @@ msgstr ""
 #: ../src/rygel/rygel-main.vala:150
 #, c-format
 msgid "Network context %s (%s) now unavailable."
-msgstr ""
+msgstr "Ahora el contexto de red %s (%s) no está disponible."
 
 #: ../src/rygel/rygel-main.vala:189
 #, c-format
@@ -695,7 +694,7 @@ msgstr ""
 #: ../src/rygel/rygel-main.vala:221
 #, c-format
 msgid "Failed to start D-Bus service: %s"
-msgstr ""
+msgstr "Falló al iniciar el servicio D-Bus: %s"
 
 #: ../src/rygel/rygel-media-item.vala:253
 #, c-format
@@ -780,7 +779,7 @@ msgstr "Falló al consultar el tipo de contenido para «%s»"
 #: ../src/rygel/rygel-root-device-factory.vala:191
 #, c-format
 msgid "XML node '%s' not found."
-msgstr ""
+msgstr "No se encontró el nodo XML «%s»."
 
 #: ../src/rygel/rygel-root-device-factory.vala:234
 #, c-format
@@ -804,7 +803,7 @@ msgstr "Ejecutando la consulta de búsqueda: %s"
 
 #: ../src/rygel/rygel-search.vala:129
 msgid "Specified container does not exist."
-msgstr ""
+msgstr "El contenedor especificado no existe."
 
 #: ../src/rygel/rygel-search.vala:153
 msgid "No object satisfies given search criteria."
@@ -825,7 +824,7 @@ msgstr "Falló al leer del URI: %s: %s"
 #: ../src/rygel/rygel-seekable-response.vala:81
 #, c-format
 msgid "Failed to seek to %s-%s on URI %s: %s"
-msgstr ""
+msgstr "Falló al buscar hasta %s-%s en el URI %s: %s"
 
 #: ../src/rygel/rygel-seekable-response.vala:100
 #, c-format
