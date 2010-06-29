@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-06-28 02:39+0000\n"
-"PO-Revision-Date: 2010-06-28 21:19+0200\n"
+"POT-Creation-Date: 2010-06-28 19:20+0000\n"
+"PO-Revision-Date: 2010-06-29 05:13+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -382,7 +382,7 @@ msgstr "«%s» recolectado"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:395
 msgid "No Metadata extractor available. Will not crawl"
-msgstr ""
+msgstr "No existe un extractor de metadatos disponible. No se arrastrará."
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:401
 msgid "Already harvesting; cancelling"
@@ -510,7 +510,7 @@ msgstr "No existe tal transferencia de archivo"
 
 #: ../src/rygel/rygel-didl-lite-writer.vala:48
 msgid "Unable to serialize unsupported object"
-msgstr ""
+msgstr "No se pudo serializar el objeto no soportado"
 
 #: ../src/rygel/rygel-gst-utils.vala:38
 #, c-format
@@ -689,7 +689,7 @@ msgstr "Ahora el contexto de red %s (%s) no está disponible."
 #: ../src/rygel/rygel-main.vala:190
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
-msgstr ""
+msgstr "Falló al crear el DispositivoRaís para %s. Razón: %s."
 
 #: ../src/rygel/rygel-main.vala:224
 #, c-format
@@ -730,37 +730,39 @@ msgstr "No existe un valor disponible para «%s/%s»"
 #: ../src/rygel/rygel-plugin-loader.vala:71
 #, c-format
 msgid "New plugin '%s' available"
-msgstr ""
+msgstr "Existe un nuevo complemento «%s» disponible"
 
 #: ../src/rygel/rygel-plugin-loader.vala:75
 #, c-format
 msgid "Plugin '%s' disabled in user configuration, ignoring.."
 msgstr ""
+"El complemento «%s» está desactivado en la configuración de usuario, "
+"ignorando…"
 
 #: ../src/rygel/rygel-plugin-loader.vala:89
 #, c-format
 msgid "Searching for modules in folder '%s' .."
-msgstr ""
+msgstr "Buscando módulos en la carpeta «%s»…"
 
 #: ../src/rygel/rygel-plugin-loader.vala:109
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
-msgstr ""
+msgstr "Error al listar el contenido de la carpeta «%s»: %s"
 
 #: ../src/rygel/rygel-plugin-loader.vala:134
 #, c-format
 msgid "Finished searching for modules in folder '%s'"
-msgstr ""
+msgstr "Finalizó la búsqueda de módulos en la carpeta «%s»"
 
 #: ../src/rygel/rygel-plugin-loader.vala:141
 #, c-format
 msgid "Failed to load module from path '%s' : %s"
-msgstr ""
+msgstr "Falló al cargar el módulo desde la ruta «%s»: %s"
 
 #: ../src/rygel/rygel-plugin-loader.vala:151
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
-msgstr ""
+msgstr "Falló al encontrar la función del punto de entrada «%s» en «%s»: %s"
 
 #: ../src/rygel/rygel-plugin-loader.vala:167
 #, c-format
