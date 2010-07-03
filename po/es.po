@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-06-29 03:22+0000\n"
-"PO-Revision-Date: 2010-07-01 21:23+0200\n"
+"POT-Creation-Date: 2010-07-01 19:24+0000\n"
+"PO-Revision-Date: 2010-07-03 12:47+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -177,7 +177,7 @@ msgstr "Tipo %s no soportado"
 #: ../src/plugins/media-export/rygel-media-export-database.vala:217
 #, c-format
 msgid "Failed to roll back transaction: %s"
-msgstr ""
+msgstr "Falló al deshacer la transacción: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:112
 msgid "Using playbin2"
@@ -315,7 +315,7 @@ msgstr "El ID virtual no permite una parte vacía"
 
 #: ../src/plugins/media-export/rygel-media-export-query-container.vala:60
 msgid "Placeholder can only be on second place"
-msgstr ""
+msgstr "El marcador de posición sólo puede ester en el segundo lugar"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:47
 #, c-format
@@ -541,7 +541,7 @@ msgstr "Falló al analizar la consulta: %s"
 
 #: ../src/rygel/rygel-http-get.vala:105
 msgid "Following HTTP headers appended to response:"
-msgstr ""
+msgstr "Las siguientes cabeceras HTTP añadieron una respuesta:"
 
 #: ../src/rygel/rygel-http-identity-handler.vala:97
 #: ../src/rygel/rygel-http-transcode-handler.vala:56
@@ -590,7 +590,7 @@ msgstr "El cliente HTTP abortó la solicitud %s para el URI «%s»."
 #: ../src/rygel/rygel-http-server.vala:224
 #, c-format
 msgid "HTTP POST request for URI '%s'"
-msgstr ""
+msgstr "Solicitud HTTP POST para el URI «%s»"
 
 #: ../src/rygel/rygel-import-resource.vala:108
 #, c-format
@@ -605,7 +605,7 @@ msgstr "Importación de «%s» en «%s» completada"
 #: ../src/rygel/rygel-item-creator.vala:67
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
-msgstr ""
+msgstr "No existen elementos en DIDL-Lite desde el cliente: «%s»"
 
 #: ../src/rygel/rygel-item-creator.vala:98
 msgid "'Elements' argument missing."
@@ -628,7 +628,7 @@ msgstr "Falló al crear un elemento bajo «%s»: %s"
 #: ../src/rygel/rygel-wmv-transcoder-bin.vala:107
 #, c-format
 msgid "Failed to link pad %s to %s"
-msgstr ""
+msgstr "Falló al enlazar el relleno de %s a %s"
 
 #. 'fakesink' should not be translated
 #: ../src/rygel/rygel-live-response.vala:92
@@ -654,12 +654,12 @@ msgstr "Advertencia de la tubería %s: %s"
 #: ../src/rygel/rygel-live-response.vala:262
 #, c-format
 msgid "Failed to seek to offset %lld"
-msgstr ""
+msgstr "Falló al buscar hasta el desplazamiento %lld"
 
 #: ../src/rygel/rygel-log-handler.vala:62
 #, c-format
 msgid "Failed to get log level from configuration: %s"
-msgstr ""
+msgstr "Falló al obtener el nivel de registro de la configuración: %s"
 
 #: ../src/rygel/rygel-main.vala:80
 #, c-format
@@ -674,7 +674,7 @@ msgstr "está disponible el nuevo contexto de red %s (%s)."
 #: ../src/rygel/rygel-main.vala:139
 #, c-format
 msgid "Failed to create root device factory: %s"
-msgstr ""
+msgstr "Falló al crear la fábrica del dispositivo raíz: %s"
 
 #: ../src/rygel/rygel-main.vala:143
 #, c-format
@@ -767,7 +767,7 @@ msgstr "Falló al encontrar la función del punto de entrada «%s» en «%s»: %
 #: ../src/rygel/rygel-plugin-loader.vala:167
 #, c-format
 msgid "Loaded module source: '%s'"
-msgstr ""
+msgstr "Módulo de origen cargado: «%s»"
 
 #: ../src/rygel/rygel-plugin-loader.vala:178
 #, c-format
