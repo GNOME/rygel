@@ -658,12 +658,18 @@ public class Rygel.MediaExport.MediaCache : Object {
                 break;
             case 1:
                 // this is an item
+                var upnp_class = statement.column_text (6);
                 object = factory.get_item (this,
                                            parent,
                                            object_id,
                                            statement.column_text (1),
-                                           statement.column_text (6));
+                                           upnp_class);
                 fill_item (statement, object as MediaItem);
+
+                if (upnp_class.has_prefix (MediaItem.AUDIO_CLASS)) {
+                    (object as MediaItem).lookup_album_art ();
+                }
+
                 var uri = statement.column_text (20);
                 if (uri != null) {
                     (object as MediaItem).add_uri (uri, null);

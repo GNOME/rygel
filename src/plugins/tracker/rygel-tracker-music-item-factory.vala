@@ -74,6 +74,8 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
         item.author = metadata[MusicMetadata.AUDIO_ARTIST];
         item.album = metadata[MusicMetadata.AUDIO_ALBUM];
 
+        item.lookup_album_art ();
+
         return item;
     }
 }
