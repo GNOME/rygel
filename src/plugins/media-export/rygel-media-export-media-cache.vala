@@ -649,9 +649,11 @@ public class Rygel.MediaExport.MediaCache : Object {
                                                 object_id,
                                                 statement.column_text (1),
                                                 0);
+
+                var container = object as MediaContainer;
                 var uri = statement.column_text (20);
                 if (uri != null) {
-                    object.uris.add (uri);
+                    container.set_uri (uri);
                 }
                 break;
             case 1:
