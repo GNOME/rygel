@@ -37,4 +37,12 @@ public class Rygel.TrackerQueryTriplets : ArrayList<TrackerQueryTriplet> {
             this.add (new TrackerQueryTriplet.clone (triplet));
         }
     }
+
+    // FIXME: Remove this method and override 'add' method from the base class
+    //        instead once bug#623685 is fixed.
+    public void add_triplet (TrackerQueryTriplet triplet) {
+        if (!this.contains (triplet)) {
+            this.add (triplet);
+        }
+    }
 }

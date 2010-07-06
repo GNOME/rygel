@@ -65,15 +65,16 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
             our_triplets = new TrackerQueryTriplets ();
         }
 
-        our_triplets.add (new TrackerQueryTriplet (ITEM_VARIABLE,
-                                                   "a",
-                                                   item_factory.category));
-        our_triplets.add (new TrackerQueryTriplet (ITEM_VARIABLE,
-                                                   MODIFIED_PREDICATE,
-                                                   MODIFIED_VARIABLE));
-        our_triplets.add (new TrackerQueryTriplet (ITEM_VARIABLE,
-                                                   URL_PREDICATE,
-                                                   URL_VARIABLE));
+        our_triplets.add_triplet (new TrackerQueryTriplet (
+                                        ITEM_VARIABLE,
+                                        "a",
+                                        item_factory.category));
+        our_triplets.add_triplet (new TrackerQueryTriplet (ITEM_VARIABLE,
+                                                           MODIFIED_PREDICATE,
+                                                           MODIFIED_VARIABLE));
+        our_triplets.add_triplet (new TrackerQueryTriplet (ITEM_VARIABLE,
+                                                           URL_PREDICATE,
+                                                           URL_VARIABLE));
 
         foreach (var chain in this.item_factory.key_chains) {
             var variable = ITEM_VARIABLE;
