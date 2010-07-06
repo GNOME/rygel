@@ -319,7 +319,8 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
      * param row the row whose tail needs to be chopped off.
      * param index index of the first element in the tail.
      *
-     * FIXME: Stop using it once vala supports array[N:M] syntax.
+     * FIXME: Stop using it once vala supports array slicing syntax for
+     *        multi-dimentional arrays.
      */
     private string[] slice_strvv_tail (string[,] strvv, uint row, uint index) {
         var slice = new string[strvv.length[1] - index];
