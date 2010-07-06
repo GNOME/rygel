@@ -38,28 +38,6 @@ public abstract class Rygel.TrackerQuery {
     // Deriving classes should override this method and complete it by
     // adding the first part of the query
     public virtual string to_string () {
-        return this.serialize_triplets (this.triplets);
-    }
-
-    private string serialize_triplets (TrackerQueryTriplets triplets) {
-        string str = "";
-        var include_subject = true;
-
-        for (int i = 0; i < triplets.size; i++) {
-            str += triplets[i].to_string (include_subject);
-
-            if (i < triplets.size - 1) {
-                include_subject = triplets[i].subject !=
-                                  triplets[i + 1].subject;
-
-                if (include_subject) {
-                    str += " . ";
-                } else {
-                    str += " ; ";
-                }
-            }
-        }
-
-        return str;
+        return this.triplets.serialize ();
     }
 }

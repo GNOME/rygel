@@ -38,6 +38,27 @@ public class Rygel.TrackerQueryTriplets : ArrayList<TrackerQueryTriplet> {
         }
     }
 
+    public string serialize () {
+        string str = "";
+        var include_subject = true;
+
+        for (int i = 0; i < this.size; i++) {
+            str += this[i].to_string (include_subject);
+
+            if (i < this.size - 1) {
+                include_subject = this[i].subject != this[i + 1].subject;
+
+                if (include_subject) {
+                    str += " . ";
+                } else {
+                    str += " ; ";
+                }
+            }
+        }
+
+        return str;
+    }
+
     // FIXME: Remove this method and override 'add' method from the base class
     //        instead once bug#623685 is fixed.
     public void add_triplet (TrackerQueryTriplet triplet) {
