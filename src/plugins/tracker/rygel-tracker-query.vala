@@ -43,16 +43,18 @@ public abstract class Rygel.TrackerQuery {
 
     private string serialize_triplets (TrackerQueryTriplets triplets) {
         string str = "";
+        var include_subject = true;
 
         for (int i = 0; i < triplets.size; i++) {
-            str += triplets[i].to_string ();
+            str += triplets[i].to_string (include_subject);
 
             if (i < triplets.size - 1) {
-                if (triplets[i + 1].subject != null) {
+                include_subject = triplets[i].subject !=
+                                  triplets[i + 1].subject;
+
+                if (include_subject) {
                     str += " . ";
                 } else {
-                    // This implies that next triplet shares the subject with
-                    // this one so we need to end this one with a semi-colon.
                     str += " ; ";
                 }
             }

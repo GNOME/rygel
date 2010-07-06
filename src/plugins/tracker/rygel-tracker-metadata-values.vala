@@ -97,7 +97,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
 
             string subject;
             if (i == 0) {
-                subject = null;
+                subject = ITEM_VARIABLE;
             } else {
                 subject = variables[i - 1];
             }

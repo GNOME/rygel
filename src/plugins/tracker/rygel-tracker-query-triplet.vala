@@ -32,15 +32,15 @@ public class Rygel.TrackerQueryTriplet {
 
     public TrackerQueryTriplet next;
 
-    public TrackerQueryTriplet (string? subject,
-                                string  predicate,
-                                string  obj) {
+    public TrackerQueryTriplet (string subject,
+                                string predicate,
+                                string obj) {
         this.subject = subject;
         this.predicate = predicate;
         this.obj = obj;
     }
 
-    public TrackerQueryTriplet.chain (string?             subject,
+    public TrackerQueryTriplet.chain (string              subject,
                                       string              predicate,
                                       TrackerQueryTriplet next) {
         this.subject = subject;
@@ -75,10 +75,10 @@ public class Rygel.TrackerQueryTriplet {
                chain_equal;
     }
 
-    public string to_string () {
+    public string to_string (bool include_subject = true) {
         string str = "";
 
-        if (this.subject != null) {
+        if (include_subject) {
             str += " " + subject;
         }
 
