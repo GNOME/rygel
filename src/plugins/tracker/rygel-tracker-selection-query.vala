@@ -111,7 +111,7 @@ public class Rygel.TrackerSelectionQuery : Rygel.TrackerQuery {
         return query;
     }
 
-     private static ArrayList<string> copy_str_list (Gee.List<string> str_list) {
+    private static ArrayList<string> copy_str_list (Gee.List<string> str_list) {
         var copy = new ArrayList<string> ();
 
         copy.add_all (str_list);
