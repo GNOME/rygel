@@ -48,7 +48,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
                                    MediaContainer        parent,
                                    string                title,
                                    TrackerItemFactory    item_factory,
-                                   TrackerQueryTriplets? mandatory = null,
+                                   TrackerQueryTriplets? triplets = null,
                                    ArrayList<string>?    filters = null) {
         base (id, parent, title, 0);
 
@@ -58,45 +58,35 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         variables.add (ITEM_VARIABLE);
         variables.add (URL_VARIABLE);
 
-        TrackerQueryTriplets our_mandatory;
-        if (mandatory != null) {
-            our_mandatory = mandatory;
+        TrackerQueryTriplets our_triplets;
+        if (triplets != null) {
+            our_triplets = triplets;
         } else {
-            our_mandatory = new TrackerQueryTriplets ();
+            our_triplets = new TrackerQueryTriplets ();
         }
 
-        our_mandatory.add (new TrackerQueryTriplet (ITEM_VARIABLE,
-                                                    "a",
-                                                    item_factory.category,
-                                                    false));
-        our_mandatory.add (new TrackerQueryTriplet (ITEM_VARIABLE,
-                                                    MODIFIED_PREDICATE,
-                                                    MODIFIED_VARIABLE,
-                                                    false));
-        our_mandatory.add (new TrackerQueryTriplet (ITEM_VARIABLE,
-                                                    URL_PREDICATE,
-                                                    URL_VARIABLE,
-                                                    false));
+        our_triplets.add (new TrackerQueryTriplet (ITEM_VARIABLE,
+                                                   "a",
+                                                   item_factory.category));
+        our_triplets.add (new TrackerQueryTriplet (ITEM_VARIABLE,
+                                                   MODIFIED_PREDICATE,
+                                                   MODIFIED_VARIABLE));
+        our_triplets.add (new TrackerQueryTriplet (ITEM_VARIABLE,
+                                                   URL_PREDICATE,
+                                                   URL_VARIABLE));
 
-        var optional = new TrackerQueryTriplets ();
         foreach (var chain in this.item_factory.key_chains) {
-            var key = chain.last ();
-            var variable = "?" + key.replace (":", "_");
+            var variable = ITEM_VARIABLE;
+
+            foreach (var key in chain) {
+                variable = key + "(" + variable + ")";
+            }
 
             variables.add (variable);
-
-            var triplet = this.triplet_from_chain (chain,
-                                                   variable,
-                                                   ITEM_VARIABLE);
-
-            if (!our_mandatory.contains (triplet)) {
-                optional.add (triplet);
-            }
         }
 
         this.query = new TrackerSelectionQuery (variables,
-                                                our_mandatory,
-                                                optional,
+                                                our_triplets,
                                                 filters,
                                                 MODIFIED_VARIABLE);
 
@@ -168,38 +158,12 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         return this.id + ":" + urn;
     }
 
-    private TrackerQueryTriplet triplet_from_chain (
-                                        Gee.List<string> chain,
-                                        string?          variable = null,
-                                        string?          subject = null) {
-        var key = chain.first ();
-
-        TrackerQueryTriplet triplet;
-
-        if (chain.size == 1) {
-            triplet = new TrackerQueryTriplet (subject,
-                                               key,
-                                               variable,
-                                               subject != null);
-        } else {
-            var child_chain = chain.slice (chain.index_of (key) + 1,
-                                           chain.size);
-
-            var child = this.triplet_from_chain (child_chain, variable);
-
-            triplet = new TrackerQueryTriplet.chain (subject, key, child);
-        }
-
-        return triplet;
-    }
-
     private async void get_children_count () {
         try {
             var query = new TrackerSelectionQuery.clone (this.query);
 
             query.variables = new ArrayList<string> ();
             query.variables.add ("COUNT(" + ITEM_VARIABLE + ") AS x");
-            query.optional = new TrackerQueryTriplets ();
 
             yield query.execute (this.resources);
 

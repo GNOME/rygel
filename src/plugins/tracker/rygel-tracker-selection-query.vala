@@ -36,13 +36,12 @@ public class Rygel.TrackerSelectionQuery : Rygel.TrackerQuery {
     public string[,] result;
 
     public TrackerSelectionQuery (ArrayList<string>     variables,
-                                  TrackerQueryTriplets  mandatory,
-                                  TrackerQueryTriplets? optional,
+                                  TrackerQueryTriplets  triplets,
                                   ArrayList<string>?    filters,
                                   string?               order_by = null,
                                   int                   offset = 0,
                                   int                   max_count = -1) {
-        base (mandatory, optional);
+        base (triplets);
 
         if (filters != null) {
             this.filters = filters;
@@ -58,8 +57,7 @@ public class Rygel.TrackerSelectionQuery : Rygel.TrackerQuery {
 
     public TrackerSelectionQuery.clone (TrackerSelectionQuery query) {
         this (copy_str_list (query.variables),
-              new TrackerQueryTriplets.clone (query.mandatory),
-              new TrackerQueryTriplets.clone (query.optional),
+              new TrackerQueryTriplets.clone (query.triplets),
               copy_str_list (query.filters),
               query.order_by,
               query.offset,

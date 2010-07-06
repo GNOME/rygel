@@ -35,32 +35,27 @@ public class Rygel.TrackerInsertionQuery : Rygel.TrackerQuery {
         var triplets = new TrackerQueryTriplets ();
         triplets.add (new TrackerQueryTriplet (QUERY_ID,
                                                "a",
-                                               category,
-                                               false));
+                                               category));
         triplets.add (new TrackerQueryTriplet (QUERY_ID,
                                                "a",
-                                               "nie:DataObject",
-                                               false));
+                                               "nie:DataObject"));
         triplets.add (new TrackerQueryTriplet (QUERY_ID,
                                                "a",
-                                               "nfo:FileDataObject",
-                                               false));
+                                               "nfo:FileDataObject"));
         triplets.add (new TrackerQueryTriplet (QUERY_ID,
                                                "nie:mimeType",
-                                               "\"" + item.mime_type + "\"",
-                                               false));
+                                               "\"" + item.mime_type + "\""));
         triplets.add (new TrackerQueryTriplet (QUERY_ID,
                                                "nie:url",
-                                               "\"" + item.uris[0] + "\"",
-                                               false));
+                                               "\"" + item.uris[0] + "\""));
 
         var now = TimeVal ();
-        triplets.add (new TrackerQueryTriplet (QUERY_ID,
-                                               "nfo:fileLastModified",
-                                               "\"" + now.to_iso8601 () + "\"",
-                                               false));
+        triplets.add (new TrackerQueryTriplet (
+                                        QUERY_ID,
+                                        "nfo:fileLastModified",
+                                        "\"" + now.to_iso8601 () + "\""));
 
-        base (triplets, null);
+        base (triplets);
     }
 
     public override async void execute (TrackerResourcesIface resources)

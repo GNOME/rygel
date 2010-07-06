@@ -26,18 +26,10 @@ using Gee;
  * Represents Tracker SPARQL query
  */
 public abstract class Rygel.TrackerQuery {
-    public TrackerQueryTriplets mandatory;
-    public TrackerQueryTriplets optional;
+    public TrackerQueryTriplets triplets;
 
-    public TrackerQuery (TrackerQueryTriplets  mandatory,
-                         TrackerQueryTriplets? optional) {
-        this.mandatory = mandatory;
-
-        if (optional != null) {
-            this.optional = optional;
-        } else {
-            this.optional = new TrackerQueryTriplets ();
-        }
+    public TrackerQuery (TrackerQueryTriplets triplets) {
+        this.triplets = triplets;
     }
 
     public abstract async void execute (TrackerResourcesIface resources)
@@ -46,9 +38,7 @@ public abstract class Rygel.TrackerQuery {
     // Deriving classes should override this method and complete it by
     // adding the first part of the query
     public virtual string to_string () {
-        return this.serialize_triplets (this.mandatory) +
-               " . " +
-               this.serialize_triplets (this.optional);
+        return this.serialize_triplets (this.triplets);
     }
 
     private string serialize_triplets (TrackerQueryTriplets triplets) {

@@ -87,7 +87,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         this.clear ();
 
         int i;
-        var mandatory = new TrackerQueryTriplets ();
+        var triplets = new TrackerQueryTriplets ();
 
         // All variables used in the query
         var num_keys = this.key_chain.length - 1;
@@ -102,17 +102,15 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
                 subject = variables[i - 1];
             }
 
-            mandatory.add (new TrackerQueryTriplet (subject,
-                                                    this.key_chain[i],
-                                                    variables[i],
-                                                    false));
+            triplets.add (new TrackerQueryTriplet (subject,
+                                                   this.key_chain[i],
+                                                   variables[i]));
         }
 
-        mandatory.insert (0, new TrackerQueryTriplet (
+        triplets.insert (0, new TrackerQueryTriplet (
                                         ITEM_VARIABLE,
                                         "a",
-                                        this.item_factory.category,
-                                        false));
+                                        this.item_factory.category));
 
         // Variables to select from query
         var selected = new ArrayList<string> ();
@@ -121,8 +119,7 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
         selected.add ("DISTINCT " + last_variable);
 
         var query = new TrackerSelectionQuery (selected,
-                                               mandatory,
-                                               null,
+                                               triplets,
                                                null,
                                                last_variable);
 
@@ -151,20 +148,20 @@ public class Rygel.TrackerMetadataValues : Rygel.SimpleContainer {
 
             var title = this.title_func (value);
 
-            // The child container can use the same mandatory triplets we used
-            // in our query.
-            var child_mandatory = new TrackerQueryTriplets.clone (mandatory);
+            // The child container can use the same triplets we used in our
+            // query.
+            var child_triplets = new TrackerQueryTriplets.clone (triplets);
 
-            // However we constrain the object of our last mandatory triplet.
+            // However we constrain the object of our last triplet.
             var filters = new ArrayList<string> ();
-            var filter = this.filter_func (child_mandatory.last ().obj, value);
+            var filter = this.filter_func (child_triplets.last ().obj, value);
             filters.add (filter);
 
             var container = new TrackerSearchContainer (id,
                                                         this,
                                                         title,
                                                         this.item_factory,
-                                                        child_mandatory,
+                                                        child_triplets,
                                                         filters);
 
             this.add_child (container);
