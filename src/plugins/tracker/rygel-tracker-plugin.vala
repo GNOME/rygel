@@ -32,7 +32,7 @@ public class Rygel.TrackerPlugin : Rygel.Plugin {
                            // @REALNAME@ is substituted for user's real name
                            // and it doesn't need translation.
                           _("@REALNAME@'s media"),
-                          typeof (MediaTracker));
+                          typeof (TrackerContentDirectory));
 
         var icon_info = new IconInfo ("image/png");
 

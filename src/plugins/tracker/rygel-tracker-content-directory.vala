@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
- * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2008,2010 Nokia Corporation.
  *
  * Author: Zeeshan Ali <zeenix@gmail.com>
  *
@@ -28,7 +28,7 @@ using Gee;
 /**
  * Implementation of Tracker-based ContentDirectory service.
  */
-public class Rygel.MediaTracker : Rygel.ContentDirectory {
+public class Rygel.TrackerContentDirectory : Rygel.ContentDirectory {
     /* Pubic methods */
     public override MediaContainer? create_root_container () {
         string friendly_name = this.root_device.get_friendly_name ();

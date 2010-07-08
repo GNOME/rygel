@@ -12,7 +12,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -include config.h
 
 librygel_media_tracker_la_SOURCES = \
-				    rygel-media-tracker.vala \
+				    rygel-tracker-content-directory.vala \
 				    rygel-tracker-root-container.vala \
 				    rygel-tracker-category-container.vala \
 				    rygel-tracker-music.vala \
