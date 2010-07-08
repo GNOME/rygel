@@ -31,6 +31,7 @@ check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-http-byte-seek-test \
 		 rygel-http-time-seek-test \
 		 rygel-http-get-test \
+		 rygel-album-art-spec-test \
 		 rygel-http-post-test
 
 TESTS = $(check_PROGRAMS)
@@ -75,3 +76,9 @@ rygel_http_post_test_SOURCES = rygel-http-post-test.vala \
 			       rygel-http-request_http-post.vala \
 			       rygel-http-item-uri_http-post.vala \
 			       rygel-state-machine_http-post.vala
+
+rygel_album_art_spec_test_SOURCES = rygel-album-art-spec-test.vala \
+			       rygel-media-art-store.vala \
+				   ../src/rygel/rygel-thumbnail.vala \
+				   ../src/rygel/rygel-icon-info.vala \
+				   ../src/rygel/rygel-album-art.vala
