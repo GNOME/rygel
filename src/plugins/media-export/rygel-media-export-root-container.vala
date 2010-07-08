@@ -126,28 +126,6 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
     }
 
     /**
-     * Check if the passed search expression is a simple find_object
-     * operation.
-     * (@id = id)
-     *
-     * @param search_expression expression to test
-     * @param id containts id of container on successful return
-     * @return true if expression was a find object
-     */
-    private bool is_find_object (SearchExpression search_expression,
-                                 out string       id) {
-        if (!(search_expression is RelationalExpression)) {
-            return false;
-        }
-
-        var expression = search_expression as RelationalExpression;
-        id = expression.operand2;
-
-        return (expression.operand1 == "@id" &&
-                expression.op == SearchCriteriaOp.EQ);
-    }
-
-    /**
      * Check if a passed search expression is a simple search in a virtual
      * container.
      *
@@ -212,6 +190,19 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         return true;
     }
 
+    public override async MediaObject? find_object (string       id,
+                                                    Cancellable? cancellable)
+                                                    throws Error {
+        if (id.has_prefix (QueryContainer.PREFIX)) {
+            var container = new QueryContainer (this.media_db, id);
+            container.parent = this;
+
+            return container;
+        } else {
+            return yield base.find_object (id, cancellable);
+        }
+    }
+
     public override async Gee.List<MediaObject>? search (
                                         SearchExpression expression,
                                         uint             offset,
@@ -221,20 +212,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                                         throws GLib.Error {
         Gee.List<MediaObject> list;
         MediaContainer query_container = null;
-        string id;
         string upnp_class = null;
-
-        if (is_find_object (expression, out id) &&
-            id.has_prefix (QueryContainer.PREFIX)) {
-            query_container = new QueryContainer (this.media_db, id);
-            query_container.parent = this;
-
-            list = new ArrayList<MediaObject> ();
-            list.add (query_container);
-            total_matches = list.size;
-
-            return list;
-        }
 
         if (expression is RelationalExpression) {
             var relational_expression = expression as RelationalExpression;

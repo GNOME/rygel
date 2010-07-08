@@ -100,4 +100,10 @@ public class Rygel.MediaExport.DBContainer : MediaContainer {
 
         return children;
     }
+
+    public override async MediaObject? find_object (string       id,
+                                                    Cancellable? cancellable)
+                                                    throws Error {
+        return this.media_db.get_object (id);
+    }
 }
