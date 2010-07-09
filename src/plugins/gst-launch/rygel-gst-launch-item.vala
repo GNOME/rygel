@@ -28,14 +28,14 @@ using Gst;
 /**
  * Represents Test audio item.
  */
-public class Rygel.GstLaunchItem : Rygel.MediaItem {
+public class Rygel.GstLaunch.Item : Rygel.MediaItem {
     string launch_line;
 
-    public GstLaunchItem (string         id,
-                          MediaContainer parent,
-                          string         title,
-                          string         mime_type,
-                          string         launch_line) {
+    public Item (string         id,
+                 MediaContainer parent,
+                 string         title,
+                 string         mime_type,
+                 string         launch_line) {
         base (id,
               parent,
               title,

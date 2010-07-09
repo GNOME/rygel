@@ -28,13 +28,13 @@ using Gst;
 /**
  * Represents the root container for GstLaunch content hierarchy.
  */
-public class Rygel.GstLaunchRootContainer : SimpleContainer {
+public class Rygel.GstLaunch.RootContainer : SimpleContainer {
     const string CONFIG_GROUP = "GstLaunch";
     const string ITEM_NAMES = "launch_items";
 
     MetaConfig config;
 
-    public GstLaunchRootContainer (string title) {
+    public RootContainer (string title) {
         base.root (title);
 
         try {
@@ -58,11 +58,11 @@ public class Rygel.GstLaunchRootContainer : SimpleContainer {
             var launch_line = config.get_string (CONFIG_GROUP,
                                                  "%s_launch".printf (name));
 
-            this.add_child (new GstLaunchItem (name,
-                                               this,
-                                               title,
-                                               mime_type,
-                                               launch_line));
+            this.add_child (new Item (name,
+                                      this,
+                                      title,
+                                      mime_type,
+                                      launch_line));
         } catch (GLib.Error err) {
             debug ("GstLaunch failed item '%s': %s", name, err.message);
         }

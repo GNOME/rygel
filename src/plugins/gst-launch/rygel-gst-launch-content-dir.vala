@@ -24,11 +24,11 @@ using Rygel;
 using GUPnP;
 using Gee;
 
-public class Rygel.GstLaunchContentDir : ContentDirectory {
+public class Rygel.GstLaunch.ContentDir : ContentDirectory {
     /* Pubic methods */
     public override MediaContainer? create_root_container () {
         string friendly_name = this.root_device.get_friendly_name ();
-        return new GstLaunchRootContainer (friendly_name);
+        return new RootContainer (friendly_name);
     }
 }
 

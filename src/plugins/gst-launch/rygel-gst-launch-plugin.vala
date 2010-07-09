@@ -26,7 +26,7 @@ using Gee;
 public void module_init (PluginLoader loader) {
     var plugin = new Plugin.MediaServer ("GstLaunch",
                                          "Gst Launch",
-                                         typeof (GstLaunchContentDir));
+                                         typeof (GstLaunch.ContentDir));
     loader.add_plugin (plugin);
 }
 
