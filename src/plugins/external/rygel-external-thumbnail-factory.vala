@@ -39,7 +39,7 @@ public class Rygel.ExternalThumbnailFactory {
                                            object_path)
                                            as Properties;
 
-        var item_props = yield props.get_all (ExternalMediaItem.IFACE);
+        var item_props = yield props.get_all (ExternalMediaItemProxy.IFACE);
 
         var thumbnail = new Thumbnail ();
 

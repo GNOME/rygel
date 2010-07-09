@@ -31,7 +31,7 @@ using FreeDesktop;
  * Represents an external container.
  */
 public class Rygel.ExternalContainer : Rygel.MediaContainer {
-    public ExternalMediaContainer actual_container;
+    public ExternalMediaContainerProxy actual_container;
 
     public string host_ip;
     public string service_name;
@@ -65,7 +65,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         // Create proxy to MediaContainer iface
         this.actual_container = this.connection.get_object (this.service_name,
                                                             id)
-                                as ExternalMediaContainer;
+                                as ExternalMediaContainerProxy;
 
         this.update_container.begin (true);
     }
@@ -77,11 +77,11 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
                                         throws GLib.Error {
         string[] filter = {};
 
-        foreach (var object_prop in ExternalMediaObject.PROPERTIES) {
+        foreach (var object_prop in ExternalMediaObjectProxy.PROPERTIES) {
             filter += object_prop;
         }
 
-        foreach (var item_prop in ExternalMediaItem.PROPERTIES) {
+        foreach (var item_prop in ExternalMediaItemProxy.PROPERTIES) {
             filter += item_prop;
         }
 
@@ -110,15 +110,15 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         }
 
         string[] filter = {};
-        foreach (var object_prop in ExternalMediaObject.PROPERTIES) {
+        foreach (var object_prop in ExternalMediaObjectProxy.PROPERTIES) {
             filter += object_prop;
         }
 
-        foreach (var container_prop in ExternalMediaContainer.PROPERTIES) {
+        foreach (var container_prop in ExternalMediaContainerProxy.PROPERTIES) {
             filter += container_prop;
         }
 
-        foreach (var item_prop in ExternalMediaItem.PROPERTIES) {
+        foreach (var item_prop in ExternalMediaItemProxy.PROPERTIES) {
             filter += item_prop;
         }
 
@@ -140,7 +140,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
 
         // Create proxy to MediaObject iface
         var actual_object = this.connection.get_object (this.service_name, id)
-                            as ExternalMediaObject;
+                            as ExternalMediaObjectProxy;
 
         if (actual_object.object_type == "container") {
             media_object = this.find_container_by_id (id);
@@ -166,7 +166,8 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
             var props_iface = this.connection.get_object (this.service_name, id)
                               as Properties;
 
-            var props = yield props_iface.get_all (ExternalMediaItem.IFACE);
+            var props = yield props_iface.get_all (
+                                        ExternalMediaItemProxy.IFACE);
 
             // Its an item then
             media_object = yield this.item_factory.create (
@@ -242,11 +243,11 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
     private async void refresh_child_containers () throws GLib.Error {
         string[] filter = {};
 
-        foreach (var object_prop in ExternalMediaObject.PROPERTIES) {
+        foreach (var object_prop in ExternalMediaObjectProxy.PROPERTIES) {
             filter += object_prop;
         }
 
-        foreach (var container_prop in ExternalMediaContainer.PROPERTIES) {
+        foreach (var container_prop in ExternalMediaContainerProxy.PROPERTIES) {
             filter += container_prop;
         }
 
@@ -291,7 +292,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         }
     }
 
-    private void on_updated (ExternalMediaContainer actual_container) {
+    private void on_updated (ExternalMediaContainerProxy actual_container) {
         this.update_container.begin ();
     }
 

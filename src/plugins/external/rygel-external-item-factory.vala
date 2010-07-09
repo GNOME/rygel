@@ -59,7 +59,7 @@ public class Rygel.ExternalItemFactory {
         // value = props.lookup ("URLs");
         var connection = DBus.Bus.get (DBus.BusType.SESSION);
         var item_iface = connection.get_object (service_name, id)
-                         as ExternalMediaItem;
+                         as ExternalMediaItemProxy;
         string[] uris = item_iface.urls;
 
         for (var i = 0; uris[i] != null; i++) {
