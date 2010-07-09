@@ -25,7 +25,7 @@ using Gee;
 using Soup;
 using Xml;
 
-public errordomain Rygel.MediathekAsxPlaylistError {
+public errordomain Rygel.Mediathek.AsxPlaylistError {
     XML_ERROR,
     NETWORK_ERROR
 }
@@ -39,11 +39,11 @@ public errordomain Rygel.MediathekAsxPlaylistError {
  * This parser is //only// intended to work with the simple 
  * ASX files presented by the ZDF Mediathek streaming server
  */
-public class Rygel.MediathekAsxPlaylist : Object {
+public class Rygel.Mediathek.AsxPlaylist : Object {
     public ArrayList<string> uris;
     private string uri;
 
-    public MediathekAsxPlaylist (string uri) {
+    public AsxPlaylist (string uri) {
         this.uris = new ArrayList<string> ();
         this.uri = uri;
     }
@@ -58,7 +58,7 @@ public class Rygel.MediathekAsxPlaylist : Object {
      * to extract all of the href attributes for every entry
      * in the file
      */
-    public void parse() throws MediathekAsxPlaylistError {
+    public void parse() throws AsxPlaylistError {
         // FIXME make async using global soup session
         var session = new Soup.SessionSync ();
         var message = new Soup.Message ("GET",
@@ -89,15 +89,14 @@ public class Rygel.MediathekAsxPlaylist : Object {
                     }
                 }
                 else {
-                    throw new 
-                        MediathekAsxPlaylistError.XML_ERROR (
-                                                  "Could not fetch XML");
+                    throw new AsxPlaylistError.XML_ERROR (
+                                        "Could not fetch XML");
                 }
             }
             catch (RegexError error) { }
         }
         else {
-            throw new MediathekAsxPlaylistError.NETWORK_ERROR (
+            throw new AsxPlaylistError.NETWORK_ERROR (
                                         "Playlist download failed: %u (%s)",
                                         message.status_code,
                                         Soup.status_get_phrase (

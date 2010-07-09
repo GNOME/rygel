@@ -23,28 +23,28 @@
 using Gee;
 using Soup;
 
-public class Rygel.MediathekRootContainer : Rygel.SimpleContainer {
+public class Rygel.Mediathek.RootContainer : Rygel.SimpleContainer {
     internal SessionAsync session;
-    private static MediathekRootContainer instance;
+    private static RootContainer instance;
 
     private bool on_schedule_update () {
         message("Scheduling update for all feeds....");
         foreach (var container in this.children) {
-            ((MediathekRssContainer) container).update ();
+            ((RssContainer) container).update ();
         }
 
         return true;
     }
 
-    public static MediathekRootContainer get_instance () {
-        if (MediathekRootContainer.instance == null) {
-            MediathekRootContainer.instance = new MediathekRootContainer ();
+    public static RootContainer get_instance () {
+        if (RootContainer.instance == null) {
+            RootContainer.instance = new RootContainer ();
         }
 
         return instance;
     }
 
-    private MediathekRootContainer () {
+    private RootContainer () {
         base.root ("ZDF Mediathek");
         this.session = new Soup.SessionAsync ();
         Gee.ArrayList<int> feeds = null;
@@ -62,7 +62,7 @@ public class Rygel.MediathekRootContainer : Rygel.SimpleContainer {
         }
 
         foreach (int id in feeds) {
-            this.add_child (new MediathekRssContainer (this, id));
+            this.add_child (new RssContainer (this, id));
         }
 
         GLib.Timeout.add_seconds (1800, on_schedule_update);

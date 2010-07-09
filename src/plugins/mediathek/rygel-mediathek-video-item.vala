@@ -23,12 +23,12 @@
 using GLib;
 using Xml;
 
-public errordomain Rygel.MediathekVideoItemError {
+public errordomain Rygel.Mediathek.VideoItemError {
     XML_PARSE_ERROR
 }
 
-public class Rygel.MediathekVideoItem : Rygel.MediaItem {
-    private MediathekVideoItem (MediaContainer parent, string title) {
+public class Rygel.Mediathek.VideoItem : Rygel.MediaItem {
+    private VideoItem (MediaContainer parent, string title) {
         base(Checksum.compute_for_string (ChecksumType.MD5, title), 
              parent, 
              title, 
@@ -42,43 +42,41 @@ public class Rygel.MediathekVideoItem : Rygel.MediaItem {
         return node->ns != null && node->ns->prefix == "media";
     }
 
-    public static MediathekAsxPlaylist? handle_content (
-                                            Xml.Node *group)
-                                            throws MediathekVideoItemError {
-        MediathekAsxPlaylist asx = null;
+    public static AsxPlaylist? handle_content (Xml.Node *group)
+                                               throws VideoItemError {
+        AsxPlaylist asx = null;
         if (namespace_ok (group)) {
             Xml.Attr* attr = group->has_prop ("url");
             if (attr != null) {
                 var url = attr->children->content;
                 if (url.has_suffix (".asx")) {
                     try {
-                        asx = new MediathekAsxPlaylist (url);
+                        asx = new AsxPlaylist (url);
                         asx.parse ();
-                    } catch (MediathekAsxPlaylistError error) {
+                    } catch (AsxPlaylistError error) {
                         asx = null;
                     }
                 }
             }
             else {
-                throw new MediathekVideoItemError.XML_PARSE_ERROR (
+                throw new VideoItemError.XML_PARSE_ERROR (
                                         "group node has no 'url' property");
             }
         }
         else {
-            throw new MediathekVideoItemError.XML_PARSE_ERROR (
+            throw new VideoItemError.XML_PARSE_ERROR (
                                         "invalid or no namespace");
         }
 
         return asx;
     }
 
-    public static MediathekVideoItem create_from_xml(
-                                               MediaContainer parent, 
-                                               Xml.Node *item) 
-                                               throws MediathekVideoItemError {
+    public static VideoItem create_from_xml (MediaContainer parent,
+                                             Xml.Node      *item)
+                                             throws VideoItemError {
         string title = null;
-        MediathekVideoItem video_item = null;
-        MediathekAsxPlaylist asx = null;
+        VideoItem video_item = null;
+        AsxPlaylist asx = null;
 
         for (Xml.Node* item_child = item->children; 
              item_child != null; 
@@ -101,7 +99,7 @@ public class Rygel.MediathekVideoItem : Rygel.MediaItem {
                     else {
                         var msg = "Invalid or no namespace on group node";
 
-                        throw new MediathekVideoItemError.XML_PARSE_ERROR (msg);
+                        throw new VideoItemError.XML_PARSE_ERROR (msg);
                     }
                     break;
                 default:
@@ -110,17 +108,17 @@ public class Rygel.MediathekVideoItem : Rygel.MediaItem {
 
         }
         if (title == null) {
-            throw new MediathekVideoItemError.XML_PARSE_ERROR (
+            throw new VideoItemError.XML_PARSE_ERROR (
                                         "Could not find title");
         }
 
 
         if (asx == null) {
-            throw new MediathekVideoItemError.XML_PARSE_ERROR (
+            throw new VideoItemError.XML_PARSE_ERROR (
                                         "Could not find URIs");
         }
 
-        video_item = new MediathekVideoItem (parent, title);
+        video_item = new VideoItem (parent, title);
         foreach (string uri in asx.uris) {
             video_item.add_uri (uri, null);
         }

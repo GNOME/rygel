@@ -24,7 +24,7 @@ using Gee;
 using Soup;
 using Xml;
 
-public class Rygel.MediathekRssContainer : Rygel.SimpleContainer {
+public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
     private uint zdf_content_id;
     private Soup.Date last_modified = null;
 
@@ -69,13 +69,11 @@ public class Rygel.MediathekRssContainer : Rygel.SimpleContainer {
                 for (int i = 0; i < xpo->nodesetval->length (); i++) {
                     Xml.Node* node = xpo->nodesetval->item (i);
                     try {
-                        var item = 
-                                MediathekVideoItem.create_from_xml (this, 
-                                                                    node);
+                        var item = VideoItem.create_from_xml (this, node);
                         this.add_child (item);
                         ret = true;
                     }
-                    catch (MediathekVideoItemError error) {
+                    catch (VideoItemError error) {
                         warning ("Error creating video item: %s",
                                  error.message);
                     }
@@ -106,12 +104,11 @@ public class Rygel.MediathekRssContainer : Rygel.SimpleContainer {
                    last_modified.to_string(DateFormat.HTTP));
         }
 
-        ((MediathekRootContainer) this.parent).session.queue_message (
-                                                                  message, 
-                                                                  on_feed_got);
+        ((RootContainer) this.parent).session.queue_message (message,
+                                                             on_feed_got);
     }
 
-    public MediathekRssContainer (MediaContainer parent, uint id) {
+    public RssContainer (MediaContainer parent, uint id) {
         base ("GroupId:%u".printf(id),
              parent, 
              "ZDF Mediathek RSS feed %u".printf (id));
