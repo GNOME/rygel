@@ -25,14 +25,14 @@ using Gee;
 /**
  * Represents Tracker SPARQL query
  */
-public abstract class Rygel.TrackerQuery {
-    public TrackerQueryTriplets triplets;
+public abstract class Rygel.Tracker.Query {
+    public QueryTriplets triplets;
 
-    public TrackerQuery (TrackerQueryTriplets triplets) {
+    public Query (QueryTriplets triplets) {
         this.triplets = triplets;
     }
 
-    public abstract async void execute (TrackerResourcesIface resources)
+    public abstract async void execute (ResourcesIface resources)
                                         throws DBus.Error;
 
     // Deriving classes should override this method and complete it by

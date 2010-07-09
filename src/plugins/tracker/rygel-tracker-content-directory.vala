@@ -28,11 +28,11 @@ using Gee;
 /**
  * Implementation of Tracker-based ContentDirectory service.
  */
-public class Rygel.TrackerContentDirectory : Rygel.ContentDirectory {
+public class Rygel.Tracker.ContentDirectory : Rygel.ContentDirectory {
     /* Pubic methods */
     public override MediaContainer? create_root_container () {
         string friendly_name = this.root_device.get_friendly_name ();
-        return new TrackerRootContainer (friendly_name);
+        return new RootContainer (friendly_name);
     }
 }
 

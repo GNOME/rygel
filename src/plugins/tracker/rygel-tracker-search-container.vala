@@ -28,7 +28,7 @@ using Gee;
 /**
  * A container listing a Tracker search result.
  */
-public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
+public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
@@ -39,17 +39,17 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     private const string URL_PREDICATE = "nie:url";
     private const string URL_VARIABLE = "?url";
 
-    public TrackerSelectionQuery query;
-    public TrackerItemFactory item_factory;
+    public SelectionQuery query;
+    public ItemFactory item_factory;
 
-    private TrackerResourcesIface resources;
+    private ResourcesIface resources;
 
-    public TrackerSearchContainer (string                id,
-                                   MediaContainer        parent,
-                                   string                title,
-                                   TrackerItemFactory    item_factory,
-                                   TrackerQueryTriplets? triplets = null,
-                                   ArrayList<string>?    filters = null) {
+    public SearchContainer (string             id,
+                            MediaContainer     parent,
+                            string             title,
+                            ItemFactory        item_factory,
+                            QueryTriplets?     triplets = null,
+                            ArrayList<string>? filters = null) {
         base (id, parent, title, 0);
 
         this.item_factory = item_factory;
@@ -58,23 +58,22 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         variables.add (ITEM_VARIABLE);
         variables.add (URL_VARIABLE);
 
-        TrackerQueryTriplets our_triplets;
+        QueryTriplets our_triplets;
         if (triplets != null) {
             our_triplets = triplets;
         } else {
-            our_triplets = new TrackerQueryTriplets ();
+            our_triplets = new QueryTriplets ();
         }
 
-        our_triplets.add_triplet (new TrackerQueryTriplet (
-                                        ITEM_VARIABLE,
-                                        "a",
-                                        item_factory.category));
-        our_triplets.add_triplet (new TrackerQueryTriplet (ITEM_VARIABLE,
-                                                           MODIFIED_PREDICATE,
-                                                           MODIFIED_VARIABLE));
-        our_triplets.add_triplet (new TrackerQueryTriplet (ITEM_VARIABLE,
-                                                           URL_PREDICATE,
-                                                           URL_VARIABLE));
+        our_triplets.add_triplet (new QueryTriplet (ITEM_VARIABLE,
+                                                    "a",
+                                                    item_factory.category));
+        our_triplets.add_triplet (new QueryTriplet (ITEM_VARIABLE,
+                                                    MODIFIED_PREDICATE,
+                                                    MODIFIED_VARIABLE));
+        our_triplets.add_triplet (new QueryTriplet (ITEM_VARIABLE,
+                                                    URL_PREDICATE,
+                                                    URL_VARIABLE));
 
         foreach (var chain in this.item_factory.key_chains) {
             var variable = ITEM_VARIABLE;
@@ -86,10 +85,10 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
             variables.add (variable);
         }
 
-        this.query = new TrackerSelectionQuery (variables,
-                                                our_triplets,
-                                                filters,
-                                                MODIFIED_VARIABLE);
+        this.query = new SelectionQuery (variables,
+                                         our_triplets,
+                                         filters,
+                                         MODIFIED_VARIABLE);
 
         try {
             this.create_proxies ();
@@ -161,7 +160,7 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
 
     private async void get_children_count () {
         try {
-            var query = new TrackerSelectionQuery.clone (this.query);
+            var query = new SelectionQuery.clone (this.query);
 
             query.variables = new ArrayList<string> ();
             query.variables.add ("COUNT(" + ITEM_VARIABLE + ") AS x");
@@ -179,15 +178,15 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
         }
     }
 
-    private TrackerSelectionQuery? create_query (SearchExpression expression,
-                                                 int              offset,
-                                                 int              max_count) {
+    private SelectionQuery? create_query (SearchExpression expression,
+                                          int              offset,
+                                          int              max_count) {
         if (expression == null || !(expression is RelationalExpression)) {
             return null;
         }
 
         var rel_expression = expression as RelationalExpression;
-        var query = new TrackerSelectionQuery.clone (this.query);
+        var query = new SelectionQuery.clone (this.query);
 
         if (rel_expression.operand1 == "@parentID") {
             if (!rel_expression.compare_string (this.id)) {
@@ -272,9 +271,8 @@ public class Rygel.TrackerSearchContainer : Rygel.MediaContainer {
     private void create_proxies () throws DBus.Error {
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
-        this.resources = connection.get_object (TRACKER_SERVICE,
-                                                RESOURCES_PATH)
-                                                as TrackerResourcesIface;
+        this.resources = connection.get_object (TRACKER_SERVICE, RESOURCES_PATH)
+                         as ResourcesIface;
     }
 
     /**

@@ -25,40 +25,33 @@ using Gee;
 /**
  * Represents Tracker SPARQL Insertion query
  */
-public class Rygel.TrackerInsertionQuery : Rygel.TrackerQuery {
+public class Rygel.Tracker.InsertionQuery : Query {
     private const string TEMP_ID = "x";
     private const string QUERY_ID = "_:" + TEMP_ID;
 
     public string id;
 
-    public TrackerInsertionQuery (MediaItem item, string category) {
-        var triplets = new TrackerQueryTriplets ();
-        triplets.add (new TrackerQueryTriplet (QUERY_ID,
-                                               "a",
-                                               category));
-        triplets.add (new TrackerQueryTriplet (QUERY_ID,
-                                               "a",
-                                               "nie:DataObject"));
-        triplets.add (new TrackerQueryTriplet (QUERY_ID,
-                                               "a",
-                                               "nfo:FileDataObject"));
-        triplets.add (new TrackerQueryTriplet (QUERY_ID,
-                                               "nie:mimeType",
-                                               "\"" + item.mime_type + "\""));
-        triplets.add (new TrackerQueryTriplet (QUERY_ID,
-                                               "nie:url",
-                                               "\"" + item.uris[0] + "\""));
+    public InsertionQuery (MediaItem item, string category) {
+        var triplets = new QueryTriplets ();
+        triplets.add (new QueryTriplet (QUERY_ID, "a", category));
+        triplets.add (new QueryTriplet (QUERY_ID, "a", "nie:DataObject"));
+        triplets.add (new QueryTriplet (QUERY_ID, "a", "nfo:FileDataObject"));
+        triplets.add (new QueryTriplet (QUERY_ID,
+                                        "nie:mimeType",
+                                        "\"" + item.mime_type + "\""));
+        triplets.add (new QueryTriplet (QUERY_ID,
+                                        "nie:url",
+                                        "\"" + item.uris[0] + "\""));
 
         var now = TimeVal ();
-        triplets.add (new TrackerQueryTriplet (
-                                        QUERY_ID,
+        triplets.add (new QueryTriplet (QUERY_ID,
                                         "nfo:fileLastModified",
                                         "\"" + now.to_iso8601 () + "\""));
 
         base (triplets);
     }
 
-    public override async void execute (TrackerResourcesIface resources)
+    public override async void execute (ResourcesIface resources)
                                         throws DBus.Error {
         var str = this.to_string ();
 

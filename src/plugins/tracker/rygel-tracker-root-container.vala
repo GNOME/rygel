@@ -29,20 +29,20 @@ using Gee;
 /**
  * Represents the root container for Tracker media content hierarchy.
  */
-public class Rygel.TrackerRootContainer : Rygel.SimpleContainer {
-    public TrackerRootContainer (string title) {
+public class Rygel.Tracker.RootContainer : Rygel.SimpleContainer {
+    public RootContainer (string title) {
         base.root (title);
 
         if (this.get_bool_config_without_error ("share-music")) {
-            this.add_child (new TrackerMusic ("Music", this, "Music"));
+            this.add_child (new Music ("Music", this, "Music"));
         }
 
         if (this.get_bool_config_without_error ("share-videos")) {
-            this.add_child (new TrackerVideos ("Videos", this, "Videos"));
+            this.add_child (new Videos ("Videos", this, "Videos"));
         }
 
         if (this.get_bool_config_without_error ("share-pictures")) {
-            this.add_child (new TrackerPictures ("Pictures", this, "Pictures"));
+            this.add_child (new Pictures ("Pictures", this, "Pictures"));
         }
     }
 

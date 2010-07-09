@@ -26,7 +26,7 @@ using GUPnP;
 /**
  * StateMachine interface.
  */
-public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
+public class Rygel.Tracker.ItemCreation : GLib.Object, Rygel.StateMachine {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
@@ -37,14 +37,13 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
     public Error error { get; set; }
 
     private MediaItem item;
-    private TrackerCategoryAllContainer container;
-    private TrackerResourcesIface resources;
-    private TrackerMinerIface miner;
+    private CategoryAllContainer container;
+    private ResourcesIface resources;
+    private MinerIface miner;
 
-    public TrackerItemCreation (MediaItem                   item,
-                                TrackerCategoryAllContainer container,
-                                Cancellable?                cancellable)
-                                throws Error {
+    public ItemCreation (MediaItem            item,
+                         CategoryAllContainer container,
+                         Cancellable?         cancellable) throws Error {
         this.item = item;
         this.container = container;
         this.cancellable = cancellable;
@@ -87,7 +86,7 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
 
     private async string create_entry_in_store () throws Error {
         var category = this.container.item_factory.category;
-        var query = new TrackerInsertionQuery (this.item, category);
+        var query = new InsertionQuery (this.item, category);
 
         yield query.execute (this.resources);
 
@@ -97,12 +96,10 @@ public class Rygel.TrackerItemCreation : GLib.Object, Rygel.StateMachine {
     private void create_proxies () throws DBus.Error {
         DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
 
-        this.resources = connection.get_object (TRACKER_SERVICE,
-                                                RESOURCES_PATH)
-                                                as TrackerResourcesIface;
-        this.miner = connection.get_object (MINER_SERVICE,
-                                            MINER_PATH)
-                                            as TrackerMinerIface;
+        this.resources = connection.get_object (TRACKER_SERVICE, RESOURCES_PATH)
+                         as ResourcesIface;
+        this.miner = connection.get_object (MINER_SERVICE, MINER_PATH)
+                     as MinerIface;
     }
 }
 

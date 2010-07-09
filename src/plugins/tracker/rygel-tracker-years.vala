@@ -26,11 +26,10 @@ using Gee;
 /**
  * Container listing content hierarchy by year of creation.
  */
-public class Rygel.TrackerYears : Rygel.TrackerMetadataValues {
+public class Rygel.Tracker.Years : MetadataValues {
     private const string[] KEY_CHAIN = { "nie:contentCreated", null };
 
-    public TrackerYears (MediaContainer     parent,
-                         TrackerItemFactory item_factory) {
+    public Years (MediaContainer parent, ItemFactory item_factory) {
         base (parent.id + "Year",
               parent,
               _("Year"),

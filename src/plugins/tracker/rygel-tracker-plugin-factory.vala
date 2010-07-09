@@ -25,36 +25,35 @@
 using Rygel;
 using Gee;
 
-private TrackerPluginFactory plugin_factory;
+private Tracker.PluginFactory plugin_factory;
 
 public void module_init (PluginLoader loader) {
     try {
-        plugin_factory = new TrackerPluginFactory (loader);
+        plugin_factory = new Tracker.PluginFactory (loader);
     } catch (DBus.Error err) {
         warning (_("Failed to start Tracker service: %s. Plugin disabled.") +
                  err.message);
     }
 }
 
-public class TrackerPluginFactory {
+public class Rygel.Tracker.PluginFactory {
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
     private const string STATISTICS_OBJECT =
                                         "/org/freedesktop/Tracker1/Statistics";
 
-    TrackerStatsIface stats;
+    StatsIface stats;
     PluginLoader loader;
 
-    public TrackerPluginFactory (PluginLoader loader) throws DBus.Error {
+    public PluginFactory (PluginLoader loader) throws DBus.Error {
         var connection = DBus.Bus.get (DBus.BusType.SESSION);
 
-        this.stats = connection.get_object (TRACKER_SERVICE,
-                                            STATISTICS_OBJECT)
-                                            as TrackerStatsIface;
+        this.stats = connection.get_object (TRACKER_SERVICE, STATISTICS_OBJECT)
+                     as StatsIface;
         this.loader = loader;
 
         this.stats.get_statistics ();
 
-        this.loader.add_plugin (new TrackerPlugin ());
+        this.loader.add_plugin (new Tracker.Plugin ());
     }
 }
 

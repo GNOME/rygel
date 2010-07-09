@@ -26,18 +26,18 @@ using Gee;
 /**
  * Container listing content hierarchy for a specific category.
  */
-public class Rygel.TrackerCategoryContainer : Rygel.SimpleContainer {
-    public TrackerItemFactory item_factory;
+public class Rygel.Tracker.CategoryContainer : Rygel.SimpleContainer {
+    public ItemFactory item_factory;
 
-    public TrackerCategoryContainer (string             id,
-                                     MediaContainer     parent,
-                                     string             title,
-                                     TrackerItemFactory item_factory) {
+    public CategoryContainer (string         id,
+                              MediaContainer parent,
+                              string         title,
+                              ItemFactory    item_factory) {
         base (id, parent, title);
 
         this.item_factory = item_factory;
 
-        this.add_child (new TrackerCategoryAllContainer (this));
+        this.add_child (new CategoryAllContainer (this));
     }
 }
 

@@ -26,7 +26,7 @@ using Gee;
 /**
  * Tracker music item factory.
  */
-public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
+public class Rygel.Tracker.MusicItemFactory : ItemFactory {
     private enum MusicMetadata {
         DURATION = Metadata.LAST_KEY,
         AUDIO_ALBUM,
@@ -38,7 +38,7 @@ public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
 
     private const string CATEGORY = "nmm:MusicPiece";
 
-    public TrackerMusicItemFactory () {
+    public MusicItemFactory () {
         base (CATEGORY,
               MediaItem.MUSIC_CLASS,
               MUSIC_RESOURCES_CLASS_PATH,
@@ -56,9 +56,9 @@ public class Rygel.TrackerMusicItemFactory : Rygel.TrackerItemFactory {
         this.key_chains[MusicMetadata.AUDIO_TRACK_NUM].add ("nmm:trackNumber");
     }
 
-    public override MediaItem create (string                 id,
-                                      string                 uri,
-                                      TrackerSearchContainer parent,
+    public override MediaItem create (string          id,
+                                      string          uri,
+                                      SearchContainer parent,
                                       string[]               metadata)
                                       throws GLib.Error {
         var item = base.create (id, uri, parent, metadata);

@@ -26,7 +26,7 @@ using Gee;
 /**
  * Tracker picture item factory.
  */
-public class Rygel.TrackerPictureItemFactory : Rygel.TrackerItemFactory {
+public class Rygel.Tracker.PictureItemFactory : ItemFactory {
     private enum PictureMetadata {
         HEIGHT = Metadata.LAST_KEY,
         WIDTH,
@@ -36,7 +36,7 @@ public class Rygel.TrackerPictureItemFactory : Rygel.TrackerItemFactory {
 
     private const string CATEGORY = "nmm:Photo";
 
-    public TrackerPictureItemFactory () {
+    public PictureItemFactory () {
         base (CATEGORY,
               MediaItem.PHOTO_CLASS,
               PHOTO_RESOURCES_CLASS_PATH,
@@ -50,10 +50,10 @@ public class Rygel.TrackerPictureItemFactory : Rygel.TrackerItemFactory {
         this.key_chains[PictureMetadata.HEIGHT].add ("nfo:height");
     }
 
-    public override MediaItem create (string                 id,
-                                      string                 uri,
-                                      TrackerSearchContainer parent,
-                                      string[]               metadata)
+    public override MediaItem create (string          id,
+                                      string          uri,
+                                      SearchContainer parent,
+                                      string[]        metadata)
                                       throws GLib.Error {
         var item = base.create (id, uri, parent, metadata);
 

@@ -27,8 +27,8 @@ using Gee;
 /**
  * A simple search container that contains all the items in a category.
  */
-public class Rygel.TrackerCategoryAllContainer : Rygel.TrackerSearchContainer {
-    public TrackerCategoryAllContainer (TrackerCategoryContainer parent) {
+public class Rygel.Tracker.CategoryAllContainer : SearchContainer {
+    public CategoryAllContainer (CategoryContainer parent) {
         base ("All" + parent.id, parent, "All", parent.item_factory);
 
         try {
@@ -49,7 +49,7 @@ public class Rygel.TrackerCategoryAllContainer : Rygel.TrackerSearchContainer {
                                          throws Error {
         assert (this.uris.size > 0);
 
-        var creation = new TrackerItemCreation (item, this, cancellable);
+        var creation = new ItemCreation (item, this, cancellable);
         yield creation.run ();
         if (creation.error != null) {
             throw creation.error;

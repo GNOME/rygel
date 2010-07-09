@@ -26,7 +26,7 @@ using Gee;
 /**
  * Abstract Tracker item factory.
  */
-public abstract class Rygel.TrackerItemFactory {
+public abstract class Rygel.Tracker.ItemFactory {
     protected enum Metadata {
         FILE_NAME,
         TITLE,
@@ -44,10 +44,10 @@ public abstract class Rygel.TrackerItemFactory {
 
     public ArrayList<ArrayList<string>> key_chains;
 
-    public TrackerItemFactory (string  category,
-                               string  upnp_class,
-                               string  resources_class_path,
-                               string? upload_dir) {
+    public ItemFactory (string  category,
+                        string  upnp_class,
+                        string  resources_class_path,
+                        string? upload_dir) {
         this.category = category;
         this.upnp_class = upnp_class;
         this.resources_class_path = resources_class_path;
@@ -66,10 +66,10 @@ public abstract class Rygel.TrackerItemFactory {
         this.key_chains[Metadata.DATE].add ("nie:contentCreated");
     }
 
-    public virtual MediaItem create (string                 id,
-                                     string                 uri,
-                                     TrackerSearchContainer parent,
-                                     string[]               metadata)
+    public virtual MediaItem create (string          id,
+                                     string          uri,
+                                     SearchContainer parent,
+                                     string[]        metadata)
                                      throws GLib.Error {
         var item = new MediaItem (id, parent, "", this.upnp_class);
 

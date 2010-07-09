@@ -26,28 +26,26 @@ using Gee;
 /**
  * Container listing Music content hierarchy.
  */
-public class Rygel.TrackerMusic : Rygel.TrackerCategoryContainer {
-    public TrackerMusic (string         id,
-                         MediaContainer parent,
-                         string         title) {
-        base (id, parent, title, new TrackerMusicItemFactory ());
+public class Rygel.Tracker.Music : CategoryContainer {
+    public Music (string id, MediaContainer parent, string title) {
+        base (id, parent, title, new MusicItemFactory ());
 
         var key_chain = new string[] { "nmm:performer",
                                        "nmm:artistName",
                                        null };
-        this.add_child (new TrackerMetadataValues (id + "Artists",
-                                                   this,
-                                                   _("Artists"),
-                                                   this.item_factory,
-                                                   key_chain));
+        this.add_child (new MetadataValues (id + "Artists",
+                                            this,
+                                            _("Artists"),
+                                            this.item_factory,
+                                            key_chain));
 
         key_chain = new string[] { "nmm:musicAlbum", "nmm:albumTitle", null };
-        this.add_child (new TrackerMetadataValues (id + "Albums",
-                                                   this,
-                                                   _("Albums"),
-                                                   this.item_factory,
-                                                   key_chain));
-        this.add_child (new TrackerTags (this, item_factory));
+        this.add_child (new MetadataValues (id + "Albums",
+                                            this,
+                                            _("Albums"),
+                                            this.item_factory,
+                                            key_chain));
+        this.add_child (new Tags (this, item_factory));
     }
 }
 

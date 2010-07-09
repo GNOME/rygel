@@ -26,14 +26,12 @@ using Gee;
 /**
  * Container listing video content hierarchy.
  */
-public class Rygel.TrackerVideos : Rygel.TrackerCategoryContainer {
-    public TrackerVideos (string         id,
-                          MediaContainer parent,
-                          string         title) {
-        base (id, parent, title, new TrackerVideoItemFactory ());
+public class Rygel.Tracker.Videos : CategoryContainer {
+    public Videos (string id, MediaContainer parent, string title) {
+        base (id, parent, title, new VideoItemFactory ());
 
-        this.add_child (new TrackerTags (this, this.item_factory));
-        this.add_child (new TrackerYears (this, this.item_factory));
+        this.add_child (new Tags (this, this.item_factory));
+        this.add_child (new Years (this, this.item_factory));
     }
 }
 

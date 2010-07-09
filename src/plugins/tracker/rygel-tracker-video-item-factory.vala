@@ -26,7 +26,7 @@ using Gee;
 /**
  * Tracker video item factory.
  */
-public class Rygel.TrackerVideoItemFactory : Rygel.TrackerItemFactory {
+public class Rygel.Tracker.VideoItemFactory : ItemFactory {
     private enum VideoMetadata {
         HEIGHT = Metadata.LAST_KEY,
         WIDTH,
@@ -37,7 +37,7 @@ public class Rygel.TrackerVideoItemFactory : Rygel.TrackerItemFactory {
 
     private const string CATEGORY = "nmm:Video";
 
-    public TrackerVideoItemFactory () {
+    public VideoItemFactory () {
         base (CATEGORY,
               MediaItem.VIDEO_CLASS,
               VIDEO_RESOURCES_CLASS_PATH,
@@ -52,10 +52,10 @@ public class Rygel.TrackerVideoItemFactory : Rygel.TrackerItemFactory {
         this.key_chains[VideoMetadata.DURATION].add ("nfo:duration");
     }
 
-    public override MediaItem create (string                 id,
-                                      string                 uri,
-                                      TrackerSearchContainer parent,
-                                      string[]               metadata)
+    public override MediaItem create (string          id,
+                                      string          uri,
+                                      SearchContainer parent,
+                                      string[]        metadata)
                                       throws GLib.Error {
         var item = base.create (id, uri, parent, metadata);
 

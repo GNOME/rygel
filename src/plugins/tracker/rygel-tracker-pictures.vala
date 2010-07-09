@@ -26,16 +26,14 @@ using Gee;
 /**
  * Container listing Pictures content hierarchy.
  */
-public class Rygel.TrackerPictures : Rygel.TrackerCategoryContainer {
+public class Rygel.Tracker.Pictures : CategoryContainer {
     private const string[] KEY_CHAIN = { "nie:contentCreated", null };
 
-    public TrackerPictures (string         id,
-                            MediaContainer parent,
-                            string         title) {
-        base (id, parent, title, new TrackerPictureItemFactory ());
+    public Pictures (string id, MediaContainer parent, string title) {
+        base (id, parent, title, new PictureItemFactory ());
 
-        this.add_child (new TrackerTags (this, this.item_factory));
-        this.add_child (new TrackerYears (this, this.item_factory));
+        this.add_child (new Tags (this, this.item_factory));
+        this.add_child (new Years (this, this.item_factory));
     }
 }
 

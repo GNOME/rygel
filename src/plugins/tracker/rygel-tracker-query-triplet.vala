@@ -25,30 +25,28 @@ using Gee;
 /**
  * Represents SPARQL Triplet
  */
-public class Rygel.TrackerQueryTriplet {
+public class Rygel.Tracker.QueryTriplet {
     public string subject;
     public string predicate;
     public string obj;
 
-    public TrackerQueryTriplet next;
+    public QueryTriplet next;
 
-    public TrackerQueryTriplet (string subject,
-                                string predicate,
-                                string obj) {
+    public QueryTriplet (string subject, string predicate, string obj) {
         this.subject = subject;
         this.predicate = predicate;
         this.obj = obj;
     }
 
-    public TrackerQueryTriplet.chain (string              subject,
-                                      string              predicate,
-                                      TrackerQueryTriplet next) {
+    public QueryTriplet.chain (string       subject,
+                               string       predicate,
+                               QueryTriplet next) {
         this.subject = subject;
         this.predicate = predicate;
         this.next = next;
     }
 
-    public TrackerQueryTriplet.clone (TrackerQueryTriplet triplet) {
+    public QueryTriplet.clone (QueryTriplet triplet) {
         this.subject = triplet.subject;
         this.predicate = triplet.predicate;
 
@@ -59,8 +57,7 @@ public class Rygel.TrackerQueryTriplet {
         }
     }
 
-    public static bool equal_func (TrackerQueryTriplet a,
-                                   TrackerQueryTriplet b) {
+    public static bool equal_func (QueryTriplet a, QueryTriplet b) {
         bool chain_equal;
 
         if (a.next != null && b.next != null) {

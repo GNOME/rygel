@@ -28,13 +28,12 @@ using Gee;
 /**
  * Container listing all available tag labels in Tracker DB.
  */
-public class Rygel.TrackerTags : Rygel.TrackerMetadataValues {
+public class Rygel.Tracker.Tags : MetadataValues {
     /* class-wide constants */
     private const string TITLE = "Tags";
     private const string[] KEY_CHAIN = { "nao:hasTag", "nao:prefLabel", null };
 
-    public TrackerTags (MediaContainer     parent,
-                        TrackerItemFactory item_factory) {
+    public Tags (MediaContainer parent, ItemFactory item_factory) {
         base (parent.id + TITLE, parent, TITLE, item_factory, KEY_CHAIN);
     }
 }

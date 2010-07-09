@@ -22,17 +22,17 @@
 
 using Gee;
 
-public class Rygel.TrackerPlugin : Rygel.Plugin {
+public class Rygel.Tracker.Plugin : Rygel.Plugin {
     // class-wide constants
     private const string ICON = BuildConfig.DATA_DIR + // Path
                                 "/icons/hicolor/48x48/apps/tracker.png";
 
-    public TrackerPlugin () {
+    public Plugin () {
         base.MediaServer ("Tracker",
                            // @REALNAME@ is substituted for user's real name
                            // and it doesn't need translation.
                           _("@REALNAME@'s media"),
-                          typeof (TrackerContentDirectory));
+                          typeof (Tracker.ContentDirectory));
 
         var icon_info = new IconInfo ("image/png");
 

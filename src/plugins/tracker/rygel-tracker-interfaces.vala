@@ -24,12 +24,12 @@
 using DBus;
 
 [DBus (name = "org.freedesktop.Tracker1.Statistics")]
-public interface Rygel.TrackerStatsIface : DBus.Object {
+public interface Rygel.Tracker.StatsIface : DBus.Object {
     public abstract async string[,] get_statistics () throws DBus.Error;
 }
 
 [DBus (name = "org.freedesktop.Tracker1.Resources")]
-public interface Rygel.TrackerResourcesIface: DBus.Object {
+public interface Rygel.Tracker.ResourcesIface: DBus.Object {
     public abstract async string[,] sparql_query (string query)
                                                   throws DBus.Error;
     public abstract async HashTable<string,string>[,] sparql_update_blank (
@@ -37,7 +37,7 @@ public interface Rygel.TrackerResourcesIface: DBus.Object {
 }
 
 [DBus (name = "org.freedesktop.Tracker1.Resources.Class")]
-public interface Rygel.TrackerResourcesClassIface: DBus.Object {
+public interface Rygel.Tracker.ResourcesClassIface: DBus.Object {
     public abstract signal void subjects_added (string[] subjects);
     public abstract signal void subjects_removed (string[] subjects);
     public abstract signal void subjects_changed (string[] before,
@@ -45,7 +45,7 @@ public interface Rygel.TrackerResourcesClassIface: DBus.Object {
 }
 
 [DBus (name = "org.freedesktop.Tracker1.Miner")]
-public interface Rygel.TrackerMinerIface : DBus.Object {
+public interface Rygel.Tracker.MinerIface : DBus.Object {
     public abstract async void ignore_next_update (string[] urls)
                                                    throws DBus.Error;
 }

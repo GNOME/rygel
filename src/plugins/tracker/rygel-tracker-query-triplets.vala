@@ -25,16 +25,16 @@ using Gee;
 /**
  * Represents a list of SPARQL Triplet
  */
-public class Rygel.TrackerQueryTriplets : ArrayList<TrackerQueryTriplet> {
-    public TrackerQueryTriplets () {
-        base ((EqualFunc) TrackerQueryTriplet.equal_func);
+public class Rygel.Tracker.QueryTriplets : ArrayList<QueryTriplet> {
+    public QueryTriplets () {
+        base ((EqualFunc) QueryTriplet.equal_func);
     }
 
-    public TrackerQueryTriplets.clone (TrackerQueryTriplets triplets) {
-        base ((EqualFunc) TrackerQueryTriplet.equal_func);
+    public QueryTriplets.clone (QueryTriplets triplets) {
+        base ((EqualFunc) QueryTriplet.equal_func);
 
         foreach (var triplet in triplets) {
-            this.add (new TrackerQueryTriplet.clone (triplet));
+            this.add (new QueryTriplet.clone (triplet));
         }
     }
 
@@ -61,7 +61,7 @@ public class Rygel.TrackerQueryTriplets : ArrayList<TrackerQueryTriplet> {
 
     // FIXME: Remove this method and override 'add' method from the base class
     //        instead once bug#623685 is fixed.
-    public void add_triplet (TrackerQueryTriplet triplet) {
+    public void add_triplet (QueryTriplet triplet) {
         if (!this.contains (triplet)) {
             this.add (triplet);
         }
