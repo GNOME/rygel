@@ -28,14 +28,14 @@ using Gst;
 /**
  * Represents Test item.
  */
-public abstract class Rygel.TestItem : Rygel.MediaItem {
+public abstract class Rygel.Test.Item : Rygel.MediaItem {
     const string TEST_AUTHOR = "Zeeshan Ali (Khattak)";
 
-    public TestItem (string         id,
-                     MediaContainer parent,
-                     string         title,
-                     string         mime,
-                     string         upnp_class) {
+    public Item (string         id,
+                 MediaContainer parent,
+                 string         title,
+                 string         mime,
+                 string         upnp_class) {
         base (id, parent, title, upnp_class);
 
         this.mime_type = mime;

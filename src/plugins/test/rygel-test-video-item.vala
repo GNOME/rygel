@@ -27,15 +27,13 @@ using Gst;
 /**
  * Represents Test video item.
  */
-public class Rygel.TestVideoItem : Rygel.TestItem {
+public class Rygel.Test.VideoItem : Item {
     private const string TEST_MIMETYPE = "video/mpeg";
     private const string PIPELINE = "videotestsrc is-live=1 ! " +
                                     "ffenc_mpeg2video ! " +
                                     "mpegtsmux";
 
-    public TestVideoItem (string         id,
-                          MediaContainer parent,
-                          string         title) {
+    public VideoItem (string id, MediaContainer parent, string title) {
         base (id,
               parent,
               title,

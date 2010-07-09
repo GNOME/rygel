@@ -28,7 +28,7 @@ using Gee;
 public void module_init (PluginLoader loader) {
     var plugin = new Plugin.MediaServer ("Test",
                                          "Test Streams",
-                                         typeof (TestContentDir));
+                                         typeof (Rygel.Test.ContentDir));
     loader.add_plugin (plugin);
 }
 

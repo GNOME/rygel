@@ -29,16 +29,12 @@ using Gst;
 /**
  * Represents the root container for Test media content hierarchy.
  */
-public class Rygel.TestRootContainer : Rygel.SimpleContainer {
-    public TestRootContainer (string title) {
+public class Rygel.Test.RootContainer : Rygel.SimpleContainer {
+    public RootContainer (string title) {
         base.root (title);
 
-        this.add_child (new TestAudioItem ("sinewave",
-                                           this,
-                                           "Sine Wave"));
-        this.add_child (new TestVideoItem ("smtpe",
-                                           this,
-                                           "SMTPE"));
+        this.add_child (new AudioItem ("sinewave", this, "Sine Wave"));
+        this.add_child (new VideoItem ("smtpe", this, "SMTPE"));
     }
 }
 

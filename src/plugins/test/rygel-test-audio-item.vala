@@ -27,13 +27,11 @@ using Gst;
 /**
  * Represents Test audio item.
  */
-public class Rygel.TestAudioItem : Rygel.TestItem {
+public class Rygel.Test.AudioItem : Item {
     private const string TEST_MIMETYPE = "audio/x-wav";
     private const string PIPELINE = "audiotestsrc is-live=1 ! wavenc";
 
-    public TestAudioItem (string         id,
-                          MediaContainer parent,
-                          string         title) {
+    public AudioItem (string id, MediaContainer parent, string title) {
         base (id,
               parent,
               title,

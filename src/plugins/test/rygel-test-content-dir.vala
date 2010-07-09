@@ -28,11 +28,11 @@ using Gee;
 /**
  * Implementation of ContentDirectory service, meant for testing purposes only.
  */
-public class Rygel.TestContentDir : Rygel.ContentDirectory {
+public class Rygel.Test.ContentDir : Rygel.ContentDirectory {
     /* Pubic methods */
     public override MediaContainer? create_root_container () {
         string friendly_name = this.root_device.get_friendly_name ();
-        return new TestRootContainer (friendly_name);
+        return new RootContainer (friendly_name);
     }
 }
 
