@@ -36,10 +36,16 @@ public class Rygel.GstLaunch.Item : Rygel.MediaItem {
                  string         title,
                  string         mime_type,
                  string         launch_line) {
-        base (id,
-              parent,
-              title,
-              (mime_type.has_prefix ("audio") ? MediaItem.AUDIO_CLASS : MediaItem.VIDEO_CLASS));
+        string upnp_class;
+
+        if (mime_type.has_prefix ("audio")) {
+             upnp_class = MediaItem.AUDIO_CLASS;
+        } else {
+             upnp_class = MediaItem.VIDEO_CLASS;
+        }
+
+        base (id, parent, title, upnp_class);
+
         this.mime_type = mime_type;
         this.launch_line = launch_line;
     }
