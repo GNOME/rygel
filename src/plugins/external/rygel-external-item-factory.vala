@@ -29,7 +29,7 @@ using FreeDesktop;
 /**
  * Creates item for external plugins.
  */
-public class Rygel.ExternalItemFactory {
+public class Rygel.External.ItemFactory {
     public async MediaItem create (string                   id,
                                    string                   type,
                                    string                   title,
@@ -59,7 +59,7 @@ public class Rygel.ExternalItemFactory {
         // value = props.lookup ("URLs");
         var connection = DBus.Bus.get (DBus.BusType.SESSION);
         var item_iface = connection.get_object (service_name, id)
-                         as ExternalMediaItemProxy;
+                         as MediaItemProxy;
         string[] uris = item_iface.urls;
 
         for (var i = 0; uris[i] != null; i++) {
@@ -152,7 +152,7 @@ public class Rygel.ExternalItemFactory {
 
         value = props.lookup ("Thumbnail");
         if (value != null) {
-            var factory = new ExternalThumbnailFactory ();
+            var factory = new ThumbnailFactory ();
             var thumbnail = yield factory.create (value.get_string (),
                                                   service_name,
                                                   host_ip);

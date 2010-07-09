@@ -24,12 +24,12 @@
 
 using FreeDesktop;
 
-public class Rygel.ExternalIconFactory {
+public class Rygel.External.IconFactory {
     private static string ITEM_IFACE = "org.gnome.UPnP.MediaItem1";
 
     DBus.Connection connection;
 
-    public ExternalIconFactory (DBus.Connection connection) {
+    public IconFactory (DBus.Connection connection) {
         this.connection = connection;
     }
 

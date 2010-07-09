@@ -30,31 +30,31 @@ using FreeDesktop;
 /**
  * Represents an external container.
  */
-public class Rygel.ExternalContainer : Rygel.MediaContainer {
-    public ExternalMediaContainerProxy actual_container;
+public class Rygel.External.Container : Rygel.MediaContainer {
+    public MediaContainerProxy actual_container;
 
     public string host_ip;
     public string service_name;
 
-    private ExternalItemFactory item_factory;
-    private ArrayList<ExternalContainer> containers;
+    private ItemFactory item_factory;
+    private ArrayList<Container> containers;
     private Connection connection;
 
     private bool searchable;
 
-    public ExternalContainer (string             id,
-                              string             title,
-                              uint               child_count,
-                              bool               searchable,
-                              string             service_name,
-                              string             host_ip,
-                              ExternalContainer? parent = null) {
+    public Container (string     id,
+                      string     title,
+                      uint       child_count,
+                      bool       searchable,
+                      string     service_name,
+                      string     host_ip,
+                      Container? parent = null) {
         base (id, parent, title, (int) child_count);
 
         this.service_name = service_name;
         this.host_ip = host_ip;
-        this.item_factory = new ExternalItemFactory ();
-        this.containers = new ArrayList<ExternalContainer> ();
+        this.item_factory = new ItemFactory ();
+        this.containers = new ArrayList<Container> ();
 
         try {
             this.connection = DBus.Bus.get (DBus.BusType.SESSION);
@@ -65,7 +65,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         // Create proxy to MediaContainer iface
         this.actual_container = this.connection.get_object (this.service_name,
                                                             id)
-                                as ExternalMediaContainerProxy;
+                                as MediaContainerProxy;
 
         this.update_container.begin (true);
     }
@@ -77,11 +77,11 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
                                         throws GLib.Error {
         string[] filter = {};
 
-        foreach (var object_prop in ExternalMediaObjectProxy.PROPERTIES) {
+        foreach (var object_prop in MediaObjectProxy.PROPERTIES) {
             filter += object_prop;
         }
 
-        foreach (var item_prop in ExternalMediaItemProxy.PROPERTIES) {
+        foreach (var item_prop in MediaItemProxy.PROPERTIES) {
             filter += item_prop;
         }
 
@@ -110,15 +110,15 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         }
 
         string[] filter = {};
-        foreach (var object_prop in ExternalMediaObjectProxy.PROPERTIES) {
+        foreach (var object_prop in MediaObjectProxy.PROPERTIES) {
             filter += object_prop;
         }
 
-        foreach (var container_prop in ExternalMediaContainerProxy.PROPERTIES) {
+        foreach (var container_prop in MediaContainerProxy.PROPERTIES) {
             filter += container_prop;
         }
 
-        foreach (var item_prop in ExternalMediaItemProxy.PROPERTIES) {
+        foreach (var item_prop in MediaItemProxy.PROPERTIES) {
             filter += item_prop;
         }
 
@@ -140,7 +140,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
 
         // Create proxy to MediaObject iface
         var actual_object = this.connection.get_object (this.service_name, id)
-                            as ExternalMediaObjectProxy;
+                            as MediaObjectProxy;
 
         if (actual_object.object_type == "container") {
             media_object = this.find_container_by_id (id);
@@ -157,7 +157,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
                 }
             }
         } else {
-            var parent_container = new ExternalDummyContainer
+            var parent_container = new DummyContainer
                                         ((string) actual_object.parent,
                                          "LaLaLa",
                                          0,
@@ -166,8 +166,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
             var props_iface = this.connection.get_object (this.service_name, id)
                               as Properties;
 
-            var props = yield props_iface.get_all (
-                                        ExternalMediaItemProxy.IFACE);
+            var props = yield props_iface.get_all (MediaItemProxy.IFACE);
 
             // Its an item then
             media_object = yield this.item_factory.create (
@@ -199,10 +198,10 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
             } else {
                 var parent_id = props.lookup ("Parent").get_string ();
 
-                parent_container = new ExternalDummyContainer (parent_id,
-                                                               "LaLaLa",
-                                                               0,
-                                                               null);
+                parent_container = new DummyContainer (parent_id,
+                                                       "LaLaLa",
+                                                       0,
+                                                       null);
             }
 
             MediaObject media_object = null;
@@ -216,11 +215,10 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
                 if (type == "container") {
                     var child_count = props.lookup ("ChildCount").get_uint ();
 
-                    media_object = new ExternalDummyContainer (
-                                        id,
-                                        title,
-                                        child_count,
-                                        parent_container);
+                    media_object = new DummyContainer (id,
+                                                       title,
+                                                       child_count,
+                                                       parent_container);
                 } else {
                     // Its an item then
                     media_object = yield this.item_factory.create (
@@ -243,11 +241,11 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
     private async void refresh_child_containers () throws GLib.Error {
         string[] filter = {};
 
-        foreach (var object_prop in ExternalMediaObjectProxy.PROPERTIES) {
+        foreach (var object_prop in MediaObjectProxy.PROPERTIES) {
             filter += object_prop;
         }
 
-        foreach (var container_prop in ExternalMediaContainerProxy.PROPERTIES) {
+        foreach (var container_prop in MediaContainerProxy.PROPERTIES) {
             filter += container_prop;
         }
 
@@ -263,13 +261,13 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
             var child_count = props.lookup ("ChildCount").get_uint ();
             var searchable = props.lookup ("Searchable").get_boolean ();
 
-            var container = new ExternalContainer (id,
-                                                   title,
-                                                   child_count,
-                                                   searchable,
-                                                   this.service_name,
-                                                   this.host_ip,
-                                                   this);
+            var container = new Container (id,
+                                           title,
+                                           child_count,
+                                           searchable,
+                                           this.service_name,
+                                           this.host_ip,
+                                           this);
             this.containers.add (container);
         }
     }
@@ -292,7 +290,7 @@ public class Rygel.ExternalContainer : Rygel.MediaContainer {
         }
     }
 
-    private void on_updated (ExternalMediaContainerProxy actual_container) {
+    private void on_updated (MediaContainerProxy actual_container) {
         this.update_container.begin ();
     }
 

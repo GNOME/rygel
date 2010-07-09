@@ -28,7 +28,7 @@ using FreeDesktop;
 /**
  * Factory for thumbnail from external plugins.
  */
-public class Rygel.ExternalThumbnailFactory {
+public class Rygel.External.ThumbnailFactory {
     public async Thumbnail create (string service_name,
                                    string object_path,
                                    string host_ip)
@@ -39,7 +39,7 @@ public class Rygel.ExternalThumbnailFactory {
                                            object_path)
                                            as Properties;
 
-        var item_props = yield props.get_all (ExternalMediaItemProxy.IFACE);
+        var item_props = yield props.get_all (MediaItemProxy.IFACE);
 
         var thumbnail = new Thumbnail ();
 

@@ -26,18 +26,18 @@ using Rygel;
 using Gee;
 using FreeDesktop;
 
-private ExternalPluginFactory plugin_factory;
+private External.PluginFactory plugin_factory;
 
 public void module_init (PluginLoader loader) {
     try {
-        plugin_factory = new ExternalPluginFactory (loader);
+        plugin_factory = new External.PluginFactory (loader);
     } catch (DBus.Error error) {
         critical ("Failed to fetch list of external services: %s\n",
                 error.message);
     }
 }
 
-public class Rygel.ExternalPluginFactory {
+public class Rygel.External.PluginFactory {
     private const string DBUS_SERVICE = "org.freedesktop.DBus";
     private const string DBUS_OBJECT = "/org/freedesktop/DBus";
 
@@ -47,14 +47,14 @@ public class Rygel.ExternalPluginFactory {
     private const string SERVICE_PREFIX = "org.gnome.UPnP.MediaServer2.";
     private const string GRILO_UPNP_PREFIX = SERVICE_PREFIX + "grl_upnp";
 
-    DBusObject          dbus_obj;
-    DBus.Connection     connection;
-    PluginLoader        loader;
-    ExternalIconFactory icon_factory;
+    DBusObject      dbus_obj;
+    DBus.Connection connection;
+    PluginLoader    loader;
+    IconFactory     icon_factory;
 
-    public ExternalPluginFactory (PluginLoader loader) throws DBus.Error {
+    public PluginFactory (PluginLoader loader) throws DBus.Error {
         this.connection = DBus.Bus.get (DBus.BusType.SESSION);
-        this.icon_factory = new ExternalIconFactory (this.connection);
+        this.icon_factory = new IconFactory (this.connection);
 
         this.dbus_obj = this.connection.get_object (DBUS_SERVICE,
                                                     DBUS_OBJECT)
@@ -154,12 +154,12 @@ public class Rygel.ExternalPluginFactory {
         var child_count = container_props.lookup ("ChildCount").get_uint ();
         var searchable = container_props.lookup ("Searchable").get_boolean ();
 
-        var plugin = new ExternalPlugin (service_name,
-                                         title,
-                                         child_count,
-                                         searchable,
-                                         root_object,
-                                         icon);
+        var plugin = new External.Plugin (service_name,
+                                          title,
+                                          child_count,
+                                          searchable,
+                                          root_object,
+                                          icon);
 
         this.loader.add_plugin (plugin);
     }

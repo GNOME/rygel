@@ -29,18 +29,18 @@ using Gee;
 /**
  * Implementation of External ContentDirectory service.
  */
-public class Rygel.ExternalContentDir : Rygel.ContentDirectory {
+public class Rygel.External.ContentDir : Rygel.ContentDirectory {
     // Pubic methods
     public override MediaContainer? create_root_container () {
-        var plugin = (ExternalPlugin) this.root_device.resource_factory;
+        var plugin = (External.Plugin) this.root_device.resource_factory;
 
-        return new ExternalContainer ("0",
-                                      plugin.title,
-                                      plugin.child_count,
-                                      plugin.searchable,
-                                      plugin.service_name,
-                                      this.context.host_ip,
-                                      null);
+        return new Container ("0",
+                              plugin.title,
+                              plugin.child_count,
+                              plugin.searchable,
+                              plugin.service_name,
+                              this.context.host_ip,
+                              null);
     }
 }
 

@@ -30,11 +30,11 @@ using Gee;
  * This is a dummy container used to satisfy rygel when creating objects for
  * search resuts.
  */
-internal class Rygel.ExternalDummyContainer : MediaContainer {
-    public ExternalDummyContainer (string          id,
-                                   string          title,
-                                   uint            child_coult,
-                                   MediaContainer? parent) {
+internal class Rygel.External.DummyContainer : MediaContainer {
+    public DummyContainer (string          id,
+                           string          title,
+                           uint            child_coult,
+                           MediaContainer? parent) {
         base (id, parent, title, child_count);
     }
 
