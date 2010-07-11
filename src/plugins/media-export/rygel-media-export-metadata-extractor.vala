@@ -83,14 +83,12 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             // setup fake sinks
             this.playbin = this.factory.create ("tag_reader");
 
-            // increase reference count of sinks to workaround
-            // bug #596078
             var sink = ElementFactory.make ("fakesink", null);
-            sink.ref ();
+            sink.ref_sink ();
             this.playbin.video_sink = sink;
 
             sink = ElementFactory.make ("fakesink", null);
-            sink.ref ();
+            sink.ref_sink ();
             this.playbin.audio_sink = sink;
 
             var bus = this.playbin.get_bus ();
