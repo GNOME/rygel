@@ -33,18 +33,23 @@ public void module_init (PluginLoader loader) {
                              "GstRenderer",
                              _("GStreamer Renderer"));
 
-    plugin.add_resource (new ResourceInfo (ConnectionManager.UPNP_ID,
-                                           ConnectionManager.UPNP_TYPE,
-                                           ConnectionManager.DESCRIPTION_PATH,
-                                           typeof (GstConnectionManager)));
-    plugin.add_resource (new ResourceInfo (GstAVTransport.UPNP_ID,
-                                           GstAVTransport.UPNP_TYPE,
-                                           GstAVTransport.DESCRIPTION_PATH,
-                                           typeof (GstAVTransport)));
-    plugin.add_resource (new ResourceInfo (GstRenderingControl.UPNP_ID,
-                                           GstRenderingControl.UPNP_TYPE,
-                                           GstRenderingControl.DESCRIPTION_PATH,
-                                           typeof (GstRenderingControl)));
+    var resource = new ResourceInfo (ConnectionManager.UPNP_ID,
+                                     ConnectionManager.UPNP_TYPE,
+                                     ConnectionManager.DESCRIPTION_PATH,
+                                     typeof (GstRenderer.ConnectionManager));
+    plugin.add_resource (resource);
+
+    resource = new ResourceInfo (GstRenderer.AVTransport.UPNP_ID,
+                                 GstRenderer.AVTransport.UPNP_TYPE,
+                                 GstRenderer.AVTransport.DESCRIPTION_PATH,
+                                 typeof (GstRenderer.AVTransport));
+    plugin.add_resource (resource);
+
+    resource = new ResourceInfo (GstRenderer.RenderingControl.UPNP_ID,
+                                 GstRenderer.RenderingControl.UPNP_TYPE,
+                                 GstRenderer.RenderingControl.DESCRIPTION_PATH,
+                                 typeof (GstRenderer.RenderingControl));
+    plugin.add_resource (resource);
 
     loader.add_plugin (plugin);
 }

@@ -24,7 +24,7 @@
 using GUPnP;
 using Rygel;
 
-public class Rygel.GstRenderingControl : Service {
+public class Rygel.GstRenderer.RenderingControl : Service {
     public const string UPNP_ID = "urn:upnp-org:serviceId:RenderingControl";
     public const string UPNP_TYPE =
                     "urn:schemas-upnp-org:service:RenderingControl:2";
@@ -74,12 +74,12 @@ public class Rygel.GstRenderingControl : Service {
 
     private string preset_name_list = "";
 
-    private GstChangeLog changelog;
-    private GstPlayer player;
+    private ChangeLog changelog;
+    private Player player;
 
     public override void constructed () {
-        this.changelog = new GstChangeLog (this, LAST_CHANGE_NS);
-        this.player = GstPlayer.get_default ();
+        this.changelog = new ChangeLog (this, LAST_CHANGE_NS);
+        this.player = Player.get_default ();
 
         query_variable["LastChange"].connect (this.query_last_change_cb);
 
@@ -97,7 +97,7 @@ public class Rygel.GstRenderingControl : Service {
                                        string         variable,
                                        ref GLib.Value value) {
         // Send current state
-        var log = new GstChangeLog (null, LAST_CHANGE_NS);
+        var log = new ChangeLog (null, LAST_CHANGE_NS);
 
         log.log_with_channel ("Mute", this.mute ? "1" : "0", "Master");
         log.log_with_channel ("Volume", this.volume.to_string (), "Master");
@@ -241,7 +241,7 @@ public class Rygel.GstRenderingControl : Service {
 
 // Helper class for converting between double and percentage representations
 // of volume.
-private class Volume {
+private class Rygel.GstRenderer.Volume {
     public static double from_percentage (uint percentage) {
         return (double) percentage / 100.0;
     }

@@ -23,7 +23,7 @@
 
 using GUPnP;
 
-public class Rygel.GstAVTransport : Service {
+public class Rygel.GstRenderer.AVTransport : Service {
     public const string UPNP_ID = "urn:upnp-org:serviceId:AVTransport";
     public const string UPNP_TYPE =
                     "urn:schemas-upnp-org:service:AVTransport:2";
@@ -131,12 +131,12 @@ public class Rygel.GstAVTransport : Service {
         }
     }
 
-    private GstChangeLog changelog;
-    private GstPlayer player;
+    private ChangeLog changelog;
+    private Player player;
 
     public override void constructed () {
-        this.changelog = new GstChangeLog (this, LAST_CHANGE_NS);
-        this.player = GstPlayer.get_default ();
+        this.changelog = new ChangeLog (this, LAST_CHANGE_NS);
+        this.player = Player.get_default ();
 
         query_variable["LastChange"].connect (this.query_last_change_cb);
 
@@ -164,7 +164,7 @@ public class Rygel.GstAVTransport : Service {
                                        string         variable,
                                        ref Value      value) {
         // Send current state
-        GstChangeLog log = new GstChangeLog (null, LAST_CHANGE_NS);
+        ChangeLog log = new ChangeLog (null, LAST_CHANGE_NS);
 
         log.log ("TransportState",               this.player.playback_state);
         log.log ("TransportStatus",              this.status);

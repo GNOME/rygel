@@ -23,8 +23,8 @@
 
 using Gst;
 
-public class Rygel.GstPlayer : GLib.Object {
-    private static GstPlayer player;
+public class Rygel.GstRenderer.Player : GLib.Object {
+    private static Player player;
 
     private dynamic Element playbin;
 
@@ -102,7 +102,7 @@ public class Rygel.GstPlayer : GLib.Object {
         }
     }
 
-    private GstPlayer () {
+    private Player () {
         this.playbin = ElementFactory.make ("playbin2", null);
         assert (this.playbin != null);
 
@@ -111,9 +111,9 @@ public class Rygel.GstPlayer : GLib.Object {
         bus.add_watch (this.bus_handler);
     }
 
-    public static GstPlayer get_default () {
+    public static Player get_default () {
         if (player == null) {
-            player = new GstPlayer ();
+            player = new Player ();
         }
 
         return player;
@@ -143,7 +143,7 @@ public class Rygel.GstPlayer : GLib.Object {
 
 // Helper class for converting between Gstreamer time units and string
 // representations of time.
-private class Time {
+private class Rygel.GstRenderer.Time {
     public static ClockTime from_string (string str) {
         uint64 hours, minutes, seconds;
 

@@ -25,7 +25,7 @@ using GUPnP;
 using Gee;
 
 // Helper class for building LastChange messages
-public class Rygel.GstChangeLog : Object {
+public class Rygel.GstRenderer.ChangeLog : Object {
     public unowned Service service { get; set; }
 
     private string service_ns;
@@ -36,14 +36,14 @@ public class Rygel.GstChangeLog : Object {
 
     private uint timeout_id = 0;
 
-    public GstChangeLog (Service? service, string service_ns) {
+    public ChangeLog (Service? service, string service_ns) {
         this.service = service;
         this.service_ns = service_ns;
         this.str = new StringBuilder ();
         this.hash = new HashMap<string, string> ();
     }
 
-    ~GstChangeLog () {
+    ~ChangeLog () {
         if (this.timeout_id != 0) {
             Source.remove (this.timeout_id);
         }

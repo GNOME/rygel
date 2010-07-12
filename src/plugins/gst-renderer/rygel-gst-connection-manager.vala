@@ -23,7 +23,7 @@
 
 using GUPnP;
 
-public class Rygel.GstConnectionManager : Rygel.ConnectionManager {
+public class Rygel.GstRenderer.ConnectionManager : Rygel.ConnectionManager {
     // Creates a list of supported sink protocols based on GStreamer's
     // registry. We don't use this because of the spam it generates ..
     /*
