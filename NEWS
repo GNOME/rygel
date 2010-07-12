@@ -1,3 +1,36 @@
+0.7.2
+=====
+
+A new release in the current unstable 0.7.x series for upcoming GNOME 2.31.5
+release.
+
+* MediaExport:
+  * Support DLNA's 'AnyContainer' upload extenstion.
+  * Only harvest media files. We use a positive list for file extensions to
+    include in the metadata extraction.
+  * Implement fallback to the default (slow) search implementation.
+  * Lower severity for some of the console messages.
+  * Update code according to latest GStreamer Vala API fixes.
+* Tracker:
+  * Improve Sparql query builder to achieve much better performance and reduced
+    D-Bus traffic.
+* GstRenderer:
+  * Relicense from GPL to LGPL.
+  * More descriptive default title.
+- Localization:
+  - Add Simplified Chinese translation.
+  - Add Traditional Chinese translation (Hong Kong and Taiwan).
+  - Updated Spanish translation.
+- Various non-functional improvements to core and plugins.
+
+All contributors to this release:
+
+Aron Xu <aronxu@gnome.org>
+Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Jens Georg <mail@jensge.org>
+Jorge González <jorgegonz@svn.gnome.org>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 0.7.1
 =====
 
