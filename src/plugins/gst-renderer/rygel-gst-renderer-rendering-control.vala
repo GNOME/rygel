@@ -238,16 +238,3 @@ public class Rygel.GstRenderer.RenderingControl : Service {
         action.return ();
     }
 }
-
-// Helper class for converting between double and percentage representations
-// of volume.
-private class Rygel.GstRenderer.Volume {
-    public static double from_percentage (uint percentage) {
-        return (double) percentage / 100.0;
-    }
-
-    public static uint to_percentage (double volume) {
-        return (uint) (volume * 100.0);
-    }
-}
-
