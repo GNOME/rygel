@@ -1,8 +1,8 @@
-src/plugins/gst-renderer/rygel-gst-av-transport.c
-src/plugins/gst-renderer/rygel-gst-changelog.c
-src/plugins/gst-renderer/rygel-gst-player.c
-src/plugins/gst-renderer/rygel-gst-plugin.c
-src/plugins/gst-renderer/rygel-gst-rendering-control.c
+src/plugins/gst-renderer/rygel-gst-renderer-av-transport.c
+src/plugins/gst-renderer/rygel-gst-renderer-changelog.c
+src/plugins/gst-renderer/rygel-gst-renderer-player.c
+src/plugins/gst-renderer/rygel-gst-renderer-plugin.c
+src/plugins/gst-renderer/rygel-gst-renderer-rendering-control.c
 src/plugins/media-export/rygel-media-export-database.c
 src/plugins/media-export/rygel-media-export-db.c
 src/plugins/media-export/rygel-media-export-media-cache.c
@@ -24,6 +24,7 @@ src/plugins/mediathek/rygel-mediathek-plugin.c
 src/plugins/mediathek/rygel-mediathek-root-container.c
 src/plugins/mediathek/rygel-mediathek-rss-container.c
 src/plugins/mediathek/rygel-mediathek-video-item.c
+src/plugins/tracker/rygel-tracker-content-directory.c
 src/plugins/tracker/rygel-tracker-category-all-container.c
 src/plugins/tracker/rygel-tracker-insertion-query.c
 src/plugins/tracker/rygel-tracker-item-creation.c
