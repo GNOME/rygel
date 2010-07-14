@@ -93,5 +93,16 @@ private class Rygel.AlbumArtSpecTest : GLib.Object {
         assert (file.get_uri ().has_suffix
                 ("podcast-d717b10ec8fb35b11644995deb04b721-08d299536e562915eb133e2676396d3f.jpeg"));
                 */
+
+        // test banshee spec
+        item = new MediaItem ();
+        item.author = "Peter Fox";
+        item.album = "Stadtaffe";
+        item.title = "Schwarz zu Blau";
+        file = store.get_media_art_file ("album", item, true);
+        assert (file != null);
+        debug (file.get_uri());
+        assert (file.get_uri ().has_suffix
+                ("album-15f9f69ee3d841df6b1e2f56439f11a2.jpg"));
     }
 }
