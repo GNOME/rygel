@@ -305,8 +305,8 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                                      FileQueryInfoFlags.NONE,
                                      null);
 
-        weak string content_type = file_info.get_content_type ();
-        weak string mime = g_content_type_get_mime_type (content_type);
+        string content_type = file_info.get_content_type ();
+        string mime = g_content_type_get_mime_type (content_type);
         if (mime != null) {
             /* add custom mime tag to tag list */
             this.tag_list.add (TagMergeMode.REPLACE,
