@@ -99,13 +99,15 @@ public class Rygel.MediaArtStore : GLib.Object {
                                     MediaItem item,
                                     bool      simple = false) {
         string hash;
+        string suffix = "jpeg";
 
         if (simple) {
             hash = get_simple_hash (type, item);
+            suffix = "jpg";
         } else {
             hash = get_hash (type, item);
         }
-        var file_path = "%s-%s.jpeg".printf (type, hash);
+        var file_path = "%s-%s.%s".printf (type, hash, suffix);
 
         var path = Path.build_filename (this.directory, file_path);
 
@@ -119,12 +121,12 @@ public class Rygel.MediaArtStore : GLib.Object {
                 normalized = input;
             } else {
                 normalized = albumart_strip_invalid_entities (input);
+                normalized = normalized.down ();
             }
             normalized = normalized.normalize (-1, NormalizeMode.ALL);
         }
 
-        return Checksum.compute_for_string (ChecksumType.MD5,
-                                            normalized.down ());
+        return Checksum.compute_for_string (ChecksumType.MD5, normalized);
     }
 
     private string get_simple_hash (string type, MediaItem item) {
