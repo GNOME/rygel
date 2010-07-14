@@ -196,7 +196,8 @@ public class Rygel.MediaArtStore : GLib.Object {
             return null;
         }
 
-        var info = file.query_info (FILE_ATTRIBUTE_ACCESS_CAN_READ,
+        var info = file.query_info (FILE_ATTRIBUTE_ACCESS_CAN_READ + "," +
+                                    FILE_ATTRIBUTE_STANDARD_SIZE,
                                     FileQueryInfoFlags.NONE,
                                     null);
         if (!info.get_attribute_boolean (FILE_ATTRIBUTE_ACCESS_CAN_READ)) {
@@ -205,6 +206,7 @@ public class Rygel.MediaArtStore : GLib.Object {
 
         var thumb = new AlbumArt ();
         thumb.uri = file.get_uri ();
+        thumb.size = (long) info.get_size ();
 
         return thumb;
     }
