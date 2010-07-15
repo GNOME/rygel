@@ -146,6 +146,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
         if (this.object_id == this.root_container.id) {
             return this.root_container;
         } else {
+            debug ("searching for object '%s'..", this.object_id);
             var media_object = yield this.root_container.find_object (
                                         this.object_id,
                                         this.cancellable);
@@ -153,6 +154,7 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
                 throw new ContentDirectoryError.NO_SUCH_OBJECT (
                                         _("No such object"));
             }
+            debug ("object '%s' found.", this.object_id);
 
             return media_object;
         }
@@ -193,10 +195,18 @@ internal class Rygel.Browse: GLib.Object, Rygel.StateMachine {
             this.requested_count = this.total_matches;
         }
 
+        debug ("Fetching %u children of container '%s' from index %u..",
+               this.requested_count,
+               this.object_id,
+               this.index);
         var children = yield container.get_children (this.index,
                                                      this.requested_count,
                                                      this.cancellable);
         this.number_returned = children.size;
+        debug ("Fetched %u children of container '%s' from index %u.",
+               this.requested_count,
+               this.object_id,
+               this.index);
 
         return children;
     }
