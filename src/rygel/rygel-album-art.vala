@@ -29,8 +29,7 @@ public class Rygel.AlbumArt : Thumbnail {
 
     internal override DIDLLiteResource? add_resource (DIDLLiteItem didl_item,
                                                       string       protocol) {
-        Xml.Node* node = didl_item.xml_node;
-        node->new_child (null, "upnp:albumArtURI", this.uri);
+        didl_item.album_art = this.uri;
 
         return null;
     }
