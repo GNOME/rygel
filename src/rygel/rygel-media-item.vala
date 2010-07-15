@@ -117,8 +117,7 @@ public class Rygel.MediaItem : MediaObject {
 
     // Adds URI to MediaItem. You can either provide the associated thumbnail or
     // ask Rygel to try to fetch it for you by passing null as @thumbnail.
-    public void add_uri (string     uri,
-                         Thumbnail? thumbnail) {
+    public void add_uri (string uri, Thumbnail? thumbnail) {
         this.uris.add (uri);
 
         if (thumbnail != null) {
