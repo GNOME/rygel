@@ -153,24 +153,20 @@ public class Rygel.MediaItem : MediaObject {
     }
 
     public void lookup_album_art () {
-        if (!this.upnp_class.has_prefix (MediaItem.AUDIO_CLASS)) {
+        assert (this.upnp_class.has_prefix (MediaItem.AUDIO_CLASS) &&
+                this.thumbnails.size == 0);
+
+        var media_art_store = MediaArtStore.get_default ();
+        if (media_art_store == null) {
             return;
         }
 
-
-        if (!(this.thumbnails.size > 0 && this.thumbnails[0] is AlbumArt)) {
-            var media_art_store = MediaArtStore.get_default ();
-            if (media_art_store == null) {
-                return;
+        try {
+            var thumb = media_art_store.find_media_art_any (this);
+            if (thumb != null) {
+                this.thumbnails.insert (0, thumb);
             }
-
-            try {
-                var thumb = media_art_store.find_media_art_any (this);
-                if (thumb != null) {
-                    this.thumbnails.insert (0, thumb);
-                }
-            } catch (Error err) {};
-        }
+        } catch (Error err) {};
     }
 
     internal int compare_transcoders (void *a, void *b) {
