@@ -1,14 +1,17 @@
 # Chinese (China) translation for rygel.
-# Copyright (C) 2010 rygel's COPYRIGHT HOLDER
+# Copyright (C) 2010 Free Software Foundation, Inc. 
 # This file is distributed under the same license as the rygel package.
 # 甘 露 <rhythm.gan@gmail.com>, 2010.
+# Eleanor Chen <chenyueg@gmail.com>, 2010.
+# Yinghua Wang <wantinghard@gmail.com>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-07-12 17:19+0000\n"
-"PO-Revision-Date: 2010-07-13 17:31+0800\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&component=general\n"
+"POT-Creation-Date: 2010-07-13 09:34+0000\n"
+"PO-Revision-Date: 2010-07-18 11:40+0800\n"
 "Last-Translator: Eleanor Chen <chenyueg@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +64,8 @@ msgstr "标题(_T)"
 
 #: ../data/rygel-preferences.ui.h:13
 #, no-c-format
-msgid "Write %u for username, %n for real name of the user and %h for host name"
+msgid ""
+"Write %u for username, %n for real name of the user and %h for host name"
 msgstr "写入 %u 代表用户名，%n 为用户真名，%h 为主机名"
 
 #: ../data/rygel-preferences.ui.h:14
@@ -114,7 +118,6 @@ msgstr "不支持定位模式"
 
 #: ../src/plugins/gst-renderer/rygel-gst-renderer-av-transport.vala:408
 #: ../src/plugins/gst-renderer/rygel-gst-renderer-av-transport.vala:412
-#, fuzzy
 msgid "Transition not available"
 msgstr "过渡不可用"
 
@@ -205,9 +208,9 @@ msgid "Pipeline stuck while reading file info"
 msgstr "读取文件信息时管线被卡住"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:185
-#, fuzzy, c-format
+#, c-format
 msgid "Scheduling file %s for metadata extraction"
-msgstr "正在为元数据提起排定文件 %s"
+msgstr "正在安排提取文件 %s 的元数据"
 
 #. Translators: first parameter is file uri, second is error
 #. message
@@ -227,7 +230,7 @@ msgid "Object %s is not an item"
 msgstr "对象 %s 不是一个条目"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:405
-#, fuzzy, c-format
+#, c-format
 msgid "Original search: %s"
 msgstr "最初搜索：%s"
 
@@ -302,9 +305,8 @@ msgid "@REALNAME@'s media"
 msgstr "@REALNAME@ 的媒体"
 
 #: ../src/plugins/media-export/rygel-media-export-query-container.vala:47
-#, fuzzy
 msgid "ID does not contain pairs"
-msgstr "ID 不成对"
+msgstr "ID 不包含成对"
 
 #: ../src/plugins/media-export/rygel-media-export-query-container.vala:54
 msgid "Empty part not allowed in virtual ID"
@@ -315,9 +317,9 @@ msgid "Placeholder can only be on second place"
 msgstr "Placeholder 只能处于第二个位置"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:47
-#, fuzzy, c-format
+#, c-format
 msgid "Directory %s gone, removing watch"
-msgstr "目录 %s 已不见，不再观察"
+msgstr "目录 %s 消失，不再监视"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:75
 #, c-format
@@ -378,9 +380,8 @@ msgid "'%s' harvested"
 msgstr "已获取 '%s' "
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:373
-#, fuzzy
 msgid "No Metadata extractor available. Will not crawl"
-msgstr "无元数据提取器可用。将不使用爬行"
+msgstr "无元数据提取器可用。将不再抓取"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:379
 msgid "Already harvesting; cancelling"
@@ -453,16 +454,13 @@ msgstr "年代"
 msgid "Invalid Arguments"
 msgstr "无效参数"
 
-#: ../src/rygel/rygel-browse.vala:141
-#: ../src/rygel/rygel-browse.vala:154
-#: ../src/rygel/rygel-browse.vala:184
-#: ../src/rygel/rygel-item-creator.vala:107
+#: ../src/rygel/rygel-browse.vala:141 ../src/rygel/rygel-browse.vala:154
+#: ../src/rygel/rygel-browse.vala:184 ../src/rygel/rygel-item-creator.vala:107
 #: ../src/rygel/rygel-item-creator.vala:140
 msgid "No such object"
 msgstr "无此对象"
 
-#: ../src/rygel/rygel-browse.vala:227
-#: ../src/rygel/rygel-browse.vala:232
+#: ../src/rygel/rygel-browse.vala:227 ../src/rygel/rygel-browse.vala:232
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "浏览 '%s' 失败：%s\n"
@@ -541,7 +539,6 @@ msgid "Failed to parse query: %s"
 msgstr "无法处理查询：%s"
 
 #: ../src/rygel/rygel-http-get.vala:105
-#, fuzzy
 msgid "Following HTTP headers appended to response:"
 msgstr "正在追踪附加到响应的 HTTP 头："
 
@@ -628,14 +625,14 @@ msgstr "无法在 '%s' 下创建条目：%s"
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
 #: ../src/rygel/rygel-wmv-transcoder-bin.vala:107
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "无法链接 pad %s 到 %s"
 
 #. 'fakesink' should not be translated
 #: ../src/rygel/rygel-live-response.vala:92
 msgid "Plugin 'fakesink' missing"
-msgstr "缺少插件 'fakesink'"
+msgstr "缺少插件 fakesink"
 
 #: ../src/rygel/rygel-live-response.vala:115
 #: ../src/rygel/rygel-live-response.vala:137
@@ -674,7 +671,7 @@ msgid "new network context %s (%s) available."
 msgstr "新的网络环境 %s (%s) 可用。"
 
 #: ../src/rygel/rygel-main.vala:139
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "无法创建根设备工厂：%s"
 
@@ -898,4 +895,3 @@ msgstr "将修改后的描述写入 %s 时失败。"
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "创建首选项对话框失败：%s"
-
