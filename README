@@ -32,6 +32,34 @@ Important facts and features
     and MPEG TS. Fortunately the transcoding framework is flexible enough to
     easily add more transcoding targets.
 
+Requirements
+============
+
+  * Build-time:
+    * Core:
+      * gupnp
+      * gupnp-av
+      * dbus-glib
+      * gstreamer
+      * gio (part of glib source package)
+      * libgee
+      * libuuid
+      * libsoup
+      * vala (not if building from release tarballs)
+      * gupnp-vala (not if building from release tarballs)
+    * Preferences UI:
+      * gtk+
+    * MediaExport:
+      * sqlite3
+  * Run-time:
+    * Definitely needed:
+      * gst-plugins-base
+    * Might be needed (depending on your usage and media collection):
+      * gst-plugins-good
+      * gst-ffmpeg
+      * gst-plugins-bad
+      * gst-plugins-ugly
+
 References
 ==========
 
