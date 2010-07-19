@@ -27,6 +27,9 @@ public class Rygel.AlbumArt : Thumbnail {
         base ();
     }
 
+    /* This doesn't really add a resource. Blame UPnP/DLNA for treating
+     * thumbnails and album-art differently for no apparent reason.
+     */
     internal override DIDLLiteResource? add_resource (DIDLLiteItem didl_item,
                                                       string       protocol) {
         didl_item.album_art = this.uri;
