@@ -1,26 +1,30 @@
 What is Rygel?
+=============
 
-Rygel is a collection of DLNA[1] (UPnP[2] AV) devices, implemented through a
-plug-in mechanism.
+Rygel is a collection of DLNA (UPnP AV) devices, implemented through a plug-in
+mechanism.
 
-== Important facts and features ==
+Important facts and features
+============================
+
   * Specifically designed for GNOME (Mobile) and is therefore planned to be one
-    of the key new features of Maemo[3] platform in the Harmattan[4] release.
-  * Based on GUPnP[5].
-  * Written (mostly) in Vala language[6]
-  * APIs to ease the implementation of AV devices (currently only MediaServer[7]
-    version 2.0 specification[8].
+    of the key new features of GNOME 3.0 and Maemo platform in the Harmattan
+    release.
+  * Based on GUPnP.
+  * Written entirely in Vala language.
+  * APIs to ease the implementation of AV devices (currently only MediaServer
+    version 2.0 specification.
   * Export of on-disk media:
-    * tracker[9] plugin.
-    * media-export plugin: Recursively exports folders and files specified in
-                           the user configuration. This plugin supports all
-                           types of URIs that gio/gvfs and gstreamer can handle.
-  * Export of online media from 2nd German TV station[11].
+    * Tracker plugin.
+    * MediaExport plugin: Recursively exports folders and files specified in
+                          the user configuration. This plugin supports all
+                          types of URIs that gio/gvfs and gstreamer can handle.
+  * Export of online media from 2nd German TV station.
   * Export of media hierarchies provided by external applications through
-    implementation of D-Bus MediaServer spec[12]. Applications that utilize
+    implementation of D-Bus MediaServer spec. Applications that utilize
     this feature are:
-    * PulseAudio[13]: Provides streams for input/output devices on the system.
-    * DVB Daemon[10]: Provides live TV (DVB) channel streams.
+    * PulseAudio: Provides streams for input/output devices on the system.
+    * DVB Daemon: Provides live TV (DVB) channel streams.
   * Export of GStreamer pipelines as media items on the network, specified
     through gst-launch syntax in the user configuration.
   * Audio and Video Transcoding: source format could be anything GStreamer's
@@ -28,17 +32,20 @@ plug-in mechanism.
     and MPEG TS. Fortunately the transcoding framework is flexible enough to
     easily add more transcoding targets.
 
-[1] http://www.dlna.org
-[2] http://www.upnp.org
-[3] http://maemo.org/intro/platform
-[4] http://wiki.maemo.org/Task:Maemo_roadmap/Harmattan|Harmattan
-[5] http://www.gupnp.org
-[6] http://www.vala-project.org
-[7] http://www.wikipedia.org/wiki/Media_server
-[8] http://www.upnp.org/specs/av/UPnP-av-MediaServer-v2-Device-20060531.pdf
-[9] http://www.gnome.org/projects/tracker
-[10] http://live.gnome.org/DVBDaemon
-[11] http://www.zdf.de
-[12] http://live.gnome.org/Rygel/MediaServerSpec
-[13] http://www.pulseaudio.org
+References
+==========
+
+  * http://www.dlna.org
+  * http://www.upnp.org
+  * http://maemo.org/intro/platform
+  * http://wiki.maemo.org/Task:Maemo_roadmap/Harmattan
+  * http://www.gupnp.org
+  * http://www.vala-project.org
+  * http://www.wikipedia.org/wiki/Media_server
+  * http://www.upnp.org/specs/av/UPnP-av-MediaServer-v2-Device-20060531.pdf
+  * http://www.gnome.org/projects/tracker
+  * http://live.gnome.org/DVBDaemon
+  * http://www.zdf.de
+  * http://live.gnome.org/Rygel/MediaServerSpec
+  * http://www.pulseaudio.org
 
