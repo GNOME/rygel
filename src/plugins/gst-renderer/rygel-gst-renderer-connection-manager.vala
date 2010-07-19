@@ -84,6 +84,7 @@ public class Rygel.GstRenderer.ConnectionManager : Rygel.ConnectionManager {
                                     "http-get:*:video/x-3ivx:*," +
                                     "http-get:*:video/x-matroska:*," +
                                     "http-get:*:video/mpeg:*," +
+                                    "http-get:*:video/mp4:*," +
                                     "http-get:*:video/x-ms-asf:*," +
                                     "http-get:*:video/x-xvid:*," +
                                     "http-get:*:video/x-ms-wmv:*," +
