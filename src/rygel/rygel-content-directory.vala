@@ -48,9 +48,6 @@ public class Rygel.ContentDirectory: Service {
     public const string UPNP_TYPE_V1 =
                     "urn:schemas-upnp-org:service:ContentDirectory:1";
     public const string DESCRIPTION_PATH = "xml/ContentDirectory.xml";
-    private const string SEARCH_CAPS = "@id,@parentID,@refID," +
-                                       "upnp:class,dc:title,dc:creator," +
-                                       "res,res@protocolInfo";
 
     protected string feature_list;
     protected string sort_caps;
@@ -260,7 +257,7 @@ public class Rygel.ContentDirectory: Service {
     private void get_search_capabilities_cb (Service             content_dir,
                                              owned ServiceAction action) {
         /* Set action return arguments */
-        action.set ("SearchCaps", typeof (string), SEARCH_CAPS);
+        action.set ("SearchCaps", typeof (string), RelationalExpression.CAPS);
 
         action.return ();
     }
@@ -271,7 +268,7 @@ public class Rygel.ContentDirectory: Service {
                                             ref GLib.Value value) {
         /* Set action return arguments */
         value.init (typeof (string));
-        value.set_string (SEARCH_CAPS);
+        value.set_string (RelationalExpression.CAPS);
     }
 
     /* action GetSortCapabilities implementation */
