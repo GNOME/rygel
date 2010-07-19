@@ -26,8 +26,8 @@ using GUPnP;
 // relational operator.
 public class Rygel.RelationalExpression :
              Rygel.SearchExpression<SearchCriteriaOp,string,string> {
-    internal const string CAPS = "@id,@parentID,@refID," +
-                                 "upnp:class,dc:title,dc:creator," +
+    internal const string CAPS = "@id,@parentID,@refID,upnp:class," +
+                                 "dc:title,dc:creator,upnp:createClass," +
                                  "res,res@protocolInfo";
 
     public override bool satisfied_by (MediaObject media_object) {
