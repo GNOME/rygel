@@ -97,6 +97,9 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                     case 5:
                         update_v5_v6 ();
                         break;
+                    case 6:
+                        update_v6_v7 ();
+                        break;
                     default:
                         warning ("Cannot upgrade");
                         database = null;
@@ -105,6 +108,10 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                 old_version++;
             }
         }
+    }
+
+    private void force_reindex () throws DatabaseError {
+        database.exec ("UPDATE Object SET timestamp = 0");
     }
 
     private void update_v3_v4 () {
@@ -193,6 +200,22 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             database.exec ("DROP INDEX IF EXISTS idx_uri_fk");
             database.exec ("DROP TABLE Uri");
             database.exec ("UPDATE schema_info SET version = '6'");
+            database.commit ();
+            database.exec ("VACUUM");
+            database.analyze ();
+        } catch (DatabaseError error) {
+            database.rollback ();
+            warning ("Database upgrade failed: %s", error.message);
+            database = null;
+        }
+    }
+
+    private void update_v6_v7 () {
+        try {
+            database.begin ();
+            database.exec ("ALTER TABLE meta_data ADD COLUMN dlna_profile TEXT");
+            database.exec ("UPDATE schema_info SET version = '7'");
+            force_reindex ();
             database.commit ();
             database.exec ("VACUUM");
             database.analyze ();

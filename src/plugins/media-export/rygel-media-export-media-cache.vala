@@ -45,10 +45,11 @@ public enum Rygel.MediaDBObjectType {
 public class Rygel.MediaExport.MediaCache : Object {
     private Database db;
     private DBObjectFactory factory;
-    internal const string schema_version = "6";
+    internal const string schema_version = "7";
     internal const string CREATE_META_DATA_TABLE_STRING =
     "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
                             "mime_type TEXT NOT NULL, " +
+                            "dlna_profile TEXT, " +
                             "duration INTEGER, " +
                             "width INTEGER, " +
                             "height INTEGER, " +
@@ -117,8 +118,8 @@ public class Rygel.MediaExport.MediaCache : Object {
         "(size, mime_type, width, height, class, " +
          "author, album, date, bitrate, " +
          "sample_freq, bits_per_sample, channels, " +
-         "track, color_depth, duration, object_fk) VALUES " +
-         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         "track, color_depth, duration, object_fk, dlna_profile) VALUES " +
+         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     private const string INSERT_OBJECT_STRING =
     "INSERT OR REPLACE INTO Object (upnp_id, title, type_fk, parent, timestamp, uri) " +
@@ -129,10 +130,11 @@ public class Rygel.MediaExport.MediaCache : Object {
         "(SELECT descendant FROM closure WHERE ancestor = ?)";
 
     private const string GET_OBJECT_WITH_PATH =
-    "SELECT DISTINCT o.type_fk, o.title, m.size, m.mime_type, m.width, m.height, " +
-            "m.class, m.author, m.album, m.date, m.bitrate, m.sample_freq, " +
-            "m.bits_per_sample, m.channels, m.track, m.color_depth, " +
-            "m.duration, o.parent, o.upnp_id, o.timestamp, o.uri " +
+    "SELECT DISTINCT o.type_fk, o.title, m.size, m.mime_type, m.width, " +
+            "m.height, m.class, m.author, m.album, m.date, m.bitrate, " +
+            "m.sample_freq, m.bits_per_sample, m.channels, m.track, " +
+            "m.color_depth, m.duration, o.parent, o.upnp_id, o.timestamp, " +
+            "o.uri, m.dlna_profile " +
     "FROM Object o " +
         "JOIN Closure c ON (o.upnp_id = c.ancestor) " +
         "LEFT OUTER JOIN meta_data m ON (o.upnp_id = m.object_fk) " +
@@ -153,7 +155,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             "m.width, m.height, m.class, m.author, m.album, " +
             "m.date, m.bitrate, m.sample_freq, m.bits_per_sample, " +
             "m.channels, m.track, m.color_depth, m.duration, " +
-            "o.upnp_id, o.parent, o.timestamp, o.uri " +
+            "o.upnp_id, o.parent, o.timestamp, o.uri, m.dlna_profile " +
     "FROM Object o LEFT OUTER JOIN meta_data m " +
         "ON o.upnp_id = m.object_fk " +
     "WHERE o.parent = ? " +
@@ -169,7 +171,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             "m.width, m.height, m.class, m.author, m.album, " +
             "m.date, m.bitrate, m.sample_freq, m.bits_per_sample, " +
             "m.channels, m.track, m.color_depth, m.duration, " +
-            "o.upnp_id, o.parent, o.timestamp, o.uri " +
+            "o.upnp_id, o.parent, o.timestamp, o.uri, m.dlna_profile " +
     "FROM Object o " +
         "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
         "LEFT OUTER JOIN meta_data m " +
@@ -582,7 +584,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                                 item.track_number,
                                 item.color_depth,
                                 item.duration,
-                                item.id };
+                                item.id,
+                                item.dlna_profile};
         this.db.exec (SAVE_META_DATA_STRING, values);
     }
 
@@ -704,6 +707,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         item.width = statement.column_int (4);
         item.height = statement.column_int (5);
         item.color_depth = statement.column_int (15);
+        item.dlna_profile = statement.column_text (21);
     }
 
     public ArrayList<string> get_child_ids (string container_id)
