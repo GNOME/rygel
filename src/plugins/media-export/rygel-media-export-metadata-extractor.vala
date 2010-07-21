@@ -56,10 +56,6 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
     private bool extract_metadata;
 
-    public static MetadataExtractor? create () {
-        return new MetadataExtractor ();
-    }
-
     public MetadataExtractor () {
         this.file_hash = new HashMap<string, File> ();
 
