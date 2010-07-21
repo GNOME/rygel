@@ -105,7 +105,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
         if ((dlna.info.result & Gst.DiscovererResult.TIMEOUT) != 0) {
             this.error (file,
-                        new IOChannelError.FAILED ("Pipeline stuckwhile" +
+                        new IOChannelError.FAILED ("Pipeline stuck while" +
                                                    "reading file info"));
             return;
         } else if ((dlna.info.result & Gst.DiscovererResult.ERROR) != 0) {
@@ -117,11 +117,17 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             this.extract_mime_and_size (file, tag_list);
             this.extract_duration (dlna.info, tag_list);
             this.extract_stream_info (dlna.info, tag_list);
+            if (dlna.name != null) {
+                tag_list.add (TagMergeMode.REPLACE,
+                              TAG_RYGEL_DLNA_PROFILE,
+                              dlna.name);
+                tag_list.add (TagMergeMode.REPLACE, TAG_RYGEL_MIME, dlna.mime);
+            }
             this.extraction_done (file, tag_list);
         } catch (Error e) {
-            debug ("Unable to extract metadata for %s: %s\n",
-                   dlna.info.uri,
-                   err.message);
+            debug (_("Failed to extract metadata from %s: %s"),
+                    dlna.info.uri,
+                    e.message);
         }
     }
 
