@@ -34,11 +34,11 @@ using GUPnP;
  */
 public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     /* Signals */
-    public signal void extraction_done (File                  file,
-                                        GUPnP.DLNAInformation info,
-                                        string                mime,
-                                        uint64                size,
-                                        uint64                mtime);
+    public signal void extraction_done (File                   file,
+                                        GUPnP.DLNAInformation? info,
+                                        string                 mime,
+                                        uint64                 size,
+                                        uint64                 mtime);
 
     /**
      * Signalize that an error occured during metadata extraction
@@ -54,6 +54,8 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     private HashMap<string, File> file_hash;
     private uint64 timeout = 10; /* seconds */
 
+    private bool extract_metadata;
+
     public static MetadataExtractor? create () {
         return new MetadataExtractor ();
     }
@@ -61,14 +63,26 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     public MetadataExtractor () {
         this.file_hash = new HashMap<string, File> ();
 
-        this.discoverer = new GUPnP.DLNADiscoverer ((ClockTime)
-                                              (this.timeout * 1000000000ULL));
-        this.discoverer.done.connect (on_done);
-        this.discoverer.start ();
+        var config = MetaConfig.get_default ();
+        try {
+            this.extract_metadata = config.get_bool ("MediaExport",
+                                                     "extract-metadata");
+        } catch (Error error) {
+            this.extract_metadata = true;
+        }
+
+        if (this.extract_metadata) {
+            var gst_timeout = (ClockTime) (this.timeout * Gst.SECOND);
+            this.discoverer = new GUPnP.DLNADiscoverer (gst_timeout);
+            this.discoverer.done.connect (on_done);
+            this.discoverer.start ();
+        }
     }
 
     ~MetadataExtractor () {
-        this.discoverer.stop ();
+        if (this.extract_metadata) {
+            this.discoverer.stop ();
+        }
     }
 
     private void on_done (GUPnP.DLNAInformation dlna,
@@ -103,9 +117,30 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     }
 
     public void extract (File file) {
-        string uri = file.get_uri ();
-        this.file_hash.set (uri, file);
-        this.discoverer.discover_uri (uri);
+        if (this.extract_metadata) {
+            string uri = file.get_uri ();
+            this.file_hash.set (uri, file);
+            this.discoverer.discover_uri (uri);
+        } else {
+            try {
+                string mime;
+                uint64 size;
+                uint64 mtime;
+
+                extract_file_info (file,
+                                   out mime,
+                                   out size,
+                                   out mtime);
+
+                this.extraction_done (file,
+                                      null,
+                                      mime,
+                                      size,
+                                      mtime);
+            } catch (Error error) {
+                this.error (file, error);
+            }
+        }
     }
 
     private void extract_file_info (File       file,
