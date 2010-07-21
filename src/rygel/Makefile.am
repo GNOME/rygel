@@ -78,6 +78,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 			rygel-media-art-store.vala \
 		    rygel-subtitle.vala \
 		    rygel-subtitle-manager.vala \
+		    rygel-media-query-action.vala \
 		    rygel-browse.vala \
 		    rygel-search.vala \
 			rygel-xbox-hacks.vala \

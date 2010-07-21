@@ -28,114 +28,36 @@ using Soup;
 /**
  * Search action implementation.
  */
-internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
+internal class Rygel.Search:  Rygel.MediaQueryAction {
     // In arguments
-    public string container_id;
     public string search_criteria;
-    public string filter;
-    public uint   index;           // Starting index
-    public uint   requested_count;
-    public string sort_criteria;
-
-    // Out arguments
-    public uint number_returned;
-    public uint total_matches;
-    public uint update_id;
-
-    private MediaContainer root_container;
-    private uint32 system_update_id;
-    private ServiceAction action;
-    private Rygel.DIDLLiteWriter didl_writer;
-    private XBoxHacks xbox_hacks;
-
-    public Cancellable cancellable { get; set; }
 
     public Search (ContentDirectory    content_dir,
                    owned ServiceAction action) {
-        this.root_container = content_dir.root_container;
-        this.system_update_id = content_dir.system_update_id;
-        this.cancellable = content_dir.cancellable;
-        this.action = (owned) action;
-
-        this.didl_writer = new Rygel.DIDLLiteWriter (content_dir.http_server);
-
-        try {
-            this.xbox_hacks = new XBoxHacks.for_action (this.action);
-        } catch { /* This just means we are not dealing with Xbox, yay! */ }
+        base (content_dir,
+              action,
+              "ContainerID",
+              _("Failed to search in '%s': %s"));
     }
 
-    public async void run () {
-        // Start by parsing the 'in' arguments
-        this.action.get ("ContainerID",
+    protected override void parse_args () throws Error {
+        base.parse_args ();
+
+        this.action.get ("SearchCriteria",
                             typeof (string),
-                            out this.container_id,
-                         "SearchCriteria",
-                            typeof (string),
-                            out this.search_criteria,
-                         "Filter",
-                            typeof (string),
-                            out this.filter,
-                         "StartingIndex",
-                            typeof (uint),
-                            out this.index,
-                         "RequestedCount",
-                            typeof (uint),
-                            out this.requested_count,
-                         "SortCriteria",
-                            typeof (string),
-                            out this.sort_criteria);
+                            out this.search_criteria);
 
-        try {
-            if (this.container_id == null || this.search_criteria == null) {
-                // Sorry we can't do anything without these two parameters
-                throw new ContentDirectoryError.NO_SUCH_OBJECT (
-                                        _("No such container"));
-            }
-
-            debug (_("Executing search request: %s"), this.search_criteria);
-
-            if (this.xbox_hacks != null) {
-                this.xbox_hacks.translate_container_id (ref this.container_id);
-            }
-
-            var container = yield this.fetch_container ();
-            var results = yield this.fetch_results (container);
-
-            // Serialize results
-            foreach (var result in results) {
-                if (result is MediaItem && this.xbox_hacks != null) {
-                    this.xbox_hacks.apply (result as MediaItem);
-                }
-
-                this.didl_writer.serialize (result);
-            }
-
-            this.conclude ();
-        } catch (Error err) {
-            this.handle_error (err);
+        if (this.search_criteria == null) {
+            throw new ContentDirectoryError.INVALID_ARGS (
+                                        "No search criteria given");
         }
+
+        debug (_("Executing search request: %s"), this.search_criteria);
     }
 
-    private async MediaContainer fetch_container () throws Error {
-        if (this.container_id == this.root_container.id) {
-            return this.root_container;
-        }
-
-        var media_object = yield this.root_container.find_object (
-                                        this.container_id,
-                                        this.cancellable);
-        if (media_object == null || !(media_object is MediaContainer)) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT (
-                    _("Specified container does not exist."));
-        }
-
-        return media_object as MediaContainer;
-    }
-
-    private async Gee.List<MediaObject> fetch_results (
-                                        MediaContainer container)
-                                        throws Error {
-        this.update_id = container.update_id;
+    protected override async Gee.List<MediaObject> fetch_results (
+                                        MediaObject media_object) throws Error {
+        var container = media_object as MediaContainer;
 
         var parser = new Rygel.SearchCriteriaParser (this.search_criteria);
         yield parser.run ();
@@ -155,44 +77,7 @@ internal class Rygel.Search: GLib.Object, Rygel.StateMachine {
             throw new ContentDirectoryError.CANT_PROCESS (message);
         }
 
-        this.number_returned = results.size;
-
         return results;
-    }
-
-    private void conclude () {
-        // Apply the filter from the client
-        this.didl_writer.filter (this.filter);
-
-        // Retrieve generated string
-        string didl = this.didl_writer.get_string ();
-
-        if (this.update_id == uint32.MAX) {
-            this.update_id = this.system_update_id;
-        }
-
-        // Set action return arguments
-        this.action.set ("Result", typeof (string), didl,
-                         "NumberReturned", typeof (uint), this.number_returned,
-                         "TotalMatches", typeof (uint), this.total_matches,
-                         "UpdateID", typeof (uint), this.update_id);
-
-        this.action.return ();
-        this.completed ();
-    }
-
-    private void handle_error (Error error) {
-        warning (_("Failed to search in '%s': %s"),
-                 this.container_id,
-                 error.message);
-
-        if (error is ContentDirectoryError) {
-            this.action.return_error (error.code, error.message);
-        } else {
-            this.action.return_error (701, error.message);
-        }
-
-        this.completed ();
     }
 }
 

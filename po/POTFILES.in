@@ -75,6 +75,7 @@ src/plugins/tracker/rygel-tracker-tags.vala
 src/plugins/tracker/rygel-tracker-video-item-factory.vala
 src/plugins/tracker/rygel-tracker-videos.vala
 src/plugins/tracker/rygel-tracker-years.vala
+src/rygel/rygel-media-query-action.vala
 src/rygel/rygel-browse.vala
 src/rygel/rygel-cmdline-config.vala
 src/rygel/rygel-configuration.vala
