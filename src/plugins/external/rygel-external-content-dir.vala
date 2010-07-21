@@ -39,6 +39,7 @@ public class Rygel.External.ContentDir : Rygel.ContentDirectory {
                               plugin.child_count,
                               plugin.searchable,
                               plugin.service_name,
+                              plugin.root_object,
                               this.context.host_ip,
                               null);
     }

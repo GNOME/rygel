@@ -47,6 +47,7 @@ public class Rygel.External.Container : Rygel.MediaContainer {
                       uint       child_count,
                       bool       searchable,
                       string     service_name,
+                      string     path,
                       string     host_ip,
                       Container? parent = null) {
         base (id, parent, title, (int) child_count);
@@ -64,7 +65,7 @@ public class Rygel.External.Container : Rygel.MediaContainer {
 
         // Create proxy to MediaContainer iface
         this.actual_container = this.connection.get_object (this.service_name,
-                                                            id)
+                                                            path)
                                 as MediaContainerProxy;
 
         this.update_container.begin (true);
@@ -256,16 +257,17 @@ public class Rygel.External.Container : Rygel.MediaContainer {
         this.containers.clear ();
 
         foreach (var props in children_props) {
-            var id = props.lookup ("Path").get_string ();
+            var path = props.lookup ("Path").get_string ();
             var title = props.lookup ("DisplayName").get_string ();
             var child_count = props.lookup ("ChildCount").get_uint ();
             var searchable = props.lookup ("Searchable").get_boolean ();
 
-            var container = new Container (id,
+            var container = new Container (path,
                                            title,
                                            child_count,
                                            searchable,
                                            this.service_name,
+                                           path,
                                            this.host_ip,
                                            this);
             this.containers.add (container);
