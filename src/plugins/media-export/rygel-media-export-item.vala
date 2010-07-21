@@ -36,28 +36,29 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
                                           uint64                mtime) {
         string id = Checksum.compute_for_string (ChecksumType.MD5,
                                                  file.get_uri ());
-        unowned Gst.StreamInformation audio = null;
-        unowned Gst.StreamInformation video = null;
+        unowned StreamAudioInformation audio_info = null;
+        unowned StreamVideoInformation video_info = null;
 
-        foreach (unowned Gst.StreamInformation stream_info in
+        foreach (unowned StreamInformation stream_info in
                  dlna_info.info.stream_list) {
-            if (audio == null &&
+            if (audio_info == null &&
                 stream_info.streamtype == Gst.StreamType.AUDIO) {
-                audio = stream_info;
-            } else if (video == null &&
+                audio_info = (StreamAudioInformation) stream_info;
+            } else if (video_info == null &&
                        (stream_info.streamtype == Gst.StreamType.VIDEO ||
                         stream_info.streamtype == Gst.StreamType.IMAGE)) {
-                video = stream_info;
+                video_info = (StreamVideoInformation) stream_info;
             }
         }
 
-        if (video != null) {
-            if (audio == null && video.streamtype == Gst.StreamType.IMAGE) {
+        if (video_info != null) {
+            if (audio_info == null &&
+                video_info.streamtype == Gst.StreamType.IMAGE) {
                 return new Item.photo (parent,
                                        id,
                                        file,
                                        dlna_info,
-                                       (Gst.StreamVideoInformation) video,
+                                       video_info,
                                        mime,
                                        size,
                                        mtime);
@@ -66,18 +67,18 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
                                        id,
                                        file,
                                        dlna_info,
-                                       (Gst.StreamVideoInformation) video,
-                                       (Gst.StreamAudioInformation) audio,
+                                       video_info,
+                                       audio_info,
                                        mime,
                                        size,
                                        mtime);
             }
-        } else if (audio != null) {
+        } else if (audio_info != null) {
             return new Item.audio (parent,
                                    id,
                                    file,
                                    dlna_info,
-                                   (Gst.StreamAudioInformation) audio,
+                                   audio_info,
                                    mime,
                                    size,
                                    mtime);
@@ -90,8 +91,8 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
                         string                      id,
                         File                        file,
                         GUPnP.DLNAInformation       dlna_info,
-                        Gst.StreamVideoInformation  video,
-                        Gst.StreamAudioInformation? audio,
+                        Gst.StreamVideoInformation  video_info,
+                        Gst.StreamAudioInformation? audio_info,
                         string                      mime,
                         uint64                      size,
                         uint64                      mtime) {
@@ -104,20 +105,20 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
               mtime,
               MediaItem.VIDEO_CLASS);
 
-        this.width = (int) video.width;
-        this.height = (int) video.height;
-        this.color_depth = (int) video.depth;
+        this.width = (int) video_info.width;
+        this.height = (int) video_info.height;
+        this.color_depth = (int) video_info.depth;
 
-        if (video.tags != null) {
+        if (video_info.tags != null) {
             uint tmp;
 
-            video.tags.get_uint (TAG_BITRATE, out tmp);
+            video_info.tags.get_uint (TAG_BITRATE, out tmp);
             this.bitrate = (int) tmp / 8;
         }
 
-        if (audio != null) {
-            this.n_audio_channels = (int) audio.channels;
-            this.sample_freq = (int) audio.sample_rate;
+        if (audio_info != null) {
+            this.n_audio_channels = (int) audio_info.channels;
+            this.sample_freq = (int) audio_info.sample_rate;
         }
     }
 
@@ -125,7 +126,7 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
                         string                     id,
                         File                       file,
                         GUPnP.DLNAInformation      dlna_info,
-                        Gst.StreamVideoInformation video,
+                        Gst.StreamVideoInformation video_info,
                         string                     mime,
                         uint64                     size,
                         uint64                     mtime) {
@@ -138,16 +139,16 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
               mtime,
               MediaItem.PHOTO_CLASS);
 
-        this.width = (int) video.width;
-        this.height = (int) video.height;
-        this.color_depth = (int) video.depth;
+        this.width = (int) video_info.width;
+        this.height = (int) video_info.height;
+        this.color_depth = (int) video_info.depth;
     }
 
     private Item.audio (MediaContainer             parent,
                         string                     id,
                         File                       file,
                         GUPnP.DLNAInformation      dlna_info,
-                        Gst.StreamAudioInformation audio,
+                        Gst.StreamAudioInformation audio_info,
                         string                     mime,
                         uint64                     size,
                         uint64                     mtime) {
@@ -160,8 +161,8 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
               mtime,
               MediaItem.MUSIC_CLASS);
 
-        this.n_audio_channels = (int) audio.channels;
-        this.sample_freq = (int) audio.sample_rate;
+        this.n_audio_channels = (int) audio_info.channels;
+        this.sample_freq = (int) audio_info.sample_rate;
     }
 
     private Item (MediaContainer        parent,
