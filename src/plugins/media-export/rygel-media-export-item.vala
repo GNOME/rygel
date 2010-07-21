@@ -90,7 +90,7 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
                         string                      id,
                         File                        file,
                         GUPnP.DLNAInformation       dlna_info,
-                        Gst.StreamVideoInformation? video,
+                        Gst.StreamVideoInformation  video,
                         Gst.StreamAudioInformation? audio,
                         string                      mime,
                         uint64                      size,
@@ -115,18 +115,20 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
             this.bitrate = (int) tmp / 8;
         }
 
-        this.n_audio_channels = (int) audio.channels;
-        this.sample_freq = (int) audio.sample_rate;
+        if (audio != null) {
+            this.n_audio_channels = (int) audio.channels;
+            this.sample_freq = (int) audio.sample_rate;
+        }
     }
 
-    private Item.photo (MediaContainer              parent,
-                        string                      id,
-                        File                        file,
-                        GUPnP.DLNAInformation       dlna_info,
-                        Gst.StreamVideoInformation? video,
-                        string                      mime,
-                        uint64                      size,
-                        uint64                      mtime) {
+    private Item.photo (MediaContainer             parent,
+                        string                     id,
+                        File                       file,
+                        GUPnP.DLNAInformation      dlna_info,
+                        Gst.StreamVideoInformation video,
+                        string                     mime,
+                        uint64                     size,
+                        uint64                     mtime) {
         this (parent,
               id,
               file,
@@ -141,14 +143,14 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
         this.color_depth = (int) video.depth;
     }
 
-    private Item.audio (MediaContainer              parent,
-                        string                      id,
-                        File                        file,
-                        GUPnP.DLNAInformation       dlna_info,
-                        Gst.StreamAudioInformation? audio,
-                        string                      mime,
-                        uint64                      size,
-                        uint64                      mtime) {
+    private Item.audio (MediaContainer             parent,
+                        string                     id,
+                        File                       file,
+                        GUPnP.DLNAInformation      dlna_info,
+                        Gst.StreamAudioInformation audio,
+                        string                     mime,
+                        uint64                     size,
+                        uint64                     mtime) {
         this (parent,
               id,
               file,
