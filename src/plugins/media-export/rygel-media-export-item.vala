@@ -30,6 +30,8 @@ using Gst;
 public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
     private const string TAG_WIDTH = MetadataExtractor.TAG_RYGEL_WIDTH;
     private const string TAG_HEIGHT = MetadataExtractor.TAG_RYGEL_HEIGHT;
+    private const string
+    TAG_DLNA_PROFILE = MetadataExtractor.TAG_RYGEL_DLNA_PROFILE;
 
     public static MediaExportItem? create_from_taglist (MediaContainer parent,
                                                   File           file,
@@ -169,7 +171,7 @@ public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
             this.date = tv.to_iso8601 ();
         }
 
-
+        tag_list.get_string (TAG_DLNA_PROFILE, out this.dlna_profile);
         tag_list.get_string (MetadataExtractor.TAG_RYGEL_MIME,
                              out this.mime_type);
 

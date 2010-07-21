@@ -41,6 +41,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     public const string TAG_RYGEL_HEIGHT = "rygel-height";
     public const string TAG_RYGEL_DEPTH = "rygel-depth";
     public const string TAG_RYGEL_MTIME = "rygel-mtime";
+    public const string TAG_RYGEL_DLNA_PROFILE = "rygel-dlna-profile";
 
     /* Signals */
     public signal void extraction_done (File file, Gst.TagList tag_list);
@@ -81,6 +82,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         this.register_custom_tag (TAG_RYGEL_HEIGHT, typeof (int));
         this.register_custom_tag (TAG_RYGEL_DEPTH, typeof (int));
         this.register_custom_tag (TAG_RYGEL_MTIME, typeof (uint64));
+        this.register_custom_tag (TAG_RYGEL_DLNA_PROFILE, typeof (string));
 
         this.file_hash = new HashMap<string, File> ();
 
