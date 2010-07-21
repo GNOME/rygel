@@ -27,14 +27,13 @@ using Gst;
 /**
  * Represents MediaExport item.
  */
-public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
-    public static MediaExportItem? create_from_info (
-                                        MediaContainer        parent,
-                                        File                  file,
-                                        GUPnP.DLNAInformation dlna_info,
-                                        string                mime,
-                                        uint64                size,
-                                        uint64                mtime) {
+public class Rygel.MediaExport.Item : Rygel.MediaItem {
+    public static Item? create_from_info (MediaContainer        parent,
+                                          File                  file,
+                                          GUPnP.DLNAInformation dlna_info,
+                                          string                mime,
+                                          uint64                size,
+                                          uint64                mtime) {
         string id = Checksum.compute_for_string (ChecksumType.MD5,
                                                  file.get_uri ());
         unowned Gst.StreamInformation audio = null;
@@ -54,51 +53,48 @@ public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
 
         if (video != null) {
             if (audio == null && video.streamtype == Gst.StreamType.IMAGE) {
-                return new MediaExportItem.photo (
-                                        parent,
-                                        id,
-                                        file,
-                                        dlna_info,
-                                        (Gst.StreamVideoInformation) video,
-                                        mime,
-                                        size,
-                                        mtime);
+                return new Item.photo (parent,
+                                       id,
+                                       file,
+                                       dlna_info,
+                                       (Gst.StreamVideoInformation) video,
+                                       mime,
+                                       size,
+                                       mtime);
             } else {
-                return new MediaExportItem.video (
-                                        parent,
-                                        id,
-                                        file,
-                                        dlna_info,
-                                        (Gst.StreamVideoInformation) video,
-                                        (Gst.StreamAudioInformation) audio,
-                                        mime,
-                                        size,
-                                        mtime);
+                return new Item.video (parent,
+                                       id,
+                                       file,
+                                       dlna_info,
+                                       (Gst.StreamVideoInformation) video,
+                                       (Gst.StreamAudioInformation) audio,
+                                       mime,
+                                       size,
+                                       mtime);
             }
         } else if (audio != null) {
-            return new MediaExportItem.audio (
-                                        parent,
-                                        id,
-                                        file,
-                                        dlna_info,
-                                        (Gst.StreamAudioInformation) audio,
-                                        mime,
-                                        size,
-                                        mtime);
+            return new Item.audio (parent,
+                                   id,
+                                   file,
+                                   dlna_info,
+                                   (Gst.StreamAudioInformation) audio,
+                                   mime,
+                                   size,
+                                   mtime);
         } else {
             return null;
         }
     }
 
-    private MediaExportItem.video (MediaContainer              parent,
-                                   string                      id,
-                                   File                        file,
-                                   GUPnP.DLNAInformation       dlna_info,
-                                   Gst.StreamVideoInformation? video,
-                                   Gst.StreamAudioInformation? audio,
-                                   string                      mime,
-                                   uint64                      size,
-                                   uint64                      mtime) {
+    private Item.video (MediaContainer              parent,
+                        string                      id,
+                        File                        file,
+                        GUPnP.DLNAInformation       dlna_info,
+                        Gst.StreamVideoInformation? video,
+                        Gst.StreamAudioInformation? audio,
+                        string                      mime,
+                        uint64                      size,
+                        uint64                      mtime) {
         this (parent,
               id,
               file,
@@ -123,14 +119,14 @@ public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
         this.sample_freq = (int) audio.sample_rate;
     }
 
-    private MediaExportItem.photo (MediaContainer              parent,
-                                   string                      id,
-                                   File                        file,
-                                   GUPnP.DLNAInformation       dlna_info,
-                                   Gst.StreamVideoInformation? video,
-                                   string                      mime,
-                                   uint64                      size,
-                                   uint64                      mtime) {
+    private Item.photo (MediaContainer              parent,
+                        string                      id,
+                        File                        file,
+                        GUPnP.DLNAInformation       dlna_info,
+                        Gst.StreamVideoInformation? video,
+                        string                      mime,
+                        uint64                      size,
+                        uint64                      mtime) {
         this (parent,
               id,
               file,
@@ -145,14 +141,14 @@ public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
         this.color_depth = (int) video.depth;
     }
 
-    private MediaExportItem.audio (MediaContainer              parent,
-                                   string                      id,
-                                   File                        file,
-                                   GUPnP.DLNAInformation       dlna_info,
-                                   Gst.StreamAudioInformation? audio,
-                                   string                      mime,
-                                   uint64                      size,
-                                   uint64                      mtime) {
+    private Item.audio (MediaContainer              parent,
+                        string                      id,
+                        File                        file,
+                        GUPnP.DLNAInformation       dlna_info,
+                        Gst.StreamAudioInformation? audio,
+                        string                      mime,
+                        uint64                      size,
+                        uint64                      mtime) {
         this (parent,
               id,
               file,
@@ -166,14 +162,14 @@ public class Rygel.MediaExport.MediaExportItem : Rygel.MediaItem {
         this.sample_freq = (int) audio.sample_rate;
     }
 
-    private MediaExportItem (MediaContainer        parent,
-                             string                id,
-                             File                  file,
-                             GUPnP.DLNAInformation dlna_info,
-                             string                mime,
-                             uint64                size,
-                             uint64                mtime,
-                             string                upnp_class) {
+    private Item (MediaContainer        parent,
+                  string                id,
+                  File                  file,
+                  GUPnP.DLNAInformation dlna_info,
+                  string                mime,
+                  uint64                size,
+                  uint64                mtime,
+                  string                upnp_class) {
         string title = null;
 
         if (dlna_info.info.tags == null ||

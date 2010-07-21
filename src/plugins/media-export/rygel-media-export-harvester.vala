@@ -300,13 +300,12 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
            return;
         }
         if (file == entry) {
-            var item = MediaExportItem.create_from_info (
-                                        this.containers.peek_head (),
-                                        file,
-                                        dlna,
-                                        mime,
-                                        size,
-                                        mtime);
+            var item = Item.create_from_info (this.containers.peek_head (),
+                                              file,
+                                              dlna,
+                                              mime,
+                                              size,
+                                              mtime);
             if (item != null) {
                 item.parent_ref = this.containers.peek_head ();
                 try {
