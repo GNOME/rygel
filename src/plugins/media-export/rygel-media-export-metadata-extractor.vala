@@ -33,18 +33,12 @@ using GUPnP;
  * metadata_available for each key/value pair extracted.
  */
 public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
-    public const string TAG_RYGEL_SIZE = "rygel-size";
-    public const string TAG_RYGEL_MIME = "rygel-mime";
-    public const string TAG_RYGEL_CHANNELS = "rygel-channels";
-    public const string TAG_RYGEL_RATE = "rygel-rate";
-    public const string TAG_RYGEL_WIDTH = "rygel-width";
-    public const string TAG_RYGEL_HEIGHT = "rygel-height";
-    public const string TAG_RYGEL_DEPTH = "rygel-depth";
-    public const string TAG_RYGEL_MTIME = "rygel-mtime";
-    public const string TAG_RYGEL_DLNA_PROFILE = "rygel-dlna-profile";
-
     /* Signals */
-    public signal void extraction_done (File file, Gst.TagList tag_list);
+    public signal void extraction_done (File                  file,
+                                        GUPnP.DLNAInformation info,
+                                        string                mime,
+                                        uint64                size,
+                                        uint64                mtime);
 
     /**
      * Signalize that an error occured during metadata extraction
@@ -60,30 +54,11 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     private HashMap<string, File> file_hash;
     private uint64 timeout = 10; /* seconds */
 
-    private static void register_custom_tag (string tag, Type type) {
-        Gst.tag_register (tag,
-                          TagFlag.META,
-                          type,
-                          tag,
-                          "",
-                          Gst.tag_merge_use_first);
-    }
-
     public static MetadataExtractor? create () {
         return new MetadataExtractor ();
     }
 
     public MetadataExtractor () {
-        this.register_custom_tag (TAG_RYGEL_SIZE, typeof (int64));
-        this.register_custom_tag (TAG_RYGEL_MIME, typeof (string));
-        this.register_custom_tag (TAG_RYGEL_CHANNELS, typeof (int));
-        this.register_custom_tag (TAG_RYGEL_RATE, typeof (int));
-        this.register_custom_tag (TAG_RYGEL_WIDTH, typeof (int));
-        this.register_custom_tag (TAG_RYGEL_HEIGHT, typeof (int));
-        this.register_custom_tag (TAG_RYGEL_DEPTH, typeof (int));
-        this.register_custom_tag (TAG_RYGEL_MTIME, typeof (uint64));
-        this.register_custom_tag (TAG_RYGEL_DLNA_PROFILE, typeof (string));
-
         this.file_hash = new HashMap<string, File> ();
 
         this.discoverer = new GUPnP.DLNADiscoverer ((ClockTime)
@@ -101,7 +76,6 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         assert (this.file_hash.has_key (dlna.info.uri));
 
         File file = this.file_hash.get (dlna.info.uri);
-        TagList tag_list = new TagList ();
 
         this.file_hash.unset (dlna.info.uri);
 
@@ -116,16 +90,11 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         }
 
         try {
-            this.extract_mime_and_size (file, tag_list);
-            this.extract_duration (dlna.info, tag_list);
-            this.extract_stream_info (dlna.info, tag_list);
-            if (dlna.name != null) {
-                tag_list.add (TagMergeMode.REPLACE,
-                              TAG_RYGEL_DLNA_PROFILE,
-                              dlna.name);
-                tag_list.add (TagMergeMode.REPLACE, TAG_RYGEL_MIME, dlna.mime);
-            }
-            this.extraction_done (file, tag_list);
+            uint64 size, mtime;
+            string mime;
+
+            this.extract_file_info (file, out mime, out size, out mtime);
+            this.extraction_done (file, dlna, mime, size, mtime);
         } catch (Error e) {
             debug (_("Failed to extract metadata from %s: %s"),
                     dlna.info.uri,
@@ -139,8 +108,10 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         this.discoverer.discover_uri (uri);
     }
 
-    private void extract_mime_and_size (File    file,
-                                        TagList tag_list) throws Error {
+    private void extract_file_info (File       file,
+                                    out string mime,
+                                    out uint64 size,
+                                    out uint64 mtime) throws Error {
         FileInfo file_info;
 
         try {
@@ -161,64 +132,8 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         }
 
         string content_type = file_info.get_content_type ();
-        string mime = g_content_type_get_mime_type (content_type);
-
-        if (mime != null) {
-            /* add custom mime tag to tag list */
-            tag_list.add (TagMergeMode.REPLACE, TAG_RYGEL_MIME, mime);
-        }
-
-        var size = file_info.get_size ();
-        tag_list.add (TagMergeMode.REPLACE, TAG_RYGEL_SIZE, size);
-
-        var mtime = file_info.get_attribute_uint64 (
-                                        FILE_ATTRIBUTE_TIME_MODIFIED);
-        tag_list.add (TagMergeMode.REPLACE, TAG_RYGEL_MTIME, mtime);
-    }
-
-    private void extract_duration (Gst.DiscovererInformation info,
-                                   TagList                   tag_list) {
-        tag_list.add (TagMergeMode.REPLACE,
-                      TAG_DURATION,
-                      info.duration);
-    }
-
-    private void extract_stream_info (Gst.DiscovererInformation info,
-                                      TagList                   tag_list) {
-        foreach (unowned Gst.StreamInformation i in info.stream_list) {
-            if (i.streamtype == Gst.StreamType.VIDEO) {
-                extract_video_info ((Gst.StreamVideoInformation) i, tag_list);
-            } else if (i.streamtype == Gst.StreamType.AUDIO) {
-                extract_audio_info ((Gst.StreamAudioInformation) i, tag_list);
-            }
-        }
-    }
-
-    private void extract_audio_info (Gst.StreamAudioInformation info,
-                                     TagList                    tag_list) {
-        if (info.sample_rate != 0)
-            tag_list.add (TagMergeMode.REPLACE,
-                          TAG_RYGEL_RATE,
-                          info.sample_rate);
-        if (info.channels != 0)
-            tag_list.add (TagMergeMode.REPLACE,
-                          TAG_RYGEL_CHANNELS,
-                          info.channels);
-    }
-
-    private void extract_video_info (Gst.StreamVideoInformation info,
-                                     TagList                    tag_list) {
-        if (info.depth != 0)
-            tag_list.add (TagMergeMode.REPLACE,
-                          TAG_RYGEL_DEPTH,
-                          info.depth);
-        if (info.width != 0)
-            tag_list.add (TagMergeMode.REPLACE,
-                          TAG_RYGEL_WIDTH,
-                          info.width);
-        if (info.height != 0)
-            tag_list.add (TagMergeMode.REPLACE,
-                          TAG_RYGEL_HEIGHT,
-                          info.height);
+        mime = g_content_type_get_mime_type (content_type);
+        size = file_info.get_size ();
+        mtime = file_info.get_attribute_uint64 (FILE_ATTRIBUTE_TIME_MODIFIED);
     }
 }

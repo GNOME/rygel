@@ -284,7 +284,11 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
         }
     }
 
-    private void on_extracted_cb (File file, Gst.TagList tag_list) {
+    private void on_extracted_cb (File                  file,
+                                  GUPnP.DLNAInformation dlna,
+                                  string                mime,
+                                  uint64                size,
+                                  uint64                mtime) {
         if (this.cancellable.is_cancelled ()) {
             harvested (this.origin);
         }
@@ -296,10 +300,13 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
            return;
         }
         if (file == entry) {
-            var item = MediaExportItem.create_from_taglist (
-                                               this.containers.peek_head (),
-                                               file,
-                                               tag_list);
+            var item = MediaExportItem.create_from_info (
+                                        this.containers.peek_head (),
+                                        file,
+                                        dlna,
+                                        mime,
+                                        size,
+                                        mtime);
             if (item != null) {
                 item.parent_ref = this.containers.peek_head ();
                 try {
