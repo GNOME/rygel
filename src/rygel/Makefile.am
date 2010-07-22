@@ -74,14 +74,14 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-media-item.vala \
 		    rygel-thumbnail.vala \
 		    rygel-thumbnailer.vala \
-			rygel-album-art.vala \
-			rygel-media-art-store.vala \
+		    rygel-album-art.vala \
+		    rygel-media-art-store.vala \
 		    rygel-subtitle.vala \
 		    rygel-subtitle-manager.vala \
 		    rygel-media-query-action.vala \
 		    rygel-browse.vala \
 		    rygel-search.vala \
-			rygel-xbox-hacks.vala \
+		    rygel-xbox-hacks.vala \
 		    rygel-import-resource.vala \
 		    rygel-item-creator.vala \
 		    rygel-search-expression.vala \
