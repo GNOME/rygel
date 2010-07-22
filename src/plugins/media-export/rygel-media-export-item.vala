@@ -48,6 +48,8 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
 
         base (id, parent, title, upnp_class);
         this.mime_type = mime;
+        this.size = (long) size;
+        this.modified = mtime;
         this.add_uri (file.get_uri (), null);
     }
 
