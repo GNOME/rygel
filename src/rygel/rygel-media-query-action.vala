@@ -129,7 +129,7 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
         }
 
         if (this.xbox_hacks != null) {
-            this.xbox_hacks.translate_container_id (ref this.object_id);
+            this.xbox_hacks.translate_container_id (this, ref this.object_id);
         }
     }
 

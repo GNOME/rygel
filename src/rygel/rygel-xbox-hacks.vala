@@ -60,12 +60,18 @@ internal class Rygel.XBoxHacks : GLib.Object {
         device.context.host_path_for_agent (desc_path, server_path, regex);
     }
 
-    public void translate_container_id (ref string container_id) {
-        if (container_id == "1" ||
-            container_id == "4" ||
-            container_id == "5" ||
-            container_id == "6" ||
-            container_id == "7") {
+    public void translate_container_id (MediaQueryAction action,
+                                        ref string       container_id) {
+        if (action is Search &&
+            (container_id == "1" ||
+             container_id == "4" ||
+             container_id == "5" ||
+             container_id == "6" ||
+             container_id == "7") ||
+            (action is Browse &&
+             container_id == "15" ||
+             container_id == "14" ||
+             container_id == "16")) {
             container_id = "0";
         }
     }
