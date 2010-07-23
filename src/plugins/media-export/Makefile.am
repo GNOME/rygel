@@ -27,7 +27,6 @@ librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
 				   rygel-media-export-metadata-extractor.vala \
 				   rygel-media-export-null-container.vala \
 				   rygel-media-export-dummy-container.vala \
-				   rygel-media-export-dynamic-container.vala \
 				   rygel-media-export-root-container.vala \
 				   rygel-media-export-query-container.vala \
 				   rygel-media-export-dbus-service.vala \

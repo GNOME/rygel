@@ -914,4 +914,23 @@ public class Rygel.MediaExport.MediaCache : Object {
                                                     offset,
                                                     max_count);
     }
+
+    public void flag_object (string id, string flag) throws Error {
+        GLib.Value[] args = { flag, id };
+        this.db.exec ("UPDATE Object SET flags = ? WHERE upnp_id = ?", args);
+    }
+
+    public Gee.List<string> get_flagged_uris (string flag) throws Error {
+        var uris = new ArrayList<string> ();
+        GLib.Value[] args = { flag };
+        this.db.exec ("SELECT uri FROM object WHERE flags = ?",
+                      args,
+                      (statement) => {
+                          uris.add (statement.column_text (0));
+
+                          return true;
+                      });
+
+        return uris;
+    }
 }
