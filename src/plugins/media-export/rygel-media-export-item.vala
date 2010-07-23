@@ -134,16 +134,15 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
         this.height = (int) video_info.height;
         this.color_depth = (int) video_info.depth;
 
-        if (video_info.tags != null) {
-            uint tmp;
-
-            video_info.tags.get_uint (TAG_BITRATE, out tmp);
-            this.bitrate = (int) tmp / 8;
-        }
-
         if (audio_info != null) {
             this.n_audio_channels = (int) audio_info.channels;
             this.sample_freq = (int) audio_info.sample_rate;
+            if (audio_info.tags != null) {
+                uint tmp;
+
+                audio_info.tags.get_uint (TAG_BITRATE, out tmp);
+                this.bitrate = (int) tmp / 8;
+            }
         }
     }
 
@@ -186,6 +185,12 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
               mtime,
               MediaItem.MUSIC_CLASS);
 
+        if (audio_info.tags != null) {
+            uint tmp;
+
+            audio_info.tags.get_uint (TAG_BITRATE, out tmp);
+            this.bitrate = (int) tmp / 8;
+        }
         this.n_audio_channels = (int) audio_info.channels;
         this.sample_freq = (int) audio_info.sample_rate;
     }
