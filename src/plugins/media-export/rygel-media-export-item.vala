@@ -206,9 +206,9 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
         base (id, parent, title, upnp_class);
 
         if (dlna_info.info.duration > -1) {
-            this.duration = -1;
-        } else {
             this.duration = dlna_info.info.duration / Gst.SECOND;
+        } else {
+            this.duration = -1;
         }
 
         if (dlna_info.info.tags != null) {
