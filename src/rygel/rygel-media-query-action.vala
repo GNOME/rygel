@@ -49,6 +49,7 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
     protected XBoxHacks xbox_hacks;
     protected string object_id_arg;
 
+    private string[] sort_props;
 
     protected MediaQueryAction (ContentDirectory    content_dir,
                                 owned ServiceAction action) {
@@ -77,6 +78,8 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
             } else {
                 this.update_id = uint32.MAX;
             }
+
+            this.sort_media_objects (results);
 
             foreach (var result in results) {
                 if (result is MediaItem && this.xbox_hacks != null) {
@@ -179,5 +182,39 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
         }
 
         this.completed ();
+    }
+
+    private void sort_media_objects (Gee.List<MediaObject> media_objects) {
+        if (this.sort_criteria == null) {
+            return;
+        }
+
+        this.sort_props = this.sort_criteria.split (",");
+        if (this.sort_props.length == 0) {
+            return;
+        }
+
+        media_objects.sort_with_data (this.compare_media_objects);
+    }
+
+    private int compare_media_objects (void *a, void *b) {
+        var object_a = a as MediaObject;
+        var object_b = b as MediaObject;
+
+        int i;
+        int ret = 0;
+
+        for (i = 0; ret == 0 && i < this.sort_props.length; i++) {
+            var property = this.sort_props [i].substring (1);
+
+            ret = object_a.compare_by_property (object_b, property);
+
+            if (this.sort_props [i][0] == '-') {
+                // Need it in descending order so reverse the comparison
+                ret = 0 - ret;
+            }
+        }
+
+        return ret;
     }
 }

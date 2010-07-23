@@ -94,4 +94,20 @@ public abstract class Rygel.MediaObject : GLib.Object {
 
         return null;
     }
+
+    internal virtual int compare_by_property (MediaObject media_object,
+                                              string      property) {
+        switch (property) {
+        case "@id":
+            return strcmp (this.id, media_object.id);
+        case "@parentID":
+            return strcmp (this.parent, media_object.parent);
+        case "dc:title":
+            return strcmp (this.title, media_object.title);
+        case "upnp:class":
+            return strcmp (this.upnp_class, media_object.upnp_class);
+        default:
+            return 0;
+        }
+    }
 }
