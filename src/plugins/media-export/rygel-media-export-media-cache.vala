@@ -45,7 +45,7 @@ public enum Rygel.MediaDBObjectType {
 public class Rygel.MediaExport.MediaCache : Object {
     private Database db;
     private DBObjectFactory factory;
-    internal const string schema_version = "7";
+    internal const string schema_version = "8";
     internal const string CREATE_META_DATA_TABLE_STRING =
     "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
                             "mime_type TEXT NOT NULL, " +
@@ -56,6 +56,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                             "class TEXT NOT NULL, " +
                             "author TEXT, " +
                             "album TEXT, " +
+                            "genre TEXT, " +
                             "date TEXT, " +
                             "bitrate INTEGER, " +
                             "sample_freq INTEGER, " +
@@ -76,7 +77,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                           "type_fk INTEGER, " +
                           "title TEXT NOT NULL, " +
                           "timestamp INTEGER NOT NULL, " +
-                          "uri TEXT);" +
+                          "uri TEXT, " +
+                          "flags TEXT);" +
     "INSERT INTO schema_info (version) VALUES ('" +
     MediaCache.schema_version + "'); ";
 

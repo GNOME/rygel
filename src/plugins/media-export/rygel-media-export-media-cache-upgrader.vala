@@ -100,6 +100,9 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                     case 6:
                         update_v6_v7 ();
                         break;
+                    case 7:
+                        update_v7_v8 ();
+                        break;
                     default:
                         warning ("Cannot upgrade");
                         database = null;
@@ -215,6 +218,23 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             database.begin ();
             database.exec ("ALTER TABLE meta_data ADD COLUMN dlna_profile TEXT");
             database.exec ("UPDATE schema_info SET version = '7'");
+            force_reindex ();
+            database.commit ();
+            database.exec ("VACUUM");
+            database.analyze ();
+        } catch (DatabaseError error) {
+            database.rollback ();
+            warning ("Database upgrade failed: %s", error.message);
+            database = null;
+        }
+    }
+
+    private void update_v7_v8 () {
+        try {
+            database.begin ();
+            database.exec ("ALTER TABLE object ADD COLUMN flags TEXT");
+            database.exec ("ALTER TABLE meta_data ADD COLUMN genre TEXT");
+            database.exec ("UPDATE schema_info SET version = '8'");
             force_reindex ();
             database.commit ();
             database.exec ("VACUUM");
