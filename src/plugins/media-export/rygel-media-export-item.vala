@@ -28,13 +28,16 @@ using Gst;
  * Represents MediaExport item.
  */
 public class Rygel.MediaExport.Item : Rygel.MediaItem {
+    public static string get_id (File file) {
+        return Checksum.compute_for_string (ChecksumType.MD5,
+                                            file.get_uri ());
+    }
+
     public Item.simple (MediaContainer parent,
                         File           file,
                         string         mime,
                         uint64         size,
                         uint64         mtime) {
-        string id = Checksum.compute_for_string (ChecksumType.MD5,
-                                                 file.get_uri ());
         var title = file.get_basename ();
         string upnp_class;
 
@@ -46,7 +49,7 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
             upnp_class = MediaItem.AUDIO_CLASS;
         }
 
-        base (id, parent, title, upnp_class);
+        base (get_id (file), parent, title, upnp_class);
         this.mime_type = mime;
         this.size = (long) size;
         this.modified = mtime;
@@ -59,8 +62,7 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
                                           string                mime,
                                           uint64                size,
                                           uint64                mtime) {
-        string id = Checksum.compute_for_string (ChecksumType.MD5,
-                                                 file.get_uri ());
+        string id = get_id (file);
         unowned StreamAudioInformation audio_info = null;
         unowned StreamVideoInformation video_info = null;
 
