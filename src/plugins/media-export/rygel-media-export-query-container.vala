@@ -103,7 +103,7 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
             if (args[i + 1] != "?") {
                 update_search_expression (args[i], args[i + 1]);
                 if (name == "") {
-                    this.title = args[i + 1];
+                    this.title = Uri.unescape_string (args[i + 1]);
                 }
             } else {
                 args[i + 1] = "%s";
