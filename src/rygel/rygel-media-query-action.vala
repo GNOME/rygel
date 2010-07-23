@@ -47,20 +47,15 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
     protected ServiceAction action;
     protected Rygel.DIDLLiteWriter didl_writer;
     protected XBoxHacks xbox_hacks;
+    protected string object_id_arg;
 
-    private string object_id_arg;
-    private string error_message;
 
     protected MediaQueryAction (ContentDirectory    content_dir,
-                                owned ServiceAction action,
-                                string              object_id_arg,
-                                string              error_message) {
+                                owned ServiceAction action) {
         this.root_container = content_dir.root_container;
         this.system_update_id = content_dir.system_update_id;
         this.cancellable = content_dir.cancellable;
         this.action = (owned) action;
-        this.object_id_arg = object_id_arg;
-        this.error_message = error_message;
 
         this.didl_writer = new Rygel.DIDLLiteWriter (content_dir.http_server);
 
@@ -114,13 +109,6 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
                          "SortCriteria",
                              typeof (string),
                              out this.sort_criteria);
-
-        if (this.object_id == null) {
-            /* Stupid Xbox */
-            this.action.get ("ContainerID",
-                                 typeof (string),
-                                 out this.object_id);
-        }
 
         if (this.object_id == null) {
             // Sorry we can't do anything without ObjectID
@@ -183,9 +171,7 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
         this.completed ();
     }
 
-    private void handle_error (Error error) {
-        warning (this.error_message, this.object_id, error.message);
-
+    protected virtual void handle_error (Error error) {
         if (error is ContentDirectoryError) {
             this.action.return_error (error.code, error.message);
         } else {

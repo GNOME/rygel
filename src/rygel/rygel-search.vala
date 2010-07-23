@@ -34,10 +34,9 @@ internal class Rygel.Search:  Rygel.MediaQueryAction {
 
     public Search (ContentDirectory    content_dir,
                    owned ServiceAction action) {
-        base (content_dir,
-              action,
-              "ContainerID",
-              _("Failed to search in '%s': %s"));
+        base (content_dir, action);
+
+        this.object_id_arg = "ContainerID";
     }
 
     protected override void parse_args () throws Error {
@@ -78,6 +77,14 @@ internal class Rygel.Search:  Rygel.MediaQueryAction {
         }
 
         return results;
+    }
+
+    protected override void handle_error (Error error) {
+        warning (_("Failed to search in '%s': %s"),
+                 this.object_id,
+                 error.message);
+
+        base.handle_error (error);
     }
 }
 

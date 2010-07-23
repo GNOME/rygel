@@ -37,10 +37,13 @@ internal class Rygel.Browse: Rygel.MediaQueryAction {
 
     public Browse (ContentDirectory    content_dir,
                    owned ServiceAction action) {
-        base (content_dir,
-              action,
-              "ObjectID",
-              _("Failed to browse '%s': %s\n"));
+        base (content_dir, action);
+
+        if (this.xbox_hacks != null) {
+            this.object_id_arg = "ContainerID";
+        } else {
+            this.object_id_arg = "ObjectID";
+        }
     }
 
     protected override void parse_args () throws Error {
@@ -112,6 +115,14 @@ internal class Rygel.Browse: Rygel.MediaQueryAction {
                this.index);
 
         return children;
+    }
+
+    protected override void handle_error (Error error) {
+        warning (_("Failed to browse '%s': %s\n"),
+                 this.object_id,
+                 error.message);
+
+        base.handle_error (error);
     }
 }
 
