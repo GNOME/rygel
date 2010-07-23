@@ -45,20 +45,6 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             uris = new ArrayList<string> ();
         }
 
-        // either an error occured or the gconf key is not set
-        if (uris.size == 0) {
-            debug (_("Nothing configured, using XDG special folders"));
-            UserDirectory[] xdg_directories = { UserDirectory.MUSIC,
-                                                UserDirectory.PICTURES,
-                                                UserDirectory.VIDEOS };
-            foreach (var directory in xdg_directories) {
-                var uri = Environment.get_user_special_dir (directory);
-                if (uri != null) {
-                    uris.add (uri);
-                }
-            }
-        }
-
         var dbus_uris = this.dynamic_elements.get_uris ();
         if (dbus_uris != null) {
             uris.add_all (dbus_uris);
