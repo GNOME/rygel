@@ -88,6 +88,10 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
             didl_item.date = item.date;
         }
 
+        if (item.genre != null && item.genre != "") {
+            didl_item.genre = item.genre;
+        }
+
         if (item.place_holder) {
             this.http_server.add_proxy_resource (didl_item, item);
         } else {
