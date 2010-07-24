@@ -23,6 +23,8 @@ using Gee;
 
 internal class Rygel.MediaExport.MediaCacheUpgrader {
     private unowned Database database;
+    private unowned SQLFactory sql;
+
     private const string UPDATE_V3_V4_STRING_2 =
     "UPDATE meta_data SET object_fk = " +
         "(SELECT upnp_id FROM Object WHERE metadata_fk = meta_data.id)";
@@ -33,8 +35,9 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
     private const string UPDATE_V3_V4_STRING_4 =
     "UPDATE Object SET timestamp = 0";
 
-    public MediaCacheUpgrader (Database database) {
+    public MediaCacheUpgrader (Database database, SQLFactory sql) {
         this.database = database;
+        this.sql = sql;
     }
 
     public bool needs_upgrade (out int current_version) throws Error {
@@ -50,7 +53,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                             });
         current_version = current_version_temp;
 
-        return current_version < MediaCache.schema_version.to_int ();
+        return current_version < SQLFactory.schema_version.to_int ();
     }
 
     public void fix_schema () throws Error {
@@ -72,7 +75,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                 database.exec ("DELETE FROM Object WHERE upnp_id IN (" +
                                "SELECT DISTINCT object_fk FROM meta_data)");
                 database.exec ("DROP TABLE Meta_Data");
-                database.exec (MediaCache.CREATE_META_DATA_TABLE_STRING);
+                database.exec (this.sql.make (SQLString.TABLE_METADATA));
                 database.commit ();
             } catch (Error error) {
                 database.rollback ();
@@ -84,7 +87,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
 
     public void upgrade (int old_version) {
         debug ("Older schema detected. Upgrading...");
-        int current_version = MediaCache.schema_version.to_int ();
+        int current_version = SQLFactory.schema_version.to_int ();
         while (old_version < current_version) {
             if (this.database != null) {
                 switch (old_version) {
@@ -121,7 +124,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
         try {
             database.begin ();
             database.exec ("ALTER TABLE Meta_Data RENAME TO _Meta_Data");
-            database.exec (MediaCache.CREATE_META_DATA_TABLE_STRING);
+            database.exec (this.sql.make (SQLString.TABLE_METADATA));
             database.exec ("INSERT INTO meta_data (size, mime_type, " +
                            "duration, width, height, class, author, album, " +
                            "date, bitrate, sample_freq, bits_per_sample, " +
@@ -134,7 +137,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             database.exec ("DROP TABLE _Meta_Data");
             database.exec (UPDATE_V3_V4_STRING_3);
             database.exec (UPDATE_V3_V4_STRING_4);
-            database.exec (MediaCache.CREATE_TRIGGER_STRING);
+            database.exec (this.sql.make (SQLString.TRIGGER_COMMON));
             database.exec ("UPDATE schema_info SET version = '4'");
             database.commit ();
         } catch (DatabaseError error) {
@@ -149,12 +152,12 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
         try {
             database.begin ();
             database.exec ("DROP TRIGGER IF EXISTS trgr_delete_children");
-            database.exec (MediaCache.CREATE_CLOSURE_TABLE);
+            database.exec (this.sql.make (SQLString.TABLE_CLOSURE));
             // this is to have the database generate the closure table
             database.exec ("ALTER TABLE Object RENAME TO _Object");
             database.exec ("CREATE TABLE Object AS SELECT * FROM _Object");
             database.exec ("DELETE FROM Object");
-            database.exec (MediaCache.CREATE_CLOSURE_TRIGGER_STRING);
+            database.exec (this.sql.make (SQLString.TRIGGER_CLOSURE));
             database.exec ("INSERT INTO _Object (upnp_id, type_fk, title, " +
                            "timestamp) VALUES ('0', 0, 'Root', 0)");
             database.exec ("INSERT INTO Object (upnp_id, type_fk, title, " +
@@ -179,8 +182,8 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             database.exec ("ALTER TABLE _Object RENAME TO Object");
             // the triggers created above have been dropped automatically
             // so we need to recreate them
-            database.exec (MediaCache.CREATE_CLOSURE_TRIGGER_STRING);
-            database.exec (MediaCache.CREATE_INDICES_STRING);
+            database.exec (this.sql.make (SQLString.TRIGGER_CLOSURE));
+            database.exec (this.sql.make (SQLString.INDEX_COMMON));
             database.exec ("UPDATE schema_info SET version = '5'");
             database.commit ();
             database.exec ("VACUUM");

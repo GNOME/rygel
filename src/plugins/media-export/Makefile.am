@@ -23,6 +23,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
 				   rygel-media-export-database.vala \
 				   rygel-media-export-db-container.vala \
+				   rygel-media-export-sql-factory.vala \
 				   rygel-media-export-media-cache.vala \
 				   rygel-media-export-media-cache-upgrader.vala \
 				   rygel-media-export-metadata-extractor.vala \
