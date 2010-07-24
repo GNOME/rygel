@@ -44,7 +44,7 @@ public enum Rygel.MediaDBObjectType {
  */
 public class Rygel.MediaExport.MediaCache : Object {
     private Database db;
-    private DBObjectFactory factory;
+    private ObjectFactory factory;
     internal const string schema_version = "8";
     internal const string CREATE_META_DATA_TABLE_STRING =
     "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
@@ -494,14 +494,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     public MediaCache (string name) throws Error {
         this.open_db (name);
-        this.factory = new DBObjectFactory ();
-    }
-
-    public MediaCache.with_factory (string          name,
-                                    DBObjectFactory factory)
-                                    throws Error {
-        this.open_db (name);
-        this.factory = factory;
+        this.factory = new ObjectFactory ();
     }
 
     private void open_db (string name) throws Error {

@@ -20,8 +20,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-internal class Rygel.MediaExport.ObjectFactory : DBObjectFactory {
-    public override MediaContainer get_container (
+internal class Rygel.MediaExport.ObjectFactory : Object {
+    /**
+     * Return a new instance of DatabaseBackedMediaContainer
+     *
+     * @param media_db instance of MediaDB
+     * @param title title of the container
+     * @param child_count number of children in the container
+     */
+    public virtual MediaContainer get_container (
                                         MediaCache media_db,
                                         string     id,
                                         string     title,
@@ -31,5 +38,21 @@ internal class Rygel.MediaExport.ObjectFactory : DBObjectFactory {
         } else {
             return new WritableContainer (media_db, id, title);
         }
+    }
+
+    /**
+     * Return a new instance of MediaItem
+     *
+     * @param media_db instance of MediaDB
+     * @param id id of the item
+     * @param title title of the item
+     * @param upnp_class upnp_class of the item
+     */
+    public virtual MediaItem get_item (MediaCache     media_db,
+                                       MediaContainer parent,
+                                       string         id,
+                                       string         title,
+                                       string         upnp_class) {
+        return new MediaItem (id, parent, title, upnp_class);
     }
 }
