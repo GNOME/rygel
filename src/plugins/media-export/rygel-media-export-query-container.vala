@@ -124,20 +124,13 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
                                         this.expression,
                                         "0");
             } else {
-                int retval = 0;
                 var data = this.media_db.get_object_attribute_by_search_expression (
                                         this.attribute,
                                         this.expression,
                                         0,
                                         -1);
 
-                foreach (var meta_data in data) {
-                    if (meta_data != null) {
-                        retval++;
-                    }
-                }
-
-                return retval;
+                return data.size;
             }
         } catch (Error e) {
             return 0;
@@ -216,10 +209,6 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
                                         offset,
                                         max_objects);
             foreach (var meta_data in data) {
-                if (meta_data == null) {
-                    continue;
-                }
-
                 var new_id = Uri.escape_string (meta_data, "", true);
                 // pattern contains URL escaped text. This means it might
                 // contain '%' chars which will makes sprintf crash

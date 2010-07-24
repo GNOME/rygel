@@ -202,8 +202,8 @@ public class Rygel.MediaExport.MediaCache : Object {
     "SELECT upnp_id FROM OBJECT WHERE parent = ?";
 
     private const string GET_META_DATA_COLUMN_STRING =
-    "SELECT DISTINCT %s FROM meta_data AS m %s " +
-        "ORDER BY %s LIMIT ?,?";
+    "SELECT DISTINCT %s FROM meta_data AS m " +
+        "WHERE %s IS NOT NULL %s ORDER BY %s LIMIT ?,?";
 
     public void remove_by_id (string id) throws DatabaseError {
         GLib.Value[] values = { id };
@@ -704,14 +704,18 @@ public class Rygel.MediaExport.MediaCache : Object {
         return children;
     }
 
-    private string translate_search_expression (SearchExpression? expression,
-                                                ValueArray        args)
-                                                throws Error {
+    private string translate_search_expression (
+                                        SearchExpression? expression,
+                                        ValueArray        args,
+                                        string            prefix = "WHERE")
+                                        throws Error {
         if (expression == null) {
             return "";
         }
 
-        return " WHERE " + this.search_expression_to_sql (expression, args);
+        var filter = this.search_expression_to_sql (expression, args);
+
+        return " %s %s".printf (prefix, filter);
     }
 
     private string? search_expression_to_sql (SearchExpression? expression,
@@ -873,7 +877,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             return true;
         };
 
-        var sql = GET_META_DATA_COLUMN_STRING.printf (column, filter, column);
+        var sql = GET_META_DATA_COLUMN_STRING.printf (column, column, filter, column);
         this.db.exec (sql, args.values, callback);
 
         return data;
@@ -886,7 +890,9 @@ public class Rygel.MediaExport.MediaCache : Object {
                                         long              max_count)
                                         throws Error {
         var args = new ValueArray (0);
-        var filter = this.translate_search_expression (expression, args);
+        var filter = this.translate_search_expression (expression,
+                                                       args,
+                                                       "AND");
 
         debug ("Parsed filter: %s", filter);
 
