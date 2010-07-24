@@ -25,14 +25,14 @@ using Gee;
 using GUPnP;
 using Sqlite;
 
-public errordomain Rygel.MediaDBError {
+public errordomain Rygel.MediaExport.MediaCacheError {
     SQLITE_ERROR,
     GENERAL_ERROR,
     INVALID_TYPE,
     UNSUPPORTED_SEARCH
 }
 
-internal enum Rygel.MediaDBObjectType {
+internal enum Rygel.MediaExport.ObjectType {
     CONTAINER,
     ITEM
 }
@@ -232,7 +232,7 @@ public class Rygel.MediaExport.MediaCache : Object {
     }
 
     public void remove_object (MediaObject object) throws DatabaseError,
-                                                          MediaDBError {
+                                                          MediaCacheError {
         this.remove_by_id (object.id);
     }
 
@@ -286,23 +286,25 @@ public class Rygel.MediaExport.MediaCache : Object {
     }
 
     public MediaItem? get_item (string item_id)
-                                throws DatabaseError, MediaDBError {
+                                throws DatabaseError, MediaCacheError {
         var object = get_object (item_id);
         if (object != null && !(object is MediaItem)) {
-            throw new MediaDBError.INVALID_TYPE (_("Object %s is not an item"),
-                                                 item_id);
+            throw new MediaCacheError.INVALID_TYPE (
+                                        _("Object %s is not an item"),
+                                        item_id);
         }
 
         return object as MediaItem;
     }
 
     public MediaContainer? get_container (string container_id)
-                                          throws DatabaseError, MediaDBError {
+                                          throws DatabaseError,
+                                                 MediaCacheError {
         var object = get_object (container_id);
         if (object != null && !(object is MediaContainer)) {
-            throw new MediaDBError.INVALID_TYPE ("Object with id %s is not a" +
-                                                 "MediaContainer",
-                                                 container_id);
+            throw new MediaCacheError.INVALID_TYPE ("Object with id %s is " +
+                                                    "not a MediaContainer",
+                                                    container_id);
         }
 
         return object as MediaContainer;
@@ -527,8 +529,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                          current_version);
                 this.db = null;
 
-                throw new MediaDBError.GENERAL_ERROR ("Database format" +
-                                                          " not supported");
+                throw new MediaCacheError.GENERAL_ERROR ("Database format" +
+                                                         " not supported");
             }
         } catch (DatabaseError error) {
             debug ("Could not find schema version;" +
@@ -561,7 +563,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                 warning ("Something weird going on: %s", error.message);
                 this.db = null;
 
-                throw new MediaDBError.GENERAL_ERROR ("Invalid database");
+                throw new MediaCacheError.GENERAL_ERROR ("Invalid database");
             }
         }
     }
@@ -589,11 +591,11 @@ public class Rygel.MediaExport.MediaCache : Object {
     }
 
     private void create_object (MediaObject item) throws Error {
-        int type = MediaDBObjectType.CONTAINER;
+        int type = ObjectType.CONTAINER;
         GLib.Value parent;
 
         if (item is MediaItem) {
-            type = MediaDBObjectType.ITEM;
+            type = ObjectType.ITEM;
         }
 
         if (item.parent == null) {
@@ -814,7 +816,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             default:
                 var message = "Unsupported column %s".printf (operand);
 
-                throw new MediaDBError.UNSUPPORTED_SEARCH (message);
+                throw new MediaCacheError.UNSUPPORTED_SEARCH (message);
         }
 
         return column;

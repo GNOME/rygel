@@ -169,8 +169,8 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
                                             offset,
                                             max_objects,
                                             out total_matches);
-        } catch (MediaDBError error) {
-            if (error is MediaDBError.UNSUPPORTED_SEARCH) {
+        } catch (MediaCacheError error) {
+            if (error is MediaCacheError.UNSUPPORTED_SEARCH) {
                 children = new MediaObjects ();
                 total_matches = 0;
             } else {

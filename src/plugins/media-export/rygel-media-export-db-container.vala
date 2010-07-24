@@ -84,8 +84,8 @@ public class Rygel.MediaExport.DBContainer : MediaContainer {
                                         offset,
                                         max_objects,
                                         out total_matches);
-        } catch (MediaDBError error) {
-            if (error is MediaDBError.UNSUPPORTED_SEARCH) {
+        } catch (MediaCacheError error) {
+            if (error is MediaCacheError.UNSUPPORTED_SEARCH) {
                 children = yield base.search (expression,
                                               offset,
                                               max_count,
