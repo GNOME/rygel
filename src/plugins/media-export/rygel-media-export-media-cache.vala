@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009 Jens Georg <mail@jensge.org>.
+ * Copyright (C) 2009,2010 Jens Georg <mail@jensge.org>.
  *
  * Author: Jens Georg <mail@jensge.org>
  *
@@ -32,9 +32,35 @@ public errordomain Rygel.MediaDBError {
     UNSUPPORTED_SEARCH
 }
 
-public enum Rygel.MediaDBObjectType {
+internal enum Rygel.MediaDBObjectType {
     CONTAINER,
     ITEM
+}
+
+internal enum Rygel.DetailColumn {
+    TYPE,
+    TITLE,
+    SIZE,
+    MIME_TYPE,
+    WIDTH,
+    HEIGHT,
+    CLASS,
+    AUTHOR,
+    ALBUM,
+    DATE,
+    BITRATE,
+    SAMPLE_FREQ,
+    BITS_PER_SAMPLE,
+    CHANNELS,
+    TRACK,
+    COLOR_DEPTH,
+    DURATION,
+    ID,
+    PARENT,
+    TIMESTAMP,
+    URI,
+    DLNA_PROFILE,
+    GENRE
 }
 
 /**
@@ -131,12 +157,15 @@ public class Rygel.MediaExport.MediaCache : Object {
     "DELETE FROM Object WHERE upnp_id IN " +
         "(SELECT descendant FROM closure WHERE ancestor = ?)";
 
+    private const string ALL_DETAILS_STRING =
+    "o.type_fk, o.title, m.size, m.mime_type, m.width, " +
+    "m.height, m.class, m.author, m.album, m.date, m.bitrate, " +
+    "m.sample_freq, m.bits_per_sample, m.channels, m.track, " +
+    "m.color_depth, m.duration, o.upnp_id, o.parent, o.timestamp, " +
+    "o.uri, m.dlna_profile, m.genre ";
+
     private const string GET_OBJECT_WITH_PATH =
-    "SELECT DISTINCT o.type_fk, o.title, m.size, m.mime_type, m.width, " +
-            "m.height, m.class, m.author, m.album, m.date, m.bitrate, " +
-            "m.sample_freq, m.bits_per_sample, m.channels, m.track, " +
-            "m.color_depth, m.duration, o.parent, o.upnp_id, o.timestamp, " +
-            "o.uri, m.dlna_profile, m.genre " +
+    "SELECT DISTINCT " + ALL_DETAILS_STRING +
     "FROM Object o " +
         "JOIN Closure c ON (o.upnp_id = c.ancestor) " +
         "LEFT OUTER JOIN meta_data m ON (o.upnp_id = m.object_fk) " +
@@ -153,11 +182,7 @@ public class Rygel.MediaExport.MediaCache : Object {
      *   - and after that alphabetically
      */
     private const string GET_CHILDREN_STRING =
-    "SELECT o.type_fk, o.title, m.size, m.mime_type, " +
-            "m.width, m.height, m.class, m.author, m.album, " +
-            "m.date, m.bitrate, m.sample_freq, m.bits_per_sample, " +
-            "m.channels, m.track, m.color_depth, m.duration, " +
-            "o.upnp_id, o.parent, o.timestamp, o.uri, m.dlna_profile, m.genre " +
+    "SELECT " + ALL_DETAILS_STRING +
     "FROM Object o LEFT OUTER JOIN meta_data m " +
         "ON o.upnp_id = m.object_fk " +
     "WHERE o.parent = ? " +
@@ -169,11 +194,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     // The uris are joined in to be able to filter by "ref"
     private const string GET_OBJECTS_BY_FILTER_STRING =
-    "SELECT DISTINCT o.type_fk, o.title, m.size, m.mime_type, " +
-            "m.width, m.height, m.class, m.author, m.album, " +
-            "m.date, m.bitrate, m.sample_freq, m.bits_per_sample, " +
-            "m.channels, m.track, m.color_depth, m.duration, " +
-            "o.upnp_id, o.parent, o.timestamp, o.uri, m.dlna_profile, m.genre " +
+    "SELECT DISTINCT " + ALL_DETAILS_STRING +
     "FROM Object o " +
         "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
         "LEFT OUTER JOIN meta_data m " +
@@ -249,9 +270,10 @@ public class Rygel.MediaExport.MediaCache : Object {
 
         Database.RowCallback cb = (statement) => {
             var parent_container = parent as MediaContainer;
-            var object = get_object_from_statement (parent_container,
-                                                    statement.column_text (18),
-                                                    statement);
+            var object = get_object_from_statement (
+                                        parent_container,
+                                        statement.column_text (DetailColumn.ID),
+                                        statement);
             object.parent_ref = parent_container;
             parent = object;
 
@@ -332,7 +354,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                 (int64) offset,
                                 (int64) max_count };
         Database.RowCallback callback = (statement) => {
-            var child_id = statement.column_text (17);
+            var child_id = statement.column_text (DetailColumn.ID);
             children.add (get_object_from_statement (parent,
                                                      child_id,
                                                      statement));
@@ -447,8 +469,8 @@ public class Rygel.MediaExport.MediaCache : Object {
         debug ("Parameters to bind: %u", args.n_values);
 
         Database.RowCallback callback = (statement) => {
-            var child_id = statement.column_text (17);
-            var parent_id = statement.column_text (18);
+            var child_id = statement.column_text (DetailColumn.ID);
+            var parent_id = statement.column_text (DetailColumn.PARENT);
             try {
                 if (parent == null || parent_id != parent.id) {
                     parent = new NullContainer ();
@@ -622,27 +644,29 @@ public class Rygel.MediaExport.MediaCache : Object {
                                                     string          object_id,
                                                     Statement       statement) {
         MediaObject object = null;
-        switch (statement.column_int (0)) {
+        switch (statement.column_int (DetailColumn.TYPE)) {
             case 0:
                 // this is a container
                 object = factory.get_container (this,
                                                 object_id,
-                                                statement.column_text (1),
+                                                statement.column_text (
+                                                    DetailColumn.TITLE),
                                                 0);
 
                 var container = object as MediaContainer;
-                var uri = statement.column_text (20);
+                var uri = statement.column_text (DetailColumn.URI);
                 if (uri != null) {
                     container.set_uri (uri);
                 }
                 break;
             case 1:
                 // this is an item
-                var upnp_class = statement.column_text (6);
+                var upnp_class = statement.column_text (DetailColumn.CLASS);
                 object = factory.get_item (this,
                                            parent,
                                            object_id,
-                                           statement.column_text (1),
+                                           statement.column_text (
+                                               DetailColumn.TITLE),
                                            upnp_class);
                 fill_item (statement, object as MediaItem);
 
@@ -650,7 +674,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                     (object as MediaItem).lookup_album_art ();
                 }
 
-                var uri = statement.column_text (20);
+                var uri = statement.column_text (DetailColumn.URI);
                 if (uri != null) {
                     (object as MediaItem).add_uri (uri, null);
                 }
@@ -660,32 +684,34 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
 
         if (object != null) {
-            object.modified = statement.column_int64 (19);
+            object.modified = statement.column_int64 (DetailColumn.TIMESTAMP);
         }
 
         return object;
     }
 
     private void fill_item (Statement statement, MediaItem item) {
-        item.author = statement.column_text (7);
-        item.album = statement.column_text (8);
-        item.date = statement.column_text (9);
-        item.mime_type = statement.column_text (3);
-        item.duration = (long) statement.column_int64 (16);
+        item.author = statement.column_text (DetailColumn.AUTHOR);
+        item.album = statement.column_text (DetailColumn.ALBUM);
+        item.date = statement.column_text (DetailColumn.DATE);
+        item.mime_type = statement.column_text (DetailColumn.MIME_TYPE);
+        item.duration = (long) statement.column_int64 (DetailColumn.DURATION);
 
-        item.size = (long) statement.column_int64 (2);
-        item.bitrate = statement.column_int (10);
+        item.size = (long) statement.column_int64 (DetailColumn.SIZE);
+        item.bitrate = statement.column_int (DetailColumn.BITRATE);
 
-        item.sample_freq = statement.column_int (11);
-        item.bits_per_sample = statement.column_int (12);
-        item.n_audio_channels = statement.column_int (13);
-        item.track_number = statement.column_int (14);
+        item.sample_freq = statement.column_int (DetailColumn.SAMPLE_FREQ);
+        item.bits_per_sample = statement.column_int (
+                                        DetailColumn.BITS_PER_SAMPLE);
+        item.n_audio_channels = statement.column_int (
+                                        DetailColumn.CHANNELS);
+        item.track_number = statement.column_int (DetailColumn.TRACK);
 
-        item.width = statement.column_int (4);
-        item.height = statement.column_int (5);
-        item.color_depth = statement.column_int (15);
-        item.dlna_profile = statement.column_text (21);
-        item.genre = statement.column_text (22);
+        item.width = statement.column_int (DetailColumn.WIDTH);
+        item.height = statement.column_int (DetailColumn.HEIGHT);
+        item.color_depth = statement.column_int (DetailColumn.COLOR_DEPTH);
+        item.dlna_profile = statement.column_text (DetailColumn.DLNA_PROFILE);
+        item.genre = statement.column_text (DetailColumn.GENRE);
     }
 
     public ArrayList<string> get_child_ids (string container_id)
