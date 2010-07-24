@@ -15,6 +15,8 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBSQLITE3_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(UUID_CFLAGS) \
+	    $(GSTREAMER_TAG_CFLAGS) \
+	    $(GSTREAMER_APP_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"' \
 	    -include config.h
 
@@ -32,6 +34,7 @@ librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
 				   rygel-media-export-recursive-file-monitor.vala \
 				   rygel-media-export-harvester.vala \
 				   rygel-media-export-item.vala \
+				   rygel-media-export-jpeg-writer.vala \
 				   rygel-media-export-writable-container.vala \
 				   rygel-media-export-object-factory.vala
 
@@ -44,6 +47,8 @@ librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
                                      --pkg libsoup-2.4 \
                                      --pkg gee-1.0 \
                                      --pkg libxml-2.0 \
+                                     --pkg gstreamer-tag-0.10 \
+                                     --pkg gstreamer-app-0.10 \
                                      --pkg sqlite3 -g
 
 librygel_media_export_la_LIBADD = $(LIBGUPNP_LIBS) \
@@ -51,6 +56,8 @@ librygel_media_export_la_LIBADD = $(LIBGUPNP_LIBS) \
 				  $(LIBGUPNP_DLNA_LIBS) \
 				  $(LIBDBUS_GLIB_LIBS) \
 				  $(LIBGSTREAMER_LIBS) \
+				  $(GSTREAMER_TAG_LIBS) \
+				  $(GSTREAMER_APP_LIBS) \
 				  $(LIBSQLITE3_LIBS) \
 				  $(GEE_LIBS) \
 				  $(UUID_LIBS)

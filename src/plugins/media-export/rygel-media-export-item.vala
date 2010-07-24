@@ -188,8 +188,32 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
               MediaItem.MUSIC_CLASS);
 
         if (audio_info.tags != null) {
-            uint tmp;
+            unowned Gst.Buffer buffer;
+            audio_info.tags.get_buffer (TAG_IMAGE, out buffer);
+            if (buffer != null) {
+                var structure = buffer.caps.get_structure (0);
+                int image_type;
+                structure.get_enum ("image-type",
+                                    typeof (Gst.TagImageType),
+                                    out image_type);
+                switch (image_type) {
+                    case TagImageType.UNDEFINED:
+                    case TagImageType.FRONT_COVER:
+                        var store = MediaArtStore.get_default ();
+                        var thumb = store.get_media_art_file ("album",
+                                                              this,
+                                                              true);
+                        try {
+                            var writer = new JPEGWriter ();
+                            writer.write (buffer, thumb);
+                        } catch (Error error) {}
+                        break;
+                    default:
+                        break;
+                }
+            }
 
+            uint tmp;
             audio_info.tags.get_uint (TAG_BITRATE, out tmp);
             this.bitrate = (int) tmp / 8;
         }
