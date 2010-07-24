@@ -120,8 +120,8 @@ public class Rygel.MediaExport.MediaCache : Object {
         "(size, mime_type, width, height, class, " +
          "author, album, date, bitrate, " +
          "sample_freq, bits_per_sample, channels, " +
-         "track, color_depth, duration, object_fk, dlna_profile) VALUES " +
-         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         "track, color_depth, duration, object_fk, dlna_profile, genre) VALUES " +
+         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     private const string INSERT_OBJECT_STRING =
     "INSERT OR REPLACE INTO Object (upnp_id, title, type_fk, parent, timestamp, uri) " +
@@ -136,7 +136,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             "m.height, m.class, m.author, m.album, m.date, m.bitrate, " +
             "m.sample_freq, m.bits_per_sample, m.channels, m.track, " +
             "m.color_depth, m.duration, o.parent, o.upnp_id, o.timestamp, " +
-            "o.uri, m.dlna_profile " +
+            "o.uri, m.dlna_profile, m.genre " +
     "FROM Object o " +
         "JOIN Closure c ON (o.upnp_id = c.ancestor) " +
         "LEFT OUTER JOIN meta_data m ON (o.upnp_id = m.object_fk) " +
@@ -157,7 +157,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             "m.width, m.height, m.class, m.author, m.album, " +
             "m.date, m.bitrate, m.sample_freq, m.bits_per_sample, " +
             "m.channels, m.track, m.color_depth, m.duration, " +
-            "o.upnp_id, o.parent, o.timestamp, o.uri, m.dlna_profile " +
+            "o.upnp_id, o.parent, o.timestamp, o.uri, m.dlna_profile, m.genre " +
     "FROM Object o LEFT OUTER JOIN meta_data m " +
         "ON o.upnp_id = m.object_fk " +
     "WHERE o.parent = ? " +
@@ -173,7 +173,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             "m.width, m.height, m.class, m.author, m.album, " +
             "m.date, m.bitrate, m.sample_freq, m.bits_per_sample, " +
             "m.channels, m.track, m.color_depth, m.duration, " +
-            "o.upnp_id, o.parent, o.timestamp, o.uri, m.dlna_profile " +
+            "o.upnp_id, o.parent, o.timestamp, o.uri, m.dlna_profile, m.genre " +
     "FROM Object o " +
         "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
         "LEFT OUTER JOIN meta_data m " +
@@ -578,7 +578,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                                 item.color_depth,
                                 item.duration,
                                 item.id,
-                                item.dlna_profile};
+                                item.dlna_profile,
+                                item.genre};
         this.db.exec (SAVE_META_DATA_STRING, values);
     }
 
@@ -701,6 +702,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         item.height = statement.column_int (5);
         item.color_depth = statement.column_int (15);
         item.dlna_profile = statement.column_text (21);
+        item.genre = statement.column_text (22);
     }
 
     public ArrayList<string> get_child_ids (string container_id)
@@ -792,6 +794,9 @@ public class Rygel.MediaExport.MediaCache : Object {
                 break;
             case "upnp:album":
                 column = "m.album";
+                break;
+            case "dc:genre":
+                column = "m.genre";
                 break;
             default:
                 var message = "Unsupported column %s".printf (operand);

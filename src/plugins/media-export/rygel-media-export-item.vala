@@ -223,6 +223,7 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
         if (dlna_info.info.tags != null) {
             dlna_info.info.tags.get_string (TAG_ARTIST, out this.author);
             dlna_info.info.tags.get_string (TAG_ALBUM, out this.album);
+            dlna_info.info.tags.get_string (TAG_GENRE, out this.genre);
 
             uint tmp;
             dlna_info.info.tags.get_uint (TAG_TRACK_NUMBER, out tmp);
