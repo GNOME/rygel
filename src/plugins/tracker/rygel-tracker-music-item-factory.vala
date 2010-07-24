@@ -32,6 +32,7 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
         AUDIO_ALBUM,
         AUDIO_ARTIST,
         AUDIO_TRACK_NUM,
+        AUDIO_GENRE,
 
         LAST_KEY
     }
@@ -54,6 +55,7 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
         this.key_chains[MusicMetadata.AUDIO_ALBUM].add ("nmm:musicAlbum");
         this.key_chains[MusicMetadata.AUDIO_ALBUM].add ("nmm:albumTitle");
         this.key_chains[MusicMetadata.AUDIO_TRACK_NUM].add ("nmm:trackNumber");
+        this.key_chains[MusicMetadata.AUDIO_GENRE].add ("nfo:genre");
     }
 
     public override MediaItem create (string          id,
@@ -73,6 +75,7 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
 
         item.author = metadata[MusicMetadata.AUDIO_ARTIST];
         item.album = metadata[MusicMetadata.AUDIO_ALBUM];
+        item.genre = metadata[MusicMetadata.AUDIO_GENRE];
 
         item.lookup_album_art ();
 

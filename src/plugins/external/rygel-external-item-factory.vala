@@ -72,7 +72,6 @@ public class Rygel.External.ItemFactory {
         //
         // FIXME: Handle:
         //
-        // MeidaItem1.Genre
         // MediaItem1.AlbumArt
         //
 
@@ -94,6 +93,11 @@ public class Rygel.External.ItemFactory {
         value = props.lookup ("Album");
         if (value != null) {
             item.album = value.get_string ();
+        }
+
+        value = props.lookup ("Genre");
+        if (value != null) {
+            item.genre = value.get_string ();
         }
 
         value = props.lookup ("Date");
