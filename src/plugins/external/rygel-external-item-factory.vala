@@ -70,10 +70,6 @@ public class Rygel.External.ItemFactory {
 
         // Optional properties
         //
-        // FIXME: Handle:
-        //
-        // MediaItem1.AlbumArt
-        //
 
         value = props.lookup ("DLNAProfile");
         if (value != null) {
@@ -125,6 +121,15 @@ public class Rygel.External.ItemFactory {
         value = props.lookup ("BitsPerSample");
         if (value != null) {
             item.bits_per_sample = value.get_int ();
+        }
+
+        value = props.lookup ("AlbumArt");
+        if (value != null) {
+            var cover_factory = new AlbumArtFactory ();
+            var album_art = yield cover_factory.create (value.get_string (),
+                                                        service_name,
+                                                        host_ip);
+            item.thumbnails.add (album_art);
         }
 
         // Properties specific to video and image
