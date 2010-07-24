@@ -74,6 +74,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         var id = Checksum.compute_for_string (ChecksumType.MD5,
                                               file.get_uri ());
 
+        cancel_harvester (file);
         try {
             this.media_db.remove_by_id (id);
         } catch (Error error) {
@@ -355,6 +356,16 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         this.harvester_trash.remove (harvester);
     }
 
+    private void cancel_harvester (File file) {
+        if (this.harvester.contains (file)) {
+            var harvester = this.harvester[file];
+            harvester.harvested.disconnect (this.on_file_harvested);
+            harvester.cancellable.cancel ();
+            harvester.harvested.connect (this.on_remove_cancelled_harvester);
+            this.harvester_trash.add (harvester);
+        }
+    }
+
     private void harvest (File           file,
                           MediaContainer parent = this,
                           string?        flag   = null) {
@@ -364,14 +375,8 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             return;
         }
 
-        if (this.harvester.contains (file)) {
-            debug (_("Already harvesting; cancelling"));
-            var harvester = this.harvester[file];
-            harvester.harvested.disconnect (this.on_file_harvested);
-            harvester.cancellable.cancel ();
-            harvester.harvested.connect (this.on_remove_cancelled_harvester);
-            this.harvester_trash.add (harvester);
-        }
+        // Cancel currently running harvester
+        cancel_harvester (file);
 
         var harvester = new Harvester (parent,
                                        this.media_db,
@@ -411,6 +416,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                 var id = Checksum.compute_for_string (ChecksumType.MD5,
                                                       file.get_uri ());
 
+                cancel_harvester (file);
                 try {
                     // the full object is fetched instead of simply calling
                     // exists because we need the parent to signalize the
