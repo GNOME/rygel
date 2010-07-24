@@ -2,12 +2,14 @@ if UNINSTALLED
 shareddir = $(abs_top_builddir)/data
 desktopdir = $(shareddir)
 plugindir = $(abs_top_builddir)/src/plugins
-icondir = $(shareddir)/icons
+smallicondir = $(shareddir)/icons/32x32
+bigicondir = $(shareddir)/icons/256x256
 else
 shareddir = $(datadir)/rygel
 desktopdir = $(datadir)/applications
 plugindir = $(libdir)/rygel-1.0
-icondir = $(datadir)/icons/hicolor
+smallicondir = $(datadir)/icons/hicolor/32x32/apps
+bigicondir = $(datadir)/icons/hicolor/256x256/apps
 endif
 
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
@@ -21,7 +23,8 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -I$(top_srcdir) \
 	    -DDATA_DIR='"$(shareddir)"' -DSYS_CONFIG_DIR='"$(sysconfdir)"'\
 	    -DPLUGIN_DIR='"$(plugindir)"' -DDESKTOP_DIR='"$(desktopdir)"'\
-	    -DICON_DIR='"$(icondir)"' -include config.h
+	    -DSMALL_ICON_DIR='"$(smallicondir)"' \
+	    -DBIG_ICON_DIR='"$(bigicondir)"' -include config.h
 
 librygelincdir = $(includedir)/rygel-1.0
 

@@ -36,8 +36,11 @@ public class Rygel.BuildConfig {
     [CCode (cname = "PLUGIN_DIR")]
     public static const string PLUGIN_DIR;
 
-    [CCode (cname = "ICON_DIR")]
-    public static const string ICON_DIR;
+    [CCode (cname = "BIG_ICON_DIR")]
+    public static const string BIG_ICON_DIR;
+
+    [CCode (cname = "SMALL_ICON_DIR")]
+    public static const string SMALL_ICON_DIR;
 
     [CCode (cname = "PACKAGE_NAME")]
     public static const string PACKAGE_NAME;

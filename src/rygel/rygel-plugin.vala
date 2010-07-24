@@ -33,11 +33,11 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
                                 BuildConfig.DATA_DIR + "/xml/MediaServer2.xml";
 
     private static const string ICON_BIG = "file://" +
-                                           BuildConfig.ICON_DIR +
-                                           "/256x256/apps/rygel.png";
+                                           BuildConfig.BIG_ICON_DIR +
+                                           "/rygel.png";
     private static const string ICON_SMALL = "file://" +
-                                             BuildConfig.ICON_DIR +
-                                             "/32x32/apps/rygel.png";
+                                             BuildConfig.SMALL_ICON_DIR +
+                                             "/rygel.png";
     private static const string ICON_MIME = "image/png";
     private static const int ICON_DEPTH = 32;
     private static const int ICON_BIG_WIDTH = 256;
