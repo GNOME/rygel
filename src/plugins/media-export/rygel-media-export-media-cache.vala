@@ -376,9 +376,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         var max_objects = modify_limit (max_count);
         total_matches = (uint) get_object_count_by_filter (filter,
                                                            args,
-                                                           container_id,
-                                                           offset,
-                                                           max_objects);
+                                                           container_id);
 
         return this.get_objects_by_filter (filter,
                                            args,
@@ -389,9 +387,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     public long get_object_count_by_search_expression (
                                         SearchExpression? expression,
-                                        string            container_id,
-                                        uint              offset,
-                                        uint              max_count)
+                                        string            container_id)
                                         throws Error {
         var args = new GLib.ValueArray (0);
         var filter = this.translate_search_expression (expression, args);
@@ -405,21 +401,15 @@ public class Rygel.MediaExport.MediaCache : Object {
             debug ("Arg %d: %s", i, args.get_nth (i).get_string ());
         }
 
-        var max_objects = modify_limit (max_count);
-
         return this.get_object_count_by_filter (filter,
                                                 args,
-                                                container_id,
-                                                offset,
-                                                max_objects);
+                                                container_id);
     }
 
     public long get_object_count_by_filter (
                                         string          filter,
                                         GLib.ValueArray args,
-                                        string          container_id,
-                                        long            offset,
-                                        long            max_count)
+                                        string          container_id)
                                         throws Error {
         GLib.Value v = container_id;
         args.prepend (v);

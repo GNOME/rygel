@@ -122,9 +122,7 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
             if (this.pattern == "") {
                 return (int) this.media_db.get_object_count_by_search_expression (
                                         this.expression,
-                                        "0",
-                                        0,
-                                        -1);
+                                        "0");
             } else {
                 int retval = 0;
                 var data = this.media_db.get_object_attribute_by_search_expression (
