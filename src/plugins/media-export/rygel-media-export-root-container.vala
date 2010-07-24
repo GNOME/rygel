@@ -177,14 +177,16 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
     public override async MediaObject? find_object (string       id,
                                                     Cancellable? cancellable)
                                                     throws Error {
-        if (id.has_prefix (QueryContainer.PREFIX)) {
+        var object = yield base.find_object (id, cancellable);
+
+        if (object == null && id.has_prefix (QueryContainer.PREFIX)) {
             var container = new QueryContainer (this.media_db, id);
             container.parent = this;
 
             return container;
-        } else {
-            return yield base.find_object (id, cancellable);
         }
+
+        return object;
     }
 
     public override async Gee.List<MediaObject>? search (
