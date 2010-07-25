@@ -122,6 +122,56 @@ internal class Rygel.MediaExport.Database : Object {
     }
 
     /**
+     * Analyze triggers of database
+     */
+    public void analyze () {
+        this.db.exec ("ANALYZE");
+    }
+
+    /**
+     * Special GValue to pass to exec or prepare_statement to bind a column to
+     * NULL
+     */
+    public static GLib.Value @null () {
+        GLib.Value v = GLib.Value (typeof (void *));
+        v.set_pointer (null);
+
+        return v;
+    }
+
+    /**
+     * Start a transaction
+     */
+    public void begin () throws DatabaseError {
+        this.single_statement ("BEGIN");
+    }
+
+    /**
+     * Commit a transaction
+     */
+    public void commit () throws DatabaseError {
+        this.single_statement ("COMMIT");
+    }
+
+    /**
+     * Rollback a transaction
+     */
+    public void rollback () {
+        try {
+            this.single_statement ("ROLLBACK");
+        } catch (DatabaseError error) {
+            critical (_("Failed to roll back transaction: %s"),
+                      error.message);
+        }
+    }
+
+    private void single_statement (string sql) throws DatabaseError {
+        if (this.db.exec (sql) != Sqlite.OK) {
+            throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
+        }
+    }
+
+    /**
      * Prepare a SQLite statement from a SQL string
      *
      * This function uses the type of the GValue passed in values to determine
@@ -172,51 +222,5 @@ internal class Rygel.MediaExport.Database : Object {
         }
 
         return statement;
-    }
-
-    /**
-     * Analyze triggers of database
-     */
-    public void analyze () {
-        this.db.exec ("ANALYZE");
-    }
-
-    /**
-     * Special GValue to pass to exec or prepare_statement to bind a column to
-     * NULL
-     */
-    public static GLib.Value @null () {
-        GLib.Value v = GLib.Value (typeof (void *));
-        v.set_pointer (null);
-
-        return v;
-    }
-
-    /**
-     * Start a transaction
-     */
-    public void begin () throws DatabaseError {
-        if (this.db.exec ("BEGIN") != Sqlite.OK) {
-            throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
-        }
-    }
-
-    /**
-     * Commit a transaction
-     */
-    public void commit () throws DatabaseError {
-        if (this.db.exec ("COMMIT") != Sqlite.OK) {
-            throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
-        }
-    }
-
-    /**
-     * Rollback a transaction
-     */
-    public void rollback () {
-        if (this.db.exec ("ROLLBACK") != Sqlite.OK) {
-            critical (_("Failed to roll back transaction: %s"),
-                      db.errmsg ());
-        }
     }
 }
