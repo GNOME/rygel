@@ -165,6 +165,12 @@ internal class Rygel.MediaExport.Database : Object {
         }
     }
 
+    /**
+     * Execute a single SQL statement and throw an exception on error
+     *
+     * @param sql SQL statement to execute
+     * @throws DatabaseError if SQL statement fails
+     */
     private void single_statement (string sql) throws DatabaseError {
         if (this.db.exec (sql) != Sqlite.OK) {
             throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
