@@ -36,7 +36,7 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
         if (id.has_prefix (QueryContainer.PREFIX)) {
             return new QueryContainer (media_db, id, title);
         } else {
-            return new WritableContainer (media_db, id, title);
+            return new DBContainer (media_db, id, title);
         }
     }
 

@@ -104,4 +104,15 @@ public class Rygel.MediaExport.DBContainer : MediaContainer {
                                                     throws Error {
         return this.media_db.get_object (id);
     }
+
+    public override async void add_item (Rygel.MediaItem    item,
+                                         Cancellable?       cancellable)
+                                         throws Error {
+        yield base.add_item (item, cancellable);
+
+        item.parent = this;
+        item.id = Item.get_id (File.new_for_uri (item.uris[0]));
+        this.media_db.save_item (item);
+    }
+
 }
