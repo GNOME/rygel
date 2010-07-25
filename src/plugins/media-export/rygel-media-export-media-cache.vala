@@ -167,21 +167,21 @@ public class Rygel.MediaExport.MediaCache : Object {
         return exists;
     }
 
-    public MediaObjects get_children (string container_id,
-                                      long   offset,
-                                      long   max_count) throws Error {
+    public MediaObjects get_children (MediaContainer container,
+                                      long           offset,
+                                      long           max_count)
+                                      throws Error {
         MediaObjects children = new MediaObjects ();
-        var parent = get_object (container_id) as MediaContainer;
 
-        GLib.Value[] values = { container_id,
+        GLib.Value[] values = { container.id,
                                 (int64) offset,
                                 (int64) max_count };
         Database.RowCallback callback = (statement) => {
             var child_id = statement.column_text (DetailColumn.ID);
-            children.add (get_object_from_statement (parent,
+            children.add (get_object_from_statement (container,
                                                      child_id,
                                                      statement));
-            children.last () .parent_ref = parent;
+            children.last ().parent_ref = container;
 
             return true;
         };

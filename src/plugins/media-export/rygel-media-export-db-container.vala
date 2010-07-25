@@ -54,14 +54,7 @@ public class Rygel.MediaExport.DBContainer : MediaContainer {
                                                       uint         max_count,
                                                       Cancellable? cancellable)
                                                       throws GLib.Error {
-        var children = this.media_db.get_children (this.id,
-                                                   offset,
-                                                   max_count);
-        foreach (var child in children) {
-            child.parent = this;
-        }
-
-        return children;
+        return this.media_db.get_children (this, offset, max_count);
     }
 
     public override async MediaObjects? search (SearchExpression? expression,
