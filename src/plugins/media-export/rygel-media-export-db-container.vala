@@ -25,18 +25,11 @@ public class Rygel.MediaExport.DBContainer : MediaContainer {
     protected MediaCache media_db;
 
     public DBContainer (MediaCache media_db, string id, string title) {
-        int count;
-        try {
-            count = media_db.get_child_count (id);
-        } catch (DatabaseError error) {
-            debug("Could not get child count from database: %s",
-                  error.message);
-            count = 0;
-        }
-        base (id, null, title, count);
+        base (id, null, title, 0);
 
         this.media_db = media_db;
         this.container_updated.connect (on_db_container_updated);
+        this.on_db_container_updated (this, this);
     }
 
     private void on_db_container_updated (MediaContainer container,
