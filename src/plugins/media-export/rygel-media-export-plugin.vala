@@ -20,8 +20,6 @@
 
 using Rygel;
 using GUPnP;
-using Gee;
-using GLib;
 
 /**
  * Simple plugin which exposes the media contents of a directory via UPnP.
