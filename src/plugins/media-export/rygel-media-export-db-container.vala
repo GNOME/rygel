@@ -72,17 +72,12 @@ public class Rygel.MediaExport.DBContainer : MediaContainer {
                                                 throws GLib.Error {
         MediaObjects children = null;
 
-        var max_objects = max_count;
-        if (max_objects == 0) {
-            max_objects = -1;
-        }
-
         try {
             children = this.media_db.get_objects_by_search_expression (
                                         expression,
                                         this.id,
                                         offset,
-                                        max_objects,
+                                        max_count,
                                         out total_matches);
         } catch (MediaCacheError error) {
             if (error is MediaCacheError.UNSUPPORTED_SEARCH) {

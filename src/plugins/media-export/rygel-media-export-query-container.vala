@@ -157,17 +157,12 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
             combined_expression = local_expression;
         }
 
-        var max_objects = max_count;
-        if (max_objects == 0) {
-            max_objects = -1;
-        }
-
         try {
             children = this.media_db.get_objects_by_search_expression (
                                             combined_expression,
                                             "0",
                                             offset,
-                                            max_objects,
+                                            max_count,
                                             out total_matches);
         } catch (MediaCacheError error) {
             if (error is MediaCacheError.UNSUPPORTED_SEARCH) {
@@ -197,17 +192,12 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
                                           out total_matches,
                                           cancellable);
         } else {
-            var max_objects = max_count;
-            if (max_objects == 0) {
-                max_objects = -1;
-            }
-
             children = new MediaObjects ();
             var data = this.media_db.get_object_attribute_by_search_expression (
                                         this.attribute,
                                         this.expression,
                                         offset,
-                                        max_objects);
+                                        max_count);
             foreach (var meta_data in data) {
                 var new_id = Uri.escape_string (meta_data, "", true);
                 // pattern contains URL escaped text. This means it might

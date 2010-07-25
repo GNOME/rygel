@@ -745,7 +745,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                         string            attribute,
                                         SearchExpression? expression,
                                         long              offset,
-                                        long              max_count)
+                                        uint              max_count)
                                         throws Error {
         var args = new ValueArray (0);
         var filter = this.translate_search_expression (expression,
@@ -755,12 +755,13 @@ public class Rygel.MediaExport.MediaCache : Object {
         debug ("Parsed filter: %s", filter);
 
         var column = this.map_operand_to_column (attribute);
+        var max_objects = modify_limit (max_count);
 
         return this.get_meta_data_column_by_filter (column,
                                                     filter,
                                                     args,
                                                     offset,
-                                                    max_count);
+                                                    max_objects);
     }
 
     public void flag_object (string id, string flag) throws Error {
