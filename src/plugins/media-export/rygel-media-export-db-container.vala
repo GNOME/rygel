@@ -28,9 +28,9 @@ public class Rygel.MediaExport.DBContainer : MediaContainer {
         int count;
         try {
             count = media_db.get_child_count (id);
-        } catch (DatabaseError e) {
+        } catch (DatabaseError error) {
             debug("Could not get child count from database: %s",
-                  e.message);
+                  error.message);
             count = 0;
         }
         base (id, null, title, count);
@@ -42,10 +42,10 @@ public class Rygel.MediaExport.DBContainer : MediaContainer {
     private void on_db_container_updated (MediaContainer container,
                                           MediaContainer container_updated) {
         try {
-            this.child_count = media_db.get_child_count (this.id);
-        } catch (DatabaseError e) {
-            debug("Could not get child count from database: %s",
-                  e.message);
+            this.child_count = this.media_db.get_child_count (this.id);
+        } catch (DatabaseError error) {
+            debug ("Could not get child count from database: %s",
+                   error.message);
             this.child_count = 0;
         }
     }
