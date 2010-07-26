@@ -99,15 +99,27 @@ public abstract class Rygel.MediaObject : GLib.Object {
                                               string      property) {
         switch (property) {
         case "@id":
-            return strcmp (this.id, media_object.id);
+            return this.compare_string_props (this.id, media_object.id);
         case "@parentID":
-            return strcmp (this.parent, media_object.parent);
+            return this.compare_string_props (this.parent.id,
+                                              media_object.parent.id);
         case "dc:title":
-            return strcmp (this.title, media_object.title);
+            return this.compare_string_props (this.title, media_object.title);
         case "upnp:class":
-            return strcmp (this.upnp_class, media_object.upnp_class);
+            return this.compare_string_props (this.upnp_class,
+                                              media_object.upnp_class);
         default:
             return 0;
+        }
+    }
+
+    protected int compare_string_props (string prop1, string prop2) {
+        if (prop1 == null) {
+            return -1;
+        } else if (prop2 == null) {
+            return 1;
+        } else {
+            return prop1.collate (prop2);
         }
     }
 }
