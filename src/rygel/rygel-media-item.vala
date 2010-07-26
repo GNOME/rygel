@@ -237,6 +237,24 @@ public class Rygel.MediaItem : MediaObject {
         return res;
     }
 
+    internal override int compare_by_property (MediaObject media_object,
+                                               string      property) {
+        var item = media_object as MediaItem;
+
+        switch (property) {
+        case "dc:creator":
+        case "dc:artist":
+        case "dc:author":
+            return this.compare_string_props (this.author, item.author);
+        case "upnp:album":
+            return this.compare_string_props (this.album, item.album);
+        case "dc:date":
+            return this.compare_by_date (item);
+        default:
+            return base.compare_by_property (item, property);
+        }
+    }
+
     private ProtocolInfo get_protocol_info (string? uri,
                                             string  protocol) {
         var protocol_info = new ProtocolInfo ();
@@ -283,6 +301,37 @@ public class Rygel.MediaItem : MediaObject {
                      scheme);
 
             return scheme;
+        }
+    }
+
+    private int compare_by_date (MediaItem item) {
+        if (this.date == null) {
+            return -1;
+        } else if (item.date == null) {
+            return 1;
+        } else {
+            var tv1 = TimeVal ();
+            assert (tv1.from_iso8601 (this.date));
+
+            var tv2 = TimeVal ();
+            assert (tv2.from_iso8601 (item.date));
+
+            var ret = this.compare_long (tv1.tv_sec, tv2.tv_sec);
+            if (ret == 0) {
+                ret = this.compare_long (tv1.tv_usec, tv2.tv_usec);
+            }
+
+            return ret;
+        }
+    }
+
+    private int compare_long (long a, long b) {
+        if (a < b) {
+            return -1;
+        } else if (a > b) {
+            return 1;
+        } else {
+            return 0;
         }
     }
 }
