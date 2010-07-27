@@ -165,6 +165,10 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
                                 Pad     pad) {
         Idle.add_full (Priority.HIGH_IDLE,
                        () => {
+            if (this.cancellable.is_cancelled ()) {
+                return false;
+            }
+
             this.push_data (buffer.data, buffer.size);
             this.buffered++;
 
