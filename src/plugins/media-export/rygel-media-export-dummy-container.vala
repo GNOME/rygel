@@ -21,22 +21,25 @@ using Gee;
 
 internal class Rygel.MediaExport.DummyContainer : NullContainer {
     public File file;
-    public ArrayList<string> seen_children;
+    public Gee.List<string> children;
 
-    public DummyContainer (File file, MediaContainer parent) {
-        var id = Checksum.compute_for_string (ChecksumType.MD5,
-                                              file.get_uri ());
-        this.id = id;
-        this.parent = parent;
+    public DummyContainer (File           file,
+                           MediaContainer parent) {
+        this.id = Item.get_id (file);
         this.title = file.get_basename ();
-        this.child_count = 0;
         this.parent_ref = parent;
         this.file = file;
         this.set_uri (file.get_uri ());
-        this.seen_children = new ArrayList<string> (str_equal);
+        try {
+            this.children = MediaCache.get_default ().get_child_ids (this.id);
+            this.child_count = this.children.size;
+        } catch (Error error) {
+            this.children = new ArrayList<string> ();
+            this.child_count = 0;
+        }
     }
 
     public void seen (string id) {
-        seen_children.add (id);
+        this.children.remove (id);
     }
 }
