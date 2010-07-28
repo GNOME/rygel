@@ -26,10 +26,9 @@ using GUPnP;
  */
 public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
     private MetadataExtractor extractor;
-    private HashMap<File, Harvester> harvester;
     private RecursiveFileMonitor monitor;
     private DBusService service;
-    private Gee.List<Harvester> harvester_trash;
+    private Harvester harvester;
 
     private static MediaContainer instance = null;
 
@@ -66,7 +65,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
 
     public void add_uri (string uri) {
         var file = File.new_for_commandline_arg (uri);
-        this.harvest (file, this, "DBUS");
+        this.harvester.schedule (file, this, "DBUS");
     }
 
     public void remove_uri (string uri) {
@@ -74,7 +73,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         var id = Checksum.compute_for_string (ChecksumType.MD5,
                                               file.get_uri ());
 
-        cancel_harvester (file);
+        this.harvester.cancel (file);
         try {
             this.media_db.remove_by_id (id);
         } catch (Error error) {
@@ -262,12 +261,10 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         base (db, "0", "MediaExportRoot");
 
         this.extractor = new MetadataExtractor ();
-
-        this.harvester = new HashMap<File, Harvester> (file_hash, file_equal);
-        this.harvester_trash = new ArrayList<Harvester> ();
-
         this.monitor = new RecursiveFileMonitor (null);
         this.monitor.changed.connect (this.on_file_changed);
+
+        this.harvester = new Harvester (this.extractor, this.monitor);
 
         try {
             this.service = new DBusService (this);
@@ -297,7 +294,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                 var id = Checksum.compute_for_string (ChecksumType.MD5,
                                                       file.get_uri ());
                 ids.remove (id);
-                this.harvest (file);
+                this.harvester.schedule (file, this);
             }
         }
 
@@ -344,50 +341,6 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         this.updated ();
     }
 
-    private void on_file_harvested (Harvester harvester,
-                                    File      file) {
-        message (_("'%s' harvested"), file.get_uri ());
-
-        this.harvester.remove (file);
-    }
-
-    private void on_remove_cancelled_harvester (Harvester harvester,
-                                                File      file) {
-        this.harvester_trash.remove (harvester);
-    }
-
-    private void cancel_harvester (File file) {
-        if (this.harvester.contains (file)) {
-            var harvester = this.harvester[file];
-            harvester.harvested.disconnect (this.on_file_harvested);
-            harvester.cancellable.cancel ();
-            harvester.harvested.connect (this.on_remove_cancelled_harvester);
-            this.harvester_trash.add (harvester);
-        }
-    }
-
-    private void harvest (File           file,
-                          MediaContainer parent = this,
-                          string?        flag   = null) {
-        if (this.extractor == null) {
-            warning (_("No Metadata extractor available. Will not crawl"));
-
-            return;
-        }
-
-        // Cancel currently running harvester
-        cancel_harvester (file);
-
-        var harvester = new Harvester (parent,
-                                       this.media_db,
-                                       this.extractor,
-                                       this.monitor,
-                                       flag);
-        harvester.harvested.connect (this.on_file_harvested);
-        this.harvester[file] = harvester;
-        harvester.harvest (file);
-    }
-
     private void on_file_changed (File             file,
                                   File?            other,
                                   FileMonitorEvent event) {
@@ -405,7 +358,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                                            as MediaContainer;
                     assert (parent_container != null);
 
-                    this.harvest (file, parent_container);
+                    this.harvester.schedule (file, parent_container);
                 } catch (DatabaseError error) {
                     warning (_("Error fetching object '%s' from database: %s"),
                              id,
@@ -416,7 +369,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                 var id = Checksum.compute_for_string (ChecksumType.MD5,
                                                       file.get_uri ());
 
-                cancel_harvester (file);
+                this.harvester.cancel (file);
                 try {
                     // the full object is fetched instead of simply calling
                     // exists because we need the parent to signalize the
