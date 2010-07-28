@@ -47,6 +47,8 @@ public class Rygel.MediaExport.MediaCache : Object {
     private ObjectFactory factory;
     private SQLFactory sql;
 
+    private static MediaCache instance;
+
     public void remove_by_id (string id) throws DatabaseError {
         GLib.Value[] values = { id };
         this.db.exec (this.sql.make (SQLString.DELETE), values);
@@ -333,9 +335,17 @@ public class Rygel.MediaExport.MediaCache : Object {
         return children;
     }
 
-    public MediaCache (string name) throws Error {
+    public static MediaCache get_default () throws Error {
+        if (instance == null) {
+            instance = new MediaCache ();
+        }
+
+        return instance;
+    }
+
+    private MediaCache () throws Error {
         this.sql = new SQLFactory ();
-        this.open_db (name);
+        this.open_db ("media-export");
         this.factory = new ObjectFactory ();
     }
 

@@ -257,7 +257,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
      * Create a new root container.
      */
     private RootContainer () throws Error {
-        var db = new MediaCache ("media-export");
+        var db = MediaCache.get_default ();
 
         base (db, "0", "MediaExportRoot");
 
