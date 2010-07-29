@@ -94,7 +94,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
                                         Priority.DEFAULT,
                                         this.cancellable);
 
-            if (process_file (this.origin, info, this.parent)) {
+            if (this.process_file (this.origin, info, this.parent)) {
                 if (info.get_file_type () != FileType.DIRECTORY) {
                     this.containers.push_tail (this.parent);
                 }
@@ -102,10 +102,10 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
             } else {
                 this.completed ();
             }
-        } catch (Error err) {
+        } catch (Error error) {
             warning (_("Failed to harvest file %s: %s"),
                      this.origin.get_uri (),
-                     err.message);
+                     error.message);
             this.completed ();
         }
     }
@@ -188,12 +188,12 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
         } else {
             // Check if the file needs to be harvested at all either because
             // it is denied by filter or it hasn't updated
-            if (file_filter != null &&
-                !file_filter.match (file.get_uri ())) {
+            if (this.file_filter != null &&
+                !this.file_filter.match (file.get_uri ())) {
                 return false;
             }
 
-             return push_if_changed_or_unknown (file, info);
+             return this.push_if_changed_or_unknown (file, info);
         }
     }
 
@@ -202,13 +202,13 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
             return false;
         }
 
-        var parent_container = (DummyContainer) this.containers.peek_head ();
+        var parent_container = this.containers.peek_head () as DummyContainer;
 
         foreach (var info in list) {
             var dir = parent_container.file;
             var file = dir.get_child (info.get_name ());
             parent_container.seen (Item.get_id (file));
-            process_file (file, info, parent_container);
+            this.process_file (file, info, parent_container);
         }
 
         return true;
@@ -227,14 +227,14 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
                 list = yield enumerator.next_files_async (256,
                                                           Priority.DEFAULT,
                                                           this.cancellable);
-            } while (process_children (list));
+            } while (this.process_children (list));
 
             yield enumerator.close_async (Priority.DEFAULT, this.cancellable);
         } catch (Error err) {
             warning (_("failed to enumerate folder: %s"), err.message);
         }
 
-        cleanup_database ();
+        this.cleanup_database ();
         this.do_update ();
     }
 
@@ -245,10 +245,10 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
             foreach (var child in container.children) {
                 this.cache.remove_by_id (child);
             }
-        } catch (DatabaseError err) {
+        } catch (DatabaseError error) {
             warning (_("Failed to get children of container %s: %s"),
                      container.id,
-                     err.message);
+                     error.message);
         }
 
     }
@@ -266,13 +266,13 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
         } else if (this.containers.get_length () > 0) {
             var container = this.containers.peek_head () as DummyContainer;
             var directory = container.file;
-            enumerate_directory (directory);
+            this.enumerate_directory (directory);
         } else {
             // nothing to do
             if (this.flag != null) {
                 try {
                     this.cache.flag_object (Item.get_id (this.origin),
-                                               this.flag);
+                                            this.flag);
                 } catch (Error error) {};
             }
             this.completed ();
@@ -296,6 +296,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
             // just ignore it
            return;
         }
+
         if (file == entry) {
             MediaItem item;
             if (dlna == null) {
