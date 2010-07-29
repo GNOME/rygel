@@ -202,7 +202,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
             return false;
         }
 
-        var parent_container = this.containers.peek_head () as DummyContainer;
+        var parent_container = this.container ();
 
         foreach (var info in list) {
             var dir = parent_container.file;
@@ -240,7 +240,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
 
     private void cleanup_database () {
         // delete all children which are not in filesystem anymore
-        var container = this.containers.peek_head () as DummyContainer;
+        var container = this.container ();
         try {
             foreach (var child in container.children) {
                 this.cache.remove_by_id (child);
@@ -264,7 +264,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
             var candidate = this.files.peek ();
             this.extractor.extract (candidate);
         } else if (this.containers.get_length () > 0) {
-            var container = this.containers.peek_head () as DummyContainer;
+            var container = this.container ();
             var directory = container.file;
             this.enumerate_directory (directory);
         } else {
@@ -300,13 +300,13 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
         if (file == entry) {
             MediaItem item;
             if (dlna == null) {
-                item = new Item.simple (this.containers.peek_head (),
+                item = new Item.simple (this.current_parent (),
                                         file,
                                         mime,
                                         size,
                                         mtime);
             } else {
-                item = Item.create_from_info (this.containers.peek_head (),
+                item = Item.create_from_info (this.current_parent (),
                                               file,
                                               dlna,
                                               mime,
@@ -315,7 +315,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
             }
 
             if (item != null) {
-                item.parent_ref = this.containers.peek_head ();
+                item.parent_ref = this.current_parent ();
                 try {
                     this.cache.save_item (item);
                 } catch (Error error) {
@@ -350,10 +350,18 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
     private void do_update () {
         if (this.files.size == 0 &&
             this.containers.get_length () != 0) {
-            this.containers.peek_head ().updated ();
+            this.current_parent ().updated ();
             this.containers.pop_head ();
         }
 
         Idle.add (this.on_idle);
+    }
+
+    private DummyContainer container() {
+        return this.containers.peek_head () as DummyContainer;
+    }
+
+    private inline MediaContainer current_parent () {
+        return this.containers.peek_head ();
     }
 }
