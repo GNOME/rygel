@@ -39,7 +39,7 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
 
         switch (event_type) {
             case FileMonitorEvent.CREATED:
-                this.monitor (file);
+                this.add (file);
                 break;
             case FileMonitorEvent.DELETED:
                 var file_monitor = this.monitors.get (file);
@@ -57,7 +57,7 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
         }
     }
 
-    public async void monitor (File file) {
+    public async void add (File file) {
         try {
             var info = yield file.query_info_async (
                                                  FILE_ATTRIBUTE_STANDARD_TYPE,

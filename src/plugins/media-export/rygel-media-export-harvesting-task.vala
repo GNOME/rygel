@@ -170,7 +170,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
 
         if (info.get_file_type () == FileType.DIRECTORY) {
             // queue directory for processing later
-            monitor.monitor (file);
+            this.monitor.add (file);
             var container = new DummyContainer (file, parent);
             this.containers.push_tail (container);
             try {
