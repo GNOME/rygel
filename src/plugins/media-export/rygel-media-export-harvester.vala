@@ -19,11 +19,23 @@
  */
 using Gee;
 
+/**
+ * This class takes care of the book-keeping of running and finished
+ * extraction tasks running within the media-export plugin
+ */
 internal class Rygel.MediaExport.Harvester : GLib.Object {
     private HashMap<File, HarvestingTask> tasks;
     private MetadataExtractor extractor;
     private RecursiveFileMonitor monitor;
 
+    /**
+     * Create a new instance of the meta-data extraction manager.
+     *
+     * @param extractor instance of MetadataExtractor used for meta-data
+     *                  extraction by this task
+     * @param monitor intance of a RecursiveFileMonitor which is used to keep
+     *                track of the file changes
+     */
     public Harvester (MetadataExtractor    extractor,
                       RecursiveFileMonitor monitor) {
         this.extractor = extractor;
@@ -31,6 +43,13 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         this.tasks = new HashMap<File, HarvestingTask> (file_hash, file_equal);
     }
 
+    /**
+     * Put a file on queue for meta-data extraction
+     *
+     * @param file the file to investigate
+     * @param parent container of the filer to be harvested
+     * @param flag optional flag for the container to set in the database
+     */
     public void schedule (File           file,
                            MediaContainer parent,
                            string?        flag   = null) {
@@ -40,7 +59,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
             return;
         }
 
-        // Cancel currently running harvester
+        // Cancel a probably running harvester
         this.cancel (file);
 
         var task = new HarvestingTask (this.extractor,
@@ -53,6 +72,11 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         task.run ();
     }
 
+    /**
+     * Cancel a running meta-data extraction run
+     *
+     * @param file file cancel the current run for
+     */
     public void cancel (File file) {
         if (this.tasks.contains (file)) {
             var task = this.tasks[file];
@@ -62,6 +86,12 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         }
     }
 
+    /**
+     * Callback for finished harvester.
+     *
+     * Updates book-keeping hash.
+     * @param state_machine HarvestingTask sending the event
+     */
     private void on_file_harvested (StateMachine state_machine) {
         var task = state_machine as HarvestingTask;
         var file = task.origin;
