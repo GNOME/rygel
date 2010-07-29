@@ -213,13 +213,13 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
             warning (_("failed to enumerate folder: %s"), err.message);
         }
 
-        cleanup_database (this.containers.peek_head () as DummyContainer);
+        cleanup_database ();
         this.do_update ();
     }
 
-    private void cleanup_database (DummyContainer container) {
+    private void cleanup_database () {
         // delete all children which are not in filesystem anymore
-        container = (DummyContainer) this.containers.peek_head ();
+        var container = this.containers.peek_head () as DummyContainer;
         try {
             foreach (var child in container.children) {
                 this.cache.remove_by_id (child);
