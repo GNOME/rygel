@@ -261,7 +261,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
         }
 
         if (this.files.size > 0) {
-            var candidate = this.files.peek ();
+            var candidate = this.file ();
             this.extractor.extract (candidate);
         } else if (this.containers.get_length () > 0) {
             var container = this.container ();
@@ -329,7 +329,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
     }
 
     private void on_extractor_error_cb (File file, Error error) {
-        var entry = this.files.peek ();
+        var entry = this.file ();
         if (entry == null) {
             // this event may be triggered by another instance
             // just ignore it
@@ -359,6 +359,10 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
 
     private DummyContainer container() {
         return this.containers.peek_head () as DummyContainer;
+    }
+
+    private File file () {
+        return this.files.peek ();
     }
 
     private inline MediaContainer current_parent () {
