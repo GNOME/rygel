@@ -4,6 +4,8 @@
 *.la
 *.a
 *.c
+.exrc
+.*.swp
 .deps
 .libs
 stamp-*
