@@ -214,7 +214,8 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
         return true;
     }
 
-    private async void enumerate_directory (File directory) {
+    private async void enumerate_directory () {
+        var directory = this.container ().file;
         try {
             var enumerator = yield directory.enumerate_children_async (
                                         HARVESTER_ATTRIBUTES,
@@ -264,9 +265,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
             var candidate = this.file ();
             this.extractor.extract (candidate);
         } else if (this.containers.get_length () > 0) {
-            var container = this.container ();
-            var directory = container.file;
-            this.enumerate_directory (directory);
+            this.enumerate_directory ();
         } else {
             // nothing to do
             if (this.flag != null) {
