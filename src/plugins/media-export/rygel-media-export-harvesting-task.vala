@@ -108,9 +108,8 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
     }
 
     private bool push_if_changed_or_unknown (File       file,
-                                             FileInfo   info,
-                                             out string id) {
-        id = Checksum.compute_for_string (ChecksumType.MD5, file.get_uri ());
+                                             FileInfo   info) {
+        var id = Item.get_id (file);
         int64 timestamp;
         try {
             if (this.cache.exists (id, out timestamp)) {
@@ -167,15 +166,13 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
 
             return true;
         } else {
-            string id;
-
             // Let's see if the file is wanted
             if (file_filter != null &&
                 !file_filter.match (file.get_uri ())) {
                 return false;
             }
 
-             return push_if_changed_or_unknown (file, info, out id);
+             return push_if_changed_or_unknown (file, info);
         }
     }
 
