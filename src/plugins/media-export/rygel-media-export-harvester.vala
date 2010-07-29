@@ -21,7 +21,6 @@ using Gee;
 
 internal class Rygel.MediaExport.Harvester : GLib.Object {
     private HashMap<File, HarvestingTask> tasks;
-    private ArrayList<HarvestingTask> trash;
     private MetadataExtractor extractor;
     private RecursiveFileMonitor monitor;
 
@@ -30,7 +29,6 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         this.extractor = extractor;
         this.monitor = monitor;
         this.tasks = new HashMap<File, HarvestingTask> (file_hash, file_equal);
-        this.trash = new ArrayList<HarvestingTask> ();
     }
 
     public void schedule (File           file,
@@ -61,8 +59,6 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
             task.completed.disconnect (this.on_file_harvested);
             this.tasks.remove (file);
             task.cancellable.cancel ();
-            task.completed.connect (this.on_remove_cancelled_harvester);
-            this.trash.add (task);
         }
     }
 
@@ -72,9 +68,5 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         message (_("'%s' harvested"), file.get_uri ());
 
         this.tasks.remove (file);
-    }
-
-    private void on_remove_cancelled_harvester (StateMachine state_machine) {
-        this.trash.remove (state_machine as HarvestingTask);
     }
 }
