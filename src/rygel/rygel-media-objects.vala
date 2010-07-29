@@ -26,6 +26,9 @@ using Gee;
  * An array list that keeps media objects.
  */
 public class Rygel.MediaObjects : ArrayList<MediaObject> {
+    public const string SORT_CAPS = "@id,@parentID,dc:title,upnp:class," +
+                                    "dc:artist,dc:author,upnp:album,dc:date";
+
     public override Gee.List<MediaObject>? slice (int start, int stop) {
         var slice = base.slice (start, stop);
         var ret = new MediaObjects ();

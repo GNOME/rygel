@@ -50,7 +50,6 @@ public class Rygel.ContentDirectory: Service {
     public const string DESCRIPTION_PATH = "xml/ContentDirectory.xml";
 
     protected string feature_list;
-    protected string sort_caps;
 
     internal HTTPServer http_server;
 
@@ -91,7 +90,6 @@ public class Rygel.ContentDirectory: Service {
             "xsi:schemaLocation=\"urn:schemas-upnp-org:av:avs" +
             "http://www.upnp.org/schemas/av/avs-v1-20060531.xsd\">" +
             "</Features>";
-        this.sort_caps = "";
 
         this.action_invoked["Browse"].connect (this.browse_cb);
         this.action_invoked["Search"].connect (this.search_cb);
@@ -275,7 +273,7 @@ public class Rygel.ContentDirectory: Service {
     private void get_sort_capabilities_cb (Service             content_dir,
                                            owned ServiceAction action) {
         /* Set action return arguments */
-        action.set ("SortCaps", typeof (string), this.sort_caps);
+        action.set ("SortCaps", typeof (string), MediaObjects.SORT_CAPS);
 
         action.return ();
     }
@@ -286,7 +284,7 @@ public class Rygel.ContentDirectory: Service {
                                           ref GLib.Value value) {
         /* Set action return arguments */
         value.init (typeof (string));
-        value.set_string (this.sort_caps);
+        value.set_string (MediaObjects.SORT_CAPS);
     }
 
     /* action GetFeatureList implementation */
