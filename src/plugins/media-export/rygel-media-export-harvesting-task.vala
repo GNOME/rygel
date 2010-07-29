@@ -241,14 +241,13 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
 
     private void cleanup_database () {
         // delete all children which are not in filesystem anymore
-        var container = this.container ();
         try {
-            foreach (var child in container.children) {
+            foreach (var child in this.container ().children) {
                 this.cache.remove_by_id (child);
             }
         } catch (DatabaseError error) {
             warning (_("Failed to get children of container %s: %s"),
-                     container.id,
+                     this.container ().id,
                      error.message);
         }
 
@@ -262,8 +261,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
         }
 
         if (this.files.size > 0) {
-            var candidate = this.file ();
-            this.extractor.extract (candidate);
+            this.extract_file ();
         } else if (this.containers.get_length () > 0) {
             this.enumerate_directory ();
         } else {
@@ -289,56 +287,52 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
             this.completed ();
         }
 
-        var entry = this.files.peek ();
-        if (entry == null) {
+        var entry = this.file ();
+        if (entry == null || file != entry) {
             // this event may be triggered by another instance
             // just ignore it
            return;
         }
 
-        if (file == entry) {
-            MediaItem item;
-            if (dlna == null) {
-                item = new Item.simple (this.current_parent (),
-                                        file,
-                                        mime,
-                                        size,
-                                        mtime);
-            } else {
-                item = Item.create_from_info (this.current_parent (),
-                                              file,
-                                              dlna,
-                                              mime,
-                                              size,
-                                              mtime);
-            }
-
-            if (item != null) {
-                item.parent_ref = this.current_parent ();
-                try {
-                    this.cache.save_item (item);
-                } catch (Error error) {
-                    // Ignore it for now
-                }
-            }
-
-            this.files.poll ();
-            this.do_update ();
+        MediaItem item;
+        if (dlna == null) {
+            item = new Item.simple (this.current_parent (),
+                                    file,
+                                    mime,
+                                    size,
+                                    mtime);
+        } else {
+            item = Item.create_from_info (this.current_parent (),
+                                          file,
+                                          dlna,
+                                          mime,
+                                          size,
+                                          mtime);
         }
+
+        if (item != null) {
+            item.parent_ref = this.current_parent ();
+            try {
+                this.cache.save_item (item);
+            } catch (Error error) {
+                // Ignore it for now
+            }
+        }
+
+        this.files.poll ();
+        this.do_update ();
     }
 
     private void on_extractor_error_cb (File file, Error error) {
         var entry = this.file ();
-        if (entry == null) {
+        if (entry == null || file != entry) {
             // this event may be triggered by another instance
             // just ignore it
             return;
         }
 
-        if (file == entry) {
-            this.files.poll ();
-            this.do_update ();
-        }
+        this.files.poll ();
+        this.do_update ();
     }
 
     /**
@@ -356,11 +350,15 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
         Idle.add (this.on_idle);
     }
 
-    private DummyContainer container() {
+    private inline void extract_file () {
+        this.extractor.extract (this.file ());
+    }
+
+    private inline DummyContainer container() {
         return this.containers.peek_head () as DummyContainer;
     }
 
-    private File file () {
+    private inline File file () {
         return this.files.peek ();
     }
 
