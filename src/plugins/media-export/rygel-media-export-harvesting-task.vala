@@ -234,6 +234,8 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
 
     private bool on_idle () {
         if (this.cancellable.is_cancelled ()) {
+            this.completed ();
+
             return false;
         }
 
