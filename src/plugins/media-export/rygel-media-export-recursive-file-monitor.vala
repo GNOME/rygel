@@ -35,11 +35,12 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
     public void on_monitor_changed (File             file,
                                     File?            other_file,
                                     FileMonitorEvent event_type) {
-        changed (file, other_file, event_type);
+        this.changed (file, other_file, event_type);
 
         switch (event_type) {
             case FileMonitorEvent.CREATED:
                 this.add (file);
+
                 break;
             case FileMonitorEvent.DELETED:
                 var file_monitor = this.monitors.get (file);
@@ -50,6 +51,7 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
                     file_monitor.cancel ();
                     file_monitor.changed.disconnect (this.on_monitor_changed);
                 }
+
                 break;
             default:
                 // do nothing
