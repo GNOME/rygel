@@ -27,6 +27,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
     private HashMap<File, HarvestingTask> tasks;
     private MetadataExtractor extractor;
     private RecursiveFileMonitor monitor;
+    private Regex file_filter;
 
     /**
      * Create a new instance of the meta-data extraction manager.
@@ -41,6 +42,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         this.extractor = extractor;
         this.monitor = monitor;
         this.tasks = new HashMap<File, HarvestingTask> (file_hash, file_equal);
+        this.create_file_filter ();
     }
 
     /**
@@ -64,6 +66,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
 
         var task = new HarvestingTask (this.extractor,
                                        this.monitor,
+                                       this.file_filter,
                                        file,
                                        parent,
                                        flag);
@@ -98,5 +101,33 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         message (_("'%s' harvested"), file.get_uri ());
 
         this.tasks.remove (file);
+    }
+
+    /**
+     * Construct positive filter from config
+     *
+     * Takes a list of file extensions from config, escapes them and builds a
+     * regular expression to match against the files encountered.
+     */
+    private void create_file_filter () {
+        try {
+            var config = MetaConfig.get_default ();
+            var extensions = config.get_string_list ("MediaExport",
+                                                     "include-filter");
+
+            // never trust user input
+            string[] escaped_extensions = new string[0];
+            foreach (var extension in extensions) {
+                escaped_extensions += Regex.escape_string (extension);
+            }
+
+            var list = string.joinv ("|", escaped_extensions);
+            this.file_filter = new Regex (
+                                     "(%s)$".printf (list),
+                                     RegexCompileFlags.CASELESS |
+                                     RegexCompileFlags.OPTIMIZE);
+        } catch (Error error) {
+            this.file_filter = null;
+        }
     }
 }

@@ -43,6 +43,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
 
     public HarvestingTask (MetadataExtractor    extractor,
                            RecursiveFileMonitor monitor,
+                           Regex                file_filter,
                            File                 file,
                            MediaContainer       parent,
                            string?              flag = null) {
@@ -64,25 +65,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
         this.monitor = monitor;
         this.cancellable = new Cancellable ();
         this.flag = flag;
-        var config = MetaConfig.get_default ();
-
-        try {
-            var extensions = config.get_string_list ("MediaExport",
-                                                     "include-filter");
-
-            // never trust user input
-            string[] escaped_extensions = new string[0];
-            foreach (var extension in extensions) {
-                escaped_extensions += Regex.escape_string (extension);
-            }
-
-            var list = string.joinv ("|", escaped_extensions);
-            file_filter = new Regex ("(%s)$".printf (list),
-                                     RegexCompileFlags.CASELESS |
-                                     RegexCompileFlags.OPTIMIZE);
-        } catch (Error error) {
-            file_filter = null;
-        }
+        this.file_filter = file_filter;
     }
 
     /**
