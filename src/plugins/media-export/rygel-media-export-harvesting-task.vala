@@ -54,6 +54,9 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
         try {
             this.cache = MediaCache.get_default ();
         } catch (Error error) {
+            // This should not happen. As the harvesting tasks are created
+            // long after the first call to get_default which - if fails -
+            // will make the whole root-container creation fail
             assert_not_reached ();
         }
 
@@ -107,6 +110,18 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
         }
     }
 
+    /**
+     * Add a file to the meta-data extraction queue.
+     *
+     * The file will only be added to the queue if one of the following
+     * conditions is met:
+     *   - The file is not in the cache
+     *   - The current mtime of the file is larger than the cached
+     *   - The size has changed
+     * @param file to check
+     * @param info FileInfo of the file to check
+     * @return true, if the file has been queued, false otherwise.
+     */
     private bool push_if_changed_or_unknown (File       file,
                                              FileInfo   info) {
         var id = Item.get_id (file);
@@ -116,6 +131,10 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
                 int64 mtime = (int64) info.get_attribute_uint64 (
                                         FILE_ATTRIBUTE_TIME_MODIFIED);
 
+                // Doing the check for mtime here first because the check for
+                // size involves a database query and if the size has changed,
+                // the mtime probably has as well (unfortunatly enough
+                // exceptions exist)
                 if (mtime > timestamp) {
                     this.files.offer (file);
 
@@ -150,6 +169,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
         }
 
         if (info.get_file_type () == FileType.DIRECTORY) {
+            // queue directory for processing later
             monitor.monitor (file);
             var container = new DummyContainer (file, parent);
             this.containers.push_tail (container);
@@ -166,7 +186,8 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
 
             return true;
         } else {
-            // Let's see if the file is wanted
+            // Check if the file needs to be harvested at all either because
+            // it is denied by filter or it hasn't updated
             if (file_filter != null &&
                 !file_filter.match (file.get_uri ())) {
                 return false;
