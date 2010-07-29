@@ -146,14 +146,13 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
         }
     }
 
-    public override async Gee.List<MediaObject>? search (
-                                        SearchExpression expression,
-                                        uint             offset,
-                                        uint             max_count,
-                                        out uint         total_matches,
-                                        Cancellable?     cancellable)
-                                        throws GLib.Error {
-        Gee.List<MediaObject> children = null;
+    public override async MediaObjects? search (SearchExpression expression,
+                                                uint             offset,
+                                                uint             max_count,
+                                                out uint         total_matches,
+                                                Cancellable?     cancellable)
+                                                throws GLib.Error {
+        MediaObjects children = null;
 
         var combined_expression = new LogicalExpression ();
         combined_expression.operand1 = this.expression;
@@ -174,7 +173,7 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
                                             out total_matches);
         } catch (MediaDBError error) {
             if (error is MediaDBError.UNSUPPORTED_SEARCH) {
-                children = new ArrayList<MediaObject> ();
+                children = new MediaObjects ();
                 total_matches = 0;
             } else {
                 throw error;
@@ -184,12 +183,11 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
         return children;
     }
 
-    public override async Gee.List<MediaObject>? get_children (
-                                       uint             offset,
-                                       uint             max_count,
-                                       Cancellable?     cancellable)
-                                       throws GLib.Error {
-        Gee.List<MediaObject> children;
+    public override async MediaObjects? get_children (uint         offset,
+                                                      uint         max_count,
+                                                      Cancellable? cancellable)
+                                                      throws GLib.Error {
+        MediaObjects children;
 
         if (pattern == "") {
             // this "duplicates" the search expression but using the same
@@ -206,7 +204,7 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
                 max_objects = -1;
             }
 
-            children = new ArrayList<MediaObject> ();
+            children = new MediaObjects ();
             var data = this.media_db.get_object_attribute_by_search_expression (
                                         this.attribute,
                                         this.expression,

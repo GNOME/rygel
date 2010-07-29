@@ -54,7 +54,7 @@ internal class Rygel.Search:  Rygel.MediaQueryAction {
         debug (_("Executing search request: %s"), this.search_criteria);
     }
 
-    protected override async Gee.List<MediaObject> fetch_results (
+    protected override async MediaObjects fetch_results (
                                         MediaObject media_object) throws Error {
         var container = media_object as MediaContainer;
 

@@ -72,11 +72,10 @@ public abstract class Rygel.MediaContainer : MediaObject {
      *
      * return A list of media objects.
      */
-    public async abstract Gee.List<MediaObject>? get_children (
-                                        uint               offset,
-                                        uint               max_count,
-                                        Cancellable?       cancellable)
-                                        throws Error;
+    public async abstract MediaObjects? get_children (uint         offset,
+                                                      uint         max_count,
+                                                      Cancellable? cancellable)
+                                                      throws Error;
 
     /**
      * Recursively searches for all media objects the satisfy the given search
@@ -93,14 +92,13 @@ public abstract class Rygel.MediaContainer : MediaObject {
      *
      * return A list of media objects.
      */
-    public virtual async Gee.List<MediaObject>? search (
-                                        SearchExpression   expression,
-                                        uint               offset,
-                                        uint               max_count,
-                                        out uint           total_matches,
-                                        Cancellable?       cancellable)
-                                        throws Error {
-        var result = new ArrayList<MediaObject> ();
+    public virtual async MediaObjects? search (SearchExpression   expression,
+                                               uint               offset,
+                                               uint               max_count,
+                                               out uint           total_matches,
+                                               Cancellable?       cancellable)
+                                               throws Error {
+        var result = new MediaObjects ();
 
         var children = yield this.get_children (0,
                                                 this.child_count,
@@ -154,7 +152,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
             // actually satisfy the give search expression
             total_matches = 0;
 
-            return result.slice ((int) start, (int) stop);
+            return result.slice ((int) start, (int) stop) as MediaObjects;
         } else {
             total_matches = result.size;
 
@@ -260,13 +258,12 @@ public abstract class Rygel.MediaContainer : MediaObject {
         }
     }
 
-    private async Gee.List<MediaObject> search_in_children (
-                                        SearchExpression      expression,
-                                        Gee.List<MediaObject> children,
-                                        uint                  limit,
-                                        Cancellable?          cancellable)
-                                        throws Error {
-        var result = new ArrayList<MediaObject> ();
+    private async MediaObjects search_in_children (SearchExpression expression,
+                                                   MediaObjects     children,
+                                                   uint             limit,
+                                                   Cancellable?     cancellable)
+                                                   throws Error {
+        var result = new MediaObjects ();
 
         foreach (var child in children) {
             if (child is MediaContainer) {

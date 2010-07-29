@@ -325,11 +325,10 @@ public class Rygel.MediaExport.MediaCache : Object {
         return exists;
     }
 
-    public Gee.ArrayList<MediaObject> get_children (string container_id,
-                                                    long   offset,
-                                                    long   max_count)
-                                                    throws Error {
-        ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
+    public MediaObjects get_children (string container_id,
+                                      long   offset,
+                                      long   max_count) throws Error {
+        MediaObjects children = new MediaObjects ();
         var parent = get_object (container_id) as MediaContainer;
 
         GLib.Value[] values = { container_id,
@@ -358,7 +357,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
     }
 
-    public Gee.List<MediaObject> get_objects_by_search_expression (
+    public MediaObjects get_objects_by_search_expression (
                                         SearchExpression? expression,
                                         string            container_id,
                                         uint              offset,
@@ -369,7 +368,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         var filter = this.search_expression_to_sql (expression, args);
 
         if (filter == null) {
-            return new Gee.ArrayList<MediaObject> ();
+            return new MediaObjects ();
         }
 
         debug ("Original search: %s", expression.to_string ());
@@ -449,14 +448,13 @@ public class Rygel.MediaExport.MediaCache : Object {
     }
 
 
-    public Gee.ArrayList<MediaObject> get_objects_by_filter (
-                                        string          filter,
-                                        GLib.ValueArray args,
-                                        string          container_id,
-                                        long            offset,
-                                        long            max_count)
-                                        throws Error {
-        ArrayList<MediaObject> children = new ArrayList<MediaObject> ();
+    public MediaObjects get_objects_by_filter (string          filter,
+                                               GLib.ValueArray args,
+                                               string          container_id,
+                                               long            offset,
+                                               long            max_count)
+                                               throws Error {
+        var children = new MediaObjects ();
         GLib.Value v = offset;
         args.append (v);
         v = max_count;

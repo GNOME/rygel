@@ -50,11 +50,10 @@ public class Rygel.MediaExport.DBContainer : MediaContainer {
         }
     }
 
-    public override async Gee.List<MediaObject>? get_children (
-                                        uint               offset,
-                                        uint               max_count,
-                                        Cancellable?       cancellable)
-                                        throws GLib.Error {
+    public override async MediaObjects? get_children (uint         offset,
+                                                      uint         max_count,
+                                                      Cancellable? cancellable)
+                                                      throws GLib.Error {
         var children = this.media_db.get_children (this.id,
                                                    offset,
                                                    max_count);
@@ -65,14 +64,13 @@ public class Rygel.MediaExport.DBContainer : MediaContainer {
         return children;
     }
 
-    public override async Gee.List<MediaObject>? search (
-                                        SearchExpression expression,
-                                        uint             offset,
-                                        uint             max_count,
-                                        out uint         total_matches,
-                                        Cancellable?     cancellable)
-                                        throws GLib.Error {
-        Gee.List<MediaObject> children = null;
+    public override async MediaObjects? search (SearchExpression expression,
+                                                uint             offset,
+                                                uint             max_count,
+                                                out uint         total_matches,
+                                                Cancellable?     cancellable)
+                                                throws GLib.Error {
+        MediaObjects children = null;
 
         var max_objects = max_count;
         if (max_objects == 0) {

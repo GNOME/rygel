@@ -64,7 +64,7 @@ internal class Rygel.Browse: Rygel.MediaQueryAction {
         }
     }
 
-    protected override async Gee.List<MediaObject> fetch_results (
+    protected override async MediaObjects fetch_results (
                                         MediaObject media_object) throws Error {
         if (this.fetch_metadata) {
             // BrowseMetadata
@@ -75,18 +75,17 @@ internal class Rygel.Browse: Rygel.MediaQueryAction {
         }
     }
 
-    private Gee.List<MediaObject> handle_metadata_request (
-                                        MediaObject media_object)
-                                        throws Error {
+    private MediaObjects handle_metadata_request (MediaObject media_object)
+                                                  throws Error {
         this.total_matches = 1;
 
-        var results = new ArrayList<MediaObject> ();
+        var results = new MediaObjects ();
         results.add (media_object);
 
         return results;
     }
 
-    private async Gee.List<MediaObject> handle_children_request (
+    private async MediaObjects handle_children_request (
                                         MediaObject media_object)
                                         throws Error {
         if (!(media_object is MediaContainer)) {

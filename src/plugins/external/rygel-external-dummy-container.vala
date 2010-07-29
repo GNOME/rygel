@@ -38,11 +38,10 @@ internal class Rygel.External.DummyContainer : MediaContainer {
         base (id, parent, title, child_count);
     }
 
-    public override async Gee.List<MediaObject>? get_children (
-                                        uint         offset,
-                                        uint         max_count,
-                                        Cancellable? cancellable)
-                                        throws Error {
-        return new ArrayList<MediaObject> ();
+    public override async MediaObjects? get_children (uint         offset,
+                                                      uint         max_count,
+                                                      Cancellable? cancellable)
+                                                      throws Error {
+        return new MediaObjects ();
     }
 }

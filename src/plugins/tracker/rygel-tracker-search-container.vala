@@ -99,11 +99,10 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
         }
     }
 
-    public override async Gee.List<MediaObject>? get_children (
-                                        uint         offset,
-                                        uint         max_count,
-                                        Cancellable? cancellable)
-                                        throws GLib.Error {
+    public override async MediaObjects? get_children (uint         offset,
+                                                      uint         max_count,
+                                                      Cancellable? cancellable)
+                                                      throws GLib.Error {
         var expression = new RelationalExpression ();
         expression.op = SearchCriteriaOp.EQ;
         expression.operand1 = "@parentID";
@@ -118,14 +117,13 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
                                   cancellable);
     }
 
-    public override async Gee.List<MediaObject>? search (
-                                        SearchExpression expression,
-                                        uint             offset,
-                                        uint             max_count,
-                                        out uint         total_matches,
-                                        Cancellable?     cancellable)
-                                        throws GLib.Error {
-        var results = new ArrayList<MediaObject> ();
+    public override async MediaObjects? search (SearchExpression expression,
+                                                uint             offset,
+                                                uint             max_count,
+                                                out uint         total_matches,
+                                                Cancellable?     cancellable)
+                                                throws GLib.Error {
+        var results = new MediaObjects ();
         var query = this.create_query (expression,
                                        (int) offset,
                                        (int) max_count);

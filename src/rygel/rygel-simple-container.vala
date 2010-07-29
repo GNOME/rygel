@@ -30,14 +30,14 @@ using Gee;
  * children ArrayList field.
  */
 public class Rygel.SimpleContainer : Rygel.MediaContainer {
-    public ArrayList<MediaObject> children;
+    public MediaObjects children;
 
     public SimpleContainer (string          id,
                             MediaContainer? parent,
                             string          title) {
         base (id, parent, title, 0);
 
-        this.children = new ArrayList<MediaObject> ();
+        this.children = new MediaObjects ();
     }
 
     public SimpleContainer.root (string title) {
@@ -62,14 +62,13 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
         this.child_count = 0;
     }
 
-    public override async Gee.List<MediaObject>? get_children (
-                                        uint         offset,
-                                        uint         max_count,
-                                        Cancellable? cancellable)
-                                        throws Error {
+    public override async MediaObjects? get_children (uint         offset,
+                                                      uint         max_count,
+                                                      Cancellable? cancellable)
+                                                      throws Error {
         uint stop = offset + max_count;
         stop = stop.clamp (0, this.child_count);
 
-        return this.children.slice ((int) offset, (int) stop);
+        return this.children.slice ((int) offset, (int) stop) as MediaObjects;
     }
 }
