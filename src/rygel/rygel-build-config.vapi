@@ -23,6 +23,7 @@
 /**
   * Holds constants defined by build system.
   */
+[CCode (cheader_filename = "config.h")]
 public class Rygel.BuildConfig {
     [CCode (cname = "DATA_DIR")]
     public static const string DATA_DIR;
