@@ -174,10 +174,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
             var container = new DummyContainer (file, parent);
             this.containers.push_tail (container);
             try {
-                int64 timestamp;
-                if (!this.cache.exists (container.id, out timestamp)) {
-                    this.cache.save_container (container);
-                }
+                this.cache.save_container (container);
             } catch (Error err) {
                 warning (_("Failed to update database: %s"), err.message);
 

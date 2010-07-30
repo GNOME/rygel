@@ -274,10 +274,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         }
 
         try {
-            int64 timestamp;
-            if (!this.media_db.exists ("0", out timestamp)) {
-                media_db.save_container (this);
-            }
+            this.media_db.save_container (this);
         } catch (Error error) { } // do nothing
 
         ArrayList<string> ids;
