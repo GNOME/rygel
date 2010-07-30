@@ -25,7 +25,7 @@ internal class Rygel.MediaExport.DummyContainer : NullContainer {
 
     public DummyContainer (File           file,
                            MediaContainer parent) {
-        this.id = Item.get_id (file);
+        this.id = MediaCache.get_id (file);
         this.title = file.get_basename ();
         this.parent_ref = parent;
         this.file = file;

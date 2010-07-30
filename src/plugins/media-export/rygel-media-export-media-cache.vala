@@ -49,6 +49,11 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     private static MediaCache instance;
 
+    public static string get_id (File file) {
+        return Checksum.compute_for_string (ChecksumType.MD5,
+                                            file.get_uri ());
+    }
+
     public void remove_by_id (string id) throws DatabaseError {
         GLib.Value[] values = { id };
         this.db.exec (this.sql.make (SQLString.DELETE), values);

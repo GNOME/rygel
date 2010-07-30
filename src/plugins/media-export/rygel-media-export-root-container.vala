@@ -70,8 +70,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
 
     public void remove_uri (string uri) {
         var file = File.new_for_commandline_arg (uri);
-        var id = Checksum.compute_for_string (ChecksumType.MD5,
-                                              file.get_uri ());
+        var id = MediaCache.get_id (file);
 
         this.harvester.cancel (file);
         try {
@@ -288,9 +287,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         foreach (var uri in uris) {
             var file = File.new_for_commandline_arg (uri);
             if (file.query_exists (null)) {
-                var id = Checksum.compute_for_string (ChecksumType.MD5,
-                                                      file.get_uri ());
-                ids.remove (id);
+                ids.remove (MediaCache.get_id (file));
                 this.harvester.schedule (file, this);
             }
         }
@@ -347,10 +344,8 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                 debug (_("Trying to harvest %s because of %d"),
                        file.get_uri (),
                        event);
-                var parent = file.get_parent ();
-                var id = Checksum.compute_for_string (ChecksumType.MD5,
-                                                      parent.get_uri ());
                 try {
+                    var id = MediaCache.get_id (file.get_parent ());
                     var parent_container = this.media_db.get_object (id)
                                            as MediaContainer;
                     assert (parent_container != null);
@@ -363,14 +358,12 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                 }
                 break;
             case FileMonitorEvent.DELETED:
-                var id = Checksum.compute_for_string (ChecksumType.MD5,
-                                                      file.get_uri ());
-
                 this.harvester.cancel (file);
                 try {
                     // the full object is fetched instead of simply calling
                     // exists because we need the parent to signalize the
                     // change
+                    var id = MediaCache.get_id (file);
                     var obj = this.media_db.get_object (id);
 
                     // it may be that files removed are files that are not

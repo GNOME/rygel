@@ -124,7 +124,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
      */
     private bool push_if_changed_or_unknown (File       file,
                                              FileInfo   info) {
-        var id = Item.get_id (file);
+        var id = MediaCache.get_id (file);
         int64 timestamp;
         try {
             if (this.cache.exists (id, out timestamp)) {
@@ -204,7 +204,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
         foreach (var info in list) {
             var dir = parent_container.file;
             var file = dir.get_child (info.get_name ());
-            parent_container.seen (Item.get_id (file));
+            parent_container.seen (MediaCache.get_id (file));
             this.process_file (file, info, parent_container);
         }
 
@@ -265,7 +265,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
             // nothing to do
             if (this.flag != null) {
                 try {
-                    this.cache.flag_object (Item.get_id (this.origin),
+                    this.cache.flag_object (MediaCache.get_id (this.origin),
                                             this.flag);
                 } catch (Error error) {};
             }
