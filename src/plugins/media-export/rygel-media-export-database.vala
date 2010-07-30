@@ -140,8 +140,9 @@ internal class Rygel.MediaExport.Database : Object {
                                          throws DatabaseError {
         Statement statement;
         var rc = db.prepare_v2 (sql, -1, out statement, null);
-        if (rc != Sqlite.OK)
+        if (rc != Sqlite.OK) {
             throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
+        }
 
         if (values != null) {
             for (int i = 0; i < values.length; i++) {
