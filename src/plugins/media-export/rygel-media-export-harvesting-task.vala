@@ -199,13 +199,12 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
             return false;
         }
 
-        var parent_container = this.container ();
+        var parent_dir = this.container ().file;
 
         foreach (var info in list) {
-            var dir = parent_container.file;
-            var file = dir.get_child (info.get_name ());
-            parent_container.seen (MediaCache.get_id (file));
-            this.process_file (file, info, parent_container);
+            var file = parent_dir.get_child (info.get_name ());
+            this.container ().seen (file);
+            this.process_file (file, info, this.container ());
         }
 
         return true;

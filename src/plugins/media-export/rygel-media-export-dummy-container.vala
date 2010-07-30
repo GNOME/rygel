@@ -39,7 +39,7 @@ internal class Rygel.MediaExport.DummyContainer : NullContainer {
         }
     }
 
-    public void seen (string id) {
-        this.children.remove (id);
+    public void seen (File file) {
+        this.children.remove (MediaCache.get_id (file));
     }
 }
