@@ -45,9 +45,9 @@ public void module_init (PluginLoader loader) {
                                  typeof (GstRenderer.AVTransport));
     plugin.add_resource (resource);
 
-    resource = new ResourceInfo (GstRenderer.RenderingControl.UPNP_ID,
-                                 GstRenderer.RenderingControl.UPNP_TYPE,
-                                 GstRenderer.RenderingControl.DESCRIPTION_PATH,
+    resource = new ResourceInfo (RenderingControl.UPNP_ID,
+                                 RenderingControl.UPNP_TYPE,
+                                 RenderingControl.DESCRIPTION_PATH,
                                  typeof (GstRenderer.RenderingControl));
     plugin.add_resource (resource);
 
