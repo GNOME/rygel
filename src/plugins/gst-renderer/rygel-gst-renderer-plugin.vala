@@ -39,9 +39,9 @@ public void module_init (PluginLoader loader) {
                                      typeof (GstRenderer.ConnectionManager));
     plugin.add_resource (resource);
 
-    resource = new ResourceInfo (GstRenderer.AVTransport.UPNP_ID,
-                                 GstRenderer.AVTransport.UPNP_TYPE,
-                                 GstRenderer.AVTransport.DESCRIPTION_PATH,
+    resource = new ResourceInfo (Rygel.AVTransport.UPNP_ID,
+                                 Rygel.AVTransport.UPNP_TYPE,
+                                 Rygel.AVTransport.DESCRIPTION_PATH,
                                  typeof (GstRenderer.AVTransport));
     plugin.add_resource (resource);
 
