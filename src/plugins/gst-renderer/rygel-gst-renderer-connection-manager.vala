@@ -24,40 +24,49 @@
 using GUPnP;
 
 public class Rygel.GstRenderer.ConnectionManager : Rygel.ConnectionManager {
+    private string[] protocols = { "http-get" };
+    private string[] mime_types = { "audio/mpeg",
+                                    "application/ogg",
+                                    "audio/x-vorbis",
+                                    "audio/x-vorbis+ogg",
+                                    "audio/x-ms-wma",
+                                    "audio/x-ms-asf",
+                                    "audio/x-flac",
+                                    "audio/x-mod",
+                                    "audio/x-wav",
+                                    "audio/x-ac3",
+                                    "audio/x-m4a",
+                                    "video/x-theora",
+                                    "video/x-dirac",
+                                    "video/x-wmv",
+                                    "video/x-wma",
+                                    "video/x-msvideo",
+                                    "video/x-3ivx",
+                                    "video/x-3ivx",
+                                    "video/x-matroska",
+                                    "video/mpeg",
+                                    "video/mp4",
+                                    "video/x-ms-asf",
+                                    "video/x-xvid",
+                                    "video/x-ms-wmv",
+                                    "audio/L16;rate=44100;channels=2",
+                                    "audio/L16;rate=44100;channels=1" };
+
     public override void constructed () {
         base.constructed ();
 
         this.connection_ids       = "0";
         this.source_protocol_info = "";
-        this.sink_protocol_info   = "http-get:*:audio/mpeg:*," +
-                                    "http-get:*:application/ogg:*," +
-                                    "http-get:*:audio/x-vorbis:*," +
-                                    "http-get:*:audio/x-vorbis+ogg:*," +
-                                    "http-get:*:audio/x-ms-wma:*," +
-                                    "http-get:*:audio/x-ms-asf:*," +
-                                    "http-get:*:audio/x-flac:*," +
-                                    "http-get:*:audio/x-mod:*," +
-                                    "http-get:*:audio/x-wav:*," +
-                                    "http-get:*:audio/x-ac3:*," +
-                                    "http-get:*:audio/x-m4a:*," +
-                                    "http-get:*:video/x-theora:*," +
-                                    "http-get:*:video/x-dirac:*," +
-                                    "http-get:*:video/x-wmv:*," +
-                                    "http-get:*:video/x-wma:*," +
-                                    "http-get:*:video/x-msvideo:*," +
-                                    "http-get:*:video/x-3ivx:*," +
-                                    "http-get:*:video/x-3ivx:*," +
-                                    "http-get:*:video/x-matroska:*," +
-                                    "http-get:*:video/mpeg:*," +
-                                    "http-get:*:video/mp4:*," +
-                                    "http-get:*:video/x-ms-asf:*," +
-                                    "http-get:*:video/x-xvid:*," +
-                                    "http-get:*:video/x-ms-wmv:*," +
-                                    "http-get:*:audio/L16;" +
-                                               "rate=44100;" +
-                                               "channels=2:*," +
-                                    "http-get:*:audio/L16;" +
-                                               "rate=44100;" +
-                                               "channels=1:*";
+        this.sink_protocol_info = "";
+
+        foreach (var protocol in this.protocols) {
+            foreach (var mime_type in this.mime_types) {
+                if (this.mime_types[0] != mime_type) {
+                    this.sink_protocol_info += ",";
+                }
+
+                this.sink_protocol_info += protocol + ":*:" + mime_type + ":*";
+            }
+        }
     }
 }
