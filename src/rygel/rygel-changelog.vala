@@ -25,7 +25,7 @@ using GUPnP;
 using Gee;
 
 // Helper class for building LastChange messages
-public class Rygel.GstRenderer.ChangeLog : Object {
+public class Rygel.ChangeLog : Object {
     public unowned Service service { get; set; }
 
     private string service_ns;
