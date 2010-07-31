@@ -55,10 +55,6 @@ public class Rygel.GstRenderer.ConnectionManager : Rygel.ConnectionManager {
     public override void constructed () {
         base.constructed ();
 
-        this.connection_ids       = "0";
-        this.source_protocol_info = "";
-        this.sink_protocol_info = "";
-
         foreach (var protocol in this.protocols) {
             foreach (var mime_type in this.mime_types) {
                 if (this.mime_types[0] != mime_type) {
