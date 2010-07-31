@@ -26,30 +26,12 @@ using Rygel;
 using Gee;
 
 public void module_init (PluginLoader loader) {
-    string MEDIA_RENDERER_DESC_PATH = BuildConfig.DATA_DIR +
-                                      "/xml/MediaRenderer2.xml";
-
-    var plugin = new Plugin (MEDIA_RENDERER_DESC_PATH,
-                             "GstRenderer",
-                             _("GStreamer Renderer"));
-
-    var resource = new ResourceInfo (ConnectionManager.UPNP_ID,
-                                     ConnectionManager.UPNP_TYPE,
-                                     ConnectionManager.DESCRIPTION_PATH,
-                                     typeof (GstRenderer.ConnectionManager));
-    plugin.add_resource (resource);
-
-    resource = new ResourceInfo (Rygel.AVTransport.UPNP_ID,
-                                 Rygel.AVTransport.UPNP_TYPE,
-                                 Rygel.AVTransport.DESCRIPTION_PATH,
-                                 typeof (GstRenderer.AVTransport));
-    plugin.add_resource (resource);
-
-    resource = new ResourceInfo (RenderingControl.UPNP_ID,
-                                 RenderingControl.UPNP_TYPE,
-                                 RenderingControl.DESCRIPTION_PATH,
-                                 typeof (GstRenderer.RenderingControl));
-    plugin.add_resource (resource);
+    var plugin = new Plugin.MediaRenderer (
+                                        "GstRenderer",
+                                        _("GStreamer Renderer"),
+                                        typeof (GstRenderer.ConnectionManager),
+                                        typeof (GstRenderer.AVTransport),
+                                        typeof (GstRenderer.RenderingControl));
 
     loader.add_plugin (plugin);
 }

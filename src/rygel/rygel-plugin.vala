@@ -31,6 +31,9 @@ using GUPnP;
 public class Rygel.Plugin : GUPnP.ResourceFactory {
     private static const string MEDIA_SERVER_DESC_PATH =
                                 BuildConfig.DATA_DIR + "/xml/MediaServer2.xml";
+    private static const string MEDIA_RENDERER_DESC_PATH =
+                                BuildConfig.DATA_DIR +
+                                "/xml/MediaRenderer2.xml";
 
     private static const string ICON_BIG = "file://" +
                                            BuildConfig.BIG_ICON_DIR +
@@ -119,6 +122,33 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
                                         MediaReceiverRegistrar.DESCRIPTION_PATH,
                                         typeof (MediaReceiverRegistrar));
         this.add_resource (resource_info);
+    }
+
+    public Plugin.MediaRenderer (string  name,
+                                 string? title,
+                                 Type    connection_manager_type,
+                                 Type    av_transport_type,
+                                 Type    rendering_control_type,
+                                 string? description = null) {
+        this (MEDIA_RENDERER_DESC_PATH, name, title, description);
+
+        var resource = new ResourceInfo (ConnectionManager.UPNP_ID,
+                                         ConnectionManager.UPNP_TYPE,
+                                         ConnectionManager.DESCRIPTION_PATH,
+                                         connection_manager_type);
+        this.add_resource (resource);
+
+        resource = new ResourceInfo (Rygel.AVTransport.UPNP_ID,
+                                     Rygel.AVTransport.UPNP_TYPE,
+                                     Rygel.AVTransport.DESCRIPTION_PATH,
+                                     av_transport_type);
+        this.add_resource (resource);
+
+        resource = new ResourceInfo (RenderingControl.UPNP_ID,
+                                     RenderingControl.UPNP_TYPE,
+                                     RenderingControl.DESCRIPTION_PATH,
+                                     rendering_control_type);
+        this.add_resource (resource);
     }
 
     public void add_resource (ResourceInfo resource_info) {
