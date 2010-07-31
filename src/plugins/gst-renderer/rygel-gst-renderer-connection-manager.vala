@@ -24,41 +24,6 @@
 using GUPnP;
 
 public class Rygel.GstRenderer.ConnectionManager : Rygel.ConnectionManager {
-    // Creates a list of supported sink protocols based on GStreamer's
-    // registry. We don't use this because of the spam it generates ..
-    /*
-    private void setup_sink_protocol_info () {
-        Gst.Registry reg = Gst.Registry.get_default ();
-
-        Gee.HashSet<string> mime_types =
-            new Gee.HashSet<string> (GLib.str_hash, GLib.str_equal);
-
-        weak List<Gst.ElementFactory> factories =
-                reg.get_feature_list (typeof (Gst.ElementFactory));
-        foreach (Gst.ElementFactory factory in factories) {
-            weak List<Gst.StaticPadTemplate> templates =
-                factory.staticpadtemplates;
-            foreach (weak Gst.StaticPadTemplate template in templates) {
-                if (template.direction != Gst.PadDirection.SINK) {
-                    continue;
-                }
-
-                Gst.Caps caps = template.static_caps.get ();
-                for (int i = 0; i < caps.get_size (); i++) {
-                    weak Gst.Structure str =
-                        template.static_caps.get_structure (i);
-
-                    mime_types.add (str.get_name ());
-                }
-            }
-        }
-
-        foreach (string type in mime_types) {
-            stdout.printf ("%s\n", type);
-        }
-    }
-    */
-
     public override void constructed () {
         base.constructed ();
 
