@@ -23,7 +23,7 @@
 
 using Gst;
 
-public class Rygel.GstRenderer.Player : GLib.Object {
+public class Rygel.GstRenderer.Player : GLib.Object, Rygel.Player {
     private static Player player;
 
     private dynamic Element playbin;

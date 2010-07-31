@@ -106,6 +106,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-gst-utils.vala \
 		    rygel-media-receiver-registrar.vala \
 		    rygel-log-handler.vala \
+		    rygel-player.vala \
 		    rygel-changelog.vala
 
 rygel_VALAFLAGS = \
