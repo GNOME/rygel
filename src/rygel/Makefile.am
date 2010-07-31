@@ -108,7 +108,8 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-media-receiver-registrar.vala \
 		    rygel-log-handler.vala \
 		    rygel-player.vala \
-		    rygel-changelog.vala
+		    rygel-changelog.vala \
+		    rygel-volume.vala
 
 rygel_VALAFLAGS = \
 	-H rygel.h -C --library=rygel-1.0 --vapidir=$(srcdir) --thread \

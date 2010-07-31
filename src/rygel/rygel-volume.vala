@@ -23,7 +23,7 @@
 
 // Helper class for converting between double and percentage representations
 // of volume.
-private class Rygel.GstRenderer.Volume {
+internal class Rygel.Volume {
     public static double from_percentage (uint percentage) {
         return (double) percentage / 100.0;
     }
