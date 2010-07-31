@@ -24,7 +24,7 @@
 using GUPnP;
 
 public class Rygel.GstRenderer.ConnectionManager : Rygel.ConnectionManager {
-    private string[] protocols = { "http-get" };
+    private string[] protocols = { "http-get", "rtsp" };
     private string[] mime_types = { "audio/mpeg",
                                     "application/ogg",
                                     "audio/x-vorbis",
