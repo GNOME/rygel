@@ -24,6 +24,34 @@
 using Gst;
 
 public class Rygel.GstRenderer.Player : GLib.Object, Rygel.Player {
+    private const string[] protocols = { "http-get", "rtsp" };
+    private const string[] mime_types = {
+                                        "audio/mpeg",
+                                        "application/ogg",
+                                        "audio/x-vorbis",
+                                        "audio/x-vorbis+ogg",
+                                        "audio/x-ms-wma",
+                                        "audio/x-ms-asf",
+                                        "audio/x-flac",
+                                        "audio/x-mod",
+                                        "audio/x-wav",
+                                        "audio/x-ac3",
+                                        "audio/x-m4a",
+                                        "video/x-theora",
+                                        "video/x-dirac",
+                                        "video/x-wmv",
+                                        "video/x-wma",
+                                        "video/x-msvideo",
+                                        "video/x-3ivx",
+                                        "video/x-3ivx",
+                                        "video/x-matroska",
+                                        "video/mpeg",
+                                        "video/mp4",
+                                        "video/x-ms-asf",
+                                        "video/x-xvid",
+                                        "video/x-ms-wmv",
+                                        "audio/L16;rate=44100;channels=2",
+                                        "audio/L16;rate=44100;channels=1" };
     private static Player player;
 
     private dynamic Element playbin;
@@ -128,6 +156,14 @@ public class Rygel.GstRenderer.Player : GLib.Object, Rygel.Player {
                                   Time.from_string (time),
                                   Gst.SeekType.NONE,
                                   -1);
+    }
+
+    public string[] get_protocols () {
+        return protocols;
+    }
+
+    public string[] get_mime_types () {
+        return mime_types;
     }
 
     private bool bus_handler (Gst.Bus bus,

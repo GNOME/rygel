@@ -21,14 +21,27 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-public interface Rygel.Player : GLib.Object {
-    public abstract string playback_state { get; set; }
-    public abstract string uri { get; set; }
-    public abstract double volume { get; set; }
-    public abstract string duration { owned get; }
-    public abstract string position { owned get; }
+using GUPnP;
 
-    public abstract bool seek (string time);
-    public abstract string[] get_protocols ();
-    public abstract string[] get_mime_types ();
+public class Rygel.SinkConnectionManager : Rygel.ConnectionManager {
+    private Player player;
+
+    public override void constructed () {
+        base.constructed ();
+
+        var plugin = this.root_device.resource_factory as MediaRendererPlugin;
+        this.player = plugin.get_player ();
+
+        foreach (var protocol in this.player.get_protocols ()) {
+            var mime_types = this.player.get_mime_types ();
+
+            foreach (var mime_type in mime_types) {
+                if (mime_types[0] != mime_type) {
+                    this.sink_protocol_info += ",";
+                }
+
+                this.sink_protocol_info += protocol + ":*:" + mime_type + ":*";
+            }
+        }
+    }
 }

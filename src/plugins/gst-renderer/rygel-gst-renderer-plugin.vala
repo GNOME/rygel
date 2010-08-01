@@ -33,9 +33,7 @@ public void module_init (PluginLoader loader) {
 
 public class Rygel.GstRenderer.Plugin : Rygel.MediaRendererPlugin {
     public Plugin () {
-        base ("GstRenderer",
-              _("GStreamer Renderer"),
-              typeof (GstRenderer.ConnectionManager));
+        base ("GstRenderer", _("GStreamer Renderer"));
     }
 
     public override Rygel.Player? get_player () {

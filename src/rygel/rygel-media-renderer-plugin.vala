@@ -28,14 +28,13 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
 
     public MediaRendererPlugin (string  name,
                                 string? title,
-                                Type    connection_manager_type,
                                 string? description = null) {
         base (MEDIA_RENDERER_DESC_PATH, name, title, description);
 
         var resource = new ResourceInfo (ConnectionManager.UPNP_ID,
                                          ConnectionManager.UPNP_TYPE,
                                          ConnectionManager.DESCRIPTION_PATH,
-                                         connection_manager_type);
+                                         typeof (SinkConnectionManager));
         this.add_resource (resource);
 
         resource = new ResourceInfo (AVTransport.UPNP_ID,

@@ -52,6 +52,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-content-directory.vala \
 		    rygel-connection-manager.vala \
 		    rygel-source-connection-manager.vala \
+		    rygel-sink-connection-manager.vala \
 		    rygel-av-transport.vala \
 		    rygel-rendering-control.vala \
 		    rygel-transcode-manager.vala \

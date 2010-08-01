@@ -17,8 +17,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
             -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"' \
 	    -include config.h
 
-librygel_gst_renderer_la_SOURCES = rygel-gst-renderer-connection-manager.vala \
-				   rygel-gst-renderer-player.vala \
+librygel_gst_renderer_la_SOURCES = rygel-gst-renderer-player.vala \
 				   rygel-gst-renderer-plugin.vala \
 				   rygel-gst-renderer-time.vala
 
