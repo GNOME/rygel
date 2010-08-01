@@ -17,8 +17,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"' \
 	    -include config.h
 
-librygel_external_la_SOURCES = rygel-external-content-dir.vala \
-			       rygel-external-container.vala \
+librygel_external_la_SOURCES = rygel-external-container.vala \
 			       rygel-external-dummy-container.vala \
 			       rygel-external-item-factory.vala \
 			       rygel-external-thumbnail-factory.vala \

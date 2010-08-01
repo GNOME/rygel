@@ -66,15 +66,9 @@ public class Rygel.ContentDirectory: Service {
 
     public uint32 system_update_id;
 
-    // Public abstract methods derived classes need to implement
-    public virtual MediaContainer? create_root_container () {
-       return null;
-    }
-
     public override void constructed () {
         this.cancellable = new Cancellable ();
-
-        this.root_container = this.create_root_container ();
+        this.root_container = this.get_root_container ();
 
         try {
             this.http_server = new HTTPServer (this, this.get_type ().name ());
@@ -136,6 +130,12 @@ public class Rygel.ContentDirectory: Service {
         this.query_variable["FeatureList"].connect (this.query_feature_list);
 
         this.http_server.run.begin ();
+    }
+
+    private MediaContainer get_root_container () {
+        var plugin = this.root_device.resource_factory as MediaServerPlugin;
+
+        return plugin.get_root_container (this);
     }
 
     ~ContentDirectory () {

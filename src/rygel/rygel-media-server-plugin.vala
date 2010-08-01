@@ -27,7 +27,6 @@ public class Rygel.MediaServerPlugin : Rygel.Plugin {
 
     public MediaServerPlugin (string  name,
                               string? title,
-                              Type    content_dir_type,
                               string? description = null) {
         base (MEDIA_SERVER_DESC_PATH, name, title, description);
 
@@ -35,7 +34,7 @@ public class Rygel.MediaServerPlugin : Rygel.Plugin {
         var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
                                               ContentDirectory.UPNP_TYPE,
                                               ContentDirectory.DESCRIPTION_PATH,
-                                              content_dir_type);
+                                              typeof (ContentDirectory));
         this.add_resource (resource_info);
 
         // Register Rygel.ConnectionManager
@@ -51,6 +50,11 @@ public class Rygel.MediaServerPlugin : Rygel.Plugin {
                                         MediaReceiverRegistrar.DESCRIPTION_PATH,
                                         typeof (MediaReceiverRegistrar));
         this.add_resource (resource_info);
+    }
+
+    public virtual MediaContainer? get_root_container (
+                                        ContentDirectory content_dir) {
+        return null;
     }
 }
 

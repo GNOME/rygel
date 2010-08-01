@@ -26,9 +26,18 @@ using Rygel;
 using Gee;
 
 public void module_init (PluginLoader loader) {
-    var plugin = new MediaServerPlugin("Test",
-                                       "Test Streams",
-                                       typeof (Rygel.Test.ContentDir));
+    var plugin = new Rygel.Test.Plugin ();
+
     loader.add_plugin (plugin);
 }
 
+public class Rygel.Test.Plugin : Rygel.MediaServerPlugin {
+    public Plugin () {
+        base ("Test", "Test Streams");
+    }
+
+    public override MediaContainer? get_root_container (
+                                        ContentDirectory content_dir) {
+        return new RootContainer (this.title);
+    }
+}

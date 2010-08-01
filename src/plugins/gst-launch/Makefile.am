@@ -14,7 +14,6 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 
 librygel_gst_launch_la_SOURCES = rygel-gst-launch-plugin.vala \
 				rygel-gst-launch-root-container.vala \
-				rygel-gst-launch-content-dir.vala \
 				rygel-gst-launch-item.vala
 
 librygel_gst_launch_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \

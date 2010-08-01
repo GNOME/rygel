@@ -24,15 +24,18 @@ using Rygel;
 using GUPnP;
 
 public void module_init (PluginLoader loader) {
-    var plugin = new MediaServerPlugin ("ZDFMediathek",
-                                        "ZDF Mediathek",
-                                        typeof (Mediathek.ContentDir));
+    var plugin = new Mediathek.Plugin ();
+
     loader.add_plugin (plugin);
 }
 
-public class Rygel.Mediathek.ContentDir : ContentDirectory {
-    public override MediaContainer? create_root_container () {
+public class Rygel.Mediathek.Plugin : Rygel.MediaServerPlugin {
+    public Plugin () {
+        base ("ZDFMediathek", "ZDF Mediathek");
+    }
+
+    public override MediaContainer? get_root_container (
+                                        ContentDirectory content_dir) {
         return RootContainer.get_instance ();
     }
 }
-

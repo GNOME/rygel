@@ -11,9 +11,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"' \
 	    -include config.h
 
-librygel_media_tracker_la_SOURCES = \
-				    rygel-tracker-content-directory.vala \
-				    rygel-tracker-root-container.vala \
+librygel_media_tracker_la_SOURCES = rygel-tracker-root-container.vala \
 				    rygel-tracker-category-container.vala \
 				    rygel-tracker-music.vala \
 				    rygel-tracker-videos.vala \

@@ -17,8 +17,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"' \
 	    -include config.h
 
-librygel_test_la_SOURCES = rygel-test-content-dir.vala \
-			   rygel-test-root-container.vala \
+librygel_test_la_SOURCES = rygel-test-root-container.vala \
 			   rygel-test-item.vala \
 			   rygel-test-audio-item.vala \
 			   rygel-test-video-item.vala \

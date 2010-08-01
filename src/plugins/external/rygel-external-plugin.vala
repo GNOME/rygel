@@ -40,7 +40,6 @@ public class Rygel.External.Plugin : Rygel.MediaServerPlugin {
                    IconInfo? icon) {
         base (service_name,
               title,
-              typeof (ContentDir),
               "Rygel External " + title);
 
         this.service_name = service_name;
@@ -50,5 +49,17 @@ public class Rygel.External.Plugin : Rygel.MediaServerPlugin {
         if (icon != null) {
             this.add_icon (icon);
         }
+    }
+
+    public override MediaContainer? get_root_container (
+                                        ContentDirectory content_dir) {
+        return new Container ("0",
+                              this.title,
+                              this.child_count,
+                              this.searchable,
+                              this.service_name,
+                              this.root_object,
+                              content_dir.context.host_ip,
+                              null);
     }
 }

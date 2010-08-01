@@ -28,14 +28,18 @@ using GLib;
  *
  */
 public void module_init (PluginLoader loader) {
-    var plugin = new MediaServerPlugin ("MediaExport",
-                                        _("@REALNAME@'s media"),
-                                        typeof (Rygel.MediaExport.ContentDir));
+    var plugin = new MediaExport.Plugin ();
+
     loader.add_plugin (plugin);
 }
 
-public class Rygel.MediaExport.ContentDir : ContentDirectory {
-    public override MediaContainer? create_root_container () {
+public class Rygel.MediaExport.Plugin : Rygel.MediaServerPlugin {
+    public Plugin () {
+        base ("MediaExport", _("@REALNAME@'s media"));
+    }
+
+    public override MediaContainer? get_root_container (
+                                        ContentDirectory content_dir) {
         return RootContainer.get_instance ();
     }
 }

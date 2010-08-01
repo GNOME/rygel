@@ -24,9 +24,18 @@ using Rygel;
 using Gee;
 
 public void module_init (PluginLoader loader) {
-    var plugin = new MediaServerPlugin ("GstLaunch",
-                                        "Gst Launch",
-                                        typeof (GstLaunch.ContentDir));
+    var plugin = new GstLaunch.Plugin ();
+
     loader.add_plugin (plugin);
 }
 
+public class Rygel.GstLaunch.Plugin : Rygel.MediaServerPlugin {
+    public Plugin () {
+        base ("GstLaunch", "Gst Launch");
+    }
+
+    public override MediaContainer? get_root_container (
+                                        ContentDirectory content_dir) {
+        return new RootContainer (this.title);
+    }
+}
