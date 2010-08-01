@@ -1,8 +1,5 @@
-src/plugins/gst-renderer/rygel-gst-renderer-av-transport.c
-src/plugins/gst-renderer/rygel-gst-renderer-changelog.c
 src/plugins/gst-renderer/rygel-gst-renderer-player.c
 src/plugins/gst-renderer/rygel-gst-renderer-plugin.c
-src/plugins/gst-renderer/rygel-gst-renderer-rendering-control.c
 src/plugins/media-export/rygel-media-export-database.c
 src/plugins/media-export/rygel-media-export-db.c
 src/plugins/media-export/rygel-media-export-media-cache.c
@@ -24,7 +21,6 @@ src/plugins/mediathek/rygel-mediathek-plugin.c
 src/plugins/mediathek/rygel-mediathek-root-container.c
 src/plugins/mediathek/rygel-mediathek-rss-container.c
 src/plugins/mediathek/rygel-mediathek-video-item.c
-src/plugins/tracker/rygel-tracker-content-directory.c
 src/plugins/tracker/rygel-tracker-category-all-container.c
 src/plugins/tracker/rygel-tracker-insertion-query.c
 src/plugins/tracker/rygel-tracker-item-creation.c
@@ -39,6 +35,8 @@ src/rygel/rygel-browse.c
 src/rygel/rygel-cmdline-config.c
 src/rygel/rygel-connection-manager.c
 src/rygel/rygel-content-directory.c
+src/rygel/rygel-av-transport.c
+src/rygel/rygel-rendering-control.c
 src/rygel/rygel-didl-lite-writer.c
 src/rygel/rygel-gst-utils.c
 src/rygel/rygel-http-byte-seek.c
@@ -73,6 +71,7 @@ src/rygel/rygel-user-config.c
 src/rygel/rygel-wma-transcoder-bin.c
 src/rygel/rygel-wmv-transcoder-bin.c
 src/rygel/rygel-xbox-hacks.c
+src/rygel/rygel-changelog.c
 src/ui/rygel-preferences-dialog.c
 data/rygel.desktop.in
 tests/rygel-gst-utils.c
