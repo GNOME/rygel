@@ -29,8 +29,6 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
     public MediaRendererPlugin (string  name,
                                 string? title,
                                 Type    connection_manager_type,
-                                Type    av_transport_type,
-                                Type    rendering_control_type,
                                 string? description = null) {
         base (MEDIA_RENDERER_DESC_PATH, name, title, description);
 
@@ -40,17 +38,21 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
                                          connection_manager_type);
         this.add_resource (resource);
 
-        resource = new ResourceInfo (Rygel.AVTransport.UPNP_ID,
-                                     Rygel.AVTransport.UPNP_TYPE,
-                                     Rygel.AVTransport.DESCRIPTION_PATH,
-                                     av_transport_type);
+        resource = new ResourceInfo (AVTransport.UPNP_ID,
+                                     AVTransport.UPNP_TYPE,
+                                     AVTransport.DESCRIPTION_PATH,
+                                     typeof (AVTransport));
         this.add_resource (resource);
 
         resource = new ResourceInfo (RenderingControl.UPNP_ID,
                                      RenderingControl.UPNP_TYPE,
                                      RenderingControl.DESCRIPTION_PATH,
-                                     rendering_control_type);
+                                     typeof (RenderingControl));
         this.add_resource (resource);
+    }
+
+    public virtual Player? get_player () {
+        return null;
     }
 }
 

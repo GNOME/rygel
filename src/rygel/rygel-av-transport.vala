@@ -136,7 +136,7 @@ public class Rygel.AVTransport : Service {
 
     public override void constructed () {
         this.changelog = new ChangeLog (this, LAST_CHANGE_NS);
-        this.player = this.create_player ();
+        this.player = this.get_player ();
 
         query_variable["LastChange"].connect (this.query_last_change_cb);
 
@@ -160,9 +160,10 @@ public class Rygel.AVTransport : Service {
         this.player.notify["duration"].connect (this.notify_duration_cb);
     }
 
-    // Public abstract methods derived classes need to implement
-    public virtual Player? create_player () {
-        return null;
+    private Player get_player () {
+        var plugin = this.root_device.resource_factory as MediaRendererPlugin;
+
+        return plugin.get_player ();
     }
 
     private void query_last_change_cb (Service        service,

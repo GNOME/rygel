@@ -26,13 +26,20 @@ using Rygel;
 using Gee;
 
 public void module_init (PluginLoader loader) {
-    var plugin = new MediaRendererPlugin (
-                                        "GstRenderer",
-                                        _("GStreamer Renderer"),
-                                        typeof (GstRenderer.ConnectionManager),
-                                        typeof (GstRenderer.AVTransport),
-                                        typeof (GstRenderer.RenderingControl));
+    var plugin = new GstRenderer.Plugin ();
 
     loader.add_plugin (plugin);
+}
+
+public class Rygel.GstRenderer.Plugin : Rygel.MediaRendererPlugin {
+    public Plugin () {
+        base ("GstRenderer",
+              _("GStreamer Renderer"),
+              typeof (GstRenderer.ConnectionManager));
+    }
+
+    public override Rygel.Player? get_player () {
+        return GstRenderer.Player.get_default ();
+    }
 }
 
