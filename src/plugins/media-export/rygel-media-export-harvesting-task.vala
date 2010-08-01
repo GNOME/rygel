@@ -126,28 +126,17 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
                                              FileInfo   info) {
         var id = MediaCache.get_id (file);
         int64 timestamp;
+        int64 size;
         try {
-            if (this.cache.exists (id, out timestamp)) {
+            if (this.cache.exists (id, out timestamp, out size)) {
                 int64 mtime = (int64) info.get_attribute_uint64 (
                                         FILE_ATTRIBUTE_TIME_MODIFIED);
 
-                // Doing the check for mtime here first because the check for
-                // size involves a database query and if the size has changed,
-                // the mtime probably has as well (unfortunatly enough
-                // exceptions exist)
-                if (mtime > timestamp) {
+                if (mtime > timestamp ||
+                    info.get_size () != size) {
                     this.files.offer (file);
 
                     return true;
-                } else {
-                    // check size
-                    var size = info.get_size ();
-                    var item = cache.get_item (id);
-                    if (item.size != size) {
-                        this.files.offer (file);
-
-                        return true;
-                    }
                 }
             } else {
                 this.files.offer (file);
