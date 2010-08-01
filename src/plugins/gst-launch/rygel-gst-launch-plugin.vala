@@ -24,9 +24,9 @@ using Rygel;
 using Gee;
 
 public void module_init (PluginLoader loader) {
-    var plugin = new Plugin.MediaServer ("GstLaunch",
-                                         "Gst Launch",
-                                         typeof (GstLaunch.ContentDir));
+    var plugin = new MediaServerPlugin ("GstLaunch",
+                                        "Gst Launch",
+                                        typeof (GstLaunch.ContentDir));
     loader.add_plugin (plugin);
 }
 

@@ -72,6 +72,8 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-resource-info.vala \
 		    rygel-icon-info.vala \
 		    rygel-plugin.vala \
+		    rygel-media-server-plugin.vala \
+		    rygel-media-renderer-plugin.vala \
 		    rygel-plugin-loader.vala \
 		    rygel-media-object.vala \
 		    rygel-media-container.vala \

@@ -26,7 +26,7 @@ using Rygel;
 using Gee;
 
 public void module_init (PluginLoader loader) {
-    var plugin = new Plugin.MediaRenderer (
+    var plugin = new MediaRendererPlugin (
                                         "GstRenderer",
                                         _("GStreamer Renderer"),
                                         typeof (GstRenderer.ConnectionManager),

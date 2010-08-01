@@ -24,7 +24,7 @@
 
 using FreeDesktop;
 
-public class Rygel.External.Plugin : Rygel.Plugin {
+public class Rygel.External.Plugin : Rygel.MediaServerPlugin {
     public string service_name;
     public string root_object;
 
@@ -38,10 +38,10 @@ public class Rygel.External.Plugin : Rygel.Plugin {
                    bool      searchable,
                    string    root_object,
                    IconInfo? icon) {
-        base.MediaServer (service_name,
-                          title,
-                          typeof (ContentDir),
-                          "Rygel External " + title);
+        base (service_name,
+              title,
+              typeof (ContentDir),
+              "Rygel External " + title);
 
         this.service_name = service_name;
         this.child_count = child_count;
