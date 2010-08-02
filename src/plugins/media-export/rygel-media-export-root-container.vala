@@ -26,7 +26,6 @@ using GUPnP;
  */
 public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
     private MetadataExtractor extractor;
-    private RecursiveFileMonitor monitor;
     private DBusService service;
     private Harvester harvester;
 
@@ -266,10 +265,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         base (db, "0", "MediaExportRoot");
 
         this.extractor = new MetadataExtractor ();
-        this.monitor = new RecursiveFileMonitor (null);
-        this.monitor.changed.connect (this.on_file_changed);
-
-        this.harvester = new Harvester (this.extractor, this.monitor);
+        this.harvester = new Harvester (this.extractor);
 
         try {
             this.service = new DBusService (this);
@@ -341,52 +337,4 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         this.updated ();
     }
 
-    private void on_file_changed (File             file,
-                                  File?            other,
-                                  FileMonitorEvent event) {
-        switch (event) {
-            case FileMonitorEvent.CREATED:
-            case FileMonitorEvent.CHANGES_DONE_HINT:
-                debug (_("Trying to harvest %s because of %d"),
-                       file.get_uri (),
-                       event);
-                try {
-                    var id = MediaCache.get_id (file.get_parent ());
-                    var parent_container = this.media_db.get_object (id)
-                                           as MediaContainer;
-                    assert (parent_container != null);
-
-                    this.harvester.schedule (file, parent_container);
-                } catch (DatabaseError error) {
-                    warning (_("Error fetching object '%s' from database: %s"),
-                             id,
-                             error.message);
-                }
-                break;
-            case FileMonitorEvent.DELETED:
-                this.harvester.cancel (file);
-                try {
-                    // the full object is fetched instead of simply calling
-                    // exists because we need the parent to signalize the
-                    // change
-                    var id = MediaCache.get_id (file);
-                    var obj = this.media_db.get_object (id);
-
-                    // it may be that files removed are files that are not
-                    // in the database, because they're not media files
-                    if (obj != null) {
-                        this.media_db.remove_object (obj);
-                        if (obj.parent != null) {
-                            obj.parent.updated ();
-                        }
-                    }
-                } catch (Error error) {
-                    warning (_("Error removing object from database: %s"),
-                             error.message);
-                }
-                break;
-            default:
-                break;
-        }
-    }
 }

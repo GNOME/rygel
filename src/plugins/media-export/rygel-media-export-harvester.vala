@@ -37,10 +37,13 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
      * @param monitor intance of a RecursiveFileMonitor which is used to keep
      *                track of the file changes
      */
-    public Harvester (MetadataExtractor    extractor,
-                      RecursiveFileMonitor monitor) {
+    public Harvester (MetadataExtractor    extractor) {
         this.extractor = extractor;
-        this.monitor = monitor;
+        this.monitor = new RecursiveFileMonitor (null);
+        if (this.monitor != null) {
+            this.monitor.changed.connect (this.on_file_changed);
+        }
+
         this.tasks = new HashMap<File, HarvestingTask> (file_hash, file_equal);
         this.create_file_filter ();
     }
@@ -129,5 +132,57 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         } catch (Error error) {
             this.file_filter = null;
         }
+    }
+
+    private void on_file_changed (File             file,
+                                  File?            other,
+                                  FileMonitorEvent event) {
+        try {
+            var cache = MediaCache.get_default ();
+            switch (event) {
+                case FileMonitorEvent.CREATED:
+                case FileMonitorEvent.CHANGES_DONE_HINT:
+                    debug (_("Trying to harvest %s because of %d"),
+                           file.get_uri (),
+                           event);
+                    var id = MediaCache.get_id (file.get_parent ());
+                    try {
+                        var parent_container = cache.get_object (id)
+                                            as MediaContainer;
+                        assert (parent_container != null);
+
+                        this.schedule (file, parent_container);
+                    } catch (DatabaseError error) {
+                        warning (_("Error fetching object '%s' from database: %s"),
+                                 id,
+                                 error.message);
+                    }
+                    break;
+                case FileMonitorEvent.DELETED:
+                    this.cancel (file);
+                    try {
+                        // the full object is fetched instead of simply calling
+                        // exists because we need the parent to signalize the
+                        // change
+                        var id = MediaCache.get_id (file);
+                        var obj = cache.get_object (id);
+
+                        // it may be that files removed are files that are not
+                        // in the database, because they're not media files
+                        if (obj != null) {
+                            cache.remove_object (obj);
+                            if (obj.parent != null) {
+                                obj.parent.updated ();
+                            }
+                        }
+                    } catch (Error error) {
+                        warning (_("Error removing object from database: %s"),
+                                 error.message);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        } catch (Error error) { }
     }
 }
