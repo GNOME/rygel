@@ -168,9 +168,27 @@ public class Rygel.GstRenderer.Player : GLib.Object, Rygel.MediaPlayer {
 
     private bool bus_handler (Gst.Bus bus,
                               Message message) {
-        if (message.type == MessageType.EOS) {
+        switch (message.type) {
+        case MessageType.EOS:
             debug ("EOS");
+
             this.playback_state = "STOPPED";
+
+            break;
+        case MessageType.ERROR:
+            Error error;
+            string error_message;
+
+            message.parse_error (out error, out error_message);
+
+            warning ("Error from GStreamer element %s: %s",
+                     this.playbin.name,
+                     error_message);
+            warning ("Going to STOPPED state");
+
+            this.playback_state = "STOPPED";
+
+            break;
         }
 
         return true;
