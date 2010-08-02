@@ -32,24 +32,6 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
 
     private static MediaContainer instance = null;
 
-    private ArrayList<string> get_uris () {
-        ArrayList<string> uris;
-
-        var config = MetaConfig.get_default ();
-
-        try {
-            uris = config.get_string_list ("MediaExport", "uris");
-        } catch (Error error) {
-            uris = new ArrayList<string> ();
-        }
-
-        try {
-            uris.add_all (this.media_db.get_flagged_uris ("DBUS"));
-        } catch (Error error) {}
-
-        return uris;
-    }
-
     public static MediaContainer get_instance () {
         if (RootContainer.instance == null) {
             try {
@@ -62,6 +44,8 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
 
         return RootContainer.instance;
     }
+
+    // DBus utility methods
 
     public void add_uri (string uri) {
         var file = File.new_for_commandline_arg (uri);
@@ -78,6 +62,105 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         } catch (Error error) {
             warning (_("Failed to remove URI: %s"), error.message);
         }
+    }
+
+    public string[] get_dynamic_uris () {
+        try {
+            var uris = this.media_db.get_flagged_uris ("DBUS");
+
+            return uris.to_array ();
+        } catch (Error error) { }
+
+        return new string[0];
+    }
+
+    // MediaContainer overrides
+
+    public override async MediaObject? find_object (string       id,
+                                                    Cancellable? cancellable)
+                                                    throws Error {
+        var object = yield base.find_object (id, cancellable);
+
+        if (object == null && id.has_prefix (QueryContainer.PREFIX)) {
+            var container = new QueryContainer (this.media_db, id);
+            container.parent = this;
+
+            return container;
+        }
+
+        return object;
+    }
+
+    public override async MediaObjects? search (SearchExpression? expression,
+                                                uint              offset,
+                                                uint              max_count,
+                                                out uint          total_matches,
+                                                Cancellable?      cancellable)
+                                                throws GLib.Error {
+         if (expression == null) {
+            return yield base.search (expression,
+                                      offset,
+                                      max_count,
+                                      out total_matches,
+                                      cancellable);
+        }
+
+        MediaObjects list;
+        MediaContainer query_container = null;
+        string upnp_class = null;
+
+        if (expression is RelationalExpression) {
+            var relational_expression = expression as RelationalExpression;
+
+            query_container = search_to_virtual_container (
+                                        relational_expression);
+            upnp_class = relational_expression.operand2;
+        } else if (is_search_in_virtual_container (expression,
+                                                   out query_container)) {
+            // do nothing. query_container is filled then
+        }
+
+        if (query_container != null) {
+            list = yield query_container.get_children (offset,
+                                                       max_count,
+                                                       cancellable);
+            // FIXME: This is wrong
+            total_matches = list.size;
+
+            if (upnp_class != null) {
+                foreach (var object in list) {
+                    object.upnp_class = upnp_class;
+                }
+            }
+
+            return list;
+        } else {
+            return yield base.search (expression,
+                                      offset,
+                                      max_count,
+                                      out total_matches,
+                                      cancellable);
+        }
+    }
+
+
+
+    private ArrayList<string> get_uris () {
+        ArrayList<string> uris;
+
+        var config = MetaConfig.get_default ();
+
+        try {
+            uris = config.get_string_list ("MediaExport", "uris");
+        } catch (Error error) {
+            uris = new ArrayList<string> ();
+        }
+
+        try {
+            uris.add_all (this.media_db.get_flagged_uris ("DBUS"));
+        } catch (Error error) {}
+
+        return uris;
     }
 
     private QueryContainer? search_to_virtual_container (
@@ -171,83 +254,6 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         container = new QueryContainer (this.media_db, new_id);
 
         return true;
-    }
-
-    public override async MediaObject? find_object (string       id,
-                                                    Cancellable? cancellable)
-                                                    throws Error {
-        var object = yield base.find_object (id, cancellable);
-
-        if (object == null && id.has_prefix (QueryContainer.PREFIX)) {
-            var container = new QueryContainer (this.media_db, id);
-            container.parent = this;
-
-            return container;
-        }
-
-        return object;
-    }
-
-    public override async MediaObjects? search (SearchExpression? expression,
-                                                uint              offset,
-                                                uint              max_count,
-                                                out uint          total_matches,
-                                                Cancellable?      cancellable)
-                                                throws GLib.Error {
-        if (expression == null) {
-            return yield base.search (expression,
-                                      offset,
-                                      max_count,
-                                      out total_matches,
-                                      cancellable);
-        }
-
-        MediaObjects list;
-        MediaContainer query_container = null;
-        string upnp_class = null;
-
-        if (expression is RelationalExpression) {
-            var relational_expression = expression as RelationalExpression;
-
-            query_container = search_to_virtual_container (
-                                        relational_expression);
-            upnp_class = relational_expression.operand2;
-        } else if (is_search_in_virtual_container (expression,
-                                                   out query_container)) {
-            // do nothing. query_container is filled then
-        }
-
-        if (query_container != null) {
-            list = yield query_container.get_children (offset,
-                                                       max_count,
-                                                       cancellable);
-            total_matches = list.size;
-
-            if (upnp_class != null) {
-                foreach (var object in list) {
-                    object.upnp_class = upnp_class;
-                }
-            }
-
-            return list;
-        } else {
-            return yield base.search (expression,
-                                      offset,
-                                      max_count,
-                                      out total_matches,
-                                      cancellable);
-        }
-    }
-
-
-    public string[] get_dynamic_uris () {
-        try {
-            var uris = this.media_db.get_flagged_uris ("DBUS");
-
-            return uris.to_array ();
-        } catch (Error error) { }
-
-        return new string[0];
     }
 
 
