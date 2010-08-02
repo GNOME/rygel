@@ -1,3 +1,79 @@
+0.7.3
+=====
+
+A new release in the current unstable 0.7.x series for upcoming GNOME 2.31.6
+release.
+
+- Add Album-art support.
+- Add support for sorted Browse/Search.
+- Don't push data after HTTP response is cancelled.
+- Advertise support for search by "createClass".
+- Revive accidently removed XBox hacks.
+- Fix icon export for uninstalled case.
+- Simplify plugin APIs to further abstract plugin developers from UPnP details.
+- Add convenient MediaRenderer APIs for plugins. This involved moving most of
+  the GstRenderer code to core.
+- Fix seeking once again.
+- Improve error handling in HTTP request handling code.
+- Port to new DIDL-Lite contributor APIs.
+- Port to Vala 0.9.3 and 0.9.4.
+- Clean-up README and specify build and run-time dependencies.
+- More debug output.
+- MediaExport:
+  - Make use of gupnp-dlna for faster, more complete and reliable metadata
+    extraction.
+  - Print a debug message if extraction fails for a file.
+  - Add windows formats to positive list of file extensions to include in the
+    metadata extraction.
+  - Don't share anyt folder by default.
+  - Fix url-escaped folder names on PS3.
+  - Fix issue of empty title of top-level virtual folders on PS3.
+  - Process 256 children at a time. This improves performance of harvesting of
+    large folders.
+- GstRenderer:
+  - Rename to Playbin.
+  - Advertize support for 'video/mp4'
+  - Advertize support for RTSP
+  - Handle error from playbin.
+  - Don't claim support for unsupported UPnP actions and state variables.
+- External:
+  - Fix a crasher bug.
+- Localization:
+  - Add French translation.
+  - Update Simplified Chinese translations.
+  - Update German translation.
+  - Update Galician translation.
+  - Update Swedish translation.
+  - Update Slovenian translation.
+- Lots of other non-functional and/or minor improvements and fixes.
+
+Dependency-related changes:
+
+- Require Vala >= 0.9.3
+- Require gupnp >= 0.13.4
+- Require gupnp-av >= 0.5.8
+- Require gupnp-dlna >= 0.2.1 (new dependency)
+- Require libgee >= 0.5.2
+- Use gtk+-2.0 (>= 2.21.5) if available rather than gtk+-3.0
+
+Bugs fixed in this release:
+
+607411 - Need to mention non-compile time deps.
+624445 - Samsung can't FF/REW/PAUSE when playing video/avi from Rygel.
+625556 - New configure flag to switch GTK+ version.
+
+All contributors to this release:
+
+Aron Xu <aronxu@gnome.org>
+Arun Raghavan <arun.raghavan@collabora.co.uk>
+Claude Paroz <claude@2xlibre.net>
+Eleanor Chen <chenyueg@gmail.com>
+Frédéric Péters <fpeters@0d.be>
+Javier Jardón <jjardon@gnome.org>
+Jens Georg <mail@jensge.org>
+Mario Blättermann <mariobl@gnome.org>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 0.7.2
 =====
 
