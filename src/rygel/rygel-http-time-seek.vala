@@ -75,10 +75,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
             }
         }
 
-        base (request.msg,
-              start,
-              stop,
-              duration);
+        base (request.msg, start, stop, duration);
     }
 
     public static bool needed (HTTPGet request) {

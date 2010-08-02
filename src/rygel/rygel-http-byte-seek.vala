@@ -74,10 +74,7 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
             }
         }
 
-        base (request.msg,
-              start,
-              stop,
-              total_length);
+        base (request.msg, start, stop, total_length);
     }
 
     public static bool needed (HTTPGet request) {
