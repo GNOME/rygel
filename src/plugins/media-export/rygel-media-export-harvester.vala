@@ -168,7 +168,7 @@ public class Rygel.MediaExport.Harvester : GLib.Object {
 
             GLib.List<FileInfo> list = null;
             do {
-                list = yield enumerator.next_files_async (10,
+                list = yield enumerator.next_files_async (256,
                                                           Priority.DEFAULT,
                                                           this.cancellable);
             } while (process_children (list));
