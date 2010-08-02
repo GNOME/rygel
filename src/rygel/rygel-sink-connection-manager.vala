@@ -24,7 +24,7 @@
 using GUPnP;
 
 public class Rygel.SinkConnectionManager : Rygel.ConnectionManager {
-    private Player player;
+    private MediaPlayer player;
 
     public override void constructed () {
         base.constructed ();

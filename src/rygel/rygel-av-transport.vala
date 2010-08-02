@@ -132,7 +132,7 @@ public class Rygel.AVTransport : Service {
     }
 
     private ChangeLog changelog;
-    private Player player;
+    private MediaPlayer player;
 
     public override void constructed () {
         this.changelog = new ChangeLog (this, LAST_CHANGE_NS);
@@ -160,7 +160,7 @@ public class Rygel.AVTransport : Service {
         this.player.notify["duration"].connect (this.notify_duration_cb);
     }
 
-    private Player get_player () {
+    private MediaPlayer get_player () {
         var plugin = this.root_device.resource_factory as MediaRendererPlugin;
 
         return plugin.get_player ();

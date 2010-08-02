@@ -50,7 +50,7 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
         this.add_resource (resource);
     }
 
-    public virtual Player? get_player () {
+    public virtual MediaPlayer? get_player () {
         return null;
     }
 }

@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2008 OpenedHand Ltd.
- * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2009,2010 Nokia Corporation.
  *
  * Author: Jorn Baayen <jorn@openedhand.com>
  *         Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
@@ -21,7 +21,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-public interface Rygel.Player : GLib.Object {
+public interface Rygel.MediaPlayer : GLib.Object {
     public abstract string playback_state { get; set; }
     public abstract string uri { get; set; }
     public abstract double volume { get; set; }

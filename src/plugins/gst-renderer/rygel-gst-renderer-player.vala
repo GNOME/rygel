@@ -23,7 +23,7 @@
 
 using Gst;
 
-public class Rygel.GstRenderer.Player : GLib.Object, Rygel.Player {
+public class Rygel.GstRenderer.Player : GLib.Object, Rygel.MediaPlayer {
     private const string[] protocols = { "http-get", "rtsp" };
     private const string[] mime_types = {
                                         "audio/mpeg",

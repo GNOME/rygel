@@ -36,7 +36,7 @@ public class Rygel.GstRenderer.Plugin : Rygel.MediaRendererPlugin {
         base ("GstRenderer", _("GStreamer Renderer"));
     }
 
-    public override Rygel.Player? get_player () {
+    public override MediaPlayer? get_player () {
         return GstRenderer.Player.get_default ();
     }
 }
