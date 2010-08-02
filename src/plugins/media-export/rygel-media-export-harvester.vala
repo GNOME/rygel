@@ -81,10 +81,10 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
      * @param file file cancel the current run for
      */
     public void cancel (File file) {
-        if (this.tasks.contains (file)) {
+        if (this.tasks.has_key (file)) {
             var task = this.tasks[file];
             task.completed.disconnect (this.on_file_harvested);
-            this.tasks.remove (file);
+            this.tasks.unset (file);
             task.cancellable.cancel ();
         }
     }
@@ -100,7 +100,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         var file = task.origin;
         message (_("'%s' harvested"), file.get_uri ());
 
-        this.tasks.remove (file);
+        this.tasks.unset (file);
     }
 
     /**

@@ -46,7 +46,7 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
                 if (file_monitor != null) {
                     debug (_("Directory %s gone, removing watch"),
                            file.get_uri ());
-                    this.monitors.remove (file);
+                    this.monitors.unset (file);
                     file_monitor.cancel ();
                     file_monitor.changed.disconnect (this.on_monitor_changed);
                 }
