@@ -26,18 +26,18 @@ using Rygel;
 using Gee;
 
 public void module_init (PluginLoader loader) {
-    var plugin = new GstRenderer.Plugin ();
+    var plugin = new Playbin.Plugin ();
 
     loader.add_plugin (plugin);
 }
 
-public class Rygel.GstRenderer.Plugin : Rygel.MediaRendererPlugin {
+public class Rygel.Playbin.Plugin : Rygel.MediaRendererPlugin {
     public Plugin () {
-        base ("GstRenderer", _("GStreamer Renderer"));
+        base ("Playbin", _("GStreamer Player"));
     }
 
     public override MediaPlayer? get_player () {
-        return GstRenderer.Player.get_default ();
+        return Playbin.Player.get_default ();
     }
 }
 

@@ -25,7 +25,7 @@ using Gst;
 
 // Helper class for converting between Gstreamer time units and string
 // representations of time.
-private class Rygel.GstRenderer.Time {
+private class Rygel.Playbin.Time {
     public static ClockTime from_string (string str) {
         uint64 hours, minutes, seconds;
 

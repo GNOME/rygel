@@ -1,5 +1,5 @@
-src/plugins/gst-renderer/rygel-gst-renderer-player.c
-src/plugins/gst-renderer/rygel-gst-renderer-plugin.c
+src/plugins/playbin/rygel-playbin-player.c
+src/plugins/playbin/rygel-playbin-plugin.c
 src/plugins/media-export/rygel-media-export-database.c
 src/plugins/media-export/rygel-media-export-db.c
 src/plugins/media-export/rygel-media-export-media-cache.c

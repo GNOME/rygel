@@ -83,7 +83,7 @@ fi
 if test ! -e src/rygel/rygel_vala.stamp -o \
         ! -e src/rygel/librygel_configuration_a_vala.stamp -o \
         ! -e src/ui/rygel_preferences_vala.stamp -o \
-        ! -e src/plugins/gst-renderer/librygel_gst_renderer_la_vala.stamp -o \
+        ! -e src/plugins/playbin/librygel_playbin_la_vala.stamp -o \
         ! -e src/plugins/tracker/librygel_media_tracker_la_vala.stamp -o \
         ! -e src/plugins/test/librygel_test_la_vala.stamp -o \
         ! -e src/plugins/media-export/librygel_media_export_la_vala.stamp -o \
@@ -247,9 +247,9 @@ AC_ARG_ENABLE(external-plugin,
         enable_external_plugin=yes)
 
 # Build GstRenderer plugin
-AC_ARG_ENABLE(gst-renderer-plugin,
-	[  --enable-gst-renderer_plugin          build Gstreamer Renderer plugin],,
-        enable_gst_renderer_plugin=yes)
+AC_ARG_ENABLE(playbin-plugin,
+	[  --enable-playbin_plugin          build Gstreamer Playbin plugin],,
+        enable_playbin_plugin=yes)
 
 # Build Mediathek plugin
 AC_ARG_ENABLE(mediathek-plugin,
@@ -272,7 +272,7 @@ AM_CONDITIONAL([BUILD_TRACKER_PLUGIN],
 AM_CONDITIONAL([BUILD_MEDIATHEK_PLUGIN], [test "x$enable_mediathek_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_MEDIA_EXPORT_PLUGIN], [test "x$enable_media_export_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_EXTERNAL_PLUGIN], [test "x$enable_external_plugin" = "xyes"])
-AM_CONDITIONAL([BUILD_GST_RENDERER_PLUGIN], [test "x$enable_gst_renderer_plugin" = "xyes"])
+AM_CONDITIONAL([BUILD_PLAYBIN_PLUGIN], [test "x$enable_playbin_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_GST_LAUNCH_PLUGIN], [test "x$enable_gst_launch_plugin" = "xyes"])
 
 if test "x$enable_media_export_plugin" = "xyes";
@@ -305,7 +305,7 @@ src/plugins/external/Makefile
 src/plugins/gst-launch/Makefile
 src/plugins/mediathek/Makefile
 src/plugins/tracker/Makefile
-src/plugins/gst-renderer/Makefile
+src/plugins/playbin/Makefile
 src/plugins/test/Makefile
 data/Makefile
 data/xml/Makefile
@@ -340,5 +340,5 @@ echo "
         media-export            ${enable_media_export_plugin}
         external:               ${enable_external_plugin}
         gst-launch:             ${enable_gst_launch_plugin}
-        gst-renderer:           ${enable_gst_renderer_plugin}
+        playbin:                ${enable_playbin_plugin}
 "

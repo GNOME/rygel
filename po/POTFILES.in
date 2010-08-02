@@ -20,8 +20,8 @@ src/plugins/external/rygel-external-thumbnail-factory.vala
 src/plugins/gst-launch/rygel-gst-launch-item.vala
 src/plugins/gst-launch/rygel-gst-launch-plugin.vala
 src/plugins/gst-launch/rygel-gst-launch-root-container.vala
-src/plugins/gst-renderer/rygel-gst-renderer-player.vala
-src/plugins/gst-renderer/rygel-gst-renderer-plugin.vala
+src/plugins/playbin/rygel-playbin-player.vala
+src/plugins/playbin/rygel-playbin-plugin.vala
 src/plugins/media-export/rygel-media-export-database.vala
 src/plugins/media-export/rygel-media-export-db-container.vala
 src/plugins/media-export/rygel-media-export-db-object-factory.vala
