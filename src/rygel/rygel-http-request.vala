@@ -54,47 +54,40 @@ internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     }
 
     public async void run () {
-        yield this.handle ();
-    }
-
-    protected virtual async void handle () {
         try {
-            this.uri = new HTTPItemURI.from_string (this.msg.uri.path,
-                                                    this.http_server);
+            yield this.handle ();
         } catch (Error error) {
             this.handle_error (error);
 
             return;
         }
+    }
+
+    protected virtual async void handle () throws Error {
+        this.uri = new HTTPItemURI.from_string (this.msg.uri.path,
+                                                this.http_server);
 
         yield this.find_item ();
     }
 
-    protected virtual async void find_item () {
+    protected virtual async void find_item () throws Error {
         // Fetch the requested item
-        MediaObject media_object;
-        try {
-            media_object = yield this.root_container.find_object (
+        var media_object = yield this.root_container.find_object (
                                         this.uri.item_id,
                                         null);
-        } catch (Error err) {
-            this.handle_error (err);
-
-            return;
-        }
 
         if (media_object == null || !(media_object is MediaItem)) {
-            this.handle_error (new HTTPRequestError.NOT_FOUND (
+            throw new HTTPRequestError.NOT_FOUND (
                                         _("Requested item '%s' not found"),
-                                        this.uri.item_id));
-            return;
+                                        this.uri.item_id);
         }
 
         this.item = (MediaItem) media_object;
     }
 
-    protected virtual void handle_error (Error error) {
+    protected void handle_error (Error error) {
         warning ("%s", error.message);
+        this.server.unpause_message (this.msg);
 
         uint status;
         if (error is HTTPRequestError) {

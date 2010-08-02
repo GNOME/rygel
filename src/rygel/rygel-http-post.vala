@@ -40,33 +40,26 @@ internal class Rygel.HTTPPost : HTTPRequest {
         base (http_server, server, msg);
     }
 
-    protected override async void handle () {
+    protected override async void handle () throws Error {
         this.msg.got_chunk.connect (this.on_got_chunk);
         this.msg.got_body.connect (this.on_got_body);
 
         this.server.pause_message (this.msg);
         yield base.handle ();
 
-        try {
-            this.file = yield this.item.get_writable (this.cancellable);
-            if (this.file == null) {
-                throw new HTTPRequestError.BAD_REQUEST (
+        this.file = yield this.item.get_writable (this.cancellable);
+        if (this.file == null) {
+            throw new HTTPRequestError.BAD_REQUEST (
                                         _("No writable URI for %s available"),
                                         this.item.id);
-            }
+        }
 
-            this.stream = yield this.file.replace_async (
+        this.stream = yield this.file.replace_async (
                                         null,
                                         false,
                                         FileCreateFlags.REPLACE_DESTINATION,
                                         Priority.LOW,
                                         this.cancellable);
-        } catch (Error error) {
-            this.server.unpause_message (this.msg);
-            this.handle_error (error);
-
-            return;
-        }
 
         this.server.unpause_message (this.msg);
         this.handle_continue = this.handle.callback;

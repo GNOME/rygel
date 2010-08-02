@@ -47,7 +47,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
         this.subtitle_index = -1;
     }
 
-    protected override async void handle () {
+    protected override async void handle () throws Error {
         this.server.pause_message (this.msg);
 
         yield base.handle ();
@@ -58,20 +58,14 @@ internal class Rygel.HTTPGet : HTTPRequest {
         /* We only entertain 'HEAD' and 'GET' requests */
         if ((this.msg.method != "HEAD" && this.msg.method != "GET") ||
             (header != null && header != "1")) {
-            this.handle_error (new HTTPRequestError.BAD_REQUEST (
-                                        _("Invalid Request")));
-            return;
+            throw new HTTPRequestError.BAD_REQUEST (_("Invalid Request"));
         }
 
-        try {
-            if (uri.transcode_target != null) {
-                var transcoder = this.http_server.get_transcoder (
+        if (uri.transcode_target != null) {
+            var transcoder = this.http_server.get_transcoder (
                                                         uri.transcode_target);
-                this.handler = new HTTPTranscodeHandler (transcoder,
-                                                         this.cancellable);
-            }
-        } catch (Error err) {
-            warning (_("Failed to parse query: %s"), err.message);
+            this.handler = new HTTPTranscodeHandler (transcoder,
+                                                     this.cancellable);
         }
 
         if (this.handler == null) {
@@ -81,7 +75,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
         yield this.handle_item_request ();
     }
 
-    protected override async void find_item () {
+    protected override async void find_item () throws Error {
         yield base.find_item ();
 
         if (this.uri.thumbnail_index >= 0) {
@@ -92,42 +86,32 @@ internal class Rygel.HTTPGet : HTTPRequest {
         }
     }
 
-    private async void handle_item_request () {
-        try {
-            if (HTTPTimeSeek.needed (this)) {
-                this.seek = new HTTPTimeSeek (this);
-            } else if (HTTPByteSeek.needed (this)) {
-                this.seek = new HTTPByteSeek (this);
-            }
-
-            // Add headers
-            this.handler.add_response_headers (this);
-            debug (_("Following HTTP headers appended to response:"));
-            this.msg.response_headers.foreach ((name, value) => {
-                    debug ("%s : %s", name, value);
-            });
-
-            if (this.msg.method == "HEAD") {
-                // Only headers requested, no need to send contents
-                this.server.unpause_message (this.msg);
-                this.end (Soup.KnownStatusCode.OK);
-                return;
-            }
-
-            var response = this.handler.render_body (this);
-
-            yield response.run ();
-
-            this.end (Soup.KnownStatusCode.NONE);
-        } catch (Error error) {
-            this.handle_error (error);
+    private async void handle_item_request () throws Error {
+        if (HTTPTimeSeek.needed (this)) {
+            this.seek = new HTTPTimeSeek (this);
+        } else if (HTTPByteSeek.needed (this)) {
+            this.seek = new HTTPByteSeek (this);
         }
-    }
 
-    protected override void handle_error (Error error) {
-        this.server.unpause_message (this.msg);
+        // Add headers
+        this.handler.add_response_headers (this);
+        debug (_("Following HTTP headers appended to response:"));
+        this.msg.response_headers.foreach ((name, value) => {
+                debug ("%s : %s", name, value);
+                });
 
-        base.handle_error (error);
+        if (this.msg.method == "HEAD") {
+            // Only headers requested, no need to send contents
+            this.server.unpause_message (this.msg);
+            this.end (Soup.KnownStatusCode.OK);
+            return;
+        }
+
+        var response = this.handler.render_body (this);
+
+        yield response.run ();
+
+        this.end (Soup.KnownStatusCode.NONE);
     }
 }
 
