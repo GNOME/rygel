@@ -198,27 +198,9 @@ feature provided by your editor.
 		</stateVariable>
 
 		<stateVariable>
-			<Optional/>
-			<name>CurrentTransportActions</name>
-			<sendEventsAttribute>no</sendEventsAttribute>
-			<dataType>string</dataType>
-		</stateVariable>
-
-		<stateVariable>
 			<name>LastChange</name>
 			<sendEventsAttribute>yes</sendEventsAttribute>
 			<dataType>string</dataType>
-		</stateVariable>
-
-		<stateVariable>
-			<Optional/>
-			<name>DRMState</name>
-			<sendEventsAttribute>yes</sendEventsAttribute>
-			<dataType>string</dataType>
-			<allowedValueList>
-				<allowedValue>OK</allowedValue>
-			</allowedValueList>
-			<defaultValue>UNKNOWN</defaultValue>
 		</stateVariable>
 
 		<stateVariable>
@@ -241,41 +223,6 @@ feature provided by your editor.
 			<sendEventsAttribute>no</sendEventsAttribute>
 			<dataType>ui4</dataType>
 		</stateVariable>
-
-		<stateVariable>
-			<Optional/>
-			<name>A_ARG_TYPE_DeviceUDN</name>
-			<sendEventsAttribute>no</sendEventsAttribute>
-			<dataType>string</dataType>
-		</stateVariable>
-
-		<stateVariable>
-			<Optional/>
-			<name>A_ARG_TYPE_ServiceType</name>
-			<sendEventsAttribute>no</sendEventsAttribute>
-			<dataType>string</dataType>
-		</stateVariable>
-
-		<stateVariable>
-			<Optional/>
-			<name>A_ARG_TYPE_ServiceID</name>
-			<sendEventsAttribute>no</sendEventsAttribute>
-			<dataType>string</dataType>
-		</stateVariable>
-
-		<stateVariable>
-			<Optional/>
-			<name>A_ARG_TYPE_StateVariableValuePairs</name>
-			<sendEventsAttribute>no</sendEventsAttribute>
-			<dataType>string</dataType>
-		</stateVariable>
-
-		<stateVariable>
-			<Optional/>
-			<name>A_ARG_TYPE_StateVariableList</name>
-			<sendEventsAttribute>no</sendEventsAttribute>
-			<dataType>string</dataType>
-		</stateVariable>
 	</serviceStateTable>
 
 	<actionList>
@@ -296,28 +243,6 @@ feature provided by your editor.
 					<name>CurrentURIMetaData</name>
 					<direction>in</direction>
 					<relatedStateVariable>AVTransportURIMetaData</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-
-		<action>
-			<Optional/>
-			<name>SetNextAVTransportURI</name>
-			<argumentList>
-				<argument>
-					<name>InstanceID</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_InstanceID</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>NextURI</name>
-					<direction>in</direction>
-					<relatedStateVariable>NextAVTransportURI</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>NextURIMetaData</name>
-					<direction>in</direction>
-					<relatedStateVariable>NextAVTransportURIMetaData</relatedStateVariable>
 				</argument>
 			</argumentList>
 		</action>
@@ -603,18 +528,6 @@ feature provided by your editor.
 		</action>
 
 		<action>
-			<Optional/>
-			<name>Record</name>
-			<argumentList>
-				<argument>
-					<name>InstanceID</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_InstanceID</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-
-		<action>
 			<name>Seek</name>
 			<argumentList>
 				<argument>
@@ -653,133 +566,6 @@ feature provided by your editor.
 					<name>InstanceID</name>
 					<direction>in</direction>
 					<relatedStateVariable>A_ARG_TYPE_InstanceID</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-
-		<action>
-			<Optional/>
-			<name>SetPlayMode</name>
-			<argumentList>
-				<argument>
-					<name>InstanceID</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_InstanceID</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>NewPlayMode</name>
-					<direction>in</direction>
-					<relatedStateVariable>CurrentPlayMode</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-
-		<action>
-			<Optional/>
-			<name>SetRecordQualityMode</name>
-			<argumentList>
-				<argument>
-					<name>InstanceID</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_InstanceID</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>NewRecordQualityMode</name>
-					<direction>in</direction>
-					<relatedStateVariable>CurrentRecordQualityMode</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-
-		<action>
-			<Optional/>
-			<name>GetCurrentTransportActions</name>
-			<argumentList>
-				<argument>
-					<name>InstanceID</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_InstanceID</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>Actions</name>
-					<direction>out</direction>
-					<relatedStateVariable>CurrentTransportActions</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-
-		<action>
-			<Optional/>
-			<name>GetDRMState</name>
-			<argumentList>
-				<argument>
-					<name>InstanceID</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_InstanceID</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>CurrentDRMState</name>
-					<direction>out</direction>
-					<relatedStateVariable>DRMState</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-
-		<action>
-			<Optional/>
-			<name>GetStateVariables</name>
-			<argumentList>
-				<argument>
-					<name>InstanceID</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_InstanceID</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>StateVariableList</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_StateVariableList</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>StateVariableValuePairs</name>
-					<direction>out</direction>
-					<relatedStateVariable>A_ARG_TYPE_StateVariableValuePairs</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-
-		<action>
-			<Optional/>
-			<name>SetStateVariables</name>
-			<argumentList>
-				<argument>
-					<name>InstanceID</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_InstanceID</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>AVTransportUDN</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_DeviceUDN</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>ServiceType</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_ServiceType</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>ServiceId</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_ServiceID</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>StateVariableValuePairs</name>
-					<direction>in</direction>
-					<relatedStateVariable>A_ARG_TYPE_StateVariableValuePairs</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>StateVariableList</name>
-					<direction>out</direction>
-					<relatedStateVariable>A_ARG_TYPE_StateVariableList</relatedStateVariable>
 				</argument>
 			</argumentList>
 		</action>
