@@ -33,19 +33,22 @@ internal abstract class Rygel.HTTPSeek : GLib.Object {
     public int64 start { get; private set; }
     public int64 stop { get; private set; }
     public int64 length { get; private set; }
+    public int64 total_length { get; private set; }
 
     public HTTPSeek (Soup.Message msg,
                      int64        start,
                      int64        stop,
-                     int64        length) {
+                     int64        total_length) {
         this.msg = msg;
         this.start = start;
         this.stop = stop;
-        this.length = length;
+        this.total_length = total_length;
 
         if (length > 0) {
             this.stop = stop.clamp (start + 1, length - 1);
         }
+
+        this.length = stop + 1 - start;
     }
 
     public abstract void add_response_headers ();

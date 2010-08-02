@@ -176,7 +176,8 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
         assert (seek != null);
         assert (seek.start == start * SECOND);
         assert (seek.stop == stop * SECOND);
-        assert (seek.length == request.item.duration * SECOND);
+        assert (seek.length == seek.stop + 1 - seek.start);
+        assert (seek.total_length == request.item.duration * SECOND);
 
         var header = request.msg.response_headers.get (
                                         "TimeSeekRange.dlna.org");

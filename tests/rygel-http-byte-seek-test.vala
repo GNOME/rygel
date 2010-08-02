@@ -190,11 +190,11 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
         assert (seek.stop == stop);
 
         if (request.thumbnail != null) {
-            assert (seek.length == request.thumbnail.size);
+            assert (seek.total_length == request.thumbnail.size);
         } else if (request.subtitle != null) {
-            assert (seek.length == request.subtitle.size);
+            assert (seek.total_length == request.subtitle.size);
         } else {
-            assert (seek.length == request.item.size);
+            assert (seek.total_length == request.item.size);
         }
 
         var header = request.msg.response_headers.get ("Accept-Ranges");
@@ -204,6 +204,6 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
         assert (this.range_regex.match (header));
 
         assert (request.msg.response_headers.get_content_length () ==
-                seek.stop + 1 - seek.start);
+                seek.length);
     }
 }
