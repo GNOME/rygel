@@ -31,6 +31,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
     private Regex file_filter;
     private string flag;
     private MediaContainer parent;
+    private const int BATCH_SIZE = 256;
 
     public Cancellable cancellable { get; set; }
 
@@ -210,7 +211,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
 
             GLib.List<FileInfo> list = null;
             do {
-                list = yield enumerator.next_files_async (256,
+                list = yield enumerator.next_files_async (this.BATCH_SIZE,
                                                           Priority.DEFAULT,
                                                           this.cancellable);
             } while (this.process_children (list));
