@@ -145,7 +145,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     private const string OBJECT_EXISTS_STRING =
     "SELECT COUNT(upnp_id), timestamp, m.size FROM Object " +
         "JOIN meta_data m ON m.object_fk = upnp_id " +
-        "WHERE Object.upnp_id = ?";
+        "WHERE Object.uri = ?";
 
     private const string GET_CHILD_ID_STRING =
     "SELECT upnp_id FROM OBJECT WHERE parent = ?";

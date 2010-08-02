@@ -125,11 +125,10 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
      */
     private bool push_if_changed_or_unknown (File       file,
                                              FileInfo   info) {
-        var id = MediaCache.get_id (file);
         int64 timestamp;
         int64 size;
         try {
-            if (this.cache.exists (id, out timestamp, out size)) {
+            if (this.cache.exists (file, out timestamp, out size)) {
                 int64 mtime = (int64) info.get_attribute_uint64 (
                                         FILE_ATTRIBUTE_TIME_MODIFIED);
 
@@ -254,7 +253,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
             // nothing to do
             if (this.flag != null) {
                 try {
-                    this.cache.flag_object (MediaCache.get_id (this.origin),
+                    this.cache.flag_object (this.origin,
                                             this.flag);
                 } catch (Error error) {};
             }

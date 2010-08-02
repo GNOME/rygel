@@ -153,11 +153,11 @@ public class Rygel.MediaExport.MediaCache : Object {
         return count;
     }
 
-    public bool exists (string    object_id,
+    public bool exists (File      file,
                         out int64 timestamp,
                         out int64 size) throws DatabaseError {
         bool exists = false;
-        GLib.Value[] values = { object_id };
+        GLib.Value[] values = { file.get_uri () };
         int64 tmp_timestamp = 0;
         int64 tmp_size = 0;
 
@@ -783,9 +783,9 @@ public class Rygel.MediaExport.MediaCache : Object {
                                                     max_objects);
     }
 
-    public void flag_object (string id, string flag) throws Error {
-        GLib.Value[] args = { flag, id };
-        this.db.exec ("UPDATE Object SET flags = ? WHERE upnp_id = ?", args);
+    public void flag_object (File file, string flag) throws Error {
+        GLib.Value[] args = { flag, file.get_uri () };
+        this.db.exec ("UPDATE Object SET flags = ? WHERE uri = ?", args);
     }
 
     public Gee.List<string> get_flagged_uris (string flag) throws Error {
