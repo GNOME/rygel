@@ -67,10 +67,13 @@ public class Rygel.ContentDirectory: Service {
 
     public override void constructed () {
         this.cancellable = new Cancellable ();
-        this.root_container = this.get_root_container ();
+
+        var plugin = this.root_device.resource_factory as MediaServerPlugin;
+
+        this.root_container = plugin.get_root_container (this);
 
         try {
-            this.http_server = new HTTPServer (this, this.get_type ().name ());
+            this.http_server = new HTTPServer (this, plugin.name);
         } catch (GLib.Error err) {
             critical (_("Failed to create HTTP server for %s: %s"),
                       this.get_type ().name (),
@@ -128,12 +131,6 @@ public class Rygel.ContentDirectory: Service {
         this.query_variable["FeatureList"].connect (this.query_feature_list);
 
         this.http_server.run.begin ();
-    }
-
-    private MediaContainer get_root_container () {
-        var plugin = this.root_device.resource_factory as MediaServerPlugin;
-
-        return plugin.get_root_container (this);
     }
 
     ~ContentDirectory () {
