@@ -64,12 +64,15 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
         didl_item.title = item.title;
         didl_item.upnp_class = item.upnp_class;
         if (item.author != null && item.author != "") {
-            didl_item.creator = item.author;
+            var contributor = didl_item.add_creator ();
+            contributor.name = item.author;
 
             if (item.upnp_class.has_prefix (MediaItem.VIDEO_CLASS)) {
-                didl_item.author = item.author;
+                contributor = didl_item.add_author ();
+                contributor.name = item.author;
             } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS)) {
-                didl_item.artist = item.author;
+                contributor = didl_item.add_artist ();
+                contributor.name = item.author;
             }
         }
 
