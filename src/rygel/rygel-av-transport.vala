@@ -23,7 +23,7 @@
 
 using GUPnP;
 
-public class Rygel.AVTransport : Service {
+internal class Rygel.AVTransport : Service {
     public const string UPNP_ID = "urn:upnp-org:serviceId:AVTransport";
     public const string UPNP_TYPE =
                     "urn:schemas-upnp-org:service:AVTransport:2";

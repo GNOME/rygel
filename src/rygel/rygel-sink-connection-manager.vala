@@ -23,7 +23,7 @@
 
 using GUPnP;
 
-public class Rygel.SinkConnectionManager : Rygel.ConnectionManager {
+internal class Rygel.SinkConnectionManager : Rygel.ConnectionManager {
     private MediaPlayer player;
 
     public override void constructed () {

@@ -24,7 +24,7 @@
 using GUPnP;
 using Rygel;
 
-public class Rygel.RenderingControl : Service {
+internal class Rygel.RenderingControl : Service {
     public const string UPNP_ID = "urn:upnp-org:serviceId:RenderingControl";
     public const string UPNP_TYPE =
                     "urn:schemas-upnp-org:service:RenderingControl:2";

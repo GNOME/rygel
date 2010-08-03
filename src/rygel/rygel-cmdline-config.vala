@@ -24,14 +24,14 @@
 
 using Gee;
 
-public errordomain Rygel.CmdlineConfigError {
+internal errordomain Rygel.CmdlineConfigError {
     VERSION_ONLY
 }
 
 /**
  * Manages configuration from Commandline arguments.
  */
-public class Rygel.CmdlineConfig : GLib.Object, Configuration {
+internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static string iface;
     private static int port;
 

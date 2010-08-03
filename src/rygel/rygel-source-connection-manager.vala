@@ -26,7 +26,7 @@ using GUPnP;
 /**
  * UPnP ConnectionManager service for serving end-points (MediaServer).
  */
-public class Rygel.SourceConnectionManager : Rygel.ConnectionManager {
+internal class Rygel.SourceConnectionManager : Rygel.ConnectionManager {
     public override void constructed () {
         base.constructed ();
 

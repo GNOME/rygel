@@ -41,7 +41,7 @@ public errordomain Rygel.ContentDirectoryError {
  * plugins will provide a child of this class. The inheriting classes should
  * override create_root_container method.
  */
-public class Rygel.ContentDirectory: Service {
+internal class Rygel.ContentDirectory: Service {
     public const string UPNP_ID = "urn:upnp-org:serviceId:ContentDirectory";
     public const string UPNP_TYPE =
                     "urn:schemas-upnp-org:service:ContentDirectory:2";

@@ -28,7 +28,7 @@ using GUPnP;
 /**
  * Basic implementation of UPnP ConnectionManager service version 2.
  */
-public class Rygel.ConnectionManager : Service {
+internal class Rygel.ConnectionManager : Service {
     public const string UPNP_ID = "urn:upnp-org:serviceId:ConnectionManager";
     public const string UPNP_TYPE =
                     "urn:schemas-upnp-org:service:ConnectionManager:2";

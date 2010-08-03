@@ -27,13 +27,13 @@
 using GUPnP;
 
 [CCode (cname = "uuid_generate", cheader_filename = "uuid/uuid.h")]
-public extern static void uuid_generate ([CCode (array_length = false)]
-                                         uchar[] uuid);
+internal extern static void uuid_generate ([CCode (array_length = false)]
+                                           uchar[] uuid);
 [CCode (cname = "uuid_unparse", cheader_filename = "uuid/uuid.h")]
-public extern static void uuid_unparse ([CCode (array_length = false)]
-                                        uchar[] uuid,
-                                        [CCode (array_length = false)]
-                                        uchar[] output);
+internal extern static void uuid_unparse ([CCode (array_length = false)]
+                                          uchar[] uuid,
+                                          [CCode (array_length = false)]
+                                          uchar[] output);
 
 public errordomain RootDeviceFactoryError {
     XML_PARSE,
