@@ -38,8 +38,7 @@ public class Rygel.MediaExport.Plugin : Rygel.MediaServerPlugin {
         base ("MediaExport", _("@REALNAME@'s media"));
     }
 
-    public override MediaContainer? get_root_container (
-                                        ContentDirectory content_dir) {
+    public override MediaContainer? get_root_container (GUPnP.Context context) {
         return RootContainer.get_instance ();
     }
 }

@@ -70,7 +70,7 @@ public class Rygel.ContentDirectory: Service {
 
         var plugin = this.root_device.resource_factory as MediaServerPlugin;
 
-        this.root_container = plugin.get_root_container (this);
+        this.root_container = plugin.get_root_container (this.context);
 
         try {
             this.http_server = new HTTPServer (this, plugin.name);

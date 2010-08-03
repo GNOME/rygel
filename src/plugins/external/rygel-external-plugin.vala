@@ -51,15 +51,14 @@ public class Rygel.External.Plugin : Rygel.MediaServerPlugin {
         }
     }
 
-    public override MediaContainer? get_root_container (
-                                        ContentDirectory content_dir) {
+    public override MediaContainer? get_root_container (GUPnP.Context context) {
         return new Container ("0",
                               this.title,
                               this.child_count,
                               this.searchable,
                               this.service_name,
                               this.root_object,
-                              content_dir.context.host_ip,
+                              context.host_ip,
                               null);
     }
 }

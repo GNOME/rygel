@@ -34,8 +34,7 @@ public class Rygel.GstLaunch.Plugin : Rygel.MediaServerPlugin {
         base ("GstLaunch", "Gst Launch");
     }
 
-    public override MediaContainer? get_root_container (
-                                        ContentDirectory content_dir) {
+    public override MediaContainer? get_root_container (GUPnP.Context context) {
         return new RootContainer (this.title);
     }
 }

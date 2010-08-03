@@ -52,8 +52,7 @@ public class Rygel.MediaServerPlugin : Rygel.Plugin {
         this.add_resource (resource_info);
     }
 
-    public virtual MediaContainer? get_root_container (
-                                        ContentDirectory content_dir) {
+    public virtual MediaContainer? get_root_container (GUPnP.Context context) {
         return null;
     }
 }
