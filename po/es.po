@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-07-01 19:24+0000\n"
-"PO-Revision-Date: 2010-07-03 12:47+0200\n"
+"POT-Creation-Date: 2010-08-02 17:03+0000\n"
+"PO-Revision-Date: 2010-08-03 06:51+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -103,61 +103,30 @@ msgstr "Soporte para _transcodificación"
 msgid "_URIs"
 msgstr "_URI"
 
-#: ../src/plugins/gst-renderer/rygel-gst-av-transport.vala:203
-#: ../src/plugins/gst-renderer/rygel-gst-rendering-control.vala:119
-msgid "Invalid InstanceID"
-msgstr "ID de instancia no válido"
-
-#: ../src/plugins/gst-renderer/rygel-gst-av-transport.vala:363
-msgid "Play speed not supported"
-msgstr "No se soporta la velocidad de reproducción"
-
-#: ../src/plugins/gst-renderer/rygel-gst-av-transport.vala:396
-#: ../src/plugins/gst-renderer/rygel-gst-av-transport.vala:405
-msgid "Seek mode not supported"
-msgstr "No se soporta el modo de búsqueda"
-
-#: ../src/plugins/gst-renderer/rygel-gst-av-transport.vala:412
-#: ../src/plugins/gst-renderer/rygel-gst-av-transport.vala:416
-msgid "Transition not available"
-msgstr "La transición no está disponibe"
-
-#: ../src/plugins/gst-renderer/rygel-gst-changelog.vala:72
-msgid "Setting up timeout for LastChange"
-msgstr "Configurar el tiempo de expiración del último cambio"
-
-#: ../src/plugins/gst-renderer/rygel-gst-player.vala:42
+#: ../src/plugins/playbin/rygel-playbin-player.vala:66
 #, c-format
 msgid "Changing playback state to %s.."
 msgstr "Cambiando el estado de reproducción a %s…"
 
-#: ../src/plugins/gst-renderer/rygel-gst-player.vala:68
+#: ../src/plugins/playbin/rygel-playbin-player.vala:92
 #, c-format
 msgid "URI set to %s."
 msgstr "URL establecido a %s."
 
-#: ../src/plugins/gst-renderer/rygel-gst-player.vala:79
+#: ../src/plugins/playbin/rygel-playbin-player.vala:103
 #, c-format
 msgid "volume set to %f."
 msgstr "volumen establecido a %f."
 
-#: ../src/plugins/gst-renderer/rygel-gst-player.vala:127
+#: ../src/plugins/playbin/rygel-playbin-player.vala:151
 #, c-format
 msgid "Seeking to %s."
 msgstr "Buscando hasta %s."
 
-#: ../src/plugins/gst-renderer/rygel-gst-plugin.vala:34
-msgid "GStreamer Renderer"
-msgstr "Renderizador de GStreamer"
-
-#: ../src/plugins/gst-renderer/rygel-gst-rendering-control.vala:150
-msgid "Invalid Name"
-msgstr "Nombre no válido"
-
-#: ../src/plugins/gst-renderer/rygel-gst-rendering-control.vala:164
-#: ../src/plugins/gst-renderer/rygel-gst-rendering-control.vala:235
-msgid "Action Failed"
-msgstr "Falló la acción"
+#: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
+#| msgid "GStreamer Renderer"
+msgid "GStreamer Player"
+msgstr "Reproductor GStreamer"
 
 #: ../src/plugins/media-export/rygel-media-export-database.vala:57
 #, c-format
@@ -179,128 +148,77 @@ msgstr "Tipo %s no soportado"
 msgid "Failed to roll back transaction: %s"
 msgstr "Falló al deshacer la transacción: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:112
-msgid "Using playbin2"
-msgstr "Usando playbin2"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:114
-msgid "Could not create Playbin2, trying Playbin"
-msgstr "No se pudo crear el «Playbin2», intentándolo con «Playbin»"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:118
-msgid "Using playbin"
-msgstr "Usando playbin"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:120
-msgid "Could not find any playbin."
-msgstr "No se pudo encontrar ningún «playbin»."
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:121
-msgid "Please check your gstreamer setup"
-msgstr "Compruebe su configuración de GStreamer"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:165
-#, c-format
-msgid "Metadata extractor timed out on %s, restarting"
-msgstr "Expiró el tiempo para el extractor de metadatos en %s, reiniciando"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:169
-msgid "Pipeline stuck while reading file info"
-msgstr "La tubería se paró al leer la información del archivo"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:187
-#, c-format
-msgid "Scheduling file %s for metadata extraction"
-msgstr "Planificando el archivo %s para la extracción de metadatos"
-
-#. Translators: first parameter is file uri, second is error
-#. message
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:210
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:109
 #, c-format
 msgid "Failed to extract metadata from %s: %s"
 msgstr "Falló al extraer los metadatos de %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:236
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:156
+#: ../src/rygel/rygel-plugin-loader.vala:178
+#, c-format
+msgid "Failed to query content type for '%s'"
+msgstr "Falló al consultar el tipo de contenido para «%s»"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:240
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Falló al añadir el elemento con ID %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:269
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:273
 #, c-format
 msgid "Object %s is not an item"
 msgstr "El objeto %s no es un elemento"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:405
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:408
 #, c-format
 msgid "Original search: %s"
 msgstr "Búsqueda original: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:406
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:409
 #, c-format
 msgid "Parsed search expression: %s"
 msgstr "Expresión de búsqueda analizada: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:36
+#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:37
 #, c-format
 msgid "Failed to attach to DBus session bus: %s"
 msgstr "Falló al adjuntarse al bus de sesión D-Bus: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:86
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:109
 #, c-format
 msgid "Failed to query database: %s"
 msgstr "Falló al consultar la base de datos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:119
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:142
 #, c-format
 msgid "Failed to update database: %s"
 msgstr "Falló al actualizar la base de datos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:148
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:178
 #, c-format
 msgid "failed to enumerate folder: %s"
 msgstr "Falló al enumerar la carpeta: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:169
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:199
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Falló al obtener el hijo del contenedor %s: %s"
 
 #. 'Harvesting' here means extraction of metadata (title,
 #. codec, bitrate etc) from media files.
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:246
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:282
 #, c-format
 msgid "File %s does not need harvesting"
 msgstr "El archivo %s no necesita recolección"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:253
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:289
 #, c-format
 msgid "Failed to harvest file %s: %s"
 msgstr "Falló al recolectar el archivo %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item.vala:63
-#, c-format
-msgid "File '%s' is of unknown format/type."
-msgstr "El archivo «%s» es de un tipo/formato desconocido."
-
-#: ../src/plugins/media-export/rygel-media-export-item.vala:65
-#, c-format
-msgid "Trying to guess from content type %s"
-msgstr "Intentando averiguar el tipo de contenido de %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item.vala:77
-#, c-format
-msgid "Failed to detect UPnP class for '%s', assuming '%s'"
-msgstr "Falló al detectar la clase UPnP para «%s», asumiendo «%s»"
-
-#. throw error. Taglist can't be empty
-#: ../src/plugins/media-export/rygel-media-export-item.vala:99
-#, c-format
-msgid "Got empty taglist for file %s"
-msgstr "Se obtuvo una lista de etiquetas vacía para el archivo %s"
-
 #. @REALNAME@ is substituted for user's real name
 #. and it doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-plugin.vala:32
+#: ../src/plugins/media-export/rygel-media-export-plugin.vala:38
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "Multimedia de @REALNAME@"
@@ -327,78 +245,74 @@ msgstr "La carpeta %s ha desaparecido, quitando la vigilancia"
 msgid "Failed to get file info for %s"
 msgstr "Falló al obtener el archivo de información para %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:50
-msgid "Nothing configured, using XDG special folders"
-msgstr "No hay nada configurado, usando las carpetas especiales XDG"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:75
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:59
 msgid "Failed to create instance of database"
 msgstr "Falló al crear una instancia de la base de datos"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:96
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:80
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "Falló al quitar el URI: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:111
-#: ../src/plugins/tracker/rygel-tracker-music.vala:47
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:95
+#: ../src/plugins/tracker/rygel-tracker-music.vala:45
 msgid "Albums"
 msgstr "Álbumes"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:119
-#: ../src/plugins/tracker/rygel-tracker-music.vala:40
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:103
+#: ../src/plugins/tracker/rygel-tracker-music.vala:38
 msgid "Artists"
 msgstr "0"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:300
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:267
 #, c-format
 msgid "Failed to create MediaExport DBus service: %s"
 msgstr "Falló al crear el servicio de D-Bus MediaExport: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:343
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:305
 #, c-format
 msgid "%s is not a valid virtual ID"
 msgstr "%s no es una ID virtual válida"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:361
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:323
 #, c-format
 msgid "Got error while trying to find virtual folders: %s"
 msgstr "Se obtuvo un error al intentar encontrar carpetas virtuales: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:370
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:328
 #, c-format
 msgid "ID %s no longer in config, deleting..."
 msgstr "El ID %s ya no está en la configuración, eliminándolo…"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:374
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:332
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Falló al quitar la entrada: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:383
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:341
 #, c-format
 msgid "'%s' harvested"
 msgstr "«%s» recolectado"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:395
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:355
 msgid "No Metadata extractor available. Will not crawl"
 msgstr "No existe un extractor de metadatos disponible. No se arrastrará."
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:401
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:361
 msgid "Already harvesting; cancelling"
 msgstr "Ya se está recolectando; cancelando"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:424
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:385
 #, c-format
 msgid "Trying to harvest %s because of %d"
 msgstr "Intentando recolectar %s debido a %d"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:437
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:398
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Error al obtener el objeto «%s» de la base de datos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:461
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:422
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Error al quitar el objeto de la base de datos: %s"
@@ -408,26 +322,26 @@ msgstr "Error al quitar el objeto de la base de datos: %s"
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "Falló al construir el URI para la carpeta «%s»: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-insertion-query.vala:70
-#: ../src/plugins/tracker/rygel-tracker-selection-query.vala:73
+#: ../src/plugins/tracker/rygel-tracker-insertion-query.vala:58
+#: ../src/plugins/tracker/rygel-tracker-selection-query.vala:71
 #, c-format
 msgid "Executing SPARQL query: %s"
 msgstr "Ejecutando la consulta SPARQL: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-item-creation.vala:77
-#: ../src/rygel/rygel-media-container.vala:215
+#: ../src/plugins/tracker/rygel-tracker-item-creation.vala:76
+#: ../src/rygel/rygel-media-container.vala:213
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "No se permite la creación de objetos en %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:75
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:108
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:72
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:98
 #: ../src/rygel/rygel-user-config.vala:180
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr "Falló al conectar con el bus de sesión: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:132
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:125
 #, c-format
 msgid "Error getting all values for '%s': %s"
 msgstr "Error al obtener todos los valores de «%s»: %s"
@@ -437,31 +351,32 @@ msgstr "Error al obtener todos los valores de «%s»: %s"
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "Falló al iniciar el servicio Tracker: %s. Complemento desactivado."
 
-#: ../src/plugins/tracker/rygel-tracker-plugin.vala:47
+#: ../src/plugins/tracker/rygel-tracker-plugin.vala:46
 #, c-format
 msgid "Error creating URI from %s: %s"
 msgstr "Error al cerar un URI desde %s: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:209
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:171
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr "Error al obtener la cuenta de elementos bajo la categoría «%s»: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-years.vala:36
+#: ../src/plugins/tracker/rygel-tracker-years.vala:35
 msgid "Year"
 msgstr "Año"
 
-#: ../src/rygel/rygel-browse.vala:121
-msgid "Invalid Arguments"
-msgstr "Argumentos no válidos"
-
-#: ../src/rygel/rygel-browse.vala:141 ../src/rygel/rygel-browse.vala:154
-#: ../src/rygel/rygel-browse.vala:184 ../src/rygel/rygel-item-creator.vala:107
+#: ../src/rygel/rygel-media-query-action.vala:119
+#: ../src/rygel/rygel-media-query-action.vala:140
+#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:107
 #: ../src/rygel/rygel-item-creator.vala:140
 msgid "No such object"
 msgstr "No existe el objeto"
 
-#: ../src/rygel/rygel-browse.vala:227 ../src/rygel/rygel-browse.vala:232
+#: ../src/rygel/rygel-browse.vala:63
+msgid "Invalid Arguments"
+msgstr "Argumentos no válidos"
+
+#: ../src/rygel/rygel-browse.vala:120
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "Falló al examinar «%s»: %s\n"
@@ -498,15 +413,43 @@ msgstr "No existe un valor disponible"
 msgid "Invalid connection reference"
 msgstr "Referencia de conexión no válida"
 
-#: ../src/rygel/rygel-content-directory.vala:85
+#: ../src/rygel/rygel-content-directory.vala:78
 #, c-format
 msgid "Failed to create HTTP server for %s: %s"
 msgstr "Falló al crear el servidor HTTP para %s: %s"
 
-#: ../src/rygel/rygel-content-directory.vala:213
-#: ../src/rygel/rygel-content-directory.vala:226
+#: ../src/rygel/rygel-content-directory.vala:205
+#: ../src/rygel/rygel-content-directory.vala:218
 msgid "No such file transfer"
 msgstr "No existe tal transferencia de archivo"
+
+#: ../src/rygel/rygel-av-transport.vala:205
+#: ../src/rygel/rygel-rendering-control.vala:121
+msgid "Invalid InstanceID"
+msgstr "ID de instancia no válido"
+
+#: ../src/rygel/rygel-av-transport.vala:378
+msgid "Play speed not supported"
+msgstr "No se soporta la velocidad de reproducción"
+
+#: ../src/rygel/rygel-av-transport.vala:415
+#: ../src/rygel/rygel-av-transport.vala:424
+msgid "Seek mode not supported"
+msgstr "No se soporta el modo de búsqueda"
+
+#: ../src/rygel/rygel-av-transport.vala:431
+#: ../src/rygel/rygel-av-transport.vala:435
+msgid "Transition not available"
+msgstr "La transición no está disponibe"
+
+#: ../src/rygel/rygel-rendering-control.vala:152
+msgid "Invalid Name"
+msgstr "Nombre no válido"
+
+#: ../src/rygel/rygel-rendering-control.vala:166
+#: ../src/rygel/rygel-rendering-control.vala:237
+msgid "Action Failed"
+msgstr "Falló la acción"
 
 #: ../src/rygel/rygel-didl-lite-writer.vala:48
 msgid "Unable to serialize unsupported object"
@@ -530,16 +473,11 @@ msgstr "Falta el elemento requerido %s"
 msgid "Invalid Range '%s'"
 msgstr "Rango «%s» no válido"
 
-#: ../src/rygel/rygel-http-get.vala:62
+#: ../src/rygel/rygel-http-get.vala:61
 msgid "Invalid Request"
 msgstr "Petición no válida"
 
-#: ../src/rygel/rygel-http-get.vala:74
-#, c-format
-msgid "Failed to parse query: %s"
-msgstr "Falló al analizar la consulta: %s"
-
-#: ../src/rygel/rygel-http-get.vala:105
+#: ../src/rygel/rygel-http-get.vala:98
 msgid "Following HTTP headers appended to response:"
 msgstr "Las siguientes cabeceras HTTP añadieron una respuesta:"
 
@@ -562,12 +500,12 @@ msgstr "URI «%s» no válida"
 msgid "Not Found"
 msgstr "No se encontró"
 
-#: ../src/rygel/rygel-http-post.vala:54
+#: ../src/rygel/rygel-http-post.vala:53
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "No existe un URI escribible para %s"
 
-#: ../src/rygel/rygel-http-request.vala:88
+#: ../src/rygel/rygel-http-request.vala:81
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "No se encontró el elemento requerido «%s»"
@@ -641,17 +579,17 @@ msgstr "Falta el complemento de tubería falsa («fakesink»)"
 msgid "Failed to link %s to %s"
 msgstr "Falló al enlazar %s con %s"
 
-#: ../src/rygel/rygel-live-response.vala:221
+#: ../src/rygel/rygel-live-response.vala:225
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Error de la tubería %s: %s"
 
-#: ../src/rygel/rygel-live-response.vala:228
+#: ../src/rygel/rygel-live-response.vala:232
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Advertencia de la tubería %s: %s"
 
-#: ../src/rygel/rygel-live-response.vala:262
+#: ../src/rygel/rygel-live-response.vala:266
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Falló al buscar hasta el desplazamiento %lld"
@@ -696,13 +634,13 @@ msgstr "Falló al crear el DispositivoRaís para %s. Razón: %s."
 msgid "Failed to start D-Bus service: %s"
 msgstr "Falló al iniciar el servicio D-Bus: %s"
 
-#: ../src/rygel/rygel-media-item.vala:253
+#: ../src/rygel/rygel-media-item.vala:287
 #, c-format
 msgid "Bad URI: %s"
 msgstr "URI errónea: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:265
+#: ../src/rygel/rygel-media-item.vala:299
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Falló al probar el protocolo para el URI %s. Asumiendo «%s»."
@@ -769,11 +707,6 @@ msgstr "Falló al encontrar la función del punto de entrada «%s» en «%s»: %
 msgid "Loaded module source: '%s'"
 msgstr "Módulo de origen cargado: «%s»"
 
-#: ../src/rygel/rygel-plugin-loader.vala:178
-#, c-format
-msgid "Failed to query content type for '%s'"
-msgstr "Falló al consultar el tipo de contenido para «%s»"
-
 #: ../src/rygel/rygel-root-device-factory.vala:112
 #: ../src/rygel/rygel-root-device-factory.vala:145
 #: ../src/rygel/rygel-root-device-factory.vala:167
@@ -794,24 +727,16 @@ msgstr ""
 msgid "Failed to write modified description to %s"
 msgstr "Falló al escribir la descripción modificada en %s"
 
-#: ../src/rygel/rygel-search.vala:92
-msgid "No such container"
-msgstr "No existe tal contenedor"
-
-#: ../src/rygel/rygel-search.vala:95
+#: ../src/rygel/rygel-search.vala:54
 #, c-format
 msgid "Executing search request: %s"
 msgstr "Ejecutando la consulta de búsqueda: %s"
 
-#: ../src/rygel/rygel-search.vala:129
-msgid "Specified container does not exist."
-msgstr "El contenedor especificado no existe."
-
-#: ../src/rygel/rygel-search.vala:153
+#: ../src/rygel/rygel-search.vala:74
 msgid "No object satisfies given search criteria."
 msgstr "Ningún objeto satisface el criterio de búsqueda proporcionado."
 
-#: ../src/rygel/rygel-search.vala:185
+#: ../src/rygel/rygel-search.vala:83
 #, c-format
 msgid "Failed to search in '%s': %s"
 msgstr "Falló al buscar en «%s»: %s"
@@ -890,15 +815,67 @@ msgstr "Falló al %s el servicio Rygel: %s"
 msgid "Not Applicable"
 msgstr "No es aplicable"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:147
+#: ../src/rygel/rygel-xbox-hacks.vala:153
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Falló al escribir la descripción modificada en %s."
+
+#: ../src/rygel/rygel-changelog.vala:68
+msgid "Setting up timeout for LastChange"
+msgstr "Configurar el tiempo de expiración del último cambio"
 
 #: ../src/ui/rygel-preferences-dialog.vala:72
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Falló al crear el diálogo de preferencias: %s"
+
+#~ msgid "Using playbin2"
+#~ msgstr "Usando playbin2"
+
+#~ msgid "Could not create Playbin2, trying Playbin"
+#~ msgstr "No se pudo crear el «Playbin2», intentándolo con «Playbin»"
+
+#~ msgid "Using playbin"
+#~ msgstr "Usando playbin"
+
+#~ msgid "Could not find any playbin."
+#~ msgstr "No se pudo encontrar ningún «playbin»."
+
+#~ msgid "Please check your gstreamer setup"
+#~ msgstr "Compruebe su configuración de GStreamer"
+
+#~ msgid "Metadata extractor timed out on %s, restarting"
+#~ msgstr "Expiró el tiempo para el extractor de metadatos en %s, reiniciando"
+
+#~ msgid "Pipeline stuck while reading file info"
+#~ msgstr "La tubería se paró al leer la información del archivo"
+
+#~ msgid "Scheduling file %s for metadata extraction"
+#~ msgstr "Planificando el archivo %s para la extracción de metadatos"
+
+#~ msgid "File '%s' is of unknown format/type."
+#~ msgstr "El archivo «%s» es de un tipo/formato desconocido."
+
+#~ msgid "Trying to guess from content type %s"
+#~ msgstr "Intentando averiguar el tipo de contenido de %s"
+
+#~ msgid "Failed to detect UPnP class for '%s', assuming '%s'"
+#~ msgstr "Falló al detectar la clase UPnP para «%s», asumiendo «%s»"
+
+#~ msgid "Got empty taglist for file %s"
+#~ msgstr "Se obtuvo una lista de etiquetas vacía para el archivo %s"
+
+#~ msgid "Nothing configured, using XDG special folders"
+#~ msgstr "No hay nada configurado, usando las carpetas especiales XDG"
+
+#~ msgid "Failed to parse query: %s"
+#~ msgstr "Falló al analizar la consulta: %s"
+
+#~ msgid "No such container"
+#~ msgstr "No existe tal contenedor"
+
+#~ msgid "Specified container does not exist."
+#~ msgstr "El contenedor especificado no existe."
 
 #~ msgid "Query: %s, Time: %f"
 #~ msgstr "Consulta: %s; Hora: %f"
