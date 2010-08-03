@@ -23,9 +23,6 @@
 
 using GUPnP;
 
-/**
- * StateMachine interface.
- */
 public class Rygel.Tracker.ItemCreation : GLib.Object, Rygel.StateMachine {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
