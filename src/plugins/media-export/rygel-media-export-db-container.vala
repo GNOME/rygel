@@ -70,13 +70,6 @@ public class Rygel.MediaExport.DBContainer : MediaContainer {
                                                 out uint          total_matches,
                                                 Cancellable?      cancellable)
                                                 throws GLib.Error {
-        if (expression == null) {
-            return yield base.search (expression,
-                                      offset,
-                                      max_count,
-                                      out total_matches,
-                                      cancellable);
-        }
         MediaObjects children = null;
 
         var max_objects = max_count;

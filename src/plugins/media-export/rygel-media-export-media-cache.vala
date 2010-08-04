@@ -177,8 +177,7 @@ public class Rygel.MediaExport.MediaCache : Object {
     "FROM Object o " +
         "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
         "LEFT OUTER JOIN meta_data m " +
-            "ON o.upnp_id = m.object_fk " +
-    "WHERE %s " +
+            "ON o.upnp_id = m.object_fk %s" +
         "ORDER BY o.parent ASC, " +
                  "o.type_fk ASC, " +
                  "m.class ASC, " +
@@ -191,9 +190,7 @@ public class Rygel.MediaExport.MediaCache : Object {
     "SELECT COUNT(o.type_fk) FROM Object o " +
         "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
         "JOIN meta_data m " +
-            "ON o.upnp_id = m.object_fk " +
-    "WHERE %s ";
-
+            "ON o.upnp_id = m.object_fk %s";
 
     private const string CHILDREN_COUNT_STRING =
     "SELECT COUNT(upnp_id) FROM Object WHERE Object.parent = ?";
@@ -365,14 +362,12 @@ public class Rygel.MediaExport.MediaCache : Object {
                                         out uint          total_matches)
                                         throws Error {
         var args = new GLib.ValueArray (0);
-        var filter = this.search_expression_to_sql (expression, args);
+        var filter = this.translate_search_expression (expression, args);
 
-        if (filter == null) {
-            return new MediaObjects ();
+        if (expression != null) {
+            debug ("Original search: %s", expression.to_string ());
+            debug ("Parsed search expression: %s", filter);
         }
-
-        debug ("Original search: %s", expression.to_string ());
-        debug ("Parsed search expression: %s", filter);
 
         for (int i = 0; i < args.n_values; i++) {
             debug ("Arg %d: %s", i, args.get_nth (i).get_string ());
@@ -399,14 +394,12 @@ public class Rygel.MediaExport.MediaCache : Object {
                                         uint              max_count)
                                         throws Error {
         var args = new GLib.ValueArray (0);
-        var filter = this.search_expression_to_sql (expression, args);
+        var filter = this.translate_search_expression (expression, args);
 
-        if (filter == null) {
-            return 0;
+        if (expression != null) {
+            debug (_("Original search: %s"), expression.to_string ());
+            debug (_("Parsed search expression: %s"), filter);
         }
-
-        debug (_("Original search: %s"), expression.to_string ());
-        debug (_("Parsed search expression: %s"), filter);
 
         for (int i = 0; i < args.n_values; i++) {
             debug ("Arg %d: %s", i, args.get_nth (i).get_string ());
@@ -726,18 +719,28 @@ public class Rygel.MediaExport.MediaCache : Object {
         return children;
     }
 
+    private string translate_search_expression (SearchExpression? expression,
+                                                ValueArray        args)
+                                                throws Error {
+        if (expression == null) {
+            return "";
+        }
+
+        return " WHERE " + this.search_expression_to_sql (expression, args);
+    }
+
     private string? search_expression_to_sql (SearchExpression? expression,
                                              GLib.ValueArray   args)
                                              throws Error {
         if (expression == null) {
-            return null;
+            return "";
         }
 
         if (expression is LogicalExpression) {
-            return logical_expression_to_sql (expression as LogicalExpression,
-                                              args);
+            return this.logical_expression_to_sql (expression as LogicalExpression,
+                                                   args);
         } else {
-            return relational_expression_to_sql (
+            return this.relational_expression_to_sql (
                                         expression as RelationalExpression,
                                         args);
         }
@@ -895,12 +898,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                         long              max_count)
                                         throws Error {
         var args = new ValueArray (0);
-        var filter = this.search_expression_to_sql (expression, args);
-        if (filter != null) {
-            filter = " WHERE %s ".printf (filter);
-        } else {
-            filter = "";
-        }
+        var filter = this.translate_search_expression (expression, args);
 
         debug ("Parsed filter: %s", filter);
 
