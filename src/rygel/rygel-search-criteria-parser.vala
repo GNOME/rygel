@@ -123,6 +123,8 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
         if (this.str == "*") {
             // Wildcard
             this.completed ();
+
+            return;
         }
 
         this.scanner.input_text (this.str, (uint) this.str.size ());
