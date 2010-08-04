@@ -37,7 +37,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
      * @param monitor intance of a RecursiveFileMonitor which is used to keep
      *                track of the file changes
      */
-    public Harvester (MetadataExtractor    extractor) {
+    public Harvester (MetadataExtractor extractor) {
         this.extractor = extractor;
         this.monitor = new RecursiveFileMonitor (null);
         if (this.monitor != null) {
@@ -56,8 +56,8 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
      * @param flag optional flag for the container to set in the database
      */
     public void schedule (File           file,
-                           MediaContainer parent,
-                           string?        flag   = null) {
+                          MediaContainer parent,
+                          string?        flag = null) {
         if (this.extractor == null) {
             warning (_("No Metadata extractor available. Will not crawl"));
 
