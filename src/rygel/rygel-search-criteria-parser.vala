@@ -125,7 +125,7 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
             this.completed ();
         }
 
-        this.scanner.input_text (this.str, (uint) this.str.size());
+        this.scanner.input_text (this.str, (uint) this.str.size ());
         this.scanner.get_next_token ();
         try {
             this.expression = this.parse_or_expression ();
