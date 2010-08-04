@@ -148,8 +148,8 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         string didl = this.didl_writer.get_string ();
 
         /* Set action return arguments */
-        this.action.set ("Result", typeof (string), didl,
-                         "ObjectID", typeof (string), this.item.id);
+        this.action.set ("ObjectID", typeof (string), this.item.id,
+                         "Result", typeof (string), didl);
 
         this.action.return ();
         this.completed ();
