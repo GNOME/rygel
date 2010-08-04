@@ -93,14 +93,14 @@ public class Rygel.External.Container : Rygel.MediaContainer {
         return yield this.create_media_objects (children_props, this);
     }
 
-    public override async MediaObjects? search (SearchExpression expression,
-                                                uint             offset,
-                                                uint             max_count,
-                                                out uint         total_matches,
-                                                Cancellable?     cancellable)
+    public override async MediaObjects? search (SearchExpression? expression,
+                                                uint              offset,
+                                                uint              max_count,
+                                                out uint          total_matches,
+                                                Cancellable?      cancellable)
                                                 throws GLib.Error {
-        if (!this.searchable) {
-            // Backend doesn't implement search :(
+        if (expression == null || !this.searchable) {
+            // Either its wildcard or backend doesn't implement search :(
             return yield base.search (expression,
                                       offset,
                                       max_count,

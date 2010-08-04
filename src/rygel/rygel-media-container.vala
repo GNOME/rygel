@@ -92,11 +92,11 @@ public abstract class Rygel.MediaContainer : MediaObject {
      *
      * return A list of media objects.
      */
-    public virtual async MediaObjects? search (SearchExpression   expression,
-                                               uint               offset,
-                                               uint               max_count,
-                                               out uint           total_matches,
-                                               Cancellable?       cancellable)
+    public virtual async MediaObjects? search (SearchExpression? expression,
+                                               uint              offset,
+                                               uint              max_count,
+                                               out uint          total_matches,
+                                               Cancellable?      cancellable)
                                                throws Error {
         var result = new MediaObjects ();
 

@@ -189,12 +189,20 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         return object;
     }
 
-    public override async MediaObjects? search (SearchExpression expression,
-                                                uint             offset,
-                                                uint             max_count,
-                                                out uint         total_matches,
-                                                Cancellable?     cancellable)
+    public override async MediaObjects? search (SearchExpression? expression,
+                                                uint              offset,
+                                                uint              max_count,
+                                                out uint          total_matches,
+                                                Cancellable?      cancellable)
                                                 throws GLib.Error {
+        if (expression == null) {
+            return yield base.search (expression,
+                                      offset,
+                                      max_count,
+                                      out total_matches,
+                                      cancellable);
+        }
+
         MediaObjects list;
         MediaContainer query_container = null;
         string upnp_class = null;
