@@ -152,20 +152,19 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
                                                 out uint          total_matches,
                                                 Cancellable?      cancellable)
                                                 throws GLib.Error {
-        if (expression == null) {
-            return yield base.search (expression,
-                                      offset,
-                                      max_count,
-                                      out total_matches,
-                                      cancellable);
-        }
-
         MediaObjects children = null;
 
-        var combined_expression = new LogicalExpression ();
-        combined_expression.operand1 = this.expression;
-        combined_expression.op = LogicalOperator.AND;
-        combined_expression.operand2 = expression;
+        SearchExpression combined_expression;
+
+        if (expression == null) {
+            combined_expression = this.expression;
+        } else {
+            var local_expression = new LogicalExpression ();
+            local_expression.operand1 = this.expression;
+            local_expression.op = LogicalOperator.AND;
+            local_expression.operand2 = expression;
+            combined_expression = local_expression;
+        }
 
         var max_objects = max_count;
         if (max_objects == 0) {
