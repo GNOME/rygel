@@ -89,34 +89,32 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
         this.default_icons = new ArrayList<IconInfo> ();
 
         // Add PNG icons
-        var icon = new IconInfo (ICON_PNG_MIME, PNG_EXT);
-        icon.uri = ICON_PNG_BIG;
-        icon.width = ICON_BIG_WIDTH;
-        icon.height = ICON_BIG_HEIGHT;
-        icon.depth = ICON_PNG_DEPTH;
-        this.default_icons.add (icon);
-
-        icon = new IconInfo (ICON_PNG_MIME, PNG_EXT);
-        icon.uri = ICON_PNG_SMALL;
-        icon.width = ICON_SMALL_WIDTH;
-        icon.height = ICON_SMALL_HEIGHT;
-        icon.depth = ICON_PNG_DEPTH;
-        this.default_icons.add (icon);
+        this.add_default_icon (ICON_PNG_MIME,
+                               PNG_EXT,
+                               ICON_PNG_BIG,
+                               ICON_BIG_WIDTH,
+                               ICON_BIG_HEIGHT,
+                               ICON_PNG_DEPTH);
+        this.add_default_icon (ICON_PNG_MIME,
+                               PNG_EXT,
+                               ICON_PNG_SMALL,
+                               ICON_SMALL_WIDTH,
+                               ICON_SMALL_HEIGHT,
+                               ICON_PNG_DEPTH);
 
         // Then add JPEG icons
-        icon = new IconInfo (ICON_JPG_MIME, JPG_EXT);
-        icon.uri = ICON_JPG_BIG;
-        icon.width = ICON_BIG_WIDTH;
-        icon.height = ICON_BIG_HEIGHT;
-        icon.depth = ICON_JPG_DEPTH;
-        this.default_icons.add (icon);
-
-        icon = new IconInfo (ICON_JPG_MIME, JPG_EXT);
-        icon.uri = ICON_JPG_SMALL;
-        icon.width = ICON_SMALL_WIDTH;
-        icon.height = ICON_SMALL_HEIGHT;
-        icon.depth = ICON_JPG_DEPTH;
-        this.default_icons.add (icon);
+        this.add_default_icon (ICON_JPG_MIME,
+                               JPG_EXT,
+                               ICON_JPG_BIG,
+                               ICON_BIG_WIDTH,
+                               ICON_BIG_HEIGHT,
+                               ICON_JPG_DEPTH);
+        this.add_default_icon (ICON_JPG_MIME,
+                               JPG_EXT,
+                               ICON_JPG_SMALL,
+                               ICON_SMALL_WIDTH,
+                               ICON_SMALL_HEIGHT,
+                               ICON_JPG_DEPTH);
     }
 
     public void add_resource (ResourceInfo resource_info) {
@@ -127,6 +125,21 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
 
     public void add_icon (IconInfo icon_info) {
         this.icon_infos.add (icon_info);
+    }
+
+    private void add_default_icon (string mime_type,
+                                   string file_extension,
+                                   string uri,
+                                   int    width,
+                                   int    height,
+                                   int    depth) {
+        var icon = new IconInfo (mime_type, file_extension);
+        icon.uri = uri;
+        icon.width = width;
+        icon.height = height;
+        icon.depth = depth;
+
+        this.default_icons.add (icon);
     }
 }
 
