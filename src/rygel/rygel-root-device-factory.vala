@@ -284,7 +284,7 @@ internal class Rygel.RootDeviceFactory {
             var remote_path = "/" + plugin.name + "-" +
                               width + "x" +
                               height + "x" +
-                              depth + ".png";
+                              depth + "." + icon_info.file_extension;
             var local_path = uri.offset (7);
 
             this.context.host_path (local_path, remote_path);

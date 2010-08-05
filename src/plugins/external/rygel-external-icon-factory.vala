@@ -56,7 +56,8 @@ public class Rygel.External.IconFactory {
         }
 
         value = item_props.lookup ("MIMEType");
-        var icon = new IconInfo (value.get_string ());
+        var mime_type = value.get_string ();
+        var icon = new IconInfo (mime_type, this.get_ext_for_mime (mime_type));
 
         value = item_props.lookup ("URLs");
         weak string[] uris = (string[]) value.get_boxed ();
@@ -85,5 +86,15 @@ public class Rygel.External.IconFactory {
         }
 
         return icon;
+    }
+
+    private string get_ext_for_mime (string mime_type) {
+      if (mime_type == "image/jpeg") {
+            return "jpg";
+      } else if (mime_type == "image/gif") {
+            return "gif";
+      } else {
+            return "png"; // Assume PNG
+      }
     }
 }

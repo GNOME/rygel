@@ -29,12 +29,16 @@ using GUPnP;
  * class or a subclass.
  */
 public class Rygel.Plugin : GUPnP.ResourceFactory {
+    private static const string PNG_EXT = "png";
+
     private static const string ICON_BIG = "file://" +
                                            BuildConfig.BIG_ICON_DIR +
-                                           "/rygel.png";
+                                           "/rygel." +
+                                           PNG_EXT;
     private static const string ICON_SMALL = "file://" +
                                              BuildConfig.SMALL_ICON_DIR +
-                                             "/rygel.png";
+                                             "/rygel." +
+                                             PNG_EXT;
     private static const string ICON_MIME = "image/png";
     private static const int ICON_DEPTH = 32;
     private static const int ICON_BIG_WIDTH = 256;
@@ -75,14 +79,14 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
         this.icon_infos = new ArrayList<IconInfo> ();
         this.default_icons = new ArrayList<IconInfo> ();
 
-        var icon = new IconInfo (ICON_MIME);
+        var icon = new IconInfo (ICON_MIME, PNG_EXT);
         icon.uri = ICON_BIG;
         icon.width = ICON_BIG_WIDTH;
         icon.height = ICON_BIG_HEIGHT;
         icon.depth = ICON_DEPTH;
         this.default_icons.add (icon);
 
-        icon = new IconInfo (ICON_MIME);
+        icon = new IconInfo (ICON_MIME, PNG_EXT);
         icon.uri = ICON_SMALL;
         icon.width = ICON_SMALL_WIDTH;
         icon.height = ICON_SMALL_HEIGHT;

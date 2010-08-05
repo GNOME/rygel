@@ -29,8 +29,9 @@ public class Rygel.Thumbnail : Rygel.IconInfo {
     public string dlna_profile;
 
     public Thumbnail (string mime_type = "image/jpeg",
-                      string dlna_profile = "JPEG_TN") {
-        base (mime_type);
+                      string dlna_profile = "JPEG_TN",
+                      string file_extension = "jpg") {
+        base (mime_type, file_extension);
 
         this.dlna_profile = dlna_profile;
     }

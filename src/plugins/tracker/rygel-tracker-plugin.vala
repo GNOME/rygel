@@ -33,7 +33,7 @@ public class Rygel.Tracker.Plugin : Rygel.MediaServerPlugin {
               // and it doesn't need translation.
               _("@REALNAME@'s media"));
 
-        var icon_info = new IconInfo ("image/png");
+        var icon_info = new IconInfo ("image/png", "png");
 
         try {
             icon_info.uri = Filename.to_uri (ICON, null);
