@@ -52,20 +52,14 @@ internal class Rygel.WMATranscoder : Rygel.Transcoder {
     }
 
     public override uint get_distance (MediaItem item) {
-        if (item.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
+        if (!item.upnp_class.has_prefix (MediaItem.AUDIO_CLASS)) {
             return uint.MAX;
         }
 
-        uint distance;
+        var distance = uint.MIN;
 
-        if (item.upnp_class.has_prefix (MediaItem.AUDIO_CLASS)) {
-            distance = uint.MIN;
-
-            if (item.bitrate > 0) {
-                distance += (item.bitrate - BITRATE).abs ();
-            }
-        } else {
-            distance = uint.MAX / 2;
+        if (item.bitrate > 0) {
+            distance += (item.bitrate - BITRATE).abs ();
         }
 
         return distance;
