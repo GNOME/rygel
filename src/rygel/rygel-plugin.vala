@@ -30,17 +30,26 @@ using GUPnP;
  */
 public class Rygel.Plugin : GUPnP.ResourceFactory {
     private static const string PNG_EXT = "png";
+    private static const string JPG_EXT = "jpg";
 
     private static const string ICON_BIG = "file://" +
                                            BuildConfig.BIG_ICON_DIR +
-                                           "/rygel." +
-                                           PNG_EXT;
+                                           "/rygel";
+    private static const string ICON_PNG_BIG = ICON_BIG + "." + PNG_EXT;
+    private static const string ICON_JPG_BIG = ICON_BIG + "." + JPG_EXT;
+
     private static const string ICON_SMALL = "file://" +
                                              BuildConfig.SMALL_ICON_DIR +
-                                             "/rygel." +
-                                             PNG_EXT;
-    private static const string ICON_MIME = "image/png";
-    private static const int ICON_DEPTH = 32;
+                                             "/rygel";
+    private static const string ICON_PNG_SMALL = ICON_SMALL + "." + PNG_EXT;
+    private static const string ICON_JPG_SMALL = ICON_SMALL + "." + JPG_EXT;
+
+    private static const string ICON_PNG_MIME = "image/png";
+    private static const string ICON_JPG_MIME = "image/jpeg";
+
+    private static const int ICON_PNG_DEPTH = 32;
+    private static const int ICON_JPG_DEPTH = 24;
+
     private static const int ICON_BIG_WIDTH = 120;
     private static const int ICON_BIG_HEIGHT = 120;
     private static const int ICON_SMALL_WIDTH = 48;
@@ -79,18 +88,34 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
         this.icon_infos = new ArrayList<IconInfo> ();
         this.default_icons = new ArrayList<IconInfo> ();
 
-        var icon = new IconInfo (ICON_MIME, PNG_EXT);
-        icon.uri = ICON_BIG;
+        // Add PNG icons
+        var icon = new IconInfo (ICON_PNG_MIME, PNG_EXT);
+        icon.uri = ICON_PNG_BIG;
         icon.width = ICON_BIG_WIDTH;
         icon.height = ICON_BIG_HEIGHT;
-        icon.depth = ICON_DEPTH;
+        icon.depth = ICON_PNG_DEPTH;
         this.default_icons.add (icon);
 
-        icon = new IconInfo (ICON_MIME, PNG_EXT);
-        icon.uri = ICON_SMALL;
+        icon = new IconInfo (ICON_PNG_MIME, PNG_EXT);
+        icon.uri = ICON_PNG_SMALL;
         icon.width = ICON_SMALL_WIDTH;
         icon.height = ICON_SMALL_HEIGHT;
-        icon.depth = ICON_DEPTH;
+        icon.depth = ICON_PNG_DEPTH;
+        this.default_icons.add (icon);
+
+        // Then add JPEG icons
+        icon = new IconInfo (ICON_JPG_MIME, JPG_EXT);
+        icon.uri = ICON_JPG_BIG;
+        icon.width = ICON_BIG_WIDTH;
+        icon.height = ICON_BIG_HEIGHT;
+        icon.depth = ICON_JPG_DEPTH;
+        this.default_icons.add (icon);
+
+        icon = new IconInfo (ICON_JPG_MIME, JPG_EXT);
+        icon.uri = ICON_JPG_SMALL;
+        icon.width = ICON_SMALL_WIDTH;
+        icon.height = ICON_SMALL_HEIGHT;
+        icon.depth = ICON_JPG_DEPTH;
         this.default_icons.add (icon);
     }
 
