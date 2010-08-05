@@ -65,8 +65,10 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
                                       throws GLib.Error {
         var item = base.create (id, uri, parent, metadata);
 
-        if (metadata[MusicMetadata.DURATION] != "")
+        if (metadata[MusicMetadata.DURATION] != "" &&
+            metadata[MusicMetadata.DURATION] != "0") {
             item.duration = metadata[MusicMetadata.DURATION].to_int ();
+        }
 
         if (metadata[MusicMetadata.AUDIO_TRACK_NUM] != "") {
             var track_number = metadata[MusicMetadata.AUDIO_TRACK_NUM];
