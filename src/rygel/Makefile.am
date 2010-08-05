@@ -2,14 +2,14 @@ if UNINSTALLED
 shareddir = $(abs_top_builddir)/data
 desktopdir = $(shareddir)
 plugindir = $(abs_top_builddir)/src/plugins
-smallicondir = $(shareddir)/icons/32x32
-bigicondir = $(shareddir)/icons/256x256
+smallicondir = $(shareddir)/icons/48x48
+bigicondir = $(shareddir)/icons/120x120
 else
 shareddir = $(datadir)/rygel
 desktopdir = $(datadir)/applications
 plugindir = $(libdir)/rygel-1.0
-smallicondir = $(datadir)/icons/hicolor/32x32/apps
-bigicondir = $(datadir)/icons/hicolor/256x256/apps
+smallicondir = $(datadir)/icons/hicolor/48x48/apps
+bigicondir = $(datadir)/icons/hicolor/120x120/apps
 endif
 
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \

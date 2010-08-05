@@ -41,10 +41,10 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
                                              PNG_EXT;
     private static const string ICON_MIME = "image/png";
     private static const int ICON_DEPTH = 32;
-    private static const int ICON_BIG_WIDTH = 256;
-    private static const int ICON_BIG_HEIGHT = 256;
-    private static const int ICON_SMALL_WIDTH = 32;
-    private static const int ICON_SMALL_HEIGHT = 32;
+    private static const int ICON_BIG_WIDTH = 120;
+    private static const int ICON_BIG_HEIGHT = 120;
+    private static const int ICON_SMALL_WIDTH = 48;
+    private static const int ICON_SMALL_HEIGHT = 48;
 
     public string name;
     public string title;
