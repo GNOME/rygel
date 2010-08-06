@@ -1,0 +1,836 @@
+# Tamil translation for rygel.
+# Copyright (C) 2010 rygel's COPYRIGHT HOLDER
+# This file is distributed under the same license as the rygel package.
+#
+# Dr.T.Vasudevan <agnihot3@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: rygel master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=Rygel&component=general\n"
+"POT-Creation-Date: 2010-08-05 14:19+0000\n"
+"PO-Revision-Date: 2010-08-06 19:50+0530\n"
+"Last-Translator: Dr.T.Vasudevan <agnihot3@gmail.com>\n"
+"Language-Team: Tamil <<Ubuntu-l10n-tam@lists.ubuntu.com>>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: ../data/rygel-preferences.ui.h:1
+msgid "<b>Network Options</b>"
+msgstr "<b>பிணையத் தேர்வுகள் </b>"
+
+#: ../data/rygel-preferences.ui.h:2
+msgid "General"
+msgstr "பொது"
+
+#: ../data/rygel-preferences.ui.h:3
+msgid "MPE_G TS"
+msgstr "_G எம்பெக் டிஎஸ்"
+
+#: ../data/rygel-preferences.ui.h:4
+msgid "Plugins"
+msgstr "சொருகிகள்"
+
+#: ../data/rygel-preferences.ui.h:5
+msgid "Rygel Preferences"
+msgstr "ரைஜெல் விருப்பங்கள்"
+
+#: ../data/rygel-preferences.ui.h:6
+msgid "Select folders"
+msgstr "அடைவுகளை தேர்வு செய்க"
+
+#: ../data/rygel-preferences.ui.h:7
+msgid "Share M_usic"
+msgstr "_u இசையை பகிர்க"
+
+#: ../data/rygel-preferences.ui.h:8
+msgid "Share _Pictures"
+msgstr " _P படங்களை பகிர்க"
+
+#: ../data/rygel-preferences.ui.h:9
+msgid "Share _Videos"
+msgstr "_V விடியோக்களை பகிர்க"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid "T_itle"
+msgstr "_i தலைப்பு"
+
+#: ../data/rygel-preferences.ui.h:11
+msgid "Ti_tle"
+msgstr "_t தலைப்பு"
+
+#: ../data/rygel-preferences.ui.h:13
+#, no-c-format
+msgid ""
+"Write %u for username, %n for real name of the user and %h for host name"
+msgstr ""
+"%u  ஐ பயனர் பெயருக்கு எழுதுக, %n பயனரின் உண்மை பெயருக்கு மற்றூம் %h "
+"புரவலன் பெயருக்கு."
+
+#: ../data/rygel-preferences.ui.h:14
+msgid "_Enable UPnP/DLNA"
+msgstr "_E UPnP/DLNA ஐ செயல்படுத்து"
+
+#. Network Interface
+#: ../data/rygel-preferences.ui.h:16
+msgid "_Interface"
+msgstr "_I இடைமுகம்"
+
+#: ../data/rygel-preferences.ui.h:17
+msgid "_LPCM"
+msgstr "_LPCM"
+
+#: ../data/rygel-preferences.ui.h:18
+msgid "_MP3"
+msgstr "_M எம்பி3"
+
+#: ../data/rygel-preferences.ui.h:19
+msgid "_Media Export"
+msgstr "_M ஊடக ஏற்றுமதி"
+
+#. Network Port
+#: ../data/rygel-preferences.ui.h:21
+msgid "_Port"
+msgstr "_P துறை"
+
+#: ../data/rygel-preferences.ui.h:22
+msgid "_Transcoding support"
+msgstr "_T குறிமாற்ற ஆதரவு"
+
+#: ../data/rygel-preferences.ui.h:23
+msgid "_URIs"
+msgstr "_U யூஆர்ஐகள்"
+
+#: ../src/plugins/playbin/rygel-playbin-player.vala:66
+#, c-format
+msgid "Changing playback state to %s.."
+msgstr "%s க்கு மீள் இயக்கநிலையை மாற்றுகிறது.."
+
+#: ../src/plugins/playbin/rygel-playbin-player.vala:92
+#, c-format
+msgid "URI set to %s."
+msgstr "யூஆர்ஐ %s க்கு அமைக்கப்பட்டது"
+
+#: ../src/plugins/playbin/rygel-playbin-player.vala:103
+#, c-format
+msgid "volume set to %f."
+msgstr "ஒலியளவு %f க்கு அமைக்கப்பட்டது."
+
+#: ../src/plugins/playbin/rygel-playbin-player.vala:151
+#, c-format
+msgid "Seeking to %s."
+msgstr "%s க்கு நாடுகிறது"
+
+#: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
+msgid "GStreamer Player"
+msgstr "ஜிஸ்ட்ரீமர் இயக்கி"
+
+#: ../src/plugins/media-export/rygel-media-export-database.vala:57
+#, c-format
+msgid "Using database file %s"
+msgstr "தரவுத்தள கோப்பு %s ஐ பயன்படுத்துகிறது."
+
+#: ../src/plugins/media-export/rygel-media-export-database.vala:61
+#, c-format
+msgid "Failed to open database: %d (%s)"
+msgstr "தரவுத்தளத்தை திறப்பதில் தோல்வி: %d (%s)"
+
+#: ../src/plugins/media-export/rygel-media-export-database.vala:164
+#, c-format
+msgid "Unsupported type %s"
+msgstr "ஆதரவில்லாத வகை %s"
+
+#: ../src/plugins/media-export/rygel-media-export-database.vala:217
+#, c-format
+msgid "Failed to roll back transaction: %s"
+msgstr "பரிமாற்றத்தை நீக்கி மீள் அமைப்பதில் தோல்வி: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:109
+#, c-format
+msgid "Failed to extract metadata from %s: %s"
+msgstr "%s இலிருந்து மெட்டா தரவை பிரித்தெடுப்பதில் தோல்வி: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:156
+#: ../src/rygel/rygel-plugin-loader.vala:178
+#, c-format
+msgid "Failed to query content type for '%s'"
+msgstr "'%s' க்கு உள்ளடக்க வகையை உசாவுவதில் தோல்வி"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:240
+#, c-format
+msgid "Failed to add item with ID %s: %s"
+msgstr " %s அடையாளத்துடன் உள்ள உருப்படியை சேர்ப்பதில் தோல்வி: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:273
+#, c-format
+msgid "Object %s is not an item"
+msgstr "பொருள் %s ஒரு உருப்படி இல்லை"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:408
+#, c-format
+msgid "Original search: %s"
+msgstr "முதன்மை தேடல்: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:409
+#, c-format
+msgid "Parsed search expression: %s"
+msgstr "தேடல் தருமதிப்பை அலகிட்டது: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:37
+#, c-format
+msgid "Failed to attach to DBus session bus: %s"
+msgstr "டிபஸ் ஐ அமர்வு பஸ்ஸுக்கு ஒட்டுதல் தோல்வி: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:109
+#, c-format
+msgid "Failed to query database: %s"
+msgstr "தரவுத்தளத்தை உசாவுவதில் தோல்வி: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:142
+#, c-format
+msgid "Failed to update database: %s"
+msgstr "தரவுத்தளத்தை இற்றைப்படுத்துவதில் தோல்வி: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:178
+#, c-format
+msgid "failed to enumerate folder: %s"
+msgstr "அடைவை எண்ணுவதில் தோல்வி: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:199
+#, c-format
+msgid "Failed to get children of container %s: %s"
+msgstr "கொள்கலன் %s இன் சேய்களை பெறுவதில் தொல்வி: %s"
+
+#. 'Harvesting' here means extraction of metadata (title,
+#. codec, bitrate etc) from media files.
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:282
+#, c-format
+msgid "File %s does not need harvesting"
+msgstr "கோப்பு %s ஐ அறுவடை செய்ய வேண்டிய அவசியம் இல்லை"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:289
+#, c-format
+msgid "Failed to harvest file %s: %s"
+msgstr "கோப்பு %s ஐ அறுவடை செய்வதில் தோல்வி: %s"
+
+#. @REALNAME@ is substituted for user's real name
+#. and it doesn't need translation.
+#: ../src/plugins/media-export/rygel-media-export-plugin.vala:38
+#: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
+msgid "@REALNAME@'s media"
+msgstr "@REALNAME@ இன் ஊடகம்"
+
+#: ../src/plugins/media-export/rygel-media-export-query-container.vala:47
+msgid "ID does not contain pairs"
+msgstr "அடையாளத்தில் இரட்டைகள் இல்லை"
+
+#: ../src/plugins/media-export/rygel-media-export-query-container.vala:54
+msgid "Empty part not allowed in virtual ID"
+msgstr "மெய்நிகர் அடையாளத்தில் காலி பகுதிக்கு அனுமதி இல்லை"
+
+#: ../src/plugins/media-export/rygel-media-export-query-container.vala:60
+msgid "Placeholder can only be on second place"
+msgstr "இடப்பிடிப்பி இரண்டாம் இடத்தில் மட்டுமே இருக்க முடியும்"
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:47
+#, c-format
+msgid "Directory %s gone, removing watch"
+msgstr "அடைவு %s போய்விட்டது, கண்காணிப்பு விலக்கப்படுகிறது"
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:75
+#, c-format
+msgid "Failed to get file info for %s"
+msgstr "%s க்கு கோப்பு தகவல் பெறுதல் தோல்வியுற்றது"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:59
+msgid "Failed to create instance of database"
+msgstr "தரவுத்தளத்தின் ஒரு நிகழ்வை உருவாக்குவதில் தோல்வி"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:80
+#, c-format
+msgid "Failed to remove URI: %s"
+msgstr "யூஆர்ஐ ஐ நீக்குவதில் தோல்வி: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:95
+#: ../src/plugins/tracker/rygel-tracker-music.vala:45
+msgid "Albums"
+msgstr "ஆல்பம்கள்"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:103
+#: ../src/plugins/tracker/rygel-tracker-music.vala:38
+msgid "Artists"
+msgstr "கலைஞர்கள்"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:275
+#, c-format
+msgid "Failed to create MediaExport DBus service: %s"
+msgstr "மீடியா எக்ஸ்போர்ட் டிபஸ் சேவையை உருவாக்குவதில் தோல்வி: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:313
+#, c-format
+msgid "%s is not a valid virtual ID"
+msgstr "%s செல்லுபடியாகும் மெய்நிகர் அடையாளம் இல்லை"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:331
+#, c-format
+msgid "Got error while trying to find virtual folders: %s"
+msgstr "மெய்நிகர் கோப்புகளை தேட முயல்வதில் பிழை செய்தி கிடைத்தது: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:336
+#, c-format
+msgid "ID %s no longer in config, deleting..."
+msgstr "%s அடையாளம் இனி வடிவமைப்பில் இல்லை, நீக்குகிறது"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:340
+#, c-format
+msgid "Failed to remove entry: %s"
+msgstr "உள்ளீட்டை நீக்குதல் தோல்வி: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:349
+#, c-format
+msgid "'%s' harvested"
+msgstr "'%s' அறுவடை செய்யப்பட்டது"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:363
+msgid "No Metadata extractor available. Will not crawl"
+msgstr "மெட்டா தரவு பிரித்தெடுப்பி கிடைக்கவில்லை. ஊர்ந்துபோக இயலாது."
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:369
+msgid "Already harvesting; cancelling"
+msgstr "ஏற்கெனெவே அறுவடை நடக்கிறது; ரத்து செய்யப்படுகிறது"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:393
+#, c-format
+msgid "Trying to harvest %s because of %d"
+msgstr "%s ஐ அறுவடை செய்ய முயற்சிக்கிறது %d ஆல்"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:406
+#, c-format
+msgid "Error fetching object '%s' from database: %s"
+msgstr "தரவுத்தள கோப்பிலிருந்து பொருள் '%s' ஐ கொண்டுவருகிறது: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:430
+#, c-format
+msgid "Error removing object from database: %s"
+msgstr "தரவுத்தளத்திலிருந்து பொருள் ஐ நீக்குவதில் தோல்வி: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:41
+#, c-format
+msgid "Failed to construct URI for folder '%s': %s"
+msgstr " அடைவு '%s' க்கு யூஆர்ஐ  நிர்மாணிப்பதில் தோல்வி: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-insertion-query.vala:58
+#: ../src/plugins/tracker/rygel-tracker-selection-query.vala:71
+#, c-format
+msgid "Executing SPARQL query: %s"
+msgstr "SPARQL உசாவலை செயலாக்குகிறது: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-item-creation.vala:73
+#: ../src/rygel/rygel-media-container.vala:213
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr "%s இல் பொருள் உருவாக்கம் செய்ய அனுமதி இல்லை"
+
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:72
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:98
+#: ../src/rygel/rygel-user-config.vala:180
+#, c-format
+msgid "Failed to connect to session bus: %s"
+msgstr "அமர்வு பஸ்ஸுக்கு இணைப்பதில் தோல்வி: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:125
+#, c-format
+msgid "Error getting all values for '%s': %s"
+msgstr "`'%s' க்கான எல்லா மதிப்புகளையும் பெறுவதில் பிழை: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:34
+#, c-format
+msgid "Failed to start Tracker service: %s. Plugin disabled."
+msgstr ""
+"தட்த்தொடர்வி சேவையை துவக்குவதில் தோல்வியுற்றது: %s. சொருகி "
+"செயலிழந்துள்லது"
+
+#: ../src/plugins/tracker/rygel-tracker-plugin.vala:46
+#, c-format
+msgid "Error creating URI from %s: %s"
+msgstr "%s இலிருந்து யூஆர்:ஐ ஐ உருவாக்குவதில் பிழை: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:171
+#, c-format
+msgid "Error getting item count under category '%s': %s"
+msgstr "'%s' வகையில் உருப்படி எண்ணிக்கையை கொண்டு வருவதில் பிழை: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-years.vala:35
+msgid "Year"
+msgstr "ஆண்டு"
+
+#: ../src/rygel/rygel-media-query-action.vala:119
+#: ../src/rygel/rygel-media-query-action.vala:140
+#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:107
+#: ../src/rygel/rygel-item-creator.vala:140
+msgid "No such object"
+msgstr "அப்படி எந்த பொருளும் இல்லை"
+
+#: ../src/rygel/rygel-browse.vala:63
+msgid "Invalid Arguments"
+msgstr "செல்லாத அளவுருக்கள்"
+
+#: ../src/rygel/rygel-browse.vala:120
+#, c-format
+msgid "Failed to browse '%s': %s\n"
+msgstr "'%s' ஐ உலாவல் தோற்றது: %s\n"
+
+#: ../src/rygel/rygel-cmdline-config.vala:123
+#: ../src/rygel/rygel-cmdline-config.vala:128
+#: ../src/rygel/rygel-cmdline-config.vala:136
+#: ../src/rygel/rygel-cmdline-config.vala:144
+#: ../src/rygel/rygel-cmdline-config.vala:152
+#: ../src/rygel/rygel-cmdline-config.vala:160
+#: ../src/rygel/rygel-cmdline-config.vala:168
+#: ../src/rygel/rygel-cmdline-config.vala:176
+#: ../src/rygel/rygel-cmdline-config.vala:184
+#: ../src/rygel/rygel-cmdline-config.vala:210
+#: ../src/rygel/rygel-cmdline-config.vala:229
+#: ../src/rygel/rygel-cmdline-config.vala:253
+#: ../src/rygel/rygel-cmdline-config.vala:279
+#: ../src/rygel/rygel-cmdline-config.vala:308
+#: ../src/rygel/rygel-cmdline-config.vala:334
+#: ../src/rygel/rygel-cmdline-config.vala:359
+#: ../src/rygel/rygel-meta-config.vala:74
+#: ../src/rygel/rygel-meta-config.vala:93
+#: ../src/rygel/rygel-meta-config.vala:112
+#: ../src/rygel/rygel-meta-config.vala:131
+#: ../src/rygel/rygel-meta-config.vala:150
+#: ../src/rygel/rygel-meta-config.vala:169
+#: ../src/rygel/rygel-meta-config.vala:188
+#: ../src/rygel/rygel-meta-config.vala:207
+#: ../src/rygel/rygel-meta-config.vala:226
+msgid "No value available"
+msgstr "மதிப்பு ஏதும் இல்லை"
+
+#: ../src/rygel/rygel-connection-manager.vala:103
+msgid "Invalid connection reference"
+msgstr "செல்லுபடியாகாத இணைப்பு குறிப்பு"
+
+#: ../src/rygel/rygel-content-directory.vala:78
+#, c-format
+msgid "Failed to create HTTP server for %s: %s"
+msgstr "%s க்கு ஹெச்டிடிபி சேவையகத்தை உருவாக்குவதில் தோல்வி: %s"
+
+#: ../src/rygel/rygel-content-directory.vala:205
+#: ../src/rygel/rygel-content-directory.vala:218
+msgid "No such file transfer"
+msgstr "அப்படி ஒரு கோப்பு இட மாற்றம் இல்லை"
+
+#: ../src/rygel/rygel-av-transport.vala:205
+#: ../src/rygel/rygel-rendering-control.vala:121
+msgid "Invalid InstanceID"
+msgstr "செல்லுபடியாகாத நிகழ்வு அடையாளம்"
+
+#: ../src/rygel/rygel-av-transport.vala:378
+msgid "Play speed not supported"
+msgstr "இயக்க வேகத்துக்கு ஆதரவில்லை"
+
+#: ../src/rygel/rygel-av-transport.vala:415
+#: ../src/rygel/rygel-av-transport.vala:424
+msgid "Seek mode not supported"
+msgstr "நாடல் பாங்குக்கு ஆதரவு இல்லை"
+
+#: ../src/rygel/rygel-av-transport.vala:431
+#: ../src/rygel/rygel-av-transport.vala:435
+msgid "Transition not available"
+msgstr "நிலை மாற்றம் கிடைக்கவில்லை"
+
+#: ../src/rygel/rygel-rendering-control.vala:152
+msgid "Invalid Name"
+msgstr "செல்லுபடியாகாத பெயர்"
+
+#: ../src/rygel/rygel-rendering-control.vala:166
+#: ../src/rygel/rygel-rendering-control.vala:237
+msgid "Action Failed"
+msgstr "செயல் தோல்வியுற்றது"
+
+#: ../src/rygel/rygel-didl-lite-writer.vala:48
+msgid "Unable to serialize unsupported object"
+msgstr "ஆதரவில்லாத பொருளை வரிசைப்படுத்த முடியவில்லை"
+
+#: ../src/rygel/rygel-gst-utils.vala:38
+#, c-format
+msgid "Required element %s missing"
+msgstr "தேவையான மூலங்கள் %s காணவில்லை"
+
+#: ../src/rygel/rygel-http-byte-seek.vala:43
+#: ../src/rygel/rygel-http-byte-seek.vala:49
+#: ../src/rygel/rygel-http-byte-seek.vala:58
+#: ../src/rygel/rygel-http-byte-seek.vala:68
+#: ../src/rygel/rygel-http-byte-seek.vala:72
+#: ../src/rygel/rygel-http-time-seek.vala:50
+#: ../src/rygel/rygel-http-time-seek.vala:59
+#: ../src/rygel/rygel-http-time-seek.vala:69
+#: ../src/rygel/rygel-http-time-seek.vala:73
+#, c-format
+msgid "Invalid Range '%s'"
+msgstr " செல்லுபடியாகாத வீச்சு '%s'"
+
+#: ../src/rygel/rygel-http-get.vala:61
+msgid "Invalid Request"
+msgstr "செல்லுபடியாகாத வேண்டுதல்"
+
+#: ../src/rygel/rygel-http-get.vala:98
+msgid "Following HTTP headers appended to response:"
+msgstr "பதிலில் பின் வரும் ஹெச்டிடிபி தலைப்புகள் சேர்க்கப்பட்டன:"
+
+#: ../src/rygel/rygel-http-identity-handler.vala:97
+#: ../src/rygel/rygel-http-transcode-handler.vala:56
+msgid "Not found"
+msgstr "காணவில்லை"
+
+#: ../src/rygel/rygel-http-identity-handler.vala:109
+#, c-format
+msgid "Item '%s' didn't provide a URI"
+msgstr "உருப்படி '%s' ஒரு யுஆர்ஐ யை தரவில்லை"
+
+#: ../src/rygel/rygel-http-item-uri.vala:58
+#, c-format
+msgid "Invalid URI '%s'"
+msgstr "செல்லுபடியாகாத யூஆர்ஐ '%s'"
+
+#: ../src/rygel/rygel-http-item-uri.vala:89
+msgid "Not Found"
+msgstr "காணவில்லை"
+
+#: ../src/rygel/rygel-http-post.vala:53
+#, c-format
+msgid "No writable URI for %s available"
+msgstr " %s க்கு எழுதக்கூடிய யூஆர்ஐ ஏதும் கிடக்கவில்லை"
+
+#: ../src/rygel/rygel-http-request.vala:81
+#, c-format
+msgid "Requested item '%s' not found"
+msgstr "வேண்டிய உருப்படி '%s' காணவில்லை"
+
+#: ../src/rygel/rygel-http-server.vala:180
+#, c-format
+msgid "HTTP %s request for URI '%s' handled."
+msgstr "'%s' யூஆர்ஐ க்கு ஹெச்டிடிபி %s வேண்டுதல் கையாளப்பட்டது"
+
+#: ../src/rygel/rygel-http-server.vala:190
+#, c-format
+msgid "HTTP %s request for URI '%s'. Headers:"
+msgstr "'%s' யூஆர்ஐ க்கு ஹெச்டிடிபி %s வேண்டுதல். தலைப்புகள்:"
+
+#: ../src/rygel/rygel-http-server.vala:206
+#, c-format
+msgid "HTTP client aborted %s request for URI '%s'."
+msgstr "ஹெச்டிடிபி சார்ந்தோன் '%s' யூஆர்ஐ க்கு %s வேண்டுதல் ஐ  கைவிட்டது"
+
+#: ../src/rygel/rygel-http-server.vala:224
+#, c-format
+msgid "HTTP POST request for URI '%s'"
+msgstr "'%s' யூஆர்ஐ க்கு HTTP POST வேண்டுதல்"
+
+#: ../src/rygel/rygel-import-resource.vala:108
+#, c-format
+msgid "Failed to get original URI for '%s': %s"
+msgstr " '%s' க்கு மூல யூஆர்ஐ பெறுதல் தோல்வியுற்றது: %s"
+
+#: ../src/rygel/rygel-import-resource.vala:138
+#, c-format
+msgid "Import of '%s' to '%s' completed"
+msgstr " '%s' ஐ '%s' க்கு இறக்குமதி செய்தல் தோல்வியுற்றது"
+
+#: ../src/rygel/rygel-item-creator.vala:67
+#, c-format
+msgid "No items in DIDL-Lite from client: '%s'"
+msgstr " DIDL-Lite இல் சார்ந்தோனிடமிருந்து ஒரு உருப்படியும் இல்லை: '%s'"
+
+#: ../src/rygel/rygel-item-creator.vala:98
+msgid "'Elements' argument missing."
+msgstr "'மூலங்கள்' தருமதிப்பு காணவில்லை"
+
+#: ../src/rygel/rygel-item-creator.vala:101
+msgid "Comments not allowed in XML"
+msgstr "எக்ஸ்எம்எல் இல் விமர்சனங்களுக்கு அனுமதி இல்லை"
+
+#: ../src/rygel/rygel-item-creator.vala:165
+#, c-format
+msgid "Failed to create item under '%s': %s"
+msgstr "'%s' இன் கீழ் உருப்படியை உருவாக்குதல் தோல்வி: %s"
+
+#: ../src/rygel/rygel-l16-transcoder-bin.vala:66
+#: ../src/rygel/rygel-live-response.vala:150
+#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:109
+#: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
+#: ../src/rygel/rygel-wma-transcoder-bin.vala:58
+#: ../src/rygel/rygel-wmv-transcoder-bin.vala:107
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr "பாட் %s ஐ %s க்கு இணைப்பதில் தோல்வி"
+
+#. 'fakesink' should not be translated
+#: ../src/rygel/rygel-live-response.vala:92
+msgid "Plugin 'fakesink' missing"
+msgstr "'பேக்சிங்க்' சொருகியை காணவில்லை"
+
+#: ../src/rygel/rygel-live-response.vala:115
+#: ../src/rygel/rygel-live-response.vala:137
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr "%s ஐ %s க்கு இணைப்பதில் தோல்வி"
+
+#: ../src/rygel/rygel-live-response.vala:225
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr "%s குழாய் இலிருந்து பிழை: %s"
+
+#: ../src/rygel/rygel-live-response.vala:232
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr "குழாய் %s இலிருந்ஹ்டு எச்சரிக்கை: %s"
+
+#: ../src/rygel/rygel-live-response.vala:266
+#, c-format
+msgid "Failed to seek to offset %lld"
+msgstr "%lld ஐ சமாளிக்க முயற்சி தோல்வி"
+
+#: ../src/rygel/rygel-log-handler.vala:62
+#, c-format
+msgid "Failed to get log level from configuration: %s"
+msgstr "வடிவமைப்பிலிருந்து பதிவு மட்டத்தை பெறல் தோல்வி: %s"
+
+#: ../src/rygel/rygel-main.vala:80
+#, c-format
+msgid "No plugins found in %d seconds, giving up.."
+msgstr "%d வினாடிகளில் சொருகியை கண்டுபிடிக்க முடியவில்லை, கைவிடுகிறது.."
+
+#: ../src/rygel/rygel-main.vala:121
+#, c-format
+msgid "new network context %s (%s) available."
+msgstr "புதிய வலைஅமைப்பு சூழல் %s (%s) கிடப்பில் உள்ளது"
+
+#: ../src/rygel/rygel-main.vala:139
+#, c-format
+msgid "Failed to create root device factory: %s"
+msgstr "மூல சாதன தொழிற்சாலையை உருவாக்குதல் தோல்வி: %s"
+
+#: ../src/rygel/rygel-main.vala:143
+#, c-format
+msgid "Ignoring network context %s (%s)."
+msgstr " புதிய வலைஅமைப்பு சூழல் %s (%s) ஐ உதாசீனம் செய்கிறது"
+
+#: ../src/rygel/rygel-main.vala:151
+#, c-format
+msgid "Network context %s (%s) now unavailable."
+msgstr "வலைஅமைப்பு சூழல் %s (%s) இப்போது கிடைக்கவில்லை"
+
+#: ../src/rygel/rygel-main.vala:190
+#, c-format
+msgid "Failed to create RootDevice for %s. Reason: %s"
+msgstr " %s க்கு மூல சாதனம் உருவாக்க முடியவில்லை. காரணம்: %s"
+
+#: ../src/rygel/rygel-main.vala:224
+#, c-format
+msgid "Failed to start D-Bus service: %s"
+msgstr "டிபஸ் சேவையை துவக்குவதில் தோல்வி: %s"
+
+#: ../src/rygel/rygel-media-item.vala:287
+#, c-format
+msgid "Bad URI: %s"
+msgstr "மோசமான யூஆர்ஐ: %s"
+
+#. Assume the protocol to be the scheme of the URI
+#: ../src/rygel/rygel-media-item.vala:299
+#, c-format
+msgid "Failed to probe protocol for URI %s. Assuming '%s'"
+msgstr ""
+"%s யூஆர்ஐ க்கு நடைமுறையை காணல் தோல்வியுற்றது. '%s' என கொள்ளப்படுகிறது"
+
+#: ../src/rygel/rygel-meta-config.vala:57
+#, c-format
+msgid "Failed to load user configuration: %s"
+msgstr "பயனர் வடிவமைப்பை ஏற்றுவதில் தோல்வி: %s"
+
+#: ../src/rygel/rygel-meta-config.vala:265
+#: ../src/rygel/rygel-meta-config.vala:284
+#, c-format
+msgid "No value set for '%s/enabled'"
+msgstr "'%s/enabled' க்கு மதிப்பு ஏதும் தரப்படவில்லை"
+
+#: ../src/rygel/rygel-meta-config.vala:304
+#: ../src/rygel/rygel-meta-config.vala:326
+#: ../src/rygel/rygel-meta-config.vala:352
+#: ../src/rygel/rygel-meta-config.vala:374
+#: ../src/rygel/rygel-meta-config.vala:398
+#, c-format
+msgid "No value available for '%s/%s'"
+msgstr "'%s/%s' மதிப்பு ஏதும் தரப்படவில்லை"
+
+#: ../src/rygel/rygel-plugin-loader.vala:71
+#, c-format
+msgid "New plugin '%s' available"
+msgstr "புதிய சொருகி '%s' கிடைக்கிறது."
+
+#: ../src/rygel/rygel-plugin-loader.vala:75
+#, c-format
+msgid "Plugin '%s' disabled in user configuration, ignoring.."
+msgstr ""
+"சொருகி '%s' பயனர் வடிவமைப்பில் செயல்நீக்கப்பட்டது, உதாசீனம் "
+"செய்யப்படுகிறது"
+
+#: ../src/rygel/rygel-plugin-loader.vala:89
+#, c-format
+msgid "Searching for modules in folder '%s' .."
+msgstr "'%s' அடைவில் கூறுகளை தேடுகிறது .."
+
+#: ../src/rygel/rygel-plugin-loader.vala:109
+#, c-format
+msgid "Error listing contents of folder '%s': %s"
+msgstr "'%s' அடைவில் உள்ளடக்கங்களை பட்டியலிடுவதில் பிழை: %s"
+
+#: ../src/rygel/rygel-plugin-loader.vala:134
+#, c-format
+msgid "Finished searching for modules in folder '%s'"
+msgstr "'%s' அடைவில் கூறுகளை தேடுதல் முடிந்தது"
+
+#: ../src/rygel/rygel-plugin-loader.vala:141
+#, c-format
+msgid "Failed to load module from path '%s' : %s"
+msgstr "பாதை '%s' யிலிருந்து கூற்றை ஏறுவதில் பிழை : %s"
+
+#: ../src/rygel/rygel-plugin-loader.vala:151
+#, c-format
+msgid "Failed to find entry point function '%s' in '%s': %s"
+msgstr "உள் நுழை பங்க்ஷன் '%s' ஐ  '%s' இல் கண்டுபிடிக்க முடியவில்லை: %s"
+
+#: ../src/rygel/rygel-plugin-loader.vala:167
+#, c-format
+msgid "Loaded module source: '%s'"
+msgstr "கூற்று மூலத்தை ஏற்றியது: '%s'"
+
+#: ../src/rygel/rygel-root-device-factory.vala:112
+#: ../src/rygel/rygel-root-device-factory.vala:145
+#: ../src/rygel/rygel-root-device-factory.vala:167
+#: ../src/rygel/rygel-root-device-factory.vala:186
+#: ../src/rygel/rygel-root-device-factory.vala:201
+#, c-format
+msgid "XML node '%s' not found."
+msgstr "எக்ஸ்எம்எல் நோட்  '%s' ஐ காணவில்லை"
+
+#: ../src/rygel/rygel-root-device-factory.vala:244
+#, c-format
+msgid "No icon provided by plugin '%s'. Using Rygel logo.."
+msgstr ""
+"சொருகி '%s' எந்த சின்னத்தையும் தரவில்லை. ரைகல் சின்னத்தை "
+"பயன்படுத்துகிறது.."
+
+#: ../src/rygel/rygel-root-device-factory.vala:307
+#, c-format
+msgid "Failed to write modified description to %s"
+msgstr "%s க்கு மாற்றிய விவரத்தை எழுதுகிறது"
+
+#: ../src/rygel/rygel-search.vala:54
+#, c-format
+msgid "Executing search request: %s"
+msgstr "தேடல் வேண்டுதலை செயலாக்குகிறது: %s"
+
+#: ../src/rygel/rygel-search.vala:74
+msgid "No object satisfies given search criteria."
+msgstr "தெடல் தருமதிப்பில் எந்த பொருளும் பொருந்தவில்லை"
+
+#: ../src/rygel/rygel-search.vala:83
+#, c-format
+msgid "Failed to search in '%s': %s"
+msgstr "'%s' இல் தேட முடியவில்லை: %s"
+
+#: ../src/rygel/rygel-seekable-response.vala:62
+#, c-format
+msgid "Failed to read from URI: %s: %s"
+msgstr "யூஆர்ஐ யிலிருந்து படிக்க முடியவில்லை: %s: %s"
+
+#. Failed to seek to media segment (defined by first and last
+#. byte positions).
+#: ../src/rygel/rygel-seekable-response.vala:81
+#, c-format
+msgid "Failed to seek to %s-%s on URI %s: %s"
+msgstr " இதை நாடல் தோற்றது %s-%s யூஆர்ஐ %sஇல்: %s"
+
+#: ../src/rygel/rygel-seekable-response.vala:100
+#, c-format
+msgid "Failed to read contents from URI: %s: %s"
+msgstr "யூஆர்ஐ யிலிருந்து உள்ளடக்கங்களை படிக்க முடியவில்லை: %s: %s"
+
+#: ../src/rygel/rygel-seekable-response.vala:154
+#, c-format
+msgid "Failed to close stream to URI %s: %s"
+msgstr "யூஆர்ஐ %s க்கு ஓடையை மூடுதல் தோல்வி: %s"
+
+#: ../src/rygel/rygel-subtitle-manager.vala:66
+msgid "No subtitle available"
+msgstr "துணைத் தலைப்புகள் கிடைக்கவில்லை"
+
+#: ../src/rygel/rygel-thumbnailer.vala:56
+msgid "Failed to find thumbnails folder."
+msgstr "சிறுபடங்கள் அடைவை காண முடியவில்லை"
+
+#: ../src/rygel/rygel-thumbnailer.vala:82
+#, c-format
+msgid "No thumbnailer available: %s"
+msgstr "சிறுபடங்கள் உருவாக்கி கிடைக்கவில்லை: %s"
+
+#: ../src/rygel/rygel-thumbnailer.vala:106
+msgid "No thumbnail available"
+msgstr "சிறுபடம் ஏதும் கிடைக்கவில்லை"
+
+#: ../src/rygel/rygel-transcode-manager.vala:92
+#, c-format
+msgid "No transcoder available for target format '%s'"
+msgstr "இடை குறிமற்றி எதுவும் இலக்கு ஒழுங்கு '%s' க்கு கிடைக்கவில்லை"
+
+#: ../src/rygel/rygel-user-config.vala:166
+#, c-format
+msgid "Loaded user configuration from file '%s'"
+msgstr "கோப்பு '%s' யிலிருந்து பயனர் வடிவமைப்பு ஏற்றப்பட்டது "
+
+#: ../src/rygel/rygel-user-config.vala:197
+#, c-format
+msgid "Failed to save configuration data to file '%s': %s"
+msgstr "வடிவமைப்பு தரவை கோப்பு '%s' க்கு சேமித்தல் தோல்வி: %s"
+
+#: ../src/rygel/rygel-user-config.vala:217
+#, c-format
+msgid "No value available for '%s'"
+msgstr "'%s' க்கு மதிப்பு ஏதும் இல்லை"
+
+#: ../src/rygel/rygel-user-config.vala:246
+#, c-format
+msgid "Value of '%s' out of range"
+msgstr "'%s' இன் மதிப்பு வீச்சை தாண்டி உள்ளது"
+
+#. Failed to start/stop Rygel service
+#: ../src/rygel/rygel-user-config.vala:348
+#, c-format
+msgid "Failed to %s Rygel service: %s"
+msgstr "ரைஜல் சேவையை %s செய்யமுடியவில்லை: %s"
+
+#: ../src/rygel/rygel-xbox-hacks.vala:42
+msgid "Not Applicable"
+msgstr "பொருந்தாது"
+
+#: ../src/rygel/rygel-xbox-hacks.vala:153
+#, c-format
+msgid "Failed to write modified description to %s."
+msgstr "%s க்கு மாற்றிய விவரத்தை எழுதுவது தோல்வி."
+
+#: ../src/rygel/rygel-changelog.vala:68
+msgid "Setting up timeout for LastChange"
+msgstr "லாஸ்ட்சேஞ்ச் க்கு வடிவமைப்பு நேரம் காலாவதியானது"
+
+#: ../src/ui/rygel-preferences-dialog.vala:72
+#, c-format
+msgid "Failed to create preferences dialog: %s"
+msgstr "விருப்பத்தேர்வுகளை உருவாக்குதல்; தோல்வி: %s"
+
+
