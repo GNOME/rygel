@@ -23,28 +23,11 @@
 using Gee;
 
 public class Rygel.Tracker.Plugin : Rygel.MediaServerPlugin {
-    // class-wide constants
-    private const string ICON = BuildConfig.DATA_DIR + // Path
-                                "/icons/hicolor/48x48/apps/tracker.png";
-
     public Plugin () {
         base ("Tracker",
               // @REALNAME@ is substituted for user's real name
               // and it doesn't need translation.
               _("@REALNAME@'s media"));
-
-        var icon_info = new IconInfo ("image/png", "png");
-
-        try {
-            icon_info.uri = Filename.to_uri (ICON, null);
-            icon_info.width = 48;
-            icon_info.height = 48;
-            icon_info.depth = 24;
-
-            this.add_icon (icon_info);
-        } catch (ConvertError err) {
-            warning (_("Error creating URI from %s: %s"), ICON, err.message);
-        }
     }
 
     public override MediaContainer? get_root_container (GUPnP.Context context) {
