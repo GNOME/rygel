@@ -24,7 +24,6 @@ src/plugins/playbin/rygel-playbin-player.vala
 src/plugins/playbin/rygel-playbin-plugin.vala
 src/plugins/media-export/rygel-media-export-database.vala
 src/plugins/media-export/rygel-media-export-db-container.vala
-src/plugins/media-export/rygel-media-export-db-object-factory.vala
 src/plugins/media-export/rygel-media-export-metadata-extractor.vala
 src/plugins/media-export/rygel-media-export-media-cache.vala
 src/plugins/media-export/rygel-media-export-dbus-service.vala
