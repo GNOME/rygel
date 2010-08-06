@@ -77,11 +77,17 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
         base (request.msg, start, stop, total_length);
     }
 
-    public static bool needed (HTTPGet request) {
-        return (request.item.size > 0 &&
-                request.handler is HTTPIdentityHandler) ||
-               (request.thumbnail != null && request.thumbnail.size > 0) ||
-               (request.subtitle != null && request.subtitle.size > 0);
+    public static bool needed (HTTPGet request) throws HTTPRequestError {
+        var needed = (request.item.size > 0 &&
+                      request.handler is HTTPIdentityHandler) ||
+                     (request.thumbnail != null && request.thumbnail.size > 0) ||
+                     (request.subtitle != null && request.subtitle.size > 0);
+
+        if (!needed && request.msg.request_headers.get ("Range") != null) {
+            throw new HTTPRequestError.UNACCEPTABLE ("Invalid seek request");
+        }
+
+        return needed;
     }
 
     public override void add_response_headers () {

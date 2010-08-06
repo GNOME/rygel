@@ -78,12 +78,19 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
         base (request.msg, start, stop, duration);
     }
 
-    public static bool needed (HTTPGet request) {
-        return request.item.duration > 0 &&
-               (request.handler is HTTPTranscodeHandler ||
-                (request.thumbnail == null &&
-                 request.subtitle == null &&
-                 request.item.should_stream ()));
+    public static bool needed (HTTPGet request) throws HTTPRequestError {
+        var needed = request.item.duration > 0 &&
+                     (request.handler is HTTPTranscodeHandler ||
+                      (request.thumbnail == null &&
+                       request.subtitle == null &&
+                       request.item.should_stream ()));
+
+        if (!needed &&
+            request.msg.request_headers.get ("TimeSeekRange.dlna.org") != null) {
+            throw new HTTPRequestError.UNACCEPTABLE ("Invalid seek request");
+        }
+
+        return needed;
     }
 
     public override void add_response_headers () {
