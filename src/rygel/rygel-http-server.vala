@@ -163,13 +163,13 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     }
 
     internal override string get_protocol_info () {
-        var protocol_info = this.get_protocol () + ":*:*:*";
-        var base_info = base.get_protocol_info ();
+        var protocol_info = base.get_protocol_info ();
 
-        if (base_info != "")
-            protocol_info += "," + base_info;
+        if (protocol_info != "") {
+            protocol_info += ",";
+        }
 
-        return protocol_info;
+        return protocol_info += this.get_protocol () + ":*:*:*";
     }
 
     private void on_request_completed (StateMachine machine) {
