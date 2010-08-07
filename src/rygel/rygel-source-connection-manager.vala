@@ -30,6 +30,10 @@ internal class Rygel.SourceConnectionManager : Rygel.ConnectionManager {
     public override void constructed () {
         base.constructed ();
 
+        this.rcs_id = -1;
+        this.av_transport_id = -1;
+        this.direction = "Output";
+
         var server = this.get_http_server ();
         this.source_protocol_info = server.get_protocol_info ();
     }

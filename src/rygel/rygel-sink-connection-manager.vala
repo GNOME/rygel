@@ -29,6 +29,10 @@ internal class Rygel.SinkConnectionManager : Rygel.ConnectionManager {
     public override void constructed () {
         base.constructed ();
 
+        this.rcs_id = 0;
+        this.av_transport_id = 0;
+        this.direction = "Input";
+
         var plugin = this.root_device.resource_factory as MediaRendererPlugin;
         this.player = plugin.get_player ();
 

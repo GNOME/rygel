@@ -38,6 +38,10 @@ internal class Rygel.ConnectionManager : Service {
     protected string connection_ids;
     protected string source_protocol_info;
 
+    protected int rcs_id;
+    protected int av_transport_id;
+    protected string direction;
+
     public override void constructed () {
         this.sink_protocol_info   = "";
         this.source_protocol_info = "";
@@ -105,13 +109,27 @@ internal class Rygel.ConnectionManager : Service {
             return;
         }
 
-        action.set ("RcsID",                 typeof (int),    -1,
-                    "AVTransportID",         typeof (int),    -1,
-                    "ProtocolInfo",          typeof (string), "",
-                    "PeerConnectionManager", typeof (string), "",
-                    "PeerConnectionID",      typeof (int),    -1,
-                    "Direction",             typeof (string), "Input",
-                    "Status",                typeof (string), "Unknown");
+        action.set ("RcsID",
+                        typeof (int),
+                        this.rcs_id,
+                    "AVTransportID",
+                        typeof (int),
+                        this.av_transport_id,
+                    "ProtocolInfo",
+                        typeof (string),
+                        "",
+                    "PeerConnectionManager",
+                        typeof (string),
+                        "",
+                    "PeerConnectionID",
+                        typeof (int),
+                        -1,
+                    "Direction",
+                        typeof (string),
+                        this.direction,
+                    "Status",
+                        typeof (string),
+                        "OK");
 
         action.return ();
     }
