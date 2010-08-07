@@ -59,8 +59,8 @@ public class Rygel.Tracker.ItemCreation : GLib.Object, Rygel.StateMachine {
                                      Priority.DEFAULT,
                                      cancellable);
 
-            this.item.id = container.create_child_id_for_urn (urn);
-            this.item.parent = container;
+            this.item.id = this.container.create_child_id_for_urn (urn);
+            this.item.parent = this.container;
         } catch (GLib.Error error) {
             this.error = error;
         }
