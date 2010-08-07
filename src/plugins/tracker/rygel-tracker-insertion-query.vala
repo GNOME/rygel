@@ -60,6 +60,8 @@ public class Rygel.Tracker.InsertionQuery : Query {
         var result = yield resources.sparql_update_blank (str);
 
         this.id = result[0,0].lookup (TEMP_ID);
+
+        debug ("Created item in Tracker store with ID '%s'", this.id);
     }
 
     public override string to_string () {
