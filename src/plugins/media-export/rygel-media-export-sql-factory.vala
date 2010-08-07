@@ -152,7 +152,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "SELECT DISTINCT %s FROM meta_data AS m " +
         "WHERE %s IS NOT NULL %s ORDER BY %s LIMIT ?,?";
 
-    internal const string schema_version = "8";
+    internal const string schema_version = "9";
     internal const string CREATE_META_DATA_TABLE_STRING =
     "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
                             "mime_type TEXT NOT NULL, " +
@@ -196,6 +196,10 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "CREATE TRIGGER trgr_update_closure " +
     "AFTER INSERT ON Object " +
     "FOR EACH ROW BEGIN " +
+        "SELECT RAISE(IGNORE) WHERE (SELECT COUNT(*) FROM Closure " +
+            "WHERE ancestor = NEW.upnp_id " +
+                  "AND descendant = NEW.upnp_id " +
+                  "AND depth = 0) != 0;" +
         "INSERT INTO Closure (ancestor, descendant, depth) " +
             "VALUES (NEW.upnp_id, NEW.upnp_id, 0); " +
         "INSERT INTO Closure (ancestor, descendant, depth) " +

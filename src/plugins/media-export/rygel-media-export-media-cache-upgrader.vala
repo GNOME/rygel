@@ -106,6 +106,9 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                     case 7:
                         update_v7_v8 ();
                         break;
+                    case 8:
+                        update_v8_v9 ();
+                        break;
                     default:
                         warning ("Cannot upgrade");
                         database = null;
@@ -249,5 +252,26 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
         }
     }
 
-
+    private void update_v8_v9 () {
+        try {
+            this.database.begin ();
+            this.database.exec ("DROP TRIGGER trgr_update_closure");
+            this.database.exec ("DROP TRIGGER trgr_delete_closure");
+            this.database.exec ("ALTER TABLE Closure RENAME TO _Closure");
+            this.database.exec (this.sql.make (SQLString.TABLE_CLOSURE));
+            this.database.exec ("INSERT INTO Closure (ancestor, " +
+                                "descendant, depth) SELECT DISTINCT " +
+                                "ancestor, descendant, depth FROM " +
+                                "_Closure");
+            this.database.exec (this.sql.make (SQLString.TRIGGER_CLOSURE));
+            this.database.exec ("DROP TABLE _Closure");
+            this.database.exec ("UPDATE schema_info SET version = '9'");
+            this.database.commit ();
+            this.database.exec ("VACUUM");
+        } catch (DatabaseError error) {
+            database.rollback ();
+            warning ("Database upgrade failed: %s", error.message);
+            database = null;
+        }
+    }
 }
