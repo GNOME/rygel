@@ -44,9 +44,6 @@ internal class Rygel.HTTPPost : HTTPRequest {
         this.msg.got_chunk.connect (this.on_got_chunk);
         this.msg.got_body.connect (this.on_got_body);
 
-        this.server.pause_message (this.msg);
-        yield base.handle ();
-
         this.file = yield this.item.get_writable (this.cancellable);
         if (this.file == null) {
             throw new HTTPRequestError.BAD_REQUEST (

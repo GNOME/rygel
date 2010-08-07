@@ -54,7 +54,14 @@ internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     }
 
     public async void run () {
+        this.server.pause_message (this.msg);
+
         try {
+            this.uri = new HTTPItemURI.from_string (this.msg.uri.path,
+                                                    this.http_server);
+
+            yield this.find_item ();
+
             yield this.handle ();
         } catch (Error error) {
             this.handle_error (error);
@@ -63,12 +70,7 @@ internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         }
     }
 
-    protected virtual async void handle () throws Error {
-        this.uri = new HTTPItemURI.from_string (this.msg.uri.path,
-                                                this.http_server);
-
-        yield this.find_item ();
-    }
+    protected abstract async void handle () throws Error;
 
     protected virtual async void find_item () throws Error {
         // Fetch the requested item

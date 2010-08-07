@@ -48,10 +48,6 @@ internal class Rygel.HTTPGet : HTTPRequest {
     }
 
     protected override async void handle () throws Error {
-        this.server.pause_message (this.msg);
-
-        yield base.handle ();
-
         var header = this.msg.request_headers.get (
                                         "getcontentFeatures.dlna.org");
 
