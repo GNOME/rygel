@@ -187,6 +187,11 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                                  string                    server_path,
                                  HashTable<string,string>? query,
                                  Soup.ClientContext        soup_client) {
+        if (msg.method == "POST") {
+            // Already handled
+            return;
+        }
+
         debug (_("HTTP %s request for URI '%s'. Headers:"),
                msg.method,
                msg.get_uri ().to_string (false));
