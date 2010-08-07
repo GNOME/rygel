@@ -258,10 +258,13 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
                 char[] datestr = new char[30];
                 date.strftime (datestr, "%F");
                 this.date = (string) datestr;
-            } else {
-                TimeVal tv = { (long) mtime, 0 };
-                this.date = tv.to_iso8601 ();
             }
+        }
+
+        // use mtime if no time tag was available
+        if (this.date == null) {
+            TimeVal tv = { (long) mtime, 0 };
+            this.date = tv.to_iso8601 ();
         }
 
         this.size = (long) size;
