@@ -83,7 +83,10 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
                      (request.thumbnail != null && request.thumbnail.size > 0) ||
                      (request.subtitle != null && request.subtitle.size > 0);
 
-        if (!needed && request.msg.request_headers.get ("Range") != null) {
+        var range = request.msg.request_headers.get ("Range");
+        var agent = request.msg.request_headers.get ("User-Agent");
+
+        if (!needed && range != null && agent != "PLAYSTATION 3") {
             throw new HTTPRequestError.UNACCEPTABLE ("Invalid seek request");
         }
 
