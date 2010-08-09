@@ -51,7 +51,7 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
 
         base (get_id (file), parent, title, upnp_class);
         this.mime_type = mime;
-        this.size = (long) size;
+        this.size = (int64) size;
         this.modified = mtime;
         this.add_uri (file.get_uri (), null);
     }
@@ -267,7 +267,7 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
             this.date = tv.to_iso8601 ();
         }
 
-        this.size = (long) size;
+        this.size = (int64) size;
         this.modified = (int64) mtime;
 
         if (dlna_info.name != null) {

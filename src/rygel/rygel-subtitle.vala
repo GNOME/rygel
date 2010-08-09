@@ -32,7 +32,7 @@ public class Rygel.Subtitle {
     public string mime_type;
     public string caption_type;
 
-    public long size = -1;   // Size in bytes
+    public int64 size = -1;   // Size in bytes
 
     public Subtitle (string mime_type = "text/plain",
                      string caption_type = "srt") {

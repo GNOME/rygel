@@ -537,7 +537,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         item.mime_type = statement.column_text (DetailColumn.MIME_TYPE);
         item.duration = (long) statement.column_int64 (DetailColumn.DURATION);
 
-        item.size = (long) statement.column_int64 (DetailColumn.SIZE);
+        item.size = statement.column_int64 (DetailColumn.SIZE);
         item.bitrate = statement.column_int (DetailColumn.BITRATE);
 
         item.sample_freq = statement.column_int (DetailColumn.SAMPLE_FREQ);

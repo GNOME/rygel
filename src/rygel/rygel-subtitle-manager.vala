@@ -68,7 +68,7 @@ internal class Rygel.SubtitleManager : GLib.Object {
 
         var subtitle = new Subtitle ();
         subtitle.uri = srt_file.get_uri ();
-        subtitle.size = (long) info.get_attribute_uint64 (
+        subtitle.size = (int64) info.get_attribute_uint64 (
                                         FILE_ATTRIBUTE_STANDARD_SIZE);
 
         return subtitle;

@@ -36,7 +36,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
 
     private HTTPSeek time_range;
 
-    private size_t buffered;
+    private int64 buffered;
     private bool out_of_sync;
 
     public LiveResponse (Soup.Server  server,
@@ -169,7 +169,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
                 return false;
             }
 
-            this.push_data (buffer.data, buffer.size);
+            this.push_data (buffer.data, (size_t) buffer.size);
             this.buffered++;
 
             if (this.buffered > MAX_BUFFERED_CHUNKS) {

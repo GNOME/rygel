@@ -40,7 +40,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
                              Soup.Message msg,
                              string       uri,
                              HTTPSeek     seek,
-                             size_t       file_length,
+                             int64        file_length,
                              Cancellable? cancellable) {
         var partial = seek.length < file_length;
 

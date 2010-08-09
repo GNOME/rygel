@@ -80,7 +80,7 @@ public abstract class Rygel.Tracker.ItemFactory {
             item.title = metadata[Metadata.FILE_NAME];
 
         if (metadata[Metadata.SIZE] != "")
-            item.size = metadata[Metadata.SIZE].to_int ();
+            item.size = metadata[Metadata.SIZE].to_int64 ();
 
         if (metadata[Metadata.DATE] != "")
             item.date = metadata[Metadata.DATE];

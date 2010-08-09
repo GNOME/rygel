@@ -41,7 +41,7 @@ public class Rygel.Thumbnail : Rygel.IconInfo {
         var res = didl_item.add_resource ();
 
         res.uri = this.uri;
-        res.size = this.size;
+        res.size64 = this.size;
 
         res.width = this.width;
         res.height = this.height;

@@ -47,9 +47,9 @@ public class Rygel.MediaItem : MediaObject {
     public string mime_type;
     public string dlna_profile;
 
-    public long size = -1;       // Size in bytes
-    public long duration = -1;   // Duration in seconds
-    public int bitrate = -1;     // Bytes/second
+    public int64 size = -1;     // Size in bytes
+    public long duration = -1;  // Duration in seconds
+    public int bitrate = -1;    // Bytes/second
 
     // Audio/Music
     public int sample_freq = -1;
@@ -220,7 +220,7 @@ public class Rygel.MediaItem : MediaObject {
             res.import_uri = import_uri;
         }
 
-        res.size = this.size;
+        res.size64 = this.size;
         res.duration = this.duration;
         res.bitrate = this.bitrate;
 

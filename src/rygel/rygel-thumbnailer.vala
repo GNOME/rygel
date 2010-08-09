@@ -111,7 +111,7 @@ internal class Rygel.Thumbnailer : GLib.Object {
         thumbnail.height = this.template.height;
         thumbnail.depth = this.template.depth;
         thumbnail.uri = Filename.to_uri (full_path, null);
-        thumbnail.size = (long) info.get_attribute_uint64 (
+        thumbnail.size = (int64) info.get_attribute_uint64 (
                                         FILE_ATTRIBUTE_STANDARD_SIZE);
 
         return thumbnail;

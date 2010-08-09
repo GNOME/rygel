@@ -78,7 +78,7 @@ public class Rygel.External.ItemFactory {
 
         value = props.lookup ("Size");
         if (value != null) {
-            item.size = value.get_int ();
+            item.size = value.get_int64 ();
         }
 
         value = props.lookup ("Artist");
