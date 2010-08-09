@@ -34,7 +34,7 @@ data/rygel-preferences.desktop
 data/rygel.conf
 data/rygel.desktop
 libtool
-m4
+m4/intltool.m4
 m4/libtool.m4
 m4/lt~obsolete.m4
 m4/ltoptions.m4
