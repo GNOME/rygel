@@ -226,8 +226,6 @@ public class Rygel.Main : Object {
             return 0;
         } catch (GLib.Error err) {
             error ("%s", err.message);
-
-            return -1;
         }
 
         int exit_code = main.run ();
