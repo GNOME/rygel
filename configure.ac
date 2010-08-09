@@ -105,49 +105,19 @@ if test x$enable_vala = xyes ; then
     fi
 
     PKG_CHECK_MODULES(GUPNP_VALA, gupnp-vala-1.0 >= $GUPNP_VALA_REQUIRED)
-    VAPIDIR=`pkg-config --variable=vapidir vala-0.10`
 
-    # FIXME: Whats the proper way for checking for particular Vala bindings
-    AC_CHECK_FILE("${VAPIDIR}/gupnp-1.0.vapi",
-                  true,
-                  [AC_MSG_ERROR("Unable to find Vala bindings for gupnp-1.0")])
-
-    AC_CHECK_FILE("${VAPIDIR}/gupnp-av-1.0.vapi",
-                  true,
-                  [AC_MSG_ERROR("Unable to find Vala bindings for gupnp-av-1.0")])
-
-    AC_CHECK_FILE("${VAPIDIR}/gupnp-dlna-1.0.vapi",
-                  true,
-                  [AC_MSG_ERROR("Unable to find Vala bindings for gupnp-dlna-1.0")])
-
-    AC_CHECK_FILE("${VAPIDIR}/dbus-glib-1.vapi",
-                  true,
-                  [AC_MSG_ERROR("Unable to find Vala bindings for dbus-glib-1")])
-
-    AC_CHECK_FILE("${VAPIDIR}/gstreamer-0.10.vapi",
-                  true,
-                  [AC_MSG_ERROR("Unable to find Vala bindings for gstreamer-0.10")])
-
-    AC_CHECK_FILE("${VAPIDIR}/gstreamer-discoverer-gupnp-dlna-0.10.vapi",
-                  true,
-                  [AC_MSG_ERROR("Unable to find Vala bindings for gstreamer-discoverer-gupnp-dlna-0.10")])
-
-    AC_CHECK_FILE("${VAPIDIR}/gio-2.0.vapi",
-                  true,
-                  [AC_MSG_ERROR("Unable to find Vala bindings for gio-2.0")])
-
-    AC_CHECK_FILE("${VAPIDIR}/gee-1.0.vapi",
-                  true,
-                  [AC_MSG_ERROR("Unable to find Vala bindings for gee-1.0")])
-
-    AC_CHECK_FILE("${VAPIDIR}/sqlite3.vapi",
-                  true,
-                  [AC_MSG_ERROR("Unable to find Vala bindings for sqlite3")])
-    AC_CHECK_FILE("${VAPIDIR}/posix.vapi",
-                  true,
-                  [AC_MSG_ERROR("Unable to find Vala bindings for POSIX")])
+    VALA_CHECK_PACKAGES([gupnp-1.0
+                         gupnp-av-1.0
+                         gupnp-dlna-1.0
+                         dbus-glib-1
+                         gstreamer-0.10
+                         gstreamer-discoverer-gupnp-dlna-0.10
+                         gio-2.0
+                         gee-1.0
+                         sqlite3
+                         posix])
 else
-    VAPIDIR=`echo ${datadir}/vala-0.10/vapi`
+    VAPIDIR=`echo ${datadir}/vala/vapi`
 fi
 
 AC_SUBST(VAPIDIR)
@@ -196,14 +166,7 @@ if test x$try_ui = xyes ; then
         AC_SUBST(GTK_CFLAGS)
         AC_SUBST(GTK_LIBS)
         if test x$enable_vala = xyes ; then
-                AC_CHECK_FILE("${VAPIDIR}/gtk+-$GTK_VAPI_VERSION.vapi",
-                  [
-                        HAVE_GTK=yes
-                  ],
-                  [
-                        HAVE_GTK=no
-                        AC_MSG_ERROR("Unable to find Vala bindings for gtk+")
-                  ])
+                VALA_CHECK_PACKAGES([gtk+-$GTK_VAPI_VERSION])
         else
                 HAVE_GTK=yes
         fi
