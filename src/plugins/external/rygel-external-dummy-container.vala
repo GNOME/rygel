@@ -33,7 +33,7 @@ using Gee;
 internal class Rygel.External.DummyContainer : MediaContainer {
     public DummyContainer (string          id,
                            string          title,
-                           uint            child_coult,
+                           uint            child_count,
                            MediaContainer? parent) {
         base (id, parent, title, child_count);
     }
