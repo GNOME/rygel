@@ -20,7 +20,7 @@ AC_STDC_HEADERS
 AC_PROG_LIBTOOL
 AC_FUNC_MMAP
 
-VALA_REQUIRED=0.9.3
+VALA_REQUIRED=0.9.5
 GUPNP_REQUIRED=0.13.4
 GUPNP_AV_REQUIRED=0.5.8
 GUPNP_DLNA_REQUIRED=0.2.1
@@ -105,7 +105,7 @@ if test x$enable_vala = xyes ; then
     fi
 
     PKG_CHECK_MODULES(GUPNP_VALA, gupnp-vala-1.0 >= $GUPNP_VALA_REQUIRED)
-    VAPIDIR=`pkg-config --variable=vapidir vala-1.0`
+    VAPIDIR=`pkg-config --variable=vapidir vala-0.10`
 
     # FIXME: Whats the proper way for checking for particular Vala bindings
     AC_CHECK_FILE("${VAPIDIR}/gupnp-1.0.vapi",
@@ -147,7 +147,7 @@ if test x$enable_vala = xyes ; then
                   true,
                   [AC_MSG_ERROR("Unable to find Vala bindings for POSIX")])
 else
-    VAPIDIR=`echo ${datadir}/vala/vapi`
+    VAPIDIR=`echo ${datadir}/vala-0.10/vapi`
 fi
 
 AC_SUBST(VAPIDIR)
