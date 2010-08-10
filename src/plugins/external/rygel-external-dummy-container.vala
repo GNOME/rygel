@@ -35,7 +35,7 @@ internal class Rygel.External.DummyContainer : MediaContainer {
                            string          title,
                            uint            child_count,
                            MediaContainer? parent) {
-        base (id, parent, title, child_count);
+        base (id, parent, title, (int) child_count);
     }
 
     public override async MediaObjects? get_children (uint         offset,
