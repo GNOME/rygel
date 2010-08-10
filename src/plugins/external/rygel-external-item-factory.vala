@@ -68,7 +68,6 @@ public class Rygel.External.ItemFactory {
         }
 
         // Optional properties
-        //
 
         value = props.lookup ("DLNAProfile");
         if (value != null) {
