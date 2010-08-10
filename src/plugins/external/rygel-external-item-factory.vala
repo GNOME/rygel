@@ -51,6 +51,9 @@ public class Rygel.External.ItemFactory {
         }
 
         var item = new MediaItem (id, parent, title, upnp_class);
+        if (parent is DummyContainer) {
+            item.parent_ref = parent;
+        }
 
         var value = props.lookup ("MIMEType");
         item.mime_type = value.get_string ();
