@@ -41,7 +41,7 @@ public class Rygel.External.IconFactory {
             return null;
         }
 
-        var icon_path = value.get_string ();
+        var icon_path = (string) value;
         var props = this.connection.get_object (service_name,
                                                 icon_path)
                                                 as Properties;
@@ -56,33 +56,33 @@ public class Rygel.External.IconFactory {
         }
 
         value = item_props.lookup ("MIMEType");
-        var mime_type = value.get_string ();
+        var mime_type = (string) value;
         var icon = new IconInfo (mime_type, this.get_ext_for_mime (mime_type));
 
         value = item_props.lookup ("URLs");
-        weak string[] uris = (string[]) value.get_boxed ();
+        var uris = (string[]) value;
         if (uris != null && uris[0] != null) {
             icon.uri = uris[0];
         }
 
         value = item_props.lookup ("Size");
         if (value != null) {
-            icon.size = value.get_int ();
+            icon.size = (int) value;
         }
 
         value = item_props.lookup ("Width");
         if (value != null) {
-            icon.width = value.get_int ();
+            icon.width = (int) value;
         }
 
         value = item_props.lookup ("Height");
         if (value != null) {
-            icon.height = value.get_int ();
+            icon.height = (int) value;
         }
 
         value = item_props.lookup ("ColorDepth");
         if (value != null) {
-            icon.depth = value.get_int ();
+            icon.depth = (int) value;
         }
 
         return icon;

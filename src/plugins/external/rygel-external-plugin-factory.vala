@@ -143,7 +143,7 @@ public class Rygel.External.PluginFactory {
         string title;
         var value = object_props.lookup ("DisplayName");
         if (value != null) {
-            title = value.get_string ();
+            title = (string) value;
         } else {
             title = service_name;
         }

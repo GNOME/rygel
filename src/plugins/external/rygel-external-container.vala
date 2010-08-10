@@ -188,14 +188,14 @@ public class Rygel.External.Container : Rygel.MediaContainer {
         var media_objects = new MediaObjects ();
 
         foreach (var props in all_props) {
-            var id = props.lookup ("Path").get_string ();
-            var type = props.lookup ("Type").get_string ();
+            var id = (string) props.lookup ("Path");
+            var type = (string) props.lookup ("Type");
 
             MediaContainer parent_container;
             if (parent != null) {
                 parent_container = parent;
             } else {
-                var parent_id = props.lookup ("Parent").get_string ();
+                var parent_id = (string) props.lookup ("Parent");
 
                 parent_container = new DummyContainer (parent_id,
                                                        "LaLaLa",
@@ -209,10 +209,10 @@ public class Rygel.External.Container : Rygel.MediaContainer {
             }
 
             if (media_object == null) {
-                var title = props.lookup ("DisplayName").get_string ();
+                var title = (string) props.lookup ("DisplayName");
 
                 if (type == "container") {
-                    var child_count = props.lookup ("ChildCount").get_uint ();
+                    var child_count = (uint) props.lookup ("ChildCount");
 
                     media_object = new DummyContainer (id,
                                                        title,
@@ -255,10 +255,10 @@ public class Rygel.External.Container : Rygel.MediaContainer {
         this.containers.clear ();
 
         foreach (var props in children_props) {
-            var path = props.lookup ("Path").get_string ();
-            var title = props.lookup ("DisplayName").get_string ();
-            var child_count = props.lookup ("ChildCount").get_uint ();
-            var searchable = props.lookup ("Searchable").get_boolean ();
+            var path = (string) props.lookup ("Path");
+            var title = (string) props.lookup ("DisplayName");
+            var child_count = (uint) props.lookup ("ChildCount");
+            var searchable = (bool) props.lookup ("Searchable");
 
             var container = new Container (path,
                                            title,

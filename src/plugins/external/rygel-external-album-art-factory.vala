@@ -44,17 +44,17 @@ public class Rygel.External.AlbumArtFactory {
         var thumbnail = new AlbumArt ();
 
         var value = item_props.lookup ("MIMEType");
-        thumbnail.mime_type = value.get_string ();
+        thumbnail.mime_type = (string) value;
 
         value = item_props.lookup ("URLs");
-        weak string[] uris = (string[]) value.get_boxed ();
+        var uris = (string[]) value;
         if (uris != null && uris[0] != null) {
             thumbnail.uri = uris[0].replace ("@ADDRESS@", host_ip);
         }
 
         value = item_props.lookup ("Size");
         if (value != null) {
-            thumbnail.size = value.get_int ();
+            thumbnail.size = (int) value;
         }
 
         return thumbnail;

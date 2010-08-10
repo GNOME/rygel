@@ -44,37 +44,37 @@ public class Rygel.External.ThumbnailFactory {
         var thumbnail = new Thumbnail ();
 
         var value = item_props.lookup ("MIMEType");
-        thumbnail.mime_type = value.get_string ();
+        thumbnail.mime_type = (string) value;
 
         value = item_props.lookup ("URLs");
-        weak string[] uris = (string[]) value.get_boxed ();
+        var uris = (string[]) value;
         if (uris != null && uris[0] != null) {
             thumbnail.uri = uris[0].replace ("@ADDRESS@", host_ip);
         }
 
         value = item_props.lookup ("DLNAProfile");
         if (value != null) {
-            thumbnail.dlna_profile = value.get_string ();
+            thumbnail.dlna_profile = (string) value;
         }
 
         value = item_props.lookup ("Size");
         if (value != null) {
-            thumbnail.size = value.get_int ();
+            thumbnail.size = (int) value;
         }
 
         value = item_props.lookup ("Width");
         if (value != null) {
-            thumbnail.width = value.get_int ();
+            thumbnail.width = (int) value;
         }
 
         value = item_props.lookup ("Height");
         if (value != null) {
-            thumbnail.height = value.get_int ();
+            thumbnail.height = (int) value;
         }
 
         value = item_props.lookup ("ColorDepth");
         if (value != null) {
-            thumbnail.depth = value.get_int ();
+            thumbnail.depth = (int) value;
         }
 
         return thumbnail;

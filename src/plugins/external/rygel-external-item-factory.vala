@@ -56,7 +56,7 @@ public class Rygel.External.ItemFactory {
         }
 
         var value = props.lookup ("MIMEType");
-        item.mime_type = value.get_string ();
+        item.mime_type = (string) value;
 
         value = props.lookup ("URLs");
         var uris = (string[]) value;
@@ -71,60 +71,60 @@ public class Rygel.External.ItemFactory {
 
         value = props.lookup ("DLNAProfile");
         if (value != null) {
-            item.dlna_profile = value.get_string ();
+            item.dlna_profile = (string) value;
         }
 
         value = props.lookup ("Size");
         if (value != null) {
-            item.size = value.get_int64 ();
+            item.size = (int64) value;
         }
 
         value = props.lookup ("Artist");
         if (value != null) {
-            item.author = value.get_string ();
+            item.author = (string) value;
         }
 
         value = props.lookup ("Album");
         if (value != null) {
-            item.album = value.get_string ();
+            item.album = (string) value;
         }
 
         value = props.lookup ("Genre");
         if (value != null) {
-            item.genre = value.get_string ();
+            item.genre = (string) value;
         }
 
         value = props.lookup ("Date");
         if (value != null) {
-            item.date = value.get_string ();
+            item.date = (string) value;
         }
 
         // Properties specific to video and audio/music
 
         value = props.lookup ("Duration");
         if (value != null) {
-            item.duration = value.get_int ();
+            item.duration = (int) value;
         }
 
         value = props.lookup ("Bitrate");
         if (value != null) {
-            item.bitrate = value.get_int ();
+            item.bitrate = (int) value;
         }
 
         value = props.lookup ("SampleRate");
         if (value != null) {
-            item.sample_freq = value.get_int ();
+            item.sample_freq = (int) value;
         }
 
         value = props.lookup ("BitsPerSample");
         if (value != null) {
-            item.bits_per_sample = value.get_int ();
+            item.bits_per_sample = (int) value;
         }
 
         value = props.lookup ("AlbumArt");
         if (value != null) {
             var cover_factory = new AlbumArtFactory ();
-            var album_art = yield cover_factory.create (value.get_string (),
+            var album_art = yield cover_factory.create ((string) value,
                                                         service_name,
                                                         host_ip);
             item.thumbnails.add (album_art);
@@ -134,33 +134,33 @@ public class Rygel.External.ItemFactory {
 
         value = props.lookup ("Width");
         if (value != null) {
-            item.width = value.get_int ();
+            item.width = (int) value;
         }
 
         value = props.lookup ("Height");
         if (value != null) {
-            item.height = value.get_int ();
+            item.height = (int) value;
         }
 
         value = props.lookup ("ColorDepth");
         if (value != null) {
-            item.color_depth = value.get_int ();
+            item.color_depth = (int) value;
         }
 
         value = props.lookup ("PixelWidth");
         if (value != null) {
-            item.pixel_width = value.get_int ();
+            item.pixel_width = (int) value;
         }
 
         value = props.lookup ("PixelHeight");
         if (value != null) {
-            item.pixel_height = value.get_int ();
+            item.pixel_height = (int) value;
         }
 
         value = props.lookup ("Thumbnail");
         if (value != null) {
             var factory = new ThumbnailFactory ();
-            var thumbnail = yield factory.create (value.get_string (),
+            var thumbnail = yield factory.create ((string) value,
                                                   service_name,
                                                   host_ip);
             item.thumbnails.add (thumbnail);
