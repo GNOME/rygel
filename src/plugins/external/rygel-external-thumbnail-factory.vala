@@ -59,7 +59,7 @@ public class Rygel.External.ThumbnailFactory {
 
         value = item_props.lookup ("Size");
         if (value != null) {
-            thumbnail.size = (int) value;
+            thumbnail.size = (int64) value;
         }
 
         value = item_props.lookup ("Width");

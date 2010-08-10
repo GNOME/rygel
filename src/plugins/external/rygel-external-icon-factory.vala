@@ -67,7 +67,7 @@ public class Rygel.External.IconFactory {
 
         value = item_props.lookup ("Size");
         if (value != null) {
-            icon.size = (int) value;
+            icon.size = (int64) value;
         }
 
         value = item_props.lookup ("Width");

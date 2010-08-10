@@ -54,7 +54,7 @@ public class Rygel.External.AlbumArtFactory {
 
         value = item_props.lookup ("Size");
         if (value != null) {
-            thumbnail.size = (int) value;
+            thumbnail.size = (int64) value;
         }
 
         return thumbnail;
