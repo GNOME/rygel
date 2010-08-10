@@ -58,12 +58,8 @@ public class Rygel.External.ItemFactory {
         var value = props.lookup ("MIMEType");
         item.mime_type = value.get_string ();
 
-        // FIXME: Get this value through the props until bug#602003 is fixed
-        // value = props.lookup ("URLs");
-        var connection = DBus.Bus.get (DBus.BusType.SESSION);
-        var item_iface = connection.get_object (service_name, id)
-                         as MediaItemProxy;
-        string[] uris = item_iface.urls;
+        value = props.lookup ("URLs");
+        var uris = (string[]) value;
 
         for (var i = 0; uris[i] != null; i++) {
             var tmp = uris[i].replace ("@ADDRESS@", host_ip);
