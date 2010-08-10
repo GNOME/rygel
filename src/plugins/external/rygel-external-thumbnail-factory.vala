@@ -43,18 +43,16 @@ public class Rygel.External.ThumbnailFactory {
 
         var thumbnail = new Thumbnail ();
 
-        var value = item_props.lookup ("MIMEType");
-        thumbnail.mime_type = (string) value;
+        thumbnail.mime_type = this.get_string (item_props, "MIMEType");
+        thumbnail.dlna_profile = this.get_string (item_props, "DLNAProfile");
+        thumbnail.width = this.get_int (item_props, "Width");
+        thumbnail.height = this.get_int (item_props, "Height");
+        thumbnail.depth = this.get_int (item_props, "ColorDepth");
 
-        value = item_props.lookup ("URLs");
+        var value = item_props.lookup ("URLs");
         var uris = (string[]) value;
         if (uris != null && uris[0] != null) {
             thumbnail.uri = uris[0].replace ("@ADDRESS@", host_ip);
-        }
-
-        value = item_props.lookup ("DLNAProfile");
-        if (value != null) {
-            thumbnail.dlna_profile = (string) value;
         }
 
         value = item_props.lookup ("Size");
@@ -62,22 +60,27 @@ public class Rygel.External.ThumbnailFactory {
             thumbnail.size = (int64) value;
         }
 
-        value = item_props.lookup ("Width");
-        if (value != null) {
-            thumbnail.width = (int) value;
-        }
-
-        value = item_props.lookup ("Height");
-        if (value != null) {
-            thumbnail.height = (int) value;
-        }
-
-        value = item_props.lookup ("ColorDepth");
-        if (value != null) {
-            thumbnail.depth = (int) value;
-        }
-
         return thumbnail;
+    }
+
+    private string? get_string (HashTable<string,Value?> props, string prop) {
+        var value = props.lookup (prop);
+
+        if (value != null) {
+            return (string) value;
+        } else {
+            return null;
+        }
+    }
+
+    private int get_int (HashTable<string,Value?> props, string prop) {
+        var value = props.lookup (prop);
+
+        if (value != null) {
+            return (int) value;
+        } else {
+            return -1;
+        }
     }
 }
 

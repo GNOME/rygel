@@ -55,10 +55,9 @@ public class Rygel.External.ItemFactory {
             item.parent_ref = parent;
         }
 
-        var value = props.lookup ("MIMEType");
-        item.mime_type = (string) value;
+        item.mime_type = this.get_string (props, "MIMEType");
 
-        value = props.lookup ("URLs");
+        var value = props.lookup ("URLs");
         var uris = (string[]) value;
 
         for (var i = 0; uris[i] != null; i++) {
@@ -69,57 +68,24 @@ public class Rygel.External.ItemFactory {
 
         // Optional properties
 
-        value = props.lookup ("DLNAProfile");
-        if (value != null) {
-            item.dlna_profile = (string) value;
-        }
+        item.dlna_profile  = this.get_string (props, "DLNAProfile");
 
         value = props.lookup ("Size");
         if (value != null) {
             item.size = (int64) value;
         }
 
-        value = props.lookup ("Artist");
-        if (value != null) {
-            item.author = (string) value;
-        }
-
-        value = props.lookup ("Album");
-        if (value != null) {
-            item.album = (string) value;
-        }
-
-        value = props.lookup ("Genre");
-        if (value != null) {
-            item.genre = (string) value;
-        }
-
-        value = props.lookup ("Date");
-        if (value != null) {
-            item.date = (string) value;
-        }
+        item.author = this.get_string (props, "Artist");
+        item.album = this.get_string (props, "Album");
+        item.genre = this.get_string (props, "Genre");
+        item.date = this.get_string (props, "Date");
 
         // Properties specific to video and audio/music
 
-        value = props.lookup ("Duration");
-        if (value != null) {
-            item.duration = (int) value;
-        }
-
-        value = props.lookup ("Bitrate");
-        if (value != null) {
-            item.bitrate = (int) value;
-        }
-
-        value = props.lookup ("SampleRate");
-        if (value != null) {
-            item.sample_freq = (int) value;
-        }
-
-        value = props.lookup ("BitsPerSample");
-        if (value != null) {
-            item.bits_per_sample = (int) value;
-        }
+        item.duration = this.get_int (props, "Duration");
+        item.bitrate = this.get_int (props, "Bitrate");
+        item.sample_freq = this.get_int (props, "SampleRate");
+        item.bits_per_sample = this.get_int (props, "BitsPerSample");
 
         value = props.lookup ("AlbumArt");
         if (value != null) {
@@ -132,30 +98,11 @@ public class Rygel.External.ItemFactory {
 
         // Properties specific to video and image
 
-        value = props.lookup ("Width");
-        if (value != null) {
-            item.width = (int) value;
-        }
-
-        value = props.lookup ("Height");
-        if (value != null) {
-            item.height = (int) value;
-        }
-
-        value = props.lookup ("ColorDepth");
-        if (value != null) {
-            item.color_depth = (int) value;
-        }
-
-        value = props.lookup ("PixelWidth");
-        if (value != null) {
-            item.pixel_width = (int) value;
-        }
-
-        value = props.lookup ("PixelHeight");
-        if (value != null) {
-            item.pixel_height = (int) value;
-        }
+        item.width = this.get_int (props, "Width");
+        item.height = this.get_int (props, "Height");
+        item.color_depth = this.get_int (props, "ColorDepth");
+        item.pixel_width = this.get_int (props, "PixelWidth");
+        item.pixel_height = this.get_int (props, "PixelHeight");
 
         value = props.lookup ("Thumbnail");
         if (value != null) {
@@ -167,6 +114,26 @@ public class Rygel.External.ItemFactory {
         }
 
         return item;
+    }
+
+    private string? get_string (HashTable<string,Value?> props, string prop) {
+        var value = props.lookup (prop);
+
+        if (value != null) {
+            return (string) value;
+        } else {
+            return null;
+        }
+    }
+
+    private int get_int (HashTable<string,Value?> props, string prop) {
+        var value = props.lookup (prop);
+
+        if (value != null) {
+            return (int) value;
+        } else {
+            return -1;
+        }
     }
 }
 

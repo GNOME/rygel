@@ -70,20 +70,9 @@ public class Rygel.External.IconFactory {
             icon.size = (int64) value;
         }
 
-        value = item_props.lookup ("Width");
-        if (value != null) {
-            icon.width = (int) value;
-        }
-
-        value = item_props.lookup ("Height");
-        if (value != null) {
-            icon.height = (int) value;
-        }
-
-        value = item_props.lookup ("ColorDepth");
-        if (value != null) {
-            icon.depth = (int) value;
-        }
+        icon.width = this.get_int (item_props, "Width");
+        icon.height = this.get_int (item_props, "Height");
+        icon.depth = this.get_int (item_props, "ColorDepth");
 
         return icon;
     }
@@ -96,5 +85,15 @@ public class Rygel.External.IconFactory {
       } else {
             return "png"; // Assume PNG
       }
+    }
+
+    private int get_int (HashTable<string,Value?> props, string prop) {
+        var value = props.lookup (prop);
+
+        if (value != null) {
+            return (int) value;
+        } else {
+            return -1;
+        }
     }
 }
