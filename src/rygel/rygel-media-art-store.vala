@@ -122,9 +122,7 @@ public class Rygel.MediaArtStore : GLib.Object {
         var file = File.new_for_path (dir);
 
         if (!file.query_exists (null)) {
-            var message = "Failed to find media-art directory";
-
-            throw new MediaArtStoreError.NO_DIR (message);
+            DirUtils.create_with_parents (dir, 0750);
         }
 
         this.directory = dir;
