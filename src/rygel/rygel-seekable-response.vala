@@ -162,7 +162,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
     }
 
     private int get_requested_priority () {
-        var mode = this.msg.request_headers.get ("transferMode.dlna.org");
+        var mode = this.msg.request_headers.get_one ("transferMode.dlna.org");
 
         if (mode == null || mode == "Interactive") {
             return Priority.DEFAULT;

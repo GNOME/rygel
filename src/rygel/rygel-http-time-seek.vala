@@ -38,7 +38,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
         int64 duration = request.item.duration * SECOND;
         int64 stop = duration - SECOND;
 
-        range = request.msg.request_headers.get ("TimeSeekRange.dlna.org");
+        range = request.msg.request_headers.get_one ("TimeSeekRange.dlna.org");
         if (range != null) {
             if (!range.has_prefix ("npt=")) {
                 throw new HTTPSeekError.INVALID_RANGE ("Invalid Range '%s'",
@@ -86,7 +86,8 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
                        request.item.should_stream ()));
 
         if (!needed &&
-            request.msg.request_headers.get ("TimeSeekRange.dlna.org") != null) {
+            request.msg.request_headers.get_one ("TimeSeekRange.dlna.org") !=
+            null) {
             throw new HTTPRequestError.UNACCEPTABLE ("Invalid seek request");
         }
 

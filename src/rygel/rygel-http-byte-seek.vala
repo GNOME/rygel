@@ -36,7 +36,7 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
         }
         var stop = total_length - 1;
 
-        range = request.msg.request_headers.get ("Range");
+        range = request.msg.request_headers.get_one ("Range");
         if (range != null) {
             // We have a Range header. Parse.
             if (!range.has_prefix ("bytes=")) {
@@ -83,8 +83,8 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
                      (request.thumbnail != null && request.thumbnail.size > 0) ||
                      (request.subtitle != null && request.subtitle.size > 0);
 
-        var range = request.msg.request_headers.get ("Range");
-        var agent = request.msg.request_headers.get ("User-Agent");
+        var range = request.msg.request_headers.get_one ("Range");
+        var agent = request.msg.request_headers.get_one ("User-Agent");
 
         if (!needed && range != null && agent != "PLAYSTATION 3") {
             throw new HTTPRequestError.UNACCEPTABLE ("Invalid seek request");

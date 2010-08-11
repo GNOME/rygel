@@ -37,7 +37,7 @@ internal class Rygel.XBoxHacks : GLib.Object {
     private static string MODEL_NAME = "Windows Media Connect";
 
     public XBoxHacks.for_action (ServiceAction action) throws XBoxHacksError {
-        var agent = action.get_message ().request_headers.get ("User-Agent");
+        var agent = action.get_message ().request_headers.get_one ("User-Agent");
         if (!agent.contains ("Xbox")) {
             throw new XBoxHacksError.NA (_("Not Applicable"));
         }

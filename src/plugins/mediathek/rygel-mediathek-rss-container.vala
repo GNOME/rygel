@@ -36,8 +36,8 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
             case 200:
                 if (parse_response ((string) msg.response_body.data,
                                     (size_t) msg.response_body.length)) {
-                    last_modified = new Soup.Date.from_string(
-                                            msg.response_headers.get ("Date"));
+                    last_modified = new Soup.Date.from_string (
+                                        msg.response_headers.get_one ("Date"));
                 }
                 break;
             default:

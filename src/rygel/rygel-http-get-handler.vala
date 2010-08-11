@@ -33,7 +33,7 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
     // Add response headers.
     public virtual void add_response_headers (HTTPGet request)
                                               throws HTTPRequestError {
-        var mode = request.msg.request_headers.get ("transferMode.dlna.org");
+        var mode = request.msg.request_headers.get_one ("transferMode.dlna.org");
         if (mode != null) {
             // FIXME: Is it OK to just copy the value of this header from
             // request to response? All we do to entertain this header is to
@@ -61,7 +61,7 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
         }
 
         // Handle Samsung DLNA TV proprietary subtitle headers
-        if (request.msg.request_headers.get ("getCaptionInfo.sec") != null &&
+        if (request.msg.request_headers.get_one ("getCaptionInfo.sec") != null &&
             request.item.subtitles.size > 0) {
                 var caption_uri = request.http_server.create_uri_for_item (
                                         request.item,
