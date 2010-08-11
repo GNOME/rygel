@@ -93,7 +93,6 @@ if test x$enable_vala = xyes ; then
                          gstreamer-discoverer-gupnp-dlna-0.10
                          gio-2.0
                          gee-1.0
-                         sqlite3
                          posix])
 else
     VAPIDIR=`echo ${datadir}/vala/vapi`
@@ -243,6 +242,9 @@ then
     PKG_CHECK_MODULES(LIBSQLITE3, sqlite3 >= $LIBSQLITE3_REQUIRED)
     PKG_CHECK_MODULES(GSTREAMER_TAG, gstreamer-tag-0.10 >= $GSTREAMER_TAG_REQUIRED);
     PKG_CHECK_MODULES(GSTREAMER_APP, gstreamer-app-0.10 >= $GSTREAMER_APP_REQUIRED);
+    if test x$enable_vala = xyes ; then
+        VALA_CHECK_PACKAGES([sqlite3])
+    fi
 fi
 
 # Gettext
