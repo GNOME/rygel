@@ -37,7 +37,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     public Cancellable cancellable { get; set; }
 
     public HTTPServer (ContentDirectory content_dir,
-                       string           name) throws GLib.Error {
+                       string           name) {
         base ();
 
         this.root_container = content_dir.root_container;

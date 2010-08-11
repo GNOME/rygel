@@ -33,24 +33,43 @@ using Gst;
 internal abstract class Rygel.TranscodeManager : GLib.Object {
     private ArrayList<Transcoder> transcoders;
 
-    public TranscodeManager () throws GLib.Error {
+    public TranscodeManager () {
         transcoders = new ArrayList<Transcoder> ();
 
         var config = MetaConfig.get_default ();
 
-        if (config.get_transcoding ()) {
-            if (config.get_lpcm_transcoder ()) {
+        var transcoding = true;
+        var lpcm_transcoder = true;
+        var mp3_transcoder = true;
+        var mp2ts_transcoder = true;
+        var wmv_transcoder = true;
+
+        try {
+            transcoding = config.get_transcoding ();
+
+            if (transcoding) {
+                lpcm_transcoder = config.get_lpcm_transcoder ();
+                mp3_transcoder = config.get_mp3_transcoder ();
+                mp2ts_transcoder = config.get_mp2ts_transcoder ();
+                wmv_transcoder = config.get_wmv_transcoder ();
+            }
+        } catch (Error err) {}
+
+        if (transcoding) {
+            if (lpcm_transcoder) {
                 transcoders.add (new L16Transcoder (Endianness.BIG));
             }
-            if (config.get_mp3_transcoder ()) {
+
+            if (mp3_transcoder) {
                 transcoders.add (new MP3Transcoder (MP3Layer.THREE));
             }
-            if (config.get_mp2ts_transcoder ()) {
+
+            if (mp2ts_transcoder) {
                 transcoders.add (new MP2TSTranscoder(MP2TSProfile.SD));
                 transcoders.add (new MP2TSTranscoder(MP2TSProfile.HD));
             }
 
-            if (config.get_wmv_transcoder ()) {
+            if (wmv_transcoder) {
                 transcoders.add (new WMVTranscoder ());
             }
         }

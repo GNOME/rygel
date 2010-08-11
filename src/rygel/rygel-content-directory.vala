@@ -71,15 +71,7 @@ internal class Rygel.ContentDirectory: Service {
         var plugin = this.root_device.resource_factory as MediaServerPlugin;
 
         this.root_container = plugin.get_root_container (this.context);
-
-        try {
-            this.http_server = new HTTPServer (this, plugin.name);
-        } catch (GLib.Error err) {
-            critical (_("Failed to create HTTP server for %s: %s"),
-                      this.get_type ().name (),
-                      err.message);
-            return;
-        }
+        this.http_server = new HTTPServer (this, plugin.name);
 
         this.updated_containers =  new ArrayList<MediaContainer> ();
         this.active_imports = new ArrayList<ImportResource> ();
