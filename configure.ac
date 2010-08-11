@@ -243,7 +243,9 @@ then
     PKG_CHECK_MODULES(GSTREAMER_TAG, gstreamer-tag-0.10 >= $GSTREAMER_TAG_REQUIRED);
     PKG_CHECK_MODULES(GSTREAMER_APP, gstreamer-app-0.10 >= $GSTREAMER_APP_REQUIRED);
     if test x$enable_vala = xyes ; then
-        VALA_CHECK_PACKAGES([sqlite3])
+        VALA_CHECK_PACKAGES([sqlite3
+                             gstreamer-tag-0.10
+                             gstreamer-app-0.10])
     fi
 fi
 
