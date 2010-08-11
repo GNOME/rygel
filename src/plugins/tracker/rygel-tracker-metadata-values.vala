@@ -55,9 +55,9 @@ public class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
                            string         title,
                            ItemFactory    item_factory,
                            string[]       key_chain,
-                           IDFunc?        id_func = default_id_func,
-                           IDFunc?        title_func = default_id_func,
-                           FilterFunc?    filter_func = default_filter_func) {
+                           IDFunc?        id_func = null,
+                           IDFunc?        title_func = null,
+                           FilterFunc?    filter_func = null) {
         base (id, parent, title);
 
         this.item_factory = item_factory;
@@ -65,6 +65,18 @@ public class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         this.id_func = id_func;
         this.title_func = title_func;
         this.filter_func = filter_func;
+
+        if (id_func == null) {
+            this.id_func = this.default_id_func;
+        }
+
+        if (title_func == null) {
+            this.title_func = this.default_id_func;
+        }
+
+        if (filter_func == null) {
+            this.filter_func = this.default_filter_func;
+        }
 
         try {
             this.create_proxies ();
@@ -166,11 +178,11 @@ public class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         this.updated ();
     }
 
-    public static string default_id_func (string value) {
+    public string default_id_func (string value) {
         return value;
     }
 
-    public static string default_filter_func (string variable, string value) {
+    public string default_filter_func (string variable, string value) {
         return variable + " = \"" + value + "\"";
     }
 
