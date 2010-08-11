@@ -164,7 +164,7 @@ if test x$try_ui = xyes ; then
         AC_SUBST(GTK_CFLAGS)
         AC_SUBST(GTK_LIBS)
         if test x$enable_vala = xyes ; then
-                VALA_CHECK_PACKAGES([gtk+-$GTK_VAPI_VERSION])
+                VALA_CHECK_PACKAGES([gtk+-$GTK_VAPI_VERSION], [HAVE_GTK=yes])
         else
                 HAVE_GTK=yes
         fi
