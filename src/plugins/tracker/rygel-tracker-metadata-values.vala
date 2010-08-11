@@ -178,11 +178,11 @@ public class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         this.updated ();
     }
 
-    public string default_id_func (string value) {
+    private string default_id_func (string value) {
         return value;
     }
 
-    public string default_filter_func (string variable, string value) {
+    private string default_filter_func (string variable, string value) {
         return variable + " = \"" + value + "\"";
     }
 
