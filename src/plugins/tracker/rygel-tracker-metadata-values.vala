@@ -71,7 +71,7 @@ public class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         }
 
         if (title_func == null) {
-            this.title_func = this.default_id_func;
+            this.title_func = this.default_title_func;
         }
 
         if (filter_func == null) {
@@ -179,6 +179,10 @@ public class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
     }
 
     private string default_id_func (string value) {
+        return this.id + ":" + value;
+    }
+
+    private string default_title_func (string value) {
         return value;
     }
 
