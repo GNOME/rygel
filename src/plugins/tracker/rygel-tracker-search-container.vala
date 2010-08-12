@@ -152,8 +152,22 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
         return results;
     }
 
+    public override async MediaObject? find_object (string       id,
+                                                    Cancellable? cancellable)
+                                                    throws GLib.Error {
+        if (this.is_our_child (id)) {
+            return yield base.find_object (id, cancellable);
+        } else {
+            return null;
+        }
+    }
+
     public string create_child_id_for_urn (string urn) {
         return this.id + ":" + urn;
+    }
+
+    private bool is_our_child (string id) {
+        return id.has_prefix (this.id + ":");
     }
 
     private async void get_children_count () {

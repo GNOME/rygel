@@ -178,6 +178,16 @@ public class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         this.updated ();
     }
 
+    public override async MediaObject? find_object (string       id,
+                                                    Cancellable? cancellable)
+                                                    throws GLib.Error {
+        if (this.is_our_child (id)) {
+            return yield base.find_object (id, cancellable);
+        } else {
+            return null;
+        }
+    }
+
     private string default_id_func (string value) {
         return this.id + ":" + value;
     }
@@ -188,6 +198,10 @@ public class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
 
     private string default_filter_func (string variable, string value) {
         return variable + " = \"" + value + "\"";
+    }
+
+    private bool is_our_child (string id) {
+        return id.has_prefix (this.id + ":");
     }
 
     private void create_proxies () throws DBus.Error {
