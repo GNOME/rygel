@@ -71,4 +71,27 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
 
         return this.children.slice ((int) offset, (int) stop) as MediaObjects;
     }
+
+    public override async MediaObject? find_object (string       id,
+                                                    Cancellable? cancellable)
+                                                    throws Error {
+        MediaObject media_object = null;
+
+        foreach (var child in this.children) {
+            if (child.id == id) {
+                media_object = child;
+
+                break;
+            } else if (child is MediaContainer) {
+                var container = child as MediaContainer;
+
+                media_object = yield container.find_object (id, cancellable);
+                if (media_object != null) {
+                    break;
+                }
+            }
+        }
+
+        return media_object;
+    }
 }
