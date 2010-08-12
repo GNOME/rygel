@@ -30,6 +30,7 @@ public abstract class Rygel.Tracker.ItemFactory {
     protected enum Metadata {
         FILE_NAME,
         TITLE,
+        DLNA_PROFILE,
         MIME,
         SIZE,
         DATE,
@@ -61,6 +62,7 @@ public abstract class Rygel.Tracker.ItemFactory {
 
         this.key_chains[Metadata.FILE_NAME].add ("nfo:fileName");
         this.key_chains[Metadata.TITLE].add ("nie:title");
+        this.key_chains[Metadata.DLNA_PROFILE].add ("nmm:dlnaProfile");
         this.key_chains[Metadata.MIME].add ("nie:mimeType");
         this.key_chains[Metadata.SIZE].add ("nfo:fileSize");
         this.key_chains[Metadata.DATE].add ("nie:contentCreated");
@@ -84,6 +86,9 @@ public abstract class Rygel.Tracker.ItemFactory {
 
         if (metadata[Metadata.DATE] != "")
             item.date = metadata[Metadata.DATE];
+
+        if (metadata[Metadata.DLNA_PROFILE] != "")
+            item.dlna_profile = metadata[Metadata.DLNA_PROFILE];
 
         item.mime_type = metadata[Metadata.MIME];
 
