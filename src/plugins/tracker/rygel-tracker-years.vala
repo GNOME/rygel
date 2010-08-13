@@ -35,7 +35,7 @@ public class Rygel.Tracker.Years : MetadataValues {
               _("Year"),
               item_factory,
               KEY_CHAIN,
-              year_id_func,
+              null,
               year_id_func,
               year_filter_func);
     }
