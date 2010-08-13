@@ -31,14 +31,9 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
 
     /**
      * Create a new instance of the meta-data extraction manager.
-     *
-     * @param extractor instance of MetadataExtractor used for meta-data
-     *                  extraction by this task
-     * @param monitor intance of a RecursiveFileMonitor which is used to keep
-     *                track of the file changes
      */
-    public Harvester (MetadataExtractor extractor) {
-        this.extractor = extractor;
+    public Harvester () {
+        this.extractor = new MetadataExtractor ();
         this.monitor = new RecursiveFileMonitor (null);
         if (this.monitor != null) {
             this.monitor.changed.connect (this.on_file_changed);

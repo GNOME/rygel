@@ -25,7 +25,6 @@ using GUPnP;
  * Represents the root container.
  */
 public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
-    private MetadataExtractor extractor;
     private DBusService service;
     private Harvester harvester;
 
@@ -264,8 +263,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
 
         base (db, "0", "MediaExportRoot");
 
-        this.extractor = new MetadataExtractor ();
-        this.harvester = new Harvester (this.extractor);
+        this.harvester = new Harvester ();
 
         try {
             this.service = new DBusService (this);
