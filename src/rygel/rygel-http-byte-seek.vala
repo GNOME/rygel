@@ -80,7 +80,8 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
     public static bool needed (HTTPGet request) throws HTTPRequestError {
         var needed = (request.item.size > 0 &&
                       request.handler is HTTPIdentityHandler) ||
-                     (request.thumbnail != null && request.thumbnail.size > 0) ||
+                     (request.thumbnail != null &&
+                      request.thumbnail.size > 0) ||
                      (request.subtitle != null && request.subtitle.size > 0);
 
         var range = request.msg.request_headers.get_one ("Range");
