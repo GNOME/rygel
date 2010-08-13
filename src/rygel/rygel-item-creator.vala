@@ -76,6 +76,15 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                        didl_item.title,
                                        didl_item.upnp_class);
             this.item.mime_type = this.get_generic_mime_type ();
+            var resources = didl_item.get_resources ();
+            if (resources != null) {
+                var info = resources.nth (0).data.protocol_info;
+
+                if (info != null && info.dlna_profile != null) {
+                    this.item.dlna_profile = info.dlna_profile;
+                }
+            }
+
             this.item.place_holder = true;
 
             yield container.add_item (this.item, this.cancellable);
