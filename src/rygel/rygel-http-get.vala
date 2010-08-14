@@ -83,9 +83,17 @@ internal class Rygel.HTTPGet : HTTPRequest {
     }
 
     private async void handle_item_request () throws Error {
-        if (HTTPTimeSeek.needed (this)) {
+        var need_time_seek = HTTPTimeSeek.needed (this);
+        var need_byte_seek = HTTPByteSeek.needed (this);
+
+        if ((HTTPTimeSeek.requested (this) && !need_time_seek) ||
+            (HTTPByteSeek.requested (this) && !need_byte_seek)) {
+            throw new HTTPRequestError.UNACCEPTABLE ("Invalid seek request");
+        }
+
+        if (need_time_seek) {
             this.seek = new HTTPTimeSeek (this);
-        } else if (HTTPByteSeek.needed (this)) {
+        } else if (need_byte_seek) {
             this.seek = new HTTPByteSeek (this);
         }
 
