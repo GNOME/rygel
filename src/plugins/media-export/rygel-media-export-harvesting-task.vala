@@ -44,7 +44,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
 
     public HarvestingTask (MetadataExtractor    extractor,
                            RecursiveFileMonitor monitor,
-                           Regex                file_filter,
+                           Regex?               file_filter,
                            File                 file,
                            MediaContainer       parent,
                            string?              flag = null) {
