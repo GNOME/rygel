@@ -143,7 +143,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "SELECT COUNT(upnp_id) FROM Object WHERE Object.parent = ?";
 
     private const string OBJECT_EXISTS_STRING =
-    "SELECT COUNT(upnp_id), timestamp, m.size FROM Object " +
+    "SELECT COUNT(1), timestamp, m.size FROM Object " +
         "JOIN meta_data m ON m.object_fk = upnp_id " +
         "WHERE Object.uri = ?";
 
@@ -226,7 +226,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     private const string CREATE_INDICES_STRING =
     "CREATE INDEX idx_parent on Object(parent);" +
     "CREATE INDEX idx_meta_data_fk on meta_data(object_fk);" +
-    "CREATE INDEX idx_closure on Closure(descendant,depth);";
+    "CREATE INDEX idx_closure on Closure(descendant,depth);" +
+    "CREATE INDEX idx_uri on Object(uri);";
 
 
     public unowned string make (SQLString query) {
