@@ -53,6 +53,16 @@ public void on_plugin_available (Plugin plugin, Plugin our_plugin) {
             message ("Disabling plugin '%s' in favor of plugin '%s'",
                      OUR_PLUGIN,
                      TRACKER_PLUGIN);
+            try {
+                var config = MetaConfig.get_default ();
+                var enabled = config.get_bool ("MediaExport", "enabled");
+                if (enabled) {
+                    var root = Rygel.MediaExport.RootContainer.get_instance ()
+                        as Rygel.MediaExport.RootContainer;
+
+                    root.shutdown ();
+                }
+            } catch (Error error) {};
         } else {
             message ("Plugin '%s' disabled, enabling '%s' plugin",
                      TRACKER_PLUGIN,

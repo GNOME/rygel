@@ -42,7 +42,8 @@ const Rygel.MediaExport.FolderDefinition[] virtual_folders_music = {
  */
 public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
     private DBusService service;
-    private Harvester harvester;
+    private Harvester   harvester;
+    private Cancellable cancellable;
 
     private static MediaContainer instance = null;
 
@@ -57,6 +58,10 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         }
 
         return RootContainer.instance;
+    }
+
+    public void shutdown () {
+        this.cancellable.cancel ();
     }
 
     // DBus utility methods
@@ -278,7 +283,8 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
 
         base (db, "0", "MediaExportRoot");
 
-        this.harvester = new Harvester ();
+        this.cancellable = new Cancellable ();
+        this.harvester = new Harvester (this.cancellable);
 
         try {
             this.service = new DBusService (this);

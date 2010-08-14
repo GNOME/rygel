@@ -67,9 +67,15 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
         this.files = new LinkedList<File> ();
         this.containers = new GLib.Queue<MediaContainer> ();
         this.monitor = monitor;
-        this.cancellable = new Cancellable ();
         this.flag = flag;
         this.file_filter = file_filter;
+    }
+
+    public void cancel () {
+        // detach from common cancellable; otherwise everything would be
+        // cancelled like file monitoring, other harvesters etc.
+        this.cancellable = new Cancellable ();
+        this.cancellable.cancel ();
     }
 
     /**
