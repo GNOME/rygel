@@ -32,7 +32,7 @@ internal class Rygel.WMVTranscoder : Rygel.Transcoder {
     private const string VIDEO_SCALE = "videoscale";
 
     public WMVTranscoder () {
-        base ("video/x-ms-wmv", "WMV", MediaItem.VIDEO_CLASS);
+        base ("video/x-ms-wmv", "WMVHIGH_FULL", MediaItem.VIDEO_CLASS);
     }
 
     public override Element create_source (MediaItem item,
