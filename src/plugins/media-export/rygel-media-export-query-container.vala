@@ -208,11 +208,7 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
         var exp = new RelationalExpression ();
         var op1 = op1_.replace (PREFIX, "");
         exp.operand1 = Uri.unescape_string (op1);
-        if (exp.operand1 == "upnp:class") {
-            exp.op = SearchCriteriaOp.DERIVED_FROM;
-        } else {
-            exp.op = SearchCriteriaOp.EQ;
-        }
+        exp.op = SearchCriteriaOp.EQ;
         exp.operand2 = Uri.unescape_string (op2);
         if (this.expression != null) {
             var exp2 = new LogicalExpression ();
