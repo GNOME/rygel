@@ -6,6 +6,7 @@ src/plugins/media-export/rygel-media-export-media-cache.c
 src/plugins/media-export/rygel-media-export-metadata-extractor.c
 src/plugins/media-export/rygel-media-export-dbus-service.c
 src/plugins/media-export/rygel-media-export-harvester.c
+src/plugins/media-export/rygel-media-export-harvesting-task.c
 src/plugins/media-export/rygel-media-export-item.c
 src/plugins/media-export/rygel-media-export-plugin.c
 src/plugins/media-export/rygel-media-export-query-container.c
