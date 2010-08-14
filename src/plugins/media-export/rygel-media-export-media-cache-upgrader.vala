@@ -109,6 +109,9 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                     case 8:
                         update_v8_v9 ();
                         break;
+                    case 9:
+                        update_v9_v10 ();
+                        break;
                     default:
                         warning ("Cannot upgrade");
                         database = null;
@@ -268,6 +271,63 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             this.database.exec ("UPDATE schema_info SET version = '9'");
             this.database.commit ();
             this.database.exec ("VACUUM");
+        } catch (DatabaseError error) {
+            database.rollback ();
+            warning ("Database upgrade failed: %s", error.message);
+            database = null;
+        }
+    }
+
+    // This isn't really a schema update but a semantics update
+    private void update_v9_v10 () {
+        try {
+            var queue = new LinkedList<string> ();
+            this.database.begin ();
+            this.database.exec ("DROP TRIGGER trgr_update_closure");
+            this.database.exec ("DROP TRIGGER trgr_delete_closure");
+            this.database.exec ("DROP INDEX idx_parent");
+            this.database.exec ("DROP INDEX idx_meta_data_fk");
+            this.database.exec ("DROP INDEX idx_closure");
+            this.database.exec ("DROP TABLE Closure");
+
+            // keep meta-data although we're deleting loads of objects
+            this.database.exec ("DROP TRIGGER trgr_delete_metadata");
+
+            this.database.exec ("INSERT INTO Object (parent, upnp_id, type_fk, " +
+                                "title, timestamp) VALUES ('0', 'Filesystem', " +
+                                "0, 'Filesystem', 0)");
+            this.database.exec ("UPDATE Object SET parent = 'Filesystem' " +
+                                "WHERE parent = '0' AND upnp_id " +
+                                "NOT LIKE 'virtual-%' AND upnp_id " +
+                                "<> 'Filesystem'");
+            this.database.exec ("ALTER TABLE Object RENAME TO _Object");
+            this.database.exec ("CREATE TABLE Object AS SELECT * FROM _Object");
+            this.database.exec ("DELETE FROM Object");
+            this.database.exec (this.sql.make (SQLString.TABLE_CLOSURE));
+            this.database.exec (this.sql.make (SQLString.TRIGGER_CLOSURE));
+            queue.offer ("0");
+            while (!queue.is_empty) {
+                GLib.Value[] args = { queue.poll () };
+                database.exec ("SELECT upnp_id FROM _Object WHERE parent = ?",
+                               args,
+                               (statement) => {
+                                   queue.offer (statement.column_text (0));
+
+                                   return true;
+                              });
+
+                database.exec ("INSERT INTO Object SELECT * FROM _Object " +
+                               "WHERE parent = ?",
+                               args);
+            }
+            database.exec ("DROP TABLE Object");
+            this.database.exec ("ALTER TABLE _Object RENAME TO Object");
+            database.exec (this.sql.make (SQLString.INDEX_COMMON));
+            database.exec (this.sql.make (SQLString.TRIGGER_COMMON));
+            database.exec ("UPDATE schema_info SET version = '10'");
+            database.commit ();
+            database.exec ("VACUUM");
+            database.analyze ();
         } catch (DatabaseError error) {
             database.rollback ();
             warning ("Database upgrade failed: %s", error.message);

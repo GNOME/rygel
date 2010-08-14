@@ -41,9 +41,10 @@ const Rygel.MediaExport.FolderDefinition[] virtual_folders_music = {
  * Represents the root container.
  */
 public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
-    private DBusService service;
-    private Harvester   harvester;
-    private Cancellable cancellable;
+    private DBusService    service;
+    private Harvester      harvester;
+    private Cancellable    cancellable;
+    private MediaContainer filesystem_container;
 
     private static MediaContainer instance = null;
 
@@ -68,7 +69,9 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
 
     public void add_uri (string uri) {
         var file = File.new_for_commandline_arg (uri);
-        this.harvester.schedule (file, this, "DBUS");
+        this.harvester.schedule (file,
+                                 this.filesystem_container,
+                                 "DBUS");
     }
 
     public void remove_uri (string uri) {
@@ -297,9 +300,17 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             this.media_db.save_container (this);
         } catch (Error error) { } // do nothing
 
+        try {
+            this.filesystem_container = new NullContainer ();
+            this.filesystem_container.parent = this;
+            this.filesystem_container.title = "Filesystem";
+            this.filesystem_container.id = "Filesystem";
+            this.media_db.save_container (this.filesystem_container);
+        } catch (Error error) { }
+
         ArrayList<string> ids;
         try {
-            ids = media_db.get_child_ids ("0");
+            ids = media_db.get_child_ids ("Filesystem");
         } catch (DatabaseError e) {
             ids = new ArrayList<string> ();
         }
@@ -309,7 +320,8 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             var file = File.new_for_commandline_arg (uri);
             if (file.query_exists (null)) {
                 ids.remove (MediaCache.get_id (file));
-                this.harvester.schedule (file, this);
+                this.harvester.schedule (file,
+                                         this.filesystem_container);
             }
         }
 
