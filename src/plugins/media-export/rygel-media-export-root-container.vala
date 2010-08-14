@@ -138,8 +138,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             list = yield query_container.get_children (offset,
                                                        max_count,
                                                        cancellable);
-            // FIXME: This is wrong
-            total_matches = list.size;
+            total_matches = query_container.child_count;
 
             if (upnp_class != null) {
                 foreach (var object in list) {
