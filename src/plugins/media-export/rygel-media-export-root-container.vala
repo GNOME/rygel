@@ -308,37 +308,6 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             }
         }
 
-        try {
-            var config = MetaConfig.get_default ();
-            var virtual_containers = config.get_string_list (
-                                        "MediaExport",
-                                        "virtual-folders");
-            foreach (var container in virtual_containers) {
-                var info = container.split ("=");
-                var id = QueryContainer.PREFIX + info[1];
-                if (!QueryContainer.validate_virtual_id (id)) {
-                    warning (_("%s is not a valid virtual ID"), id);
-
-                    continue;
-                }
-                QueryContainer.register_id (ref id);
-
-                var virtual_container = new QueryContainer (
-                                        this.media_db,
-                                        id,
-                                        info[0]);
-                virtual_container.parent = this;
-                try {
-                    this.media_db.save_container (virtual_container);
-                } catch (Error error) { } // do nothing
-
-                ids.remove (id);
-            }
-        } catch (Error error) {
-            warning (_("Got error while trying to find virtual folders: %s"),
-                     error.message);
-        }
-
         foreach (var id in ids) {
             debug (_("ID %s no longer in config, deleting..."), id);
             try {

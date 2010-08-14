@@ -29,43 +29,6 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
     public string plaintext_id;
     private string pattern = "";
 
-    /**
-     * Simple check for validity of user-supplied virtual folder id
-     *
-     * @param id to check
-     * @return true, if id passes, false otherwise
-     */
-    public static bool validate_virtual_id (string id) {
-        if (! id.has_prefix (PREFIX)) {
-
-            return false;
-        }
-
-        var args = id.split(",");
-
-        if ((args.length % 2) != 0) {
-            warning (_("ID does not contain pairs"));
-
-            return false;
-        }
-
-        for (int i = 0; i < args.length; i += 2) {
-            if (args[i] == "" || args[i + 1] == "") {
-                warning (_("Empty part not allowed in virtual ID"));
-
-                return false;
-            }
-
-            if (args[i] == "?") {
-                warning (_("Placeholder can only be on second place"));
-
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     public QueryContainer (MediaCache media_db,
                            string     id,
                            string     name = "") {
