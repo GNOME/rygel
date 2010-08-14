@@ -21,6 +21,22 @@
 using Gee;
 using GUPnP;
 
+internal struct Rygel.MediaExport.FolderDefinition {
+    string title;
+    string definition;
+}
+
+const Rygel.MediaExport.FolderDefinition[] virtual_folders_default = {
+    { N_("Year"), "dc:date,?" },
+    { N_("All"),  "" }
+};
+
+const Rygel.MediaExport.FolderDefinition[] virtual_folders_music = {
+    { N_("Artist"), "upnp:artist,?,upnp:album,?" },
+    { N_("Album"),  "upnp:album,?" },
+    { N_("Genre"),  "dc:genre,?" }
+};
+
 /**
  * Represents the root container.
  */
@@ -332,7 +348,61 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             }
         }
 
+        this.add_default_virtual_folders ();
+
         this.updated ();
     }
 
+    private void add_default_virtual_folders () {
+        try {
+            this.add_virtual_containers_for_class (_("Music"),
+                                                   "object.item.audioItem",
+                                                    virtual_folders_music);
+            this.add_virtual_containers_for_class (_("Pictures"),
+                                                   "object.item.imageItem");
+            this.add_virtual_containers_for_class (_("Videos"),
+                                                   "object.item.videoItem");
+        } catch (Error error) {};
+    }
+
+    private void add_folder_definition (MediaContainer   container,
+                                        string           item_class,
+                                        FolderDefinition definition)
+                                        throws Error {
+        var id = "%supnp:class,%s,%s".printf (QueryContainer.PREFIX,
+                                               item_class,
+                                               definition.definition);
+        if (id.has_suffix (",")) {
+            id = id.slice (0,-1);
+        }
+
+        QueryContainer.register_id (ref id);
+        var query_container = new QueryContainer (this.media_db,
+                                                  id,
+                                                  definition.title);
+        query_container.parent = container;
+        this.media_db.save_container (query_container);
+    }
+
+    private void add_virtual_containers_for_class (
+                                        string              parent,
+                                        string              item_class,
+                                        FolderDefinition[]? definitions = null)
+                                        throws Error {
+        var container = new NullContainer ();
+        container.parent = this;
+        container.title = parent;
+        container.id = "virtual-parent:" + item_class;
+        this.media_db.save_container (container);
+
+        foreach (var definition in virtual_folders_default) {
+            this.add_folder_definition (container, item_class, definition);
+        }
+
+        if (definitions != null) {
+            foreach (var definition in definitions) {
+                this.add_folder_definition (container, item_class, definition);
+            }
+        }
+    }
 }

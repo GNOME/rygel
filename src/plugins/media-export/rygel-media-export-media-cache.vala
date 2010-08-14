@@ -652,7 +652,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                 column = "m.author";
                 break;
             case "dc:date":
-                column = "m.date";
+                column = "strftime(\"%Y\", m.date)";
                 break;
             case "upnp:album":
                 column = "m.album";
