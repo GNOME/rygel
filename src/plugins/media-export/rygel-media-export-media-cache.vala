@@ -753,7 +753,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         };
 
         var sql = this.sql.make (SQLString.GET_META_DATA_COLUMN);
-        this.db.exec (sql.printf (column, column, filter, column),
+        this.db.exec (sql.printf (column, filter),
                       args.values,
                       callback);
 

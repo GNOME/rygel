@@ -151,8 +151,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "SELECT upnp_id FROM OBJECT WHERE parent = ?";
 
     private const string GET_META_DATA_COLUMN_STRING =
-    "SELECT DISTINCT %s FROM meta_data AS m " +
-        "WHERE %s IS NOT NULL %s ORDER BY %s LIMIT ?,?";
+    "SELECT DISTINCT %s AS _column FROM meta_data AS m " +
+        "WHERE _column IS NOT NULL %s ORDER BY _column LIMIT ?,?";
 
     internal const string schema_version = "10";
     internal const string CREATE_META_DATA_TABLE_STRING =
