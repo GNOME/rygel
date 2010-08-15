@@ -293,13 +293,20 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             // keep meta-data although we're deleting loads of objects
             this.database.exec ("DROP TRIGGER trgr_delete_metadata");
 
-            this.database.exec ("INSERT INTO Object (parent, upnp_id, type_fk, " +
-                                "title, timestamp) VALUES ('0', 'Filesystem', " +
-                                "0, 'Filesystem', 0)");
-            this.database.exec ("UPDATE Object SET parent = 'Filesystem' " +
-                                "WHERE parent = '0' AND upnp_id " +
+            this.database.exec ("INSERT INTO Object (parent, upnp_id, " +
+                                "type_fk, title, timestamp) VALUES " +
+                                "('0', '" +
+                                RootContainer.FILESYSTEM_FOLDER_ID +
+                                "', 0, '" +
+                                RootContainer.FILESYSTEM_FOLDER_NAME +
+                                "', 0)");
+            this.database.exec ("UPDATE Object SET parent = '" +
+                                RootContainer.FILESYSTEM_FOLDER_ID +
+                                "' WHERE parent = '0' AND upnp_id " +
                                 "NOT LIKE 'virtual-%' AND upnp_id " +
-                                "<> 'Filesystem'");
+                                "<> '" +
+                                RootContainer.FILESYSTEM_FOLDER_ID +
+                                "'");
             this.database.exec ("ALTER TABLE Object RENAME TO _Object");
             this.database.exec ("CREATE TABLE Object AS SELECT * FROM _Object");
             this.database.exec ("DELETE FROM Object");

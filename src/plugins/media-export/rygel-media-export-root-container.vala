@@ -48,6 +48,9 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
 
     private static MediaContainer instance = null;
 
+    internal const string FILESYSTEM_FOLDER_NAME = "Files & Folders";
+    internal const string FILESYSTEM_FOLDER_ID   = "Filesystem";
+
     public static MediaContainer get_instance () {
         if (RootContainer.instance == null) {
             try {
@@ -303,14 +306,14 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         try {
             this.filesystem_container = new NullContainer ();
             this.filesystem_container.parent = this;
-            this.filesystem_container.title = "Filesystem";
-            this.filesystem_container.id = "Filesystem";
+            this.filesystem_container.title = FILESYSTEM_FOLDER_NAME;
+            this.filesystem_container.id = FILESYSTEM_FOLDER_ID;
             this.media_db.save_container (this.filesystem_container);
         } catch (Error error) { }
 
         ArrayList<string> ids;
         try {
-            ids = media_db.get_child_ids ("Filesystem");
+            ids = media_db.get_child_ids (FILESYSTEM_FOLDER_ID);
         } catch (DatabaseError e) {
             ids = new ArrayList<string> ();
         }

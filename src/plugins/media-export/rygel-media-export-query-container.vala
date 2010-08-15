@@ -85,7 +85,7 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
             if (this.pattern == "") {
                 return (int) this.media_db.get_object_count_by_search_expression (
                                         this.expression,
-                                        "Filesystem");
+                                        RootContainer.FILESYSTEM_FOLDER_ID);
             } else {
                 var data = this.media_db.get_object_attribute_by_search_expression (
                                         this.attribute,
@@ -123,7 +123,7 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
         try {
             children = this.media_db.get_objects_by_search_expression (
                                             combined_expression,
-                                            "Filesystem",
+                                            RootContainer.FILESYSTEM_FOLDER_ID,
                                             offset,
                                             max_count,
                                             out total_matches);
