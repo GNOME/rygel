@@ -41,9 +41,6 @@ public class Rygel.External.PluginFactory {
     private const string DBUS_SERVICE = "org.freedesktop.DBus";
     private const string DBUS_OBJECT = "/org/freedesktop/DBus";
 
-    private static string OBJECT_IFACE = "org.gnome.UPnP.MediaObject2";
-    private static string CONTAINER_IFACE = "org.gnome.UPnP.MediaContainer2";
-
     private const string SERVICE_PREFIX = "org.gnome.UPnP.MediaServer2.";
     private const string GRILO_UPNP_PREFIX = SERVICE_PREFIX + "grl_upnp";
 
@@ -127,8 +124,8 @@ public class Rygel.External.PluginFactory {
         HashTable<string,Value?> container_props;
 
         try {
-            object_props = yield props.get_all (OBJECT_IFACE);
-            container_props = yield props.get_all (CONTAINER_IFACE);
+            object_props = yield props.get_all (MediaObjectProxy.IFACE);
+            container_props = yield props.get_all (MediaContainerProxy.IFACE);
         } catch (DBus.Error err) {
             warning ("Failed to fetch properties of plugin %s: %s.",
                      service_name,
