@@ -95,7 +95,7 @@ public class Rygel.External.PluginFactory {
         if (plugin != null) {
             if (old_owner != "" && new_owner == "") {
                 debug ("Service '%s' going down, marking it as unavailable",
-                        name);
+                       name);
                 plugin.available = false;
             } else if (old_owner == "" && new_owner != "") {
                 debug ("Service '%s' up again, marking it as available", name);
