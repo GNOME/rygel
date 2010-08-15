@@ -283,6 +283,8 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
         try {
             var queue = new LinkedList<string> ();
             this.database.begin ();
+            this.database.exec ("DELETE FROM Object WHERE upnp_id LIKE '" +
+                                QueryContainer.PREFIX + "%'");
             this.database.exec ("DROP TRIGGER trgr_update_closure");
             this.database.exec ("DROP TRIGGER trgr_delete_closure");
             this.database.exec ("DROP INDEX idx_parent");
@@ -312,6 +314,8 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             this.database.exec ("DELETE FROM Object");
             this.database.exec (this.sql.make (SQLString.TABLE_CLOSURE));
             this.database.exec (this.sql.make (SQLString.TRIGGER_CLOSURE));
+            this.database.exec ("INSERT INTO Closure (ancestor, descendant, " +
+                                "depth) VALUES ('0','0',0)");
             queue.offer ("0");
             while (!queue.is_empty) {
                 GLib.Value[] args = { queue.poll () };
@@ -331,6 +335,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             this.database.exec ("ALTER TABLE _Object RENAME TO Object");
             database.exec (this.sql.make (SQLString.INDEX_COMMON));
             database.exec (this.sql.make (SQLString.TRIGGER_COMMON));
+            this.database.exec (this.sql.make (SQLString.TRIGGER_CLOSURE));
             database.exec ("UPDATE schema_info SET version = '10'");
             database.commit ();
             database.exec ("VACUUM");
