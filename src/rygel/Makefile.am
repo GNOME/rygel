@@ -14,6 +14,7 @@ endif
 
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
+	    $(LIBGUPNP_DLNA_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
 	    $(GIO_CFLAGS) \
 	    $(GEE_CFLAGS) \
@@ -119,13 +120,14 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 rygel_VALAFLAGS = \
 	-H rygel.h -C --library=rygel-1.0 --vapidir=$(srcdir) --thread \
 	--pkg rygel-build-config --pkg rygel-misc --pkg gupnp-1.0 \
-	--pkg gupnp-av-1.0 --pkg dbus-glib-1 --pkg gstreamer-0.10 \
-	--pkg gio-2.0 --pkg gee-1.0 --pkg posix -g
+	--pkg gupnp-av-1.0 --pkg gupnp-dlna-1.0 --pkg dbus-glib-1 \
+	--pkg gstreamer-0.10 --pkg gio-2.0 --pkg gee-1.0 --pkg posix -g
 # Note:  `-- the -g needs to be at the end of VALAFLAGS to not break make dist
 
 rygel_LDADD = librygel-configuration.a \
 	      $(LIBGUPNP_LIBS) \
 	      $(LIBGUPNP_AV_LIBS) \
+	      $(LIBGUPNP_DLNA_LIBS) \
 	      $(LIBGSTREAMER_LIBS) \
 	      $(GIO_LIBS) \
 	      $(GEE_LIBS) \
