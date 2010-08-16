@@ -69,7 +69,9 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
         if (this.extract_metadata) {
             var gst_timeout = (ClockTime) (this.timeout * Gst.SECOND);
-            this.discoverer = new GUPnP.DLNADiscoverer (gst_timeout);
+            this.discoverer = new GUPnP.DLNADiscoverer (gst_timeout,
+                                                        true,
+                                                        true);
             this.discoverer.done.connect (on_done);
             this.discoverer.start ();
         }
