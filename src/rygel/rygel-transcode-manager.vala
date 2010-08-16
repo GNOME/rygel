@@ -117,19 +117,20 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
 
     internal abstract string get_protocol ();
 
-    internal virtual string get_protocol_info () {
-        string protocol_info = "";
+    internal virtual ArrayList<ProtocolInfo> get_protocol_info () {
+        var protocol_infos = new ArrayList<ProtocolInfo> ();
 
         foreach (var transcoder in this.transcoders) {
-            if (protocol_info != "")   // No comma before the first one
-                protocol_info += ",";
+            var protocol_info = new ProtocolInfo ();
 
-            protocol_info += this.get_protocol () +
-                             ":*:" + transcoder.mime_type +
-                             ":DLNA.ORG_PN=" + transcoder.dlna_profile;
+            protocol_info.protocol = this.get_protocol ();
+            protocol_info.mime_type = transcoder.mime_type;
+            protocol_info.dlna_profile = transcoder.dlna_profile;
+
+            protocol_infos.add (protocol_info);
         }
 
-        return protocol_info;
+        return protocol_infos;
     }
 }
 

@@ -162,14 +162,16 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         return "http-get";
     }
 
-    internal override string get_protocol_info () {
-        var protocol_info = base.get_protocol_info ();
+    internal override ArrayList<ProtocolInfo> get_protocol_info () {
+        var protocol_infos = base.get_protocol_info ();
 
-        if (protocol_info != "") {
-            protocol_info += ",";
-        }
+        var protocol_info = new ProtocolInfo ();
+        protocol_info.protocol = this.get_protocol ();
+        protocol_info.mime_type = "*";
 
-        return protocol_info += this.get_protocol () + ":*:*:*";
+        protocol_infos.add (protocol_info);
+
+        return protocol_infos;
     }
 
     private void on_request_completed (StateMachine machine) {

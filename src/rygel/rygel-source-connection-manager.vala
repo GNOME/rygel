@@ -34,8 +34,17 @@ internal class Rygel.SourceConnectionManager : Rygel.ConnectionManager {
         this.av_transport_id = -1;
         this.direction = "Output";
 
+        this.source_protocol_info = "";
+
         var server = this.get_http_server ();
-        this.source_protocol_info = server.get_protocol_info ();
+        foreach (var protocol_info in server.get_protocol_info ()) {
+            if (this.source_protocol_info != "") {
+                // No comma before the first one
+                this.source_protocol_info += ",";
+            }
+
+            this.source_protocol_info += protocol_info.to_string ();
+        }
     }
 
     private HTTPServer get_http_server () {
