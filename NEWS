@@ -1,3 +1,99 @@
+0.7.4
+=====
+
+A new release in the current unstable 0.7.x series for upcoming GNOME 2.32.0
+release.
+
+- Fix wildcard handling in search request.
+- Distribute correct copy of scallable icons.
+- Provide icons in DLNA standard sizes.
+- Provide icons in JPEG format as well.
+- Don't offer transcoding from video to audio and viceversa. This makes sense
+  anyway and reduces network traffic.
+- Only offer time seeking if duration is known.
+- Report correct DLNA profile for MPEG-TS HD and WMV transcoder.
+- List DLNA formats first in the list of supported formats.
+- Provide correct values for out parameters of GetCurrentConnectionInfo action.
+- Correctly handle HTTP 'POST' requests.
+- Correct checks for vala bindings.
+- Use new 64-bit size property in GUPnP resource API so that we can deal with
+  resources bigger than 2GB.
+- Fix some (potential) crashes.
+- Correctly handle a translated string involving plurals.
+- Don't use deprecated libsoup API.
+- Correct flaws in code related to search for media object by ID. This combined
+  with some changes in Tracker plugin (see below) improves the reliability and
+  especially the performance of Tracker plugin a lot.
+- Use the mime-type and DLNA profile when provided in item creation requests.
+- Advertize byte-seek support for thumbnails.
+- Correct algorithm to decide whether to seek or not.
+- Set standard header on XML files.
+- Prefix service URLs with a "/". This seems like the right way to do it and it
+  might actually improve our IOP.
+- Make use of new APIs to report all known DLNA profiles in list of supported
+  formats (MediaServer only).
+- Add support for the "Genre" tag in music items.
+- External:
+  - Handle AlbumArt property.
+  - Fix a few crashes.
+  - Remove workaround for bug#602003.
+Tracker:
+  - Make sure metadata container get unique IDs.
+  - Performance improvements to search for media object by ID.
+  - Make use of DLNA profile when provided.
+  - Don't use Tracker's logo as icon.
+  - Ignore duration of '0'.
+  - Print debug after item creation in store.
+MediaExport:
+  - Disable plugin when Tracker plugin is/becomes available.
+  - Require sqlite3 VAPI only for this plugin.
+  - Code clean-up and general speed improvements
+  - Extract embedded album art
+  - Remove the ability for user-defined virtual folders, providing a set of
+    built-in folders similar to that of tracker's.
+  - Fix some minor regressions introduced by the switch to gupnp-dlna metadata
+    extraction
+  - Move configured files and folders into their own "Files & Folders" container
+    to de-clutter root.
+- Localization:
+  - Add ta translation.
+  - Update Galician translations.
+  - Update Hebrew translation.
+  - Update Spanish translation.
+  - Update Romanian translation.
+  - Update Slovenian translation.
+- DLNA test cases fixed in this release:
+  - 7.2.14.2
+  - 7.2.28.1
+  - 7.3.25.1
+  - 7.3.26.3
+  - 7.3.26.4
+  - 7.3.29.3
+  - 7.3.29.4
+  - 7.3.33.4
+  - 7.3.33.5
+
+Dependency-related changes:
+  - Require and adapt to Vala 0.9.5.
+  - Require gupnp-av >= 0.5.9.
+  - Require gupnp-dlna >= 0.3.0.
+  - MediaExport
+    - Require gstreamer-tag >= 0.10.28.
+    - Require gstreamer-app >= 0.10.28.
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+Yaron Shahrabani <sh.yaron@gmail.com>
+Lucian Adrian Grijincu <lucian.grijincu@gmail.com>
+Kjartan Maraas <kmaraas@gnome.org>
+Jorge González <jorgegonz@svn.gnome.org>
+Fran Diéguez <fran.dieguez@mabishu.com>
+drtv <vasudeven@git.gnome.org>
+Claude Paroz <claude@2xlibre.net>
+Andrej Žnidaršič <andrej.znidarsic@gmail.com>
+
 0.7.3
 =====
 
