@@ -33,6 +33,14 @@ using Gst;
 internal abstract class Rygel.TranscodeManager : GLib.Object {
     private ArrayList<Transcoder> transcoders;
 
+    private static bool protocol_equal_func (void *a, void *b) {
+        var protocol_a = a as ProtocolInfo;
+        var protocol_b = b as ProtocolInfo;
+
+        return protocol_a.dlna_profile == protocol_b.dlna_profile &&
+               protocol_a.mime_type == protocol_b.mime_type;
+    }
+
     public TranscodeManager () {
         transcoders = new ArrayList<Transcoder> ();
 
@@ -118,7 +126,7 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
     internal abstract string get_protocol ();
 
     internal virtual ArrayList<ProtocolInfo> get_protocol_info () {
-        var protocol_infos = new ArrayList<ProtocolInfo> ();
+        var protocol_infos = new ArrayList<ProtocolInfo> (protocol_equal_func);
 
         foreach (var transcoder in this.transcoders) {
             var protocol_info = new ProtocolInfo ();
