@@ -22,6 +22,7 @@
  */
 
 using GUPnP;
+using Gst;
 
 /**
  * UPnP ConnectionManager service for serving end-points (MediaServer).
@@ -34,10 +35,27 @@ internal class Rygel.SourceConnectionManager : Rygel.ConnectionManager {
         this.av_transport_id = -1;
         this.direction = "Output";
 
-        this.source_protocol_info = "";
-
         var server = this.get_http_server ();
-        foreach (var protocol_info in server.get_protocol_info ()) {
+        var protocol_infos = server.get_protocol_info ();
+
+        var discoverer = new GUPnP.DLNADiscoverer ((ClockTime) SECOND,
+                                                   true,
+                                                   false);
+        var protocol = server.get_protocol ();
+
+        foreach (var profile in discoverer.list_profiles ()) {
+            var protocol_info = new ProtocolInfo ();
+
+            protocol_info.protocol = protocol;
+            protocol_info.mime_type = profile.mime;
+            protocol_info.dlna_profile = profile.name;
+
+            if (!(protocol_info in protocol_infos)) {
+                protocol_infos.insert (0, protocol_info);
+            }
+        }
+
+        foreach (var protocol_info in protocol_infos) {
             if (this.source_protocol_info != "") {
                 // No comma before the first one
                 this.source_protocol_info += ",";
