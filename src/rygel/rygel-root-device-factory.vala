@@ -226,13 +226,13 @@ internal class Rygel.RootDeviceFactory {
         service_node->new_child (null, "serviceId", resource_info.upnp_id);
 
         /* Now the relative (to base URL) URLs*/
-        string url = resource_info.description_path;
+        string url = "/" + resource_info.description_path;
         service_node->new_child (null, "SCPDURL", url);
 
-        url = plugin_name + "/" + resource_info.type.name () + "/Event";
+        url = "/" + plugin_name + "/" + resource_info.type.name () + "/Event";
         service_node->new_child (null, "eventSubURL", url);
 
-        url = plugin_name + "/" + resource_info.type.name () + "/Control";
+        url = "/" + plugin_name + "/" + resource_info.type.name () + "/Control";
         service_node->new_child (null, "controlURL", url);
     }
 
