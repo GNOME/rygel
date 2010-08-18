@@ -125,12 +125,11 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
                 continue;
             }
 
-            var id = this.create_id_for_value (value);
+            var title = this.create_title_for_value (value);
+            var id = this.create_id_for_title (title);
             if (!this.is_child_id_unique (id)) {
                 continue;
             }
-
-            var title = this.create_title_for_value (value);
 
             // The child container can use the same triplets we used in our
             // query.
@@ -164,8 +163,8 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         }
     }
 
-    protected virtual string create_id_for_value (string value) {
-        return this.id + ":" + value;
+    protected virtual string create_id_for_title (string title) {
+        return this.id + ":" + title;
     }
 
     protected virtual string create_title_for_value (string value) {
