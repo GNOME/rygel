@@ -1,3 +1,13 @@
+0.7.6
+=====
+
+Another micro release to fix the critical regression in 'Year' hierarchy of
+Tracker plugin.
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 0.7.4
 =====
 
