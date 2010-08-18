@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2009,2010 Nokia Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
@@ -21,18 +21,20 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Gee;
-
 /**
- * Container listing Music content hierarchy.
+ * Container listing Music albums as containers.
  */
-public class Rygel.Tracker.Music : CategoryContainer {
-    public Music (string id, MediaContainer parent, string title) {
-        base (id, parent, title, new MusicItemFactory ());
+public class Rygel.Tracker.Albums : MetadataValues {
+    public Albums (Music parent) {
+        var key_chain = new string[] { "nmm:musicAlbum",
+                                       "nmm:albumTitle",
+                                       null };
 
-        this.add_child (new Artists (this));
-        this.add_child (new Albums (this));
-        this.add_child (new Tags (this, item_factory));
+        base (parent.id + "Albums",
+              parent,
+              _("Albums"),
+              parent.item_factory,
+              key_chain);
     }
 }
 
