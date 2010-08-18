@@ -28,7 +28,7 @@ using Gee;
 /**
  * Container listing possible values of a particuler Tracker metadata key.
  */
-public class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
+public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
