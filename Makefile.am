@@ -1,4 +1,4 @@
-SUBDIRS = src data tests po
+SUBDIRS = src data tests po doc
 
 pkgconfig_DATA= rygel-1.0.pc
 pkgconfigdir = $(libdir)/pkgconfig

@@ -1,0 +1,335 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This document was created with Syntext Serna Free. --><!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+
+<!--
+
+`xsltproc -''-nonet \
+          -''-param man.charmap.use.subset "0" \
+          -''-param make.year.ranges "1" \
+          -''-param make.single.year.ranges "1" \
+          /usr/share/xml/docbook/stylesheet/nwalsh/manpages/docbook.xsl \
+          manpage.xml'
+
+A manual page <package>.<section> will be generated. You may view the
+manual page with: nroff -man <package>.<section> | less'. A typical entry
+in a Makefile or Makefile.am is:
+
+DB2MAN = /usr/share/sgml/docbook/stylesheet/xsl/nwalsh/manpages/docbook.xsl
+XP     = xsltproc -''-nonet -''-param man.charmap.use.subset "0"
+
+manpage.1: manpage.xml
+        $(XP) $(DB2MAN) $<
+
+The xsltproc binary is found in the xsltproc package. The XSL files are in
+docbook-xsl. A description of the parameters you can use can be found in the
+docbook-xsl-doc-* packages. Please remember that if you create the nroff
+version in one of the debian/rules file targets (such as build), you will need
+to include xsltproc and docbook-xsl in your Build-Depends control field.
+Alternatively use the xmlto command/package. That will also automatically
+pull in xsltproc and docbook-xsl.
+
+Notes for using docbook2x: docbook2x-man does not automatically create the
+AUTHOR(S) and COPYRIGHT sections. In this case, please add them manually as
+<refsect1> ... </refsect1>.
+
+To disable the automatic creation of the AUTHOR(S) and COPYRIGHT sections
+read /usr/share/doc/docbook-xsl/doc/manpages/authors.html. This file can be
+found in the docbook-xsl-doc-html package.
+
+Validation can be done using: `xmllint -''-noout -''-valid manpage.xml`
+
+General documentation about man-pages and man-page-formatting:
+man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
+
+-->
+
+  <!-- Fill in your name for FIRSTNAME and SURNAME. -->
+  <!ENTITY dhfirstname "Jens">
+  <!ENTITY dhsurname   "Georg">
+  <!-- dhusername could also be set to "&firstname; &surname;". -->
+  <!ENTITY dhusername  "Jens Georg">
+  <!ENTITY dhemail     "mail@jensge.org">
+  <!-- SECTION should be 1-8, maybe w/ subsection other parameters are
+       allowed: see man(7), man(1) and
+       http://www.tldp.org/HOWTO/Man-Page/q2.html. -->
+  <!ENTITY dhsection   "5">
+  <!-- TITLE should be something like "User commands" or similar (see
+       http://www.tldp.org/HOWTO/Man-Page/q2.html). -->
+  <!ENTITY dhtitle     "Rygel User Manual">
+  <!ENTITY dhucpackage "rygel.conf">
+  <!ENTITY dhpackage   "rygel">
+]>
+<refentry>
+  <refentryinfo>
+    <title>&dhtitle;</title>
+    <productname>&dhpackage;</productname>
+    <authorgroup>
+      <author>
+       <firstname>&dhfirstname;</firstname>
+        <surname>&dhsurname;</surname>
+        <contrib>Wrote this manpage.</contrib>
+        <address>
+          <email>&dhemail;</email>
+        </address>
+      </author>
+    </authorgroup>
+  </refentryinfo>
+  <refmeta>
+    <refentrytitle>&dhucpackage;</refentrytitle>
+    <manvolnum>&dhsection;</manvolnum>
+  </refmeta>
+  <refnamediv>
+    <refname>&dhucpackage;</refname>
+    <refpurpose>Rygel configuration file </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>$XDG_CONFIG_DIR/rygel.conf</command>
+    </cmdsynopsis>
+    <cmdsynopsis>
+      <command>/etc/rygel.conf</command>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+  <refsect1 id="description">
+    <title>DESCRIPTION</title>
+    <para><command>&dhpackage;</command> reads its configuration values from the file <filename>$XDG_CONFIG_DIR/rygel.conf</filename> or - if that file does not exist - from the file <filename>/etc/rygel.conf</filename>.</para>
+    <para>Most of the options may be overriden by commandline arguments or envronment variables. See <citerefentry>
+        <refentrytitle>rygel</refentrytitle>
+        <manvolnum>1</manvolnum>
+      </citerefentry> for details on those.</para>
+  </refsect1>
+  <refsect1 id="options">
+    <title>GENERAL DIRECTIVES</title>
+    <para>Lists in the configuration files are separated by a semicolon (<userinput>;</userinput>). Boolean values may be either <userinput>true</userinput> or <userinput>false</userinput>.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <option>interface=<replaceable>INTERFACE</replaceable></option>
+        </term>
+        <listitem>
+          <para>Set the network-interface rygel listens on.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>port=<replaceable>PORT</replaceable></option>
+        </term>
+        <listitem>
+          <para>Set the listen-port.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>enable-transcoding</option>
+        </term>
+        <listitem>
+          <para>Set to  <varname>true</varname> to enable transcoding in general.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>enable-mp3-transcoder</option>
+        </term>
+        <listitem>
+          <para>Set to <varname>true</varname> to enable transcoding to MP3.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>enable-mp2ts-transcoder</option>
+        </term>
+        <listitem>
+          <para>Set to <varname>true</varname> to enable transcoding to MPEG2 in TS container.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>enable-lpcm-transcoder</option>
+        </term>
+        <listitem>
+          <para>Set to <varname>true</varname> to enable transcoding to Linear PCM.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>enable-wmv-transcoder</option>
+        </term>
+        <listitem>
+          <para>Set to <varname>true</varname> to enable transcoding to WMV.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>log-level<replaceable>=LEVEL</replaceable></option>
+        </term>
+        <listitem>
+          <para>Set the log level. 1=critical, 2=error, 3=warning, 4=message/info, 5=debug</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>plugin-path=<replaceable>PATH</replaceable></option>
+        </term>
+        <listitem>
+          <para>Set the plugin search path</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>Plugin-specific sections are denoted with <option>[PluginName]</option> and can contain plugin-specific options as well as common options: </para>
+    <variablelist>
+      <varlistentry>
+        <term><option>title</option>=<replaceable>TITLE</replaceable></term>
+        <listitem>
+          <para>Title of the device implemented by this plugin. There are some variables which will be replaced by &dhpackage;. <replaceable>@REALNAME@</replaceable> will be subsituted by the user&apos;s real name, <replaceable>@USERNAME@</replaceable> by the user&apos;s login id and <replaceable>@HOSTNAME@</replaceable> by the name of the machine &dhpackage;runs on.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>enabled</option>
+        </term>
+        <listitem>
+          <para>You can individually enable or disable plugins by setting this to <option>true</option> or <option>false</option>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+  <refsect1>
+    <title>Tracker Plugin</title>
+    <para>The tracker plugin uses the centralized database of meta information from the tracker project. See <ulink url="http://www.tracker-project.org">http://www.tracker-project.org</ulink> for more information about tracker.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <option>share-pictures</option>
+        </term>
+        <listitem>
+          <para>Enable or disable sharing of all pictures in the Tracker database.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>share-videos</option>
+        </term>
+        <listitem>
+          <para>Enable or disable sharing of all videos in the Tracker database.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>share-music</option>
+        </term>
+        <listitem>
+          <para>Enable or disable sharing of all music in the Tracker database.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+  <refsect1>
+    <title>MediaExport Plugin</title>
+    <para>MediaExport is an alternative to the Tracker-backed media export. MediaExport extracts meta-data by itself and stores it in the SQLite database in <filename>$XDG_CACHE_DIR/rygel/media-export.db</filename> on UNIX platforms.</para>
+    <para>There are several options supported by this plugin:</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <option>uris</option>
+        </term>
+        <listitem>
+          <para>A list of uris to expose via UPnP. May be files, folders or anything supported by gvfs.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>include-filter</option>
+        </term>
+        <listitem>
+          <para>A list of filename extensions. If this option is omitted or empty, every file will be analyzed for meta-data. The extensions are case-insensitive.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>extract-metadata</option>
+        </term>
+        <listitem>
+          <para>Set to false if you do not care about duration or any other meta-data like artist. This speeds up the initial crawl of the media a lot. Use it to quickly share some files via UPnP. Make sure to define an <option>include-filter</option>, otherwise you will end up with a lot of files exposed which the client cannot display anyway.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+  <refsect1>
+    <title>Playbin plugin</title>
+    <para>The Playbin plugin implements a media renderer (Digtal Media Renderer, DMR in DLNA terms). This plugin was known as GstRenderer. It has no special options</para>
+  </refsect1>
+  <refsect1>
+    <title>ZDFMediathek</title>
+    <para>The ZDF Mediathek <ulink url="http://www.zdf.de/ZDFmediathek">http://www.zdf.de/ZDFmediathek</ulink> is an online archive of broadcasts from the second german television. This plugin can be used to subscribes to the RSS feeds of this service and expose the broadcasts via UPnP.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <option>rss</option>
+        </term>
+        <listitem>
+          <para>A list of broadcast ids. How to get the broadcast ids from the web site is described in the file README.Mediathek (in german only).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+  <refsect1>
+    <title>GstLaunch Plugin</title>
+    <para>The GstLaunch plugin allows to expose GStreamer pipelines using the same syntax as the gst-launch utilty. You can configure several items in this plugins.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <option>launch-items</option>
+        </term>
+        <listitem>
+          <para>A list of of identifiers for the pipelines to be exposed. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>identifier-title</option>
+        </term>
+        <listitem>
+          <para>Title of the device represented by this pipeline. Identifier
+              is the identifier as set in launch-items</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>identifier-mime</option>
+        </term>
+        <listitem>
+          <para>Mime-type of the pipeline.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>identifier-launch</option>
+        </term>
+        <listitem>
+          <para>Definition of the pipeline in gst-launch syntax. For examples on the syntax see <citerefentry>
+              <refentrytitle>gst-launch</refentrytitle>
+              <manvolnum>1</manvolnum>
+            </citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>An example configuration is available in the distributed configuration file <filename>/etc/rygel.conf</filename>.</para>
+  </refsect1>
+  <refsect1>
+    <title>External</title>
+    <para>The External plugin is an consumer of the MediaServer2 DBus interface specification as defined at <ulink url="http://live.gnome.org/Rygel/MediaServer2Spec">http://live.gnome.org/Rygel/MediaServer2Spec</ulink>. This allows external programs to share their data via UPnP by implementing this DBus specification. The plugin picks up any implementation of this interface on the session bus and exposes the presented media via UPnP. Known implementors of this spec are gnome-dvb-daemon (<ulink url="http://live.gnome.org/DVBDaemon">http://live.gnome.org/DVBDaemon</ulink>) and Grilo (<ulink url="http://live.gnome.org/Grilo">http://live.gnome.org/Grilo</ulink>) via the grilo-rygel project.</para>
+    <para>This plugin has no additional options.</para>
+  </refsect1>
+  <refsect1 id="see_also">
+    <title>SEE ALSO</title>
+<!-- In alpabetical order. -->    <para><citerefentry>
+        <refentrytitle>rygel</refentrytitle>
+        <manvolnum>1</manvolnum>
+      </citerefentry>, <citerefentry>
+        <refentrytitle>README.Mediathek, <citerefentry>
+            <refentrytitle>gst-launch</refentrytitle>
+            <manvolnum>1</manvolnum>
+          </citerefentry></refentrytitle>
+      </citerefentry></para>
+  </refsect1>
+</refentry>

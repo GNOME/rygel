@@ -1,0 +1,396 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This document was created with Syntext Serna Free. --><!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+
+<!--
+
+`xsltproc -''-nonet \
+          -''-param man.charmap.use.subset "0" \
+          -''-param make.year.ranges "1" \
+          -''-param make.single.year.ranges "1" \
+          /usr/share/xml/docbook/stylesheet/nwalsh/manpages/docbook.xsl \
+          manpage.xml'
+
+A manual page <package>.<section> will be generated. You may view the
+manual page with: nroff -man <package>.<section> | less'. A typical entry
+in a Makefile or Makefile.am is:
+
+DB2MAN = /usr/share/sgml/docbook/stylesheet/xsl/nwalsh/manpages/docbook.xsl
+XP     = xsltproc -''-nonet -''-param man.charmap.use.subset "0"
+
+manpage.1: manpage.xml
+        $(XP) $(DB2MAN) $<
+
+The xsltproc binary is found in the xsltproc package. The XSL files are in
+docbook-xsl. A description of the parameters you can use can be found in the
+docbook-xsl-doc-* packages. Please remember that if you create the nroff
+version in one of the debian/rules file targets (such as build), you will need
+to include xsltproc and docbook-xsl in your Build-Depends control field.
+Alternatively use the xmlto command/package. That will also automatically
+pull in xsltproc and docbook-xsl.
+
+Notes for using docbook2x: docbook2x-man does not automatically create the
+AUTHOR(S) and COPYRIGHT sections. In this case, please add them manually as
+<refsect1> ... </refsect1>.
+
+To disable the automatic creation of the AUTHOR(S) and COPYRIGHT sections
+read /usr/share/doc/docbook-xsl/doc/manpages/authors.html. This file can be
+found in the docbook-xsl-doc-html package.
+
+Validation can be done using: `xmllint -''-noout -''-valid manpage.xml`
+
+General documentation about man-pages and man-page-formatting:
+man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
+
+-->
+
+  <!-- Fill in your name for FIRSTNAME and SURNAME. -->
+  <!ENTITY dhfirstname "Jens">
+  <!ENTITY dhsurname   "Georg">
+  <!-- dhusername could also be set to "&firstname; &surname;". -->
+  <!ENTITY dhusername  "Jens Georg">
+  <!ENTITY dhemail     "mail@jensge.org">
+  <!-- SECTION should be 1-8, maybe w/ subsection other parameters are
+       allowed: see man(7), man(1) and
+       http://www.tldp.org/HOWTO/Man-Page/q2.html. -->
+  <!ENTITY dhsection   "1">
+  <!-- TITLE should be something like "User commands" or similar (see
+       http://www.tldp.org/HOWTO/Man-Page/q2.html). -->
+  <!ENTITY dhtitle     "Rygel User Manual">
+  <!ENTITY dhucpackage "RYGEL">
+  <!ENTITY dhpackage   "rygel">
+]>
+<refentry>
+  <refentryinfo>
+    <title>&dhtitle;</title>
+    <productname>&dhpackage;</productname>
+    <authorgroup>
+      <author>
+       <firstname>&dhfirstname;</firstname>
+        <surname>&dhsurname;</surname>
+        <contrib>Wrote this manpage.</contrib>
+        <address>
+          <email>&dhemail;</email>
+        </address>
+      </author>
+    </authorgroup>
+  </refentryinfo>
+  <refmeta>
+    <refentrytitle>&dhucpackage;</refentrytitle>
+    <manvolnum>&dhsection;</manvolnum>
+  </refmeta>
+  <refnamediv>
+    <refname>&dhpackage;</refname>
+    <refpurpose>a collection of DLNA/UPnP AV services </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>&dhpackage;</command>
+<!-- These are several examples, how syntaxes could look -->      <arg choice="opt">
+        <option>options</option>
+      </arg>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+  <refsect1 id="description">
+    <title>DESCRIPTION</title>
+    <para><command>&dhpackage;</command> is a collection of DLNA (UPnP  AV) services (devices in UPnP speak), implemented through a plug-in mechanism. UPnP in simplest words is a set of protocols that defines how different devices on a home network can seamlessly (without or with minimum configuration) communicate with each other. UPnP AV defines how multimedia systems could be built on top of that. DLNA in simple words is a long list of rules that implementers must comply to if they want to achieve interoperability with other implementations in the market. </para>
+  </refsect1>
+  <refsect1 id="options">
+    <title>OPTIONS</title>
+    <para>The program follows the usual GNU command line syntax,
+      with long options starting with two dashes (`-&apos;).  A summary of
+      options is included below.</para>
+    <variablelist>
+<!-- Use the variablelist.term.separator and the
+           variablelist.term.break.after parameters to
+           control the term elements. -->      <varlistentry>
+        <term>
+          <option>-n</option>
+        </term>
+        <term>
+          <option>--network-interface=<replaceable>INTERFACE</replaceable></option>
+        </term>
+        <listitem>
+          <para>Set the network-interface rygel listens on</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-h</option>
+        </term>
+        <term>
+          <option>--help</option>
+        </term>
+        <listitem>
+          <para>Show summary of options.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>--help-all</option>
+        </term>
+        <listitem>
+          <para>Show all help options</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>--help-gst</option>
+        </term>
+        <listitem>
+          <para>Show GStreamer related help options</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>--version</option>
+        </term>
+        <listitem>
+          <para>Show version of program.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-p</option>
+        </term>
+        <term>
+          <option>--port=<replaceable>PORT</replaceable></option>
+        </term>
+        <listitem>
+          <para>Set the listen-port</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-t</option>
+        </term>
+        <term>
+          <option>--disable-transcoding</option>
+        </term>
+        <listitem>
+          <para>Disable any transcoding</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-m</option>
+        </term>
+        <term>
+          <option>--disable-mp3-transcoder</option>
+        </term>
+        <listitem>
+          <para>Disable transcoding to MP3</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-s</option>
+        </term>
+        <term>
+          <option>--disable-mp2ts-transcoder</option>
+        </term>
+        <listitem>
+          <para>Disable transcoding to MPEG2 in TS container</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-l</option>
+        </term>
+        <term>
+          <option>--disable-lpcm-transcoder</option>
+        </term>
+        <listitem>
+          <para>Disable transcoding to Linear PCM</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>--disable-wmv-transcoder</option>
+        </term>
+        <listitem>
+          <para>Disable transcoding to WMV</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-g</option>
+        </term>
+        <term>
+          <option>--log-level<replaceable>=LEVEL</replaceable></option>
+        </term>
+        <listitem>
+          <para>Set the log level. 1=critical, 2=error, 3=warning, 4=message/info, 5=debug</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-u</option>
+        </term>
+        <term>
+          <option>--plugin-path=<option>PATH</option></option>
+        </term>
+        <listitem>
+          <para>Set the plugin search path</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-d</option>
+        </term>
+        <term>
+          <option>--disable-plugin=<replaceable>PLUGIN_NAME</replaceable></option>
+        </term>
+        <listitem>
+          <para>Disable a plugin</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+  <refsect1 id="files">
+    <title>FILES</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <filename>/etc/rygel.conf</filename>
+        </term>
+        <listitem>
+          <para>The system-wide configuration file to control the
+            behaviour of <application>&dhpackage;</application>. See
+            <citerefentry>
+              <refentrytitle>rygel.conf</refentrytitle>
+              <manvolnum>5</manvolnum>
+            </citerefentry> for further details.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <filename>${XDG_CONFIG_DIR}/rygel.conf</filename>
+        </term>
+        <listitem>
+          <para>The per-user configuration file to control the
+             behaviour of <application>&dhpackage;</application>. See
+             <citerefentry>
+              <refentrytitle>rygel.conf</refentrytitle>
+              <manvolnum>5</manvolnum>
+            </citerefentry> for further details.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <filename>${XDG_CONFIG_DIR}/Rygel/*.xml</filename>
+        </term>
+        <listitem>
+          <para>Cached UPnP device description files</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+  <refsect1 id="environment">
+    <title>ENVIONMENT</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_IFACE</envar>
+        </term>
+        <listitem>
+          <para>Set the network interface to bind to.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_PORT</envar>
+        </term>
+        <listitem>
+          <para>Define the network port to  bind to</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_TRANSCODING</envar>
+        </term>
+        <listitem>
+          <para>Enable or disable transcoding globally</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_MP3_TRANS</envar>
+        </term>
+        <listitem>
+          <para>Enable or disable the MP3 transcoder</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_LPCM_TRANS</envar>
+        </term>
+        <listitem>
+          <para>Enable or disable the Linear PCM transcoder</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_MP2TS_TRANS</envar>
+        </term>
+        <listitem>
+          <para>Enable or disable the MPEG2 in TS transcoder</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_WMV_TRANS</envar>
+        </term>
+        <listitem>
+          <para>Enable or disable transcoding to WMV format</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_LOG</envar>
+        </term>
+        <listitem>
+          <para>Set the log level of <application>&dhpackage;</application></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_PLUGIN_PATH</envar>
+        </term>
+        <listitem>
+          <para>Set the plugin search path of <application>&dhpackage;</application></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>Also for every plugin you can set the following environment variables:</para>
+    <para><variablelist>
+        <varlistentry>
+          <term>
+            <envar>RYGEL_PLUGIN_NAME_TITLE</envar>
+          </term>
+          <listitem>
+            <para>Set the title of the plugin</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <envar>RYGEL_PLUGIN_NAME_ENABLED</envar>
+          </term>
+          <listitem>
+            <para>Enable or disable the plugin</para>
+          </listitem>
+        </varlistentry>
+      </variablelist></para>
+  </refsect1>
+  <refsect1 id="bugs">
+<!-- Or use this section to tell about upstream BTS. -->    <title>BUGS</title>
+    <para>The  <acronym>BTS</acronym> can be found
+      at <ulink url="https://bugzilla.gnome.org/buglist.cgi?product=rygel"/>.</para>
+  </refsect1>
+  <refsect1 id="see_also">
+    <title>SEE ALSO</title>
+<!-- In alpabetical order. -->    <para><citerefentry>
+        <refentrytitle>rygel.conf</refentrytitle>
+        <manvolnum>5</manvolnum>
+      </citerefentry></para>
+  </refsect1>
+</refentry>

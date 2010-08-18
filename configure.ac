@@ -263,6 +263,10 @@ AC_SUBST(VALAFLAGS)
 dnl Shave the output
 AM_SILENT_RULES([yes])
 
+dnl documenation
+AC_PATH_PROG([XSLTPROC], [xsltproc])
+AM_CONDITIONAL([HAVE_XSLTPROC], [test x"$XSLTPROC" != x])
+
 AC_OUTPUT([
 Makefile
 src/Makefile
@@ -283,6 +287,7 @@ data/icons/32x32/Makefile
 data/icons/48x48/Makefile
 data/icons/120x120/Makefile
 data/icons/scalable/Makefile
+doc/Makefile
 po/Makefile.in
 rygel-1.0.pc
 tests/Makefile
