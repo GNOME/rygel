@@ -34,18 +34,15 @@ public class Rygel.Tracker.Years : MetadataValues {
               parent,
               _("Year"),
               item_factory,
-              KEY_CHAIN,
-              null,
-              year_id_func,
-              year_filter_func);
+              KEY_CHAIN);
     }
 
-    private static string year_id_func (string value) {
+    protected override string create_id_for_value (string value) {
         return value.ndup (4);
     }
 
-    private static string year_filter_func (string variable, string value) {
-        var year = year_id_func (value);
+    protected override string create_filter (string variable, string value) {
+        var year = this.create_id_for_value (value);
         var next_year = (year.to_int () + 1).to_string ();
 
         year += "-01-01T00:00:00Z";

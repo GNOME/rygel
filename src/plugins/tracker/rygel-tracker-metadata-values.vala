@@ -34,18 +34,12 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
     private const string ITEM_VARIABLE = "?item";
 
-    public delegate string IDFunc (string value);
-    public delegate string FilterFunc (string variable, string value);
-
     private ItemFactory item_factory;
 
     // In tracker 0.7, we might don't get values of keys in place so you need a
     // chain of keys to reach to final destination. For instances:
     // nmm:Performer -> nmm:artistName
     public string[] key_chain;
-    public IDFunc id_func;
-    public IDFunc title_func;
-    public FilterFunc filter_func;
 
     private ResourcesIface resources;
     private ResourcesClassIface resources_class;
@@ -54,29 +48,11 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
                            MediaContainer parent,
                            string         title,
                            ItemFactory    item_factory,
-                           string[]       key_chain,
-                           IDFunc?        id_func = null,
-                           IDFunc?        title_func = null,
-                           FilterFunc?    filter_func = null) {
+                           string[]       key_chain) {
         base (id, parent, title);
 
         this.item_factory = item_factory;
         this.key_chain = key_chain;
-        this.id_func = id_func;
-        this.title_func = title_func;
-        this.filter_func = filter_func;
-
-        if (id_func == null) {
-            this.id_func = this.default_id_func;
-        }
-
-        if (title_func == null) {
-            this.title_func = this.default_title_func;
-        }
-
-        if (filter_func == null) {
-            this.filter_func = this.default_filter_func;
-        }
 
         try {
             this.create_proxies ();
@@ -149,12 +125,12 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
                 continue;
             }
 
-            var id = this.id_func (value);
+            var id = this.create_id_for_value (value);
             if (!this.is_child_id_unique (id)) {
                 continue;
             }
 
-            var title = this.title_func (value);
+            var title = this.create_title_for_value (value);
 
             // The child container can use the same triplets we used in our
             // query.
@@ -162,7 +138,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
 
             // However we constrain the object of our last triplet.
             var filters = new ArrayList<string> ();
-            var filter = this.filter_func (child_triplets.last ().obj, value);
+            var filter = this.create_filter (child_triplets.last ().obj, value);
             filters.add (filter);
 
             var container = new SearchContainer (id,
@@ -188,15 +164,15 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         }
     }
 
-    private string default_id_func (string value) {
+    protected virtual string create_id_for_value (string value) {
         return this.id + ":" + value;
     }
 
-    private string default_title_func (string value) {
+    protected virtual string create_title_for_value (string value) {
         return value;
     }
 
-    private string default_filter_func (string variable, string value) {
+    protected virtual string create_filter (string variable, string value) {
         return variable + " = \"" + value + "\"";
     }
 
