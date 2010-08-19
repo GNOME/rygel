@@ -114,13 +114,14 @@ internal class Rygel.HTTPGet : HTTPRequest {
         this.handler.add_response_headers (this);
         debug (_("Following HTTP headers appended to response:"));
         this.msg.response_headers.foreach ((name, value) => {
-                debug ("%s : %s", name, value);
-                });
+            debug ("%s : %s", name, value);
+        });
 
         if (this.msg.method == "HEAD") {
             // Only headers requested, no need to send contents
             this.server.unpause_message (this.msg);
             this.end (Soup.KnownStatusCode.OK);
+
             return;
         }
 
