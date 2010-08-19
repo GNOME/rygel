@@ -136,6 +136,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
             break;
         case "Interactive":
+        case "Background":
             incorrect =  this.handler is HTTPTranscodeHandler ||
                          (this.item.should_stream () &&
                           this.subtitle == null &&
