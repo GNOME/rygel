@@ -68,9 +68,9 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
         if (this.handler == null) {
             this.handler = new HTTPIdentityHandler (this.cancellable);
-
-            this.ensure_correct_mode ();
         }
+
+        this.ensure_correct_mode ();
 
         yield this.handle_item_request ();
     }
@@ -125,14 +125,30 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
     private void ensure_correct_mode () throws HTTPRequestError {
         var mode = this.msg.request_headers.get_one (TRANSFER_MODE_HEADER);
+        var incorrect = false;
 
-        if (mode == "Streaming" &&
-            (!this.item.should_stream () ||
-             this.subtitle != null ||
-             this.thumbnail != null)) {
+        switch (mode) {
+        case "Streaming":
+            incorrect = this.handler is HTTPIdentityHandler &&
+                        (!this.item.should_stream () ||
+                         this.subtitle != null ||
+                         this.thumbnail != null);
+
+            break;
+        case "Interactive":
+            incorrect =  this.handler is HTTPTranscodeHandler ||
+                         (this.item.should_stream () &&
+                          this.subtitle == null &&
+                          this.thumbnail == null);
+
+            break;
+        }
+
+        if (incorrect) {
             throw new HTTPRequestError.UNACCEPTABLE (
-                                        "Streaming mode not supported for '%s'",
-                                        item.id);
+                                        "%s mode not supported for '%s'",
+                                        mode,
+                                        this.item.id);
         }
     }
 }
