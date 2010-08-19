@@ -29,6 +29,8 @@ using Gst;
  * Responsible for handling HTTP GET & HEAD client requests.
  */
 internal class Rygel.HTTPGet : HTTPRequest {
+    private const string TRANSFER_MODE_HEADER = "transferMode.dlna.org";
+
     public Thumbnail thumbnail;
     public Subtitle subtitle;
     public HTTPSeek seek;
@@ -66,6 +68,17 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
         if (this.handler == null) {
             this.handler = new HTTPIdentityHandler (this.cancellable);
+
+            header = this.msg.request_headers.get_one (TRANSFER_MODE_HEADER);
+
+            if (header == "Streaming" &&
+                (!this.item.should_stream () ||
+                 this.subtitle != null ||
+                 this.thumbnail != null)) {
+                throw new HTTPRequestError.UNACCEPTABLE (
+                                        "Streaming mode not supported for '%s'",
+                                        item.id);
+            }
         }
 
         yield this.handle_item_request ();
