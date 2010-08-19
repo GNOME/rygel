@@ -69,16 +69,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
         if (this.handler == null) {
             this.handler = new HTTPIdentityHandler (this.cancellable);
 
-            header = this.msg.request_headers.get_one (TRANSFER_MODE_HEADER);
-
-            if (header == "Streaming" &&
-                (!this.item.should_stream () ||
-                 this.subtitle != null ||
-                 this.thumbnail != null)) {
-                throw new HTTPRequestError.UNACCEPTABLE (
-                                        "Streaming mode not supported for '%s'",
-                                        item.id);
-            }
+            this.ensure_correct_mode ();
         }
 
         yield this.handle_item_request ();
@@ -130,6 +121,19 @@ internal class Rygel.HTTPGet : HTTPRequest {
         yield response.run ();
 
         this.end (Soup.KnownStatusCode.NONE);
+    }
+
+    private void ensure_correct_mode () throws HTTPRequestError {
+        var mode = this.msg.request_headers.get_one (TRANSFER_MODE_HEADER);
+
+        if (mode == "Streaming" &&
+            (!this.item.should_stream () ||
+             this.subtitle != null ||
+             this.thumbnail != null)) {
+            throw new HTTPRequestError.UNACCEPTABLE (
+                                        "Streaming mode not supported for '%s'",
+                                        item.id);
+        }
     }
 }
 
