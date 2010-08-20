@@ -130,7 +130,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
         switch (mode) {
         case "Streaming":
             correct = this.handler is HTTPTranscodeHandler ||
-                      (this.item.should_stream () &&
+                      (this.item.streamable () &&
                        this.subtitle == null &&
                        this.thumbnail == null);
 

@@ -111,9 +111,13 @@ public class Rygel.MediaItem : MediaObject {
     // Return true if item should be streamed as a live response with
     // time based seeking, or false to serve directly with byte range
     // seeking.
-    public virtual bool should_stream () {
+    public bool should_stream () {
         // Simple heuristic: if size is known and its not image, serve directly.
-        return !this.upnp_class.has_prefix (IMAGE_CLASS) && this.size <= 0;
+        return this.streamable () && this.size <= 0;
+    }
+
+    public bool streamable () {
+        return !this.upnp_class.has_prefix (IMAGE_CLASS);
     }
 
     // Adds URI to MediaItem. You can either provide the associated thumbnail or
