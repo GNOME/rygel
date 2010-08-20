@@ -126,7 +126,7 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
             weak Xml.Ns ns = (Xml.Ns) didl_container.upnp_namespace;
 
             foreach (var create_class in container.create_classes) {
-                node.new_child (ns, "CreateClass", create_class);
+                node.new_child (ns, "createClass", create_class);
             }
         }
     }
