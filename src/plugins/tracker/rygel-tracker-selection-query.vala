@@ -100,9 +100,11 @@ public class Rygel.Tracker.SelectionQuery : Query {
             query += " ORDER BY " + order_by;
         }
 
-        query += " OFFSET " + this.offset.to_string ();
+        if (this.offset > 0) {
+            query += " OFFSET " + this.offset.to_string ();
+        }
 
-        if (this.max_count != -1) {
+        if (this.max_count > 0) {
             query += " LIMIT " + this.max_count.to_string ();
         }
 
