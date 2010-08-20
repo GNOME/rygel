@@ -65,21 +65,21 @@ public abstract class Rygel.MediaObject : GLib.Object {
 
         set {
             try {
-                this._title = real_name_regex.replace_literal (
-                                        value,
-                                        -1,
-                                        0,
-                                        Environment.get_real_name ());
-                this._title = user_name_regex.replace_literal (
-                                        this._title,
-                                        -1,
-                                        0,
-                                        Environment.get_user_name ());
-                this._title = host_name_regex.replace_literal (
-                                                this._title,
-                                                -1,
-                                                0,
-                                                Environment.get_host_name ());
+                this._title = real_name_regex.replace_literal
+                                        (value,
+                                         -1,
+                                         0,
+                                         Environment.get_real_name ());
+                this._title = user_name_regex.replace_literal
+                                        (this._title,
+                                         -1,
+                                         0,
+                                         Environment.get_user_name ());
+                this._title = host_name_regex.replace_literal
+                                        (this._title,
+                                         -1,
+                                         0,
+                                         Environment.get_host_name ());
             } catch (GLib.RegexError err) {
                 assert_not_reached ();
             }
