@@ -30,7 +30,7 @@ using Gst;
  */
 public class Rygel.GstLaunch.RootContainer : SimpleContainer {
     const string CONFIG_GROUP = "GstLaunch";
-    const string ITEM_NAMES = "launch_items";
+    const string ITEM_NAMES = "launch-items";
 
     MetaConfig config;
 
@@ -52,11 +52,11 @@ public class Rygel.GstLaunch.RootContainer : SimpleContainer {
     void add_launch_item (string name) {
         try {
             var title = config.get_string (CONFIG_GROUP,
-                                           "%s_title".printf (name));
+                                           "%s-title".printf (name));
             var mime_type = config.get_string (CONFIG_GROUP,
-                                               "%s_mime".printf (name));
+                                               "%s-mime".printf (name));
             var launch_line = config.get_string (CONFIG_GROUP,
-                                                 "%s_launch".printf (name));
+                                                 "%s-launch".printf (name));
 
             this.add_child (new Item (name,
                                       this,
