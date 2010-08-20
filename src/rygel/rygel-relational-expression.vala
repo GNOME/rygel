@@ -27,8 +27,7 @@ using GUPnP;
 public class Rygel.RelationalExpression :
              Rygel.SearchExpression<SearchCriteriaOp,string,string> {
     internal const string CAPS = "@id,@parentID,upnp:class," +
-                                 "dc:title,dc:creator,upnp:createClass," +
-                                 "res,res@protocolInfo";
+                                 "dc:title,dc:creator,upnp:createClass";
 
     public override bool satisfied_by (MediaObject media_object) {
         switch (this.operand1) {
@@ -55,11 +54,7 @@ public class Rygel.RelationalExpression :
             var item = media_object as MediaItem;
             return this.compare_string (item.author);
         default:
-            if (this.operand1.has_prefix ("res")) {
-                return this.compare_resource (media_object);
-            } else {
-                return false;
-            }
+            return false;
         }
     }
 
@@ -75,21 +70,6 @@ public class Rygel.RelationalExpression :
                 ret = true;
 
                 break;
-            }
-        }
-
-        return ret;
-    }
-
-    private bool compare_resource (MediaObject media_object) {
-        bool ret = false;
-
-        foreach (var uri in media_object.uris) {
-            if (this.operand1 == "res" && this.compare_string (uri)) {
-                ret = true;
-                break;
-            } else if (this.operand1 == "res@protocolInfo") {
-                // FIXME: Implement
             }
         }
 

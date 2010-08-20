@@ -242,9 +242,6 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
                     value = expression.operand2;
                     break;
             }
-        } else if (expression.operand1 == "res") {
-            variable = URL_VARIABLE;
-            value = "\"" + expression.operand2 + "\"";
         }
 
         if (variable == null || value == null) {
