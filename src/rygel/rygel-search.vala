@@ -70,11 +70,6 @@ internal class Rygel.Search:  Rygel.MediaQueryAction {
                                               this.requested_count,
                                               out this.total_matches,
                                               this.cancellable);
-        if (results.size == 0) {
-            var message = _("No object satisfies given search criteria.");
-
-            throw new ContentDirectoryError.CANT_PROCESS (message);
-        }
 
         return results;
     }
