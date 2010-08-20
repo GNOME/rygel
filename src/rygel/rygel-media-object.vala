@@ -27,6 +27,10 @@ using Gee;
  * Represents a media object (container and item).
  */
 public abstract class Rygel.MediaObject : GLib.Object {
+    private static Regex real_name_regex;
+    private static Regex user_name_regex;
+    private static Regex host_name_regex;
+
     public string id;
     public string upnp_class;
     public uint64 modified;
@@ -60,12 +64,35 @@ public abstract class Rygel.MediaObject : GLib.Object {
         }
 
         set {
-            this._title = value.replace ("@REALNAME@",
-                                         Environment.get_real_name ());
-            _title = _title.replace ("@USERNAME@",
-                                     Environment.get_user_name ());
-            _title = _title.replace ("@HOSTNAME@",
-                                     Environment.get_host_name ());
+            try {
+                this._title = real_name_regex.replace_literal (
+                                        value,
+                                        -1,
+                                        0,
+                                        Environment.get_real_name ());
+                this._title = user_name_regex.replace_literal (
+                                        this._title,
+                                        -1,
+                                        0,
+                                        Environment.get_user_name ());
+                this._title = host_name_regex.replace_literal (
+                                                this._title,
+                                                -1,
+                                                0,
+                                                Environment.get_host_name ());
+            } catch (GLib.RegexError err) {
+                assert_not_reached ();
+            }
+        }
+    }
+
+    static construct {
+        try {
+            real_name_regex = new Regex (Regex.escape_string ("@REALNAME@"));
+            user_name_regex = new Regex (Regex.escape_string ("@USERNAME@"));
+            host_name_regex = new Regex (Regex.escape_string ("@HOSTNAME@"));
+        } catch (GLib.RegexError err) {
+            assert_not_reached ();
         }
     }
 
