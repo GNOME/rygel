@@ -125,27 +125,27 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
     private void ensure_correct_mode () throws HTTPRequestError {
         var mode = this.msg.request_headers.get_one (TRANSFER_MODE_HEADER);
-        var incorrect = false;
+        var correct = true;
 
         switch (mode) {
         case "Streaming":
-            incorrect = this.handler is HTTPIdentityHandler &&
-                        (!this.item.should_stream () ||
-                         this.subtitle != null ||
-                         this.thumbnail != null);
+            correct = this.handler is HTTPTranscodeHandler ||
+                      (this.item.should_stream () &&
+                       this.subtitle == null &&
+                       this.thumbnail == null);
 
             break;
         case "Interactive":
         case "Background":
-            incorrect =  this.handler is HTTPTranscodeHandler ||
-                         (this.item.should_stream () &&
-                          this.subtitle == null &&
-                          this.thumbnail == null);
+            correct =  this.handler is HTTPIdentityHandler &&
+                       (!this.item.should_stream () ||
+                        this.subtitle != null ||
+                        this.thumbnail != null);
 
             break;
         }
 
-        if (incorrect) {
+        if (!correct) {
             throw new HTTPRequestError.UNACCEPTABLE (
                                         "%s mode not supported for '%s'",
                                         mode,
