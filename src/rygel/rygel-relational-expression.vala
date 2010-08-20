@@ -26,7 +26,7 @@ using GUPnP;
 // relational operator.
 public class Rygel.RelationalExpression :
              Rygel.SearchExpression<SearchCriteriaOp,string,string> {
-    internal const string CAPS = "@id,@parentID,@refID,upnp:class," +
+    internal const string CAPS = "@id,@parentID,upnp:class," +
                                  "dc:title,dc:creator,upnp:createClass," +
                                  "res,res@protocolInfo";
 
@@ -36,8 +36,6 @@ public class Rygel.RelationalExpression :
             return this.compare_string (media_object.id);
         case "@parentID":
             return this.compare_string (media_object.parent.id);
-        case "@refID":
-            return false; // We don't have refIDs yet
         case "upnp:class":
             return this.compare_string (media_object.upnp_class);
         case "dc:title":
