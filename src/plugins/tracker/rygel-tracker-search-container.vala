@@ -257,7 +257,7 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
                 // We need to escape this twice for Tracker
                 var regex = this.escape_string (Regex.escape_string (value));
 
-                filter = "regex(" + variable + ", \"" + regex + "\")";
+                filter = "regex(" + variable + ", \"" + regex + "\", \"i\")";
                 break;
         }
 

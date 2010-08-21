@@ -77,6 +77,9 @@ public class Rygel.RelationalExpression :
     }
 
     public bool compare_string (string? str) {
+        var up_operand2 = this.operand2.up ();
+        var up_str = str.up ();
+
         switch (this.op) {
         case SearchCriteriaOp.EXISTS:
             if (this.operand2 == "true") {
@@ -85,11 +88,11 @@ public class Rygel.RelationalExpression :
                 return str == null;
             }
         case SearchCriteriaOp.EQ:
-            return this.operand2 == str;
+            return up_operand2 == up_str;
         case SearchCriteriaOp.CONTAINS:
-            return str.contains (this.operand2);
+            return up_str.contains (up_operand2);
         case SearchCriteriaOp.DERIVED_FROM:
-            return str.has_prefix (this.operand2);
+            return up_str.has_prefix (up_operand2);
         default:
             return false;
         }
