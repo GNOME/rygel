@@ -92,7 +92,7 @@ public abstract class Rygel.Tracker.ItemFactory {
 
         item.mime_type = metadata[Metadata.MIME];
 
-        item.add_uri (uri, null);
+        item.add_uri (uri);
 
         return item;
     }

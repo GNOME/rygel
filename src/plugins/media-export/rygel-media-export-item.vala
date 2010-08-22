@@ -48,7 +48,7 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
         this.mime_type = mime;
         this.size = (int64) size;
         this.modified = mtime;
-        this.add_uri (file.get_uri (), null);
+        this.add_uri (file.get_uri ());
     }
 
     public static Item? create_from_info (MediaContainer        parent,
@@ -272,7 +272,7 @@ public class Rygel.MediaExport.Item : Rygel.MediaItem {
             this.mime_type = mime;
         }
 
-        this.add_uri (file.get_uri (), null);
+        this.add_uri (file.get_uri ());
     }
 }
 

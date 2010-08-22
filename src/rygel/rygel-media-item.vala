@@ -120,15 +120,11 @@ public class Rygel.MediaItem : MediaObject {
         return !this.upnp_class.has_prefix (IMAGE_CLASS);
     }
 
-    // Adds URI to MediaItem. You can either provide the associated thumbnail or
-    // ask Rygel to try to fetch it for you by passing null as @thumbnail.
-    public void add_uri (string uri, Thumbnail? thumbnail) {
+    public void add_uri (string uri) {
         this.uris.add (uri);
 
-        if (thumbnail != null) {
-            this.thumbnails.add (thumbnail);
-        } else if (this.upnp_class.has_prefix (MediaItem.IMAGE_CLASS) ||
-                   this.upnp_class.has_prefix (MediaItem.VIDEO_CLASS)) {
+        if (this.upnp_class.has_prefix (MediaItem.IMAGE_CLASS) ||
+            this.upnp_class.has_prefix (MediaItem.VIDEO_CLASS)) {
             // Lets see if we can provide the thumbnails
             var thumbnailer = Thumbnailer.get_default ();
 

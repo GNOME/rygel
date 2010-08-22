@@ -525,7 +525,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
                 var uri = statement.column_text (DetailColumn.URI);
                 if (uri != null) {
-                    (object as MediaItem).add_uri (uri, null);
+                    (object as MediaItem).add_uri (uri);
                 }
                 break;
             default:

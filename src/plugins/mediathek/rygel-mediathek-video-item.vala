@@ -120,7 +120,7 @@ public class Rygel.Mediathek.VideoItem : Rygel.MediaItem {
 
         video_item = new VideoItem (parent, title);
         foreach (string uri in asx.uris) {
-            video_item.add_uri (uri, null);
+            video_item.add_uri (uri);
         }
 
         return video_item;

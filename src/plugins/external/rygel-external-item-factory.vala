@@ -63,7 +63,7 @@ public class Rygel.External.ItemFactory {
         for (var i = 0; uris[i] != null; i++) {
             var tmp = uris[i].replace ("@ADDRESS@", host_ip);
 
-            item.add_uri (tmp, null);
+            item.add_uri (tmp);
         }
 
         // Optional properties
