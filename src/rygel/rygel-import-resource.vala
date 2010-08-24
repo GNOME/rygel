@@ -128,16 +128,17 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
                                           Priority.LOW,
                                           this.cancellable,
                                           this.copy_progress_cb);
+
+            this.status = TransferStatus.COMPLETED;
+
+            debug (_("Import of '%s' to '%s' completed"),
+                   source_uri,
+                   destination_uri);
         } catch (Error err) {
             warning ("%s", err.message);
             this.status = TransferStatus.ERROR;
         }
 
-        this.status = TransferStatus.COMPLETED;
-
-        debug (_("Import of '%s' to '%s' completed"),
-               source_uri,
-               destination_uri);
         this.completed ();
     }
 
