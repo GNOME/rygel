@@ -670,8 +670,11 @@ public class Rygel.MediaExport.MediaCache : Object {
                                     right_sql_string);
     }
 
-    private string? map_operand_to_column (string operand) throws Error {
+    private string? map_operand_to_column (string     operand,
+                                           out string? collate = null)
+                                           throws Error {
         string column = null;
+        bool use_collation = false;
 
         switch (operand) {
             case "res":
@@ -688,19 +691,23 @@ public class Rygel.MediaExport.MediaCache : Object {
                 break;
             case "dc:title":
                 column = "o.title";
+                use_collation = true;
                 break;
             case "upnp:artist":
             case "dc:creator":
                 column = "m.author";
+                use_collation = true;
                 break;
             case "dc:date":
                 column = "strftime(\"%Y\", m.date)";
                 break;
             case "upnp:album":
                 column = "m.album";
+                use_collation = true;
                 break;
             case "dc:genre":
                 column = "m.genre";
+                use_collation = true;
                 break;
             default:
                 var message = "Unsupported column %s".printf (operand);
@@ -708,6 +715,13 @@ public class Rygel.MediaExport.MediaCache : Object {
                 throw new MediaCacheError.UNSUPPORTED_SEARCH (message);
         }
 
+        if (&collate != null) {
+            if (use_collation) {
+                collate = "COLLATE CASEFOLD";
+            } else {
+                collate = "";
+            }
+        }
         return column;
     }
 
@@ -716,8 +730,9 @@ public class Rygel.MediaExport.MediaCache : Object {
                                                   throws Error {
         string sql_function = null;
         GLib.Value? v = null;
+        string collate = null;
 
-        string column = map_operand_to_column (exp.operand1);
+        string column = map_operand_to_column (exp.operand1, out collate);
 
         switch (exp.op) {
             case SearchCriteriaOp.EXISTS:
@@ -772,7 +787,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             args.append (v);
         }
 
-        return "%s %s ?".printf (column, sql_function);
+        return "(%s %s ? %s)".printf (column, sql_function, collate);
     }
 
     public Gee.List<string> get_meta_data_column_by_filter (

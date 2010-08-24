@@ -43,6 +43,40 @@ internal class Rygel.MediaExport.Database : Object {
      */
     public delegate bool RowCallback (Sqlite.Statement stmt);
 
+    private static void utf8_like (Sqlite.Context context,
+                                   Sqlite.Value[] args)
+                                   requires (args.length == 2) {
+        if (args[1].to_text() == null) {
+           context.result_int (0);
+
+           return;
+        }
+
+        var pattern = Regex.escape_string (args[0].to_text ());
+        pattern = pattern.replace("%", ".*").replace ("_", ".");
+        if (Regex.match_simple (pattern,
+                                args[1].to_text (),
+                                RegexCompileFlags.CASELESS)) {
+            context.result_int (1);
+        } else {
+            context.result_int (0);
+        }
+    }
+
+    private static int utf8_collate (int alen, void* a, int blen, void* b) {
+        // unowned to prevent array copy
+        unowned uint8[] _a = (uint8[]) a;
+        _a.length = alen;
+
+        unowned uint8[] _b = (uint8[]) b;
+        _b.length = blen;
+
+        var str_a = ((string) _a).casefold ();
+        var str_b = ((string) _b).casefold ();
+
+        return str_a.collate (str_b);
+    }
+
     /**
      * Open a database in the user's cache directory as defined by XDG
      *
@@ -67,6 +101,16 @@ internal class Rygel.MediaExport.Database : Object {
         this.db.exec ("PRAGMA synchronous = OFF");
         this.db.exec ("PRAGMA temp_store = MEMORY");
         this.db.exec ("PRAGMA count_changes = OFF");
+        this.db.create_function ("like",
+                                 2,
+                                 Sqlite.UTF8,
+                                 null,
+                                 Database.utf8_like,
+                                 null,
+                                 null);
+        this.db.create_collation ("CASEFOLD",
+                                  Sqlite.UTF8,
+                                  Database.utf8_collate);
     }
 
     /**
