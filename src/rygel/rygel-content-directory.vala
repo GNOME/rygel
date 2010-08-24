@@ -353,13 +353,11 @@ internal class Rygel.ContentDirectory: Service {
         var ids = "";
 
         foreach (var import in this.active_imports) {
-            if (import.status != TransferStatus.COMPLETED) {
-                if (ids != "") {
-                    ids += ",";
-                }
-
-                ids += import.transfer_id.to_string ();
+            if (ids != "") {
+                ids += ",";
             }
+
+            ids += import.transfer_id.to_string ();
         }
 
         return ids;
@@ -368,14 +366,14 @@ internal class Rygel.ContentDirectory: Service {
     private void on_import_completed (StateMachine machine) {
         var import = machine as ImportResource;
 
-        this.notify ("TransferIDs",
-                        typeof (string),
-                        this.create_transfer_ids ());
-
         // According to CDS specs (v3 section 2.4.17), we must not immediately
         // remove the import from out memory
         Timeout.add_seconds (30, () => {
                 this.active_imports.remove (import);
+
+                this.notify ("TransferIDs",
+                                typeof (string),
+                                this.create_transfer_ids ());
 
                 return false;
         });
