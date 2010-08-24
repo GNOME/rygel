@@ -136,7 +136,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     private const string GET_OBJECT_COUNT_BY_FILTER_STRING =
     "SELECT COUNT(o.type_fk) FROM Object o " +
         "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
-        "JOIN meta_data m " +
+        "LEFT OUTER JOIN meta_data m " +
             "ON o.upnp_id = m.object_fk %s";
 
     private const string CHILDREN_COUNT_STRING =
