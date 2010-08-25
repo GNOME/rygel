@@ -87,10 +87,17 @@ internal class Rygel.MediaExport.Database : SqliteWrapper {
      * (<cache-dir>/rygel/<name>.db)
      */
     public Database (string name) throws DatabaseError {
-        var dirname = Path.build_filename (Environment.get_user_cache_dir (),
-                                           "rygel");
-        DirUtils.create_with_parents (dirname, 0750);
-        var db_file = Path.build_filename (dirname, "%s.db".printf (name));
+        string db_file;
+
+        if (name != ":memory:") {
+            var dirname = Path.build_filename (
+                                        Environment.get_user_cache_dir (),
+                                        "rygel");
+            DirUtils.create_with_parents (dirname, 0750);
+            db_file = Path.build_filename (dirname, "%s.db".printf (name));
+        } else {
+            db_file = name;
+        }
 
         base (db_file);
 

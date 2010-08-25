@@ -59,8 +59,15 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     // Constructors
     private MediaCache () throws Error {
+        var db_name = "media-export";
+        try {
+            var config = MetaConfig.get_default ();
+            if (config.get_bool ("MediaExport", "use-temp-db")) {
+                db_name = ":memory:";
+            }
+        } catch (Error error) { }
         this.sql = new SQLFactory ();
-        this.open_db ("media-export");
+        this.open_db (db_name);
         this.factory = new ObjectFactory ();
         this.get_exists_cache ();
     }
