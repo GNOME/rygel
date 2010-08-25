@@ -27,7 +27,8 @@ using GUPnP;
 public class Rygel.RelationalExpression :
              Rygel.SearchExpression<SearchCriteriaOp,string,string> {
     internal const string CAPS = "@id,@parentID,upnp:class," +
-                                 "dc:title,dc:creator,upnp:createClass";
+                                 "dc:title,upnp:artist,upnp:album," +
+                                 "dc:creator,upnp:createClass";
 
     public override bool satisfied_by (MediaObject media_object) {
         switch (this.operand1) {
@@ -51,6 +52,18 @@ public class Rygel.RelationalExpression :
             }
 
             return this.compare_string ((media_object as PhotoItem).creator);
+        case "upnp:artist":
+            if (!(media_object is MusicItem)) {
+                return false;
+            }
+
+            return this.compare_string ((media_object as MusicItem).artist);
+        case "upnp:album":
+            if (!(media_object is MusicItem)) {
+                return false;
+            }
+
+            return this.compare_string ((media_object as MusicItem).album);
         default:
             return false;
         }
