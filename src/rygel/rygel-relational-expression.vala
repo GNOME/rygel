@@ -44,15 +44,13 @@ public class Rygel.RelationalExpression :
                 return false;
             }
 
-            var container = media_object as MediaContainer;
-            return this.compare_create_class (container);
+            return this.compare_create_class (media_object as MediaContainer);
         case "dc:creator":
             if (!(media_object is PhotoItem)) {
                 return false;
             }
 
-            var photo = media_object as PhotoItem;
-            return this.compare_string (photo.creator);
+            return this.compare_string ((media_object as PhotoItem).creator);
         default:
             return false;
         }
