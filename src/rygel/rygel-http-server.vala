@@ -68,7 +68,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                                           throws Error {
         // Subtitles first
         foreach (var subtitle in item.subtitles) {
-            if (!is_http_uri (subtitle.uri)) {
+            if (this.need_proxy (subtitle.uri)) {
                 var uri = subtitle.uri; // Save the original URI
                 var index = item.subtitles.index_of (subtitle);
 
@@ -91,7 +91,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
 
         // Thumbnails comes in the end
         foreach (var thumbnail in item.thumbnails) {
-            if (!is_http_uri (thumbnail.uri)) {
+            if (this.need_proxy (thumbnail.uri)) {
                 var uri = thumbnail.uri; // Save the original URI
                 var index = item.thumbnails.index_of (thumbnail);
 
@@ -118,11 +118,15 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                            uri.to_string ());
     }
 
+    public bool need_proxy (string uri) {
+        return Uri.parse_scheme (uri) != "http";
+    }
+
     private bool http_uri_present (MediaItem item) {
         bool present = false;
 
         foreach (var uri in item.uris) {
-            if (this.is_http_uri (uri)) {
+            if (!this.need_proxy (uri)) {
                 present = true;
 
                 break;
@@ -130,10 +134,6 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         }
 
         return present;
-    }
-
-    private bool is_http_uri (string uri) {
-        return Uri.parse_scheme (uri) == "http";
     }
 
     private void on_cancelled (Cancellable cancellable) {
