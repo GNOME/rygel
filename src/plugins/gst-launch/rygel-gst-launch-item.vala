@@ -52,6 +52,7 @@ public class Rygel.GstLaunch.Item : Rygel.MediaItem {
           return Gst.parse_bin_from_description (this.launch_line, true);
         } catch (Error err) {
           warning ("parse launchline failed: %s", err.message);
+
           return null;
         }
     }
