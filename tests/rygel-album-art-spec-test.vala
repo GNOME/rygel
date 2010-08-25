@@ -54,19 +54,25 @@ private class Rygel.AlbumArtSpecTest : GLib.Object {
         var file = store.get_media_art_file ("album", item);
         assert (file != null);
         assert (file.get_uri ().has_suffix
-                ("album-3c2234a7ce973bc1700e0c743d6a819c-3d422ba022ae0daa8f5454ba7dfa0f9a.jpeg"));
+                ("album-" +
+                 "3c2234a7ce973bc1700e0c743d6a819c-" +
+                 "3d422ba022ae0daa8f5454ba7dfa0f9a.jpeg"));
 
         file = store.get_media_art_file ("artist", item);
         assert (file != null);
         assert (file.get_uri ().has_suffix
-                ("artist-3c2234a7ce973bc1700e0c743d6a819c-3d422ba022ae0daa8f5454ba7dfa0f9a.jpeg"));
+                ("artist-" +
+                 "3c2234a7ce973bc1700e0c743d6a819c-" +
+                 "3d422ba022ae0daa8f5454ba7dfa0f9a.jpeg"));
 
         item = new MusicItem ();
         item.title = "radio ga ga";
         file = store.get_media_art_file ("radio", item);
         assert (file != null);
         assert (file.get_uri ().has_suffix
-                ("radio-b924ce08955675c6a30c745d18286d21-7215ee9c7d9dc229d2921a40e899ec5f.jpeg"));
+                ("radio-" +
+                 "b924ce08955675c6a30c745d18286d21-" +
+                 "7215ee9c7d9dc229d2921a40e899ec5f.jpeg"));
 
         item = new MusicItem ();
         item.artist = "met[xXx]allica";
@@ -75,7 +81,9 @@ private class Rygel.AlbumArtSpecTest : GLib.Object {
         file = store.get_media_art_file ("album", item);
         assert (file != null);
         assert (file.get_uri ().has_suffix
-                ("album-3c2234a7ce973bc1700e0c743d6a819c-3d422ba022ae0daa8f5454ba7dfa0f9a.jpeg"));
+                ("album-" +
+                 "3c2234a7ce973bc1700e0c743d6a819c-" +
+                 "3d422ba022ae0daa8f5454ba7dfa0f9a.jpeg"));
 
         // check block removal algorithm - normalizes to "metallica" and not
         // "metca"
@@ -86,7 +94,9 @@ private class Rygel.AlbumArtSpecTest : GLib.Object {
         file = store.get_media_art_file ("album", item);
         assert (file != null);
         assert (file.get_uri ().has_suffix
-                ("album-3c2234a7ce973bc1700e0c743d6a819c-3d422ba022ae0daa8f5454ba7dfa0f9a.jpeg"));
+                ("album-" +
+                 "3c2234a7ce973bc1700e0c743d6a819c-" +
+                 "3d422ba022ae0daa8f5454ba7dfa0f9a.jpeg"));
 
         /* Fails due to unclear spec
         item = new MusicItem ();
@@ -95,7 +105,9 @@ private class Rygel.AlbumArtSpecTest : GLib.Object {
         file = store.get_media_art_file ("podcast", item);
         assert (file != null);
         assert (file.get_uri ().has_suffix
-                ("podcast-d717b10ec8fb35b11644995deb04b721-08d299536e562915eb133e2676396d3f.jpeg"));
+                ("podcast-" +
+                 "d717b10ec8fb35b11644995deb04b721-" +
+                 "08d299536e562915eb133e2676396d3f.jpeg"));
                 */
 
         // test banshee spec
