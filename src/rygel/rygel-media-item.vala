@@ -127,6 +127,10 @@ public abstract class Rygel.MediaItem : MediaObject {
 
     internal override int compare_by_property (MediaObject media_object,
                                                string      property) {
+        if (!(media_object is MediaItem)) {
+           return 1;
+        }
+
         var item = media_object as MediaItem;
 
         switch (property) {

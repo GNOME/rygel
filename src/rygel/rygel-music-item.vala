@@ -74,6 +74,10 @@ public class Rygel.MusicItem : AudioItem {
 
     internal override int compare_by_property (MediaObject media_object,
                                                string      property) {
+        if (!(media_object is MusicItem)) {
+           return 1;
+        }
+
         var item = media_object as MusicItem;
 
         switch (property) {

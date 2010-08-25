@@ -103,6 +103,10 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
 
     internal override int compare_by_property (MediaObject media_object,
                                                string      property) {
+        if (!(media_object is VideoItem)) {
+           return 1;
+        }
+
         var item = media_object as VideoItem;
 
         switch (property) {
