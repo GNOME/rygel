@@ -220,7 +220,7 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
         yield;
 
         if (item_id == ITEM_ID) {
-            return new MediaItem ();
+            return new VideoItem ();
         } else {
             return null;
         }
@@ -244,15 +244,47 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
     public HTTPIdentityHandler (Cancellable cancellable) {}
 }
 
-public class Rygel.MediaItem : Rygel.MediaObject {
+public abstract class Rygel.MediaItem : Rygel.MediaObject {
     public long size = 1024;
-    public long duration = 1024;
     public ArrayList<Subtitle> subtitles = new ArrayList<Subtitle> ();
     public ArrayList<Thumbnail> thumbnails = new ArrayList<Thumbnail> ();
 
     public bool should_stream () {
         return true;
     }
+
+    public bool streamable () {
+        return true;
+    }
+}
+
+private class Rygel.AudioItem : MediaItem {
+    public int64 duration = 2048;
+}
+
+private interface Rygel.VisualItem : MediaItem {
+    public abstract int width { get; set; }
+    public abstract int height { get; set; }
+    public abstract int pixel_width { get; set; }
+    public abstract int pixel_height { get; set; }
+    public abstract int color_depth { get; set; }
+
+    public abstract ArrayList<Thumbnail> thumbnails { get; protected set; }
+}
+
+private class Rygel.VideoItem : AudioItem, VisualItem {
+    public int width { get; set; default = -1; }
+    public int height { get; set; default = -1; }
+    public int pixel_width { get; set; default = -1; }
+    public int pixel_height { get; set; default = -1; }
+    public int color_depth { get; set; default = -1; }
+
+    public ArrayList<Thumbnail> thumbnails { get; protected set; }
+    public ArrayList<Subtitle> subtitles;
+}
+
+private class Rygel.MusicItem : AudioItem {
+    public Thumbnail album_art;
 }
 
 public class Rygel.Thumbnail {
@@ -292,6 +324,8 @@ internal class Rygel.HTTPResponse : Rygel.StateMachine, GLib.Object {
     }
 }
 
+public class Rygel.MediaObject {
+    public string id;
+}
 
 public class Rygel.Transcoder {}
-public class Rygel.MediaObject {}
