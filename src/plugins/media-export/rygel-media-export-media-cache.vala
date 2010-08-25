@@ -738,12 +738,12 @@ public class Rygel.MediaExport.MediaCache : Object {
             case SearchCriteriaOp.EXISTS:
                 string sql_function;
                 if (exp.operand2 == "true") {
-                    sql_function = "IS NOT NULL AND %s != ''";
+                    sql_function = "%s IS NOT NULL AND %s != ''";
                 } else {
-                    sql_function = "IS NULL OR %s = ''";
+                    sql_function = "%s IS NULL OR %s = ''";
                 }
-                operator = new SqlOperator (sql_function, column);
-                break;
+
+                return sql_function.printf (column, column);
             case SearchCriteriaOp.EQ:
             case SearchCriteriaOp.NEQ:
             case SearchCriteriaOp.LESS:
