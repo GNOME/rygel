@@ -32,7 +32,7 @@ internal errordomain Rygel.DIDLLiteWriterError {
  * Responsible for serializing media objects.
  */
 internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
-    private Rygel.HTTPServer http_server;
+    public Rygel.HTTPServer http_server;
 
     public DIDLLiteWriter (HTTPServer http_server) {
         this.http_server = http_server;
