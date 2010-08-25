@@ -68,13 +68,15 @@ public abstract class Rygel.Tracker.ItemFactory {
         this.key_chains[Metadata.DATE].add ("nie:contentCreated");
     }
 
-    public virtual MediaItem create (string          id,
-                                     string          uri,
-                                     SearchContainer parent,
-                                     string[]        metadata)
-                                     throws GLib.Error {
-        var item = new MediaItem (id, parent, "", this.upnp_class);
+    public abstract MediaItem create (string          id,
+                                      string          uri,
+                                      SearchContainer parent,
+                                      string[]        metadata)
+                                      throws GLib.Error;
 
+    protected virtual void set_metadata (MediaItem item,
+                                         string    uri,
+                                         string[]  metadata) throws GLib.Error {
         if (metadata[Metadata.TITLE] != "")
             item.title = metadata[Metadata.TITLE];
         else
@@ -93,8 +95,6 @@ public abstract class Rygel.Tracker.ItemFactory {
         item.mime_type = metadata[Metadata.MIME];
 
         item.add_uri (uri);
-
-        return item;
     }
 }
 

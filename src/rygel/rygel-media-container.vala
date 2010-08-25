@@ -252,9 +252,11 @@ public abstract class Rygel.MediaContainer : MediaObject {
         if (create_classes != null) {
             this.create_classes.add_all (create_classes);
         } else {
-            this.create_classes.add (MediaItem.IMAGE_CLASS);
-            this.create_classes.add (MediaItem.VIDEO_CLASS);
-            this.create_classes.add (MediaItem.AUDIO_CLASS);
+            this.create_classes.add (ImageItem.UPNP_CLASS);
+            this.create_classes.add (PhotoItem.UPNP_CLASS);
+            this.create_classes.add (VideoItem.UPNP_CLASS);
+            this.create_classes.add (AudioItem.UPNP_CLASS);
+            this.create_classes.add (MusicItem.UPNP_CLASS);
         }
     }
 

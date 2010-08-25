@@ -41,7 +41,7 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
 
     public MusicItemFactory () {
         base (CATEGORY,
-              MediaItem.MUSIC_CLASS,
+              MusicItem.UPNP_CLASS,
               MUSIC_RESOURCES_CLASS_PATH,
               Environment.get_user_special_dir (UserDirectory.MUSIC));
 
@@ -61,27 +61,38 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
     public override MediaItem create (string          id,
                                       string          uri,
                                       SearchContainer parent,
-                                      string[]               metadata)
+                                      string[]        metadata)
                                       throws GLib.Error {
-        var item = base.create (id, uri, parent, metadata);
+        var item = new MusicItem (id, parent, "");
+
+        this.set_metadata (item, uri, metadata);
+
+        return item;
+    }
+
+    protected override void set_metadata (MediaItem item,
+                                          string    uri,
+                                          string[]  metadata)
+                                          throws GLib.Error {
+        base.set_metadata (item, uri, metadata);
+
+        var music = item as MusicItem;
 
         if (metadata[MusicMetadata.DURATION] != "" &&
             metadata[MusicMetadata.DURATION] != "0") {
-            item.duration = metadata[MusicMetadata.DURATION].to_int ();
+            music.duration = metadata[MusicMetadata.DURATION].to_int ();
         }
 
         if (metadata[MusicMetadata.AUDIO_TRACK_NUM] != "") {
             var track_number = metadata[MusicMetadata.AUDIO_TRACK_NUM];
-            item.track_number = track_number.to_int ();
+            music.track_number = track_number.to_int ();
         }
 
-        item.author = metadata[MusicMetadata.AUDIO_ARTIST];
-        item.album = metadata[MusicMetadata.AUDIO_ALBUM];
-        item.genre = metadata[MusicMetadata.AUDIO_GENRE];
+        music.artist = metadata[MusicMetadata.AUDIO_ARTIST];
+        music.album = metadata[MusicMetadata.AUDIO_ALBUM];
+        music.genre = metadata[MusicMetadata.AUDIO_GENRE];
 
-        item.lookup_album_art ();
-
-        return item;
+        music.lookup_album_art ();
     }
 }
 

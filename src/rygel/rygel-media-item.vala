@@ -1,7 +1,9 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
+ * Copyright (C) 2010 Nokia Corporation.
  *
- * Author: Zeeshan Ali <zeenix@gmail.com>
+ * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *                               <zeeshan.ali@nokia.com>
  *
  * This file is part of Rygel.
  *
@@ -21,7 +23,6 @@
  */
 
 using GUPnP;
-using Gee;
 using Gst;
 
 private errordomain Rygel.MediaItemError {
@@ -31,41 +32,14 @@ private errordomain Rygel.MediaItemError {
 /**
  * Represents a media (Music, Video and Image) item.
  */
-public class Rygel.MediaItem : MediaObject {
-    public static const string IMAGE_CLASS = "object.item.imageItem";
-    public static const string PHOTO_CLASS = "object.item.imageItem.photo";
-    public static const string VIDEO_CLASS = "object.item.videoItem";
-    public static const string AUDIO_CLASS = "object.item.audioItem";
-    public static const string MUSIC_CLASS = "object.item.audioItem.musicTrack";
-
-    public string author;
-    public string album;
+public abstract class Rygel.MediaItem : MediaObject {
     public string date;
-    public string genre;
 
     // Resource info
     public string mime_type;
     public string dlna_profile;
 
     public int64 size = -1;     // Size in bytes
-    public long duration = -1;  // Duration in seconds
-    public int bitrate = -1;    // Bytes/second
-
-    // Audio/Music
-    public int sample_freq = -1;
-    public int bits_per_sample = -1;
-    public int n_audio_channels = -1;
-    public int track_number = -1;
-
-    // Image/Video
-    public int width = -1;
-    public int height = -1;
-    public int pixel_width = -1;
-    public int pixel_height = -1;
-    public int color_depth = -1;
-
-    public ArrayList<Thumbnail> thumbnails;
-    public ArrayList<Subtitle> subtitles;
 
     internal bool place_holder = false;
 
@@ -77,9 +51,6 @@ public class Rygel.MediaItem : MediaObject {
         this.parent = parent;
         this.title = title;
         this.upnp_class = upnp_class;
-
-        this.thumbnails = new ArrayList<Thumbnail> ();
-        this.subtitles = new ArrayList<Subtitle> ();
     }
 
     // Live media items need to provide a nice working implementation of this
@@ -116,57 +87,10 @@ public class Rygel.MediaItem : MediaObject {
         return this.streamable () && this.size <= 0;
     }
 
-    public bool streamable () {
-        return !this.upnp_class.has_prefix (IMAGE_CLASS);
-    }
+    public abstract bool streamable ();
 
-    public void add_uri (string uri) {
+    public virtual void add_uri (string uri) {
         this.uris.add (uri);
-
-        if (this.upnp_class.has_prefix (MediaItem.IMAGE_CLASS) ||
-            this.upnp_class.has_prefix (MediaItem.VIDEO_CLASS)) {
-            // Lets see if we can provide the thumbnails
-            var thumbnailer = Thumbnailer.get_default ();
-
-            if (thumbnailer == null) {
-                return;
-            }
-
-            try {
-                var thumb = thumbnailer.get_thumbnail (uri);
-                this.thumbnails.add (thumb);
-            } catch (Error err) {}
-        }
-
-        if (this.upnp_class.has_prefix (MediaItem.VIDEO_CLASS)) {
-            var subtitle_manager = SubtitleManager.get_default ();
-
-            if (subtitle_manager == null) {
-                return;
-            }
-
-            try {
-                var subtitle = subtitle_manager.get_subtitle (uri);
-                this.subtitles.add (subtitle);
-            } catch (Error err) {}
-        }
-    }
-
-    public void lookup_album_art () {
-        assert (this.upnp_class.has_prefix (MediaItem.AUDIO_CLASS) &&
-                this.thumbnails.size == 0);
-
-        var media_art_store = MediaArtStore.get_default ();
-        if (media_art_store == null) {
-            return;
-        }
-
-        try {
-            var thumb = media_art_store.find_media_art_any (this);
-            if (thumb != null) {
-                this.thumbnails.insert (0, thumb);
-            }
-        } catch (Error err) {};
     }
 
     internal int compare_transcoders (void *a, void *b) {
@@ -177,39 +101,12 @@ public class Rygel.MediaItem : MediaObject {
                (int) transcoder2.get_distance (this);
     }
 
-    internal void add_resources (DIDLLiteItem didl_item,
-                                 bool         allow_internal)
-                                 throws Error {
-        foreach (var subtitle in this.subtitles) {
-            var protocol = this.get_protocol_for_uri (subtitle.uri);
-
-            if (allow_internal || protocol != "internal") {
-                subtitle.add_didl_node (didl_item);
-            }
-        }
-
-        foreach (var uri in this.uris) {
-            var protocol = this.get_protocol_for_uri (uri);
-
-            if (allow_internal || protocol != "internal") {
-                this.add_resource (didl_item, uri, protocol);
-            }
-        }
-
-        foreach (var thumbnail in this.thumbnails) {
-            var protocol = this.get_protocol_for_uri (thumbnail.uri);
-
-            if (allow_internal || protocol != "internal") {
-                thumbnail.add_resource (didl_item, protocol);
-            }
-        }
-    }
-
-    internal DIDLLiteResource add_resource (DIDLLiteItem didl_item,
-                                            string?      uri,
-                                            string       protocol,
-                                            string?      import_uri = null)
-                                            throws Error {
+    internal virtual DIDLLiteResource add_resource (
+                                        DIDLLiteItem didl_item,
+                                        string?      uri,
+                                        string       protocol,
+                                        string?      import_uri = null)
+                                        throws Error {
         var res = didl_item.add_resource ();
 
         if (uri != null) {
@@ -221,16 +118,6 @@ public class Rygel.MediaItem : MediaObject {
         }
 
         res.size64 = this.size;
-        res.duration = this.duration;
-        res.bitrate = this.bitrate;
-
-        res.sample_freq = this.sample_freq;
-        res.bits_per_sample = this.bits_per_sample;
-        res.audio_channels = this.n_audio_channels;
-
-        res.width = this.width;
-        res.height = this.height;
-        res.color_depth = this.color_depth;
 
         /* Protocol info */
         res.protocol_info = this.get_protocol_info (uri, protocol);
@@ -243,12 +130,6 @@ public class Rygel.MediaItem : MediaObject {
         var item = media_object as MediaItem;
 
         switch (property) {
-        case "dc:creator":
-        case "dc:artist":
-        case "dc:author":
-            return this.compare_string_props (this.author, item.author);
-        case "upnp:album":
-            return this.compare_string_props (this.album, item.album);
         case "dc:date":
             return this.compare_by_date (item);
         default:
@@ -256,8 +137,55 @@ public class Rygel.MediaItem : MediaObject {
         }
     }
 
-    private ProtocolInfo get_protocol_info (string? uri,
-                                            string  protocol) {
+    internal virtual DIDLLiteItem serialize (DIDLLiteWriter writer)
+                                             throws Error {
+        var didl_item = writer.add_item ();
+
+        didl_item.id = this.id;
+        if (this.parent != null) {
+            didl_item.parent_id = this.parent.id;
+        } else {
+            didl_item.parent_id = "0";
+        }
+
+        didl_item.restricted = false;
+        didl_item.title = this.title;
+        didl_item.upnp_class = this.upnp_class;
+
+        /* We list proxy/transcoding resources first instead of original URIs
+         * because some crappy MediaRenderer/ControlPoint implemenation out
+         * there just choose the first one in the list instead of the one they
+         * can handle.
+         */
+        if (this.place_holder) {
+            this.add_proxy_resources (writer.http_server, didl_item);
+        } else {
+            // Add the transcoded/proxy URIs first
+            this.add_proxy_resources (writer.http_server, didl_item);
+
+            // then original URIs
+            bool internal_allowed;
+            internal_allowed = writer.http_server.context.interface == "lo" ||
+                               writer.http_server.context.host_ip ==
+                               "127.0.0.1";
+            this.add_resources (didl_item, internal_allowed);
+        }
+
+        return didl_item;
+    }
+
+    internal virtual void add_proxy_resources (HTTPServer   server,
+                                               DIDLLiteItem didl_item)
+                                               throws Error {
+        // Proxy resource for the original resources
+        server.add_proxy_resource (didl_item, this);
+
+        // Transcoding resources
+        server.add_resources (didl_item, this);
+    }
+
+    protected virtual ProtocolInfo get_protocol_info (string? uri,
+                                                      string  protocol) {
         var protocol_info = new ProtocolInfo ();
 
         protocol_info.mime_type = this.mime_type;
@@ -265,9 +193,7 @@ public class Rygel.MediaItem : MediaObject {
         protocol_info.protocol = protocol;
         protocol_info.dlna_flags = DLNAFlags.DLNA_V15;
 
-        if (this.upnp_class.has_prefix (MediaItem.IMAGE_CLASS)) {
-            protocol_info.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
-        } else {
+        if (this.streamable ()) {
             protocol_info.dlna_flags |= DLNAFlags.STREAMING_TRANSFER_MODE;
         }
 
@@ -282,7 +208,7 @@ public class Rygel.MediaItem : MediaObject {
         return protocol_info;
     }
 
-    private string get_protocol_for_uri (string uri) throws Error {
+    internal string get_protocol_for_uri (string uri) throws Error {
         var scheme = Uri.parse_scheme (uri);
         if (scheme == null) {
             throw new MediaItemError.BAD_URI (_("Bad URI: %s"), uri);
@@ -302,6 +228,18 @@ public class Rygel.MediaItem : MediaObject {
                      scheme);
 
             return scheme;
+        }
+    }
+
+    protected virtual void add_resources (DIDLLiteItem didl_item,
+                                          bool         allow_internal)
+                                          throws Error {
+        foreach (var uri in this.uris) {
+            var protocol = this.get_protocol_for_uri (uri);
+
+            if (allow_internal || protocol != "internal") {
+                this.add_resource (didl_item, uri, protocol);
+            }
         }
     }
 

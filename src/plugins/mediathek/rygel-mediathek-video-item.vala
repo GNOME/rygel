@@ -27,12 +27,11 @@ public errordomain Rygel.Mediathek.VideoItemError {
     XML_PARSE_ERROR
 }
 
-public class Rygel.Mediathek.VideoItem : Rygel.MediaItem {
+public class Rygel.Mediathek.VideoItem : Rygel.VideoItem {
     private VideoItem (MediaContainer parent, string title) {
-        base(Checksum.compute_for_string (ChecksumType.MD5, title), 
-             parent, 
-             title, 
-             MediaItem.VIDEO_CLASS);
+        base (Checksum.compute_for_string (ChecksumType.MD5, title),
+              parent,
+              title);
 
         this.mime_type = "video/x-ms-wmv";
         this.author = "ZDF - Second German TV Channel Streams";

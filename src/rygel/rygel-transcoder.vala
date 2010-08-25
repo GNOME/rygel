@@ -79,7 +79,7 @@ internal abstract class Rygel.Transcoder : GLib.Object {
         protocol_info.dlna_flags = DLNAFlags.STREAMING_TRANSFER_MODE |
                                    DLNAFlags.SENDER_PACED |
                                    DLNAFlags.DLNA_V15;
-        if (item.duration > 0) {
+        if (item is AudioItem && (item as AudioItem).duration > 0) {
             protocol_info.dlna_operation = DLNAOperation.TIMESEEK;
         } else {
             protocol_info.dlna_operation = DLNAOperation.NONE;

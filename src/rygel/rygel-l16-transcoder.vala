@@ -52,7 +52,7 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
                         ";rate=" + L16Transcoder.FREQUENCY.to_string () +
                         ";channels=" + L16Transcoder.CHANNELS.to_string ();
 
-        base (mime_type, "LPCM", MediaItem.AUDIO_CLASS);
+        base (mime_type, "LPCM", AudioItem.UPNP_CLASS);
 
         this.endianness = endianness;
     }
@@ -83,22 +83,23 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
     }
 
     public override uint get_distance (MediaItem item) {
-        if (!item.upnp_class.has_prefix (MediaItem.AUDIO_CLASS)) {
+        if (!(item is AudioItem)) {
             return uint.MAX;
         }
 
+        var audio_item = item as AudioItem;
         var distance = uint.MIN;
 
-        if (item.sample_freq > 0) {
-            distance += (item.sample_freq - FREQUENCY).abs ();
+        if (audio_item.sample_freq > 0) {
+            distance += (audio_item.sample_freq - FREQUENCY).abs ();
         }
 
-        if (item.n_audio_channels > 0) {
-            distance += (item.n_audio_channels - CHANNELS).abs ();
+        if (audio_item.n_audio_channels > 0) {
+            distance += (audio_item.n_audio_channels - CHANNELS).abs ();
         }
 
-        if (item.bits_per_sample > 0) {
-            distance += (item.bits_per_sample - WIDTH).abs ();
+        if (audio_item.bits_per_sample > 0) {
+            distance += (audio_item.bits_per_sample - WIDTH).abs ();
         }
 
         return distance;

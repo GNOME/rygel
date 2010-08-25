@@ -47,12 +47,12 @@ public class Rygel.RelationalExpression :
             var container = media_object as MediaContainer;
             return this.compare_create_class (container);
         case "dc:creator":
-            if (!(media_object is MediaItem)) {
+            if (!(media_object is PhotoItem)) {
                 return false;
             }
 
-            var item = media_object as MediaItem;
-            return this.compare_string (item.author);
+            var photo = media_object as PhotoItem;
+            return this.compare_string (photo.creator);
         default:
             return false;
         }

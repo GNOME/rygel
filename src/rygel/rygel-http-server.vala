@@ -58,58 +58,13 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         }
     }
 
-    /* We prepend these resources into the original resource list instead of
-     * appending them because some crappy MediaRenderer/ControlPoint
-     * implemenation out there just choose the first one in the list instead of
-     * the one they can handle.
-     */
-    internal override void add_resources (DIDLLiteItem didl_item,
-                                          MediaItem    item)
-                                          throws Error {
-        // Subtitles first
-        foreach (var subtitle in item.subtitles) {
-            if (this.need_proxy (subtitle.uri)) {
-                var uri = subtitle.uri; // Save the original URI
-                var index = item.subtitles.index_of (subtitle);
-
-                subtitle.uri = this.create_uri_for_item (item,
-                                                         -1,
-                                                         index,
-                                                         null);
-                subtitle.add_didl_node (didl_item);
-
-                // Now restore the original URI
-                subtitle.uri = uri;
-            }
-        }
-
-        if (!this.http_uri_present (item)) {
-            this.add_proxy_resource (didl_item, item);
-        }
-
-        base.add_resources (didl_item, item);
-
-        // Thumbnails comes in the end
-        foreach (var thumbnail in item.thumbnails) {
-            if (this.need_proxy (thumbnail.uri)) {
-                var uri = thumbnail.uri; // Save the original URI
-                var index = item.thumbnails.index_of (thumbnail);
-
-                thumbnail.uri = this.create_uri_for_item (item,
-                                                          index,
-                                                          -1,
-                                                          null);
-                thumbnail.add_resource (didl_item, this.get_protocol ());
-
-                // Now restore the original URI
-                thumbnail.uri = uri;
-            }
-        }
-    }
-
     internal void add_proxy_resource (DIDLLiteItem didl_item,
                                       MediaItem    item)
                                       throws Error {
+        if (this.http_uri_present (item)) {
+            return;
+        }
+
         var uri = this.create_uri_for_item (item, -1, -1, null);
 
         item.add_resource (didl_item,

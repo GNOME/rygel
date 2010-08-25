@@ -18,7 +18,6 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -include config.h
 
 librygel_test_la_SOURCES = rygel-test-root-container.vala \
-			   rygel-test-item.vala \
 			   rygel-test-audio-item.vala \
 			   rygel-test-video-item.vala \
 			   rygel-test-plugin.vala

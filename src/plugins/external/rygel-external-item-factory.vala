@@ -38,19 +38,38 @@ public class Rygel.External.ItemFactory {
                                    string                   host_ip,
                                    MediaContainer           parent)
                                    throws GLib.Error {
-        string upnp_class;
+        MediaItem item;
 
         if (type.has_prefix ("audio")) {
-            upnp_class = MediaItem.AUDIO_CLASS;
+            item = new AudioItem (id, parent, title);
+
+            this.set_audio_metadata (item as AudioItem,
+                                     props,
+                                     service_name,
+                                     host_ip);
         } else if (type.has_prefix ("music")) {
-            upnp_class = MediaItem.MUSIC_CLASS;
+            item = new MusicItem (id, parent, title);
+
+            yield this.set_music_metadata (item as MusicItem,
+                                           props,
+                                           service_name,
+                                           host_ip);
         } else if (type.has_prefix ("video")) {
-            upnp_class = MediaItem.VIDEO_CLASS;
+            item = new VideoItem (id, parent, title);
+
+            yield this.set_video_metadata (item as VideoItem,
+                                           props,
+                                           service_name,
+                                           host_ip);
         } else {
-            upnp_class = MediaItem.IMAGE_CLASS;
+            item = new ImageItem (id, parent, title);
+
+            yield this.set_visual_metadata (item as VisualItem,
+                                            props,
+                                            service_name,
+                                            host_ip);
         }
 
-        var item = new MediaItem (id, parent, title, upnp_class);
         if (parent is DummyContainer) {
             item.parent_ref = parent;
         }
@@ -75,45 +94,74 @@ public class Rygel.External.ItemFactory {
             item.size = (int64) value;
         }
 
-        item.author = this.get_string (props, "Artist");
-        item.album = this.get_string (props, "Album");
-        item.genre = this.get_string (props, "Genre");
         item.date = this.get_string (props, "Date");
 
-        // Properties specific to video and audio/music
+        return item;
+    }
 
-        item.duration = this.get_int (props, "Duration");
-        item.bitrate = this.get_int (props, "Bitrate");
-        item.sample_freq = this.get_int (props, "SampleRate");
-        item.bits_per_sample = this.get_int (props, "BitsPerSample");
+    private async void set_music_metadata (
+                                        MusicItem                music,
+                                        HashTable<string,Value?> props,
+                                        string                   service_name,
+                                        string                   host_ip)
+                                        throws GLib.Error {
+        music.artist = this.get_string (props, "Artist");
+        music.album = this.get_string (props, "Album");
+        music.genre = this.get_string (props, "Genre");
 
-        value = props.lookup ("AlbumArt");
+        var value = props.lookup ("AlbumArt");
         if (value != null) {
             var cover_factory = new AlbumArtFactory ();
-            var album_art = yield cover_factory.create ((string) value,
-                                                        service_name,
-                                                        host_ip);
-            item.thumbnails.add (album_art);
+
+            music.album_art = yield cover_factory.create ((string) value,
+                                                          service_name,
+                                                          host_ip);
         }
 
-        // Properties specific to video and image
+        this.set_audio_metadata (music, props, service_name, host_ip);
+    }
 
-        item.width = this.get_int (props, "Width");
-        item.height = this.get_int (props, "Height");
-        item.color_depth = this.get_int (props, "ColorDepth");
-        item.pixel_width = this.get_int (props, "PixelWidth");
-        item.pixel_height = this.get_int (props, "PixelHeight");
+    private void set_audio_metadata (AudioItem                audio,
+                                     HashTable<string,Value?> props,
+                                     string                   service_name,
+                                     string                   host_ip)
+                                     throws GLib.Error {
+        audio.duration = this.get_int (props, "Duration");
+        audio.bitrate = this.get_int (props, "Bitrate");
+        audio.sample_freq = this.get_int (props, "SampleRate");
+        audio.bits_per_sample = this.get_int (props, "BitsPerSample");
+    }
 
-        value = props.lookup ("Thumbnail");
+    private async void set_visual_metadata (
+                                        VisualItem               visual,
+                                        HashTable<string,Value?> props,
+                                        string                   service_name,
+                                        string                   host_ip)
+                                        throws GLib.Error {
+        visual.width = this.get_int (props, "Width");
+        visual.height = this.get_int (props, "Height");
+        visual.color_depth = this.get_int (props, "ColorDepth");
+        visual.pixel_width = this.get_int (props, "PixelWidth");
+        visual.pixel_height = this.get_int (props, "PixelHeight");
+
+        var value = props.lookup ("Thumbnail");
         if (value != null) {
             var factory = new ThumbnailFactory ();
             var thumbnail = yield factory.create ((string) value,
                                                   service_name,
                                                   host_ip);
-            item.thumbnails.add (thumbnail);
+            visual.thumbnails.add (thumbnail);
         }
+    }
 
-        return item;
+    private async void set_video_metadata (
+                                        VideoItem                video,
+                                        HashTable<string,Value?> props,
+                                        string                   service_name,
+                                        string                   host_ip)
+                                        throws GLib.Error {
+        yield this.set_visual_metadata (video, props, service_name, host_ip);
+        this.set_audio_metadata (video, props, service_name, host_ip);
     }
 
     private string? get_string (HashTable<string,Value?> props, string prop) {

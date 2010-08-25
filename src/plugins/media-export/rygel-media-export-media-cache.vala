@@ -415,25 +415,57 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
     }
 
+
+
     private void save_metadata (Rygel.MediaItem item) throws Error {
+        // Fill common properties
         GLib.Value[] values = { item.size,
                                 item.mime_type,
-                                item.width,
-                                item.height,
+                                0,
+                                0,
                                 item.upnp_class,
-                                item.author,
-                                item.album,
+                                0,
+                                0,
                                 item.date,
-                                item.bitrate,
-                                item.sample_freq,
-                                item.bits_per_sample,
-                                item.n_audio_channels,
-                                item.track_number,
-                                item.color_depth,
-                                item.duration,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
                                 item.id,
                                 item.dlna_profile,
-                                item.genre};
+                                0};
+
+        if (item is AudioItem) {
+            var audio_item = item as AudioItem;
+            values[14] = audio_item.duration;
+            values[8] = audio_item.bitrate;
+            values[9] = audio_item.sample_freq;
+            values[10] = audio_item.bits_per_sample;
+            values[11] = audio_item.n_audio_channels;
+            if (item is MusicItem) {
+                var music_item = item as MusicItem;
+                values[5] = music_item.artist;
+                values[6] = music_item.album;
+                values[17] = music_item.genre;
+                values[12] = music_item.track_number;
+                music_item.lookup_album_art ();
+            }
+        }
+
+        if (item is VisualItem) {
+            var visual_item = item as VisualItem;
+            values[2] = visual_item.width;
+            values[3] = visual_item.height;
+            values[13] = visual_item.color_depth;
+            if (item is VideoItem) {
+                var video_item = item as VideoItem;
+                values[5] = video_item.author;
+            }
+        }
+
         this.db.exec (this.sql.make (SQLString.SAVE_METADATA), values);
     }
 
@@ -519,10 +551,6 @@ public class Rygel.MediaExport.MediaCache : Object {
                                            upnp_class);
                 fill_item (statement, object as MediaItem);
 
-                if (upnp_class.has_prefix (MediaItem.AUDIO_CLASS)) {
-                    (object as MediaItem).lookup_album_art ();
-                }
-
                 var uri = statement.column_text (DetailColumn.URI);
                 if (uri != null) {
                     (object as MediaItem).add_uri (uri);
@@ -540,27 +568,41 @@ public class Rygel.MediaExport.MediaCache : Object {
     }
 
     private void fill_item (Statement statement, MediaItem item) {
-        item.author = statement.column_text (DetailColumn.AUTHOR);
-        item.album = statement.column_text (DetailColumn.ALBUM);
+        // Fill common properties
         item.date = statement.column_text (DetailColumn.DATE);
         item.mime_type = statement.column_text (DetailColumn.MIME_TYPE);
-        item.duration = (long) statement.column_int64 (DetailColumn.DURATION);
-
-        item.size = statement.column_int64 (DetailColumn.SIZE);
-        item.bitrate = statement.column_int (DetailColumn.BITRATE);
-
-        item.sample_freq = statement.column_int (DetailColumn.SAMPLE_FREQ);
-        item.bits_per_sample = statement.column_int (
-                                        DetailColumn.BITS_PER_SAMPLE);
-        item.n_audio_channels = statement.column_int (
-                                        DetailColumn.CHANNELS);
-        item.track_number = statement.column_int (DetailColumn.TRACK);
-
-        item.width = statement.column_int (DetailColumn.WIDTH);
-        item.height = statement.column_int (DetailColumn.HEIGHT);
-        item.color_depth = statement.column_int (DetailColumn.COLOR_DEPTH);
         item.dlna_profile = statement.column_text (DetailColumn.DLNA_PROFILE);
-        item.genre = statement.column_text (DetailColumn.GENRE);
+        item.size = statement.column_int64 (DetailColumn.SIZE);
+
+        if (item is AudioItem) {
+            var audio_item = item as AudioItem;
+            audio_item.duration = (long) statement.column_int64 (DetailColumn.DURATION);
+            audio_item.bitrate = statement.column_int (DetailColumn.BITRATE);
+            audio_item.sample_freq = statement.column_int (DetailColumn.SAMPLE_FREQ);
+            audio_item.bits_per_sample = statement.column_int (
+                                        DetailColumn.BITS_PER_SAMPLE);
+            audio_item.n_audio_channels = statement.column_int (
+                                        DetailColumn.CHANNELS);
+            if (item is MusicItem) {
+                var music_item = item as MusicItem;
+                music_item.artist = statement.column_text (DetailColumn.AUTHOR);
+                music_item.album = statement.column_text (DetailColumn.ALBUM);
+                music_item.genre = statement.column_text (DetailColumn.GENRE);
+                music_item.track_number = statement.column_int (DetailColumn.TRACK);
+                music_item.lookup_album_art ();
+            }
+        }
+
+        if (item is VisualItem) {
+            var visual_item = item as VisualItem;
+            visual_item.width = statement.column_int (DetailColumn.WIDTH);
+            visual_item.height = statement.column_int (DetailColumn.HEIGHT);
+            visual_item.color_depth = statement.column_int (DetailColumn.COLOR_DEPTH);
+            if (item is VideoItem) {
+                var video_item = item as VideoItem;
+                video_item.author = statement.column_text (DetailColumn.AUTHOR);
+            }
+        }
     }
 
     public ArrayList<string> get_child_ids (string container_id)

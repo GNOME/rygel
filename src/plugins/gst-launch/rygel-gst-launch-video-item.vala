@@ -1,7 +1,8 @@
 /*
- * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
- * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2009 Thijs Vermeir <thijsvermeir@gmail.com>
+ * Copyright (C) 2010 Nokia Corporation.
  *
+ * Author: Thijs Vermeir <thijsvermeir@gmail.com>
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *
@@ -22,24 +23,26 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using GUPnP;
 using Gst;
 
 /**
- * Represents Test item.
+ * Video item that serves data from a gst-launch commandline.
  */
-public abstract class Rygel.Test.Item : Rygel.MediaItem {
-    const string TEST_AUTHOR = "Zeeshan Ali (Khattak)";
+public class Rygel.GstLaunch.VideoItem : Rygel.VideoItem, Item {
+    public string launch_line { get; protected set; }
 
-    public Item (string         id,
-                 MediaContainer parent,
-                 string         title,
-                 string         mime,
-                 string         upnp_class) {
-        base (id, parent, title, upnp_class);
+    public VideoItem (string         id,
+                      MediaContainer parent,
+                      string         title,
+                      string         mime_type,
+                      string         launch_line) {
+        base (id, parent, title);
 
-        this.mime_type = mime;
-        this.author = TEST_AUTHOR;
+        this.mime_type = mime_type;
+        this.launch_line = launch_line;
+    }
+
+    public override Element? create_stream_source () {
+        return this.create_source ();
     }
 }
-

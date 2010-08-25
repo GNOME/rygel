@@ -32,7 +32,7 @@ internal class Rygel.WMVTranscoder : Rygel.Transcoder {
     private const string VIDEO_SCALE = "videoscale";
 
     public WMVTranscoder () {
-        base ("video/x-ms-wmv", "WMVHIGH_FULL", MediaItem.VIDEO_CLASS);
+        base ("video/x-ms-wmv", "WMVHIGH_FULL", VideoItem.UPNP_CLASS);
     }
 
     public override Element create_source (MediaItem item,
@@ -49,22 +49,25 @@ internal class Rygel.WMVTranscoder : Rygel.Transcoder {
         if (resource == null)
             return null;
 
-        resource.width = item.width;
-        resource.height = item.height;
+        var video_item = item as VideoItem;
+
+        resource.width = video_item.width;
+        resource.height = video_item.height;
         resource.bitrate = (VIDEO_BITRATE + WMATranscoder.BITRATE) * 1000 / 8;
 
         return resource;
     }
 
     public override uint get_distance (MediaItem item) {
-        if (!item.upnp_class.has_prefix (MediaItem.VIDEO_CLASS)) {
+        if (!(item is VideoItem)) {
             return uint.MAX;
         }
 
+        var video_item = item as VideoItem;
         var distance = uint.MIN;
 
-        if (item.bitrate > 0) {
-            distance += (item.bitrate - BITRATE).abs ();
+        if (video_item.bitrate > 0) {
+            distance += (video_item.bitrate - BITRATE).abs ();
         }
 
         return distance;

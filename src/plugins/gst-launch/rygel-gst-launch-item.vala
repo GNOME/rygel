@@ -1,7 +1,10 @@
 /*
  * Copyright (C) 2009 Thijs Vermeir <thijsvermeir@gmail.com>
+ * Copyright (C) 2010 Nokia Corporation.
  *
  * Author: Thijs Vermeir <thijsvermeir@gmail.com>
+ * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *                               <zeeshan.ali@nokia.com>
  *
  * This file is part of Rygel.
  *
@@ -23,31 +26,12 @@
 using Gst;
 
 /**
- * Represents Test audio item.
+ * Item that serves data from a gst-launch commandline.
  */
-public class Rygel.GstLaunch.Item : Rygel.MediaItem {
-    string launch_line;
+public interface Rygel.GstLaunch.Item : Rygel.MediaItem {
+    public abstract string launch_line { get; protected set; }
 
-    public Item (string         id,
-                 MediaContainer parent,
-                 string         title,
-                 string         mime_type,
-                 string         launch_line) {
-        string upnp_class;
-
-        if (mime_type.has_prefix ("audio")) {
-             upnp_class = MediaItem.AUDIO_CLASS;
-        } else {
-             upnp_class = MediaItem.VIDEO_CLASS;
-        }
-
-        base (id, parent, title, upnp_class);
-
-        this.mime_type = mime_type;
-        this.launch_line = launch_line;
-    }
-
-    public override Element? create_stream_source () {
+    protected Element? create_source () {
         try {
           return Gst.parse_bin_from_description (this.launch_line, true);
         } catch (Error err) {

@@ -28,7 +28,7 @@ internal class Rygel.WMATranscoder : Rygel.Transcoder {
     private const string CONVERT_SINK_PAD = "convert-sink-pad";
 
     public WMATranscoder () {
-        base ("audio/x-wma", "WMA", MediaItem.AUDIO_CLASS);
+        base ("audio/x-wma", "WMA", AudioItem.UPNP_CLASS);
     }
 
     public override Element create_source (MediaItem item,
@@ -52,14 +52,15 @@ internal class Rygel.WMATranscoder : Rygel.Transcoder {
     }
 
     public override uint get_distance (MediaItem item) {
-        if (!item.upnp_class.has_prefix (MediaItem.AUDIO_CLASS)) {
+        if (!(item is AudioItem)) {
             return uint.MAX;
         }
 
+        var audio_item = item as AudioItem;
         var distance = uint.MIN;
 
-        if (item.bitrate > 0) {
-            distance += (item.bitrate - BITRATE).abs ();
+        if (audio_item.bitrate > 0) {
+            distance += (audio_item.bitrate - BITRATE).abs ();
         }
 
         return distance;

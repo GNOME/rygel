@@ -39,7 +39,7 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     private MP3Layer layer;
 
     public MP3Transcoder (MP3Layer layer) {
-        base ("audio/mpeg", "MP3", MediaItem.AUDIO_CLASS);
+        base ("audio/mpeg", "MP3", AudioItem.UPNP_CLASS);
 
         this.layer = layer;
     }
@@ -65,14 +65,15 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     }
 
     public override uint get_distance (MediaItem item) {
-        if (!item.upnp_class.has_prefix (MediaItem.AUDIO_CLASS)) {
+        if (!(item is AudioItem)) {
             return uint.MAX;
         }
 
+        var audio_item = item as AudioItem;
         var distance = uint.MIN;
 
-        if (item.bitrate > 0) {
-            distance += (item.bitrate - BITRATE).abs ();
+        if (audio_item.bitrate > 0) {
+            distance += (audio_item.bitrate - BITRATE).abs ();
         }
 
         return distance;

@@ -37,7 +37,7 @@ src/plugins/media-export/rygel-media-export-query-container.vala
 src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala
 src/plugins/media-export/rygel-media-export-root-container.vala
 src/plugins/test/rygel-test-audio-item.vala
-src/plugins/test/rygel-test-item.vala
+src/plugins/test/rygel-test-video-item.vala
 src/plugins/test/rygel-test-plugin.vala
 src/plugins/test/rygel-test-root-container.vala
 src/plugins/test/rygel-test-video-item.vala
@@ -100,6 +100,12 @@ src/rygel/rygel-logical-expression.vala
 src/rygel/rygel-main.vala
 src/rygel/rygel-media-container.vala
 src/rygel/rygel-media-item.vala
+src/rygel/rygel-music-item.vala
+src/rygel/rygel-audio-item.vala
+src/rygel/rygel-image-item.vala
+src/rygel/rygel-photo-item.vala
+src/rygel/rygel-video-item.vala
+src/rygel/rygel-visual-item.vala
 src/rygel/rygel-media-object.vala
 src/rygel/rygel-media-receiver-registrar.vala
 src/rygel/rygel-meta-config.vala

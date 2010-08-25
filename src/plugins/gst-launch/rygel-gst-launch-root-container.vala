@@ -58,11 +58,19 @@ public class Rygel.GstLaunch.RootContainer : SimpleContainer {
             var launch_line = config.get_string (CONFIG_GROUP,
                                                  "%s-launch".printf (name));
 
-            this.add_child (new Item (name,
-                                      this,
-                                      title,
-                                      mime_type,
-                                      launch_line));
+            if (mime_type.has_prefix ("audio")) {
+                this.add_child (new AudioItem (name,
+                                               this,
+                                               title,
+                                               mime_type,
+                                               launch_line));
+            } else {
+                this.add_child (new VideoItem (name,
+                                               this,
+                                               title,
+                                               mime_type,
+                                               launch_line));
+            }
         } catch (GLib.Error err) {
             debug ("GstLaunch failed item '%s': %s", name, err.message);
         }

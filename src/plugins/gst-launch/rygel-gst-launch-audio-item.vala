@@ -1,7 +1,8 @@
 /*
- * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
- * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2009 Thijs Vermeir <thijsvermeir@gmail.com>
+ * Copyright (C) 2010 Nokia Corporation.
  *
+ * Author: Thijs Vermeir <thijsvermeir@gmail.com>
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *
@@ -25,26 +26,23 @@
 using Gst;
 
 /**
- * Represents Test audio item.
+ * Audio item that serves data from a gst-launch commandline.
  */
-public class Rygel.Test.AudioItem : Rygel.AudioItem {
-    private const string TEST_MIMETYPE = "audio/x-wav";
-    private const string PIPELINE = "audiotestsrc is-live=1 ! wavenc";
+public class Rygel.GstLaunch.AudioItem : Rygel.AudioItem, Item {
+    public string launch_line { get; protected set; }
 
-    public AudioItem (string id, MediaContainer parent, string title) {
+    public AudioItem (string         id,
+                      MediaContainer parent,
+                      string         title,
+                      string         mime_type,
+                      string         launch_line) {
         base (id, parent, title);
 
-        this.mime_type = TEST_MIMETYPE;
+        this.mime_type = mime_type;
+        this.launch_line = launch_line;
     }
 
     public override Element? create_stream_source () {
-        try {
-            return parse_bin_from_description (PIPELINE, true);
-        } catch (Error err) {
-            warning ("Required plugin missing (%s)", err.message);
-
-            return null;
-        }
+        return this.create_source ();
     }
 }
-

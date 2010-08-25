@@ -39,7 +39,7 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
 
     public VideoItemFactory () {
         base (CATEGORY,
-              MediaItem.VIDEO_CLASS,
+              VideoItem.UPNP_CLASS,
               VIDEO_RESOURCES_CLASS_PATH,
               Environment.get_user_special_dir (UserDirectory.VIDEOS));
 
@@ -57,18 +57,29 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
                                       SearchContainer parent,
                                       string[]        metadata)
                                       throws GLib.Error {
-        var item = base.create (id, uri, parent, metadata);
+        var item = new VideoItem (id, parent, "");
 
-        if (metadata[VideoMetadata.WIDTH] != "")
-            item.width = metadata[VideoMetadata.WIDTH].to_int ();
-
-        if (metadata[VideoMetadata.HEIGHT] != "")
-            item.height = metadata[VideoMetadata.HEIGHT].to_int ();
-
-        if (metadata[VideoMetadata.DURATION] != "")
-            item.duration = metadata[VideoMetadata.DURATION].to_int ();
+        this.set_metadata (item, uri, metadata);
 
         return item;
+    }
+
+    protected override void set_metadata (MediaItem item,
+                                          string    uri,
+                                          string[]  metadata)
+                                          throws GLib.Error {
+        base.set_metadata (item, uri, metadata);
+
+        var video = item as VideoItem;
+
+        if (metadata[VideoMetadata.WIDTH] != "")
+            video.width = metadata[VideoMetadata.WIDTH].to_int ();
+
+        if (metadata[VideoMetadata.HEIGHT] != "")
+            video.height = metadata[VideoMetadata.HEIGHT].to_int ();
+
+        if (metadata[VideoMetadata.DURATION] != "")
+            video.duration = metadata[VideoMetadata.DURATION].to_int ();
     }
 }
 

@@ -54,8 +54,8 @@ public class Rygel.MediaArtStore : GLib.Object {
         return media_art_store;
     }
 
-    public Thumbnail? find_media_art (MediaItem item,
-                                      bool simple = false) throws Error {
+    public Thumbnail? find_media_art (MusicItem item,
+                                      bool      simple = false) throws Error {
         string[] types = { "track", "album", "artist", "podcast", "radio" };
         File file = null;
 
@@ -87,7 +87,7 @@ public class Rygel.MediaArtStore : GLib.Object {
         return thumb;
     }
 
-    public Thumbnail? find_media_art_any (MediaItem item) throws Error {
+    public Thumbnail? find_media_art_any (MusicItem item) throws Error {
         var thumb = this.find_media_art (item);
         if (thumb == null) {
             thumb = this.find_media_art (item, true);
@@ -97,7 +97,7 @@ public class Rygel.MediaArtStore : GLib.Object {
     }
 
     public File get_media_art_file (string    type,
-                                    MediaItem item,
+                                    MusicItem item,
                                     bool      simple = false) {
         string hash;
         string suffix;
@@ -146,22 +146,22 @@ public class Rygel.MediaArtStore : GLib.Object {
         }
     }
 
-    private string get_simple_hash (string type, MediaItem item) {
+    private string get_simple_hash (string type, MusicItem item) {
         string hash;
         switch (type) {
             case "artist":
                 case "radio":
-                hash = this.normalize_and_hash (item.author);
+                hash = this.normalize_and_hash (item.artist);
                 break;
             case "podcast":
                 hash = this.normalize_and_hash (item.title);
                 break;
             case "album":
-                hash = this.normalize_and_hash (item.author + "\t" +
+                hash = this.normalize_and_hash (item.artist + "\t" +
                                                 item.album);
                 break;
             case "track":
-                hash = this.normalize_and_hash (item.author + "\t" +
+                hash = this.normalize_and_hash (item.artist + "\t" +
                                                 item.album + "\t" +
                                                 item.title);
                 break;
@@ -172,17 +172,17 @@ public class Rygel.MediaArtStore : GLib.Object {
         return hash;
     }
 
-    private string get_hash (string type, MediaItem item) {
+    private string get_hash (string type, MusicItem item) {
         string b = null, c = null;
         switch (type) {
             case "track":
-                b = this.normalize_and_hash (item.author, false) + "-" +
+                b = this.normalize_and_hash (item.artist, false) + "-" +
                     this.normalize_and_hash (item.album, false);
                 c = this.normalize_and_hash (item.title, false);
                 break;
             case "album":
             case "artist":
-                b = this.normalize_and_hash (item.author, false);
+                b = this.normalize_and_hash (item.artist, false);
                 c = this.normalize_and_hash (item.album, false);
                 break;
             case "radio":

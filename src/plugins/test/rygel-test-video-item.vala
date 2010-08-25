@@ -27,18 +27,16 @@ using Gst;
 /**
  * Represents Test video item.
  */
-public class Rygel.Test.VideoItem : Item {
+public class Rygel.Test.VideoItem : Rygel.VideoItem {
     private const string TEST_MIMETYPE = "video/mpeg";
     private const string PIPELINE = "videotestsrc is-live=1 ! " +
                                     "ffenc_mpeg2video ! " +
                                     "mpegtsmux";
 
     public VideoItem (string id, MediaContainer parent, string title) {
-        base (id,
-              parent,
-              title,
-              TEST_MIMETYPE,
-              MediaItem.VIDEO_CLASS);
+        base (id, parent, title);
+
+        this.mime_type = TEST_MIMETYPE;
     }
 
     public override Element? create_stream_source () {

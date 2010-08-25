@@ -59,6 +59,12 @@ src/rygel/rygel-log-handler.c
 src/rygel/rygel-main.c
 src/rygel/rygel-media-container.c
 src/rygel/rygel-media-item.c
+src/rygel/rygel-music-item.c
+src/rygel/rygel-audio-item.c
+src/rygel/rygel-image-item.c
+src/rygel/rygel-photo-item.c
+src/rygel/rygel-video-item.c
+src/rygel/rygel-visual-item.c
 src/rygel/rygel-meta-config.c
 src/rygel/rygel-metadata-extractor.c
 src/rygel/rygel-mp2ts-transcoder-bin.c

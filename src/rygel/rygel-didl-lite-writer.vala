@@ -40,69 +40,12 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
 
     public void serialize (MediaObject media_object) throws Error {
         if (media_object is MediaItem) {
-            this.serialize_item ((MediaItem) media_object);
+            ((MediaItem) media_object).serialize (this);
         } else if (media_object is MediaContainer) {
             this.serialize_container ((MediaContainer) media_object);
         } else {
             throw new DIDLLiteWriterError.UNSUPPORTED_OBJECT (
                 _("Unable to serialize unsupported object"));
-        }
-    }
-
-    private void serialize_item (MediaItem item) throws Error {
-        var didl_item = this.add_item ();
-
-        didl_item.id = item.id;
-        if (item.parent != null) {
-            didl_item.parent_id = item.parent.id;
-        } else {
-            didl_item.parent_id = "0";
-        }
-
-        didl_item.restricted = false;
-
-        didl_item.title = item.title;
-        didl_item.upnp_class = item.upnp_class;
-        if (item.author != null && item.author != "") {
-            var contributor = didl_item.add_creator ();
-            contributor.name = item.author;
-
-            if (item.upnp_class.has_prefix (MediaItem.VIDEO_CLASS)) {
-                contributor = didl_item.add_author ();
-                contributor.name = item.author;
-            } else if (item.upnp_class.has_prefix (MediaItem.MUSIC_CLASS)) {
-                contributor = didl_item.add_artist ();
-                contributor.name = item.author;
-            }
-        }
-
-        if (item.track_number >= 0) {
-            didl_item.track_number = item.track_number;
-        }
-
-        if (item.album != null && item.album != "") {
-            didl_item.album = item.album;
-        }
-
-        if (item.date != null && item.date != "") {
-            didl_item.date = item.date;
-        }
-
-        if (item.genre != null && item.genre != "") {
-            didl_item.genre = item.genre;
-        }
-
-        if (item.place_holder) {
-            this.http_server.add_proxy_resource (didl_item, item);
-        } else {
-            // Add the transcoded/proxy URIs first
-            this.http_server.add_resources (didl_item, item);
-
-            // then original URIs
-            bool internal_allowed;
-            internal_allowed = this.http_server.context.interface == "lo" ||
-                               this.http_server.context.host_ip == "127.0.0.1";
-            item.add_resources (didl_item, internal_allowed);
         }
     }
 

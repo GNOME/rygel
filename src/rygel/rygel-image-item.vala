@@ -1,0 +1,99 @@
+/*
+ * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
+ * Copyright (C) 2010 Nokia Corporation.
+ *
+ * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *                               <zeeshan.ali@nokia.com>
+ *
+ * This file is part of Rygel.
+ *
+ * Rygel is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Rygel is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ */
+
+using GUPnP;
+using Gee;
+
+/**
+ * Represents an image item.
+ */
+public class Rygel.ImageItem : MediaItem, VisualItem {
+    public new const string UPNP_CLASS = "object.item.imageItem";
+
+    public int width { get; set; default = -1; }
+    public int height { get; set; default = -1; }
+    public int pixel_width { get; set; default = -1; }
+    public int pixel_height { get; set; default = -1; }
+    public int color_depth { get; set; default = -1; }
+
+    public ArrayList<Thumbnail> thumbnails { get; protected set; }
+
+    public ImageItem (string         id,
+                      MediaContainer parent,
+                      string         title,
+                      string         upnp_class = ImageItem.UPNP_CLASS) {
+        base (id, parent, title, upnp_class);
+
+        this.thumbnails = new ArrayList<Thumbnail> ();
+    }
+
+    public override bool streamable () {
+        return false;
+    }
+
+    public override void add_uri (string uri) {
+        base.add_uri (uri);
+
+        this.add_thumbnail_for_uri (uri);
+    }
+
+    internal override void add_resources (DIDLLiteItem didl_item,
+                                          bool         allow_internal)
+                                          throws Error {
+        base.add_resources (didl_item, allow_internal);
+
+        this.add_thumbnail_resources (didl_item, allow_internal);
+    }
+
+    internal override DIDLLiteResource add_resource (
+                                        DIDLLiteItem didl_item,
+                                        string?      uri,
+                                        string       protocol,
+                                        string?      import_uri = null)
+                                        throws Error {
+        var res = base.add_resource (didl_item, uri, protocol, import_uri);
+
+        this.add_visual_props (res);
+
+        return res;
+    }
+
+    internal override void add_proxy_resources (HTTPServer   server,
+                                                DIDLLiteItem didl_item)
+                                                throws Error {
+        base.add_proxy_resources (server, didl_item);
+
+        // Thumbnails comes in the end
+        this.add_thumbnail_proxy_resources (server, didl_item);
+    }
+
+    protected override ProtocolInfo get_protocol_info (string? uri,
+                                                       string  protocol) {
+        var protocol_info = base.get_protocol_info (uri, protocol);
+
+        protocol_info.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
+
+        return protocol_info;
+    }
+}

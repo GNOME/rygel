@@ -51,7 +51,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     private MP2TSProfile profile;
 
     public MP2TSTranscoder (MP2TSProfile profile) {
-        base ("video/mpeg", PROFILES[profile], MediaItem.VIDEO_CLASS);
+        base ("video/mpeg", PROFILES[profile], VideoItem.UPNP_CLASS);
 
         this.profile = profile;
     }
@@ -78,22 +78,23 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     }
 
     public override uint get_distance (MediaItem item) {
-        if (!item.upnp_class.has_prefix (MediaItem.VIDEO_CLASS)) {
+        if (!(item is VideoItem)) {
             return uint.MAX;
         }
 
+        var video_item = item as VideoItem;
         var distance = uint.MIN;
 
-        if (item.bitrate > 0) {
-            distance += (item.bitrate - BITRATE).abs ();
+        if (video_item.bitrate > 0) {
+            distance += (video_item.bitrate - BITRATE).abs ();
         }
 
-        if (item.width > 0) {
-            distance += (item.width - WIDTH[this.profile]).abs ();
+        if (video_item.width > 0) {
+            distance += (video_item.width - WIDTH[this.profile]).abs ();
         }
 
-        if (item.height > 0) {
-            distance += (item.height - HEIGHT[this.profile]).abs ();
+        if (video_item.height > 0) {
+            distance += (video_item.height - HEIGHT[this.profile]).abs ();
         }
 
         return distance;
@@ -120,9 +121,15 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         int pixel_w;
         int pixel_h;
 
-        if (item.pixel_width > 0 && item.pixel_height > 0) {
-            pixel_w = item.width * HEIGHT[this.profile] * item.pixel_width;
-            pixel_h = item.height * WIDTH[this.profile] * item.pixel_height;
+        var video_item = item as VideoItem;
+
+        if (video_item.pixel_width > 0 && video_item.pixel_height > 0) {
+            pixel_w = video_item.width *
+                      HEIGHT[this.profile] *
+                      video_item.pixel_width;
+            pixel_h = video_item.height *
+                      WIDTH[this.profile] *
+                      video_item.pixel_height;
         } else {
             // Original pixel-ratio not provided, lets just use 1:1
             pixel_w = 1;

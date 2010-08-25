@@ -71,10 +71,11 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
 
             var container = yield this.fetch_container ();
 
-            this.item = new MediaItem (didl_item.id,
-                                       container,
-                                       didl_item.title,
-                                       didl_item.upnp_class);
+            this.item = this.create_item (didl_item.id,
+                                          container,
+                                          didl_item.title,
+                                          didl_item.upnp_class);
+
             var resources = didl_item.get_resources ();
             if (resources != null) {
                 var info = resources.nth (0).data.protocol_info;
@@ -188,14 +189,35 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
     }
 
     private string get_generic_mime_type () {
-        switch (this.item.upnp_class) {
-            case MediaItem.IMAGE_CLASS:
-                return "image";
-            case MediaItem.VIDEO_CLASS:
-                return "video";
-            case MediaItem.AUDIO_CLASS:
-            default:
-                return "audio";
+        if (this.item is ImageItem) {
+            return "image";
+        } else if (this.item is VideoItem) {
+            return "video";
+        } else {
+            return "audio";
+        }
+    }
+
+    private MediaItem create_item (string         id,
+                                   MediaContainer parent,
+                                   string         title,
+                                   string         upnp_class) throws Error {
+        switch (upnp_class) {
+        case ImageItem.UPNP_CLASS:
+            return new ImageItem (id, parent, title);
+        case PhotoItem.UPNP_CLASS:
+            return new PhotoItem (id, parent, title);
+        case VideoItem.UPNP_CLASS:
+            return new VideoItem (id, parent, title);
+        case AudioItem.UPNP_CLASS:
+            return new AudioItem (id, parent, title);
+        case MusicItem.UPNP_CLASS:
+            return new MusicItem (id, parent, title);
+        default:
+            throw new ContentDirectoryError.BAD_METADATA (
+                                        "Creation of item of class '%s' " +
+                                        "not supported.",
+                                         upnp_class);
         }
     }
 }

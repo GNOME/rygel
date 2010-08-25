@@ -38,7 +38,7 @@ public class Rygel.Tracker.PictureItemFactory : ItemFactory {
 
     public PictureItemFactory () {
         base (CATEGORY,
-              MediaItem.PHOTO_CLASS,
+              PhotoItem.UPNP_CLASS,
               PHOTO_RESOURCES_CLASS_PATH,
               Environment.get_user_special_dir (UserDirectory.PICTURES));
 
@@ -55,15 +55,28 @@ public class Rygel.Tracker.PictureItemFactory : ItemFactory {
                                       SearchContainer parent,
                                       string[]        metadata)
                                       throws GLib.Error {
-        var item = base.create (id, uri, parent, metadata);
+        var item = new PhotoItem (id, parent, "");
 
-        if (metadata[PictureMetadata.WIDTH] != "")
-            item.width = metadata[PictureMetadata.WIDTH].to_int ();
-
-        if (metadata[PictureMetadata.HEIGHT] != "")
-            item.height = metadata[PictureMetadata.HEIGHT].to_int ();
+        this.set_metadata (item, uri, metadata);
 
         return item;
+    }
+
+    protected override void set_metadata (MediaItem item,
+                                          string    uri,
+                                          string[]  metadata)
+                                          throws GLib.Error {
+        base.set_metadata (item, uri, metadata);
+
+        var photo = item as PhotoItem;
+
+        if (metadata[PictureMetadata.WIDTH] != "") {
+            photo.width = metadata[PictureMetadata.WIDTH].to_int ();
+        }
+
+        if (metadata[PictureMetadata.HEIGHT] != "") {
+            photo.height = metadata[PictureMetadata.HEIGHT].to_int ();
+        }
     }
 }
 

@@ -88,9 +88,8 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
                                                 int        subtitle_index,
                                                 string?    transcode_target);
 
-    public virtual void add_resources (DIDLLiteItem didl_item,
-                                       MediaItem    item)
-                                       throws Error {
+    public void add_resources (DIDLLiteItem didl_item, MediaItem item)
+                               throws Error {
         var list = new GLib.List<Transcoder> ();
 
         foreach (var transcoder in this.transcoders) {
