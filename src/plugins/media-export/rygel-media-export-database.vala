@@ -43,6 +43,26 @@ internal class Rygel.MediaExport.Database : Object {
      */
     public delegate bool RowCallback (Sqlite.Statement stmt);
 
+    private static void utf8_has_prefix (Sqlite.Context context,
+                                         Sqlite.Value[] args)
+                                         requires (args.length == 2) {
+        if (args[0].to_text () == null ||
+            args[1].to_text () == null) {
+            context.result_int (0);
+
+            return;
+        }
+
+        var stra = args[0].to_text ().casefold ();
+        var strb = args[1].to_text ().casefold ();
+
+        if (stra.has_prefix (strb)) {
+            context.result_int (1);
+        } else {
+            context.result_int (0);
+        }
+    }
+
     private static void utf8_like (Sqlite.Context context,
                                    Sqlite.Value[] args)
                                    requires (args.length == 2) {
@@ -108,6 +128,15 @@ internal class Rygel.MediaExport.Database : Object {
                                  Database.utf8_like,
                                  null,
                                  null);
+
+        this.db.create_function ("has_prefix",
+                                 2,
+                                 Sqlite.UTF8,
+                                 null,
+                                 Database.utf8_has_prefix,
+                                 null,
+                                 null);
+
         this.db.create_collation ("CASEFOLD",
                                   Sqlite.UTF8,
                                   Database.utf8_collate);
