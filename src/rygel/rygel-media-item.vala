@@ -141,8 +141,8 @@ public abstract class Rygel.MediaItem : MediaObject {
         }
     }
 
-    internal virtual DIDLLiteItem serialize (DIDLLiteWriter writer)
-                                             throws Error {
+    internal override DIDLLiteObject serialize (DIDLLiteWriter writer)
+                                                throws Error {
         var didl_item = writer.add_item ();
 
         didl_item.id = this.id;

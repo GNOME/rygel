@@ -260,6 +260,34 @@ public abstract class Rygel.MediaContainer : MediaObject {
         }
     }
 
+    internal override DIDLLiteObject serialize (DIDLLiteWriter writer)
+                                                throws Error {
+        var didl_container = writer.add_container ();
+        if (this.parent != null) {
+            didl_container.parent_id = this.parent.id;
+        } else {
+            didl_container.parent_id = "-1";
+        }
+
+        didl_container.id = this.id;
+        didl_container.title = this.title;
+        didl_container.child_count = this.child_count;
+        didl_container.upnp_class = this.upnp_class;
+        didl_container.restricted = this.uris.size <= 0;
+        didl_container.searchable = true;
+
+        if (!didl_container.restricted) {
+            weak Xml.Node node = (Xml.Node) didl_container.xml_node;
+            weak Xml.Ns ns = (Xml.Ns) didl_container.upnp_namespace;
+
+            foreach (var create_class in this.create_classes) {
+                node.new_child (ns, "createClass", create_class);
+            }
+        }
+
+        return didl_container;
+    }
+
     private async MediaObjects search_in_children (SearchExpression expression,
                                                    MediaObjects     children,
                                                    uint             limit,

@@ -39,38 +39,6 @@ internal class Rygel.DIDLLiteWriter : GUPnP.DIDLLiteWriter {
     }
 
     public void serialize (MediaObject media_object) throws Error {
-        if (media_object is MediaItem) {
-            ((MediaItem) media_object).serialize (this);
-        } else if (media_object is MediaContainer) {
-            this.serialize_container ((MediaContainer) media_object);
-        } else {
-            throw new DIDLLiteWriterError.UNSUPPORTED_OBJECT (
-                _("Unable to serialize unsupported object"));
-        }
-    }
-
-    private void serialize_container (MediaContainer container) throws Error {
-        var didl_container = this.add_container ();
-        if (container.parent != null) {
-            didl_container.parent_id = container.parent.id;
-        } else {
-            didl_container.parent_id = "-1";
-        }
-
-        didl_container.id = container.id;
-        didl_container.title = container.title;
-        didl_container.child_count = container.child_count;
-        didl_container.upnp_class = container.upnp_class;
-        didl_container.restricted = container.uris.size <= 0;
-        didl_container.searchable = true;
-
-        if (!didl_container.restricted) {
-            weak Xml.Node node = (Xml.Node) didl_container.xml_node;
-            weak Xml.Ns ns = (Xml.Ns) didl_container.upnp_namespace;
-
-            foreach (var create_class in container.create_classes) {
-                node.new_child (ns, "createClass", create_class);
-            }
-        }
+        media_object.serialize (this);
     }
 }

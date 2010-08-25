@@ -122,6 +122,9 @@ public abstract class Rygel.MediaObject : GLib.Object {
         return null;
     }
 
+    internal abstract DIDLLiteObject serialize (DIDLLiteWriter writer)
+                                                throws Error;
+
     internal virtual int compare_by_property (MediaObject media_object,
                                               string      property) {
         switch (property) {

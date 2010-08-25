@@ -90,8 +90,8 @@ public class Rygel.MusicItem : AudioItem {
         }
     }
 
-    internal override DIDLLiteItem serialize (DIDLLiteWriter writer)
-                                             throws Error {
+    internal override DIDLLiteObject serialize (DIDLLiteWriter writer)
+                                                throws Error {
         var didl_item = base.serialize (writer);
 
         if (this.artist != null && this.artist != "") {

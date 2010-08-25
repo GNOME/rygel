@@ -57,8 +57,8 @@ public class Rygel.PhotoItem : ImageItem {
         }
     }
 
-    internal override DIDLLiteItem serialize (DIDLLiteWriter writer)
-                                             throws Error {
+    internal override DIDLLiteObject serialize (DIDLLiteWriter writer)
+                                                throws Error {
         var didl_item = base.serialize (writer);
 
         if (this.creator != null && this.creator != "") {
