@@ -728,66 +728,56 @@ public class Rygel.MediaExport.MediaCache : Object {
     private string? relational_expression_to_sql (RelationalExpression? exp,
                                                   GLib.ValueArray       args)
                                                   throws Error {
-        string sql_function = null;
         GLib.Value? v = null;
         string collate = null;
 
         string column = map_operand_to_column (exp.operand1, out collate);
+        SqlOperator operator;
 
         switch (exp.op) {
             case SearchCriteriaOp.EXISTS:
+                string sql_function;
                 if (exp.operand2 == "true") {
                     sql_function = "IS NOT NULL AND %s != ''";
                 } else {
                     sql_function = "IS NULL OR %s = ''";
                 }
+                operator = new SqlOperator (sql_function, column);
                 break;
             case SearchCriteriaOp.EQ:
-                sql_function = "=";
-                v = exp.operand2;
-                break;
             case SearchCriteriaOp.NEQ:
-                sql_function = "!=";
-                v = exp.operand2;
-                break;
             case SearchCriteriaOp.LESS:
-                sql_function = "<";
-                v = exp.operand2;
-                break;
             case SearchCriteriaOp.LEQ:
-                sql_function = "<=";
-                v = exp.operand2;
-                break;
             case SearchCriteriaOp.GREATER:
-                sql_function = ">";
-                v = exp.operand2;
-                break;
             case SearchCriteriaOp.GEQ:
-                sql_function = ">=";
                 v = exp.operand2;
+                operator = new SqlOperator.from_search_criteria_op (
+                                        exp.op,
+                                        column,
+                                        collate);
                 break;
             case SearchCriteriaOp.CONTAINS:
-                sql_function = "LIKE";
+                operator = new SqlOperator ("LIKE", column);
                 v = "%%%s%%".printf (exp.operand2);
                 break;
             case SearchCriteriaOp.DOES_NOT_CONTAIN:
-                sql_function = "NOT LIKE";
+                operator = new SqlOperator ("NOT LIKE", column);
                 v = "%%%s%%".printf (exp.operand2);
                 break;
             case SearchCriteriaOp.DERIVED_FROM:
-                sql_function = "LIKE";
-                v = "%s%%".printf (exp.operand2);
+                operator = new SqlFunction ("has_prefix", column);
+                v = exp.operand2;
                 break;
             default:
                 warning ("Unsupported op %d", exp.op);
-                break;
+                return null;
         }
 
         if (v != null) {
             args.append (v);
         }
 
-        return "(%s %s ? %s)".printf (column, sql_function, collate);
+        return operator.to_string ();
     }
 
     public Gee.List<string> get_meta_data_column_by_filter (
