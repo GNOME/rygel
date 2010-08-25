@@ -260,7 +260,8 @@ public abstract class Rygel.MediaContainer : MediaObject {
         }
     }
 
-    internal override DIDLLiteObject serialize (DIDLLiteWriter writer)
+    internal override DIDLLiteObject serialize (DIDLLiteWriter writer,
+                                                HTTPServer     http_server)
                                                 throws Error {
         var didl_container = writer.add_container ();
         if (this.parent != null) {

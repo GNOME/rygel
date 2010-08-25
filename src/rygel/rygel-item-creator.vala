@@ -41,7 +41,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
 
     private ContentDirectory content_dir;
     private ServiceAction action;
-    private Rygel.DIDLLiteWriter didl_writer;
+    private DIDLLiteWriter didl_writer;
     private DIDLLiteParser didl_parser;
 
     public Cancellable cancellable { get; set; }
@@ -51,7 +51,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         this.content_dir = content_dir;
         this.cancellable = content_dir.cancellable;
         this.action = (owned) action;
-        this.didl_writer = new Rygel.DIDLLiteWriter (content_dir.http_server);
+        this.didl_writer = new DIDLLiteWriter (null);
         this.didl_parser = new DIDLLiteParser ();
     }
 
@@ -98,7 +98,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             this.item.place_holder = true;
 
             yield container.add_item (this.item, this.cancellable);
-            this.didl_writer.serialize (this.item);
+            this.item.serialize (didl_writer, this.content_dir.http_server);
 
             // Conclude the successful action
             this.conclude ();

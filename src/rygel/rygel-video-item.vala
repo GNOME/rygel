@@ -117,9 +117,10 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
         }
     }
 
-    internal override DIDLLiteObject serialize (DIDLLiteWriter writer)
+    internal override DIDLLiteObject serialize (DIDLLiteWriter writer,
+                                                HTTPServer     http_server)
                                                 throws Error {
-        var didl_item = base.serialize (writer);
+        var didl_item = base.serialize (writer, http_server);
 
         if (this.author != null && this.author != "") {
             var contributor = didl_item.add_author ();

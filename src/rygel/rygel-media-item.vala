@@ -141,7 +141,8 @@ public abstract class Rygel.MediaItem : MediaObject {
         }
     }
 
-    internal override DIDLLiteObject serialize (DIDLLiteWriter writer)
+    internal override DIDLLiteObject serialize (DIDLLiteWriter writer,
+                                                HTTPServer     http_server)
                                                 throws Error {
         var didl_item = writer.add_item ();
 
@@ -162,16 +163,15 @@ public abstract class Rygel.MediaItem : MediaObject {
          * can handle.
          */
         if (this.place_holder) {
-            this.add_proxy_resources (writer.http_server, didl_item);
+            this.add_proxy_resources (http_server, didl_item);
         } else {
             // Add the transcoded/proxy URIs first
-            this.add_proxy_resources (writer.http_server, didl_item);
+            this.add_proxy_resources (http_server, didl_item);
 
             // then original URIs
             bool internal_allowed;
-            internal_allowed = writer.http_server.context.interface == "lo" ||
-                               writer.http_server.context.host_ip ==
-                               "127.0.0.1";
+            internal_allowed = http_server.context.interface == "lo" ||
+                               http_server.context.host_ip == "127.0.0.1";
             this.add_resources (didl_item, internal_allowed);
         }
 

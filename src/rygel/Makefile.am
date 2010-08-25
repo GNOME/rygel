@@ -104,7 +104,6 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-relational-expression.vala \
 		    rygel-logical-expression.vala \
 		    rygel-search-criteria-parser.vala \
-		    rygel-didl-lite-writer.vala \
 		    rygel-transcoder.vala \
 		    rygel-mp2ts-transcoder.vala \
 		    rygel-mp3-transcoder.vala \

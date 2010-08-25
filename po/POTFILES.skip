@@ -40,7 +40,6 @@ src/rygel/rygel-connection-manager.c
 src/rygel/rygel-content-directory.c
 src/rygel/rygel-av-transport.c
 src/rygel/rygel-rendering-control.c
-src/rygel/rygel-didl-lite-writer.c
 src/rygel/rygel-gst-utils.c
 src/rygel/rygel-http-byte-seek.c
 src/rygel/rygel-http-get.c

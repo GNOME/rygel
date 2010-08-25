@@ -75,7 +75,6 @@ src/rygel/rygel-content-directory.vala
 src/rygel/rygel-av-transport.vala
 src/rygel/rygel-rendering-control.vala
 src/rygel/rygel-dbus-service.vala
-src/rygel/rygel-didl-lite-writer.vala
 src/rygel/rygel-gst-utils.vala
 src/rygel/rygel-http-byte-seek.vala
 src/rygel/rygel-http-get-handler.vala

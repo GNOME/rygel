@@ -43,20 +43,22 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
     public Cancellable cancellable { get; set; }
 
     protected MediaContainer root_container;
+    protected HTTPServer http_server;
     protected uint32 system_update_id;
     protected ServiceAction action;
-    protected Rygel.DIDLLiteWriter didl_writer;
+    protected DIDLLiteWriter didl_writer;
     protected XBoxHacks xbox_hacks;
     protected string object_id_arg;
 
     protected MediaQueryAction (ContentDirectory    content_dir,
                                 owned ServiceAction action) {
         this.root_container = content_dir.root_container;
+        this.http_server = content_dir.http_server;
         this.system_update_id = content_dir.system_update_id;
         this.cancellable = content_dir.cancellable;
         this.action = (owned) action;
 
-        this.didl_writer = new Rygel.DIDLLiteWriter (content_dir.http_server);
+        this.didl_writer = new DIDLLiteWriter (null);
 
         try {
             this.xbox_hacks = new XBoxHacks.for_action (this.action);
@@ -86,7 +88,7 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
                     this.xbox_hacks.apply (result as MediaItem);
                 }
 
-                this.didl_writer.serialize (result);
+                result.serialize (this.didl_writer, this.http_server);
             }
 
             // Conclude the successful Browse/Search action
