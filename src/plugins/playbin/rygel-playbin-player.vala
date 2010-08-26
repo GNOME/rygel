@@ -104,28 +104,28 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
-    public string duration {
-        owned get {
+    public int64 duration {
+        get {
             var format = Format.TIME;
             int64 dur;
 
             if (this.playbin.query_duration (ref format, out dur)) {
-                return Time.to_string ((ClockTime) dur);
+                return dur;
             } else {
-                return "00:00:00";
+                return 0;
             }
         }
     }
 
-    public string position {
-        owned get {
+    public int64 position {
+        get {
             var format = Format.TIME;
             int64 pos;
 
             if (this.playbin.query_position (ref format, out pos)) {
-                return Time.to_string ((ClockTime) pos);
+                return pos;
             } else {
-                return "00:00:00";
+                return 0;
             }
         }
     }
@@ -147,13 +147,12 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         return player;
     }
 
-    public bool seek (string time) {
-        debug (_("Seeking to %s."), time);
+    public bool seek (ClockTime time) {
         return this.playbin.seek (1.0,
                                   Format.TIME,
                                   SeekFlags.FLUSH,
                                   Gst.SeekType.SET,
-                                  Time.from_string (time),
+                                  time,
                                   Gst.SeekType.NONE,
                                   -1);
     }

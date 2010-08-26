@@ -185,8 +185,8 @@ internal class Rygel.AVTransport : Service {
         log.log ("PossibleRecordQualityMode",    "NOT_IMPLEMENTED");
         log.log ("NumberOfTracks",               this.n_tracks.to_string ());
         log.log ("CurrentTrack",                 this.track.to_string ());
-        log.log ("CurrentTrackDuration",         this.player.duration);
-        log.log ("CurrentMediaDuration",         this.player.duration);
+        log.log ("CurrentTrackDuration",         this.player.duration_as_str);
+        log.log ("CurrentMediaDuration",         this.player.duration_as_str);
         log.log ("CurrentTrackMetadata",         this.metadata);
         log.log ("CurrentTrackURI",              this.uri);
         log.log ("AVTransportURI",               this.uri);
@@ -242,7 +242,7 @@ internal class Rygel.AVTransport : Service {
                         this.n_tracks,
                     "MediaDuration",
                         typeof (string),
-                        this.player.duration,
+                        this.player.duration_as_str,
                     "CurrentURI",
                         typeof (string),
                         this.uri,
@@ -298,7 +298,7 @@ internal class Rygel.AVTransport : Service {
                         this.track,
                     "TrackDuration",
                         typeof (string),
-                        this.player.duration,
+                        this.player.duration_as_str,
                     "TrackMetaData",
                         typeof (string),
                         this.metadata,
@@ -307,10 +307,10 @@ internal class Rygel.AVTransport : Service {
                         this.uri,
                     "RelTime",
                         typeof (string),
-                        this.player.position,
+                        this.player.position_as_str,
                     "AbsTime",
                         typeof (string),
-                        this.player.position,
+                        this.player.position_as_str,
                     "RelCount",
                         typeof (int),
                         int.MAX,
@@ -411,7 +411,9 @@ internal class Rygel.AVTransport : Service {
         switch (unit) {
         case "ABS_TIME":
         case "REL_TIME":
-            if (!this.player.seek (target)) {
+            debug (_("Seeking to %s."), target);
+
+            if (!this.player.seek (GstUtils.time_from_string (target))) {
                 action.return_error (710, _("Seek mode not supported"));
 
                 return;
@@ -440,7 +442,9 @@ internal class Rygel.AVTransport : Service {
     }
 
     private void notify_duration_cb (Object player, ParamSpec p) {
-        this.changelog.log ("CurrentTrackDuration", this.player.duration);
-        this.changelog.log ("CurrentMediaDuration", this.player.duration);
+        this.changelog.log ("CurrentTrackDuration",
+                            this.player.duration_as_str);
+        this.changelog.log ("CurrentMediaDuration",
+                            this.player.duration_as_str);
     }
 }

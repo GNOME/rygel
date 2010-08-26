@@ -18,8 +18,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -include config.h
 
 librygel_playbin_la_SOURCES = rygel-playbin-player.vala \
-			      rygel-playbin-plugin.vala \
-			      rygel-playbin-time.vala
+			      rygel-playbin-plugin.vala
 
 librygel_playbin_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
 				--vapidir=$(srcdir) \

@@ -21,14 +21,26 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+using Gst;
+
 public interface Rygel.MediaPlayer : GLib.Object {
     public abstract string playback_state { get; set; }
     public abstract string uri { get; set; }
     public abstract double volume { get; set; }
-    public abstract string duration { owned get; }
-    public abstract string position { owned get; }
+    public abstract int64 duration { get; }
+    public string duration_as_str {
+        owned get {
+            return GstUtils.time_to_string ((ClockTime) this.duration);
+        }
+    }
+    public abstract int64 position { get; }
+    public string position_as_str {
+        owned get {
+            return GstUtils.time_to_string ((ClockTime) this.position);
+        }
+    }
 
-    public abstract bool seek (string time);
+    public abstract bool seek (ClockTime time);
     public abstract string[] get_protocols ();
     public abstract string[] get_mime_types ();
 }
