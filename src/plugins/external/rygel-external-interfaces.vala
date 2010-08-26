@@ -125,18 +125,3 @@ public interface Rygel.External.MediaItemProxy : DBus.Object, MediaObjectProxy {
     public abstract ObjectPath album_art { owned get; set; }
 }
 
-[DBus (name = "org.freedesktop.DBus")]
-public interface FreeDesktop.DBusObject: DBus.Object {
-    public abstract signal void name_owner_changed (string name,
-                                                    string old_owner,
-                                                    string new_owner);
-
-    public abstract async string[] list_names () throws DBus.Error;
-    public abstract async string[] list_activatable_names () throws DBus.Error;
-}
-
-[DBus (name = "org.freedesktop.DBus.Properties")]
-public interface FreeDesktop.Properties: DBus.Object {
-    public abstract async HashTable<string,Value?> get_all (string iface)
-                                                            throws DBus.Error;
-}
