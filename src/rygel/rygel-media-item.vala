@@ -205,8 +205,6 @@ public abstract class Rygel.MediaItem : MediaObject {
             protocol_info.dlna_operation = DLNAOperation.RANGE;
             protocol_info.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE |
                                         DLNAFlags.CONNECTION_STALL;
-        } else {
-            protocol_info.dlna_flags |= DLNAFlags.SENDER_PACED;
         }
 
         return protocol_info;
