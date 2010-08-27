@@ -191,25 +191,27 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                                        RelationalExpression expression) {
         if (expression.operand1 == "upnp:class" &&
             expression.op == SearchCriteriaOp.EQ) {
+            string id = QueryContainer.PREFIX;
             switch (expression.operand2) {
                 case "object.container.album.musicAlbum":
-                    string id = "virtual-container:upnp:album,?";
-                    QueryContainer.register_id (ref id);
+                    id += "upnp:album,?";
 
-                    return new QueryContainer (this.media_db,
-                                               id,
-                                               _("Albums"));
-
+                    break;
                 case "object.container.person.musicArtist":
-                    string id = "virtual-container:dc:creator,?,upnp:album,?";
-                    QueryContainer.register_id (ref id);
+                    id += "dc:creator,?,upnp:album,?";
 
-                    return new QueryContainer (this.media_db,
-                                               id,
-                                               _("Artists"));
+                    break;
+                case "object.container.genre.musicGenre":
+                    id += "dc:genre,?";
+
+                    break;
                 default:
                     return null;
             }
+
+            QueryContainer.register_id (ref id);
+
+            return new QueryContainer (this.media_db, id);
         }
 
         return null;
