@@ -344,10 +344,15 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                 this.set_bool ("general", ENABLED_KEY, false);
             }
         } catch (GLib.Error err) {
-            // Failed to start/stop Rygel service
-            warning (_("Failed to %s Rygel service: %s"),
-                     enable? "start": "stop",
-                     err.message);
+            string message;
+
+            if (enable) {
+                message = _("Failed to start Rygel service: %s");
+            } else {
+                message = _("Failed to stop Rygel service: %s");
+            }
+
+            warning (message, err.message);
         }
     }
 
