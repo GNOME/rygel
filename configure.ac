@@ -70,6 +70,7 @@ if test ! -e src/rygel/rygel_vala.stamp -o \
         ! -e src/plugins/media-export/librygel_media_export_la_vala.stamp -o \
         ! -e src/plugins/mediathek/librygel_mediathek_la_vala.stamp -o \
         ! -e src/plugins/gst-launch/librygel_gst_launch_la_vala.stamp -o \
+        ! -e src/plugins/mpris/librygel_mpris_la_vala.stamp -o \
         ! -e src/plugins/external/librygel_external_la_vala.stamp ; then
     enable_vala=yes
 fi
@@ -208,6 +209,11 @@ AC_ARG_ENABLE(external-plugin,
 	[  --enable-external-plugin          build External plugin],,
         enable_external_plugin=yes)
 
+# Build MPRIS2 plugin
+AC_ARG_ENABLE(mpris-plugin,
+	[  --enable-mpris-plugin             build MPRIS2 plugin],,
+        enable_mpris_plugin=yes)
+
 # Build GstRenderer plugin
 AC_ARG_ENABLE(playbin-plugin,
 	[  --enable-playbin_plugin          build Gstreamer Playbin plugin],,
@@ -234,6 +240,7 @@ AM_CONDITIONAL([BUILD_TRACKER_PLUGIN],
 AM_CONDITIONAL([BUILD_MEDIATHEK_PLUGIN], [test "x$enable_mediathek_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_MEDIA_EXPORT_PLUGIN], [test "x$enable_media_export_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_EXTERNAL_PLUGIN], [test "x$enable_external_plugin" = "xyes"])
+AM_CONDITIONAL([BUILD_MPRIS_PLUGIN], [test "x$enable_mpris_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_PLAYBIN_PLUGIN], [test "x$enable_playbin_plugin" = "xyes"])
 AM_CONDITIONAL([BUILD_GST_LAUNCH_PLUGIN], [test "x$enable_gst_launch_plugin" = "xyes"])
 
@@ -275,6 +282,7 @@ src/ui/Makefile
 src/plugins/Makefile
 src/plugins/media-export/Makefile
 src/plugins/external/Makefile
+src/plugins/mpris/Makefile
 src/plugins/gst-launch/Makefile
 src/plugins/mediathek/Makefile
 src/plugins/tracker/Makefile
@@ -314,6 +322,7 @@ echo "
         mediathek:              ${enable_mediathek_plugin}
         media-export            ${enable_media_export_plugin}
         external:               ${enable_external_plugin}
+        MPRIS2:                 ${enable_mpris_plugin}
         gst-launch:             ${enable_gst_launch_plugin}
         playbin:                ${enable_playbin_plugin}
 "
