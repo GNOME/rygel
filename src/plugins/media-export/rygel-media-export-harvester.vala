@@ -55,7 +55,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                           MediaContainer parent,
                           string?        flag = null) {
         if (this.extractor == null) {
-            warning (_("No Metadata extractor available. Will not crawl"));
+            warning (_("No metadata extractor available. Will not crawl."));
 
             return;
         }

@@ -63,7 +63,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
 
         set {
-            debug (_("Changing playback state to %s.."), value);
+            debug (_("Changing playback state to %s."), value);
             this._playback_state = value;
 
             switch (this._playback_state) {

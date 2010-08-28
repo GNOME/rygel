@@ -77,8 +77,8 @@ public class Rygel.Main : Object {
 
         Timeout.add_seconds (PLUGIN_TIMEOUT, () => {
             if (this.plugin_loader.list_plugins ().size == 0) {
-                warning (ngettext ("No plugins found in %d second, giving up..",
-                                   "No plugins found in %d seconds, giving up..",
+                warning (ngettext ("No plugins found in %d second; giving up..",
+                                   "No plugins found in %d seconds; giving up..",
                                    PLUGIN_TIMEOUT),
                          PLUGIN_TIMEOUT);
 

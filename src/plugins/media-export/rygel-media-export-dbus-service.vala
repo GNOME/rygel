@@ -34,7 +34,7 @@ public class Rygel.MediaExport.DBusService : Object {
                 connection.register_object (RYGEL_MEDIA_EXPORT_PATH, this);
             }
         } catch (DBus.Error err) {
-            warning (_("Failed to attach to DBus session bus: %s"),
+            warning (_("Failed to attach to D-Bus session bus: %s"),
                      err.message);
         }
     }

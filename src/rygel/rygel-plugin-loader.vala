@@ -72,7 +72,7 @@ public class Rygel.PluginLoader : Object {
             this.plugin_hash.set (plugin.name, plugin);
             this.plugin_available (plugin);
         } else {
-            debug (_("Plugin '%s' disabled in user configuration, ignoring.."),
+            debug (_("Plugin '%s' disabled in user configuration; ignoring.."),
                    plugin.name);
         }
     }
@@ -86,7 +86,7 @@ public class Rygel.PluginLoader : Object {
     }
 
     private async void load_modules_from_dir (File dir) {
-        debug (_("Searching for modules in folder '%s' .."), dir.get_path ());
+        debug (_("Searching for modules in folder '%s'."), dir.get_path ());
 
         string attributes = FILE_ATTRIBUTE_STANDARD_NAME + "," +
                             FILE_ATTRIBUTE_STANDARD_TYPE + "," +
@@ -138,7 +138,7 @@ public class Rygel.PluginLoader : Object {
     private void load_module_from_file (string file_path) {
         Module module = Module.open (file_path, ModuleFlags.BIND_LOCAL);
         if (module == null) {
-            warning (_("Failed to load module from path '%s' : %s"),
+            warning (_("Failed to load module from path '%s': %s"),
                      file_path,
                      Module.error ());
 
