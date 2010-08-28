@@ -110,9 +110,14 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
                 this.completed ();
             }
         } catch (Error error) {
-            warning (_("Failed to harvest file %s: %s"),
-                     this.origin.get_uri (),
-                     error.message);
+            if (!(error is IOError.CANCELLED)) {
+                warning (_("Failed to harvest file %s: %s"),
+                         this.origin.get_uri (),
+                         error.message);
+            } else {
+                debug ("Harvesting of uri %s was cancelled",
+                       this.origin.get_uri ());
+            }
             this.completed ();
         }
     }
