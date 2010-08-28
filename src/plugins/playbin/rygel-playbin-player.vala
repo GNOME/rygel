@@ -58,7 +58,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
     private string _playback_state = "STOPPED";
     public string playback_state {
-        get {
+        owned get {
             return this._playback_state;
         }
 
@@ -83,7 +83,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     }
 
     public string uri {
-        get {
+        owned get {
             return this.playbin.uri;
         }
 

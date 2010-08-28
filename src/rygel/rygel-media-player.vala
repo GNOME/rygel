@@ -24,8 +24,8 @@
 using Gst;
 
 public interface Rygel.MediaPlayer : GLib.Object {
-    public abstract string playback_state { get; set; }
-    public abstract string uri { get; set; }
+    public abstract string playback_state { owned get; set; }
+    public abstract string uri { owned get; set; }
     public abstract double volume { get; set; }
     public abstract int64 duration { get; }
     public string duration_as_str {
