@@ -705,7 +705,9 @@ public class Rygel.MediaExport.MediaCache : Object {
                 column = "m.album";
                 use_collation = true;
                 break;
+            case "upnp:genre":
             case "dc:genre":
+                // FIXME: Remove dc:genre, upnp:genre is the correct one
                 column = "m.genre";
                 use_collation = true;
                 break;
