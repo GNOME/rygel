@@ -82,7 +82,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
-    public string uri {
+    public string? uri {
         owned get {
             return this.playbin.uri;
         }
