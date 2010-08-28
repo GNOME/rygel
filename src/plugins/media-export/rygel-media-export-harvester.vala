@@ -139,20 +139,23 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
             switch (event) {
                 case FileMonitorEvent.CREATED:
                 case FileMonitorEvent.CHANGES_DONE_HINT:
-                    debug (_("Trying to harvest %s because of %d"),
-                           file.get_uri (),
-                           event);
-                    var id = MediaCache.get_id (file.get_parent ());
-                    try {
-                        var parent_container = cache.get_object (id)
+                    if (this.file_filter == null ||
+                        this.file_filter.match (file.get_uri ())) {
+                        debug (_("Trying to harvest %s because of %d"),
+                               file.get_uri (),
+                               event);
+                        var id = MediaCache.get_id (file.get_parent ());
+                        try {
+                               var parent_container = cache.get_object (id)
                                             as MediaContainer;
-                        assert (parent_container != null);
+                                assert (parent_container != null);
 
-                        this.schedule (file, parent_container);
-                    } catch (DatabaseError error) {
-                        warning (_("Error fetching object '%s' from database: %s"),
-                                 id,
-                                 error.message);
+                                this.schedule (file, parent_container);
+                        } catch (DatabaseError error) {
+                            warning (_("Error fetching object '%s' from database: %s"),
+                                     id,
+                                     error.message);
+                        }
                     }
                     break;
                 case FileMonitorEvent.DELETED:
