@@ -23,8 +23,8 @@ Important facts and features
   * Export of media hierarchies provided by external applications through
     implementation of D-Bus MediaServer spec. Applications that utilize
     this feature are:
-    * PulseAudio: Provides streams for input/output devices on the system.
-    * DVB Daemon: Provides live TV (DVB) channel streams.
+    * DVB Daemon
+    * Rhythmbox
   * Export of GStreamer pipelines as media items on the network, specified
     through gst-launch syntax in the user configuration.
   * Audio and Video Transcoding: source format could be anything GStreamer's
@@ -74,6 +74,5 @@ References
   * http://www.gnome.org/projects/tracker
   * http://live.gnome.org/DVBDaemon
   * http://www.zdf.de
-  * http://live.gnome.org/Rygel/MediaServerSpec
-  * http://www.pulseaudio.org
+  * http://live.gnome.org/Rygel/MediaServer2Spec
 
