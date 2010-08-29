@@ -32,7 +32,9 @@ Important facts and features
     easily add more transcoding targets.
   * Standalone MediaRenderer plugin based on GStreamer playbin2 element.
   * Export of media players that implement MPRIS2 D-Bus interface, as
-    MediaRenderer devices.
+    MediaRenderer devices. Known implementing applications are:
+    * Rhythmbox
+    * VLC
 
 Requirements
 ============
