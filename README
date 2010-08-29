@@ -12,8 +12,7 @@ Important facts and features
     release.
   * Based on GUPnP.
   * Written entirely in Vala language.
-  * APIs to ease the implementation of AV devices (currently only MediaServer
-    version 2.0 specification.
+  * APIs to ease the implementation of AV devices.
   * Export of on-disk media:
     * Tracker plugin.
     * MediaExport plugin: Recursively exports folders and files specified in
@@ -31,6 +30,9 @@ Important facts and features
     decodebin2 can handle but output formats are currently limited to: mp3, PCM
     and MPEG TS. Fortunately the transcoding framework is flexible enough to
     easily add more transcoding targets.
+  * Standalone MediaRenderer plugin based on GStreamer playbin2 element.
+  * Export of media players that implement MPRIS2 D-Bus interface, as
+    MediaRenderer devices.
 
 Requirements
 ============
@@ -75,4 +77,5 @@ References
   * http://live.gnome.org/DVBDaemon
   * http://www.zdf.de
   * http://live.gnome.org/Rygel/MediaServer2Spec
+  * http://www.mpris.org/2.0/spec/
 
