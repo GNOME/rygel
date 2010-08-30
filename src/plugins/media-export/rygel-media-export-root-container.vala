@@ -171,6 +171,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
 
     private ArrayList<string> get_uris () {
         ArrayList<string> uris;
+        ArrayList<string> actual_uris;
 
         var config = MetaConfig.get_default ();
 
@@ -184,7 +185,25 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             uris.add_all (this.media_db.get_flagged_uris ("DBUS"));
         } catch (Error error) {}
 
-        return uris;
+        actual_uris = new ArrayList<string> ();
+        foreach (var uri in uris) {
+            var actual_uri = uri;
+
+            var pictures_dir = Environment.get_user_special_dir
+                                        (UserDirectory.PICTURES);
+            var videos_dir = Environment.get_user_special_dir
+                                        (UserDirectory.VIDEOS);
+            var music_dir = Environment.get_user_special_dir
+                                        (UserDirectory.MUSIC);
+
+            actual_uri = actual_uri.replace ("@PICTURES@", pictures_dir);
+            actual_uri = actual_uri.replace ("@VIDEOS@", videos_dir);
+            actual_uri = actual_uri.replace ("@MUSIC@", music_dir);
+
+            actual_uris.add (actual_uri);
+        }
+
+        return actual_uris;
     }
 
     private QueryContainer? search_to_virtual_container (
