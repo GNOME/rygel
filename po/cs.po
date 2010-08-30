@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-23 22:28+0200\n"
-"PO-Revision-Date: 2010-08-11 17:23+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&component=general\n"
+"POT-Creation-Date: 2010-08-30 13:56+0000\n"
+"PO-Revision-Date: 2010-08-29 09:42+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Poedit-Language: Czech\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -106,6 +107,7 @@ msgid "_URIs"
 msgstr "Adresy _URI"
 
 #: ../src/plugins/playbin/rygel-playbin-player.vala:66
+#: ../src/plugins/mpris/rygel-mpris-player.vala:41
 #, c-format
 msgid "Changing playback state to %s.."
 msgstr "Mění se stav přehrávání na %s…"
@@ -120,31 +122,26 @@ msgstr "Adresa URI nastavena na %s."
 msgid "volume set to %f."
 msgstr "Hlasitost nastavena na %f"
 
-#: ../src/plugins/playbin/rygel-playbin-player.vala:151
-#, c-format
-msgid "Seeking to %s."
-msgstr "Přesouvá se na %s"
-
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
 msgid "GStreamer Player"
 msgstr "Přehrávač GStreamer"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:57
+#: ../src/plugins/media-export/rygel-media-export-database.vala:111
 #, c-format
 msgid "Using database file %s"
 msgstr "Používá se databázový soubor %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:61
+#: ../src/plugins/media-export/rygel-media-export-database.vala:115
 #, c-format
 msgid "Failed to open database: %d (%s)"
 msgstr "Selhalo otevření databáze: %d (%s)"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:163
+#: ../src/plugins/media-export/rygel-media-export-database.vala:236
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Selhalo vrácení transakce do předchozího stavu: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:221
+#: ../src/plugins/media-export/rygel-media-export-database.vala:294
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Nepodporovaný typ %s"
@@ -195,17 +192,17 @@ msgstr ""
 msgid "'%s' harvested"
 msgstr "Ze souboru „%s“ byl získána všechna metadata"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:142
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:144
 #, c-format
 msgid "Trying to harvest %s because of %d"
 msgstr "Zkouší se získat metadata ze souboru %s v důsledku události %d"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:153
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:155
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Chyba při získávání objektu „%s“ z databáze: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:176
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:179
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Chyba při odstraňování objektu z databáze: %s"
@@ -234,21 +231,19 @@ msgstr "Rok"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:31
 msgid "All"
-msgstr ""
+msgstr "Vše"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:35
-#, fuzzy
 msgid "Artist"
-msgstr "Umělci"
+msgstr "Umělec"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:36
-#, fuzzy
 msgid "Album"
-msgstr "Alba"
+msgstr "Album"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:37
 msgid "Genre"
-msgstr ""
+msgstr "Žánr"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:59
 msgid "Failed to create instance of database"
@@ -259,44 +254,32 @@ msgstr "Selhalo vytvoření instance databáze"
 msgid "Failed to remove URI: %s"
 msgstr "Selhalo odstranění adresy URI: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:201
-#: ../src/plugins/tracker/rygel-tracker-albums.vala:35
-msgid "Albums"
-msgstr "Alba"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:209
-#: ../src/plugins/tracker/rygel-tracker-artists.vala:35
-msgid "Artists"
-msgstr "Umělci"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:298
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:319
 #, c-format
 msgid "Failed to create MediaExport DBus service: %s"
 msgstr "Selhalo vytvoření služby MediaExport ve sběrnici DBus: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:332
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:353
 #, c-format
 msgid "ID %s no longer in config, deleting..."
 msgstr "ID %s již nadále není v nastavení, maže se…"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:336
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:357
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Selhalo odstranění záznamu: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:347
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:368
 msgid "Music"
-msgstr ""
+msgstr "Hudba"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:350
-#, fuzzy
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:371
 msgid "Pictures"
-msgstr "Sdílet o_brázky"
+msgstr "Obrázky"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:352
-#, fuzzy
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:373
 msgid "Videos"
-msgstr "Sdílet _videa"
+msgstr "Videa"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:41
 #, c-format
@@ -337,10 +320,18 @@ msgstr "Selhalo spuštění služby Tracker: %s. Zásuvný modul zakázán."
 msgid "Error getting item count under category '%s': %s"
 msgstr "Chyba při získávání počtu položek v kategorii „%s“: %s"
 
-#: ../src/rygel/rygel-media-query-action.vala:119
-#: ../src/rygel/rygel-media-query-action.vala:140
-#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:125
-#: ../src/rygel/rygel-item-creator.vala:158
+#: ../src/plugins/tracker/rygel-tracker-albums.vala:35
+msgid "Albums"
+msgstr "Alba"
+
+#: ../src/plugins/tracker/rygel-tracker-artists.vala:35
+msgid "Artists"
+msgstr "Umělci"
+
+#: ../src/rygel/rygel-media-query-action.vala:121
+#: ../src/rygel/rygel-media-query-action.vala:142
+#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:126
+#: ../src/rygel/rygel-item-creator.vala:159
 msgid "No such object"
 msgstr "Žádný takový objekt neexistuje"
 
@@ -399,13 +390,18 @@ msgstr "Neplatné InstanceID"
 msgid "Play speed not supported"
 msgstr "Rychlost přehrávání není podporována"
 
-#: ../src/rygel/rygel-av-transport.vala:415
-#: ../src/rygel/rygel-av-transport.vala:424
+#: ../src/rygel/rygel-av-transport.vala:414
+#, c-format
+msgid "Seeking to %s."
+msgstr "Přesouvá se na %s"
+
+#: ../src/rygel/rygel-av-transport.vala:417
+#: ../src/rygel/rygel-av-transport.vala:426
 msgid "Seek mode not supported"
 msgstr "Režim přesunu ve stopě není podporován"
 
-#: ../src/rygel/rygel-av-transport.vala:431
-#: ../src/rygel/rygel-av-transport.vala:435
+#: ../src/rygel/rygel-av-transport.vala:433
+#: ../src/rygel/rygel-av-transport.vala:437
 msgid "Transition not available"
 msgstr "Přechod není k dispozici"
 
@@ -417,10 +413,6 @@ msgstr "Neplatný název"
 #: ../src/rygel/rygel-rendering-control.vala:237
 msgid "Action Failed"
 msgstr "Akce selhala"
-
-#: ../src/rygel/rygel-didl-lite-writer.vala:48
-msgid "Unable to serialize unsupported object"
-msgstr "Nelze serializovat nepodporovaný objekt"
 
 #: ../src/rygel/rygel-gst-utils.vala:38
 #, c-format
@@ -444,7 +436,7 @@ msgstr "Neplatný rozsah „%s“"
 msgid "Invalid Request"
 msgstr "Neplatný požadavek"
 
-#: ../src/rygel/rygel-http-get.vala:106
+#: ../src/rygel/rygel-http-get.vala:125
 msgid "Following HTTP headers appended to response:"
 msgstr "Následující hlavičky HTTP připojeny k odpovědi:"
 
@@ -477,22 +469,22 @@ msgstr "Pro %s není k dispozici žádná zapisovatelná adresa URI"
 msgid "Requested item '%s' not found"
 msgstr "Vyžadovaná položka „%s“ nenalezena"
 
-#: ../src/rygel/rygel-http-server.vala:182
+#: ../src/rygel/rygel-http-server.vala:137
 #, c-format
 msgid "HTTP %s request for URI '%s' handled."
 msgstr "Požadavek HTTP %s pro adresu URI „%s“ vyřízen."
 
-#: ../src/rygel/rygel-http-server.vala:197
+#: ../src/rygel/rygel-http-server.vala:152
 #, c-format
 msgid "HTTP %s request for URI '%s'. Headers:"
 msgstr "Požadavek HTTP %s pro adresu URI „%s“. Hlavičky:"
 
-#: ../src/rygel/rygel-http-server.vala:213
+#: ../src/rygel/rygel-http-server.vala:168
 #, c-format
 msgid "HTTP client aborted %s request for URI '%s'."
 msgstr "Klient HTTP zrušil požadavek %s pro adresu URI „%s“."
 
-#: ../src/rygel/rygel-http-server.vala:231
+#: ../src/rygel/rygel-http-server.vala:186
 #, c-format
 msgid "HTTP POST request for URI '%s'"
 msgstr "Požadavek HTTP POST pro adresu URI „%s“"
@@ -502,7 +494,7 @@ msgstr "Požadavek HTTP POST pro adresu URI „%s“"
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Selhalo získání původní adresy URI pro „%s“: %s"
 
-#: ../src/rygel/rygel-import-resource.vala:138
+#: ../src/rygel/rygel-import-resource.vala:134
 #, c-format
 msgid "Import of '%s' to '%s' completed"
 msgstr "Import „%s“ do „%s“ zcela dokončen"
@@ -512,15 +504,15 @@ msgstr "Import „%s“ do „%s“ zcela dokončen"
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Žádné položky v DIDL-Lite od klienta: „%s“"
 
-#: ../src/rygel/rygel-item-creator.vala:116
+#: ../src/rygel/rygel-item-creator.vala:117
 msgid "'Elements' argument missing."
 msgstr "Schází argument „Elements“."
 
-#: ../src/rygel/rygel-item-creator.vala:119
+#: ../src/rygel/rygel-item-creator.vala:120
 msgid "Comments not allowed in XML"
 msgstr "V XML nejsou dovoleny komentáře"
 
-#: ../src/rygel/rygel-item-creator.vala:183
+#: ../src/rygel/rygel-item-creator.vala:184
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Selhalo vytvoření položky v „%s“: %s"
@@ -604,13 +596,13 @@ msgstr "Selhalo vytvoření kořenového zařízení pro %s. Důvod: %s"
 msgid "Failed to start D-Bus service: %s"
 msgstr "Selhalo spuštění služby D-Bus: %s"
 
-#: ../src/rygel/rygel-media-item.vala:292
+#: ../src/rygel/rygel-media-item.vala:216
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Chybná adresa URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:304
+#: ../src/rygel/rygel-media-item.vala:228
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr ""
@@ -744,7 +736,7 @@ msgstr "Žádný generátor náhledů není k dispozici: %s"
 msgid "No thumbnail available"
 msgstr "Žádný náhled není k dispozici"
 
-#: ../src/rygel/rygel-transcode-manager.vala:119
+#: ../src/rygel/rygel-transcode-manager.vala:118
 #, c-format
 msgid "No transcoder available for target format '%s'"
 msgstr "Pro formát „%s“ není k dispozici žádný převodník"
@@ -793,164 +785,3 @@ msgstr "Nastavuje se časový limit pro LastChange"
 msgid "Failed to create preferences dialog: %s"
 msgstr "Selhalo vytvoření dialogového okna předvoleb: %s"
 
-#~ msgid "Failed to query database: %s"
-#~ msgstr "Selhal dotaz do databáze: %s"
-
-#~ msgid "Failed to update database: %s"
-#~ msgstr "Selhala aktualizace databáze: %s"
-
-#~ msgid "failed to enumerate folder: %s"
-#~ msgstr "selhalo zjištění obsahu složky: %s"
-
-#~ msgid "Failed to get children of container %s: %s"
-#~ msgstr "Selhalo získání potomka kontejneru %s: %s"
-
-#~ msgid "File %s does not need harvesting"
-#~ msgstr "Ze souboru %s není potřeba získat metadata"
-
-#~ msgid "Failed to harvest file %s: %s"
-#~ msgstr "Selhalo získání metadat ze souboru %s: %s"
-
-#~ msgid "ID does not contain pairs"
-#~ msgstr "ID neobsahuje dvojice"
-
-#~ msgid "Empty part not allowed in virtual ID"
-#~ msgstr "Prázdná část není ve virtuálním ID dovolena"
-
-#~ msgid "Placeholder can only be on second place"
-#~ msgstr "Zástupný symbol může být uveden jen na druhém místě"
-
-#~ msgid "%s is not a valid virtual ID"
-#~ msgstr "%s není platné virtuální ID"
-
-#~ msgid "Got error while trying to find virtual folders: %s"
-#~ msgstr "Obdržena chyba během pokusu najít virtuální složky: %s"
-
-#~ msgid "No object satisfies given search criteria."
-#~ msgstr "Žádný objekt nevyhovuje daným vyhledávacím kritériím."
-
-#~ msgid "Query: %s, Time: %f"
-#~ msgstr "Dotaz: %s, Čas: %f"
-
-#~ msgid "Checking for gstreamer playbin..."
-#~ msgstr "Prověřuje se prvek playbin systému gstreamer…"
-
-#~ msgid "Using playbin2"
-#~ msgstr "Používá se prvek playbin2"
-
-#~ msgid "Could not create Playbin2, trying Playbin"
-#~ msgstr "Nelze vytvořit Playbin2, zkouší se Playbin"
-
-#~ msgid "Using playbin"
-#~ msgstr "Používá se prvek playbin"
-
-#~ msgid "Could not find any playbin."
-#~ msgstr "Nelze najít žádný prvek playbin."
-
-#~ msgid "Please check your gstreamer setup"
-#~ msgstr "Zkontrolujte prosím své nastavení systému gstreamer"
-
-#~ msgid "Metadata extractor timed out on %s, restarting"
-#~ msgstr "Při zjišťování metadat z %s vypršel časový limit, restartuje se"
-
-#~ msgid "Pipeline stuck while reading file info"
-#~ msgstr "Chyba roury při čtení informací o souboru"
-
-#~ msgid "Scheduling file %s for metadata extraction"
-#~ msgstr "Plánuje se soubor %s pro zjištění metadat"
-
-#~ msgid "Invalid object type"
-#~ msgstr "Neplatný typ objektu"
-
-#~ msgid "Failed to detect UPnP class for '%s', assuming '%s'"
-#~ msgstr "Selhalo zjištění třídy UPnP pro „%s“, bude se předpokládat „%s“"
-
-#~ msgid "File '%s' is of unknown format/type."
-#~ msgstr "Soubor „%s“ je neznámého formátu/typu."
-
-#~ msgid "Got empty taglist for file %s"
-#~ msgstr "Obdržen prázdný seznam štítků pro soubor %s"
-
-#~ msgid "We have %u child."
-#~ msgid_plural "We have %u children."
-#~ msgstr[0] "Máme %u potomka."
-#~ msgstr[1] "Máme %u potomky."
-#~ msgstr[2] "Máme %u potomků."
-
-#~ msgid "Registering %s for %s"
-#~ msgstr "Registruje se %s pro %s"
-
-#~ msgid "Nothing configured, using XDG special folders"
-#~ msgstr "Nic není nastaveno, použijí se speciální složky XDG"
-
-#~ msgid "Already harvesting; cancelling"
-#~ msgstr "Metadata již byla získána; ruší se"
-
-#~ msgid "Could not fetch XML"
-#~ msgstr "Nelze získat XML"
-
-#~ msgid "Playlist download failed: %u (%s)"
-#~ msgstr "Načtení seznamu k přehrání selhalo: %u (%s)"
-
-#~ msgid "ZDF Mediathek"
-#~ msgstr "ZDF Mediathek"
-
-#~ msgid "Scheduling update for all feeds...."
-#~ msgstr "Plánuje se aktualizace pro všechny kanály…"
-
-#~ msgid "Could not get RSS from configuration, using defaults"
-#~ msgstr "Nelze získat RSS z nastavení, bude se používat výchozí"
-
-#~ msgid "Feed has not changed, nothing to do"
-#~ msgstr "Kanál nebyl změněn, není potřeba nic dělat"
-
-#~ msgid "Got unexpected response %u (%s)"
-#~ msgstr "Obdržena neočekávaná odpověď %u (%s)"
-
-#~ msgid "Error creating video item: %s"
-#~ msgstr "Chyba při vytváření položky videa: %s"
-
-#~ msgid "XPath query failed"
-#~ msgstr "Dotaz XPath selhal"
-
-#~ msgid "Failed to parse doc"
-#~ msgstr "Selhal rozbor dokumentu"
-
-#~ msgid "Requesting change since %s"
-#~ msgstr "Požaduje se změna od %s"
-
-#~ msgid "ZDF Mediathek RSS feed %u"
-#~ msgstr "Kanál RSS %u na ZDF Mediathek"
-
-#~ msgid "ZDF - Second German TV Channel Streams"
-#~ msgstr "ZDF - Proudy druhého německého televizního kanálu"
-
-#~ msgid "group node has no 'url' property"
-#~ msgstr "skupinový uzel nemá žádnou vlastnost „url“"
-
-#~ msgid "invalid or no namespace"
-#~ msgstr "neplatný nebo žádný jmenný prostor"
-
-#~ msgid "Invalid or no namespace on group node"
-#~ msgstr "neplatný nebo žádný jmenný prostor ve skupinovém uzlu"
-
-#~ msgid "Could not find title"
-#~ msgstr "Nelze najít název"
-
-#~ msgid "Could not find URIs"
-#~ msgstr "Nelze najít adresy URI"
-
-#~ msgid "Error creating URI from %s: %s"
-#~ msgstr "Chyba při vytváření adresy URI z %s: %s"
-
-#~ msgid "Failed to create HTTP server for %s: %s"
-#~ msgstr "Selhalo vytvoření serveru HTTP pro %s: %s"
-
-#~ msgid "Failed to parse query: %s"
-#~ msgstr "Selhal rozbor dotazu: %s"
-
-#~ msgid "No such container"
-#~ msgstr "Žádný takový kontejner neexistuje"
-
-#~ msgid "Specified container does not exist."
-#~ msgstr "Určený kontejner neexistuje."
