@@ -1,3 +1,83 @@
+0.7.7
+=====
+
+A new release in the current unstable 0.7.x series for upcoming GNOME 2.31.91
+release.
+
+- Add manpages for rygel and rygel.conf.
+- Add support for search by album and artist.
+- Don't advertize support for search by '@refID' as we don't really support
+  and use it at all.
+- Drop support for search by 'res' and 'res@protocolInfo'. Since we didn't
+  handle proxy and transcoding resources this gave wrong impression to the
+  clients and was causing rygel to fail DLNA test cases.
+- Don't error out on empty search results.
+- Error out on HTTP request for invalid transfer mode.
+- Fix typo in serialization of "upnp:createClass".
+- Case-insensitive string comparisons.
+- 'TransferIDs' state variable should list IDs for all transfers we have, even
+  the ones that are complete.
+- Correct sending of error to client when import of resource fails.
+- Make sure we don't make invalid comparisons during the search.
+- Do not set the 'sp-flag' as we never really are the clock source for the
+  content, even in case of live/transcoded streams.
+- Add MPRIS2 plugin. This plugin turns any media player that implements
+  MPRIS2[1] D-Bus interface into a UPnP MediaRenderer.
+- MediaExport:
+  - Don't forget containers in children count.
+  - Fix handling of "exists" operator in search.
+  - Add m4v, m4a and png to list of file extensions to entertain.
+  - Apply filter to monitoring of files as well.
+  - Add support for the "Genre" folder of XBox.
+  - Fix IOP with Windows Media Player 12.
+  - Allow user to specify standard XDG media directories using variables.
+  - Export XDG standard media directories by default but this time through
+    default user configuration.
+- Tracker:
+  - Correct some checks.
+  - Escape regex for SPARQL.
+- GstLaunch:
+  - Use '-' instead of '_' in user configrution options.
+- Playbin:
+  - Had forgotten to rename the plugin in the user configuration.
+  - Remove last remaining "all rights reserved" from copyright headers.
+- Localization:
+  - Add Greek translation.
+  - Add British English translation.
+  - Update French translation.
+  - Update Traditional Chinese translation (Hong Kong and Taiwan).
+  - Update Czech translation.
+  - Update Danish translation.
+- DLNA test cases fixed in this release:
+  - 7.3.41.1 (now N.A)
+  - 7.3.66.2
+  - 7.3.66.3,4
+  - 7.4.49.4
+- Various other performance, plugin API and non-functional improvements.
+
+Dependency-related changes:
+  - Lower gtk+-2.0 requirement to 2.20.0.
+
+Bugs fixed in this release:
+
+627243 - String operators during Search() should be case insensitive.
+627982 - All Playbins on a network have the same hard coded name.
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+Philip Withnall <philip@tecnocode.co.uk>
+Ask H. Larsen <asklarsen@gmail.com>
+Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Claude Paroz <claude@2xlibre.net>
+Giannis Katsampirhs <juankatsamprishs@gmail.com>
+Kenneth Nielsen <k.nielsen81@gmail.com>
+Marek Černocký <marek@manet.cz>
+Petr Kovar <pknbe@volny.cz>
+
+[1] http://www.mpris.org/2.0/spec/
+
 0.7.6
 =====
 
