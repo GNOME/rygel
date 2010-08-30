@@ -1,5 +1,9 @@
 src/plugins/playbin/rygel-playbin-player.c
 src/plugins/playbin/rygel-playbin-plugin.c
+src/plugins/mpris/rygel-mpris-player.c
+src/plugins/mpris/rygel-mpris-plugin.c
+src/plugins/mpris/rygel-mpris-plugin-factory.c
+src/plugins/mpris/rygel-mpris-interfaces.c
 src/plugins/media-export/rygel-media-export-database.c
 src/plugins/media-export/rygel-media-export-db.c
 src/plugins/media-export/rygel-media-export-media-cache.c
