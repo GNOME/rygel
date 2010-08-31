@@ -2,32 +2,33 @@
 # Copyright (C) 2010 RYGEL'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
 # Philip Withnall <philip@tecnocode.co.uk>, 2010.
-#
+# Bruce Cowan <bruce@bcowan.me.uk>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-28 10:19+0100\n"
-"PO-Revision-Date: 2010-08-28 10:19+0100\n"
-"Last-Translator: Philip Withnall <philip@tecnocode.co.uk>\n"
+"POT-Creation-Date: 2010-08-31 16:03+0100\n"
+"PO-Revision-Date: 2010-08-31 16:05+0100\n"
+"Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
 "Language-Team: British English <en@li.org>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.6.1\n"
 
 #: ../data/rygel-preferences.ui.h:1
-msgid "<b>Network Options</b>"
-msgstr "<b>Network Options</b>"
-
-#: ../data/rygel-preferences.ui.h:2
 msgid "General"
 msgstr "General"
 
-#: ../data/rygel-preferences.ui.h:3
+#: ../data/rygel-preferences.ui.h:2
 msgid "MPE_G TS"
 msgstr "MPE_G TS"
+
+#: ../data/rygel-preferences.ui.h:3
+msgid "Network Options"
+msgstr "Network Options"
 
 #: ../data/rygel-preferences.ui.h:4
 msgid "Plugins"
@@ -104,7 +105,7 @@ msgstr "_URIs"
 
 #: ../src/plugins/playbin/rygel-playbin-player.vala:66
 #, c-format
-msgid "Changing playback state to %s.."
+msgid "Changing playback state to %s."
 msgstr "Changing playback state to %s."
 
 #: ../src/plugins/playbin/rygel-playbin-player.vala:92
@@ -174,11 +175,11 @@ msgstr "Parsed search expression: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:37
 #, c-format
-msgid "Failed to attach to DBus session bus: %s"
+msgid "Failed to attach to D-Bus session bus: %s"
 msgstr "Failed to attach to D-Bus session bus: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:58
-msgid "No Metadata extractor available. Will not crawl"
+msgid "No metadata extractor available. Will not crawl."
 msgstr "No metadata extractor available. Will not crawl."
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:101
@@ -186,17 +187,17 @@ msgstr "No metadata extractor available. Will not crawl."
 msgid "'%s' harvested"
 msgstr "'%s' harvested"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:142
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:144
 #, c-format
 msgid "Trying to harvest %s because of %d"
 msgstr "Trying to harvest %s because of %d"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:153
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:155
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Error fetching object '%s' from database: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:176
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:179
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Error removing object from database: %s"
@@ -210,8 +211,8 @@ msgstr "@REALNAME@'s media"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:48
 #, c-format
-msgid "Directory %s gone, removing watch"
-msgstr "Directory %s gone; removing watch"
+msgid "Folder %s gone; removing watch"
+msgstr "Folder %s gone; removing watch"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:77
 #, c-format
@@ -248,32 +249,37 @@ msgstr "Failed to create instance of database"
 msgid "Failed to remove URI: %s"
 msgstr "Failed to remove URI: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:300
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:319
 #, c-format
-msgid "Failed to create MediaExport DBus service: %s"
+msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Failed to create MediaExport D-Bus service: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:334
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:353
 #, c-format
-msgid "ID %s no longer in config, deleting..."
-msgstr "ID %s no longer in config; deleting..."
+msgid "ID %s no longer in config; deleting..."
+msgstr "ID %s no longer in config, deleting…"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:338
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:357
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Failed to remove entry: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:349
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:368
 msgid "Music"
 msgstr "Music"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:352
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:371
 msgid "Pictures"
 msgstr "Pictures"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:354
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:373
 msgid "Videos"
 msgstr "Videos"
+
+#: ../src/plugins/mpris/rygel-mpris-player.vala:41
+#, c-format
+msgid "Changing playback state to %s.."
+msgstr "Changing playback state to %s…"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:41
 #, c-format
@@ -554,10 +560,10 @@ msgstr "Failed to get log level from configuration: %s"
 
 #: ../src/rygel/rygel-main.vala:80
 #, c-format
-msgid "No plugins found in %d second, giving up.."
-msgid_plural "No plugins found in %d seconds, giving up.."
-msgstr[0] "No plugins found in %d second; giving up."
-msgstr[1] "No plugins found in %d seconds; giving up."
+msgid "No plugins found in %d second; giving up.."
+msgid_plural "No plugins found in %d seconds; giving up.."
+msgstr[0] "No plugins found in %d second; giving up…"
+msgstr[1] "No plugins found in %d seconds; giving up…"
 
 #: ../src/rygel/rygel-main.vala:123
 #, c-format
@@ -627,12 +633,12 @@ msgstr "New plugin '%s' available"
 
 #: ../src/rygel/rygel-plugin-loader.vala:75
 #, c-format
-msgid "Plugin '%s' disabled in user configuration, ignoring.."
-msgstr "Plugin '%s' disabled in user configuration; ignoring."
+msgid "Plugin '%s' disabled in user configuration; ignoring.."
+msgstr "Plugin '%s' disabled in user configuration; ignoring…"
 
 #: ../src/rygel/rygel-plugin-loader.vala:89
 #, c-format
-msgid "Searching for modules in folder '%s' .."
+msgid "Searching for modules in folder '%s'."
 msgstr "Searching for modules in folder '%s'."
 
 #: ../src/rygel/rygel-plugin-loader.vala:109
@@ -647,7 +653,7 @@ msgstr "Finished searching for modules in folder '%s'"
 
 #: ../src/rygel/rygel-plugin-loader.vala:141
 #, c-format
-msgid "Failed to load module from path '%s' : %s"
+msgid "Failed to load module from path '%s': %s"
 msgstr "Failed to load module from path '%s': %s"
 
 #: ../src/rygel/rygel-plugin-loader.vala:151
@@ -671,7 +677,7 @@ msgstr "XML node '%s' not found."
 
 #: ../src/rygel/rygel-root-device-factory.vala:244
 #, c-format
-msgid "No icon provided by plugin '%s'. Using Rygel logo.."
+msgid "No icon provided by plugin '%s'. Using Rygel logo."
 msgstr "No icon provided by plugin '%s'. Using Rygel logo."
 
 #: ../src/rygel/rygel-root-device-factory.vala:307
@@ -753,11 +759,15 @@ msgstr "No value available for '%s'"
 msgid "Value of '%s' out of range"
 msgstr "Value of '%s' out of range"
 
-#. Failed to start/stop Rygel service
-#: ../src/rygel/rygel-user-config.vala:348
+#: ../src/rygel/rygel-user-config.vala:350
 #, c-format
-msgid "Failed to %s Rygel service: %s"
-msgstr "Failed to %s Rygel service: %s"
+msgid "Failed to start Rygel service: %s"
+msgstr "Failed to start Rygel service: %s"
+
+#: ../src/rygel/rygel-user-config.vala:352
+#, c-format
+msgid "Failed to stop Rygel service: %s"
+msgstr "Failed to stop Rygel service: %s"
 
 #: ../src/rygel/rygel-xbox-hacks.vala:42
 msgid "Not Applicable"
