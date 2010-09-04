@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
 "cgi?product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-06-13 23:13+0000\n"
-"PO-Revision-Date: 2010-06-14 09:47+0530\n"
+"POT-Creation-Date: 2010-08-30 22:02+0000\n"
+"PO-Revision-Date: 2010-09-04 08:03+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
 "MIME-Version: 1.0\n"
@@ -19,16 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ../data/rygel-preferences.ui.h:1
-msgid "<b>Network Options</b>"
-msgstr "<b>ਨੈੱਟਵਰਕ ਚੋਣਾਂ</b>"
-
-#: ../data/rygel-preferences.ui.h:2
 msgid "General"
 msgstr "ਆਮ"
 
-#: ../data/rygel-preferences.ui.h:3
+#: ../data/rygel-preferences.ui.h:2
 msgid "MPE_G TS"
 msgstr "MPE_G TS"
+
+#: ../data/rygel-preferences.ui.h:3
+#| msgid "<b>Network Options</b>"
+msgid "Network Options"
+msgstr "ਨੈੱਟਵਰਕ ਚੋਣਾਂ"
 
 #: ../data/rygel-preferences.ui.h:4
 msgid "Plugins"
@@ -102,414 +103,323 @@ msgstr "ਟਰਾਂਸਕੋਡਿੰਗ ਸਹਿਯੋਗ(_T)"
 msgid "_URIs"
 msgstr "_URI"
 
-#: ../src/plugins/gst-renderer/rygel-gst-av-transport.vala:203
-#: ../src/plugins/gst-renderer/rygel-gst-rendering-control.vala:119
-msgid "Invalid InstanceID"
-msgstr ""
-
-#: ../src/plugins/gst-renderer/rygel-gst-av-transport.vala:363
-msgid "Play speed not supported"
-msgstr "ਪਲੇਅ ਗਤੀ ਸਹਿਯੋਗੀ ਨਹੀਂ"
-
-#: ../src/plugins/gst-renderer/rygel-gst-av-transport.vala:396
-#: ../src/plugins/gst-renderer/rygel-gst-av-transport.vala:405
-msgid "Seek mode not supported"
-msgstr ""
-
-#: ../src/plugins/gst-renderer/rygel-gst-av-transport.vala:412
-#: ../src/plugins/gst-renderer/rygel-gst-av-transport.vala:416
-msgid "Transition not available"
-msgstr ""
-
-#: ../src/plugins/gst-renderer/rygel-gst-changelog.vala:72
-msgid "Setting up timeout for LastChange"
-msgstr ""
-
-#: ../src/plugins/gst-renderer/rygel-gst-player.vala:42
+#: ../src/plugins/playbin/rygel-playbin-player.vala:66
 #, c-format
-msgid "Changing playback state to %s.."
+msgid "Changing playback state to %s."
 msgstr ""
 
-#: ../src/plugins/gst-renderer/rygel-gst-player.vala:68
+#: ../src/plugins/playbin/rygel-playbin-player.vala:92
 #, c-format
 msgid "URI set to %s."
 msgstr "URI %s ਸੈੱਟ ਕੀਤਾ।"
 
-#: ../src/plugins/gst-renderer/rygel-gst-player.vala:79
+#: ../src/plugins/playbin/rygel-playbin-player.vala:103
 #, c-format
 msgid "volume set to %f."
 msgstr ""
 
-#: ../src/plugins/gst-renderer/rygel-gst-player.vala:127
-#, c-format
-msgid "Seeking to %s."
-msgstr ""
+#: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
+#| msgid "GStreamer Renderer"
+msgid "GStreamer Player"
+msgstr "ਜੀਸਟਰੀਮਰ ਪਲੇਅਰ"
 
-#: ../src/plugins/gst-renderer/rygel-gst-plugin.vala:36
-msgid "GStreamer Renderer"
-msgstr "ਜੀਸਟਰੀਮਰ ਰੈਂਡਰਰ"
-
-#: ../src/plugins/gst-renderer/rygel-gst-rendering-control.vala:150
-msgid "Invalid Name"
-msgstr "ਗਲਤ ਨਾਂ"
-
-#: ../src/plugins/gst-renderer/rygel-gst-rendering-control.vala:164
-#: ../src/plugins/gst-renderer/rygel-gst-rendering-control.vala:235
-msgid "Action Failed"
-msgstr "ਐਕਸ਼ਨ ਫੇਲ੍ਹ ਹੋਇਆ"
-
-#: ../src/plugins/media-export/rygel-media-export-database.vala:57
+#: ../src/plugins/media-export/rygel-media-export-database.vala:111
 #, c-format
 msgid "Using database file %s"
-msgstr ""
+msgstr "ਡਾਟਾਬੇਸ ਫਾਇਲ %s ਵਰਤ ਕੇ"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:61
+#: ../src/plugins/media-export/rygel-media-export-database.vala:115
 #, c-format
 msgid "Failed to open database: %d (%s)"
-msgstr ""
+msgstr "%d (%s) :ਡਾਟਾਬੇਸ ਖੋਲ੍ਹਣ ਲਈ ਫੇਲ੍ਹ ਹੈ"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:164
+#: ../src/plugins/media-export/rygel-media-export-database.vala:236
+#, c-format
+msgid "Failed to roll back transaction: %s"
+msgstr "%s: ਟਰਾਂਸੈਕਸ਼ਨ ਰੋਲ-ਬੈਕ ਕਰਨ ਲਈ ਫੇਲ੍ਹ"
+
+#: ../src/plugins/media-export/rygel-media-export-database.vala:294
 #, c-format
 msgid "Unsupported type %s"
 msgstr "ਗ਼ੈਰ-ਸਹਾਇਕ ਕਿਸਮ %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:217
-#, c-format
-msgid "Failed to roll back transaction: %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:112
-msgid "Using playbin2"
-msgstr "playbin2 ਦੀ ਵਰਤੋਂ ਕਰਕੇ"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:114
-msgid "Could not create Playbin2, trying Playbin"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:118
-msgid "Using playbin"
-msgstr "ਪਲੇਅਬਿਨ ਦੀ ਵਰਤੋਂ"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:120
-msgid "Could not find any playbin."
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:121
-msgid "Please check your gstreamer setup"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:165
-#, c-format
-msgid "Metadata extractor timed out on %s, restarting"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:169
-msgid "Pipeline stuck while reading file info"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:187
-#, c-format
-msgid "Scheduling file %s for metadata extraction"
-msgstr ""
-
-#. Translators: first parameter is file uri, second is error
-#. message
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:210
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:111
 #, c-format
 msgid "Failed to extract metadata from %s: %s"
-msgstr ""
+msgstr "%s ਤੋਂ ਮੇਟਾਡਾਟਾ ਖੋਲ੍ਹਣ ਲਈ ਫੇਲ੍ਹ: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:236
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
+#: ../src/rygel/rygel-plugin-loader.vala:178
+#, c-format
+msgid "Failed to query content type for '%s'"
+msgstr "'%s' ਲਈ ਸਮੱਗਰੀ ਕਿਸਮ ਕਿਊਰੀ ਲਈ ਫੇਲ੍ਹ ਹੈ"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:86
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr ""
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:269
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:121
 #, c-format
 msgid "Object %s is not an item"
 msgstr ""
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:405
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:254
 #, c-format
 msgid "Original search: %s"
-msgstr ""
+msgstr "ਅਸਲੀ ਖੋਜ: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:406
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:255
 #, c-format
 msgid "Parsed search expression: %s"
 msgstr ""
 
-#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:36
+#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:37
 #, c-format
-msgid "Failed to attach to DBus session bus: %s"
+#| msgid "Failed to search in '%s': %s"
+msgid "Failed to attach to D-Bus session bus: %s"
+msgstr "ਡੀ-ਬੱਸ ਸ਼ੈਸ਼ਨ ਬਸ ਅਟੈਚ ਕਰਨ ਲਈ ਫੇਲ੍ਹ: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:58
+msgid "No metadata extractor available. Will not crawl."
 msgstr ""
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:86
-#, c-format
-msgid "Failed to query database: %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:119
-#, c-format
-msgid "Failed to update database: %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:148
-#, c-format
-msgid "failed to enumerate folder: %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:169
-#, c-format
-msgid "Failed to get children of container %s: %s"
-msgstr ""
-
-#. 'Harvesting' here means extraction of metadata (title,
-#. codec, bitrate etc) from media files.
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:246
-#, c-format
-msgid "File %s does not need harvesting"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:253
-#, c-format
-msgid "Failed to harvest file %s: %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item.vala:63
-#, c-format
-msgid "File '%s' is of unknown format/type."
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item.vala:65
-#, c-format
-msgid "Trying to guess from content type %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item.vala:77
-#, c-format
-msgid "Failed to detect UPnP class for '%s', assuming '%s'"
-msgstr ""
-
-#. throw error. Taglist can't be empty
-#: ../src/plugins/media-export/rygel-media-export-item.vala:99
-#, c-format
-msgid "Got empty taglist for file %s"
-msgstr ""
-
-#. @REALNAME@ is substituted for user's real name
-#. and it doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-plugin.vala:33
-#: ../src/plugins/tracker/rygel-tracker-plugin.vala:35
-msgid "@REALNAME@'s media"
-msgstr "@REALNAME@ ਦਾ ਮੀਡਿਆ"
-
-#: ../src/plugins/media-export/rygel-media-export-query-container.vala:47
-msgid "ID does not contain pairs"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-query-container.vala:54
-msgid "Empty part not allowed in virtual ID"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-query-container.vala:60
-msgid "Placeholder can only be on second place"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:47
-#, c-format
-msgid "Directory %s gone, removing watch"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:75
-#, c-format
-msgid "Failed to get file info for %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:50
-msgid "Nothing configured, using XDG special folders"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:75
-msgid "Failed to create instance of database"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:96
-#, c-format
-msgid "Failed to remove URI: %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:111
-#: ../src/plugins/tracker/rygel-tracker-music.vala:47
-msgid "Albums"
-msgstr "ਐਲਬਮ"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:119
-#: ../src/plugins/tracker/rygel-tracker-music.vala:40
-msgid "Artists"
-msgstr "ਕਲਾਕਾਰ"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:300
-#, c-format
-msgid "Failed to create MediaExport DBus service: %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:343
-#, c-format
-msgid "%s is not a valid virtual ID"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:361
-#, c-format
-msgid "Got error while trying to find virtual folders: %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:370
-#, c-format
-msgid "ID %s no longer in config, deleting..."
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:374
-#, c-format
-msgid "Failed to remove entry: %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:383
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:101
 #, c-format
 msgid "'%s' harvested"
 msgstr ""
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:395
-msgid "No Metadata extractor available. Will not crawl"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:401
-msgid "Already harvesting; cancelling"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:424
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:144
 #, c-format
 msgid "Trying to harvest %s because of %d"
 msgstr ""
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:437
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:155
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr ""
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:461
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:179
 #, c-format
 msgid "Error removing object from database: %s"
+msgstr "ਡਾਟਾਬੇਸ ਤੋਂ ਆਬਜੈਕਟ ਹਟਾਉਣ ਦੌਰਾਨ ਗਲਤੀ: %s"
+
+#. @REALNAME@ is substituted for user's real name
+#. and it doesn't need translation.
+#: ../src/plugins/media-export/rygel-media-export-plugin.vala:78
+#: ../src/plugins/tracker/rygel-tracker-plugin.vala:30
+msgid "@REALNAME@'s media"
+msgstr "@REALNAME@ ਦਾ ਮੀਡਿਆ"
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:48
+#, c-format
+msgid "Folder %s gone; removing watch"
 msgstr ""
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:38
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:77
+#, c-format
+msgid "Failed to get file info for %s"
+msgstr "%s ਲਈ ਫਾਇਲ ਜਾਣਕਾਰੀ ਲੈਣ ਲਈ ਫੇਲ੍ਹ"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:30
+#: ../src/plugins/tracker/rygel-tracker-years.vala:35
+msgid "Year"
+msgstr "ਸਾਲ"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:31
+msgid "All"
+msgstr "ਸਭ"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:35
+#| msgid "Artists"
+msgid "Artist"
+msgstr "ਕਲਾਕਾਰ"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:36
+#| msgid "Albums"
+msgid "Album"
+msgstr "ਐਲਬਮ"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:37
+#| msgid "General"
+msgid "Genre"
+msgstr "ਆਮ"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:59
+msgid "Failed to create instance of database"
+msgstr "ਡਾਟਾਬੇਸ ਦਾ ਇੰਸਟਾਂਸ ਬਣਾਉਣ ਲਈ ਫੇਲ੍ਹ"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:88
+#, c-format
+msgid "Failed to remove URI: %s"
+msgstr "URI ਨੂੰ ਹਟਾਉਣ ਲਈ ਫੇਲ੍ਹ: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:319
+#, c-format
+msgid "Failed to create MediaExport D-Bus service: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:353
+#, c-format
+msgid "ID %s no longer in config; deleting..."
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:357
+#, c-format
+msgid "Failed to remove entry: %s"
+msgstr "ਐਂਟਰੀ ਹਟਾਉਣ ਲਈ ਫੇਲ੍ਹ: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:368
+msgid "Music"
+msgstr "ਸੰਗੀਤ"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:371
+#| msgid "Share _Pictures"
+msgid "Pictures"
+msgstr "ਤਸਵੀਰਾਂ"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:373
+#| msgid "Share _Videos"
+msgid "Videos"
+msgstr "ਵਿਡੀਓ"
+
+#: ../src/plugins/mpris/rygel-mpris-player.vala:41
+#, c-format
+msgid "Changing playback state to %s.."
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:41
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr ""
 
-#: ../src/plugins/tracker/rygel-tracker-insertion-query.vala:70
-#: ../src/plugins/tracker/rygel-tracker-selection-query.vala:73
+#: ../src/plugins/tracker/rygel-tracker-insertion-query.vala:63
+#: ../src/plugins/tracker/rygel-tracker-selection-query.vala:71
 #, c-format
 msgid "Executing SPARQL query: %s"
 msgstr ""
 
-#: ../src/plugins/tracker/rygel-tracker-item-creation.vala:77
-#: ../src/rygel/rygel-media-container.vala:180
+#: ../src/plugins/tracker/rygel-tracker-item-creation.vala:73
+#: ../src/rygel/rygel-media-container.vala:213
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr ""
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:75
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:108
-#: ../src/rygel/rygel-user-config.vala:182
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:60
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:99
+#: ../src/rygel/rygel-user-config.vala:180
 #, c-format
 msgid "Failed to connect to session bus: %s"
-msgstr ""
+msgstr "ਸ਼ੈਸ਼ਨ ਬੱਸ ਨਾਲ ਕੁਨੈਕਟ ਕਰਨ ਲਈ ਫੇਲ੍ਹ: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:132
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:113
 #, c-format
 msgid "Error getting all values for '%s': %s"
 msgstr ""
 
-#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:36
+#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:34
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr ""
 
-#: ../src/plugins/tracker/rygel-tracker-plugin.vala:48
-#, c-format
-msgid "Error creating URI from %s: %s"
-msgstr ""
-
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:209
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:186
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr ""
 
-#: ../src/plugins/tracker/rygel-tracker-years.vala:36
-msgid "Year"
-msgstr "ਸਾਲ"
+#: ../src/plugins/tracker/rygel-tracker-albums.vala:35
+msgid "Albums"
+msgstr "ਐਲਬਮ"
 
-#: ../src/rygel/rygel-browse.vala:121
-msgid "Invalid Arguments"
-msgstr "ਗਲਤ ਆਰਗੂਮੈਂਟ"
+#: ../src/plugins/tracker/rygel-tracker-artists.vala:35
+msgid "Artists"
+msgstr "ਕਲਾਕਾਰ"
 
-#: ../src/rygel/rygel-browse.vala:141 ../src/rygel/rygel-browse.vala:154
-#: ../src/rygel/rygel-browse.vala:184 ../src/rygel/rygel-item-creator.vala:107
-#: ../src/rygel/rygel-item-creator.vala:117
+#: ../src/rygel/rygel-media-query-action.vala:121
+#: ../src/rygel/rygel-media-query-action.vala:142
+#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:126
+#: ../src/rygel/rygel-item-creator.vala:159
 msgid "No such object"
 msgstr "ਕੋਈ ਆਬਜੈਕਟ ਨਹੀਂ"
 
-#: ../src/rygel/rygel-browse.vala:227 ../src/rygel/rygel-browse.vala:232
+#: ../src/rygel/rygel-browse.vala:63
+msgid "Invalid Arguments"
+msgstr "ਗਲਤ ਆਰਗੂਮੈਂਟ"
+
+#: ../src/rygel/rygel-browse.vala:120
 #, c-format
 msgid "Failed to browse '%s': %s\n"
-msgstr ""
+msgstr "'%s' ਬਰਾਊਜ਼ ਕਰਨ ਲਈ ਫੇਲ੍ਹ: %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:124
-#: ../src/rygel/rygel-cmdline-config.vala:129
-#: ../src/rygel/rygel-cmdline-config.vala:137
-#: ../src/rygel/rygel-cmdline-config.vala:145
-#: ../src/rygel/rygel-cmdline-config.vala:153
-#: ../src/rygel/rygel-cmdline-config.vala:161
-#: ../src/rygel/rygel-cmdline-config.vala:169
-#: ../src/rygel/rygel-cmdline-config.vala:177
-#: ../src/rygel/rygel-cmdline-config.vala:185
-#: ../src/rygel/rygel-cmdline-config.vala:211
-#: ../src/rygel/rygel-cmdline-config.vala:230
-#: ../src/rygel/rygel-cmdline-config.vala:254
-#: ../src/rygel/rygel-cmdline-config.vala:280
-#: ../src/rygel/rygel-cmdline-config.vala:309
-#: ../src/rygel/rygel-cmdline-config.vala:335
-#: ../src/rygel/rygel-cmdline-config.vala:360
-#: ../src/rygel/rygel-meta-config.vala:75
-#: ../src/rygel/rygel-meta-config.vala:94
-#: ../src/rygel/rygel-meta-config.vala:113
-#: ../src/rygel/rygel-meta-config.vala:132
-#: ../src/rygel/rygel-meta-config.vala:151
-#: ../src/rygel/rygel-meta-config.vala:170
-#: ../src/rygel/rygel-meta-config.vala:189
-#: ../src/rygel/rygel-meta-config.vala:208
-#: ../src/rygel/rygel-meta-config.vala:227
+#: ../src/rygel/rygel-cmdline-config.vala:123
+#: ../src/rygel/rygel-cmdline-config.vala:128
+#: ../src/rygel/rygel-cmdline-config.vala:136
+#: ../src/rygel/rygel-cmdline-config.vala:144
+#: ../src/rygel/rygel-cmdline-config.vala:152
+#: ../src/rygel/rygel-cmdline-config.vala:160
+#: ../src/rygel/rygel-cmdline-config.vala:168
+#: ../src/rygel/rygel-cmdline-config.vala:176
+#: ../src/rygel/rygel-cmdline-config.vala:184
+#: ../src/rygel/rygel-cmdline-config.vala:210
+#: ../src/rygel/rygel-cmdline-config.vala:229
+#: ../src/rygel/rygel-cmdline-config.vala:253
+#: ../src/rygel/rygel-cmdline-config.vala:279
+#: ../src/rygel/rygel-cmdline-config.vala:308
+#: ../src/rygel/rygel-cmdline-config.vala:334
+#: ../src/rygel/rygel-cmdline-config.vala:359
+#: ../src/rygel/rygel-meta-config.vala:74
+#: ../src/rygel/rygel-meta-config.vala:93
+#: ../src/rygel/rygel-meta-config.vala:112
+#: ../src/rygel/rygel-meta-config.vala:131
+#: ../src/rygel/rygel-meta-config.vala:150
+#: ../src/rygel/rygel-meta-config.vala:169
+#: ../src/rygel/rygel-meta-config.vala:188
+#: ../src/rygel/rygel-meta-config.vala:207
+#: ../src/rygel/rygel-meta-config.vala:226
 msgid "No value available"
 msgstr "ਕੋਈ ਮੁੱਲ ਉਪਲੱਬਧ ਨਹੀਂ"
 
-#: ../src/rygel/rygel-connection-manager.vala:102
+#: ../src/rygel/rygel-connection-manager.vala:107
 msgid "Invalid connection reference"
 msgstr "ਗਲਤ ਕੁਨੈਕਸ਼ਨ ਹਵਾਲਾ"
 
-#: ../src/rygel/rygel-content-directory.vala:85
-#, c-format
-msgid "Failed to create HTTP server for %s: %s"
-msgstr ""
-
-#: ../src/rygel/rygel-content-directory.vala:211
-#: ../src/rygel/rygel-content-directory.vala:224
+#: ../src/rygel/rygel-content-directory.vala:197
+#: ../src/rygel/rygel-content-directory.vala:210
 msgid "No such file transfer"
 msgstr "ਕੋਈ ਇੰਝ ਦੀ ਫਾਇਲ ਟਰਾਂਸਫਰ ਨਹੀਂ"
 
-#: ../src/rygel/rygel-didl-lite-writer.vala:48
-msgid "Unable to serialize unsupported object"
+#: ../src/rygel/rygel-av-transport.vala:205
+#: ../src/rygel/rygel-rendering-control.vala:121
+msgid "Invalid InstanceID"
 msgstr ""
+
+#: ../src/rygel/rygel-av-transport.vala:378
+msgid "Play speed not supported"
+msgstr "ਪਲੇਅ ਗਤੀ ਸਹਿਯੋਗੀ ਨਹੀਂ"
+
+#: ../src/rygel/rygel-av-transport.vala:414
+#, c-format
+msgid "Seeking to %s."
+msgstr ""
+
+#: ../src/rygel/rygel-av-transport.vala:417
+#: ../src/rygel/rygel-av-transport.vala:426
+msgid "Seek mode not supported"
+msgstr ""
+
+#: ../src/rygel/rygel-av-transport.vala:433
+#: ../src/rygel/rygel-av-transport.vala:437
+msgid "Transition not available"
+msgstr ""
+
+#: ../src/rygel/rygel-rendering-control.vala:152
+msgid "Invalid Name"
+msgstr "ਗਲਤ ਨਾਂ"
+
+#: ../src/rygel/rygel-rendering-control.vala:166
+#: ../src/rygel/rygel-rendering-control.vala:237
+msgid "Action Failed"
+msgstr "ਐਕਸ਼ਨ ਫੇਲ੍ਹ ਹੋਇਆ"
 
 #: ../src/rygel/rygel-gst-utils.vala:38
 #, c-format
@@ -527,18 +437,13 @@ msgstr ""
 #: ../src/rygel/rygel-http-time-seek.vala:73
 #, c-format
 msgid "Invalid Range '%s'"
-msgstr ""
+msgstr "ਗਲਤ ਰੇਜ਼ '%s'"
 
-#: ../src/rygel/rygel-http-get.vala:62
+#: ../src/rygel/rygel-http-get.vala:59
 msgid "Invalid Request"
-msgstr ""
+msgstr "ਗਲਤ ਮੰਗ"
 
-#: ../src/rygel/rygel-http-get.vala:74
-#, c-format
-msgid "Failed to parse query: %s"
-msgstr ""
-
-#: ../src/rygel/rygel-http-get.vala:105
+#: ../src/rygel/rygel-http-get.vala:125
 msgid "Following HTTP headers appended to response:"
 msgstr ""
 
@@ -561,32 +466,32 @@ msgstr "ਗਲਤ URI '%s'"
 msgid "Not Found"
 msgstr "ਨਹੀ ਲੱਭੀ"
 
-#: ../src/rygel/rygel-http-post.vala:54
+#: ../src/rygel/rygel-http-post.vala:50
 #, c-format
 msgid "No writable URI for %s available"
 msgstr ""
 
-#: ../src/rygel/rygel-http-request.vala:88
+#: ../src/rygel/rygel-http-request.vala:83
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr ""
 
-#: ../src/rygel/rygel-http-server.vala:178
+#: ../src/rygel/rygel-http-server.vala:137
 #, c-format
 msgid "HTTP %s request for URI '%s' handled."
 msgstr ""
 
-#: ../src/rygel/rygel-http-server.vala:188
+#: ../src/rygel/rygel-http-server.vala:152
 #, c-format
 msgid "HTTP %s request for URI '%s'. Headers:"
 msgstr ""
 
-#: ../src/rygel/rygel-http-server.vala:204
+#: ../src/rygel/rygel-http-server.vala:168
 #, c-format
 msgid "HTTP client aborted %s request for URI '%s'."
 msgstr ""
 
-#: ../src/rygel/rygel-http-server.vala:222
+#: ../src/rygel/rygel-http-server.vala:186
 #, c-format
 msgid "HTTP POST request for URI '%s'"
 msgstr ""
@@ -596,35 +501,35 @@ msgstr ""
 msgid "Failed to get original URI for '%s': %s"
 msgstr ""
 
-#: ../src/rygel/rygel-import-resource.vala:138
+#: ../src/rygel/rygel-import-resource.vala:134
 #, c-format
 msgid "Import of '%s' to '%s' completed"
 msgstr ""
 
-#: ../src/rygel/rygel-item-creator.vala:69
+#: ../src/rygel/rygel-item-creator.vala:67
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr ""
 
-#: ../src/rygel/rygel-item-creator.vala:98
+#: ../src/rygel/rygel-item-creator.vala:117
 msgid "'Elements' argument missing."
 msgstr ""
 
-#: ../src/rygel/rygel-item-creator.vala:101
+#: ../src/rygel/rygel-item-creator.vala:120
 msgid "Comments not allowed in XML"
 msgstr ""
 
-#: ../src/rygel/rygel-item-creator.vala:142
+#: ../src/rygel/rygel-item-creator.vala:184
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr ""
 
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-live-response.vala:144
-#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
+#: ../src/rygel/rygel-live-response.vala:150
+#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:109
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
-#: ../src/rygel/rygel-wmv-transcoder-bin.vala:100
+#: ../src/rygel/rygel-wmv-transcoder-bin.vala:107
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr ""
@@ -634,23 +539,23 @@ msgstr ""
 msgid "Plugin 'fakesink' missing"
 msgstr ""
 
-#: ../src/rygel/rygel-live-response.vala:109
-#: ../src/rygel/rygel-live-response.vala:131
+#: ../src/rygel/rygel-live-response.vala:115
+#: ../src/rygel/rygel-live-response.vala:137
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr ""
 
-#: ../src/rygel/rygel-live-response.vala:214
+#: ../src/rygel/rygel-live-response.vala:225
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-live-response.vala:221
+#: ../src/rygel/rygel-live-response.vala:232
 #, c-format
 msgid "Warning from pipeline %s: %s"
-msgstr ""
+msgstr "ਪਾਈਪਲਾਈਨ %s ਤੋਂ ਚੇਤਾਵਨੀ: %s"
 
-#: ../src/rygel/rygel-live-response.vala:255
+#: ../src/rygel/rygel-live-response.vala:266
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr ""
@@ -660,154 +565,142 @@ msgstr ""
 msgid "Failed to get log level from configuration: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-main.vala:73
+#: ../src/rygel/rygel-main.vala:80
 #, c-format
-msgid "No plugins found in %d seconds, giving up.."
-msgstr ""
+msgid "No plugins found in %d second; giving up.."
+msgid_plural "No plugins found in %d seconds; giving up.."
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../src/rygel/rygel-main.vala:120
+#: ../src/rygel/rygel-main.vala:123
 #, c-format
 msgid "new network context %s (%s) available."
 msgstr ""
 
-#: ../src/rygel/rygel-main.vala:138
+#: ../src/rygel/rygel-main.vala:141
 #, c-format
 msgid "Failed to create root device factory: %s"
-msgstr ""
+msgstr "ਰੂਟ ਜੰਤਰ ਫੈਕਟਰੀ ਬਣਾਉਣ ਲਈ ਫੇਲ੍ਹ: %s"
 
-#: ../src/rygel/rygel-main.vala:142
+#: ../src/rygel/rygel-main.vala:145
 #, c-format
 msgid "Ignoring network context %s (%s)."
 msgstr ""
 
-#: ../src/rygel/rygel-main.vala:150
+#: ../src/rygel/rygel-main.vala:153
 #, c-format
 msgid "Network context %s (%s) now unavailable."
 msgstr ""
 
-#: ../src/rygel/rygel-main.vala:189
+#: ../src/rygel/rygel-main.vala:192
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-main.vala:221
+#: ../src/rygel/rygel-main.vala:226
 #, c-format
 msgid "Failed to start D-Bus service: %s"
-msgstr ""
+msgstr "ਡੀ-ਬੱਸ ਸਰਵਿਸ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਫੇਲ੍ਹ: %s"
 
-#: ../src/rygel/rygel-media-item.vala:253
+#: ../src/rygel/rygel-media-item.vala:216
 #, c-format
 msgid "Bad URI: %s"
 msgstr "ਖਰਾਬ URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:265
+#: ../src/rygel/rygel-media-item.vala:228
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr ""
 
-#: ../src/rygel/rygel-meta-config.vala:58
+#: ../src/rygel/rygel-meta-config.vala:57
 #, c-format
 msgid "Failed to load user configuration: %s"
-msgstr ""
+msgstr "ਯੂਜ਼ਰ ਸੰਰਚਨਾ ਲੋਡ ਕਰਨ ਲਈ ਫੇਲ੍ਹ: %s"
 
-#: ../src/rygel/rygel-meta-config.vala:266
-#: ../src/rygel/rygel-meta-config.vala:285
+#: ../src/rygel/rygel-meta-config.vala:265
+#: ../src/rygel/rygel-meta-config.vala:284
 #, c-format
 msgid "No value set for '%s/enabled'"
-msgstr ""
+msgstr "'%s/ਚਾਲੂ ਹੈ' ਲਈ ਮੁੱਲ ਸੈੱਟ ਨਹੀਂ ਹੈ"
 
-#: ../src/rygel/rygel-meta-config.vala:305
-#: ../src/rygel/rygel-meta-config.vala:327
-#: ../src/rygel/rygel-meta-config.vala:353
-#: ../src/rygel/rygel-meta-config.vala:375
-#: ../src/rygel/rygel-meta-config.vala:399
+#: ../src/rygel/rygel-meta-config.vala:304
+#: ../src/rygel/rygel-meta-config.vala:326
+#: ../src/rygel/rygel-meta-config.vala:352
+#: ../src/rygel/rygel-meta-config.vala:374
+#: ../src/rygel/rygel-meta-config.vala:398
 #, c-format
 msgid "No value available for '%s/%s'"
-msgstr ""
+msgstr "'%s/%s' ਲਈ ਮੁੱਲ ਉਪਲੱਬਧ ਨਹੀਂ"
 
-#: ../src/rygel/rygel-plugin-loader.vala:72
+#: ../src/rygel/rygel-plugin-loader.vala:71
 #, c-format
 msgid "New plugin '%s' available"
 msgstr "ਨਵੀਂ ਪਲੱਗਇਨ '%s' ਉਪਲੱਬਧ ਹੈ"
 
-#: ../src/rygel/rygel-plugin-loader.vala:76
+#: ../src/rygel/rygel-plugin-loader.vala:75
 #, c-format
-msgid "Plugin '%s' disabled in user configuration, ignoring.."
+msgid "Plugin '%s' disabled in user configuration; ignoring.."
 msgstr ""
+"ਯੂਜ਼ਰ ਸੰਰਚਨਾ 'ਚ ਪਲੱਗਇਨ '%s' ਬੰਦ ਕੀਤੀ ਹੈ, ਅਣਡਿੱਠਾ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ..."
 
-#: ../src/rygel/rygel-plugin-loader.vala:90
+#: ../src/rygel/rygel-plugin-loader.vala:89
 #, c-format
-msgid "Searching for modules in folder '%s' .."
-msgstr ""
+msgid "Searching for modules in folder '%s'."
+msgstr "ਫੋਲਡਰ '%s' ਵਿੱਚ ਮੋਡੀਊਲ ਲੱਭੇ ਜਾ ਰਹੇ ਹਨ"
 
-#: ../src/rygel/rygel-plugin-loader.vala:110
+#: ../src/rygel/rygel-plugin-loader.vala:109
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
-msgstr ""
+msgstr "ਫੋਲਡਰ '%s' ਦੀ ਸਮੱਗਰੀ ਵੇਖਾਉਣ ਦੌਰਾਨ ਗਲਤੀ: %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:135
+#: ../src/rygel/rygel-plugin-loader.vala:134
 #, c-format
 msgid "Finished searching for modules in folder '%s'"
 msgstr ""
 
-#: ../src/rygel/rygel-plugin-loader.vala:142
+#: ../src/rygel/rygel-plugin-loader.vala:141
 #, c-format
-msgid "Failed to load module from path '%s' : %s"
-msgstr ""
+#| msgid "Failed to search in '%s': %s"
+msgid "Failed to load module from path '%s': %s"
+msgstr "ਪਾਥ '%s' ਤੋਂ ਮੋਡੀਊਲ ਲੋਡ ਕਰਨ ਲਈ ਫੇਲ੍ਹ: %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:152
+#: ../src/rygel/rygel-plugin-loader.vala:151
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr ""
 
-#: ../src/rygel/rygel-plugin-loader.vala:168
+#: ../src/rygel/rygel-plugin-loader.vala:167
 #, c-format
 msgid "Loaded module source: '%s'"
 msgstr "ਮੋਡੀਊਲ ਸਰੋਤ ਲੋਡ ਕੀਤਾ: '%s'"
 
-#: ../src/rygel/rygel-plugin-loader.vala:179
-#, c-format
-msgid "Failed to query content type for '%s'"
-msgstr ""
-
-#: ../src/rygel/rygel-root-device-factory.vala:102
-#: ../src/rygel/rygel-root-device-factory.vala:135
-#: ../src/rygel/rygel-root-device-factory.vala:157
-#: ../src/rygel/rygel-root-device-factory.vala:176
-#: ../src/rygel/rygel-root-device-factory.vala:191
+#: ../src/rygel/rygel-root-device-factory.vala:112
+#: ../src/rygel/rygel-root-device-factory.vala:145
+#: ../src/rygel/rygel-root-device-factory.vala:167
+#: ../src/rygel/rygel-root-device-factory.vala:186
+#: ../src/rygel/rygel-root-device-factory.vala:201
 #, c-format
 msgid "XML node '%s' not found."
-msgstr ""
+msgstr "XML ਨੋਡ '%s' ਨਹੀਂ ਲੱਭੀ।"
 
-#: ../src/rygel/rygel-root-device-factory.vala:234
+#: ../src/rygel/rygel-root-device-factory.vala:244
 #, c-format
-msgid "No icon provided by plugin '%s'. Using Rygel logo.."
+msgid "No icon provided by plugin '%s'. Using Rygel logo."
 msgstr ""
+"ਪਲੱਗਇਨ '%s' ਵਲੋਂ ਕੋਈ ਆਈਕਾਨ ਨਹੀਂ ਦਿੱਤਾ। ਰੀਗਲ ਲੋਗੋ ਵਰਤਿਆ ਜਾ ਰਿਹਾ ਹੈ।"
 
-#: ../src/rygel/rygel-root-device-factory.vala:297
+#: ../src/rygel/rygel-root-device-factory.vala:307
 #, c-format
 msgid "Failed to write modified description to %s"
-msgstr ""
+msgstr "%s ਲਈ ਸੋਧਿਆ ਵੇਰਵਾ ਲਿਖਣ ਲਈ ਫੇਲ੍ਹ ਹੈ।"
 
-#: ../src/rygel/rygel-search.vala:92
-msgid "No such container"
-msgstr "ਕੋਈ ਇੰਝ ਦਾ ਕਨਟੇਨਰ ਨਹੀਂ ਹੈ"
-
-#: ../src/rygel/rygel-search.vala:95
+#: ../src/rygel/rygel-search.vala:54
 #, c-format
 msgid "Executing search request: %s"
-msgstr ""
+msgstr "%s: ਖੋਜ ਮੰਗ ਚਲਾਈ ਜਾ ਰਹੀ ਹੈ"
 
-#: ../src/rygel/rygel-search.vala:129
-msgid "Specified container does not exist."
-msgstr ""
-
-#: ../src/rygel/rygel-search.vala:153
-msgid "No object satisfies given search criteria."
-msgstr ""
-
-#: ../src/rygel/rygel-search.vala:185
+#: ../src/rygel/rygel-search.vala:78
 #, c-format
 msgid "Failed to search in '%s': %s"
 msgstr "'%s' 'ਚ ਲੱਭਣ ਲਈ ਫੇਲ੍ਹ: %s"
@@ -815,7 +708,7 @@ msgstr "'%s' 'ਚ ਲੱਭਣ ਲਈ ਫੇਲ੍ਹ: %s"
 #: ../src/rygel/rygel-seekable-response.vala:62
 #, c-format
 msgid "Failed to read from URI: %s: %s"
-msgstr ""
+msgstr "%s: URI ਤੋਂ ਸਮੱਗਰੀ ਪੜ੍ਹਨ ਲਈ ਫੇਲ੍ਹ: %s"
 
 #. Failed to seek to media segment (defined by first and last
 #. byte positions).
@@ -827,12 +720,12 @@ msgstr ""
 #: ../src/rygel/rygel-seekable-response.vala:100
 #, c-format
 msgid "Failed to read contents from URI: %s: %s"
-msgstr ""
+msgstr "%s: URI ਤੋਂ ਸਮੱਗਰੀ ਪੜ੍ਹਨ ਲਈ ਫੇਲ੍ਹ: %s"
 
 #: ../src/rygel/rygel-seekable-response.vala:154
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
-msgstr ""
+msgstr "URI %s ਲਈ ਸਟਰੀਮਰ ਬੰਦ ਕਰਨ ਲਈ ਫੇਲ੍ਹ: %s"
 
 #: ../src/rygel/rygel-subtitle-manager.vala:66
 msgid "No subtitle available"
@@ -840,59 +733,77 @@ msgstr "ਕੋਈ ਸਬ-ਟਾਈਟਲ ਉਪਲੱਬਧ ਨਹੀਂ"
 
 #: ../src/rygel/rygel-thumbnailer.vala:56
 msgid "Failed to find thumbnails folder."
-msgstr ""
+msgstr "ਥੰਮਨੇਲਰ ਫੋਲਡਰ ਲੱਭਣ ਲਈ ਫੇਲ੍ਹ।"
 
 #: ../src/rygel/rygel-thumbnailer.vala:82
 #, c-format
 msgid "No thumbnailer available: %s"
-msgstr ""
+msgstr "ਕੋਈ ਥੰਮਨੇਲਰ ਉਪਲੱਬਧ ਨਹੀਂ: %s"
 
 #: ../src/rygel/rygel-thumbnailer.vala:106
 msgid "No thumbnail available"
 msgstr "ਥੰਮਨੇਲ ਉਪਲੱਬਧ ਨਹੀਂ"
 
-#: ../src/rygel/rygel-transcode-manager.vala:92
+#: ../src/rygel/rygel-transcode-manager.vala:118
 #, c-format
 msgid "No transcoder available for target format '%s'"
-msgstr ""
+msgstr "ਟਾਰਗੇਟ ਫਾਰਮੈਟ '%s' ਲਈ ਟਰਾਂਸਕੋਡਰ ਉਪਲੱਬਧ ਨਹੀਂ"
 
-#: ../src/rygel/rygel-user-config.vala:168
+#: ../src/rygel/rygel-user-config.vala:166
 #, c-format
 msgid "Loaded user configuration from file '%s'"
-msgstr ""
+msgstr "'%s' ਫਾਇਲ ਤੋਂ ਯੂਜ਼ਰ ਸੰਰਚਨਾ ਲੋਡ ਕੀਤੀ ਗਈ"
 
-#: ../src/rygel/rygel-user-config.vala:199
+#: ../src/rygel/rygel-user-config.vala:197
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
-msgstr ""
+msgstr "ਸੰਰਚਨਾ ਡਾਟਾ '%s' ਫਾਇਲ ਵਿੱਚ ਲਿਖਣ ਲਈ ਫੇਲ੍ਹ: %s"
 
-#: ../src/rygel/rygel-user-config.vala:219
+#: ../src/rygel/rygel-user-config.vala:217
 #, c-format
 msgid "No value available for '%s'"
-msgstr ""
+msgstr "'%s' ਲਈ ਮੁੱਲ ਉਪਲੱਬਧ ਨਹੀਂ"
 
-#: ../src/rygel/rygel-user-config.vala:248
+#: ../src/rygel/rygel-user-config.vala:246
 #, c-format
 msgid "Value of '%s' out of range"
-msgstr ""
+msgstr "'%s' ਲਈ ਮੁੱਲ ਰੇਜ਼ ਤੋਂ ਬਾਹਰ"
 
-#. Failed to start/stop Rygel service
 #: ../src/rygel/rygel-user-config.vala:350
 #, c-format
-msgid "Failed to %s Rygel service: %s"
-msgstr ""
+#| msgid "Failed to search in '%s': %s"
+msgid "Failed to start Rygel service: %s"
+msgstr "ਰੀਗਲ ਸਰਵਿਸ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਫੇਲ੍ਹ: %s"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:43
+#: ../src/rygel/rygel-user-config.vala:352
+#, c-format
+#| msgid "Failed to search in '%s': %s"
+msgid "Failed to stop Rygel service: %s"
+msgstr "ਰੀਗਲ ਸਰਵਿਸ ਰੋਕਣ ਲਈ ਫੇਲ੍ਹ: %s"
+
+#: ../src/rygel/rygel-xbox-hacks.vala:42
 msgid "Not Applicable"
 msgstr "ਲਾਗੂ ਨਹੀਂ"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:148
+#: ../src/rygel/rygel-xbox-hacks.vala:153
 #, c-format
 msgid "Failed to write modified description to %s."
-msgstr ""
+msgstr "%s ਲਈ ਸੋਧਿਆ ਵੇਰਵਾ ਲਿਖਣ ਲਈ ਫੇਲ੍ਹ ਹੈ।"
 
-#: ../src/ui/rygel-preferences-dialog.vala:73
+#: ../src/rygel/rygel-changelog.vala:68
+msgid "Setting up timeout for LastChange"
+msgstr "ਆਖਰੀ ਬਦਲਾਅ ਲਈ ਸਮਾਂ-ਸਮਾਪਤ ਸੈਟਅੱਪ"
+
+#: ../src/ui/rygel-preferences-dialog.vala:72
 #, c-format
 msgid "Failed to create preferences dialog: %s"
-msgstr ""
+msgstr "ਪਸੰਦ ਡਾਈਲਾਗ ਬਣਾਉਣ ਲਈ ਫੇਲ੍ਹ: %s"
 
+#~ msgid "Using playbin2"
+#~ msgstr "playbin2 ਦੀ ਵਰਤੋਂ ਕਰਕੇ"
+
+#~ msgid "Using playbin"
+#~ msgstr "ਪਲੇਅਬਿਨ ਦੀ ਵਰਤੋਂ"
+
+#~ msgid "No such container"
+#~ msgstr "ਕੋਈ ਇੰਝ ਦਾ ਕਨਟੇਨਰ ਨਹੀਂ ਹੈ"
