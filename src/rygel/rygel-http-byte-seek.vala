@@ -96,12 +96,14 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
         var range = "bytes ";
         unowned Soup.MessageHeaders headers = this.msg.response_headers;
 
-        headers.append ("Accept-Ranges", "bytes");
+        if (this.msg.request_headers.get_one ("Range") != null) {
+            headers.append ("Accept-Ranges", "bytes");
 
-        range += this.start.to_string () + "-" +
-                 this.stop.to_string () + "/" +
-                 this.total_length.to_string ();
-        headers.append ("Content-Range", range);
+            range += this.start.to_string () + "-" +
+                     this.stop.to_string () + "/" +
+                     this.total_length.to_string ();
+            headers.append ("Content-Range", range);
+        }
 
         headers.set_content_length (this.length);
     }
