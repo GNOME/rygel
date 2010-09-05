@@ -139,7 +139,10 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
             switch (event) {
                 case FileMonitorEvent.CREATED:
                 case FileMonitorEvent.CHANGES_DONE_HINT:
-                    if (this.file_filter == null ||
+                    var type = file.query_file_type (FileQueryInfoFlags.NONE,
+                                                     this.cancellable);
+                    if (type == FileType.DIRECTORY ||
+                        this.file_filter == null ||
                         this.file_filter.match (file.get_uri ())) {
                         debug ("Trying to harvest %s because of %d",
                                file.get_uri (),
