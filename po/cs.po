@@ -6,31 +6,30 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-08-30 13:56+0000\n"
-"PO-Revision-Date: 2010-08-29 09:42+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-09-10 22:31+0200\n"
+"PO-Revision-Date: 2010-09-04 14:47+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Poedit-Language: Czech\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: ../data/rygel-preferences.ui.h:1
-msgid "<b>Network Options</b>"
-msgstr "<b>Volby sítě</b>"
-
-#: ../data/rygel-preferences.ui.h:2
 msgid "General"
 msgstr "Obecné"
 
-#: ../data/rygel-preferences.ui.h:3
+#: ../data/rygel-preferences.ui.h:2
 msgid "MPE_G TS"
 msgstr "MPE_G TS"
+
+#: ../data/rygel-preferences.ui.h:3
+msgid "Network Options"
+msgstr "Volby sítě"
 
 #: ../data/rygel-preferences.ui.h:4
 msgid "Plugins"
@@ -107,10 +106,9 @@ msgid "_URIs"
 msgstr "Adresy _URI"
 
 #: ../src/plugins/playbin/rygel-playbin-player.vala:66
-#: ../src/plugins/mpris/rygel-mpris-player.vala:41
 #, c-format
-msgid "Changing playback state to %s.."
-msgstr "Mění se stav přehrávání na %s…"
+msgid "Changing playback state to %s."
+msgstr "Mění se stav přehrávání na %s."
 
 #: ../src/plugins/playbin/rygel-playbin-player.vala:92
 #, c-format
@@ -179,13 +177,12 @@ msgstr "Analyzovaný hledaný výraz: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:37
 #, c-format
-msgid "Failed to attach to DBus session bus: %s"
+msgid "Failed to attach to D-Bus session bus: %s"
 msgstr "Selhalo napojení na sběrnici sezení D-Bus: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:58
-msgid "No Metadata extractor available. Will not crawl"
-msgstr ""
-"Není dispozici žádný nástroj na zjišťování metadat. Nebude se procházet"
+msgid "No metadata extractor available. Will not crawl."
+msgstr "Není dispozici žádný nástroj na získávání metadat. Nebude se procházet"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:101
 #, c-format
@@ -216,8 +213,8 @@ msgstr "Média uživatele @REALNAME@"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:48
 #, c-format
-msgid "Directory %s gone, removing watch"
-msgstr "Složka %s je pryč, odstraňuje se sledování"
+msgid "Folder %s gone; removing watch"
+msgstr "Složka %s je pryč; odstraňuje se sledování"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:77
 #, c-format
@@ -256,13 +253,13 @@ msgstr "Selhalo odstranění adresy URI: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:319
 #, c-format
-msgid "Failed to create MediaExport DBus service: %s"
-msgstr "Selhalo vytvoření služby MediaExport ve sběrnici DBus: %s"
+msgid "Failed to create MediaExport D-Bus service: %s"
+msgstr "Selhalo vytvoření služby MediaExport na sběrnici DBus: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:353
 #, c-format
-msgid "ID %s no longer in config, deleting..."
-msgstr "ID %s již nadále není v nastavení, maže se…"
+msgid "ID %s no longer in config; deleting..."
+msgstr "ID %s již nadále není v nastavení; maže se…"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:357
 #, c-format
@@ -280,6 +277,11 @@ msgstr "Obrázky"
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:373
 msgid "Videos"
 msgstr "Videa"
+
+#: ../src/plugins/mpris/rygel-mpris-player.vala:41
+#, c-format
+msgid "Changing playback state to %s.."
+msgstr "Mění se stav přehrávání na %s…"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:41
 #, c-format
@@ -560,11 +562,11 @@ msgstr "Selhalo zjištění úrovně evidence z nastavení: %s"
 
 #: ../src/rygel/rygel-main.vala:80
 #, c-format
-msgid "No plugins found in %d second, giving up.."
-msgid_plural "No plugins found in %d seconds, giving up.."
-msgstr[0] "Za %d sekundu nebyl nalezen žádný zásuvný modul, zanechává se toho…"
-msgstr[1] "Za %d sekundy nebyl nalezen žádný zásuvný modul, zanechává se toho…"
-msgstr[2] "Za %d sekund nebyl nalezen žádný zásuvný modul, zanechává se toho…"
+msgid "No plugins found in %d second; giving up.."
+msgid_plural "No plugins found in %d seconds; giving up.."
+msgstr[0] "Za %d sekundu nebyl nalezen žádný zásuvný modul; zanechává se toho…"
+msgstr[1] "Za %d sekundy nebyl nalezen žádný zásuvný modul; zanechává se toho…"
+msgstr[2] "Za %d sekund nebyl nalezen žádný zásuvný modul; zanechává se toho…"
 
 #: ../src/rygel/rygel-main.vala:123
 #, c-format
@@ -635,13 +637,13 @@ msgstr "Dostupný nový zásuvný modul „%s“"
 
 #: ../src/rygel/rygel-plugin-loader.vala:75
 #, c-format
-msgid "Plugin '%s' disabled in user configuration, ignoring.."
-msgstr "Zásuvný modul „%s“ zakázán v uživatelském nastavení, ignoruje se…"
+msgid "Plugin '%s' disabled in user configuration; ignoring.."
+msgstr "Zásuvný modul „%s“ zakázán v uživatelském nastavení; ignoruje se…"
 
 #: ../src/rygel/rygel-plugin-loader.vala:89
 #, c-format
-msgid "Searching for modules in folder '%s' .."
-msgstr "Vyhledávají se moduly ve složce „%s“…"
+msgid "Searching for modules in folder '%s'."
+msgstr "Vyhledávají se moduly ve složce „%s“."
 
 #: ../src/rygel/rygel-plugin-loader.vala:109
 #, c-format
@@ -655,7 +657,7 @@ msgstr "Dokončeno hledání modulů ve složce „%s“"
 
 #: ../src/rygel/rygel-plugin-loader.vala:141
 #, c-format
-msgid "Failed to load module from path '%s' : %s"
+msgid "Failed to load module from path '%s': %s"
 msgstr "Selhalo načtení modulu z cesty „%s“: %s"
 
 #: ../src/rygel/rygel-plugin-loader.vala:151
@@ -679,8 +681,8 @@ msgstr "Uzel XML „%s“ nenalezen."
 
 #: ../src/rygel/rygel-root-device-factory.vala:244
 #, c-format
-msgid "No icon provided by plugin '%s'. Using Rygel logo.."
-msgstr "Zásuvný modul „%s“ neposkytuje žádnou ikonu. Použije se logo Rygel…"
+msgid "No icon provided by plugin '%s'. Using Rygel logo."
+msgstr "Zásuvný modul „%s“ neposkytuje žádnou ikonu. Použije se logo Rygel."
 
 #: ../src/rygel/rygel-root-device-factory.vala:307
 #, c-format
@@ -761,11 +763,15 @@ msgstr "Pro „%s“ není dostupná žádná hodnota"
 msgid "Value of '%s' out of range"
 msgstr "Hodnota „%s“ je mimo rozsah"
 
-#. Failed to start/stop Rygel service
-#: ../src/rygel/rygel-user-config.vala:348
+#: ../src/rygel/rygel-user-config.vala:350
 #, c-format
-msgid "Failed to %s Rygel service: %s"
-msgstr "Selhalo %s služby Rygel: %s"
+msgid "Failed to start Rygel service: %s"
+msgstr "Selhalo spuštění služby Rygel: %s"
+
+#: ../src/rygel/rygel-user-config.vala:352
+#, c-format
+msgid "Failed to stop Rygel service: %s"
+msgstr "Selhalo zastavení služby Rygel: %s"
 
 #: ../src/rygel/rygel-xbox-hacks.vala:42
 msgid "Not Applicable"
@@ -784,4 +790,3 @@ msgstr "Nastavuje se časový limit pro LastChange"
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Selhalo vytvoření dialogového okna předvoleb: %s"
-
