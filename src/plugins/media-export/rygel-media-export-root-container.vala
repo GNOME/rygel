@@ -350,7 +350,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         }
 
         foreach (var id in ids) {
-            debug (_("ID %s no longer in config; deleting..."), id);
+            debug ("ID %s no longer in config; deleting...", id);
             try {
                 this.media_db.remove_by_id (id);
             } catch (DatabaseError error) {

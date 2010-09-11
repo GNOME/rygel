@@ -68,7 +68,7 @@ public class Rygel.Tracker.SelectionQuery : Query {
                                         throws DBus.Error {
         var str = this.to_string ();
 
-        debug (_("Executing SPARQL query: %s"), str);
+        debug ("Executing SPARQL query: %s", str);
 
         result = yield resources.sparql_query (str);
     }

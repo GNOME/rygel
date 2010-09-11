@@ -108,7 +108,7 @@ internal class Rygel.MediaExport.Database : Object {
                                            "rygel");
         DirUtils.create_with_parents (dirname, 0750);
         var db_file = Path.build_filename (dirname, "%s.db".printf (name));
-        debug (_("Using database file %s"), db_file);
+        debug ("Using database file %s", db_file);
         var rc = Sqlite.Database.open (db_file, out this.db);
         if (rc != Sqlite.OK) {
             throw new DatabaseError.IO_ERROR (

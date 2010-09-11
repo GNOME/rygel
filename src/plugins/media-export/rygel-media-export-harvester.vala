@@ -141,7 +141,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                 case FileMonitorEvent.CHANGES_DONE_HINT:
                     if (this.file_filter == null ||
                         this.file_filter.match (file.get_uri ())) {
-                        debug (_("Trying to harvest %s because of %d"),
+                        debug ("Trying to harvest %s because of %d",
                                file.get_uri (),
                                event);
                         var id = MediaCache.get_id (file.get_parent ());

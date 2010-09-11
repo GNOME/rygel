@@ -51,7 +51,7 @@ internal class Rygel.Search:  Rygel.MediaQueryAction {
                                         "No search criteria given");
         }
 
-        debug (_("Executing search request: %s"), this.search_criteria);
+        debug ("Executing search request: %s", this.search_criteria);
     }
 
     protected override async MediaObjects fetch_results (

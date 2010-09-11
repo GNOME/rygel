@@ -108,7 +108,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             this.extract_file_info (file, out mime, out size, out mtime);
             this.extraction_done (file, dlna, mime, size, mtime);
         } catch (Error e) {
-            debug (_("Failed to extract metadata from %s: %s"),
+            debug ("Failed to extract metadata from %s: %s",
                     dlna.info.uri,
                     e.message);
         }

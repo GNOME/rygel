@@ -241,7 +241,7 @@ internal class Rygel.RootDeviceFactory {
         var icons = plugin.icon_infos;
 
         if (icons == null || icons.size == 0) {
-            debug (_("No icon provided by plugin '%s'. Using Rygel logo."),
+            debug ("No icon provided by plugin '%s'. Using Rygel logo.",
                    plugin.name);
 
             icons = plugin.default_icons;

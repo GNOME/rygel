@@ -163,7 +163,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                                       out path,
                                       KeyFileFlags.KEEP_COMMENTS |
                                       KeyFileFlags.KEEP_TRANSLATIONS);
-        debug (_("Loaded user configuration from file '%s'"), path);
+        debug ("Loaded user configuration from file '%s'", path);
 
         try {
             DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
@@ -177,7 +177,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                                                    DBUS_PATH,
                                                    DBUS_INTERFACE);
         } catch (DBus.Error err) {
-            debug (_("Failed to connect to session bus: %s"), err.message);
+            debug ("Failed to connect to session bus: %s", err.message);
         }
     }
 

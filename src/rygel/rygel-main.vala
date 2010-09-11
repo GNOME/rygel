@@ -120,7 +120,7 @@ public class Rygel.Main : Object {
                                        GUPnP.Context        context) {
         string iface = null;
 
-        debug (_("new network context %s (%s) available."),
+        debug ("new network context %s (%s) available.",
                context.interface,
                context.host_ip);
 
@@ -142,7 +142,7 @@ public class Rygel.Main : Object {
                          err.message);
             }
         } else {
-            debug (_("Ignoring network context %s (%s)."),
+            debug ("Ignoring network context %s (%s).",
                    context.interface,
                    context.host_ip);
         }
@@ -150,7 +150,7 @@ public class Rygel.Main : Object {
 
     private void on_context_unavailable (GUPnP.ContextManager manager,
                                          GUPnP.Context        context) {
-        debug (_("Network context %s (%s) now unavailable."),
+        debug ("Network context %s (%s) now unavailable.",
                context.interface,
                context.host_ip);
 

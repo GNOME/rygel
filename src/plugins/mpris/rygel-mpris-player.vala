@@ -38,7 +38,7 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
         }
 
         set {
-            debug (_("Changing playback state to %s.."), value);
+            debug ("Changing playback state to %s..", value);
 
             /* FIXME: Do something about errors below */
             switch (value) {

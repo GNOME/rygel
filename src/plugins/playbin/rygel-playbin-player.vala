@@ -63,7 +63,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
 
         set {
-            debug (_("Changing playback state to %s."), value);
+            debug ("Changing playback state to %s.", value);
             this._playback_state = value;
 
             switch (this._playback_state) {
@@ -89,7 +89,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
         set {
             this.playbin.uri = value;
-            debug (_("URI set to %s."), value);
+            debug ("URI set to %s.", value);
         }
     }
 
@@ -100,7 +100,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
         set {
             this.playbin.volume = value;
-            debug (_("volume set to %f."), value);
+            debug ("volume set to %f.", value);
         }
     }
 

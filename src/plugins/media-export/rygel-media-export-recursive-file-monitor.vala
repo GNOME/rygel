@@ -45,7 +45,7 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
             case FileMonitorEvent.DELETED:
                 var file_monitor = this.monitors.get (file);
                 if (file_monitor != null) {
-                    debug (_("Folder %s gone; removing watch"),
+                    debug ("Folder %s gone; removing watch",
                            file.get_uri ());
                     this.monitors.unset (file);
                     file_monitor.cancel ();
