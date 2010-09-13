@@ -120,7 +120,9 @@ internal class Rygel.RootDeviceFactory {
                                         plugin.title);
 
         if (plugin.description != null) {
-            this.set_description (device_element, plugin.description);
+            device_element->new_child (null,
+                                       "modelDescription",
+                                       plugin.description);
         }
 
         /* Then list each icon */
@@ -175,21 +177,6 @@ internal class Rygel.RootDeviceFactory {
 
             element->set_content (udn);
         }
-    }
-
-    private void set_description (Xml.Node *device_element,
-                                  string    description) {
-        Xml.Node *element = XMLUtils.get_element (device_element,
-                                                  "modelDescription",
-                                                  null);
-        if (element == null) {
-            warning (_("XML node '%s' not found."),
-                       "/root/device/modelDescription");
-
-            return;
-        }
-
-        element->set_content (description);
     }
 
     private void add_services_to_desc (Xml.Node *device_element,
