@@ -274,6 +274,8 @@ dnl documenation
 AC_PATH_PROG([XSLTPROC], [xsltproc])
 AM_CONDITIONAL([HAVE_XSLTPROC], [test x"$XSLTPROC" != x])
 
+AC_SUBST(VERSION)
+
 AC_OUTPUT([
 Makefile
 src/Makefile
@@ -295,6 +297,8 @@ data/icons/32x32/Makefile
 data/icons/48x48/Makefile
 data/icons/120x120/Makefile
 data/icons/scalable/Makefile
+data/rygel.desktop.in
+data/rygel-preferences.desktop.in
 doc/Makefile
 po/Makefile.in
 rygel-1.0.pc

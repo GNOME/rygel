@@ -25,15 +25,11 @@ dbusservice_DATA = $(dbusservice_in_files:.service.in=.service)
 $(dbusservice_DATA): $(dbusservice_in_files) Makefile
 	@sed -e "s|\@bindir\@|$(bindir)|" $< > $@
 
+# Rule to create the .desktop files
 desktopdir = $(datadir)/applications
 desktop_in_files = rygel.desktop.in rygel-preferences.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
-
-# Rule to create the .desktop files
-$(desktop_DATA): $(desktop_in_files) Makefile
-	@sed -e "s,\$${prefix},${prefix},g" \
-	     -e "s,\$${version},${PACKAGE_VERSION},g" \
-             $(srcdir)/$(@:.desktop=.desktop.in) > $@
+@INTLTOOL_DESKTOP_RULE@
 
 CLEANFILES = $(dbusservice_DATA) $(desktop_DATA) rygel.conf
 EXTRA_DIST = rygel-maemo.conf \

@@ -3,7 +3,8 @@
 [encoding: UTF-8]
 
 [type: gettext/glade]data/rygel-preferences.ui
-data/rygel-preferences.desktop.in
+data/rygel-preferences.desktop.in.in
+data/rygel.desktop.in.in
 data/xml/AVTransport2.xml
 data/xml/ConnectionManager.xml
 data/xml/ContentDirectory.xml
