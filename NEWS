@@ -1,3 +1,77 @@
+0.7.8
+=====
+
+A new release in the current unstable 0.7.x series for upcoming GNOME 2.31.92
+release.
+
+- If the client didn't pass a Range header in the request, don't append
+  Accept-Ranges and Content-Range headers to response. This fixes picture
+  browsing on XBox 360 (again).
+- Don't put empty nodes in device description.
+- Use '\r\n' instead of '\n' in XML files. Some UPnP devices in the market are
+  apparently unable to handle the unix EOL character so we better provide the
+  XML files in DOS format.
+- MediaExport:
+  - Fix an assertion failure.
+- Localization:
+  - Remove markup from a translatable string in preferences UI.
+  - Don't build translatable strings by substitution.
+  - Prefer the term 'folder' over 'directory' in translated strings.
+  - Miscellaneous string fixes.
+  - Don't translate debug messages.
+  - Add Serbian translation.
+  - Add Korean translation.
+  - Add Japanese translation.
+  - Add Hungarian translation.
+  - Update Spanish translation.
+  - Update Galician translation.
+  - Update British English translation.
+  - Update Hebrew translation.
+  - Update Norwegian bokmål translation.
+  - Update Tamil translation.
+  - Update Slovenian translation.
+  - Update Swedish translation.
+  - Update Punjabi translation.
+  - Update French translation.
+  - Update Polish translation.
+  - Update Greek translation.
+  - Update Czech translation.
+  - Update Portuguese translation.
+  - Update German translation.
+
+Bugs fixed in this release:
+
+626196 - OPPO DBP-80/83
+629348 - Do not mark debug messages for translation
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+Philip Withnall <philip@tecnocode.co.uk>
+Andrej Žnidaršič <andrej.znidarsic@gmail.com>
+A S Alam <aalam@users.sf.net>
+Bruce Cowan <bruce@bcowan.me.uk>
+Christian Kirbach <Christian.Kirbach@googlemail.com>
+Claude Paroz <claude@2xlibre.net>
+Daniel Nylander <po@danielnylander.se>
+drtv <vasudeven@git.gnome.org>
+Duarte Loreto <happyguy_pt@hotmail.com>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Gabor Kelemen <kelemeng@gnome.hu>
+Homin Lee <ff4500@gmail.com>
+Jorge González <jorgegonz@svn.gnome.org>
+Kentaro KAZUHAMA <kazken3@gmail.com>
+Kjartan Maraas <kmaraas@gnome.org>
+Michael Kotsarinis <mk73628@gmail.com>
+Petr Kovar <pknbe@volny.cz>
+Piotr Drąg <piotrdrag@gmail.com>
+Tomasz Dominikowski <dominikowski@gmail.com>
+Yaron Shahrabani <sh.yaron@gmail.com>
+Милош Поповић <gpopac@gmail.com>
+Marek Cernocky
+Gabor Kelement
+
 0.7.7
 =====
 
