@@ -197,11 +197,13 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
             assert (seek.total_length == request.item.size);
         }
 
-        var header = request.msg.response_headers.get_one ("Accept-Ranges");
-        assert (header == "bytes");
-        header = request.msg.response_headers.get_one ("Content-Range");
-        assert (header != null);
-        assert (this.range_regex.match (header));
+        if (request.msg.request_headers.get_one ("Range") != null) {
+            var header = request.msg.response_headers.get_one ("Accept-Ranges");
+            assert (header == "bytes");
+            header = request.msg.response_headers.get_one ("Content-Range");
+            assert (header != null);
+            assert (this.range_regex.match (header));
+        }
 
         assert (request.msg.response_headers.get_content_length () ==
                 seek.length);
