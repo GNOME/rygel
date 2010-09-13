@@ -1,9 +1,7 @@
 [Desktop Entry]
-Name=Rygel
-Name[en_GB]=Rygel
-GenericName=UPnP/DLNA Services
-GenericName[en_GB]=UPnP/DLNA Services
-Comment=UPnP/DLNA Services
+_Name=Rygel
+_GenericName=UPnP/DLNA Services
+_Comment=UPnP/DLNA Services
 Categories=
 Exec=dbus-send --type=method_call --dest=org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus.StartServiceByName string:org.gnome.Rygel1 uint32:0
 Terminal=false
@@ -14,4 +12,4 @@ X-GNOME-Autostart-enabled=true
 X-GNOME-Bugzilla-Bugzilla=GNOME
 X-GNOME-Bugzilla-Product=Rygel
 X-GNOME-Bugzilla-Component=general
-X-GNOME-Bugzilla-Version=${version}
+X-GNOME-Bugzilla-Version=@VERSION@
