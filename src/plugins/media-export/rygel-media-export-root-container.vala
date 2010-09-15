@@ -196,9 +196,15 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             var music_dir = Environment.get_user_special_dir
                                         (UserDirectory.MUSIC);
 
-            actual_uri = actual_uri.replace ("@PICTURES@", pictures_dir);
-            actual_uri = actual_uri.replace ("@VIDEOS@", videos_dir);
-            actual_uri = actual_uri.replace ("@MUSIC@", music_dir);
+            if (likely (pictures_dir != null)) {
+                actual_uri = actual_uri.replace ("@PICTURES@", pictures_dir);
+            }
+            if (likely (videos_dir != null)) {
+                actual_uri = actual_uri.replace ("@VIDEOS@", videos_dir);
+            }
+            if (likely (music_dir != null)) {
+                actual_uri = actual_uri.replace ("@MUSIC@", music_dir);
+            }
 
             actual_uris.add (actual_uri);
         }
