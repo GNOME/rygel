@@ -32,6 +32,13 @@ data/org.gnome.Rygel.service
 data/rygel-preferences.desktop
 data/rygel.conf
 data/rygel.desktop
+data/xml/AVTransport2.xml
+data/xml/ConnectionManager.xml
+data/xml/ContentDirectory.xml
+data/xml/MediaRenderer2.xml
+data/xml/MediaServer2.xml
+data/xml/RenderingControl2.xml
+data/xml/X_MS_MediaReceiverRegistrar1.xml
 libtool
 m4/intltool.m4
 m4/libtool.m4
