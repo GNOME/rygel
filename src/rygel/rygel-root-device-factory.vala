@@ -294,17 +294,26 @@ internal class Rygel.RootDeviceFactory {
 
     private void save_modified_desc (XMLDoc doc,
                                      string desc_path) throws GLib.Error {
-        FileStream f = FileStream.open (desc_path, "w+");
-        int res = -1;
+        var file = FileStream.open (desc_path, "w+");
 
-        if (f != null)
-            res = doc.doc.dump (f);
-
-        if (f == null || res == -1) {
+        if (unlikely (file == null)) {
             var message = _("Failed to write modified description to %s");
 
             throw new IOError.FAILED (message, desc_path);
         }
+
+        string mem = null;
+        int len = -1;
+        doc.doc.dump_memory_format (out mem, out len, false);
+
+        if (unlikely (len <= 0)) {
+            var message = _("Failed to write modified description to %s");
+
+            throw new IOError.FAILED (message, desc_path);
+        }
+
+        // Make sure we don't have any newlines
+        file.puts (mem.replace ("\n", ""));
     }
 
     private bool check_path_exist (string path) {
