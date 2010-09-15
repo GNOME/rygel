@@ -63,3 +63,6 @@ tests/rygel-http-time-seek-test
 tests/rygel-live-response-test
 tests/rygel-seekable-response-test
 tests/rygel-http-post-test
+doc/rygel.1
+doc/rygel.conf.5
+
