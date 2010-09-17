@@ -162,12 +162,8 @@ public abstract class Rygel.MediaItem : MediaObject {
          * there just choose the first one in the list instead of the one they
          * can handle.
          */
-        if (this.place_holder) {
-            this.add_proxy_resources (http_server, didl_item);
-        } else {
-            // Add the transcoded/proxy URIs first
-            this.add_proxy_resources (http_server, didl_item);
-
+        this.add_proxy_resources (http_server, didl_item);
+        if (!this.place_holder) {
             // then original URIs
             bool internal_allowed;
             internal_allowed = http_server.context.interface == "lo" ||
