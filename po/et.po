@@ -1,0 +1,458 @@
+# Rygeli eesti keele tõlge.
+# Estonian translation of Rygel.
+#
+# Copyright (C) 2010 The GNOME Project.
+#
+# This file is distributed under the same license as the rygel package.
+# Ivar Smolin <okul linux ee>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: rygel 0.6\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&component=general\n"
+"POT-Creation-Date: 2010-09-15 06:53+0000\n"
+"PO-Revision-Date: 2010-09-18 12:01+0300\n"
+"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
+"Language-Team: Estonian <et@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "General"
+msgstr "Üldine"
+
+msgid "MPE_G TS"
+msgstr "MPE_G TS"
+
+msgid "Network Options"
+msgstr "Võrguühenduse valikud"
+
+msgid "Plugins"
+msgstr "Pluginad"
+
+msgid "Rygel Preferences"
+msgstr "Rygeli eelistused"
+
+msgid "Select folders"
+msgstr "Kataloogide valimine"
+
+msgid "Share M_usic"
+msgstr "M_uusika on jagatud"
+
+msgid "Share _Pictures"
+msgstr "_Pildid on jagatud"
+
+msgid "Share _Videos"
+msgstr "_Videode jagamine"
+
+msgid "T_itle"
+msgstr "Pe_alkiri"
+
+msgid "Ti_tle"
+msgstr "Peal_kiri"
+
+#, no-c-format
+msgid ""
+"Write %u for username, %n for real name of the user and %h for host name"
+msgstr ""
+
+msgid "_Enable UPnP/DLNA"
+msgstr "_UPnP/DLNA on lubatud"
+
+#. Network Interface
+msgid "_Interface"
+msgstr "L_iides"
+
+msgid "_LPCM"
+msgstr "_LPCM"
+
+msgid "_MP3"
+msgstr "_MP3"
+
+msgid "_Media Export"
+msgstr "_Meedia eksportimine"
+
+#. Network Port
+msgid "_Port"
+msgstr "_Port"
+
+msgid "_Transcoding support"
+msgstr ""
+
+msgid "_URIs"
+msgstr "_URI-d"
+
+msgid "GStreamer Player"
+msgstr ""
+
+#, c-format
+msgid "Failed to open database: %d (%s)"
+msgstr "Tõrge andmebaasi avamisel: %d (%s)"
+
+#, c-format
+msgid "Failed to roll back transaction: %s"
+msgstr ""
+
+#, c-format
+msgid "Unsupported type %s"
+msgstr "Toetamata liik %s"
+
+#, c-format
+msgid "Failed to query content type for '%s'"
+msgstr ""
+
+#, c-format
+msgid "Failed to add item with ID %s: %s"
+msgstr ""
+
+#, c-format
+msgid "Object %s is not an item"
+msgstr ""
+
+#, c-format
+msgid "Failed to attach to D-Bus session bus: %s"
+msgstr ""
+
+msgid "No metadata extractor available. Will not crawl."
+msgstr ""
+
+#, c-format
+msgid "'%s' harvested"
+msgstr ""
+
+#, c-format
+msgid "Error fetching object '%s' from database: %s"
+msgstr ""
+
+#, c-format
+msgid "Error removing object from database: %s"
+msgstr ""
+
+#. @REALNAME@ is substituted for user's real name
+#. and it doesn't need translation.
+msgid "@REALNAME@'s media"
+msgstr ""
+
+#, c-format
+msgid "Failed to get file info for %s"
+msgstr ""
+
+msgid "Year"
+msgstr "Aasta"
+
+msgid "All"
+msgstr "Kõik"
+
+msgid "Artist"
+msgstr "Esitaja"
+
+msgid "Album"
+msgstr "Album"
+
+msgid "Genre"
+msgstr "Žanr"
+
+msgid "Failed to create instance of database"
+msgstr ""
+
+#, c-format
+msgid "Failed to remove URI: %s"
+msgstr "Tõrge URI eemaldamisel: %s"
+
+#, c-format
+msgid "Failed to create MediaExport D-Bus service: %s"
+msgstr ""
+
+#, c-format
+msgid "Failed to remove entry: %s"
+msgstr "Tõrge kirje eemaldamisel: %s"
+
+msgid "Music"
+msgstr "Muusika"
+
+msgid "Pictures"
+msgstr "Pildid"
+
+msgid "Videos"
+msgstr "Videod"
+
+#, c-format
+msgid "Failed to construct URI for folder '%s': %s"
+msgstr ""
+
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr ""
+
+#, c-format
+msgid "Failed to connect to session bus: %s"
+msgstr ""
+
+#, c-format
+msgid "Error getting all values for '%s': %s"
+msgstr ""
+
+#, c-format
+msgid "Failed to start Tracker service: %s. Plugin disabled."
+msgstr ""
+
+#, c-format
+msgid "Error getting item count under category '%s': %s"
+msgstr ""
+
+msgid "Albums"
+msgstr "Albumid"
+
+msgid "Artists"
+msgstr "Esitajad"
+
+msgid "No such object"
+msgstr ""
+
+msgid "Invalid Arguments"
+msgstr "Vigased argumendid"
+
+#, c-format
+msgid "Failed to browse '%s': %s\n"
+msgstr ""
+
+msgid "No value available"
+msgstr ""
+
+msgid "Invalid connection reference"
+msgstr ""
+
+msgid "No such file transfer"
+msgstr ""
+
+msgid "Invalid InstanceID"
+msgstr ""
+
+msgid "Play speed not supported"
+msgstr ""
+
+msgid "Seek mode not supported"
+msgstr ""
+
+msgid "Transition not available"
+msgstr ""
+
+msgid "Invalid Name"
+msgstr "Vigane nimi"
+
+msgid "Action Failed"
+msgstr ""
+
+#, c-format
+msgid "Required element %s missing"
+msgstr ""
+
+#, c-format
+msgid "Invalid Range '%s'"
+msgstr ""
+
+msgid "Invalid Request"
+msgstr ""
+
+msgid "Not found"
+msgstr "Ei leitud"
+
+#, c-format
+msgid "Item '%s' didn't provide a URI"
+msgstr ""
+
+#, c-format
+msgid "Invalid URI '%s'"
+msgstr ""
+
+msgid "Not Found"
+msgstr ""
+
+#, c-format
+msgid "No writable URI for %s available"
+msgstr ""
+
+#, c-format
+msgid "Requested item '%s' not found"
+msgstr ""
+
+#, c-format
+msgid "Failed to get original URI for '%s': %s"
+msgstr ""
+
+#, c-format
+msgid "No items in DIDL-Lite from client: '%s'"
+msgstr ""
+
+msgid "'Elements' argument missing."
+msgstr ""
+
+msgid "Comments not allowed in XML"
+msgstr ""
+
+#, c-format
+msgid "Failed to create item under '%s': %s"
+msgstr ""
+
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr ""
+
+#. 'fakesink' should not be translated
+msgid "Plugin 'fakesink' missing"
+msgstr ""
+
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr ""
+
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr ""
+
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr ""
+
+#, c-format
+msgid "Failed to seek to offset %lld"
+msgstr ""
+
+#, c-format
+msgid "Failed to get log level from configuration: %s"
+msgstr ""
+
+#, c-format
+msgid "No plugins found in %d second; giving up.."
+msgid_plural "No plugins found in %d seconds; giving up.."
+msgstr[0] ""
+msgstr[1] ""
+
+#, c-format
+msgid "Failed to create root device factory: %s"
+msgstr ""
+
+#, c-format
+msgid "Failed to create RootDevice for %s. Reason: %s"
+msgstr ""
+
+#, c-format
+msgid "Failed to start D-Bus service: %s"
+msgstr ""
+
+#, c-format
+msgid "Bad URI: %s"
+msgstr "Vigane URI: %s"
+
+#. Assume the protocol to be the scheme of the URI
+#, c-format
+msgid "Failed to probe protocol for URI %s. Assuming '%s'"
+msgstr ""
+
+#, c-format
+msgid "Failed to load user configuration: %s"
+msgstr ""
+
+#, c-format
+msgid "No value set for '%s/enabled'"
+msgstr ""
+
+#, c-format
+msgid "No value available for '%s/%s'"
+msgstr ""
+
+#, c-format
+msgid "New plugin '%s' available"
+msgstr ""
+
+#, c-format
+msgid "Error listing contents of folder '%s': %s"
+msgstr ""
+
+#, c-format
+msgid "Failed to load module from path '%s': %s"
+msgstr ""
+
+#, c-format
+msgid "Failed to find entry point function '%s' in '%s': %s"
+msgstr ""
+
+#, c-format
+msgid "XML node '%s' not found."
+msgstr ""
+
+#, c-format
+msgid "Failed to write modified description to %s"
+msgstr ""
+
+#, c-format
+msgid "Failed to search in '%s': %s"
+msgstr ""
+
+#, c-format
+msgid "Failed to read from URI: %s: %s"
+msgstr ""
+
+#. Failed to seek to media segment (defined by first and last
+#. byte positions).
+#, c-format
+msgid "Failed to seek to %s-%s on URI %s: %s"
+msgstr ""
+
+#, c-format
+msgid "Failed to read contents from URI: %s: %s"
+msgstr ""
+
+#, c-format
+msgid "Failed to close stream to URI %s: %s"
+msgstr ""
+
+msgid "No subtitle available"
+msgstr ""
+
+msgid "Failed to find thumbnails folder."
+msgstr ""
+
+#, c-format
+msgid "No thumbnailer available: %s"
+msgstr ""
+
+msgid "No thumbnail available"
+msgstr ""
+
+#, c-format
+msgid "No transcoder available for target format '%s'"
+msgstr ""
+
+#, c-format
+msgid "Failed to save configuration data to file '%s': %s"
+msgstr ""
+
+#, c-format
+msgid "No value available for '%s'"
+msgstr ""
+
+#, c-format
+msgid "Value of '%s' out of range"
+msgstr ""
+
+#, c-format
+msgid "Failed to start Rygel service: %s"
+msgstr "Tõrge Rygeli teenuse käivitamisel: %s"
+
+#, c-format
+msgid "Failed to stop Rygel service: %s"
+msgstr "Tõrge Rygeli teenuse seiskamisel: %s"
+
+msgid "Not Applicable"
+msgstr ""
+
+#, c-format
+msgid "Failed to write modified description to %s."
+msgstr ""
+
+#, c-format
+msgid "Failed to create preferences dialog: %s"
+msgstr "Tõrge eelistuste dialoogi loomisel: %s"
