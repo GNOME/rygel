@@ -34,7 +34,8 @@ public class Rygel.Tracker.Albums : MetadataValues {
               parent,
               _("Albums"),
               parent.item_factory,
-              key_chain);
+              key_chain,
+              MediaContainer.MUSIC_ALBUM);
     }
 }
 

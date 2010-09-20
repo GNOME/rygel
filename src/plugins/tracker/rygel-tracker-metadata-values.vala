@@ -41,6 +41,8 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
     // nmm:Performer -> nmm:artistName
     public string[] key_chain;
 
+    private string child_class;
+
     private ResourcesIface resources;
     private ResourcesClassIface resources_class;
 
@@ -48,11 +50,13 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
                            MediaContainer parent,
                            string         title,
                            ItemFactory    item_factory,
-                           string[]       key_chain) {
+                           string[]       key_chain,
+                           string?        child_class = null) {
         base (id, parent, title);
 
         this.item_factory = item_factory;
         this.key_chain = key_chain;
+        this.child_class = child_class;
 
         try {
             this.create_proxies ();
@@ -146,6 +150,9 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
                                                  this.item_factory,
                                                  child_triplets,
                                                  filters);
+            if (this.child_class != null) {
+                container.upnp_class = child_class;
+            }
 
             this.add_child (container);
         }
