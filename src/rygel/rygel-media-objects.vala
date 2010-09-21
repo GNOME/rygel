@@ -21,6 +21,7 @@
  */
 
 using Gee;
+using GUPnP;
 
 /**
  * An array list that keeps media objects.
@@ -50,6 +51,18 @@ public class Rygel.MediaObjects : ArrayList<MediaObject> {
 
             return this.compare_media_objects (object_a, object_b, sort_props);
         });
+    }
+
+    internal void serialize (DIDLLiteWriter didl_writer,
+                             HTTPServer     http_server,
+                             XBoxHacks?     xbox_hacks) throws Error {
+        foreach (var result in this) {
+            if (result is MediaItem && xbox_hacks != null) {
+                xbox_hacks.apply (result as MediaItem);
+            }
+
+            result.serialize (didl_writer, http_server);
+        }
     }
 
     private int compare_media_objects (MediaObject a,

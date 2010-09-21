@@ -83,13 +83,9 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
                 results.sort_by_criteria (this.sort_criteria);
             }
 
-            foreach (var result in results) {
-                if (result is MediaItem && this.xbox_hacks != null) {
-                    this.xbox_hacks.apply (result as MediaItem);
-                }
-
-                result.serialize (this.didl_writer, this.http_server);
-            }
+            results.serialize (this.didl_writer,
+                               this.http_server,
+                               this.xbox_hacks);
 
             // Conclude the successful Browse/Search action
             this.conclude ();
