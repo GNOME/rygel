@@ -12,8 +12,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
 "POT-Creation-Date: 2010-09-15 06:53+0000\n"
-"PO-Revision-Date: 2010-09-18 12:01+0300\n"
-"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
+"PO-Revision-Date: 2010-09-21 18:48+0300\n"
+"Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +45,7 @@ msgid "Share _Pictures"
 msgstr "_Pildid on jagatud"
 
 msgid "Share _Videos"
-msgstr "_Videode jagamine"
+msgstr "_Videod on jagatud"
 
 msgid "T_itle"
 msgstr "Pe_alkiri"
@@ -57,6 +57,7 @@ msgstr "Peal_kiri"
 msgid ""
 "Write %u for username, %n for real name of the user and %h for host name"
 msgstr ""
+"Kasutajanime jaoks kirjuta %u, pärisnime jaoks %n ning hostinime jaoks %h"
 
 msgid "_Enable UPnP/DLNA"
 msgstr "_UPnP/DLNA on lubatud"
@@ -79,7 +80,7 @@ msgid "_Port"
 msgstr "_Port"
 
 msgid "_Transcoding support"
-msgstr ""
+msgstr "_Ümberkodeerimise tugi"
 
 msgid "_URIs"
 msgstr "_URI-d"
@@ -101,43 +102,43 @@ msgstr "Toetamata liik %s"
 
 #, c-format
 msgid "Failed to query content type for '%s'"
-msgstr ""
+msgstr "'%s' sisu liigi pärimine nurjus"
 
 #, c-format
 msgid "Failed to add item with ID %s: %s"
-msgstr ""
+msgstr "ID-ga %s kirje lisamine nurjus: %s"
 
 #, c-format
 msgid "Object %s is not an item"
-msgstr ""
+msgstr "Objekt %s ei ole kirje"
 
 #, c-format
 msgid "Failed to attach to D-Bus session bus: %s"
-msgstr ""
+msgstr "D-Bus seansisiiniga ühendumine nurjus: %s"
 
 msgid "No metadata extractor available. Will not crawl."
-msgstr ""
+msgstr "Metaandmete lahtipakkijat pole saadaval. Ei alustata andmete kogumist."
 
 #, c-format
 msgid "'%s' harvested"
-msgstr ""
+msgstr "'%s' andmed kogutud"
 
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
-msgstr ""
+msgstr "Viga objekti '%s' hankimisel andmebaasist: %s"
 
 #, c-format
 msgid "Error removing object from database: %s"
-msgstr ""
+msgstr "Viga objekti eemaldamisel andmebaasist: %s"
 
 #. @REALNAME@ is substituted for user's real name
 #. and it doesn't need translation.
 msgid "@REALNAME@'s media"
-msgstr ""
+msgstr "Meedia (@REALNAME@)"
 
 #, c-format
 msgid "Failed to get file info for %s"
-msgstr ""
+msgstr "Faili %s andmete hankimine nurjus"
 
 msgid "Year"
 msgstr "Aasta"
@@ -155,7 +156,7 @@ msgid "Genre"
 msgstr "Žanr"
 
 msgid "Failed to create instance of database"
-msgstr ""
+msgstr "Andmebaasiinstantsi loomine nurjus"
 
 #, c-format
 msgid "Failed to remove URI: %s"
@@ -163,7 +164,7 @@ msgstr "Tõrge URI eemaldamisel: %s"
 
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
-msgstr ""
+msgstr "MediaExport D-Bus teenuse loomine nurjus: %s"
 
 #, c-format
 msgid "Failed to remove entry: %s"
@@ -180,15 +181,15 @@ msgstr "Videod"
 
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
-msgstr ""
+msgstr "Kausta '%s' URI koostamine nurjus: %s"
 
 #, c-format
 msgid "Object creation in %s not allowed"
-msgstr ""
+msgstr "Objekti loomine asukohas %s pole lubatud"
 
 #, c-format
 msgid "Failed to connect to session bus: %s"
-msgstr ""
+msgstr "Seansisiiniga ühendumine nurjus: %s"
 
 #, c-format
 msgid "Error getting all values for '%s': %s"
@@ -196,11 +197,11 @@ msgstr ""
 
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr ""
+msgstr "Trackeri teenuse käivitamine nurjus: %s. Plugin on keelatud."
 
 #, c-format
 msgid "Error getting item count under category '%s': %s"
-msgstr ""
+msgstr "Viga kategooria '%s' kirjete arvu hankimisel: %s"
 
 msgid "Albums"
 msgstr "Albumid"
@@ -209,41 +210,41 @@ msgid "Artists"
 msgstr "Esitajad"
 
 msgid "No such object"
-msgstr ""
+msgstr "Sellist objekti pole"
 
 msgid "Invalid Arguments"
-msgstr "Vigased argumendid"
+msgstr "Sobimatud argumendid"
 
 #, c-format
 msgid "Failed to browse '%s': %s\n"
-msgstr ""
+msgstr "'%s' lehitsemine nurjus: %s\n"
 
 msgid "No value available"
 msgstr ""
 
 msgid "Invalid connection reference"
-msgstr ""
+msgstr "Ühenduse viide pole sobiv"
 
 msgid "No such file transfer"
-msgstr ""
+msgstr "Sellist failiedastust pole"
 
 msgid "Invalid InstanceID"
-msgstr ""
+msgstr "Sobimatu instantsi-ID"
 
 msgid "Play speed not supported"
-msgstr ""
+msgstr "Esituse kiiruse muutmine pole toetatud"
 
 msgid "Seek mode not supported"
-msgstr ""
+msgstr "Kerimine pole toetatud"
 
 msgid "Transition not available"
-msgstr ""
+msgstr "Üleminek pole saadaval"
 
 msgid "Invalid Name"
 msgstr "Vigane nimi"
 
 msgid "Action Failed"
-msgstr ""
+msgstr "Tegevus nurjus"
 
 #, c-format
 msgid "Required element %s missing"
@@ -251,50 +252,50 @@ msgstr ""
 
 #, c-format
 msgid "Invalid Range '%s'"
-msgstr ""
+msgstr "Sobimatu vahemik '%s'"
 
 msgid "Invalid Request"
-msgstr ""
+msgstr "Sobimatu päring"
 
 msgid "Not found"
 msgstr "Ei leitud"
 
 #, c-format
 msgid "Item '%s' didn't provide a URI"
-msgstr ""
+msgstr "Kirje '%s' ei sisalda URI-d"
 
 #, c-format
 msgid "Invalid URI '%s'"
-msgstr ""
+msgstr "Sobimatu URI '%s'"
 
 msgid "Not Found"
-msgstr ""
+msgstr "Ei leitud"
 
 #, c-format
 msgid "No writable URI for %s available"
-msgstr ""
+msgstr "Kirjutatav URI pole %s jaoks saadaval"
 
 #, c-format
 msgid "Requested item '%s' not found"
-msgstr ""
+msgstr "Küsitud kirjet '%s' ei leitud"
 
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
-msgstr ""
+msgstr "'%s' algupärase URI hankimine nurjus: %s"
 
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
-msgstr ""
+msgstr "Kliendilt tulnud DIDL-Lite ei sisalda kirjeid: '%s'"
 
 msgid "'Elements' argument missing."
-msgstr ""
+msgstr "Puudub 'Elements' argument."
 
 msgid "Comments not allowed in XML"
-msgstr ""
+msgstr "XML-is ei ole kommentaarid lubatud"
 
 #, c-format
 msgid "Failed to create item under '%s': %s"
-msgstr ""
+msgstr "Kirje loomine '%s' alla nurjus: %s"
 
 #, c-format
 msgid "Failed to link pad %s to %s"
@@ -302,7 +303,7 @@ msgstr ""
 
 #. 'fakesink' should not be translated
 msgid "Plugin 'fakesink' missing"
-msgstr ""
+msgstr "Plugin 'fakesink' puudub"
 
 #, c-format
 msgid "Failed to link %s to %s"
@@ -318,29 +319,29 @@ msgstr ""
 
 #, c-format
 msgid "Failed to seek to offset %lld"
-msgstr ""
+msgstr "Kerimine kohale %lld nurjus"
 
 #, c-format
 msgid "Failed to get log level from configuration: %s"
-msgstr ""
+msgstr "Seadistusest logimise taseme hankimine nurjus: %s"
 
 #, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d sekundi jooksul ei leitud ühtegi pluginat; loobutakse.."
+msgstr[1] "%d sekundi jooksul ei leitud ühtegi pluginat; loobutakse.."
 
 #, c-format
 msgid "Failed to create root device factory: %s"
-msgstr ""
+msgstr "Juurseadme factory loomine nurjus: %s"
 
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
-msgstr ""
+msgstr "%s jaoks juurseadme loomine nurjus. Põhjus: %s"
 
 #, c-format
 msgid "Failed to start D-Bus service: %s"
-msgstr ""
+msgstr "D-Bus teenuse käivitamine nurjus: %s"
 
 #, c-format
 msgid "Bad URI: %s"
@@ -349,39 +350,39 @@ msgstr "Vigane URI: %s"
 #. Assume the protocol to be the scheme of the URI
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr ""
+msgstr "URI %s protokolli uurimine nurjus. Eeldatakse '%s'"
 
 #, c-format
 msgid "Failed to load user configuration: %s"
-msgstr ""
+msgstr "Kasutaja seadistuse laadimine nurjus: %s"
 
 #, c-format
 msgid "No value set for '%s/enabled'"
-msgstr ""
+msgstr "'%s/enabled' jaoks ei ole väärtust määratud"
 
 #, c-format
 msgid "No value available for '%s/%s'"
-msgstr ""
+msgstr "'%s/%s' jaoks ei ole väärtuseid saadaval"
 
 #, c-format
 msgid "New plugin '%s' available"
-msgstr ""
+msgstr "Saadaval on uus plugin '%s'"
 
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
-msgstr ""
+msgstr "Viga kausta '%s' sisu nimekirja loomisel: %s"
 
 #, c-format
 msgid "Failed to load module from path '%s': %s"
-msgstr ""
+msgstr "Mooduli laadimine asukohast '%s' nurjus: %s"
 
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
-msgstr ""
+msgstr "Sisenemispunkti funktsiooni '%s' ei leitud failist '%s': %s"
 
 #, c-format
 msgid "XML node '%s' not found."
-msgstr ""
+msgstr "XML sõlme '%s' ei leitud."
 
 #, c-format
 msgid "Failed to write modified description to %s"
@@ -403,40 +404,40 @@ msgstr ""
 
 #, c-format
 msgid "Failed to read contents from URI: %s: %s"
-msgstr ""
+msgstr "URI %s sisu lugemine nurjus: %s"
 
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
-msgstr ""
+msgstr "URI %s voo sulgemine nurjus: %s"
 
 msgid "No subtitle available"
-msgstr ""
+msgstr "Subtiitreid pole saadaval"
 
 msgid "Failed to find thumbnails folder."
-msgstr ""
+msgstr "Pisipiltide kataloogi loomine nurjus."
 
 #, c-format
 msgid "No thumbnailer available: %s"
-msgstr ""
+msgstr "Pisipiltide loojat pole saadaval: %s"
 
 msgid "No thumbnail available"
-msgstr ""
+msgstr "Pisipilte pole saadaval"
 
 #, c-format
 msgid "No transcoder available for target format '%s'"
-msgstr ""
+msgstr "Sihtvormingu '%s' jaoks ei leitud ümberkodeerijat"
 
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
-msgstr ""
+msgstr "Seadistusandmete kirjutamine faili '%s' nurjus: %s"
 
 #, c-format
 msgid "No value available for '%s'"
-msgstr ""
+msgstr "'%s' jaoks pole väärtust saadaval"
 
 #, c-format
 msgid "Value of '%s' out of range"
-msgstr ""
+msgstr "'%s' väärtus on väljaspool vahemikku"
 
 #, c-format
 msgid "Failed to start Rygel service: %s"
@@ -447,7 +448,7 @@ msgid "Failed to stop Rygel service: %s"
 msgstr "Tõrge Rygeli teenuse seiskamisel: %s"
 
 msgid "Not Applicable"
-msgstr ""
+msgstr "Pole rakendatav"
 
 #, c-format
 msgid "Failed to write modified description to %s."
