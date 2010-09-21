@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
 "POT-Creation-Date: 2010-09-15 06:53+0000\n"
-"PO-Revision-Date: 2010-09-19 01:04+0300\n"
+"PO-Revision-Date: 2010-09-21 18:48+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgid "Share _Pictures"
 msgstr "_Pildid on jagatud"
 
 msgid "Share _Videos"
-msgstr "_Videode jagamine"
+msgstr "_Videod on jagatud"
 
 msgid "T_itle"
 msgstr "Pe_alkiri"
@@ -85,16 +85,17 @@ msgstr "_Ümberkodeerimise tugi"
 msgid "_URIs"
 msgstr "_URI-d"
 
+#, fuzzy
 msgid "GStreamer Player"
-msgstr "GStreameri esitaja"
+msgstr "GStreameriga esitaja"
 
 #, c-format
 msgid "Failed to open database: %d (%s)"
 msgstr "Tõrge andmebaasi avamisel: %d (%s)"
 
-#, c-format
+#, fuzzy, c-format
 msgid "Failed to roll back transaction: %s"
-msgstr "Ülekande tagasivõtmine nurjus: %s"
+msgstr "Tehingu tagasivõtmine nurjus: %s"
 
 #, c-format
 msgid "Unsupported type %s"
@@ -114,10 +115,10 @@ msgstr "Objekt %s ei ole kirje"
 
 #, c-format
 msgid "Failed to attach to D-Bus session bus: %s"
-msgstr "D-Bus seansi pesa siiniga ühendamine nurjus: %s"
+msgstr "D-Bus seansisiiniga ühendumine nurjus: %s"
 
 msgid "No metadata extractor available. Will not crawl."
-msgstr "Metaandmete lahtipakkijat pole saadaval. Ei alustata indekseerimist."
+msgstr "Metaandmete lahtipakkijat pole saadaval. Ei alustata andmete kogumist."
 
 #, c-format
 msgid "'%s' harvested"
@@ -131,14 +132,15 @@ msgstr "Viga objekti '%s' hankimisel andmebaasist: %s"
 msgid "Error removing object from database: %s"
 msgstr "Viga objekti eemaldamisel andmebaasist: %s"
 
+# seda saab kasutaja muuta ka, kui heaks arvab
 #. @REALNAME@ is substituted for user's real name
 #. and it doesn't need translation.
 msgid "@REALNAME@'s media"
-msgstr "Kasutaja @REALNAME@ meedia"
+msgstr "Meedia (@REALNAME@)"
 
 #, c-format
 msgid "Failed to get file info for %s"
-msgstr "%s faili andmete hankimine nurjus"
+msgstr "Faili %s andmete hankimine nurjus"
 
 msgid "Year"
 msgstr "Aasta"
@@ -155,8 +157,9 @@ msgstr "Album"
 msgid "Genre"
 msgstr "Žanr"
 
+# mul oli mingi hea kaalutlus, miks lahku kirjutada :)
 msgid "Failed to create instance of database"
-msgstr "Andmebaasi instantsi loomine nurjus"
+msgstr "Andmebaasiinstantsi loomine nurjus"
 
 #, c-format
 msgid "Failed to remove URI: %s"
@@ -179,25 +182,26 @@ msgstr "Pildid"
 msgid "Videos"
 msgstr "Videod"
 
+# kas kaustale tehtud uri ei või kausta oma olla?
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "Kausta '%s' URI koostamine nurjus: %s"
 
 #, c-format
 msgid "Object creation in %s not allowed"
-msgstr "Objekti loomine kohta %s ei ole lubatud"
+msgstr "Objekti loomine asukohas %s pole lubatud"
 
 #, c-format
 msgid "Failed to connect to session bus: %s"
-msgstr "Seansi siiniga ühendumine nurjus: %s"
+msgstr "Seansisiiniga ühendumine nurjus: %s"
 
-#, c-format
+#, fuzzy, c-format
 msgid "Error getting all values for '%s': %s"
-msgstr "Kõigi '%s' väärtuste hankimine nurjus: %s"
+msgstr "Viga kõigi väärtuste hankimisel '%s' jaoks: %s"
 
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr "Trackeri teenuse käivitamine nurjus: %s. Plugin keelatud."
+msgstr "Trackeri teenuse käivitamine nurjus: %s. Plugin on keelatud."
 
 #, c-format
 msgid "Error getting item count under category '%s': %s"
@@ -213,29 +217,30 @@ msgid "No such object"
 msgstr "Sellist objekti pole"
 
 msgid "Invalid Arguments"
-msgstr "Vigased argumendid"
+msgstr "Sobimatud argumendid"
 
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "'%s' lehitsemine nurjus: %s\n"
 
+#, fuzzy
 msgid "No value available"
-msgstr "Ühtegi väärtust pole saadaval"
+msgstr "Väärtus pole saadaval"
 
 msgid "Invalid connection reference"
-msgstr "Sobimatu ühenduse viide"
+msgstr "Ühenduse viide pole sobiv"
 
 msgid "No such file transfer"
 msgstr "Sellist failiedastust pole"
 
 msgid "Invalid InstanceID"
-msgstr "Sobimatu instantsi ID"
+msgstr "Sobimatu instantsi-ID"
 
 msgid "Play speed not supported"
-msgstr "Esitamise kiirus pole toetatud"
+msgstr "Esituse kiiruse muutmine pole toetatud"
 
 msgid "Seek mode not supported"
-msgstr "Kerimise režiim pole toetatud"
+msgstr "Kerimine pole toetatud"
 
 msgid "Transition not available"
 msgstr "Üleminek pole saadaval"
@@ -246,7 +251,7 @@ msgstr "Vigane nimi"
 msgid "Action Failed"
 msgstr "Tegevus nurjus"
 
-#, c-format
+#, fuzzy, c-format
 msgid "Required element %s missing"
 msgstr "Nõutud element %s puudub"
 
@@ -273,22 +278,22 @@ msgstr "Ei leitud"
 
 #, c-format
 msgid "No writable URI for %s available"
-msgstr "%s jaoks ei ole saadaval kirjutatavat URI-d"
+msgstr "Kirjutatav URI pole %s jaoks saadaval"
 
 #, c-format
 msgid "Requested item '%s' not found"
-msgstr "Päritud kirjet '%s' ei leitud"
+msgstr "Küsitud kirjet '%s' ei leitud"
 
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
-msgstr "'%s' esialgse URI hankimine nurjus: %s"
+msgstr "'%s' algupärase URI hankimine nurjus: %s"
 
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Kliendilt tulnud DIDL-Lite ei sisalda kirjeid: '%s'"
 
 msgid "'Elements' argument missing."
-msgstr "'Elements' argument puudub."
+msgstr "Puudub 'Elements' argument."
 
 msgid "Comments not allowed in XML"
 msgstr "XML-is ei ole kommentaarid lubatud"
@@ -297,7 +302,7 @@ msgstr "XML-is ei ole kommentaarid lubatud"
 msgid "Failed to create item under '%s': %s"
 msgstr "Kirje loomine '%s' alla nurjus: %s"
 
-#, c-format
+#, fuzzy, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Ploki %s linkimine %s-ga nurjus"
 
@@ -305,17 +310,17 @@ msgstr "Ploki %s linkimine %s-ga nurjus"
 msgid "Plugin 'fakesink' missing"
 msgstr "Plugin 'fakesink' puudub"
 
-#, c-format
+#, fuzzy, c-format
 msgid "Failed to link %s to %s"
 msgstr "%s linkimine %s-ga nurjus"
 
-#, c-format
+#, fuzzy, c-format
 msgid "Error from pipeline %s: %s"
-msgstr "Viga torust %s: %s"
+msgstr "Viga konveierilt %s: %s"
 
-#, c-format
+#, fuzzy, c-format
 msgid "Warning from pipeline %s: %s"
-msgstr "Hoiatus torust %s: %s"
+msgstr "Hoiatus konveierilt %s: %s"
 
 #, c-format
 msgid "Failed to seek to offset %lld"
@@ -384,31 +389,31 @@ msgstr "Sisenemispunkti funktsiooni '%s' ei leitud failist '%s': %s"
 msgid "XML node '%s' not found."
 msgstr "XML sõlme '%s' ei leitud."
 
-#, c-format
+#, fuzzy, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Muudetud kirjelduse kirjutamine %s-le nurjus"
 
-#, c-format
+#, fuzzy, c-format
 msgid "Failed to search in '%s': %s"
 msgstr "Failis '%s' otsimine nurjus: %s"
 
-#, c-format
+#, fuzzy, c-format
 msgid "Failed to read from URI: %s: %s"
-msgstr "URI-st %s lugemine nurjus: %s"
+msgstr "URI-lt %s lugemine nurjus: %s"
 
 #. Failed to seek to media segment (defined by first and last
 #. byte positions).
-#, c-format
+#, fuzzy, c-format
 msgid "Failed to seek to %s-%s on URI %s: %s"
-msgstr "Kerimine kohta %s-%s URI-s %s nurjus: %s"
+msgstr "Kerimine URI $3%s kohta $1%s-$2%s  nurjus: $4%s"
 
 #, c-format
 msgid "Failed to read contents from URI: %s: %s"
-msgstr "Sisu lugemine URI-st %s nurjus: %s"
+msgstr "URI %s sisu lugemine nurjus: %s"
 
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
-msgstr "Voo sulgemine URI-sse %s nurjus: %s"
+msgstr "URI %s voo sulgemine nurjus: %s"
 
 msgid "No subtitle available"
 msgstr "Subtiitreid pole saadaval"
@@ -450,9 +455,9 @@ msgstr "Tõrge Rygeli teenuse seiskamisel: %s"
 msgid "Not Applicable"
 msgstr "Pole rakendatav"
 
-#, c-format
+#, fuzzy, c-format
 msgid "Failed to write modified description to %s."
-msgstr "Muudetud kirjelduse kirjutamine kohta %s nurjus."
+msgstr "Muudetud kirjelduse kirjutamine asukohta %s nurjus."
 
 #, c-format
 msgid "Failed to create preferences dialog: %s"
