@@ -84,8 +84,10 @@ public class Rygel.ImageItem : MediaItem, VisualItem {
                                                 throws Error {
         base.add_proxy_resources (server, didl_item);
 
-        // Thumbnails comes in the end
-        this.add_thumbnail_proxy_resources (server, didl_item);
+        if (!this.place_holder) {
+            // Thumbnails comes in the end
+            this.add_thumbnail_proxy_resources (server, didl_item);
+        }
     }
 
     protected override ProtocolInfo get_protocol_info (string? uri,

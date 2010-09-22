@@ -123,8 +123,13 @@ public abstract class Rygel.MediaItem : MediaObject {
                                         throws Error {
         var res = didl_item.add_resource ();
 
-        if (uri != null) {
+        if (uri != null && !this.place_holder) {
             res.uri = uri;
+        } else {
+            // Set empty string otherwise gupnp-av (libxml actually) will add
+            // a self-enclosing node in the DIDL-Lite which is not very much
+            // appreciated by UPnP devices using crappy XML parsers.
+            res.uri = "";
         }
 
         if (import_uri != null) {
@@ -194,8 +199,10 @@ public abstract class Rygel.MediaItem : MediaObject {
         // Proxy resource for the original resources
         server.add_proxy_resource (didl_item, this);
 
-        // Transcoding resources
-        server.add_resources (didl_item, this);
+        if (!this.place_holder) {
+            // Transcoding resources
+            server.add_resources (didl_item, this);
+        }
     }
 
     protected virtual ProtocolInfo get_protocol_info (string? uri,

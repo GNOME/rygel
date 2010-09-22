@@ -121,7 +121,9 @@ public class Rygel.MusicItem : AudioItem {
         base.add_proxy_resources (server, didl_item);
 
         // Album-art URI comes in the end
-        if (this.album_art != null && server.need_proxy (this.album_art.uri)) {
+        if (!this.place_holder &&
+            this.album_art != null &&
+            server.need_proxy (this.album_art.uri)) {
             var uri = album_art.uri; // Save the original URI
 
             album_art.uri = server.create_uri_for_item (this, 0, -1, null);

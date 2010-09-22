@@ -133,9 +133,13 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
     internal override void add_proxy_resources (HTTPServer   server,
                                                 DIDLLiteItem didl_item)
                                                 throws Error {
-        // Subtitles first
-        foreach (var subtitle in this.subtitles) {
-            if (server.need_proxy (subtitle.uri)) {
+        if (!this.place_holder) {
+            // Subtitles first
+            foreach (var subtitle in this.subtitles) {
+                if (!server.need_proxy (subtitle.uri)) {
+                    continue;
+                }
+
                 var uri = subtitle.uri; // Save the original URI
                 var index = this.subtitles.index_of (subtitle);
 
@@ -152,7 +156,9 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
 
         base.add_proxy_resources (server, didl_item);
 
-        // Thumbnails comes in the end
-        this.add_thumbnail_proxy_resources (server, didl_item);
+        if (!this.place_holder) {
+            // Thumbnails comes in the end
+            this.add_thumbnail_proxy_resources (server, didl_item);
+        }
     }
 }
