@@ -39,9 +39,23 @@ public abstract class Rygel.MediaItem : MediaObject {
     public string mime_type;
     public string dlna_profile;
 
-    public int64 size = -1;     // Size in bytes
+    // Size in bytes
+    private int64 _size = -1;
+    public int64 size {
+        get {
+            return this._size;
+        }
 
-    internal bool place_holder = false;
+        set {
+            if (value == 0) {
+                this.place_holder = true;
+            }
+
+            this._size = value;
+        }
+    }   // Size in bytes
+
+    protected bool place_holder = false;
 
     public MediaItem (string         id,
                       MediaContainer parent,

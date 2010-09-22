@@ -95,7 +95,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                 this.item.mime_type = this.get_generic_mime_type ();
             }
 
-            this.item.place_holder = true;
+            this.item.size = 0;
 
             yield container.add_item (this.item, this.cancellable);
             this.item.serialize (didl_writer, this.content_dir.http_server);
