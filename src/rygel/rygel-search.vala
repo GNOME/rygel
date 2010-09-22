@@ -65,13 +65,20 @@ internal class Rygel.Search:  Rygel.MediaQueryAction {
             throw parser.err;
         }
 
-        var results = yield container.search (parser.expression,
-                                              this.index,
-                                              this.requested_count,
-                                              out this.total_matches,
-                                              this.cancellable);
-
-        return results;
+        if (this.xbox_hacks != null) {
+            return yield this.xbox_hacks.search (container,
+                                                 parser.expression,
+                                                 this.index,
+                                                 this.requested_count,
+                                                 out this.total_matches,
+                                                 this.cancellable);
+        } else {
+            return yield container.search (parser.expression,
+                                           this.index,
+                                           this.requested_count,
+                                           out this.total_matches,
+                                           this.cancellable);
+        }
     }
 
     protected override void handle_error (Error error) {

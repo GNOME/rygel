@@ -85,6 +85,30 @@ internal class Rygel.XBoxHacks : GLib.Object {
         }
     }
 
+    public async MediaObjects? search (MediaContainer container,
+                                       SearchExpression? expression,
+                                       uint              offset,
+                                       uint              max_count,
+                                       out uint          total_matches,
+                                       Cancellable?      cancellable)
+                                       throws Error {
+        var results = yield container.search (expression,
+                                              offset,
+                                              max_count,
+                                              out total_matches,
+                                              cancellable);
+        if (total_matches == 0 && expression is RelationalExpression) {
+            var rel_expression = expression as RelationalExpression;
+
+            if (likely (rel_expression.operand1 != null) &&
+                rel_expression.operand1 == "upnp:class") {
+                total_matches = results.size;
+            }
+        }
+
+        return results;
+    }
+
     private void modify_dms_desc (Xml.Doc doc) {
         Xml.Node *element = XMLUtils.get_element ((Xml.Node *) doc,
                                                   "root",
