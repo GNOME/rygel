@@ -78,6 +78,11 @@ internal class Rygel.HTTPGet : HTTPRequest {
     protected override async void find_item () throws Error {
         yield base.find_item ();
 
+        if (unlikely (this.item.size == 0)) {
+            throw new HTTPRequestError.NOT_FOUND ("Item '%s' is empty",
+                                                  this.item.id);
+        }
+
         if (this.uri.thumbnail_index >= 0) {
             if (this.item is MusicItem) {
                 var music = this.item as MusicItem;
