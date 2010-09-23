@@ -29,6 +29,12 @@ using Gee;
  * are supposed to provide working implementations of get_children.
  */
 public abstract class Rygel.MediaContainer : MediaObject {
+    public const string UPNP_CLASS = "object.container";
+    public const string STORAGE_FOLDER = UPNP_CLASS + ".storageFolder";
+    public const string MUSIC_ALBUM = UPNP_CLASS + ".album.musicAlbum";
+    public const string MUSIC_ARTIST = UPNP_CLASS + ".person.musicArtist";
+    public const string MUSIC_GENRE = UPNP_CLASS + ".genre.musicGenre";
+
     /**
      * container_updated signal that is emitted if a child container under the
      * tree of this container gets updated.
@@ -52,7 +58,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.title = title;
         this.child_count = child_count;
         this.update_id = 0;
-        this.upnp_class = "object.container.storageFolder";
+        this.upnp_class = STORAGE_FOLDER;
         this.create_classes = new ArrayList<string> ();
 
         this.container_updated.connect (on_container_updated);
