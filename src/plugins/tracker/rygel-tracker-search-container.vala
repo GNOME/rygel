@@ -199,6 +199,11 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
         }
 
         var rel_expression = expression as RelationalExpression;
+        if (rel_expression.operand1 == "upnp:class" &&
+            rel_expression.operand2.has_prefix (MediaContainer.UPNP_CLASS)) {
+            return null;
+        }
+
         var query = new SelectionQuery.clone (this.query);
 
         if (rel_expression.operand1 == "@parentID") {
