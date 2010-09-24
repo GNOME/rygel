@@ -36,7 +36,7 @@ msgstr "الملحقات"
 
 #: ../data/rygel-preferences.ui.h:5
 msgid "Rygel Preferences"
-msgstr "تفضيلات ريجل"
+msgstr "تفضيلات رايجل"
 
 #: ../data/rygel-preferences.ui.h:6
 msgid "Select folders"
