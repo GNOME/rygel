@@ -67,7 +67,8 @@ internal class Rygel.XBoxHacks : GLib.Object {
              container_id == "4" ||
              container_id == "5" ||
              container_id == "6" ||
-             container_id == "7") ||
+             container_id == "7" ||
+             container_id == "F") ||
             (action is Browse &&
              container_id == "15" ||
              container_id == "14" ||
