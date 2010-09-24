@@ -33,6 +33,10 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
         AUDIO_ARTIST,
         AUDIO_TRACK_NUM,
         AUDIO_GENRE,
+        SAMPLE_RATE,
+        CHANNELS,
+        BITS_PER_SAMPLE,
+        BITRATE,
 
         LAST_KEY
     }
@@ -56,6 +60,11 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
         this.key_chains[MusicMetadata.AUDIO_ALBUM].add ("nmm:albumTitle");
         this.key_chains[MusicMetadata.AUDIO_TRACK_NUM].add ("nmm:trackNumber");
         this.key_chains[MusicMetadata.AUDIO_GENRE].add ("nfo:genre");
+        this.key_chains[MusicMetadata.SAMPLE_RATE].add ("nfo:sampleRate");
+        this.key_chains[MusicMetadata.CHANNELS].add ("nfo:channels");
+        this.key_chains[MusicMetadata.BITS_PER_SAMPLE].add (
+                                        "nfo:bitsPerSample");
+        this.key_chains[MusicMetadata.BITRATE].add ("nfo:averageBitrate");
     }
 
     public override MediaItem create (string          id,
@@ -81,6 +90,23 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
         if (metadata[MusicMetadata.DURATION] != "" &&
             metadata[MusicMetadata.DURATION] != "0") {
             music.duration = metadata[MusicMetadata.DURATION].to_int ();
+        }
+
+        if (metadata[MusicMetadata.SAMPLE_RATE] != "") {
+            music.sample_freq = metadata[MusicMetadata.SAMPLE_RATE].to_int ();
+        }
+
+        if (metadata[MusicMetadata.CHANNELS] != "") {
+            music.channels = metadata[MusicMetadata.CHANNELS].to_int ();
+        }
+
+        if (metadata[MusicMetadata.BITS_PER_SAMPLE] != "") {
+            var bits_per_sample = metadata[MusicMetadata.BITS_PER_SAMPLE];
+            music.bits_per_sample = bits_per_sample.to_int ();
+        }
+
+        if (metadata[MusicMetadata.BITRATE] != "") {
+            music.bitrate = metadata[MusicMetadata.BITRATE].to_int () / 8;
         }
 
         if (metadata[MusicMetadata.AUDIO_TRACK_NUM] != "") {
