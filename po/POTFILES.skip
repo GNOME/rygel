@@ -38,6 +38,7 @@ src/plugins/tracker/rygel-tracker-selection-query.c
 src/plugins/tracker/rygel-tracker-years.c
 src/plugins/tracker/rygel-tracker-albums.c
 src/plugins/tracker/rygel-tracker-artists.c
+src/plugins/tracker/rygel-tracker-genre.c
 src/rygel/rygel-browse.c
 src/rygel/rygel-cmdline-config.c
 src/rygel/rygel-connection-manager.c
