@@ -444,7 +444,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             values[8] = audio_item.bitrate;
             values[9] = audio_item.sample_freq;
             values[10] = audio_item.bits_per_sample;
-            values[11] = audio_item.n_audio_channels;
+            values[11] = audio_item.channels;
             if (item is MusicItem) {
                 var music_item = item as MusicItem;
                 values[5] = music_item.artist;
@@ -581,8 +581,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             audio_item.sample_freq = statement.column_int (DetailColumn.SAMPLE_FREQ);
             audio_item.bits_per_sample = statement.column_int (
                                         DetailColumn.BITS_PER_SAMPLE);
-            audio_item.n_audio_channels = statement.column_int (
-                                        DetailColumn.CHANNELS);
+            audio_item.channels = statement.column_int (DetailColumn.CHANNELS);
             if (item is MusicItem) {
                 var music_item = item as MusicItem;
                 music_item.artist = statement.column_text (DetailColumn.AUTHOR);

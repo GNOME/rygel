@@ -94,8 +94,8 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
             distance += (audio_item.sample_freq - FREQUENCY).abs ();
         }
 
-        if (audio_item.n_audio_channels > 0) {
-            distance += (audio_item.n_audio_channels - CHANNELS).abs ();
+        if (audio_item.channels > 0) {
+            distance += (audio_item.channels - CHANNELS).abs ();
         }
 
         if (audio_item.bits_per_sample > 0) {

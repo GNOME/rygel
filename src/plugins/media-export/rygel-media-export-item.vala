@@ -127,7 +127,7 @@ namespace Rygel.MediaExport.ItemFactory {
                 audio_info.tags.get_uint (TAG_BITRATE, out tmp);
                 item.bitrate = (int) tmp / 8;
             }
-            item.n_audio_channels = (int) audio_info.channels;
+            item.channels = (int) audio_info.channels;
             item.sample_freq = (int) audio_info.sample_rate;
         }
     }
@@ -149,7 +149,7 @@ namespace Rygel.MediaExport.ItemFactory {
         item.color_depth = (int) video_info.depth;
 
         if (audio_info != null) {
-            item.n_audio_channels = (int) audio_info.channels;
+            item.channels = (int) audio_info.channels;
             item.sample_freq = (int) audio_info.sample_rate;
             if (audio_info.tags != null) {
                 uint tmp;

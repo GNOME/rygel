@@ -35,7 +35,7 @@ public class Rygel.AudioItem : MediaItem {
 
     public int sample_freq = -1;
     public int bits_per_sample = -1;
-    public int n_audio_channels = -1;
+    public int channels = -1;
 
     public AudioItem (string         id,
                       MediaContainer parent,
@@ -60,7 +60,7 @@ public class Rygel.AudioItem : MediaItem {
         res.bitrate = this.bitrate;
         res.sample_freq = this.sample_freq;
         res.bits_per_sample = this.bits_per_sample;
-        res.audio_channels = this.n_audio_channels;
+        res.audio_channels = this.channels;
 
         return res;
     }
