@@ -1,0 +1,640 @@
+# Russian translation for rygel.
+# Copyright (C) 2010 rygel's COPYRIGHT HOLDER
+# This file is distributed under the same license as the rygel package.
+# Alexander Saprykin <xelfium@gmail.com>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: rygel gnome-2-32\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&component=general\n"
+"POT-Creation-Date: 2010-09-22 11:18+0000\n"
+"PO-Revision-Date: 2010-09-23 11:52+0400\n"
+"Last-Translator: Alexander Saprykin <xelfium@gmail.com>\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+
+#: ../data/rygel-preferences.ui.h:1
+msgid "General"
+msgstr "Общие"
+
+#: ../data/rygel-preferences.ui.h:2
+msgid "MPE_G TS"
+msgstr "MPE_G TS"
+
+#: ../data/rygel-preferences.ui.h:3
+msgid "Network Options"
+msgstr "Параметры сети"
+
+#: ../data/rygel-preferences.ui.h:4
+msgid "Plugins"
+msgstr "Модули"
+
+#: ../data/rygel-preferences.ui.h:5
+msgid "Rygel Preferences"
+msgstr "Параметры Rygel"
+
+#: ../data/rygel-preferences.ui.h:6
+msgid "Select folders"
+msgstr "Выбрать папки"
+
+#: ../data/rygel-preferences.ui.h:7
+msgid "Share M_usic"
+msgstr "Общий доступ к папке _Музыка"
+
+#: ../data/rygel-preferences.ui.h:8
+msgid "Share _Pictures"
+msgstr "Общий доступ к папке _Картинки"
+
+#: ../data/rygel-preferences.ui.h:9
+msgid "Share _Videos"
+msgstr "Общий доступ к папке _Видео"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid "T_itle"
+msgstr "Н_азвание"
+
+#: ../data/rygel-preferences.ui.h:11
+msgid "Ti_tle"
+msgstr "Наз_вание"
+
+#: ../data/rygel-preferences.ui.h:13
+#, no-c-format
+msgid ""
+"Write %u for username, %n for real name of the user and %h for host name"
+msgstr ""
+"Используйте %u для имени пользователя, %n для настоящего имени пользователя "
+"и %h для имени узла"
+
+#: ../data/rygel-preferences.ui.h:14
+msgid "_Enable UPnP/DLNA"
+msgstr "Вклю_чить UPnP/DLNA"
+
+#. Network Interface
+#: ../data/rygel-preferences.ui.h:16
+msgid "_Interface"
+msgstr "_Интерфейс"
+
+#: ../data/rygel-preferences.ui.h:17
+msgid "_LPCM"
+msgstr "_LPCM"
+
+#: ../data/rygel-preferences.ui.h:18
+msgid "_MP3"
+msgstr "_MP3"
+
+#: ../data/rygel-preferences.ui.h:19
+msgid "_Media Export"
+msgstr "Экспортировать медиаданные"
+
+#. Network Port
+#: ../data/rygel-preferences.ui.h:21
+msgid "_Port"
+msgstr "_Порт"
+
+#: ../data/rygel-preferences.ui.h:22
+msgid "_Transcoding support"
+msgstr "_Использовать конвертацию"
+
+#: ../data/rygel-preferences.ui.h:23
+msgid "_URIs"
+msgstr "_Список URI"
+
+#: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
+msgid "GStreamer Player"
+msgstr "Проигрыватель GStreamer"
+
+#: ../src/plugins/media-export/rygel-media-export-database.vala:115
+#, c-format
+msgid "Failed to open database: %d (%s)"
+msgstr "Не удалось открыть базу данных: %d (%s)"
+
+#: ../src/plugins/media-export/rygel-media-export-database.vala:236
+#, c-format
+msgid "Failed to roll back transaction: %s"
+msgstr "Не удалось отменить транзакцию: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-database.vala:294
+#, c-format
+msgid "Unsupported type %s"
+msgstr "Неподдерживаемый тип %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
+#: ../src/rygel/rygel-plugin-loader.vala:178
+#, c-format
+msgid "Failed to query content type for '%s'"
+msgstr "Не удалось получить тип содержимого для «%s»"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:86
+#, c-format
+msgid "Failed to add item with ID %s: %s"
+msgstr "Не удалось добавить элемент с ID %s: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:121
+#, c-format
+msgid "Object %s is not an item"
+msgstr "Объект %s не является элементом"
+
+#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:37
+#, c-format
+msgid "Failed to attach to D-Bus session bus: %s"
+msgstr "Не удалось подключиться к сеансовой шине D-Bus: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:58
+msgid "No metadata extractor available. Will not crawl."
+msgstr ""
+"Нет доступного средства для извлечения метаданных. Сбор данных остановлен."
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:101
+#, c-format
+msgid "'%s' harvested"
+msgstr "«%s» получен"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:158
+#, c-format
+msgid "Error fetching object '%s' from database: %s"
+msgstr "Ошибка при получении объекта «%s» из базы данных: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:182
+#, c-format
+msgid "Error removing object from database: %s"
+msgstr "Ошибка при удалении объекта из базы данных: %s"
+
+#. @REALNAME@ is substituted for user's real name
+#. and it doesn't need translation.
+#: ../src/plugins/media-export/rygel-media-export-plugin.vala:78
+#: ../src/plugins/tracker/rygel-tracker-plugin.vala:30
+msgid "@REALNAME@'s media"
+msgstr "Медиаданные пользователя @REALNAME@"
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:77
+#, c-format
+msgid "Failed to get file info for %s"
+msgstr "Не удалось получить информацию о файле для %s"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:30
+#: ../src/plugins/tracker/rygel-tracker-years.vala:35
+msgid "Year"
+msgstr "Год"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:31
+msgid "All"
+msgstr "Все"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:35
+msgid "Artist"
+msgstr "Исполнитель"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:36
+msgid "Album"
+msgstr "Альбом"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:37
+msgid "Genre"
+msgstr "Жанр"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:59
+msgid "Failed to create instance of database"
+msgstr "Не удалось создать экземпляр базы данных"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:88
+#, c-format
+msgid "Failed to remove URI: %s"
+msgstr "Не удалось удалить URI: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:319
+#, c-format
+msgid "Failed to create MediaExport D-Bus service: %s"
+msgstr "Не удалось создать службу D-Bus MediaExport: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:357
+#, c-format
+msgid "Failed to remove entry: %s"
+msgstr "Не удалось удалить элемент: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:368
+msgid "Music"
+msgstr "Музыка"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:371
+msgid "Pictures"
+msgstr "Картинки"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:373
+msgid "Videos"
+msgstr "Видео"
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:41
+#, c-format
+msgid "Failed to construct URI for folder '%s': %s"
+msgstr "Не удалось создать URI для папки «%s»: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-item-creation.vala:73
+#: ../src/rygel/rygel-media-container.vala:213
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr "Создание объекта в %s запрещено"
+
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:60
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:99
+#, c-format
+msgid "Failed to connect to session bus: %s"
+msgstr "Не удалось подключиться к сеансовой шине: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:113
+#, c-format
+msgid "Error getting all values for '%s': %s"
+msgstr "Ошибка при получении всех значений для «%s»: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:34
+#, c-format
+msgid "Failed to start Tracker service: %s. Plugin disabled."
+msgstr "Не удалось запустить службу Tracker: %s. Модуль выключен."
+
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:186
+#, c-format
+msgid "Error getting item count under category '%s': %s"
+msgstr "Ошибка при получении числа элементов в категории «%s»: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-albums.vala:35
+msgid "Albums"
+msgstr "Альбомы"
+
+#: ../src/plugins/tracker/rygel-tracker-artists.vala:35
+msgid "Artists"
+msgstr "Исполнители"
+
+#: ../src/rygel/rygel-media-query-action.vala:121
+#: ../src/rygel/rygel-media-query-action.vala:142
+#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:126
+#: ../src/rygel/rygel-item-creator.vala:159
+msgid "No such object"
+msgstr "Такой объект не существует"
+
+#: ../src/rygel/rygel-browse.vala:63
+msgid "Invalid Arguments"
+msgstr "Неверные параметры"
+
+#: ../src/rygel/rygel-browse.vala:120
+#, c-format
+msgid "Failed to browse '%s': %s\n"
+msgstr "Не удалось просмотреть «%s»: %s\n"
+
+#: ../src/rygel/rygel-cmdline-config.vala:123
+#: ../src/rygel/rygel-cmdline-config.vala:128
+#: ../src/rygel/rygel-cmdline-config.vala:136
+#: ../src/rygel/rygel-cmdline-config.vala:144
+#: ../src/rygel/rygel-cmdline-config.vala:152
+#: ../src/rygel/rygel-cmdline-config.vala:160
+#: ../src/rygel/rygel-cmdline-config.vala:168
+#: ../src/rygel/rygel-cmdline-config.vala:176
+#: ../src/rygel/rygel-cmdline-config.vala:184
+#: ../src/rygel/rygel-cmdline-config.vala:210
+#: ../src/rygel/rygel-cmdline-config.vala:229
+#: ../src/rygel/rygel-cmdline-config.vala:253
+#: ../src/rygel/rygel-cmdline-config.vala:279
+#: ../src/rygel/rygel-cmdline-config.vala:308
+#: ../src/rygel/rygel-cmdline-config.vala:334
+#: ../src/rygel/rygel-cmdline-config.vala:359
+#: ../src/rygel/rygel-meta-config.vala:74
+#: ../src/rygel/rygel-meta-config.vala:93
+#: ../src/rygel/rygel-meta-config.vala:112
+#: ../src/rygel/rygel-meta-config.vala:131
+#: ../src/rygel/rygel-meta-config.vala:150
+#: ../src/rygel/rygel-meta-config.vala:169
+#: ../src/rygel/rygel-meta-config.vala:188
+#: ../src/rygel/rygel-meta-config.vala:207
+#: ../src/rygel/rygel-meta-config.vala:226
+msgid "No value available"
+msgstr "Нет доступного значения"
+
+#: ../src/rygel/rygel-connection-manager.vala:107
+msgid "Invalid connection reference"
+msgstr "Неверная ссылка на соединение"
+
+#: ../src/rygel/rygel-content-directory.vala:197
+#: ../src/rygel/rygel-content-directory.vala:210
+msgid "No such file transfer"
+msgstr "Нет такой передачи файла"
+
+#: ../src/rygel/rygel-av-transport.vala:205
+#: ../src/rygel/rygel-rendering-control.vala:121
+msgid "Invalid InstanceID"
+msgstr "Неверный InstanceID"
+
+#: ../src/rygel/rygel-av-transport.vala:378
+msgid "Play speed not supported"
+msgstr "Скорость воспроизведения не поддерживается"
+
+#: ../src/rygel/rygel-av-transport.vala:417
+#: ../src/rygel/rygel-av-transport.vala:426
+msgid "Seek mode not supported"
+msgstr "Режим перемотки не поддерживается"
+
+#: ../src/rygel/rygel-av-transport.vala:433
+#: ../src/rygel/rygel-av-transport.vala:437
+msgid "Transition not available"
+msgstr "Переход недоступен"
+
+#: ../src/rygel/rygel-rendering-control.vala:152
+msgid "Invalid Name"
+msgstr "Неверное имя"
+
+#: ../src/rygel/rygel-rendering-control.vala:166
+#: ../src/rygel/rygel-rendering-control.vala:237
+msgid "Action Failed"
+msgstr "Не удалось выполнить действие"
+
+#: ../src/rygel/rygel-gst-utils.vala:38
+#, c-format
+msgid "Required element %s missing"
+msgstr "Требуемый элемент %s не найден"
+
+#: ../src/rygel/rygel-http-byte-seek.vala:43
+#: ../src/rygel/rygel-http-byte-seek.vala:49
+#: ../src/rygel/rygel-http-byte-seek.vala:58
+#: ../src/rygel/rygel-http-byte-seek.vala:68
+#: ../src/rygel/rygel-http-byte-seek.vala:72
+#: ../src/rygel/rygel-http-time-seek.vala:50
+#: ../src/rygel/rygel-http-time-seek.vala:59
+#: ../src/rygel/rygel-http-time-seek.vala:69
+#: ../src/rygel/rygel-http-time-seek.vala:73
+#, c-format
+msgid "Invalid Range '%s'"
+msgstr "Неверный диапазон «%s»"
+
+#: ../src/rygel/rygel-http-get.vala:59
+msgid "Invalid Request"
+msgstr "Неверный запрос"
+
+#: ../src/rygel/rygel-http-identity-handler.vala:97
+#: ../src/rygel/rygel-http-transcode-handler.vala:56
+msgid "Not found"
+msgstr "Не найдено"
+
+#: ../src/rygel/rygel-http-identity-handler.vala:109
+#, c-format
+msgid "Item '%s' didn't provide a URI"
+msgstr "Элемент «%s» не предоставил URI"
+
+#: ../src/rygel/rygel-http-item-uri.vala:58
+#, c-format
+msgid "Invalid URI '%s'"
+msgstr "Неверный URI «%s»"
+
+#: ../src/rygel/rygel-http-item-uri.vala:89
+msgid "Not Found"
+msgstr "Не найдено"
+
+#: ../src/rygel/rygel-http-post.vala:50
+#, c-format
+msgid "No writable URI for %s available"
+msgstr "Нет доступного для записи URI для %s"
+
+#: ../src/rygel/rygel-http-request.vala:83
+#, c-format
+msgid "Requested item '%s' not found"
+msgstr "Запрашиваемый элемент «%s» не найден"
+
+#: ../src/rygel/rygel-import-resource.vala:108
+#, c-format
+msgid "Failed to get original URI for '%s': %s"
+msgstr "Не удалось получить исходный URI для «%s»: %s"
+
+#: ../src/rygel/rygel-item-creator.vala:67
+#, c-format
+msgid "No items in DIDL-Lite from client: '%s'"
+msgstr "Нет элементов в DIDL-Lite от клиента: «%s»"
+
+#: ../src/rygel/rygel-item-creator.vala:117
+msgid "'Elements' argument missing."
+msgstr "Пропущен параметр «Elements»."
+
+#: ../src/rygel/rygel-item-creator.vala:120
+msgid "Comments not allowed in XML"
+msgstr "Комментарии в XML запрещены"
+
+#: ../src/rygel/rygel-item-creator.vala:184
+#, c-format
+msgid "Failed to create item under '%s': %s"
+msgstr "Не удалось создать элемент в «%s»: %s"
+
+#: ../src/rygel/rygel-l16-transcoder-bin.vala:66
+#: ../src/rygel/rygel-live-response.vala:150
+#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:109
+#: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
+#: ../src/rygel/rygel-wma-transcoder-bin.vala:58
+#: ../src/rygel/rygel-wmv-transcoder-bin.vala:107
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr "Не удалось соединить контакт %s с %s"
+
+#. 'fakesink' should not be translated
+#: ../src/rygel/rygel-live-response.vala:92
+msgid "Plugin 'fakesink' missing"
+msgstr "Не хватает модуля «fakesink»"
+
+#: ../src/rygel/rygel-live-response.vala:115
+#: ../src/rygel/rygel-live-response.vala:137
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr "Не удалось соединить %s с %s"
+
+#: ../src/rygel/rygel-live-response.vala:225
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr "Ошибка в конвейере %s: %s"
+
+#: ../src/rygel/rygel-live-response.vala:232
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr "Предупреждение в конвейере %s: %s"
+
+#: ../src/rygel/rygel-live-response.vala:266
+#, c-format
+msgid "Failed to seek to offset %lld"
+msgstr "Не удалось перемотать на смещение %lld"
+
+#: ../src/rygel/rygel-log-handler.vala:62
+#, c-format
+msgid "Failed to get log level from configuration: %s"
+msgstr "Не удалось получить уровень ведения журнала из конфигурации: %s"
+
+#: ../src/rygel/rygel-main.vala:80
+#, c-format
+msgid "No plugins found in %d second; giving up.."
+msgid_plural "No plugins found in %d seconds; giving up.."
+msgstr[0] "Ни одного модуля не найдено за %d секунду; пропуск.."
+msgstr[1] "Ни одного модуля не найдено за %d секунды; пропуск.."
+msgstr[2] "Ни одного модуля не найдено за %d секунд; пропуск.."
+
+#: ../src/rygel/rygel-main.vala:141
+#, c-format
+msgid "Failed to create root device factory: %s"
+msgstr "Не удалось создать фабрику для корневого устройства: %s"
+
+#: ../src/rygel/rygel-main.vala:192
+#, c-format
+msgid "Failed to create RootDevice for %s. Reason: %s"
+msgstr "Не удалось создать RootDevice для %s. Причина: %s"
+
+#: ../src/rygel/rygel-main.vala:226
+#, c-format
+msgid "Failed to start D-Bus service: %s"
+msgstr "Не удалось запустить службу D-Bus: %s"
+
+#: ../src/rygel/rygel-media-item.vala:216
+#, c-format
+msgid "Bad URI: %s"
+msgstr "Некорректный URI: %s"
+
+#. Assume the protocol to be the scheme of the URI
+#: ../src/rygel/rygel-media-item.vala:228
+#, c-format
+msgid "Failed to probe protocol for URI %s. Assuming '%s'"
+msgstr "Не удалось определить протокол для URI %s. Предположительно «%s»"
+
+#: ../src/rygel/rygel-meta-config.vala:57
+#, c-format
+msgid "Failed to load user configuration: %s"
+msgstr "Не удалось загрузить конфигурацию пользователя: %s"
+
+#: ../src/rygel/rygel-meta-config.vala:265
+#: ../src/rygel/rygel-meta-config.vala:284
+#, c-format
+msgid "No value set for '%s/enabled'"
+msgstr "Значение для «%s/включено» не установлено"
+
+#: ../src/rygel/rygel-meta-config.vala:304
+#: ../src/rygel/rygel-meta-config.vala:326
+#: ../src/rygel/rygel-meta-config.vala:352
+#: ../src/rygel/rygel-meta-config.vala:374
+#: ../src/rygel/rygel-meta-config.vala:398
+#, c-format
+msgid "No value available for '%s/%s'"
+msgstr "Нет доступного значения для «%s/%s»"
+
+#: ../src/rygel/rygel-plugin-loader.vala:71
+#, c-format
+msgid "New plugin '%s' available"
+msgstr "Доступен новый модуль «%s»"
+
+#: ../src/rygel/rygel-plugin-loader.vala:109
+#, c-format
+msgid "Error listing contents of folder '%s': %s"
+msgstr "Ошибка при построении списка содержимого папки «%s»: %s"
+
+#: ../src/rygel/rygel-plugin-loader.vala:141
+#, c-format
+msgid "Failed to load module from path '%s': %s"
+msgstr "Не удалось загрузить модуль из «%s»: %s"
+
+#: ../src/rygel/rygel-plugin-loader.vala:151
+#, c-format
+msgid "Failed to find entry point function '%s' in '%s': %s"
+msgstr "Не удалось найти функцию точки входа «%s» в «%s»: %s"
+
+#: ../src/rygel/rygel-root-device-factory.vala:112
+#: ../src/rygel/rygel-root-device-factory.vala:147
+#: ../src/rygel/rygel-root-device-factory.vala:169
+#: ../src/rygel/rygel-root-device-factory.vala:188
+#, c-format
+msgid "XML node '%s' not found."
+msgstr "XML-узел «%s» не найден."
+
+#: ../src/rygel/rygel-root-device-factory.vala:294
+#, c-format
+msgid "Failed to write modified description to %s"
+msgstr "Не удалось записать изменённое описание для %s"
+
+#: ../src/rygel/rygel-search.vala:78
+#, c-format
+msgid "Failed to search in '%s': %s"
+msgstr "Не удалось осуществить поиск в «%s»: %s"
+
+#: ../src/rygel/rygel-seekable-response.vala:62
+#, c-format
+msgid "Failed to read from URI: %s: %s"
+msgstr "Не удалось прочитать по URI: %s: %s"
+
+#. Failed to seek to media segment (defined by first and last
+#. byte positions).
+#: ../src/rygel/rygel-seekable-response.vala:81
+#, c-format
+msgid "Failed to seek to %s-%s on URI %s: %s"
+msgstr "Не удалось перемотать на %s-%s по URI %s: %s"
+
+#: ../src/rygel/rygel-seekable-response.vala:100
+#, c-format
+msgid "Failed to read contents from URI: %s: %s"
+msgstr "Не удалось прочитать содержимое по URI: %s: %s"
+
+#: ../src/rygel/rygel-seekable-response.vala:154
+#, c-format
+msgid "Failed to close stream to URI %s: %s"
+msgstr "Не удалось закрыть поток по URI %s: %s"
+
+#: ../src/rygel/rygel-subtitle-manager.vala:66
+msgid "No subtitle available"
+msgstr "Нет доступных субтитров"
+
+#: ../src/rygel/rygel-thumbnailer.vala:56
+msgid "Failed to find thumbnails folder."
+msgstr "Не удалось найти папку с миниатюрами."
+
+#: ../src/rygel/rygel-thumbnailer.vala:82
+#, c-format
+msgid "No thumbnailer available: %s"
+msgstr "Нет доступных программ для создания миниатюр: %s"
+
+#: ../src/rygel/rygel-thumbnailer.vala:106
+msgid "No thumbnail available"
+msgstr "Нет доступных миниатюр"
+
+#: ../src/rygel/rygel-transcode-manager.vala:118
+#, c-format
+msgid "No transcoder available for target format '%s'"
+msgstr "Нет доступных конвертеров для формата «%s»"
+
+#: ../src/rygel/rygel-user-config.vala:197
+#, c-format
+msgid "Failed to save configuration data to file '%s': %s"
+msgstr "Не удалось сохранить данные конфигурации в файл «%s»: %s"
+
+#: ../src/rygel/rygel-user-config.vala:217
+#, c-format
+msgid "No value available for '%s'"
+msgstr "Нет доступного значения для «%s»"
+
+#: ../src/rygel/rygel-user-config.vala:246
+#, c-format
+msgid "Value of '%s' out of range"
+msgstr "Значение «%s» вне допустимого диапазона"
+
+#: ../src/rygel/rygel-user-config.vala:350
+#, c-format
+msgid "Failed to start Rygel service: %s"
+msgstr "Не удалось запустить службу Rygel: %s"
+
+#: ../src/rygel/rygel-user-config.vala:352
+#, c-format
+msgid "Failed to stop Rygel service: %s"
+msgstr "Не удалось остановить службу Rygel: %s"
+
+#: ../src/rygel/rygel-xbox-hacks.vala:42
+msgid "Not Applicable"
+msgstr "Неприменимо"
+
+#: ../src/rygel/rygel-xbox-hacks.vala:153
+#, c-format
+msgid "Failed to write modified description to %s."
+msgstr "Не удалось записать изменённое описание для %s"
+
+#: ../src/ui/rygel-preferences-dialog.vala:72
+#, c-format
+msgid "Failed to create preferences dialog: %s"
+msgstr "Не удалось создать диалоговое окно с параметрами: %s"
