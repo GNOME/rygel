@@ -164,11 +164,11 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
     }
 
     public string create_child_id_for_urn (string urn) {
-        return this.id + ":" + urn;
+        return this.id + "," + urn;
     }
 
     private bool is_our_child (string id) {
-        return id.has_prefix (this.id + ":");
+        return id.has_prefix (this.id + ",");
     }
 
     private async void get_children_count () {
@@ -273,7 +273,7 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
     // if item_id is invalid
     private string? get_item_info (string     item_id,
                                    out string parent_id) {
-        var tokens = item_id.split (":", 2);
+        var tokens = item_id.split (",", 2);
 
         if (tokens[0] != null && tokens[1] != null) {
             parent_id = tokens[0];
