@@ -187,6 +187,7 @@ else
 fi
 
 AC_SUBST(HAVE_GTK)
+AC_SUBST(GTK_VAPI_VERSION)
 AM_CONDITIONAL(BUILD_UI, test x$BUILD_UI = xyes)
 
 # Build test plugin
