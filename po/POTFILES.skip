@@ -88,6 +88,7 @@ src/rygel/rygel-changelog.c
 src/rygel/rygel-media-query-action.c
 src/ui/rygel-preferences-dialog.c
 data/rygel.desktop.in
+data/rygel-preferences.desktop.in
 tests/rygel-gst-utils.c
 tests/rygel-http-byte-seek.c
 tests/rygel-http-item-uri.c
