@@ -1,3 +1,56 @@
+0.8.0
+=====
+
+The first release in the new stable 0.8.x series for GNOME 2.32.
+
+- Don't add 'modelDescription' node in device description if already added.
+- Generate XML files from templates at build time so we can strip out
+  newlines and leading whitespace to improve our IOP with some devices in
+  the market that use some crappy XML parsers.
+- Don't let libxml add a newline after the 'xml' header node.
+- rygel-preferences:
+  - Use correct Gtk+ Vala API version.
+- MediaExport:
+  - Add null checks to avoid crash in environments where standard XDG folders
+    are undefined or unknown to glib.
+- Localization:
+  - Make .desktop files translatable.
+  - Add Lithuanian translation.
+  - Add Arabic translation
+  - Add Brazilian Portuguese translation.
+  - Add Indonesian translation.
+  - Update simplified Chinese translation.
+  - Update Traditional Chinese (Hong Kong and Taiwan) translation.
+  - Update Estonian translation.
+  - Add Estonian (et) to LINGUAS.
+  - Update Danish translation.
+  - Update Russian translation.
+  - Update Dutch translation.
+
+Bugs fixed in this release:
+
+626196 - OPPO DBP-80/83 (Actually fixed this time)
+629378 - Make the .desktop files localizable
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Alexander Saprykin <xelfium@gmail.com>
+Aron Xu <aronxu@gnome.org>
+Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Dirgita <dirgitadevina@yahoo.co.id>
+Djavan Fagundes <djavan@comum.org>
+Gabor Kelemen <kelemeng@gnome.hu>
+Ivar Smolin <okul@linux.ee>
+Kenneth Nielsen <k.nielsen81@gmail.com>
+Khaled Hosny <khaledhosny@eglug.org>
+Mattias Põldaru <mahfiaz gmail com>
+Priit Laes <plaes@plaes.org>
+Wouter Bolsterlee <wbolster@gnome.org>
+Žygimantas Beručka <zygis@gnome.org>
+Mario Blätterman
+Wouter Bolsterlee
+
 0.7.8
 =====
 
