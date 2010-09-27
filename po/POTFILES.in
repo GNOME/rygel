@@ -5,12 +5,12 @@
 [type: gettext/glade]data/rygel-preferences.ui
 data/rygel-preferences.desktop.in.in
 data/rygel.desktop.in.in
-data/xml/AVTransport2.xml
-data/xml/ConnectionManager.xml
-data/xml/ContentDirectory.xml
-data/xml/MediaRenderer2.xml
-data/xml/MediaServer2.xml
-data/xml/RenderingControl2.xml
+data/xml/AVTransport2.xml.in
+data/xml/ConnectionManager.xml.in
+data/xml/ContentDirectory.xml.in
+data/xml/MediaRenderer2.xml.in
+data/xml/MediaServer2.xml.in
+data/xml/RenderingControl2.xml.in
 src/plugins/external/rygel-external-container.vala
 src/plugins/external/rygel-external-icon-factory.vala
 src/plugins/external/rygel-external-interfaces.vala

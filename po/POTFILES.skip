@@ -88,6 +88,12 @@ src/rygel/rygel-media-query-action.c
 src/ui/rygel-preferences-dialog.c
 data/rygel.desktop.in
 data/rygel-preferences.desktop.in
+data/xml/AVTransport2.xml
+data/xml/ConnectionManager.xml
+data/xml/ContentDirectory.xml
+data/xml/MediaRenderer2.xml
+data/xml/MediaServer2.xml
+data/xml/RenderingControl2.xml
 tests/rygel-gst-utils.c
 tests/rygel-http-byte-seek.c
 tests/rygel-http-item-uri.c
