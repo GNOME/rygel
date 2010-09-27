@@ -30,8 +30,10 @@ config.status
 configure
 data/org.gnome.Rygel.service
 data/rygel-preferences.desktop
+data/rygel-preferences.desktop.in
 data/rygel.conf
 data/rygel.desktop
+data/rygel.desktop.in
 data/xml/AVTransport2.xml
 data/xml/ConnectionManager.xml
 data/xml/ContentDirectory.xml
