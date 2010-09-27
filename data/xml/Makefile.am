@@ -15,5 +15,6 @@ $(xml_DATA): $(xml_in_files) Makefile
 xmldir = $(datadir)/rygel/xml
 
 EXTRA_DIST = $(xml_DATA) $(xml_in_files)
+CLEANFILES = $(xml_DATA)
 
 MAINTAINERCLEANFILES = Makefile.in
