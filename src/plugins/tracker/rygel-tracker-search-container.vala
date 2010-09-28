@@ -125,10 +125,8 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
                                                 Cancellable?      cancellable)
                                                 throws GLib.Error {
         var results = new MediaObjects ();
-        var query = this.create_query (expression,
-                                       (int) offset,
-                                       (int) max_count);
-        if (query == null) {
+
+        if (expression == null || !(expression is RelationalExpression)) {
             return yield base.search (expression,
                                       offset,
                                       max_count,
@@ -136,16 +134,21 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
                                       cancellable);
         }
 
-        yield query.execute (this.resources);
+        var query = this.create_query (expression as RelationalExpression,
+                                       (int) offset,
+                                       (int) max_count);
+        if (query != null) {
+            yield query.execute (this.resources);
 
-        /* Iterate through all items */
-        for (uint i = 0; i < query.result.length[0]; i++) {
-            var id = this.create_child_id_for_urn (query.result[i, 0]);
-            var uri = query.result[i, 1];
-            string[] metadata = this.slice_strvv_tail (query.result, i, 2);
+            /* Iterate through all items */
+            for (uint i = 0; i < query.result.length[0]; i++) {
+                var id = this.create_child_id_for_urn (query.result[i, 0]);
+                var uri = query.result[i, 1];
+                string[] metadata = this.slice_strvv_tail (query.result, i, 2);
 
-            var item = this.item_factory.create (id, uri, this, metadata);
-            results.add (item);
+                var item = this.item_factory.create (id, uri, this, metadata);
+                results.add (item);
+            }
         }
 
         total_matches = results.size;
@@ -191,27 +194,22 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
         }
     }
 
-    private SelectionQuery? create_query (SearchExpression? expression,
-                                          int               offset,
-                                          int               max_count) {
-        if (expression == null || !(expression is RelationalExpression)) {
-            return null;
-        }
-
-        var rel_expression = expression as RelationalExpression;
-        if (rel_expression.operand1 == "upnp:class" &&
-            rel_expression.operand2.has_prefix (MediaContainer.UPNP_CLASS)) {
+    private SelectionQuery? create_query (RelationalExpression? expression,
+                                          int                   offset,
+                                          int                   max_count) {
+        if (expression.operand1 == "upnp:class" &&
+            expression.operand2.has_prefix (MediaContainer.UPNP_CLASS)) {
             return null;
         }
 
         var query = new SelectionQuery.clone (this.query);
 
-        if (rel_expression.operand1 == "@parentID") {
-            if (!rel_expression.compare_string (this.id)) {
+        if (expression.operand1 == "@parentID") {
+            if (!expression.compare_string (this.id)) {
                 return null;
             }
         } else {
-            var filter = create_filter_for_child (rel_expression);
+            var filter = create_filter_for_child (expression);
             if (filter != null) {
                 query.filters.insert (0, filter);
             } else {
