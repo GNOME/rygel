@@ -421,22 +421,22 @@ public class Rygel.MediaExport.MediaCache : Object {
         // Fill common properties
         GLib.Value[] values = { item.size,
                                 item.mime_type,
-                                0,
-                                0,
+                                -1,
+                                -1,
                                 item.upnp_class,
-                                0,
-                                0,
+                                Database.null (),
+                                Database.null (),
                                 item.date,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
+                                -1,
+                                -1,
+                                -1,
+                                -1,
+                                -1,
+                                -1,
+                                -1,
                                 item.id,
                                 item.dlna_profile,
-                                0};
+                                Database.null ()};
 
         if (item is AudioItem) {
             var audio_item = item as AudioItem;
