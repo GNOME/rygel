@@ -198,7 +198,7 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
                                           int                   offset,
                                           int                   max_count) {
         if (expression.operand1 == "upnp:class" &&
-            expression.operand2.has_prefix (MediaContainer.UPNP_CLASS)) {
+            !this.item_factory.upnp_class.has_prefix (expression.operand2)) {
             return null;
         }
 
@@ -208,7 +208,7 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
             if (!expression.compare_string (this.id)) {
                 return null;
             }
-        } else {
+        } else if (expression.operand1 != "upnp:class") {
             var filter = create_filter_for_child (expression);
             if (filter != null) {
                 query.filters.insert (0, filter);
