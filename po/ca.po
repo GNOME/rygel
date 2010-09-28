@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-29 01:16+0200\n"
-"PO-Revision-Date: 2010-09-13 23:08+0200\n"
+"POT-Creation-Date: 2010-09-29 01:17+0200\n"
+"PO-Revision-Date: 2010-09-29 01:18+0200\n"
 "Last-Translator: Joan Duran <jodufi@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -104,17 +104,16 @@ msgid "_URIs"
 msgstr "_URI"
 
 #: ../data/rygel-preferences.desktop.in.in.h:2
-#, fuzzy
 msgid "UPnP/DLNA Preferences"
-msgstr "Preferències del Rygel"
+msgstr "Preferències UPnP/DLNA"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
-msgstr ""
+msgstr "Rygel"
 
 #: ../data/rygel.desktop.in.in.h:2
 msgid "UPnP/DLNA Services"
-msgstr ""
+msgstr "Serveis UPnP/DLNA"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
 msgid "GStreamer Player"
@@ -206,7 +205,6 @@ msgid "Album"
 msgstr "Àlbum"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:37
-#: ../src/plugins/tracker/rygel-tracker-genre.vala:33
 msgid "Genre"
 msgstr "Gènere"
 
@@ -247,18 +245,18 @@ msgid "Failed to construct URI for folder '%s': %s"
 msgstr "No s'ha pogut construir l'URI per a la carpeta «%s»: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-item-creation.vala:73
-#: ../src/rygel/rygel-media-container.vala:219
+#: ../src/rygel/rygel-media-container.vala:213
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "No es permet la creació d'objectes a %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:64
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:60
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:99
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr "No s'ha pogut connectar al bus de sessió: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:117
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:113
 #, c-format
 msgid "Error getting all values for '%s': %s"
 msgstr "S'ha produït un error en obtenir tots els valors de «%s»: %s"
@@ -269,7 +267,7 @@ msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr ""
 "No s'ha pogut iniciar el servei Tracker: %s. S'inhabilita el connector."
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:189
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:186
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr ""
@@ -283,8 +281,8 @@ msgstr "Àlbums"
 msgid "Artists"
 msgstr "Artistes"
 
-#: ../src/rygel/rygel-media-query-action.vala:117
-#: ../src/rygel/rygel-media-query-action.vala:138
+#: ../src/rygel/rygel-media-query-action.vala:121
+#: ../src/rygel/rygel-media-query-action.vala:142
 #: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:126
 #: ../src/rygel/rygel-item-creator.vala:159
 msgid "No such object"
@@ -501,13 +499,13 @@ msgstr "No s'ha pogut crear el RootDevice per a %s. El motiu és: %s"
 msgid "Failed to start D-Bus service: %s"
 msgstr "No s'ha pogut iniciar el servei D-Bus: %s"
 
-#: ../src/rygel/rygel-media-item.vala:233
+#: ../src/rygel/rygel-media-item.vala:216
 #, c-format
 msgid "Bad URI: %s"
 msgstr "L'URI és incorrecte: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:245
+#: ../src/rygel/rygel-media-item.vala:228
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "No s'ha pogut explorar el protocol per a l'URI %s. S'assumeix «%s»"
@@ -566,7 +564,7 @@ msgstr "No s'ha trobat el node XML «%s»."
 msgid "Failed to write modified description to %s"
 msgstr "No s'ha pogut escriure la descripció modificada a %s"
 
-#: ../src/rygel/rygel-search.vala:85
+#: ../src/rygel/rygel-search.vala:78
 #, c-format
 msgid "Failed to search in '%s': %s"
 msgstr "No s'ha pogut cercar a «%s»: %s"
@@ -644,7 +642,7 @@ msgstr "No s'ha pogut aturar el servei Rygel: %s"
 msgid "Not Applicable"
 msgstr "No és aplicable"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:178
+#: ../src/rygel/rygel-xbox-hacks.vala:153
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "No s'ha pogut escriure la descripció modificada a %s."
