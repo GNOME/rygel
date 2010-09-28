@@ -7,10 +7,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-12 01:13+0200\n"
-"PO-Revision-Date: 2010-09-06 16:39+0200\n"
-"Last-Translator: Christian Kirbach  <Christian.Kirbach@googlemail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&component=general\n"
+"POT-Creation-Date: 2010-09-27 21:55+0000\n"
+"PO-Revision-Date: 2010-09-28 06:37+0100\n"
+"Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +36,7 @@ msgstr "Netzwerkoptionen"
 msgid "Plugins"
 msgstr "Plugins"
 
-#: ../data/rygel-preferences.ui.h:5
+#: ../data/rygel-preferences.ui.h:5 ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
 msgstr "Rygel Einstellungen"
 
@@ -65,8 +66,7 @@ msgstr "Ti_tel"
 
 #: ../data/rygel-preferences.ui.h:13
 #, no-c-format
-msgid ""
-"Write %u for username, %n for real name of the user and %h for host name"
+msgid "Write %u for username, %n for real name of the user and %h for host name"
 msgstr ""
 "Schreiben Sie %u als Benutzername, %n als echter Name und %h als Rechnername"
 
@@ -103,6 +103,18 @@ msgstr "Un_terstützung für Umwandlung"
 #: ../data/rygel-preferences.ui.h:23
 msgid "_URIs"
 msgstr "_Adressen"
+
+#: ../data/rygel-preferences.desktop.in.in.h:2
+msgid "UPnP/DLNA Preferences"
+msgstr "UPnP/DLNA-Einstellungen"
+
+#: ../data/rygel.desktop.in.in.h:1
+msgid "Rygel"
+msgstr "Rygel"
+
+#: ../data/rygel.desktop.in.in.h:2
+msgid "UPnP/DLNA Services"
+msgstr "UPnP/DLNA-Dienste"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
 msgid "GStreamer Player"
@@ -153,12 +165,12 @@ msgstr "Kein Extrahierer für Metadaten verfügbar. Es wird nicht gesucht."
 msgid "'%s' harvested"
 msgstr "»%s« wurde abgesucht"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:155
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:158
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Fehler beim Holen des Objekts »%s« aus der Datenbank: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:179
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:182
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Fehler beim Entfernen des Objekts aus der Datenbank: %s"
@@ -205,25 +217,25 @@ msgstr "Erstellung einer Datenbankinstanz ist fehlgeschlagen"
 msgid "Failed to remove URI: %s"
 msgstr "Entfernen der Adresse ist fehlgeschlagen: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:319
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:325
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "DBus-Dienst »MediaExport« konnte nicht eingerichtet werden: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:357
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:363
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Entfernen des Eintrags ist fehlgeschlagen: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:368
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:374
 msgid "Music"
 msgstr "Musik"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:371
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:377
 msgid "Pictures"
 msgstr "Bilder"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:373
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:379
 msgid "Videos"
 msgstr "Videos"
 
@@ -542,13 +554,13 @@ msgstr "Eintrittspunktsfunktion »%s« konnte nicht in %s gefunden werden:%s"
 #: ../src/rygel/rygel-root-device-factory.vala:112
 #: ../src/rygel/rygel-root-device-factory.vala:145
 #: ../src/rygel/rygel-root-device-factory.vala:167
-#: ../src/rygel/rygel-root-device-factory.vala:186
-#: ../src/rygel/rygel-root-device-factory.vala:201
+#: ../src/rygel/rygel-root-device-factory.vala:198
 #, c-format
 msgid "XML node '%s' not found."
 msgstr "XML-Knoten »%s« wurde nicht gefunden."
 
-#: ../src/rygel/rygel-root-device-factory.vala:307
+#: ../src/rygel/rygel-root-device-factory.vala:300
+#: ../src/rygel/rygel-root-device-factory.vala:310
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Geänderte Beschreibung konnte nicht in %s gespeichert werden"
@@ -864,8 +876,7 @@ msgstr "Einstellungsdialog konnte nicht erzeugt werden: %s"
 
 #~ msgid "Could not get RSS from configuration, using defaults"
 #~ msgstr ""
-#~ "RSS konnte nicht aus Konfiguration ermittelt werden, Vorgabe wird "
-#~ "verwendet"
+#~ "RSS konnte nicht aus Konfiguration ermittelt werden, Vorgabe wird verwendet"
 
 #~ msgid "Feed has not changed, nothing to do"
 #~ msgstr "Quelle wurde nicht geändert, nichts zu tun"
