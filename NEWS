@@ -1,3 +1,33 @@
+0.8.1
+=====
+
+Changes since 0.8.0:
+
+- Localization:
+  - Make i18n actually work.
+  - Update Brazilian Portuguese translation.
+  - Update Slovenian translation.
+  - Update Czech translation.
+  - Update Bulgarian translation.
+  - Update German translation.
+  - Update Russian translation.
+  - Update Galician translation.
+
+Bugs fixed in this release:
+
+630817 - Make i18n actually work
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jonh Wendell <jwendell@gnome.org>
+Andrej Žnidaršič <andrej.znidarsic@gmail.com>
+Marek Černocký <marek@manet.cz>
+Rosi Dimova <pocu@bk.ru>
+Mario Blättermann <mariobl@gnome.org>
+Yuri Myasoedov <ymyasoedov@src.gnome.org>
+Fran Diéguez <fran.dieguez@mabishu.com>
+
 0.8.0
 =====
 
