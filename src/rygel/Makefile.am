@@ -25,7 +25,8 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -DDATA_DIR='"$(shareddir)"' -DSYS_CONFIG_DIR='"$(sysconfdir)"'\
 	    -DPLUGIN_DIR='"$(plugindir)"' -DDESKTOP_DIR='"$(desktopdir)"'\
 	    -DSMALL_ICON_DIR='"$(smallicondir)"' \
-	    -DBIG_ICON_DIR='"$(bigicondir)"' -include config.h
+	    -DBIG_ICON_DIR='"$(bigicondir)"' -include config.h \
+	    -DLOCALEDIR=\""$(datadir)/locale"\"
 
 librygelincdir = $(includedir)/rygel-1.0
 
