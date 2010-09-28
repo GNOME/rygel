@@ -51,4 +51,10 @@ public class Rygel.BuildConfig {
 
     [CCode (cname = "PACKAGE_STRING")]
     public static const string PACKAGE_STRING;
+
+    [CCode (cname = "GETTEXT_PACKAGE")]
+    public static const string GETTEXT_PACKAGE;
+
+    [CCode (cname = "LOCALEDIR")]
+    public static const string LOCALEDIR;
 }

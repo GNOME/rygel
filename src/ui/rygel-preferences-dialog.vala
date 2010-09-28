@@ -62,6 +62,12 @@ public class Rygel.PreferencesDialog : GLib.Object {
     }
 
     public static int main (string[] args) {
+        Intl.setlocale (LocaleCategory.ALL, "");
+        Intl.bindtextdomain (BuildConfig.GETTEXT_PACKAGE,
+                             BuildConfig.LOCALEDIR);
+        Intl.bind_textdomain_codeset (BuildConfig.GETTEXT_PACKAGE, "UTF-8");
+        Intl.textdomain (BuildConfig.GETTEXT_PACKAGE);
+
         Gtk.init (ref args);
 
         try {

@@ -18,7 +18,8 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBSOUP_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
 	    -I$(top_srcdir) -I$(rygeldir) -DDATA_DIR='"$(shareddir)"' \
-	    -DSMALL_ICON_DIR='"$(icondir)"' -include config.h
+	    -DSMALL_ICON_DIR='"$(icondir)"' -include config.h \
+	    -DLOCALEDIR=\""$(datadir)/locale"\"
 
 bin_PROGRAMS = rygel-preferences
 

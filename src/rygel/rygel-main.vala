@@ -212,6 +212,12 @@ public class Rygel.Main : Object {
 
         var original_args = args;
 
+        Intl.setlocale (LocaleCategory.ALL, "");
+        Intl.bindtextdomain (BuildConfig.GETTEXT_PACKAGE,
+                             BuildConfig.LOCALEDIR);
+        Intl.bind_textdomain_codeset (BuildConfig.GETTEXT_PACKAGE, "UTF-8");
+        Intl.textdomain (BuildConfig.GETTEXT_PACKAGE);
+
         try {
             // Parse commandline options
             CmdlineConfig.parse_args (ref args);
