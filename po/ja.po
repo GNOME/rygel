@@ -2,14 +2,15 @@
 # Copyright (C) 2010 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
 # Kentaro KAZUHAMA <kazken3@gmail.com>, 2010.
+# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-09-10 21:24+0000\n"
-"PO-Revision-Date: 2010-09-11 10:05+0900\n"
+"POT-Creation-Date: 2010-09-28 16:18+0000\n"
+"PO-Revision-Date: 2010-09-29 01:27+0900\n"
 "Last-Translator: kentaro KAZUHAMA <kazken3@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -34,6 +35,7 @@ msgid "Plugins"
 msgstr "プラグイン"
 
 #: ../data/rygel-preferences.ui.h:5
+#: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
 msgstr "Rygel 設定"
 
@@ -101,29 +103,21 @@ msgstr "トランスコーディングのサポート(_T)"
 msgid "_URIs"
 msgstr "URI(_U)"
 
-#: ../src/plugins/playbin/rygel-playbin-player.vala:66
-#, c-format
-msgid "Changing playback state to %s."
-msgstr "再生状態を %s に変更します。"
+#: ../data/rygel-preferences.desktop.in.in.h:2
+msgid "UPnP/DLNA Preferences"
+msgstr "UPnP/DLNA 設定"
 
-#: ../src/plugins/playbin/rygel-playbin-player.vala:92
-#, c-format
-msgid "URI set to %s."
-msgstr "URIを %s に設定。"
+#: ../data/rygel.desktop.in.in.h:1
+msgid "Rygel"
+msgstr "Rygel"
 
-#: ../src/plugins/playbin/rygel-playbin-player.vala:103
-#, c-format
-msgid "volume set to %f."
-msgstr "音量を %f に設定。"
+#: ../data/rygel.desktop.in.in.h:2
+msgid "UPnP/DLNA Services"
+msgstr "UPnP/DLNA サービス"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
 msgid "GStreamer Player"
 msgstr "GStreamer プレーヤー"
-
-#: ../src/plugins/media-export/rygel-media-export-database.vala:111
-#, c-format
-msgid "Using database file %s"
-msgstr "データベースファイル %s を利用します"
 
 #: ../src/plugins/media-export/rygel-media-export-database.vala:115
 #, c-format
@@ -139,11 +133,6 @@ msgstr "トランザクションのロールバックに失敗しました: %s"
 #, c-format
 msgid "Unsupported type %s"
 msgstr "サポートされないタイプ %s"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:111
-#, c-format
-msgid "Failed to extract metadata from %s: %s"
-msgstr "%s からのメタデータの展開に失敗しました: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #: ../src/rygel/rygel-plugin-loader.vala:178
@@ -161,16 +150,6 @@ msgstr "ID %s でアイテム追加に失敗しました: %s"
 msgid "Object %s is not an item"
 msgstr "オブジェクト %s はアイテムではありません"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:254
-#, c-format
-msgid "Original search: %s"
-msgstr "元の検索: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:255
-#, c-format
-msgid "Parsed search expression: %s"
-msgstr "パースした検索語句: %s"
-
 #: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:37
 #, c-format
 msgid "Failed to attach to D-Bus session bus: %s"
@@ -186,17 +165,12 @@ msgstr ""
 msgid "'%s' harvested"
 msgstr "'%s' 取り込みました"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:144
-#, c-format
-msgid "Trying to harvest %s because of %d"
-msgstr "%s を取り込んでいます。理由: %d"
-
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:155
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:158
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "データベースからオブジェクト '%s' の取得エラー: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:179
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:182
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "データベースからのオブジェクト削除エラー: %s"
@@ -207,11 +181,6 @@ msgstr "データベースからのオブジェクト削除エラー: %s"
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:30
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@ のメディア"
-
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:48
-#, c-format
-msgid "Folder %s gone; removing watch"
-msgstr "フォルダ %s が消えました; 削除監視"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:77
 #, c-format
@@ -248,48 +217,32 @@ msgstr "データベースのインスタンス生成に失敗しました"
 msgid "Failed to remove URI: %s"
 msgstr "URIの削除に失敗しました: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:319
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:325
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "MediaExport D-Bus サービスの生成に失敗しました: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:353
-#, c-format
-msgid "ID %s no longer in config; deleting..."
-msgstr "ID %s はすでに設定にありません。削除しています..."
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:357
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:363
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "エントリーの削除に失敗しました: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:368
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:374
 msgid "Music"
 msgstr "音楽"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:371
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:377
 msgid "Pictures"
 msgstr "写真"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:373
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:379
 msgid "Videos"
 msgstr "ビデオ"
-
-#: ../src/plugins/mpris/rygel-mpris-player.vala:41
-#, c-format
-msgid "Changing playback state to %s.."
-msgstr "再生状態を %s に変更しました.."
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:41
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "フォルダ '%s' のURIの構成に失敗しました: %s"
-
-#: ../src/plugins/tracker/rygel-tracker-insertion-query.vala:63
-#: ../src/plugins/tracker/rygel-tracker-selection-query.vala:71
-#, c-format
-msgid "Executing SPARQL query: %s"
-msgstr "SPARQL クエリを実行しています: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-item-creation.vala:73
 #: ../src/rygel/rygel-media-container.vala:213
@@ -299,7 +252,6 @@ msgstr "%s でのオブジェクトの生成は許可れれません"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:60
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:99
-#: ../src/rygel/rygel-user-config.vala:180
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr "セッションバスへの接続に失敗しました: %s"
@@ -389,11 +341,6 @@ msgstr "無効なInstanceID"
 msgid "Play speed not supported"
 msgstr "再生スピードはサポートしていません"
 
-#: ../src/rygel/rygel-av-transport.vala:414
-#, c-format
-msgid "Seeking to %s."
-msgstr "%s へシークしています。"
-
 #: ../src/rygel/rygel-av-transport.vala:417
 #: ../src/rygel/rygel-av-transport.vala:426
 msgid "Seek mode not supported"
@@ -435,10 +382,6 @@ msgstr "無効な範囲 '%s'"
 msgid "Invalid Request"
 msgstr "無効なリクエスト"
 
-#: ../src/rygel/rygel-http-get.vala:125
-msgid "Following HTTP headers appended to response:"
-msgstr "以下のHTTPヘッダをレスポンスに付加しました:"
-
 #: ../src/rygel/rygel-http-identity-handler.vala:97
 #: ../src/rygel/rygel-http-transcode-handler.vala:56
 msgid "Not found"
@@ -468,35 +411,10 @@ msgstr "%s の書き込み不可URIが利用できます"
 msgid "Requested item '%s' not found"
 msgstr "リクエストアイテム '%s' がありません"
 
-#: ../src/rygel/rygel-http-server.vala:137
-#, c-format
-msgid "HTTP %s request for URI '%s' handled."
-msgstr "HTTP %s リクエスト (URI '%s') を処理しました。"
-
-#: ../src/rygel/rygel-http-server.vala:152
-#, c-format
-msgid "HTTP %s request for URI '%s'. Headers:"
-msgstr "HTTP %s リクエスト (URI '%s')。 ヘッダ:"
-
-#: ../src/rygel/rygel-http-server.vala:168
-#, c-format
-msgid "HTTP client aborted %s request for URI '%s'."
-msgstr "HTTPクライアントは %s リクエスト (URI '%s') を中断しました。"
-
-#: ../src/rygel/rygel-http-server.vala:186
-#, c-format
-msgid "HTTP POST request for URI '%s'"
-msgstr "URI '%s' のHTTP POSTリクエスト"
-
 #: ../src/rygel/rygel-import-resource.vala:108
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
 msgstr "'%s' のオリジナルURLの取得に失敗しました: %s"
-
-#: ../src/rygel/rygel-import-resource.vala:134
-#, c-format
-msgid "Import of '%s' to '%s' completed"
-msgstr "'%s' から '%s' へのインポートが完了しました"
 
 #: ../src/rygel/rygel-item-creator.vala:67
 #, c-format
@@ -563,32 +481,17 @@ msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
 msgstr[0] " %d 秒でプラグインが見つかりませんでした; あきらめます.."
 
-#: ../src/rygel/rygel-main.vala:123
-#, c-format
-msgid "new network context %s (%s) available."
-msgstr "新しいネットワークコンテキスト %s (%s) が利用可能です。"
-
 #: ../src/rygel/rygel-main.vala:141
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "ルートデバイス・ファクトリーの生成に失敗しました: %s"
-
-#: ../src/rygel/rygel-main.vala:145
-#, c-format
-msgid "Ignoring network context %s (%s)."
-msgstr "ネットワークコンテキスト %s (%s) を無視しています。"
-
-#: ../src/rygel/rygel-main.vala:153
-#, c-format
-msgid "Network context %s (%s) now unavailable."
-msgstr "現在ネットワークコンテキスト %s (%s) が利用できません。"
 
 #: ../src/rygel/rygel-main.vala:192
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "%s のルートデバイスの生成に失敗しました。理由: %s"
 
-#: ../src/rygel/rygel-main.vala:226
+#: ../src/rygel/rygel-main.vala:232
 #, c-format
 msgid "Failed to start D-Bus service: %s"
 msgstr "D-Busサービスの開始に失敗しました: %s"
@@ -629,25 +532,10 @@ msgstr " '%s/%s' で利用可能な値がありません"
 msgid "New plugin '%s' available"
 msgstr "新しいプラグイン '%s' が利用可能です"
 
-#: ../src/rygel/rygel-plugin-loader.vala:75
-#, c-format
-msgid "Plugin '%s' disabled in user configuration; ignoring.."
-msgstr "ユーザ設定でプラグイン '%s' は無効です; 無視しています.."
-
-#: ../src/rygel/rygel-plugin-loader.vala:89
-#, c-format
-msgid "Searching for modules in folder '%s'."
-msgstr "フォルダ '%s' のモジュールを検索しています。"
-
 #: ../src/rygel/rygel-plugin-loader.vala:109
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "フォルダ '%s' のコンテンツの一覧表示エラー: %s"
-
-#: ../src/rygel/rygel-plugin-loader.vala:134
-#, c-format
-msgid "Finished searching for modules in folder '%s'"
-msgstr "フォルダ '%s' のモジュールの検索が完了しました"
 
 #: ../src/rygel/rygel-plugin-loader.vala:141
 #, c-format
@@ -659,36 +547,19 @@ msgstr "パス '%s' からモジュールのロードに失敗しました: %s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "エントリーポイント関数 '%s' が '%s' で発見できませんでした: %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:167
-#, c-format
-msgid "Loaded module source: '%s'"
-msgstr "モジュールソースをロードしました: '%s'"
-
 #: ../src/rygel/rygel-root-device-factory.vala:112
 #: ../src/rygel/rygel-root-device-factory.vala:145
 #: ../src/rygel/rygel-root-device-factory.vala:167
-#: ../src/rygel/rygel-root-device-factory.vala:186
-#: ../src/rygel/rygel-root-device-factory.vala:201
+#: ../src/rygel/rygel-root-device-factory.vala:198
 #, c-format
 msgid "XML node '%s' not found."
 msgstr "XML ノード '%s' が見つかりません。"
 
-#: ../src/rygel/rygel-root-device-factory.vala:244
-#, c-format
-msgid "No icon provided by plugin '%s'. Using Rygel logo."
-msgstr ""
-"プラグイン '%s' によって提供されたアイコンはありません。Rygel ロゴを利用して"
-"います。"
-
-#: ../src/rygel/rygel-root-device-factory.vala:307
+#: ../src/rygel/rygel-root-device-factory.vala:300
+#: ../src/rygel/rygel-root-device-factory.vala:310
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "%s へ修正した説明の書き込みに失敗しました"
-
-#: ../src/rygel/rygel-search.vala:54
-#, c-format
-msgid "Executing search request: %s"
-msgstr "検索リクエストを実行しています: %s"
 
 #: ../src/rygel/rygel-search.vala:78
 #, c-format
@@ -740,11 +611,6 @@ msgid "No transcoder available for target format '%s'"
 msgstr ""
 "ターゲットとするフォーマット '%s' 向けに利用可能なトランスコーダがありません"
 
-#: ../src/rygel/rygel-user-config.vala:166
-#, c-format
-msgid "Loaded user configuration from file '%s'"
-msgstr "ファイル '%s' からユーザ設定を読み込みました"
-
 #: ../src/rygel/rygel-user-config.vala:197
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
@@ -779,11 +645,99 @@ msgstr "該当がありません"
 msgid "Failed to write modified description to %s."
 msgstr " %s へ修正した説明の書き込みに失敗しました。"
 
-#: ../src/rygel/rygel-changelog.vala:68
-msgid "Setting up timeout for LastChange"
-msgstr "LastChangeタイムアウトの設定"
-
-#: ../src/ui/rygel-preferences-dialog.vala:72
+#: ../src/ui/rygel-preferences-dialog.vala:78
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "設定ダイアログの生成に失敗しました: %s"
+
+#~ msgid "Changing playback state to %s."
+#~ msgstr "再生状態を %s に変更します。"
+
+#~ msgid "URI set to %s."
+#~ msgstr "URIを %s に設定。"
+
+#~ msgid "volume set to %f."
+#~ msgstr "音量を %f に設定。"
+
+#~ msgid "Using database file %s"
+#~ msgstr "データベースファイル %s を利用します"
+
+#~ msgid "Failed to extract metadata from %s: %s"
+#~ msgstr "%s からのメタデータの展開に失敗しました: %s"
+
+#~ msgid "Original search: %s"
+#~ msgstr "元の検索: %s"
+
+#~ msgid "Parsed search expression: %s"
+#~ msgstr "パースした検索語句: %s"
+
+#~ msgid "Trying to harvest %s because of %d"
+#~ msgstr "%s を取り込んでいます。理由: %d"
+
+#~ msgid "Folder %s gone; removing watch"
+#~ msgstr "フォルダ %s が消えました; 削除監視"
+
+#~ msgid "ID %s no longer in config; deleting..."
+#~ msgstr "ID %s はすでに設定にありません。削除しています..."
+
+#~ msgid "Changing playback state to %s.."
+#~ msgstr "再生状態を %s に変更しました.."
+
+#~ msgid "Executing SPARQL query: %s"
+#~ msgstr "SPARQL クエリを実行しています: %s"
+
+#~ msgid "Seeking to %s."
+#~ msgstr "%s へシークしています。"
+
+#~ msgid "Following HTTP headers appended to response:"
+#~ msgstr "以下のHTTPヘッダをレスポンスに付加しました:"
+
+#~ msgid "HTTP %s request for URI '%s' handled."
+#~ msgstr "HTTP %s リクエスト (URI '%s') を処理しました。"
+
+#~ msgid "HTTP %s request for URI '%s'. Headers:"
+#~ msgstr "HTTP %s リクエスト (URI '%s')。 ヘッダ:"
+
+#~ msgid "HTTP client aborted %s request for URI '%s'."
+#~ msgstr "HTTPクライアントは %s リクエスト (URI '%s') を中断しました。"
+
+#~ msgid "HTTP POST request for URI '%s'"
+#~ msgstr "URI '%s' のHTTP POSTリクエスト"
+
+#~ msgid "Import of '%s' to '%s' completed"
+#~ msgstr "'%s' から '%s' へのインポートが完了しました"
+
+#~ msgid "new network context %s (%s) available."
+#~ msgstr "新しいネットワークコンテキスト %s (%s) が利用可能です。"
+
+#~ msgid "Ignoring network context %s (%s)."
+#~ msgstr "ネットワークコンテキスト %s (%s) を無視しています。"
+
+#~ msgid "Network context %s (%s) now unavailable."
+#~ msgstr "現在ネットワークコンテキスト %s (%s) が利用できません。"
+
+#~ msgid "Plugin '%s' disabled in user configuration; ignoring.."
+#~ msgstr "ユーザ設定でプラグイン '%s' は無効です; 無視しています.."
+
+#~ msgid "Searching for modules in folder '%s'."
+#~ msgstr "フォルダ '%s' のモジュールを検索しています。"
+
+#~ msgid "Finished searching for modules in folder '%s'"
+#~ msgstr "フォルダ '%s' のモジュールの検索が完了しました"
+
+#~ msgid "Loaded module source: '%s'"
+#~ msgstr "モジュールソースをロードしました: '%s'"
+
+#~ msgid "No icon provided by plugin '%s'. Using Rygel logo."
+#~ msgstr ""
+#~ "プラグイン '%s' によって提供されたアイコンはありません。Rygel ロゴを利用し"
+#~ "ています。"
+
+#~ msgid "Executing search request: %s"
+#~ msgstr "検索リクエストを実行しています: %s"
+
+#~ msgid "Loaded user configuration from file '%s'"
+#~ msgstr "ファイル '%s' からユーザ設定を読み込みました"
+
+#~ msgid "Setting up timeout for LastChange"
+#~ msgstr "LastChangeタイムアウトの設定"
