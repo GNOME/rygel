@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-09-25 18:06+0000\n"
-"PO-Revision-Date: 2010-09-26 15:43+0200\n"
-"Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
+"POT-Creation-Date: 2010-09-28 16:18+0000\n"
+"PO-Revision-Date: 2010-09-28 17:23+0100\n"
+"Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,6 +36,7 @@ msgid "Plugins"
 msgstr "Plugins"
 
 #: ../data/rygel-preferences.ui.h:5
+#: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
 msgstr "Rygel-voorkeuren"
 
@@ -103,6 +104,18 @@ msgstr "_Transcoding-ondersteuning"
 #: ../data/rygel-preferences.ui.h:23
 msgid "_URIs"
 msgstr "_URI`s"
+
+#: ../data/rygel-preferences.desktop.in.in.h:2
+msgid "UPnP/DLNA Preferences"
+msgstr "UPnP/DLNA-voorkeuren"
+
+#: ../data/rygel.desktop.in.in.h:1
+msgid "Rygel"
+msgstr "Rygel"
+
+#: ../data/rygel.desktop.in.in.h:2
+msgid "UPnP/DLNA Services"
+msgstr "UPnP/DLNA-diensten"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
 msgid "GStreamer Player"
@@ -205,25 +218,25 @@ msgstr "Kon database-instantie niet aanmaken"
 msgid "Failed to remove URI: %s"
 msgstr "Kon URI niet verwijderen: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:319
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:325
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Kon MediaExport D-Bus-service niet maken: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:357
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:363
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Kon item niet verwijderen: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:368
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:374
 msgid "Music"
 msgstr "Muziek"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:371
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:377
 msgid "Pictures"
 msgstr "Afbeeldingen"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:373
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:379
 msgid "Videos"
 msgstr "Video's"
 
@@ -480,7 +493,7 @@ msgstr "Kon ‘root device factory’ niet aanmaken :%s"
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Kon geen RootDevice maken voor %s. Reden: %s"
 
-#: ../src/rygel/rygel-main.vala:226
+#: ../src/rygel/rygel-main.vala:232
 #, c-format
 msgid "Failed to start D-Bus service: %s"
 msgstr "Starten van de D-Bus-dienst is mislukt: %s"
@@ -537,14 +550,15 @@ msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Kon ‘entry point’-functie ‘%s’ niet in ‘%s’ vinden: %s"
 
 #: ../src/rygel/rygel-root-device-factory.vala:112
-#: ../src/rygel/rygel-root-device-factory.vala:147
-#: ../src/rygel/rygel-root-device-factory.vala:169
-#: ../src/rygel/rygel-root-device-factory.vala:188
+#: ../src/rygel/rygel-root-device-factory.vala:145
+#: ../src/rygel/rygel-root-device-factory.vala:167
+#: ../src/rygel/rygel-root-device-factory.vala:198
 #, c-format
 msgid "XML node '%s' not found."
 msgstr "XML-node ‘%s’ niet gevonden"
 
-#: ../src/rygel/rygel-root-device-factory.vala:294
+#: ../src/rygel/rygel-root-device-factory.vala:300
+#: ../src/rygel/rygel-root-device-factory.vala:310
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Schrijven van gewijzigde omschrijving naar %s mislukt"
@@ -632,7 +646,7 @@ msgstr "Niet toepasbaar"
 msgid "Failed to write modified description to %s."
 msgstr "Schrijven van gewijzigde omschrijving naar %s is mislukt."
 
-#: ../src/ui/rygel-preferences-dialog.vala:72
+#: ../src/ui/rygel-preferences-dialog.vala:78
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Aanmaken van het voorkeurenvenster is mislukt: %s"
