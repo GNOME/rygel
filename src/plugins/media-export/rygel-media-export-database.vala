@@ -256,7 +256,7 @@ internal class Rygel.MediaExport.Database : Object {
      * This function uses the type of the GValue passed in values to determine
      * which _bind function to use.
      *
-     * Supported types are: int, long, int64, string and pointer.
+     * Supported types are: int, long, int64, uint64, string and pointer.
      * @note the only pointer supported is the null pointer as provided by
      * Database.@null. This is a special value to bind a column to NULL
      *
@@ -279,6 +279,8 @@ internal class Rygel.MediaExport.Database : Object {
                     rc = statement.bind_int (i + 1, values[i].get_int ());
                 } else if (values[i].holds (typeof (int64))) {
                     rc = statement.bind_int64 (i + 1, values[i].get_int64 ());
+                } else if (values[i].holds (typeof (uint64))) {
+                    rc = statement.bind_int64 (i + 1, (int64) values[i].get_uint64 ());
                 } else if (values[i].holds (typeof (long))) {
                     rc = statement.bind_int64 (i + 1, values[i].get_long ());
                 } else if (values[i].holds (typeof (string))) {
@@ -292,7 +294,7 @@ internal class Rygel.MediaExport.Database : Object {
                 } else {
                     var t = values[i].type ();
                     warning (_("Unsupported type %s"), t.name ());
-                    assert_not_reached ();
+                        assert_not_reached ();
                 }
                 if (rc != Sqlite.OK) {
                     throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
