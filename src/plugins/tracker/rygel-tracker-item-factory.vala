@@ -85,6 +85,11 @@ public abstract class Rygel.Tracker.ItemFactory {
 
         if (metadata[Metadata.SIZE] != "")
             item.size = metadata[Metadata.SIZE].to_int64 ();
+        else
+            // If its in tracker store and size is unknown, it most probably
+            // means the size is 0 (i-e a place-holder empty item that we
+            // created).
+            item.size = 0;
 
         if (metadata[Metadata.DATE] != "")
             item.date = metadata[Metadata.DATE];
