@@ -92,10 +92,9 @@ if test x$enable_vala = xyes ; then
                          gio-2.0
                          gee-1.0
                          posix])
-else
-    VAPIDIR=`echo ${datadir}/vala/vapi`
 fi
 
+VAPIDIR="${datadir}/vala/vapi"
 AC_SUBST(VAPIDIR)
 
 # Maemo support
