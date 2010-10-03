@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: rygel MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-09-15 05:45+0000\n"
-"PO-Revision-Date: 2010-09-26 21:35+0300\n"
+"POT-Creation-Date: 2010-10-02 12:59+0000\n"
+"PO-Revision-Date: 2010-10-03 10:53+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -85,6 +85,15 @@ msgstr "_Ümberkodeerimise tugi"
 msgid "_URIs"
 msgstr "_URI-d"
 
+msgid "UPnP/DLNA Preferences"
+msgstr "UPnP/DLNA eelistused"
+
+msgid "Rygel"
+msgstr "Rygel"
+
+msgid "UPnP/DLNA Services"
+msgstr "UPnP/DLNA teenused"
+
 #, fuzzy
 msgid "GStreamer Player"
 msgstr "GStreameriga esitaja"
@@ -93,7 +102,7 @@ msgstr "GStreameriga esitaja"
 msgid "Failed to open database: %d (%s)"
 msgstr "Tõrge andmebaasi avamisel: %d (%s)"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Tehingu tagasivõtmine nurjus: %s"
 
@@ -223,7 +232,6 @@ msgstr "Sobimatud argumendid"
 msgid "Failed to browse '%s': %s\n"
 msgstr "'%s' lehitsemine nurjus: %s\n"
 
-#, fuzzy
 msgid "No value available"
 msgstr "Väärtus pole saadaval"
 
