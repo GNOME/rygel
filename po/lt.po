@@ -5,16 +5,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
-"Report-Msgid-Bugs-To: "
-"http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-09-15 06:53+0000\n"
-"PO-Revision-Date: 2010-09-18 23:32+0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&component=general\n"
+"POT-Creation-Date: 2010-09-27 21:55+0000\n"
+"PO-Revision-Date: 2010-10-03 15:49+0200\n"
 "Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
-"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: lt\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
 "100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Virtaal 0.6.1\n"
@@ -36,6 +36,7 @@ msgid "Plugins"
 msgstr "Įskiepiai"
 
 #: ../data/rygel-preferences.ui.h:5
+#: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
 msgstr "Rygel nustatymai"
 
@@ -99,11 +100,24 @@ msgstr "_Prievadas"
 
 #: ../data/rygel-preferences.ui.h:22
 msgid "_Transcoding support"
-msgstr "_Perdokavimo palaikymas"
+msgstr "_Perkodavimo palaikymas"
 
 #: ../data/rygel-preferences.ui.h:23
 msgid "_URIs"
 msgstr "_URI"
+
+#: ../data/rygel-preferences.desktop.in.in.h:2
+#| msgid "Rygel Preferences"
+msgid "UPnP/DLNA Preferences"
+msgstr "UPnP/DLNA nustatymai"
+
+#: ../data/rygel.desktop.in.in.h:1
+msgid "Rygel"
+msgstr "Rygel"
+
+#: ../data/rygel.desktop.in.in.h:2
+msgid "UPnP/DLNA Services"
+msgstr "UPnP/DLNA paslaugos"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
 msgid "GStreamer Player"
@@ -206,25 +220,25 @@ msgstr "Nepavyko sukurti duomenų bazės egzemplioriaus"
 msgid "Failed to remove URI: %s"
 msgstr "Nepavyko pašalinti URI: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:319
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:325
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Nepavyko sukurti MediaExport D-Bus paslaugos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:357
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:363
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Nepavyko pašalinti įrašo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:368
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:374
 msgid "Music"
 msgstr "Muzika"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:371
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:377
 msgid "Pictures"
 msgstr "Nuotraukos"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:373
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:379
 msgid "Videos"
 msgstr "Vaizdo įrašai"
 
@@ -539,14 +553,15 @@ msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Nepavyko rasti įėjimo taško funkcijos „%s“ vietoje „%s“: %s"
 
 #: ../src/rygel/rygel-root-device-factory.vala:112
-#: ../src/rygel/rygel-root-device-factory.vala:147
-#: ../src/rygel/rygel-root-device-factory.vala:169
-#: ../src/rygel/rygel-root-device-factory.vala:188
+#: ../src/rygel/rygel-root-device-factory.vala:145
+#: ../src/rygel/rygel-root-device-factory.vala:167
+#: ../src/rygel/rygel-root-device-factory.vala:198
 #, c-format
 msgid "XML node '%s' not found."
 msgstr "XML mazgas „%s“ nerastas."
 
-#: ../src/rygel/rygel-root-device-factory.vala:294
+#: ../src/rygel/rygel-root-device-factory.vala:300
+#: ../src/rygel/rygel-root-device-factory.vala:310
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Nepavyko įrašyti pakeisto aprašymo į %s"
