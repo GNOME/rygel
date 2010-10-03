@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: rygel 0.6\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-09-15 06:53+0000\n"
-"PO-Revision-Date: 2010-09-26 21:35+0300\n"
+"POT-Creation-Date: 2010-10-02 14:58+0000\n"
+"PO-Revision-Date: 2010-10-03 10:53+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -85,6 +85,16 @@ msgstr "_Ümberkodeerimise tugi"
 msgid "_URIs"
 msgstr "_URI-d"
 
+#| msgid "Rygel Preferences"
+msgid "UPnP/DLNA Preferences"
+msgstr "UPnP/DLNA eelistused"
+
+msgid "Rygel"
+msgstr "Rygel"
+
+msgid "UPnP/DLNA Services"
+msgstr "UPnP/DLNA teenused"
+
 msgid "GStreamer Player"
 msgstr ""
 
@@ -94,7 +104,7 @@ msgstr "Tõrge andmebaasi avamisel: %d (%s)"
 
 #, c-format
 msgid "Failed to roll back transaction: %s"
-msgstr ""
+msgstr "Tehingu tagasivõtmine nurjus: %s"
 
 #, c-format
 msgid "Unsupported type %s"
@@ -220,7 +230,7 @@ msgid "Failed to browse '%s': %s\n"
 msgstr "'%s' lehitsemine nurjus: %s\n"
 
 msgid "No value available"
-msgstr ""
+msgstr "Väärtus pole saadaval"
 
 msgid "Invalid connection reference"
 msgstr "Ühenduse viide pole sobiv"
