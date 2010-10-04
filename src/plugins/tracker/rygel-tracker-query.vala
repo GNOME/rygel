@@ -33,7 +33,7 @@ public abstract class Rygel.Tracker.Query {
     }
 
     public abstract async void execute (ResourcesIface resources)
-                                        throws DBus.Error;
+                                        throws IOError;
 
     // Deriving classes should override this method and complete it by
     // adding the first part of the query

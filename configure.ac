@@ -25,7 +25,6 @@ GUPNP_REQUIRED=0.13.4
 GUPNP_AV_REQUIRED=0.5.9
 GUPNP_DLNA_REQUIRED=0.3.0
 GUPNP_VALA_REQUIRED=0.6.11
-DBUS_GLIB_REQUIRED=0.74
 GSTREAMER_REQUIRED=0.10.23
 GSTREAMER_TAG_REQUIRED=0.10.28
 GSTREAMER_APP_REQUIRED=0.10.28
@@ -38,7 +37,6 @@ LIBSQLITE3_REQUIRED=3.5
 PKG_CHECK_MODULES(LIBGUPNP, gupnp-1.0 >= $GUPNP_REQUIRED)
 PKG_CHECK_MODULES(LIBGUPNP_AV, gupnp-av-1.0 >= $GUPNP_AV_REQUIRED)
 PKG_CHECK_MODULES(LIBGUPNP_DLNA, gupnp-dlna-1.0 >= $GUPNP_DLNA_REQUIRED)
-PKG_CHECK_MODULES(LIBDBUS_GLIB, dbus-glib-1 >= $DBUS_GLIB_REQUIRED)
 PKG_CHECK_MODULES(LIBGSTREAMER, gstreamer-0.10 >= $GSTREAMER_REQUIRED)
 PKG_CHECK_MODULES(LIBGIO, gio-2.0 >= $GIO_REQUIRED)
 PKG_CHECK_MODULES(GEE, gee-1.0 >= $GEE_REQUIRED)
@@ -89,7 +87,6 @@ if test x$enable_vala = xyes ; then
     VALA_CHECK_PACKAGES([gupnp-1.0
                          gupnp-av-1.0
                          gupnp-dlna-1.0
-                         dbus-glib-1
                          gstreamer-0.10
                          gstreamer-discoverer-gupnp-dlna-0.10
                          gio-2.0

@@ -22,7 +22,6 @@
  */
 
 using GUPnP;
-using DBus;
 using Gee;
 
 /**
@@ -60,7 +59,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
 
         try {
             this.create_proxies ();
-        } catch (DBus.Error error) {
+        } catch (IOError error) {
             critical (_("Failed to connect to session bus: %s"), error.message);
 
             return;
@@ -113,7 +112,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
 
         try {
             yield query.execute (this.resources);
-        } catch (DBus.Error error) {
+        } catch (IOError error) {
             critical (_("Error getting all values for '%s': %s"),
                       string.joinv (" -> ", this.key_chain),
                       error.message);
@@ -186,15 +185,14 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         return id.has_prefix (this.id + ":");
     }
 
-    private void create_proxies () throws DBus.Error {
-        DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
-
-        this.resources = connection.get_object (TRACKER_SERVICE, RESOURCES_PATH)
-                         as ResourcesIface;
-        this.resources_class = connection.get_object (
+    private void create_proxies () throws IOError {
+        this.resources = Bus.get_proxy_sync (BusType.SESSION,
+                                             TRACKER_SERVICE,
+                                             RESOURCES_PATH);
+        this.resources_class = Bus.get_proxy_sync (
+                                        BusType.SESSION,
                                         TRACKER_SERVICE,
-                                        this.item_factory.resources_class_path)
-                                        as ResourcesClassIface;
+                                        this.item_factory.resources_class_path);
     }
 
     private void hook_to_changes () {

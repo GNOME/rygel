@@ -23,7 +23,6 @@
  */
 
 using GUPnP;
-using DBus;
 using Gee;
 
 /**
@@ -92,10 +91,12 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
                                          MODIFIED_VARIABLE);
 
         try {
-            this.create_proxies ();
+            this.resources = Bus.get_proxy_sync (BusType.SESSION,
+                                                 TRACKER_SERVICE,
+                                                 RESOURCES_PATH);
 
             this.get_children_count.begin ();
-        } catch (DBus.Error error) {
+        } catch (IOError error) {
             critical (_("Failed to connect to session bus: %s"), error.message);
         }
     }
@@ -280,13 +281,6 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
         } else {
             return null;
         }
-    }
-
-    private void create_proxies () throws DBus.Error {
-        DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
-
-        this.resources = connection.get_object (TRACKER_SERVICE, RESOURCES_PATH)
-                         as ResourcesIface;
     }
 
     /**

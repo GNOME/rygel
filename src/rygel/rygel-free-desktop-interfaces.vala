@@ -21,25 +21,39 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using DBus;
+namespace FreeDesktop {
+    public const string DBUS_SERVICE = "org.freedesktop.DBus";
+    public const string DBUS_OBJECT = "/org/freedesktop/DBus";
+}
+
+public enum FreeDesktop.DBusRequestNameReply {
+    PRIMARY_OWNER = 1,
+    IN_QUEUE,
+    EXISTS,
+    ALREADY_OWNER
+}
 
 [DBus (name = "org.freedesktop.DBus")]
-public interface FreeDesktop.DBusObject: DBus.Object {
+public interface FreeDesktop.DBusObject: Object {
     public abstract signal void name_owner_changed (string name,
                                                     string old_owner,
                                                     string new_owner);
 
-    public abstract async string[] list_names () throws DBus.Error;
-    public abstract async string[] list_activatable_names () throws DBus.Error;
+    // FIXME: This method should be async
+    public abstract uint32 request_name (string name, uint32 flags)
+                                         throws IOError;
+    public abstract async string[] list_names () throws IOError;
+    public abstract async string[] list_activatable_names () throws IOError;
 }
 
 [DBus (name = "org.freedesktop.DBus.Properties")]
-public interface FreeDesktop.Properties: DBus.Object {
-    public abstract async HashTable<string,Value?> get_all (string iface)
-                                                            throws DBus.Error;
+public interface FreeDesktop.Properties: Object {
+    public abstract async HashTable<string,Variant> get_all (string iface)
+                                                             throws IOError;
     public abstract signal void properties_changed
-                                        (string                   iface,
-                                         HashTable<string,Value?> changed,
-                                         string[]                 invalidated);
+                                        (string                     iface,
+                                         HashTable<string,Variant> changed,
+                                         string[]
+                                         invalidated);
 }
 

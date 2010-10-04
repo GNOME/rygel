@@ -27,14 +27,9 @@ using FreeDesktop;
 public class Rygel.External.IconFactory {
     private static string ITEM_IFACE = "org.gnome.UPnP.MediaItem1";
 
-    DBus.Connection connection;
-
-    public IconFactory (DBus.Connection connection) {
-        this.connection = connection;
-    }
-
-    public async IconInfo? create (string                   service_name,
-                                   HashTable<string,Value?> container_props) {
+    public async IconInfo? create (string                    service_name,
+                                   HashTable<string,Variant> container_props)
+                                   throws IOError {
         var value = container_props.lookup ("Icon");
         if (value == null) {
             // Seems no icon is provided, nevermind
@@ -42,37 +37,32 @@ public class Rygel.External.IconFactory {
         }
 
         var icon_path = (string) value;
-        var props = this.connection.get_object (service_name,
-                                                icon_path)
-                                                as Properties;
+        Properties props = Bus.get_proxy_sync (BusType.SESSION,
+                                               service_name,
+                                               icon_path);
 
-        HashTable<string,Value?> item_props;
-        try {
-            item_props = yield props.get_all (ITEM_IFACE);
-        } catch (DBus.Error err) {
-            warning ("Error fetching icon properties from %s", service_name);
+        var item_props = yield props.get_all (ITEM_IFACE);
 
-            return null;
-        }
+        return this.create_from_props (item_props);
+    }
 
-        value = item_props.lookup ("MIMEType");
-        var mime_type = (string) value;
+    private IconInfo? create_from_props (HashTable<string,Variant> props) {
+        var mime_type = (string) props.lookup ("MIMEType");
         var icon = new IconInfo (mime_type, this.get_ext_for_mime (mime_type));
 
-        value = item_props.lookup ("URLs");
-        var uris = (string[]) value;
+        var uris = (string[]) props.lookup ("URLs");
         if (uris != null && uris[0] != null) {
             icon.uri = uris[0];
         }
 
-        value = item_props.lookup ("Size");
+        var value = props.lookup ("Size");
         if (value != null) {
             icon.size = (int64) value;
         }
 
-        icon.width = this.get_int (item_props, "Width");
-        icon.height = this.get_int (item_props, "Height");
-        icon.depth = this.get_int (item_props, "ColorDepth");
+        icon.width = this.get_int (props, "Width");
+        icon.height = this.get_int (props, "Height");
+        icon.depth = this.get_int (props, "ColorDepth");
 
         return icon;
     }
@@ -87,7 +77,7 @@ public class Rygel.External.IconFactory {
       }
     }
 
-    private int get_int (HashTable<string,Value?> props, string prop) {
+    private int get_int (HashTable<string,Variant> props, string prop) {
         var value = props.lookup (prop);
 
         if (value != null) {

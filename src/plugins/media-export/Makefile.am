@@ -11,7 +11,6 @@ plugin_LTLIBRARIES = librygel-media-export.la
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
 	    $(LIBGUPNP_DLNA_CFLAGS) \
-	    $(LIBDBUS_GLIB_CFLAGS) \
 	    $(LIBSQLITE3_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(UUID_CFLAGS) \
@@ -42,7 +41,6 @@ librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
 				   rygel-media-export-object-factory.vala
 
 librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
-				     --pkg dbus-glib-1 \
                                      --pkg rygel-1.0 \
                                      --pkg gupnp-1.0 \
                                      --pkg gupnp-av-1.0 \
@@ -57,7 +55,6 @@ librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
 librygel_media_export_la_LIBADD = $(LIBGUPNP_LIBS) \
 				  $(LIBGUPNP_AV_LIBS) \
 				  $(LIBGUPNP_DLNA_LIBS) \
-				  $(LIBDBUS_GLIB_LIBS) \
 				  $(LIBGSTREAMER_LIBS) \
 				  $(GSTREAMER_TAG_LIBS) \
 				  $(GSTREAMER_APP_LIBS) \

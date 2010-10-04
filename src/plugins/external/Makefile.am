@@ -10,7 +10,6 @@ plugin_LTLIBRARIES = librygel-external.la
 
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
-	    $(LIBDBUS_GLIB_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
 	    $(UUID_FLAGS) \
@@ -30,13 +29,11 @@ librygel_external_la_SOURCES = rygel-external-container.vala \
 rygel-external.stamp: $(librygel_external_la_VALASOURCES)
 librygel_external_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
 				 --pkg rygel-1.0 --pkg gupnp-1.0 \
-				 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
-				 --pkg gee-1.0 --pkg gstreamer-0.10 \
-				 --pkg gconf-2.0 -g
+				 --pkg gupnp-av-1.0 --pkg gee-1.0 \
+				 --pkg gstreamer-0.10 --pkg gconf-2.0 -g
 
 librygel_external_la_LIBADD = $(LIBGUPNP_LIBS) \
                               $(LIBGUPNP_AV_LIBS) \
-			      $(LIBDBUS_GLIB_LIBS) \
 			      $(LIBGSTREAMER_LIBS) \
 			      $(GEE_LIBS) \
 			      $(UUID_LIBS)

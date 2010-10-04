@@ -20,7 +20,6 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(UUID_CFLAGS) \
 	    $(LIBSOUP_CFLAGS) \
-	    $(LIBDBUS_GLIB_CFLAGS) \
 	    -I$(top_srcdir) \
 	    -DDATA_DIR='"$(shareddir)"' -DSYS_CONFIG_DIR='"$(sysconfdir)"'\
 	    -DPLUGIN_DIR='"$(plugindir)"' -DDESKTOP_DIR='"$(desktopdir)"'\
@@ -122,13 +121,14 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-media-player.vala \
 		    rygel-changelog.vala \
 		    rygel-volume.vala \
-		    rygel-free-desktop-interfaces.vala
+		    rygel-free-desktop-interfaces.vala \
+		    rygel-dbus-interface.vala
 
 rygel_VALAFLAGS = \
 	-H rygel.h -C --library=rygel-1.0 --vapidir=$(srcdir) --thread \
 	--pkg rygel-build-config --pkg rygel-misc --pkg gupnp-1.0 \
-	--pkg gupnp-av-1.0 --pkg gupnp-dlna-1.0 --pkg dbus-glib-1 \
-	--pkg gstreamer-0.10 --pkg gio-2.0 --pkg gee-1.0 --pkg posix -g
+	--pkg gupnp-av-1.0 --pkg gupnp-dlna-1.0 --pkg gstreamer-0.10 \
+	--pkg gio-2.0 --pkg gee-1.0 --pkg posix -g
 # Note:  `-- the -g needs to be at the end of VALAFLAGS to not break make dist
 
 rygel_LDADD = librygel-configuration.a \
@@ -139,8 +139,7 @@ rygel_LDADD = librygel-configuration.a \
 	      $(GIO_LIBS) \
 	      $(GEE_LIBS) \
 	      $(UUID_LIBS) \
-	      $(LIBSOUP_LIBS) \
-	      $(LIBDBUS_GLIB_LIBS)
+	      $(LIBSOUP_LIBS)
 
 rygel_LDFLAGS = -export-dynamic
 
@@ -157,7 +156,8 @@ librygel_configuration_a_SOURCES = rygel-configuration.c \
 				   rygel-user-config.c \
 				   rygel-meta-config.c \
 				   rygel-cmdline-config.c \
-				   rygel-environment-config.c
+				   rygel-environment-config.c \
+				   rygel-dbus-interface.c
 
 MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
 EXTRA_DIST = rygel-build-config.vapi \

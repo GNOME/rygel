@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2008,2010 Nokia Corporation.
  * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
@@ -21,35 +21,33 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+using FreeDesktop;
+
+// FIXME: Declare that we implement DBusInterface once bug#631044 is fixed.
 [DBus (name = "org.gnome.Rygel1")]
 public class Rygel.DBusService : Object {
-    private static string RYGEL_SERVICE = "org.gnome.Rygel1";
-    private static string RYGEL_PATH = "/org/gnome/Rygel1";
-
     private Main main;
 
-    public DBusService (Main main) throws DBus.Error {
+    public DBusService (Main main) throws IOError {
         this.main = main;
 
-        var conn = DBus.Bus.get (DBus.BusType. SESSION);
-
-        dynamic DBus.Object bus = conn.get_object ("org.freedesktop.DBus",
-                                                   "/org/freedesktop/DBus",
-                                                   "org.freedesktop.DBus");
+        DBusObject bus = Bus.get_proxy_sync (BusType.SESSION,
+                                             DBUS_SERVICE,
+                                             DBUS_OBJECT);
 
         // try to register service in session bus
-        uint request_name_result = bus.request_name (RYGEL_SERVICE,
-                                                     (uint) 0);
-
-        if (request_name_result != DBus.RequestNameReply.PRIMARY_OWNER) {
+        if (bus.request_name (DBusInterface.SERVICE_NAME, 0) !=
+            DBusRequestNameReply.PRIMARY_OWNER) {
             warning ("Failed to start D-Bus service  name '%s' already taken",
-                     RYGEL_SERVICE);
+                     DBusInterface.SERVICE_NAME);
         } else {
-            conn.register_object (RYGEL_PATH, this);
+            var conn = Bus.get_sync (BusType.SESSION);
+
+            conn.register_object (DBusInterface.OBJECT_PATH, this);
         }
     }
 
-    public void Shutdown () {
+    public void shutdown () throws IOError {
         this.main.exit (0);
     }
 }

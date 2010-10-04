@@ -31,7 +31,7 @@ private MPRIS.PluginFactory plugin_factory;
 public void module_init (PluginLoader loader) {
     try {
         plugin_factory = new MPRIS.PluginFactory (loader);
-    } catch (DBus.Error error) {
+    } catch (IOError error) {
         critical ("Failed to fetch list of MPRIS services: %s\n",
                   error.message);
     }
@@ -44,40 +44,38 @@ public class Rygel.MPRIS.PluginFactory {
     private const string SERVICE_PREFIX = "org.mpris.MediaPlayer2.";
     private const string MEDIA_PLAYER_PATH = "/org/mpris/MediaPlayer2";
 
-    DBusObject      dbus_obj;
-    DBus.Connection connection;
-    PluginLoader    loader;
+    DBusObject   dbus_obj;
+    PluginLoader loader;
 
-    public PluginFactory (PluginLoader loader) throws DBus.Error {
-        this.connection = DBus.Bus.get (DBus.BusType.SESSION);
-
-        this.dbus_obj = this.connection.get_object (DBUS_SERVICE, DBUS_OBJECT)
-                        as DBusObject;
+    public PluginFactory (PluginLoader loader) throws IOError {
+        this.dbus_obj = Bus.get_proxy_sync (BusType.SESSION,
+                                            DBUS_SERVICE,
+                                            DBUS_OBJECT);
         this.loader = loader;
 
         this.load_plugins.begin ();
     }
 
-    private async void load_plugins () throws DBus.Error {
+    private async void load_plugins () throws IOError {
         var services = yield this.dbus_obj.list_names ();
 
         foreach (var service in services) {
             if (service.has_prefix (SERVICE_PREFIX) &&
                 this.loader.get_plugin_by_name (service) == null) {
-                yield this.load_plugin (service);
+                yield this.load_plugin_n_handle_error (service);
             }
         }
 
         yield this.load_activatable_plugins ();
     }
 
-    private async void load_activatable_plugins () throws DBus.Error {
+    private async void load_activatable_plugins () throws IOError {
         var services = yield this.dbus_obj.list_activatable_names ();
 
         foreach (var service in services) {
             if (service.has_prefix (SERVICE_PREFIX) &&
                 this.loader.get_plugin_by_name (service) == null) {
-                yield this.load_plugin (service);
+                yield this.load_plugin_n_handle_error (service);
             }
         }
 
@@ -100,28 +98,34 @@ public class Rygel.MPRIS.PluginFactory {
                 plugin.available = true;
             }
         } else if (name.has_prefix (SERVICE_PREFIX)) {
-                // Ah, new plugin available, lets use it
-                this.load_plugin.begin (name);
+            // Ah, new plugin available, lets use it
+            this.load_plugin_n_handle_error.begin (name);
         }
     }
 
-    private async void load_plugin (string service_name) {
-        // Create proxy to MediaObject iface to get the display name through
-        var props = this.connection.get_object (service_name, MEDIA_PLAYER_PATH)
-                    as Properties;
-
-        HashTable<string,Value?> props_hash;
-
+    private async void load_plugin_n_handle_error (string service_name) {
         try {
-            props_hash = yield props.get_all (MediaPlayerProxy.IFACE);
-        } catch (DBus.Error err) {
-            warning ("Failed to fetch properties of plugin %s: %s.",
+            yield this.load_plugin (service_name);
+        } catch (IOError error) {
+            warning ("Failed to load MPRIS2 plugin '%s': %s",
                      service_name,
-                     err.message);
-
-            return;
+                     error.message);
         }
+    }
 
+    private async void load_plugin (string service_name) throws IOError {
+        // Create proxy to MediaObject iface to get the display name through
+        Properties props = Bus.get_proxy_sync (BusType.SESSION,
+                                               service_name,
+                                               MEDIA_PLAYER_PATH);
+
+        var props_hash = yield props.get_all (MediaPlayerProxy.IFACE);
+
+        this.load_plugin_from_props (service_name, props_hash);
+    }
+
+    private void load_plugin_from_props (string                    service_name,
+                                         HashTable<string,Variant> props_hash) {
         var title = (string) props_hash.lookup ("Identity");
         if (title == null) {
             title = service_name;

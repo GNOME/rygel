@@ -23,20 +23,19 @@
  */
 
 using GUPnP;
-using DBus;
 using FreeDesktop;
 
 /**
  * Creates item for external plugins.
  */
 public class Rygel.External.ItemFactory {
-    public async MediaItem create (string                   id,
-                                   string                   type,
-                                   string                   title,
-                                   HashTable<string,Value?> props,
-                                   string                   service_name,
-                                   string                   host_ip,
-                                   MediaContainer           parent)
+    public async MediaItem create (string                    id,
+                                   string                    type,
+                                   string                    title,
+                                   HashTable<string,Variant> props,
+                                   string                    service_name,
+                                   string                    host_ip,
+                                   MediaContainer            parent)
                                    throws GLib.Error {
         MediaItem item;
 
@@ -70,40 +69,20 @@ public class Rygel.External.ItemFactory {
                                             host_ip);
         }
 
+        this.set_generic_metadata (item, props, service_name, host_ip);
+
         if (parent is DummyContainer) {
             item.parent_ref = parent;
         }
-
-        item.mime_type = this.get_string (props, "MIMEType");
-
-        var value = props.lookup ("URLs");
-        var uris = (string[]) value;
-
-        for (var i = 0; uris[i] != null; i++) {
-            var tmp = uris[i].replace ("@ADDRESS@", host_ip);
-
-            item.add_uri (tmp);
-        }
-
-        // Optional properties
-
-        item.dlna_profile  = this.get_string (props, "DLNAProfile");
-
-        value = props.lookup ("Size");
-        if (value != null) {
-            item.size = (int64) value;
-        }
-
-        item.date = this.get_string (props, "Date");
 
         return item;
     }
 
     private async void set_music_metadata (
-                                        MusicItem                music,
-                                        HashTable<string,Value?> props,
-                                        string                   service_name,
-                                        string                   host_ip)
+                                        MusicItem                 music,
+                                        HashTable<string,Variant> props,
+                                        string                    service_name,
+                                        string                    host_ip)
                                         throws GLib.Error {
         music.artist = this.get_string (props, "Artist");
         music.album = this.get_string (props, "Album");
@@ -121,10 +100,10 @@ public class Rygel.External.ItemFactory {
         this.set_audio_metadata (music, props, service_name, host_ip);
     }
 
-    private void set_audio_metadata (AudioItem                audio,
-                                     HashTable<string,Value?> props,
-                                     string                   service_name,
-                                     string                   host_ip)
+    private void set_audio_metadata (AudioItem                 audio,
+                                     HashTable<string,Variant> props,
+                                     string                    service_name,
+                                     string                    host_ip)
                                      throws GLib.Error {
         audio.duration = this.get_int (props, "Duration");
         audio.bitrate = this.get_int (props, "Bitrate");
@@ -133,10 +112,10 @@ public class Rygel.External.ItemFactory {
     }
 
     private async void set_visual_metadata (
-                                        VisualItem               visual,
-                                        HashTable<string,Value?> props,
-                                        string                   service_name,
-                                        string                   host_ip)
+                                        VisualItem                visual,
+                                        HashTable<string,Variant> props,
+                                        string                    service_name,
+                                        string                    host_ip)
                                         throws GLib.Error {
         visual.width = this.get_int (props, "Width");
         visual.height = this.get_int (props, "Height");
@@ -155,16 +134,41 @@ public class Rygel.External.ItemFactory {
     }
 
     private async void set_video_metadata (
-                                        VideoItem                video,
-                                        HashTable<string,Value?> props,
-                                        string                   service_name,
-                                        string                   host_ip)
+                                        VideoItem                 video,
+                                        HashTable<string,Variant> props,
+                                        string                    service_name,
+                                        string                    host_ip)
                                         throws GLib.Error {
         yield this.set_visual_metadata (video, props, service_name, host_ip);
         this.set_audio_metadata (video, props, service_name, host_ip);
     }
 
-    private string? get_string (HashTable<string,Value?> props, string prop) {
+    private void set_generic_metadata (MediaItem                 item,
+                                       HashTable<string,Variant> props,
+                                       string                    service_name,
+                                       string                    host_ip) {
+        item.mime_type = this.get_string (props, "MIMEType");
+
+        var uris = (string[]) props.lookup ("URLs");
+        if (uris != null) {
+            for (var i = 0; uris[i] != null; i++) {
+                item.add_uri (uris[i].replace ("@ADDRESS@", host_ip));
+            }
+        }
+
+        // Optional properties
+
+        item.dlna_profile = this.get_string (props, "DLNAProfile");
+
+        var value = props.lookup ("Size");
+        if (value != null) {
+            item.size = (int64) value;
+        }
+
+        item.date = this.get_string (props, "Date");
+    }
+
+    private string? get_string (HashTable<string,Variant> props, string prop) {
         var value = props.lookup (prop);
 
         if (value != null) {
@@ -174,7 +178,7 @@ public class Rygel.External.ItemFactory {
         }
     }
 
-    private int get_int (HashTable<string,Value?> props, string prop) {
+    private int get_int (HashTable<string,Variant> props, string prop) {
         var value = props.lookup (prop);
 
         if (value != null) {

@@ -29,11 +29,12 @@ public class Rygel.MediaExport.DBusService : Object {
         this.root_container = root_container;
 
         try {
-            var connection = DBus.Bus.get (DBus.BusType. SESSION);
-            if (connection != null) {
+            var connection = Bus.get_sync (BusType.SESSION);
+
+            if (likely (connection != null)) {
                 connection.register_object (RYGEL_MEDIA_EXPORT_PATH, this);
             }
-        } catch (DBus.Error err) {
+        } catch (IOError err) {
             warning (_("Failed to attach to D-Bus session bus: %s"),
                      err.message);
         }

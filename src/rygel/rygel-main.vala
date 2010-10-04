@@ -228,7 +228,7 @@ public class Rygel.Main : Object {
 
             main = new Main ();
             service = new DBusService (main);
-        } catch (DBus.Error err) {
+        } catch (IOError err) {
             warning (_("Failed to start D-Bus service: %s"), err.message);
         } catch (CmdlineConfigError.VERSION_ONLY err) {
             return 0;

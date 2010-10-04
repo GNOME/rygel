@@ -21,23 +21,21 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using DBus;
-
 [DBus (name = "org.freedesktop.Tracker1.Statistics")]
-public interface Rygel.Tracker.StatsIface : DBus.Object {
-    public abstract async string[,] get_statistics () throws DBus.Error;
+public interface Rygel.Tracker.StatsIface : DBusProxy {
+    public abstract async string[,] get_statistics () throws IOError;
 }
 
 [DBus (name = "org.freedesktop.Tracker1.Resources")]
-public interface Rygel.Tracker.ResourcesIface: DBus.Object {
+public interface Rygel.Tracker.ResourcesIface: DBusProxy {
     public abstract async string[,] sparql_query (string query)
-                                                  throws DBus.Error;
+                                                  throws IOError;
     public abstract async HashTable<string,string>[,] sparql_update_blank (
-                                        string query) throws DBus.Error;
+                                        string query) throws IOError;
 }
 
 [DBus (name = "org.freedesktop.Tracker1.Resources.Class")]
-public interface Rygel.Tracker.ResourcesClassIface: DBus.Object {
+public interface Rygel.Tracker.ResourcesClassIface: DBusProxy {
     public abstract signal void subjects_added (string[] subjects);
     public abstract signal void subjects_removed (string[] subjects);
     public abstract signal void subjects_changed (string[] before,
@@ -45,9 +43,9 @@ public interface Rygel.Tracker.ResourcesClassIface: DBus.Object {
 }
 
 [DBus (name = "org.freedesktop.Tracker1.Miner")]
-public interface Rygel.Tracker.MinerIface : DBus.Object {
+public interface Rygel.Tracker.MinerIface : DBusProxy {
     public abstract async void ignore_next_update (string[] urls)
-                                                   throws DBus.Error;
+                                                   throws IOError;
 }
 
 namespace Rygel {

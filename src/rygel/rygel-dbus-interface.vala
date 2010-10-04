@@ -1,8 +1,8 @@
 /*
- * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
- * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2008,2010 Nokia Corporation.
+ * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
  *
- * Author: Zeeshan Ali <zeenix@gmail.com>
+ * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *
  * This file is part of Rygel.
  *
@@ -21,19 +21,11 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using GUPnP;
-using Gee;
+[DBus (name = "org.gnome.Rygel1")]
+public interface Rygel.DBusInterface : DBusProxy {
+    public const string SERVICE_NAME = "org.gnome.Rygel1";
+    public const string OBJECT_PATH = "/org/gnome/Rygel1";
 
-/**
- * Container listing all available tag labels in Tracker DB.
- */
-public class Rygel.Tracker.Tags : MetadataValues {
-    /* class-wide constants */
-    private const string TITLE = "Tags";
-    private const string[] KEY_CHAIN = { "nao:hasTag", "nao:prefLabel", null };
-
-    public Tags (MediaContainer parent, ItemFactory item_factory) {
-        base (parent.id + TITLE, parent, TITLE, item_factory, KEY_CHAIN);
-    }
+    public abstract void shutdown () throws IOError;
 }
 

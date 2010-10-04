@@ -21,10 +21,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using DBus;
-
 [DBus (name = "org.gnome.UPnP.MediaObject2")]
-public interface Rygel.External.MediaObjectProxy : DBus.Object {
+public interface Rygel.External.MediaObjectProxy : DBusProxy {
     public static const string IFACE = "org.gnome.UPnP.MediaObject2";
     public static const string[] PROPERTIES = { "Parent",
                                                 "Type",
@@ -38,7 +36,7 @@ public interface Rygel.External.MediaObjectProxy : DBus.Object {
 }
 
 [DBus (name = "org.gnome.UPnP.MediaContainer2")]
-public interface Rygel.External.MediaContainerProxy : DBus.Object,
+public interface Rygel.External.MediaContainerProxy : DBusProxy,
                                                       MediaObjectProxy {
     public static const string IFACE = "org.gnome.UPnP.MediaContainer2";
     public static const string[] PROPERTIES = { "ChildCount", "Searchable" };
@@ -50,31 +48,31 @@ public interface Rygel.External.MediaContainerProxy : DBus.Object,
     public abstract uint container_count { get; set; }
     public abstract bool searchable { get; set; }
 
-    public abstract async HashTable<string,Value?>[] list_children (
+    public abstract async HashTable<string,Variant>[] list_children (
                                         uint     offset,
                                         uint     max_count,
-                                        string[] filter) throws DBus.Error;
-    public abstract async HashTable<string,Value?>[] list_containers (
+                                        string[] filter) throws IOError;
+    public abstract async HashTable<string,Variant>[] list_containers (
                                         uint     offset,
                                         uint     max_count,
-                                        string[] filter) throws DBus.Error;
-    public abstract async HashTable<string,Value?>[] list_items (
+                                        string[] filter) throws IOError;
+    public abstract async HashTable<string,Variant>[] list_items (
                                         uint     offset,
                                         uint     max_count,
-                                        string[] filter) throws DBus.Error;
+                                        string[] filter) throws IOError;
 
     // Optional API
-    public abstract async HashTable<string,Value?>[] search_objects (
+    public abstract async HashTable<string,Variant>[] search_objects (
                                         string   query,
                                         uint     offset,
                                         uint     max_count,
-                                        string[] filter) throws DBus.Error;
+                                        string[] filter) throws IOError;
 
     public abstract ObjectPath icon { owned get; set; }
 }
 
 [DBus (name = "org.gnome.UPnP.MediaItem2")]
-public interface Rygel.External.MediaItemProxy : DBus.Object, MediaObjectProxy {
+public interface Rygel.External.MediaItemProxy : DBusProxy, MediaObjectProxy {
     public static const string IFACE = "org.gnome.UPnP.MediaItem2";
     public static const string[] PROPERTIES = { "URLs",
                                                 "MIMEType",

@@ -60,7 +60,7 @@ public class Rygel.Tracker.InsertionQuery : Query {
     }
 
     public override async void execute (ResourcesIface resources)
-                                        throws DBus.Error {
+                                        throws IOError {
         var str = this.to_string ();
 
         debug ("Executing SPARQL query: %s", str);

@@ -31,55 +31,51 @@ private External.PluginFactory plugin_factory;
 public void module_init (PluginLoader loader) {
     try {
         plugin_factory = new External.PluginFactory (loader);
-    } catch (DBus.Error error) {
+    } catch (IOError error) {
         critical ("Failed to fetch list of external services: %s\n",
                 error.message);
     }
 }
 
 public class Rygel.External.PluginFactory {
-    private const string DBUS_SERVICE = "org.freedesktop.DBus";
-    private const string DBUS_OBJECT = "/org/freedesktop/DBus";
-
     private const string SERVICE_PREFIX = "org.gnome.UPnP.MediaServer2.";
     private const string GRILO_UPNP_PREFIX = SERVICE_PREFIX + "grl_upnp";
 
-    DBusObject      dbus_obj;
-    DBus.Connection connection;
-    PluginLoader    loader;
-    IconFactory     icon_factory;
+    DBusObject   dbus_obj;
+    PluginLoader loader;
+    IconFactory  icon_factory;
 
-    public PluginFactory (PluginLoader loader) throws DBus.Error {
-        this.connection = DBus.Bus.get (DBus.BusType.SESSION);
-        this.icon_factory = new IconFactory (this.connection);
+    public PluginFactory (PluginLoader loader) throws IOError {
+        this.icon_factory = new IconFactory ();
 
-        this.dbus_obj = this.connection.get_object (DBUS_SERVICE, DBUS_OBJECT)
-                        as DBusObject;
+        this.dbus_obj = Bus.get_proxy_sync (BusType.SESSION,
+                                            DBUS_SERVICE,
+                                            DBUS_OBJECT);
         this.loader = loader;
 
         this.load_plugins.begin ();
     }
 
-    private async void load_plugins () throws DBus.Error {
+    private async void load_plugins () throws IOError {
         var services = yield this.dbus_obj.list_names ();
 
         foreach (var service in services) {
             if (service.has_prefix (SERVICE_PREFIX) &&
                 this.loader.get_plugin_by_name (service) == null) {
-                yield this.load_plugin (service);
+                yield this.load_plugin_n_handle_error (service);
             }
         }
 
         yield this.load_activatable_plugins ();
     }
 
-    private async void load_activatable_plugins () throws DBus.Error {
+    private async void load_activatable_plugins () throws IOError {
         var services = yield this.dbus_obj.list_activatable_names ();
 
         foreach (var service in services) {
             if (service.has_prefix (SERVICE_PREFIX) &&
                 this.loader.get_plugin_by_name (service) == null) {
-                yield this.load_plugin (service);
+                yield this.load_plugin_n_handle_error (service);
             }
         }
 
@@ -102,12 +98,22 @@ public class Rygel.External.PluginFactory {
                 plugin.available = true;
             }
         } else if (name.has_prefix (SERVICE_PREFIX)) {
-                // Ah, new plugin available, lets use it
-                this.load_plugin.begin (name);
+            // Ah, new plugin available, lets use it
+            this.load_plugin_n_handle_error.begin (name);
         }
     }
 
-    private async void load_plugin (string service_name) {
+    private async void load_plugin_n_handle_error (string service_name) {
+        try {
+            yield this.load_plugin (service_name);
+        } catch (IOError error) {
+            warning ("Failed to load external plugin '%s': %s",
+                     service_name,
+                     error.message);
+        }
+    }
+
+    private async void load_plugin (string service_name) throws IOError {
         if (service_name.has_prefix (GRILO_UPNP_PREFIX)) {
             // We don't entertain UPnP sources
             return;
@@ -117,22 +123,15 @@ public class Rygel.External.PluginFactory {
         var root_object = "/" + service_name.replace (".", "/");
 
         // Create proxy to MediaObject iface to get the display name through
-        var props = this.connection.get_object (service_name, root_object)
-                    as Properties;
+        Properties props = Bus.get_proxy_sync (BusType.SESSION,
+                                               service_name,
+                                               root_object);
 
-        HashTable<string,Value?> object_props;
-        HashTable<string,Value?> container_props;
+        HashTable<string,Variant> object_props;
+        HashTable<string,Variant> container_props;
 
-        try {
-            object_props = yield props.get_all (MediaObjectProxy.IFACE);
-            container_props = yield props.get_all (MediaContainerProxy.IFACE);
-        } catch (DBus.Error err) {
-            warning ("Failed to fetch properties of plugin %s: %s.",
-                     service_name,
-                     err.message);
-
-            return;
-        }
+        object_props = yield props.get_all (MediaObjectProxy.IFACE);
+        container_props = yield props.get_all (MediaContainerProxy.IFACE);
 
         var icon = yield this.icon_factory.create (service_name,
                                                    container_props);
@@ -145,8 +144,8 @@ public class Rygel.External.PluginFactory {
             title = service_name;
         }
 
-        var child_count = container_props.lookup ("ChildCount").get_uint ();
-        var searchable = container_props.lookup ("Searchable").get_boolean ();
+        var child_count = (uint) container_props.lookup ("ChildCount");
+        var searchable = (bool) container_props.lookup ("Searchable");
 
         var plugin = new External.Plugin (service_name,
                                           title,

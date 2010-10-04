@@ -90,13 +90,13 @@ public class Rygel.Tracker.ItemCreation : GLib.Object, Rygel.StateMachine {
         return query.id;
     }
 
-    private void create_proxies () throws DBus.Error {
-        DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
-
-        this.resources = connection.get_object (TRACKER_SERVICE, RESOURCES_PATH)
-                         as ResourcesIface;
-        this.miner = connection.get_object (MINER_SERVICE, MINER_PATH)
-                     as MinerIface;
+    private void create_proxies () throws IOError {
+        this.resources = Bus.get_proxy_sync (BusType.SESSION,
+                                             TRACKER_SERVICE,
+                                             RESOURCES_PATH);
+        this.miner = Bus.get_proxy_sync (BusType.SESSION,
+                                         MINER_SERVICE,
+                                         MINER_PATH);
     }
 }
 

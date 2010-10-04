@@ -52,13 +52,21 @@ public class Rygel.External.Plugin : Rygel.MediaServerPlugin {
     }
 
     public override MediaContainer? get_root_container (GUPnP.Context context) {
-        return new Container ("0",
-                              this.title,
-                              this.child_count,
-                              this.searchable,
-                              this.service_name,
-                              this.root_object,
-                              context.host_ip,
-                              null);
+        Container root_container = null;
+
+        try {
+            root_container = new Container ("0",
+                                            this.title,
+                                            this.child_count,
+                                            this.searchable,
+                                            this.service_name,
+                                            this.root_object,
+                                            context.host_ip,
+                                            null);
+        } catch (IOError err) {
+            critical ("Failed to connect to session bus: %s", err.message);
+        }
+
+        return root_container;
     }
 }

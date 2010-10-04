@@ -23,7 +23,6 @@
  */
 
 using GUPnP;
-using DBus;
 using Gee;
 using FreeDesktop;
 
@@ -38,7 +37,6 @@ public class Rygel.External.Container : Rygel.MediaContainer {
 
     private ItemFactory item_factory;
     private ArrayList<Container> containers;
-    private Connection connection;
 
     private bool searchable;
 
@@ -49,7 +47,7 @@ public class Rygel.External.Container : Rygel.MediaContainer {
                       string     service_name,
                       string     path,
                       string     host_ip,
-                      Container? parent = null) {
+                      Container? parent = null) throws IOError {
         base (id, parent, title, (int) child_count);
 
         this.service_name = service_name;
@@ -57,16 +55,10 @@ public class Rygel.External.Container : Rygel.MediaContainer {
         this.item_factory = new ItemFactory ();
         this.containers = new ArrayList<Container> ();
 
-        try {
-            this.connection = DBus.Bus.get (DBus.BusType.SESSION);
-        } catch (GLib.Error err) {
-            critical ("Failed to connect to session bus: %s", err.message);
-        }
-
         // Create proxy to MediaContainer iface
-        this.actual_container = this.connection.get_object (this.service_name,
-                                                            path)
-                                as MediaContainerProxy;
+        this.actual_container = Bus.get_proxy_sync (BusType.SESSION,
+                                                    this.service_name,
+                                                    path);
 
         this.update_container.begin (true);
     }
@@ -138,8 +130,9 @@ public class Rygel.External.Container : Rygel.MediaContainer {
         MediaObject media_object = null;
 
         // Create proxy to MediaObject iface
-        var actual_object = this.connection.get_object (this.service_name, id)
-                            as MediaObjectProxy;
+        MediaObjectProxy actual_object = Bus.get_proxy_sync (BusType.SESSION,
+                                                             this.service_name,
+                                                             id);
 
         if (actual_object.object_type == "container") {
             media_object = this.find_container_by_id (id);
@@ -162,8 +155,9 @@ public class Rygel.External.Container : Rygel.MediaContainer {
                                          0,
                                          null);
 
-            var props_iface = this.connection.get_object (this.service_name, id)
-                              as Properties;
+            Properties props_iface = Bus.get_proxy_sync (BusType.SESSION,
+                                                         this.service_name,
+                                                         id);
 
             var props = yield props_iface.get_all (MediaItemProxy.IFACE);
 
@@ -182,8 +176,8 @@ public class Rygel.External.Container : Rygel.MediaContainer {
     }
 
     private async MediaObjects create_media_objects (
-                                        HashTable<string,Value?>[] all_props,
-                                        MediaContainer?            parent
+                                        HashTable<string,Variant>[] all_props,
+                                        MediaContainer?             parent
                                         = null) throws GLib.Error {
         var media_objects = new MediaObjects ();
 
@@ -278,7 +272,7 @@ public class Rygel.External.Container : Rygel.MediaContainer {
             yield this.refresh_child_containers ();
         } catch (GLib.Error err) {
             warning ("Failed to update information about container '%s': %s",
-                     this.actual_container.get_path (),
+                     this.actual_container.get_object_path (),
                      err.message);
         }
 

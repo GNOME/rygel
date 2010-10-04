@@ -41,10 +41,6 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     protected static const string LOG_LEVEL_KEY = "log-level";
     protected static const string PLUGIN_PATH_KEY = "plugin-path";
 
-    private const string DBUS_SERVICE = "org.freedesktop.DBus";
-    private const string DBUS_PATH = "/org/freedesktop/DBus";
-    private const string DBUS_INTERFACE = "org.freedesktop.DBus";
-
     private const string RYGEL_SERVICE = "org.gnome.Rygel1";
     private const string RYGEL_PATH = "/org/gnome/Rygel1";
     private const string RYGEL_INTERFACE = "org.gnome.Rygel1";
@@ -54,9 +50,6 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
     protected KeyFile key_file;
     private bool read_only;
-
-    private dynamic DBus.Object dbus_obj;
-    private dynamic DBus.Object rygel_obj;
 
     public bool get_upnp_enabled () throws GLib.Error {
         return this.get_bool ("general", ENABLED_KEY);
@@ -164,21 +157,6 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                                       KeyFileFlags.KEEP_COMMENTS |
                                       KeyFileFlags.KEEP_TRANSLATIONS);
         debug ("Loaded user configuration from file '%s'", path);
-
-        try {
-            DBus.Connection connection = DBus.Bus.get (DBus.BusType.SESSION);
-
-            // Create proxy to Rygel
-            this.rygel_obj = connection.get_object (RYGEL_SERVICE,
-                                                    RYGEL_PATH,
-                                                    RYGEL_INTERFACE);
-            // and DBus
-            this.dbus_obj = connection.get_object (DBUS_SERVICE,
-                                                   DBUS_PATH,
-                                                   DBUS_INTERFACE);
-        } catch (DBus.Error err) {
-            debug ("Failed to connect to session bus: %s", err.message);
-        }
     }
 
     public void save () {
@@ -313,14 +291,13 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
             var dest = File.new_for_path (dest_path);
 
             if (enable) {
-                uint32 res;
-
-                // Start service first
-                if (this.dbus_obj != null) {
-                    this.dbus_obj.StartServiceByName (RYGEL_SERVICE,
-                                                      (uint32) 0,
-                                                      out res);
-                }
+                // Creating the proxy starts the service
+                DBusInterface rygel_proxy = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                         DBusInterface.SERVICE_NAME,
+                                         DBusInterface.OBJECT_PATH);
+                // Just to satisfy valac
+                rygel_proxy.get_object_path ();
 
                 // Then symlink the desktop file to user's autostart dir
                 var source_path = Path.build_filename (BuildConfig.DESKTOP_DIR,
@@ -331,9 +308,15 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
                 this.set_bool ("general", ENABLED_KEY, true);
             } else {
-                // Stop service first
-                if (this.rygel_obj != null) {
-                    this.rygel_obj.Shutdown ();
+                // Stop service only if already running
+                if (this.get_enabled ("general")) {
+                    // Create proxy to Rygel
+                    DBusInterface rygel_proxy = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                         DBusInterface.SERVICE_NAME,
+                                         DBusInterface.OBJECT_PATH);
+
+                    rygel_proxy.shutdown ();
                 }
 
                 // Then delete the symlink from user's autostart dir

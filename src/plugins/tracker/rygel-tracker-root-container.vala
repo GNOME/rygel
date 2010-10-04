@@ -23,7 +23,6 @@
  */
 
 using GUPnP;
-using DBus;
 using Gee;
 
 /**

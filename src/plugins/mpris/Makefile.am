@@ -12,7 +12,6 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
-	    $(LIBDBUS_GLIB_CFLAGS) \
 	    $(UUID_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"' \
 	    -include config.h
@@ -30,7 +29,6 @@ librygel_mpris_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
 
 librygel_mpris_la_LIBADD = $(LIBGUPNP_LIBS) \
 			   $(LIBGUPNP_AV_LIBS) \
-			   $(LIBDBUS_GLIB_LIBS) \
 			   $(GEE_LIBS) \
 			   $(LIBGSTREAMER_LIBS) \
 			   $(UUID_LIBS)

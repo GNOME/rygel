@@ -11,7 +11,6 @@ plugin_LTLIBRARIES = librygel-playbin.la
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
             $(LIBGUPNP_AV_CFLAGS) \
             $(GEE_CFLAGS) \
-            $(LIBDBUS_GLIB_CFLAGS) \
             $(LIBGSTREAMER_CFLAGS) \
             $(UUID_CFLAGS) \
             -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"' \
@@ -29,7 +28,6 @@ librygel_playbin_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
 librygel_playbin_la_LIBADD = $(LIBGUPNP_LIBS) \
 			     $(LIBGUPNP_AV_LIBS) \
 			     $(LIBGSTREAMER_LIBS) \
-			     $(LIBDBUS_GLIB_LIBS) \
 			     $(GEE_LIBS) \
 			     $(UUID_LIBS)
 librygel_playbin_la_LDFLAGS = -shared -fPIC -module -avoid-version

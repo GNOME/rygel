@@ -21,10 +21,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using DBus;
-
 [DBus (name = "org.mpris.MediaPlayer2")]
-public interface Rygel.MPRIS.MediaPlayerProxy : DBus.Object {
+public interface Rygel.MPRIS.MediaPlayerProxy : Object {
     public const string IFACE = "org.mpris.MediaPlayer2";
 
     public abstract string identity { owned get; }
@@ -33,18 +31,18 @@ public interface Rygel.MPRIS.MediaPlayerProxy : DBus.Object {
 }
 
 [DBus (name = "org.mpris.MediaPlayer2.Player")]
-public interface Rygel.MPRIS.MediaPlayer.PlayerProxy : DBus.Object {
+public interface Rygel.MPRIS.MediaPlayer.PlayerProxy : Object {
     public const string IFACE = "org.mpris.MediaPlayer2.Player";
 
     public abstract string playback_status { owned get; }
     public abstract double volume { get; set; }
     public abstract int64 position { get; }
-    public abstract HashTable<string,Value?> metadata { owned get; }
+    public abstract HashTable<string,Variant> metadata { owned get; }
 
-    public abstract void pause () throws DBus.Error;
-    public abstract void play_pause () throws DBus.Error;
-    public abstract void stop () throws DBus.Error;
-    public abstract void play () throws DBus.Error;
-    public abstract void seek (int64 offset) throws DBus.Error;
-    public abstract void open_uri (string uri) throws DBus.Error;
+    public abstract void pause () throws IOError;
+    public abstract void play_pause () throws IOError;
+    public abstract void stop () throws IOError;
+    public abstract void play () throws IOError;
+    public abstract void seek (int64 offset) throws IOError;
+    public abstract void open_uri (string uri) throws IOError;
 }

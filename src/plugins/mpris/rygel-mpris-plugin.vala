@@ -22,9 +22,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using DBus;
 using Rygel.MPRIS;
 using Rygel.MPRIS.MediaPlayer;
+using FreeDesktop;
 
 public class Rygel.MPRIS.Plugin : Rygel.MediaRendererPlugin {
     private const string MEDIA_PLAYER_PATH = "/org/mpris/MediaPlayer2";
@@ -45,16 +45,14 @@ public class Rygel.MPRIS.Plugin : Rygel.MediaRendererPlugin {
         this.protocols = this.schemes_to_protocols (schemes);
 
         try {
-            var connection = DBus.Bus.get (DBus.BusType.SESSION);
-
             // Create proxy to MediaPlayer.Player iface
-            this.actual_player = connection.get_object (service_name,
-                                                        MEDIA_PLAYER_PATH)
-                                 as PlayerProxy;
+            this.actual_player = Bus.get_proxy_sync (BusType.SESSION,
+                                                     DBUS_SERVICE,
+                                                     MEDIA_PLAYER_PATH);
             // Create proxy to FreeDesktop.Properties iface
-            this.properties = connection.get_object (service_name,
-                                                     MEDIA_PLAYER_PATH)
-                              as FreeDesktop.Properties;
+            this.properties = Bus.get_proxy_sync (BusType.SESSION,
+                                                  service_name,
+                                                  MEDIA_PLAYER_PATH);
         } catch (GLib.Error err) {
             critical ("Failed to connect to session bus: %s", err.message);
         }

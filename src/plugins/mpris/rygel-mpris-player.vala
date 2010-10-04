@@ -157,9 +157,9 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
-    private void on_properties_changed (string                   iface,
-                                        HashTable<string,Value?> changed,
-                                        string[]                 invalidated) {
+    private void on_properties_changed (string                    iface,
+                                        HashTable<string,Variant> changed,
+                                        string[]                  invalidated) {
         if (changed.lookup ("PlaybackStatus") != null) {
             this.notify_property ("playback-state");
         }
