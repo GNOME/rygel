@@ -1,3 +1,85 @@
+0.9.0
+=====
+
+This release marks the start of the new unstable release-cycle. This is also the
+release cycle that will be integrated into GNOME 3. Changes since 0.7.8 that
+were not present in subsequent stable (0.8.x) releases:
+
+- Port from dbus-glib and GValue usage to GDBus and GVariant.
+- Do not offer HTTP GET/HEAD URIs for place-holder (0-sized) items. This is
+  needed to avoid crashes when a newly created item is fetched before the client
+  pushes any contents to it.
+- Hack XBox search for upnp:class to make it happy.
+- Direct XBox's genre search to root container.
+- Set item's size on creation.
+- Always set VAPIDIR to ${datadir}/vala/vapi.
+- Tracker:
+  - Add 'Genre' hierarchy.
+  - Provide specific UPnP class for artist and album containers so that they
+    could be searched by this property. This fixes music browsing on XBox 360.
+  - Fix item ID creation logic.
+  - Optimize handling of invalid searches and in turn searches in general.
+  - Improved handling of search by "upnp:class".
+  - Unknown size means size of 0.
+  - Expose more information for music items:
+    - sample rate
+    - number of channels
+    - bits per sample
+    - bitrate
+- MediaExport:
+  - Proper default values for item metdata. This fixes the misterious "0" Album
+    and Artist on XBox.
+  - Handle requests for audio and image item types, not just music and pictures.
+- Localization:
+  - Add Brazilian Portuguese translation.
+  - Add Catalan translation.
+  - Add Italian translation.
+  - Update Traditional Chinese translation (Hong Kong and Taiwan).
+  - Update simplified Chinese translation.
+  - Update Estonian translation.
+  - Update Danish translation.
+  - Update Bulgarian translation.
+  - Update Czech translation.
+  - Update Galician translations.
+  - Update Hebrew translation.
+  - Update French translation.
+  - Update Hungarian translation.
+  - Update Japanese translation.
+  - Update Polish translation.
+  - Update Dutch translation.
+  - Update Greek translation.
+  - Update Lithuanian translation
+- Some other non-functional and/or minor improvements and fixes.
+
+Dependency-related changes:
+
+- Require gio >= 2.26.
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+Aron Xu <aronxu@gnome.org>
+Bruno Brouard <annoa.b@gmail.com>
+Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Djavan Fagundes <djavan@comum.org>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Gabor Kelemen <kelemeng@gnome.hu>
+Gil Forcada <gforcada@gnome.org>
+Ivar Smolin <okul@linux.ee>
+Joan Duran <jodufi@gmail.com>
+Kenneth Nielsen <k.nielsen81@gmail.com>
+Marek Černocký <marek@manet.cz>
+Mario Blättermann <mariobl@gnome.org>
+Mattias Põldaru <mahfiaz gmail com>
+Milo Casagrande <milo@ubuntu.com>
+Piotr Drąg <piotrdrag@gmail.com>
+Rosi Dimova <pocu@bk.ru>
+Simos Xenitellis <simos@gnome.org>
+Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>
+Yaron Shahrabani <sh.yaron@gmail.com>
+Žygimantas Beručka <zygis@gnome.org>
+
 0.7.8
 =====
 
