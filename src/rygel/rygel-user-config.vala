@@ -22,6 +22,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+using FreeDesktop;
+
 /**
  * Manages the user configuration for Rygel.
  */
@@ -292,12 +294,10 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
             if (enable) {
                 // Creating the proxy starts the service
-                DBusInterface rygel_proxy = Bus.get_proxy_sync
-                                        (BusType.SESSION,
-                                         DBusInterface.SERVICE_NAME,
-                                         DBusInterface.OBJECT_PATH);
-                // Just to satisfy valac
-                rygel_proxy.get_object_path ();
+                DBusObject dbus = Bus.get_proxy_sync (BusType.SESSION,
+                                                      DBUS_SERVICE,
+                                                      DBUS_OBJECT);
+                dbus.start_service_by_name (DBusInterface.SERVICE_NAME, 0);
 
                 // Then symlink the desktop file to user's autostart dir
                 var source_path = Path.build_filename (BuildConfig.DESKTOP_DIR,

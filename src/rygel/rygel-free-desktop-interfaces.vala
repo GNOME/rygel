@@ -39,9 +39,11 @@ public interface FreeDesktop.DBusObject: Object {
                                                     string old_owner,
                                                     string new_owner);
 
-    // FIXME: This method should be async
+    // FIXME: These methods should be async
     public abstract uint32 request_name (string name, uint32 flags)
                                          throws IOError;
+    public abstract uint32 start_service_by_name (string name, uint32 flags)
+                                                  throws IOError;
     public abstract async string[] list_names () throws IOError;
     public abstract async string[] list_activatable_names () throws IOError;
 }

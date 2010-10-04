@@ -157,7 +157,8 @@ librygel_configuration_a_SOURCES = rygel-configuration.c \
 				   rygel-meta-config.c \
 				   rygel-cmdline-config.c \
 				   rygel-environment-config.c \
-				   rygel-dbus-interface.c
+				   rygel-dbus-interface.c \
+				   rygel-free-desktop-interfaces.c
 
 MAINTAINERCLEANFILES = Makefile.in $(BUILT_SOURCES)
 EXTRA_DIST = rygel-build-config.vapi \
