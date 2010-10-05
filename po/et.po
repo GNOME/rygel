@@ -8,11 +8,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: rygel 0.6\n"
+"Project-Id-Version: rygel GNOME 2.32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
 "POT-Creation-Date: 2010-10-02 14:58+0000\n"
-"PO-Revision-Date: 2010-10-03 10:53+0300\n"
+"PO-Revision-Date: 2010-10-05 10:14+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -96,7 +96,7 @@ msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA teenused"
 
 msgid "GStreamer Player"
-msgstr ""
+msgstr "GStreamer esitaja"
 
 #, c-format
 msgid "Failed to open database: %d (%s)"
@@ -203,7 +203,7 @@ msgstr "Seansisiiniga ühendumine nurjus: %s"
 
 #, c-format
 msgid "Error getting all values for '%s': %s"
-msgstr ""
+msgstr "Viga kõigi väärtuste hankimisel '%s' jaoks: %s"
 
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
@@ -258,7 +258,7 @@ msgstr "Tegevus nurjus"
 
 #, c-format
 msgid "Required element %s missing"
-msgstr ""
+msgstr "Puudub vajalik element %s"
 
 #, c-format
 msgid "Invalid Range '%s'"
@@ -309,7 +309,7 @@ msgstr "Kirje loomine '%s' alla nurjus: %s"
 
 #, c-format
 msgid "Failed to link pad %s to %s"
-msgstr ""
+msgstr "%s ja %s ühendamine nurjus"
 
 #. 'fakesink' should not be translated
 msgid "Plugin 'fakesink' missing"
@@ -317,7 +317,7 @@ msgstr "Plugin 'fakesink' puudub"
 
 #, c-format
 msgid "Failed to link %s to %s"
-msgstr ""
+msgstr "Elemendi %s ja konveieri %s ühendamine nurjus"
 
 #, c-format
 msgid "Error from pipeline %s: %s"
@@ -400,7 +400,7 @@ msgstr "Muudetud kirjelduse kirjutamine faili %s nurjus"
 
 #, c-format
 msgid "Failed to search in '%s': %s"
-msgstr ""
+msgstr "'%s' seest otsimine nurjus: %s"
 
 #, c-format
 msgid "Failed to read from URI: %s: %s"
