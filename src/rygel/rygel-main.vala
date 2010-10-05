@@ -61,6 +61,7 @@ public class Rygel.Main : Object {
     public void exit (int exit_code) {
         this.exit_code = exit_code;
 
+        this.root_devices = null;
         this.main_loop.quit ();
 
         SignalHandler.cleanup ();
