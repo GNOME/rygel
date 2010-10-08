@@ -1,16 +1,20 @@
 # Korean translation for rygel.
-# Copyright (C) 2010 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# Homin Lee <ff4500@gmail.com>, 2010
+# Changwoo Ryu <cwryu@debian.org>, 2010
+#
+# - 이 프로그램의 이름인 Rygel은 "라이겔"로 음역
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-09-07 09:17+0000\n"
-"PO-Revision-Date: 2010-09-09 20:05+0900\n"
-"Last-Translator: Homin Lee <ff4500@gmail.com>\n"
-"Language-Team: Korean <gnome-kr@googlegroups.com>\n"
+"POT-Creation-Date: 2010-10-09 07:49+0900\n"
+"PO-Revision-Date: 2010-10-09 07:57+0900\n"
+"Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
+"Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
+"Language: Korean\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,8 +37,9 @@ msgid "Plugins"
 msgstr "플러그인"
 
 #: ../data/rygel-preferences.ui.h:5
+#: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
-msgstr "Rygel 기본 설정"
+msgstr "라이겔 기본 설정"
 
 #: ../data/rygel-preferences.ui.h:6
 msgid "Select folders"
@@ -62,7 +67,8 @@ msgstr "제목(_T)"
 
 #: ../data/rygel-preferences.ui.h:13
 #, no-c-format
-msgid "Write %u for username, %n for real name of the user and %h for host name"
+msgid ""
+"Write %u for username, %n for real name of the user and %h for host name"
 msgstr "사용자 이름 %u, 사용자의 실제 이름 %n, 호스트 이름 %h 작성"
 
 #: ../data/rygel-preferences.ui.h:14
@@ -93,35 +99,27 @@ msgstr "포트(_P)"
 
 #: ../data/rygel-preferences.ui.h:22
 msgid "_Transcoding support"
-msgstr "트랜스코딩 지원(_T)"
+msgstr "인코딩 변환 지원(_T)"
 
 #: ../data/rygel-preferences.ui.h:23
 msgid "_URIs"
-msgstr "_URIs"
+msgstr "_URI"
 
-#: ../src/plugins/playbin/rygel-playbin-player.vala:66
-#, c-format
-msgid "Changing playback state to %s."
-msgstr "재생 상태를 %s(으)로 바꾸는 중 입니다."
+#: ../data/rygel-preferences.desktop.in.in.h:2
+msgid "UPnP/DLNA Preferences"
+msgstr "UPnP/DLNA 기본 설정"
 
-#: ../src/plugins/playbin/rygel-playbin-player.vala:92
-#, c-format
-msgid "URI set to %s."
-msgstr "URI가 %s 설정 되었습니다."
+#: ../data/rygel.desktop.in.in.h:1
+msgid "Rygel"
+msgstr "라이겔"
 
-#: ../src/plugins/playbin/rygel-playbin-player.vala:103
-#, c-format
-msgid "volume set to %f."
-msgstr "볼륨이 %f(으)로 설정 되었습니다."
+#: ../data/rygel.desktop.in.in.h:2
+msgid "UPnP/DLNA Services"
+msgstr "UPnP/DLNA 서비스"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
 msgid "GStreamer Player"
-msgstr "GStreamer 재생기"
-
-#: ../src/plugins/media-export/rygel-media-export-database.vala:111
-#, c-format
-msgid "Using database file %s"
-msgstr "데이터베이스 파일 %s 사용"
+msgstr "GStreamer 재생 프로그램"
 
 #: ../src/plugins/media-export/rygel-media-export-database.vala:115
 #, c-format
@@ -138,11 +136,6 @@ msgstr "트렌젠션 롤 백 실패: %s"
 msgid "Unsupported type %s"
 msgstr "지원하지 않는 종류, %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:111
-#, c-format
-msgid "Failed to extract metadata from %s: %s"
-msgstr "%s(으)로 메타데이터 추출 실패: %s"
-
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #: ../src/rygel/rygel-plugin-loader.vala:178
 #, c-format
@@ -157,17 +150,7 @@ msgstr "ID %s(으)로 아이템 더하기 실패: %s"
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:121
 #, c-format
 msgid "Object %s is not an item"
-msgstr "오브젝트 %s(은)는 아이템이 아님"
-
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:254
-#, c-format
-msgid "Original search: %s"
-msgstr "원본 검색: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:255
-#, c-format
-msgid "Parsed search expression: %s"
-msgstr "분석 도니 검색 식: %s"
+msgstr "오브젝트 %s(은)는 항목이 아닙니다"
 
 #: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:37
 #, c-format
@@ -183,17 +166,12 @@ msgstr "사용할 수 있는 메타데이터 추출기가 없습니다."
 msgid "'%s' harvested"
 msgstr "'%s'(을)를 수집했습니다"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:144
-#, c-format
-msgid "Trying to harvest %s because of %d"
-msgstr "%2$d 때문에 %1$s(을)를 수집하는 중"
-
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:155
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:158
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "데이터베이스에서 오브젝트 '%s' 패치 중 오류: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:179
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:182
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "데이터베이스에서 오브젝트 제거 중 오류: %s"
@@ -204,11 +182,6 @@ msgstr "데이터베이스에서 오브젝트 제거 중 오류: %s"
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:30
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@의 미디어"
-
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:48
-#, c-format
-msgid "Folder %s gone; removing watch"
-msgstr "폴더 %s(이)가 사라졌습니다; 감시를 삭제 합니다"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:77
 #, c-format
@@ -245,48 +218,32 @@ msgstr "데이터베이스 인스턴스 만들기 실패"
 msgid "Failed to remove URI: %s"
 msgstr "URI 제거 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:319
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:325
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "MediaExport D-Bus 서비스 만들기 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:353
-#, c-format
-msgid "ID %s no longer in config; deleting..."
-msgstr "ID %s(은)는 이제 설정에 없습니다; 삭제 중..."
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:357
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:363
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "엔트리 제거 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:368
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:374
 msgid "Music"
 msgstr "음악"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:371
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:377
 msgid "Pictures"
 msgstr "사진"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:373
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:379
 msgid "Videos"
 msgstr "비디오"
-
-#: ../src/plugins/mpris/rygel-mpris-player.vala:41
-#, c-format
-msgid "Changing playback state to %s.."
-msgstr "플레이백 상태를 %s(으)로 바꾸는 중..."
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:41
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "폴더 '%s'의 URI 구성 실패: %s"
-
-#: ../src/plugins/tracker/rygel-tracker-insertion-query.vala:63
-#: ../src/plugins/tracker/rygel-tracker-selection-query.vala:71
-#, c-format
-msgid "Executing SPARQL query: %s"
-msgstr "SPARQL 쿼리 실행 중: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-item-creation.vala:73
 #: ../src/rygel/rygel-media-container.vala:213
@@ -296,7 +253,6 @@ msgstr "%s에 오브젝트를 만들기할 권한이 없습니다"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:60
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:99
-#: ../src/rygel/rygel-user-config.vala:180
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr "세선 버스에 연결 실패: %s"
@@ -326,8 +282,7 @@ msgstr "아티스트"
 
 #: ../src/rygel/rygel-media-query-action.vala:121
 #: ../src/rygel/rygel-media-query-action.vala:142
-#: ../src/rygel/rygel-browse.vala:93
-#: ../src/rygel/rygel-item-creator.vala:126
+#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:126
 #: ../src/rygel/rygel-item-creator.vala:159
 msgid "No such object"
 msgstr "해당 오브젝트 없음"
@@ -387,20 +342,15 @@ msgstr "잘못된 인스턴스ID"
 msgid "Play speed not supported"
 msgstr "재생 속도를 지원하지 않음"
 
-#: ../src/rygel/rygel-av-transport.vala:414
-#, c-format
-msgid "Seeking to %s."
-msgstr "%s(을) 찾는 중 입니다."
-
 #: ../src/rygel/rygel-av-transport.vala:417
 #: ../src/rygel/rygel-av-transport.vala:426
 msgid "Seek mode not supported"
-msgstr "찾기 모드를 지원하지 않음"
+msgstr "이동 모드를 지원하지 않음"
 
 #: ../src/rygel/rygel-av-transport.vala:433
 #: ../src/rygel/rygel-av-transport.vala:437
 msgid "Transition not available"
-msgstr "트랜젠션을 사용할 수 없음"
+msgstr "트랜지션을 사용할 수 없음"
 
 #: ../src/rygel/rygel-rendering-control.vala:152
 msgid "Invalid Name"
@@ -433,10 +383,6 @@ msgstr "잘못된 범위 '%s'"
 msgid "Invalid Request"
 msgstr "잘못된 요청"
 
-#: ../src/rygel/rygel-http-get.vala:125
-msgid "Following HTTP headers appended to response:"
-msgstr "응답으로 다음의 HTTP 헤더가 붙습니다:"
-
 #: ../src/rygel/rygel-http-identity-handler.vala:97
 #: ../src/rygel/rygel-http-transcode-handler.vala:56
 msgid "Not found"
@@ -445,7 +391,7 @@ msgstr "찾지 못했습니다"
 #: ../src/rygel/rygel-http-identity-handler.vala:109
 #, c-format
 msgid "Item '%s' didn't provide a URI"
-msgstr "아이템 '%s'(은)는 URI를 가지고 있지 않습니다"
+msgstr "'%s' 항목은 URI가 없습니다"
 
 #: ../src/rygel/rygel-http-item-uri.vala:58
 #, c-format
@@ -459,47 +405,22 @@ msgstr "찾지 못했습니다"
 #: ../src/rygel/rygel-http-post.vala:50
 #, c-format
 msgid "No writable URI for %s available"
-msgstr "%s에 쓸 수 있는 URI가 없음"
+msgstr "%s에 쓸 수 있는 URI가 없습니다"
 
 #: ../src/rygel/rygel-http-request.vala:83
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "요청한 아이템 '%s'(을)를 찾지 못했습니다"
 
-#: ../src/rygel/rygel-http-server.vala:137
-#, c-format
-msgid "HTTP %s request for URI '%s' handled."
-msgstr "URI '%2$s'로의 HTTP %1$s 요청이 처리 되었습니다."
-
-#: ../src/rygel/rygel-http-server.vala:152
-#, c-format
-msgid "HTTP %s request for URI '%s'. Headers:"
-msgstr "URI '%2$s'로의 HTTP %1$s 요청. 헤더:"
-
-#: ../src/rygel/rygel-http-server.vala:168
-#, c-format
-msgid "HTTP client aborted %s request for URI '%s'."
-msgstr "HTTP 클라이언트가 URI '%2$s'로의 요청 '%1$s'(을)를 중단함."
-
-#: ../src/rygel/rygel-http-server.vala:186
-#, c-format
-msgid "HTTP POST request for URI '%s'"
-msgstr "URI '%s'로의 HTTP POST 요청"
-
 #: ../src/rygel/rygel-import-resource.vala:108
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
 msgstr "'%s'의 원래 URI 가져오기 실패: %s"
 
-#: ../src/rygel/rygel-import-resource.vala:134
-#, c-format
-msgid "Import of '%s' to '%s' completed"
-msgstr "'%s'에서 '%s'(으)로 불러오기가 끝났습니다"
-
 #: ../src/rygel/rygel-item-creator.vala:67
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
-msgstr "클라이언트의 DIDL-Lite에 아이템이 없음: '%s'"
+msgstr "클라이언트의 DIDL-Lite에 항목이 없습니다: '%s'"
 
 #: ../src/rygel/rygel-item-creator.vala:117
 msgid "'Elements' argument missing."
@@ -559,34 +480,19 @@ msgstr "설정에서 로그 레벨 가져오기 실패: %s"
 #, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
-msgstr[0] "%d초 동안 플러그인을 찾지 못했습니다; 그만 둡니다.."
-
-#: ../src/rygel/rygel-main.vala:123
-#, c-format
-msgid "new network context %s (%s) available."
-msgstr "새 네트워크 콘텐스트 %s (%s) 사용할 수 있습니다."
+msgstr[0] "%d초 동안 플러그인을 찾지 못했습니다. 중지합니다.."
 
 #: ../src/rygel/rygel-main.vala:141
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "루트 디바이스 펙토리 만들기 실패: %s"
 
-#: ../src/rygel/rygel-main.vala:145
-#, c-format
-msgid "Ignoring network context %s (%s)."
-msgstr "네트워크 콘텍스트 %s (%s) 무시."
-
-#: ../src/rygel/rygel-main.vala:153
-#, c-format
-msgid "Network context %s (%s) now unavailable."
-msgstr "네트워크 콘텍스트 %s (%s)(을)를 이제 사용할 수 없습니다."
-
 #: ../src/rygel/rygel-main.vala:192
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "%s의 RootDevice 만들기 실패. 원인: %s"
 
-#: ../src/rygel/rygel-main.vala:226
+#: ../src/rygel/rygel-main.vala:232
 #, c-format
 msgid "Failed to start D-Bus service: %s"
 msgstr "D-Bus 서비스 시작 실패: %s"
@@ -600,7 +506,7 @@ msgstr "잘못된 URI: %s"
 #: ../src/rygel/rygel-media-item.vala:228
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr "URI %s의 프로토콜 프로브 실패. 가정 '%s'"
+msgstr "URI %s의 프로토콜 검사 실패. '%s' 가정합니다"
 
 #: ../src/rygel/rygel-meta-config.vala:57
 #, c-format
@@ -627,25 +533,10 @@ msgstr "'%s/%s'에 사용 가능한 값이 없음"
 msgid "New plugin '%s' available"
 msgstr "새 플러그인 '%s' 사용가능"
 
-#: ../src/rygel/rygel-plugin-loader.vala:75
-#, c-format
-msgid "Plugin '%s' disabled in user configuration; ignoring.."
-msgstr "사용자 설정에서 플러그인 '%s'(이)가 비활성화 됨; 무시함.."
-
-#: ../src/rygel/rygel-plugin-loader.vala:89
-#, c-format
-msgid "Searching for modules in folder '%s'."
-msgstr "폴더 '%s'에서 모듈 검색 중."
-
 #: ../src/rygel/rygel-plugin-loader.vala:109
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "폴더 '%s'의 내용 나열 중 오류: %s"
-
-#: ../src/rygel/rygel-plugin-loader.vala:134
-#, c-format
-msgid "Finished searching for modules in folder '%s'"
-msgstr "폴더 '%s'에서 모듈 검색 완료"
 
 #: ../src/rygel/rygel-plugin-loader.vala:141
 #, c-format
@@ -657,34 +548,19 @@ msgstr "경로 '%s'에서 모듈 읽어오기 실패: %s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "'%s2$d'의 엔트리 포인트 펑션 '%s1$d' 찾기 실패: %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:167
-#, c-format
-msgid "Loaded module source: '%s'"
-msgstr "불러온 모듈 소스: %s"
-
 #: ../src/rygel/rygel-root-device-factory.vala:112
 #: ../src/rygel/rygel-root-device-factory.vala:145
 #: ../src/rygel/rygel-root-device-factory.vala:167
-#: ../src/rygel/rygel-root-device-factory.vala:186
-#: ../src/rygel/rygel-root-device-factory.vala:201
+#: ../src/rygel/rygel-root-device-factory.vala:198
 #, c-format
 msgid "XML node '%s' not found."
 msgstr "XML 노드 '%s'(을)를 찾을 수 없습니다."
 
-#: ../src/rygel/rygel-root-device-factory.vala:244
-#, c-format
-msgid "No icon provided by plugin '%s'. Using Rygel logo."
-msgstr "플러그인 '%s'에서 제공되는 아이콘이 없습니다. Rygel 로고를 사용합니다."
-
-#: ../src/rygel/rygel-root-device-factory.vala:307
+#: ../src/rygel/rygel-root-device-factory.vala:300
+#: ../src/rygel/rygel-root-device-factory.vala:310
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "변경된 설명을 %s에 쓰기 실패"
-
-#: ../src/rygel/rygel-search.vala:54
-#, c-format
-msgid "Executing search request: %s"
-msgstr "검색 요청을 실행 중: %s"
 
 #: ../src/rygel/rygel-search.vala:78
 #, c-format
@@ -711,7 +587,7 @@ msgstr "URI로 부터 컨텐츠 읽기 실패: %s: %s"
 #: ../src/rygel/rygel-seekable-response.vala:154
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
-msgstr "URI %s로의 스트림 닫기 실패: %s"
+msgstr "URI %s(으)로의 스트림 닫기 실패: %s"
 
 #: ../src/rygel/rygel-subtitle-manager.vala:66
 msgid "No subtitle available"
@@ -728,17 +604,12 @@ msgstr "썸네일 만들기기 사용 불가: %s"
 
 #: ../src/rygel/rygel-thumbnailer.vala:106
 msgid "No thumbnail available"
-msgstr "썸내일 사용 불가"
+msgstr "썸네일 사용 불가"
 
 #: ../src/rygel/rygel-transcode-manager.vala:118
 #, c-format
 msgid "No transcoder available for target format '%s'"
-msgstr "타겟 포멧 '%s'에 사용 가능한 트랜스코더가 없습니다"
-
-#: ../src/rygel/rygel-user-config.vala:166
-#, c-format
-msgid "Loaded user configuration from file '%s'"
-msgstr "파일 '%s'에서 불러 온 사용자 설정"
+msgstr "대상 포멧 '%s'에 사용 가능한 인코딩 변환 프로그램이 없습니다"
 
 #: ../src/rygel/rygel-user-config.vala:197
 #, c-format
@@ -772,14 +643,9 @@ msgstr "적용할 수 없음"
 #: ../src/rygel/rygel-xbox-hacks.vala:153
 #, c-format
 msgid "Failed to write modified description to %s."
-msgstr "수정된 설명을 %s에 쓰기 실패."
+msgstr "수정된 설명을 %s에 쓰는데 실패했습니다."
 
-#: ../src/rygel/rygel-changelog.vala:68
-msgid "Setting up timeout for LastChange"
-msgstr "LastChange에 설정된 타임아웃"
-
-#: ../src/ui/rygel-preferences-dialog.vala:72
+#: ../src/ui/rygel-preferences-dialog.vala:78
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "환경 설정 대화 상자 만들기 실패: %s"
-
