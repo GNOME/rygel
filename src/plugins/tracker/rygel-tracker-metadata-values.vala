@@ -164,7 +164,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
     }
 
     protected virtual string create_id_for_title (string title) {
-        return this.id + ":" + title;
+        return this.id + ":" + Uri.escape_string (title, "", true);
     }
 
     protected virtual string create_title_for_value (string value) {
