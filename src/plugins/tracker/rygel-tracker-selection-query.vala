@@ -26,6 +26,8 @@ using Gee;
  * Represents Tracker SPARQL Selection query
  */
 public class Rygel.Tracker.SelectionQuery : Query {
+    public const string ITEM_VARIABLE = "?item";
+
     public ArrayList<string> variables;
     public ArrayList<string> filters;
 

@@ -31,7 +31,6 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
-    private const string ITEM_VARIABLE = "?item";
 
     private ItemFactory item_factory;
 
@@ -85,7 +84,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
 
             string subject;
             if (i == 0) {
-                subject = ITEM_VARIABLE;
+                subject = SelectionQuery.ITEM_VARIABLE;
             } else {
                 subject = variables[i - 1];
             }
@@ -95,7 +94,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
                                             variables[i]));
         }
 
-        triplets.insert (0, new QueryTriplet (ITEM_VARIABLE,
+        triplets.insert (0, new QueryTriplet (SelectionQuery.ITEM_VARIABLE,
                                               "a",
                                               this.item_factory.category));
 

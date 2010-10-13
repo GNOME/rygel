@@ -33,7 +33,6 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
 
-    private const string ITEM_VARIABLE = "?item";
     private const string MODIFIED_PREDICATE = "nfo:fileLastModified";
     private const string MODIFIED_VARIABLE = "?modified";
     private const string URL_PREDICATE = "nie:url";
@@ -55,7 +54,7 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
         this.item_factory = item_factory;
 
         var variables = new ArrayList<string> ();
-        variables.add (ITEM_VARIABLE);
+        variables.add (SelectionQuery.ITEM_VARIABLE);
         variables.add (URL_VARIABLE);
 
         QueryTriplets our_triplets;
@@ -65,18 +64,21 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
             our_triplets = new QueryTriplets ();
         }
 
-        our_triplets.add_triplet (new QueryTriplet (ITEM_VARIABLE,
-                                                    "a",
-                                                    item_factory.category));
-        our_triplets.add_triplet (new QueryTriplet (ITEM_VARIABLE,
-                                                    MODIFIED_PREDICATE,
-                                                    MODIFIED_VARIABLE));
-        our_triplets.add_triplet (new QueryTriplet (ITEM_VARIABLE,
-                                                    URL_PREDICATE,
-                                                    URL_VARIABLE));
+        our_triplets.add_triplet (new QueryTriplet
+                                        (SelectionQuery.ITEM_VARIABLE,
+                                         "a",
+                                         item_factory.category));
+        our_triplets.add_triplet (new QueryTriplet
+                                        (SelectionQuery.ITEM_VARIABLE,
+                                         MODIFIED_PREDICATE,
+                                         MODIFIED_VARIABLE));
+        our_triplets.add_triplet (new QueryTriplet
+                                        (SelectionQuery.ITEM_VARIABLE,
+                                         URL_PREDICATE,
+                                         URL_VARIABLE));
 
         foreach (var chain in this.item_factory.key_chains) {
-            var variable = ITEM_VARIABLE;
+            var variable = SelectionQuery.ITEM_VARIABLE;
 
             foreach (var key in chain) {
                 variable = key + "(" + variable + ")";
@@ -180,7 +182,7 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
             var query = new SelectionQuery.clone (this.query);
 
             query.variables = new ArrayList<string> ();
-            query.variables.add ("COUNT(" + ITEM_VARIABLE + ") AS x");
+            query.variables.add ("COUNT(" + SelectionQuery.ITEM_VARIABLE + ") AS x");
 
             yield query.execute (this.resources);
 
@@ -230,7 +232,7 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
         string value = null;
 
         if (expression.operand1 == "@id") {
-            variable = ITEM_VARIABLE;
+            variable = SelectionQuery.ITEM_VARIABLE;
 
             string parent_id;
 
