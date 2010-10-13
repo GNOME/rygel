@@ -27,6 +27,11 @@ using Gee;
  */
 public class Rygel.Tracker.SelectionQuery : Query {
     public const string ITEM_VARIABLE = "?item";
+    private const string SHARED_FILTER = "(!BOUND(nmm:uPnPShared(" +
+                                         ITEM_VARIABLE + ")) ||" +
+                                         " nmm:uPnPShared(" +
+                                         ITEM_VARIABLE +
+                                         ") = true)";
 
     public ArrayList<string> variables;
     public ArrayList<string> filters;
@@ -84,12 +89,17 @@ public class Rygel.Tracker.SelectionQuery : Query {
 
         query += " WHERE { " + base.to_string ();
 
-        if (this.filters.size > 0) {
-            query += " FILTER (";
-            for (var i = 0; i < this.filters.size; i++) {
-                query += this.filters[i];
+        var filters = new ArrayList<string> ();
+        filters.add_all (this.filters);
+        // Make sure we don't expose items that are marked not to be shared
+        filters.add (SHARED_FILTER);
 
-                if (i < this.filters.size - 1) {
+        if (filters.size > 0) {
+            query += " FILTER (";
+            for (var i = 0; i < filters.size; i++) {
+                query += filters[i];
+
+                if (i < filters.size - 1) {
                     query += " && ";
                 }
             }
