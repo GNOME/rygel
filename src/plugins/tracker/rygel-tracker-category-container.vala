@@ -26,7 +26,7 @@ using Gee;
 /**
  * Container listing content hierarchy for a specific category.
  */
-public class Rygel.Tracker.CategoryContainer : Rygel.SimpleContainer {
+public abstract class Rygel.Tracker.CategoryContainer : Rygel.SimpleContainer {
     public ItemFactory item_factory;
 
     public CategoryContainer (string         id,
