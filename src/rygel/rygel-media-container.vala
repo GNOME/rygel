@@ -216,7 +216,6 @@ public abstract class Rygel.MediaContainer : MediaObject {
         if (item.uris.size == 0) {
             var file = yield create_child (item.title, cancellable);
             item.uris.add (file.get_uri ());
-            item.size = 0;
         }
 
         item.id = item.uris[0];
