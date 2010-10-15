@@ -77,8 +77,9 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                           didl_item.upnp_class);
 
             var resources = didl_item.get_resources ();
-            if (resources != null) {
-                var info = resources.nth (0).data.protocol_info;
+            if (resources != null && resources.length () > 0) {
+                var resource = resources.nth (0).data;
+                var info = resource.protocol_info;
 
                 if (info != null) {
                     if (info.dlna_profile != null) {
@@ -89,13 +90,23 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                         this.item.mime_type = info.mime_type;
                     }
                 }
+
+                if (this.is_valid_uri (resource.uri)) {
+                    this.item.add_uri (resource.uri);
+                }
+
+                if (resource.size >= 0) {
+                    this.item.size = resource.size;
+                }
             }
 
             if (item.mime_type == null) {
                 this.item.mime_type = this.get_generic_mime_type ();
             }
 
-            this.item.size = 0;
+            if (item.size < 0) {
+                this.item.size = 0;
+            }
 
             yield container.add_item (this.item, this.cancellable);
             this.item.serialize (didl_writer, this.content_dir.http_server);
@@ -219,6 +230,24 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                         "not supported.",
                                          upnp_class);
         }
+    }
+
+    // FIXME: This function is hardly completely. Perhaps we should just make
+    // use of a regex here.
+    private bool is_valid_uri (string? uri) {
+        if (uri == null || uri == "") {
+            return false;
+        }
+
+        for (var next = uri.next_char ();
+             next != "";
+             next = next.next_char ()) {
+            if (next.get_char ().isspace ()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
 

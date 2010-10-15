@@ -204,30 +204,22 @@ public abstract class Rygel.MediaContainer : MediaObject {
      *
      * return nothing.
      *
-     * This implementation is very basic: It only creates the file under the
-     * first writable URI it can find for this container & sets the ID of the
-     * item to that of the URI of the newly created item. If your subclass
-     * doesn't ID the items by their original URIs, you definitely want to
-     * override this method.
+     * This implementation is very basic: If no URI is provided for the item,
+     * it creates the file under the first writable URI it can find for this
+     * container. It also sets the ID of the item to that of the URI of the
+     * item. If your subclass doesn't ID the items by their original URIs, you
+     * definitely want to override this method.
      */
     public async virtual void add_item (MediaItem    item,
                                         Cancellable? cancellable)
                                         throws Error {
-        var dir = yield this.get_writable (cancellable);
-        if (dir == null) {
-           throw new ContentDirectoryError.RESTRICTED_PARENT (
-                                        _("Object creation in %s not allowed"),
-                                        this.id);
+        if (item.uris.size == 0) {
+            var file = yield create_child (item.title, cancellable);
+            item.uris.add (file.get_uri ());
+            item.size = 0;
         }
 
-        var file = dir.get_child_for_display_name (item.title);
-        yield file.create_async (FileCreateFlags.NONE,
-                                 Priority.DEFAULT,
-                                 cancellable);
-        var uri = file.get_uri ();
-        item.id = uri;
-        item.size = 0;
-        item.uris.add (uri);
+        item.id = item.uris[0];
     }
 
     /**
@@ -338,6 +330,23 @@ public abstract class Rygel.MediaContainer : MediaObject {
         if (this.parent != null) {
             this.parent.container_updated (updated_container);
         }
+    }
+
+    private async File create_child (string title, Cancellable? cancellable)
+                                     throws Error {
+        var dir = yield this.get_writable (cancellable);
+        if (dir == null) {
+           throw new ContentDirectoryError.RESTRICTED_PARENT (
+                                        _("Object creation in %s not allowed"),
+                                        this.id);
+        }
+
+        var file = dir.get_child_for_display_name (title);
+        yield file.create_async (FileCreateFlags.NONE,
+                                 Priority.DEFAULT,
+                                 cancellable);
+
+        return file;
     }
 }
 

@@ -49,15 +49,21 @@ public class Rygel.Tracker.ItemCreation : GLib.Object, Rygel.StateMachine {
 
     public async void run () {
         try {
-            var file = yield this.prepare_file ();
+            string urn;
 
-            var urn = yield this.create_entry_in_store ();
+            if (this.item.uris.size == 0) {
+                var file = yield this.prepare_file ();
 
-            var uris = new string[] { this.item.uris[0] };
-            yield this.miner.ignore_next_update (uris);
-            yield file.create_async (FileCreateFlags.NONE,
-                                     Priority.DEFAULT,
-                                     cancellable);
+                urn = yield this.create_entry_in_store ();
+
+                var uris = new string[] { this.item.uris[0] };
+                yield this.miner.ignore_next_update (uris);
+                yield file.create_async (FileCreateFlags.NONE,
+                                         Priority.DEFAULT,
+                                         cancellable);
+            } else {
+                urn = yield this.create_entry_in_store ();
+            }
 
             this.item.id = this.container.create_child_id_for_urn (urn);
             this.item.parent = this.container;
