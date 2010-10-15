@@ -35,3 +35,6 @@ librygel_mpris_la_LIBADD = $(LIBGUPNP_LIBS) \
 librygel_mpris_la_LDFLAGS = -shared -fPIC -module -avoid-version
 
 MAINTAINERCLEANFILES = Makefile.in
+
+vala-clean:
+	rm -f `find . -name "*.stamp"`

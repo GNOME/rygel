@@ -50,3 +50,6 @@ rygel_preferences_LDADD = \
 rygel_preferences_LDFLAGS = -export-dynamic
 
 MAINTAINERCLEANFILES = Makefile.in
+
+vala-clean:
+	rm -f `find . -name "*.stamp"`

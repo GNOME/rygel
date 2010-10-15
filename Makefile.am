@@ -19,3 +19,6 @@ $(top_srcdir)/.version:
 	echo $(VERSION) > $@-t && mv $@-t $@
 dist-hook:
 	echo $(VERSION) > $(distdir)/.tarball-version
+
+vala-clean:
+	rm -f `find . -name "*.stamp"`

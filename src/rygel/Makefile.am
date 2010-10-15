@@ -166,3 +166,6 @@ EXTRA_DIST = rygel-build-config.vapi \
              $(VAPI_FILES) \
              $(DEPS_FILES) \
              $(BUILT_SOURCES)
+
+vala-clean:
+	rm -f `find . -name "*.stamp"`
