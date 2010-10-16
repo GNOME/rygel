@@ -25,11 +25,32 @@
 using Gee;
 
 /**
- * A simple search container that contains all the items in a category.
+ * A search container that contains all the items in a category.
  */
 public class Rygel.Tracker.CategoryAllContainer : SearchContainer {
+    /* class-wide constants */
+    private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
+    private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
+    private const string MINER_SERVICE = "org.freedesktop.Tracker1.Miner.Files";
+    private const string MINER_PATH = "/org/freedesktop/Tracker1/Miner/Files";
+
+    private ResourcesIface resources;
+    private MinerIface miner;
+
     public CategoryAllContainer (CategoryContainer parent) {
         base ("All" + parent.id, parent, "All", parent.item_factory);
+
+        try {
+            this.resources = Bus.get_proxy_sync (BusType.SESSION,
+                                                 TRACKER_SERVICE,
+                                                 RESOURCES_PATH);
+            this.miner = Bus.get_proxy_sync (BusType.SESSION,
+                                             MINER_SERVICE,
+                                             MINER_PATH);
+        } catch (IOError io_error) {
+            critical (_("Failed to create D-Bus proxies: %s"),
+                      io_error.message);
+        }
 
         try {
             var uri = Filename.to_uri (item_factory.upload_dir, null);
@@ -49,11 +70,49 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer {
                                          throws Error {
         assert (this.uris.size > 0);
 
-        var creation = new ItemCreation (item, this, cancellable);
-        yield creation.run ();
-        if (creation.error != null) {
-            throw creation.error;
+        string urn;
+
+        if (item.uris.size == 0) {
+            var file = yield this.prepare_file (item, cancellable);
+
+            urn = yield this.create_entry_in_store (item);
+
+            var uris = new string[] { item.uris[0] };
+            yield this.miner.ignore_next_update (uris);
+            yield file.create_async (FileCreateFlags.NONE,
+                    Priority.DEFAULT,
+                    cancellable);
+        } else {
+            urn = yield this.create_entry_in_store (item);
         }
+
+        item.id = this.create_child_id_for_urn (urn);
+        item.parent = this;
+    }
+
+    private async File prepare_file (MediaItem    item,
+                                     Cancellable? cancellable) throws Error {
+        var dir = yield this.get_writable (cancellable);
+        if (dir == null) {
+            throw new ContentDirectoryError.RESTRICTED_PARENT (
+                                        _("Object creation in %s not allowed"),
+                                        this.id);
+        }
+
+        var file = dir.get_child_for_display_name (item.title);
+
+        item.uris.add (file.get_uri ());
+
+        return file;
+    }
+
+    private async string create_entry_in_store (MediaItem item) throws Error {
+        var category = this.item_factory.category;
+        var query = new InsertionQuery (item, category);
+
+        yield query.execute (this.resources);
+
+        return query.id;
     }
 }
 
