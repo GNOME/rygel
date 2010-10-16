@@ -4,8 +4,7 @@ AC_INIT([rygel],
 	[http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel])
 AC_CONFIG_AUX_DIR([build-aux])
 
-# require automake-1.11 for vala support
-AM_INIT_AUTOMAKE([1.11])
+AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([src/rygel/rygel-root-device.vala])
 AM_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([m4])
