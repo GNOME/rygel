@@ -61,16 +61,9 @@ internal class Rygel.WMVTranscoderBin : Gst.Bin {
         this.add_pad (ghost);
 
         decodebin.pad_added.connect (this.decodebin_pad_added);
-        // FIXME: Use 'connect' syntax & remove the ugly annotation on the
-        //        callback once bug#622089 is fixed.
-        Signal.connect_object (decodebin,
-                               "autoplug-continue",
-                               (Callback) this.autoplug_continue,
-                               this,
-                               ConnectFlags.AFTER);
+        decodebin.autoplug_continue.connect (this.autoplug_continue);
     }
 
-    [CCode (instance_pos = -1)]
     private bool autoplug_continue (Element decodebin,
                                     Pad     new_pad,
                                     Caps    caps) {

@@ -93,13 +93,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         }
 
         sink.signal_handoffs = true;
-        // FIXME: Use 'connect' syntax & remove the ugly annotation on the
-        //        callback once bug#622089 is fixed.
-        Signal.connect_object (sink,
-                               "handoff",
-                               (Callback) this.on_new_buffer,
-                               this,
-                               ConnectFlags.AFTER);
+        sink.handoff.connect (this.on_new_buffer);
 
         this.pipeline = new Pipeline (name);
         assert (this.pipeline != null);
@@ -159,7 +153,6 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
         }
     }
 
-    [CCode (instance_pos = -1)]
     private void on_new_buffer (Element sink,
                                 Buffer  buffer,
                                 Pad     pad) {
