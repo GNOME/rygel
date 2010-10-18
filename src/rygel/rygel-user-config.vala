@@ -284,9 +284,10 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     }
 
     private void enable_upnp (bool enable) {
-        var dest_dir = Path.build_filename (Environment.get_user_config_dir (),
-                                             "autostart");
         try {
+            var config_dir = Environment.get_user_config_dir ();
+            this.ensure_dir_exists (config_dir);
+            var dest_dir = Path.build_filename (config_dir, "autostart");
             this.ensure_dir_exists (dest_dir);
 
             var dest_path = Path.build_filename (dest_dir, "rygel.desktop");
