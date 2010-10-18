@@ -1,3 +1,61 @@
+0.8.2
+=====
+
+Changes since 0.8.1:
+
+- Don't assume user's config folder to be present everywhere. This assumption is
+  only true for modern (free)desktops and fails us badly on headless machines.
+- Destroy the device list before quiting main loop. For some reason, the SSDP
+  'BYE' message doesn't get sent out for all devices before rygel exits. This
+  change makes sending of these packet a lot more (could actually be 100%)
+  reliable.
+- Tracker:
+  - Make sure we only expose items that are either explicity marked to be shared
+    over UPnP network or not marked at all.
+  - Assume UPnP-created items to be shared. We create items on demand from UPnP
+    clients so its logical to assume that the client would want it to be
+    available on the UPnP network immediately after their creation.
+  - URI escape metadata titles for IDs to correctly handle titles that have
+    charachters like ',' and ':' in them.
+  - Some non-functional changes.
+- MediaExport:
+  - Proper default values for item metdata. This fixes the misterious "0" Album
+    and Artist on XBox.
+  - Handle requests for audio and image item types, not just music and pictures.
+- Localization:
+  - Add Italian translation.
+  - Add Catalan translation.
+  - Add Hebrew translation.
+  - Update Estonian translation.
+  - Update Lithuanian translation.
+  - Update Portuguese translation.
+  - Update Greek translation.
+  - Update Dutch translation.
+  - Update Polish translation.
+  - Update Japanese translation.
+  - Update Hungarian translation.
+  - Update French translation.
+  - Update Spanish translation.
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+Bruno Brouard <annoa.b@gmail.com>
+Duarte Loreto <happyguy_pt@hotmail.com>
+Gabor Kelemen <kelemeng@gnome.hu>
+Gil Forcada <gforcada@gnome.org>
+Ivar Smolin <okul@linux.ee>
+Joan Duran <jodufi@gmail.com>
+Jorge González <jorgegonz@svn.gnome.org>
+Mario Blättermann <mariobl@gnome.org>
+Milo Casagrande <milo@ubuntu.com>
+Piotr Drąg <piotrdrag@gmail.com>
+Simos Xenitellis <simos@gnome.org>
+Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>
+Yaron Shahrabani <sh.yaron@gmail.com>
+Žygimantas Beručka <zygis@gnome.org>
+
 0.8.1
 =====
 
