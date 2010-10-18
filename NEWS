@@ -1,3 +1,21 @@
+0.9.1
+=====
+
+A new release in the current unstable 0.9.x series for upcoming GNOME 2.91.1
+release.
+
+* Don't assume user's config folder to be present everywhere. This assumption is
+  only true for modern (free)desktops and fails us badly on headless machines.
+* Properly require automake 1.11.
+* Custom rule to remove .stamp files to enforce rebuild from vala sources.
+* Tracker:
+  * Make sure we only expose items that are either explicity marked to be shared
+    over UPnP network or not marked at all.
+  * Assume UPnP-created items to be shared. We create items on demand from UPnP
+    clients so its logical to assume that the client would want it to be
+    available on the UPnP network immediately after their creation.
+  * Some non-functional changes.
+
 0.9.0
 =====
 
