@@ -293,17 +293,17 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
         MediaItem item;
         if (dlna == null) {
             item = ItemFactory.create_simple (this.current_parent (),
-                                    file,
-                                    mime,
-                                    size,
-                                    mtime);
+                                              file,
+                                              mime,
+                                              size,
+                                              mtime);
         } else {
             item = ItemFactory.create_from_info (this.current_parent (),
-                                          file,
-                                          dlna,
-                                          mime,
-                                          size,
-                                          mtime);
+                                                 file,
+                                                 dlna,
+                                                 mime,
+                                                 size,
+                                                 mtime);
         }
 
         if (item != null) {
