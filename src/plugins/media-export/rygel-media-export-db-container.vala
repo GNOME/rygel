@@ -86,8 +86,8 @@ public class Rygel.MediaExport.DBContainer : MediaContainer {
         return this.media_db.get_object (id);
     }
 
-    public override async void add_item (Rygel.MediaItem    item,
-                                         Cancellable?       cancellable)
+    public override async void add_item (Rygel.MediaItem item,
+                                         Cancellable?    cancellable)
                                          throws Error {
         yield base.add_item (item, cancellable);
 

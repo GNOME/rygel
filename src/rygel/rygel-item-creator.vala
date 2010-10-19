@@ -100,11 +100,11 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                 }
             }
 
-            if (item.mime_type == null) {
+            if (this.item.mime_type == null) {
                 this.item.mime_type = this.get_generic_mime_type ();
             }
 
-            if (item.size < 0) {
+            if (this.item.size < 0) {
                 this.item.size = 0;
             }
 
