@@ -327,6 +327,23 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
             return;
         }
 
+        try {
+            var info = file.query_info (HARVESTER_ATTRIBUTES,
+                                        FileQueryInfoFlags.NONE,
+                                        this.cancellable);
+            string content_type = info.get_content_type ();
+            string mime = g_content_type_get_mime_type (content_type);
+            uint64 size = info.get_size ();
+            uint64 mtime = info.get_attribute_uint64 (
+                                        FILE_ATTRIBUTE_TIME_MODIFIED);
+            this.on_extracted_cb (file, null, mime, size, mtime);
+        } catch (Error error) {
+            debug ("Could not get basic file information for %s: %s." +
+                   "Ignoring",
+                   file.get_uri (),
+                   error.message);
+        }
+
         this.files.poll ();
         this.do_update ();
     }
