@@ -38,6 +38,9 @@ public class Rygel.Tracker.InsertionQuery : Query {
         triplets.add (new QueryTriplet (QUERY_ID, "a", "nfo:FileDataObject"));
         triplets.add (new QueryTriplet (QUERY_ID, "nmm:uPnPShared", "true"));
         triplets.add (new QueryTriplet (QUERY_ID,
+                                        "nie:title",
+                                        "\"" + item.title + "\""));
+        triplets.add (new QueryTriplet (QUERY_ID,
                                         "nie:mimeType",
                                         "\"" + item.mime_type + "\""));
         if (item.dlna_profile != null) {
