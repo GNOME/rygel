@@ -42,12 +42,6 @@ public interface Rygel.Tracker.ResourcesClassIface: DBusProxy {
                                                   string[] after);
 }
 
-[DBus (name = "org.freedesktop.Tracker1.Miner")]
-public interface Rygel.Tracker.MinerIface : DBusProxy {
-    public abstract async void ignore_next_update (string[] urls)
-                                                   throws IOError;
-}
-
 namespace Rygel {
     public const string RESOURCES_CLASS_PATH = "/org/freedesktop/Tracker1/" +
                                                "Resources/Classes/";

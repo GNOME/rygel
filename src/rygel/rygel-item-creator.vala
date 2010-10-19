@@ -108,6 +108,13 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                 this.item.size = 0;
             }
 
+            if (this.item.uris.size == 0) {
+                var uri = yield this.create_uri (container, this.item.title);
+                this.item.uris.add (uri);
+            }
+
+            this.item.id = this.item.uris[0];
+
             yield container.add_item (this.item, this.cancellable);
             this.item.serialize (didl_writer, this.content_dir.http_server);
 
@@ -248,6 +255,20 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         }
 
         return true;
+    }
+
+    public async string create_uri (MediaContainer container, string title)
+                                    throws Error {
+        var dir = yield container.get_writable (this.cancellable);
+        if (dir == null) {
+            throw new ContentDirectoryError.RESTRICTED_PARENT (
+                                        _("Object creation in %s not allowed"),
+                                        container.id);
+        }
+
+        var file = dir.get_child_for_display_name (title);
+
+        return file.get_uri ();
     }
 }
 

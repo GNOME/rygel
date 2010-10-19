@@ -169,6 +169,14 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
         }
     }
 
+    public override async void add_item (MediaItem item,
+                                         Cancellable? cancellable)
+                                         throws Error {
+        throw new ContentDirectoryError.RESTRICTED_PARENT (
+                                        _("Object creation in %s not allowed"),
+                                        this.id);
+    }
+
     public string create_child_id_for_urn (string urn) {
         return this.id + "," + urn;
     }

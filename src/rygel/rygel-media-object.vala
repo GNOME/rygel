@@ -109,12 +109,18 @@ public abstract class Rygel.MediaObject : GLib.Object {
         foreach (var uri in this.uris) {
             var file = File.new_for_uri (uri);
 
-            var info = yield file.query_info_async (
+            try {
+                var info = yield file.query_info_async (
                                         FILE_ATTRIBUTE_ACCESS_CAN_WRITE,
                                         FileQueryInfoFlags.NONE,
                                         Priority.DEFAULT,
                                         cancellable);
-            if (info.get_attribute_boolean (FILE_ATTRIBUTE_ACCESS_CAN_WRITE)) {
+
+                if (info.get_attribute_boolean (
+                                        FILE_ATTRIBUTE_ACCESS_CAN_WRITE)) {
+                    return file;
+                }
+            } catch (IOError.NOT_FOUND error) {
                 return file;
             }
         }
