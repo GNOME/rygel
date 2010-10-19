@@ -68,6 +68,9 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer {
 
         item.id = this.create_child_id_for_urn (urn);
         item.parent = this;
+
+        this.child_count++;
+        this.updated ();
     }
 
     private async string create_entry_in_store (MediaItem item) throws Error {
