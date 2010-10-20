@@ -22,17 +22,16 @@
 
 internal class Rygel.MediaExport.ObjectFactory : Object {
     /**
-     * Return a new instance of DatabaseBackedMediaContainer
+     * Return a new instance of DBContainer
      *
      * @param media_db instance of MediaDB
      * @param title title of the container
      * @param child_count number of children in the container
      */
-    public virtual MediaContainer get_container (
-                                        MediaCache media_db,
-                                        string     id,
-                                        string     title,
-                                        uint       child_count) {
+    public virtual DBContainer get_container (MediaCache media_db,
+                                              string     id,
+                                              string     title,
+                                              uint       child_count) {
         if (id.has_prefix (QueryContainer.PREFIX)) {
             return new QueryContainer (media_db, id, title);
         } else {

@@ -190,7 +190,9 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
             var query = new SelectionQuery.clone (this.query);
 
             query.variables = new ArrayList<string> ();
-            query.variables.add ("COUNT(" + SelectionQuery.ITEM_VARIABLE + ") AS x");
+            query.variables.add ("COUNT(" +
+                                 SelectionQuery.ITEM_VARIABLE +
+                                 ") AS x");
 
             yield query.execute (this.resources);
 
