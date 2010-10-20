@@ -175,14 +175,6 @@ public class Rygel.External.Container : Rygel.MediaContainer {
         return media_object;
     }
 
-    public override async void add_item (MediaItem item,
-                                         Cancellable? cancellable)
-                                         throws Error {
-        throw new ContentDirectoryError.RESTRICTED_PARENT (
-                                        _("Object creation in %s not allowed"),
-                                        this.id);
-    }
-
     private async MediaObjects create_media_objects (
                                         HashTable<string,Variant>[] all_props,
                                         MediaContainer?             parent

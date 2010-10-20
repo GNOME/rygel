@@ -81,6 +81,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-media-objects.vala \
 		    rygel-media-container.vala \
 		    rygel-simple-container.vala \
+		    rygel-writable-container.vala \
 		    rygel-media-item.vala \
 		    rygel-audio-item.vala \
 		    rygel-music-item.vala \

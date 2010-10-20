@@ -41,11 +41,12 @@ public class Rygel.RelationalExpression :
         case "dc:title":
             return this.compare_string (media_object.title);
         case "upnp:createClass":
-            if (!(media_object is MediaContainer)) {
+            if (!(media_object is WritableContainer)) {
                 return false;
             }
 
-            return this.compare_create_class (media_object as MediaContainer);
+            return this.compare_create_class (
+                                        media_object as WritableContainer);
         case "dc:creator":
             if (!(media_object is PhotoItem)) {
                 return false;
@@ -73,7 +74,7 @@ public class Rygel.RelationalExpression :
         return "%s %d %s".printf (this.operand1, this.op, this.operand2);
     }
 
-    private bool compare_create_class (MediaContainer container) {
+    private bool compare_create_class (WritableContainer container) {
         var ret = false;
 
         foreach (var create_class in container.create_classes) {

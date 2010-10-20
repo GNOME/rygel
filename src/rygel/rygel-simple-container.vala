@@ -94,12 +94,4 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
 
         return media_object;
     }
-
-    public override async void add_item (MediaItem item,
-                                         Cancellable? cancellable)
-                                         throws Error {
-        throw new ContentDirectoryError.RESTRICTED_PARENT (
-                                        _("Object creation in %s not allowed"),
-                                        this.id);
-    }
 }

@@ -27,17 +27,23 @@ using Gee;
 /**
  * A search container that contains all the items in a category.
  */
-public class Rygel.Tracker.CategoryAllContainer : SearchContainer {
+public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
+                                                  WritableContainer {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
     private const string MINER_SERVICE = "org.freedesktop.Tracker1.Miner.Files";
     private const string MINER_PATH = "/org/freedesktop/Tracker1/Miner/Files";
 
+    public ArrayList<string> create_classes { get; set; }
+
     private ResourcesIface resources;
 
     public CategoryAllContainer (CategoryContainer parent) {
         base ("All" + parent.id, parent, "All", parent.item_factory);
+
+        this.create_classes = new ArrayList<string> ();
+        this.create_classes.add (item_factory.upnp_class);
 
         try {
             this.resources = Bus.get_proxy_sync (BusType.SESSION,
@@ -50,10 +56,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer {
 
         try {
             var uri = Filename.to_uri (item_factory.upload_dir, null);
-            var create_classes = new ArrayList<string> ();
-
-            create_classes.add (item_factory.upnp_class);
-            this.set_uri (uri, create_classes);
+            this.uris.add (uri);
         } catch (ConvertError error) {
             warning (_("Failed to construct URI for folder '%s': %s"),
                      item_factory.upload_dir,
@@ -61,9 +64,8 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer {
         }
     }
 
-    public async override void add_item (MediaItem    item,
-                                         Cancellable? cancellable)
-                                         throws Error {
+    public async void add_item (MediaItem item, Cancellable? cancellable)
+                                throws Error {
         var urn = yield this.create_entry_in_store (item);
 
         item.id = this.create_child_id_for_urn (urn);

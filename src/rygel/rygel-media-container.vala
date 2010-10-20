@@ -46,9 +46,6 @@ public abstract class Rygel.MediaContainer : MediaObject {
     public int child_count;
     public uint32 update_id;
 
-    // List of classes that an object in this container could be created of
-    public ArrayList<string> create_classes;
-
     public MediaContainer (string          id,
                            MediaContainer? parent,
                            string          title,
@@ -59,7 +56,6 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.child_count = child_count;
         this.update_id = 0;
         this.upnp_class = STORAGE_FOLDER;
-        this.create_classes = new ArrayList<string> ();
 
         this.container_updated.connect (on_container_updated);
     }
@@ -82,18 +78,6 @@ public abstract class Rygel.MediaContainer : MediaObject {
                                                       uint         max_count,
                                                       Cancellable? cancellable)
                                                       throws Error;
-
-    /**
-     * Add a new item directly under this container.
-     *
-     * @param item The item to add to this container
-     * @param cancellable optional cancellable for this operation
-     *
-     * return nothing.
-     *
-     */
-    public async abstract void add_item (MediaItem item, Cancellable? cancellable)
-                                         throws Error;
 
     /**
      * Recursively searches for all media objects the satisfy the given search
@@ -223,29 +207,6 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.container_updated (this);
     }
 
-    /**
-     * Sets the URI of this container and optionally the create_classes.
-     *
-     * @param uri the URI to set.
-     * @param create_classes list of item classes.
-     */
-    public void set_uri (string uri, ArrayList<string>? create_classes = null) {
-        this.uris.clear ();
-        this.uris.add (uri);
-
-        this.create_classes.clear ();
-
-        if (create_classes != null) {
-            this.create_classes.add_all (create_classes);
-        } else {
-            this.create_classes.add (ImageItem.UPNP_CLASS);
-            this.create_classes.add (PhotoItem.UPNP_CLASS);
-            this.create_classes.add (VideoItem.UPNP_CLASS);
-            this.create_classes.add (AudioItem.UPNP_CLASS);
-            this.create_classes.add (MusicItem.UPNP_CLASS);
-        }
-    }
-
     internal override DIDLLiteObject serialize (DIDLLiteWriter writer,
                                                 HTTPServer     http_server)
                                                 throws Error {
@@ -260,16 +221,19 @@ public abstract class Rygel.MediaContainer : MediaObject {
         didl_container.title = this.title;
         didl_container.child_count = this.child_count;
         didl_container.upnp_class = this.upnp_class;
-        didl_container.restricted = this.uris.size <= 0;
         didl_container.searchable = true;
 
-        if (!didl_container.restricted) {
+        if (this is WritableContainer && this.uris.size > 0) {
+            didl_container.restricted = false;
             weak Xml.Node node = (Xml.Node) didl_container.xml_node;
             weak Xml.Ns ns = (Xml.Ns) didl_container.upnp_namespace;
 
-            foreach (var create_class in this.create_classes) {
+            var writable = this as WritableContainer;
+            foreach (var create_class in writable.create_classes) {
                 node.new_child (ns, "createClass", create_class);
             }
+        } else {
+            didl_container.restricted = true;
         }
 
         return didl_container;

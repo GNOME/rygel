@@ -145,7 +145,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         }
     }
 
-    private async MediaContainer fetch_container () throws Error {
+    private async WritableContainer fetch_container () throws Error {
         MediaObject media_object = null;
 
         if (this.container_id == "DLNA.ORG_AnyContainer") {
@@ -172,12 +172,16 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                         this.cancellable);
         }
 
-        if (media_object == null || !(media_object is MediaContainer)) {
+        if (media_object == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT (
                                         _("No such object"));
+        } else if (!(media_object is WritableContainer)) {
+            throw new ContentDirectoryError.RESTRICTED_PARENT (
+                                        _("Object creation in %s not allowed"),
+                                        media_object.id);
         }
 
-        return media_object as MediaContainer;
+        return media_object as WritableContainer;
     }
 
     private void conclude () {
@@ -216,10 +220,10 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         }
     }
 
-    private MediaItem create_item (string         id,
-                                   MediaContainer parent,
-                                   string         title,
-                                   string         upnp_class) throws Error {
+    private MediaItem create_item (string            id,
+                                   WritableContainer parent,
+                                   string            title,
+                                   string            upnp_class) throws Error {
         switch (upnp_class) {
         case ImageItem.UPNP_CLASS:
             return new ImageItem (id, parent, title);
@@ -257,7 +261,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         return true;
     }
 
-    public async string create_uri (MediaContainer container, string title)
+    public async string create_uri (WritableContainer container, string title)
                                     throws Error {
         var dir = yield container.get_writable (this.cancellable);
         if (dir == null) {

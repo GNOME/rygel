@@ -36,12 +36,4 @@ internal class Rygel.NullContainer : MediaContainer {
                                                       throws Error {
         return new MediaObjects ();
     }
-
-    public override async void add_item (MediaItem item,
-                                         Cancellable? cancellable)
-                                         throws Error {
-        throw new ContentDirectoryError.RESTRICTED_PARENT (
-                                        _("Object creation in %s not allowed"),
-                                        this.id);
-    }
 }
