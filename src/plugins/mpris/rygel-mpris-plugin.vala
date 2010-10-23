@@ -47,7 +47,7 @@ public class Rygel.MPRIS.Plugin : Rygel.MediaRendererPlugin {
         try {
             // Create proxy to MediaPlayer.Player iface
             this.actual_player = Bus.get_proxy_sync (BusType.SESSION,
-                                                     DBUS_SERVICE,
+                                                     service_name,
                                                      MEDIA_PLAYER_PATH);
             // Create proxy to FreeDesktop.Properties iface
             this.properties = Bus.get_proxy_sync (BusType.SESSION,
