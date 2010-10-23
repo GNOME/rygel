@@ -47,17 +47,23 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
     private MediaContainer filesystem_container;
 
     private static MediaContainer instance = null;
+    private static Error          creation_error = null;
 
     internal const string FILESYSTEM_FOLDER_NAME = "Files & Folders";
     internal const string FILESYSTEM_FOLDER_ID   = "Filesystem";
 
-    public static MediaContainer get_instance () {
+    public static MediaContainer get_instance () throws Error {
         if (RootContainer.instance == null) {
             try {
                 RootContainer.instance = new RootContainer ();
             } catch (Error error) {
-                warning (_("Failed to create instance of database"));
+                // cache error for further calls and create Null container
                 RootContainer.instance = new NullContainer ();
+                RootContainer.creation_error = error;
+            }
+        } else {
+            if (creation_error != null) {
+                throw creation_error;
             }
         }
 

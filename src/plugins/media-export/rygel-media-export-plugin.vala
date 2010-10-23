@@ -79,6 +79,15 @@ public class Rygel.MediaExport.Plugin : Rygel.MediaServerPlugin {
     }
 
     public override MediaContainer? get_root_container (GUPnP.Context context) {
-        return RootContainer.get_instance ();
+        try {
+            return RootContainer.get_instance ();
+        } catch (Error error) {
+            warning ("Could not create root container: %s. " +
+                     "Disabling plugin",
+                     error.message);
+            this.available = false;
+        }
+
+        return new NullContainer ();
     }
 }
