@@ -132,7 +132,7 @@ public abstract class Rygel.MediaItem : MediaObject {
             res.uri = "";
         }
 
-        if (import_uri != null) {
+        if (import_uri != null && this.place_holder) {
             res.import_uri = import_uri;
         }
 
