@@ -55,7 +55,7 @@ public abstract class Rygel.MediaItem : MediaObject {
         }
     }   // Size in bytes
 
-    protected bool place_holder = false;
+    internal bool place_holder { get; private set; default = false; }
 
     public MediaItem (string         id,
                       MediaContainer parent,
