@@ -44,6 +44,12 @@ internal class Rygel.HTTPPost : HTTPRequest {
         this.msg.got_chunk.connect (this.on_got_chunk);
         this.msg.got_body.connect (this.on_got_body);
 
+        if (!this.item.place_holder) {
+            var msg = _("Pushing data to non-empty item '%s' not allowed");
+
+            throw new ContentDirectoryError.INVALID_ARGS (msg, this.item.id);
+        }
+
         this.file = yield this.item.get_writable (this.cancellable);
         if (this.file == null) {
             throw new HTTPRequestError.BAD_REQUEST (

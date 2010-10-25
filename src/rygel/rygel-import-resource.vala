@@ -109,7 +109,14 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
                      this.destination_uri,
                      error.message);
 
-            this.action.return_error (719, error.message);
+            int code;
+            if (error is ContentDirectoryError) {
+                code = error.code;
+            } else {
+                code = 719;
+            }
+
+            this.action.return_error (code, error.message);
             this.status = TransferStatus.ERROR;
             this.completed ();
 
@@ -152,8 +159,12 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
             !(media_object is MediaItem) ||
             media_object.uris.size < 1) {
             return this.destination_uri;
-        } else {
+        } else if ((media_object as MediaItem).place_holder) {
             return media_object.uris[0];
+        } else {
+            var msg = _("Pushing data to non-empty item '%s' not allowed");
+
+            throw new ContentDirectoryError.INVALID_ARGS (msg, media_object.id);
         }
     }
 
