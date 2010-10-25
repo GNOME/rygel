@@ -67,10 +67,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
 
         var uri = this.create_uri_for_item (item, -1, -1, null);
 
-        item.add_resource (didl_item,
-                           uri.to_string (),
-                           this.get_protocol (),
-                           uri.to_string ());
+        item.add_resource (didl_item, uri, this.get_protocol (), uri);
     }
 
     public bool need_proxy (string uri) {
