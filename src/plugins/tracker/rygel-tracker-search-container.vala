@@ -173,6 +173,21 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
         return this.id + "," + urn;
     }
 
+    // Returns the URN and the ID of the parent this item belongs to, or null
+    // if item_id is invalid
+    protected string? get_item_info (string     item_id,
+                                     out string parent_id) {
+        var tokens = item_id.split (",", 2);
+
+        if (tokens[0] != null && tokens[1] != null) {
+            parent_id = tokens[0];
+
+            return tokens[1];
+        } else {
+            return null;
+        }
+    }
+
     private bool is_our_child (string id) {
         return id.has_prefix (this.id + ",");
     }
@@ -270,21 +285,6 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
         }
 
         return filter;
-    }
-
-    // Returns the URN and the ID of the parent this item belongs to, or null
-    // if item_id is invalid
-    private string? get_item_info (string     item_id,
-                                   out string parent_id) {
-        var tokens = item_id.split (",", 2);
-
-        if (tokens[0] != null && tokens[1] != null) {
-            parent_id = tokens[0];
-
-            return tokens[1];
-        } else {
-            return null;
-        }
     }
 
     /**
