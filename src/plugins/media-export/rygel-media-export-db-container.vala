@@ -102,4 +102,9 @@ public class Rygel.MediaExport.DBContainer : MediaContainer, WritableContainer {
         item.id = MediaCache.get_id (File.new_for_uri (item.uris[0]));
         this.media_db.save_item (item);
     }
+
+    public async void remove_item (string id, Cancellable? cancellable)
+                                   throws Error {
+        this.media_db.remove_by_id (id);
+    }
 }

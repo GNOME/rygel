@@ -27,7 +27,7 @@ using Gee;
 /**
  * Interface to be implemented by 'writable' container: ones that allow
  * creation, removal and editing of items directly under them. Currently, only
- * addition is supported.
+ * addition and removal is supported.
  *
  * In addition to implementing this interface, a writable container must also
  * provide one URI that points to a writable folder on a GIO supported
@@ -48,4 +48,16 @@ public interface Rygel.WritableContainer : MediaContainer {
      */
     public async abstract void add_item (MediaItem    item,
                                          Cancellable? cancellable) throws Error;
+
+    /**
+     * Remove an item directly under this container that has the ID @id.
+     *
+     * @param item The ID of the item to remove from this container
+     * @param cancellable optional cancellable for this operation
+     *
+     * return nothing.
+     *
+     */
+    public async abstract void remove_item (string id, Cancellable? cancellable)
+                                            throws Error;
 }

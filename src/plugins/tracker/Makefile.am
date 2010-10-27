@@ -26,6 +26,7 @@ librygel_media_tracker_la_SOURCES = rygel-tracker-root-container.vala \
 				    rygel-tracker-category-all-container.vala \
 				    rygel-tracker-query.vala \
 				    rygel-tracker-selection-query.vala \
+				    rygel-tracker-deletion-query.vala \
 				    rygel-tracker-insertion-query.vala \
 				    rygel-tracker-query-triplet.vala \
 				    rygel-tracker-query-triplets.vala \

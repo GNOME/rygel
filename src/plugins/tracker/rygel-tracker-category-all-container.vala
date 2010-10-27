@@ -75,6 +75,18 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         this.updated ();
     }
 
+    public async void remove_item (string id, Cancellable? cancellable)
+                                   throws Error {
+        string parent_id;
+
+        var urn = this.get_item_info (id, out parent_id);
+
+        yield this.remove_entry_from_store (urn);
+
+        this.child_count--;
+        this.updated ();
+    }
+
     private async string create_entry_in_store (MediaItem item) throws Error {
         var category = this.item_factory.category;
         var query = new InsertionQuery (item, category);
@@ -82,6 +94,12 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         yield query.execute (this.resources);
 
         return query.id;
+    }
+
+    private async void remove_entry_from_store (string id) throws Error {
+        var query = new DeletionQuery (id);
+
+        yield query.execute (this.resources);
     }
 }
 
