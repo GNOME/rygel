@@ -109,23 +109,32 @@ public abstract class Rygel.MediaObject : GLib.Object {
         foreach (var uri in this.uris) {
             var file = File.new_for_uri (uri);
 
-            try {
-                var info = yield file.query_info_async (
-                                        FILE_ATTRIBUTE_ACCESS_CAN_WRITE,
-                                        FileQueryInfoFlags.NONE,
-                                        Priority.DEFAULT,
-                                        cancellable);
-
-                if (info.get_attribute_boolean (
-                                        FILE_ATTRIBUTE_ACCESS_CAN_WRITE)) {
-                    return file;
-                }
-            } catch (IOError.NOT_FOUND error) {
+            if (yield this.check_writable (file, cancellable)) {
                 return file;
             }
         }
 
         return null;
+    }
+
+    /**
+     * Fetches File objects for all writable URIs available for this object.
+     *
+     * @param cancellable A GLib.Cancellable
+     */
+    public async ArrayList<File> get_writables (Cancellable? cancellable)
+                                                throws Error {
+        var writables = new ArrayList<File> ();
+
+        foreach (var uri in this.uris) {
+            var file = File.new_for_uri (uri);
+
+            if (yield this.check_writable (file, cancellable)) {
+                writables.add (file);
+            }
+        }
+
+        return writables;
     }
 
     internal abstract DIDLLiteObject serialize (DIDLLiteWriter writer,
@@ -157,6 +166,21 @@ public abstract class Rygel.MediaObject : GLib.Object {
             return 1;
         } else {
             return prop1.collate (prop2);
+        }
+    }
+
+    private async bool check_writable (File file, Cancellable? cancellable)
+                                       throws Error {
+        try {
+            var info = yield file.query_info_async (
+                    FILE_ATTRIBUTE_ACCESS_CAN_WRITE,
+                    FileQueryInfoFlags.NONE,
+                    Priority.DEFAULT,
+                    cancellable);
+
+            return info.get_attribute_boolean (FILE_ATTRIBUTE_ACCESS_CAN_WRITE);
+        } catch (IOError.NOT_FOUND error) {
+            return true;
         }
     }
 }
