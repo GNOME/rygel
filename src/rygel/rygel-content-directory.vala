@@ -30,6 +30,7 @@ using Gee;
  */
 public errordomain Rygel.ContentDirectoryError {
     NO_SUCH_OBJECT = 701,
+    RESTRICTED_OBJECT = 711,
     BAD_METADATA = 712,
     RESTRICTED_PARENT = 713,
     CANT_PROCESS = 720,
@@ -89,6 +90,7 @@ internal class Rygel.ContentDirectory: Service {
         this.action_invoked["Browse"].connect (this.browse_cb);
         this.action_invoked["Search"].connect (this.search_cb);
         this.action_invoked["CreateObject"].connect (this.create_object_cb);
+        this.action_invoked["DestroyObject"].connect (this.destroy_object_cb);
         this.action_invoked["ImportResource"].connect (this.import_resource_cb);
         this.action_invoked["GetTransferProgress"].connect (
                                         this.get_transfer_progress_cb);
@@ -152,6 +154,14 @@ internal class Rygel.ContentDirectory: Service {
         var creator = new ItemCreator (this, action);
 
         creator.run.begin ();
+    }
+
+    /* DestroyObject action implementation */
+    private void destroy_object_cb (Service             content_dir,
+                                    owned ServiceAction action) {
+        var destroyer = new ItemDestroyer (this, action);
+
+        destroyer.run.begin ();
     }
 
     /* ImportResource action implementation */

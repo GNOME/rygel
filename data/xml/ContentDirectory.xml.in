@@ -345,6 +345,18 @@ feature provided by your editor.
 
       <action>
          <Optional/>
+         <name>DestroyObject</name>
+         <argumentList>
+            <argument>
+               <name>ObjectID</name>
+               <direction>in</direction>
+               <relatedStateVariable>A_ARG_TYPE_ObjectID</relatedStateVariable>
+            </argument>
+         </argumentList>
+      </action>
+
+      <action>
+         <Optional/>
          <name>ImportResource</name>
          <argumentList>
             <argument>
