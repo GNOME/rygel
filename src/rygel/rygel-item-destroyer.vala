@@ -73,7 +73,7 @@ internal class Rygel.ItemDestroyer: GLib.Object, Rygel.StateMachine {
         this.completed ();
     }
 
-    public async void remove_object () throws Error {
+    private async void remove_object () throws Error {
         var media_object = yield this.fetch_object ();
 
         if (media_object is MediaItem &&
