@@ -41,6 +41,19 @@ internal class Rygel.HTTPPost : HTTPRequest {
     }
 
     protected override async void handle () throws Error {
+        var queue = ItemRemovalQueue.get_default ();
+        queue.dequeue (this.item);
+
+        try {
+            yield this.handle_real ();
+        } catch (Error error) {
+            yield queue.remove_now (this.item, this.cancellable);
+
+            throw error;
+        }
+    }
+
+    private async void handle_real () throws Error {
         this.msg.got_chunk.connect (this.on_got_chunk);
         this.msg.got_body.connect (this.on_got_body);
 

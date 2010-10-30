@@ -120,6 +120,13 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
 
             // Conclude the successful action
             this.conclude ();
+
+            if (this.container_id == "DLNA.ORG_AnyContainer" &&
+                this.item.place_holder) {
+                var queue = ItemRemovalQueue.get_default ();
+
+                queue.queue (this.item, this.cancellable);
+            }
         } catch (Error err) {
             this.handle_error (err);
         }

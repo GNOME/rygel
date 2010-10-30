@@ -127,6 +127,9 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         // We can already return the action now
         this.action.return ();
 
+        var queue = ItemRemovalQueue.get_default ();
+        queue.dequeue (this.item);
+
         try {
             var destination_file = File.new_for_uri (this.item.uris[0]);
             var source_file = File.new_for_uri (source_uri);
@@ -145,6 +148,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         } catch (Error err) {
             warning ("%s", err.message);
             this.status = TransferStatus.ERROR;
+            yield queue.remove_now (this.item, this.cancellable);
         }
 
         this.completed ();

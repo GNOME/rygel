@@ -102,6 +102,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-import-resource.vala \
 		    rygel-item-creator.vala \
 		    rygel-item-destroyer.vala \
+		    rygel-item-removal-queue.vala \
 		    rygel-search-expression.vala \
 		    rygel-relational-expression.vala \
 		    rygel-logical-expression.vala \
