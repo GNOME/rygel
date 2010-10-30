@@ -58,10 +58,8 @@ internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         this.end (true, Soup.KnownStatusCode.CANCELLED);
     }
 
-    public void push_data (void *data, size_t length) {
-        this.msg.response_body.append (Soup.MemoryUse.COPY,
-                                       data,
-                                       length);
+    public void push_data (uint8[] data, size_t length) {
+        this.msg.response_body.append (Soup.MemoryUse.COPY, data);
 
         this.server.unpause_message (this.msg);
     }

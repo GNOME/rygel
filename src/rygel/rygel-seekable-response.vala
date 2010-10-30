@@ -31,7 +31,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
     private File file;
     private FileInputStream input_stream;
 
-    private char[] buffer;
+    private uint8[] buffer;
     private size_t total_length;
 
     int priority;
@@ -50,7 +50,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
         this.priority = this.get_requested_priority ();
         this.total_length = (size_t) seek.length;
 
-        this.buffer = new char[SeekableResponse.BUFFER_LENGTH];
+        this.buffer = new uint8[SeekableResponse.BUFFER_LENGTH];
         this.file = File.new_for_uri (uri);
     }
 
@@ -108,16 +108,10 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
         yield this.close_stream ();
     }
 
-    private size_t bytes_to_read () {
-        return size_t.min (this.total_length, SeekableResponse.BUFFER_LENGTH);
-    }
-
     private async void read_contents () throws Error {
-        var bytes_read = yield this.input_stream.read_async (
-                                        this.buffer,
-                                        this.bytes_to_read (),
-                                        this.priority,
-                                        this.cancellable);
+        var bytes_read = yield this.input_stream.read_async (this.buffer,
+                                                             this.priority,
+                                                             this.cancellable);
         this.msg.wrote_chunk.connect ((msg) => {
             if (this.run_continue != null) {
                 this.run_continue ();
@@ -138,11 +132,9 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
                 break;
             }
 
-            bytes_read = yield this.input_stream.read_async (
-                                        this.buffer,
-                                        this.bytes_to_read (),
-                                        this.priority,
-                                        this.cancellable);
+            bytes_read = yield this.input_stream.read_async (this.buffer,
+                                                             this.priority,
+                                                             this.cancellable);
         }
     }
 

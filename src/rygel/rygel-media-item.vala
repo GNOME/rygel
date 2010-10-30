@@ -107,10 +107,8 @@ public abstract class Rygel.MediaItem : MediaObject {
         this.uris.add (uri);
     }
 
-    internal int compare_transcoders (void *a, void *b) {
-        var transcoder1 = (Transcoder) a;
-        var transcoder2 = (Transcoder) b;
-
+    internal int compare_transcoders (Transcoder transcoder1,
+                                      Transcoder transcoder2) {
         return (int) transcoder1.get_distance (this) -
                (int) transcoder2.get_distance (this);
     }

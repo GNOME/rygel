@@ -120,10 +120,8 @@ internal abstract class Rygel.GstUtils {
         return factory.get_klass ().contains ("Depayloader");
     }
 
-    private static int compare_factories (void *a, void *b) {
-        ElementFactory factory_a = (ElementFactory) a;
-        ElementFactory factory_b = (ElementFactory) b;
-
+    private static int compare_factories (ElementFactory factory_a,
+                                          ElementFactory factory_b) {
         return (int) (factory_b.get_rank () - factory_a.get_rank ());
     }
 }

@@ -104,10 +104,10 @@ internal abstract class Rygel.Transcoder : GLib.Object {
     public abstract uint get_distance (MediaItem item);
 
     protected bool mime_type_is_a (string mime_type1, string mime_type2) {
-        string content_type1 = g_content_type_from_mime_type (mime_type1);
-        string content_type2 = g_content_type_from_mime_type (mime_type2);
+        string content_type1 = ContentType.get_mime_type (mime_type1);
+        string content_type2 = ContentType.get_mime_type (mime_type2);
 
-        return g_content_type_is_a (content_type1, content_type2);
+        return ContentType.is_a (content_type1, content_type2);
     }
 }
 

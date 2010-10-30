@@ -165,7 +165,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         }
 
         string content_type = file_info.get_content_type ();
-        mime = g_content_type_get_mime_type (content_type);
+        mime = ContentType.get_mime_type (content_type);
         size = file_info.get_size ();
         mtime = file_info.get_attribute_uint64 (FILE_ATTRIBUTE_TIME_MODIFIED);
     }

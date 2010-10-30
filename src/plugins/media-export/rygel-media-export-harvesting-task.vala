@@ -332,7 +332,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
                                         FileQueryInfoFlags.NONE,
                                         this.cancellable);
             string content_type = info.get_content_type ();
-            string mime = g_content_type_get_mime_type (content_type);
+            string mime = ContentType.get_mime_type (content_type);
             uint64 size = info.get_size ();
             uint64 mtime = info.get_attribute_uint64 (
                                         FILE_ATTRIBUTE_TIME_MODIFIED);
