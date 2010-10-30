@@ -224,8 +224,7 @@ public class Rygel.Main : Object {
             CmdlineConfig.parse_args (ref args);
 
             // initialize gstreamer
-            var dummy_args = new string[0];
-            Gst.init (ref dummy_args);
+            Gst.init (ref args);
 
             main = new Main ();
             service = new DBusService (main);
