@@ -29,7 +29,7 @@ using Gee;
  * for actual transcoding.
  */
 internal class Rygel.MP3Transcoder : Rygel.Transcoder {
-    private const int BITRATE = 256;
+    public const int BITRATE = 256;
 
     private const string[] AUDIO_ENCODER = {null, "twolame", "lame"};
     private const string AUDIO_PARSER = "mp3parse";

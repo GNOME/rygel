@@ -28,20 +28,18 @@ using FreeDesktop;
  * Manages the user configuration for Rygel.
  */
 public class Rygel.UserConfig : GLib.Object, Configuration {
-    protected static const string CONFIG_FILE = "rygel.conf";
-    protected static const string IFACE_KEY = "interface";
-    protected static const string PORT_KEY = "port";
-    protected static const string ENABLED_KEY = "enabled";
-    protected static const string TITLE_KEY = "title";
-    protected static const string TRANSCODING_KEY = "enable-transcoding";
-    protected static const string MP3_TRANSCODER_KEY = "enable-mp3-transcoder";
-    protected static const string MP2TS_TRANSCODER_KEY =
-                                                    "enable-mp2ts-transcoder";
-    protected static const string LPCM_TRANSCODER_KEY =
-                                                    "enable-lpcm-transcoder";
-    protected static const string WMV_TRANSCODER_KEY = "enable-wmv-transcoder";
-    protected static const string LOG_LEVEL_KEY = "log-level";
-    protected static const string PLUGIN_PATH_KEY = "plugin-path";
+    public static const string CONFIG_FILE = "rygel.conf";
+    public static const string IFACE_KEY = "interface";
+    public static const string PORT_KEY = "port";
+    public static const string ENABLED_KEY = "enabled";
+    public static const string TITLE_KEY = "title";
+    public static const string TRANSCODING_KEY = "enable-transcoding";
+    public static const string MP3_TRANSCODER_KEY = "enable-mp3-transcoder";
+    public static const string MP2TS_TRANSCODER_KEY = "enable-mp2ts-transcoder";
+    public static const string LPCM_TRANSCODER_KEY = "enable-lpcm-transcoder";
+    public static const string WMV_TRANSCODER_KEY = "enable-wmv-transcoder";
+    public static const string LOG_LEVEL_KEY = "log-level";
+    public static const string PLUGIN_PATH_KEY = "plugin-path";
 
     private const string RYGEL_SERVICE = "org.gnome.Rygel1";
     private const string RYGEL_PATH = "/org/gnome/Rygel1";

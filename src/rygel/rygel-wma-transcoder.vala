@@ -23,7 +23,7 @@ using Gst;
 using GUPnP;
 
 internal class Rygel.WMATranscoder : Rygel.Transcoder {
-    private const int BITRATE = 64;
+    public const int BITRATE = 64;
 
     private const string CONVERT_SINK_PAD = "convert-sink-pad";
 
