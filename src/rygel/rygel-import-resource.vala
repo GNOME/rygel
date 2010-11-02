@@ -47,6 +47,8 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
     public int64 bytes_copied;
     public int64 bytes_total;
 
+    private MediaItem item;
+
     public string status_as_string {
         get {
             switch (this.status) {
@@ -101,9 +103,8 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         // Set action return arguments
         this.action.set ("TransferID", typeof (uint32), this.transfer_id);
 
-        string destination_uri;
         try {
-            destination_uri = yield this.get_original_uri ();
+            this.item = yield this.fetch_item ();
         } catch (Error error) {
             warning (_("Failed to get original URI for '%s': %s"),
                      this.destination_uri,
@@ -127,7 +128,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         this.action.return ();
 
         try {
-            var destination_file = File.new_for_uri (destination_uri);
+            var destination_file = File.new_for_uri (this.item.uris[0]);
             var source_file = File.new_for_uri (source_uri);
 
             yield source_file.copy_async (destination_file,
@@ -140,7 +141,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
 
             debug ("Import of '%s' to '%s' completed",
                    source_uri,
-                   destination_uri);
+                   destination_file.get_uri ());
         } catch (Error err) {
             warning ("%s", err.message);
             this.status = TransferStatus.ERROR;
@@ -149,23 +150,29 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         this.completed ();
     }
 
-    private async string get_original_uri () throws Error {
+    private async MediaItem fetch_item () throws Error {
         var uri = new HTTPItemURI.from_string (this.destination_uri,
                                                this.http_server);
         var media_object = yield this.root_container.find_object (uri.item_id,
                                                                   null);
 
-        if (media_object == null ||
-            !(media_object is MediaItem) ||
-            media_object.uris.size < 1) {
-            return this.destination_uri;
-        } else if ((media_object as MediaItem).place_holder) {
-            return media_object.uris[0];
-        } else {
-            var msg = _("Pushing data to non-empty item '%s' not allowed");
+        string msg = null;
 
-            throw new ContentDirectoryError.INVALID_ARGS (msg, media_object.id);
+        if (media_object == null || !(media_object is MediaItem)) {
+            msg = _("URI '%s' invalid for importing contents to").printf
+                                        (this.destination_uri);
+        } else if (!(media_object as MediaItem).place_holder) {
+            msg = _("Pushing data to non-empty item '%s' not allowed").printf
+                                        (media_object.id);
+        } else if (media_object.uris.size < 1) {
+            assert_not_reached ();
         }
+
+        if (msg != null) {
+            throw new ContentDirectoryError.INVALID_ARGS (msg);
+        }
+
+        return media_object as MediaItem;
     }
 
     private void copy_progress_cb (int64 current_num_bytes,
