@@ -164,7 +164,6 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                         this.cancellable);
             if (result.size > 0) {
                 media_object = result[0];
-                this.container_id = media_object.id;
             }
         } else {
             media_object = yield this.content_dir.root_container.find_object (
