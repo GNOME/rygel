@@ -77,7 +77,7 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
           "Disable mpeg2 transport stream transcoder", null },
         { "disable-lpcm-transcoder", 'l', 0, OptionArg.NONE, ref no_lpcm_trans,
           "Disable Linear PCM transcoder", null },
-        { "disable-wmv-transcoder", 'l', 0, OptionArg.NONE, ref no_wmv_trans,
+        { "disable-wmv-transcoder", 'w', 0, OptionArg.NONE, ref no_wmv_trans,
           "Disable WMV transcoder", null },
         { "log-level", 'g', 0, OptionArg.INT, ref log_level,
           "Log level. 1=critical,2=error,3=warning,4=message/info,5=debug",
