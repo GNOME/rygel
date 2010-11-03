@@ -41,6 +41,8 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static bool no_lpcm_trans;
     private static bool no_wmv_trans;
 
+    private static bool disallow_upload;
+
     private static LogLevel log_level = LogLevel.INVALID;
 
     private static string plugin_path;
@@ -79,6 +81,8 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
           "Disable Linear PCM transcoder", null },
         { "disable-wmv-transcoder", 'w', 0, OptionArg.NONE, ref no_wmv_trans,
           "Disable WMV transcoder", null },
+        { "disallow-upload", 'U', 0, OptionArg.NONE,
+          ref disallow_upload, "Disallow upload", null },
         { "log-level", 'g', 0, OptionArg.INT, ref log_level,
           "Log level. 1=critical,2=error,3=warning,4=message/info,5=debug",
           "N" },
@@ -173,6 +177,14 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     public bool get_wmv_transcoder () throws GLib.Error {
         if (!no_wmv_trans) {
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
+        } else {
+            return false;
+        }
+    }
+
+    public bool get_allow_upload () throws GLib.Error {
+        if (!disallow_upload) {
             throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         } else {
             return false;

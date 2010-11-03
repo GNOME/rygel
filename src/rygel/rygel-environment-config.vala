@@ -38,6 +38,7 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
     private static string LPCM_TRANSCODING_ENV = RYGEL_PREFIX + "_LPCM_TRANS";
     private static string MP2TS_TRANSCODING_ENV = RYGEL_PREFIX + "_MP2TS_TRANS";
     private static string WMV_TRANSCODING_ENV = RYGEL_PREFIX + "_WMV_TRANS";
+    private static string ALLOW_UPLOAD_ENV = RYGEL_PREFIX + "_ALLOW_UPLOAD";
     private static string LOG_LEVEL_ENV = RYGEL_PREFIX + "_LOG";
     private static string PLUGIN_PATH_ENV = RYGEL_PREFIX + "_PLUGIN_PATH";
 
@@ -83,6 +84,10 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
 
     public bool get_lpcm_transcoder () throws GLib.Error {
         return this.get_bool_variable (LPCM_TRANSCODING_ENV);
+    }
+
+    public bool get_allow_upload () throws GLib.Error {
+        return this.get_bool_variable (ALLOW_UPLOAD_ENV);
     }
 
     public LogLevel get_log_level () throws GLib.Error {

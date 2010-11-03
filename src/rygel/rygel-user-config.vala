@@ -38,6 +38,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     public static const string MP2TS_TRANSCODER_KEY = "enable-mp2ts-transcoder";
     public static const string LPCM_TRANSCODER_KEY = "enable-lpcm-transcoder";
     public static const string WMV_TRANSCODER_KEY = "enable-wmv-transcoder";
+    public static const string ALLOW_UPLOAD_KEY = "allow-upload";
     public static const string LOG_LEVEL_KEY = "log-level";
     public static const string PLUGIN_PATH_KEY = "plugin-path";
 
@@ -121,6 +122,14 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
     public void set_wmv_transcoder (bool value) {
         this.set_bool ("general", WMV_TRANSCODER_KEY, value);
+    }
+
+    public bool get_allow_upload () throws GLib.Error {
+        return this.get_bool ("general", ALLOW_UPLOAD_KEY);
+    }
+
+    public void set_allow_upload (bool value) throws GLib.Error {
+        this.set_bool ("general", ALLOW_UPLOAD_KEY, value);
     }
 
     public LogLevel get_log_level () throws GLib.Error {
