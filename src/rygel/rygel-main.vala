@@ -223,9 +223,6 @@ public class Rygel.Main : Object {
             // Parse commandline options
             CmdlineConfig.parse_args (ref args);
 
-            // initialize gstreamer
-            Gst.init (ref args);
-
             main = new Main ();
             service = new DBusService (main);
         } catch (DBus.Error err) {
