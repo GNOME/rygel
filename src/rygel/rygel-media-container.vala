@@ -46,6 +46,24 @@ public abstract class Rygel.MediaContainer : MediaObject {
     public int child_count;
     public uint32 update_id;
 
+    internal override bool removable {
+        get {
+            return this is WritableContainer && this.uris.size > 0;
+        }
+    }
+
+    internal override bool restricted {
+        get {
+            return !this.removable && !this.expandable;
+        }
+    }
+
+    internal bool expandable {
+        get {
+            return this is WritableContainer && this.uris.size > 0;
+        }
+    }
+
     public MediaContainer (string          id,
                            MediaContainer? parent,
                            string          title,
@@ -223,7 +241,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
         didl_container.upnp_class = this.upnp_class;
         didl_container.searchable = true;
 
-        if (this is WritableContainer && this.uris.size > 0) {
+        if (!this.restricted) {
             didl_container.restricted = false;
             weak Xml.Node node = (Xml.Node) didl_container.xml_node;
             weak Xml.Ns ns = (Xml.Ns) didl_container.upnp_namespace;

@@ -56,6 +56,17 @@ public abstract class Rygel.MediaItem : MediaObject {
     }   // Size in bytes
 
     internal bool place_holder { get; private set; default = false; }
+    internal override bool removable {
+        get {
+            return true;
+        }
+    }
+
+    internal override bool restricted {
+        get {
+            return !this.removable && !this.place_holder;
+        }
+    }
 
     public MediaItem (string         id,
                       MediaContainer parent,
@@ -170,7 +181,7 @@ public abstract class Rygel.MediaItem : MediaObject {
             didl_item.parent_id = "0";
         }
 
-        didl_item.restricted = false;
+        didl_item.restricted = this.restricted;
         didl_item.title = this.title;
         didl_item.upnp_class = this.upnp_class;
 

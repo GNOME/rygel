@@ -86,6 +86,9 @@ public abstract class Rygel.MediaObject : GLib.Object {
         }
     }
 
+    internal abstract bool restricted { get; }
+    internal abstract bool removable { get; }
+
     static construct {
         try {
             real_name_regex = new Regex (Regex.escape_string ("@REALNAME@"));
