@@ -48,13 +48,23 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
     internal override OCMFlags ocm_flags {
         get {
-            if (this is WritableContainer && this.uris.size > 0) {
-                return OCMFlags.UPLOAD |
-                       OCMFlags.DESTROYABLE |
-                       OCMFlags.UPLOAD_DESTROYABLE;
-            } else {
+            if (!(this is WritableContainer) || this.uris.size == 0) {
                 return OCMFlags.NONE;
             }
+
+            var flags = OCMFlags.DESTROYABLE;
+
+            var allow_upload = true;
+            var config = MetaConfig.get_default ();
+            try {
+                allow_upload = config.get_allow_upload ();
+            } catch (Error error) {}
+
+            if (allow_upload) {
+                flags |= OCMFlags.UPLOAD | OCMFlags.UPLOAD_DESTROYABLE;
+            }
+
+            return flags;
         }
     }
 
