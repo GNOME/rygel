@@ -86,8 +86,13 @@ public abstract class Rygel.MediaObject : GLib.Object {
         }
     }
 
-    internal abstract bool restricted { get; }
     internal abstract OCMFlags ocm_flags { get; }
+
+    internal bool restricted {
+        get {
+            return this.ocm_flags == OCMFlags.NONE;
+        }
+    }
 
     static construct {
         try {

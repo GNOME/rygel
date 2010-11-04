@@ -63,12 +63,6 @@ public abstract class Rygel.MediaItem : MediaObject {
         }
     }
 
-    internal override bool restricted {
-        get {
-            return this.ocm_flags == OCMFlags.NONE && !this.place_holder;
-        }
-    }
-
     public MediaItem (string         id,
                       MediaContainer parent,
                       string         title,
