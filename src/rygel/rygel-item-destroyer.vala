@@ -98,7 +98,7 @@ internal class Rygel.ItemDestroyer: GLib.Object, Rygel.StateMachine {
         if (media_object == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT (
                                         _("No such object"));
-        } else if (!media_object.removable) {
+        } else if (!(OCMFlags.DESTROYABLE in media_object.ocm_flags)) {
             throw new ContentDirectoryError.RESTRICTED_OBJECT (
                                         _("Removal of object %s not allowed"),
                                         media_object.id);

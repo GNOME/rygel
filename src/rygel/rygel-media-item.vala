@@ -56,15 +56,16 @@ public abstract class Rygel.MediaItem : MediaObject {
     }   // Size in bytes
 
     internal bool place_holder { get; private set; default = false; }
-    internal override bool removable {
+
+    internal override OCMFlags ocm_flags {
         get {
-            return true;
+            return OCMFlags.DESTROYABLE;
         }
     }
 
     internal override bool restricted {
         get {
-            return !this.removable && !this.place_holder;
+            return this.ocm_flags == OCMFlags.NONE && !this.place_holder;
         }
     }
 

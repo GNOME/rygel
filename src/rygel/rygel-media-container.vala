@@ -46,21 +46,21 @@ public abstract class Rygel.MediaContainer : MediaObject {
     public int child_count;
     public uint32 update_id;
 
-    internal override bool removable {
+    internal override OCMFlags ocm_flags {
         get {
-            return this is WritableContainer && this.uris.size > 0;
+            if (this is WritableContainer && this.uris.size > 0) {
+                return OCMFlags.UPLOAD |
+                       OCMFlags.DESTROYABLE |
+                       OCMFlags.UPLOAD_DESTROYABLE;
+            } else {
+                return OCMFlags.NONE;
+            }
         }
     }
 
     internal override bool restricted {
         get {
-            return !this.removable && !this.expandable;
-        }
-    }
-
-    internal bool expandable {
-        get {
-            return this is WritableContainer && this.uris.size > 0;
+            return this.ocm_flags == OCMFlags.NONE;
         }
     }
 
