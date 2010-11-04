@@ -183,6 +183,7 @@ public abstract class Rygel.MediaItem : MediaObject {
         }
 
         didl_item.restricted = this.restricted;
+        didl_item.dlna_managed = this.ocm_flags;
         didl_item.title = this.title;
         didl_item.upnp_class = this.upnp_class;
 
