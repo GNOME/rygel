@@ -238,12 +238,9 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
         if (!this.restricted) {
             didl_container.restricted = false;
-            weak Xml.Node node = (Xml.Node) didl_container.xml_node;
-            weak Xml.Ns ns = (Xml.Ns) didl_container.upnp_namespace;
-
             var writable = this as WritableContainer;
             foreach (var create_class in writable.create_classes) {
-                node.new_child (ns, "createClass", create_class);
+                didl_container.add_create_class (create_class);
             }
         } else {
             didl_container.restricted = true;
