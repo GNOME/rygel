@@ -27,6 +27,8 @@ using Gee;
  * Base class of Browse and Search actions.
  */
 internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
+    private const string DEFAULT_SORT_CRITERIA = "-dc:title";
+
     // In arguments
     public string object_id;
     public string browse_flag;
@@ -79,9 +81,7 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
                 this.update_id = uint32.MAX;
             }
 
-            if (this.sort_criteria != null) {
-                results.sort_by_criteria (this.sort_criteria);
-            }
+            results.sort_by_criteria (this.sort_criteria);
 
             results.serialize (this.didl_writer,
                                this.http_server,
@@ -115,6 +115,10 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
             // Sorry we can't do anything without ObjectID
             throw new ContentDirectoryError.NO_SUCH_OBJECT (
                                         _("No such object"));
+        }
+
+        if (this.sort_criteria == null) {
+            this.sort_criteria = DEFAULT_SORT_CRITERIA;
         }
 
         if (this.xbox_hacks != null) {
