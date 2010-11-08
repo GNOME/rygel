@@ -50,7 +50,6 @@ src/plugins/tracker/rygel-tracker-category-all-container.vala
 src/plugins/tracker/rygel-tracker-category-container.vala
 src/plugins/tracker/rygel-tracker-insertion-query.vala
 src/plugins/tracker/rygel-tracker-interfaces.vala
-src/plugins/tracker/rygel-tracker-item-creation.vala
 src/plugins/tracker/rygel-tracker-item-factory.vala
 src/plugins/tracker/rygel-tracker-metadata-values.vala
 src/plugins/tracker/rygel-tracker-music-item-factory.vala
@@ -97,6 +96,7 @@ src/rygel/rygel-http-transcode-handler.vala
 src/rygel/rygel-icon-info.vala
 src/rygel/rygel-import-resource.vala
 src/rygel/rygel-item-creator.vala
+src/rygel/rygel-item-destroyer.vala
 src/rygel/rygel-l16-transcoder-bin.vala
 src/rygel/rygel-l16-transcoder.vala
 src/rygel/rygel-live-response.vala
