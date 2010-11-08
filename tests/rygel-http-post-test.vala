@@ -260,6 +260,8 @@ public class Rygel.MediaItem : Rygel.MediaObject {
     public long size = 1024;
     public long duration = 1024;
 
+    public bool place_holder = true;
+
     public File file;
 
     public MediaItem (string id) {
@@ -326,4 +328,24 @@ internal class Rygel.HTTPResponse : Rygel.StateMachine, GLib.Object {
     }
 }
 
+public class Rygel.ItemRemovalQueue: GLib.Object {
+    public static ItemRemovalQueue get_default () {
+       return new ItemRemovalQueue ();
+    }
+
+    public bool dequeue (MediaItem item) {
+        return true;
+    }
+
+    public async void remove_now (MediaItem item, Cancellable? cancellable) {
+        Idle.add (remove_now.callback);
+
+        yield;
+    }
+}
+
 public class Rygel.MediaObject {}
+
+public errordomain Rygel.ContentDirectoryError {
+    INVALID_ARGS = 402
+}
