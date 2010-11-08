@@ -122,7 +122,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
             // FIXME: Remove redundant assingment after we bump our vala dep
             //        to 0.11.2
             var data = this.buffer[0:bytes_read];
-            this.push_data (data, bytes_read);
+            this.push_data (data);
             this.total_length -= bytes_read;
 
             this.run_continue = read_contents.callback;

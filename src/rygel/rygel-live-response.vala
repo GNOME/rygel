@@ -162,7 +162,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
                 return false;
             }
 
-            this.push_data (buffer.data, (size_t) buffer.size);
+            this.push_data (buffer.data);
             this.buffered++;
 
             if (this.buffered > MAX_BUFFERED_CHUNKS) {
