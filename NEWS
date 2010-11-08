@@ -1,3 +1,48 @@
+0.9.2
+=====
+
+A new release in the current unstable 0.9.x series for upcoming GNOME 2.91.2
+release.
+
+- Add support for destruction of media objects.
+- Implement DLNA's 'auto-destroy' requirement.
+- Set dlnaManaged attribute on DIDL-Lite objects. This along with some other
+  recent changes, allows us to pass the following DLNA CTT testcases:
+  - 7.3.118.2,3
+  - 7.3.121.1
+  - 7.3.139.1
+- Sort Search and Browse results alphabetically (in descending order) by title
+  when no sorting criteria is specified by the client.
+- Use URI when provided in item creation requests.
+- There is no need to actually create the file for new items. The file will
+  automatically be created when/if contents are copied to the new empy item.
+- Only allow pushing content to our own items that are place-holder (empty).
+- Remove redundant call to Gst.init().
+- Unique short commandline argument for disabling WMV transcoding.
+- Make use of new gupnp-av APIs.
+- Port to vala 0.11.1 and 0.11.2.
+- Tracker:
+  - Tracker keeps the size set by us originally even after the size changes. A
+    simple work-around is to just not set the size if its an empty file.
+  - Save title when adding item to store.
+  - Update container upon item addition.
+- MediaExport:
+  - Export media even if metadata extraction fails for it.
+  - Improved debug log.
+- MPRIS:
+  - Fix service destination.
+- Localization:
+  - Add Catalan (Valencian) translation.
+  - Add Thai translation.
+  - Update British English translation.
+  - Update Simplified Chinese translation.
+- Many other non-functional and/or minor improvements and fixes.
+
+Dependency-related changes:
+
+- Require vala >= 0.11.1.
+- Require gupnp-av & gupnp-vala >= 0.7.0.
+
 0.9.1
 =====
 
