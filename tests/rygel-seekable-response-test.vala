@@ -86,7 +86,7 @@ public class Rygel.SeekableResponseTest : Rygel.HTTPResponseTest {
         var stream = this.dummy_file.replace (null, false, 0, null);
 
         // Put randon stuff into it
-        stream.write (new char[1024], 1024, null);
+        stream.write (new uint8[1024], null);
     }
 
     internal override HTTPResponse create_response (Soup.Message msg)

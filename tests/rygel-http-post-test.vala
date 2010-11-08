@@ -126,12 +126,10 @@ public class Rygel.HTTPPostTest : GLib.Object {
         try {
             var file = this.server.root_container.item.file;
             var stream = yield file.read_async (Priority.HIGH, null);
-            var buffer = new char[HTTPClient.LENGTH];
+            var buffer = new uint8[HTTPClient.LENGTH];
 
-            yield stream.read_async (buffer,
-                                     HTTPClient.LENGTH,
-                                     Priority.HIGH,
-                                     null);
+            yield stream.read_async (buffer, Priority.HIGH, null);
+
             for (var i = 0; i < HTTPClient.LENGTH; i++) {
                 assert (buffer[i] == this.client.content[i]);
             }
@@ -195,7 +193,7 @@ public class Rygel.HTTPServer : GLib.Object {
 public class Rygel.HTTPClient : GLib.Object, StateMachine {
     public const size_t LENGTH = 1024;
 
-    public char[] content;
+    public uint8[] content;
 
     public GUPnP.Context context;
     public Soup.Message msg;
@@ -205,7 +203,7 @@ public class Rygel.HTTPClient : GLib.Object, StateMachine {
     public HTTPClient (GUPnP.Context context,
                        string        uri) {
         this.context = context;
-        this.content = new char[1024];
+        this.content = new uint8[1024];
 
         this.msg = new Soup.Message ("POST",  uri);
         assert (this.msg != null);
@@ -214,7 +212,7 @@ public class Rygel.HTTPClient : GLib.Object, StateMachine {
     public async void run () {
         SourceFunc run_continue = run.callback;
 
-        this.msg.request_body.append (MemoryUse.COPY, content, LENGTH);
+        this.msg.request_body.append (MemoryUse.COPY, content);
 
         this.context.session.queue_message (this.msg, (session, msg) => {
             run_continue ();
