@@ -52,7 +52,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
                 return OCMFlags.NONE;
             }
 
-            var flags = OCMFlags.DESTROYABLE;
+            var flags = OCMFlags.NONE;
 
             var allow_upload = true;
             var config = MetaConfig.get_default ();
@@ -62,6 +62,15 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
             if (allow_upload) {
                 flags |= OCMFlags.UPLOAD | OCMFlags.UPLOAD_DESTROYABLE;
+            }
+
+            var allow_deletion = true;
+            try {
+                allow_deletion = config.get_allow_deletion ();
+            } catch (Error error) {}
+
+            if (allow_deletion) {
+                flags |= OCMFlags.DESTROYABLE;
             }
 
             return flags;

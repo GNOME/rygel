@@ -39,6 +39,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     public static const string LPCM_TRANSCODER_KEY = "enable-lpcm-transcoder";
     public static const string WMV_TRANSCODER_KEY = "enable-wmv-transcoder";
     public static const string ALLOW_UPLOAD_KEY = "allow-upload";
+    public static const string ALLOW_DELETION_KEY = "allow-deletion";
     public static const string LOG_LEVEL_KEY = "log-level";
     public static const string PLUGIN_PATH_KEY = "plugin-path";
 
@@ -130,6 +131,14 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
     public void set_allow_upload (bool value) throws GLib.Error {
         this.set_bool ("general", ALLOW_UPLOAD_KEY, value);
+    }
+
+    public bool get_allow_deletion () throws GLib.Error {
+        return this.get_bool ("general", ALLOW_DELETION_KEY);
+    }
+
+    public void set_allow_deletion (bool value) throws GLib.Error {
+        this.set_bool ("general", ALLOW_DELETION_KEY, value);
     }
 
     public LogLevel get_log_level () throws GLib.Error {
