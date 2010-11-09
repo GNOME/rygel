@@ -59,7 +59,22 @@ public abstract class Rygel.MediaItem : MediaObject {
 
     internal override OCMFlags ocm_flags {
         get {
-            return OCMFlags.DESTROYABLE;
+            if (this.place_holder) {
+                // Place-holder items are always destroyable.
+                return OCMFlags.DESTROYABLE;
+            }
+
+            var config = MetaConfig.get_default ();
+            var allow_deletion = true;
+            try {
+                allow_deletion = config.get_allow_deletion ();
+            } catch (Error error) {}
+
+            if (allow_deletion) {
+                return OCMFlags.DESTROYABLE;
+            } else {
+                return OCMFlags.NONE;
+            }
         }
     }
 

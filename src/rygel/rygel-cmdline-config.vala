@@ -42,6 +42,7 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static bool no_wmv_trans;
 
     private static bool disallow_upload;
+    private static bool disallow_deletion;
 
     private static LogLevel log_level = LogLevel.INVALID;
 
@@ -83,6 +84,8 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
           "Disable WMV transcoder", null },
         { "disallow-upload", 'U', 0, OptionArg.NONE,
           ref disallow_upload, "Disallow upload", null },
+        { "disallow-deletion", 'D', 0, OptionArg.NONE,
+          ref disallow_deletion, "Disallow deletion", null },
         { "log-level", 'g', 0, OptionArg.INT, ref log_level,
           "Log level. 1=critical,2=error,3=warning,4=message/info,5=debug",
           "N" },
@@ -185,6 +188,14 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     public bool get_allow_upload () throws GLib.Error {
         if (!disallow_upload) {
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
+        } else {
+            return false;
+        }
+    }
+
+    public bool get_allow_deletion () throws GLib.Error {
+        if (!disallow_deletion) {
             throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         } else {
             return false;
