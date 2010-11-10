@@ -19,7 +19,6 @@
     <property name="title" translatable="yes">Rygel Preferences</property>
     <property name="default_height">400</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
@@ -207,7 +206,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkComboBoxEntry" id="iface-entry">
+                          <object class="GtkComboBoxText" id="iface-entry">
                             <property name="visible">True</property>
                             <property name="model">iface-liststore</property>
                           </object>
@@ -585,7 +584,6 @@
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="transient_for">preferences-dialog</property>
-    <property name="has_separator">False</property>
     <property name="action">select-folder</property>
     <property name="select_multiple">True</property>
     <property name="local_only">False</property>
