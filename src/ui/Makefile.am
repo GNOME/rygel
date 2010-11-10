@@ -35,7 +35,7 @@ rygel_preferences_VALAFLAGS = \
 	--vapidir=$(rygeldir) --thread \
 	--pkg rygel-1.0 --pkg rygel-build-config --pkg gupnp-1.0 \
 	--pkg gupnp-av-1.0 --pkg gconf-2.0 --pkg gstreamer-0.10 --pkg gio-2.0 \
-	--pkg gee-1.0 --pkg gtk+-$(GTK_VAPI_VERSION) -g
+	--pkg gee-1.0 --pkg gtk+-3.0 -g
 
 rygel_preferences_LDADD = \
 		$(abs_top_builddir)/src/rygel/librygel-configuration.a \
