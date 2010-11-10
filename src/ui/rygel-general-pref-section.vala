@@ -32,7 +32,7 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
     const string MP2TS_CHECKBUTTON = "mp2ts-checkbutton";
     const string LPCM_CHECKBUTTON = "lpcm-checkbutton";
 
-    private ComboBoxEntry iface_entry;
+    private ComboBoxText iface_entry;
     private SpinButton port_spin;
 
     // Transcoding options
@@ -50,7 +50,7 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
 
         this.upnp_check = (CheckButton) builder.get_object (UPNP_CHECKBUTTON);
         assert (this.upnp_check != null);
-        this.iface_entry = (ComboBoxEntry) builder.get_object (IFACE_ENTRY);
+        this.iface_entry = (ComboBoxText) builder.get_object (IFACE_ENTRY);
         assert (this.iface_entry != null);
         this.port_spin = (SpinButton) builder.get_object (PORT_SPINBUTTON);
         assert (this.port_spin != null);
@@ -66,7 +66,7 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
         this.context_manager = new ContextManager (null, 0);
 
         // Apparently glade/GtkBuilder is unable to do this for us
-        this.iface_entry.set_text_column (0);
+        this.iface_entry.set_entry_text_column (0);
         try {
             this.iface_entry.append_text (config.get_interface ());
             this.iface_entry.set_active (0);
