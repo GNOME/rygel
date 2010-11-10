@@ -32,6 +32,7 @@ GEE_REQUIRED=0.5.2
 UUID_REQUIRED=1.41.3
 LIBSOUP_REQUIRED=2.26.0
 LIBSQLITE3_REQUIRED=3.5
+GTK_REQUIRED=2.90.3
 
 PKG_CHECK_MODULES(LIBGUPNP, gupnp-1.0 >= $GUPNP_REQUIRED)
 PKG_CHECK_MODULES(LIBGUPNP_AV, gupnp-av-1.0 >= $GUPNP_AV_REQUIRED)
@@ -127,25 +128,6 @@ if test "x$enable_uninstalled" = "xyes"; then
         AC_MSG_WARN("You want to run the tools uninstalled only? Fine!")
 fi
 
-AC_MSG_CHECKING([which gtk+ version to compile against])
-AC_ARG_WITH([gtk],
-  [AS_HELP_STRING([--with-gtk=2.0|3.0],[which gtk+ version to compile against (default: 2.0)])],
-  [case "$with_gtk" in
-     2.0|3.0) ;;
-     *) AC_MSG_ERROR([invalid gtk version specified]) ;;
-   esac],
-  [with_gtk=2.0])
-AC_MSG_RESULT([$with_gtk])
-
-case "$with_gtk" in
-  2.0) GTK_VAPI_VERSION=2.0
-       GTK_REQUIRED=2.20.0
-       ;;
-  3.0) GTK_VAPI_VERSION=3.0
-       GTK_REQUIRED=2.90.3
-       ;;
-esac
-
 # Check wether user wants to build UIs
 AC_ARG_WITH( ui,
   AC_HELP_STRING([--without-ui],[Do not build UI applications]),
@@ -154,12 +136,12 @@ AC_ARG_WITH( ui,
 HAVE_GTK=no
 if test x$try_ui = xyes ; then
     dnl check for gtk
-    PKG_CHECK_MODULES(GTK, gtk+-$GTK_VAPI_VERSION >= $GTK_REQUIRED ,
+    PKG_CHECK_MODULES(GTK, gtk+-3.0 >= $GTK_REQUIRED,
       [
         AC_SUBST(GTK_CFLAGS)
         AC_SUBST(GTK_LIBS)
         if test x$enable_vala = xyes ; then
-                VALA_CHECK_PACKAGES([gtk+-$GTK_VAPI_VERSION], [HAVE_GTK=yes])
+                VALA_CHECK_PACKAGES([gtk+-3.0], [HAVE_GTK=yes])
         else
                 HAVE_GTK=yes
         fi
@@ -175,14 +157,12 @@ fi
 
 if test x$HAVE_GTK = xno; then
   BUILD_UI=no
-  with_gtk="n/a"
 else
   BUILD_UI=yes
   AC_DEFINE(HAVE_GTK, , [Build UI applications])
 fi
 
 AC_SUBST(HAVE_GTK)
-AC_SUBST(GTK_VAPI_VERSION)
 AM_CONDITIONAL(BUILD_UI, test x$BUILD_UI = xyes)
 
 # Build test plugin
@@ -314,7 +294,6 @@ echo "
         uninstalled:            ${enable_uninstalled}
         maemo support:          ${enable_maemo}
         preferences ui:         ${BUILD_UI}
-        GTK+ version:           ${with_gtk}
         SQL debugging:          ${enable_sql_debugging}
     Plugins:
         test:                   ${enable_test_plugin}
