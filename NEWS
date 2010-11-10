@@ -1,3 +1,21 @@
+0.9.3
+=====
+
+Another micro release to fix the build against gtk+-3.0. Other changes:
+
+- Ability to enable/disable upload of media.
+- Ability to enable/disable deletion of media.
+- Localization:
+  - Update Spanish translation.
+
+Dependency-related changes:
+
+- Drop support for gtk+-2.0 and require gtk+-3.0.
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 0.9.2
 =====
 
