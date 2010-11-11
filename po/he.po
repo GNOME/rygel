@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-29 00:33+0200\n"
-"PO-Revision-Date: 2010-09-29 00:33+0200\n"
+"POT-Creation-Date: 2010-11-11 07:33+0200\n"
+"PO-Revision-Date: 2010-11-11 07:35+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Gezer <sh.yaron@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -130,7 +130,7 @@ msgstr "ארע כשל בפתיחת מסד הנתונים: %d‏ (%s)"
 msgid "Failed to roll back transaction: %s"
 msgstr "ארע כשל בהחזרת ההעברה: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:294
+#: ../src/plugins/media-export/rygel-media-export-database.vala:296
 #, c-format
 msgid "Unsupported type %s"
 msgstr "סוג בלתי נתמך %s"
@@ -151,7 +151,7 @@ msgstr "ארע כשל בהוספת פריט עם מספר זיהוי %s:‏ %s"
 msgid "Object %s is not an item"
 msgstr "העצם %s איננו פריט"
 
-#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:37
+#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:38
 #, c-format
 msgid "Failed to attach to D-Bus session bus: %s"
 msgstr "ארע כשל בהצטרפות לאפיק ההפעלה של D-Bus:‏ %s"
@@ -240,24 +240,23 @@ msgstr "תמונות"
 msgid "Videos"
 msgstr "וידאו"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:41
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:53
+#, c-format
+msgid "Failed to create D-Bus proxies: %s"
+msgstr "אירע כשל ביצירת מתווכי D-Bus:‏ %s"
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:61
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "ארע כשל בהרכבת הכתובת עבור התיקייה '%s':‏ %s"
 
-#: ../src/plugins/tracker/rygel-tracker-item-creation.vala:73
-#: ../src/rygel/rygel-media-container.vala:219
-#, c-format
-msgid "Object creation in %s not allowed"
-msgstr "יצירת עצמים תחת %s אינה מורשית"
-
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:64
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:99
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:62
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:102
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr "ארע כשל בהתחברות אל אפיק ההפעלה: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:117
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:115
 #, c-format
 msgid "Error getting all values for '%s': %s"
 msgstr "שגיאה בקבלת כל הערכים עבור '%s':‏ %s"
@@ -267,7 +266,7 @@ msgstr "שגיאה בקבלת כל הערכים עבור '%s':‏ %s"
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "ארע כשל בהפעלת שירות העוקב: %s. התוסף מבוטל."
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:189
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:209
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr "ארעה שגיאה בקבלת ספירת הפריטים תחת הקטגוריה '%s':‏ %s"
@@ -281,9 +280,11 @@ msgid "Artists"
 msgstr "אמנים"
 
 #: ../src/rygel/rygel-media-query-action.vala:117
-#: ../src/rygel/rygel-media-query-action.vala:138
-#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:126
-#: ../src/rygel/rygel-item-creator.vala:159
+#: ../src/rygel/rygel-media-query-action.vala:142
+#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:151
+#: ../src/rygel/rygel-item-creator.vala:183
+#: ../src/rygel/rygel-item-destroyer.vala:53
+#: ../src/rygel/rygel-item-destroyer.vala:100
 msgid "No such object"
 msgstr "אין כזה עצם"
 
@@ -296,22 +297,24 @@ msgstr "ארגומנטים שגויים"
 msgid "Failed to browse '%s': %s\n"
 msgstr "ארע כשל בסיור ב־'%s':‏ %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:123
-#: ../src/rygel/rygel-cmdline-config.vala:128
-#: ../src/rygel/rygel-cmdline-config.vala:136
-#: ../src/rygel/rygel-cmdline-config.vala:144
-#: ../src/rygel/rygel-cmdline-config.vala:152
-#: ../src/rygel/rygel-cmdline-config.vala:160
-#: ../src/rygel/rygel-cmdline-config.vala:168
-#: ../src/rygel/rygel-cmdline-config.vala:176
-#: ../src/rygel/rygel-cmdline-config.vala:184
-#: ../src/rygel/rygel-cmdline-config.vala:210
-#: ../src/rygel/rygel-cmdline-config.vala:229
-#: ../src/rygel/rygel-cmdline-config.vala:253
-#: ../src/rygel/rygel-cmdline-config.vala:279
-#: ../src/rygel/rygel-cmdline-config.vala:308
-#: ../src/rygel/rygel-cmdline-config.vala:334
-#: ../src/rygel/rygel-cmdline-config.vala:359
+#: ../src/rygel/rygel-cmdline-config.vala:130
+#: ../src/rygel/rygel-cmdline-config.vala:135
+#: ../src/rygel/rygel-cmdline-config.vala:143
+#: ../src/rygel/rygel-cmdline-config.vala:151
+#: ../src/rygel/rygel-cmdline-config.vala:159
+#: ../src/rygel/rygel-cmdline-config.vala:167
+#: ../src/rygel/rygel-cmdline-config.vala:175
+#: ../src/rygel/rygel-cmdline-config.vala:183
+#: ../src/rygel/rygel-cmdline-config.vala:191
+#: ../src/rygel/rygel-cmdline-config.vala:199
+#: ../src/rygel/rygel-cmdline-config.vala:207
+#: ../src/rygel/rygel-cmdline-config.vala:233
+#: ../src/rygel/rygel-cmdline-config.vala:252
+#: ../src/rygel/rygel-cmdline-config.vala:276
+#: ../src/rygel/rygel-cmdline-config.vala:302
+#: ../src/rygel/rygel-cmdline-config.vala:331
+#: ../src/rygel/rygel-cmdline-config.vala:357
+#: ../src/rygel/rygel-cmdline-config.vala:382
 #: ../src/rygel/rygel-meta-config.vala:74
 #: ../src/rygel/rygel-meta-config.vala:93
 #: ../src/rygel/rygel-meta-config.vala:112
@@ -321,6 +324,8 @@ msgstr "ארע כשל בסיור ב־'%s':‏ %s\n"
 #: ../src/rygel/rygel-meta-config.vala:188
 #: ../src/rygel/rygel-meta-config.vala:207
 #: ../src/rygel/rygel-meta-config.vala:226
+#: ../src/rygel/rygel-meta-config.vala:245
+#: ../src/rygel/rygel-meta-config.vala:264
 msgid "No value available"
 msgstr "אין ערך זמין"
 
@@ -328,8 +333,8 @@ msgstr "אין ערך זמין"
 msgid "Invalid connection reference"
 msgstr "הפניית חיבור שגויה"
 
-#: ../src/rygel/rygel-content-directory.vala:197
-#: ../src/rygel/rygel-content-directory.vala:210
+#: ../src/rygel/rygel-content-directory.vala:207
+#: ../src/rygel/rygel-content-directory.vala:220
 msgid "No such file transfer"
 msgstr "אין כזאת העברת קבצים"
 
@@ -402,7 +407,13 @@ msgstr "כתובת שגויה '%s'"
 msgid "Not Found"
 msgstr "לא נמצא"
 
-#: ../src/rygel/rygel-http-post.vala:50
+#: ../src/rygel/rygel-http-post.vala:61
+#: ../src/rygel/rygel-import-resource.vala:169
+#, c-format
+msgid "Pushing data to non-empty item '%s' not allowed"
+msgstr "דחיפת עצם '%s' שאינו ריק אינה מורשית"
+
+#: ../src/rygel/rygel-http-post.vala:69
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "אין כתובת עבור %s הניתנת לכתיבה"
@@ -412,35 +423,66 @@ msgstr "אין כתובת עבור %s הניתנת לכתיבה"
 msgid "Requested item '%s' not found"
 msgstr "הפריט המבוקש '%s' לא נמצא"
 
-#: ../src/rygel/rygel-import-resource.vala:108
+#: ../src/rygel/rygel-import-resource.vala:109
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
 msgstr "ארע כשל בקבלת הכתובת המקורית עבור '%s':‏ %s"
+
+#: ../src/rygel/rygel-import-resource.vala:166
+#, c-format
+msgid "URI '%s' invalid for importing contents to"
+msgstr "הכתובת '%s' אינה תקינה לצורך יבוא תכנים אל"
 
 #: ../src/rygel/rygel-item-creator.vala:67
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "אין פריטים ב־DIDL-Lite מהלקוח: '%s'"
 
-#: ../src/rygel/rygel-item-creator.vala:117
+#: ../src/rygel/rygel-item-creator.vala:142
 msgid "'Elements' argument missing."
 msgstr "הארגומנט 'Elements' חסר."
 
-#: ../src/rygel/rygel-item-creator.vala:120
+#: ../src/rygel/rygel-item-creator.vala:145
 msgid "Comments not allowed in XML"
 msgstr "תגובות אינן מורשות ב־XML"
 
-#: ../src/rygel/rygel-item-creator.vala:184
+#: ../src/rygel/rygel-item-creator.vala:187
+#: ../src/rygel/rygel-item-creator.vala:276
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr "יצירת עצמים תחת %s אינה מורשית"
+
+#: ../src/rygel/rygel-item-creator.vala:213
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "ארע כשל ביצירת פריט תחת '%s':‏ %s"
 
+#: ../src/rygel/rygel-item-destroyer.vala:60
+#, c-format
+msgid "Successfully destroyed object '%s'"
+msgstr "העצם '%s' הושמד בהצלחה"
+
+#: ../src/rygel/rygel-item-destroyer.vala:68
+#, c-format
+msgid "Failed to destroy object '%s': %s"
+msgstr "אירע כשל בהריסת העצם שב־'%s':‏ %s"
+
+#: ../src/rygel/rygel-item-destroyer.vala:103
+#, c-format
+msgid "Removal of object %s not allowed"
+msgstr "הסרת עצמים מ־%s אינה מורשית"
+
+#: ../src/rygel/rygel-item-destroyer.vala:107
+#, c-format
+msgid "Object removal from %s not allowed"
+msgstr "הסרת עצמים מ־%s אינה מורשית"
+
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-live-response.vala:150
-#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:109
+#: ../src/rygel/rygel-live-response.vala:144
+#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
-#: ../src/rygel/rygel-wmv-transcoder-bin.vala:107
+#: ../src/rygel/rygel-wmv-transcoder-bin.vala:100
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "ארע כשל בקישור הלוח %s אל %s"
@@ -450,23 +492,23 @@ msgstr "ארע כשל בקישור הלוח %s אל %s"
 msgid "Plugin 'fakesink' missing"
 msgstr "התוסף 'fakesink' חסר"
 
-#: ../src/rygel/rygel-live-response.vala:115
-#: ../src/rygel/rygel-live-response.vala:137
+#: ../src/rygel/rygel-live-response.vala:109
+#: ../src/rygel/rygel-live-response.vala:131
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "ארע כשל בקישור %s אל %s"
 
-#: ../src/rygel/rygel-live-response.vala:225
+#: ../src/rygel/rygel-live-response.vala:218
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "שגיאה מצינורית הפיקוד %s:‏ %s"
 
-#: ../src/rygel/rygel-live-response.vala:232
+#: ../src/rygel/rygel-live-response.vala:225
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "אזהרה מצינורית הפיקוד %s:‏ %s"
 
-#: ../src/rygel/rygel-live-response.vala:266
+#: ../src/rygel/rygel-live-response.vala:259
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "ארע כשל בעת המעבר להיסט %lld"
@@ -476,35 +518,35 @@ msgstr "ארע כשל בעת המעבר להיסט %lld"
 msgid "Failed to get log level from configuration: %s"
 msgstr "ארע כשל בקבלת רמת הרישום מהתצורה: %s"
 
-#: ../src/rygel/rygel-main.vala:80
+#: ../src/rygel/rygel-main.vala:81
 #, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
 msgstr[0] "לא נמצאו תוספים תוך שנייה; מוותר..."
 msgstr[1] "לא נמצאו תוספים בתוך %d שניות; מוותר..."
 
-#: ../src/rygel/rygel-main.vala:141
+#: ../src/rygel/rygel-main.vala:142
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "ארע כשל ביצירת מפעל התקן על: %s"
 
-#: ../src/rygel/rygel-main.vala:192
+#: ../src/rygel/rygel-main.vala:193
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "ארע כשל ביצירת התקן על עבור %s. סיבה: %s"
 
-#: ../src/rygel/rygel-main.vala:232
+#: ../src/rygel/rygel-main.vala:229
 #, c-format
 msgid "Failed to start D-Bus service: %s"
 msgstr "ארע כשל בהפעלת שירות ה־D-Bus:‏ %s"
 
-#: ../src/rygel/rygel-media-item.vala:233
+#: ../src/rygel/rygel-media-item.vala:253
 #, c-format
 msgid "Bad URI: %s"
 msgstr "כתובת שגויה: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:245
+#: ../src/rygel/rygel-media-item.vala:265
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "ארע כשל בבדיקת הפרוטוקול עבור הכתובת %s. נניח כי מדובר ב־'%s'"
@@ -514,17 +556,17 @@ msgstr "ארע כשל בבדיקת הפרוטוקול עבור הכתובת %s. 
 msgid "Failed to load user configuration: %s"
 msgstr "ארע כשל בטעינת תצורת המשתמש: %s"
 
-#: ../src/rygel/rygel-meta-config.vala:265
-#: ../src/rygel/rygel-meta-config.vala:284
+#: ../src/rygel/rygel-meta-config.vala:303
+#: ../src/rygel/rygel-meta-config.vala:322
 #, c-format
 msgid "No value set for '%s/enabled'"
 msgstr "לא הוגדר ערך עבור '%s/enabled'"
 
-#: ../src/rygel/rygel-meta-config.vala:304
-#: ../src/rygel/rygel-meta-config.vala:326
-#: ../src/rygel/rygel-meta-config.vala:352
-#: ../src/rygel/rygel-meta-config.vala:374
-#: ../src/rygel/rygel-meta-config.vala:398
+#: ../src/rygel/rygel-meta-config.vala:342
+#: ../src/rygel/rygel-meta-config.vala:364
+#: ../src/rygel/rygel-meta-config.vala:390
+#: ../src/rygel/rygel-meta-config.vala:412
+#: ../src/rygel/rygel-meta-config.vala:436
 #, c-format
 msgid "No value available for '%s/%s'"
 msgstr "אין ערך זמין עבור '%s/%s'"
@@ -549,16 +591,16 @@ msgstr "אירע כשל בטעינת המודול מהנתיב '%s' :‏ %s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "ארע כשל במציאת פונקציית נקודת הרשומה '%s' תחת '%s':‏ %s"
 
-#: ../src/rygel/rygel-root-device-factory.vala:112
-#: ../src/rygel/rygel-root-device-factory.vala:145
-#: ../src/rygel/rygel-root-device-factory.vala:167
-#: ../src/rygel/rygel-root-device-factory.vala:198
+#: ../src/rygel/rygel-root-device-factory.vala:113
+#: ../src/rygel/rygel-root-device-factory.vala:146
+#: ../src/rygel/rygel-root-device-factory.vala:168
+#: ../src/rygel/rygel-root-device-factory.vala:199
 #, c-format
 msgid "XML node '%s' not found."
 msgstr "צומת ה־XML ‏'%s' לא נמצאה."
 
-#: ../src/rygel/rygel-root-device-factory.vala:300
-#: ../src/rygel/rygel-root-device-factory.vala:310
+#: ../src/rygel/rygel-root-device-factory.vala:301
+#: ../src/rygel/rygel-root-device-factory.vala:311
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "ארע כשל בכתיבת התיאור השונה אל %s"
@@ -585,7 +627,7 @@ msgstr "ארע כשל במעבר אל %s‏-%s בכתובת %s:‏ %s"
 msgid "Failed to read contents from URI: %s: %s"
 msgstr "ארע כשל בקריאת התוכן מהכתובת: %s:‏ %s"
 
-#: ../src/rygel/rygel-seekable-response.vala:154
+#: ../src/rygel/rygel-seekable-response.vala:149
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
 msgstr "ארע כשל בסגירת התזרים לכתובת %s:‏ %s"
@@ -612,17 +654,17 @@ msgstr "אין תמונה ממוזערת"
 msgid "No transcoder available for target format '%s'"
 msgstr "אין ממיר דיגיטלי זמין עבור פורמט היעד '%s'"
 
-#: ../src/rygel/rygel-user-config.vala:197
+#: ../src/rygel/rygel-user-config.vala:193
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr "ארע כשל בשמירת נתוני התצורה לקובץ '%s':‏ %s"
 
-#: ../src/rygel/rygel-user-config.vala:217
+#: ../src/rygel/rygel-user-config.vala:213
 #, c-format
 msgid "No value available for '%s'"
 msgstr "אין ערך זמין עבור '%s'"
 
-#: ../src/rygel/rygel-user-config.vala:246
+#: ../src/rygel/rygel-user-config.vala:242
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "הערך של '%s' אינו בטווח"
