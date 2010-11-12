@@ -39,7 +39,6 @@ public class Rygel.Tracker.PictureItemFactory : ItemFactory {
     public PictureItemFactory () {
         base (CATEGORY,
               PhotoItem.UPNP_CLASS,
-              PHOTO_RESOURCES_CLASS_PATH,
               Environment.get_user_special_dir (UserDirectory.PICTURES));
 
         for (var i = this.key_chains.size; i < PictureMetadata.LAST_KEY; i++) {

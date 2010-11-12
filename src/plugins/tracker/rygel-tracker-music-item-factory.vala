@@ -46,7 +46,6 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
     public MusicItemFactory () {
         base (CATEGORY,
               MusicItem.UPNP_CLASS,
-              MUSIC_RESOURCES_CLASS_PATH,
               Environment.get_user_special_dir (UserDirectory.MUSIC));
 
         for (var i = this.key_chains.size; i < MusicMetadata.LAST_KEY; i++) {

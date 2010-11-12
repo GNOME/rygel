@@ -21,6 +21,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+public struct Event {
+    int graph_id;
+    int subject_id;
+    int pred_id;
+    int object_id;
+}
+
 [DBus (name = "org.freedesktop.Tracker1.Statistics")]
 public interface Rygel.Tracker.StatsIface : DBusProxy {
     public abstract async string[,] get_statistics () throws IOError;
@@ -33,23 +40,8 @@ public interface Rygel.Tracker.ResourcesIface: DBusProxy {
     public abstract async void sparql_update (string query) throws IOError;
     public abstract async HashTable<string,string>[,] sparql_update_blank (
                                         string query) throws IOError;
-}
 
-[DBus (name = "org.freedesktop.Tracker1.Resources.Class")]
-public interface Rygel.Tracker.ResourcesClassIface: DBusProxy {
-    public abstract signal void subjects_added (string[] subjects);
-    public abstract signal void subjects_removed (string[] subjects);
-    public abstract signal void subjects_changed (string[] before,
-                                                  string[] after);
-}
-
-namespace Rygel {
-    public const string RESOURCES_CLASS_PATH = "/org/freedesktop/Tracker1/" +
-                                               "Resources/Classes/";
-    public const string MUSIC_RESOURCES_CLASS_PATH = RESOURCES_CLASS_PATH +
-                                                     "nmm/MusicPiece";
-    public const string VIDEO_RESOURCES_CLASS_PATH = RESOURCES_CLASS_PATH +
-                                                     "nmm/Video";
-    public const string PHOTO_RESOURCES_CLASS_PATH = RESOURCES_CLASS_PATH +
-                                                     "nfo/Image";
+    public signal void graph_updated (string  class_name,
+                                      Event[] deletes,
+                                      Event[] inserts);
 }

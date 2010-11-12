@@ -40,7 +40,6 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
     public VideoItemFactory () {
         base (CATEGORY,
               VideoItem.UPNP_CLASS,
-              VIDEO_RESOURCES_CLASS_PATH,
               Environment.get_user_special_dir (UserDirectory.VIDEOS));
 
         for (var i = this.key_chains.size; i < VideoMetadata.LAST_KEY; i++) {
