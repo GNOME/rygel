@@ -188,11 +188,7 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
         }
     }
 
-    private bool is_our_child (string id) {
-        return id.has_prefix (this.id + ",");
-    }
-
-    private async void get_children_count () {
+    protected async void get_children_count () {
         try {
             var query = new SelectionQuery.clone (this.query);
 
@@ -212,6 +208,10 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
 
             return;
         }
+    }
+
+    private bool is_our_child (string id) {
+        return id.has_prefix (this.id + ",");
     }
 
     private SelectionQuery? create_query (RelationalExpression? expression,
