@@ -76,6 +76,10 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         int i;
         var triplets = new QueryTriplets ();
 
+        triplets.add (new QueryTriplet (SelectionQuery.ITEM_VARIABLE,
+                                        "a",
+                                        this.item_factory.category));
+
         // All variables used in the query
         var num_keys = this.key_chain.length - 1;
         var variables = new string[num_keys];
@@ -93,10 +97,6 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
                                             this.key_chain[i],
                                             variables[i]));
         }
-
-        triplets.insert (0, new QueryTriplet (SelectionQuery.ITEM_VARIABLE,
-                                              "a",
-                                              this.item_factory.category));
 
         // Variables to select from query
         var selected = new ArrayList<string> ();
