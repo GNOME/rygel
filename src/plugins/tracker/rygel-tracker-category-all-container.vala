@@ -62,6 +62,8 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
                      item_factory.upload_dir,
                      error.message);
         }
+
+        this.resources.graph_updated.connect (this.on_graph_updated);
     }
 
     public async void add_item (MediaItem item, Cancellable? cancellable)
@@ -70,9 +72,6 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
 
         item.id = this.create_child_id_for_urn (urn);
         item.parent = this;
-
-        this.child_count++;
-        this.updated ();
     }
 
     public async void remove_item (string id, Cancellable? cancellable)
@@ -82,9 +81,17 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         var urn = this.get_item_info (id, out parent_id);
 
         yield this.remove_entry_from_store (urn);
+    }
 
-        this.child_count--;
-        this.updated ();
+    private void on_graph_updated (string  class_name,
+                                   Event[] deletes,
+                                   Event[] inserts) {
+        var our_suffix = this.item_factory.category.replace (":", "#");
+        if (!class_name.has_suffix (our_suffix)) {
+            return;
+        }
+
+        this.get_children_count.begin ();
     }
 
     private async string create_entry_in_store (MediaItem item) throws Error {

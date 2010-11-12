@@ -64,8 +64,6 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         }
 
         this.fetch_metadata_values.begin ();
-
-        this.resources.graph_updated.connect (this.on_graph_updated);
     }
 
     private async void fetch_metadata_values () {
@@ -187,17 +185,6 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         this.resources = Bus.get_proxy_sync (BusType.SESSION,
                                              TRACKER_SERVICE,
                                              RESOURCES_PATH);
-    }
-
-    private void on_graph_updated (string  class_name,
-                                   Event[] deletes,
-                                   Event[] inserts) {
-        var our_suffix = this.item_factory.category.replace (":", "#");
-        if (!class_name.has_suffix (our_suffix)) {
-            return;
-        }
-
-        this.fetch_metadata_values.begin ();
     }
 
     private bool is_child_id_unique (string child_id) {
