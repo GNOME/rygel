@@ -2,14 +2,15 @@
 # Copyright (C) 2010 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
 # Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2010.
+# Daniel Șerbănescu <cyber19rider@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-09-27 21:55+0000\n"
-"PO-Revision-Date: 2010-08-06 16:55+0300\n"
-"Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
+"POT-Creation-Date: 2010-11-14 11:15+0000\n"
+"PO-Revision-Date: 2010-11-10 17:19+0300\n"
+"Last-Translator: Daniel Șerbănescu <cyber19rider@gmail.com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,21 +22,19 @@ msgstr ""
 
 #: ../data/rygel-preferences.ui.h:1
 msgid "General"
-msgstr "General"
+msgstr "Generale"
 
 #: ../data/rygel-preferences.ui.h:2
 msgid "MPE_G TS"
 msgstr "MPE_G TS"
 
 #: ../data/rygel-preferences.ui.h:3
-#, fuzzy
-#| msgid "<b>Network Options</b>"
 msgid "Network Options"
-msgstr "<b>Configurări de rețea</b>"
+msgstr "Opțiuni de rețea"
 
 #: ../data/rygel-preferences.ui.h:4
 msgid "Plugins"
-msgstr "Module de extensie"
+msgstr "Module"
 
 #: ../data/rygel-preferences.ui.h:5
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -102,25 +101,23 @@ msgstr "_Port"
 
 #: ../data/rygel-preferences.ui.h:22
 msgid "_Transcoding support"
-msgstr "Suport transcodare"
+msgstr "Suport _transcodare"
 
 #: ../data/rygel-preferences.ui.h:23
 msgid "_URIs"
 msgstr "_URIuri"
 
 #: ../data/rygel-preferences.desktop.in.in.h:2
-#, fuzzy
-#| msgid "Rygel Preferences"
 msgid "UPnP/DLNA Preferences"
-msgstr "Preferințe Rygel"
+msgstr "Preferințe UPnP/DLNA"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
-msgstr ""
+msgstr "Rygel"
 
 #: ../data/rygel.desktop.in.in.h:2
 msgid "UPnP/DLNA Services"
-msgstr ""
+msgstr "Serviciile UPnP/DLNA"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
 msgid "GStreamer Player"
@@ -136,7 +133,7 @@ msgstr "Deschiderea bazei de date a eșuat: %d (%s)"
 msgid "Failed to roll back transaction: %s"
 msgstr "Anularea tranzacției a eșuat: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:294
+#: ../src/plugins/media-export/rygel-media-export-database.vala:296
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Tip nesuportat %s"
@@ -157,17 +154,14 @@ msgstr "Nu s-a reușit adăugarea unui element cu ID %s: %s"
 msgid "Object %s is not an item"
 msgstr "Obiectul %s nu este un element"
 
-#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:37
-#, fuzzy, c-format
-#| msgid "Failed to attach to DBus session bus: %s"
+#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:38
+#, c-format
 msgid "Failed to attach to D-Bus session bus: %s"
-msgstr "Atașarea la magistrala de sesiune DBus a eșuat: %s"
+msgstr "Atașarea la magistrala de sesiune D-Bus a eșuat: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:58
-#, fuzzy
-#| msgid "No Metadata extractor available. Will not crawl"
 msgid "No metadata extractor available. Will not crawl."
-msgstr "Nu există niciun extractor de metadate disponibil. Nu se va căuta."
+msgstr "Niciun extractor de metadate disponibil. Nu se va indexa."
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:101
 #, c-format
@@ -189,7 +183,7 @@ msgstr "Eroare la ștergerea obiectului din baza de date: %s"
 #: ../src/plugins/media-export/rygel-media-export-plugin.vala:78
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:30
 msgid "@REALNAME@'s media"
-msgstr ""
+msgstr "Fișierele media ale lui @REALNAME@"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:77
 #, c-format
@@ -203,25 +197,20 @@ msgstr "An"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:31
 msgid "All"
-msgstr ""
+msgstr "Toate"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:35
-#, fuzzy
-#| msgid "Artists"
 msgid "Artist"
-msgstr "Artiști"
+msgstr "Artist"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:36
-#, fuzzy
-#| msgid "Albums"
 msgid "Album"
-msgstr "Albume"
+msgstr "Album"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:37
-#, fuzzy
-#| msgid "General"
+#: ../src/plugins/tracker/rygel-tracker-genre.vala:33
 msgid "Genre"
-msgstr "General"
+msgstr "Gen"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:59
 msgid "Failed to create instance of database"
@@ -233,10 +222,9 @@ msgid "Failed to remove URI: %s"
 msgstr "Nu s-a putut șterge URIul: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:325
-#, fuzzy, c-format
-#| msgid "Failed to create MediaExport DBus service: %s"
+#, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
-msgstr "Nu s-a putut crea serviciul DBus MediaExport: %s"
+msgstr "Nu s-a putut crea serviciul D-Bus MediaExport: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:363
 #, c-format
@@ -245,38 +233,34 @@ msgstr "Nu s-a putut șterge intrarea: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:374
 msgid "Music"
-msgstr ""
+msgstr "Muzică"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:377
-#, fuzzy
-#| msgid "Share _Pictures"
 msgid "Pictures"
-msgstr "_Partajează fotografii"
+msgstr "Fotografii"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:379
-#, fuzzy
-#| msgid "Share _Videos"
 msgid "Videos"
-msgstr "Partajează _videoclipuri"
+msgstr "Videoclipuri"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:41
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:53
+#, fuzzy, c-format
+#| msgid "Failed to start D-Bus service: %s"
+msgid "Failed to create D-Bus proxies: %s"
+msgstr "Nu s-a putut porni serviciul D-Bus: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:61
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "Nu s-a putut construi un URI pentru dosarul „%s”: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-item-creation.vala:73
-#: ../src/rygel/rygel-media-container.vala:213
-#, c-format
-msgid "Object creation in %s not allowed"
-msgstr "Crearea obiectului %s nu este permisă"
-
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:60
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:99
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:61
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:102
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr "Nu s-a putut realiza conexiunea la magistrala de sesiune: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:113
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:112
 #, c-format
 msgid "Error getting all values for '%s': %s"
 msgstr "Eroare la obținerea tuturor valorilor pentru „%s”: %s"
@@ -284,11 +268,9 @@ msgstr "Eroare la obținerea tuturor valorilor pentru „%s”: %s"
 #: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:34
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr ""
-"Nu s-a putut porni serviciul Tracker: %s. Modulul de extensie este "
-"dezactivat."
+msgstr "Nu s-a putut porni serviciul Tracker: %s. Modulul este dezactivat."
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:186
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:205
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr "Eroare la obținerea numărului de elemente din categoria „%s”: %s"
@@ -301,10 +283,12 @@ msgstr "Albume"
 msgid "Artists"
 msgstr "Artiști"
 
-#: ../src/rygel/rygel-media-query-action.vala:121
+#: ../src/rygel/rygel-media-query-action.vala:117
 #: ../src/rygel/rygel-media-query-action.vala:142
-#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:126
-#: ../src/rygel/rygel-item-creator.vala:159
+#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:151
+#: ../src/rygel/rygel-item-creator.vala:183
+#: ../src/rygel/rygel-item-destroyer.vala:53
+#: ../src/rygel/rygel-item-destroyer.vala:100
 msgid "No such object"
 msgstr "Nu există un astfel de obiect"
 
@@ -317,22 +301,24 @@ msgstr "Argumente nevalide"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Navigarea „%s” a eșuat: %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:123
-#: ../src/rygel/rygel-cmdline-config.vala:128
-#: ../src/rygel/rygel-cmdline-config.vala:136
-#: ../src/rygel/rygel-cmdline-config.vala:144
-#: ../src/rygel/rygel-cmdline-config.vala:152
-#: ../src/rygel/rygel-cmdline-config.vala:160
-#: ../src/rygel/rygel-cmdline-config.vala:168
-#: ../src/rygel/rygel-cmdline-config.vala:176
-#: ../src/rygel/rygel-cmdline-config.vala:184
-#: ../src/rygel/rygel-cmdline-config.vala:210
-#: ../src/rygel/rygel-cmdline-config.vala:229
-#: ../src/rygel/rygel-cmdline-config.vala:253
-#: ../src/rygel/rygel-cmdline-config.vala:279
-#: ../src/rygel/rygel-cmdline-config.vala:308
-#: ../src/rygel/rygel-cmdline-config.vala:334
-#: ../src/rygel/rygel-cmdline-config.vala:359
+#: ../src/rygel/rygel-cmdline-config.vala:130
+#: ../src/rygel/rygel-cmdline-config.vala:135
+#: ../src/rygel/rygel-cmdline-config.vala:143
+#: ../src/rygel/rygel-cmdline-config.vala:151
+#: ../src/rygel/rygel-cmdline-config.vala:159
+#: ../src/rygel/rygel-cmdline-config.vala:167
+#: ../src/rygel/rygel-cmdline-config.vala:175
+#: ../src/rygel/rygel-cmdline-config.vala:183
+#: ../src/rygel/rygel-cmdline-config.vala:191
+#: ../src/rygel/rygel-cmdline-config.vala:199
+#: ../src/rygel/rygel-cmdline-config.vala:207
+#: ../src/rygel/rygel-cmdline-config.vala:233
+#: ../src/rygel/rygel-cmdline-config.vala:252
+#: ../src/rygel/rygel-cmdline-config.vala:276
+#: ../src/rygel/rygel-cmdline-config.vala:302
+#: ../src/rygel/rygel-cmdline-config.vala:331
+#: ../src/rygel/rygel-cmdline-config.vala:357
+#: ../src/rygel/rygel-cmdline-config.vala:382
 #: ../src/rygel/rygel-meta-config.vala:74
 #: ../src/rygel/rygel-meta-config.vala:93
 #: ../src/rygel/rygel-meta-config.vala:112
@@ -342,6 +328,8 @@ msgstr "Navigarea „%s” a eșuat: %s\n"
 #: ../src/rygel/rygel-meta-config.vala:188
 #: ../src/rygel/rygel-meta-config.vala:207
 #: ../src/rygel/rygel-meta-config.vala:226
+#: ../src/rygel/rygel-meta-config.vala:245
+#: ../src/rygel/rygel-meta-config.vala:264
 msgid "No value available"
 msgstr "Nicio valoare disponibilă"
 
@@ -349,8 +337,8 @@ msgstr "Nicio valoare disponibilă"
 msgid "Invalid connection reference"
 msgstr "Referință la conexiune nevalidă"
 
-#: ../src/rygel/rygel-content-directory.vala:197
-#: ../src/rygel/rygel-content-directory.vala:210
+#: ../src/rygel/rygel-content-directory.vala:207
+#: ../src/rygel/rygel-content-directory.vala:220
 msgid "No such file transfer"
 msgstr "Nu există un astfel de transfer de fișiere"
 
@@ -366,7 +354,7 @@ msgstr "Viteza de redare nu este suportată"
 #: ../src/rygel/rygel-av-transport.vala:417
 #: ../src/rygel/rygel-av-transport.vala:426
 msgid "Seek mode not supported"
-msgstr "Modul de derulare nu este suportat"
+msgstr "Modul derulare nu este suportat"
 
 #: ../src/rygel/rygel-av-transport.vala:433
 #: ../src/rygel/rygel-av-transport.vala:437
@@ -423,7 +411,13 @@ msgstr "URI nevalid „%s”"
 msgid "Not Found"
 msgstr "Nu a fost găsit"
 
-#: ../src/rygel/rygel-http-post.vala:50
+#: ../src/rygel/rygel-http-post.vala:61
+#: ../src/rygel/rygel-import-resource.vala:169
+#, c-format
+msgid "Pushing data to non-empty item '%s' not allowed"
+msgstr ""
+
+#: ../src/rygel/rygel-http-post.vala:69
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "Nu există niciun URI pentru %s care poate fi scris"
@@ -433,61 +427,95 @@ msgstr "Nu există niciun URI pentru %s care poate fi scris"
 msgid "Requested item '%s' not found"
 msgstr "Elementul cerut „%s” nu a fost găsit"
 
-#: ../src/rygel/rygel-import-resource.vala:108
+#: ../src/rygel/rygel-import-resource.vala:109
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Nu s-a putut obține URI-ul original pentru „%s”: %s"
+
+#: ../src/rygel/rygel-import-resource.vala:166
+#, c-format
+msgid "URI '%s' invalid for importing contents to"
+msgstr ""
 
 #: ../src/rygel/rygel-item-creator.vala:67
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Niciun element în DIDL-Lite de la client: '%s'"
 
-#: ../src/rygel/rygel-item-creator.vala:117
+#: ../src/rygel/rygel-item-creator.vala:142
 msgid "'Elements' argument missing."
 msgstr "Argumentul „Elemente” lipsește."
 
-#: ../src/rygel/rygel-item-creator.vala:120
+#: ../src/rygel/rygel-item-creator.vala:145
 msgid "Comments not allowed in XML"
 msgstr "Comentariile nu sunt permise în XML"
 
-#: ../src/rygel/rygel-item-creator.vala:184
+#: ../src/rygel/rygel-item-creator.vala:187
+#: ../src/rygel/rygel-item-creator.vala:276
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr "Crearea obiectului %s nu este permisă"
+
+#: ../src/rygel/rygel-item-creator.vala:213
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Nu s-au putut crea elemente sub „%s”: %s"
 
+#: ../src/rygel/rygel-item-destroyer.vala:60
+#, c-format
+msgid "Successfully destroyed object '%s'"
+msgstr ""
+
+#: ../src/rygel/rygel-item-destroyer.vala:68
+#, fuzzy, c-format
+#| msgid "Failed to browse '%s': %s\n"
+msgid "Failed to destroy object '%s': %s"
+msgstr "Navigarea „%s” a eșuat: %s\n"
+
+#: ../src/rygel/rygel-item-destroyer.vala:103
+#, fuzzy, c-format
+#| msgid "Object creation in %s not allowed"
+msgid "Removal of object %s not allowed"
+msgstr "Crearea obiectului %s nu este permisă"
+
+#: ../src/rygel/rygel-item-destroyer.vala:107
+#, fuzzy, c-format
+#| msgid "Object creation in %s not allowed"
+msgid "Object removal from %s not allowed"
+msgstr "Crearea obiectului %s nu este permisă"
+
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-live-response.vala:150
-#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:109
+#: ../src/rygel/rygel-live-response.vala:144
+#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
-#: ../src/rygel/rygel-wmv-transcoder-bin.vala:107
+#: ../src/rygel/rygel-wmv-transcoder-bin.vala:100
 #, c-format
 msgid "Failed to link pad %s to %s"
-msgstr ""
+msgstr "Nu s-a putut lega blocul %s la %s"
 
 #. 'fakesink' should not be translated
 #: ../src/rygel/rygel-live-response.vala:92
 msgid "Plugin 'fakesink' missing"
-msgstr "Modulul de extensie „fakesink” lipsește"
+msgstr "Modulul „fakesink” lipsește"
 
-#: ../src/rygel/rygel-live-response.vala:115
-#: ../src/rygel/rygel-live-response.vala:137
+#: ../src/rygel/rygel-live-response.vala:109
+#: ../src/rygel/rygel-live-response.vala:131
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Nu s-a putut lega %s la %s"
 
-#: ../src/rygel/rygel-live-response.vala:225
+#: ../src/rygel/rygel-live-response.vala:218
 #, c-format
 msgid "Error from pipeline %s: %s"
-msgstr "Eroare în banda de asamblare %s: %s"
+msgstr "Eroare în linia de asamblare %s: %s"
 
-#: ../src/rygel/rygel-live-response.vala:232
+#: ../src/rygel/rygel-live-response.vala:225
 #, c-format
 msgid "Warning from pipeline %s: %s"
-msgstr "Avertisment de la banda de asamblare %s: %s"
+msgstr "Avertisment de la linia de asamblare %s: %s"
 
-#: ../src/rygel/rygel-live-response.vala:266
+#: ../src/rygel/rygel-live-response.vala:259
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Nu s-a reușit derula până la deplasamentul %lld"
@@ -497,37 +525,36 @@ msgstr "Nu s-a reușit derula până la deplasamentul %lld"
 msgid "Failed to get log level from configuration: %s"
 msgstr "Nu s-a putut afla nivelul de jurnalizare din configurație: %s"
 
-#: ../src/rygel/rygel-main.vala:80
-#, fuzzy, c-format
-#| msgid "No plugins found in %d seconds, giving up.."
+#: ../src/rygel/rygel-main.vala:81
+#, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
-msgstr[0] "Nu s-a găsit niciun modul de extensie în %d secunde, se renunță..."
-msgstr[1] "Nu s-a găsit niciun modul de extensie în %d secunde, se renunță..."
-msgstr[2] "Nu s-a găsit niciun modul de extensie în %d secunde, se renunță..."
+msgstr[0] "Nu s-a găsit niciun modul în o secundă, se renunță..."
+msgstr[1] "Nu s-a găsit niciun modul în %d secunde, se renunță..."
+msgstr[2] "Nu s-a găsit niciun modul în %d de secunde, se renunță..."
 
-#: ../src/rygel/rygel-main.vala:141
-#, fuzzy, c-format
+#: ../src/rygel/rygel-main.vala:142
+#, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Nu s-a putut crea fabrica de dispozitive rădăcină: %s"
 
-#: ../src/rygel/rygel-main.vala:192
+#: ../src/rygel/rygel-main.vala:193
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Nu s-a putut crea RootDevice pentru %s. Motiv: %s"
 
-#: ../src/rygel/rygel-main.vala:226
+#: ../src/rygel/rygel-main.vala:229
 #, c-format
 msgid "Failed to start D-Bus service: %s"
 msgstr "Nu s-a putut porni serviciul D-Bus: %s"
 
-#: ../src/rygel/rygel-media-item.vala:216
+#: ../src/rygel/rygel-media-item.vala:253
 #, c-format
 msgid "Bad URI: %s"
 msgstr "URI malformat: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:228
+#: ../src/rygel/rygel-media-item.vala:265
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Nu s-a putut explora protocolul pentru URI-ul %s. Se presupune „%s”"
@@ -537,17 +564,17 @@ msgstr "Nu s-a putut explora protocolul pentru URI-ul %s. Se presupune „%s”"
 msgid "Failed to load user configuration: %s"
 msgstr "Nu s-a putut încărca configurația utilizatorului: %s"
 
-#: ../src/rygel/rygel-meta-config.vala:265
-#: ../src/rygel/rygel-meta-config.vala:284
+#: ../src/rygel/rygel-meta-config.vala:303
+#: ../src/rygel/rygel-meta-config.vala:322
 #, c-format
 msgid "No value set for '%s/enabled'"
 msgstr "Nicio valoare definită pentru „%s/activat”"
 
-#: ../src/rygel/rygel-meta-config.vala:304
-#: ../src/rygel/rygel-meta-config.vala:326
-#: ../src/rygel/rygel-meta-config.vala:352
-#: ../src/rygel/rygel-meta-config.vala:374
-#: ../src/rygel/rygel-meta-config.vala:398
+#: ../src/rygel/rygel-meta-config.vala:342
+#: ../src/rygel/rygel-meta-config.vala:364
+#: ../src/rygel/rygel-meta-config.vala:390
+#: ../src/rygel/rygel-meta-config.vala:412
+#: ../src/rygel/rygel-meta-config.vala:436
 #, c-format
 msgid "No value available for '%s/%s'"
 msgstr "Nicio valoare disponibilă pentru „%s/%s”"
@@ -555,7 +582,7 @@ msgstr "Nicio valoare disponibilă pentru „%s/%s”"
 #: ../src/rygel/rygel-plugin-loader.vala:71
 #, c-format
 msgid "New plugin '%s' available"
-msgstr "Modul de extensie nou „%s” este disponibil"
+msgstr "Noul modul „%s” este disponibil"
 
 #: ../src/rygel/rygel-plugin-loader.vala:109
 #, c-format
@@ -563,31 +590,30 @@ msgid "Error listing contents of folder '%s': %s"
 msgstr "Eroare la listarea conținutului dosarului „%s”: %s"
 
 #: ../src/rygel/rygel-plugin-loader.vala:141
-#, fuzzy, c-format
-#| msgid "Failed to load module from path '%s' : %s"
+#, c-format
 msgid "Failed to load module from path '%s': %s"
-msgstr "Nu s-a putut încărca modulul din calea „%s”: %s"
+msgstr "Nu s-a putut încărca modulul de la calea „%s”: %s"
 
 #: ../src/rygel/rygel-plugin-loader.vala:151
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Nu s-a putut găsi funcția de intrare „%s” în „%s”: %s"
 
-#: ../src/rygel/rygel-root-device-factory.vala:112
-#: ../src/rygel/rygel-root-device-factory.vala:145
-#: ../src/rygel/rygel-root-device-factory.vala:167
-#: ../src/rygel/rygel-root-device-factory.vala:198
+#: ../src/rygel/rygel-root-device-factory.vala:113
+#: ../src/rygel/rygel-root-device-factory.vala:146
+#: ../src/rygel/rygel-root-device-factory.vala:168
+#: ../src/rygel/rygel-root-device-factory.vala:199
 #, c-format
 msgid "XML node '%s' not found."
 msgstr "Nodul XML „%s” nu a fost găsit."
 
-#: ../src/rygel/rygel-root-device-factory.vala:300
-#: ../src/rygel/rygel-root-device-factory.vala:310
+#: ../src/rygel/rygel-root-device-factory.vala:301
+#: ../src/rygel/rygel-root-device-factory.vala:311
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Scrierea descrierii modificate în %s a eșuat"
 
-#: ../src/rygel/rygel-search.vala:78
+#: ../src/rygel/rygel-search.vala:85
 #, c-format
 msgid "Failed to search in '%s': %s"
 msgstr "Nu s-a putut căuta în „%s”: %s"
@@ -609,7 +635,7 @@ msgstr "Nu s-a putut derula la %s-%s în URI-ul %s: %s"
 msgid "Failed to read contents from URI: %s: %s"
 msgstr "Nu s-a putut citi conținutul din URI: %s: %s"
 
-#: ../src/rygel/rygel-seekable-response.vala:154
+#: ../src/rygel/rygel-seekable-response.vala:149
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
 msgstr "Nu s-a putut închide fluxul către URI: %s: %s"
@@ -620,7 +646,7 @@ msgstr "Nicio subtitrare disponibilă"
 
 #: ../src/rygel/rygel-thumbnailer.vala:56
 msgid "Failed to find thumbnails folder."
-msgstr "Nu s-a găsit dosar de miniaturi."
+msgstr "Nu s-a găsit dosarul miniaturilor."
 
 #: ../src/rygel/rygel-thumbnailer.vala:82
 #, c-format
@@ -636,43 +662,41 @@ msgstr "Nu există miniatură disponibilă"
 msgid "No transcoder available for target format '%s'"
 msgstr "Nu există un transcodor disponibil pentru formatul destinație „%s”"
 
-#: ../src/rygel/rygel-user-config.vala:197
+#: ../src/rygel/rygel-user-config.vala:193
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr "Salvarea datelor de configurație în fișierul „%s” a eșuat: %s"
 
-#: ../src/rygel/rygel-user-config.vala:217
+#: ../src/rygel/rygel-user-config.vala:213
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Nicio valoare disponibilă pentru „%s”"
 
-#: ../src/rygel/rygel-user-config.vala:246
+#: ../src/rygel/rygel-user-config.vala:242
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Valoarea lui „%s” este în afara intervalului"
 
 #: ../src/rygel/rygel-user-config.vala:350
-#, fuzzy, c-format
-#| msgid "Failed to start D-Bus service: %s"
+#, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "Nu s-a putut porni serviciul D-Bus: %s"
 
 #: ../src/rygel/rygel-user-config.vala:352
-#, fuzzy, c-format
-#| msgid "Failed to start D-Bus service: %s"
+#, c-format
 msgid "Failed to stop Rygel service: %s"
-msgstr "Nu s-a putut porni serviciul D-Bus: %s"
+msgstr "Nu s-a putut opri serviciul D-Bus: %s"
 
 #: ../src/rygel/rygel-xbox-hacks.vala:42
 msgid "Not Applicable"
 msgstr "Nu este aplicabil"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:153
+#: ../src/rygel/rygel-xbox-hacks.vala:178
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Scrierea descrierii modificate în %s a eșuat."
 
-#: ../src/ui/rygel-preferences-dialog.vala:72
+#: ../src/ui/rygel-preferences-dialog.vala:78
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Nu s-a putut crea dialogul de preferințe: %s"
