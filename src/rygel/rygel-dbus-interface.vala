@@ -22,7 +22,7 @@
  */
 
 [DBus (name = "org.gnome.Rygel1")]
-public interface Rygel.DBusInterface : DBusProxy {
+public interface Rygel.DBusInterface : Object {
     public const string SERVICE_NAME = "org.gnome.Rygel1";
     public const string OBJECT_PATH = "/org/gnome/Rygel1";
 

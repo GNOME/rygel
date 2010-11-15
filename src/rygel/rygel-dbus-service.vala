@@ -23,9 +23,8 @@
 
 using FreeDesktop;
 
-// FIXME: Declare that we implement DBusInterface once bug#631044 is fixed.
 [DBus (name = "org.gnome.Rygel1")]
-public class Rygel.DBusService : Object {
+public class Rygel.DBusService : Object, DBusInterface {
     private Main main;
 
     public DBusService (Main main) throws IOError {
