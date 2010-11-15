@@ -23,6 +23,8 @@
 using Gee;
 
 public class Rygel.Tracker.Plugin : Rygel.MediaServerPlugin {
+    private static RootContainer root_container;
+
     public Plugin () {
         base ("Tracker",
               // @REALNAME@ is substituted for user's real name
@@ -31,7 +33,11 @@ public class Rygel.Tracker.Plugin : Rygel.MediaServerPlugin {
     }
 
     public override MediaContainer? get_root_container (GUPnP.Context context) {
-        return new RootContainer (this.title);
+        if (root_container == null) {
+            root_container = new RootContainer (this.title);
+        }
+
+        return root_container;
     }
 }
 
