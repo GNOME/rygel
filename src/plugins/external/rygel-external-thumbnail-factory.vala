@@ -32,7 +32,7 @@ public class Rygel.External.ThumbnailFactory {
                                    string object_path,
                                    string host_ip)
                                    throws GLib.Error {
-        Properties props = Bus.get_proxy_sync
+        Properties props = yield Bus.get_proxy
                                         (BusType.SESSION,
                                          service_name,
                                          object_path,

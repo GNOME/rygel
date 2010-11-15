@@ -125,7 +125,7 @@ public class Rygel.External.PluginFactory {
         var root_object = "/" + service_name.replace (".", "/");
 
         // Create proxy to MediaObject iface to get the display name through
-        Properties props = Bus.get_proxy_sync
+        Properties props = yield Bus.get_proxy
                                         (BusType.SESSION,
                                          service_name,
                                          root_object,

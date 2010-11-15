@@ -37,7 +37,7 @@ public class Rygel.External.IconFactory {
         }
 
         var icon_path = (string) value;
-        Properties props = Bus.get_proxy_sync
+        Properties props = yield Bus.get_proxy
                                         (BusType.SESSION,
                                          service_name,
                                          icon_path,

@@ -132,7 +132,7 @@ public class Rygel.External.Container : Rygel.MediaContainer {
         MediaObject media_object = null;
 
         // Create proxy to MediaObject iface
-        MediaObjectProxy actual_object = Bus.get_proxy_sync (BusType.SESSION,
+        MediaObjectProxy actual_object = yield Bus.get_proxy (BusType.SESSION,
                                                              this.service_name,
                                                              id);
 
@@ -157,7 +157,7 @@ public class Rygel.External.Container : Rygel.MediaContainer {
                                          0,
                                          null);
 
-            Properties props_iface = Bus.get_proxy_sync
+            Properties props_iface = yield Bus.get_proxy
                                         (BusType.SESSION,
                                         this.service_name,
                                         id,
