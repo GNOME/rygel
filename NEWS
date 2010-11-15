@@ -1,3 +1,28 @@
+0.8.3
+=====
+
+Changes since 0.8.2:
+
+- Sort Search and Browse results alphabetically (in descending order) by title
+  when no sorting criteria is specified by the client.
+- Remove redundant call to Gst.init().
+- Unique short commandline argument for disabling WMV transcoding.
+- MediaExport:
+  - Export media even if metadata extraction fails for it.
+  - Improved debug log.
+- Localization:
+  - Add Catalan (Valencian) translation.
+  - Update Romanian translation.
+  - Update British English translation.
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+Bruce Cowan <bruce@bcowan.me.uk>
+Carles Ferrando <carles.ferrando@gmail.com>
+Daniel Șerbănescu <cyber19rider@gmail.com>
+
 0.8.2
 =====
 
