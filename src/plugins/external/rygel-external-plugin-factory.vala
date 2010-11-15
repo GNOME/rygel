@@ -48,9 +48,11 @@ public class Rygel.External.PluginFactory {
     public PluginFactory (PluginLoader loader) throws IOError {
         this.icon_factory = new IconFactory ();
 
-        this.dbus_obj = Bus.get_proxy_sync (BusType.SESSION,
-                                            DBUS_SERVICE,
-                                            DBUS_OBJECT);
+        this.dbus_obj = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                         DBUS_SERVICE,
+                                         DBUS_OBJECT,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
         this.loader = loader;
 
         this.load_plugins.begin ();
@@ -123,9 +125,11 @@ public class Rygel.External.PluginFactory {
         var root_object = "/" + service_name.replace (".", "/");
 
         // Create proxy to MediaObject iface to get the display name through
-        Properties props = Bus.get_proxy_sync (BusType.SESSION,
-                                               service_name,
-                                               root_object);
+        Properties props = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                         service_name,
+                                         root_object,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
 
         HashTable<string,Variant> object_props;
         HashTable<string,Variant> container_props;

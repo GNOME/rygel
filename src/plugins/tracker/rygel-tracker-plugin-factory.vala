@@ -46,8 +46,9 @@ public class Rygel.Tracker.PluginFactory {
 
     public PluginFactory (PluginLoader loader) throws IOError {
         this.stats = Bus.get_proxy_sync (BusType.SESSION,
-                                          TRACKER_SERVICE,
-                                          STATISTICS_OBJECT);
+                                         TRACKER_SERVICE,
+                                         STATISTICS_OBJECT,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
         this.loader = loader;
 
         this.stats.get_statistics ();

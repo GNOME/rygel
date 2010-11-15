@@ -56,9 +56,11 @@ public class Rygel.External.Container : Rygel.MediaContainer {
         this.containers = new ArrayList<Container> ();
 
         // Create proxy to MediaContainer iface
-        this.actual_container = Bus.get_proxy_sync (BusType.SESSION,
-                                                    this.service_name,
-                                                    path);
+        this.actual_container = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                         this.service_name,
+                                         path,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
 
         this.update_container.begin (true);
     }
@@ -155,9 +157,11 @@ public class Rygel.External.Container : Rygel.MediaContainer {
                                          0,
                                          null);
 
-            Properties props_iface = Bus.get_proxy_sync (BusType.SESSION,
-                                                         this.service_name,
-                                                         id);
+            Properties props_iface = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                        this.service_name,
+                                        id,
+                                        DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
 
             var props = yield props_iface.get_all (MediaItemProxy.IFACE);
 

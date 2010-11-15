@@ -31,9 +31,11 @@ public class Rygel.External.AlbumArtFactory {
     public async Thumbnail create (string service_name,
                                    string object_path,
                                    string host_ip) throws IOError {
-        Properties props = Bus.get_proxy_sync (BusType.SESSION,
-                                               service_name,
-                                               object_path);
+        Properties props = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                         service_name,
+                                         object_path,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
 
         var item_props = yield props.get_all (MediaItemProxy.IFACE);
 

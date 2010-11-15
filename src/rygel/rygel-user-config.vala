@@ -311,9 +311,11 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
             if (enable) {
                 // Creating the proxy starts the service
-                DBusObject dbus = Bus.get_proxy_sync (BusType.SESSION,
-                                                      DBUS_SERVICE,
-                                                      DBUS_OBJECT);
+                DBusObject dbus = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                         DBUS_SERVICE,
+                                         DBUS_OBJECT,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
                 dbus.start_service_by_name (DBusInterface.SERVICE_NAME, 0);
 
                 // Then symlink the desktop file to user's autostart dir
@@ -331,7 +333,8 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                     DBusInterface rygel_proxy = Bus.get_proxy_sync
                                         (BusType.SESSION,
                                          DBusInterface.SERVICE_NAME,
-                                         DBusInterface.OBJECT_PATH);
+                                         DBusInterface.OBJECT_PATH,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
 
                     rygel_proxy.shutdown ();
                 }

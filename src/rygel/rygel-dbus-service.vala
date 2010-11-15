@@ -30,9 +30,11 @@ public class Rygel.DBusService : Object, DBusInterface {
     public DBusService (Main main) throws IOError {
         this.main = main;
 
-        DBusObject bus = Bus.get_proxy_sync (BusType.SESSION,
-                                             DBUS_SERVICE,
-                                             DBUS_OBJECT);
+        DBusObject bus = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                         DBUS_SERVICE,
+                                         DBUS_OBJECT,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
 
         // try to register service in session bus
         if (bus.request_name (DBusInterface.SERVICE_NAME, 0) !=

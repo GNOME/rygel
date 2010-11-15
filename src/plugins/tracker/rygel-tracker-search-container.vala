@@ -93,9 +93,11 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
                                          MODIFIED_VARIABLE);
 
         try {
-            this.resources = Bus.get_proxy_sync (BusType.SESSION,
-                                                 TRACKER_SERVICE,
-                                                 RESOURCES_PATH);
+            this.resources = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                         TRACKER_SERVICE,
+                                         RESOURCES_PATH,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
 
             this.get_children_count.begin ();
         } catch (IOError error) {

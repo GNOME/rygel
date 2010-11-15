@@ -46,9 +46,11 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         this.create_classes.add (item_factory.upnp_class);
 
         try {
-            this.resources = Bus.get_proxy_sync (BusType.SESSION,
-                                                 TRACKER_SERVICE,
-                                                 RESOURCES_PATH);
+            this.resources = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                         TRACKER_SERVICE,
+                                         RESOURCES_PATH,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
         } catch (IOError io_error) {
             critical (_("Failed to create D-Bus proxies: %s"),
                       io_error.message);

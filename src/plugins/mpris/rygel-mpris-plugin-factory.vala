@@ -48,9 +48,11 @@ public class Rygel.MPRIS.PluginFactory {
     PluginLoader loader;
 
     public PluginFactory (PluginLoader loader) throws IOError {
-        this.dbus_obj = Bus.get_proxy_sync (BusType.SESSION,
-                                            DBUS_SERVICE,
-                                            DBUS_OBJECT);
+        this.dbus_obj = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                         DBUS_SERVICE,
+                                         DBUS_OBJECT,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
         this.loader = loader;
 
         this.load_plugins.begin ();
@@ -115,9 +117,11 @@ public class Rygel.MPRIS.PluginFactory {
 
     private async void load_plugin (string service_name) throws IOError {
         // Create proxy to MediaObject iface to get the display name through
-        Properties props = Bus.get_proxy_sync (BusType.SESSION,
-                                               service_name,
-                                               MEDIA_PLAYER_PATH);
+        Properties props = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                         service_name,
+                                         MEDIA_PLAYER_PATH,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
 
         var props_hash = yield props.get_all (MediaPlayerProxy.IFACE);
 

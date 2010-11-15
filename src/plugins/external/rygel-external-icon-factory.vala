@@ -37,9 +37,11 @@ public class Rygel.External.IconFactory {
         }
 
         var icon_path = (string) value;
-        Properties props = Bus.get_proxy_sync (BusType.SESSION,
-                                               service_name,
-                                               icon_path);
+        Properties props = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                         service_name,
+                                         icon_path,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
 
         var item_props = yield props.get_all (ITEM_IFACE);
 
