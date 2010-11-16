@@ -253,10 +253,11 @@ public abstract class Rygel.MediaContainer : MediaObject {
         didl_container.child_count = this.child_count;
         didl_container.upnp_class = this.upnp_class;
         didl_container.searchable = true;
-        didl_container.dlna_managed = this.ocm_flags;
 
         if (!this.restricted) {
             didl_container.restricted = false;
+            didl_container.dlna_managed = this.ocm_flags;
+
             var writable = this as WritableContainer;
             foreach (var create_class in writable.create_classes) {
                 didl_container.add_create_class (create_class);

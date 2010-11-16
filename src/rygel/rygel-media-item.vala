@@ -191,8 +191,13 @@ public abstract class Rygel.MediaItem : MediaObject {
             didl_item.parent_id = "0";
         }
 
-        didl_item.restricted = this.restricted;
-        didl_item.dlna_managed = this.ocm_flags;
+        if (this.restricted) {
+            didl_item.restricted = true;
+        } else {
+            didl_item.restricted = false;
+            didl_item.dlna_managed = this.ocm_flags;
+        }
+
         didl_item.title = this.title;
         didl_item.upnp_class = this.upnp_class;
 
