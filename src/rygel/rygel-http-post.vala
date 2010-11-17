@@ -97,9 +97,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
 
     private async void write_chunk (Buffer chunk) {
         try {
-            // FIXME: Remove redundant cast to string after we bump our vala dep
-            //        to 0.11.2
-            this.stream.write (((string) chunk.data).data, this.cancellable);
+            this.stream.write (chunk.data, this.cancellable);
         } catch (Error error) {
             this.handle_error (error);
             this.handle_continue ();
