@@ -31,7 +31,8 @@ public interface Rygel.MPRIS.MediaPlayerProxy : DBusProxy {
 }
 
 [DBus (name = "org.mpris.MediaPlayer2.Player")]
-public interface Rygel.MPRIS.MediaPlayer.PlayerProxy : DBusProxy {
+public interface Rygel.MPRIS.MediaPlayer.PlayerProxy : DBusProxy,
+                                                       MediaPlayerProxy {
     public const string IFACE = "org.mpris.MediaPlayer2.Player";
 
     public abstract string playback_status { owned get; }

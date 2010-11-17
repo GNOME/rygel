@@ -116,31 +116,12 @@ public class Rygel.MPRIS.PluginFactory {
     }
 
     private async void load_plugin (string service_name) throws IOError {
-        Properties props = yield Bus.get_proxy
-                                        (BusType.SESSION,
-                                         service_name,
-                                         MEDIA_PLAYER_PATH,
-                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
+        MediaPlayer.PlayerProxy player =
+                                        yield Bus.get_proxy (BusType.SESSION,
+                                                             service_name,
+                                                             MEDIA_PLAYER_PATH);
 
-        var props_hash = yield props.get_all (MediaPlayerProxy.IFACE);
-
-        this.load_plugin_from_props (service_name, props_hash);
-    }
-
-    private void load_plugin_from_props (string                    service_name,
-                                         HashTable<string,Variant> props_hash) {
-        var title = (string) props_hash.lookup ("Identity");
-        if (title == null) {
-            title = service_name;
-        }
-
-        var mime_types = (string[]) props_hash.lookup ("SupportedMimeTypes");
-        var schemes = (string[]) props_hash.lookup ("SupportedUriSchemes");
-
-        var plugin = new MPRIS.Plugin (service_name,
-                                       title,
-                                       mime_types,
-                                       schemes);
+        var plugin = new MPRIS.Plugin (service_name, player);
 
         this.loader.add_plugin (plugin);
     }

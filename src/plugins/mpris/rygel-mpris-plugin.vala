@@ -34,24 +34,19 @@ public class Rygel.MPRIS.Plugin : Rygel.MediaRendererPlugin {
     private string[] mime_types;
     private string[] protocols;
 
-    public Plugin (string   service_name,
-                   string   title,
-                   string[] mime_types,
-                   string[] schemes) {
+    public Plugin (string      service_name,
+                   PlayerProxy actual_player) {
+        var title = actual_player.identity;
+        if (title == null) {
+            title = service_name;
+        }
+
         base (service_name, title);
 
-        this.mime_types = mime_types;
-        this.protocols = this.schemes_to_protocols (schemes);
-
-        try {
-            // Create proxy to MediaPlayer.Player iface
-            this.actual_player = Bus.get_proxy_sync
-                                        (BusType.SESSION,
-                                         service_name,
-                                         MEDIA_PLAYER_PATH);
-        } catch (GLib.Error err) {
-            critical ("Failed to connect to session bus: %s", err.message);
-        }
+        this.actual_player = actual_player;
+        this.mime_types = actual_player.supported_mime_types;
+        this.protocols = this.schemes_to_protocols
+                                        (actual_player.supported_uri_schemes);
     }
 
     public override Rygel.MediaPlayer? get_player () {
