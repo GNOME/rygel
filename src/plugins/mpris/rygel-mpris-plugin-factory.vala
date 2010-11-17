@@ -116,7 +116,6 @@ public class Rygel.MPRIS.PluginFactory {
     }
 
     private async void load_plugin (string service_name) throws IOError {
-        // Create proxy to MediaObject iface to get the display name through
         Properties props = yield Bus.get_proxy
                                         (BusType.SESSION,
                                          service_name,
