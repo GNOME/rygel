@@ -312,11 +312,11 @@ internal class Rygel.RootDeviceFactory {
 
     private XMLDoc get_latest_doc (string path1,
                                    string path2) throws GLib.Error {
-        if (!check_path_exist (path1)) {
+        var file = File.new_for_path (path1);
+        if (!file.query_exists (null)) {
             return new XMLDoc.from_path (path2);
         }
 
-        var file = File.new_for_path (path1);
         var info = file.query_info (FILE_ATTRIBUTE_TIME_MODIFIED,
                                     FileQueryInfoFlags.NONE);
         var mod1 = info.get_attribute_uint64 (FILE_ATTRIBUTE_TIME_MODIFIED);
@@ -333,16 +333,9 @@ internal class Rygel.RootDeviceFactory {
         }
     }
 
-    private bool check_path_exist (string path) {
-        var file = File.new_for_path (path);
-
-        return file.query_exists (null);
-    }
-
     private void ensure_dir_exists (string dir_path) throws Error {
-        if (!check_path_exist (dir_path)) {
-            var file = File.new_for_path (dir_path);
-
+        var file = File.new_for_path (dir_path);
+        if (!file.query_exists (null)) {
             file.make_directory (null);
         }
     }
