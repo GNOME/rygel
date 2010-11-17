@@ -30,7 +30,6 @@ public class Rygel.MPRIS.Plugin : Rygel.MediaRendererPlugin {
     private const string MEDIA_PLAYER_PATH = "/org/mpris/MediaPlayer2";
 
     private PlayerProxy actual_player;
-    private FreeDesktop.Properties properties;
 
     private string[] mime_types;
     private string[] protocols;
@@ -50,12 +49,6 @@ public class Rygel.MPRIS.Plugin : Rygel.MediaRendererPlugin {
                                         (BusType.SESSION,
                                          service_name,
                                          MEDIA_PLAYER_PATH);
-            // Create proxy to FreeDesktop.Properties iface
-            this.properties = Bus.get_proxy_sync
-                                        (BusType.SESSION,
-                                         service_name,
-                                         MEDIA_PLAYER_PATH,
-                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
         } catch (GLib.Error err) {
             critical ("Failed to connect to session bus: %s", err.message);
         }
@@ -63,7 +56,6 @@ public class Rygel.MPRIS.Plugin : Rygel.MediaRendererPlugin {
 
     public override Rygel.MediaPlayer? get_player () {
         return new MPRIS.Player (this.actual_player,
-                                 this.properties,
                                  this.mime_types,
                                  this.protocols);
     }

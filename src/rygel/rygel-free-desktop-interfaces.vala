@@ -52,10 +52,5 @@ public interface FreeDesktop.DBusObject: Object {
 public interface FreeDesktop.Properties: Object {
     public abstract async HashTable<string,Variant> get_all (string iface)
                                                              throws IOError;
-    public abstract signal void properties_changed
-                                        (string                     iface,
-                                         HashTable<string,Variant> changed,
-                                         string[]
-                                         invalidated);
 }
 

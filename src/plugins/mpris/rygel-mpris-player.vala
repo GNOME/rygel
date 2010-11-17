@@ -30,7 +30,6 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
     private string[] mime_types;
 
     private PlayerProxy actual_player;
-    private Properties properties;
 
     public string playback_state {
         owned get {
@@ -114,15 +113,13 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
     }
 
     public Player (PlayerProxy actual_player,
-                   Properties  properties,
                    string[]    mime_types,
                    string[]    protocols) {
         this.actual_player = actual_player;
-        this.properties = properties;
         this.mime_types = mime_types;
         this.protocols = protocols;
 
-        this.properties.properties_changed.connect (this.on_properties_changed);
+        actual_player.g_properties_changed.connect (this.on_properties_changed);
     }
 
     public bool seek (Gst.ClockTime time) {
@@ -157,26 +154,36 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
-    private void on_properties_changed (string                    iface,
-                                        HashTable<string,Variant> changed,
-                                        string[]                  invalidated) {
-        if (changed.lookup ("PlaybackStatus") != null) {
-            this.notify_property ("playback-state");
-        }
+    private void on_properties_changed (DBusProxy actual_player,
+                                        Variant   changed,
+                                        string[]  invalidated) {
+        foreach (var changed_prop in changed) {
+            var key = (string) changed_prop.get_child_value (0);
+            var value = changed_prop.get_child_value (1).get_child_value (0);
 
-        if (changed.lookup ("Volume") != null) {
-            this.notify_property ("volume");
-        }
+            switch (key) {
+            case "PlaybackStatus":
+                this.notify_property ("playback-state");
 
-        if (changed.lookup ("Metadata") != null) {
-            var metadata = this.actual_player.metadata;
+                break;
+            case "Volume":
+                this.notify_property ("volume");
 
-            if (metadata.lookup ("xesam:url") != null) {
+                break;
+            case "Metadata":
+                this.on_properties_changed (actual_player,
+                                            value,
+                                            new string[0]);
+
+                break;
+            case "xesam:url":
                 this.notify_property ("uri");
-            }
 
-            if (metadata.lookup ("mpris:length") != null) {
+                break;
+            case "mpris:length":
                 this.notify_property ("duration");
+
+                break;
             }
         }
     }
