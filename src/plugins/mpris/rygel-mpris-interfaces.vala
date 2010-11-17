@@ -22,7 +22,7 @@
  */
 
 [DBus (name = "org.mpris.MediaPlayer2")]
-public interface Rygel.MPRIS.MediaPlayerProxy : Object {
+public interface Rygel.MPRIS.MediaPlayerProxy : DBusProxy {
     public const string IFACE = "org.mpris.MediaPlayer2";
 
     public abstract string identity { owned get; }
@@ -31,7 +31,7 @@ public interface Rygel.MPRIS.MediaPlayerProxy : Object {
 }
 
 [DBus (name = "org.mpris.MediaPlayer2.Player")]
-public interface Rygel.MPRIS.MediaPlayer.PlayerProxy : Object {
+public interface Rygel.MPRIS.MediaPlayer.PlayerProxy : DBusProxy {
     public const string IFACE = "org.mpris.MediaPlayer2.Player";
 
     public abstract string playback_status { owned get; }
