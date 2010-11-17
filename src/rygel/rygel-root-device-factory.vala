@@ -85,14 +85,7 @@ internal class Rygel.RootDeviceFactory {
     private XMLDoc create_desc (Plugin plugin,
                                 string desc_path,
                                 string template_path) throws GLib.Error {
-        XMLDoc doc;
-
-        if (this.check_path_exist (desc_path)) {
-            doc = new XMLDoc.from_path (desc_path);
-        } else {
-            /* Use the template */
-            doc = new XMLDoc.from_path (template_path);
-        }
+        var doc = this.get_latest_doc (desc_path, template_path);
 
         /* Modify description to include Plugin-specific stuff */
         this.prepare_desc_for_plugin (doc, plugin);
@@ -315,6 +308,29 @@ internal class Rygel.RootDeviceFactory {
 
         // Make sure we don't have any newlines
         file.puts (mem.replace ("\n", ""));
+    }
+
+    private XMLDoc get_latest_doc (string path1,
+                                   string path2) throws GLib.Error {
+        if (!check_path_exist (path1)) {
+            return new XMLDoc.from_path (path2);
+        }
+
+        var file = File.new_for_path (path1);
+        var info = file.query_info (FILE_ATTRIBUTE_TIME_MODIFIED,
+                                    FileQueryInfoFlags.NONE);
+        var mod1 = info.get_attribute_uint64 (FILE_ATTRIBUTE_TIME_MODIFIED);
+
+        file = File.new_for_path (path2);
+        info = file.query_info (FILE_ATTRIBUTE_TIME_MODIFIED,
+                                FileQueryInfoFlags.NONE);
+        var mod2 = info.get_attribute_uint64 (FILE_ATTRIBUTE_TIME_MODIFIED);
+
+        if (mod1 > mod2) {
+            return new XMLDoc.from_path (path1);
+        } else {
+            return new XMLDoc.from_path (path2);
+        }
     }
 
     private bool check_path_exist (string path) {
