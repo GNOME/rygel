@@ -22,7 +22,7 @@ AC_FUNC_MMAP
 VALA_REQUIRED=0.11.2
 GUPNP_REQUIRED=0.13.4
 GUPNP_AV_REQUIRED=0.7.0
-GUPNP_DLNA_REQUIRED=0.3.0
+GUPNP_DLNA_REQUIRED=0.5.0
 GUPNP_VALA_REQUIRED=0.7.0
 GSTREAMER_REQUIRED=0.10.23
 GSTREAMER_TAG_REQUIRED=0.10.28
@@ -88,7 +88,7 @@ if test x$enable_vala = xyes ; then
                          gupnp-av-1.0
                          gupnp-dlna-1.0
                          gstreamer-0.10
-                         gstreamer-discoverer-gupnp-dlna-0.10
+                         gstreamer-pbutils-0.10
                          gio-2.0
                          gee-1.0
                          posix])

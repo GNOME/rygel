@@ -96,18 +96,19 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
     private void on_done (GUPnP.DLNAInformation dlna,
                           GLib.Error            err) {
-        assert (this.file_hash.has_key (dlna.info.uri));
+        assert (this.file_hash.has_key (dlna.info.get_uri ()));
 
-        var file = this.file_hash.get (dlna.info.uri);
+        var file = this.file_hash.get (dlna.info.get_uri ());
 
-        this.file_hash.unset (dlna.info.uri);
+        this.file_hash.unset (dlna.info.get_uri ());
 
-        if ((dlna.info.result & Gst.DiscovererResult.TIMEOUT) != 0) {
+        if ((dlna.info.get_result () & Gst.DiscovererResult.TIMEOUT) != 0) {
             debug ("Extraction timed out on %s", file.get_uri ());
 
             // set dlna to null to extract basic file information
             dlna = null;
-        } else if ((dlna.info.result & Gst.DiscovererResult.ERROR) != 0) {
+        } else if ((dlna.info.get_result () &
+                    Gst.DiscovererResult.ERROR) != 0) {
             this.error (file, err);
 
             return;
