@@ -94,8 +94,8 @@ internal class Rygel.HTTPPost : HTTPRequest {
             main_loop.quit ();
         });
 
-        debug ("Waiting for update signal from container '%s' after pushing content" +
-               " to its child item '%s'..",
+        debug ("Waiting for update signal from container '%s' after pushing" +
+               " content to its child item '%s'..",
                this.item.parent.id,
                this.item.id);
         main_loop.run ();
