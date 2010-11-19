@@ -84,11 +84,26 @@ internal class Rygel.HTTPPost : HTTPRequest {
     }
 
     private void on_got_body (Message msg) {
-        if (this.msg == msg) {
-            this.end (KnownStatusCode.OK);
-
-            this.handle_continue ();
+        if (this.msg != msg) {
+            return;
         }
+
+        var main_loop = new MainLoop ();
+
+        this.item.parent.container_updated.connect ((container) => {
+            main_loop.quit ();
+        });
+
+        debug ("Waiting for update signal from container '%s' after pushing content" +
+               " to its child item '%s'..",
+               this.item.parent.id,
+               this.item.id);
+        main_loop.run ();
+        debug ("Finished waiting for update signal from container '%s'",
+               this.item.parent.id);
+
+        this.end (KnownStatusCode.OK);
+        this.handle_continue ();
     }
 
     private void on_got_chunk (Message msg, Buffer chunk) {
