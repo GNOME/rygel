@@ -116,6 +116,9 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             this.item.id = this.item.uris[0];
 
             yield container.add_item (this.item, this.cancellable);
+
+            yield this.wait_for_item (container);
+
             this.item.serialize (didl_writer, this.content_dir.http_server);
 
             // Conclude the successful action
@@ -280,6 +283,37 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         var file = dir.get_child_for_display_name (title);
 
         return file.get_uri ();
+    }
+
+    private async void wait_for_item (WritableContainer container) {
+        debug ("Waiting for new item to appear under container '%s'..",
+               container.id);
+        var not_added = true;
+
+        while (not_added) {
+            var id = container.container_updated.connect ((container) => {
+                this.wait_for_item.callback ();
+            });
+
+            yield;
+
+            container.disconnect (id);
+
+            try {
+                var item = yield container.find_object (this.item.id,
+                                                        this.cancellable);
+                if (item != null) {
+                    not_added = false;
+                }
+            } catch (Error error) {
+                warning ("Error from container '%s' on trying to find newly " +
+                         "added child item '%s' in it",
+                         container.id,
+                         this.item.id);
+            }
+        }
+        debug ("Finished waiting for new item to appear under container '%s'",
+               container.id);
     }
 }
 
