@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-11-11 07:14+0000\n"
+"POT-Creation-Date: 2010-11-15 13:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Gheyret Kenji<gheyret@yahoo.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -179,7 +179,7 @@ msgstr ""
 #: ../src/plugins/media-export/rygel-media-export-plugin.vala:78
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:30
 msgid "@REALNAME@'s media"
-msgstr ""
+msgstr "@REALNAME@'s ۋاسىتە"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:77
 #, c-format
@@ -237,7 +237,7 @@ msgstr "رەسىملەر"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:379
 msgid "Videos"
-msgstr "سىن"
+msgstr "سىنلار"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:53
 #, c-format
@@ -249,13 +249,13 @@ msgstr ""
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr ""
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:62
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:61
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:102
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr ""
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:115
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:112
 #, c-format
 msgid "Error getting all values for '%s': %s"
 msgstr ""
@@ -265,7 +265,7 @@ msgstr ""
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr ""
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:209
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:205
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr ""
@@ -363,7 +363,7 @@ msgstr "ئىناۋەتسىز ئىسىم"
 #: ../src/rygel/rygel-rendering-control.vala:166
 #: ../src/rygel/rygel-rendering-control.vala:237
 msgid "Action Failed"
-msgstr ""
+msgstr "مەشغۇلات مەغلۇپ بولدى"
 
 #: ../src/rygel/rygel-gst-utils.vala:38
 #, c-format
@@ -541,7 +541,7 @@ msgstr ""
 #: ../src/rygel/rygel-media-item.vala:253
 #, c-format
 msgid "Bad URI: %s"
-msgstr ""
+msgstr "خاتا URI:  %s"
 
 #. Assume the protocol to be the scheme of the URI
 #: ../src/rygel/rygel-media-item.vala:265
