@@ -271,7 +271,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         return true;
     }
 
-    public async string create_uri (WritableContainer container, string title)
+    private async string create_uri (WritableContainer container, string title)
                                     throws Error {
         var dir = yield container.get_writable (this.cancellable);
         if (dir == null) {
