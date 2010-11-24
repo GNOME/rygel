@@ -11,9 +11,9 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-10-18 16:18+0000\n"
-"PO-Revision-Date: 2010-10-18 21:28+0800\n"
-"Last-Translator: YunQiang Su <wzssyqa@gmail.com>\n"
+"POT-Creation-Date: 2010-11-22 12:43+0000\n"
+"PO-Revision-Date: 2010-11-20 12:53+0800\n"
+"Last-Translator: Yinghua Wang <wantinghard@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -180,7 +180,7 @@ msgstr "从数据库中删除对象时出错：%s"
 #. @REALNAME@ is substituted for user's real name
 #. and it doesn't need translation.
 #: ../src/plugins/media-export/rygel-media-export-plugin.vala:78
-#: ../src/plugins/tracker/rygel-tracker-plugin.vala:30
+#: ../src/plugins/tracker/rygel-tracker-plugin.vala:32
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@ 的媒体"
 
@@ -242,24 +242,23 @@ msgstr "图片"
 msgid "Videos"
 msgstr "视频"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:41
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:55
+#, c-format
+msgid "Failed to create D-Bus proxies: %s"
+msgstr "创建 D-Bus 代理失败：%s"
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:63
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "无法为文件夹 '%s' 构建 URI：%s"
 
-#: ../src/plugins/tracker/rygel-tracker-item-creation.vala:73
-#: ../src/rygel/rygel-media-container.vala:219
-#, c-format
-msgid "Object creation in %s not allowed"
-msgstr "不允许在 %s 中创建对象"
-
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:62
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:102
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:61
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:104
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr "连接到会话总线失败：%s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:115
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:112
 #, c-format
 msgid "Error getting all values for '%s': %s"
 msgstr "为 '%s' 获取全部值时出错：%s"
@@ -269,7 +268,7 @@ msgstr "为 '%s' 获取全部值时出错：%s"
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "无法启动 Tracker 服务：%s。插件已禁用。"
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:192
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:207
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr "在分类 '%s' 下获取条目数时出错：%s"
@@ -283,9 +282,11 @@ msgid "Artists"
 msgstr "艺人"
 
 #: ../src/rygel/rygel-media-query-action.vala:117
-#: ../src/rygel/rygel-media-query-action.vala:138
-#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:126
-#: ../src/rygel/rygel-item-creator.vala:159
+#: ../src/rygel/rygel-media-query-action.vala:142
+#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:154
+#: ../src/rygel/rygel-item-creator.vala:186
+#: ../src/rygel/rygel-item-destroyer.vala:53
+#: ../src/rygel/rygel-item-destroyer.vala:100
 msgid "No such object"
 msgstr "无此对象"
 
@@ -298,22 +299,24 @@ msgstr "无效参数"
 msgid "Failed to browse '%s': %s\n"
 msgstr "浏览 '%s' 失败：%s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:123
-#: ../src/rygel/rygel-cmdline-config.vala:128
-#: ../src/rygel/rygel-cmdline-config.vala:136
-#: ../src/rygel/rygel-cmdline-config.vala:144
-#: ../src/rygel/rygel-cmdline-config.vala:152
-#: ../src/rygel/rygel-cmdline-config.vala:160
-#: ../src/rygel/rygel-cmdline-config.vala:168
-#: ../src/rygel/rygel-cmdline-config.vala:176
-#: ../src/rygel/rygel-cmdline-config.vala:184
-#: ../src/rygel/rygel-cmdline-config.vala:210
-#: ../src/rygel/rygel-cmdline-config.vala:229
-#: ../src/rygel/rygel-cmdline-config.vala:253
-#: ../src/rygel/rygel-cmdline-config.vala:279
-#: ../src/rygel/rygel-cmdline-config.vala:308
-#: ../src/rygel/rygel-cmdline-config.vala:334
-#: ../src/rygel/rygel-cmdline-config.vala:359
+#: ../src/rygel/rygel-cmdline-config.vala:130
+#: ../src/rygel/rygel-cmdline-config.vala:135
+#: ../src/rygel/rygel-cmdline-config.vala:143
+#: ../src/rygel/rygel-cmdline-config.vala:151
+#: ../src/rygel/rygel-cmdline-config.vala:159
+#: ../src/rygel/rygel-cmdline-config.vala:167
+#: ../src/rygel/rygel-cmdline-config.vala:175
+#: ../src/rygel/rygel-cmdline-config.vala:183
+#: ../src/rygel/rygel-cmdline-config.vala:191
+#: ../src/rygel/rygel-cmdline-config.vala:199
+#: ../src/rygel/rygel-cmdline-config.vala:207
+#: ../src/rygel/rygel-cmdline-config.vala:233
+#: ../src/rygel/rygel-cmdline-config.vala:252
+#: ../src/rygel/rygel-cmdline-config.vala:276
+#: ../src/rygel/rygel-cmdline-config.vala:302
+#: ../src/rygel/rygel-cmdline-config.vala:331
+#: ../src/rygel/rygel-cmdline-config.vala:357
+#: ../src/rygel/rygel-cmdline-config.vala:382
 #: ../src/rygel/rygel-meta-config.vala:74
 #: ../src/rygel/rygel-meta-config.vala:93
 #: ../src/rygel/rygel-meta-config.vala:112
@@ -323,6 +326,8 @@ msgstr "浏览 '%s' 失败：%s\n"
 #: ../src/rygel/rygel-meta-config.vala:188
 #: ../src/rygel/rygel-meta-config.vala:207
 #: ../src/rygel/rygel-meta-config.vala:226
+#: ../src/rygel/rygel-meta-config.vala:245
+#: ../src/rygel/rygel-meta-config.vala:264
 msgid "No value available"
 msgstr "无可用值"
 
@@ -330,8 +335,8 @@ msgstr "无可用值"
 msgid "Invalid connection reference"
 msgstr "无效的连接参考"
 
-#: ../src/rygel/rygel-content-directory.vala:197
-#: ../src/rygel/rygel-content-directory.vala:210
+#: ../src/rygel/rygel-content-directory.vala:207
+#: ../src/rygel/rygel-content-directory.vala:220
 msgid "No such file transfer"
 msgstr "无此文件传输"
 
@@ -404,7 +409,13 @@ msgstr "无效 URI '%s'"
 msgid "Not Found"
 msgstr "没有找到"
 
-#: ../src/rygel/rygel-http-post.vala:50
+#: ../src/rygel/rygel-http-post.vala:61
+#: ../src/rygel/rygel-import-resource.vala:169
+#, c-format
+msgid "Pushing data to non-empty item '%s' not allowed"
+msgstr "不允许将数据压入非空条目“%s”中"
+
+#: ../src/rygel/rygel-http-post.vala:69
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "没有可用的 %s 的可写入的 URI"
@@ -414,35 +425,66 @@ msgstr "没有可用的 %s 的可写入的 URI"
 msgid "Requested item '%s' not found"
 msgstr "所请求的条目 '%s' 没有找到"
 
-#: ../src/rygel/rygel-import-resource.vala:108
+#: ../src/rygel/rygel-import-resource.vala:109
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
 msgstr "获取 '%s' 的原始 URI 失败：%s"
+
+#: ../src/rygel/rygel-import-resource.vala:166
+#, c-format
+msgid "URI '%s' invalid for importing contents to"
+msgstr "URI “%s”无效，不能导入内容"
 
 #: ../src/rygel/rygel-item-creator.vala:67
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "客户端的 DIDL-Lite 中无条目：'%s'"
 
-#: ../src/rygel/rygel-item-creator.vala:117
+#: ../src/rygel/rygel-item-creator.vala:145
 msgid "'Elements' argument missing."
 msgstr "缺少 'Elements' 参数"
 
-#: ../src/rygel/rygel-item-creator.vala:120
+#: ../src/rygel/rygel-item-creator.vala:148
 msgid "Comments not allowed in XML"
 msgstr "XML 中不允许有注释"
 
-#: ../src/rygel/rygel-item-creator.vala:184
+#: ../src/rygel/rygel-item-creator.vala:190
+#: ../src/rygel/rygel-item-creator.vala:279
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr "不允许在 %s 中创建对象"
+
+#: ../src/rygel/rygel-item-creator.vala:216
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "无法在 '%s' 下创建条目：%s"
 
+#: ../src/rygel/rygel-item-destroyer.vala:60
+#, c-format
+msgid "Successfully destroyed object '%s'"
+msgstr "成功销毁了对象“%s”"
+
+#: ../src/rygel/rygel-item-destroyer.vala:68
+#, c-format
+msgid "Failed to destroy object '%s': %s"
+msgstr "销毁对象“%s”失败：%s"
+
+#: ../src/rygel/rygel-item-destroyer.vala:103
+#, c-format
+msgid "Removal of object %s not allowed"
+msgstr "不允许移除 %s 对象"
+
+#: ../src/rygel/rygel-item-destroyer.vala:107
+#, c-format
+msgid "Object removal from %s not allowed"
+msgstr "不允许从 %s 中移除对象"
+
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-live-response.vala:150
-#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:109
+#: ../src/rygel/rygel-live-response.vala:144
+#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
-#: ../src/rygel/rygel-wmv-transcoder-bin.vala:107
+#: ../src/rygel/rygel-wmv-transcoder-bin.vala:100
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "无法链接 pad %s 到 %s"
@@ -452,23 +494,23 @@ msgstr "无法链接 pad %s 到 %s"
 msgid "Plugin 'fakesink' missing"
 msgstr "缺少插件 fakesink"
 
-#: ../src/rygel/rygel-live-response.vala:115
-#: ../src/rygel/rygel-live-response.vala:137
+#: ../src/rygel/rygel-live-response.vala:109
+#: ../src/rygel/rygel-live-response.vala:131
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "链接 %s 到 %s 失败"
 
-#: ../src/rygel/rygel-live-response.vala:225
+#: ../src/rygel/rygel-live-response.vala:218
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "来自于管线 %s 的错误：%s"
 
-#: ../src/rygel/rygel-live-response.vala:232
+#: ../src/rygel/rygel-live-response.vala:225
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "来自管线 %s 的警告：%s"
 
-#: ../src/rygel/rygel-live-response.vala:266
+#: ../src/rygel/rygel-live-response.vala:259
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "无法定位到偏移量 %lld"
@@ -494,18 +536,18 @@ msgstr "无法创建根设备工厂：%s"
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "为 %s 创建根设备失败。原因为：%s"
 
-#: ../src/rygel/rygel-main.vala:233
+#: ../src/rygel/rygel-main.vala:229
 #, c-format
 msgid "Failed to start D-Bus service: %s"
 msgstr "启动 D-Bus 服务失败：%s"
 
-#: ../src/rygel/rygel-media-item.vala:233
+#: ../src/rygel/rygel-media-item.vala:258
 #, c-format
 msgid "Bad URI: %s"
 msgstr "坏的 URI：%s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:245
+#: ../src/rygel/rygel-media-item.vala:270
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "无法探测 URI %s 所用协议。假定为 '%s'"
@@ -515,17 +557,17 @@ msgstr "无法探测 URI %s 所用协议。假定为 '%s'"
 msgid "Failed to load user configuration: %s"
 msgstr "无法加载用户配置：%s"
 
-#: ../src/rygel/rygel-meta-config.vala:265
-#: ../src/rygel/rygel-meta-config.vala:284
+#: ../src/rygel/rygel-meta-config.vala:303
+#: ../src/rygel/rygel-meta-config.vala:322
 #, c-format
 msgid "No value set for '%s/enabled'"
 msgstr "没有为 '%s/enabled' 设定值"
 
-#: ../src/rygel/rygel-meta-config.vala:304
-#: ../src/rygel/rygel-meta-config.vala:326
-#: ../src/rygel/rygel-meta-config.vala:352
-#: ../src/rygel/rygel-meta-config.vala:374
-#: ../src/rygel/rygel-meta-config.vala:398
+#: ../src/rygel/rygel-meta-config.vala:342
+#: ../src/rygel/rygel-meta-config.vala:364
+#: ../src/rygel/rygel-meta-config.vala:390
+#: ../src/rygel/rygel-meta-config.vala:412
+#: ../src/rygel/rygel-meta-config.vala:436
 #, c-format
 msgid "No value available for '%s/%s'"
 msgstr "没有 '%s/%s' 可用的值"
@@ -550,16 +592,16 @@ msgstr "从路径“%s”加载模块失败：%s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "无法在 %2$s 中找到入口点函数 %1$s ：%3$s"
 
-#: ../src/rygel/rygel-root-device-factory.vala:113
-#: ../src/rygel/rygel-root-device-factory.vala:146
-#: ../src/rygel/rygel-root-device-factory.vala:168
-#: ../src/rygel/rygel-root-device-factory.vala:199
+#: ../src/rygel/rygel-root-device-factory.vala:106
+#: ../src/rygel/rygel-root-device-factory.vala:139
+#: ../src/rygel/rygel-root-device-factory.vala:161
+#: ../src/rygel/rygel-root-device-factory.vala:192
 #, c-format
 msgid "XML node '%s' not found."
 msgstr "没有找到 XML 节点 '%s'"
 
-#: ../src/rygel/rygel-root-device-factory.vala:301
-#: ../src/rygel/rygel-root-device-factory.vala:311
+#: ../src/rygel/rygel-root-device-factory.vala:294
+#: ../src/rygel/rygel-root-device-factory.vala:304
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "无法写入更改后的描述到 %s"
@@ -586,7 +628,7 @@ msgstr "无法在 URI %3$s 上定位到 %1$s-%2$s：%4$s"
 msgid "Failed to read contents from URI: %s: %s"
 msgstr "无法从 URI %s 中读取内容：%s"
 
-#: ../src/rygel/rygel-seekable-response.vala:154
+#: ../src/rygel/rygel-seekable-response.vala:146
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
 msgstr "无法关闭到 URI %s 的媒体流：%s"
@@ -613,27 +655,27 @@ msgstr "无可用的缩略图"
 msgid "No transcoder available for target format '%s'"
 msgstr "没有目标格式 '%s' 的转码器可用"
 
-#: ../src/rygel/rygel-user-config.vala:177
+#: ../src/rygel/rygel-user-config.vala:193
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr "保存配置数据至文件 '%s' 失败：%s"
 
-#: ../src/rygel/rygel-user-config.vala:197
+#: ../src/rygel/rygel-user-config.vala:213
 #, c-format
 msgid "No value available for '%s'"
 msgstr "'%s' 无可用值"
 
-#: ../src/rygel/rygel-user-config.vala:226
+#: ../src/rygel/rygel-user-config.vala:242
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "'%s' 的值超出范围"
 
-#: ../src/rygel/rygel-user-config.vala:334
+#: ../src/rygel/rygel-user-config.vala:353
 #, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "启动 Rygel 服务失败：%s"
 
-#: ../src/rygel/rygel-user-config.vala:336
+#: ../src/rygel/rygel-user-config.vala:355
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "停止 Rygel 服务失败：%s"
