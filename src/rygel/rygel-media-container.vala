@@ -152,7 +152,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
         didl_container.title = this.title;
         didl_container.child_count = this.child_count;
         didl_container.upnp_class = this.upnp_class;
-        didl_container.searchable = true;
+        didl_container.searchable = this is SearchableContainer;
 
         if (!this.restricted) {
             didl_container.restricted = false;
