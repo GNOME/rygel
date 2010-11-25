@@ -57,8 +57,11 @@ internal class Rygel.Search:  Rygel.MediaQueryAction {
     protected override async MediaObjects fetch_results
                                         (MediaObject media_object)
                                          throws Error {
-        var container = media_object as SearchableContainer;
+        if (!(media_object is SearchableContainer)) {
+            return new MediaObjects ();
+        }
 
+        var container = media_object as SearchableContainer;
         var parser = new Rygel.SearchCriteriaParser (this.search_criteria);
         yield parser.run ();
 
