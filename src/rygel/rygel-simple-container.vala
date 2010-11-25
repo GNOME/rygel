@@ -29,7 +29,8 @@ using Gee;
  * in memory. In order for it to be of any use, you must add children to
  * children ArrayList field.
  */
-public class Rygel.SimpleContainer : Rygel.MediaContainer {
+public class Rygel.SimpleContainer : Rygel.MediaContainer,
+                                     Rygel.SearchableContainer {
     public MediaObjects children;
 
     public SimpleContainer (string          id,
@@ -93,5 +94,18 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer {
         }
 
         return media_object;
+    }
+
+    public async MediaObjects? search (SearchExpression? expression,
+                                       uint              offset,
+                                       uint              max_count,
+                                       out uint          total_matches,
+                                       Cancellable?      cancellable)
+                                       throws Error {
+        return yield this.simple_search (expression,
+                                         offset,
+                                         max_count,
+                                         out total_matches,
+                                         cancellable);
     }
 }

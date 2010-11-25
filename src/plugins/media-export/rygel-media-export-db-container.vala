@@ -22,7 +22,8 @@
 using GUPnP;
 using Gee;
 
-public class Rygel.MediaExport.DBContainer : MediaContainer {
+public class Rygel.MediaExport.DBContainer : MediaContainer,
+                                             SearchableContainer {
     protected MediaCache media_db;
 
     public DBContainer (MediaCache media_db, string id, string title) {
@@ -51,12 +52,12 @@ public class Rygel.MediaExport.DBContainer : MediaContainer {
         return this.media_db.get_children (this, offset, max_count);
     }
 
-    public override async MediaObjects? search (SearchExpression? expression,
-                                                uint              offset,
-                                                uint              max_count,
-                                                out uint          total_matches,
-                                                Cancellable?      cancellable)
-                                                throws GLib.Error {
+    public virtual async MediaObjects? search (SearchExpression? expression,
+                                               uint              offset,
+                                               uint              max_count,
+                                               out uint          total_matches,
+                                               Cancellable?      cancellable)
+                                               throws GLib.Error {
         MediaObjects children = null;
 
         try {
@@ -68,11 +69,11 @@ public class Rygel.MediaExport.DBContainer : MediaContainer {
                                          out total_matches);
         } catch (MediaCacheError error) {
             if (error is MediaCacheError.UNSUPPORTED_SEARCH) {
-                children = yield base.search (expression,
-                                              offset,
-                                              max_count,
-                                              out total_matches,
-                                              cancellable);
+                children = yield this.simple_search (expression,
+                                                     offset,
+                                                     max_count,
+                                                     out total_matches,
+                                                     cancellable);
             } else {
                 throw error;
             }

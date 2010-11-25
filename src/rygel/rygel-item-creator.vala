@@ -166,14 +166,18 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
 
             uint total_matches;
 
-            var result = yield this.content_dir.root_container.search
-                                        (expression,
-                                         0,
-                                         1,
-                                         out total_matches,
-                                         this.cancellable);
-            if (result.size > 0) {
-                media_object = result[0];
+            var container = this.content_dir.root_container
+                            as SearchableContainer;
+
+            if (container != null) {
+                var result = yield container.search (expression,
+                                                     0,
+                                                     1,
+                                                     out total_matches,
+                                                     this.cancellable);
+                if (result.size > 0) {
+                    media_object = result[0];
+                }
             }
         } else {
             media_object = yield this.content_dir.root_container.find_object

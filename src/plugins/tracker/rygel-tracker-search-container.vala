@@ -116,28 +116,20 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
 
         uint total_matches;
 
-        return yield this.search (expression,
-                                  offset,
-                                  max_count,
-                                  out total_matches,
-                                  cancellable);
+        return yield this.execute_query (expression,
+                                         offset,
+                                         max_count,
+                                         out total_matches,
+                                         cancellable);
     }
 
-    public override async MediaObjects? search (SearchExpression? expression,
-                                                uint              offset,
-                                                uint              max_count,
-                                                out uint          total_matches,
-                                                Cancellable?      cancellable)
-                                                throws GLib.Error {
+    public async MediaObjects? execute_query (SearchExpression? expression,
+                                              uint              offset,
+                                              uint              max_count,
+                                              out uint          total_matches,
+                                              Cancellable?      cancellable)
+                                              throws GLib.Error {
         var results = new MediaObjects ();
-
-        if (expression == null || !(expression is RelationalExpression)) {
-            return yield base.search (expression,
-                                      offset,
-                                      max_count,
-                                      out total_matches,
-                                      cancellable);
-        }
 
         var query = this.create_query (expression as RelationalExpression,
                                        (int) offset,
@@ -164,8 +156,23 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
     public override async MediaObject? find_object (string       id,
                                                     Cancellable? cancellable)
                                                     throws GLib.Error {
-        if (this.is_our_child (id)) {
-            return yield base.find_object (id, cancellable);
+        if (!this.is_our_child (id)) {
+            return null;
+        }
+
+        var expression = new RelationalExpression ();
+        expression.op = SearchCriteriaOp.EQ;
+        expression.operand1 = "@id";
+        expression.operand2 = id;
+
+        uint total_matches;
+        var results = yield this.execute_query (expression,
+                                                0,
+                                                1,
+                                                out total_matches,
+                                                cancellable);
+        if (results.size > 0) {
+            return results[0];
         } else {
             return null;
         }

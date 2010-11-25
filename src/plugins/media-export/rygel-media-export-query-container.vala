@@ -100,7 +100,7 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
         }
     }
 
-    public override async MediaObjects? search (SearchExpression? expression,
+    public async override MediaObjects? search (SearchExpression? expression,
                                                 uint              offset,
                                                 uint              max_count,
                                                 out uint          total_matches,

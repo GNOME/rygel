@@ -36,4 +36,10 @@ internal class Rygel.NullContainer : MediaContainer {
                                                       throws Error {
         return new MediaObjects ();
     }
+
+    public override async MediaObject? find_object (string id,
+                                                    Cancellable? cancellable)
+                                                    throws Error {
+        return null;
+    }
 }

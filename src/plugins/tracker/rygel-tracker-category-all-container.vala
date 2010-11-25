@@ -28,7 +28,8 @@ using Gee;
  * A search container that contains all the items in a category.
  */
 public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
-                                                  WritableContainer {
+                                                  WritableContainer,
+                                                  SearchableContainer {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
@@ -83,6 +84,19 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         var urn = this.get_item_info (id, out parent_id);
 
         yield this.remove_entry_from_store (urn);
+    }
+
+    public async MediaObjects? search (SearchExpression? expression,
+                                       uint              offset,
+                                       uint              max_count,
+                                       out uint          total_matches,
+                                       Cancellable?      cancellable)
+                                       throws Error {
+        return yield this.simple_search (expression,
+                                         offset,
+                                         max_count,
+                                         out total_matches,
+                                         cancellable);
     }
 
     private void on_graph_updated (string  class_name,

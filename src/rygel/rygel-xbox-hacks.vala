@@ -86,12 +86,12 @@ internal class Rygel.XBoxHacks : GLib.Object {
         }
     }
 
-    public async MediaObjects? search (MediaContainer container,
-                                       SearchExpression? expression,
-                                       uint              offset,
-                                       uint              max_count,
-                                       out uint          total_matches,
-                                       Cancellable?      cancellable)
+    public async MediaObjects? search (SearchableContainer container,
+                                       SearchExpression?   expression,
+                                       uint                offset,
+                                       uint                max_count,
+                                       out uint            total_matches,
+                                       Cancellable?        cancellable)
                                        throws Error {
         var results = yield container.search (expression,
                                               offset,

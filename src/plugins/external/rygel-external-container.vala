@@ -29,7 +29,8 @@ using FreeDesktop;
 /**
  * Represents an external container.
  */
-public class Rygel.External.Container : Rygel.MediaContainer {
+public class Rygel.External.Container : Rygel.MediaContainer,
+                                        Rygel.SearchableContainer {
     public MediaContainerProxy actual_container;
 
     public string host_ip;
@@ -85,19 +86,19 @@ public class Rygel.External.Container : Rygel.MediaContainer {
         return yield this.create_media_objects (children_props, this);
     }
 
-    public override async MediaObjects? search (SearchExpression? expression,
-                                                uint              offset,
-                                                uint              max_count,
-                                                out uint          total_matches,
-                                                Cancellable?      cancellable)
-                                                throws GLib.Error {
+    public async MediaObjects? search (SearchExpression? expression,
+                                       uint              offset,
+                                       uint              max_count,
+                                       out uint          total_matches,
+                                       Cancellable?      cancellable)
+                                       throws GLib.Error {
         if (expression == null || !this.searchable) {
             // Either its wildcard or backend doesn't implement search :(
-            return yield base.search (expression,
-                                      offset,
-                                      max_count,
-                                      out total_matches,
-                                      cancellable);
+            return yield this.simple_search (expression,
+                                             offset,
+                                             max_count,
+                                             out total_matches,
+                                             cancellable);
         }
 
         string[] filter = {};
