@@ -21,7 +21,8 @@
 using GLib;
 using Gee;
 
-public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object {
+public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
+                                                GLib.Object {
     public File origin;
     private MetadataExtractor extractor;
     private MediaCache cache;
@@ -171,6 +172,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
         if (info.get_file_type () == FileType.DIRECTORY) {
             // queue directory for processing later
             this.monitor.add (file);
+
             var container = new DummyContainer (file, parent);
             this.containers.push_tail (container);
             try {
@@ -203,6 +205,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine, GLib.Object 
 
         foreach (var info in list) {
             var file = container.file.get_child (info.get_name ());
+
             container.seen (file);
             this.process_file (file, info, container);
         }
