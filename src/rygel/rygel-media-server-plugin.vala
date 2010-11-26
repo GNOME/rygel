@@ -31,25 +31,24 @@ public class Rygel.MediaServerPlugin : Rygel.Plugin {
         base (MEDIA_SERVER_DESC_PATH, name, title, description);
 
         // MediaServer implementations must implement ContentDirectory service
-        var resource_info = new ResourceInfo (ContentDirectory.UPNP_ID,
-                                              ContentDirectory.UPNP_TYPE,
-                                              ContentDirectory.DESCRIPTION_PATH,
-                                              typeof (ContentDirectory));
-        this.add_resource (resource_info);
+        var info = new ResourceInfo (ContentDirectory.UPNP_ID,
+                                     ContentDirectory.UPNP_TYPE,
+                                     ContentDirectory.DESCRIPTION_PATH,
+                                     typeof (ContentDirectory));
+        this.add_resource (info);
 
         // Register Rygel.ConnectionManager
-        resource_info = new ResourceInfo (ConnectionManager.UPNP_ID,
-                                          ConnectionManager.UPNP_TYPE,
-                                          ConnectionManager.DESCRIPTION_PATH,
-                                          typeof (SourceConnectionManager));
+        info = new ResourceInfo (ConnectionManager.UPNP_ID,
+                                 ConnectionManager.UPNP_TYPE,
+                                 ConnectionManager.DESCRIPTION_PATH,
+                                 typeof (SourceConnectionManager));
 
-        this.add_resource (resource_info);
-        resource_info = new ResourceInfo (
-                                        MediaReceiverRegistrar.UPNP_ID,
-                                        MediaReceiverRegistrar.UPNP_TYPE,
-                                        MediaReceiverRegistrar.DESCRIPTION_PATH,
-                                        typeof (MediaReceiverRegistrar));
-        this.add_resource (resource_info);
+        this.add_resource (info);
+        info = new ResourceInfo (MediaReceiverRegistrar.UPNP_ID,
+                                 MediaReceiverRegistrar.UPNP_TYPE,
+                                 MediaReceiverRegistrar.DESCRIPTION_PATH,
+                                 typeof (MediaReceiverRegistrar));
+        this.add_resource (info);
     }
 
     public virtual MediaContainer? get_root_container (GUPnP.Context context) {
