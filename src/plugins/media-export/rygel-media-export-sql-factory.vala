@@ -118,7 +118,6 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                  "o.title ASC " +
     "LIMIT ?,?";
 
-    // The uris are joined in to be able to filter by "ref"
     private const string GET_OBJECTS_BY_FILTER_STRING =
     "SELECT DISTINCT " + ALL_DETAILS_STRING +
     "FROM Object o " +
@@ -132,7 +131,6 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                  "o.title ASC " +
     "LIMIT ?,?";
 
-    // The uris are joined in to be able to filter by "ref"
     private const string GET_OBJECT_COUNT_BY_FILTER_STRING =
     "SELECT COUNT(o.type_fk) FROM Object o " +
         "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
