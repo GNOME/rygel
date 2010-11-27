@@ -22,20 +22,11 @@
 using GUPnP;
 using Gee;
 
-public class Rygel.MediaExport.DBContainer : MediaContainer, WritableContainer {
+public class Rygel.MediaExport.DBContainer : MediaContainer {
     protected MediaCache media_db;
-
-    public ArrayList<string> create_classes { get; set; }
 
     public DBContainer (MediaCache media_db, string id, string title) {
         base (id, null, title, 0);
-
-        this.create_classes = new ArrayList<string> ();
-        this.create_classes.add (ImageItem.UPNP_CLASS);
-        this.create_classes.add (PhotoItem.UPNP_CLASS);
-        this.create_classes.add (VideoItem.UPNP_CLASS);
-        this.create_classes.add (AudioItem.UPNP_CLASS);
-        this.create_classes.add (MusicItem.UPNP_CLASS);
 
         this.media_db = media_db;
         this.container_updated.connect (on_db_container_updated);
@@ -94,17 +85,5 @@ public class Rygel.MediaExport.DBContainer : MediaContainer, WritableContainer {
                                                     Cancellable? cancellable)
                                                     throws Error {
         return this.media_db.get_object (id);
-    }
-
-    public async void add_item (Rygel.MediaItem item, Cancellable? cancellable)
-                                throws Error {
-        item.parent = this;
-        item.id = MediaCache.get_id (File.new_for_uri (item.uris[0]));
-        this.media_db.save_item (item);
-    }
-
-    public async void remove_item (string id, Cancellable? cancellable)
-                                   throws Error {
-        this.media_db.remove_by_id (id);
     }
 }

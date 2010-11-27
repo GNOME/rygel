@@ -31,7 +31,8 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
     public virtual DBContainer get_container (MediaCache media_db,
                                               string     id,
                                               string     title,
-                                              uint       child_count) {
+                                              uint       child_count,
+                                              string?    uri) {
         if (id == "0") {
             try {
                 return RootContainer.get_instance () as DBContainer;
@@ -39,11 +40,17 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
                 // Must not fail - plugin is disabled if this fails
                 assert_not_reached ();
             }
-        } else if (id.has_prefix (QueryContainer.PREFIX)) {
+        }
+
+        if (id.has_prefix (QueryContainer.PREFIX)) {
             return new QueryContainer (media_db, id, title);
-        } else {
+        }
+
+        if (uri == null) {
             return new DBContainer (media_db, id, title);
         }
+
+        return new WritableDbContainer (media_db, id, title);
     }
 
     /**

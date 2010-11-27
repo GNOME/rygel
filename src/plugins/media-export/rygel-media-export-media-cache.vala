@@ -531,10 +531,10 @@ public class Rygel.MediaExport.MediaCache : Object {
         switch (statement.column_int (DetailColumn.TYPE)) {
             case 0:
                 // this is a container
-                object = factory.get_container (this, object_id, title, 0);
+                var uri = statement.column_text (DetailColumn.URI);
+                object = factory.get_container (this, object_id, title, 0, uri);
 
                 var container = object as MediaContainer;
-                var uri = statement.column_text (DetailColumn.URI);
                 if (uri != null) {
                     container.uris.add (uri);
                 }
