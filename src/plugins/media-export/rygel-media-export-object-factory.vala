@@ -32,7 +32,9 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
                                               string     id,
                                               string     title,
                                               uint       child_count) {
-        if (id.has_prefix (QueryContainer.PREFIX)) {
+        if (id == "0") {
+            return RootContainer.get_instance () as DBContainer;
+        } else if (id.has_prefix (QueryContainer.PREFIX)) {
             return new QueryContainer (media_db, id, title);
         } else {
             return new DBContainer (media_db, id, title);
