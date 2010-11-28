@@ -61,8 +61,8 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
         this.key_chains[MusicMetadata.AUDIO_GENRE].add ("nfo:genre");
         this.key_chains[MusicMetadata.SAMPLE_RATE].add ("nfo:sampleRate");
         this.key_chains[MusicMetadata.CHANNELS].add ("nfo:channels");
-        this.key_chains[MusicMetadata.BITS_PER_SAMPLE].add (
-                                        "nfo:bitsPerSample");
+        this.key_chains[MusicMetadata.BITS_PER_SAMPLE].add
+                                        ("nfo:bitsPerSample");
         this.key_chains[MusicMetadata.BITRATE].add ("nfo:averageBitrate");
     }
 

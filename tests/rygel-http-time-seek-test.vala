@@ -186,8 +186,8 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
         var audio_item = request.item as AudioItem;
         assert (seek.total_length == audio_item.duration * SECOND);
 
-        var header = request.msg.response_headers.get_one (
-                                        "TimeSeekRange.dlna.org");
+        var header = request.msg.response_headers.get_one
+                                        ("TimeSeekRange.dlna.org");
         assert (header != null);
         assert (this.range_regex.match (header));
     }

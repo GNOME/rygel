@@ -34,9 +34,9 @@ internal abstract class Rygel.GstUtils {
                                           throws Error {
         Element element = ElementFactory.make (factoryname, name);
         if (element == null) {
-            throw new GstError.MISSING_PLUGIN (
-                                        _("Required element %s missing"),
-                                        factoryname);
+            throw new GstError.MISSING_PLUGIN
+                                        (_("Required element %s missing"),
+                                         factoryname);
         }
 
         return element;
@@ -83,9 +83,9 @@ internal abstract class Rygel.GstUtils {
         return structure.get_name () == "application/x-rtp";
     }
 
-    private static dynamic Element? get_best_depay (
-                                        GLib.List<PluginFeature> features,
-                                        Caps                     caps) {
+    private static dynamic Element? get_best_depay
+                                        (GLib.List<PluginFeature> features,
+                                         Caps                     caps) {
         var relevant_factories = new GLib.List<ElementFactory> ();
 
         // First construct a list of relevant factories

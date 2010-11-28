@@ -66,12 +66,12 @@ public class Rygel.ImageItem : MediaItem, VisualItem {
         this.add_thumbnail_resources (didl_item, allow_internal);
     }
 
-    internal override DIDLLiteResource add_resource (
-                                        DIDLLiteItem didl_item,
-                                        string?      uri,
-                                        string       protocol,
-                                        string?      import_uri = null)
-                                        throws Error {
+    internal override DIDLLiteResource add_resource
+                                        (DIDLLiteItem didl_item,
+                                         string?      uri,
+                                         string       protocol,
+                                         string?      import_uri = null)
+                                         throws Error {
         var res = base.add_resource (didl_item, uri, protocol, import_uri);
 
         this.add_visual_props (res);

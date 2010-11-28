@@ -83,15 +83,15 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
     private int count_children () {
         try {
             if (this.pattern == "") {
-                return (int) this.media_db.get_object_count_by_search_expression (
-                                        this.expression,
-                                        RootContainer.FILESYSTEM_FOLDER_ID);
+                return (int) this.media_db.get_object_count_by_search_expression
+                                        (this.expression,
+                                         RootContainer.FILESYSTEM_FOLDER_ID);
             } else {
-                var data = this.media_db.get_object_attribute_by_search_expression (
-                                        this.attribute,
-                                        this.expression,
-                                        0,
-                                        -1);
+                var data = this.media_db.get_object_attribute_by_search_expression
+                                        (this.attribute,
+                                         this.expression,
+                                         0,
+                                         -1);
 
                 return data.size;
             }
@@ -121,12 +121,12 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
         }
 
         try {
-            children = this.media_db.get_objects_by_search_expression (
-                                            combined_expression,
-                                            RootContainer.FILESYSTEM_FOLDER_ID,
-                                            offset,
-                                            max_count,
-                                            out total_matches);
+            children = this.media_db.get_objects_by_search_expression
+                                        (combined_expression,
+                                         RootContainer.FILESYSTEM_FOLDER_ID,
+                                         offset,
+                                         max_count,
+                                         out total_matches);
         } catch (MediaCacheError error) {
             if (error is MediaCacheError.UNSUPPORTED_SEARCH) {
                 children = new MediaObjects ();
@@ -156,11 +156,11 @@ internal class Rygel.MediaExport.QueryContainer : DBContainer {
                                           cancellable);
         } else {
             children = new MediaObjects ();
-            var data = this.media_db.get_object_attribute_by_search_expression (
-                                        this.attribute,
-                                        this.expression,
-                                        offset,
-                                        max_count);
+            var data = this.media_db.get_object_attribute_by_search_expression
+                                        (this.attribute,
+                                         this.expression,
+                                         offset,
+                                         max_count);
             foreach (var meta_data in data) {
                 var new_id = Uri.escape_string (meta_data, "", true);
                 // pattern contains URL escaped text. This means it might

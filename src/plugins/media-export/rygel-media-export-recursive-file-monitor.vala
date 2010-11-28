@@ -61,15 +61,15 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
 
     public async void add (File file) {
         try {
-            var info = yield file.query_info_async (
-                                                 FILE_ATTRIBUTE_STANDARD_TYPE,
-                                                 FileQueryInfoFlags.NONE,
-                                                 Priority.DEFAULT,
-                                                 null);
+            var info = yield file.query_info_async
+                                        (FILE_ATTRIBUTE_STANDARD_TYPE,
+                                         FileQueryInfoFlags.NONE,
+                                         Priority.DEFAULT,
+                                         null);
             if (info.get_file_type () == FileType.DIRECTORY) {
-                var file_monitor = file.monitor_directory (
-                                                         FileMonitorFlags.NONE,
-                                                         this.cancellable);
+                var file_monitor = file.monitor_directory
+                                        (FileMonitorFlags.NONE,
+                                         this.cancellable);
                 this.monitors.set (file, file_monitor);
                 file_monitor.changed.connect (this.on_monitor_changed);
             }

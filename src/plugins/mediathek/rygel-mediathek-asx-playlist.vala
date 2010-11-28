@@ -89,18 +89,18 @@ public class Rygel.Mediathek.AsxPlaylist : Object {
                     }
                 }
                 else {
-                    throw new AsxPlaylistError.XML_ERROR (
-                                        "Could not fetch XML");
+                    throw new AsxPlaylistError.XML_ERROR
+                                        ("Could not fetch XML");
                 }
             }
             catch (RegexError error) { }
         }
         else {
-            throw new AsxPlaylistError.NETWORK_ERROR (
-                                        "Playlist download failed: %u (%s)",
-                                        message.status_code,
-                                        Soup.status_get_phrase (
-                                                        message.status_code));
+            throw new AsxPlaylistError.NETWORK_ERROR
+                                        ("Playlist download failed: %u (%s)",
+                                         message.status_code,
+                                         Soup.status_get_phrase
+                                         (message.status_code));
         }
     }
 }

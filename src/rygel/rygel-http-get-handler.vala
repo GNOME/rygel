@@ -63,11 +63,11 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
         // Handle Samsung DLNA TV proprietary subtitle headers
         if (request.msg.request_headers.get_one ("getCaptionInfo.sec") != null
             && (request.item as VideoItem).subtitles.size > 0) {
-                var caption_uri = request.http_server.create_uri_for_item (
-                                        request.item,
-                                        -1,
-                                        0, // FIXME: offer first subtitle only?
-                                        null);
+                var caption_uri = request.http_server.create_uri_for_item
+                                        (request.item,
+                                         -1,
+                                         0, // FIXME: offer first subtitle only?
+                                         null);
 
                 request.msg.response_headers.append ("CaptionInfo.sec",
                                                      caption_uri);

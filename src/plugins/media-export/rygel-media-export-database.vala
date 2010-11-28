@@ -111,10 +111,10 @@ internal class Rygel.MediaExport.Database : Object {
         debug ("Using database file %s", db_file);
         var rc = Sqlite.Database.open (db_file, out this.db);
         if (rc != Sqlite.OK) {
-            throw new DatabaseError.IO_ERROR (
-                                        _("Failed to open database: %d (%s)"),
-                                        rc,
-                                        db.errmsg ());
+            throw new DatabaseError.IO_ERROR
+                                        (_("Failed to open database: %d (%s)"),
+                                         rc,
+                                         db.errmsg ());
         }
 
         this.db.exec ("PRAGMA cache_size = 32768");

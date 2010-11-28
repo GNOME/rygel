@@ -137,8 +137,8 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         if (expression is RelationalExpression) {
             var relational_expression = expression as RelationalExpression;
 
-            query_container = search_to_virtual_container (
-                                        relational_expression);
+            query_container = search_to_virtual_container
+                                        (relational_expression);
             upnp_class = relational_expression.operand2;
         } else if (is_search_in_virtual_container (expression,
                                                    out query_container)) {
@@ -255,9 +255,8 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
      * @note This works single level only. Enough to satisfy Xbox music
      *       browsing, but may need refinement
      */
-    private bool is_search_in_virtual_container (
-                                        SearchExpression   expression,
-                                        out MediaContainer container) {
+    private bool is_search_in_virtual_container (SearchExpression   expression,
+                                                 out MediaContainer container) {
         RelationalExpression virtual_expression = null;
         QueryContainer query_container;
 
@@ -289,9 +288,8 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             virtual_expression = right_expression;
         }
 
-        var last_argument = query_container.plaintext_id.replace (
-                                        QueryContainer.PREFIX,
-                                        "");
+        var last_argument = query_container.plaintext_id.replace
+                                        (QueryContainer.PREFIX, "");
 
         var escaped_detail = Uri.escape_string (virtual_expression.operand2,
                                                 "",
@@ -400,11 +398,11 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         this.media_db.save_container (query_container);
     }
 
-    private void add_virtual_containers_for_class (
-                                        string              parent,
-                                        string              item_class,
-                                        FolderDefinition[]? definitions = null)
-                                        throws Error {
+    private void add_virtual_containers_for_class
+                                        (string              parent,
+                                         string              item_class,
+                                         FolderDefinition[]? definitions = null)
+                                         throws Error {
         var container = new NullContainer ();
         container.parent = this;
         container.title = parent;

@@ -58,13 +58,13 @@ public class Rygel.Mediathek.VideoItem : Rygel.VideoItem {
                 }
             }
             else {
-                throw new VideoItemError.XML_PARSE_ERROR (
-                                        "group node has no 'url' property");
+                throw new VideoItemError.XML_PARSE_ERROR
+                                        ("group node has no 'url' property");
             }
         }
         else {
-            throw new VideoItemError.XML_PARSE_ERROR (
-                                        "invalid or no namespace");
+            throw new VideoItemError.XML_PARSE_ERROR
+                                        ("invalid or no namespace");
         }
 
         return asx;
@@ -107,14 +107,14 @@ public class Rygel.Mediathek.VideoItem : Rygel.VideoItem {
 
         }
         if (title == null) {
-            throw new VideoItemError.XML_PARSE_ERROR (
-                                        "Could not find title");
+            throw new VideoItemError.XML_PARSE_ERROR
+                                        ("Could not find title");
         }
 
 
         if (asx == null) {
-            throw new VideoItemError.XML_PARSE_ERROR (
-                                        "Could not find URIs");
+            throw new VideoItemError.XML_PARSE_ERROR
+                                        ("Could not find URIs");
         }
 
         video_item = new VideoItem (parent, title);

@@ -96,11 +96,11 @@ public class Rygel.PluginLoader : Object {
         FileEnumerator enumerator;
 
         try {
-            enumerator = yield dir.enumerate_children_async (
-                                        attributes,
-                                        FileQueryInfoFlags.NONE,
-                                        Priority.DEFAULT,
-                                        null);
+            enumerator = yield dir.enumerate_children_async
+                                        (attributes,
+                                         FileQueryInfoFlags.NONE,
+                                         Priority.DEFAULT,
+                                         null);
 
             infos = yield enumerator.next_files_async (int.MAX,
                                                        Priority.DEFAULT,

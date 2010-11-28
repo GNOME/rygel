@@ -45,8 +45,8 @@ public class Rygel.RelationalExpression :
                 return false;
             }
 
-            return this.compare_create_class (
-                                        media_object as WritableContainer);
+            return this.compare_create_class
+                                        (media_object as WritableContainer);
         case "dc:creator":
             if (!(media_object is PhotoItem)) {
                 return false;

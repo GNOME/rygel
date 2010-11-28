@@ -49,8 +49,8 @@ internal class Rygel.ItemDestroyer: GLib.Object, Rygel.StateMachine {
             this.action.get ("ObjectID", typeof (string), out this.object_id);
             if (this.object_id == null) {
                 // Sorry we can't do anything without the ID
-                throw new ContentDirectoryError.NO_SUCH_OBJECT (
-                                        _("No such object"));
+                throw new ContentDirectoryError.NO_SUCH_OBJECT
+                                        (_("No such object"));
             }
 
             yield this.remove_object ();
@@ -91,21 +91,21 @@ internal class Rygel.ItemDestroyer: GLib.Object, Rygel.StateMachine {
     }
 
     private async MediaObject fetch_object () throws Error {
-        var media_object = yield this.content_dir.root_container.find_object (
-                                        this.object_id,
-                                        this.cancellable);
+        var media_object = yield this.content_dir.root_container.find_object
+                                        (this.object_id, this.cancellable);
 
         if (media_object == null) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT (
-                                        _("No such object"));
+            throw new ContentDirectoryError.NO_SUCH_OBJECT
+                                        (_("No such object"));
         } else if (!(OCMFlags.DESTROYABLE in media_object.ocm_flags)) {
-            throw new ContentDirectoryError.RESTRICTED_OBJECT (
-                                        _("Removal of object %s not allowed"),
-                                        media_object.id);
+            throw new ContentDirectoryError.RESTRICTED_OBJECT
+                                        (_("Removal of object %s not allowed"),
+                                         media_object.id);
         } else if (media_object.parent.restricted) {
-            throw new ContentDirectoryError.RESTRICTED_PARENT (
-                                        _("Object removal from %s not allowed"),
-                                        media_object.id);
+            var msg = _("Object removal from %s not allowed");
+
+            throw new ContentDirectoryError.RESTRICTED_PARENT (msg,
+                                                               media_object.id);
         }
 
         return media_object;

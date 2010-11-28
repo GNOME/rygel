@@ -64,9 +64,8 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
             if (pos[0].isdigit ()) {
                 stop = pos.to_int64 ();
                 if (stop < start) {
-                    throw new HTTPSeekError.INVALID_RANGE (
-                                        _("Invalid Range '%s'"),
-                                        range);
+                    throw new HTTPSeekError.INVALID_RANGE
+                                        (_("Invalid Range '%s'"), range);
                 }
             } else if (pos != "") {
                 throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),

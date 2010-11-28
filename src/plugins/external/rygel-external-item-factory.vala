@@ -78,12 +78,12 @@ public class Rygel.External.ItemFactory {
         return item;
     }
 
-    private async void set_music_metadata (
-                                        MusicItem                 music,
-                                        HashTable<string,Variant> props,
-                                        string                    service_name,
-                                        string                    host_ip)
-                                        throws GLib.Error {
+    private async void set_music_metadata
+                                        (MusicItem                 music,
+                                         HashTable<string,Variant> props,
+                                         string                    service_name,
+                                         string                    host_ip)
+                                         throws GLib.Error {
         music.artist = this.get_string (props, "Artist");
         music.album = this.get_string (props, "Album");
         music.genre = this.get_string (props, "Genre");
@@ -111,12 +111,12 @@ public class Rygel.External.ItemFactory {
         audio.bits_per_sample = this.get_int (props, "BitsPerSample");
     }
 
-    private async void set_visual_metadata (
-                                        VisualItem                visual,
-                                        HashTable<string,Variant> props,
-                                        string                    service_name,
-                                        string                    host_ip)
-                                        throws GLib.Error {
+    private async void set_visual_metadata
+                                        (VisualItem                visual,
+                                         HashTable<string,Variant> props,
+                                         string                    service_name,
+                                         string                    host_ip)
+                                         throws GLib.Error {
         visual.width = this.get_int (props, "Width");
         visual.height = this.get_int (props, "Height");
         visual.color_depth = this.get_int (props, "ColorDepth");
@@ -133,12 +133,12 @@ public class Rygel.External.ItemFactory {
         }
     }
 
-    private async void set_video_metadata (
-                                        VideoItem                 video,
-                                        HashTable<string,Variant> props,
-                                        string                    service_name,
-                                        string                    host_ip)
-                                        throws GLib.Error {
+    private async void set_video_metadata
+                                        (VideoItem                 video,
+                                         HashTable<string,Variant> props,
+                                         string                    service_name,
+                                         string                    host_ip)
+                                         throws GLib.Error {
         yield this.set_visual_metadata (video, props, service_name, host_ip);
         this.set_audio_metadata (video, props, service_name, host_ip);
     }

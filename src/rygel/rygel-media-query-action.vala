@@ -113,8 +113,8 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
 
         if (this.object_id == null) {
             // Sorry we can't do anything without ObjectID
-            throw new ContentDirectoryError.NO_SUCH_OBJECT (
-                                        _("No such object"));
+            throw new ContentDirectoryError.NO_SUCH_OBJECT
+                                        (_("No such object"));
         }
 
         if (this.sort_criteria == null) {
@@ -126,20 +126,19 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
         }
     }
 
-    protected abstract async MediaObjects fetch_results (
-                                        MediaObject media_object) throws Error;
+    protected abstract async MediaObjects fetch_results
+                                        (MediaObject media_object) throws Error;
 
     private async MediaObject fetch_media_object () throws Error {
         if (this.object_id == this.root_container.id) {
             return this.root_container;
         } else {
             debug ("searching for object '%s'..", this.object_id);
-            var media_object = yield this.root_container.find_object (
-                                        this.object_id,
-                                        this.cancellable);
+            var media_object = yield this.root_container.find_object
+                                        (this.object_id, this.cancellable);
             if (media_object == null) {
-                throw new ContentDirectoryError.NO_SUCH_OBJECT (
-                                        _("No such object"));
+                throw new ContentDirectoryError.NO_SUCH_OBJECT
+                                        (_("No such object"));
             }
             debug ("object '%s' found.", this.object_id);
 

@@ -52,10 +52,10 @@ public class Rygel.Tracker.InsertionQuery : Query {
                                         "nie:url",
                                         "\"" + item.uris[0] + "\""));
         if (item.size > 0) {
-            triplets.add (new QueryTriplet (
-                                        QUERY_ID,
-                                        "nfo:fileSize",
-                                        "\"" + item.size.to_string () + "\""));
+            triplets.add (new QueryTriplet
+                                        (QUERY_ID,
+                                         "nfo:fileSize",
+                                         "\"" + item.size.to_string () + "\""));
         }
 
         var now = TimeVal ();

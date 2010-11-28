@@ -47,19 +47,19 @@ internal class Rygel.ConnectionManager : Service {
         this.source_protocol_info = "";
         this.connection_ids       = "0";
 
-        this.query_variable["SourceProtocolInfo"].connect (
-                                        this.query_source_protocol_info_cb);
-        this.query_variable["SinkProtocolInfo"].connect (
-                                        this.query_sink_protocol_info_cb);
-        this.query_variable["CurrentConnectionIDs"].connect (
-                                        this.query_current_connection_ids_cb);
+        this.query_variable["SourceProtocolInfo"].connect
+                                        (this.query_source_protocol_info_cb);
+        this.query_variable["SinkProtocolInfo"].connect
+                                        (this.query_sink_protocol_info_cb);
+        this.query_variable["CurrentConnectionIDs"].connect
+                                        (this.query_current_connection_ids_cb);
 
-        this.action_invoked["GetProtocolInfo"].connect (
-                                        this.get_protocol_info_cb);
-        this.action_invoked["GetCurrentConnectionIDs"].connect (
-                                        this.get_current_connection_ids_cb);
-        this.action_invoked["GetCurrentConnectionInfo"].connect (
-                                        this.get_current_connection_info_cb);
+        this.action_invoked["GetProtocolInfo"].connect
+                                        (this.get_protocol_info_cb);
+        this.action_invoked["GetCurrentConnectionIDs"].connect
+                                        (this.get_current_connection_ids_cb);
+        this.action_invoked["GetCurrentConnectionInfo"].connect
+                                        (this.get_current_connection_info_cb);
     }
 
     private void query_source_protocol_info_cb (Service   cm,

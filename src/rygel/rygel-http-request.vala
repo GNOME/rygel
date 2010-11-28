@@ -74,14 +74,13 @@ internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
     protected virtual async void find_item () throws Error {
         // Fetch the requested item
-        var media_object = yield this.root_container.find_object (
-                                        this.uri.item_id,
-                                        null);
+        var media_object = yield this.root_container.find_object
+                                        (this.uri.item_id, null);
 
         if (media_object == null || !(media_object is MediaItem)) {
-            throw new HTTPRequestError.NOT_FOUND (
-                                        _("Requested item '%s' not found"),
-                                        this.uri.item_id);
+            throw new HTTPRequestError.NOT_FOUND
+                                        (_("Requested item '%s' not found"),
+                                         this.uri.item_id);
         }
 
         this.item = (MediaItem) media_object;

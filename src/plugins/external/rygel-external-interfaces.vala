@@ -48,22 +48,22 @@ public interface Rygel.External.MediaContainerProxy : DBusProxy,
     public abstract uint container_count { get; set; }
     public abstract bool searchable { get; set; }
 
-    public abstract async HashTable<string,Variant>[] list_children (
-                                        uint     offset,
-                                        uint     max_count,
-                                        string[] filter) throws IOError;
-    public abstract async HashTable<string,Variant>[] list_containers (
-                                        uint     offset,
-                                        uint     max_count,
-                                        string[] filter) throws IOError;
-    public abstract async HashTable<string,Variant>[] list_items (
-                                        uint     offset,
-                                        uint     max_count,
-                                        string[] filter) throws IOError;
+    public abstract async HashTable<string,Variant>[] list_children
+                                        (uint     offset,
+                                         uint     max_count,
+                                         string[] filter) throws IOError;
+    public abstract async HashTable<string,Variant>[] list_containers
+                                        (uint     offset,
+                                         uint     max_count,
+                                         string[] filter) throws IOError;
+    public abstract async HashTable<string,Variant>[] list_items
+                                        (uint     offset,
+                                         uint     max_count,
+                                         string[] filter) throws IOError;
 
     // Optional API
-    public abstract async HashTable<string,Variant>[] search_objects (
-                                        string   query,
+    public abstract async HashTable<string,Variant>[] search_objects
+                                        (string   query,
                                         uint     offset,
                                         uint     max_count,
                                         string[] filter) throws IOError;

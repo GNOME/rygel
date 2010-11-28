@@ -140,15 +140,15 @@ internal class Rygel.AVTransport : Service {
 
         query_variable["LastChange"].connect (this.query_last_change_cb);
 
-        action_invoked["SetAVTransportURI"].connect (
-                                        this.set_av_transport_uri_cb);
+        action_invoked["SetAVTransportURI"].connect
+                                        (this.set_av_transport_uri_cb);
         action_invoked["GetMediaInfo"].connect (this.get_media_info_cb);
         action_invoked["GetTransportInfo"].connect (this.get_transport_info_cb);
         action_invoked["GetPositionInfo"].connect (this.get_position_info_cb);
-        action_invoked["GetDeviceCapabilities"].connect (
-                                        this.get_device_capabilities_cb);
-        action_invoked["GetTransportSettings"].connect (
-                                        this.get_transport_settings_cb);
+        action_invoked["GetDeviceCapabilities"].connect
+                                        (this.get_device_capabilities_cb);
+        action_invoked["GetTransportSettings"].connect
+                                        (this.get_transport_settings_cb);
         action_invoked["Stop"].connect (this.stop_cb);
         action_invoked["Play"].connect (this.play_cb);
         action_invoked["Pause"].connect (this.pause_cb);

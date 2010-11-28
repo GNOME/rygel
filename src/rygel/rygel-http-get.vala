@@ -50,8 +50,8 @@ internal class Rygel.HTTPGet : HTTPRequest {
     }
 
     protected override async void handle () throws Error {
-        var header = this.msg.request_headers.get_one (
-                                        "getcontentFeatures.dlna.org");
+        var header = this.msg.request_headers.get_one
+                                        ("getcontentFeatures.dlna.org");
 
         /* We only entertain 'HEAD' and 'GET' requests */
         if ((this.msg.method != "HEAD" && this.msg.method != "GET") ||
@@ -60,8 +60,8 @@ internal class Rygel.HTTPGet : HTTPRequest {
         }
 
         if (uri.transcode_target != null) {
-            var transcoder = this.http_server.get_transcoder (
-                                                        uri.transcode_target);
+            var transcoder = this.http_server.get_transcoder
+                                        (uri.transcode_target);
             this.handler = new HTTPTranscodeHandler (transcoder,
                                                      this.cancellable);
         }
@@ -91,22 +91,22 @@ internal class Rygel.HTTPGet : HTTPRequest {
             } else if (this.item is VisualItem) {
                 var visual = this.item as VisualItem;
 
-                this.thumbnail = visual.thumbnails.get (
-                                        this.uri.thumbnail_index);
+                this.thumbnail = visual.thumbnails.get
+                                        (this.uri.thumbnail_index);
             } else {
-                throw new HTTPRequestError.NOT_FOUND (
-                                        ("No Thumbnail available for item '%s"),
+                throw new HTTPRequestError.NOT_FOUND
+                                        ("No Thumbnail available for item '%s",
                                          this.item.id);
             }
         } else if (this.uri.subtitle_index >= 0) {
             if (!(this.item is VideoItem)) {
-                throw new HTTPRequestError.NOT_FOUND (
-                                        ("No subtitles available for item '%s"),
+                throw new HTTPRequestError.NOT_FOUND
+                                        ("No subtitles available for item '%s",
                                          this.item.id);
             }
 
-            this.subtitle = (this.item as VideoItem).subtitles.get (
-                                        this.uri.subtitle_index);
+            this.subtitle = (this.item as VideoItem).subtitles.get
+                                        (this.uri.subtitle_index);
         }
     }
 
@@ -170,10 +170,10 @@ internal class Rygel.HTTPGet : HTTPRequest {
         }
 
         if (!correct) {
-            throw new HTTPRequestError.UNACCEPTABLE (
-                                        "%s mode not supported for '%s'",
-                                        mode,
-                                        this.item.id);
+            throw new HTTPRequestError.UNACCEPTABLE
+                                        ("%s mode not supported for '%s'",
+                                         mode,
+                                         this.item.id);
         }
     }
 }

@@ -141,17 +141,17 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                          "Elements", typeof (string), out this.elements);
 
         if (this.elements == null) {
-            throw new ContentDirectoryError.BAD_METADATA (
-                                        _("'Elements' argument missing."));
+            throw new ContentDirectoryError.BAD_METADATA
+                                        (_("'Elements' argument missing."));
         } else if (comment_pattern.match_string (this.elements)) {
-            throw new ContentDirectoryError.BAD_METADATA (
-                                        _("Comments not allowed in XML"));
+            throw new ContentDirectoryError.BAD_METADATA
+                                        (_("Comments not allowed in XML"));
         }
 
         if (this.container_id == null) {
             // Sorry we can't do anything without ContainerID
-            throw new ContentDirectoryError.NO_SUCH_OBJECT (
-                                        _("No such object"));
+            throw new ContentDirectoryError.NO_SUCH_OBJECT
+                                        (_("No such object"));
         }
     }
 
@@ -166,28 +166,27 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
 
             uint total_matches;
 
-            var result = yield this.content_dir.root_container.search (
-                                        expression,
-                                        0,
-                                        1,
-                                        out total_matches,
-                                        this.cancellable);
+            var result = yield this.content_dir.root_container.search
+                                        (expression,
+                                         0,
+                                         1,
+                                         out total_matches,
+                                         this.cancellable);
             if (result.size > 0) {
                 media_object = result[0];
             }
         } else {
-            media_object = yield this.content_dir.root_container.find_object (
-                                        this.container_id,
-                                        this.cancellable);
+            media_object = yield this.content_dir.root_container.find_object
+                                        (this.container_id, this.cancellable);
         }
 
         if (media_object == null) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT (
-                                        _("No such object"));
+            throw new ContentDirectoryError.NO_SUCH_OBJECT
+                                        (_("No such object"));
         } else if (!(media_object is MediaContainer) ||
                    !(OCMFlags.UPLOAD in media_object.ocm_flags)) {
-            throw new ContentDirectoryError.RESTRICTED_PARENT (
-                                        _("Object creation in %s not allowed"),
+            throw new ContentDirectoryError.RESTRICTED_PARENT
+                                        (_("Object creation in %s not allowed"),
                                         media_object.id);
         }
 
@@ -246,9 +245,9 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         case MusicItem.UPNP_CLASS:
             return new MusicItem (id, parent, title);
         default:
-            throw new ContentDirectoryError.BAD_METADATA (
-                                        "Creation of item of class '%s' " +
-                                        "not supported.",
+            throw new ContentDirectoryError.BAD_METADATA
+                                        ("Creation of item of class '%s' " +
+                                         "not supported.",
                                          upnp_class);
         }
     }
@@ -275,9 +274,9 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                     throws Error {
         var dir = yield container.get_writable (this.cancellable);
         if (dir == null) {
-            throw new ContentDirectoryError.RESTRICTED_PARENT (
-                                        _("Object creation in %s not allowed"),
-                                        container.id);
+            throw new ContentDirectoryError.RESTRICTED_PARENT
+                                        (_("Object creation in %s not allowed"),
+                                         container.id);
         }
 
         var file = dir.get_child_for_display_name (title);

@@ -38,8 +38,8 @@ public interface Rygel.Tracker.ResourcesIface: DBusProxy {
     public abstract async string[,] sparql_query (string query)
                                                   throws IOError;
     public abstract async void sparql_update (string query) throws IOError;
-    public abstract async HashTable<string,string>[,] sparql_update_blank (
-                                        string query) throws IOError;
+    public abstract async HashTable<string,string>[,] sparql_update_blank
+                                        (string query) throws IOError;
 
     public signal void graph_updated (string  class_name,
                                       Event[] deletes,

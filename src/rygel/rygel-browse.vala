@@ -59,13 +59,14 @@ internal class Rygel.Browse: Rygel.MediaQueryAction {
                    this.browse_flag == "BrowseMetadata") {
             this.fetch_metadata = true;
         } else {
-            throw new ContentDirectoryError.INVALID_ARGS (
-                                        _("Invalid Arguments"));
+            throw new ContentDirectoryError.INVALID_ARGS
+                                        (_("Invalid Arguments"));
         }
     }
 
-    protected override async MediaObjects fetch_results (
-                                        MediaObject media_object) throws Error {
+    protected override async MediaObjects fetch_results
+                                        (MediaObject media_object)
+                                         throws Error {
         if (this.fetch_metadata) {
             // BrowseMetadata
             return this.handle_metadata_request (media_object);
@@ -85,12 +86,12 @@ internal class Rygel.Browse: Rygel.MediaQueryAction {
         return results;
     }
 
-    private async MediaObjects handle_children_request (
-                                        MediaObject media_object)
-                                        throws Error {
+    private async MediaObjects handle_children_request
+                                        (MediaObject media_object)
+                                         throws Error {
         if (!(media_object is MediaContainer)) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT (
-                                        _("No such object"));
+            throw new ContentDirectoryError.NO_SUCH_OBJECT
+                                        (_("No such object"));
         }
 
         var container = (MediaContainer) media_object;

@@ -47,15 +47,16 @@ internal class Rygel.Search:  Rygel.MediaQueryAction {
                             out this.search_criteria);
 
         if (this.search_criteria == null) {
-            throw new ContentDirectoryError.INVALID_ARGS (
-                                        "No search criteria given");
+            throw new ContentDirectoryError.INVALID_ARGS
+                                        ("No search criteria given");
         }
 
         debug ("Executing search request: %s", this.search_criteria);
     }
 
-    protected override async MediaObjects fetch_results (
-                                        MediaObject media_object) throws Error {
+    protected override async MediaObjects fetch_results
+                                        (MediaObject media_object)
+                                         throws Error {
         var container = media_object as MediaContainer;
 
         var parser = new Rygel.SearchCriteriaParser (this.search_criteria);

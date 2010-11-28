@@ -134,12 +134,12 @@ public abstract class Rygel.MediaItem : MediaObject {
                (int) transcoder2.get_distance (this);
     }
 
-    internal virtual DIDLLiteResource add_resource (
-                                        DIDLLiteItem didl_item,
-                                        string?      uri,
-                                        string       protocol,
-                                        string?      import_uri = null)
-                                        throws Error {
+    internal virtual DIDLLiteResource add_resource
+                                        (DIDLLiteItem didl_item,
+                                         string?      uri,
+                                         string       protocol,
+                                         string?      import_uri = null)
+                                         throws Error {
         var res = didl_item.add_resource ();
 
         if (uri != null && !this.place_holder) {

@@ -95,10 +95,10 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
 
         this.trans_check.toggled.connect (this.on_trans_check_toggled);
 
-        this.context_manager.context_available.connect (
-                                        this.on_context_available);
-        this.context_manager.context_unavailable.connect (
-                                        this.on_context_unavailable);
+        this.context_manager.context_available.connect
+                                        (this.on_context_available);
+        this.context_manager.context_unavailable.connect
+                                        (this.on_context_unavailable);
 
         // Set the sensitivity of dependent widgets
         on_trans_check_toggled (this.trans_check);

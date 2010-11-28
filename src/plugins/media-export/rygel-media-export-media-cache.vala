@@ -98,10 +98,11 @@ public class Rygel.MediaExport.MediaCache : Object {
 
         Database.RowCallback cb = (statement) => {
             var parent_container = parent as MediaContainer;
-            var object = get_object_from_statement (
-                                        parent_container,
-                                        statement.column_text (DetailColumn.ID),
-                                        statement);
+            var id = statement.column_text (DetailColumn.ID);
+            var object = get_object_from_statement
+                                        (parent_container,
+                                         id,
+                                         statement);
             object.parent_ref = parent_container;
             parent = object;
 
@@ -117,9 +118,9 @@ public class Rygel.MediaExport.MediaCache : Object {
                                 throws DatabaseError, MediaCacheError {
         var object = get_object (item_id);
         if (object != null && !(object is MediaItem)) {
-            throw new MediaCacheError.INVALID_TYPE (
-                                        _("Object %s is not an item"),
-                                        item_id);
+            throw new MediaCacheError.INVALID_TYPE
+                                        (_("Object %s is not an item"),
+                                         item_id);
         }
 
         return object as MediaItem;
@@ -212,13 +213,13 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
     }
 
-    public MediaObjects get_objects_by_search_expression (
-                                        SearchExpression? expression,
-                                        string            container_id,
-                                        uint              offset,
-                                        uint              max_count,
-                                        out uint          total_matches)
-                                        throws Error {
+    public MediaObjects get_objects_by_search_expression
+                                        (SearchExpression? expression,
+                                         string            container_id,
+                                         uint              offset,
+                                         uint              max_count,
+                                         out uint          total_matches)
+                                         throws Error {
         var args = new GLib.ValueArray (0);
         var filter = this.translate_search_expression (expression, args);
 
@@ -243,10 +244,10 @@ public class Rygel.MediaExport.MediaCache : Object {
                                            max_objects);
     }
 
-    public long get_object_count_by_search_expression (
-                                        SearchExpression? expression,
-                                        string            container_id)
-                                        throws Error {
+    public long get_object_count_by_search_expression
+                                        (SearchExpression? expression,
+                                         string            container_id)
+                                         throws Error {
         var args = new GLib.ValueArray (0);
         var filter = this.translate_search_expression (expression, args);
 
@@ -264,11 +265,11 @@ public class Rygel.MediaExport.MediaCache : Object {
                                                 container_id);
     }
 
-    public long get_object_count_by_filter (
-                                        string          filter,
-                                        GLib.ValueArray args,
-                                        string          container_id)
-                                        throws Error {
+    public long get_object_count_by_filter
+                                        (string          filter,
+                                         GLib.ValueArray args,
+                                         string          container_id)
+                                         throws Error {
         GLib.Value v = container_id;
         args.prepend (v);
         long count = 0;
@@ -281,8 +282,8 @@ public class Rygel.MediaExport.MediaCache : Object {
             return false;
         };
 
-        unowned string sql = this.sql.make (
-                                        SQLString.GET_OBJECT_COUNT_BY_FILTER);
+        unowned string sql = this.sql.make
+                                        (SQLString.GET_OBJECT_COUNT_BY_FILTER);
 
         this.db.exec (sql.printf (filter),
                       args.values,
@@ -526,13 +527,11 @@ public class Rygel.MediaExport.MediaCache : Object {
                                                     Statement       statement) {
         MediaObject object = null;
         switch (statement.column_int (DetailColumn.TYPE)) {
+            var title = statement.column_text (DetailColumn.TITLE);
+
             case 0:
                 // this is a container
-                object = factory.get_container (this,
-                                                object_id,
-                                                statement.column_text (
-                                                    DetailColumn.TITLE),
-                                                0);
+                object = factory.get_container (this, object_id, title, 0);
 
                 var container = object as MediaContainer;
                 var uri = statement.column_text (DetailColumn.URI);
@@ -546,8 +545,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                 object = factory.get_item (this,
                                            parent,
                                            object_id,
-                                           statement.column_text (
-                                               DetailColumn.TITLE),
+                                           title,
                                            upnp_class);
                 fill_item (statement, object as MediaItem);
 
@@ -576,18 +574,21 @@ public class Rygel.MediaExport.MediaCache : Object {
 
         if (item is AudioItem) {
             var audio_item = item as AudioItem;
-            audio_item.duration = (long) statement.column_int64 (DetailColumn.DURATION);
+            audio_item.duration = (long) statement.column_int64
+                                        (DetailColumn.DURATION);
             audio_item.bitrate = statement.column_int (DetailColumn.BITRATE);
-            audio_item.sample_freq = statement.column_int (DetailColumn.SAMPLE_FREQ);
-            audio_item.bits_per_sample = statement.column_int (
-                                        DetailColumn.BITS_PER_SAMPLE);
+            audio_item.sample_freq = statement.column_int
+                                        (DetailColumn.SAMPLE_FREQ);
+            audio_item.bits_per_sample = statement.column_int
+                                        (DetailColumn.BITS_PER_SAMPLE);
             audio_item.channels = statement.column_int (DetailColumn.CHANNELS);
             if (item is MusicItem) {
                 var music_item = item as MusicItem;
                 music_item.artist = statement.column_text (DetailColumn.AUTHOR);
                 music_item.album = statement.column_text (DetailColumn.ALBUM);
                 music_item.genre = statement.column_text (DetailColumn.GENRE);
-                music_item.track_number = statement.column_int (DetailColumn.TRACK);
+                music_item.track_number = statement.column_int
+                                        (DetailColumn.TRACK);
                 music_item.lookup_album_art ();
             }
         }
@@ -596,7 +597,8 @@ public class Rygel.MediaExport.MediaCache : Object {
             var visual_item = item as VisualItem;
             visual_item.width = statement.column_int (DetailColumn.WIDTH);
             visual_item.height = statement.column_int (DetailColumn.HEIGHT);
-            visual_item.color_depth = statement.column_int (DetailColumn.COLOR_DEPTH);
+            visual_item.color_depth = statement.column_int
+                                        (DetailColumn.COLOR_DEPTH);
             if (item is VideoItem) {
                 var video_item = item as VideoItem;
                 video_item.author = statement.column_text (DetailColumn.AUTHOR);
@@ -620,11 +622,11 @@ public class Rygel.MediaExport.MediaCache : Object {
         return children;
     }
 
-    private string translate_search_expression (
-                                        SearchExpression? expression,
-                                        ValueArray        args,
-                                        string            prefix = "WHERE")
-                                        throws Error {
+    private string translate_search_expression
+                                        (SearchExpression? expression,
+                                         ValueArray        args,
+                                         string            prefix = "WHERE")
+                                         throws Error {
         if (expression == null) {
             return "";
         }
@@ -642,12 +644,12 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
 
         if (expression is LogicalExpression) {
-            return this.logical_expression_to_sql (expression as LogicalExpression,
-                                                   args);
+            return this.logical_expression_to_sql
+                                        (expression as LogicalExpression, args);
         } else {
-            return this.relational_expression_to_sql (
-                                        expression as RelationalExpression,
-                                        args);
+            return this.relational_expression_to_sql
+                                        (expression as RelationalExpression,
+                                         args);
         }
     }
 
@@ -755,10 +757,8 @@ public class Rygel.MediaExport.MediaCache : Object {
             case SearchCriteriaOp.GREATER:
             case SearchCriteriaOp.GEQ:
                 v = exp.operand2;
-                operator = new SqlOperator.from_search_criteria_op (
-                                        exp.op,
-                                        column,
-                                        collate);
+                operator = new SqlOperator.from_search_criteria_op
+                                        (exp.op, column, collate);
                 break;
             case SearchCriteriaOp.CONTAINS:
                 operator = new SqlOperator ("LIKE", column);
@@ -784,13 +784,13 @@ public class Rygel.MediaExport.MediaCache : Object {
         return operator.to_string ();
     }
 
-    public Gee.List<string> get_meta_data_column_by_filter (
-                                        string          column,
-                                        string          filter,
-                                        GLib.ValueArray args,
-                                        long            offset,
-                                        long            max_count)
-                                        throws Error {
+    public Gee.List<string> get_meta_data_column_by_filter
+                                        (string          column,
+                                         string          filter,
+                                         GLib.ValueArray args,
+                                         long            offset,
+                                         long            max_count)
+                                         throws Error {
         GLib.Value v = offset;
         args.append (v);
         v = max_count;
@@ -811,12 +811,12 @@ public class Rygel.MediaExport.MediaCache : Object {
         return data;
     }
 
-    public Gee.List<string> get_object_attribute_by_search_expression (
-                                        string            attribute,
-                                        SearchExpression? expression,
-                                        long              offset,
-                                        uint              max_count)
-                                        throws Error {
+    public Gee.List<string> get_object_attribute_by_search_expression
+                                        (string            attribute,
+                                         SearchExpression? expression,
+                                         long              offset,
+                                         uint              max_count)
+                                         throws Error {
         var args = new ValueArray (0);
         var filter = this.translate_search_expression (expression,
                                                        args,

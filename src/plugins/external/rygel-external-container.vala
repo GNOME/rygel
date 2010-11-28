@@ -79,10 +79,8 @@ public class Rygel.External.Container : Rygel.MediaContainer {
             filter += item_prop;
         }
 
-        var children_props = yield this.actual_container.list_children (
-                                        offset,
-                                        max_count,
-                                        filter);
+        var children_props = yield this.actual_container.list_children
+                                        (offset, max_count, filter);
 
         return yield this.create_media_objects (children_props, this);
     }
@@ -116,11 +114,11 @@ public class Rygel.External.Container : Rygel.MediaContainer {
         }
 
         var ext_expression = this.translate_expression (expression);
-        var result = yield this.actual_container.search_objects (
-                                        ext_expression.to_string (),
-                                        offset,
-                                        max_count,
-                                        filter);
+        var result = yield this.actual_container.search_objects
+                                        (ext_expression.to_string (),
+                                         offset,
+                                         max_count,
+                                         filter);
         total_matches = result.length;
 
         return yield this.create_media_objects (result);
@@ -159,30 +157,30 @@ public class Rygel.External.Container : Rygel.MediaContainer {
 
             Properties props_iface = yield Bus.get_proxy
                                         (BusType.SESSION,
-                                        this.service_name,
-                                        id,
-                                        DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
+                                         this.service_name,
+                                         id,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
 
             var props = yield props_iface.get_all (MediaItemProxy.IFACE);
 
             // Its an item then
-            media_object = yield this.item_factory.create (
-                                        id,
-                                        actual_object.object_type,
-                                        actual_object.display_name,
-                                        props,
-                                        this.service_name,
-                                        this.host_ip,
-                                        parent_container);
+            media_object = yield this.item_factory.create
+                                        (id,
+                                         actual_object.object_type,
+                                         actual_object.display_name,
+                                         props,
+                                         this.service_name,
+                                         this.host_ip,
+                                         parent_container);
         }
 
         return media_object;
     }
 
-    private async MediaObjects create_media_objects (
-                                        HashTable<string,Variant>[] all_props,
-                                        MediaContainer?             parent
-                                        = null) throws GLib.Error {
+    private async MediaObjects create_media_objects
+                                        (HashTable<string,Variant>[] all_props,
+                                         MediaContainer?             parent
+                                         = null) throws GLib.Error {
         var media_objects = new MediaObjects ();
 
         foreach (var props in all_props) {
@@ -218,14 +216,14 @@ public class Rygel.External.Container : Rygel.MediaContainer {
                                                        parent_container);
                 } else {
                     // Its an item then
-                    media_object = yield this.item_factory.create (
-                                        id,
-                                        type,
-                                        title,
-                                        props,
-                                        this.service_name,
-                                        this.host_ip,
-                                        parent_container);
+                    media_object = yield this.item_factory.create
+                                        (id,
+                                         type,
+                                         title,
+                                         props,
+                                         this.service_name,
+                                         this.host_ip,
+                                         parent_container);
                 }
             }
 
@@ -246,10 +244,8 @@ public class Rygel.External.Container : Rygel.MediaContainer {
             filter += container_prop;
         }
 
-        var children_props = yield this.actual_container.list_containers (
-                                        0,
-                                        0,
-                                        filter);
+        var children_props = yield this.actual_container.list_containers
+                                        (0, 0, filter);
         this.containers.clear ();
 
         foreach (var props in children_props) {
@@ -306,14 +302,14 @@ public class Rygel.External.Container : Rygel.MediaContainer {
         return target;
     }
 
-    private SearchExpression translate_expression (
-                                        SearchExpression upnp_expression) {
+    private SearchExpression translate_expression
+                                        (SearchExpression upnp_expression) {
         if (upnp_expression is RelationalExpression) {
             var expression = upnp_expression as RelationalExpression;
             var ext_expression = new RelationalExpression ();
             ext_expression.op = expression.op;
-            ext_expression.operand1 = this.translate_property (
-                                        expression.operand1);
+            ext_expression.operand1 = this.translate_property
+                                        (expression.operand1);
             ext_expression.operand2 = expression.operand2;
 
             return ext_expression;
@@ -322,10 +318,10 @@ public class Rygel.External.Container : Rygel.MediaContainer {
             var ext_expression = new LogicalExpression ();
 
             ext_expression.op = expression.op;
-            ext_expression.operand1 = this.translate_expression (
-                                        expression.operand1);
-            ext_expression.operand2 = this.translate_expression (
-                                        expression.operand2);
+            ext_expression.operand1 = this.translate_expression
+                                        (expression.operand1);
+            ext_expression.operand2 = this.translate_expression
+                                        (expression.operand2);
 
             return ext_expression;
         }

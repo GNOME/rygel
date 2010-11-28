@@ -84,13 +84,11 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
                                    string?   sink_pad_name)
                                    throws Error {
         var l16_transcoder = new L16Transcoder (Endianness.LITTLE);
-        dynamic Element convert = l16_transcoder.create_encoder (
-                                                    item,
-                                                    null,
-                                                    CONVERT_SINK_PAD);
-        dynamic Element encoder = GstUtils.create_element (
-                                                    AUDIO_ENCODER[this.layer],
-                                                    AUDIO_ENCODER[this.layer]);
+        dynamic Element convert = l16_transcoder.create_encoder
+                                        (item, null, CONVERT_SINK_PAD);
+        dynamic Element encoder = GstUtils.create_element
+                                        (AUDIO_ENCODER[this.layer],
+                                         AUDIO_ENCODER[this.layer]);
         dynamic Element parser = GstUtils.create_element (AUDIO_PARSER,
                                                           AUDIO_PARSER);
 

@@ -96,11 +96,11 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
      */
     public async void run () {
         try {
-            var info = yield this.origin.query_info_async (
-                                        HARVESTER_ATTRIBUTES,
-                                        FileQueryInfoFlags.NONE,
-                                        Priority.DEFAULT,
-                                        this.cancellable);
+            var info = yield this.origin.query_info_async
+                                        (HARVESTER_ATTRIBUTES,
+                                         FileQueryInfoFlags.NONE,
+                                         Priority.DEFAULT,
+                                         this.cancellable);
 
             if (this.process_file (this.origin, info, this.parent)) {
                 if (info.get_file_type () != FileType.DIRECTORY) {
@@ -141,8 +141,8 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         int64 size;
         try {
             if (this.cache.exists (file, out timestamp, out size)) {
-                int64 mtime = (int64) info.get_attribute_uint64 (
-                                        FILE_ATTRIBUTE_TIME_MODIFIED);
+                int64 mtime = (int64) info.get_attribute_uint64
+                                        (FILE_ATTRIBUTE_TIME_MODIFIED);
 
                 if (mtime > timestamp ||
                     info.get_size () != size) {
@@ -216,11 +216,11 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
     private async void enumerate_directory () {
         var directory = (this.containers.peek_head () as DummyContainer).file;
         try {
-            var enumerator = yield directory.enumerate_children_async (
-                                        HARVESTER_ATTRIBUTES,
-                                        FileQueryInfoFlags.NONE,
-                                        Priority.DEFAULT,
-                                        this.cancellable);
+            var enumerator = yield directory.enumerate_children_async
+                                        (HARVESTER_ATTRIBUTES,
+                                         FileQueryInfoFlags.NONE,
+                                         Priority.DEFAULT,
+                                         this.cancellable);
 
             GLib.List<FileInfo> list = null;
             do {
@@ -338,8 +338,8 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             string content_type = info.get_content_type ();
             string mime = ContentType.get_mime_type (content_type);
             uint64 size = info.get_size ();
-            uint64 mtime = info.get_attribute_uint64 (
-                                        FILE_ATTRIBUTE_TIME_MODIFIED);
+            uint64 mtime = info.get_attribute_uint64
+                                        (FILE_ATTRIBUTE_TIME_MODIFIED);
             this.on_extracted_cb (file, null, mime, size, mtime);
         } catch (Error error) {
             debug ("Could not get basic file information for %s: %s." +

@@ -65,17 +65,17 @@ internal class Rygel.HTTPPost : HTTPRequest {
 
         this.file = yield this.item.get_writable (this.cancellable);
         if (this.file == null) {
-            throw new HTTPRequestError.BAD_REQUEST (
-                                        _("No writable URI for %s available"),
-                                        this.item.id);
+            throw new HTTPRequestError.BAD_REQUEST
+                                        (_("No writable URI for %s available"),
+                                         this.item.id);
         }
 
-        this.stream = yield this.file.replace_async (
-                                        null,
-                                        false,
-                                        FileCreateFlags.REPLACE_DESTINATION,
-                                        Priority.LOW,
-                                        this.cancellable);
+        this.stream = yield this.file.replace_async
+                                        (null,
+                                         false,
+                                         FileCreateFlags.REPLACE_DESTINATION,
+                                         Priority.LOW,
+                                         this.cancellable);
 
         this.server.unpause_message (this.msg);
         this.handle_continue = this.handle.callback;
