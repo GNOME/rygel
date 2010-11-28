@@ -526,9 +526,9 @@ public class Rygel.MediaExport.MediaCache : Object {
                                                     string          object_id,
                                                     Statement       statement) {
         MediaObject object = null;
-        switch (statement.column_int (DetailColumn.TYPE)) {
-            var title = statement.column_text (DetailColumn.TITLE);
+        var title = statement.column_text (DetailColumn.TITLE);
 
+        switch (statement.column_int (DetailColumn.TYPE)) {
             case 0:
                 // this is a container
                 object = factory.get_container (this, object_id, title, 0);
