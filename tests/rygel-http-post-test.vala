@@ -227,10 +227,18 @@ public class Rygel.HTTPClient : GLib.Object, StateMachine {
 public class Rygel.MediaContainer : Rygel.MediaObject {
     public const string ITEM_ID = "TestItem";
 
+    public signal void container_updated (MediaContainer container);
+
+    public string id = "TesContainer";
     public MediaItem item;
 
+    private FileMonitor monitor;
+
     public MediaContainer () {
-        this.item = new MediaItem (ITEM_ID);
+        this.item = new MediaItem (ITEM_ID, this);
+
+        this.monitor = this.item.file.monitor_file (FileMonitorFlags.NONE);
+        this.monitor.changed.connect (this.on_file_changed);
     }
 
     public async MediaObject? find_object (string       item_id,
@@ -251,10 +259,19 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
             return null;
         }
     }
+
+    public void on_file_changed (FileMonitor      monitor,
+                                 File             file,
+                                 File?            other_file,
+                                 FileMonitorEvent event_type) {
+        this.container_updated (this);
+    }
 }
 
 public class Rygel.MediaItem : Rygel.MediaObject {
     public const string URI = "file:///tmp/rygel-upload-test.wav";
+
+    public weak MediaContainer parent;
 
     public string id;
     public long size = 1024;
@@ -264,16 +281,11 @@ public class Rygel.MediaItem : Rygel.MediaObject {
 
     public File file;
 
-    public MediaItem (string id) {
+    public MediaItem (string id, MediaContainer parent) {
         this.id = id;
+        this.parent = parent;
 
         this.file = File.new_for_uri (URI);
-        try {
-            this.file.replace (null, false, 0, null);
-        } catch (IOError.EXISTS error) {
-        } catch (GLib.Error error) {
-            assert_not_reached ();
-        }
     }
 
     ~MediaItem() {
