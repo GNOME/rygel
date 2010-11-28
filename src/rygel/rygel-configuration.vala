@@ -62,10 +62,9 @@ public interface Rygel.Configuration : GLib.Object {
     public abstract string get_string (string section,
                                        string key) throws GLib.Error;
 
-    public abstract Gee.ArrayList<string> get_string_list (
-                                                    string section,
-                                                    string key)
-                                                    throws GLib.Error;
+    public abstract Gee.ArrayList<string> get_string_list (string section,
+                                                           string key)
+                                                           throws GLib.Error;
 
     public abstract int get_int (string section,
                                  string key,
