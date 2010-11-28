@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 20010 Nokia Corporation.
+ * Copyright (C) 2010 Nokia Corporation.
  *
  * Author: Zeeshan Ali <zeenix@gmail.com>
  *
