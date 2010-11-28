@@ -43,29 +43,9 @@ internal class Rygel.MediaExport.Database : Object {
      */
     public delegate bool RowCallback (Sqlite.Statement stmt);
 
-    private static void utf8_has_prefix (Sqlite.Context context,
-                                         Sqlite.Value[] args)
-                                         requires (args.length == 2) {
-        if (args[0].to_text () == null ||
-            args[1].to_text () == null) {
-            context.result_int (0);
-
-            return;
-        }
-
-        var stra = args[0].to_text ().casefold ();
-        var strb = args[1].to_text ().casefold ();
-
-        if (stra.has_prefix (strb)) {
-            context.result_int (1);
-        } else {
-            context.result_int (0);
-        }
-    }
-
-    private static void utf8_like (Sqlite.Context context,
-                                   Sqlite.Value[] args)
-                                   requires (args.length == 2) {
+    private static void utf8_contains (Sqlite.Context context,
+                                       Sqlite.Value[] args)
+                                       requires (args.length == 2) {
         if (args[1].to_text() == null) {
            context.result_int (0);
 
@@ -73,7 +53,6 @@ internal class Rygel.MediaExport.Database : Object {
         }
 
         var pattern = Regex.escape_string (args[0].to_text ());
-        pattern = pattern.replace("%", ".*").replace ("_", ".");
         if (Regex.match_simple (pattern,
                                 args[1].to_text (),
                                 RegexCompileFlags.CASELESS)) {
@@ -121,19 +100,12 @@ internal class Rygel.MediaExport.Database : Object {
         this.db.exec ("PRAGMA synchronous = OFF");
         this.db.exec ("PRAGMA temp_store = MEMORY");
         this.db.exec ("PRAGMA count_changes = OFF");
-        this.db.create_function ("like",
-                                 2,
-                                 Sqlite.UTF8,
-                                 null,
-                                 Database.utf8_like,
-                                 null,
-                                 null);
 
-        this.db.create_function ("has_prefix",
+        this.db.create_function ("contains",
                                  2,
                                  Sqlite.UTF8,
                                  null,
-                                 Database.utf8_has_prefix,
+                                 Database.utf8_contains,
                                  null,
                                  null);
 

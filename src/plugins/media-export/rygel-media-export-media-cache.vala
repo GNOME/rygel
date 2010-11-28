@@ -761,16 +761,16 @@ public class Rygel.MediaExport.MediaCache : Object {
                                         (exp.op, column, collate);
                 break;
             case SearchCriteriaOp.CONTAINS:
-                operator = new SqlOperator ("LIKE", column);
-                v = "%%%s%%".printf (exp.operand2);
+                operator = new SqlFunction ("contains", column);
+                v = exp.operand2;
                 break;
             case SearchCriteriaOp.DOES_NOT_CONTAIN:
-                operator = new SqlOperator ("NOT LIKE", column);
-                v = "%%%s%%".printf (exp.operand2);
+                operator = new SqlFunction ("NOT contains", column);
+                v = exp.operand2;
                 break;
             case SearchCriteriaOp.DERIVED_FROM:
-                operator = new SqlFunction ("has_prefix", column);
-                v = exp.operand2;
+                operator = new SqlOperator ("LIKE", column);
+                v = "%s%%".printf (exp.operand2);
                 break;
             default:
                 warning ("Unsupported op %d", exp.op);
