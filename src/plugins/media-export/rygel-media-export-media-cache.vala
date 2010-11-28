@@ -221,7 +221,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                          out uint          total_matches)
                                          throws Error {
         var args = new GLib.ValueArray (0);
-        var filter = this.translate_search_expression (expression, args);
+        var filter = this.translate_search_expression (expression, args, "");
 
         if (expression != null) {
             debug ("Original search: %s", expression.to_string ());
@@ -249,7 +249,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                          string            container_id)
                                          throws Error {
         var args = new GLib.ValueArray (0);
-        var filter = this.translate_search_expression (expression, args);
+        var filter = this.translate_search_expression (expression, args, "");
 
         if (expression != null) {
             debug ("Original search: %s", expression.to_string ());
