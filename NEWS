@@ -1,3 +1,69 @@
+0.9.4
+=====
+
+A new release in the current unstable 0.9.x series for upcoming GNOME 2.91.3
+release.
+
+- After adding a new item in a container, wair for it to actually appear under
+  the container in the hierarchy. This is needed to satisfy DLNA CTT testcase
+  7.3.26.4,5.
+- Wait for updated signal from the parent container after pushing content to a
+  child item before returning an 'OK' to the client. This is needed to satisfy
+  the bogus check at the end of the DLNA CTT testcase 7.3.136.4.
+- If the template device description was modified after cached description was
+  modified/created, use the template device description. Without this change,
+  user had to manually remove the cached description documents each time we
+  modified the templates.
+- Only set dlnaManaged flags if any of the contained flag is set. This is
+  needed to comply with DLNA requirements 7.3.118.2-3.
+- Use correct resolution for MPEG_TS_SD_EU_ISO transcoded streams.
+- Remove now redundant vala work-arounds.
+- MediaExport:
+  - Fix update signal emission.
+  - Disable plugin on error during it's initialization.
+  - Only on-disk container should be marked as writable. That excludes both
+    special containers like "Filesystem" and virtual/metadata containers.
+  - Optimize searches by preventing a full-table scan and custom function.
+- Tracker:
+  - Adapt to new update signals API.
+  - Handle update signals (only) in All* containers. In these containers we can
+    easily know if the update affect the container or not. This is is not true
+    for other containers and we end-up launching a lot of redundant Tracker
+    queries and network traffic.
+  - Keep a single hierarchy for all network interfaces to reduce resource
+    consumption.
+- Localization:
+  - Update Simplified Chinese translation.
+  - Update Thai Translation.
+  - Update Romanian translation.
+  - Update UG translation.
+  - Update Hebrew translation.
+  - Update Estonian translation.
+  - Update Galician translations.
+- Many other non-functional and/or minor improvements and fixes.
+
+Dependency-related changes:
+
+- Require vala 0.11.2.
+
+Bugs fixed in this release:
+
+635957 - Typo in copyright year in some source files.
+635598 - Rygel 0.8.x does not remove deleted files.
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+Aron Xu <aronxu@gnome.org>
+Akom Chotiphantawanon <knight2000@gmail.com>
+Gheyret T.Kenji <gheyret@gmail.com>
+Lucian Adrian Grijincu <lucian.grijincu@gmail.com>
+Daniel Șerbănescu <cyber19rider@gmail.com>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Ivar Smolin <okul@linux.ee>
+Yaron Shahrabani <sh.yaron@gmail.com>
+
 0.9.3
 =====
 
