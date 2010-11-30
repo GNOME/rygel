@@ -1,10 +1,10 @@
 /*
  * Copyright (C) 2008,2010 Zeeshan Ali <zeenix@gmail.com>.
- * Copyright (C) 2010 Sunil Mohan Adapa <sunilmohan@gnu.org.in>.
+ * Copyright (C) 2010 MediaNet Inh.
  * Copyright (C) 2010 Nokia Corporation.
  *
  * Authors: Zeeshan Ali <zeenix@gmail.com>
- *          Sunil Mohan Adapa <sunilmohan@gnu.org.in>
+ *          Sunil Mohan Adapa <sunil@medhas.org>
  *
  * This file is part of Rygel.
  *
