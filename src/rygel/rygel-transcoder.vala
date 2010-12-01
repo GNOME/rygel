@@ -60,7 +60,8 @@ internal abstract class Rygel.Transcoder : GLib.Object {
                                                    MediaItem        item,
                                                    TranscodeManager manager)
                                                    throws Error {
-        if (this.mime_type_is_a (item.mime_type, this.mime_type)) {
+        if (this.mime_type_is_a (item.mime_type, this.mime_type) &&
+            this.dlna_profile == item.dlna_profile) {
             return null;
         }
 
