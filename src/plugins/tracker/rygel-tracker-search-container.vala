@@ -35,8 +35,7 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
 
-    private const string MODIFIED_PREDICATE = "nfo:fileLastModified";
-    private const string MODIFIED_VARIABLE = "?modified";
+    private const string MODIFIED_PROPERTY = "nfo:fileLastModified";
 
     public SelectionQuery query;
     public ItemFactory item_factory;
@@ -67,10 +66,6 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
                                         (SelectionQuery.ITEM_VARIABLE,
                                          "a",
                                          item_factory.category));
-        our_triplets.add_triplet (new QueryTriplet
-                                        (SelectionQuery.ITEM_VARIABLE,
-                                         MODIFIED_PREDICATE,
-                                         MODIFIED_VARIABLE));
 
         foreach (var chain in this.item_factory.key_chains) {
             var variable = SelectionQuery.ITEM_VARIABLE;
@@ -82,10 +77,15 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
             variables.add (variable);
         }
 
+        var order_by = MODIFIED_PROPERTY +
+                       "(" +
+                       SelectionQuery.ITEM_VARIABLE +
+                       ")";
+
         this.query = new SelectionQuery (variables,
                                          our_triplets,
                                          filters,
-                                         MODIFIED_VARIABLE);
+                                         order_by);
 
         try {
             this.resources = Bus.get_proxy_sync
