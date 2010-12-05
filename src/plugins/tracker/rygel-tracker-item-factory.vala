@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2010 MediaNet Inh.
  *
- * Author: Zeeshan Ali <zeenix@gmail.com>
+ * Authors: Zeeshan Ali <zeenix@gmail.com>
+ *          Sunil Mohan Adapa <sunil@medhas.org>
  *
  * This file is part of Rygel.
  *
@@ -28,6 +30,7 @@ using Gee;
  */
 public abstract class Rygel.Tracker.ItemFactory {
     protected enum Metadata {
+        URL,
         FILE_NAME,
         TITLE,
         DLNA_PROFILE,
@@ -57,6 +60,7 @@ public abstract class Rygel.Tracker.ItemFactory {
             this.key_chains.add (new ArrayList<string> ());
         }
 
+        this.key_chains[Metadata.URL].add ("nie:url");
         this.key_chains[Metadata.FILE_NAME].add ("nfo:fileName");
         this.key_chains[Metadata.TITLE].add ("nie:title");
         this.key_chains[Metadata.DLNA_PROFILE].add ("nmm:dlnaProfile");

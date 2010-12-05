@@ -1,9 +1,11 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2010 MediaNet Inh.
  *
- * Author: Zeeshan Ali <zeenix@gmail.com>
- *         Ivan Frade <ivan.frade@nokia.com>
+ * Authors: Zeeshan Ali <zeenix@gmail.com>
+ *          Ivan Frade <ivan.frade@nokia.com>
+ *          Sunil Mohan Adapa <sunil@medhas.org>
  *
  * This file is part of Rygel.
  *
@@ -35,8 +37,6 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
 
     private const string MODIFIED_PREDICATE = "nfo:fileLastModified";
     private const string MODIFIED_VARIABLE = "?modified";
-    private const string URL_PREDICATE = "nie:url";
-    private const string URL_VARIABLE = "?url";
 
     public SelectionQuery query;
     public ItemFactory item_factory;
@@ -55,7 +55,6 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
 
         var variables = new ArrayList<string> ();
         variables.add (SelectionQuery.ITEM_VARIABLE);
-        variables.add (URL_VARIABLE);
 
         QueryTriplets our_triplets;
         if (triplets != null) {
@@ -72,10 +71,6 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
                                         (SelectionQuery.ITEM_VARIABLE,
                                          MODIFIED_PREDICATE,
                                          MODIFIED_VARIABLE));
-        our_triplets.add_triplet (new QueryTriplet
-                                        (SelectionQuery.ITEM_VARIABLE,
-                                         URL_PREDICATE,
-                                         URL_VARIABLE));
 
         foreach (var chain in this.item_factory.key_chains) {
             var variable = SelectionQuery.ITEM_VARIABLE;
@@ -141,7 +136,7 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
             for (uint i = 0; i < query.result.length[0]; i++) {
                 var id = this.create_child_id_for_urn (query.result[i, 0]);
                 var uri = query.result[i, 1];
-                string[] metadata = this.slice_strvv_tail (query.result, i, 2);
+                string[] metadata = this.slice_strvv_tail (query.result, i, 1);
 
                 var item = this.item_factory.create (id, uri, this, metadata);
                 results.add (item);
