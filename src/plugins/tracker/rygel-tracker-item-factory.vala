@@ -45,7 +45,7 @@ public abstract class Rygel.Tracker.ItemFactory {
     public string upnp_class;
     public string upload_dir;
 
-    public ArrayList<ArrayList<string>> key_chains;
+    public ArrayList<string> properties;
 
     public ItemFactory (string  category,
                         string  upnp_class,
@@ -54,19 +54,16 @@ public abstract class Rygel.Tracker.ItemFactory {
         this.upnp_class = upnp_class;
         this.upload_dir = upload_dir;
 
-        this.key_chains = new ArrayList<ArrayList<string>> ();
+        this.properties = new ArrayList<string> ();
 
-        for (var i = 0; i < Metadata.LAST_KEY; i++) {
-            this.key_chains.add (new ArrayList<string> ());
-        }
-
-        this.key_chains[Metadata.URL].add ("nie:url");
-        this.key_chains[Metadata.FILE_NAME].add ("nfo:fileName");
-        this.key_chains[Metadata.TITLE].add ("nie:title");
-        this.key_chains[Metadata.DLNA_PROFILE].add ("nmm:dlnaProfile");
-        this.key_chains[Metadata.MIME].add ("nie:mimeType");
-        this.key_chains[Metadata.SIZE].add ("nfo:fileSize");
-        this.key_chains[Metadata.DATE].add ("nie:contentCreated");
+        // These must be the same order as enum Metadata
+        this.properties.add ("res");
+        this.properties.add ("fileName");
+        this.properties.add ("dc:title");
+        this.properties.add ("dlnaProfile");
+        this.properties.add ("mimeType");
+        this.properties.add ("res@size");
+        this.properties.add ("date");
     }
 
     public abstract MediaItem create (string          id,

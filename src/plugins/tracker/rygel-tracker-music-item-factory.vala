@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2010 MediaNet Inh.
  *
- * Author: Zeeshan Ali <zeenix@gmail.com>
+ * Authors: Zeeshan Ali <zeenix@gmail.com>
+ *          Sunil Mohan Adapa <sunil@medhas.org>
  *
  * This file is part of Rygel.
  *
@@ -48,22 +50,16 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
               MusicItem.UPNP_CLASS,
               Environment.get_user_special_dir (UserDirectory.MUSIC));
 
-        for (var i = this.key_chains.size; i < MusicMetadata.LAST_KEY; i++) {
-            this.key_chains.add (new ArrayList<string> ());
-        }
-
-        this.key_chains[MusicMetadata.DURATION].add ("nfo:duration");
-        this.key_chains[MusicMetadata.AUDIO_ARTIST].add ("nmm:performer");
-        this.key_chains[MusicMetadata.AUDIO_ARTIST].add ("nmm:artistName");
-        this.key_chains[MusicMetadata.AUDIO_ALBUM].add ("nmm:musicAlbum");
-        this.key_chains[MusicMetadata.AUDIO_ALBUM].add ("nmm:albumTitle");
-        this.key_chains[MusicMetadata.AUDIO_TRACK_NUM].add ("nmm:trackNumber");
-        this.key_chains[MusicMetadata.AUDIO_GENRE].add ("nfo:genre");
-        this.key_chains[MusicMetadata.SAMPLE_RATE].add ("nfo:sampleRate");
-        this.key_chains[MusicMetadata.CHANNELS].add ("nfo:channels");
-        this.key_chains[MusicMetadata.BITS_PER_SAMPLE].add
-                                        ("nfo:bitsPerSample");
-        this.key_chains[MusicMetadata.BITRATE].add ("nfo:averageBitrate");
+        // These must be the same order as enum MusicMetadata
+        this.properties.add ("res@duration");
+        this.properties.add ("upnp:album");
+        this.properties.add ("upnp:artist");
+        this.properties.add ("upnp:originalTrackNumber");
+        this.properties.add ("upnp:genre");
+        this.properties.add ("sampleRate");
+        this.properties.add ("upnp:nrAudioChannels");
+        this.properties.add ("upnp:bitsPerSample");
+        this.properties.add ("upnp:bitrate");
     }
 
     public override MediaItem create (string          id,

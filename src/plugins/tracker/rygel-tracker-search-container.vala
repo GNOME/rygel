@@ -67,14 +67,9 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
                                          "a",
                                          item_factory.category));
 
-        foreach (var chain in this.item_factory.key_chains) {
-            var variable = SelectionQuery.ITEM_VARIABLE;
-
-            foreach (var key in chain) {
-                variable = key + "(" + variable + ")";
-            }
-
-            variables.add (variable);
+        var key_chain_map = KeyChainMap.get_key_chain_map ();
+        foreach (var property in this.item_factory.properties) {
+            variables.add (key_chain_map.map_property (property));
         }
 
         var order_by = MODIFIED_PROPERTY +

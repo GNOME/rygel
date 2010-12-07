@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2010 MediaNet Inh.
  *
- * Author: Zeeshan Ali <zeenix@gmail.com>
+ * Authors: Zeeshan Ali <zeenix@gmail.com>
+ *          Sunil Mohan Adapa <sunil@medhas.org>
  *
  * This file is part of Rygel.
  *
@@ -41,12 +43,9 @@ public class Rygel.Tracker.PictureItemFactory : ItemFactory {
               PhotoItem.UPNP_CLASS,
               Environment.get_user_special_dir (UserDirectory.PICTURES));
 
-        for (var i = this.key_chains.size; i < PictureMetadata.LAST_KEY; i++) {
-            this.key_chains.add (new ArrayList<string> ());
-        }
-
-        this.key_chains[PictureMetadata.WIDTH].add ("nfo:width");
-        this.key_chains[PictureMetadata.HEIGHT].add ("nfo:height");
+        // These must be in the same order as enum PictureMetadata
+        this.properties.add ("height");
+        this.properties.add ("width");
     }
 
     public override MediaItem create (string          id,
