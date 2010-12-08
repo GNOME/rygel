@@ -38,6 +38,9 @@ public abstract class Rygel.Tracker.CategoryContainer : Rygel.SimpleContainer {
         this.item_factory = item_factory;
 
         this.add_child (new CategoryAllContainer (this));
+        this.add_child (new Tags (this, item_factory));
+        this.add_child (new Titles (this, this.item_factory));
+        this.add_child (new New (this, this.item_factory));
     }
 }
 
