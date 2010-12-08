@@ -34,6 +34,7 @@ public class Rygel.Tracker.Music : CategoryContainer {
         this.add_child (new Albums (this));
         this.add_child (new Genre (this));
         this.add_child (new Tags (this, item_factory));
+        this.add_child (new Titles (this, this.item_factory));
     }
 }
 

@@ -34,6 +34,7 @@ public class Rygel.Tracker.Pictures : CategoryContainer {
 
         this.add_child (new Tags (this, this.item_factory));
         this.add_child (new Years (this, this.item_factory));
+        this.add_child (new Titles (this, this.item_factory));
     }
 }
 
