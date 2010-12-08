@@ -27,8 +27,6 @@ using Gee;
  * Container listing Pictures content hierarchy.
  */
 public class Rygel.Tracker.Pictures : CategoryContainer {
-    private const string[] KEY_CHAIN = { "nie:contentCreated", null };
-
     public Pictures (string id, MediaContainer parent, string title) {
         base (id, parent, title, new PictureItemFactory ());
 
