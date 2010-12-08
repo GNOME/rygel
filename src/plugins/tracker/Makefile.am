@@ -22,6 +22,7 @@ librygel_tracker_la_SOURCES = \
 	rygel-tracker-category-all-container.vala \
 	rygel-tracker-key-chain-map.vala \
 	rygel-tracker-query.vala \
+	rygel-tracker-search-query.vala \
 	rygel-tracker-selection-query.vala \
 	rygel-tracker-deletion-query.vala \
 	rygel-tracker-insertion-query.vala \
