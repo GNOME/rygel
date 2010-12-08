@@ -4,7 +4,6 @@
  * Copyright (C) 2010 MediaNet Inh.
  *
  * Authors: Zeeshan Ali <zeenix@gmail.com>
- *          Ivan Frade <ivan.frade@nokia.com>
  *          Sunil Mohan Adapa <sunil@medhas.org>
  *
  * This file is part of Rygel.
@@ -277,7 +276,7 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
                 break;
             case SearchCriteriaOp.CONTAINS:
                 // We need to escape this twice for Tracker
-                var regex = this.escape_string (Regex.escape_string (value));
+                var regex = Query.escape_string (Regex.escape_string (value));
 
                 filter = "regex(" + variable + ", \"" + regex + "\", \"i\")";
                 break;
@@ -304,57 +303,6 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
         }
 
         return slice;
-    }
-
-    /**
-     * tracker_sparql_escape_string:
-     * @literal: a string to escape
-     *
-     * Escapes a string so that it can be used in a SPARQL query. Copied from
-     * Tracker project.
-     *
-     * Returns: a newly-allocated string with the escaped version of @literal.
-     *  The returned string should be freed with g_free() when no longer needed.
-     */
-    private string escape_string (string literal) {
-        StringBuilder str = new StringBuilder ();
-        char *p = literal;
-
-        while (*p != '\0') {
-            size_t len = Posix.strcspn ((string) p, "\t\n\r\b\f\"\\");
-            str.append_len ((string) p, (long) len);
-            p += len;
-
-            switch (*p) {
-                case '\t':
-                    str.append ("\\t");
-                    break;
-                case '\n':
-                    str.append ("\\n");
-                    break;
-                case '\r':
-                    str.append ("\\r");
-                    break;
-                case '\b':
-                    str.append ("\\b");
-                    break;
-                case '\f':
-                    str.append ("\\f");
-                    break;
-                case '"':
-                    str.append ("\\\"");
-                    break;
-                case '\\':
-                    str.append ("\\\\");
-                    break;
-                default:
-                    continue;
-            }
-
-            p++;
-        }
-
-        return str.str;
     }
 }
 

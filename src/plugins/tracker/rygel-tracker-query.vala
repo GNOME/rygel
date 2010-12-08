@@ -1,7 +1,8 @@
 /*
  * Copyright (C) 2008 Nokia Corporation.
  *
- * Author: Zeeshan Ali <zeenix@gmail.com>
+ * Authors: Zeeshan Ali <zeenix@gmail.com>
+ *          Ivan Frade <ivan.frade@nokia.com>
  *
  * This file is part of Rygel.
  *
@@ -39,5 +40,56 @@ public abstract class Rygel.Tracker.Query {
     // adding the first part of the query
     public virtual string to_string () {
         return this.triplets.serialize ();
+    }
+
+    /**
+     * tracker_sparql_escape_string: Escapes a string so that it can be
+     * used in a SPARQL query. Copied from Tracker project.
+     *
+     * @param literal A string to escape
+     *
+     * @return A newly-allocated string with the escaped version of
+     * literal. The returned string should be freed with g_free() when no
+     * longer needed.
+     */
+    public static string escape_string (string literal) {
+        StringBuilder str = new StringBuilder ();
+        char *p = literal;
+
+        while (*p != '\0') {
+            size_t len = Posix.strcspn ((string) p, "\t\n\r\b\f\"\\");
+            str.append_len ((string) p, (long) len);
+            p += len;
+
+            switch (*p) {
+                case '\t':
+                    str.append ("\\t");
+                    break;
+                case '\n':
+                    str.append ("\\n");
+                    break;
+                case '\r':
+                    str.append ("\\r");
+                    break;
+                case '\b':
+                    str.append ("\\b");
+                    break;
+                case '\f':
+                    str.append ("\\f");
+                    break;
+                case '"':
+                    str.append ("\\\"");
+                    break;
+                case '\\':
+                    str.append ("\\\\");
+                    break;
+                default:
+                    continue;
+            }
+
+            p++;
+        }
+
+        return str.str;
     }
 }
