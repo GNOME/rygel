@@ -23,6 +23,7 @@ librygel_media_tracker_la_SOURCES = rygel-tracker-root-container.vala \
 				    rygel-tracker-albums.vala \
 				    rygel-tracker-artists.vala \
 				    rygel-tracker-genre.vala \
+				    rygel-tracker-new.vala \
 				    rygel-tracker-search-container.vala \
 				    rygel-tracker-category-all-container.vala \
 				    rygel-tracker-query.vala \
