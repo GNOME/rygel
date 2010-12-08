@@ -37,7 +37,7 @@ public class Rygel.Tracker.Years : MetadataValues {
               KEY_CHAIN);
     }
 
-    protected override string create_title_for_value (string value) {
+    protected override string? create_title_for_value (string value) {
         return value.ndup (4);
     }
 

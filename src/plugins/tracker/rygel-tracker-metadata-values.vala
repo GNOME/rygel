@@ -125,8 +125,12 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
             }
 
             var title = this.create_title_for_value (value);
+            if (title == null) {
+                continue;
+            }
+
             var id = this.create_id_for_title (title);
-            if (!this.is_child_id_unique (id)) {
+            if (id == null || !this.is_child_id_unique (id)) {
                 continue;
             }
 
@@ -165,11 +169,11 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         }
     }
 
-    protected virtual string create_id_for_title (string title) {
+    protected virtual string? create_id_for_title (string title) {
         return this.id + ":" + Uri.escape_string (title, "", true);
     }
 
-    protected virtual string create_title_for_value (string value) {
+    protected virtual string? create_title_for_value (string value) {
         return value;
     }
 
