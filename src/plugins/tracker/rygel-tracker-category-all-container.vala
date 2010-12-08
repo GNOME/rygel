@@ -1,9 +1,11 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2008-2010 Nokia Corporation.
+ * Copyright (C) 2010 MediaNet Inh.
  *
- * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
- *                               <zeeshan.ali@nokia.com>
+ * Authors: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *                                <zeeshan.ali@nokia.com>
+ *          Sunil Mohan Adapa <sunil@medhas.org>
  *
  * This file is part of Rygel.
  *
@@ -37,10 +39,13 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
     public ArrayList<string> create_classes { get; set; }
     public ArrayList<string> search_classes { get; set; }
 
+    private QueryHelper query_helper;
     private ResourcesIface resources;
 
     public CategoryAllContainer (CategoryContainer parent) {
         base ("All" + parent.id, parent, "All", parent.item_factory);
+
+        this.query_helper = new QueryHelper (this);
 
         this.create_classes = new ArrayList<string> ();
         this.create_classes.add (item_factory.upnp_class);
@@ -99,11 +104,17 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
                                        out uint          total_matches,
                                        Cancellable?      cancellable)
                                        throws Error {
-        return yield this.simple_search (expression,
-                                         offset,
-                                         max_count,
-                                         out total_matches,
-                                         cancellable);
+        var query = this.query_helper.create_query (expression,
+                                                    null,
+                                                    offset,
+                                                    max_count,
+                                                    cancellable);
+
+        yield query.execute (this.resources);
+
+        total_matches = yield query.get_count (this.resources);
+
+        return this.query_helper.get_results (query);
     }
 
     private void on_graph_updated (DBusConnection connection,
