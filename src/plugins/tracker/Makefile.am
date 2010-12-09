@@ -33,6 +33,7 @@ librygel_tracker_la_SOURCES = \
 	rygel-tracker-bound-filter.vala \
 	rygel-tracker-regex-filter.vala \
 	rygel-tracker-boolean-filter.vala \
+	rygel-tracker-query-helper.vala \
 	rygel-tracker-item-factory.vala \
 	rygel-tracker-video-item-factory.vala \
 	rygel-tracker-music-item-factory.vala \
