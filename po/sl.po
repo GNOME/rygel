@@ -240,7 +240,7 @@ msgstr "Video"
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:56
 #, c-format
 msgid "Failed to create D-Bus proxies: %s"
-msgstr "Ustvarjanje posredniškega D-Bus vodila je spodletelo: %s\n"
+msgstr "Ustvarjanje posredniškega D-Bus vodila je spodletelo: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:64
 #, c-format
