@@ -291,28 +291,29 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
     private async void wait_for_item (WritableContainer container) {
         debug ("Waiting for new item to appear under container '%s'..",
                container.id);
-        var not_added = true;
 
-        while (not_added) {
-            var id = container.container_updated.connect ((container) => {
-                this.wait_for_item.callback ();
-            });
+        MediaItem item = null;
 
-            yield;
-
-            container.disconnect (id);
-
+        while (item == null) {
             try {
-                var item = yield container.find_object (this.item.id,
-                                                        this.cancellable);
-                if (item != null) {
-                    not_added = false;
-                }
+                item = yield container.find_object (this.item.id,
+                                                    this.cancellable)
+                       as MediaItem;
             } catch (Error error) {
                 warning ("Error from container '%s' on trying to find newly " +
                          "added child item '%s' in it",
                          container.id,
                          this.item.id);
+            }
+
+            if (item == null) {
+                var id = container.container_updated.connect ((container) => {
+                    this.wait_for_item.callback ();
+                });
+
+                yield;
+
+                container.disconnect (id);
             }
         }
         debug ("Finished waiting for new item to appear under container '%s'",
