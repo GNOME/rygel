@@ -311,10 +311,12 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                     this.wait_for_item.callback ();
                 });
 
-                var timeout = Timeout.add_seconds (5, () => {
+                uint timeout = 0;
+                timeout = Timeout.add_seconds (5, () => {
                     debug ("Timeout on waiting for 'updated' signal on '%s'.",
                            container.id);
                     this.wait_for_item.callback ();
+                    timeout = 0;
 
                     return false;
                 });
@@ -322,7 +324,12 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                 yield;
 
                 container.disconnect (id);
-                Source.remove (timeout);
+
+                if (timeout != 0) {
+                    Source.remove (timeout);
+                } else {
+                    break;
+                }
             }
         }
         debug ("Finished waiting for new item to appear under container '%s'",
