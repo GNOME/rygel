@@ -27,7 +27,7 @@ using Gee;
  * Base class of Browse and Search actions.
  */
 internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
-    private const string DEFAULT_SORT_CRITERIA = "-dc:title";
+    private const string DEFAULT_SORT_CRITERIA = "+dc:title";
 
     // In arguments
     public string object_id;
