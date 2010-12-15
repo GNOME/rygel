@@ -117,7 +117,7 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
                                         (_("No such object"));
         }
 
-        if (this.sort_criteria == null) {
+        if (this.sort_criteria == null || this.sort_criteria == "") {
             this.sort_criteria = DEFAULT_SORT_CRITERIA;
         }
 
