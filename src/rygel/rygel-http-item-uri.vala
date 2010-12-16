@@ -61,22 +61,22 @@ internal class Rygel.HTTPItemURI : Object {
 
         for (int i = 1; i < parts.length - 1; i += 2) {
             switch (parts[i]) {
-                case "item":
+                case "i":
                     var data = Base64.decode (Soup.URI.decode (parts[i + 1]));
                     StringBuilder builder = new StringBuilder ();
                     builder.append ((string) data);
                     this.item_id = builder.str;
 
                     break;
-                case "transcoded":
+                case "tr":
                     this.transcode_target = Soup.URI.decode (parts[i + 1]);
 
                     break;
-                case "thumbnail":
+                case "th":
                     this.thumbnail_index = parts[i + 1].to_int ();
 
                     break;
-                case "subtitle":
+                case "sub":
                     this.subtitle_index = parts[i + 1].to_int ();
 
                     break;
@@ -98,15 +98,15 @@ internal class Rygel.HTTPItemURI : Object {
         var escaped = Uri.escape_string (Base64.encode ((uchar[]) data),
                                          "",
                                          true);
-        string path = "/item/" + escaped;
+        string path = "/i/" + escaped;
 
         if (this.transcode_target != null) {
             escaped = Uri.escape_string (this.transcode_target, "", true);
-            path += "/transcoded/" + escaped;
+            path += "/tr/" + escaped;
         } else if (this.thumbnail_index >= 0) {
-            path += "/thumbnail/" + this.thumbnail_index.to_string ();
+            path += "/th/" + this.thumbnail_index.to_string ();
         } else if (this.subtitle_index >= 0) {
-            path += "/subtitle/" + this.subtitle_index.to_string ();
+            path += "/sub/" + this.subtitle_index.to_string ();
         }
 
         return this.create_uri_for_path (path);

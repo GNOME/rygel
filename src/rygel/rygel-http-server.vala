@@ -26,7 +26,6 @@ using GUPnP;
 using Gee;
 
 internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
-    private const string SERVER_PATH_PREFIX = "/RygelHTTPServer";
     public string path_root { get; private set; }
 
     // Reference to root container of associated ContentDirectory
@@ -45,7 +44,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         this.requests = new ArrayList<HTTPRequest> ();
         this.cancellable = content_dir.cancellable;
 
-        this.path_root = SERVER_PATH_PREFIX + "/" + name;
+        this.path_root = "/" + name;
     }
 
     public async void run () {

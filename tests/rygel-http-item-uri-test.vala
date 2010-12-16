@@ -32,7 +32,7 @@ private errordomain Rygel.TestError {
 }
 
 private class Rygel.HTTPServer : GLib.Object {
-    private const string SERVER_PATH = "/RygelHTTPServer/Rygel/Test";
+    private const string SERVER_PATH = "/Test";
 
     public string path_root { get; private set; }
 
