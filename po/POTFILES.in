@@ -71,6 +71,7 @@ src/plugins/tracker/rygel-tracker-years.vala
 src/plugins/tracker/rygel-tracker-albums.vala
 src/plugins/tracker/rygel-tracker-artists.vala
 src/plugins/tracker/rygel-tracker-genre.vala
+src/plugins/tracker/rygel-tracker-titles.vala
 src/rygel/rygel-media-query-action.vala
 src/rygel/rygel-browse.vala
 src/rygel/rygel-cmdline-config.vala
