@@ -184,7 +184,8 @@ public class Rygel.Main : Object {
         try {
             var device = factory.create (plugin);
 
-            device.available = plugin.active;
+            device.available = plugin.active &&
+                               this.config.get_upnp_enabled ();
 
             this.root_devices.add (device);
 
