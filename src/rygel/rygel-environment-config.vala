@@ -56,7 +56,7 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
 
     // This config doesn't make sense in this context.
     public bool get_upnp_enabled () throws GLib.Error {
-        return true;
+        throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
     }
 
     public string get_interface () throws GLib.Error {
