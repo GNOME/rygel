@@ -220,10 +220,10 @@ internal class Rygel.RootDeviceFactory {
         string url = "/" + resource_info.description_path;
         service_node->new_child (null, "SCPDURL", url);
 
-        url = "/" + plugin_name + "/" + resource_info.type.name () + "/Event";
+        url = "/Event/" + plugin_name + "/" + resource_info.type.name ();
         service_node->new_child (null, "eventSubURL", url);
 
-        url = "/" + plugin_name + "/" + resource_info.type.name () + "/Control";
+        url = "/Control/" + plugin_name + "/" + resource_info.type.name ();
         service_node->new_child (null, "controlURL", url);
     }
 
