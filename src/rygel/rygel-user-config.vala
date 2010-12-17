@@ -31,7 +31,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     public static const string CONFIG_FILE = "rygel.conf";
     public static const string IFACE_KEY = "interface";
     public static const string PORT_KEY = "port";
-    public static const string ENABLED_KEY = "enabled";
+    public static const string ENABLED_KEY = "upnp_enabled";
     public static const string TITLE_KEY = "title";
     public static const string TRANSCODING_KEY = "enable-transcoding";
     public static const string MP3_TRANSCODER_KEY = "enable-mp3-transcoder";
