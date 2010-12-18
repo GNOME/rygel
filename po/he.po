@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-11 07:33+0200\n"
-"PO-Revision-Date: 2010-11-11 07:35+0200\n"
+"POT-Creation-Date: 2010-12-19 00:54+0200\n"
+"PO-Revision-Date: 2010-12-19 00:54+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Gezer <sh.yaron@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -120,17 +120,17 @@ msgstr "העדפות UPnP/DLNA"
 msgid "GStreamer Player"
 msgstr "נגן GStreamer"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:115
+#: ../src/plugins/media-export/rygel-media-export-database.vala:94
 #, c-format
 msgid "Failed to open database: %d (%s)"
 msgstr "ארע כשל בפתיחת מסד הנתונים: %d‏ (%s)"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:236
+#: ../src/plugins/media-export/rygel-media-export-database.vala:208
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "ארע כשל בהחזרת ההעברה: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:296
+#: ../src/plugins/media-export/rygel-media-export-database.vala:268
 #, c-format
 msgid "Unsupported type %s"
 msgstr "סוג בלתי נתמך %s"
@@ -146,7 +146,7 @@ msgstr "ארע כשל בתשאול סוג התוכן עבור '%s'"
 msgid "Failed to add item with ID %s: %s"
 msgstr "ארע כשל בהוספת פריט עם מספר זיהוי %s:‏ %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:121
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:122
 #, c-format
 msgid "Object %s is not an item"
 msgstr "העצם %s איננו פריט"
@@ -178,7 +178,7 @@ msgstr "ארעה שגיאה בעת הסרת העצם ממסד הנתונים: %s
 #. @REALNAME@ is substituted for user's real name
 #. and it doesn't need translation.
 #: ../src/plugins/media-export/rygel-media-export-plugin.vala:78
-#: ../src/plugins/tracker/rygel-tracker-plugin.vala:30
+#: ../src/plugins/tracker/rygel-tracker-plugin.vala:32
 msgid "@REALNAME@'s media"
 msgstr "המדיה של @REALNAME@"
 
@@ -209,54 +209,50 @@ msgstr "אלבום"
 msgid "Genre"
 msgstr "סגנון"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:59
-msgid "Failed to create instance of database"
-msgstr "ארע כשל ביציאת מופיע של מסד הנתונים"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:88
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:94
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "ארע כשל בהסרת הכתובת: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:325
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:329
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "אירע כשל ביצירת שירות ה־D-Bus ליצוא מדיה: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:363
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:367
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "ארע כשל בהסרת הרשומה: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:374
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:378
 msgid "Music"
 msgstr "מוזיקה"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:377
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
 msgid "Pictures"
 msgstr "תמונות"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:379
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:383
 msgid "Videos"
 msgstr "וידאו"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:53
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:56
 #, c-format
 msgid "Failed to create D-Bus proxies: %s"
 msgstr "אירע כשל ביצירת מתווכי D-Bus:‏ %s"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:61
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:64
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "ארע כשל בהרכבת הכתובת עבור התיקייה '%s':‏ %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:62
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:102
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:61
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:93
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr "ארע כשל בהתחברות אל אפיק ההפעלה: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:115
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:112
 #, c-format
 msgid "Error getting all values for '%s': %s"
 msgstr "שגיאה בקבלת כל הערכים עבור '%s':‏ %s"
@@ -266,7 +262,7 @@ msgstr "שגיאה בקבלת כל הערכים עבור '%s':‏ %s"
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "ארע כשל בהפעלת שירות העוקב: %s. התוסף מבוטל."
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:209
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:203
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr "ארעה שגיאה בקבלת ספירת הפריטים תחת הקטגוריה '%s':‏ %s"
@@ -279,12 +275,16 @@ msgstr "אלבומים"
 msgid "Artists"
 msgstr "אמנים"
 
+#: ../src/plugins/tracker/rygel-tracker-titles.vala:58
+msgid "Titles"
+msgstr "כותרות"
+
 #: ../src/rygel/rygel-media-query-action.vala:117
-#: ../src/rygel/rygel-media-query-action.vala:142
-#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:151
-#: ../src/rygel/rygel-item-creator.vala:183
+#: ../src/rygel/rygel-media-query-action.vala:141
+#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:154
+#: ../src/rygel/rygel-item-creator.vala:189
 #: ../src/rygel/rygel-item-destroyer.vala:53
-#: ../src/rygel/rygel-item-destroyer.vala:100
+#: ../src/rygel/rygel-item-destroyer.vala:99
 msgid "No such object"
 msgstr "אין כזה עצם"
 
@@ -292,7 +292,7 @@ msgstr "אין כזה עצם"
 msgid "Invalid Arguments"
 msgstr "ארגומנטים שגויים"
 
-#: ../src/rygel/rygel-browse.vala:120
+#: ../src/rygel/rygel-browse.vala:121
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "ארע כשל בסיור ב־'%s':‏ %s\n"
@@ -375,11 +375,11 @@ msgstr "הרכיב הנדרש %s חסר"
 #: ../src/rygel/rygel-http-byte-seek.vala:49
 #: ../src/rygel/rygel-http-byte-seek.vala:58
 #: ../src/rygel/rygel-http-byte-seek.vala:68
-#: ../src/rygel/rygel-http-byte-seek.vala:72
+#: ../src/rygel/rygel-http-byte-seek.vala:71
 #: ../src/rygel/rygel-http-time-seek.vala:50
 #: ../src/rygel/rygel-http-time-seek.vala:59
 #: ../src/rygel/rygel-http-time-seek.vala:69
-#: ../src/rygel/rygel-http-time-seek.vala:73
+#: ../src/rygel/rygel-http-time-seek.vala:72
 #, c-format
 msgid "Invalid Range '%s'"
 msgstr "טווח שגוי '%s'"
@@ -418,7 +418,7 @@ msgstr "דחיפת עצם '%s' שאינו ריק אינה מורשית"
 msgid "No writable URI for %s available"
 msgstr "אין כתובת עבור %s הניתנת לכתיבה"
 
-#: ../src/rygel/rygel-http-request.vala:83
+#: ../src/rygel/rygel-http-request.vala:82
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "הפריט המבוקש '%s' לא נמצא"
@@ -438,21 +438,21 @@ msgstr "הכתובת '%s' אינה תקינה לצורך יבוא תכנים א�
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "אין פריטים ב־DIDL-Lite מהלקוח: '%s'"
 
-#: ../src/rygel/rygel-item-creator.vala:142
+#: ../src/rygel/rygel-item-creator.vala:145
 msgid "'Elements' argument missing."
 msgstr "הארגומנט 'Elements' חסר."
 
-#: ../src/rygel/rygel-item-creator.vala:145
+#: ../src/rygel/rygel-item-creator.vala:148
 msgid "Comments not allowed in XML"
 msgstr "תגובות אינן מורשות ב־XML"
 
-#: ../src/rygel/rygel-item-creator.vala:187
-#: ../src/rygel/rygel-item-creator.vala:276
+#: ../src/rygel/rygel-item-creator.vala:193
+#: ../src/rygel/rygel-item-creator.vala:282
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "יצירת עצמים תחת %s אינה מורשית"
 
-#: ../src/rygel/rygel-item-creator.vala:213
+#: ../src/rygel/rygel-item-creator.vala:219
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "ארע כשל ביצירת פריט תחת '%s':‏ %s"
@@ -467,12 +467,12 @@ msgstr "העצם '%s' הושמד בהצלחה"
 msgid "Failed to destroy object '%s': %s"
 msgstr "אירע כשל בהריסת העצם שב־'%s':‏ %s"
 
-#: ../src/rygel/rygel-item-destroyer.vala:103
+#: ../src/rygel/rygel-item-destroyer.vala:102
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "הסרת עצמים מ־%s אינה מורשית"
 
-#: ../src/rygel/rygel-item-destroyer.vala:107
+#: ../src/rygel/rygel-item-destroyer.vala:105
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "הסרת עצמים מ־%s אינה מורשית"
@@ -540,13 +540,13 @@ msgstr "ארע כשל ביצירת התקן על עבור %s. סיבה: %s"
 msgid "Failed to start D-Bus service: %s"
 msgstr "ארע כשל בהפעלת שירות ה־D-Bus:‏ %s"
 
-#: ../src/rygel/rygel-media-item.vala:253
+#: ../src/rygel/rygel-media-item.vala:258
 #, c-format
 msgid "Bad URI: %s"
 msgstr "כתובת שגויה: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:265
+#: ../src/rygel/rygel-media-item.vala:270
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "ארע כשל בבדיקת הפרוטוקול עבור הכתובת %s. נניח כי מדובר ב־'%s'"
@@ -591,21 +591,21 @@ msgstr "אירע כשל בטעינת המודול מהנתיב '%s' :‏ %s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "ארע כשל במציאת פונקציית נקודת הרשומה '%s' תחת '%s':‏ %s"
 
-#: ../src/rygel/rygel-root-device-factory.vala:113
-#: ../src/rygel/rygel-root-device-factory.vala:146
-#: ../src/rygel/rygel-root-device-factory.vala:168
-#: ../src/rygel/rygel-root-device-factory.vala:199
+#: ../src/rygel/rygel-root-device-factory.vala:106
+#: ../src/rygel/rygel-root-device-factory.vala:139
+#: ../src/rygel/rygel-root-device-factory.vala:161
+#: ../src/rygel/rygel-root-device-factory.vala:192
 #, c-format
 msgid "XML node '%s' not found."
 msgstr "צומת ה־XML ‏'%s' לא נמצאה."
 
-#: ../src/rygel/rygel-root-device-factory.vala:301
-#: ../src/rygel/rygel-root-device-factory.vala:311
+#: ../src/rygel/rygel-root-device-factory.vala:294
+#: ../src/rygel/rygel-root-device-factory.vala:304
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "ארע כשל בכתיבת התיאור השונה אל %s"
 
-#: ../src/rygel/rygel-search.vala:85
+#: ../src/rygel/rygel-search.vala:89
 #, c-format
 msgid "Failed to search in '%s': %s"
 msgstr "ארע כשל בחיפוש תחת '%s':‏ %s"
@@ -627,7 +627,7 @@ msgstr "ארע כשל במעבר אל %s‏-%s בכתובת %s:‏ %s"
 msgid "Failed to read contents from URI: %s: %s"
 msgstr "ארע כשל בקריאת התוכן מהכתובת: %s:‏ %s"
 
-#: ../src/rygel/rygel-seekable-response.vala:149
+#: ../src/rygel/rygel-seekable-response.vala:146
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
 msgstr "ארע כשל בסגירת התזרים לכתובת %s:‏ %s"
@@ -664,17 +664,17 @@ msgstr "ארע כשל בשמירת נתוני התצורה לקובץ '%s':‏ %
 msgid "No value available for '%s'"
 msgstr "אין ערך זמין עבור '%s'"
 
-#: ../src/rygel/rygel-user-config.vala:242
+#: ../src/rygel/rygel-user-config.vala:241
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "הערך של '%s' אינו בטווח"
 
-#: ../src/rygel/rygel-user-config.vala:350
+#: ../src/rygel/rygel-user-config.vala:351
 #, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "ארע כשל בהפעלת השירות Rygel:‏ %s"
 
-#: ../src/rygel/rygel-user-config.vala:352
+#: ../src/rygel/rygel-user-config.vala:353
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "ארע כשל בעצירת השירות Rygel:‏ %s"
@@ -692,6 +692,9 @@ msgstr "ארע כשל בכתיבת התיאור לאחר השינוי אל %s."
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "ארע כשל ביצירת דו־שיח ההעדפות: %s"
+
+#~ msgid "Failed to create instance of database"
+#~ msgstr "ארע כשל ביציאת מופיע של מסד הנתונים"
 
 #~ msgid "Changing playback state to %s."
 #~ msgstr "מצב הנגינה משתנה ל־%s."
