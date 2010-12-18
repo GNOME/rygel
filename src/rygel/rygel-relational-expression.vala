@@ -28,7 +28,7 @@ public class Rygel.RelationalExpression :
              Rygel.SearchExpression<SearchCriteriaOp,string,string> {
     internal const string CAPS = "@id,@parentID,upnp:class," +
                                  "dc:title,upnp:artist,upnp:album," +
-                                 "dc:creator,upnp:createClass";
+                                 "dc:creator,upnp:createClass,@childCount";
 
     public override bool satisfied_by (MediaObject media_object) {
         switch (this.operand1) {
@@ -65,6 +65,13 @@ public class Rygel.RelationalExpression :
             }
 
             return this.compare_string ((media_object as MusicItem).album);
+        case "@childCount":
+            if (!(media_object is MediaContainer)) {
+                return false;
+            }
+
+            var container = media_object as MediaContainer;
+            return this.compare_int (container.child_count);
         default:
             return false;
         }
@@ -101,10 +108,33 @@ public class Rygel.RelationalExpression :
             }
         case SearchCriteriaOp.EQ:
             return up_operand2 == up_str;
+        case SearchCriteriaOp.NEQ:
+            return up_operand2 != up_str;
         case SearchCriteriaOp.CONTAINS:
             return up_str.contains (up_operand2);
         case SearchCriteriaOp.DERIVED_FROM:
             return up_str.has_prefix (up_operand2);
+        default:
+            return false;
+        }
+    }
+
+    public bool compare_int (int integer) {
+        var operand2 = this.operand2.to_int ();
+
+        switch (this.op) {
+        case SearchCriteriaOp.EQ:
+            return integer == operand2;
+        case SearchCriteriaOp.NEQ:
+            return integer != operand2;
+        case SearchCriteriaOp.LESS:
+            return integer < operand2;
+        case SearchCriteriaOp.LEQ:
+            return integer <= operand2;
+        case SearchCriteriaOp.GREATER:
+            return integer > operand2;
+        case SearchCriteriaOp.GEQ:
+            return integer >= operand2;
         default:
             return false;
         }
