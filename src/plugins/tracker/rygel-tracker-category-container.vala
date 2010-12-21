@@ -46,7 +46,7 @@ public abstract class Rygel.Tracker.CategoryContainer : Rygel.SimpleContainer {
         this.add_child_container (new New (this, this.item_factory));
     }
 
-    protected async void add_child_container (MediaContainer child) {
+    protected void add_child_container (MediaContainer child) {
         if (child.child_count > 0) {
             this.add_child (child);
         } else {
