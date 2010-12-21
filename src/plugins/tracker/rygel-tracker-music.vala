@@ -30,9 +30,9 @@ public class Rygel.Tracker.Music : CategoryContainer {
     public Music (string id, MediaContainer parent, string title) {
         base (id, parent, title, new MusicItemFactory ());
 
-        this.add_child (new Artists (this));
-        this.add_child (new Albums (this));
-        this.add_child (new Genre (this));
+        this.add_child_container (new Artists (this));
+        this.add_child_container (new Albums (this));
+        this.add_child_container (new Genre (this));
     }
 }
 

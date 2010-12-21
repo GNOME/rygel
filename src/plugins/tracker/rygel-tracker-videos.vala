@@ -30,7 +30,7 @@ public class Rygel.Tracker.Videos : CategoryContainer {
     public Videos (string id, MediaContainer parent, string title) {
         base (id, parent, title, new VideoItemFactory ());
 
-        this.add_child (new Years (this, this.item_factory));
+        this.add_child_container (new Years (this, this.item_factory));
     }
 }
 

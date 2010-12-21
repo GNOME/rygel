@@ -30,7 +30,7 @@ public class Rygel.Tracker.Pictures : CategoryContainer {
     public Pictures (string id, MediaContainer parent, string title) {
         base (id, parent, title, new PictureItemFactory ());
 
-        this.add_child (new Years (this, this.item_factory));
+        this.add_child_container (new Years (this, this.item_factory));
     }
 }
 
