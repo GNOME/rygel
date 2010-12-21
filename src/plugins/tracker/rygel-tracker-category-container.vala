@@ -29,8 +29,6 @@ using Gee;
 public abstract class Rygel.Tracker.CategoryContainer : Rygel.SimpleContainer {
     public ItemFactory item_factory;
 
-    private MediaObjects empty_children;
-
     public CategoryContainer (string         id,
                               MediaContainer parent,
                               string         title,
@@ -38,36 +36,10 @@ public abstract class Rygel.Tracker.CategoryContainer : Rygel.SimpleContainer {
         base (id, parent, title);
 
         this.item_factory = item_factory;
-        this.empty_children = new MediaObjects ();
 
         this.add_child_container (new CategoryAllContainer (this));
         this.add_child_container (new Tags (this, item_factory));
         this.add_child_container (new Titles (this, this.item_factory));
         this.add_child_container (new New (this, this.item_factory));
-    }
-
-    protected void add_child_container (MediaContainer child) {
-        if (child.child_count > 0) {
-            this.add_child (child);
-        } else {
-            this.empty_children.add (child);
-            child.container_updated.connect (this.on_container_updated);
-        }
-    }
-
-    private void on_container_updated (MediaContainer source,
-                                       MediaContainer updated) {
-        if (!(updated in this.empty_children)) {
-            return;
-        }
-
-        if (updated.child_count > 0) {
-            this.empty_children.remove (updated);
-            updated.container_updated.disconnect (this.on_container_updated);
-
-            this.add_child (updated);
-
-            this.updated ();
-        }
     }
 }

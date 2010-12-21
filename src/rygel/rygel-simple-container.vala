@@ -33,12 +33,15 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
                                      Rygel.SearchableContainer {
     public MediaObjects children;
 
+    private MediaObjects empty_children;
+
     public SimpleContainer (string          id,
                             MediaContainer? parent,
                             string          title) {
         base (id, parent, title, 0);
 
         this.children = new MediaObjects ();
+        this.empty_children = new MediaObjects ();
     }
 
     public SimpleContainer.root (string title) {
@@ -49,6 +52,15 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
         this.children.add (child);
 
         this.child_count++;
+    }
+
+    public void add_child_container (MediaContainer child) {
+        if (child.child_count > 0) {
+            this.add_child (child);
+        } else {
+            this.empty_children.add (child);
+            child.container_updated.connect (this.on_container_updated);
+        }
     }
 
     public void remove_child (MediaObject child) {
@@ -107,5 +119,21 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
                                          max_count,
                                          out total_matches,
                                          cancellable);
+    }
+
+    private void on_container_updated (MediaContainer source,
+                                       MediaContainer updated) {
+        if (!(updated in this.empty_children)) {
+            return;
+        }
+
+        if (updated.child_count > 0) {
+            this.empty_children.remove (updated);
+            updated.container_updated.disconnect (this.on_container_updated);
+
+            this.add_child (updated);
+
+            this.updated ();
+        }
     }
 }
