@@ -54,6 +54,10 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
         this.child_count++;
     }
 
+    /**
+     * Container-specific version of @add_child that only actually adds the
+     * child container to the hierarchy until it has any children to offer.
+     */
     public void add_child_container (MediaContainer child) {
         if (child.child_count > 0) {
             this.add_child (child);
