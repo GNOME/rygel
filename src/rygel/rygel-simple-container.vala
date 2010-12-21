@@ -62,6 +62,9 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
         if (child.child_count > 0) {
             this.add_child (child);
         } else {
+            debug ("Container '%s' empty, refusing to add to hierarchy " +
+                   "until it has any children to offer.",
+                   child.id);
             this.empty_children.add (child);
             child.container_updated.connect (this.on_container_updated);
         }
@@ -138,6 +141,9 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
             this.add_child (updated);
 
             this.updated ();
+
+            debug ("Container '%s' now non-empty, added it to hierarchy now.",
+                   updated.id);
         }
     }
 }
