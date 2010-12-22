@@ -34,7 +34,7 @@ public class Rygel.Mediathek.Plugin : Rygel.MediaServerPlugin {
         base ("ZDFMediathek", "ZDF Mediathek");
     }
 
-    public override MediaContainer? get_root_container (GUPnP.Context context) {
+    public override MediaContainer get_root_container (GUPnP.Context context) {
         return RootContainer.get_instance ();
     }
 }

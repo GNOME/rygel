@@ -21,7 +21,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-public class Rygel.MediaServerPlugin : Rygel.Plugin {
+public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
     private static const string MEDIA_SERVER_DESC_PATH =
                                 BuildConfig.DATA_DIR + "/xml/MediaServer2.xml";
 
@@ -51,8 +51,6 @@ public class Rygel.MediaServerPlugin : Rygel.Plugin {
         this.add_resource (info);
     }
 
-    public virtual MediaContainer? get_root_container (GUPnP.Context context) {
-        return null;
-    }
+    public abstract MediaContainer get_root_container (GUPnP.Context context);
 }
 
