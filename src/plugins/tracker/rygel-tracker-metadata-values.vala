@@ -153,7 +153,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
                 container.upnp_class = child_class;
             }
 
-            this.add_child (container);
+            this.add_child_container (container);
         }
 
         this.updated ();

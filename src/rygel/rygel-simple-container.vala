@@ -48,15 +48,13 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
         this ("0", null, title);
     }
 
-    public void add_child (MediaObject child) {
-        this.children.add (child);
-
-        this.child_count++;
+    public void add_child_item (MediaItem child) {
+        this.add_child (child);
     }
 
     /**
-     * Container-specific version of @add_child that only actually adds the
-     * child container to the hierarchy until it has any children to offer.
+     * NOTE: This method only actually adds the child container to the hierarchy
+     * until it has any children to offer.
      */
     public void add_child_container (MediaContainer child) {
         if (child.child_count > 0) {
@@ -126,6 +124,12 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
                                          max_count,
                                          out total_matches,
                                          cancellable);
+    }
+
+    private void add_child (MediaObject child) {
+        this.children.add (child);
+
+        this.child_count++;
     }
 
     private void on_container_updated (MediaContainer source,

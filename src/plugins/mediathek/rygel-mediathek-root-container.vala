@@ -62,7 +62,7 @@ public class Rygel.Mediathek.RootContainer : Rygel.SimpleContainer {
         }
 
         foreach (int id in feeds) {
-            this.add_child (new RssContainer (this, id));
+            this.add_child_container (new RssContainer (this, id));
         }
 
         GLib.Timeout.add_seconds (1800, on_schedule_update);

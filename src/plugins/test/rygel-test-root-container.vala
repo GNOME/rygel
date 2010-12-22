@@ -33,8 +33,8 @@ public class Rygel.Test.RootContainer : Rygel.SimpleContainer {
     public RootContainer (string title) {
         base.root (title);
 
-        this.add_child (new AudioItem ("sinewave", this, "Sine Wave"));
-        this.add_child (new VideoItem ("smtpe", this, "SMTPE"));
+        this.add_child_item (new AudioItem ("sinewave", this, "Sine Wave"));
+        this.add_child_item (new VideoItem ("smtpe", this, "SMTPE"));
     }
 }
 

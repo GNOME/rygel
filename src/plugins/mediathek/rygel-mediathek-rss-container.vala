@@ -70,7 +70,7 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
                     Xml.Node* node = xpo->nodesetval->item (i);
                     try {
                         var item = VideoItem.create_from_xml (this, node);
-                        this.add_child (item);
+                        this.add_child_item (item);
                         ret = true;
                     }
                     catch (VideoItemError error) {
