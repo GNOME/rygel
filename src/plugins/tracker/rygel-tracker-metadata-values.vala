@@ -192,19 +192,5 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
                                          RESOURCES_PATH,
                                          DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
     }
-
-    private bool is_child_id_unique (string child_id) {
-        var unique = true;
-
-        foreach (var child in this.children) {
-            if (child.id == child_id) {
-                unique = false;
-
-                break;
-            }
-        }
-
-        return unique;
-    }
 }
 

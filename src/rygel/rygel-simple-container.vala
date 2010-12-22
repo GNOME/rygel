@@ -80,6 +80,31 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
         this.child_count = 0;
     }
 
+    public bool is_child_id_unique (string child_id) {
+        var unique = true;
+
+        foreach (var child in this.children) {
+            if (child.id == child_id) {
+                unique = false;
+
+                break;
+            }
+        }
+
+        if (unique) {
+            // Check the pending empty containers
+            foreach (var child in this.empty_children) {
+                if (child.id == child_id) {
+                    unique = false;
+
+                    break;
+                }
+            }
+        }
+
+        return unique;
+    }
+
     public override async MediaObjects? get_children (uint         offset,
                                                       uint         max_count,
                                                       Cancellable? cancellable)
