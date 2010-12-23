@@ -67,7 +67,7 @@ public class Rygel.MusicItem : AudioItem {
             var protocol = this.get_protocol_for_uri (this.album_art.uri);
 
             if (allow_internal || protocol != "internal") {
-                album_art.add_resource (didl_item, protocol);
+                didl_item.album_art = this.album_art.uri;
             }
         }
     }

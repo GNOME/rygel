@@ -80,7 +80,7 @@ public class Rygel.MediaArtStore : GLib.Object {
             return null;
         }
 
-        var thumb = new AlbumArt ();
+        var thumb = new Thumbnail ();
         thumb.uri = file.get_uri ();
         thumb.size = (int64) info.get_size ();
 

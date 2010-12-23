@@ -44,7 +44,7 @@ public class Rygel.External.AlbumArtFactory {
 
     private Thumbnail create_from_props (HashTable<string,Variant> props,
                                          string                    host_ip) {
-        var thumbnail = new AlbumArt ();
+        var thumbnail = new Thumbnail ();
 
         var value = props.lookup ("MIMEType");
         thumbnail.mime_type = (string) value;
