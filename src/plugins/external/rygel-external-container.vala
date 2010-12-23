@@ -33,7 +33,6 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                                         Rygel.SearchableContainer {
     public MediaContainerProxy actual_container;
 
-    public string host_ip;
     public string service_name;
 
     private ItemFactory item_factory;
@@ -47,12 +46,10 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                       bool       searchable,
                       string     service_name,
                       string     path,
-                      string     host_ip,
                       Container? parent = null) throws IOError {
         base (id, parent, title, (int) child_count);
 
         this.service_name = service_name;
-        this.host_ip = host_ip;
         this.item_factory = new ItemFactory ();
         this.containers = new ArrayList<Container> ();
 
@@ -171,7 +168,6 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                                          actual_object.display_name,
                                          props,
                                          this.service_name,
-                                         this.host_ip,
                                          parent_container);
         }
 
@@ -223,7 +219,6 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                                          title,
                                          props,
                                          this.service_name,
-                                         this.host_ip,
                                          parent_container);
                 }
             }
@@ -261,7 +256,6 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                                            searchable,
                                            this.service_name,
                                            path,
-                                           this.host_ip,
                                            this);
             this.containers.add (container);
         }

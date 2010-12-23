@@ -34,7 +34,6 @@ public class Rygel.External.ItemFactory {
                                    string                    title,
                                    HashTable<string,Variant> props,
                                    string                    service_name,
-                                   string                    host_ip,
                                    MediaContainer            parent)
                                    throws GLib.Error {
         MediaItem item;
@@ -42,34 +41,28 @@ public class Rygel.External.ItemFactory {
         if (type.has_prefix ("audio")) {
             item = new AudioItem (id, parent, title);
 
-            this.set_audio_metadata (item as AudioItem,
-                                     props,
-                                     service_name,
-                                     host_ip);
+            this.set_audio_metadata (item as AudioItem, props, service_name);
         } else if (type.has_prefix ("music")) {
             item = new MusicItem (id, parent, title);
 
             yield this.set_music_metadata (item as MusicItem,
                                            props,
-                                           service_name,
-                                           host_ip);
+                                           service_name);
         } else if (type.has_prefix ("video")) {
             item = new VideoItem (id, parent, title);
 
             yield this.set_video_metadata (item as VideoItem,
                                            props,
-                                           service_name,
-                                           host_ip);
+                                           service_name);
         } else {
             item = new ImageItem (id, parent, title);
 
             yield this.set_visual_metadata (item as VisualItem,
                                             props,
-                                            service_name,
-                                            host_ip);
+                                            service_name);
         }
 
-        this.set_generic_metadata (item, props, service_name, host_ip);
+        this.set_generic_metadata (item, props, service_name);
 
         if (parent is DummyContainer) {
             item.parent_ref = parent;
@@ -81,8 +74,7 @@ public class Rygel.External.ItemFactory {
     private async void set_music_metadata
                                         (MusicItem                 music,
                                          HashTable<string,Variant> props,
-                                         string                    service_name,
-                                         string                    host_ip)
+                                         string                    service_name)
                                          throws GLib.Error {
         music.artist = this.get_string (props, "Artist");
         music.album = this.get_string (props, "Album");
@@ -93,17 +85,15 @@ public class Rygel.External.ItemFactory {
             var cover_factory = new AlbumArtFactory ();
 
             music.album_art = yield cover_factory.create ((string) value,
-                                                          service_name,
-                                                          host_ip);
+                                                          service_name);
         }
 
-        this.set_audio_metadata (music, props, service_name, host_ip);
+        this.set_audio_metadata (music, props, service_name);
     }
 
     private void set_audio_metadata (AudioItem                 audio,
                                      HashTable<string,Variant> props,
-                                     string                    service_name,
-                                     string                    host_ip)
+                                     string                    service_name)
                                      throws GLib.Error {
         audio.duration = this.get_int (props, "Duration");
         audio.bitrate = this.get_int (props, "Bitrate");
@@ -114,8 +104,7 @@ public class Rygel.External.ItemFactory {
     private async void set_visual_metadata
                                         (VisualItem                visual,
                                          HashTable<string,Variant> props,
-                                         string                    service_name,
-                                         string                    host_ip)
+                                         string                    service_name)
                                          throws GLib.Error {
         visual.width = this.get_int (props, "Width");
         visual.height = this.get_int (props, "Height");
@@ -126,9 +115,8 @@ public class Rygel.External.ItemFactory {
         var value = props.lookup ("Thumbnail");
         if (value != null) {
             var factory = new ThumbnailFactory ();
-            var thumbnail = yield factory.create ((string) value,
-                                                  service_name,
-                                                  host_ip);
+            var thumbnail = yield factory.create ((string) value, service_name);
+
             visual.thumbnails.add (thumbnail);
         }
     }
@@ -136,17 +124,15 @@ public class Rygel.External.ItemFactory {
     private async void set_video_metadata
                                         (VideoItem                 video,
                                          HashTable<string,Variant> props,
-                                         string                    service_name,
-                                         string                    host_ip)
+                                         string                    service_name)
                                          throws GLib.Error {
-        yield this.set_visual_metadata (video, props, service_name, host_ip);
-        this.set_audio_metadata (video, props, service_name, host_ip);
+        yield this.set_visual_metadata (video, props, service_name);
+        this.set_audio_metadata (video, props, service_name);
     }
 
     private void set_generic_metadata (MediaItem                 item,
                                        HashTable<string,Variant> props,
-                                       string                    service_name,
-                                       string                    host_ip) {
+                                       string                    service_name) {
         item.mime_type = this.get_string (props, "MIMEType");
 
         var uris = (string[]) props.lookup ("URLs");

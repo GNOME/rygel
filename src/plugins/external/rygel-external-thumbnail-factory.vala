@@ -29,8 +29,7 @@ using FreeDesktop;
  */
 public class Rygel.External.ThumbnailFactory {
     public async Thumbnail create (string service_name,
-                                   string object_path,
-                                   string host_ip)
+                                   string object_path)
                                    throws GLib.Error {
         Properties props = yield Bus.get_proxy
                                         (BusType.SESSION,
@@ -40,11 +39,10 @@ public class Rygel.External.ThumbnailFactory {
 
         var item_props = yield props.get_all (MediaItemProxy.IFACE);
 
-        return this.create_from_props (item_props, host_ip);
+        return this.create_from_props (item_props);
     }
 
-    private Thumbnail create_from_props (HashTable<string,Variant> props,
-                                         string                    host_ip) {
+    private Thumbnail create_from_props (HashTable<string,Variant> props) {
         var thumbnail = new Thumbnail ();
 
         thumbnail.mime_type = this.get_string (props, "MIMEType");

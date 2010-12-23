@@ -61,7 +61,6 @@ public class Rygel.External.Plugin : Rygel.MediaServerPlugin {
                                             this.searchable,
                                             this.service_name,
                                             this.root_object,
-                                            context.host_ip,
                                             null);
         } catch (IOError err) {
             critical ("Failed to connect to session bus: %s", err.message);

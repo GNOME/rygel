@@ -29,8 +29,7 @@ using FreeDesktop;
  */
 public class Rygel.External.AlbumArtFactory {
     public async Thumbnail create (string service_name,
-                                   string object_path,
-                                   string host_ip) throws IOError {
+                                   string object_path) throws IOError {
         Properties props = yield Bus.get_proxy
                                         (BusType.SESSION,
                                          service_name,
@@ -39,11 +38,10 @@ public class Rygel.External.AlbumArtFactory {
 
         var item_props = yield props.get_all (MediaItemProxy.IFACE);
 
-        return this.create_from_props (item_props, host_ip);
+        return this.create_from_props (item_props);
     }
 
-    private Thumbnail create_from_props (HashTable<string,Variant> props,
-                                         string                    host_ip) {
+    private Thumbnail create_from_props (HashTable<string,Variant> props) {
         var thumbnail = new Thumbnail ();
 
         var value = props.lookup ("MIMEType");
