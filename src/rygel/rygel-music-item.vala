@@ -60,7 +60,7 @@ public class Rygel.MusicItem : AudioItem {
 
     internal override void add_resources (DIDLLiteItem didl_item,
                                           bool         allow_internal)
-                                         throws Error {
+                                          throws Error {
         base.add_resources (didl_item, allow_internal);
 
         if (this.album_art != null) {
