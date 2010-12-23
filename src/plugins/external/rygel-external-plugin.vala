@@ -51,7 +51,7 @@ public class Rygel.External.Plugin : Rygel.MediaServerPlugin {
         }
     }
 
-    public override MediaContainer get_root_container (GUPnP.Context context) {
+    public override MediaContainer get_root_container () {
         Container root_container = null;
 
         try {

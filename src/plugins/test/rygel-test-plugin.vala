@@ -36,7 +36,7 @@ public class Rygel.Test.Plugin : Rygel.MediaServerPlugin {
         base ("Test", "Test Streams");
     }
 
-    public override MediaContainer get_root_container (GUPnP.Context context) {
+    public override MediaContainer get_root_container () {
         return new RootContainer (this.title);
     }
 }

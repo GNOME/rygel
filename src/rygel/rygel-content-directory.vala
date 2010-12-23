@@ -71,7 +71,7 @@ internal class Rygel.ContentDirectory: Service {
 
         var plugin = this.root_device.resource_factory as MediaServerPlugin;
 
-        this.root_container = plugin.get_root_container (this.context);
+        this.root_container = plugin.get_root_container ();
         this.http_server = new HTTPServer (this, plugin.name);
 
         this.updated_containers =  new ArrayList<MediaContainer> ();

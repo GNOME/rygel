@@ -32,7 +32,7 @@ public class Rygel.Tracker.Plugin : Rygel.MediaServerPlugin {
               _("@REALNAME@'s media"));
     }
 
-    public override MediaContainer get_root_container (GUPnP.Context context) {
+    public override MediaContainer get_root_container () {
         if (root_container == null) {
             root_container = new RootContainer (this.title);
         }

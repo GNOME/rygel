@@ -51,6 +51,6 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
         this.add_resource (info);
     }
 
-    public abstract MediaContainer get_root_container (GUPnP.Context context);
+    public abstract MediaContainer get_root_container ();
 }
 
