@@ -112,6 +112,14 @@ public class Rygel.MusicItem : AudioItem {
             didl_item.genre = this.genre;
         }
 
+        if (didl_item.album_art != null) {
+            didl_item.album_art = this.address_regex.replace_literal
+                                        (didl_item.album_art,
+                                         -1,
+                                         0,
+                                         http_server.context.host_ip);
+        }
+
         return didl_item;
     }
 

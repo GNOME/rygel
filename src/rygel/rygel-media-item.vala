@@ -78,6 +78,8 @@ public abstract class Rygel.MediaItem : MediaObject {
         }
     }
 
+    protected Regex address_regex;
+
     public MediaItem (string         id,
                       MediaContainer parent,
                       string         title,
@@ -86,6 +88,12 @@ public abstract class Rygel.MediaItem : MediaObject {
         this.parent = parent;
         this.title = title;
         this.upnp_class = upnp_class;
+
+        try {
+            this.address_regex = new Regex (Regex.escape_string ("@ADDRESS@"));
+        } catch (GLib.RegexError err) {
+            assert_not_reached ();
+        }
     }
 
     // Live media items need to provide a nice working implementation of this
@@ -208,11 +216,17 @@ public abstract class Rygel.MediaItem : MediaObject {
          */
         this.add_proxy_resources (http_server, didl_item);
         if (!this.place_holder) {
+            var host_ip = http_server.context.host_ip;
+
             // then original URIs
             bool internal_allowed;
             internal_allowed = http_server.context.interface == "lo" ||
-                               http_server.context.host_ip == "127.0.0.1";
+                               host_ip == "127.0.0.1";
             this.add_resources (didl_item, internal_allowed);
+
+            foreach (var res in didl_item.get_resources ()) {
+                res.uri = this.address_regex.replace_literal (res.uri, -1, 0, host_ip);
+            }
         }
 
         return didl_item;

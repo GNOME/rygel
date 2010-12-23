@@ -56,7 +56,7 @@ public class Rygel.External.ThumbnailFactory {
         var value = props.lookup ("URLs");
         var uris = (string[]) value;
         if (uris != null && uris[0] != null) {
-            thumbnail.uri = uris[0].replace ("@ADDRESS@", host_ip);
+            thumbnail.uri = uris[0];
         }
 
         value = props.lookup ("Size");

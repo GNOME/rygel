@@ -152,7 +152,7 @@ public class Rygel.External.ItemFactory {
         var uris = (string[]) props.lookup ("URLs");
         if (uris != null) {
             for (var i = 0; uris[i] != null; i++) {
-                item.add_uri (uris[i].replace ("@ADDRESS@", host_ip));
+                item.add_uri (uris[i]);
             }
         }
 
