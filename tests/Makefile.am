@@ -80,5 +80,4 @@ rygel_http_post_test_SOURCES = rygel-http-post-test.vala \
 rygel_album_art_spec_test_SOURCES = rygel-album-art-spec-test.vala \
 			       rygel-media-art-store.vala \
 				   ../src/rygel/rygel-thumbnail.vala \
-				   ../src/rygel/rygel-icon-info.vala \
-				   ../src/rygel/rygel-album-art.vala
+				   ../src/rygel/rygel-icon-info.vala
