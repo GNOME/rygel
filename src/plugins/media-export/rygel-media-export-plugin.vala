@@ -48,9 +48,9 @@ public void module_init (PluginLoader loader) {
 
 public void on_plugin_available (Plugin plugin, Plugin our_plugin) {
     if (plugin.name == TRACKER_PLUGIN &&
-        our_plugin.available == plugin.available) {
-        if (plugin.available) {
-            message ("Disabling plugin '%s' in favor of plugin '%s'",
+        our_plugin.active == plugin.active) {
+        if (plugin.active) {
+            message ("Deactivating plugin '%s' in favor of plugin '%s'",
                      OUR_PLUGIN,
                      TRACKER_PLUGIN);
             try {
@@ -64,12 +64,12 @@ public void on_plugin_available (Plugin plugin, Plugin our_plugin) {
                 }
             } catch (Error error) {};
         } else {
-            message ("Plugin '%s' disabled, enabling '%s' plugin",
+            message ("Plugin '%s' inactivate, activating '%s' plugin",
                      TRACKER_PLUGIN,
                      OUR_PLUGIN);
         }
 
-        our_plugin.available = !plugin.available;
+        our_plugin.active = !plugin.active;
     }
 }
 
@@ -85,7 +85,7 @@ public class Rygel.MediaExport.Plugin : Rygel.MediaServerPlugin {
             warning ("Could not create root container: %s. " +
                      "Disabling plugin",
                      error.message);
-            this.available = false;
+            this.active = false;
         }
 
         return new NullContainer ();

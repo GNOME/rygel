@@ -92,12 +92,12 @@ public class Rygel.MPRIS.PluginFactory {
 
         if (plugin != null) {
             if (old_owner != "" && new_owner == "") {
-                debug ("Service '%s' going down, marking it as unavailable",
+                debug ("Service '%s' going down, Deactivating it",
                        name);
-                plugin.available = false;
+                plugin.active = false;
             } else if (old_owner == "" && new_owner != "") {
-                debug ("Service '%s' up again, marking it as available", name);
-                plugin.available = true;
+                debug ("Service '%s' up again, activating it", name);
+                plugin.active = true;
             }
         } else if (name.has_prefix (SERVICE_PREFIX)) {
             // Ah, new plugin available, lets use it

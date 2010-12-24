@@ -62,7 +62,7 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
     // Path to description document
     public string desc_path;
 
-    public bool available { get; set; }
+    public bool active { get; set; }
 
     public ArrayList<ResourceInfo> resource_infos;
     public ArrayList<IconInfo> icon_infos;
@@ -78,7 +78,7 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
         this.title = title;
         this.description = description;
 
-        this.available = true;
+        this.active = true;
 
         if (title == null) {
             this.title = name;

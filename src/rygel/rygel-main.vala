@@ -184,11 +184,11 @@ public class Rygel.Main : Object {
         try {
             var device = factory.create (plugin);
 
-            device.available = plugin.available;
+            device.available = plugin.active;
 
             this.root_devices.add (device);
 
-            plugin.notify["available"].connect (this.on_plugin_notify);
+            plugin.notify["active"].connect (this.on_plugin_active_notify);
         } catch (GLib.Error error) {
             warning (_("Failed to create RootDevice for %s. Reason: %s"),
                      plugin.name,
@@ -196,13 +196,13 @@ public class Rygel.Main : Object {
         }
     }
 
-    private void on_plugin_notify (Object    obj,
-                                   ParamSpec spec) {
+    private void on_plugin_active_notify (Object    obj,
+                                          ParamSpec spec) {
         var plugin = obj as Plugin;
 
         foreach (var device in this.root_devices) {
             if (device.resource_factory == plugin) {
-                device.available = plugin.available;
+                device.available = plugin.active;
             }
         }
     }
