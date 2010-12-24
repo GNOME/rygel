@@ -49,8 +49,34 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
                                  MediaReceiverRegistrar.DESCRIPTION_PATH,
                                  typeof (MediaReceiverRegistrar));
         this.add_resource (info);
+
+        var root_container = this.get_root_container ();
+        if (root_container.child_count == 0) {
+            debug ("Deactivating plugin '%s' until it provides content.",
+                   this.name);
+
+            this.active = false;
+
+            root_container.container_updated.connect
+                                        (this.on_container_updated);
+        }
     }
 
     public abstract MediaContainer get_root_container ();
+
+    private void on_container_updated (MediaContainer root_container,
+                                       MediaContainer updated) {
+        if (updated != root_container || updated.child_count == 0) {
+            return;
+        }
+
+        root_container.container_updated.disconnect
+                                        (this.on_container_updated);
+
+        debug ("Activating plugin '%s' since it now provides content.",
+               this.name);
+
+        this.active = true;
+    }
 }
 
