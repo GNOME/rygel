@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-12-09 21:20+0000\n"
+"POT-Creation-Date: 2010-12-28 02:27+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
@@ -276,6 +276,10 @@ msgstr "Albumi"
 msgid "Artists"
 msgstr "Izvajalci"
 
+#: ../src/plugins/tracker/rygel-tracker-titles.vala:58
+msgid "Titles"
+msgstr "Naslovi"
+
 #: ../src/rygel/rygel-media-query-action.vala:117
 #: ../src/rygel/rygel-media-query-action.vala:141
 #: ../src/rygel/rygel-browse.vala:94
@@ -540,13 +544,13 @@ msgstr "Ustvarjanje RootDevice za %s je spodletelo: Vzrok: %s"
 msgid "Failed to start D-Bus service: %s"
 msgstr "Zaganjanje storitve D-Bus je spodletelo: %s"
 
-#: ../src/rygel/rygel-media-item.vala:258
+#: ../src/rygel/rygel-media-item.vala:272
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Slab naslov URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:270
+#: ../src/rygel/rygel-media-item.vala:284
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Neuspešno preiskovanje protokola za naslov URI %s. Uporabljeno bo '%s'"
