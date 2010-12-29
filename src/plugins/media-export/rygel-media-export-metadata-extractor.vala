@@ -84,11 +84,21 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         }
     }
 
+    public void extract (File file) {
+        if (this.extract_metadata) {
+            string uri = file.get_uri ();
+            this.file_hash.set (uri, file);
+            this.discoverer.discover_uri (uri);
+        } else {
+            this.extract_basic_information (file);
+        }
+    }
+
     private void on_done (GUPnP.DLNAInformation dlna,
-                          GLib.Error        	err) {
+                          GLib.Error            err) {
         assert (this.file_hash.has_key (dlna.info.uri));
 
-        File file = this.file_hash.get (dlna.info.uri);
+        var file = this.file_hash.get (dlna.info.uri);
 
         this.file_hash.unset (dlna.info.uri);
 
@@ -99,6 +109,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             dlna = null;
         } else if ((dlna.info.result & Gst.DiscovererResult.ERROR) != 0) {
             this.error (file, err);
+
             return;
         }
 
@@ -148,13 +159,4 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
     }
 
-    public void extract (File file) {
-        if (this.extract_metadata) {
-            string uri = file.get_uri ();
-            this.file_hash.set (uri, file);
-            this.discoverer.discover_uri (uri);
-        } else {
-            this.extract_basic_information (file);
-        }
-    }
 }
