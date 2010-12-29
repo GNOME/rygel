@@ -69,6 +69,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
         if (this.extract_metadata) {
             var gst_timeout = (ClockTime) (this.timeout * Gst.SECOND);
+
             this.discoverer = new GUPnP.DLNADiscoverer (gst_timeout,
                                                         true,
                                                         true);
@@ -92,26 +93,59 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         this.file_hash.unset (dlna.info.uri);
 
         if ((dlna.info.result & Gst.DiscovererResult.TIMEOUT) != 0) {
-            this.error (file,
-                        new IOChannelError.FAILED ("Pipeline stuck while" +
-                                                   "reading file info"));
-            return;
+            debug ("Extraction timed out on %s", file.get_uri ());
+
+            // set dlna to null to extract basic file information
+            dlna = null;
         } else if ((dlna.info.result & Gst.DiscovererResult.ERROR) != 0) {
             this.error (file, err);
             return;
         }
 
-        try {
-            uint64 size, mtime;
-            string mime;
+        this.extract_basic_information (file, dlna);
+    }
 
-            this.extract_file_info (file, out mime, out size, out mtime);
-            this.extraction_done (file, dlna, mime, size, mtime);
-        } catch (Error e) {
-            debug ("Failed to extract metadata from %s: %s",
-                    dlna.info.uri,
-                    e.message);
+    private void extract_basic_information (File file,
+                                            DLNAInformation? dlna = null) {
+        try {
+            FileInfo file_info;
+
+            try {
+                file_info = file.query_info
+                                        (FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE
+                                         + "," +
+                                         FILE_ATTRIBUTE_STANDARD_SIZE + "," +
+                                         FILE_ATTRIBUTE_TIME_MODIFIED,
+                                         FileQueryInfoFlags.NONE,
+                                         null);
+            } catch (Error error) {
+                warning (_("Failed to query content type for '%s'"),
+                        file.get_uri ());
+
+                // signal error to parent
+                this.error (file, error);
+
+                throw error;
+            }
+
+            var content_type = file_info.get_content_type ();
+            var mime = ContentType.get_mime_type (content_type);
+            var size = file_info.get_size ();
+            var mtime = file_info.get_attribute_uint64
+                                        (FILE_ATTRIBUTE_TIME_MODIFIED);
+
+            this.extraction_done (file,
+                                  dlna,
+                                  mime,
+                                  size,
+                                  mtime);
+        } catch (Error error) {
+            debug ("Failed to extract basic metadata from %s: %s",
+                   file.get_uri (),
+                   error.message);
+            this.error (file, error);
         }
+
     }
 
     public void extract (File file) {
@@ -120,53 +154,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             this.file_hash.set (uri, file);
             this.discoverer.discover_uri (uri);
         } else {
-            try {
-                string mime;
-                uint64 size;
-                uint64 mtime;
-
-                extract_file_info (file,
-                                   out mime,
-                                   out size,
-                                   out mtime);
-
-                this.extraction_done (file,
-                                      null,
-                                      mime,
-                                      size,
-                                      mtime);
-            } catch (Error error) {
-                this.error (file, error);
-            }
+            this.extract_basic_information (file);
         }
-    }
-
-    private void extract_file_info (File       file,
-                                    out string mime,
-                                    out uint64 size,
-                                    out uint64 mtime) throws Error {
-        FileInfo file_info;
-
-        try {
-            file_info = file.query_info (FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE
-                                         + "," +
-                                         FILE_ATTRIBUTE_STANDARD_SIZE + "," +
-                                         FILE_ATTRIBUTE_TIME_MODIFIED,
-                                         FileQueryInfoFlags.NONE,
-                                         null);
-        } catch (Error error) {
-            warning (_("Failed to query content type for '%s'"),
-                     file.get_uri ());
-
-            // signal error to parent
-            this.error (file, error);
-
-            throw error;
-        }
-
-        string content_type = file_info.get_content_type ();
-        mime = ContentType.get_mime_type (content_type);
-        size = file_info.get_size ();
-        mtime = file_info.get_attribute_uint64 (FILE_ATTRIBUTE_TIME_MODIFIED);
     }
 }
