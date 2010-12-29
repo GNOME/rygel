@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-03 19:12+0200\n"
-"PO-Revision-Date: 2010-09-03 19:29+0100\n"
+"POT-Creation-Date: 2010-12-29 15:07+0100\n"
+"PO-Revision-Date: 2010-12-29 17:35+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,6 +34,7 @@ msgid "Plugins"
 msgstr "Insticksmoduler"
 
 #: ../data/rygel-preferences.ui.h:5
+#: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
 msgstr "Inställningar för Rygel"
 
@@ -99,49 +101,36 @@ msgstr "_Omkodningsstöd"
 msgid "_URIs"
 msgstr "_URI:er"
 
-#: ../src/plugins/playbin/rygel-playbin-player.vala:66
-#, c-format
-msgid "Changing playback state to %s."
-msgstr "Ändrar uppspelningstillstånd till %s."
+#: ../data/rygel-preferences.desktop.in.in.h:2
+msgid "UPnP/DLNA Preferences"
+msgstr "Inställningar för UPnP/DLNA"
 
-#: ../src/plugins/playbin/rygel-playbin-player.vala:92
-#, c-format
-msgid "URI set to %s."
-msgstr "URI inställd till %s."
+#: ../data/rygel.desktop.in.in.h:1
+msgid "Rygel"
+msgstr "Rygel"
 
-#: ../src/plugins/playbin/rygel-playbin-player.vala:103
-#, c-format
-msgid "volume set to %f."
-msgstr "volym inställd till %f."
+#: ../data/rygel.desktop.in.in.h:2
+msgid "UPnP/DLNA Services"
+msgstr "UPnP/DLNA-tjänster"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
 msgid "GStreamer Player"
 msgstr "GStreamer-uppspelare"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:111
-#, c-format
-msgid "Using database file %s"
-msgstr "Använder databasfilen %s"
-
-#: ../src/plugins/media-export/rygel-media-export-database.vala:115
+#: ../src/plugins/media-export/rygel-media-export-database.vala:94
 #, c-format
 msgid "Failed to open database: %d (%s)"
 msgstr "Misslyckades med att öppna databas: %d (%s)"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:236
+#: ../src/plugins/media-export/rygel-media-export-database.vala:208
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Misslyckades med att rulla tillbaka transaktion: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:294
+#: ../src/plugins/media-export/rygel-media-export-database.vala:268
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Typen %s stöds inte"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:111
-#, c-format
-msgid "Failed to extract metadata from %s: %s"
-msgstr "Misslyckades med att extrahera metadata från %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #: ../src/rygel/rygel-plugin-loader.vala:178
@@ -154,22 +143,12 @@ msgstr "Misslyckades med att fråga efter innehållstyp för \"%s\""
 msgid "Failed to add item with ID %s: %s"
 msgstr "Misslyckades med att lägga till objekt med ID %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:121
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:122
 #, c-format
 msgid "Object %s is not an item"
 msgstr "Objektet %s är inte ett objekt"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:254
-#, c-format
-msgid "Original search: %s"
-msgstr "Ursprunglig sökning: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:255
-#, c-format
-msgid "Parsed search expression: %s"
-msgstr "Tolkade sökuttryck: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:37
+#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:38
 #, c-format
 msgid "Failed to attach to D-Bus session bus: %s"
 msgstr "Misslyckades med koppla till D-Bus-sessionsbuss: %s"
@@ -183,17 +162,12 @@ msgstr ""
 msgid "'%s' harvested"
 msgstr ""
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:144
-#, c-format
-msgid "Trying to harvest %s because of %d"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:155
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:158
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Fel vid hämtning av objektet \"%s\" från databasen: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:179
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:182
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Fel vid borttagning av objekt från databasen: %s"
@@ -201,14 +175,9 @@ msgstr "Fel vid borttagning av objekt från databasen: %s"
 #. @REALNAME@ is substituted for user's real name
 #. and it doesn't need translation.
 #: ../src/plugins/media-export/rygel-media-export-plugin.vala:78
-#: ../src/plugins/tracker/rygel-tracker-plugin.vala:30
+#: ../src/plugins/tracker/rygel-tracker-plugin.vala:32
 msgid "@REALNAME@'s media"
 msgstr "Media för @REALNAME@"
-
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:48
-#, c-format
-msgid "Folder %s gone; removing watch"
-msgstr "Mappen %s är borta, tar bort bevakning"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:77
 #, c-format
@@ -233,75 +202,54 @@ msgid "Album"
 msgstr "Album"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:37
+#: ../src/plugins/tracker/rygel-tracker-genre.vala:33
 msgid "Genre"
 msgstr "Genre"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:59
-msgid "Failed to create instance of database"
-msgstr "Misslyckades med att skapa instans av databas"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:88
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:94
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "Misslyckades med att ta bort URI: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:319
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:329
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Misslyckades med att skapa MediaExport D-Bus-tjänst: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:353
-#, c-format
-msgid "ID %s no longer in config; deleting..."
-msgstr "ID %s finns inte längre i konfigurationen, tar bort..."
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:357
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:367
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Misslyckades med att ta bort post: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:368
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:378
 msgid "Music"
 msgstr "Musik"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:371
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
 msgid "Pictures"
 msgstr "Bilder"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:373
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:383
 msgid "Videos"
 msgstr "Videor"
 
-#: ../src/plugins/mpris/rygel-mpris-player.vala:41
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:56
 #, c-format
-msgid "Changing playback state to %s.."
-msgstr "Ändrar uppspelningstillstånd till %s.."
+msgid "Failed to create D-Bus proxies: %s"
+msgstr "Misslyckades med att skapa D-Bus-proxies: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:41
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:64
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "Misslyckades med att skapa URI för mappen \"%s\": %s"
 
-#: ../src/plugins/tracker/rygel-tracker-insertion-query.vala:63
-#: ../src/plugins/tracker/rygel-tracker-selection-query.vala:71
-#, c-format
-msgid "Executing SPARQL query: %s"
-msgstr "Kör SPARQL-fråga: %s"
-
-#: ../src/plugins/tracker/rygel-tracker-item-creation.vala:73
-#: ../src/rygel/rygel-media-container.vala:213
-#, c-format
-msgid "Object creation in %s not allowed"
-msgstr ""
-
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:60
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:99
-#: ../src/rygel/rygel-user-config.vala:180
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:61
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:93
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr "Misslyckades med anslutning till sessionsbuss: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:113
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:112
 #, c-format
 msgid "Error getting all values for '%s': %s"
 msgstr "Fel vid hämtning av alla värden för \"%s\": %s"
@@ -311,7 +259,7 @@ msgstr "Fel vid hämtning av alla värden för \"%s\": %s"
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "Misslyckades med att starta Tracker-tjänst: %s. Insticksmodulen inaktiverad."
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:186
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:203
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr "Fel vid hämtning av objektantal under kategorin \"%s\": %s"
@@ -324,11 +272,17 @@ msgstr "Album"
 msgid "Artists"
 msgstr "Artister"
 
-#: ../src/rygel/rygel-media-query-action.vala:121
-#: ../src/rygel/rygel-media-query-action.vala:142
-#: ../src/rygel/rygel-browse.vala:93
-#: ../src/rygel/rygel-item-creator.vala:126
-#: ../src/rygel/rygel-item-creator.vala:159
+#: ../src/plugins/tracker/rygel-tracker-titles.vala:58
+msgid "Titles"
+msgstr "Titlar"
+
+#: ../src/rygel/rygel-media-query-action.vala:117
+#: ../src/rygel/rygel-media-query-action.vala:141
+#: ../src/rygel/rygel-browse.vala:94
+#: ../src/rygel/rygel-item-creator.vala:154
+#: ../src/rygel/rygel-item-creator.vala:189
+#: ../src/rygel/rygel-item-destroyer.vala:53
+#: ../src/rygel/rygel-item-destroyer.vala:99
 msgid "No such object"
 msgstr "Inget sådant objekt"
 
@@ -336,27 +290,29 @@ msgstr "Inget sådant objekt"
 msgid "Invalid Arguments"
 msgstr "Ogiltiga argument"
 
-#: ../src/rygel/rygel-browse.vala:120
+#: ../src/rygel/rygel-browse.vala:121
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "Misslyckades med att bläddra i \"%s\": %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:123
-#: ../src/rygel/rygel-cmdline-config.vala:128
-#: ../src/rygel/rygel-cmdline-config.vala:136
-#: ../src/rygel/rygel-cmdline-config.vala:144
-#: ../src/rygel/rygel-cmdline-config.vala:152
-#: ../src/rygel/rygel-cmdline-config.vala:160
-#: ../src/rygel/rygel-cmdline-config.vala:168
-#: ../src/rygel/rygel-cmdline-config.vala:176
-#: ../src/rygel/rygel-cmdline-config.vala:184
-#: ../src/rygel/rygel-cmdline-config.vala:210
-#: ../src/rygel/rygel-cmdline-config.vala:229
-#: ../src/rygel/rygel-cmdline-config.vala:253
-#: ../src/rygel/rygel-cmdline-config.vala:279
-#: ../src/rygel/rygel-cmdline-config.vala:308
-#: ../src/rygel/rygel-cmdline-config.vala:334
-#: ../src/rygel/rygel-cmdline-config.vala:359
+#: ../src/rygel/rygel-cmdline-config.vala:130
+#: ../src/rygel/rygel-cmdline-config.vala:135
+#: ../src/rygel/rygel-cmdline-config.vala:143
+#: ../src/rygel/rygel-cmdline-config.vala:151
+#: ../src/rygel/rygel-cmdline-config.vala:159
+#: ../src/rygel/rygel-cmdline-config.vala:167
+#: ../src/rygel/rygel-cmdline-config.vala:175
+#: ../src/rygel/rygel-cmdline-config.vala:183
+#: ../src/rygel/rygel-cmdline-config.vala:191
+#: ../src/rygel/rygel-cmdline-config.vala:199
+#: ../src/rygel/rygel-cmdline-config.vala:207
+#: ../src/rygel/rygel-cmdline-config.vala:233
+#: ../src/rygel/rygel-cmdline-config.vala:252
+#: ../src/rygel/rygel-cmdline-config.vala:276
+#: ../src/rygel/rygel-cmdline-config.vala:302
+#: ../src/rygel/rygel-cmdline-config.vala:331
+#: ../src/rygel/rygel-cmdline-config.vala:357
+#: ../src/rygel/rygel-cmdline-config.vala:382
 #: ../src/rygel/rygel-meta-config.vala:74
 #: ../src/rygel/rygel-meta-config.vala:93
 #: ../src/rygel/rygel-meta-config.vala:112
@@ -366,6 +322,8 @@ msgstr "Misslyckades med att bläddra i \"%s\": %s\n"
 #: ../src/rygel/rygel-meta-config.vala:188
 #: ../src/rygel/rygel-meta-config.vala:207
 #: ../src/rygel/rygel-meta-config.vala:226
+#: ../src/rygel/rygel-meta-config.vala:245
+#: ../src/rygel/rygel-meta-config.vala:264
 msgid "No value available"
 msgstr "Inget värde tillgängligt"
 
@@ -373,8 +331,8 @@ msgstr "Inget värde tillgängligt"
 msgid "Invalid connection reference"
 msgstr "Ogiltig anslutningsreferens"
 
-#: ../src/rygel/rygel-content-directory.vala:197
-#: ../src/rygel/rygel-content-directory.vala:210
+#: ../src/rygel/rygel-content-directory.vala:207
+#: ../src/rygel/rygel-content-directory.vala:220
 msgid "No such file transfer"
 msgstr "Ingen sådan filöverföring"
 
@@ -386,11 +344,6 @@ msgstr "Ogiltigt InstanceID"
 #: ../src/rygel/rygel-av-transport.vala:378
 msgid "Play speed not supported"
 msgstr "Uppspelningshastigheten stöds inte"
-
-#: ../src/rygel/rygel-av-transport.vala:414
-#, c-format
-msgid "Seeking to %s."
-msgstr "Spolar till %s."
 
 #: ../src/rygel/rygel-av-transport.vala:417
 #: ../src/rygel/rygel-av-transport.vala:426
@@ -420,11 +373,11 @@ msgstr "Nödvändiga elementet %s saknas"
 #: ../src/rygel/rygel-http-byte-seek.vala:49
 #: ../src/rygel/rygel-http-byte-seek.vala:58
 #: ../src/rygel/rygel-http-byte-seek.vala:68
-#: ../src/rygel/rygel-http-byte-seek.vala:72
+#: ../src/rygel/rygel-http-byte-seek.vala:71
 #: ../src/rygel/rygel-http-time-seek.vala:50
 #: ../src/rygel/rygel-http-time-seek.vala:59
 #: ../src/rygel/rygel-http-time-seek.vala:69
-#: ../src/rygel/rygel-http-time-seek.vala:73
+#: ../src/rygel/rygel-http-time-seek.vala:72
 #, c-format
 msgid "Invalid Range '%s'"
 msgstr "Ogiltig Range \"%s\""
@@ -432,10 +385,6 @@ msgstr "Ogiltig Range \"%s\""
 #: ../src/rygel/rygel-http-get.vala:59
 msgid "Invalid Request"
 msgstr "Ogiltig begäran"
-
-#: ../src/rygel/rygel-http-get.vala:125
-msgid "Following HTTP headers appended to response:"
-msgstr "Följande HTTP-rubriker lades till i svaret:"
 
 #: ../src/rygel/rygel-http-identity-handler.vala:97
 #: ../src/rygel/rygel-http-transcode-handler.vala:56
@@ -456,70 +405,82 @@ msgstr "Ogiltig URI \"%s\""
 msgid "Not Found"
 msgstr "Hittades inte"
 
-#: ../src/rygel/rygel-http-post.vala:50
+#: ../src/rygel/rygel-http-post.vala:61
+#: ../src/rygel/rygel-import-resource.vala:169
+#, c-format
+msgid "Pushing data to non-empty item '%s' not allowed"
+msgstr ""
+
+#: ../src/rygel/rygel-http-post.vala:69
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "Ingen skrivbar URI för %s tillgänglig"
 
-#: ../src/rygel/rygel-http-request.vala:83
+#: ../src/rygel/rygel-http-request.vala:82
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "Begärt objekt \"%s\" hittades inte"
 
-#: ../src/rygel/rygel-http-server.vala:137
-#, c-format
-msgid "HTTP %s request for URI '%s' handled."
-msgstr "HTTP %s-begäran för URI:n \"%s\" hanterad."
-
-#: ../src/rygel/rygel-http-server.vala:152
-#, c-format
-msgid "HTTP %s request for URI '%s'. Headers:"
-msgstr "HTTP %s-begäran för URI:n \"%s\". Rubriker:"
-
-#: ../src/rygel/rygel-http-server.vala:168
-#, c-format
-msgid "HTTP client aborted %s request for URI '%s'."
-msgstr "HTTP-klienten avbröt %s-begäran för URI:n \"%s\"."
-
-#: ../src/rygel/rygel-http-server.vala:186
-#, c-format
-msgid "HTTP POST request for URI '%s'"
-msgstr "HTTP POST-begäran för URI \"%s\""
-
-#: ../src/rygel/rygel-import-resource.vala:108
+#: ../src/rygel/rygel-import-resource.vala:109
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
 msgstr ""
 
-#: ../src/rygel/rygel-import-resource.vala:134
+#: ../src/rygel/rygel-import-resource.vala:166
 #, c-format
-msgid "Import of '%s' to '%s' completed"
-msgstr "Import av \"%s\" till \"%s\" är färdig"
+msgid "URI '%s' invalid for importing contents to"
+msgstr "URI:n \"%s\" är ogiltig för import av innehåll till"
 
 #: ../src/rygel/rygel-item-creator.vala:67
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Inga objekt i DIDL-Lite från klient: \"%s\""
 
-#: ../src/rygel/rygel-item-creator.vala:117
+#: ../src/rygel/rygel-item-creator.vala:145
 msgid "'Elements' argument missing."
 msgstr "\"Elements\"-argument saknas."
 
-#: ../src/rygel/rygel-item-creator.vala:120
+#: ../src/rygel/rygel-item-creator.vala:148
 msgid "Comments not allowed in XML"
 msgstr "Kommentarer är inte tillåtna i XML"
 
-#: ../src/rygel/rygel-item-creator.vala:184
+#: ../src/rygel/rygel-item-creator.vala:193
+#: ../src/rygel/rygel-item-creator.vala:282
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr "Skapande av objekt i %s tillåts inte"
+
+#: ../src/rygel/rygel-item-creator.vala:219
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Misslyckades med att skapa objekt under \"%s\": %s"
 
+#: ../src/rygel/rygel-item-destroyer.vala:60
+#, c-format
+msgid "Successfully destroyed object '%s'"
+msgstr "Objektet \"%s\" förstördes"
+
+#: ../src/rygel/rygel-item-destroyer.vala:68
+#, c-format
+msgid "Failed to destroy object '%s': %s"
+msgstr "Misslyckades med att förstöra objektet \"%s\": %s"
+
+#: ../src/rygel/rygel-item-destroyer.vala:102
+#, c-format
+msgid "Removal of object %s not allowed"
+msgstr "Borttagning av objektet %s tillåts inte"
+
+#: ../src/rygel/rygel-item-destroyer.vala:105
+#, c-format
+msgid "Object removal from %s not allowed"
+msgstr "Borttagning av objekt från %s tillåts inte"
+
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-live-response.vala:150
-#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:109
+#: ../src/rygel/rygel-live-response.vala:144
+#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
-#: ../src/rygel/rygel-wmv-transcoder-bin.vala:107
+#: ../src/rygel/rygel-wmv-transcoder-bin.vala:100
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr ""
@@ -529,23 +490,23 @@ msgstr ""
 msgid "Plugin 'fakesink' missing"
 msgstr "Insticksmodulen \"fakesink\" saknas"
 
-#: ../src/rygel/rygel-live-response.vala:115
-#: ../src/rygel/rygel-live-response.vala:137
+#: ../src/rygel/rygel-live-response.vala:109
+#: ../src/rygel/rygel-live-response.vala:131
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Misslyckades med att länka %s till %s"
 
-#: ../src/rygel/rygel-live-response.vala:225
+#: ../src/rygel/rygel-live-response.vala:218
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Fel från rörledningen %s: %s"
 
-#: ../src/rygel/rygel-live-response.vala:232
+#: ../src/rygel/rygel-live-response.vala:225
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Varning från rörledningen %s: %s"
 
-#: ../src/rygel/rygel-live-response.vala:266
+#: ../src/rygel/rygel-live-response.vala:259
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Misslyckades med att spola till offset %lld"
@@ -555,50 +516,35 @@ msgstr "Misslyckades med att spola till offset %lld"
 msgid "Failed to get log level from configuration: %s"
 msgstr "Misslyckades med att få loggnivå från konfiguration: %s"
 
-#: ../src/rygel/rygel-main.vala:80
+#: ../src/rygel/rygel-main.vala:81
 #, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
 msgstr[0] "Inga insticksmoduler hittades inom %d sekund, ger upp.."
 msgstr[1] "Inga insticksmoduler hittades inom %d sekunder, ger upp.."
 
-#: ../src/rygel/rygel-main.vala:123
-#, c-format
-msgid "new network context %s (%s) available."
-msgstr "ny nätverkskontext %s (%s) tillgänglig."
-
-#: ../src/rygel/rygel-main.vala:141
+#: ../src/rygel/rygel-main.vala:142
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Misslyckades med att skapa rotenhetsfabrik: %s"
 
-#: ../src/rygel/rygel-main.vala:145
-#, c-format
-msgid "Ignoring network context %s (%s)."
-msgstr "Ignorerar nätverkskontexten %s (%s)."
-
-#: ../src/rygel/rygel-main.vala:153
-#, c-format
-msgid "Network context %s (%s) now unavailable."
-msgstr "Nätverkskontexten %s (%s) nu otillgänglig."
-
-#: ../src/rygel/rygel-main.vala:192
+#: ../src/rygel/rygel-main.vala:193
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Misslyckades med att skapa RootDevice för %s. Anledning: %s"
 
-#: ../src/rygel/rygel-main.vala:226
+#: ../src/rygel/rygel-main.vala:229
 #, c-format
 msgid "Failed to start D-Bus service: %s"
 msgstr "Misslyckades med att starta D-Bus-tjänst: %s"
 
-#: ../src/rygel/rygel-media-item.vala:216
+#: ../src/rygel/rygel-media-item.vala:272
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Felaktig URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:228
+#: ../src/rygel/rygel-media-item.vala:284
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Misslyckades med att läsa av protokoll för URI %s. Antar \"%s\""
@@ -608,17 +554,17 @@ msgstr "Misslyckades med att läsa av protokoll för URI %s. Antar \"%s\""
 msgid "Failed to load user configuration: %s"
 msgstr "Misslyckades med att läsa in användarkonfiguration: %s"
 
-#: ../src/rygel/rygel-meta-config.vala:265
-#: ../src/rygel/rygel-meta-config.vala:284
+#: ../src/rygel/rygel-meta-config.vala:303
+#: ../src/rygel/rygel-meta-config.vala:322
 #, c-format
 msgid "No value set for '%s/enabled'"
 msgstr "Inget värde inställt för \"%s/enabled\""
 
-#: ../src/rygel/rygel-meta-config.vala:304
-#: ../src/rygel/rygel-meta-config.vala:326
-#: ../src/rygel/rygel-meta-config.vala:352
-#: ../src/rygel/rygel-meta-config.vala:374
-#: ../src/rygel/rygel-meta-config.vala:398
+#: ../src/rygel/rygel-meta-config.vala:342
+#: ../src/rygel/rygel-meta-config.vala:364
+#: ../src/rygel/rygel-meta-config.vala:390
+#: ../src/rygel/rygel-meta-config.vala:412
+#: ../src/rygel/rygel-meta-config.vala:436
 #, c-format
 msgid "No value available for '%s/%s'"
 msgstr "Inget värde tillgängligt för \"%s/%s\""
@@ -628,25 +574,10 @@ msgstr "Inget värde tillgängligt för \"%s/%s\""
 msgid "New plugin '%s' available"
 msgstr "Ny insticksmodul \"%s\" tillgänglig"
 
-#: ../src/rygel/rygel-plugin-loader.vala:75
-#, c-format
-msgid "Plugin '%s' disabled in user configuration; ignoring.."
-msgstr "Insticksmodulen \"%s\" inaktiverad i användarkonfiguration; ignorerar.."
-
-#: ../src/rygel/rygel-plugin-loader.vala:89
-#, c-format
-msgid "Searching for modules in folder '%s'."
-msgstr "Söker efter moduler i mappen \"%s\"."
-
 #: ../src/rygel/rygel-plugin-loader.vala:109
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Fel vid innehållslistning av mappen \"%s\": %s"
-
-#: ../src/rygel/rygel-plugin-loader.vala:134
-#, c-format
-msgid "Finished searching for modules in folder '%s'"
-msgstr "Färdig med sökning efter moduler i mappen \"%s\""
 
 #: ../src/rygel/rygel-plugin-loader.vala:141
 #, c-format
@@ -658,36 +589,21 @@ msgstr "Misslyckades med att läsa in modul från sökvägen \"%s\" : %s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr ""
 
-#: ../src/rygel/rygel-plugin-loader.vala:167
-#, c-format
-msgid "Loaded module source: '%s'"
-msgstr "Läste in modulkälla: \"%s\""
-
-#: ../src/rygel/rygel-root-device-factory.vala:112
-#: ../src/rygel/rygel-root-device-factory.vala:145
-#: ../src/rygel/rygel-root-device-factory.vala:167
-#: ../src/rygel/rygel-root-device-factory.vala:186
-#: ../src/rygel/rygel-root-device-factory.vala:201
+#: ../src/rygel/rygel-root-device-factory.vala:106
+#: ../src/rygel/rygel-root-device-factory.vala:139
+#: ../src/rygel/rygel-root-device-factory.vala:161
+#: ../src/rygel/rygel-root-device-factory.vala:192
 #, c-format
 msgid "XML node '%s' not found."
 msgstr "XML-noden \"%s\" hittades inte."
 
-#: ../src/rygel/rygel-root-device-factory.vala:244
-#, c-format
-msgid "No icon provided by plugin '%s'. Using Rygel logo."
-msgstr "Ingen ikon tillhandahålls av insticksmodulen \"%s\". Använder Rygels logotyp."
-
-#: ../src/rygel/rygel-root-device-factory.vala:307
+#: ../src/rygel/rygel-root-device-factory.vala:294
+#: ../src/rygel/rygel-root-device-factory.vala:304
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Misslyckades med att skriva ändrad beskrivning till %s"
 
-#: ../src/rygel/rygel-search.vala:54
-#, c-format
-msgid "Executing search request: %s"
-msgstr "Kör sökbegäran: %s"
-
-#: ../src/rygel/rygel-search.vala:78
+#: ../src/rygel/rygel-search.vala:89
 #, c-format
 msgid "Failed to search in '%s': %s"
 msgstr "Misslyckades med att söka i \"%s\": %s"
@@ -709,7 +625,7 @@ msgstr "Misslyckades med att spola till %s-%s på URI:n %s: %s"
 msgid "Failed to read contents from URI: %s: %s"
 msgstr "Misslyckades med att läsa innehåll från URI: %s: %s"
 
-#: ../src/rygel/rygel-seekable-response.vala:154
+#: ../src/rygel/rygel-seekable-response.vala:146
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
 msgstr "Misslyckades med att stänga ström till URI:n %s: %s"
@@ -736,32 +652,27 @@ msgstr "Ingen miniatyrbild tillgänglig"
 msgid "No transcoder available for target format '%s'"
 msgstr "Ingen omkodare tillgänglig för målformatet \"%s\""
 
-#: ../src/rygel/rygel-user-config.vala:166
-#, c-format
-msgid "Loaded user configuration from file '%s'"
-msgstr "Läste in användarkonfiguration från filen \"%s\""
-
-#: ../src/rygel/rygel-user-config.vala:197
+#: ../src/rygel/rygel-user-config.vala:193
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr "Misslyckades med att spara konfigurationsdata till filen \"%s\": %s"
 
-#: ../src/rygel/rygel-user-config.vala:217
+#: ../src/rygel/rygel-user-config.vala:213
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Inget värde tillgängligt för \"%s\""
 
-#: ../src/rygel/rygel-user-config.vala:246
+#: ../src/rygel/rygel-user-config.vala:241
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Värdet för \"%s\" är utanför intervallet"
 
-#: ../src/rygel/rygel-user-config.vala:350
+#: ../src/rygel/rygel-user-config.vala:351
 #, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "Misslyckades med att starta Rygel-tjänsten: %s"
 
-#: ../src/rygel/rygel-user-config.vala:352
+#: ../src/rygel/rygel-user-config.vala:353
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Misslyckades med att stoppa Rygel-tjänsten: %s"
@@ -770,20 +681,79 @@ msgstr "Misslyckades med att stoppa Rygel-tjänsten: %s"
 msgid "Not Applicable"
 msgstr "Inte tillämpligt"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:153
+#: ../src/rygel/rygel-xbox-hacks.vala:178
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Misslyckades med att skriva ändrad beskrivning till %s."
 
-#: ../src/rygel/rygel-changelog.vala:68
-msgid "Setting up timeout for LastChange"
-msgstr "Ställer in tidsgräns för LastChange"
-
-#: ../src/ui/rygel-preferences-dialog.vala:72
+#: ../src/ui/rygel-preferences-dialog.vala:78
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Misslyckades med att skapa inställningsdialog: %s"
 
+#~ msgid "Failed to create instance of database"
+#~ msgstr "Misslyckades med att skapa instans av databas"
+#~ msgid "Changing playback state to %s."
+#~ msgstr "Ändrar uppspelningstillstånd till %s."
+#~ msgid "URI set to %s."
+#~ msgstr "URI inställd till %s."
+#~ msgid "volume set to %f."
+#~ msgstr "volym inställd till %f."
+#~ msgid "Using database file %s"
+#~ msgstr "Använder databasfilen %s"
+#~ msgid "Failed to extract metadata from %s: %s"
+#~ msgstr "Misslyckades med att extrahera metadata från %s: %s"
+#~ msgid "Original search: %s"
+#~ msgstr "Ursprunglig sökning: %s"
+#~ msgid "Parsed search expression: %s"
+#~ msgstr "Tolkade sökuttryck: %s"
+#~ msgid "Folder %s gone; removing watch"
+#~ msgstr "Mappen %s är borta, tar bort bevakning"
+#~ msgid "ID %s no longer in config; deleting..."
+#~ msgstr "ID %s finns inte längre i konfigurationen, tar bort..."
+#~ msgid "Changing playback state to %s.."
+#~ msgstr "Ändrar uppspelningstillstånd till %s.."
+#~ msgid "Executing SPARQL query: %s"
+#~ msgstr "Kör SPARQL-fråga: %s"
+#~ msgid "Seeking to %s."
+#~ msgstr "Spolar till %s."
+#~ msgid "Following HTTP headers appended to response:"
+#~ msgstr "Följande HTTP-rubriker lades till i svaret:"
+#~ msgid "HTTP %s request for URI '%s' handled."
+#~ msgstr "HTTP %s-begäran för URI:n \"%s\" hanterad."
+#~ msgid "HTTP %s request for URI '%s'. Headers:"
+#~ msgstr "HTTP %s-begäran för URI:n \"%s\". Rubriker:"
+#~ msgid "HTTP client aborted %s request for URI '%s'."
+#~ msgstr "HTTP-klienten avbröt %s-begäran för URI:n \"%s\"."
+#~ msgid "HTTP POST request for URI '%s'"
+#~ msgstr "HTTP POST-begäran för URI \"%s\""
+#~ msgid "Import of '%s' to '%s' completed"
+#~ msgstr "Import av \"%s\" till \"%s\" är färdig"
+#~ msgid "new network context %s (%s) available."
+#~ msgstr "ny nätverkskontext %s (%s) tillgänglig."
+#~ msgid "Ignoring network context %s (%s)."
+#~ msgstr "Ignorerar nätverkskontexten %s (%s)."
+#~ msgid "Network context %s (%s) now unavailable."
+#~ msgstr "Nätverkskontexten %s (%s) nu otillgänglig."
+#~ msgid "Plugin '%s' disabled in user configuration; ignoring.."
+#~ msgstr ""
+#~ "Insticksmodulen \"%s\" inaktiverad i användarkonfiguration; ignorerar.."
+#~ msgid "Searching for modules in folder '%s'."
+#~ msgstr "Söker efter moduler i mappen \"%s\"."
+#~ msgid "Finished searching for modules in folder '%s'"
+#~ msgstr "Färdig med sökning efter moduler i mappen \"%s\""
+#~ msgid "Loaded module source: '%s'"
+#~ msgstr "Läste in modulkälla: \"%s\""
+#~ msgid "No icon provided by plugin '%s'. Using Rygel logo."
+#~ msgstr ""
+#~ "Ingen ikon tillhandahålls av insticksmodulen \"%s\". Använder Rygels "
+#~ "logotyp."
+#~ msgid "Executing search request: %s"
+#~ msgstr "Kör sökbegäran: %s"
+#~ msgid "Loaded user configuration from file '%s'"
+#~ msgstr "Läste in användarkonfiguration från filen \"%s\""
+#~ msgid "Setting up timeout for LastChange"
+#~ msgstr "Ställer in tidsgräns för LastChange"
 #~ msgid "Failed to create HTTP server for %s: %s"
 #~ msgstr "Misslyckades med att skapa HTTP-server för %s: %s"
 #~ msgid "Failed to parse query: %s"
