@@ -85,6 +85,16 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
         }
     }
 
+    public void ensure_indices () {
+        try {
+            this.database.exec (this.sql.make (SQLString.INDEX_COMMON));
+            this.database.analyze ();
+        } catch (Error error) {
+            warning ("Failed to create indices: " +
+                     error.message);
+        }
+    }
+
     public void upgrade (int old_version) {
         debug ("Older schema detected. Upgrading...");
         int current_version = SQLFactory.schema_version.to_int ();

@@ -109,14 +109,17 @@ internal class Rygel.MediaExport.SQLFactory : Object {
      */
     private const string GET_CHILDREN_STRING =
     "SELECT " + ALL_DETAILS_STRING +
-    "FROM Object o LEFT OUTER JOIN meta_data m " +
-        "ON o.upnp_id = m.object_fk " +
-    "WHERE o.parent = ? " +
+    "FROM Object o " +
+        "JOIN Closure c ON (o.upnp_id = c.descendant) " +
+        "LEFT OUTER JOIN meta_data m " +
+        "ON c.descendant = m.object_fk " +
+    "WHERE c.ancestor = ? AND c.depth = 1 " +
         "ORDER BY o.type_fk ASC, " +
                  "m.class ASC, " +
                  "m.track ASC, " +
                  "o.title ASC " +
     "LIMIT ?,?";
+
 
     private const string GET_OBJECTS_BY_FILTER_STRING =
     "SELECT DISTINCT " + ALL_DETAILS_STRING +
@@ -222,10 +225,13 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "END;";
 
     private const string CREATE_INDICES_STRING =
-    "CREATE INDEX idx_parent on Object(parent);" +
-    "CREATE INDEX idx_meta_data_fk on meta_data(object_fk);" +
-    "CREATE INDEX idx_closure on Closure(descendant,depth);" +
-    "CREATE INDEX idx_uri on Object(uri);";
+    "CREATE INDEX IF NOT EXISTS idx_parent on Object(parent);" +
+    "CREATE INDEX IF NOT EXISTS idx_object_upnp_id on Object(upnp_id);" +
+    "CREATE INDEX IF NOT EXISTS idx_meta_data_fk on meta_data(object_fk);" +
+    "CREATE INDEX IF NOT EXISTS idx_closure on Closure(descendant,depth);" +
+    "CREATE INDEX IF NOT EXISTS idx_closure_descendant on Closure(descendant);" +
+    "CREATE INDEX IF NOT EXISTS idx_closure_ancestor on Closure(ancestor);" +
+    "CREATE INDEX IF NOT EXISTS idx_uri on Object(uri);";
 
 
     public unowned string make (SQLString query) {

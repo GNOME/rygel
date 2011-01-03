@@ -380,6 +380,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                 throw new MediaCacheError.GENERAL_ERROR ("Database format" +
                                                          " not supported");
             }
+            upgrader.ensure_indices ();
         } catch (DatabaseError error) {
             debug ("Could not find schema version;" +
                    " checking for empty database...");
