@@ -121,10 +121,9 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     private const string GET_OBJECTS_BY_FILTER_STRING =
     "SELECT DISTINCT " + ALL_DETAILS_STRING +
     "FROM Object o " +
+        "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
         "LEFT OUTER JOIN meta_data m " +
-            "ON o.upnp_id = m.object_fk " +
-        "WHERE (o.upnp_id IN (" +
-            "SELECT descendant FROM Closure WHERE ancestor = ?)) AND (%s)" +
+            "ON o.upnp_id = m.object_fk %s" +
         "ORDER BY o.parent ASC, " +
                  "o.type_fk ASC, " +
                  "m.class ASC, " +
@@ -136,7 +135,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "SELECT COUNT(o.type_fk) FROM Object o " +
         "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
         "LEFT OUTER JOIN meta_data m " +
-            "ON o.upnp_id = m.object_fk WHERE %s";
+            "ON o.upnp_id = m.object_fk %s";
 
     private const string CHILDREN_COUNT_STRING =
     "SELECT COUNT(upnp_id) FROM Object WHERE Object.parent = ?";
