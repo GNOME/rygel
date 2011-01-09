@@ -1,14 +1,14 @@
 # Swedish translation for rygel.
-# Copyright (C) 2010 Free Software Foundation, Inc.
+# Copyright (C) 2010, 2011 Free Software Foundation, Inc.
 # This file is distributed under the same license as the rygel package.
-# Daniel Nylander <po@danielnylander.se>, 2010.
+# Daniel Nylander <po@danielnylander.se>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-29 17:37+0100\n"
-"PO-Revision-Date: 2010-12-29 17:35+0100\n"
+"POT-Creation-Date: 2011-01-09 21:21+0100\n"
+"PO-Revision-Date: 2011-01-09 21:25+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -64,11 +64,8 @@ msgstr "Ti_tel"
 
 #: ../data/rygel-preferences.ui.h:13
 #, no-c-format
-msgid ""
-"Write %u for username, %n for real name of the user and %h for host name"
-msgstr ""
-"Skriv %u för användarnamnet, %n för riktiga namnet på användaren och %h för "
-"värdnamnet"
+msgid "Write %u for username, %n for real name of the user and %h for host name"
+msgstr "Skriv %u för användarnamnet, %n för riktiga namnet på användaren och %h för värdnamnet"
 
 #: ../data/rygel-preferences.ui.h:14
 msgid "_Enable UPnP/DLNA"
@@ -158,12 +155,12 @@ msgstr "Misslyckades med koppla till D-Bus-sessionsbuss: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:58
 msgid "No metadata extractor available. Will not crawl."
-msgstr ""
+msgstr "Ingen metadataextraherare tillgänglig. Kommer inte att söka igenom."
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:101
 #, c-format
 msgid "'%s' harvested"
-msgstr ""
+msgstr "\"%s\" insamlat"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:158
 #, c-format
@@ -264,8 +261,7 @@ msgstr "Fel vid hämtning av alla värden för \"%s\": %s"
 #: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:34
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr ""
-"Misslyckades med att starta Tracker-tjänst: %s. Insticksmodulen inaktiverad."
+msgstr "Misslyckades med att starta Tracker-tjänst: %s. Insticksmodulen inaktiverad."
 
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:188
 #, c-format
@@ -282,7 +278,8 @@ msgstr "Artister"
 
 #: ../src/rygel/rygel-media-query-action.vala:121
 #: ../src/rygel/rygel-media-query-action.vala:146
-#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:126
+#: ../src/rygel/rygel-browse.vala:93
+#: ../src/rygel/rygel-item-creator.vala:126
 #: ../src/rygel/rygel-item-creator.vala:159
 msgid "No such object"
 msgstr "Inget sådant objekt"
@@ -415,7 +412,7 @@ msgstr "Begärt objekt \"%s\" hittades inte"
 #: ../src/rygel/rygel-import-resource.vala:108
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
-msgstr ""
+msgstr "Misslyckades med att få ursprunglig URI för \"%s\": %s"
 
 #: ../src/rygel/rygel-item-creator.vala:67
 #, c-format
@@ -443,7 +440,7 @@ msgstr "Misslyckades med att skapa objekt under \"%s\": %s"
 #: ../src/rygel/rygel-wmv-transcoder-bin.vala:107
 #, c-format
 msgid "Failed to link pad %s to %s"
-msgstr ""
+msgstr "Misslyckades med att länka pad %s till %s"
 
 #. 'fakesink' should not be translated
 #: ../src/rygel/rygel-live-response.vala:92
@@ -547,7 +544,7 @@ msgstr "Misslyckades med att läsa in modul från sökvägen \"%s\" : %s"
 #: ../src/rygel/rygel-plugin-loader.vala:151
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
-msgstr ""
+msgstr "Misslyckades med att hitta \"entry point\"-funktionen \"%s\" i \"%s\": %s"
 
 #: ../src/rygel/rygel-root-device-factory.vala:113
 #: ../src/rygel/rygel-root-device-factory.vala:146
@@ -653,137 +650,95 @@ msgstr "Misslyckades med att skapa inställningsdialog: %s"
 
 #~ msgid "Failed to create D-Bus proxies: %s"
 #~ msgstr "Misslyckades med att skapa D-Bus-proxies: %s"
-
 #~ msgid "Titles"
 #~ msgstr "Titlar"
-
 #~ msgid "URI '%s' invalid for importing contents to"
 #~ msgstr "URI:n \"%s\" är ogiltig för import av innehåll till"
-
 #~ msgid "Successfully destroyed object '%s'"
 #~ msgstr "Objektet \"%s\" förstördes"
-
 #~ msgid "Failed to destroy object '%s': %s"
 #~ msgstr "Misslyckades med att förstöra objektet \"%s\": %s"
-
 #~ msgid "Removal of object %s not allowed"
 #~ msgstr "Borttagning av objektet %s tillåts inte"
-
 #~ msgid "Object removal from %s not allowed"
 #~ msgstr "Borttagning av objekt från %s tillåts inte"
-
 #~ msgid "Changing playback state to %s."
 #~ msgstr "Ändrar uppspelningstillstånd till %s."
-
 #~ msgid "URI set to %s."
 #~ msgstr "URI inställd till %s."
-
 #~ msgid "volume set to %f."
 #~ msgstr "volym inställd till %f."
-
 #~ msgid "Using database file %s"
 #~ msgstr "Använder databasfilen %s"
-
 #~ msgid "Failed to extract metadata from %s: %s"
 #~ msgstr "Misslyckades med att extrahera metadata från %s: %s"
-
 #~ msgid "Original search: %s"
 #~ msgstr "Ursprunglig sökning: %s"
-
 #~ msgid "Parsed search expression: %s"
 #~ msgstr "Tolkade sökuttryck: %s"
-
 #~ msgid "Folder %s gone; removing watch"
 #~ msgstr "Mappen %s är borta, tar bort bevakning"
-
 #~ msgid "ID %s no longer in config; deleting..."
 #~ msgstr "ID %s finns inte längre i konfigurationen, tar bort..."
-
 #~ msgid "Changing playback state to %s.."
 #~ msgstr "Ändrar uppspelningstillstånd till %s.."
-
 #~ msgid "Executing SPARQL query: %s"
 #~ msgstr "Kör SPARQL-fråga: %s"
-
 #~ msgid "Seeking to %s."
 #~ msgstr "Spolar till %s."
-
 #~ msgid "Following HTTP headers appended to response:"
 #~ msgstr "Följande HTTP-rubriker lades till i svaret:"
-
 #~ msgid "HTTP %s request for URI '%s' handled."
 #~ msgstr "HTTP %s-begäran för URI:n \"%s\" hanterad."
-
 #~ msgid "HTTP %s request for URI '%s'. Headers:"
 #~ msgstr "HTTP %s-begäran för URI:n \"%s\". Rubriker:"
-
 #~ msgid "HTTP client aborted %s request for URI '%s'."
 #~ msgstr "HTTP-klienten avbröt %s-begäran för URI:n \"%s\"."
-
 #~ msgid "HTTP POST request for URI '%s'"
 #~ msgstr "HTTP POST-begäran för URI \"%s\""
-
 #~ msgid "Import of '%s' to '%s' completed"
 #~ msgstr "Import av \"%s\" till \"%s\" är färdig"
-
 #~ msgid "new network context %s (%s) available."
 #~ msgstr "ny nätverkskontext %s (%s) tillgänglig."
-
 #~ msgid "Ignoring network context %s (%s)."
 #~ msgstr "Ignorerar nätverkskontexten %s (%s)."
-
 #~ msgid "Network context %s (%s) now unavailable."
 #~ msgstr "Nätverkskontexten %s (%s) nu otillgänglig."
-
 #~ msgid "Plugin '%s' disabled in user configuration; ignoring.."
 #~ msgstr ""
 #~ "Insticksmodulen \"%s\" inaktiverad i användarkonfiguration; ignorerar.."
-
 #~ msgid "Searching for modules in folder '%s'."
 #~ msgstr "Söker efter moduler i mappen \"%s\"."
-
 #~ msgid "Finished searching for modules in folder '%s'"
 #~ msgstr "Färdig med sökning efter moduler i mappen \"%s\""
-
 #~ msgid "Loaded module source: '%s'"
 #~ msgstr "Läste in modulkälla: \"%s\""
-
 #~ msgid "No icon provided by plugin '%s'. Using Rygel logo."
 #~ msgstr ""
 #~ "Ingen ikon tillhandahålls av insticksmodulen \"%s\". Använder Rygels "
 #~ "logotyp."
-
 #~ msgid "Executing search request: %s"
 #~ msgstr "Kör sökbegäran: %s"
-
 #~ msgid "Loaded user configuration from file '%s'"
 #~ msgstr "Läste in användarkonfiguration från filen \"%s\""
-
 #~ msgid "Setting up timeout for LastChange"
 #~ msgstr "Ställer in tidsgräns för LastChange"
-
 #~ msgid "Failed to create HTTP server for %s: %s"
 #~ msgstr "Misslyckades med att skapa HTTP-server för %s: %s"
-
 #~ msgid "Failed to parse query: %s"
 #~ msgstr "Misslyckades med att tolka fråga: %s"
-
 #~ msgid "Query: %s, Time: %f"
 #~ msgstr "Fråga: %s, Tid: %f"
-
 #~ msgid "Checking for gstreamer playbin..."
 #~ msgstr "Letar efter gstreamer playbin..."
-
 #~ msgid "Using playbin2"
 #~ msgstr "Använder playbin2"
-
 #~ msgid "Using playbin"
 #~ msgstr "Använder playbin"
-
 #~ msgid "We have %u child."
 #~ msgid_plural "We have %u children."
 #~ msgstr[0] "Vi har %u barn."
 #~ msgstr[1] "Vi har %u barn."
-
 #~ msgid "Registering %s for %s"
 #~ msgstr "Registrerar %s för %s"
+
