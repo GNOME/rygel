@@ -1,14 +1,14 @@
 # Swedish translation for rygel.
-# Copyright (C) 2010 Free Software Foundation, Inc.
+# Copyright (C) 2010, 2011 Free Software Foundation, Inc.
 # This file is distributed under the same license as the rygel package.
-# Daniel Nylander <po@danielnylander.se>, 2010.
+# Daniel Nylander <po@danielnylander.se>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-29 15:07+0100\n"
-"PO-Revision-Date: 2010-12-29 17:35+0100\n"
+"POT-Creation-Date: 2011-01-09 21:26+0100\n"
+"PO-Revision-Date: 2011-01-09 21:26+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -132,7 +132,7 @@ msgstr "Misslyckades med att rulla tillbaka transaktion: %s"
 msgid "Unsupported type %s"
 msgstr "Typen %s stöds inte"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:134
 #: ../src/rygel/rygel-plugin-loader.vala:178
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -155,12 +155,12 @@ msgstr "Misslyckades med koppla till D-Bus-sessionsbuss: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:58
 msgid "No metadata extractor available. Will not crawl."
-msgstr ""
+msgstr "Ingen metadataextraherare tillgänglig. Kommer inte att söka igenom."
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:101
 #, c-format
 msgid "'%s' harvested"
-msgstr ""
+msgstr "\"%s\" insamlat"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:158
 #, c-format
@@ -409,7 +409,7 @@ msgstr "Hittades inte"
 #: ../src/rygel/rygel-import-resource.vala:169
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
-msgstr ""
+msgstr "Trycka ut data till icke-tomma objektet \"%s\" tillåts inte"
 
 #: ../src/rygel/rygel-http-post.vala:69
 #, c-format
@@ -424,7 +424,7 @@ msgstr "Begärt objekt \"%s\" hittades inte"
 #: ../src/rygel/rygel-import-resource.vala:109
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
-msgstr ""
+msgstr "Misslyckades med att få ursprunglig URI för \"%s\": %s"
 
 #: ../src/rygel/rygel-import-resource.vala:166
 #, c-format
@@ -483,7 +483,7 @@ msgstr "Borttagning av objekt från %s tillåts inte"
 #: ../src/rygel/rygel-wmv-transcoder-bin.vala:100
 #, c-format
 msgid "Failed to link pad %s to %s"
-msgstr ""
+msgstr "Misslyckades med att länka pad %s till %s"
 
 #. 'fakesink' should not be translated
 #: ../src/rygel/rygel-live-response.vala:92
@@ -587,7 +587,7 @@ msgstr "Misslyckades med att läsa in modul från sökvägen \"%s\" : %s"
 #: ../src/rygel/rygel-plugin-loader.vala:151
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
-msgstr ""
+msgstr "Misslyckades med att hitta \"entry point\"-funktionen \"%s\" i \"%s\": %s"
 
 #: ../src/rygel/rygel-root-device-factory.vala:106
 #: ../src/rygel/rygel-root-device-factory.vala:139
