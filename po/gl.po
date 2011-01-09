@@ -2,14 +2,14 @@
 # Copyright (C) 2010 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Fran Dieguez <frandieguez@ubuntu.com>, 2010.
-# Fran Diéguez <frandieguez@ubuntu.com>, 2010.
+# Fran Diéguez <frandieguez@ubuntu.com>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-13 01:57+0100\n"
-"PO-Revision-Date: 2010-11-13 01:58+0100\n"
+"POT-Creation-Date: 2011-01-09 17:19+0100\n"
+"PO-Revision-Date: 2011-01-09 17:19+0100\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "Language: gl\n"
@@ -121,22 +121,22 @@ msgstr "Servizos de UPnP/DLNA"
 msgid "GStreamer Player"
 msgstr "Reprodutor de GStreamer"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:115
+#: ../src/plugins/media-export/rygel-media-export-database.vala:94
 #, c-format
 msgid "Failed to open database: %d (%s)"
 msgstr "Produciuse un fallo ao abrir a base de datos %d (%s)"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:236
+#: ../src/plugins/media-export/rygel-media-export-database.vala:208
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Produciuse un fallo ao desfacer a transacción: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:296
+#: ../src/plugins/media-export/rygel-media-export-database.vala:268
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Tipo %s non admitido"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:134
 #: ../src/rygel/rygel-plugin-loader.vala:178
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -147,7 +147,7 @@ msgstr "Produciuse un fallo ao consultar o tipo de contido para «%s»"
 msgid "Failed to add item with ID %s: %s"
 msgstr "Produciuse un fallo ao engadir o elemento con ID %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:121
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:122
 #, c-format
 msgid "Object %s is not an item"
 msgstr "O obxecto %s non é un elemento"
@@ -179,7 +179,7 @@ msgstr "Produciuse un fallo ao eliminar o obxecto desde a base de datos: %s"
 #. @REALNAME@ is substituted for user's real name
 #. and it doesn't need translation.
 #: ../src/plugins/media-export/rygel-media-export-plugin.vala:78
-#: ../src/plugins/tracker/rygel-tracker-plugin.vala:30
+#: ../src/plugins/tracker/rygel-tracker-plugin.vala:32
 msgid "@REALNAME@'s media"
 msgstr "Multimedia de @REALNAME@"
 
@@ -210,49 +210,45 @@ msgstr "Álbum"
 msgid "Genre"
 msgstr "Xénero"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:59
-msgid "Failed to create instance of database"
-msgstr "Produciuse un fallo ao crear unha instancia da base de datos"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:88
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:94
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "Produciuse un fallo ao eliminar o URI: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:325
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:329
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Produciuse un fallo ao crear o servizo de D-Bus MediaExpot: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:363
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:367
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Produciuse un fallo ao quitar a entrada: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:374
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:378
 msgid "Music"
 msgstr "Música"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:377
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
 msgid "Pictures"
 msgstr "Imaxes"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:379
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:383
 msgid "Videos"
 msgstr "Vídeos"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:53
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:56
 #, c-format
 msgid "Failed to create D-Bus proxies: %s"
 msgstr "Produciuse un fallo ao iniciar o servizo de D-Bus: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:61
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:64
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "Produciuse un fallo ao construir o URI para o cartafol «%s»: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:61
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:102
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:93
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr "Produciuse un fallo ao conectarse ao bus de sesió: %s"
@@ -268,7 +264,7 @@ msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr ""
 "Produciuse un fallo ao iniciar o servizo Tracker: %s. Engadido desactivado."
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:205
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:203
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr ""
@@ -282,12 +278,16 @@ msgstr "Álbumes"
 msgid "Artists"
 msgstr "Artistas"
 
+#: ../src/plugins/tracker/rygel-tracker-titles.vala:58
+msgid "Titles"
+msgstr "Títulos"
+
 #: ../src/rygel/rygel-media-query-action.vala:117
-#: ../src/rygel/rygel-media-query-action.vala:142
-#: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:151
-#: ../src/rygel/rygel-item-creator.vala:183
+#: ../src/rygel/rygel-media-query-action.vala:141
+#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:154
+#: ../src/rygel/rygel-item-creator.vala:189
 #: ../src/rygel/rygel-item-destroyer.vala:53
-#: ../src/rygel/rygel-item-destroyer.vala:100
+#: ../src/rygel/rygel-item-destroyer.vala:99
 msgid "No such object"
 msgstr "Non existe o obxecto"
 
@@ -295,7 +295,7 @@ msgstr "Non existe o obxecto"
 msgid "Invalid Arguments"
 msgstr "Argumentos inválidos"
 
-#: ../src/rygel/rygel-browse.vala:120
+#: ../src/rygel/rygel-browse.vala:121
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "Produciuse un fallo ao explorar «%s»: %s\n"
@@ -378,11 +378,11 @@ msgstr "Falta o elemento %s requirido"
 #: ../src/rygel/rygel-http-byte-seek.vala:49
 #: ../src/rygel/rygel-http-byte-seek.vala:58
 #: ../src/rygel/rygel-http-byte-seek.vala:68
-#: ../src/rygel/rygel-http-byte-seek.vala:72
+#: ../src/rygel/rygel-http-byte-seek.vala:71
 #: ../src/rygel/rygel-http-time-seek.vala:50
 #: ../src/rygel/rygel-http-time-seek.vala:59
 #: ../src/rygel/rygel-http-time-seek.vala:69
-#: ../src/rygel/rygel-http-time-seek.vala:73
+#: ../src/rygel/rygel-http-time-seek.vala:72
 #, c-format
 msgid "Invalid Range '%s'"
 msgstr "Rango «%s» inválido"
@@ -421,7 +421,7 @@ msgstr "Non se permite empurrar os datos ao elemento «%s» non baleiro"
 msgid "No writable URI for %s available"
 msgstr "Non está dispoñíbel un URI escribíbel para %s"
 
-#: ../src/rygel/rygel-http-request.vala:83
+#: ../src/rygel/rygel-http-request.vala:82
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "O elemento «%s» solicitado non se encontrou"
@@ -441,21 +441,21 @@ msgstr "O URI «%s» non é válido para importar contido a el"
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Non hai elementos en DIDL-Lite desde o cliente «%s»"
 
-#: ../src/rygel/rygel-item-creator.vala:142
+#: ../src/rygel/rygel-item-creator.vala:145
 msgid "'Elements' argument missing."
 msgstr "Falta o argumento «Elements»"
 
-#: ../src/rygel/rygel-item-creator.vala:145
+#: ../src/rygel/rygel-item-creator.vala:148
 msgid "Comments not allowed in XML"
 msgstr "Non se permiten os comentarios no XML"
 
-#: ../src/rygel/rygel-item-creator.vala:187
-#: ../src/rygel/rygel-item-creator.vala:276
+#: ../src/rygel/rygel-item-creator.vala:193
+#: ../src/rygel/rygel-item-creator.vala:282
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "A creación do obxecto en %s non está permitida"
 
-#: ../src/rygel/rygel-item-creator.vala:213
+#: ../src/rygel/rygel-item-creator.vala:219
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Produciuse un fallo ao crear o elemento baixo «%s»: %s"
@@ -470,12 +470,12 @@ msgstr "Obxecto «%s» destruído correctamente"
 msgid "Failed to destroy object '%s': %s"
 msgstr "Produciuse un fallo ao destruír o obxecto «%s»: %s"
 
-#: ../src/rygel/rygel-item-destroyer.vala:103
+#: ../src/rygel/rygel-item-destroyer.vala:102
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "Non se permite quitar o obxecto %s"
 
-#: ../src/rygel/rygel-item-destroyer.vala:107
+#: ../src/rygel/rygel-item-destroyer.vala:105
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "Non se permite quitar obxectos de %s"
@@ -544,13 +544,13 @@ msgstr "Produciuse un fallo ao crear o RootDevice para %s. Razón: %s"
 msgid "Failed to start D-Bus service: %s"
 msgstr "Produciuse unf allo ao iniciar o servizo de D-Bus: %s"
 
-#: ../src/rygel/rygel-media-item.vala:253
+#: ../src/rygel/rygel-media-item.vala:272
 #, c-format
 msgid "Bad URI: %s"
 msgstr "URI erróneo: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:265
+#: ../src/rygel/rygel-media-item.vala:284
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Produciuse un fallo ao probar o protocolo para o URI %s. Asumindo «%s»"
@@ -597,21 +597,21 @@ msgstr ""
 "Produciuse un fallo ao encontrar a función do punto de entrada  «%s» en "
 "«%s»: %s"
 
-#: ../src/rygel/rygel-root-device-factory.vala:113
-#: ../src/rygel/rygel-root-device-factory.vala:146
-#: ../src/rygel/rygel-root-device-factory.vala:168
-#: ../src/rygel/rygel-root-device-factory.vala:199
+#: ../src/rygel/rygel-root-device-factory.vala:106
+#: ../src/rygel/rygel-root-device-factory.vala:139
+#: ../src/rygel/rygel-root-device-factory.vala:161
+#: ../src/rygel/rygel-root-device-factory.vala:192
 #, c-format
 msgid "XML node '%s' not found."
 msgstr "Non foi posíbel encontrar o nodo XML «%s»."
 
-#: ../src/rygel/rygel-root-device-factory.vala:301
-#: ../src/rygel/rygel-root-device-factory.vala:311
+#: ../src/rygel/rygel-root-device-factory.vala:294
+#: ../src/rygel/rygel-root-device-factory.vala:304
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Produciuse un fallo ao gravar a descrición modificada en %s"
 
-#: ../src/rygel/rygel-search.vala:85
+#: ../src/rygel/rygel-search.vala:89
 #, c-format
 msgid "Failed to search in '%s': %s"
 msgstr "Produciuse un fallo ao buscar en «%s»: %s"
@@ -633,7 +633,7 @@ msgstr "Produciuse un fallo ao buscar ao %s-%s no URI %s:%s"
 msgid "Failed to read contents from URI: %s: %s"
 msgstr "Produciuse un fallo ao ler o contido do URI %s: %s"
 
-#: ../src/rygel/rygel-seekable-response.vala:149
+#: ../src/rygel/rygel-seekable-response.vala:146
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
 msgstr "Produciuse un fallo ao pechar o fluxo no URI %s: %s"
@@ -671,17 +671,17 @@ msgstr ""
 msgid "No value available for '%s'"
 msgstr "Non existe un valor dispoñíbel para «%s»"
 
-#: ../src/rygel/rygel-user-config.vala:242
+#: ../src/rygel/rygel-user-config.vala:241
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "O valor «%s» está fora de rango"
 
-#: ../src/rygel/rygel-user-config.vala:350
+#: ../src/rygel/rygel-user-config.vala:351
 #, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "Produciuse un fallo ao iniciar o servizo Rygel: %s"
 
-#: ../src/rygel/rygel-user-config.vala:352
+#: ../src/rygel/rygel-user-config.vala:353
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Produciuse un fallo ao deter o servizo Rygel: %s"
@@ -699,6 +699,9 @@ msgstr "Produciuse un fallo ao escribir a descrición modificada en %s."
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Produciuse un fallo ao crear o diálogo de preferencias: %s"
+
+#~ msgid "Failed to create instance of database"
+#~ msgstr "Produciuse un fallo ao crear unha instancia da base de datos"
 
 #~ msgid "Changing playback state to %s."
 #~ msgstr "Cambiando o estado de reprodución a %s."
