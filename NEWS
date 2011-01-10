@@ -1,3 +1,77 @@
+0.9.5
+=====
+
+Changes since 0.9.4:
+
+- Only advertize searchable containers as such.
+- Do not execute search in non-searchable containers.
+- Only refuse to advertise a transcoder for an item if it's DLNA profile
+  is the same as that of the item in question.
+- Don't wait for new item if its already available under the container.
+- Add timeouts to container update waiting code.
+- Sort in ascending order by default. I had gotten the idea of ascending and
+  descending reversed in my head so ended-up sorting by title in wrong order.
+- Empty sort criteria in browse/search requests means no sort criteria.
+- Use shorter HTTP URLs.
+- Add support for search of media containers by their child count.
+- Delay addition of child containers to actual (exposed) hierarchy until they
+  produce some offspring. Very often it happens that we don't have enough
+  metadata available to populate our hierarchies and we end-up exposing empty
+  containers. Not only its contrary to user's expectations but apparently DLNA
+  CTT isn't able to digest them.
+- Move magic '@ADDRESS@' substitution from external plugin to core so all
+  plugins can use it.
+- If the root container of a MediaServer plugin is empty, deactivate the plugin
+  until the situation changes.
+- Tracker:
+  - Add title-based hierarchies: One container for each unique starting
+    character of all the titles available for the contegory in question.
+  - Add "New" container: Under each category container, add a child container
+    that lists all items of that category that were added (to tracker-store)
+    less than 3 days ago.
+  - Use property function for sorting. Tracker claims to be more efficient when
+    using property functions instead of variables.
+- MediaExport:
+  - More reliable fallback extraction.
+  - Speed-up browse and search handling.
+- Localization:
+  - Add Vietnamese translation.
+  - Update Slovenian translation.
+  - Update Norwegian bokmål translation.
+  - Update Estonian translation.
+  - Update Hebrew translation.
+  - Update Spanish translation.
+  - Update UG translation.
+  - Update Czech translation.
+  - Update Swedish translation.
+  - Update Punjabi Translaiton.
+  - Update Galician translation.
+- Many other non-functional and/or minor improvements and fixes.
+
+Dependency-related changes:
+
+- Require & adapt to gupnp-dlna >= 0.5.
+- Require gupnp-vala >= 0.7.2.
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+Arun Raghavan <arun.raghavan@collabora.co.uk>
+Sunil Mohan Adapa <sunil@medhas.org>
+A S Alam <aalam@users.sf.net>
+Daniel Nylander <po@danielnylander.se>
+Gheyret T.Kenji <gheyret@gmail.com>
+Ivar Smolin <okul@linux.ee>
+Jorge González <jorgegonz@svn.gnome.org>
+Kjartan Maraas <kmaraas@gnome.org>
+Matej Urbančič <mateju@svn.gnome.org>
+Nguyễn Thái Ngọc Duy <pclouds@gmail.com>
+Petr Kovar <pknbe@volny.cz>
+Yaron Shahrabani <sh.yaron@gmail.com>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Marek Cernocky
+
 0.9.4
 =====
 
