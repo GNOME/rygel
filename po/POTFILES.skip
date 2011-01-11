@@ -88,6 +88,7 @@ src/rygel/rygel-xbox-hacks.c
 src/rygel/rygel-changelog.c
 src/rygel/rygel-media-query-action.c
 src/ui/rygel-preferences-dialog.c
+src/ui/rygel-writable-user-config.c
 data/rygel.desktop.in
 data/rygel-preferences.desktop.in
 data/xml/AVTransport2.xml

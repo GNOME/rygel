@@ -28,13 +28,13 @@ public class Rygel.PreferencesDialog : GLib.Object {
     const string DIALOG = "preferences-dialog";
     const string ICON = BuildConfig.SMALL_ICON_DIR + "/rygel.png";
 
-    UserConfig config;
+    WritableUserConfig config;
     Builder builder;
     Dialog dialog;
     ArrayList<PreferencesSection> sections;
 
     public PreferencesDialog () throws Error {
-        this.config = new UserConfig (false);
+        this.config = new WritableUserConfig ();
         this.builder = new Builder ();
 
         this.builder.add_from_file (UI_FILE);

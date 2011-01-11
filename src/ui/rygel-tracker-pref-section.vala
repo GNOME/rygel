@@ -37,7 +37,7 @@ public class Rygel.TrackerPrefSection : Rygel.PluginPrefSection {
     private CheckButton music_check;
     private CheckButton pictures_check;
 
-    public TrackerPrefSection (Builder builder, UserConfig config) {
+    public TrackerPrefSection (Builder builder, WritableUserConfig config) {
         base (builder, config, NAME);
 
         this.videos_check = (CheckButton) builder.get_object (VIDEOS_CHECK);

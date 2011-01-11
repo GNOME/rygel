@@ -44,8 +44,8 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
 
     private ContextManager context_manager;
 
-    public GeneralPrefSection (Builder    builder,
-                               UserConfig config) throws Error {
+    public GeneralPrefSection (Builder            builder,
+                               WritableUserConfig config) throws Error {
         base (config, "general");
 
         this.upnp_check = (CheckButton) builder.get_object (UPNP_CHECKBUTTON);

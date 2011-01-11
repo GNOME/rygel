@@ -23,12 +23,12 @@
 using Gtk;
 
 public abstract class Rygel.PreferencesSection : GLib.Object {
-    protected UserConfig config;
+    protected WritableUserConfig config;
 
     public string name;
 
-    public PreferencesSection (UserConfig config,
-                               string     name) {
+    public PreferencesSection (WritableUserConfig config,
+                               string             name) {
         this.name = name;
         this.config = config;
     }

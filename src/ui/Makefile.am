@@ -17,7 +17,8 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(UUID_CFLAGS) \
 	    $(LIBSOUP_CFLAGS) \
 	    -I$(top_srcdir) -I$(rygeldir) -DDATA_DIR='"$(shareddir)"' \
-	    -DSMALL_ICON_DIR='"$(icondir)"' -include config.h \
+	    -DSMALL_ICON_DIR='"$(icondir)"' -DSYS_CONFIG_DIR='"$(sysconfdir)"' \
+	    -DDESKTOP_DIR='"$(desktopdir)"' -include config.h \
 	    -DLOCALEDIR=\""$(datadir)/locale"\"
 
 bin_PROGRAMS = rygel-preferences
@@ -28,7 +29,8 @@ rygel_preferences_SOURCES = \
 			    rygel-general-pref-section.vala \
 			    rygel-plugin-pref-section.vala \
 			    rygel-media-export-pref-section.vala \
-			    rygel-tracker-pref-section.vala
+			    rygel-tracker-pref-section.vala \
+			    rygel-writable-user-config.vala
 
 rygel.stamp: $(rygel_preferences_VALASOURCES)
 rygel_preferences_VALAFLAGS = \

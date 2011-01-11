@@ -33,9 +33,9 @@ public class Rygel.PluginPrefSection : PreferencesSection {
 
     protected ArrayList<Widget> widgets; // All widgets in this section
 
-    public PluginPrefSection (Builder    builder,
-                              UserConfig config,
-                              string     name) {
+    public PluginPrefSection (Builder            builder,
+                              WritableUserConfig config,
+                              string             name) {
         base (config, name);
 
         this.widgets = new ArrayList<Widget> ();

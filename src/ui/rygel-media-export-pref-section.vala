@@ -38,8 +38,8 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
     private ListStore liststore;
     private FileChooserDialog dialog;
 
-    public MediaExportPrefSection (Builder    builder,
-                                   UserConfig config) {
+    public MediaExportPrefSection (Builder            builder,
+                                   WritableUserConfig config) {
         base (builder, config, NAME);
 
         this.treeview = (TreeView) builder.get_object (URIS_TEXTVIEW);
