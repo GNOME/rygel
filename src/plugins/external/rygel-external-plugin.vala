@@ -25,7 +25,6 @@
 using FreeDesktop;
 
 public class Rygel.External.Plugin : Rygel.MediaServerPlugin {
-    public string service_name;
     public string root_object;
 
     // Root container properties
@@ -42,7 +41,6 @@ public class Rygel.External.Plugin : Rygel.MediaServerPlugin {
               title,
               "Rygel External " + title);
 
-        this.service_name = service_name;
         this.child_count = child_count;
         this.searchable = searchable;
         this.root_object = root_object;
@@ -59,7 +57,7 @@ public class Rygel.External.Plugin : Rygel.MediaServerPlugin {
                                             this.title,
                                             this.child_count,
                                             this.searchable,
-                                            this.service_name,
+                                            this.name,
                                             this.root_object,
                                             null);
         } catch (IOError err) {
