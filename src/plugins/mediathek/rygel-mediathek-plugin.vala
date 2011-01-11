@@ -31,10 +31,6 @@ public void module_init (PluginLoader loader) {
 
 public class Rygel.Mediathek.Plugin : Rygel.MediaServerPlugin {
     public Plugin () {
-        base ("ZDFMediathek", "ZDF Mediathek");
-    }
-
-    public override MediaContainer get_root_container () {
-        return RootContainer.get_instance ();
+        base (RootContainer.get_instance (), "ZDFMediathek");
     }
 }

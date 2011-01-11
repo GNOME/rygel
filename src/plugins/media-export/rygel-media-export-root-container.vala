@@ -318,7 +318,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
     private RootContainer () throws Error {
         var db = MediaCache.get_default ();
 
-        base (db, "0", "MediaExportRoot");
+        base (db, "0", _("@REALNAME@'s media"));
 
         this.cancellable = new Cancellable ();
         this.harvester = new Harvester (this.cancellable);

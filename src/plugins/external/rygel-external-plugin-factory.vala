@@ -151,13 +151,20 @@ public class Rygel.External.PluginFactory {
         var child_count = (uint) container_props.lookup ("ChildCount");
         var searchable = (bool) container_props.lookup ("Searchable");
 
-        var plugin = new External.Plugin (service_name,
-                                          title,
-                                          child_count,
-                                          searchable,
-                                          root_object,
-                                          icon);
+        try {
+            var plugin = new External.Plugin (service_name,
+                                              title,
+                                              child_count,
+                                              searchable,
+                                              root_object,
+                                              icon);
 
-        this.loader.add_plugin (plugin);
+            this.loader.add_plugin (plugin);
+        } catch (IOError err) {
+            critical ("Failed to create root container for '%s': %s. " +
+                      "Ignoring",
+                      service_name,
+                      err.message);
+        }
     }
 }

@@ -23,21 +23,16 @@
 using Gee;
 
 public class Rygel.Tracker.Plugin : Rygel.MediaServerPlugin {
-    private static RootContainer root_container;
+    private static RootContainer root;
 
     public Plugin () {
-        base ("Tracker",
-              // @REALNAME@ is substituted for user's real name
-              // and it doesn't need translation.
-              _("@REALNAME@'s media"));
-    }
-
-    public override MediaContainer get_root_container () {
-        if (root_container == null) {
-            root_container = new RootContainer (this.title);
+        // @REALNAME@ is substituted for user's real name and it
+        // doesn't need translation.
+        if (root == null) {
+            root = new RootContainer (_("@REALNAME@'s media"));
         }
 
-        return root_container;
+        base (root, "Tracker");
     }
 }
 

@@ -25,45 +25,24 @@
 using FreeDesktop;
 
 public class Rygel.External.Plugin : Rygel.MediaServerPlugin {
-    public string root_object;
-
-    // Root container properties
-    public uint child_count;
-    public bool searchable;
-
     public Plugin (string    service_name,
                    string    title,
                    uint      child_count,
                    bool      searchable,
                    string    root_object,
-                   IconInfo? icon) {
-        base (service_name,
-              title,
-              "Rygel External " + title);
+                   IconInfo? icon) throws IOError {
+        var root_container = new Container ("0",
+                                            title,
+                                            child_count,
+                                            searchable,
+                                            service_name,
+                                            root_object,
+                                            null);
 
-        this.child_count = child_count;
-        this.searchable = searchable;
-        this.root_object = root_object;
+        base (root_container, service_name, "Rygel External " + title);
+
         if (icon != null) {
             this.add_icon (icon);
         }
-    }
-
-    public override MediaContainer get_root_container () {
-        Container root_container = null;
-
-        try {
-            root_container = new Container ("0",
-                                            this.title,
-                                            this.child_count,
-                                            this.searchable,
-                                            this.name,
-                                            this.root_object,
-                                            null);
-        } catch (IOError err) {
-            critical ("Failed to connect to session bus: %s", err.message);
-        }
-
-        return root_container;
     }
 }

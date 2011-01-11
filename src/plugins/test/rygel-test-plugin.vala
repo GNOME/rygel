@@ -33,10 +33,8 @@ public void module_init (PluginLoader loader) {
 
 public class Rygel.Test.Plugin : Rygel.MediaServerPlugin {
     public Plugin () {
-        base ("Test", "Test Streams");
-    }
+        var root_container = new RootContainer ("Test Streams");
 
-    public override MediaContainer get_root_container () {
-        return new RootContainer (this.title);
+        base (root_container, "Test");
     }
 }

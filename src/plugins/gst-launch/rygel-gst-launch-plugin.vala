@@ -31,10 +31,8 @@ public void module_init (PluginLoader loader) {
 
 public class Rygel.GstLaunch.Plugin : Rygel.MediaServerPlugin {
     public Plugin () {
-        base ("GstLaunch", "Gst Launch");
-    }
+        var root_container = new RootContainer ("Gst Launch");
 
-    public override MediaContainer get_root_container () {
-        return new RootContainer (this.title);
+        base (root_container, "GstLaunch");
     }
 }

@@ -29,7 +29,17 @@ private const string OUR_PLUGIN = "MediaExport";
  *
  */
 public void module_init (PluginLoader loader) {
-    var plugin = new MediaExport.Plugin ();
+    MediaExport.Plugin plugin;
+
+    try {
+        plugin = new MediaExport.Plugin ();
+    } catch (Error error) {
+        warning ("Failed to initialize plugin '%s': %s. Ignoring..",
+                 OUR_PLUGIN,
+                 error.message);
+
+        return;
+    }
 
     Idle.add (() => {
        foreach (var loaded_plugin in loader.list_plugins ()) {
@@ -74,20 +84,7 @@ public void on_plugin_available (Plugin plugin, Plugin our_plugin) {
 }
 
 public class Rygel.MediaExport.Plugin : Rygel.MediaServerPlugin {
-    public Plugin () {
-        base (OUR_PLUGIN, _("@REALNAME@'s media"));
-    }
-
-    public override MediaContainer get_root_container () {
-        try {
-            return RootContainer.get_instance ();
-        } catch (Error error) {
-            warning ("Could not create root container: %s. " +
-                     "Disabling plugin",
-                     error.message);
-            this.active = false;
-        }
-
-        return new NullContainer ();
+    public Plugin () throws Error {
+        base (RootContainer.get_instance (), OUR_PLUGIN);
     }
 }

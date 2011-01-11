@@ -25,10 +25,17 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
     private static const string MEDIA_SERVER_DESC_PATH =
                                 BuildConfig.DATA_DIR + "/xml/MediaServer2.xml";
 
-    public MediaServerPlugin (string  name,
-                              string? title,
-                              string? description = null) {
-        base (MEDIA_SERVER_DESC_PATH, name, title, description);
+    public MediaContainer root_container;
+
+    public MediaServerPlugin (MediaContainer root_container,
+                              string         name,
+                              string?        description = null) {
+        base (MEDIA_SERVER_DESC_PATH,
+              name,
+              root_container.title,
+              description);
+
+        this.root_container = root_container;
 
         // MediaServer implementations must implement ContentDirectory service
         var info = new ResourceInfo (ContentDirectory.UPNP_ID,
@@ -50,7 +57,6 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
                                  typeof (MediaReceiverRegistrar));
         this.add_resource (info);
 
-        var root_container = this.get_root_container ();
         if (root_container.child_count == 0) {
             debug ("Deactivating plugin '%s' until it provides content.",
                    this.name);
@@ -61,8 +67,6 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
                                         (this.on_container_updated);
         }
     }
-
-    public abstract MediaContainer get_root_container ();
 
     private void on_container_updated (MediaContainer root_container,
                                        MediaContainer updated) {
