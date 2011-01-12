@@ -33,6 +33,7 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
     private static string ENABLED_KEY = "ENABLED";
     private static string INTERFACE_ENV = RYGEL_PREFIX + "_IFACE";
     private static string PORT_ENV = RYGEL_PREFIX + "_PORT";
+    private static string DISABLE_UPNP_ENV = RYGEL_PREFIX + "_DISABLE_UPNP";
     private static string TRANSCODING_ENV = RYGEL_PREFIX + "_TRANSCODING";
     private static string MP3_TRANSCODING_ENV = RYGEL_PREFIX + "_MP3_TRANS";
     private static string LPCM_TRANSCODING_ENV = RYGEL_PREFIX + "_LPCM_TRANS";
@@ -54,9 +55,8 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
         return config;
     }
 
-    // This config doesn't make sense in this context.
     public bool get_upnp_enabled () throws GLib.Error {
-        throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
+        return !this.get_bool_variable (DISABLE_UPNP_ENV);
     }
 
     public string get_interface () throws GLib.Error {

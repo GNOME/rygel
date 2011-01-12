@@ -35,6 +35,7 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static string iface;
     private static int port;
 
+    private static bool no_upnp;
     private static bool no_transcoding;
     private static bool no_mp3_trans;
     private static bool no_mp2ts_trans;
@@ -98,6 +99,8 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
           "Set plugin titles", "PluginName:TITLE" },
         { "plugin-option", 'o', 0, OptionArg.STRING_ARRAY, ref plugin_options,
           "Set plugin options", "PluginName:OPTION:VALUE1[,VALUE2,..]" },
+        { "disable-upnp", 'P', 0, OptionArg.NONE, ref no_upnp,
+          "Disable UPnP (streaming-only)", null },
         { null }
 	};
 
@@ -125,9 +128,12 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
 		}
     }
 
-    // Why would someone lauch rygel to kill itself?
     public bool get_upnp_enabled () throws GLib.Error {
-        throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
+        if (!no_upnp) {
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
+        } else {
+            return false;
+        }
     }
 
     public string get_interface () throws GLib.Error {
