@@ -30,17 +30,19 @@ using Gee;
 internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
     private static string RYGEL_PREFIX = "RYGEL";
     private static string TITLE_KEY = RYGEL_PREFIX + "_TITLE";
+    private static string DISABLE_PREFIX = RYGEL_PREFIX + "_DISABLE";
     private static string ENABLED_KEY = "ENABLED";
     private static string INTERFACE_ENV = RYGEL_PREFIX + "_IFACE";
     private static string PORT_ENV = RYGEL_PREFIX + "_PORT";
-    private static string DISABLE_UPNP_ENV = RYGEL_PREFIX + "_DISABLE_UPNP";
-    private static string TRANSCODING_ENV = RYGEL_PREFIX + "_TRANSCODING";
-    private static string MP3_TRANSCODING_ENV = RYGEL_PREFIX + "_MP3_TRANS";
-    private static string LPCM_TRANSCODING_ENV = RYGEL_PREFIX + "_LPCM_TRANS";
-    private static string MP2TS_TRANSCODING_ENV = RYGEL_PREFIX + "_MP2TS_TRANS";
-    private static string WMV_TRANSCODING_ENV = RYGEL_PREFIX + "_WMV_TRANS";
-    private static string ALLOW_UPLOAD_ENV = RYGEL_PREFIX + "_ALLOW_UPLOAD";
-    private static string ALLOW_DELETION_ENV = RYGEL_PREFIX + "_ALLOW_DELETION";
+    private static string DISABLE_UPNP_ENV = DISABLE_PREFIX + "_UPNP";
+    private static string TRANSCODING_ENV = DISABLE_PREFIX + "_TRANSCODING";
+    private static string MP3_TRANSCODING_ENV = DISABLE_PREFIX + "_MP3_TRANS";
+    private static string LPCM_TRANSCODING_ENV = DISABLE_PREFIX + "_LPCM_TRANS";
+    private static string MP2TS_TRANSCODING_ENV = DISABLE_PREFIX +
+                                                  "_MP2TS_TRANS";
+    private static string WMV_TRANSCODING_ENV = DISABLE_PREFIX + "_WMV_TRANS";
+    private static string DISALLOW_UPLOAD_ENV = DISABLE_PREFIX + "_UPLOAD";
+    private static string DISALLOW_DELETION_ENV = DISABLE_PREFIX + "_DELETION";
     private static string LOG_LEVEL_ENV = RYGEL_PREFIX + "_LOG";
     private static string PLUGIN_PATH_ENV = RYGEL_PREFIX + "_PLUGIN_PATH";
 
@@ -68,31 +70,31 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
     }
 
     public bool get_transcoding () throws GLib.Error {
-        return this.get_bool_variable (TRANSCODING_ENV);
+        return !this.get_bool_variable (TRANSCODING_ENV);
     }
 
     public bool get_mp3_transcoder () throws GLib.Error {
-        return this.get_bool_variable (MP3_TRANSCODING_ENV);
+        return !this.get_bool_variable (MP3_TRANSCODING_ENV);
     }
 
     public bool get_mp2ts_transcoder () throws GLib.Error {
-        return this.get_bool_variable (MP2TS_TRANSCODING_ENV);
+        return !this.get_bool_variable (MP2TS_TRANSCODING_ENV);
     }
 
     public bool get_wmv_transcoder () throws GLib.Error {
-        return this.get_bool_variable (WMV_TRANSCODING_ENV);
+        return !this.get_bool_variable (WMV_TRANSCODING_ENV);
     }
 
     public bool get_lpcm_transcoder () throws GLib.Error {
-        return this.get_bool_variable (LPCM_TRANSCODING_ENV);
+        return !this.get_bool_variable (LPCM_TRANSCODING_ENV);
     }
 
     public bool get_allow_upload () throws GLib.Error {
-        return this.get_bool_variable (ALLOW_UPLOAD_ENV);
+        return !this.get_bool_variable (DISALLOW_UPLOAD_ENV);
     }
 
     public bool get_allow_deletion () throws GLib.Error {
-        return this.get_bool_variable (ALLOW_DELETION_ENV);
+        return !this.get_bool_variable (DISALLOW_DELETION_ENV);
     }
 
     public LogLevel get_log_level () throws GLib.Error {
@@ -189,7 +191,7 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
             throw new ConfigurationError.NO_VALUE_SET ("No value available");
         }
 
-        return enabled.to_bool ();
+        return true;
     }
 }
 
