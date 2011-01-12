@@ -1,3 +1,21 @@
+0.9.6
+=====
+
+Another micro release to mainly fix a critical bug in 0.9.5. Other changes:
+
+- Correct meaning for 'upnp_enabled' configuration option. Its now set to 'true'
+  by default and if you set this to 'false' and run rygel, you can still stream
+  media (currently only over HTTP) from it.
+- Add option to disable UPnP to all configuration sources.
+- Environment variables for boolean options now follow general unix conventions.
+- Localization:
+  - New partial translation for Afrikaans (af).
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Friedel Wolff <friedel@translate.org.za>
+
 0.9.5
 =====
 
