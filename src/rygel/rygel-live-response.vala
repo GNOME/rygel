@@ -23,7 +23,6 @@
  */
 
 using GUPnP;
-using Gee;
 using Gst;
 
 internal class Rygel.LiveResponse : Rygel.HTTPResponse {
