@@ -37,17 +37,17 @@ public class Rygel.HTTPSeek : GLib.Object {
     }
 }
 
-public class Rygel.SeekableResponseTest : Rygel.HTTPResponseTest {
+public class Rygel.HTTPSeekableResponseTest : Rygel.HTTPResponseTest {
     private static string URI = "file:///tmp/rygel-dummy-test-file";
 
     private File dummy_file;
 
     public static int main (string[] args) {
         try {
-            var test = new SeekableResponseTest.complete ();
+            var test = new HTTPSeekableResponseTest.complete ();
             test.run ();
 
-            test = new SeekableResponseTest.abort ();
+            test = new HTTPSeekableResponseTest.abort ();
             test.run ();
         } catch (TestError.SKIP error) {
             return error.code;
@@ -60,16 +60,16 @@ public class Rygel.SeekableResponseTest : Rygel.HTTPResponseTest {
         return 0;
     }
 
-    private SeekableResponseTest (Cancellable? cancellable = null)
-                                  throws Error {
+    private HTTPSeekableResponseTest (Cancellable? cancellable = null)
+                                      throws Error {
         base (cancellable);
     }
 
-    private SeekableResponseTest.complete () throws Error {
+    private HTTPSeekableResponseTest.complete () throws Error {
         base.complete ();
     }
 
-    private SeekableResponseTest.abort () throws Error {
+    private HTTPSeekableResponseTest.abort () throws Error {
         base.abort ();
     }
 
@@ -93,11 +93,11 @@ public class Rygel.SeekableResponseTest : Rygel.HTTPResponseTest {
                                                     throws Error {
         var seek = new HTTPSeek (0, 1025);
 
-        return new SeekableResponse (this.server.context.server,
-                                     msg,
-                                     this.dummy_file.get_uri (),
-                                     seek,
-                                     1024,
-                                     this.cancellable);
+        return new HTTPSeekableResponse (this.server.context.server,
+                                         msg,
+                                         this.dummy_file.get_uri (),
+                                         seek,
+                                         1024,
+                                         this.cancellable);
     }
 }

@@ -74,19 +74,19 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
 
     private HTTPResponse render_body_real (HTTPGet request) throws Error {
         if (request.subtitle != null) {
-            return new SeekableResponse (request.server,
-                                         request.msg,
-                                         request.subtitle.uri,
-                                         request.seek,
-                                         request.subtitle.size,
-                                         this.cancellable);
+            return new HTTPSeekableResponse (request.server,
+                                             request.msg,
+                                             request.subtitle.uri,
+                                             request.seek,
+                                             request.subtitle.size,
+                                             this.cancellable);
         } else if (request.thumbnail != null) {
-            return new SeekableResponse (request.server,
-                                         request.msg,
-                                         request.thumbnail.uri,
-                                         request.seek,
-                                         request.thumbnail.size,
-                                         this.cancellable);
+            return new HTTPSeekableResponse (request.server,
+                                             request.msg,
+                                             request.thumbnail.uri,
+                                             request.seek,
+                                             request.thumbnail.size,
+                                             this.cancellable);
         }
 
         var item = request.item;
@@ -110,12 +110,12 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
                                          item.id);
             }
 
-            return new SeekableResponse (request.server,
-                                         request.msg,
-                                         item.uris.get (0),
-                                         request.seek,
-                                         item.size,
-                                         this.cancellable);
+            return new HTTPSeekableResponse (request.server,
+                                             request.msg,
+                                             item.uris.get (0),
+                                             request.seek,
+                                             item.size,
+                                             this.cancellable);
         }
     }
 }

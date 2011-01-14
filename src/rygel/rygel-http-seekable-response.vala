@@ -24,7 +24,7 @@
 
 using GUPnP;
 
-internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
+internal class Rygel.HTTPSeekableResponse : Rygel.HTTPResponse {
     private const size_t BUFFER_LENGTH = 65536;
 
     private HTTPSeek seek;
@@ -36,12 +36,12 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
 
     int priority;
 
-    public SeekableResponse (Soup.Server  server,
-                             Soup.Message msg,
-                             string       uri,
-                             HTTPSeek     seek,
-                             int64        file_length,
-                             Cancellable? cancellable) {
+    public HTTPSeekableResponse (Soup.Server  server,
+                                 Soup.Message msg,
+                                 string       uri,
+                                 HTTPSeek     seek,
+                                 int64        file_length,
+                                 Cancellable? cancellable) {
         var partial = seek.length < file_length;
 
         base (server, msg, partial, cancellable);
@@ -50,7 +50,7 @@ internal class Rygel.SeekableResponse : Rygel.HTTPResponse {
         this.priority = this.get_requested_priority ();
         this.total_length = (size_t) seek.length;
 
-        this.buffer = new uint8[SeekableResponse.BUFFER_LENGTH];
+        this.buffer = new uint8[HTTPSeekableResponse.BUFFER_LENGTH];
         this.file = File.new_for_uri (uri);
     }
 
