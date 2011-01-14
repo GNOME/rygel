@@ -100,7 +100,7 @@ src/rygel/rygel-item-creator.vala
 src/rygel/rygel-item-destroyer.vala
 src/rygel/rygel-l16-transcoder-bin.vala
 src/rygel/rygel-l16-transcoder.vala
-src/rygel/rygel-live-response.vala
+src/rygel/rygel-http-gst-response.vala
 src/rygel/rygel-log-handler.vala
 src/rygel/rygel-logical-expression.vala
 src/rygel/rygel-main.vala

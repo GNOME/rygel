@@ -59,7 +59,7 @@ src/rygel/rygel-import-resource.c
 src/rygel/rygel-item-creator.c
 src/rygel/rygel-item-destroyer.c
 src/rygel/rygel-l16-transcoder-bin.c
-src/rygel/rygel-live-response.c
+src/rygel/rygel-http-gst-response.c
 src/rygel/rygel-log-handler.c
 src/rygel/rygel-main.c
 src/rygel/rygel-media-container.c
@@ -101,7 +101,7 @@ tests/rygel-gst-utils.c
 tests/rygel-http-byte-seek.c
 tests/rygel-http-item-uri.c
 tests/rygel-http-time-seek.c
-tests/rygel-live-response.c
+tests/rygel-http-gst-response.c
 tests/rygel-seekable-response.c
 tests/rygel-http-byte-seek_http-get.c
 tests/rygel-http-get.c

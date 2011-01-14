@@ -24,7 +24,7 @@
 using Soup;
 using Gst;
 
-public class Rygel.LiveResponseTest : Rygel.HTTPResponseTest {
+public class Rygel.HTTPGstResponseTest : Rygel.HTTPResponseTest {
     private static const long BLOCK_SIZE = MAX_BYTES / 16;
     private static const long MAX_BUFFERS = MAX_BYTES / BLOCK_SIZE;
 
@@ -34,10 +34,10 @@ public class Rygel.LiveResponseTest : Rygel.HTTPResponseTest {
         Gst.init (ref args);
 
         try {
-            var test = new LiveResponseTest.complete ();
+            var test = new HTTPGstResponseTest.complete ();
             test.run ();
 
-            test = new LiveResponseTest.abort ();
+            test = new HTTPGstResponseTest.abort ();
             test.run ();
         } catch (TestError.SKIP error) {
             return error.code;
@@ -54,24 +54,24 @@ public class Rygel.LiveResponseTest : Rygel.HTTPResponseTest {
         this.src = GstUtils.create_element ("audiotestsrc", null);
     }
 
-    private LiveResponseTest.complete () throws Error {
+    private HTTPGstResponseTest.complete () throws Error {
         base.complete ();
 
         this.src.blocksize = BLOCK_SIZE;
         this.src.num_buffers = MAX_BUFFERS;
     }
 
-    private LiveResponseTest.abort () throws Error {
+    private HTTPGstResponseTest.abort () throws Error {
         base.abort ();
     }
 
     internal override HTTPResponse create_response (Soup.Message msg)
                                                      throws Error {
-        return new LiveResponse (this.server.context.server,
-                                 msg,
-                                 "TestingLiveResponse",
-                                 this.src,
-                                 null,
-                                 this.cancellable);
+        return new HTTPGstResponse (this.server.context.server,
+                                    msg,
+                                    "TestingHTTPGstResponse",
+                                    this.src,
+                                    null,
+                                    this.cancellable);
     }
 }

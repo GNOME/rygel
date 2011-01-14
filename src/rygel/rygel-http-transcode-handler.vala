@@ -59,12 +59,12 @@ internal class Rygel.HTTPTranscodeHandler : HTTPGetHandler {
         try {
             src = this.transcoder.create_source (item, src);
 
-            return new LiveResponse (request.server,
-                                     request.msg,
-                                     "RygelLiveResponse",
-                                     src,
-                                     request.seek,
-                                     this.cancellable);
+            return new HTTPGstResponse (request.server,
+                                        request.msg,
+                                        "RygelHTTPGstResponse",
+                                        src,
+                                        request.seek,
+                                        this.cancellable);
         } catch (GLib.Error err) {
             throw new HTTPRequestError.NOT_FOUND (err.message);
         }

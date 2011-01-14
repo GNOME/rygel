@@ -25,7 +25,7 @@
 using GUPnP;
 using Gst;
 
-internal class Rygel.LiveResponse : Rygel.HTTPResponse {
+internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
     private const string SINK_NAME = "fakesink";
     // High and low threshold for number of buffered chunks
     private const uint MAX_BUFFERED_CHUNKS = 32;
@@ -38,7 +38,7 @@ internal class Rygel.LiveResponse : Rygel.HTTPResponse {
     private int64 buffered;
     private bool out_of_sync;
 
-    public LiveResponse (Soup.Server  server,
+    public HTTPGstResponse (Soup.Server  server,
                          Soup.Message msg,
                          string       name,
                          Element      src,

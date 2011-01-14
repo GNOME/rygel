@@ -69,7 +69,7 @@ VAPI_SOURCE_FILES = rygel-configuration.vala \
 		    rygel-http-byte-seek.vala \
 		    rygel-http-time-seek.vala \
 		    rygel-http-response.vala \
-		    rygel-live-response.vala \
+		    rygel-http-gst-response.vala \
 		    rygel-seekable-response.vala \
 		    rygel-resource-info.vala \
 		    rygel-icon-info.vala \
