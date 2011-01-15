@@ -18,11 +18,12 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -DDATA_DIR='"$(shareddir)"' \
 	    -include config.h
 
-librygel_mediathek_la_SOURCES = rygel-mediathek-asx-playlist.vala \
+librygel_mediathek_la_SOURCES = rygel-mediathek-asx-playlist-parser.vala \
 				rygel-mediathek-plugin.vala \
-				rygel-mediathek-video-item.vala \
+				rygel-mediathek-video-item-factory.vala \
 				rygel-mediathek-root-container.vala \
-				rygel-mediathek-rss-container.vala
+				rygel-mediathek-rss-container.vala \
+				rygel-mediathek-soup-utils.vala
 
 librygel_mediathek_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
 				  --pkg rygel-1.0 \

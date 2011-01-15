@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009 Jens Georg
+ * Copyright (C) 2009-2011 Jens Georg
  *
  * Author: Jens Georg <mail@jensge.org>
  *
@@ -25,95 +25,106 @@ using Soup;
 using Xml;
 
 public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
-    private uint zdf_content_id;
+    private const string uri_template = "http://www.zdf.de/ZDFmediathek/" +
+                                        "content/%u?view=rss";
+    private uint content_id;
     private Soup.Date last_modified = null;
+    private string feed_uri;
 
-    private void on_feed_got (Soup.Session session, Soup.Message msg) {
-        switch (msg.status_code) {
+    private async bool parse_response (Message message) {
+        var factory = VideoItemFactory.get_default ();
+        unowned MessageBody response = message.response_body;
+
+        var doc = Xml.Parser.parse_memory ((string) response.data,
+                                           (int) response.length);
+        if (doc == null) {
+            warning ("Failed to parse XML document");
+
+            return false;
+        }
+
+
+        var context = new XPath.Context (doc);
+        var xpo = context.eval ("/rss/channel/title");
+        if (xpo->type == XPath.ObjectType.NODESET &&
+            xpo->nodesetval->length () > 0) {
+            // just use first title (there should be only one)
+            this.title = xpo->nodesetval->item (0)->get_content ();
+        }
+
+        xpo = context.eval ("/rss/channel/item");
+        if (xpo->type != XPath.ObjectType.NODESET) {
+            warning ("RSS feed doesn't have items");
+
+            return false;
+        }
+
+        this.children.clear ();
+        this.child_count = 0;
+        for (int i = 0; i < xpo->nodesetval->length (); i++) {
+            var node = xpo->nodesetval->item (i);
+            try {
+                var item = yield factory.create (this, node);
+                if (item != null) {
+                    this.add_child_item (item);
+                }
+            } catch (VideoItemError error) {
+                warning ("Error creating video item: %s",
+                         error.message);
+            }
+        }
+
+        this.updated ();
+
+        return this.child_count > 0;
+    }
+
+    private Message get_update_message () {
+        var message = new Soup.Message ("GET", this.feed_uri);
+        if (this.last_modified != null) {
+            var datestring = this.last_modified.to_string (DateFormat.HTTP);
+
+            debug ("Requesting change since %s", datestring);
+            message.request_headers.append("If-Modified-Since", datestring);
+        }
+
+        return message;
+    }
+
+    public async void update () {
+        var message = this.get_update_message ();
+        yield SoupUtils.queue_message (RootContainer.get_default_session (),
+                                       message);
+
+        switch (message.status_code) {
             case 304:
-                message("Feed has not changed, nothing to do");
+                debug ("Feed at %s did not change, nothing to do.",
+                       message.uri.to_string (false));
                 break;
             case 200:
-                if (parse_response ((string) msg.response_body.data,
-                                    (size_t) msg.response_body.length)) {
-                    last_modified = new Soup.Date.from_string (
-                                        msg.response_headers.get_one ("Date"));
+                var success = yield this.parse_response (message);
+                if (success) {
+                    var date = message.response_headers.get_one ("Date");
+
+                    this.last_modified = new Soup.Date.from_string (date);
                 }
                 break;
             default:
-                // TODO Need to handle redirects....
-                warning("Got unexpected response %u (%s)",
-                        msg.status_code,
-                        Soup.status_get_phrase (msg.status_code));
+                warning ("Unexpected response %u for %s: %s",
+                         message.status_code,
+                         message.uri.to_string (false),
+                         Soup.status_get_phrase (message.status_code));
                 break;
         }
-    }
-
-    private bool parse_response (string data, size_t length) {
-        bool ret = false;
-        Xml.Doc* doc = Xml.Parser.parse_memory (data, (int) length);
-        if (doc != null) {
-            this.children.clear ();
-            this.child_count = 0;
-
-            var ctx = new XPath.Context (doc);
-            var xpo = ctx.eval ("/rss/channel/title");
-            if (xpo->type == Xml.XPath.ObjectType.NODESET &&
-                xpo->nodesetval->length () > 0) {
-                // just use first title (there should be only one)
-                this.title = xpo->nodesetval->item (0)->get_content ();
-            }
-
-            xpo = ctx.eval ("/rss/channel/item");
-            if (xpo->type == Xml.XPath.ObjectType.NODESET) {
-                for (int i = 0; i < xpo->nodesetval->length (); i++) {
-                    Xml.Node* node = xpo->nodesetval->item (i);
-                    try {
-                        var item = VideoItem.create_from_xml (this, node);
-                        this.add_child_item (item);
-                        ret = true;
-                    }
-                    catch (VideoItemError error) {
-                        warning ("Error creating video item: %s",
-                                 error.message);
-                    }
-                }
-            }
-            else {
-                warning ("XPath query failed");
-            }
-
-            delete doc;
-            this.updated ();
-        }
-        else {
-            warning ("Failed to parse doc");
-        }
-
-        return ret;
-    }
-
-    public void update () {
-        var message = new Soup.Message ("GET",
-            "http://www.zdf.de/ZDFmediathek/content/%u?view=rss".printf(
-                                                            zdf_content_id)); 
-        if (last_modified != null) {
-            debug ("Requesting change since %s",
-                   last_modified.to_string(DateFormat.HTTP));
-            message.request_headers.append("If-Modified-Since", 
-                   last_modified.to_string(DateFormat.HTTP));
-        }
-
-        ((RootContainer) this.parent).session.queue_message (message,
-                                                             on_feed_got);
     }
 
     public RssContainer (MediaContainer parent, uint id) {
         base ("GroupId:%u".printf(id),
-             parent, 
-             "ZDF Mediathek RSS feed %u".printf (id));
+              parent, 
+              "ZDF Mediathek RSS feed %u".printf (id));
 
-        this.zdf_content_id = id;
-        update ();
+        this.content_id = id;
+        this.feed_uri = uri_template.printf (id);
+        this.update ();
     }
 }

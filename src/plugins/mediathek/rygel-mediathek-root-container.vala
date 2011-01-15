@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009 Jens Georg
+ * Copyright (C) 2009-2011 Jens Georg
  *
  * Author: Jens Georg <mail@jensge.org>
  *
@@ -24,29 +24,29 @@ using Gee;
 using Soup;
 
 public class Rygel.Mediathek.RootContainer : Rygel.SimpleContainer {
-    internal SessionAsync session;
+    private SessionAsync session;
     private static RootContainer instance;
-
-    private bool on_schedule_update () {
-        message("Scheduling update for all feeds....");
-        foreach (var container in this.children) {
-            ((RssContainer) container).update ();
-        }
-
-        return true;
-    }
+    private static uint UPDATE_TIMEOUT = 1800;
 
     public static RootContainer get_instance () {
         if (RootContainer.instance == null) {
             RootContainer.instance = new RootContainer ();
+            RootContainer.instance.init ();
         }
 
         return instance;
     }
 
+    public static SessionAsync get_default_session () {
+        return get_instance ().session;
+    }
+
     private RootContainer () {
         base.root ("ZDF Mediathek");
         this.session = new Soup.SessionAsync ();
+    }
+
+    private void init () {
         Gee.ArrayList<int> feeds = null;
 
         var config = Rygel.MetaConfig.get_default ();
@@ -65,6 +65,14 @@ public class Rygel.Mediathek.RootContainer : Rygel.SimpleContainer {
             this.add_child_container (new RssContainer (this, id));
         }
 
-        GLib.Timeout.add_seconds (1800, on_schedule_update);
+        Timeout.add_seconds (UPDATE_TIMEOUT, () => {
+            foreach (var child in this.children) {
+                var container = child as RssContainer;
+
+                container.update ();
+            }
+
+            return true;
+        });
     }
 }
