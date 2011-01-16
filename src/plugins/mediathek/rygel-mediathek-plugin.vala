@@ -23,6 +23,11 @@
 using Rygel;
 using GUPnP;
 
+// remove when bgo#639700 is fixed and "delete" resolves to the free_func and
+// not to g_free 
+[CCode (cname = "xmlXPathFreeObject")]
+internal extern void xpath_free_object (Xml.XPath.Object *object);
+
 public void module_init (PluginLoader loader) {
     if (loader.plugin_disabled (Mediathek.Plugin.NAME)) {
         message ("Plugin '%s' disabled by user, ignoring..",

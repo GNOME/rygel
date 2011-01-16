@@ -79,18 +79,20 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
 
             return false;
         }
+        var guard = new GUPnP.XMLDoc (doc);
+        var context = new XPath.Context (guard.doc);
 
-
-        var context = new XPath.Context (doc);
-        var xpo = context.eval ("/rss/channel/title");
-        if (xpo->type == XPath.ObjectType.NODESET &&
-            xpo->nodesetval->length () > 0) {
+        var xpath_object = context.eval ("/rss/channel/title");
+        if (xpath_object->type == XPath.ObjectType.NODESET &&
+            xpath_object->nodesetval->length () > 0) {
             // just use first title (there should be only one)
-            this.title = xpo->nodesetval->item (0)->get_content ();
+            this.title = xpath_object->nodesetval->item (0)->get_content ();
         }
+        xpath_free_object (xpath_object);
 
-        xpo = context.eval ("/rss/channel/item");
-        if (xpo->type != XPath.ObjectType.NODESET) {
+        xpath_object = context.eval ("/rss/channel/item");
+        if (xpath_object->type != XPath.ObjectType.NODESET) {
+            xpath_free_object (xpath_object);
             warning ("RSS feed doesn't have items");
 
             return false;
@@ -98,8 +100,8 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
 
         this.children.clear ();
         this.child_count = 0;
-        for (int i = 0; i < xpo->nodesetval->length (); i++) {
-            var node = xpo->nodesetval->item (i);
+        for (int i = 0; i < xpath_object->nodesetval->length (); i++) {
+            var node = xpath_object->nodesetval->item (i);
             try {
                 var item = yield factory.create (this, node);
                 if (item != null) {
@@ -111,6 +113,7 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
             }
         }
 
+        xpath_free_object (xpath_object);
         this.updated ();
 
         return this.child_count > 0;

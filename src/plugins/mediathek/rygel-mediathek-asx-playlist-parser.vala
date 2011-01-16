@@ -57,6 +57,7 @@ internal class Rygel.Mediathek.AsxPlaylistParser : Object {
      */
     public async Gee.List<string>? parse (string uri) throws VideoItemError {
         var message = new Soup.Message ("GET", uri);
+        ArrayList<string> uris = null;
 
         yield SoupUtils.queue_message (session, message);
 
@@ -83,25 +84,30 @@ internal class Rygel.Mediathek.AsxPlaylistParser : Object {
                                         ("Could not parse playlist");
             }
 
-            var context = new XPath.Context (doc);
-            var xpath_object = context.eval ("/asx/entry/ref/@href");
-            if (xpath_object->type == XPath.ObjectType.NODESET) {
-                var uris = new LinkedList<string> ();
-                for (int i = 0;
-                     i < xpath_object->nodesetval->length ();
-                     i++) {
-                    var item = xpath_object->nodesetval->item (i);
-                    uris.add (item->children->content);
-                }
+            var doc_guard = new GUPnP.XMLDoc (doc);
+            var context = new XPath.Context (doc_guard.doc);
 
-                return uris;
+            var xpath_object = context.eval ("/asx/entry/ref/@href");
+           
+            if (xpath_object->type != XPath.ObjectType.NODESET) {
+                xpath_free_object (xpath_object);
+                throw new VideoItemError.XML_PARSE_ERROR
+                                        ("No uris found in playlist");
             }
 
-            delete doc;
+            uris = new ArrayList<string> ();
+            for (int i = 0;
+                 i < xpath_object->nodesetval->length ();
+                 i++) {
+                var item = xpath_object->nodesetval->item (i);
+                uris.add (item->children->content);
+            }
+
+            xpath_free_object (xpath_object);
         } catch (RegexError error) {
             throw new VideoItemError.XML_PARSE_ERROR ("Failed to normalize");
         }
 
-        return null;
+        return uris;
     }
 }
