@@ -31,6 +31,43 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
     private Soup.Date last_modified = null;
     private string feed_uri;
 
+    public RssContainer (MediaContainer parent, uint id) {
+        base ("GroupId:%u".printf(id),
+              parent, 
+              "ZDF Mediathek RSS feed %u".printf (id));
+
+        this.content_id = id;
+        this.feed_uri = uri_template.printf (id);
+        this.update ();
+    }
+
+    public async void update () {
+        var message = this.get_update_message ();
+        yield SoupUtils.queue_message (RootContainer.get_default_session (),
+                                       message);
+
+        switch (message.status_code) {
+            case 304:
+                debug ("Feed at %s did not change, nothing to do.",
+                       message.uri.to_string (false));
+                break;
+            case 200:
+                var success = yield this.parse_response (message);
+                if (success) {
+                    var date = message.response_headers.get_one ("Date");
+
+                    this.last_modified = new Soup.Date.from_string (date);
+                }
+                break;
+            default:
+                warning ("Unexpected response %u for %s: %s",
+                         message.status_code,
+                         message.uri.to_string (false),
+                         Soup.status_get_phrase (message.status_code));
+                break;
+        }
+    }
+
     private async bool parse_response (Message message) {
         var factory = VideoItemFactory.get_default ();
         unowned MessageBody response = message.response_body;
@@ -89,42 +126,5 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
         }
 
         return message;
-    }
-
-    public async void update () {
-        var message = this.get_update_message ();
-        yield SoupUtils.queue_message (RootContainer.get_default_session (),
-                                       message);
-
-        switch (message.status_code) {
-            case 304:
-                debug ("Feed at %s did not change, nothing to do.",
-                       message.uri.to_string (false));
-                break;
-            case 200:
-                var success = yield this.parse_response (message);
-                if (success) {
-                    var date = message.response_headers.get_one ("Date");
-
-                    this.last_modified = new Soup.Date.from_string (date);
-                }
-                break;
-            default:
-                warning ("Unexpected response %u for %s: %s",
-                         message.status_code,
-                         message.uri.to_string (false),
-                         Soup.status_get_phrase (message.status_code));
-                break;
-        }
-    }
-
-    public RssContainer (MediaContainer parent, uint id) {
-        base ("GroupId:%u".printf(id),
-              parent, 
-              "ZDF Mediathek RSS feed %u".printf (id));
-
-        this.content_id = id;
-        this.feed_uri = uri_template.printf (id);
-        this.update ();
     }
 }
