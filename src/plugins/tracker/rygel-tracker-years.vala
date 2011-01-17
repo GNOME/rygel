@@ -38,7 +38,7 @@ public class Rygel.Tracker.Years : MetadataValues {
     }
 
     protected override string? create_title_for_value (string value) {
-        return value.ndup (4);
+        return value.substring (4);
     }
 
     protected override string create_filter (string variable, string value) {

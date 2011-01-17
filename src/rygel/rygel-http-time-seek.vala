@@ -45,7 +45,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
                                                        range);
             }
 
-            range_tokens = range.offset (4).split ("-", 2);
+            range_tokens = range.substring (4).split ("-", 2);
             if (range_tokens[0] == null || range_tokens[1] == null) {
                 throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
                                                        range);

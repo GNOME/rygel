@@ -276,7 +276,7 @@ internal class Rygel.RootDeviceFactory {
                               width + "x" +
                               height + "x" +
                               depth + "." + icon_info.file_extension;
-            var local_path = uri.offset (7);
+            var local_path = uri.substring (7);
 
             this.context.host_path (local_path, remote_path);
             icon_node->new_child (null, "url", remote_path);

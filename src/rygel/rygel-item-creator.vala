@@ -296,8 +296,8 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
 
         while (item == null) {
             try {
-                item = yield container.find_object (this.item.id,
-                                                    this.cancellable)
+                item = (yield container.find_object (this.item.id,
+                                                     this.cancellable))
                        as MediaItem;
             } catch (Error error) {
                 warning ("Error from container '%s' on trying to find newly " +
