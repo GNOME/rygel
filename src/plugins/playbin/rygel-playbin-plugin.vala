@@ -32,8 +32,10 @@ public void module_init (PluginLoader loader) {
 }
 
 public class Rygel.Playbin.Plugin : Rygel.MediaRendererPlugin {
+    public const string NAME = "Playbin";
+
     public Plugin () {
-        base ("Playbin", _("GStreamer Player"));
+        base (Plugin.NAME, _("GStreamer Player"));
     }
 
     public override MediaPlayer? get_player () {

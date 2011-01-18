@@ -30,7 +30,9 @@ public void module_init (PluginLoader loader) {
 }
 
 public class Rygel.Mediathek.Plugin : Rygel.MediaServerPlugin {
+    public const string NAME = "ZDFMediathek";
+
     public Plugin () {
-        base (RootContainer.get_instance (), "ZDFMediathek");
+        base (RootContainer.get_instance (), Plugin.NAME);
     }
 }

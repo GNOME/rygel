@@ -32,9 +32,11 @@ public void module_init (PluginLoader loader) {
 }
 
 public class Rygel.Test.Plugin : Rygel.MediaServerPlugin {
+    public const string NAME = "Test";
+
     public Plugin () {
         var root_container = new RootContainer ("Test Streams");
 
-        base (root_container, "Test");
+        base (root_container, Plugin.NAME);
     }
 }

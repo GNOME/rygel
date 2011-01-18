@@ -30,9 +30,11 @@ public void module_init (PluginLoader loader) {
 }
 
 public class Rygel.GstLaunch.Plugin : Rygel.MediaServerPlugin {
+    public const string NAME = "GstLaunch";
+
     public Plugin () {
         var root_container = new RootContainer ("Gst Launch");
 
-        base (root_container, "GstLaunch");
+        base (root_container, Plugin.NAME);
     }
 }
