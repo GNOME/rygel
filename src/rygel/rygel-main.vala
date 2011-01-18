@@ -187,9 +187,14 @@ public class Rygel.Main : Object {
             device.available = plugin.active &&
                                this.config.get_upnp_enabled ();
 
-            this.root_devices.add (device);
+            // Due to pure evilness of unix sinals this might actually happen
+            // if someone shuts down rygel while the call-back is running,
+            // leading to a crash on shutdown
+            if (this.root_devices != null) {
+                this.root_devices.add (device);
 
-            plugin.notify["active"].connect (this.on_plugin_active_notify);
+                plugin.notify["active"].connect (this.on_plugin_active_notify);
+            }
         } catch (GLib.Error error) {
             warning (_("Failed to create RootDevice for %s. Reason: %s"),
                      plugin.name,
