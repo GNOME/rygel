@@ -116,6 +116,12 @@ public class Rygel.External.PluginFactory {
     }
 
     private async void load_plugin (string service_name) throws IOError {
+        if (this.loader.plugin_disabled (service_name)) {
+            message ("Plugin '%s' disabled by user, ignoring..", service_name);
+
+            return;
+        }
+
         if (service_name.has_prefix (GRILO_UPNP_PREFIX)) {
             // We don't entertain UPnP sources
             return;

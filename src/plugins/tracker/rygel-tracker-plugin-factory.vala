@@ -28,6 +28,13 @@ using Gee;
 private Tracker.PluginFactory plugin_factory;
 
 public void module_init (PluginLoader loader) {
+    if (loader.plugin_disabled (Tracker.Plugin.NAME)) {
+        message ("Plugin '%s' disabled by user, ignoring..",
+                 Tracker.Plugin.NAME);
+
+        return;
+    }
+
     try {
         plugin_factory = new Tracker.PluginFactory (loader);
     } catch (IOError err) {

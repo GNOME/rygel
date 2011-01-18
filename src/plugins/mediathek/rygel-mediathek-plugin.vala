@@ -24,6 +24,13 @@ using Rygel;
 using GUPnP;
 
 public void module_init (PluginLoader loader) {
+    if (loader.plugin_disabled (Mediathek.Plugin.NAME)) {
+        message ("Plugin '%s' disabled by user, ignoring..",
+                 Mediathek.Plugin.NAME);
+
+        return;
+    }
+
     var plugin = new Mediathek.Plugin ();
 
     loader.add_plugin (plugin);

@@ -106,6 +106,12 @@ public class Rygel.MPRIS.PluginFactory {
     }
 
     private async void load_plugin_n_handle_error (string service_name) {
+        if (loader.plugin_disabled (service_name)) {
+            message ("Plugin '%s' disabled by user, ignoring..", service_name);
+
+            return;
+        }
+
         try {
             yield this.load_plugin (service_name);
         } catch (IOError error) {

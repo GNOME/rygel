@@ -28,7 +28,9 @@ using Gee;
  * Responsible for plugin loading. Probes for shared library files in a specific
  * directry and tries to grab a function with a specific name and signature,
  * calls it. The loaded module can then add plugins to Rygel by calling the
- * add_plugin method.
+ * add_plugin method. NOTE: The module SHOULD make sure that plugin is not
+ * disabled by user using plugin_disabled method before creating the plugin
+ * instance and resources related to that instance.
  */
 public class Rygel.PluginLoader : Object {
     private delegate void ModuleInitFunc (PluginLoader loader);
@@ -60,21 +62,27 @@ public class Rygel.PluginLoader : Object {
         this.load_modules_from_dir.begin (dir);
     }
 
-    public void add_plugin (Plugin plugin) {
-        bool enabled = true;
+    /**
+     * Checks if a plugin is disabled by user
+     *
+     * @param name the name of plugin to check for.
+     *
+     * return true if plugin is disabled, false if not.
+     */
+    public bool plugin_disabled (string name) {
+        var enabled = true;
         try {
             var config = MetaConfig.get_default ();
-            enabled = config.get_enabled (plugin.name);
+            enabled = config.get_enabled (name);
         } catch (GLib.Error err) {}
 
-        if (enabled) {
-            message (_("New plugin '%s' available"), plugin.name);
-            this.plugin_hash.set (plugin.name, plugin);
-            this.plugin_available (plugin);
-        } else {
-            debug ("Plugin '%s' disabled in user configuration; ignoring..",
-                   plugin.name);
-        }
+        return !enabled;
+    }
+
+    public void add_plugin (Plugin plugin) {
+        message (_("New plugin '%s' available"), plugin.name);
+        this.plugin_hash.set (plugin.name, plugin);
+        this.plugin_available (plugin);
     }
 
     public Plugin? get_plugin_by_name (string name) {

@@ -26,6 +26,13 @@ using Rygel;
 using Gee;
 
 public void module_init (PluginLoader loader) {
+    if (loader.plugin_disabled (Playbin.Plugin.NAME)) {
+        message ("Plugin '%s' disabled by user, ignoring..",
+                 Playbin.Plugin.NAME);
+
+        return;
+    }
+
     var plugin = new Playbin.Plugin ();
 
     loader.add_plugin (plugin);

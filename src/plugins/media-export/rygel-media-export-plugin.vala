@@ -29,6 +29,12 @@ private const string OUR_PLUGIN = "MediaExport";
  *
  */
 public void module_init (PluginLoader loader) {
+    if (loader.plugin_disabled (OUR_PLUGIN)) {
+        message ("Plugin '%s' disabled by user, ignoring..", OUR_PLUGIN);
+
+        return;
+    }
+
     MediaExport.Plugin plugin;
 
     try {

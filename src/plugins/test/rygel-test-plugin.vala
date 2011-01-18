@@ -26,6 +26,13 @@ using Rygel;
 using Gee;
 
 public void module_init (PluginLoader loader) {
+    if (loader.plugin_disabled (Rygel.Test.Plugin.NAME)) {
+        message ("Plugin '%s' disabled by user, ignoring..",
+                 Rygel.Test.Plugin.NAME);
+
+        return;
+    }
+
     var plugin = new Rygel.Test.Plugin ();
 
     loader.add_plugin (plugin);
