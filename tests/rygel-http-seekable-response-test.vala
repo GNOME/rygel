@@ -91,7 +91,7 @@ public class Rygel.HTTPSeekableResponseTest : Rygel.HTTPResponseTest {
 
     internal override HTTPResponse create_response (Soup.Message msg)
                                                     throws Error {
-        var seek = new HTTPSeek (0, 1025);
+        var seek = new HTTPSeek (0, 1024);
 
         return new HTTPSeekableResponse (this.server.context.server,
                                          msg,
