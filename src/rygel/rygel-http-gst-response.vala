@@ -33,7 +33,7 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
 
     private Pipeline pipeline;
 
-    private HTTPSeek time_range;
+    private HTTPSeek seek;
 
     private int64 buffered;
     private bool out_of_sync;
@@ -42,14 +42,14 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
                             Soup.Message msg,
                             string       name,
                             Element      src,
-                            HTTPSeek?    time_range,
+                            HTTPSeek?    seek,
                             Cancellable? cancellable) throws Error {
         base (server, msg, false, cancellable);
 
         this.msg.response_headers.set_encoding (Soup.Encoding.EOF);
 
         this.prepare_pipeline (name, src);
-        this.time_range = time_range;
+        this.seek = seek;
 
         this.buffered = 0;
         this.out_of_sync = false;
@@ -59,7 +59,7 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
         this.msg.wrote_chunk.connect (this.on_wrote_chunk);
 
         // Only bother attempting to seek if the offset is greater than zero.
-        if (this.time_range != null && this.time_range.start > 0) {
+        if (this.seek != null && this.seek.start > 0) {
             this.pipeline.set_state (State.PAUSED);
         } else {
             this.pipeline.set_state (State.PLAYING);
@@ -194,7 +194,7 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
                 return true;
             }
 
-            if (this.time_range != null && this.time_range.start > 0) {
+            if (this.seek != null && this.seek.start > 0) {
                 State old_state;
                 State new_state;
 
@@ -203,7 +203,7 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
                                              null);
 
                 if (old_state == State.READY && new_state == State.PAUSED) {
-                    if (this.seek ()) {
+                    if (this.perform_seek ()) {
                         this.pipeline.set_state (State.PLAYING);
                     }
                 }
@@ -239,10 +239,10 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
         return ret;
     }
 
-    private bool seek () {
+    private bool perform_seek () {
         Gst.SeekType stop_type;
 
-        if (this.time_range.stop > 0) {
+        if (this.seek.stop > 0) {
             stop_type = Gst.SeekType.SET;
         } else {
             stop_type = Gst.SeekType.NONE;
@@ -252,10 +252,10 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
                                  Format.TIME,
                                  SeekFlags.FLUSH,
                                  Gst.SeekType.SET,
-                                 this.time_range.start,
+                                 this.seek.start,
                                  stop_type,
-                                 this.time_range.stop)) {
-            warning (_("Failed to seek to offset %lld"), this.time_range.start);
+                                 this.seek.stop)) {
+            warning (_("Failed to seek to offset %lld"), this.seek.start);
 
             this.end (false,
                       Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
