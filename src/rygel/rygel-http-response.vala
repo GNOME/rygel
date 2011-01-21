@@ -30,6 +30,29 @@ internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
     public Cancellable cancellable { get; set; }
 
     protected SourceFunc run_continue;
+    private int _priority = -1;
+    protected int priority {
+        get {
+            if (this._priority != -1) {
+                return this._priority;
+            }
+
+            var mode = this.msg.request_headers.get_one
+                                        ("transferMode.dlna.org");
+
+            if (mode == null || mode == "Interactive") {
+                this._priority = Priority.DEFAULT;
+            } else if (mode == "Streaming") {
+                this._priority = Priority.HIGH;
+            } else if (mode == "Background") {
+                this._priority = Priority.LOW;
+            } else {
+                this._priority = Priority.DEFAULT;
+            }
+
+            return _priority;
+        }
+    }
 
     public HTTPResponse (Soup.Server  server,
                          Soup.Message msg,

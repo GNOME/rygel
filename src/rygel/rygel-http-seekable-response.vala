@@ -34,8 +34,6 @@ internal class Rygel.HTTPSeekableResponse : Rygel.HTTPResponse {
     private uint8[] buffer;
     private size_t total_length;
 
-    int priority;
-
     public HTTPSeekableResponse (Soup.Server  server,
                                  Soup.Message msg,
                                  string       uri,
@@ -47,7 +45,6 @@ internal class Rygel.HTTPSeekableResponse : Rygel.HTTPResponse {
         base (server, msg, partial, cancellable);
 
         this.seek = seek;
-        this.priority = this.get_requested_priority ();
         this.total_length = (size_t) seek.length;
 
         this.buffer = new uint8[HTTPSeekableResponse.BUFFER_LENGTH];
@@ -150,20 +147,6 @@ internal class Rygel.HTTPSeekableResponse : Rygel.HTTPResponse {
 
         if (this.cancellable == null || !this.cancellable.is_cancelled ()) {
             this.end (false, Soup.KnownStatusCode.NONE);
-        }
-    }
-
-    private int get_requested_priority () {
-        var mode = this.msg.request_headers.get_one ("transferMode.dlna.org");
-
-        if (mode == null || mode == "Interactive") {
-            return Priority.DEFAULT;
-        } else if (mode == "Streaming") {
-            return Priority.HIGH;
-        } else if (mode == "Background") {
-            return Priority.LOW;
-        } else {
-            return Priority.DEFAULT;
         }
     }
 }
