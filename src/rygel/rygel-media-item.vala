@@ -253,12 +253,15 @@ public abstract class Rygel.MediaItem : MediaObject {
         protocol_info.dlna_flags = DLNAFlags.DLNA_V15 |
                                    DLNAFlags.CONNECTION_STALL;
 
+        if (this.size > 0) {
+            protocol_info.dlna_operation = DLNAOperation.RANGE;
+        }
+
         if (this.streamable ()) {
             protocol_info.dlna_flags |= DLNAFlags.STREAMING_TRANSFER_MODE;
         }
 
         if (!this.should_stream ()) {
-            protocol_info.dlna_operation = DLNAOperation.RANGE;
             protocol_info.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE;
         }
 

@@ -132,6 +132,8 @@ internal abstract class Rygel.HTTPSeek : GLib.Object {
     public int64 total_length;
 }
 
+internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {}
+
 public errordomain Rygel.HTTPRequestError {
     NOT_FOUND = Soup.KnownStatusCode.NOT_FOUND
 }
