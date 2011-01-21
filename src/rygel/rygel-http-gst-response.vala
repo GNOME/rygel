@@ -155,8 +155,7 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
     private void on_new_buffer (Element sink,
                                 Buffer  buffer,
                                 Pad     pad) {
-        Idle.add_full (Priority.HIGH_IDLE,
-                       () => {
+        Idle.add_full (this.priority, () => {
             if (this.cancellable.is_cancelled ()) {
                 return false;
             }
@@ -228,8 +227,7 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
         }
 
         if (!ret) {
-                Idle.add_full (Priority.HIGH_IDLE,
-                               () => {
+                Idle.add_full (this.priority, () => {
                     this.end (false, Soup.KnownStatusCode.NONE);
 
                     return false;
