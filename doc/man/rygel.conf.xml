@@ -270,6 +270,14 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <para>A list of broadcast ids. How to get the broadcast ids from the web site is described in the file README.Mediathek (in german only).</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <option>update-interval</option>
+        </term>
+        <listitem>
+          <para>Time in seconds after which the plugin checks for new content. Default is 1800s (30 minutes). The minimum timeout is 10 minutes.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsect1>
   <refsect1>

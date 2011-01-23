@@ -26,7 +26,7 @@ using Soup;
 public class Rygel.Mediathek.RootContainer : Rygel.SimpleContainer {
     private SessionAsync session;
     private static RootContainer instance;
-    private static uint UPDATE_TIMEOUT = 1800;
+    private static int DEFAULT_UPDATE_INTERVAL = 1800;
 
     public static RootContainer get_instance () {
         if (RootContainer.instance == null) {
@@ -48,6 +48,7 @@ public class Rygel.Mediathek.RootContainer : Rygel.SimpleContainer {
 
     private void init () {
         Gee.ArrayList<int> feeds = null;
+        int update_interval = DEFAULT_UPDATE_INTERVAL;
 
         var config = Rygel.MetaConfig.get_default ();
         try {
@@ -61,11 +62,20 @@ public class Rygel.Mediathek.RootContainer : Rygel.SimpleContainer {
             feeds.add (508);
         }
 
+        try {
+            update_interval = config.get_int ("ZDFMediathek",
+                                              "update-interval",
+                                              600,
+                                              int.MAX);
+        } catch (Error error) {
+            update_interval = DEFAULT_UPDATE_INTERVAL;
+        }
+
         foreach (int id in feeds) {
             this.add_child_container (new RssContainer (this, id));
         }
 
-        Timeout.add_seconds (UPDATE_TIMEOUT, () => {
+        Timeout.add_seconds (update_interval, () => {
             foreach (var child in this.children) {
                 var container = child as RssContainer;
 
