@@ -26,6 +26,7 @@ using FreeDesktop;
 [DBus (name = "org.gnome.Rygel1")]
 public class Rygel.DBusService : Object, DBusInterface {
     private Main main;
+    private uint connection_id;
 
     public DBusService (Main main) throws IOError {
         this.main = main;
@@ -44,8 +45,16 @@ public class Rygel.DBusService : Object, DBusInterface {
         } else {
             var conn = Bus.get_sync (BusType.SESSION);
 
-            conn.register_object (DBusInterface.OBJECT_PATH, this);
+            this.connection_id = conn.register_object
+                                        (DBusInterface.OBJECT_PATH, this);
         }
+    }
+
+    internal void unpublish () {
+        try {
+            var conn = Bus.get_sync (BusType.SESSION);
+            conn.unregister_object (this.connection_id);
+        } catch (IOError error) { }
     }
 
     public void shutdown () throws IOError {

@@ -215,7 +215,7 @@ public class Rygel.Main : Object {
 
     private static int main (string[] args) {
         Main main = null;
-        DBusService service;
+        DBusService service = null;
 
         var original_args = args;
 
@@ -240,6 +240,10 @@ public class Rygel.Main : Object {
         }
 
         int exit_code = main.run ();
+
+        if (service != null) {
+            service.unpublish ();
+        }
 
         if (main.need_restart) {
             Misc.Posix.execvp (original_args[0], original_args);
