@@ -71,7 +71,7 @@ public class Rygel.LogHandler : GLib.Object {
                            string        message) {
         if (log_levels in this.levels) {
             // Forward the message to default domain
-            Log.default_handler (log_domain, log_levels, message, null);
+            Log.default_handler (log_domain, log_levels, message);
         }
     }
 
