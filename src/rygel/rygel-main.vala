@@ -121,7 +121,8 @@ public class Rygel.Main : Object {
                                        GUPnP.Context        context) {
         string iface = null;
 
-        debug ("new network context %s (%s) available.",
+        debug ("New network %s (%s) context available. IP: %s",
+               context.network,
                context.interface,
                context.host_ip);
 
@@ -129,7 +130,9 @@ public class Rygel.Main : Object {
             iface = this.config.get_interface ();
         } catch (GLib.Error err) {}
 
-        if (iface == null || iface == context.interface) {
+        if (iface == null ||
+            iface == context.interface ||
+            iface == context.network) {
             try {
                 var factory = new RootDeviceFactory (context);
                 this.factories.add (factory);
@@ -143,15 +146,16 @@ public class Rygel.Main : Object {
                          err.message);
             }
         } else {
-            debug ("Ignoring network context %s (%s).",
-                   context.interface,
-                   context.host_ip);
+            debug ("Ignoring network %s (%s) context.",
+                   context.network,
+                   context.interface);
         }
     }
 
     private void on_context_unavailable (GUPnP.ContextManager manager,
                                          GUPnP.Context        context) {
-        debug ("Network context %s (%s) now unavailable.",
+        debug ("Network %s (%s) context now unavailable. IP: %s",
+               context.network,
                context.interface,
                context.host_ip);
 
