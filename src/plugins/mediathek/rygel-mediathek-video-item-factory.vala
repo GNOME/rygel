@@ -27,7 +27,9 @@ internal errordomain Rygel.Mediathek.VideoItemError {
 
 internal class Rygel.Mediathek.VideoItemFactory : Object {
     private static VideoItemFactory instance;
-    private AsxPlaylistParser playlist_parser;
+    private PlaylistParser playlist_parser;
+    private const string VIDEO_FORMAT_WMV = "wmv";
+    private const string VIDEO_FORMAT_MP4 = "mp4";
 
     public static VideoItemFactory get_default () {
         if (instance == null) {
@@ -55,7 +57,7 @@ internal class Rygel.Mediathek.VideoItemFactory : Object {
         var id = Checksum.compute_for_string (ChecksumType.MD5, title);
         var item = new VideoItem (id, parent, title);
 
-        item.mime_type = "video/x-ms-wmv";
+        item.mime_type = this.playlist_parser.mime_type;
         item.author = "ZDF - Second German TV Channel Streams";
 
         foreach (var uri in resolved_uris) {
@@ -66,8 +68,31 @@ internal class Rygel.Mediathek.VideoItemFactory : Object {
     }
 
     private VideoItemFactory () {
-        playlist_parser = new AsxPlaylistParser
-                                        (RootContainer.get_default_session ());
+        var config = Rygel.MetaConfig.get_default ();
+        string video_format = VIDEO_FORMAT_WMV;
+
+        try {
+            video_format = config.get_string ("ZDFMediathek",
+                                              "video-format").casefold ();
+            if (video_format != VIDEO_FORMAT_WMV &&
+                video_format != VIDEO_FORMAT_MP4) {
+                video_format = VIDEO_FORMAT_WMV;
+            }
+        } catch (Error error) { }
+
+        debug ("Exposing mediathek items in format: %s", video_format);
+        var session = RootContainer.get_default_session ();
+
+        switch (video_format) {
+            case VIDEO_FORMAT_WMV:
+                this.playlist_parser = new AsxPlaylistParser (session);
+                break;
+            case VIDEO_FORMAT_MP4:
+                this.playlist_parser = new MovPlaylistParser (session);
+                break;
+            default:
+                assert_not_reached ();
+        }
     }
 
     private bool namespace_ok (Xml.Node* node) {
@@ -105,7 +130,7 @@ internal class Rygel.Mediathek.VideoItemFactory : Object {
             if (url_attribute != null && namespace_ok (content)) {
                 
                 unowned string url = url_attribute->children->content;
-                if (url.has_suffix (".asx")) {
+                if (url.has_suffix (this.playlist_parser.playlist_suffix)) {
                     playlist_url = url;
 
                     break;

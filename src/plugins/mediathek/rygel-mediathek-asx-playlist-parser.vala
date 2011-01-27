@@ -33,15 +33,16 @@ using Xml;
  * This parser is //only// intended to work with the simple 
  * ASX files presented by the ZDF Mediathek streaming server
  */
-internal class Rygel.Mediathek.AsxPlaylistParser : Object {
+internal class Rygel.Mediathek.AsxPlaylistParser : PlaylistParser {
     private Regex normalizer;
-    private Session session;
 
     public AsxPlaylistParser (Session session) {
+        Object (session         : session,
+                playlist_suffix : ".asx",
+                mime_type       : "video/x-ms-wmv");
         try {
             this.normalizer = new Regex ("(<[/]?)([a-zA-Z:]+)");
         } catch (RegexError error) {};
-        this.session = session;
     }
 
     /** 
@@ -55,29 +56,17 @@ internal class Rygel.Mediathek.AsxPlaylistParser : Object {
      * @param uri network location of the ASX file
      * @return a list of uris found in this file
      */
-    public async Gee.List<string>? parse (string uri) throws VideoItemError {
-        var message = new Soup.Message ("GET", uri);
+    public override Gee.List<string>? parse_playlist (string data,
+                                                      int length)
+                                                      throws VideoItemError {
         ArrayList<string> uris = null;
-
-        // FIXME: Revert to SoupUtils once bgo#639702 is fixed
-        SourceFunc callback = parse.callback;
-        this.session.queue_message (message, () => { callback (); });
-        yield;
-
-        if (message.status_code != 200) {
-            throw new VideoItemError.NETWORK_ERROR
-                                        ("Playlist download failed: %u (%s)",
-                                         message.status_code,
-                                         Soup.status_get_phrase
-                                                      (message.status_code));
-        }
 
         try {
             // lowercase all tags using regex and \L\E syntax
             var normalized_content = this.normalizer.replace
-                                        ((string) message.response_body.data,
-                                         (long) message.response_body.length,
-                                         0, 
+                                        (data,
+                                         length,
+                                         0,
                                          "\\1\\L\\2\\E");
 
             var doc = Parser.parse_memory (normalized_content, 

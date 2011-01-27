@@ -19,7 +19,9 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -include config.h
 
 librygel_mediathek_la_SOURCES = rygel-mediathek-asx-playlist-parser.vala \
+				rygel-mediathek-mov-playlist-parser.vala \
 				rygel-mediathek-plugin.vala \
+				rygel-mediathek-playlist-parser.vala \
 				rygel-mediathek-video-item-factory.vala \
 				rygel-mediathek-root-container.vala \
 				rygel-mediathek-rss-container.vala \
