@@ -26,11 +26,11 @@ using Xml;
 
 /**
  * This class is a simple ASX playlist parser
- * 
+ *
  * It does nothing but extracting all href tags from an ASX
  * and ignore all of the other information that may be in it
- * 
- * This parser is //only// intended to work with the simple 
+ *
+ * This parser is //only// intended to work with the simple
  * ASX files presented by the ZDF Mediathek streaming server
  */
 internal class Rygel.Mediathek.AsxPlaylistParser : PlaylistParser {
@@ -45,7 +45,7 @@ internal class Rygel.Mediathek.AsxPlaylistParser : PlaylistParser {
         } catch (RegexError error) {};
     }
 
-    /** 
+    /**
      * Get and parse the ASX file.
      *
      * This will fetch the ASX file using the soup session configured on
@@ -69,7 +69,7 @@ internal class Rygel.Mediathek.AsxPlaylistParser : PlaylistParser {
                                          0,
                                          "\\1\\L\\2\\E");
 
-            var doc = Parser.parse_memory (normalized_content, 
+            var doc = Parser.parse_memory (normalized_content,
                                            (int) normalized_content.length);
             if (doc == null) {
                 throw new VideoItemError.XML_PARSE_ERROR
@@ -80,7 +80,7 @@ internal class Rygel.Mediathek.AsxPlaylistParser : PlaylistParser {
             var context = new XPath.Context (doc_guard.doc);
 
             var xpath_object = context.eval ("/asx/entry/ref/@href");
-           
+
             if (xpath_object->type != XPath.ObjectType.NODESET) {
                 xpath_free_object (xpath_object);
                 throw new VideoItemError.XML_PARSE_ERROR

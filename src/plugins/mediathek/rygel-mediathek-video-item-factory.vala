@@ -128,7 +128,7 @@ internal class Rygel.Mediathek.VideoItemFactory : Object {
         while (content != null) {
             var url_attribute = content->has_prop ("url");
             if (url_attribute != null && namespace_ok (content)) {
-                
+
                 unowned string url = url_attribute->children->content;
                 if (url.has_suffix (this.playlist_parser.playlist_suffix)) {
                     playlist_url = url;

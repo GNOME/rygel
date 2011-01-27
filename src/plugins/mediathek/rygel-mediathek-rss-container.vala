@@ -33,7 +33,7 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
 
     public RssContainer (MediaContainer parent, uint id) {
         base ("GroupId:%u".printf(id),
-              parent, 
+              parent,
               "ZDF Mediathek RSS feed %u".printf (id));
 
         this.content_id = id;
