@@ -59,7 +59,10 @@ internal class Rygel.Mediathek.AsxPlaylistParser : Object {
         var message = new Soup.Message ("GET", uri);
         ArrayList<string> uris = null;
 
-        yield SoupUtils.queue_message (session, message);
+        // FIXME: Revert to SoupUtils once bgo#639702 is fixed
+        SourceFunc callback = parse.callback;
+        this.session.queue_message (message, () => { callback (); });
+        yield;
 
         if (message.status_code != 200) {
             throw new VideoItemError.NETWORK_ERROR

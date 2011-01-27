@@ -43,8 +43,12 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
 
     public async void update () {
         var message = this.get_update_message ();
-        yield SoupUtils.queue_message (RootContainer.get_default_session (),
-                                       message);
+
+        // FIXME: Revert to SoupUtils once bgo#639702 is fixed
+        var session = RootContainer.get_default_session ();
+        SourceFunc callback = update.callback;
+        session.queue_message (message, () => { callback (); });
+        yield;
 
         switch (message.status_code) {
             case 304:
