@@ -1,3 +1,48 @@
+0.9.7
+=====
+
+A new release in the current unstable 0.9.x series for upcoming GNOME 2.91.6
+release.
+
+- Ability to bind to specific networks.
+- Prevent possible crash on SIGINT.
+- Remove encoding information from .desktop file.
+- Fix build against Vala 0.11.4.
+- Don't initialize/create disabled plugin.
+- Explicitly unregister D-Bus service on shutdown.
+- Mediathek:
+  - Don't block the rest of rygel while waiting on network.
+  - Plug libXml memory leaks.
+  - Workaround for bgo#639702.
+  - Make update-interval configurable.
+  - Add option to choose between H.264 and WMV videos.
+- Localization:
+  - Update Bulgarian translation.
+  - Update Greek translation.
+  - Update Traditional Chinese translation (Hong Kong and Taiwan).
+  - QA of Galician translations.
+
+Dependency-related changes:
+
+- Require gupnp-vala >= 0.7.5
+
+Bugs fixed in this release:
+
+638269 - Mediathek plugin breaks streaming during update
+639534 - Remove encoding info from .desktop file
+639738 - build failure: rygel-item-creator.vala: error: syntax error, expected
+         method call
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Jens Georg <mail@jensge.org>
+Alexander Shopov <ash@kambanaria.org>
+Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Marios Zindilis <m.zindilis@dmajor.org>
+radykal <radykal_dj@hotmail.com>
+
 0.9.6
 =====
 
