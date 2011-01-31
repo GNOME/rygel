@@ -45,10 +45,9 @@ internal class Rygel.SubtitleManager : GLib.Object {
 
         var directory = video_file.get_parent ();
         var filename = video_file.get_basename ();
-        var extension = filename.rchr (-1, '.');
-        if (extension != null) {
-            filename = filename.substring (0,
-                                           filename.length - extension.length);
+        var ext_index = filename.last_index_of_char ('.');
+        if (ext_index >= 0) {
+            filename = filename[0:ext_index];
         }
         // FIXME: foreach ".eng.srt", ".ger.srt", ".srt"...
         // FIXME: case insensitive?
