@@ -60,7 +60,6 @@ fi
 
 # Enable check for Vala even if not asked to do so if stamp files are absent.
 if test ! -e src/rygel/rygel_vala.stamp -o \
-        ! -e src/rygel/librygel_configuration_a_vala.stamp -o \
         ! -e src/ui/rygel_preferences_vala.stamp -o \
         ! -e src/plugins/playbin/librygel_playbin_la_vala.stamp -o \
         ! -e src/plugins/tracker/librygel_media_tracker_la_vala.stamp -o \
