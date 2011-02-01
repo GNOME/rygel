@@ -1,14 +1,6 @@
 SUBDIRS = xml icons
 
-if ENABLE_MAEMO
-configfile = rygel-maemo.conf
-else
-configfile = rygel-default.conf
-endif
-
 sysconf_DATA = rygel.conf
-$(sysconf_DATA): $(configfile) Makefile
-	$(AM_V_GEN)cp $(srcdir)/$(configfile) $@
 
 shareddir = $(datadir)/rygel
 
@@ -31,11 +23,10 @@ desktop_in_files = rygel.desktop.in rygel-preferences.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-CLEANFILES = $(dbusservice_DATA) $(desktop_DATA) rygel.conf
-EXTRA_DIST = rygel-maemo.conf \
-	     rygel-default.conf \
-	     $(dbusservice_in_files) \
+CLEANFILES = $(dbusservice_DATA) $(desktop_DATA)
+EXTRA_DIST = $(dbusservice_in_files) \
 	     $(desktop_in_files) \
+	     $(sysconf_DATA) \
 	     $(pixmaps_DATA)
 
 
