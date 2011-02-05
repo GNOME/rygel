@@ -205,6 +205,22 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <para>Set the plugin search path.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <option>allow-upload</option>
+        </term>
+        <listitem>
+          <para>Allow uploading of media files via UPnP.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>allow-deletion</option>
+        </term>
+        <listitem>
+          <para>Allow remote media file deletion via UPnP.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para>Sections for plugins are denoted with <option>[PluginName]</option>
       and can contain options specific to a plugin (see below)  as well these common options:
