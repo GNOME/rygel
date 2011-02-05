@@ -104,6 +104,14 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
     <variablelist>
       <varlistentry>
         <term>
+          <option>upnp-enabled</option>
+        </term>
+        <listitem>
+            <para>Enable/disable UPnP sharing of the media files. If set to <varname>false</varname>, <command>&dhpackage;</command> will still offer HTTP proxy URLs for its media files but not actively advertise them via UPnP.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <option>interface=<replaceable>INTERFACE</replaceable></option>
         </term>
         <listitem>
