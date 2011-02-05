@@ -344,6 +344,15 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
     <para>The External plugin is an consumer of the MediaServer2 DBus interface specification as defined at <ulink url="http://live.gnome.org/Rygel/MediaServer2Spec">http://live.gnome.org/Rygel/MediaServer2Spec</ulink>. This allows external programs to share their data via UPnP by implementing this DBus specification. The plugin picks up any implementation of this interface on the session bus and exposes the presented media via UPnP. Known implementors of this spec are gnome-dvb-daemon (<ulink url="http://live.gnome.org/DVBDaemon">http://live.gnome.org/DVBDaemon</ulink>) and Grilo (<ulink url="http://live.gnome.org/Grilo">http://live.gnome.org/Grilo</ulink>) via the grilo-rygel project.</para>
     <para>This plugin has no additional options.</para>
   </refsect1>
+  <refsect1>
+    <title>MPRIS</title>
+    <para>The MPRIS plugin is a consumer of the MPRIS2 DBus interface specification as defined at <ulink url="http://www.mpris.org">http://www.mpris.org</ulink>. The currently implemented version conforms to version 2.0 of the standard.
+      </para>
+    <para><command>&dhpackage;</command> exposes media players that implement the provider side of this DBus specification as DLNA Digital Media Renderers (DMR) similar to the Playbin plugin. This means that you can easily turn your media player into a DMR by implementing this DBus specification.</para>
+    <para>Players that implement this spec and are known to work with <command>&dhpackage;</command> are Banshee (<ulink url="http://banshee.fm">http://banshee.fm</ulink>) and Rhythmbox (<ulink url="http://www.rhythmbox.org">http://www.rhythmbox.org</ulink>).
+      </para>
+    <para>This plugin has no additional options.</para>
+  </refsect1>
   <refsect1 id="see_also">
     <title>SEE ALSO</title>
 <!-- In alpabetical order. -->    <para><citerefentry>
