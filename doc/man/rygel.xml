@@ -65,7 +65,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
     <productname>&dhpackage;</productname>
     <authorgroup>
       <author>
-       <firstname>&dhfirstname;</firstname>
+        <firstname>&dhfirstname;</firstname>
         <surname>&dhsurname;</surname>
         <contrib>Wrote this manpage.</contrib>
         <address>
@@ -104,17 +104,6 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
            variablelist.term.break.after parameters to
            control the term elements. -->      <varlistentry>
         <term>
-          <option>-n</option>
-        </term>
-        <term>
-          <option>--network-interface=<replaceable>INTERFACE</replaceable></option>
-        </term>
-        <listitem>
-          <para>Set the network-interface rygel listens on</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
           <option>-h</option>
         </term>
         <term>
@@ -129,7 +118,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>--help-all</option>
         </term>
         <listitem>
-          <para>Show all help options</para>
+          <para>Show all help options.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -137,7 +126,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>--help-gst</option>
         </term>
         <listitem>
-          <para>Show GStreamer related help options</para>
+          <para>Show GStreamer related help options.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -150,13 +139,24 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
       </varlistentry>
       <varlistentry>
         <term>
+          <option>-n</option>
+        </term>
+        <term>
+          <option>--network-interface=<replaceable>INTERFACE</replaceable></option>
+        </term>
+        <listitem>
+          <para>Set the network-interface rygel listens on.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <option>-p</option>
         </term>
         <term>
           <option>--port=<replaceable>PORT</replaceable></option>
         </term>
         <listitem>
-          <para>Set the listen-port</para>
+          <para>Set the listen-port.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -167,7 +167,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>--disable-transcoding</option>
         </term>
         <listitem>
-          <para>Disable any transcoding</para>
+          <para>Disable any transcoding.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -178,7 +178,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>--disable-mp3-transcoder</option>
         </term>
         <listitem>
-          <para>Disable transcoding to MP3</para>
+          <para>Disable transcoding to MP3.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -189,7 +189,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>--disable-mp2ts-transcoder</option>
         </term>
         <listitem>
-          <para>Disable transcoding to MPEG2 in TS container</para>
+          <para>Disable transcoding to MPEG2 in TS container.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -200,15 +200,40 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>--disable-lpcm-transcoder</option>
         </term>
         <listitem>
-          <para>Disable transcoding to Linear PCM</para>
+          <para>Disable transcoding to Linear PCM.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
+          <option>-w</option>
+        </term>
+        <term>
           <option>--disable-wmv-transcoder</option>
         </term>
         <listitem>
-          <para>Disable transcoding to WMV</para>
+          <para>Disable transcoding to WMV.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-U</option>
+        </term>
+        <term>
+          <option>--disallow-upload</option>
+        </term>
+        <listitem>
+          <para>Disable uploading of media files via UPnP.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-D</option>
+        </term>
+        <term>
+          <option>--disallow-deletion</option>
+        </term>
+        <listitem>
+          <para>UPnP clients are not allowed to delete media files on the server.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -216,10 +241,10 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>-g</option>
         </term>
         <term>
-          <option>--log-level<replaceable>=LEVEL</replaceable></option>
+          <option>--log-level=<replaceable>LEVEL</replaceable></option>
         </term>
         <listitem>
-          <para>Set the log level. 1=critical, 2=error, 3=warning, 4=message/info, 5=debug</para>
+          <para>Set the log level. 1=critical, 2=error, 3=warning, 4=message/info, 5=debug.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -227,10 +252,10 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>-u</option>
         </term>
         <term>
-          <option>--plugin-path=<option>PATH</option></option>
+          <option>--plugin-path=<replaceable>PATH</replaceable></option>
         </term>
         <listitem>
-          <para>Set the plugin search path</para>
+          <para>Set the plugin search path.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -241,7 +266,41 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>--disable-plugin=<replaceable>PLUGIN_NAME</replaceable></option>
         </term>
         <listitem>
-          <para>Disable a plugin</para>
+          <para>Disable the plugin <replaceable>PLUGIN_NAME</replaceable>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-i</option>
+        </term>
+        <term>
+          <option>--title=<replaceable>PLUGIN_NAME</replaceable>:<replaceable>TITLE</replaceable></option>
+        </term>
+        <listitem>
+          <para>Set the title of plugin <replaceable>PLUGIN_NAME</replaceable> to <replaceable>TITLE</replaceable> You can use this option more than once for every plugin you want to set the name of.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-o</option>
+        </term>
+        <term>
+          <option>--plugin-option=<replaceable>PLUGIN_NAME</replaceable>:</option>
+          <option><replaceable>OPTION</replaceable>:<replaceable>VALUE1[,VALUE2,…]</replaceable></option>
+        </term>
+        <listitem>
+          <para>Set options for a plugin.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-P</option>
+        </term>
+        <term>
+          <option>--disable-upnp</option>
+        </term>
+        <listitem>
+          <para>Disable advertisement via UPnP and set <application>&dhpackage;</application> into streaming-only mode.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -280,7 +339,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <filename>${XDG_CONFIG_DIR}/Rygel/*.xml</filename>
         </term>
         <listitem>
-          <para>Cached UPnP device description files</para>
+          <para>Cached UPnP device description files.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -288,6 +347,14 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
   <refsect1 id="environment">
     <title>ENVIONMENT</title>
     <variablelist>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_DISABLE_UPNP</envar>
+        </term>
+        <listitem>
+          <para>Disable advertisement via UPnP and set <application>&dhpackage;</application> into streaming-only mode.</para>
+        </listitem>
+      </varlistentry>
       <varlistentry>
         <term>
           <envar>RYGEL_IFACE</envar>
@@ -301,47 +368,47 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <envar>RYGEL_PORT</envar>
         </term>
         <listitem>
-          <para>Define the network port to  bind to</para>
+          <para>Define the network port to  bind to.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <envar>RYGEL_TRANSCODING</envar>
+          <envar>RYGEL_DISABLE_TRANSCODING</envar>
         </term>
         <listitem>
-          <para>Enable or disable transcoding globally</para>
+          <para>Disable transcoding globally.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <envar>RYGEL_MP3_TRANS</envar>
+          <envar>RYGEL_DISABLE_MP3_TRANS</envar>
         </term>
         <listitem>
-          <para>Enable or disable the MP3 transcoder</para>
+          <para>Disable the MP3 transcoder.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <envar>RYGEL_LPCM_TRANS</envar>
+          <envar>RYGEL_DISABLE_LPCM_TRANS</envar>
         </term>
         <listitem>
-          <para>Enable or disable the Linear PCM transcoder</para>
+          <para>Disable the Linear PCM transcoder.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <envar>RYGEL_MP2TS_TRANS</envar>
+          <envar>RYGEL_DISABLE_MP2TS_TRANS</envar>
         </term>
         <listitem>
-          <para>Enable or disable the MPEG2 in TS transcoder</para>
+          <para>Disable the MPEG2 in TS transcoder.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <envar>RYGEL_WMV_TRANS</envar>
+          <envar>RYGEL_DISABLE_WMV_TRANS</envar>
         </term>
         <listitem>
-          <para>Enable or disable transcoding to WMV format</para>
+          <para>Disable transcoding to WMV format.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -349,7 +416,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <envar>RYGEL_LOG</envar>
         </term>
         <listitem>
-          <para>Set the log level of <application>&dhpackage;</application></para>
+          <para>Set the log level of <application>&dhpackage;</application>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -357,7 +424,23 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <envar>RYGEL_PLUGIN_PATH</envar>
         </term>
         <listitem>
-          <para>Set the plugin search path of <application>&dhpackage;</application></para>
+          <para>Set the plugin search path of <application>&dhpackage;</application>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_DISABLE_UPLOAD</envar>
+        </term>
+        <listitem>
+          <para>Disable media file upload via UPnP.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_DISABLE_DELETION</envar>
+        </term>
+        <listitem>
+          <para>Disable remote file deletion via UPnP.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -368,7 +451,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
             <envar>RYGEL_PLUGIN_NAME_TITLE</envar>
           </term>
           <listitem>
-            <para>Set the title of the plugin</para>
+            <para>Set the title of the plugin.</para>
           </listitem>
         </varlistentry>
         <varlistentry>
@@ -376,7 +459,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
             <envar>RYGEL_PLUGIN_NAME_ENABLED</envar>
           </term>
           <listitem>
-            <para>Enable or disable the plugin</para>
+            <para>Enable or disable the plugin.</para>
           </listitem>
         </varlistentry>
       </variablelist></para>
