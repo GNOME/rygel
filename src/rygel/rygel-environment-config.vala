@@ -119,7 +119,7 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
                               string key) throws GLib.Error {
         return this.get_string_variable (RYGEL_PREFIX + "_" +
                                          section.up () + "_"  +
-                                         key);
+                                         key.up ());
     }
 
     public Gee.ArrayList<string> get_string_list (string section,
