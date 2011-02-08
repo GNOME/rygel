@@ -82,7 +82,7 @@ public abstract class Rygel.Tracker.ItemFactory {
             item.title = metadata[Metadata.FILE_NAME];
 
         if (metadata[Metadata.SIZE] != "")
-            item.size = metadata[Metadata.SIZE].to_int64 ();
+            item.size = int64.parse (metadata[Metadata.SIZE]);
         else
             // If its in tracker store and size is unknown, it most probably
             // means the size is 0 (i-e a place-holder empty item that we

@@ -79,11 +79,11 @@ public class Rygel.LogHandler : GLib.Object {
             LogLevel level;
 
             if (tokens.length == 1) {
-                level = (LogLevel) tokens[0].to_int ();
+                level = (LogLevel) int.parse (tokens[0]);
                 domain = "*";
             } else {
                 domain = tokens[0];
-                level = (LogLevel) tokens[1].to_int ();
+                level = (LogLevel) int.parse (tokens[1]);
             }
 
             var flags = this.log_level_to_flags (level);

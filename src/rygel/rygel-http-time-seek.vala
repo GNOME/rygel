@@ -54,7 +54,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
             // Get start time
             time = range_tokens[0];
             if (time[0].isdigit ()) {
-                start = (int64) (time.to_double () * SECOND);
+                start = (int64) (double.parse (time) * SECOND);
             } else if (time != "") {
                 throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
                                                        range);
@@ -63,7 +63,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
             // Get end time
             time = range_tokens[1];
             if (time[0].isdigit()) {
-                stop = (int64) (time.to_double () * SECOND);
+                stop = (int64) (double.parse (time) * SECOND);
                 if (stop < start) {
                     throw new HTTPSeekError.INVALID_RANGE
                                         (_("Invalid Range '%s'"), range);

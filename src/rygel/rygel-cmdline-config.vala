@@ -327,7 +327,7 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
                 tokens[2] != null &&
                 tokens[0] == section &&
                 tokens[1] == key) {
-                value = tokens[2].to_int ();
+                value = int.parse (tokens[2]);
                 if (value >= min && value <= max) {
                     value_set = true;
                 }
@@ -355,7 +355,7 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
                 tokens[1] == key) {
                 value = new ArrayList<int> ();
                 foreach (var val_token in tokens[2].split (",", -1)) {
-                    value.add (val_token.to_int ());
+                    value.add (int.parse (val_token));
                 }
                 break;
             }
@@ -380,7 +380,7 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
                 tokens[2] != null &&
                 tokens[0] == section &&
                 tokens[1] == key) {
-                value = tokens[2].to_bool ();
+                value = bool.parse (tokens[2]);
                 value_set = true;
                 break;
             }

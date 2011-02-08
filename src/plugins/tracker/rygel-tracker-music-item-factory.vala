@@ -84,29 +84,30 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
 
         if (metadata[MusicMetadata.DURATION] != "" &&
             metadata[MusicMetadata.DURATION] != "0") {
-            music.duration = metadata[MusicMetadata.DURATION].to_int ();
+            music.duration = int.parse (metadata[MusicMetadata.DURATION]);
         }
 
         if (metadata[MusicMetadata.SAMPLE_RATE] != "") {
-            music.sample_freq = metadata[MusicMetadata.SAMPLE_RATE].to_int ();
+            music.sample_freq = int.parse
+                                        (metadata[MusicMetadata.SAMPLE_RATE]);
         }
 
         if (metadata[MusicMetadata.CHANNELS] != "") {
-            music.channels = metadata[MusicMetadata.CHANNELS].to_int ();
+            music.channels = int.parse (metadata[MusicMetadata.CHANNELS]);
         }
 
         if (metadata[MusicMetadata.BITS_PER_SAMPLE] != "") {
             var bits_per_sample = metadata[MusicMetadata.BITS_PER_SAMPLE];
-            music.bits_per_sample = bits_per_sample.to_int ();
+            music.bits_per_sample = int.parse (bits_per_sample);
         }
 
         if (metadata[MusicMetadata.BITRATE] != "") {
-            music.bitrate = metadata[MusicMetadata.BITRATE].to_int () / 8;
+            music.bitrate = int.parse (metadata[MusicMetadata.BITRATE]) / 8;
         }
 
         if (metadata[MusicMetadata.AUDIO_TRACK_NUM] != "") {
             var track_number = metadata[MusicMetadata.AUDIO_TRACK_NUM];
-            music.track_number = track_number.to_int ();
+            music.track_number = int.parse (track_number);
         }
 
         music.artist = metadata[MusicMetadata.AUDIO_ARTIST];

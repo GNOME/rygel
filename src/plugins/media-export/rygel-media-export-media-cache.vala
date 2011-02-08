@@ -362,7 +362,7 @@ public class Rygel.MediaExport.MediaCache : Object {
     private void open_db (string name) throws Error {
         this.db = new Database (name);
         int old_version = -1;
-        int current_version = SQLFactory.schema_version.to_int ();
+        int current_version = int.parse (SQLFactory.schema_version);
 
         try {
             var upgrader = new MediaCacheUpgrader (this.db, this.sql);

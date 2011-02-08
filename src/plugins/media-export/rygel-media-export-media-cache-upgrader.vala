@@ -53,7 +53,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                             });
         current_version = current_version_temp;
 
-        return current_version < SQLFactory.schema_version.to_int ();
+        return current_version < int.parse (SQLFactory.schema_version);
     }
 
     public void fix_schema () throws Error {
@@ -97,7 +97,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
 
     public void upgrade (int old_version) {
         debug ("Older schema detected. Upgrading...");
-        int current_version = SQLFactory.schema_version.to_int ();
+        int current_version = int.parse (SQLFactory.schema_version);
         while (old_version < current_version) {
             if (this.database != null) {
                 switch (old_version) {

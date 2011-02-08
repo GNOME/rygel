@@ -53,7 +53,7 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
             // Get first byte position
             pos = range_tokens[0];
             if (pos[0].isdigit ()) {
-                start = pos.to_int64 ();
+                start = int64.parse (pos);
             } else if (pos  != "") {
                 throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
                                                        range);
@@ -62,7 +62,7 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
             // Get last byte position if specified
             pos = range_tokens[1];
             if (pos[0].isdigit ()) {
-                stop = pos.to_int64 ();
+                stop = int64.parse (pos);
                 if (stop < start) {
                     throw new HTTPSeekError.INVALID_RANGE
                                         (_("Invalid Range '%s'"), range);

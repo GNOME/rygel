@@ -69,11 +69,11 @@ public class Rygel.Tracker.PictureItemFactory : ItemFactory {
         var photo = item as PhotoItem;
 
         if (metadata[PictureMetadata.WIDTH] != "") {
-            photo.width = metadata[PictureMetadata.WIDTH].to_int ();
+            photo.width = int.parse (metadata[PictureMetadata.WIDTH]);
         }
 
         if (metadata[PictureMetadata.HEIGHT] != "") {
-            photo.height = metadata[PictureMetadata.HEIGHT].to_int ();
+            photo.height = int.parse (metadata[PictureMetadata.HEIGHT]);
         }
     }
 }

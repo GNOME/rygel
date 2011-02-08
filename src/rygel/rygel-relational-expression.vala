@@ -120,7 +120,7 @@ public class Rygel.RelationalExpression :
     }
 
     public bool compare_int (int integer) {
-        var operand2 = this.operand2.to_int ();
+        var operand2 = int.parse (this.operand2);
 
         switch (this.op) {
         case SearchCriteriaOp.EQ:

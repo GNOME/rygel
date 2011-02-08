@@ -71,13 +71,13 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
         var video = item as VideoItem;
 
         if (metadata[VideoMetadata.WIDTH] != "")
-            video.width = metadata[VideoMetadata.WIDTH].to_int ();
+            video.width = int.parse (metadata[VideoMetadata.WIDTH]);
 
         if (metadata[VideoMetadata.HEIGHT] != "")
-            video.height = metadata[VideoMetadata.HEIGHT].to_int ();
+            video.height = int.parse (metadata[VideoMetadata.HEIGHT]);
 
         if (metadata[VideoMetadata.DURATION] != "")
-            video.duration = metadata[VideoMetadata.DURATION].to_int ();
+            video.duration = int.parse (metadata[VideoMetadata.DURATION]);
     }
 }
 

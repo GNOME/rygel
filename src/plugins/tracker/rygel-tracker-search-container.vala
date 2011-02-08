@@ -197,7 +197,7 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
 
             yield query.execute (this.resources);
 
-            this.child_count = query.result[0,0].to_int ();
+            this.child_count = int.parse (query.result[0,0]);
             this.updated ();
         } catch (GLib.Error error) {
             critical (_("Error getting item count under category '%s': %s"),

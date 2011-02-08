@@ -149,7 +149,7 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
         var str = this.get_string (section, key);
         var value = new ArrayList<int> ();
         foreach (var token in str.split (",", -1)) {
-            value.add (token.to_int ());
+            value.add (int.parse (token));
         }
 
         return value;
@@ -180,7 +180,7 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
             throw new ConfigurationError.NO_VALUE_SET ("No value available");
         }
 
-        return val.to_int ().clamp (min, max);
+        return int.parse (val).clamp (min, max);
     }
 
     private bool get_bool_variable (string variable) throws GLib.Error {

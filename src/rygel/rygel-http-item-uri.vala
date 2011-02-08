@@ -73,11 +73,11 @@ internal class Rygel.HTTPItemURI : Object {
 
                     break;
                 case "th":
-                    this.thumbnail_index = parts[i + 1].to_int ();
+                    this.thumbnail_index = int.parse (parts[i + 1]);
 
                     break;
                 case "sub":
-                    this.subtitle_index = parts[i + 1].to_int ();
+                    this.subtitle_index = int.parse (parts[i + 1]);
 
                     break;
                 default:

@@ -43,7 +43,7 @@ public class Rygel.Tracker.Years : MetadataValues {
 
     protected override string create_filter (string variable, string value) {
         var year = this.create_title_for_value (value);
-        var next_year = (year.to_int () + 1).to_string ();
+        var next_year = (int.parse (year) + 1).to_string ();
 
         year += "-01-01T00:00:00Z";
         next_year += "-01-01T00:00:00Z";
