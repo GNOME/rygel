@@ -22,15 +22,15 @@ using Rygel;
 using GUPnP;
 
 private const string TRACKER_PLUGIN = "Tracker";
-private const string OUR_PLUGIN = "MediaExport";
 
 /**
  * Simple plugin which exposes the media contents of a directory via UPnP.
  *
  */
 public void module_init (PluginLoader loader) {
-    if (loader.plugin_disabled (OUR_PLUGIN)) {
-        message ("Plugin '%s' disabled by user, ignoring..", OUR_PLUGIN);
+    if (loader.plugin_disabled (MediaExport.Plugin.NAME)) {
+        message ("Plugin '%s' disabled by user, ignoring..",
+                 MediaExport.Plugin.NAME);
 
         return;
     }
@@ -41,7 +41,7 @@ public void module_init (PluginLoader loader) {
         plugin = new MediaExport.Plugin ();
     } catch (Error error) {
         warning ("Failed to initialize plugin '%s': %s. Ignoring..",
-                 OUR_PLUGIN,
+                 MediaExport.Plugin.NAME,
                  error.message);
 
         return;
@@ -67,7 +67,7 @@ public void on_plugin_available (Plugin plugin, Plugin our_plugin) {
         our_plugin.active == plugin.active) {
         if (plugin.active) {
             message ("Deactivating plugin '%s' in favor of plugin '%s'",
-                     OUR_PLUGIN,
+                     MediaExport.Plugin.NAME,
                      TRACKER_PLUGIN);
             try {
                 var config = MetaConfig.get_default ();
@@ -82,7 +82,7 @@ public void on_plugin_available (Plugin plugin, Plugin our_plugin) {
         } else {
             message ("Plugin '%s' inactivate, activating '%s' plugin",
                      TRACKER_PLUGIN,
-                     OUR_PLUGIN);
+                     MediaExport.Plugin.NAME);
         }
 
         our_plugin.active = !plugin.active;
@@ -90,7 +90,9 @@ public void on_plugin_available (Plugin plugin, Plugin our_plugin) {
 }
 
 public class Rygel.MediaExport.Plugin : Rygel.MediaServerPlugin {
+    public const string NAME = "MediaExport";
+
     public Plugin () throws Error {
-        base (RootContainer.get_instance (), OUR_PLUGIN);
+        base (RootContainer.get_instance (), NAME);
     }
 }
