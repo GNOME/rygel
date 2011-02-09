@@ -40,7 +40,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     public static const string WMV_TRANSCODER_KEY = "enable-wmv-transcoder";
     public static const string ALLOW_UPLOAD_KEY = "allow-upload";
     public static const string ALLOW_DELETION_KEY = "allow-deletion";
-    public static const string LOG_LEVELS_KEY = "log-levels";
+    public static const string LOG_LEVELS_KEY = "log-level";
     public static const string PLUGIN_PATH_KEY = "plugin-path";
 
     // Our singleton

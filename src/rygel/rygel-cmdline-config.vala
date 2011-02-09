@@ -87,7 +87,7 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
           ref disallow_upload, "Disallow upload", null },
         { "disallow-deletion", 'D', 0, OptionArg.NONE,
           ref disallow_deletion, "Disallow deletion", null },
-        { "log-levels", 'g', 0, OptionArg.STRING, ref log_levels,
+        { "log-level", 'g', 0, OptionArg.STRING, ref log_levels,
           "Comma-separated list of domain:level pairs to specify log level " +
           "thresholds for individual domains. domain could be either " +
           "'rygel', name of a plugin or '*' for all domains. " +
