@@ -29,10 +29,10 @@ using FreeDesktop;
 public class Rygel.MPRIS.Plugin : Rygel.MediaRendererPlugin {
     private const string MEDIA_PLAYER_PATH = "/org/mpris/MediaPlayer2";
 
-    private PlayerProxy actual_player;
+    public PlayerProxy actual_player;
 
-    private string[] mime_types;
-    private string[] protocols;
+    public string[] mime_types;
+    public string[] protocols;
 
     public Plugin (string      service_name,
                    PlayerProxy actual_player) {
@@ -50,9 +50,7 @@ public class Rygel.MPRIS.Plugin : Rygel.MediaRendererPlugin {
     }
 
     public override Rygel.MediaPlayer? get_player () {
-        return new MPRIS.Player (this.actual_player,
-                                 this.mime_types,
-                                 this.protocols);
+        return new MPRIS.Player (this);
     }
 
     private string[] schemes_to_protocols (string[] schemes) {

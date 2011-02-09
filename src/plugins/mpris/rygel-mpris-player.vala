@@ -112,12 +112,10 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
-    public Player (PlayerProxy actual_player,
-                   string[]    mime_types,
-                   string[]    protocols) {
-        this.actual_player = actual_player;
-        this.mime_types = mime_types;
-        this.protocols = protocols;
+    public Player (Plugin plugin) {
+        this.actual_player = plugin.actual_player;
+        this.mime_types = plugin.mime_types;
+        this.protocols = plugin.protocols;
 
         actual_player.g_properties_changed.connect (this.on_properties_changed);
     }
