@@ -40,7 +40,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     public static const string WMV_TRANSCODER_KEY = "enable-wmv-transcoder";
     public static const string ALLOW_UPLOAD_KEY = "allow-upload";
     public static const string ALLOW_DELETION_KEY = "allow-deletion";
-    public static const string LOG_LEVEL_KEY = "log-level";
+    public static const string LOG_LEVELS_KEY = "log-levels";
     public static const string PLUGIN_PATH_KEY = "plugin-path";
 
     // Our singleton
@@ -88,11 +88,8 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         return this.get_bool ("general", ALLOW_DELETION_KEY);
     }
 
-    public LogLevel get_log_level () throws GLib.Error {
-        return (LogLevel) this.get_int ("general",
-                                        LOG_LEVEL_KEY,
-                                        LogLevel.INVALID,
-                                        LogLevel.DEBUG);
+    public string get_log_levels () throws GLib.Error {
+        return this.get_string ("general", LOG_LEVELS_KEY);
     }
 
     public string get_plugin_path () throws GLib.Error {

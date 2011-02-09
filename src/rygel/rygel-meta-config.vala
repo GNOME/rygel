@@ -248,13 +248,13 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         return val;
     }
 
-    public LogLevel get_log_level () throws GLib.Error {
-        LogLevel val = LogLevel.DEFAULT;
+    public string get_log_levels () throws GLib.Error {
+        string val = null;
         bool unavailable = true;
 
         foreach (var config in this.configs) {
             try {
-                val = config.get_log_level ();
+                val = config.get_log_levels ();
                 unavailable = false;
                 break;
             } catch (GLib.Error err) {}

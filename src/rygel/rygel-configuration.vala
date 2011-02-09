@@ -51,7 +51,7 @@ public interface Rygel.Configuration : GLib.Object {
 
     public abstract bool get_allow_deletion () throws GLib.Error;
 
-    public abstract LogLevel get_log_level () throws GLib.Error;
+    public abstract string get_log_levels () throws GLib.Error;
 
     public abstract string get_plugin_path () throws GLib.Error;
 

@@ -21,6 +21,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+using Gee;
+
 public enum Rygel.LogLevel {
     INVALID = 0,
     CRITICAL = 1,
@@ -32,13 +34,14 @@ public enum Rygel.LogLevel {
 }
 
 public class Rygel.LogHandler : GLib.Object {
-    private const LogLevelFlags DEFAULT_LEVELS = LogLevelFlags.LEVEL_WARNING |
-                                                 LogLevelFlags.LEVEL_CRITICAL |
-                                                 LogLevelFlags.LEVEL_ERROR |
-                                                 LogLevelFlags.LEVEL_MESSAGE |
-                                                 LogLevelFlags.LEVEL_INFO;
+    private const string DEFAULT_LEVELS = "*:4";
+    private const LogLevelFlags DEFAULT_FLAGS = LogLevelFlags.LEVEL_WARNING |
+                                                LogLevelFlags.LEVEL_CRITICAL |
+                                                LogLevelFlags.LEVEL_ERROR |
+                                                LogLevelFlags.LEVEL_MESSAGE |
+                                                LogLevelFlags.LEVEL_INFO;
 
-    public LogLevelFlags levels; // Current log levels
+    private HashMap<string,LogLevelFlags> log_level_hash;
 
     private static LogHandler log_handler; // Singleton
 
@@ -51,16 +54,32 @@ public class Rygel.LogHandler : GLib.Object {
     }
 
     private LogHandler () {
+        this.log_level_hash = new HashMap<string,LogLevelFlags> ();
+
         // Get the allowed log levels from the config
         var config = MetaConfig.get_default ();
+        string log_levels;
 
         try {
-            this.levels = this.log_level_to_flags (config.get_log_level ());
+            log_levels = config.get_log_levels ();
         } catch (Error err) {
-            this.levels = DEFAULT_LEVELS;
+            log_levels = DEFAULT_LEVELS;
 
             warning (_("Failed to get log level from configuration: %s"),
                      err.message);
+        }
+
+        foreach (var pair in log_levels.split (",")) {
+            var tokens = pair.split (":");
+            if (unlikely (tokens.length < 2)) {
+                break;
+            }
+
+            var domain = tokens[0];
+            var levels = (LogLevel) tokens[1].to_int ();
+            var flags = this.log_level_to_flags (levels);
+
+            this.log_level_hash[domain] = flags;
         }
 
         Log.set_default_handler (this.log_func);
@@ -69,14 +88,19 @@ public class Rygel.LogHandler : GLib.Object {
     private void log_func (string?       log_domain,
                            LogLevelFlags log_levels,
                            string        message) {
-        if (log_levels in this.levels) {
+        var flags = this.log_level_hash[log_domain];
+        if (flags == 0) {
+            flags = this.log_level_hash["*"];
+        }
+
+        if (log_levels in flags) {
             // Forward the message to default domain
             Log.default_handler (log_domain, log_levels, message);
         }
     }
 
     private LogLevelFlags log_level_to_flags (LogLevel level) {
-        LogLevelFlags flags = DEFAULT_LEVELS;
+        LogLevelFlags flags = DEFAULT_FLAGS;
 
         switch (level) {
             case LogLevel.CRITICAL:
@@ -107,7 +131,7 @@ public class Rygel.LogHandler : GLib.Object {
                         LogLevelFlags.LEVEL_DEBUG;
                 break;
             default:
-                flags = DEFAULT_LEVELS;
+                flags = DEFAULT_FLAGS;
                 break;
         }
 

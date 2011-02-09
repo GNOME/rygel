@@ -43,7 +43,7 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
     private static string WMV_TRANSCODING_ENV = DISABLE_PREFIX + "_WMV_TRANS";
     private static string DISALLOW_UPLOAD_ENV = DISABLE_PREFIX + "_UPLOAD";
     private static string DISALLOW_DELETION_ENV = DISABLE_PREFIX + "_DELETION";
-    private static string LOG_LEVEL_ENV = RYGEL_PREFIX + "_LOG";
+    private static string LOG_LEVELS_ENV = RYGEL_PREFIX + "_LOG";
     private static string PLUGIN_PATH_ENV = RYGEL_PREFIX + "_PLUGIN_PATH";
 
     // Our singleton
@@ -97,10 +97,8 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
         return !this.get_bool_variable (DISALLOW_DELETION_ENV);
     }
 
-    public LogLevel get_log_level () throws GLib.Error {
-        return (LogLevel) this.get_int_variable (LOG_LEVEL_ENV,
-                                                LogLevel.CRITICAL,
-                                                LogLevel.DEBUG);
+    public string get_log_levels () throws GLib.Error {
+        return this.get_string_variable (LOG_LEVELS_ENV);
     }
 
     public string get_plugin_path () throws GLib.Error {

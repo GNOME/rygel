@@ -45,7 +45,7 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static bool disallow_upload;
     private static bool disallow_deletion;
 
-    private static LogLevel log_level = LogLevel.INVALID;
+    private static string log_levels;
 
     private static string plugin_path;
 
@@ -87,9 +87,13 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
           ref disallow_upload, "Disallow upload", null },
         { "disallow-deletion", 'D', 0, OptionArg.NONE,
           ref disallow_deletion, "Disallow deletion", null },
-        { "log-level", 'g', 0, OptionArg.INT, ref log_level,
-          "Log level. 1=critical,2=error,3=warning,4=message/info,5=debug",
-          "N" },
+        { "log-levels", 'g', 0, OptionArg.STRING, ref log_levels,
+          "Comma-separated list of domain:level pairs to specify log level " +
+          "thresholds for individual domains. domain could be either " +
+          "'rygel', name of a plugin or '*' for all domains. " +
+          " Allowed levels are: " +
+          "0=critical,2=error,3=warning,4=message/info,5=debug.",
+          "DOMAIN1:LEVEL1[,DOMAIN2:LEVEL2,..]" },
         { "plugin-path", 'u', 0, OptionArg.STRING, ref plugin_path,
           "Plugin Path", "PLUGIN_PATH" },
         { "disable-plugin", 'd', 0, OptionArg.STRING_ARRAY,
@@ -208,12 +212,12 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
         }
     }
 
-    public LogLevel get_log_level () throws GLib.Error {
-        if (this.log_level == LogLevel.INVALID) {
+    public string get_log_levels () throws GLib.Error {
+        if (log_levels == null) {
             throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
 
-        return log_level;
+        return log_levels;
     }
 
     public string get_plugin_path () throws GLib.Error {
