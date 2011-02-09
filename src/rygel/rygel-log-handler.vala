@@ -71,13 +71,22 @@ public class Rygel.LogHandler : GLib.Object {
 
         foreach (var pair in log_levels.split (",")) {
             var tokens = pair.split (":");
-            if (unlikely (tokens.length < 2)) {
+            if (tokens.length < 1) {
                 break;
             }
 
-            var domain = tokens[0];
-            var levels = (LogLevel) tokens[1].to_int ();
-            var flags = this.log_level_to_flags (levels);
+            string domain;
+            LogLevel level;
+
+            if (tokens.length == 1) {
+                level = (LogLevel) tokens[0].to_int ();
+                domain = "*";
+            } else {
+                domain = tokens[0];
+                level = (LogLevel) tokens[1].to_int ();
+            }
+
+            var flags = this.log_level_to_flags (level);
 
             this.log_level_hash[domain] = flags;
         }
