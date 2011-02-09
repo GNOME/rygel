@@ -14,7 +14,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
 	    $(UUID_FLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"' \
-	    -include config.h
+	    -include config.h -DG_LOG_DOMAIN='"External"'
 
 librygel_external_la_SOURCES = rygel-external-container.vala \
 			       rygel-external-dummy-container.vala \

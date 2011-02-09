@@ -17,7 +17,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(GSTREAMER_TAG_CFLAGS) \
 	    $(GSTREAMER_APP_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"' \
-	    -include config.h
+	    -include config.h -DG_LOG_DOMAIN='"MediaExport"'
 
 librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
 				   rygel-media-export-database.vala \

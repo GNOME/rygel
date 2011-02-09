@@ -9,7 +9,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(UUID_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"' \
-	    -include config.h
+	    -include config.h -DG_LOG_DOMAIN='"Tracker"'
 
 librygel_media_tracker_la_SOURCES = rygel-tracker-root-container.vala \
 				    rygel-tracker-category-container.vala \

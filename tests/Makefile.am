@@ -9,7 +9,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBSOUP_CFLAGS) \
 	    $(LIBDBUS_GLIB_CFLAGS) \
 	    -I$(top_srcdir) -DDATA_DIR='"$(shareddir)"' \
-	    -include config.h
+	    -include config.h  -DG_LOG_DOMAIN='"Rygel"'
 
 LDADD = $(LIBGUPNP_LIBS) \
 	$(LIBGUPNP_AV_LIBS) \

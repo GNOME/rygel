@@ -9,7 +9,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 		$(UUID_FLAGS) \
 		-I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"' \
 		-DSYS_CONFIG_DIR='"$(sysconfdir)"' \
-	        -include config.h
+	        -include config.h -DG_LOG_DOMAIN='"GstLaunch"'
 
 librygel_gst_launch_la_SOURCES = rygel-gst-launch-plugin.vala \
 				rygel-gst-launch-root-container.vala \

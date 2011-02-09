@@ -14,7 +14,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
 	    $(UUID_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"' \
-	    -include config.h
+	    -include config.h -DG_LOG_DOMAIN='"Test"'
 
 librygel_test_la_SOURCES = rygel-test-root-container.vala \
 			   rygel-test-audio-item.vala \

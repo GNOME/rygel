@@ -16,7 +16,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
             $(UUID_CFLAGS) \
 	    -I$(top_srcdir)/src/rygel \
 	    -DDATA_DIR='"$(shareddir)"' \
-	    -include config.h
+	    -include config.h -DG_LOG_DOMAIN='"Mediathek"'
 
 librygel_mediathek_la_SOURCES = rygel-mediathek-asx-playlist-parser.vala \
 				rygel-mediathek-mov-playlist-parser.vala \

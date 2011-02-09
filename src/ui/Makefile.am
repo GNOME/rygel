@@ -19,7 +19,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -I$(top_srcdir) -I$(rygeldir) -DDATA_DIR='"$(shareddir)"' \
 	    -DSMALL_ICON_DIR='"$(icondir)"' -DSYS_CONFIG_DIR='"$(sysconfdir)"' \
 	    -DDESKTOP_DIR='"$(desktopdir)"' -include config.h \
-	    -DLOCALEDIR=\""$(datadir)/locale"\"
+	    -DLOCALEDIR=\""$(datadir)/locale"\" -DG_LOG_DOMAIN='"Rygel"'
 
 bin_PROGRAMS = rygel-preferences
 

@@ -25,7 +25,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    -DPLUGIN_DIR='"$(plugindir)"' -DDESKTOP_DIR='"$(desktopdir)"'\
 	    -DSMALL_ICON_DIR='"$(smallicondir)"' \
 	    -DBIG_ICON_DIR='"$(bigicondir)"' -include config.h \
-	    -DLOCALEDIR=\""$(datadir)/locale"\"
+	    -DLOCALEDIR=\""$(datadir)/locale"\" -DG_LOG_DOMAIN='"Rygel"'
 
 librygelincdir = $(includedir)/rygel-1.0
 

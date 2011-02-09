@@ -14,7 +14,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
             $(LIBGSTREAMER_CFLAGS) \
             $(UUID_CFLAGS) \
             -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(shareddir)"' \
-	    -include config.h
+	    -include config.h -DG_LOG_DOMAIN='"Playbin"'
 
 librygel_playbin_la_SOURCES = rygel-playbin-player.vala \
 			      rygel-playbin-plugin.vala
