@@ -157,7 +157,7 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
                     dest.make_symbolic_link (source_path, null);
                 } catch (IOError.EXISTS err) {}
 
-                this.set_bool ("general", ENABLED_KEY, true);
+                this.set_bool ("general", UPNP_ENABLED_KEY, true);
             } else {
                 // Stop service only if already running
                 if (this.get_enabled ("general")) {
@@ -176,7 +176,7 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
                     dest.delete (null);
                 } catch (IOError.NOT_FOUND err) {}
 
-                this.set_bool ("general", ENABLED_KEY, false);
+                this.set_bool ("general", UPNP_ENABLED_KEY, false);
             }
         } catch (GLib.Error err) {
             string message;

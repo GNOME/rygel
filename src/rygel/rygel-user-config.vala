@@ -31,7 +31,8 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     public static const string CONFIG_FILE = "rygel.conf";
     public static const string IFACE_KEY = "interface";
     public static const string PORT_KEY = "port";
-    public static const string ENABLED_KEY = "upnp-enabled";
+    public static const string ENABLED_KEY = "enabled";
+    public static const string UPNP_ENABLED_KEY = "upnp-" + ENABLED_KEY;
     public static const string TITLE_KEY = "title";
     public static const string TRANSCODING_KEY = "enable-transcoding";
     public static const string MP3_TRANSCODER_KEY = "enable-mp3-transcoder";
@@ -50,7 +51,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     protected KeyFile sys_key_file;
 
     public bool get_upnp_enabled () throws GLib.Error {
-        return this.get_bool ("general", ENABLED_KEY);
+        return this.get_bool ("general", UPNP_ENABLED_KEY);
     }
 
     public string get_interface () throws GLib.Error {
