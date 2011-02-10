@@ -80,22 +80,6 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
         this.set_bool ("general", ALLOW_DELETION_KEY, value);
     }
 
-    public WritableUserConfig () throws Error {
-        this.key_file = new KeyFile ();
-
-        var dirs = new string[2];
-        dirs[0] = Environment.get_user_config_dir ();
-        dirs[1] = BuildConfig.SYS_CONFIG_DIR;
-
-        string path;
-        this.key_file.load_from_dirs (CONFIG_FILE,
-                                      dirs,
-                                      out path,
-                                      KeyFileFlags.KEEP_COMMENTS |
-                                      KeyFileFlags.KEEP_TRANSLATIONS);
-        debug ("Loaded user configuration from file '%s'", path);
-    }
-
     public void save () {
         // Always write to user's config
         string path = Path.build_filename (Environment.get_user_config_dir (),
