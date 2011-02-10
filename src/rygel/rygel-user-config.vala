@@ -47,6 +47,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     private static UserConfig config;
 
     protected KeyFile key_file;
+    protected KeyFile sys_key_file;
 
     public bool get_upnp_enabled () throws GLib.Error {
         return this.get_bool ("general", ENABLED_KEY);
@@ -106,18 +107,30 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
     public UserConfig () throws Error {
         this.key_file = new KeyFile ();
+        this.sys_key_file = new KeyFile ();
 
-        var dirs = new string[2];
-        dirs[0] = Environment.get_user_config_dir ();
-        dirs[1] = BuildConfig.SYS_CONFIG_DIR;
+        var path = Path.build_filename (BuildConfig.SYS_CONFIG_DIR,
+                                        CONFIG_FILE);
 
-        string path;
-        this.key_file.load_from_dirs (CONFIG_FILE,
-                                      dirs,
-                                      out path,
-                                      KeyFileFlags.KEEP_COMMENTS |
-                                      KeyFileFlags.KEEP_TRANSLATIONS);
-        debug ("Loaded user configuration from file '%s'", path);
+        this.sys_key_file.load_from_file (path,
+                                          KeyFileFlags.KEEP_COMMENTS |
+                                          KeyFileFlags.KEEP_TRANSLATIONS);
+        debug ("Loaded system configuration from file '%s'", path);
+
+        try {
+            path = Path.build_filename (Environment.get_user_config_dir (),
+                                        CONFIG_FILE);
+
+            this.key_file.load_from_file (path,
+                                          KeyFileFlags.KEEP_COMMENTS |
+                                          KeyFileFlags.KEEP_TRANSLATIONS);
+
+            debug ("Loaded user configuration from file '%s'", path);
+        } catch (Error error) {
+            debug ("Failed to load user configuration from file '%s': %s",
+                   path,
+                   error.message);
+        }
     }
 
     public bool get_enabled (string section) throws GLib.Error {
@@ -130,7 +143,18 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
     public string get_string (string section,
                               string key) throws GLib.Error {
-        var val = this.key_file.get_string (section, key);
+        string val;
+
+        try {
+            val = this.key_file.get_string (section, key);
+        } catch (KeyFileError error) {
+            if (error is KeyFileError.KEY_NOT_FOUND ||
+                error is KeyFileError.GROUP_NOT_FOUND) {
+                val = this.sys_key_file.get_string (section, key);
+            } else {
+                throw error;
+            }
+        }
 
         if (val == null || val == "") {
             throw new ConfigurationError.NO_VALUE_SET
@@ -144,7 +168,18 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                                                   string key)
                                                   throws GLib.Error {
         var str_list = new Gee.ArrayList<string> ();
-        var strings = this.key_file.get_string_list (section, key);
+        string[] strings;
+
+        try {
+            strings = this.key_file.get_string_list (section, key);
+        } catch (KeyFileError error) {
+            if (error is KeyFileError.KEY_NOT_FOUND ||
+                error is KeyFileError.GROUP_NOT_FOUND) {
+                strings = this.sys_key_file.get_string_list (section, key);
+            } else {
+                throw error;
+            }
+        }
 
         foreach (var str in strings) {
             str_list.add (str);
@@ -158,7 +193,18 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                         int    min,
                         int    max)
                         throws GLib.Error {
-        int val = this.key_file.get_integer (section, key);
+        int val;
+
+        try {
+            val = this.key_file.get_integer (section, key);
+        } catch (KeyFileError error) {
+            if (error is KeyFileError.KEY_NOT_FOUND ||
+                error is KeyFileError.GROUP_NOT_FOUND) {
+                val = this.sys_key_file.get_integer (section, key);
+            } else {
+                throw error;
+            }
+        }
 
         if (val == 0 || val < min || val > max) {
             throw new ConfigurationError.VALUE_OUT_OF_RANGE
@@ -172,7 +218,18 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                                             string key)
                                             throws GLib.Error {
         var int_list = new Gee.ArrayList<int> ();
-        var ints = this.key_file.get_integer_list (section, key);
+        int[] ints;
+
+        try {
+            ints = this.key_file.get_integer_list (section, key);
+        } catch (KeyFileError error) {
+            if (error is KeyFileError.KEY_NOT_FOUND ||
+                error is KeyFileError.GROUP_NOT_FOUND) {
+                ints = this.sys_key_file.get_integer_list (section, key);
+            } else {
+                throw error;
+            }
+        }
 
         foreach (var num in ints) {
             int_list.add (num);
@@ -184,7 +241,20 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     public bool get_bool (string section,
                           string key)
                           throws GLib.Error {
-        return this.key_file.get_boolean (section, key);
+        bool val;
+
+        try {
+            val = this.key_file.get_boolean (section, key);
+        } catch (KeyFileError error) {
+            if (error is KeyFileError.KEY_NOT_FOUND ||
+                error is KeyFileError.GROUP_NOT_FOUND) {
+                val = this.sys_key_file.get_boolean (section, key);
+            } else {
+                throw error;
+            }
+        }
+
+        return val;
     }
 }
 
