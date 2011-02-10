@@ -44,8 +44,16 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
         }
     }
 
-    public void set_interface (string value) {
-        this.set_string ("general", IFACE_KEY, value);
+    public void set_interface (string? value) {
+        string iface;
+
+        if (value != null) {
+            iface = value;
+        } else {
+            iface = "";
+        }
+
+        this.set_string ("general", IFACE_KEY, iface);
     }
 
     public void set_port (int value) {
