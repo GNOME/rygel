@@ -130,6 +130,13 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
             debug ("Failed to load user configuration from file '%s': %s",
                    path,
                    error.message);
+            size_t size;
+
+            var data = this.sys_key_file.to_data (out size);
+            this.key_file.load_from_data (data,
+                                          size,
+                                          KeyFileFlags.KEEP_COMMENTS |
+                                          KeyFileFlags.KEEP_TRANSLATIONS);
         }
     }
 
