@@ -244,7 +244,9 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>--log-level=<replaceable>LEVEL</replaceable></option>
         </term>
         <listitem>
-          <para>Set the log level. 1=critical, 2=error, 3=warning, 4=message/info, 5=debug.</para>
+          <para>Comma-separated list of <replaceable>DOMAIN</replaceable>:<replaceable>LEVEL</replaceable> pairs, allowing to set the log level individually for each domain, where <replaceable>DOMAIN</replaceable> is eiher <userinput>&quot;*&quot;</userinput>, &quot;<userinput>rygel</userinput>&quot; or the name of a plugin. Allowed log levels are 1=critical, 2=error, 3=warning, 4=message/info,
+            5=debug.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
