@@ -147,13 +147,21 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                         debug ("Trying to harvest %s because of %s",
                                file.get_uri (),
                                event.to_string ());
-                        var id = MediaCache.get_id (file.get_parent ());
+                        string id;
                         try {
-                               var parent_container = cache.get_object (id)
-                                            as MediaContainer;
-                                assert (parent_container != null);
+                            MediaContainer parent_container = null;
+                            var current = file;
+                            do {
+                                var parent = current.get_parent ();
+                                id = MediaCache.get_id (parent);
+                                parent_container = cache.get_object (id)
+                                        as MediaContainer;
+                                if (parent_container == null) {
+                                    current = parent;
+                                }
+                            } while (parent_container == null);
 
-                                this.schedule (file, parent_container);
+                            this.schedule (current, parent_container);
                         } catch (DatabaseError error) {
                             warning (_("Error fetching object '%s' from database: %s"),
                                      id,
@@ -168,15 +176,26 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                         // exists because we need the parent to signalize the
                         // change
                         var id = MediaCache.get_id (file);
-                        var obj = cache.get_object (id);
+                        var object = cache.get_object (id);
+                        var parent = object.parent;
 
-                        // it may be that files removed are files that are not
-                        // in the database, because they're not media files
-                        if (obj != null) {
-                            cache.remove_object (obj);
-                            if (obj.parent != null) {
-                                obj.parent.updated ();
+                        while (object != null) {
+                            parent = object.parent;
+                            cache.remove_object (object);
+                            if (parent == null) {
+                                break;
                             }
+
+                            parent.child_count--;
+                            if (parent.child_count != 0) {
+                                break;
+                            }
+
+                            object = parent;
+                        }
+
+                        if (parent != null) {
+                            parent.updated ();
                         }
                     } catch (Error error) {
                         warning (_("Error removing object from database: %s"),
