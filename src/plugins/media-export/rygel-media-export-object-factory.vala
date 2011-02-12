@@ -40,6 +40,14 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
                 // Must not fail - plugin is disabled if this fails
                 assert_not_reached ();
             }
+        } else if (id == RootContainer.FILESYSTEM_FOLDER_ID) {
+            try {
+                var root_container = RootContainer.get_instance ()
+                                        as RootContainer;
+
+                return root_container.get_filesystem_container ()
+                                        as DBContainer;
+            } catch (Error error) { assert_not_reached (); }
         }
 
         if (id.has_prefix (QueryContainer.PREFIX)) {

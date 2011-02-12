@@ -70,6 +70,10 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         return RootContainer.instance;
     }
 
+    public MediaContainer get_filesystem_container () {
+        return this.filesystem_container;
+    }
+
     public void shutdown () {
         this.cancellable.cancel ();
     }
@@ -335,10 +339,11 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         } catch (Error error) { } // do nothing
 
         try {
-            this.filesystem_container = new NullContainer ();
+            this.filesystem_container = new DBContainer
+                                        (media_db,
+                                         FILESYSTEM_FOLDER_ID,
+                                         FILESYSTEM_FOLDER_NAME);
             this.filesystem_container.parent = this;
-            this.filesystem_container.title = FILESYSTEM_FOLDER_NAME;
-            this.filesystem_container.id = FILESYSTEM_FOLDER_ID;
             this.media_db.save_container (this.filesystem_container);
         } catch (Error error) { }
 
@@ -367,6 +372,11 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                 warning (_("Failed to remove entry: %s"), error.message);
             }
         }
+
+        this.filesystem_container.container_updated.connect( () => {
+            this.add_default_virtual_folders ();
+            this.updated ();
+        });
 
         this.add_default_virtual_folders ();
 
@@ -400,8 +410,12 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         var query_container = new QueryContainer (this.media_db,
                                                   id,
                                                   definition.title);
-        query_container.parent = container;
-        this.media_db.save_container (query_container);
+        if (query_container.child_count > 0) {
+            query_container.parent = container;
+            this.media_db.save_container (query_container);
+        } else {
+            this.media_db.remove_by_id (id);
+        }
     }
 
     private void add_virtual_containers_for_class
@@ -423,6 +437,12 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             foreach (var definition in definitions) {
                 this.add_folder_definition (container, item_class, definition);
             }
+        }
+
+        if (this.media_db.get_child_count (container.id) == 0) {
+            this.media_db.remove_by_id (container.id);
+        } else {
+            container.updated ();
         }
     }
 }
