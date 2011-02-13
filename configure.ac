@@ -106,6 +106,13 @@ if test "x$enable_debug" = "xyes"; then
         CFLAGS="$CFLAGS -O0 -g"
 fi
 
+AC_ARG_ENABLE([strict-valac],
+              [  --enable-strict-valac      enable strict Vala compiler],,
+              [enable_strict_valac=no])
+if test "x$enable_strict_valac" = "xyes"; then
+        VALAFLAGS="$VALAFLAGS --fatal-warnings"
+fi
+
 # Strict compiler
 AC_ARG_ENABLE(strict-cc,
 	[  --enable-strict-cc          enable strict C compiler],,
