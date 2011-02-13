@@ -50,11 +50,11 @@ GLIB_GENMARSHAL=`pkg-config --variable=glib_genmarshal glib-2.0`
 AC_SUBST(GLIB_GENMARSHAL)
 
 AC_ARG_ENABLE(vala,
-	[  --enable-vala          enable checks for vala],,
+	AC_HELP_STRING([--enable-vala],[enable checks for vala]),,
         enable_vala=no)
 AC_ARG_ENABLE(sql-debugging,
-              [  --enable-sql-debugging         enable SQL statement debugging],,
-                 enable_sql_debugging=no)
+    AC_HELP_STRING([--enable-sql-debugging],[enable SQL statement debugging]),,
+        enable_sql_debugging=no)
 
 if test x$enable_sql_debugging = xyes ; then
     VALAFLAGS="$VALAFLAGS -D RYGEL_DEBUG_SQL"
@@ -100,14 +100,14 @@ AC_SUBST(VAPIDIR)
 
 # Debugging
 AC_ARG_ENABLE(debug,
-	[  --enable-debug          enable debugging],,
+	AC_HELP_STRING([--enable-debug],[enable debugging]),,
         enable_debug=no)
 if test "x$enable_debug" = "xyes"; then
         CFLAGS="$CFLAGS -O0 -g"
 fi
 
 AC_ARG_ENABLE([strict-valac],
-              [  --enable-strict-valac      enable strict Vala compiler],,
+    AC_HELP_STRING([--enable-strict-valac],[enable strict Vala compiler]),,
               [enable_strict_valac=no])
 if test "x$enable_strict_valac" = "xyes"; then
         VALAFLAGS="$VALAFLAGS --fatal-warnings"
@@ -115,7 +115,7 @@ fi
 
 # Strict compiler
 AC_ARG_ENABLE(strict-cc,
-	[  --enable-strict-cc          enable strict C compiler],,
+	AC_HELP_STRING([--enable-strict-cc],[enable strict C compiler]),,
         enable_strict_cc=no)
 if test "x$enable_strict_cc" = "xyes"; then
         CFLAGS="$CFLAGS -Wall -Werror"
@@ -125,7 +125,7 @@ fi
 
 # Run uninstalled
 AC_ARG_ENABLE(uninstalled,
-	[  --enable-uninstalled          run uninstalled],,
+    AC_HELP_STRING([--enable-uninstalled],[run uninstalled]),,
         enable_uninstalled=no)
 if test "x$enable_uninstalled" = "xyes"; then
         AC_MSG_WARN("You want to run the tools uninstalled only? Fine!")
@@ -169,58 +169,18 @@ AC_SUBST(HAVE_GTK)
 AM_CONDITIONAL(BUILD_UI, test x$BUILD_UI = xyes)
 
 # Build test plugin
-AC_ARG_ENABLE(test-plugin,
-	[  --enable-test-plugin          build test plugin],,
-        enable_test_plugin=no)
-
-# Build Tracker plugin
-AC_ARG_ENABLE(tracker-plugin,
-	[  --enable-tracker-plugin      build tracker plugin],,
-        enable_tracker_plugin=yes)
-
-# Build MediaExport plugin
-AC_ARG_ENABLE(media-export-plugin,
-	[  --enable-media-export-plugin          build MediaExport plugin],,
-        enable_media_export_plugin=yes)
-
-# Build External plugin
-AC_ARG_ENABLE(external-plugin,
-	[  --enable-external-plugin          build External plugin],,
-        enable_external_plugin=yes)
-
-# Build MPRIS2 plugin
-AC_ARG_ENABLE(mpris-plugin,
-	[  --enable-mpris-plugin             build MPRIS2 plugin],,
-        enable_mpris_plugin=yes)
-
-# Build GstRenderer plugin
-AC_ARG_ENABLE(playbin-plugin,
-	[  --enable-playbin_plugin          build Gstreamer Playbin plugin],,
-        enable_playbin_plugin=yes)
-
-# Build Mediathek plugin
-AC_ARG_ENABLE(mediathek-plugin,
-	[  --enable-mediathek-plugin          build Mediathek plugin],,
-        enable_mediathek_plugin=no)
-
-# Build GstLaunch plugin
-AC_ARG_ENABLE(gst-launch-plugin,
-	[  --enable-gst-launch-plugin          build Gstreamer launchline plugin],,
-        enable_gst_launch_plugin=no)
-
+RYGEL_ADD_PLUGIN([test],[Test],[no])
+RYGEL_ADD_PLUGIN([tracker],[Tracker],[yes])
+RYGEL_ADD_PLUGIN([external],[MediaServer2 DBus consumer],[yes])
+RYGEL_ADD_PLUGIN([mpris],[MPRIS2 DBus consumer],[yes])
+RYGEL_ADD_PLUGIN([playbin],[GStreamer playbin],[yes])
+RYGEL_ADD_PLUGIN([mediathek],[ZDF Mediathek],[no])
+RYGEL_ADD_PLUGIN([media-export],[MediaExport],[yes])
+RYGEL_ADD_PLUGIN([gst-launch],[GStreamer launchline],[no])
 
 AC_SUBST(abs_top_builddir)
 
 AM_CONDITIONAL([UNINSTALLED], [test "x$enable_uninstalled" = "xyes"])
-AM_CONDITIONAL([BUILD_TEST_PLUGIN], [test "x$enable_test_plugin" = "xyes"])
-AM_CONDITIONAL([BUILD_TRACKER_PLUGIN],
-               [test "x$enable_tracker_plugin" = "xyes"])
-AM_CONDITIONAL([BUILD_MEDIATHEK_PLUGIN], [test "x$enable_mediathek_plugin" = "xyes"])
-AM_CONDITIONAL([BUILD_MEDIA_EXPORT_PLUGIN], [test "x$enable_media_export_plugin" = "xyes"])
-AM_CONDITIONAL([BUILD_EXTERNAL_PLUGIN], [test "x$enable_external_plugin" = "xyes"])
-AM_CONDITIONAL([BUILD_MPRIS_PLUGIN], [test "x$enable_mpris_plugin" = "xyes"])
-AM_CONDITIONAL([BUILD_PLAYBIN_PLUGIN], [test "x$enable_playbin_plugin" = "xyes"])
-AM_CONDITIONAL([BUILD_GST_LAUNCH_PLUGIN], [test "x$enable_gst_launch_plugin" = "xyes"])
 
 if test "x$enable_media_export_plugin" = "xyes";
 then
@@ -260,14 +220,6 @@ src/Makefile
 src/rygel/Makefile
 src/ui/Makefile
 src/plugins/Makefile
-src/plugins/media-export/Makefile
-src/plugins/external/Makefile
-src/plugins/mpris/Makefile
-src/plugins/gst-launch/Makefile
-src/plugins/mediathek/Makefile
-src/plugins/tracker/Makefile
-src/plugins/playbin/Makefile
-src/plugins/test/Makefile
 data/Makefile
 data/xml/Makefile
 data/icons/Makefile
