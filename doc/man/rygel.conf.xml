@@ -420,6 +420,9 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
     <para><application>&dhpackage;</application> exposes media players that implement the provider side of this DBus specification as DLNA Digital Media Renderers (DMR) similar to the Playbin plugin. This means that you can easily turn your media player into a DMR by implementing this DBus specification.</para>
     <para>Players that implement this spec and are known to work with <application>&dhpackage;</application> are  <ulink url="http://banshee.fm">Banshee</ulink> and  <ulink url="http://www.rhythmbox.org">Rhythmbox</ulink>.
       </para>
+    <para>The configuration of this plugin is special. Plugin configuration is not done on the plugin but rather per peer that is found providing the MPRIS2 interface. See the following example to set the title for Banshee on MPRIS:</para>
+    <para><programlisting>[org.mpris.MediaPlayer2.banshee]
+title=@REALNAME@&apos;s Banshee on @HOSTNAME@</programlisting></para>
     <para>This plugin has no additional options.</para>
   </refsect1>
   <refsect1 id="see_also">
