@@ -7,7 +7,6 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(UUID_CFLAGS) \
 	    $(LIBSOUP_CFLAGS) \
-	    $(LIBDBUS_GLIB_CFLAGS) \
 	    -I$(top_srcdir) -DDATA_DIR='"$(shareddir)"' \
 	    -include config.h  -DG_LOG_DOMAIN='"Rygel"'
 
@@ -17,8 +16,7 @@ LDADD = $(LIBGUPNP_LIBS) \
 	$(GIO_LIBS) \
 	$(GEE_LIBS) \
 	$(UUID_LIBS) \
-	$(LIBSOUP_LIBS) \
-	$(LIBDBUS_GLIB_LIBS)
+	$(LIBSOUP_LIBS)
 
 AM_VALAFLAGS = --disable-warnings --thread \
 	       --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \

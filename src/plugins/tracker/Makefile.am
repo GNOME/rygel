@@ -4,7 +4,6 @@ plugin_LTLIBRARIES = librygel-media-tracker.la
 
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
-	    $(LIBDBUS_GLIB_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(UUID_CFLAGS) \

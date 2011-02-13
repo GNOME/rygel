@@ -10,7 +10,6 @@ plugin_LTLIBRARIES = librygel-mediathek.la
 
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
-	    $(LIBDBUS_GLIB_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
 	    $(GEE_CFLAGS) \
             $(UUID_CFLAGS) \
@@ -38,7 +37,6 @@ librygel_mediathek_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
 
 librygel_mediathek_la_LIBADD = $(LIBGUPNP_LIBS) \
 			       $(LIBGUPNP_AV_LIBS) \
-			       $(LIBDBUS_GLIB_LIBS) \
 			       $(LIBGSTREAMER_LIBS) \
 			       $(GEE_LIBS) \
                                $(UUID_LIBS)
