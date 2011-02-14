@@ -27,20 +27,11 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
     const string UPNP_CHECKBUTTON = "upnp-checkbutton";
     const string IFACE_ENTRY = "iface-entry";
     const string PORT_SPINBUTTON = "port-spinbutton";
-    const string TRANS_CHECKBUTTON = "transcoding-checkbutton";
-    const string MP3_CHECKBUTTON = "mp3-checkbutton";
-    const string MP2TS_CHECKBUTTON = "mp2ts-checkbutton";
-    const string LPCM_CHECKBUTTON = "lpcm-checkbutton";
 
     private ComboBoxText iface_entry;
     private SpinButton port_spin;
 
-    // Transcoding options
     private CheckButton upnp_check;
-    private CheckButton trans_check;
-    private CheckButton mp3_check;
-    private CheckButton mp2ts_check;
-    private CheckButton lpcm_check;
 
     private ContextManager context_manager;
 
@@ -54,14 +45,6 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
         assert (this.iface_entry != null);
         this.port_spin = (SpinButton) builder.get_object (PORT_SPINBUTTON);
         assert (this.port_spin != null);
-        this.trans_check = (CheckButton) builder.get_object (TRANS_CHECKBUTTON);
-        assert (this.trans_check != null);
-        this.mp3_check = (CheckButton) builder.get_object (MP3_CHECKBUTTON);
-        assert (this.mp3_check != null);
-        this.mp2ts_check = (CheckButton) builder.get_object (MP2TS_CHECKBUTTON);
-        assert (this.mp2ts_check != null);
-        this.lpcm_check = (CheckButton) builder.get_object (LPCM_CHECKBUTTON);
-        assert (this.lpcm_check != null);
 
         this.context_manager = new ContextManager (null, 0);
 
@@ -80,28 +63,11 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
         try {
             this.upnp_check.active = this.config.get_upnp_enabled ();
         } catch (GLib.Error err) {}
-        try {
-            this.trans_check.active = this.config.get_transcoding ();
-        } catch (GLib.Error err) {}
-        try {
-            this.mp3_check.active = this.config.get_mp3_transcoder ();
-        } catch (GLib.Error err) {}
-        try {
-            this.mp2ts_check.active = this.config.get_mp2ts_transcoder ();
-        } catch (GLib.Error err) {}
-        try {
-            this.lpcm_check.active = this.config.get_lpcm_transcoder ();
-        } catch (GLib.Error err) {}
-
-        this.trans_check.toggled.connect (this.on_trans_check_toggled);
 
         this.context_manager.context_available.connect
                                         (this.on_context_available);
         this.context_manager.context_unavailable.connect
                                         (this.on_context_unavailable);
-
-        // Set the sensitivity of dependent widgets
-        on_trans_check_toggled (this.trans_check);
     }
 
     public override void save () {
@@ -109,16 +75,6 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
         this.config.set_port ((int) this.port_spin.get_value ());
 
         this.config.set_upnp_enabled (this.upnp_check.active);
-        this.config.set_transcoding (this.trans_check.active);
-        this.config.set_mp3_transcoder (this.mp3_check.active);
-        this.config.set_mp2ts_transcoder (this.mp2ts_check.active);
-        this.config.set_lpcm_transcoder (this.lpcm_check.active);
-    }
-
-    private void on_trans_check_toggled (ToggleButton trans_check) {
-        this.mp3_check.sensitive =
-        this.mp2ts_check.sensitive =
-        this.lpcm_check.sensitive = trans_check.active;
     }
 
     private void on_context_available (GUPnP.ContextManager manager,
