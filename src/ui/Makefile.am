@@ -29,7 +29,6 @@ rygel_preferences_SOURCES = \
 			    rygel-general-pref-section.vala \
 			    rygel-plugin-pref-section.vala \
 			    rygel-media-export-pref-section.vala \
-			    rygel-tracker-pref-section.vala \
 			    rygel-writable-user-config.vala
 
 rygel.stamp: $(rygel_preferences_VALASOURCES)

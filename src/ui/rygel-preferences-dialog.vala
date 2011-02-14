@@ -46,7 +46,6 @@ public class Rygel.PreferencesDialog : GLib.Object {
 
         this.sections = new ArrayList<PreferencesSection> ();
         this.sections.add (new GeneralPrefSection (this.builder, this.config));
-        this.sections.add (new TrackerPrefSection (this.builder, this.config));
         this.sections.add (new MediaExportPrefSection (this.builder,
                                                        this.config));
     }
