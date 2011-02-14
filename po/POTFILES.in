@@ -148,7 +148,6 @@ src/rygel/rygel-xbox-hacks.vala
 src/rygel/rygel-changelog.vala
 src/ui/rygel-general-pref-section.vala
 src/ui/rygel-media-export-pref-section.vala
-src/ui/rygel-plugin-pref-section.vala
 src/ui/rygel-preferences-dialog.vala
 src/ui/rygel-preferences-section.vala
 src/ui/rygel-writable-user-config.vala

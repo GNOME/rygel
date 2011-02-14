@@ -23,7 +23,10 @@
 using Gtk;
 using Gee;
 
-public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
+public class Rygel.MediaExportPrefSection : PreferencesSection {
+    const string ENABLED_CHECK = "-enabled-checkbutton";
+    const string TITLE_LABEL = "-title-label";
+    const string TITLE_ENTRY = "-title-entry";
     const string NAME = "MediaExport";
     const string URIS_KEY = "uris";
     const string URIS_LABEL = URIS_KEY + "-label";
@@ -34,13 +37,51 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
     const string REMOVE_BUTTON = "remove-button";
     const string CLEAR_BUTTON = "clear-button";
 
+    private CheckButton enabled_check;
+    private Entry title_entry;
+
+    private ArrayList<Widget> widgets; // All widgets in this section
+
     private TreeView treeview;
     private ListStore liststore;
     private FileChooserDialog dialog;
 
     public MediaExportPrefSection (Builder            builder,
                                    WritableUserConfig config) {
-        base (builder, config, NAME);
+        base (config, NAME);
+
+        this.widgets = new ArrayList<Widget> ();
+
+        this.enabled_check = (CheckButton) builder.get_object (name.down () +
+                                                               ENABLED_CHECK);
+        assert (this.enabled_check != null);
+        this.title_entry = (Entry) builder.get_object (name.down () +
+                                                       TITLE_ENTRY);
+        assert (this.title_entry != null);
+        var title_label = (Label) builder.get_object (name.down () +
+                                                      TITLE_LABEL);
+        assert (title_label != null);
+        this.widgets.add (title_label);
+
+        try {
+            this.enabled_check.active = config.get_enabled (name);
+        } catch (GLib.Error err) {
+            this.enabled_check.active = false;
+        }
+
+        string title;
+        try {
+            title = config.get_title (name);
+        } catch (GLib.Error err) {
+            title = name;
+        }
+
+        title = title.replace ("@REALNAME@", "%n");
+        title = title.replace ("@USERNAME@", "%u");
+        title = title.replace ("@HOSTNAME@", "%h");
+        this.title_entry.set_text (title);
+
+        this.enabled_check.toggled.connect (this.on_enabled_check_toggled);
 
         this.treeview = (TreeView) builder.get_object (URIS_TEXTVIEW);
         assert (this.treeview != null);
@@ -91,7 +132,14 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
     }
 
     public override void save () {
-        base.save ();
+        this.config.set_bool (this.name,
+                              UserConfig.ENABLED_KEY,
+                              this.enabled_check.active);
+
+        var title = this.title_entry.get_text ().replace ("%n", "@REALNAME@");
+        title = title.replace ("%u", "@USERNAME@");
+        title = title.replace ("%h", "@HOSTNAME@");
+        this.config.set_string (this.name, UserConfig.TITLE_KEY, title);
 
         TreeIter iter;
         var uri_list = new ArrayList<string> ();
@@ -106,6 +154,18 @@ public class Rygel.MediaExportPrefSection : Rygel.PluginPrefSection {
         }
 
         this.config.set_string_list (this.name, URIS_KEY, uri_list);
+    }
+
+    private void reset_widgets_sensitivity () {
+        this.title_entry.sensitive = this.enabled_check.active;
+
+        foreach (var widget in this.widgets) {
+            widget.sensitive = enabled_check.active;
+        }
+    }
+
+    private void on_enabled_check_toggled (ToggleButton enabled_check) {
+        this.reset_widgets_sensitivity ();
     }
 
     private void on_add_button_clicked (Button button) {
