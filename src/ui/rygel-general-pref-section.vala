@@ -26,10 +26,8 @@ using GUPnP;
 public class Rygel.GeneralPrefSection : PreferencesSection {
     const string UPNP_CHECKBUTTON = "upnp-checkbutton";
     const string IFACE_ENTRY = "iface-entry";
-    const string PORT_SPINBUTTON = "port-spinbutton";
 
     private ComboBoxText iface_entry;
-    private SpinButton port_spin;
 
     private CheckButton upnp_check;
 
@@ -43,8 +41,6 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
         assert (this.upnp_check != null);
         this.iface_entry = (ComboBoxText) builder.get_object (IFACE_ENTRY);
         assert (this.iface_entry != null);
-        this.port_spin = (SpinButton) builder.get_object (PORT_SPINBUTTON);
-        assert (this.port_spin != null);
 
         this.context_manager = new ContextManager (null, 0);
 
@@ -58,9 +54,6 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
             // will do just fine. Same goes for rest of the keys.
         }
         try {
-            this.port_spin.set_value (config.get_port ());
-        } catch (GLib.Error err) {}
-        try {
             this.upnp_check.active = this.config.get_upnp_enabled ();
         } catch (GLib.Error err) {}
 
@@ -72,7 +65,6 @@ public class Rygel.GeneralPrefSection : PreferencesSection {
 
     public override void save () {
         this.config.set_interface (this.iface_entry.get_active_text ());
-        this.config.set_port ((int) this.port_spin.get_value ());
 
         this.config.set_upnp_enabled (this.upnp_check.active);
     }
