@@ -13,7 +13,11 @@
     </columns>
   </object>
   <object class="GtkDialog" id="preferences-dialog">
+    <property name="width_request">480</property>
+    <property name="height_request">240</property>
     <property name="can_focus">False</property>
+    <property name="hexpand">True</property>
+    <property name="vexpand">True</property>
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Rygel Preferences</property>
     <property name="default_height">400</property>
@@ -88,8 +92,8 @@
                     <property name="label" translatable="yes">Media</property>
                   </object>
                   <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">True</property>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -102,11 +106,15 @@
                       <object class="GtkScrolledWindow" id="scrolledwindow1">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
                         <property name="shadow_type">in</property>
                         <child>
                           <object class="GtkTreeView" id="uris-treeview">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">True</property>
                             <property name="model">uris-liststore</property>
                             <property name="headers_visible">False</property>
                             <property name="search_column">0</property>
