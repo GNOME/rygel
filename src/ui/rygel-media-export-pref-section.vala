@@ -24,7 +24,6 @@ using Gtk;
 using Gee;
 
 public class Rygel.MediaExportPrefSection : PreferencesSection {
-    const string ENABLED_CHECK = "-enabled-checkbutton";
     const string NAME = "MediaExport";
     const string URIS_KEY = "uris";
     const string URIS_LABEL = URIS_KEY + "-label";
@@ -35,7 +34,6 @@ public class Rygel.MediaExportPrefSection : PreferencesSection {
     const string REMOVE_BUTTON = "remove-button";
     const string CLEAR_BUTTON = "clear-button";
 
-    private CheckButton enabled_check;
     private ArrayList<Widget> widgets; // All widgets in this section
 
     private TreeView treeview;
@@ -47,18 +45,6 @@ public class Rygel.MediaExportPrefSection : PreferencesSection {
         base (config, NAME);
 
         this.widgets = new ArrayList<Widget> ();
-
-        this.enabled_check = (CheckButton) builder.get_object (name.down () +
-                                                               ENABLED_CHECK);
-        assert (this.enabled_check != null);
-
-        try {
-            this.enabled_check.active = config.get_enabled (name);
-        } catch (GLib.Error err) {
-            this.enabled_check.active = false;
-        }
-
-        this.enabled_check.toggled.connect (this.on_enabled_check_toggled);
 
         this.treeview = (TreeView) builder.get_object (URIS_TEXTVIEW);
         assert (this.treeview != null);
@@ -99,20 +85,9 @@ public class Rygel.MediaExportPrefSection : PreferencesSection {
         button = (Button) builder.get_object (CLEAR_BUTTON);
         button.clicked.connect (this.on_clear_button_clicked);
         this.widgets.add (button);
-
-        var label = (Label) builder.get_object (URIS_LABEL);
-        assert (label != null);
-        this.widgets.add (label);
-
-        // Initialize the sensitivity of all widgets
-        this.reset_widgets_sensitivity ();
     }
 
     public override void save () {
-        this.config.set_bool (this.name,
-                              UserConfig.ENABLED_KEY,
-                              this.enabled_check.active);
-
         TreeIter iter;
         var uri_list = new ArrayList<string> ();
 
@@ -126,18 +101,6 @@ public class Rygel.MediaExportPrefSection : PreferencesSection {
         }
 
         this.config.set_string_list (this.name, URIS_KEY, uri_list);
-    }
-
-    private void reset_widgets_sensitivity () {
-        this.title_entry.sensitive = this.enabled_check.active;
-
-        foreach (var widget in this.widgets) {
-            widget.sensitive = enabled_check.active;
-        }
-    }
-
-    private void on_enabled_check_toggled (ToggleButton enabled_check) {
-        this.reset_widgets_sensitivity ();
     }
 
     private void on_add_button_clicked (Button button) {
