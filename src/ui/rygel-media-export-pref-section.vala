@@ -26,7 +26,6 @@ using Gee;
 public class Rygel.MediaExportPrefSection : PreferencesSection {
     const string NAME = "MediaExport";
     const string URIS_KEY = "uris";
-    const string URIS_LABEL = URIS_KEY + "-label";
     const string URIS_TEXTVIEW = URIS_KEY + "-treeview";
     const string URIS_LISTSTORE = URIS_KEY + "-liststore";
     const string URIS_DIALOG = URIS_KEY + "-dialog";
