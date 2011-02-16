@@ -287,21 +287,6 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="network-label">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="label" translatable="yes">Network Options</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="right_attach">2</property>
-                        <property name="y_options"></property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkComboBoxText" id="iface-entry">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -309,8 +294,6 @@
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="right_attach">2</property>
-                        <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
                         <property name="y_options">GTK_FILL</property>
                       </packing>
                     </child>
