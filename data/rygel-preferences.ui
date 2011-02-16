@@ -68,7 +68,7 @@
                 <property name="spacing">12</property>
                 <child>
                   <object class="GtkCheckButton" id="upnp-checkbutton">
-                    <property name="label" translatable="yes">_Enable UPnP/DLNA</property>
+                    <property name="label" translatable="yes">_Share media through DLNA</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
