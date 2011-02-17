@@ -28,10 +28,10 @@ public class Rygel.PreferencesDialog : GLib.Object {
     const string DIALOG = "preferences-dialog";
     const string ICON = BuildConfig.SMALL_ICON_DIR + "/rygel.png";
 
-    WritableUserConfig config;
-    Builder builder;
-    Dialog dialog;
-    ArrayList<PreferencesSection> sections;
+    private WritableUserConfig config;
+    private Builder builder;
+    private Dialog dialog;
+    private ArrayList<PreferencesSection> sections;
 
     public PreferencesDialog () throws Error {
         this.config = new WritableUserConfig ();
