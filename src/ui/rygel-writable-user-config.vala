@@ -168,7 +168,7 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
                 this.set_bool ("general", UPNP_ENABLED_KEY, true);
             } else {
                 // Stop service only if already running
-                if (this.get_enabled ("general")) {
+                if (this.get_upnp_enabled ()) {
                     // Create proxy to Rygel
                     DBusInterface rygel_proxy = Bus.get_proxy_sync
                                         (BusType.SESSION,
