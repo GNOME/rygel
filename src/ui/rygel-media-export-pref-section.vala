@@ -102,6 +102,12 @@ public class Rygel.MediaExportPrefSection : PreferencesSection {
         this.config.set_string_list (this.name, URIS_KEY, uri_list);
     }
 
+    public override void set_sensitivity (bool sensitivity) {
+        foreach (var widget in this.widgets) {
+            widget.sensitive = sensitivity;
+        }
+    }
+
     private void on_add_button_clicked (Button button) {
         if (this.dialog.run () == ResponseType.OK) {
             TreeIter iter;

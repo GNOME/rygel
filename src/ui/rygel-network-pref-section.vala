@@ -59,6 +59,10 @@ public class Rygel.NetworkPrefSection : PreferencesSection {
         this.config.set_interface (this.iface_entry.get_active_text ());
     }
 
+    public override void set_sensitivity (bool sensitivity) {
+        iface_entry.sensitive = sensitivity;
+    }
+
     private void on_context_available (GUPnP.ContextManager manager,
                                        GUPnP.Context        context) {
         TreeIter iter;

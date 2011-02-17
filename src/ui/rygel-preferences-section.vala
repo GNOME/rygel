@@ -34,4 +34,5 @@ public abstract class Rygel.PreferencesSection : GLib.Object {
     }
 
     public abstract void save ();
+    public abstract void set_sensitivity (bool sensitivity);
 }
