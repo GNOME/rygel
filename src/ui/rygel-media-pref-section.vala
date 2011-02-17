@@ -23,7 +23,7 @@
 using Gtk;
 using Gee;
 
-public class Rygel.MediaExportPrefSection : PreferencesSection {
+public class Rygel.MediaPrefSection : PreferencesSection {
     const string NAME = "MediaExport";
     const string URIS_KEY = "uris";
     const string URIS_TEXTVIEW = URIS_KEY + "-treeview";
@@ -39,8 +39,8 @@ public class Rygel.MediaExportPrefSection : PreferencesSection {
     private ListStore liststore;
     private FileChooserDialog dialog;
 
-    public MediaExportPrefSection (Builder            builder,
-                                   WritableUserConfig config) {
+    public MediaPrefSection (Builder            builder,
+                             WritableUserConfig config) {
         base (config, NAME);
 
         this.widgets = new ArrayList<Widget> ();

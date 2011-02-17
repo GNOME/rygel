@@ -146,7 +146,7 @@ src/rygel/rygel-wmv-transcoder-bin.vala
 src/rygel/rygel-wmv-transcoder.vala
 src/rygel/rygel-xbox-hacks.vala
 src/rygel/rygel-changelog.vala
-src/ui/rygel-media-export-pref-section.vala
+src/ui/rygel-media-pref-section.vala
 src/ui/rygel-preferences-dialog.vala
 src/ui/rygel-preferences-section.vala
 src/ui/rygel-writable-user-config.vala
