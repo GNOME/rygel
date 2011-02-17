@@ -63,10 +63,11 @@ public class Rygel.MediaPrefSection : PreferencesSection {
         try {
             var uris = config.get_string_list (this.name, URIS_KEY);
             foreach (var uri in uris) {
+                var real_uri = this.get_real_uri (uri);
                 TreeIter iter;
 
                 this.liststore.append (out iter);
-                this.liststore.set (iter, 0, uri, -1);
+                this.liststore.set (iter, 0, real_uri, -1);
             }
         } catch (GLib.Error err) {} // Nevermind
 
@@ -95,6 +96,7 @@ public class Rygel.MediaPrefSection : PreferencesSection {
                 string uri;
 
                 this.liststore.get (iter, 0, out uri, -1);
+                uri = this.uri_to_magic_variable (uri);
                 uri_list.add (uri);
             } while (this.liststore.iter_next (ref iter));
         }
@@ -152,5 +154,32 @@ public class Rygel.MediaPrefSection : PreferencesSection {
 
     private void on_clear_button_clicked (Button button) {
         this.liststore.clear ();
+    }
+
+    private string get_real_uri (string uri) {
+        switch (uri) {
+        case "@MUSIC@":
+            return Environment.get_user_special_dir (UserDirectory.MUSIC);
+        case "@VIDEOS@":
+            return Environment.get_user_special_dir (UserDirectory.VIDEOS);
+        case "@PICTURES@":
+            return Environment.get_user_special_dir (UserDirectory.PICTURES);
+        default:
+            return uri;
+        }
+    }
+
+    private string uri_to_magic_variable (string uri) {
+        if (uri == Environment.get_user_special_dir (UserDirectory.MUSIC)) {
+            return "@MUSIC@";
+        } else if (uri ==
+                   Environment.get_user_special_dir (UserDirectory.VIDEOS)) {
+            return "@VIDEOS@";
+        } else if (uri ==
+                   Environment.get_user_special_dir (UserDirectory.PICTURES)) {
+            return "@PICTURES@";
+        } else {
+            return uri;
+        }
     }
 }
