@@ -56,6 +56,10 @@ public class Rygel.PreferencesDialog : GLib.Object {
         this.sections.add (new NetworkPrefSection (this.builder, this.config));
         this.sections.add (new MediaExportPrefSection (this.builder,
                                                        this.config));
+
+        // All sections must be disabled if sharing is disabled
+        this.on_upnp_check_button_toggled (this.upnp_check);
+        this.upnp_check.toggled.connect (this.on_upnp_check_button_toggled);
     }
 
     public void run () {
@@ -87,5 +91,11 @@ public class Rygel.PreferencesDialog : GLib.Object {
         }
 
         return 0;
+    }
+
+    private void on_upnp_check_button_toggled (ToggleButton upnp_check) {
+        foreach (var section in this.sections) {
+            section.set_sensitivity (upnp_check.active);
+        }
     }
 }
