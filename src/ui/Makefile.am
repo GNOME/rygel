@@ -28,7 +28,8 @@ rygel_preferences_SOURCES = \
 			    rygel-preferences-section.vala \
 			    rygel-general-pref-section.vala \
 			    rygel-media-export-pref-section.vala \
-			    rygel-writable-user-config.vala
+			    rygel-writable-user-config.vala \
+			    rygel-network-pref-section.vala
 
 rygel.stamp: $(rygel_preferences_VALASOURCES)
 rygel_preferences_VALAFLAGS = \
