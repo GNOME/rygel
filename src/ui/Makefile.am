@@ -26,7 +26,6 @@ bin_PROGRAMS = rygel-preferences
 rygel_preferences_SOURCES = \
 			    rygel-preferences-dialog.vala \
 			    rygel-preferences-section.vala \
-			    rygel-general-pref-section.vala \
 			    rygel-media-export-pref-section.vala \
 			    rygel-writable-user-config.vala \
 			    rygel-network-pref-section.vala

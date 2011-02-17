@@ -27,10 +27,12 @@ public class Rygel.PreferencesDialog : GLib.Object {
     const string UI_FILE = BuildConfig.DATA_DIR + "/rygel-preferences.ui";
     const string DIALOG = "preferences-dialog";
     const string ICON = BuildConfig.SMALL_ICON_DIR + "/rygel.png";
+    const string UPNP_CHECKBUTTON = "upnp-checkbutton";
 
     private WritableUserConfig config;
     private Builder builder;
     private Dialog dialog;
+    private CheckButton upnp_check;
     private ArrayList<PreferencesSection> sections;
 
     public PreferencesDialog () throws Error {
@@ -41,11 +43,16 @@ public class Rygel.PreferencesDialog : GLib.Object {
 
         this.dialog = (Dialog) this.builder.get_object (DIALOG);
         assert (this.dialog != null);
+        this.upnp_check = (CheckButton) builder.get_object (UPNP_CHECKBUTTON);
+        assert (this.upnp_check != null);
 
         this.dialog.set_icon_from_file (ICON);
 
+        try {
+            this.upnp_check.active = this.config.get_upnp_enabled ();
+        } catch (GLib.Error err) {}
+
         this.sections = new ArrayList<PreferencesSection> ();
-        this.sections.add (new GeneralPrefSection (this.builder, this.config));
         this.sections.add (new NetworkPrefSection (this.builder, this.config));
         this.sections.add (new MediaExportPrefSection (this.builder,
                                                        this.config));
@@ -54,6 +61,7 @@ public class Rygel.PreferencesDialog : GLib.Object {
     public void run () {
         this.dialog.run ();
 
+        this.config.set_upnp_enabled (this.upnp_check.active);
         foreach (var section in this.sections) {
             section.save ();
         }
