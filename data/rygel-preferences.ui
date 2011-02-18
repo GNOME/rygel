@@ -317,8 +317,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="0">button4</action-widget>
-      <action-widget response="0">button5</action-widget>
+      <action-widget response="-6">button4</action-widget>
+      <action-widget response="-5">button5</action-widget>
     </action-widgets>
   </object>
   <object class="GtkSizeGroup" id="general-labels-sizegroup">
