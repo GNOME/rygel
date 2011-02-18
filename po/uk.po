@@ -6,103 +6,35 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-18 08:19+0200\n"
-"PO-Revision-Date: 2011-02-16 19:12+0300\n"
+"POT-Creation-Date: 2011-02-18 08:21+0200\n"
+"PO-Revision-Date: 2011-02-18 08:22+0300\n"
 "Last-Translator: Korostil Daniel <ted.korostiled@gmail.com>\n"
 "Language-Team: translation@linux.org.ua\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Virtaal 0.6.1\n"
 
 #: ../data/rygel-preferences.ui.h:1
-msgid "General"
-msgstr "Загальне"
-
-#: ../data/rygel-preferences.ui.h:2
-msgid "MPE_G TS"
-msgstr "MPE_G TS"
-
-#: ../data/rygel-preferences.ui.h:3
-msgid "Network Options"
-msgstr "Параметри мережі"
-
-#: ../data/rygel-preferences.ui.h:4
-msgid "Plugins"
-msgstr "Додатки"
-
-#: ../data/rygel-preferences.ui.h:5
 #: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
 msgstr "Налаштування Rygel"
 
-#: ../data/rygel-preferences.ui.h:6
+#: ../data/rygel-preferences.ui.h:2
 msgid "Select folders"
 msgstr "Вибрати теки"
 
-#: ../data/rygel-preferences.ui.h:7
-msgid "Share M_usic"
-msgstr "Спільна м_узика"
-
-#: ../data/rygel-preferences.ui.h:8
-msgid "Share _Pictures"
-msgstr "Спільні м_алюнки"
-
-#: ../data/rygel-preferences.ui.h:9
-msgid "Share _Videos"
-msgstr "Спільне в_ідео"
-
-#: ../data/rygel-preferences.ui.h:10
-msgid "T_itle"
-msgstr "_Заголовок"
-
-#: ../data/rygel-preferences.ui.h:11
-msgid "Ti_tle"
-msgstr "_Назва"
-
-#: ../data/rygel-preferences.ui.h:13
-#, no-c-format
-msgid ""
-"Write %u for username, %n for real name of the user and %h for host name"
-msgstr ""
-"Записати %u для користувача, %n для справжнього імені та %h для назви вузла"
-
-#: ../data/rygel-preferences.ui.h:14
-msgid "_Enable UPnP/DLNA"
-msgstr "_Увімкнути UPnP/DLNA"
-
 #. Network Interface
-#: ../data/rygel-preferences.ui.h:16
-msgid "_Interface"
-msgstr "_Інтерфейс"
+#: ../data/rygel-preferences.ui.h:4
+msgid "_Network"
+msgstr "_Мережа"
 
-#: ../data/rygel-preferences.ui.h:17
-msgid "_LPCM"
-msgstr "_LPCM"
-
-#: ../data/rygel-preferences.ui.h:18
-msgid "_MP3"
-msgstr "_MP3"
-
-#: ../data/rygel-preferences.ui.h:19
-msgid "_Media Export"
-msgstr "Експортувати _матеріал"
-
-#. Network Port
-#: ../data/rygel-preferences.ui.h:21
-msgid "_Port"
-msgstr "_Порт"
-
-#: ../data/rygel-preferences.ui.h:22
-msgid "_Transcoding support"
-msgstr "Підтримка Пере_кодування"
-
-#: ../data/rygel-preferences.ui.h:23
-msgid "_URIs"
-msgstr "_URI"
+#: ../data/rygel-preferences.ui.h:5
+msgid "_Share media through DLNA"
+msgstr "_Оприлюднити матеріал через DLNA"
 
 #: ../data/rygel-preferences.desktop.in.in.h:2
 msgid "UPnP/DLNA Preferences"
@@ -677,7 +609,7 @@ msgstr "Незастосовне"
 msgid "Failed to write modified description to %s."
 msgstr "Не вдалось записати змінений опис у %s."
 
-#: ../src/ui/rygel-preferences-dialog.vala:78
+#: ../src/ui/rygel-preferences-dialog.vala:89
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Не вдалось створити діалог налаштувань: %s"
@@ -696,3 +628,57 @@ msgstr "Не вдалось запустити службу Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Не вдалось зупинити службу Rygel: %s"
+
+#~ msgid "General"
+#~ msgstr "Загальне"
+
+#~ msgid "MPE_G TS"
+#~ msgstr "MPE_G TS"
+
+#~ msgid "Plugins"
+#~ msgstr "Додатки"
+
+#~ msgid "Share M_usic"
+#~ msgstr "Спільна м_узика"
+
+#~ msgid "Share _Pictures"
+#~ msgstr "Спільні м_алюнки"
+
+#~ msgid "Share _Videos"
+#~ msgstr "Спільне в_ідео"
+
+#~ msgid "T_itle"
+#~ msgstr "_Заголовок"
+
+#~ msgid "Ti_tle"
+#~ msgstr "_Назва"
+
+#~ msgid ""
+#~ "Write %u for username, %n for real name of the user and %h for host name"
+#~ msgstr ""
+#~ "Записати %u для користувача, %n для справжнього імені та %h для назви "
+#~ "вузла"
+
+#~ msgid "_Enable UPnP/DLNA"
+#~ msgstr "_Увімкнути UPnP/DLNA"
+
+#~ msgid "_Interface"
+#~ msgstr "_Інтерфейс"
+
+#~ msgid "_LPCM"
+#~ msgstr "_LPCM"
+
+#~ msgid "_MP3"
+#~ msgstr "_MP3"
+
+#~ msgid "_Media Export"
+#~ msgstr "Експортувати _матеріал"
+
+#~ msgid "_Port"
+#~ msgstr "_Порт"
+
+#~ msgid "_Transcoding support"
+#~ msgstr "Підтримка Пере_кодування"
+
+#~ msgid "_URIs"
+#~ msgstr "_URI"
