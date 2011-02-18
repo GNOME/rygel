@@ -25,6 +25,7 @@ using GUPnP;
 
 public class Rygel.NetworkPrefSection : PreferencesSection {
     const string IFACE_ENTRY = "iface-entry";
+    const string ANY_NETWORK = "Any";
 
     private ComboBoxText iface_entry;
 
@@ -56,7 +57,13 @@ public class Rygel.NetworkPrefSection : PreferencesSection {
     }
 
     public override void save () {
-        this.config.set_interface (this.iface_entry.get_active_text ());
+        var iface = this.iface_entry.get_active_text ();
+
+        if (iface == ANY_NETWORK) {
+            iface = "";
+        }
+
+        this.config.set_interface (iface);
     }
 
     public override void set_sensitivity (bool sensitivity) {
