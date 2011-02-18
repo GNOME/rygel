@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gu\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&component=general\n"
-"POT-Creation-Date: 2011-02-03 16:36+0000\n"
-"PO-Revision-Date: 2011-02-08 16:09+0530\n"
+"POT-Creation-Date: 2011-02-17 23:48+0000\n"
+"PO-Revision-Date: 2011-02-18 11:49+0530\n"
 "Last-Translator: Sweta Kothari <swkothar@redhat.com>\n"
 "Language-Team: Gujarati\n"
 "MIME-Version: 1.0\n"
@@ -19,88 +19,23 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/rygel-preferences.ui.h:1
-msgid "General"
-msgstr "સામાન્ય"
-
-#: ../data/rygel-preferences.ui.h:2
-msgid "MPE_G TS"
-msgstr "MPEG TS (_G)"
-
-#: ../data/rygel-preferences.ui.h:3
-msgid "Network Options"
-msgstr "નેટવર્ક વિકલ્પો"
-
-#: ../data/rygel-preferences.ui.h:4
-msgid "Plugins"
-msgstr "પ્લગઇનો"
-
-#: ../data/rygel-preferences.ui.h:5
 #: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
 msgstr "Rygel પસંદગીઓ"
 
-#: ../data/rygel-preferences.ui.h:6
+#: ../data/rygel-preferences.ui.h:2
 msgid "Select folders"
 msgstr "ફોલ્ડરોને પસંદ કરો"
 
-#: ../data/rygel-preferences.ui.h:7
-msgid "Share M_usic"
-msgstr "સંગીતને વહેચો (_u)"
-
-#: ../data/rygel-preferences.ui.h:8
-msgid "Share _Pictures"
-msgstr "ચિત્રોને વહેંચો (_P)"
-
-#: ../data/rygel-preferences.ui.h:9
-msgid "Share _Videos"
-msgstr "વિડિયોને વહેંચો (_V)"
-
-#: ../data/rygel-preferences.ui.h:10
-msgid "T_itle"
-msgstr "શીર્ષક (_i)"
-
-#: ../data/rygel-preferences.ui.h:11
-msgid "Ti_tle"
-msgstr "શીર્ષક (_t)"
-
-#: ../data/rygel-preferences.ui.h:13
-#, no-c-format
-msgid "Write %u for username, %n for real name of the user and %h for host name"
-msgstr "વપરાશકર્તા માટે %u લખો, વપરાશકર્તાનામનાં સાચા નામ માટે %n અને યજમાન નામ માટે %h"
-
-#: ../data/rygel-preferences.ui.h:14
-msgid "_Enable UPnP/DLNA"
-msgstr "UPnP/DLNA સક્રિય કરો (_E)"
-
 #. Network Interface
-#: ../data/rygel-preferences.ui.h:16
-msgid "_Interface"
-msgstr "ઇન્ટરફેસ (_I)"
+#: ../data/rygel-preferences.ui.h:4
+#| msgid "Network Options"
+msgid "_Network"
+msgstr "નેટવર્ક (_N)"
 
-#: ../data/rygel-preferences.ui.h:17
-msgid "_LPCM"
-msgstr "LPCM (_L)"
-
-#: ../data/rygel-preferences.ui.h:18
-msgid "_MP3"
-msgstr "MP3 (_M)"
-
-#: ../data/rygel-preferences.ui.h:19
-msgid "_Media Export"
-msgstr "મીડિયા નિકાસ (_M)"
-
-#. Network Port
-#: ../data/rygel-preferences.ui.h:21
-msgid "_Port"
-msgstr "પોર્ટ (_P)"
-
-#: ../data/rygel-preferences.ui.h:22
-msgid "_Transcoding support"
+#: ../data/rygel-preferences.ui.h:5
+msgid "_Share media through DLNA"
 msgstr ""
-
-#: ../data/rygel-preferences.ui.h:23
-msgid "_URIs"
-msgstr "URIs (_U)"
 
 #: ../data/rygel-preferences.desktop.in.in.h:2
 msgid "UPnP/DLNA Preferences"
@@ -293,24 +228,24 @@ msgstr "અયોગ્ય દલીલો"
 msgid "Failed to browse '%s': %s\n"
 msgstr "'%s' ને બ્રાઉઝ કરવાનુ નિષ્ફળ: %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:133
-#: ../src/rygel/rygel-cmdline-config.vala:141
-#: ../src/rygel/rygel-cmdline-config.vala:149
-#: ../src/rygel/rygel-cmdline-config.vala:157
-#: ../src/rygel/rygel-cmdline-config.vala:165
-#: ../src/rygel/rygel-cmdline-config.vala:173
-#: ../src/rygel/rygel-cmdline-config.vala:181
-#: ../src/rygel/rygel-cmdline-config.vala:189
-#: ../src/rygel/rygel-cmdline-config.vala:197
-#: ../src/rygel/rygel-cmdline-config.vala:205
-#: ../src/rygel/rygel-cmdline-config.vala:213
-#: ../src/rygel/rygel-cmdline-config.vala:239
-#: ../src/rygel/rygel-cmdline-config.vala:258
-#: ../src/rygel/rygel-cmdline-config.vala:282
-#: ../src/rygel/rygel-cmdline-config.vala:308
-#: ../src/rygel/rygel-cmdline-config.vala:337
-#: ../src/rygel/rygel-cmdline-config.vala:363
-#: ../src/rygel/rygel-cmdline-config.vala:388
+#: ../src/rygel/rygel-cmdline-config.vala:137
+#: ../src/rygel/rygel-cmdline-config.vala:145
+#: ../src/rygel/rygel-cmdline-config.vala:153
+#: ../src/rygel/rygel-cmdline-config.vala:161
+#: ../src/rygel/rygel-cmdline-config.vala:169
+#: ../src/rygel/rygel-cmdline-config.vala:177
+#: ../src/rygel/rygel-cmdline-config.vala:185
+#: ../src/rygel/rygel-cmdline-config.vala:193
+#: ../src/rygel/rygel-cmdline-config.vala:201
+#: ../src/rygel/rygel-cmdline-config.vala:209
+#: ../src/rygel/rygel-cmdline-config.vala:217
+#: ../src/rygel/rygel-cmdline-config.vala:243
+#: ../src/rygel/rygel-cmdline-config.vala:262
+#: ../src/rygel/rygel-cmdline-config.vala:286
+#: ../src/rygel/rygel-cmdline-config.vala:312
+#: ../src/rygel/rygel-cmdline-config.vala:341
+#: ../src/rygel/rygel-cmdline-config.vala:367
+#: ../src/rygel/rygel-cmdline-config.vala:392
 #: ../src/rygel/rygel-meta-config.vala:74
 #: ../src/rygel/rygel-meta-config.vala:93
 #: ../src/rygel/rygel-meta-config.vala:112
@@ -509,7 +444,7 @@ msgstr "પાઇપલાઇન %s માંથી ચેતવણી: %s"
 msgid "Failed to seek to offset %lld"
 msgstr ""
 
-#: ../src/rygel/rygel-log-handler.vala:62
+#: ../src/rygel/rygel-log-handler.vala:68
 #, c-format
 msgid "Failed to get log level from configuration: %s"
 msgstr "રૂપરેખાંકન માંથી લૉગ સ્તરને મેળવવામાં નિષ્ફળતા: %s"
@@ -650,12 +585,12 @@ msgstr "થમ્ભનેઇલ ઉપલબ્ધ નથી"
 msgid "No transcoder available for target format '%s'"
 msgstr ""
 
-#: ../src/rygel/rygel-user-config.vala:140
+#: ../src/rygel/rygel-user-config.vala:169
 #, c-format
 msgid "No value available for '%s'"
 msgstr "'%s' માટે કિંમત ઉપલબ્ધ નથી"
 
-#: ../src/rygel/rygel-user-config.vala:168
+#: ../src/rygel/rygel-user-config.vala:219
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "સીમાની બહાર '%s' ની કિંમત"
@@ -669,22 +604,22 @@ msgstr ""
 msgid "Failed to write modified description to %s."
 msgstr "%s માં બદલાયેલ વર્ણનને લખવામાં નિષ્ફળતા."
 
-#: ../src/ui/rygel-preferences-dialog.vala:78
+#: ../src/ui/rygel-preferences-dialog.vala:89
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "પસંદગી સંવાદને બનાવવાનું નિષ્ફળ: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:110
+#: ../src/ui/rygel-writable-user-config.vala:102
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr "ફાઇલ '%s' માં રૂપરેખાંકન માહિતીને સંગ્રહ કરવાનુ નિષ્ફળ: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:201
+#: ../src/ui/rygel-writable-user-config.vala:193
 #, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "Rygel સેવા શરૂ કરવાનું નિષ્ફળ: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:203
+#: ../src/ui/rygel-writable-user-config.vala:195
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Rygel સેવાને બંધ કરવાનું નિષ્ફળ: %s"
