@@ -1,23 +1,25 @@
-AC_PREREQ(2.53)
-AC_INIT([rygel],
-	m4_esyscmd([GNOME_TAG_PATTERN=RYGEL build-aux/git-version-gen .tarball-version]),
-	[http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel])
+AC_PREREQ([2.64])
+AC_INIT([Rygel],
+	[m4_esyscmd(GNOME_TAG_PATTERN=RYGEL build-aux/git-version-gen .tarball-version)],
+	[http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel],
+	[rygel],
+	[http://live.gnome.org/Rygel])
 AC_CONFIG_AUX_DIR([build-aux])
 
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([1.11.1])
 AC_CONFIG_SRCDIR([src/rygel/rygel-root-device.vala])
-AM_CONFIG_HEADER([config.h])
+AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
-AM_MAINTAINER_MODE
+AM_MAINTAINER_MODE([enable])
+
+AC_SEARCH_LIBS([strerror],[cposix])
+AC_PROG_CC
+AC_HEADER_STDC
+AC_FUNC_MMAP
 
 # Disable generation of static libraries
-AC_DISABLE_STATIC
-
-AC_ISC_POSIX
-AC_PROG_CC
-AC_STDC_HEADERS
-AC_PROG_LIBTOOL
-AC_FUNC_MMAP
+LT_PREREQ([2.2.6])
+LT_INIT([dlopen disable-static])
 
 VALA_REQUIRED=0.11.6
 GSSDP_REQUIRED=0.9.2
@@ -50,10 +52,10 @@ GLIB_GENMARSHAL=`pkg-config --variable=glib_genmarshal glib-2.0`
 AC_SUBST(GLIB_GENMARSHAL)
 
 AC_ARG_ENABLE(vala,
-	AC_HELP_STRING([--enable-vala],[enable checks for vala]),,
+    AS_HELP_STRING([--enable-vala],[enable checks for vala]),,
         enable_vala=no)
 AC_ARG_ENABLE(sql-debugging,
-    AC_HELP_STRING([--enable-sql-debugging],[enable SQL statement debugging]),,
+    AS_HELP_STRING([--enable-sql-debugging],[enable SQL statement debugging]),,
         enable_sql_debugging=no)
 
 if test x$enable_sql_debugging = xyes ; then
@@ -100,14 +102,14 @@ AC_SUBST(VAPIDIR)
 
 # Debugging
 AC_ARG_ENABLE(debug,
-	AC_HELP_STRING([--enable-debug],[enable debugging]),,
+	AS_HELP_STRING([--enable-debug],[enable debugging]),,
         enable_debug=no)
 if test "x$enable_debug" = "xyes"; then
         CFLAGS="$CFLAGS -O0 -g"
 fi
 
 AC_ARG_ENABLE([strict-valac],
-    AC_HELP_STRING([--enable-strict-valac],[enable strict Vala compiler]),,
+    AS_HELP_STRING([--enable-strict-valac],[enable strict Vala compiler]),,
               [enable_strict_valac=no])
 if test "x$enable_strict_valac" = "xyes"; then
         VALAFLAGS="$VALAFLAGS --fatal-warnings"
@@ -115,7 +117,7 @@ fi
 
 # Strict compiler
 AC_ARG_ENABLE(strict-cc,
-	AC_HELP_STRING([--enable-strict-cc],[enable strict C compiler]),,
+	AS_HELP_STRING([--enable-strict-cc],[enable strict C compiler]),,
         enable_strict_cc=no)
 if test "x$enable_strict_cc" = "xyes"; then
         CFLAGS="$CFLAGS -Wall -Werror"
@@ -125,7 +127,7 @@ fi
 
 # Run uninstalled
 AC_ARG_ENABLE(uninstalled,
-    AC_HELP_STRING([--enable-uninstalled],[run uninstalled]),,
+    AS_HELP_STRING([--enable-uninstalled],[run uninstalled]),,
         enable_uninstalled=no)
 if test "x$enable_uninstalled" = "xyes"; then
         AC_MSG_WARN("You want to run the tools uninstalled only? Fine!")
@@ -133,7 +135,7 @@ fi
 
 # Check wether user wants to build UIs
 AC_ARG_WITH( ui,
-  AC_HELP_STRING([--without-ui],[Do not build UI applications]),
+  AS_HELP_STRING([--without-ui],[Do not build UI applications]),
   try_ui=$withval, try_ui=yes )
 
 HAVE_GTK=no
@@ -201,7 +203,7 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, ["$GETTEXT_PACKAGE"],
   [Define the gettext package to be used])
 
 AM_GLIB_GNU_GETTEXT
-IT_PROG_INTLTOOL([0.35.0])
+IT_PROG_INTLTOOL([0.40.0])
 
 AC_SUBST(VALAFLAGS)
 
@@ -214,7 +216,7 @@ AM_CONDITIONAL([HAVE_XSLTPROC], [test x"$XSLTPROC" != x])
 
 AC_SUBST(VERSION)
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 src/Makefile
 src/rygel/Makefile
@@ -234,6 +236,7 @@ po/Makefile.in
 rygel-1.0.pc
 tests/Makefile
 ])
+AC_OUTPUT
 
 echo "
 

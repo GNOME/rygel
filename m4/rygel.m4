@@ -31,7 +31,7 @@ AC_DEFUN([RYGEL_ADD_STAMP],
 AC_DEFUN([_RYGEL_ADD_PLUGIN_INTERNAL],
 [
     AC_ARG_ENABLE([$1-plugin],
-        AC_HELP_STRING([--enable-$1-plugin],[enable $3 plugin]),,
+        AS_HELP_STRING([--enable-$1-plugin],[enable $3 plugin]),,
         enable_$2_plugin=$4)
     AC_CONFIG_FILES([src/plugins/$1/Makefile])
     AM_CONDITIONAL(m4_toupper(build_$2_plugin), test "x$[]enable_$2_plugin" = "xyes")
