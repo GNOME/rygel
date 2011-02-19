@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: rygel MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-12-18 22:55+0000\n"
-"PO-Revision-Date: 2011-01-08 11:55+0200\n"
+"POT-Creation-Date: 2011-02-17 23:48+0000\n"
+"PO-Revision-Date: 2011-02-19 10:41+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,70 +21,18 @@ msgstr ""
 "Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "General"
-msgstr "Üldine"
-
-msgid "MPE_G TS"
-msgstr "MPE_G TS"
-
-msgid "Network Options"
-msgstr "Võrguühenduse valikud"
-
-msgid "Plugins"
-msgstr "Pluginad"
-
 msgid "Rygel Preferences"
 msgstr "Rygeli eelistused"
 
 msgid "Select folders"
 msgstr "Kataloogide valimine"
 
-msgid "Share M_usic"
-msgstr "M_uusika on jagatud"
-
-msgid "Share _Pictures"
-msgstr "_Pildid on jagatud"
-
-msgid "Share _Videos"
-msgstr "_Videod on jagatud"
-
-msgid "T_itle"
-msgstr "Pe_alkiri"
-
-msgid "Ti_tle"
-msgstr "Peal_kiri"
-
-#, no-c-format
-msgid ""
-"Write %u for username, %n for real name of the user and %h for host name"
-msgstr ""
-"Kasutajanime jaoks kirjuta %u, pärisnime jaoks %n ning hostinime jaoks %h"
-
-msgid "_Enable UPnP/DLNA"
-msgstr "_UPnP/DLNA on lubatud"
-
 #. Network Interface
-msgid "_Interface"
-msgstr "L_iides"
+msgid "_Network"
+msgstr "_Võrk"
 
-msgid "_LPCM"
-msgstr "_LPCM"
-
-msgid "_MP3"
-msgstr "_MP3"
-
-msgid "_Media Export"
-msgstr "_Meedia eksportimine"
-
-#. Network Port
-msgid "_Port"
-msgstr "_Port"
-
-msgid "_Transcoding support"
-msgstr "_Ümberkodeerimise tugi"
-
-msgid "_URIs"
-msgstr "_URI-d"
+msgid "_Share media through DLNA"
+msgstr "Meedia _jagamine läbi DLNA"
 
 msgid "UPnP/DLNA Preferences"
 msgstr "UPnP/DLNA eelistused"
@@ -141,12 +89,6 @@ msgstr "Viga objekti '%s' hankimisel andmebaasist: %s"
 msgid "Error removing object from database: %s"
 msgstr "Viga objekti eemaldamisel andmebaasist: %s"
 
-# seda saab kasutaja muuta ka, kui heaks arvab
-#. @REALNAME@ is substituted for user's real name
-#. and it doesn't need translation.
-msgid "@REALNAME@'s media"
-msgstr "Meedia (@REALNAME@)"
-
 #, c-format
 msgid "Failed to get file info for %s"
 msgstr "Faili %s andmete hankimine nurjus"
@@ -169,6 +111,10 @@ msgstr "Žanr"
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "Tõrge URI eemaldamisel: %s"
+
+# seda saab kasutaja muuta ka, kui heaks arvab
+msgid "@REALNAME@'s media"
+msgstr "Meedia (@REALNAME@)"
 
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
@@ -469,24 +415,12 @@ msgid "No transcoder available for target format '%s'"
 msgstr "Sihtvormingu '%s' jaoks ei leitud ümberkodeerijat"
 
 #, c-format
-msgid "Failed to save configuration data to file '%s': %s"
-msgstr "Seadistusandmete kirjutamine faili '%s' nurjus: %s"
-
-#, c-format
 msgid "No value available for '%s'"
 msgstr "'%s' jaoks pole väärtust saadaval"
 
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "'%s' väärtus on väljaspool vahemikku"
-
-#, c-format
-msgid "Failed to start Rygel service: %s"
-msgstr "Tõrge Rygeli teenuse käivitamisel: %s"
-
-#, c-format
-msgid "Failed to stop Rygel service: %s"
-msgstr "Tõrge Rygeli teenuse seiskamisel: %s"
 
 msgid "Not Applicable"
 msgstr "Pole rakendatav"
@@ -498,6 +432,71 @@ msgstr "Muudetud kirjelduse kirjutamine faili %s nurjus."
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Tõrge eelistuste dialoogi loomisel: %s"
+
+#, c-format
+msgid "Failed to save configuration data to file '%s': %s"
+msgstr "Seadistusandmete kirjutamine faili '%s' nurjus: %s"
+
+#, c-format
+msgid "Failed to start Rygel service: %s"
+msgstr "Tõrge Rygeli teenuse käivitamisel: %s"
+
+#, c-format
+msgid "Failed to stop Rygel service: %s"
+msgstr "Tõrge Rygeli teenuse seiskamisel: %s"
+
+#~ msgid "General"
+#~ msgstr "Üldine"
+
+#~ msgid "MPE_G TS"
+#~ msgstr "MPE_G TS"
+
+#~ msgid "Plugins"
+#~ msgstr "Pluginad"
+
+#~ msgid "Share M_usic"
+#~ msgstr "M_uusika on jagatud"
+
+#~ msgid "Share _Pictures"
+#~ msgstr "_Pildid on jagatud"
+
+#~ msgid "Share _Videos"
+#~ msgstr "_Videod on jagatud"
+
+#~ msgid "T_itle"
+#~ msgstr "Pe_alkiri"
+
+#~ msgid "Ti_tle"
+#~ msgstr "Peal_kiri"
+
+#~ msgid ""
+#~ "Write %u for username, %n for real name of the user and %h for host name"
+#~ msgstr ""
+#~ "Kasutajanime jaoks kirjuta %u, pärisnime jaoks %n ning hostinime jaoks %h"
+
+#~ msgid "_Enable UPnP/DLNA"
+#~ msgstr "_UPnP/DLNA on lubatud"
+
+#~ msgid "_Interface"
+#~ msgstr "L_iides"
+
+#~ msgid "_LPCM"
+#~ msgstr "_LPCM"
+
+#~ msgid "_MP3"
+#~ msgstr "_MP3"
+
+#~ msgid "_Media Export"
+#~ msgstr "_Meedia eksportimine"
+
+#~ msgid "_Port"
+#~ msgstr "_Port"
+
+#~ msgid "_Transcoding support"
+#~ msgstr "_Ümberkodeerimise tugi"
+
+#~ msgid "_URIs"
+#~ msgstr "_URI-d"
 
 # mul oli mingi hea kaalutlus, miks lahku kirjutada :)
 #~ msgid "Failed to create instance of database"
