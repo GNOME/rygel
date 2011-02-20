@@ -32,6 +32,8 @@ public class Rygel.Tracker.SelectionQuery : Query {
                                          " nmm:uPnPShared(" +
                                          ITEM_VARIABLE +
                                          ") = true)";
+    private const string AVAILABLE_FILTER = "(tracker:available(" +
+                                            ITEM_VARIABLE + ") = true)";
 
     public ArrayList<string> variables;
     public ArrayList<string> filters;
@@ -93,6 +95,10 @@ public class Rygel.Tracker.SelectionQuery : Query {
         filters.add_all (this.filters);
         // Make sure we don't expose items that are marked not to be shared
         filters.add (SHARED_FILTER);
+
+        // Make sure we don't expose items on removable media that isn't
+        // mounted
+        filters.add (AVAILABLE_FILTER);
 
         if (filters.size > 0) {
             query += " FILTER (";
