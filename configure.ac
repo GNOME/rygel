@@ -51,54 +51,35 @@ PKG_CHECK_MODULES(LIBSOUP, libsoup-2.4 >= $LIBSOUP_REQUIRED)
 GLIB_GENMARSHAL=`pkg-config --variable=glib_genmarshal glib-2.0`
 AC_SUBST(GLIB_GENMARSHAL)
 
-AC_ARG_ENABLE(vala,
-    AS_HELP_STRING([--enable-vala],[enable checks for vala]),,
-        enable_vala=no)
 AC_ARG_ENABLE(sql-debugging,
     AS_HELP_STRING([--enable-sql-debugging],[enable SQL statement debugging]),,
         enable_sql_debugging=no)
+AS_IF([test x$enable_sql_debugging = xyes],
+      [RYGEL_ADD_VALAFLAGS([-D RYGEL_DEBUG_SQL])])
 
-if test x$enable_sql_debugging = xyes ; then
-    VALAFLAGS="$VALAFLAGS -D RYGEL_DEBUG_SQL"
-fi
+dnl Add plugins
+RYGEL_ADD_PLUGIN([test],[Test],[no])
+RYGEL_ADD_PLUGIN([tracker],[Tracker],[yes])
+RYGEL_ADD_PLUGIN([external],[MediaServer2 DBus consumer],[yes])
+RYGEL_ADD_PLUGIN([mpris],[MPRIS2 DBus consumer],[yes])
+RYGEL_ADD_PLUGIN([playbin],[GStreamer playbin],[yes])
+RYGEL_ADD_PLUGIN([mediathek],[ZDF Mediathek],[no])
+RYGEL_ADD_PLUGIN([media-export],[MediaExport],[yes])
+RYGEL_ADD_PLUGIN([gst-launch],[GStreamer launchline],[no])
 
-# Enable check for Vala even if not asked to do so if stamp files are absent.
-if test ! -e src/rygel/rygel_vala.stamp -o \
-        ! -e src/ui/rygel_preferences_vala.stamp -o \
-        ! -e src/plugins/playbin/librygel_playbin_la_vala.stamp -o \
-        ! -e src/plugins/tracker/librygel_media_tracker_la_vala.stamp -o \
-        ! -e src/plugins/test/librygel_test_la_vala.stamp -o \
-        ! -e src/plugins/media-export/librygel_media_export_la_vala.stamp -o \
-        ! -e src/plugins/mediathek/librygel_mediathek_la_vala.stamp -o \
-        ! -e src/plugins/gst-launch/librygel_gst_launch_la_vala.stamp -o \
-        ! -e src/plugins/mpris/librygel_mpris_la_vala.stamp -o \
-        ! -e src/plugins/external/librygel_external_la_vala.stamp ; then
-    enable_vala=yes
-fi
+dnl Explicitly add stamp files for targets that are not plugins
+RYGEL_ADD_STAMP([src/rygel/rygel_vala.stamp])
+RYGEL_ADD_STAMP([src/ui/rygel_preferences_vala.stamp])
 
-# Vala
-if test x$enable_vala = xyes ; then
-    # check for vala
-    AM_PROG_VALAC([$VALA_REQUIRED])
-
-    if test "x$VALAC" = "x"; then
-        AC_MSG_ERROR([Cannot find the "valac" compiler in your PATH])
-    fi
-
-    PKG_CHECK_MODULES(GUPNP_VALA, gupnp-vala-1.0 >= $GUPNP_VALA_REQUIRED)
-
-    VALA_CHECK_PACKAGES([gupnp-1.0
-                         gupnp-av-1.0
-                         gupnp-dlna-1.0
-                         gstreamer-0.10
-                         gstreamer-pbutils-0.10
-                         gio-2.0
-                         gee-1.0
-                         posix])
-fi
-
-VAPIDIR="${datadir}/vala/vapi"
-AC_SUBST(VAPIDIR)
+RYGEL_CHECK_VALA([$VALA_REQUIRED],
+                 [gupnp-1.0
+                  gupnp-av-1.0
+                  gupnp-dlna-1.0
+                  gstreamer-0.10
+                  gstreamer-pbutils-0.10
+                  gio-2.0
+                  gee-1.0
+                  posix])
 
 # Debugging
 AC_ARG_ENABLE(debug,
@@ -106,13 +87,6 @@ AC_ARG_ENABLE(debug,
         enable_debug=no)
 if test "x$enable_debug" = "xyes"; then
         CFLAGS="$CFLAGS -O0 -g"
-fi
-
-AC_ARG_ENABLE([strict-valac],
-    AS_HELP_STRING([--enable-strict-valac],[enable strict Vala compiler]),,
-              [enable_strict_valac=no])
-if test "x$enable_strict_valac" = "xyes"; then
-        VALAFLAGS="$VALAFLAGS --fatal-warnings"
 fi
 
 # Strict compiler
@@ -170,16 +144,6 @@ fi
 AC_SUBST(HAVE_GTK)
 AM_CONDITIONAL(BUILD_UI, test x$BUILD_UI = xyes)
 
-# Build test plugin
-RYGEL_ADD_PLUGIN([test],[Test],[no])
-RYGEL_ADD_PLUGIN([tracker],[Tracker],[yes])
-RYGEL_ADD_PLUGIN([external],[MediaServer2 DBus consumer],[yes])
-RYGEL_ADD_PLUGIN([mpris],[MPRIS2 DBus consumer],[yes])
-RYGEL_ADD_PLUGIN([playbin],[GStreamer playbin],[yes])
-RYGEL_ADD_PLUGIN([mediathek],[ZDF Mediathek],[no])
-RYGEL_ADD_PLUGIN([media-export],[MediaExport],[yes])
-RYGEL_ADD_PLUGIN([gst-launch],[GStreamer launchline],[no])
-
 AC_SUBST(abs_top_builddir)
 
 AM_CONDITIONAL([UNINSTALLED], [test "x$enable_uninstalled" = "xyes"])
@@ -204,8 +168,6 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, ["$GETTEXT_PACKAGE"],
 
 AM_GLIB_GNU_GETTEXT
 IT_PROG_INTLTOOL([0.40.0])
-
-AC_SUBST(VALAFLAGS)
 
 dnl Shave the output
 AM_SILENT_RULES([yes])
