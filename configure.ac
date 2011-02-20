@@ -208,6 +208,7 @@ echo "
         Source code location:   ${srcdir}
         Compiler:               ${CC}
         CFLAGS:                 ${CFLAGS}
+        VALAFLAGS:              ${VALAFLAGS}
         uninstalled:            ${enable_uninstalled}
         preferences ui:         ${BUILD_UI}
         SQL debugging:          ${enable_sql_debugging}
