@@ -6,21 +6,28 @@ AC_INIT([Rygel],
 	[http://live.gnome.org/Rygel])
 AC_CONFIG_AUX_DIR([build-aux])
 
-AM_INIT_AUTOMAKE([1.11.1])
 AC_CONFIG_SRCDIR([src/rygel/rygel-root-device.vala])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
-AM_MAINTAINER_MODE([enable])
 
 AC_SEARCH_LIBS([strerror],[cposix])
 AC_PROG_CC
 AC_HEADER_STDC
 AC_FUNC_MMAP
 
-# Disable generation of static libraries
+AC_SUBST(abs_top_builddir)
+AC_SUBST(VERSION)
+
+dnl Initialize automake
+AM_INIT_AUTOMAKE([1.11.1])
+AM_MAINTAINER_MODE([enable])
+
+dnl Initialize libtool
+dnl Disable generation of static libraries
 LT_PREREQ([2.2.6])
 LT_INIT([dlopen disable-static])
 
+dnl Required versions of library packages
 VALA_REQUIRED=0.11.6
 GSSDP_REQUIRED=0.9.2
 GUPNP_REQUIRED=0.13.4
@@ -28,14 +35,16 @@ GUPNP_AV_REQUIRED=0.7.0
 GUPNP_DLNA_REQUIRED=0.5.0
 GUPNP_VALA_REQUIRED=0.7.5
 GSTREAMER_REQUIRED=0.10.23
-GSTREAMER_TAG_REQUIRED=0.10.28
-GSTREAMER_APP_REQUIRED=0.10.28
 GIO_REQUIRED=2.26
 GEE_REQUIRED=0.5.2
 UUID_REQUIRED=1.41.3
 LIBSOUP_REQUIRED=2.26.0
-LIBSQLITE3_REQUIRED=3.5
 GTK_REQUIRED=2.90.3
+
+dnl Additional requirements for media-export plugin
+GSTREAMER_TAG_REQUIRED=0.10.28
+GSTREAMER_APP_REQUIRED=0.10.28
+LIBSQLITE3_REQUIRED=3.5
 
 PKG_CHECK_MODULES(LIBGSSDP, gssdp-1.0 >= $GSSDP_REQUIRED)
 PKG_CHECK_MODULES(LIBGUPNP, gupnp-1.0 >= $GUPNP_REQUIRED)
@@ -47,7 +56,7 @@ PKG_CHECK_MODULES(GEE, gee-1.0 >= $GEE_REQUIRED)
 PKG_CHECK_MODULES(UUID, uuid >= $UUID_REQUIRED)
 PKG_CHECK_MODULES(LIBSOUP, libsoup-2.4 >= $LIBSOUP_REQUIRED)
 
-# glib-genmarshal
+dnl glib-genmarshal
 GLIB_GENMARSHAL=`pkg-config --variable=glib_genmarshal glib-2.0`
 AC_SUBST(GLIB_GENMARSHAL)
 
@@ -81,7 +90,7 @@ RYGEL_CHECK_VALA([$VALA_REQUIRED],
                   gee-1.0
                   posix])
 
-# Debugging
+dnl Debugging
 AC_ARG_ENABLE(debug,
 	AS_HELP_STRING([--enable-debug],[enable debugging]),,
         enable_debug=no)
@@ -89,7 +98,7 @@ if test "x$enable_debug" = "xyes"; then
         CFLAGS="$CFLAGS -O0 -g"
 fi
 
-# Strict compiler
+dnl Strict compiler
 AC_ARG_ENABLE(strict-cc,
 	AS_HELP_STRING([--enable-strict-cc],[enable strict C compiler]),,
         enable_strict_cc=no)
@@ -99,15 +108,16 @@ else
         CFLAGS="$CFLAGS -w"
 fi
 
-# Run uninstalled
+dnl Run uninstalled
 AC_ARG_ENABLE(uninstalled,
     AS_HELP_STRING([--enable-uninstalled],[run uninstalled]),,
         enable_uninstalled=no)
 if test "x$enable_uninstalled" = "xyes"; then
         AC_MSG_WARN("You want to run the tools uninstalled only? Fine!")
 fi
+AM_CONDITIONAL([UNINSTALLED], [test "x$enable_uninstalled" = "xyes"])
 
-# Check wether user wants to build UIs
+dnl Check wether user wants to build UIs
 AC_ARG_WITH( ui,
   AS_HELP_STRING([--without-ui],[Do not build UI applications]),
   try_ui=$withval, try_ui=yes )
@@ -142,10 +152,7 @@ fi
 AC_SUBST(HAVE_GTK)
 AM_CONDITIONAL(BUILD_UI, test x$BUILD_UI = xyes)
 
-AC_SUBST(abs_top_builddir)
-
-AM_CONDITIONAL([UNINSTALLED], [test "x$enable_uninstalled" = "xyes"])
-
+dnl Check additional requirements for MediaExport plugins
 if test "x$enable_media_export_plugin" = "xyes";
 then
     PKG_CHECK_MODULES(LIBSQLITE3, sqlite3 >= $LIBSQLITE3_REQUIRED)
@@ -158,7 +165,7 @@ then
     fi
 fi
 
-# Gettext
+dnl Gettext
 GETTEXT_PACKAGE=AC_PACKAGE_NAME
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, ["$GETTEXT_PACKAGE"], 
@@ -174,7 +181,6 @@ dnl documenation
 AC_PATH_PROG([XSLTPROC], [xsltproc])
 AM_CONDITIONAL([HAVE_XSLTPROC], [test x"$XSLTPROC" != x])
 
-AC_SUBST(VERSION)
 
 AC_CONFIG_FILES([
 Makefile
