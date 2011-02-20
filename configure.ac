@@ -117,8 +117,6 @@ if test x$try_ui = xyes ; then
     dnl check for gtk
     PKG_CHECK_MODULES(GTK, gtk+-3.0 >= $GTK_REQUIRED,
       [
-        AC_SUBST(GTK_CFLAGS)
-        AC_SUBST(GTK_LIBS)
         if test x$enable_vala = xyes ; then
                 VALA_CHECK_PACKAGES([gtk+-3.0], [HAVE_GTK=yes])
         else
