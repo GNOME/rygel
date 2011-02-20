@@ -261,6 +261,8 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         }
 
         if (this.files.size > 0) {
+            debug ("Scheduling file %s for meta-data extraction…",
+                   this.files.peek ().get_uri ());
             this.extractor.extract (this.files.peek ());
         } else if (this.containers.get_length () > 0) {
             this.enumerate_directory ();
