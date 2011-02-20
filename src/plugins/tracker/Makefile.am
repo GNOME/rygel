@@ -1,58 +1,40 @@
-plugindir = $(libdir)/rygel-1.0
+include ../../../common.am
 
-plugin_LTLIBRARIES = librygel-media-tracker.la
+plugin_LTLIBRARIES = librygel-tracker.la
 
-AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
-	    $(LIBGUPNP_AV_CFLAGS) \
-	    $(LIBGSTREAMER_CFLAGS) \
-	    $(GEE_CFLAGS) \
-	    $(UUID_CFLAGS) \
-	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"' \
-	    -include config.h -DG_LOG_DOMAIN='"Tracker"'
+AM_CFLAGS += -DG_LOG_DOMAIN='"Tracker"'
 
-librygel_media_tracker_la_SOURCES = rygel-tracker-root-container.vala \
-				    rygel-tracker-category-container.vala \
-				    rygel-tracker-music.vala \
-				    rygel-tracker-videos.vala \
-				    rygel-tracker-pictures.vala \
-				    rygel-tracker-metadata-values.vala \
-				    rygel-tracker-tags.vala \
-				    rygel-tracker-years.vala \
-				    rygel-tracker-titles.vala \
-				    rygel-tracker-albums.vala \
-				    rygel-tracker-artists.vala \
-				    rygel-tracker-genre.vala \
-				    rygel-tracker-new.vala \
-				    rygel-tracker-search-container.vala \
-				    rygel-tracker-category-all-container.vala \
-				    rygel-tracker-key-chain-map.vala \
-				    rygel-tracker-query.vala \
-				    rygel-tracker-selection-query.vala \
-				    rygel-tracker-deletion-query.vala \
-				    rygel-tracker-insertion-query.vala \
-				    rygel-tracker-query-triplet.vala \
-				    rygel-tracker-query-triplets.vala \
-				    rygel-tracker-item-factory.vala \
-				    rygel-tracker-video-item-factory.vala \
-				    rygel-tracker-music-item-factory.vala \
-				    rygel-tracker-picture-item-factory.vala \
-				    rygel-tracker-plugin.vala \
-				    rygel-tracker-plugin-factory.vala \
-				    rygel-tracker-interfaces.vala
+librygel_tracker_la_SOURCES = \
+	rygel-tracker-root-container.vala \
+	rygel-tracker-category-container.vala \
+	rygel-tracker-music.vala \
+	rygel-tracker-videos.vala \
+	rygel-tracker-pictures.vala \
+	rygel-tracker-metadata-values.vala \
+	rygel-tracker-tags.vala \
+	rygel-tracker-years.vala \
+	rygel-tracker-titles.vala \
+	rygel-tracker-albums.vala \
+	rygel-tracker-artists.vala \
+	rygel-tracker-genre.vala \
+	rygel-tracker-new.vala \
+	rygel-tracker-search-container.vala \
+	rygel-tracker-category-all-container.vala \
+	rygel-tracker-key-chain-map.vala \
+	rygel-tracker-query.vala \
+	rygel-tracker-selection-query.vala \
+	rygel-tracker-deletion-query.vala \
+	rygel-tracker-insertion-query.vala \
+	rygel-tracker-query-triplet.vala \
+	rygel-tracker-query-triplets.vala \
+	rygel-tracker-item-factory.vala \
+	rygel-tracker-video-item-factory.vala \
+	rygel-tracker-music-item-factory.vala \
+	rygel-tracker-picture-item-factory.vala \
+	rygel-tracker-plugin.vala \
+	rygel-tracker-plugin-factory.vala \
+	rygel-tracker-interfaces.vala
 
-librygel_media_tracker_la_VALAFLAGS = \
-	--vapidir=$(top_srcdir)/src/rygel \
-	--pkg rygel-1.0 --pkg rygel-build-config --pkg gupnp-1.0 \
-	--pkg gupnp-av-1.0 --pkg posix --pkg gee-1.0 --pkg gstreamer-0.10 -g
-
-librygel_media_tracker_la_LIBADD = $(LIBGUPNP_LIBS) \
-				   $(LIBGUPNP_AV_LIBS) \
-				   $(LIBGSTREAMER_LIBS) \
-				   $(GEE_LIBS) \
-				   $(UUID_LIBS)
-librygel_media_tracker_la_LDFLAGS = -shared -fPIC -module -avoid-version
-
-MAINTAINERCLEANFILES = Makefile.in
-
-vala-clean:
-	rm -f `find . -name "*.stamp"`
+librygel_tracker_la_VALAFLAGS = --pkg posix $(RYGEL_COMMON_PLUGIN_VALAFLAGS)
+librygel_tracker_la_LIBADD = $(RYGEL_COMMON_LDADD)
+librygel_tracker_la_LDFLAGS = $(RYGEL_PLUGIN_LINKER_FLAGS)

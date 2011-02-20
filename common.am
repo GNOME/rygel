@@ -1,0 +1,54 @@
+if UNINSTALLED
+shareddir = $(abs_top_builddir)/data
+sysconfigdir = $(shareddir)
+desktopdir = $(shareddir)
+plugindir = $(abs_top_builddir)/src/plugins
+icondir = $(shareddir)/icons/32x32
+smallicondir = $(shareddir)/icons/48x48
+bigicondir = $(shareddir)/icons/120x120
+else
+shareddir = $(datadir)/rygel
+sysconfigdir = $(sysconfdir)
+desktopdir = $(datadir)/applications
+plugindir = $(libdir)/rygel-1.0
+smallicondir = $(datadir)/icons/hicolor/48x48/apps
+bigicondir = $(datadir)/icons/hicolor/120x120/apps
+icondir = $(datadir)/icons/hicolor/32x32/apps
+endif
+
+rygeldir = $(top_srcdir)/src/rygel
+
+MAINTAINERCLEANFILES = Makefile.in
+
+AM_CFLAGS = \
+	$(LIBGUPNP_CFLAGS) \
+	$(LIBGUPNP_AV_CFLAGS) \
+	$(LIBGSTREAMER_CFLAGS) \
+	$(GEE_CFLAGS) \
+	$(UUID_CFLAGS) \
+	-I$(rygeldir) \
+	-DDATA_DIR='"$(shareddir)"' -DSYS_CONFIG_DIR='"$(sysconfigdir)"'\
+	-DPLUGIN_DIR='"$(plugindir)"' -DDESKTOP_DIR='"$(desktopdir)"'\
+	-include config.h
+
+RYGEL_COMMON_LDADD = \
+	$(LIBGUPNP_LIBS) \
+	$(LIBGUPNP_AV_LIBS) \
+	$(LIBGSTREAMER_LIBS) \
+	$(GEE_LIBS) \
+	$(UUID_LIBS)
+
+# Note: the -g needs to be at the end of VALAFLAGS to not break make dist
+RYGEL_COMMON_PLUGIN_VALAFLAGS = \
+	--pkg rygel-1.0 \
+	$(RYGEL_COMMON_VALAFLAGS)
+
+RYGEL_COMMON_VALAFLAGS = \
+	--pkg rygel-build-config --pkg gupnp-1.0 \
+	--vapidir=$(rygeldir) \
+	--pkg gupnp-av-1.0 --pkg gee-1.0 -g
+
+RYGEL_PLUGIN_LINKER_FLAGS = -shared -fPIC -module -avoid-version
+
+vala-clean:
+	rm -f `find . -name "*.stamp"`

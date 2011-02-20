@@ -1,55 +1,26 @@
-if UNINSTALLED
-shareddir = $(abs_top_builddir)/data
-icondir = $(shareddir)/icons/32x32
-else
-shareddir = $(datadir)/rygel
-icondir = $(datadir)/icons/hicolor/32x32/apps
-endif
+include ../../common.am
 
-rygeldir = $(top_srcdir)/src/rygel
-
-AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
-	    $(LIBGUPNP_AV_CFLAGS) \
-	    $(LIBGSTREAMER_CFLAGS) \
-	    $(GIO_CFLAGS) \
-            $(GTK_CFLAGS) \
-	    $(GEE_CFLAGS) \
-	    $(UUID_CFLAGS) \
-	    $(LIBSOUP_CFLAGS) \
-	    -I$(top_srcdir) -I$(rygeldir) -DDATA_DIR='"$(shareddir)"' \
-	    -DSMALL_ICON_DIR='"$(icondir)"' -DSYS_CONFIG_DIR='"$(sysconfdir)"' \
-	    -DDESKTOP_DIR='"$(desktopdir)"' -include config.h \
-	    -DLOCALEDIR=\""$(datadir)/locale"\" -DG_LOG_DOMAIN='"Rygel"'
+AM_CFLAGS += \
+	$(GTK_CFLAGS) \
+	-DSMALL_ICON_DIR='"$(icondir)"' \
+	-DLOCALEDIR=\""$(datadir)/locale"\" -DG_LOG_DOMAIN='"Rygel"'
 
 bin_PROGRAMS = rygel-preferences
 
-rygel_preferences_SOURCES = \
-			    rygel-preferences-dialog.vala \
-			    rygel-preferences-section.vala \
-			    rygel-media-pref-section.vala \
-			    rygel-writable-user-config.vala \
-			    rygel-network-pref-section.vala
+rygel_preferences_SOURCES =  \
+	rygel-preferences-dialog.vala \
+	rygel-preferences-section.vala \
+	rygel-media-pref-section.vala \
+	rygel-writable-user-config.vala \
+	rygel-network-pref-section.vala
 
-rygel.stamp: $(rygel_preferences_VALASOURCES)
 rygel_preferences_VALAFLAGS = \
-	--vapidir=$(rygeldir) --thread \
-	--pkg rygel-1.0 --pkg rygel-build-config --pkg gupnp-1.0 \
-	--pkg gupnp-av-1.0 --pkg gconf-2.0 --pkg gstreamer-0.10 --pkg gio-2.0 \
-	--pkg gee-1.0 --pkg gtk+-3.0 -g
+	--thread --pkg gio-2.0 \
+	--pkg gtk+-3.0 $(RYGEL_COMMON_PLUGIN_VALAFLAGS)
 
 rygel_preferences_LDADD = \
-		$(abs_top_builddir)/src/rygel/librygel-configuration.a \
-		$(LIBGUPNP_LIBS) \
-		$(LIBGUPNP_AV_LIBS) \
-		$(LIBGSTREAMER_LIBS) \
-		$(GIO_LIBS) \
-		$(GEE_LIBS) \
-		$(UUID_LIBS) \
-		$(LIBSOUP_LIBS) \
-		$(GTK_LIBS)
+	$(abs_top_builddir)/src/rygel/librygel-configuration.a \
+	$(RYGEL_COMMON_LDADD) \
+	$(GTK_LIBS)
 rygel_preferences_LDFLAGS = -export-dynamic
 
-MAINTAINERCLEANFILES = Makefile.in
-
-vala-clean:
-	rm -f `find . -name "*.stamp"`

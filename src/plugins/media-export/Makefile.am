@@ -1,70 +1,50 @@
-if UNINSTALLED
-shareddir = $(abs_top_builddir)/data
-else
-shareddir = $(datadir)/rygel
-endif
-
-plugindir = $(libdir)/rygel-1.0
+include ../../../common.am
 
 plugin_LTLIBRARIES = librygel-media-export.la
 
-AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
-	    $(LIBGUPNP_AV_CFLAGS) \
-	    $(LIBGUPNP_DLNA_CFLAGS) \
-	    $(LIBSQLITE3_CFLAGS) \
-	    $(GEE_CFLAGS) \
-	    $(UUID_CFLAGS) \
-	    $(GSTREAMER_TAG_CFLAGS) \
-	    $(GSTREAMER_APP_CFLAGS) \
-	    -I$(top_srcdir)/src/rygel -DDATA_DIR='"$(datadir)"' \
-	    -include config.h -DG_LOG_DOMAIN='"MediaExport"'
+AM_CFLAGS += \
+	$(LIBGUPNP_DLNA_CFLAGS) \
+	$(LIBSQLITE3_CFLAGS) \
+	$(GSTREAMER_TAG_CFLAGS) \
+	$(GSTREAMER_APP_CFLAGS) \
+	-DG_LOG_DOMAIN='"MediaExport"'
 
-librygel_media_export_la_SOURCES = rygel-media-export-plugin.vala \
-				   rygel-media-export-database.vala \
-				   rygel-media-export-db-container.vala \
-				   rygel-media-export-sql-factory.vala \
-				   rygel-media-export-media-cache.vala \
-				   rygel-media-export-sql-operator.vala \
-				   rygel-media-export-sql-function.vala \
-				   rygel-media-export-media-cache-upgrader.vala \
-				   rygel-media-export-metadata-extractor.vala \
-				   rygel-media-export-null-container.vala \
-				   rygel-media-export-dummy-container.vala \
-				   rygel-media-export-root-container.vala \
-				   rygel-media-export-query-container.vala \
-				   rygel-media-export-dbus-service.vala \
-				   rygel-media-export-recursive-file-monitor.vala \
-				   rygel-media-export-harvester.vala \
-				   rygel-media-export-harvesting-task.vala \
-				   rygel-media-export-item.vala \
-				   rygel-media-export-jpeg-writer.vala \
-				   rygel-media-export-object-factory.vala \
-				   rygel-media-export-writable-db-container.vala
+librygel_media_export_la_SOURCES = \
+	rygel-media-export-plugin.vala \
+	rygel-media-export-database.vala \
+	rygel-media-export-db-container.vala \
+	rygel-media-export-sql-factory.vala \
+	rygel-media-export-media-cache.vala \
+	rygel-media-export-sql-operator.vala \
+	rygel-media-export-sql-function.vala \
+	rygel-media-export-media-cache-upgrader.vala \
+	rygel-media-export-metadata-extractor.vala \
+	rygel-media-export-null-container.vala \
+	rygel-media-export-dummy-container.vala \
+	rygel-media-export-root-container.vala \
+	rygel-media-export-query-container.vala \
+	rygel-media-export-dbus-service.vala \
+	rygel-media-export-recursive-file-monitor.vala \
+	rygel-media-export-harvester.vala \
+	rygel-media-export-harvesting-task.vala \
+	rygel-media-export-item.vala \
+	rygel-media-export-jpeg-writer.vala \
+	rygel-media-export-object-factory.vala \
+	rygel-media-export-writable-db-container.vala
 
-librygel_media_export_la_VALAFLAGS = --vapidir=$(top_srcdir)/src/rygel \
-                                     --pkg rygel-1.0 \
-                                     --pkg gupnp-1.0 \
-                                     --pkg gupnp-av-1.0 \
-                                     --pkg gupnp-dlna-1.0 \
-                                     --pkg libsoup-2.4 \
-                                     --pkg gee-1.0 \
-                                     --pkg libxml-2.0 \
-                                     --pkg gstreamer-tag-0.10 \
-                                     --pkg gstreamer-app-0.10 \
-                                     --pkg sqlite3 -g
+librygel_media_export_la_VALAFLAGS = \
+	--pkg gupnp-dlna-1.0 \
+	--pkg gstreamer-tag-0.10 \
+	--pkg gstreamer-app-0.10 \
+	--pkg sqlite3 \
+	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
 
-librygel_media_export_la_LIBADD = $(LIBGUPNP_LIBS) \
-				  $(LIBGUPNP_AV_LIBS) \
-				  $(LIBGUPNP_DLNA_LIBS) \
-				  $(LIBGSTREAMER_LIBS) \
-				  $(GSTREAMER_TAG_LIBS) \
-				  $(GSTREAMER_APP_LIBS) \
-				  $(LIBSQLITE3_LIBS) \
-				  $(GEE_LIBS) \
-				  $(UUID_LIBS)
-librygel_media_export_la_LDFLAGS = -shared -fPIC -module -avoid-version
+librygel_media_export_la_LIBADD = \
+	$(RYGEL_COMMON_LDADD) \
+	$(LIBGUPNP_DLNA_LIBS) \
+	$(GSTREAMER_TAG_LIBS) \
+	$(GSTREAMER_APP_LIBS) \
+	$(LIBSQLITE3_LIBS)
 
-MAINTAINERCLEANFILES = Makefile.in
+librygel_media_export_la_LDFLAGS = $(RYGEL_PLUGIN_LINKER_FLAGS)
 
-vala-clean:
-	rm -f `find . -name "*.stamp"`
