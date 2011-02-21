@@ -1,3 +1,82 @@
+0.9.9
+=====
+
+A new release in the current unstable 0.9.x series for upcoming GNOME 2.91.90
+release.
+
+- Define separate log domains for core and each plugin.
+- Improved log output control: We now allow you to specify log levels separately
+  for each log domain.
+- HTTP Connection stalling supported for ALL streams.
+- Entertain priority in GStreamer-based HTTP streams.
+- Rename 'upnp_enabled' in configuration to 'upnp-enabled'.
+- Add section about MPRIS plugin to manpage.
+- Several fixes/improvements to manpages.
+- Fix some environment variables' names.
+- Use both user & system configuration. So far, we have been ignoring the system
+  configuration file when the user configuration file exists. This leads into
+  problems whenever our configuration keys change. Now we load configuration
+  from both sources and get the config value from system configuration if user
+  configuration doesn't offer a value for it.
+- Use 'data' directory in source tree as the system config location when
+  configured to run uninstalled.
+- Configure option to enable fatal valac warings. Also make this default when
+  running autogen.sh.
+- Make configure --help less ugly.
+- Make use of modern autotools.
+- Show VALA flags in configure summary.
+- Remove special configure flag to enable maemo configuration as it should just
+  be the default in maemo-specific branch.
+- Clear the ChangeLog file content.
+- UI:
+  - Trim-down the UI to only provide options that end-user needs.
+  - Use the correct key for 'UPnP enabled' option.
+  - All widgets must be disabled when sharing is.
+  - Option to use 'any' network.
+- MediaExport:
+  - Hide empty virtual folders.
+  - Don't keep empty containers in DB.
+  - More debug output.
+- Tracker:
+  - Only share available files: As tracker also indices removable media we need
+    to filter out those files that are currently unavailable.
+- Localization:
+  - Add Kannada translation.
+  - Update UG translation.
+  - Update German translation.
+  - Update UK translation.
+  - Update Gujarati translations.
+  - Update Ukranian translation.
+  - Update Hebrew translation.
+  - Update Norwegian bokmål translation.
+  - Update Spanish translation.
+  - Update Estonian translation.
+- Many other non-functional and/or minor improvements and fixes.
+
+Dependency-related changes:
+
+- Require & adapt to Vala 0.11.6
+- Explicitly require gssdp >= 0.9.2
+
+Bugs fixed in this release:
+
+641882 - 0.9.8 does not build
+
+All contributors to this release:
+
+Jens Georg <mail@jensge.org>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Luis de Bethencourt <luis@debethencourt.com>
+Abduxukur Abdurixit <abdurixit@gmail.com>
+Daniel Korostil <ted.korostiled@gmail.com>
+Ivar Smolin <okul@linux.ee>
+Jorge González <jorgegonz@svn.gnome.org>
+Kjartan Maraas <kmaraas@gnome.org>
+Mario Blättermann <mariobl@gnome.org>
+Shankar Prasad <svenkate@redhat.com>
+Sweta Kothari <swkothar@redhat.com>
+Yaron Shahrabani <sh.yaron@gmail.com>
+
 0.9.8
 =====
 
