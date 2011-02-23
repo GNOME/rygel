@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel 2.31.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-19 17:25+0100\n"
-"PO-Revision-Date: 2011-02-19 17:25+0100\n"
+"POT-Creation-Date: 2011-02-23 15:31+0100\n"
+"PO-Revision-Date: 2011-02-23 15:32+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -99,12 +99,12 @@ msgstr "Kan ikke hente ut metadata. Går ikke gjennom."
 msgid "'%s' harvested"
 msgstr "«%s» hentet inn"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:158
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:166
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Feil under henting av objekt «%s» fra database: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:182
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:201
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Feil under fjerning av objekt fra database: %s"
@@ -136,35 +136,35 @@ msgstr "Album"
 msgid "Genre"
 msgstr "Sjanger"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:94
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:98
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "Klarte ikke å fjerne URI: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:321
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:325
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@ sine medier"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:329
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:333
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Klarte ikke å opprette D-Bus-tjeneste for medieeksport: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:367
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:372
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Klarte ikke å fjerne oppføring: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:378
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:388
 msgid "Music"
 msgstr "Musikk"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:391
 msgid "Pictures"
 msgstr "Bilder"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:383
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:393
 msgid "Videos"
 msgstr "Videoer"
 
@@ -454,8 +454,8 @@ msgstr "Klarte ikke å hente loggnivå fra konfigurasjonen: %s"
 #, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
-msgstr[0] "Ingen tillegg funnet etter %d sekund. Gir opp..."
-msgstr[1] "Ingen tillegg funnet etter %d sekunder. Gir opp..."
+msgstr[0] "Ingen tillegg funnet etter %d sekund. Gir opp …"
+msgstr[1] "Ingen tillegg funnet etter %d sekunder. Gir opp …"
 
 #: ../src/rygel/rygel-main.vala:145
 #, c-format
