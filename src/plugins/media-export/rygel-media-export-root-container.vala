@@ -216,7 +216,10 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                 actual_uri = actual_uri.replace ("@MUSIC@", music_dir);
             }
 
-            actual_uris.add (actual_uri);
+            // protect against special directories expanding to $HOME
+            if (actual_uri != Environment.get_home_dir ()) {
+                actual_uris.add (actual_uri);
+            }
         }
 
         return actual_uris;
