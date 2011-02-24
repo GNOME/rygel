@@ -196,15 +196,17 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         } catch (Error error) {}
 
         actual_uris = new ArrayList<string> ();
+
+        unowned string home_dir = Environment.get_home_dir ();
+        unowned string pictures_dir = Environment.get_user_special_dir
+                                        (UserDirectory.PICTURES);
+        unowned string videos_dir = Environment.get_user_special_dir
+                                        (UserDirectory.VIDEOS);
+        unowned string music_dir = Environment.get_user_special_dir
+                                        (UserDirectory.MUSIC);
+
         foreach (var uri in uris) {
             var actual_uri = uri;
-
-            var pictures_dir = Environment.get_user_special_dir
-                                        (UserDirectory.PICTURES);
-            var videos_dir = Environment.get_user_special_dir
-                                        (UserDirectory.VIDEOS);
-            var music_dir = Environment.get_user_special_dir
-                                        (UserDirectory.MUSIC);
 
             if (likely (pictures_dir != null)) {
                 actual_uri = actual_uri.replace ("@PICTURES@", pictures_dir);
@@ -217,7 +219,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             }
 
             // protect against special directories expanding to $HOME
-            if (actual_uri != Environment.get_home_dir ()) {
+            if (actual_uri != home_dir) {
                 actual_uris.add (actual_uri);
             }
         }
