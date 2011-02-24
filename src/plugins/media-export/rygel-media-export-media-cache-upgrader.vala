@@ -41,34 +41,19 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
     }
 
     public bool needs_upgrade (out int current_version) throws Error {
-        // cannot capture out parameters in closure
-        int current_version_temp = 0;
-
-        this.database.exec ("SELECT version FROM schema_info",
-                            null,
-                            (statement) => {
-                                current_version_temp = statement.column_int (0);
-
-                                return false;
-                            });
-        current_version = current_version_temp;
+        current_version = this.database.query_value (
+                                        "SELECT version FROM schema_info");
 
         return current_version < int.parse (SQLFactory.schema_version);
     }
 
     public void fix_schema () throws Error {
-        bool schema_ok = true;
-
-        database.exec ("SELECT count(*) FROM sqlite_master WHERE sql " +
-                       "LIKE 'CREATE TABLE Meta_Data%object_fk TEXT " +
-                       "UNIQUE%'",
-                       null,
-                       (statement) => {
-                           schema_ok = statement.column_int (0) == 1;
-
-                           return false;
-                       });
-        if (!schema_ok) {
+        var matching_schema_count = this.database.query_value (
+                                        "SELECT count(*) FROM " +
+                                        "sqlite_master WHERE sql " +
+                                        "LIKE 'CREATE TABLE Meta_Data" +
+                                        "%object_fk TEXT UNIQUE%'");
+        if (matching_schema_count == 0) {
             try {
                 message ("Found faulty schema, forcing full reindex");
                 database.begin ();
@@ -182,13 +167,13 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             queue.offer ("0");
             while (!queue.is_empty) {
                 GLib.Value[] args = { queue.poll () };
-                database.exec ("SELECT upnp_id FROM _Object WHERE parent = ?",
-                               args,
-                               (statement) => {
-                                   queue.offer (statement.column_text (0));
-
-                                   return true;
-                              });
+                var cursor = this.database.exec_cursor (
+                                        "SELECT upnp_id FROM _Object WHERE " +
+                                        "parent = ?",
+                                        args);
+                foreach (var statement in cursor) {
+                    queue.offer (statement.column_text (0));
+                }
 
                 database.exec ("INSERT INTO Object SELECT * FROM _OBJECT " +
                                "WHERE parent = ?",
@@ -329,13 +314,13 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             queue.offer ("0");
             while (!queue.is_empty) {
                 GLib.Value[] args = { queue.poll () };
-                database.exec ("SELECT upnp_id FROM _Object WHERE parent = ?",
-                               args,
-                               (statement) => {
-                                   queue.offer (statement.column_text (0));
-
-                                   return true;
-                              });
+                var cursor = this.database.exec_cursor (
+                                        "SELECT upnp_id FROM _Object WHERE " +
+                                        "parent = ?",
+                                        args);
+                foreach (var statement in cursor) {
+                    queue.offer (statement.column_text (0));
+                }
 
                 database.exec ("INSERT INTO Object SELECT * FROM _Object " +
                                "WHERE parent = ?",

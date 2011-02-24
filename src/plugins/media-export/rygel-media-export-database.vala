@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009 Jens Georg <mail@jensge.org>.
+ * Copyright (C) 2009,2011 Jens Georg <mail@jensge.org>.
  *
  * Author: Jens Georg <mail@jensge.org>
  *
@@ -33,16 +33,11 @@ public errordomain Rygel.MediaExport.DatabaseError {
  * It adds statement preparation based on GValue and a cancellable exec
  * function.
  */
-internal class Rygel.MediaExport.Database : Object {
-    private Sqlite.Database db;
+internal class Rygel.MediaExport.Database : SqliteWrapper {
 
     /**
-     * Callback to pass to exec
-     *
-     * @return true, if you want the query to continue, false otherwise
+     * Function to implement the custom SQL function 'contains'
      */
-    public delegate bool RowCallback (Sqlite.Statement stmt);
-
     private static void utf8_contains (Sqlite.Context context,
                                        Sqlite.Value[] args)
                                        requires (args.length == 2) {
@@ -62,6 +57,11 @@ internal class Rygel.MediaExport.Database : Object {
         }
     }
 
+    /**
+     * Function to implement the custom SQLite collation 'CASEFOLD'.
+     *
+     * Uses utf8 case-fold to compare the strings.
+     */
     private static int utf8_collate (int alen, void* a, int blen, void* b) {
         // unowned to prevent array copy
         unowned uint8[] _a = (uint8[]) a;
@@ -87,18 +87,14 @@ internal class Rygel.MediaExport.Database : Object {
                                            "rygel");
         DirUtils.create_with_parents (dirname, 0750);
         var db_file = Path.build_filename (dirname, "%s.db".printf (name));
-        debug ("Using database file %s", db_file);
-        var rc = Sqlite.Database.open (db_file, out this.db);
-        if (rc != Sqlite.OK) {
-            throw new DatabaseError.IO_ERROR
-                                        (_("Failed to open database: %d (%s)"),
-                                         rc,
-                                         db.errmsg ());
-        }
 
-        this.db.exec ("PRAGMA synchronous = OFF");
-        this.db.exec ("PRAGMA temp_store = MEMORY");
-        this.db.exec ("PRAGMA count_changes = OFF");
+        base (db_file);
+
+        debug ("Using database file %s", db_file);
+
+        this.exec ("PRAGMA synchronous = OFF");
+        this.exec ("PRAGMA temp_store = MEMORY");
+        this.exec ("PRAGMA count_changes = OFF");
 
         this.db.create_function ("contains",
                                  2,
@@ -114,55 +110,58 @@ internal class Rygel.MediaExport.Database : Object {
     }
 
     /**
-     * Execute a cancellable SQL statement.
+     * SQL query function.
      *
-     * The supplied values are bound to the SQL statement and the RowCallback
-     * is called on every row of the resultset.
+     * Use for all queries that return a result set.
      *
-     * @param sql statement to execute
-     * @param values array of values to bind to the SQL statement or null if
-     * none
-     * @param callback to call on each row of the result set or null if none
-     * necessary
-     * @param cancellable to cancel the running query or null if none
-     * necessary
+     * @param sql The SQL query to run.
+     * @param args Values to bind in the SQL query or null.
+     * @throws DatabaseError if the underlying SQLite operation fails.
      */
-    public int exec (string        sql,
-                     GLib.Value[]? values      = null,
-                     RowCallback?  callback    = null,
-                     Cancellable?  cancellable = null) throws DatabaseError {
-        #if RYGEL_DEBUG_SQL
-        var t = new Timer ();
-        #endif
-        int rc;
+    public DatabaseCursor exec_cursor (string        sql,
+                                       GLib.Value[]? arguments = null)
+                                       throws DatabaseError {
+        return new DatabaseCursor (this.db, sql, arguments);
+    }
 
-        if (values == null && callback == null && cancellable == null) {
-            rc = this.db.exec (sql);
-        } else {
-            var statement = prepare_statement (sql, values);
-            while ((rc = statement.step ()) == Sqlite.ROW) {
-                if (cancellable != null && cancellable.is_cancelled ()) {
-                    break;
-                }
+    /**
+     * Simple SQL query execution function.
+     *
+     * Use for all queries that don't return anything.
+     *
+     * @param sql The SQL query to run.
+     * @param args Values to bind in the SQL query or null.
+     * @throws DatabaseError if the underlying SQLite operation fails.
+     */
+    public void exec (string        sql,
+                      GLib.Value[]? arguments = null)
+                      throws DatabaseError {
+        if (arguments == null) {
+            this.throw_if_code_is_error (this.db.exec (sql));
 
-                if (callback != null) {
-                    if (!callback (statement)) {
-                        rc = Sqlite.DONE;
-
-                        break;
-                    }
-                }
-            }
+            return;
         }
 
-        if (rc != Sqlite.DONE && rc != Sqlite.OK) {
-            throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
+        var cursor = this.exec_cursor (sql, arguments);
+        while (cursor.has_next ()) {
+            cursor.next ();
         }
-        #if RYGEL_DEBUG_SQL
-        debug ("Query: %s, Time: %f", sql, t.elapsed ());
-        #endif
+    }
 
-        return rc;
+    /**
+     * Execute a SQL query that returns a single number.
+     *
+     * @param sql The SQL query to run.
+     * @param args Values to bind in the SQL query or null.
+     * @return The contents of the first row's column as an int.
+     * @throws DatabaseError if the underlying SQLite operation fails.
+     */
+    public int query_value (string        sql,
+                             GLib.Value[]? args = null)
+                             throws DatabaseError {
+        var cursor = this.exec_cursor (sql, args);
+        var statement = cursor.next ();
+        return statement->column_int (0);
     }
 
     /**
@@ -173,7 +172,7 @@ internal class Rygel.MediaExport.Database : Object {
     }
 
     /**
-     * Special GValue to pass to exec or prepare_statement to bind a column to
+     * Special GValue to pass to exec or exec_cursor to bind a column to
      * NULL
      */
     public static GLib.Value @null () {
@@ -187,14 +186,14 @@ internal class Rygel.MediaExport.Database : Object {
      * Start a transaction
      */
     public void begin () throws DatabaseError {
-        this.single_statement ("BEGIN");
+        this.exec ("BEGIN");
     }
 
     /**
      * Commit a transaction
      */
     public void commit () throws DatabaseError {
-        this.single_statement ("COMMIT");
+        this.exec ("COMMIT");
     }
 
     /**
@@ -202,77 +201,10 @@ internal class Rygel.MediaExport.Database : Object {
      */
     public void rollback () {
         try {
-            this.single_statement ("ROLLBACK");
+            this.exec ("ROLLBACK");
         } catch (DatabaseError error) {
             critical (_("Failed to roll back transaction: %s"),
                       error.message);
         }
-    }
-
-    /**
-     * Execute a single SQL statement and throw an exception on error
-     *
-     * @param sql SQL statement to execute
-     * @throws DatabaseError if SQL statement fails
-     */
-    private void single_statement (string sql) throws DatabaseError {
-        if (this.db.exec (sql) != Sqlite.OK) {
-            throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
-        }
-    }
-
-    /**
-     * Prepare a SQLite statement from a SQL string
-     *
-     * This function uses the type of the GValue passed in values to determine
-     * which _bind function to use.
-     *
-     * Supported types are: int, long, int64, uint64, string and pointer.
-     * @note the only pointer supported is the null pointer as provided by
-     * Database.@null. This is a special value to bind a column to NULL
-     *
-     * @param sql statement to execute
-     * @param values array of values to bind to the SQL statement or null if
-     * none
-     */
-    private Statement prepare_statement (string        sql,
-                                         GLib.Value[]? values = null)
-                                         throws DatabaseError {
-        Statement statement;
-        var rc = db.prepare_v2 (sql, -1, out statement, null);
-        if (rc != Sqlite.OK) {
-            throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
-        }
-
-        if (values != null) {
-            for (int i = 0; i < values.length; i++) {
-                if (values[i].holds (typeof (int))) {
-                    rc = statement.bind_int (i + 1, values[i].get_int ());
-                } else if (values[i].holds (typeof (int64))) {
-                    rc = statement.bind_int64 (i + 1, values[i].get_int64 ());
-                } else if (values[i].holds (typeof (uint64))) {
-                    rc = statement.bind_int64 (i + 1, (int64) values[i].get_uint64 ());
-                } else if (values[i].holds (typeof (long))) {
-                    rc = statement.bind_int64 (i + 1, values[i].get_long ());
-                } else if (values[i].holds (typeof (string))) {
-                    rc = statement.bind_text (i + 1, values[i].get_string ());
-                } else if (values[i].holds (typeof (void *))) {
-                    if (values[i].peek_pointer () == null) {
-                        rc = statement.bind_null (i + 1);
-                    } else {
-                        assert_not_reached ();
-                    }
-                } else {
-                    var t = values[i].type ();
-                    warning (_("Unsupported type %s"), t.name ());
-                        assert_not_reached ();
-                }
-                if (rc != Sqlite.OK) {
-                    throw new DatabaseError.SQLITE_ERROR (db.errmsg ());
-                }
-            }
-        }
-
-        return statement;
     }
 }

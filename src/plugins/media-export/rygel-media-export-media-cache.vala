@@ -102,7 +102,9 @@ public class Rygel.MediaExport.MediaCache : Object {
         GLib.Value[] values = { object_id };
         MediaObject parent = null;
 
-        Database.RowCallback cb = (statement) => {
+        var cursor = this.exec_cursor (SQLString.GET_OBJECT, values);
+
+        foreach (var statement in cursor) {
             var parent_container = parent as MediaContainer;
             var id = statement.column_text (DetailColumn.ID);
             var object = get_object_from_statement
@@ -111,11 +113,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                          statement);
             object.parent_ref = parent_container;
             parent = object;
-
-            return true;
-        };
-
-        this.db.exec (this.sql.make (SQLString.GET_OBJECT), values, cb);
+        }
 
         return parent;
     }
@@ -146,44 +144,28 @@ public class Rygel.MediaExport.MediaCache : Object {
     }
 
     public int get_child_count (string container_id) throws DatabaseError {
-        int count = 0;
         GLib.Value[] values = { container_id };
 
-        this.db.exec (this.sql.make (SQLString.CHILD_COUNT),
-                      values,
-                      (statement) => {
-                          count = statement.column_int (0);
-
-                          return false;
-                      });
-
-        return count;
+        return this.query_value (SQLString.CHILD_COUNT, values);
     }
 
 
     private void get_exists_cache () throws DatabaseError {
         this.exists_cache = new HashMap<string, ExistsCacheEntry?> ();
-        this.db.exec (this.sql.make (SQLString.EXISTS_CACHE),
-                      null,
-                      (statement) => {
-                          var entry = ExistsCacheEntry ();
-                          entry.mtime = statement.column_int64 (1);
-                          entry.size = statement.column_int64 (0);
-                          this.exists_cache.set (statement.column_text (2),
-                                                 entry);
-
-                          return true;
-                      });
+        var cursor = this.exec_cursor (SQLString.EXISTS_CACHE);
+        foreach (var statement in cursor) {
+            var entry = ExistsCacheEntry ();
+            entry.mtime = statement.column_int64 (1);
+            entry.size = statement.column_int64 (0);
+            this.exists_cache.set (statement.column_text (2), entry);
+        }
     }
 
     public bool exists (File      file,
                         out int64 timestamp,
                         out int64 size) throws DatabaseError {
-        var exists = false;
         var uri = file.get_uri ();
         GLib.Value[] values = { uri };
-        int64 tmp_timestamp = 0;
-        int64 tmp_size = 0;
 
         if (this.exists_cache.has_key (uri)) {
             var entry = this.exists_cache.get (uri);
@@ -194,21 +176,12 @@ public class Rygel.MediaExport.MediaCache : Object {
             return true;
         }
 
-        this.db.exec (this.sql.make (SQLString.EXISTS),
-                      values,
-                      (statement) => {
-                          exists = statement.column_int (0) == 1;
-                          tmp_timestamp = statement.column_int64 (1);
-                          tmp_size = statement.column_int64 (2);
+        var cursor = this.exec_cursor (SQLString.EXISTS, values);
+        var statement = cursor.next ();
+        timestamp = statement->column_int64 (1);
+        size = statement->column_int64 (2);
 
-                          return false;
-                      });
-
-        // out parameters are not allowed to be captured
-        timestamp = tmp_timestamp;
-        size = tmp_size;
-
-        return exists;
+        return statement->column_int (0) == 1;
     }
 
     public MediaObjects get_children (MediaContainer container,
@@ -220,19 +193,16 @@ public class Rygel.MediaExport.MediaCache : Object {
         GLib.Value[] values = { container.id,
                                 (int64) offset,
                                 (int64) max_count };
-        Database.RowCallback callback = (statement) => {
+
+        var cursor = this.exec_cursor (SQLString.GET_CHILDREN, values);
+
+        foreach (var statement in cursor) {
             var child_id = statement.column_text (DetailColumn.ID);
             children.add (get_object_from_statement (container,
                                                      child_id,
                                                      statement));
             children.last ().parent_ref = container;
-
-            return true;
-        };
-
-        this.db.exec (this.sql.make (SQLString.GET_CHILDREN),
-                      values,
-                      callback);
+        }
 
         return children;
     }
@@ -304,24 +274,12 @@ public class Rygel.MediaExport.MediaCache : Object {
                                          throws Error {
         GLib.Value v = container_id;
         args.prepend (v);
-        long count = 0;
 
         debug ("Parameters to bind: %u", args.n_values);
-
-        Database.RowCallback callback = (statement) => {
-            count = statement.column_int (0);
-
-            return false;
-        };
-
-        unowned string sql = this.sql.make
+        unowned string pattern = this.sql.make
                                         (SQLString.GET_OBJECT_COUNT_BY_FILTER);
 
-        this.db.exec (sql.printf (filter),
-                      args.values,
-                      callback);
-
-        return count;
+        return this.db.query_value (pattern.printf (filter), args.values);
     }
 
 
@@ -340,7 +298,9 @@ public class Rygel.MediaExport.MediaCache : Object {
 
         debug ("Parameters to bind: %u", args.n_values);
 
-        Database.RowCallback callback = (statement) => {
+        unowned string sql = this.sql.make (SQLString.GET_OBJECTS_BY_FILTER);
+        var cursor = this.db.exec_cursor (sql.printf (filter), args.values);
+        foreach (var statement in cursor) {
             var child_id = statement.column_text (DetailColumn.ID);
             var parent_id = statement.column_text (DetailColumn.PARENT);
 
@@ -360,14 +320,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                          child_id,
                          parent_id);
             }
-
-            return true;
-        };
-
-        var sql = this.sql.make (SQLString.GET_OBJECTS_BY_FILTER);
-        this.db.exec (sql.printf (filter),
-                      args.values,
-                      callback);
+        }
 
         return children;
     }
@@ -413,15 +366,8 @@ public class Rygel.MediaExport.MediaCache : Object {
             debug ("Could not find schema version;" +
                    " checking for empty database...");
             try {
-                int rows = -1;
-                this.db.exec ("SELECT count(type) FROM sqlite_master " +
-                              "WHERE rowid=1",
-                              null,
-                              (statement) => {
-                                  rows = statement.column_int (0);
-
-                                  return false;
-                              });
+                var rows = this.db.query_value ("SELECT count(type) FROM " +
+                                                "sqlite_master WHERE rowid=1");
                 if (rows == 0) {
                     debug ("Empty database, creating new schema version %s",
                             SQLFactory.schema_version);
@@ -639,13 +585,10 @@ public class Rygel.MediaExport.MediaCache : Object {
         ArrayList<string> children = new ArrayList<string> (str_equal);
         GLib.Value[] values = { container_id  };
 
-        this.db.exec (this.sql.make (SQLString.CHILD_IDS),
-                      values,
-                      (statement) => {
-                          children.add (statement.column_text (0));
-
-                          return true;
-                      });
+        var cursor = this.exec_cursor (SQLString.CHILD_IDS, values);
+        foreach (var statement in cursor) {
+            children.add (statement.column_text (0));
+        }
 
         return children;
     }
@@ -827,16 +770,13 @@ public class Rygel.MediaExport.MediaCache : Object {
         args.append (v);
 
         var data = new ArrayList<string> ();
-        Database.RowCallback callback = (statement) => {
+
+        unowned string sql = this.sql.make (SQLString.GET_META_DATA_COLUMN);
+        var cursor = this.db.exec_cursor (sql.printf (column, filter),
+                                          args.values);
+        foreach (var statement in cursor) {
             data.add (statement.column_text (0));
-
-            return true;
-        };
-
-        var sql = this.sql.make (SQLString.GET_META_DATA_COLUMN);
-        this.db.exec (sql.printf (column, filter),
-                      args.values,
-                      callback);
+        }
 
         return data;
     }
@@ -871,15 +811,26 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     public Gee.List<string> get_flagged_uris (string flag) throws Error {
         var uris = new ArrayList<string> ();
-        GLib.Value[] args = { flag };
-        this.db.exec ("SELECT uri FROM object WHERE flags = ?",
-                      args,
-                      (statement) => {
-                          uris.add (statement.column_text (0));
+        const string query = "SELECT uri FROM object WHERE flags = ?";
 
-                          return true;
-                      });
+        GLib.Value[] args = { flag };
+
+        var cursor = this.db.exec_cursor (query, args);
+        foreach (var statement in cursor) {
+            uris.add (statement.column_text (0));
+        }
 
         return uris;
+    }
+    private DatabaseCursor exec_cursor (SQLString      id,
+                                        GLib.Value[]?  values = null)
+                                        throws DatabaseError {
+        return this.db.exec_cursor (this.sql.make (id), values);
+    }
+
+    private int query_value (SQLString      id,
+                             GLib.Value[]?  values = null)
+                             throws DatabaseError {
+        return this.db.query_value (this.sql.make (id), values);
     }
 }

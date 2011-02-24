@@ -74,12 +74,6 @@ dnl glib-genmarshal
 GLIB_GENMARSHAL=`pkg-config --variable=glib_genmarshal glib-2.0`
 AC_SUBST(GLIB_GENMARSHAL)
 
-AC_ARG_ENABLE(sql-debugging,
-    AS_HELP_STRING([--enable-sql-debugging],[enable SQL statement debugging]),,
-        enable_sql_debugging=no)
-AS_IF([test x$enable_sql_debugging = xyes],
-      [RYGEL_ADD_VALAFLAGS([-D RYGEL_DEBUG_SQL])])
-
 dnl Add plugins
 RYGEL_ADD_PLUGIN([test],[Test],[no])
 RYGEL_ADD_PLUGIN([tracker],[Tracker],[yes])
@@ -231,7 +225,6 @@ echo "
         VALAFLAGS:              ${VALAFLAGS}
         uninstalled:            ${enable_uninstalled}
         preferences ui:         ${BUILD_UI}
-        SQL debugging:          ${enable_sql_debugging}
     Plugins:
         test:                   ${enable_test_plugin}
         tracker:                ${enable_tracker_plugin}
