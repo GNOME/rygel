@@ -179,9 +179,9 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
 
 
 
-    private ArrayList<string> get_uris () {
+    private ArrayList<File> get_shared_uris () {
         ArrayList<string> uris;
-        ArrayList<string> actual_uris;
+        ArrayList<File> actual_uris;
 
         var config = MetaConfig.get_default ();
 
@@ -195,9 +195,9 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             uris.add_all (this.media_db.get_flagged_uris ("DBUS"));
         } catch (Error error) {}
 
-        actual_uris = new ArrayList<string> ();
+        actual_uris = new ArrayList<File> ();
 
-        unowned string home_dir = Environment.get_home_dir ();
+        var home_dir = File.new_for_path (Environment.get_home_dir ());
         unowned string pictures_dir = Environment.get_user_special_dir
                                         (UserDirectory.PICTURES);
         unowned string videos_dir = Environment.get_user_special_dir
@@ -206,22 +206,28 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                                         (UserDirectory.MUSIC);
 
         foreach (var uri in uris) {
-            var actual_uri = uri;
+            var file = File.new_for_commandline_arg (uri);
+            if (likely (file != home_dir)) {
+                var actual_uri = uri;
 
-            if (likely (pictures_dir != null)) {
-                actual_uri = actual_uri.replace ("@PICTURES@", pictures_dir);
-            }
-            if (likely (videos_dir != null)) {
-                actual_uri = actual_uri.replace ("@VIDEOS@", videos_dir);
-            }
-            if (likely (music_dir != null)) {
-                actual_uri = actual_uri.replace ("@MUSIC@", music_dir);
+                if (likely (pictures_dir != null)) {
+                    actual_uri = actual_uri.replace ("@PICTURES@", pictures_dir);
+                }
+                if (likely (videos_dir != null)) {
+                    actual_uri = actual_uri.replace ("@VIDEOS@", videos_dir);
+                }
+                if (likely (music_dir != null)) {
+                    actual_uri = actual_uri.replace ("@MUSIC@", music_dir);
+                }
+
+                // protect against special directories expanding to $HOME
+                file = File.new_for_commandline_arg (actual_uri);
+                if (file == home_dir) {
+                    continue;
+                }
             }
 
-            // protect against special directories expanding to $HOME
-            if (actual_uri != home_dir) {
-                actual_uris.add (actual_uri);
-            }
+            actual_uris.add (file);
         }
 
         return actual_uris;
@@ -359,9 +365,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             ids = new ArrayList<string> ();
         }
 
-        var uris = get_uris ();
-        foreach (var uri in uris) {
-            var file = File.new_for_commandline_arg (uri);
+        foreach (var file in this.get_shared_uris ()) {
             if (file.query_exists (null)) {
                 ids.remove (MediaCache.get_id (file));
                 this.harvester.schedule (file,
