@@ -96,7 +96,6 @@ internal class Rygel.MediaExport.Database : Object {
                                          db.errmsg ());
         }
 
-        this.db.exec ("PRAGMA cache_size = 32768");
         this.db.exec ("PRAGMA synchronous = OFF");
         this.db.exec ("PRAGMA temp_store = MEMORY");
         this.db.exec ("PRAGMA count_changes = OFF");
