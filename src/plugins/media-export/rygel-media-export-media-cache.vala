@@ -297,7 +297,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         unowned string sql = this.sql.make (SQLString.GET_OBJECTS_BY_FILTER);
         var cursor = this.db.exec_cursor (sql.printf (filter), args.values);
         foreach (var statement in cursor) {
-            var parent_id = statement.column_text (DetailColumn.PARENT);
+            unowned string parent_id = statement.column_text (DetailColumn.PARENT);
 
             if (parent == null || parent_id != parent.id) {
                 parent = new NullContainer ();
@@ -503,9 +503,9 @@ public class Rygel.MediaExport.MediaCache : Object {
     private MediaObject? get_object_from_statement (MediaContainer? parent,
                                                     Statement       statement) {
         MediaObject object = null;
-        var title = statement.column_text (DetailColumn.TITLE);
-        var object_id = statement.column_text (DetailColumn.ID);
-        var uri = statement.column_text (DetailColumn.URI);
+        unowned string title = statement.column_text (DetailColumn.TITLE);
+        unowned string object_id = statement.column_text (DetailColumn.ID);
+        unowned string uri = statement.column_text (DetailColumn.URI);
 
         switch (statement.column_int (DetailColumn.TYPE)) {
             case 0:
@@ -519,7 +519,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                 break;
             case 1:
                 // this is an item
-                var upnp_class = statement.column_text (DetailColumn.CLASS);
+                unowned string upnp_class = statement.column_text
+                                        (DetailColumn.CLASS);
                 object = factory.get_item (this,
                                            parent,
                                            object_id,
