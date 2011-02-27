@@ -106,10 +106,8 @@ public class Rygel.MediaExport.MediaCache : Object {
 
         foreach (var statement in cursor) {
             var parent_container = parent as MediaContainer;
-            var id = statement.column_text (DetailColumn.ID);
-            var object = get_object_from_statement
+            var object = this.get_object_from_statement
                                         (parent_container,
-                                         id,
                                          statement);
             object.parent_ref = parent_container;
             parent = object;
@@ -197,10 +195,8 @@ public class Rygel.MediaExport.MediaCache : Object {
         var cursor = this.exec_cursor (SQLString.GET_CHILDREN, values);
 
         foreach (var statement in cursor) {
-            var child_id = statement.column_text (DetailColumn.ID);
-            children.add (get_object_from_statement (container,
-                                                     child_id,
-                                                     statement));
+            children.add (this.get_object_from_statement (container,
+                                                          statement));
             children.last ().parent_ref = container;
         }
 
@@ -301,7 +297,6 @@ public class Rygel.MediaExport.MediaCache : Object {
         unowned string sql = this.sql.make (SQLString.GET_OBJECTS_BY_FILTER);
         var cursor = this.db.exec_cursor (sql.printf (filter), args.values);
         foreach (var statement in cursor) {
-            var child_id = statement.column_text (DetailColumn.ID);
             var parent_id = statement.column_text (DetailColumn.PARENT);
 
             if (parent == null || parent_id != parent.id) {
@@ -310,14 +305,13 @@ public class Rygel.MediaExport.MediaCache : Object {
             }
 
             if (parent != null) {
-                children.add (get_object_from_statement (parent,
-                                                         child_id,
-                                                         statement));
+                children.add (this.get_object_from_statement (parent,
+                                                              statement));
                 children.last ().parent_ref = parent;
             } else {
                 warning ("Inconsistent database: item %s " +
                          "has no parent %s",
-                         child_id,
+                         statement.column_text (DetailColumn.ID),
                          parent_id);
             }
         }
@@ -507,15 +501,15 @@ public class Rygel.MediaExport.MediaCache : Object {
    }
 
     private MediaObject? get_object_from_statement (MediaContainer? parent,
-                                                    string          object_id,
                                                     Statement       statement) {
         MediaObject object = null;
         var title = statement.column_text (DetailColumn.TITLE);
+        var object_id = statement.column_text (DetailColumn.ID);
+        var uri = statement.column_text (DetailColumn.URI);
 
         switch (statement.column_int (DetailColumn.TYPE)) {
             case 0:
                 // this is a container
-                var uri = statement.column_text (DetailColumn.URI);
                 object = factory.get_container (this, object_id, title, 0, uri);
 
                 var container = object as MediaContainer;
@@ -533,7 +527,6 @@ public class Rygel.MediaExport.MediaCache : Object {
                                            upnp_class);
                 fill_item (statement, object as MediaItem);
 
-                var uri = statement.column_text (DetailColumn.URI);
                 if (uri != null) {
                     (object as MediaItem).add_uri (uri);
                 }
