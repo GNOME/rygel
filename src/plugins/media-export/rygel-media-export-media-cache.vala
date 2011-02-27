@@ -189,8 +189,8 @@ public class Rygel.MediaExport.MediaCache : Object {
         MediaObjects children = new MediaObjects ();
 
         GLib.Value[] values = { container.id,
-                                (int64) offset,
-                                (int64) max_count };
+                                offset,
+                                max_count };
 
         var cursor = this.exec_cursor (SQLString.GET_CHILDREN, values);
 
@@ -466,7 +466,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                 item.title,
                                 type,
                                 parent,
-                                (int64) item.modified,
+                                item.modified,
                                 item.uris.size == 0 ? null : item.uris[0]
                               };
         this.db.exec (this.sql.make (SQLString.INSERT), values);
