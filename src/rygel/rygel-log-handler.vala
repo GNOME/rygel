@@ -97,7 +97,12 @@ public class Rygel.LogHandler : GLib.Object {
     private void log_func (string?       log_domain,
                            LogLevelFlags log_levels,
                            string        message) {
-        var flags = this.log_level_hash[log_domain];
+        LogLevelFlags flags = 0;
+
+        if (log_domain != null) {
+            flags = this.log_level_hash[log_domain];
+        }
+
         if (flags == 0) {
             flags = this.log_level_hash["*"];
         }
