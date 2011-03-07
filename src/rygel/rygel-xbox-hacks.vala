@@ -29,7 +29,7 @@ internal errordomain Rygel.XBoxHacksError {
 }
 
 internal class Rygel.XBoxHacks : GLib.Object {
-    private static string AGENT = ".*Xbox.*";
+    private static string AGENT = ".*Xbox.*|.*Allegro-Software-WebClient.*";
     private static string DMS = "urn:schemas-upnp-org:device:MediaServer";
     private static string DMS_V1 = DMS + ":1";
     private static string FRIENDLY_NAME_POSTFIX =
@@ -38,7 +38,8 @@ internal class Rygel.XBoxHacks : GLib.Object {
 
     public XBoxHacks.for_action (ServiceAction action) throws XBoxHacksError {
         var agent = action.get_message ().request_headers.get_one ("User-Agent");
-        if (!agent.contains ("Xbox")) {
+        if (!(agent.contains ("Xbox") &&
+              agent.contains ("Allegro-Software-WebClient"))) {
             throw new XBoxHacksError.NA (_("Not Applicable"));
         }
     }
