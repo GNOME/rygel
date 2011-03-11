@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
 "cgi?product=Rygel&component=general\n"
 "POT-Creation-Date: 2011-02-19 16:26+0000\n"
-"PO-Revision-Date: 2011-03-10 18:08+0530\n"
+"PO-Revision-Date: 2011-03-11 12:01+0530\n"
 "Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
 "Language-Team: Kannada <kn@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -516,17 +516,18 @@ msgstr "'%s' ಎಂಬ ಹೊಸ ಪ್ಲಗ್‌ಇನ್ ಲಭ್ಯವಿ�
 #: ../src/rygel/rygel-plugin-loader.vala:117
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
-msgstr ""
+msgstr "'%s' ಎಂಬ ಕಡತಕೋಶದಲ್ಲಿನ ವಿಷಯಗಳನ್ನು ಪಟ್ಟಿ ಮಾಡುವಲ್ಲಿ ವಿಫಲಗೊಂಡಿದೆ: %s"
 
 #: ../src/rygel/rygel-plugin-loader.vala:149
 #, c-format
 msgid "Failed to load module from path '%s': %s"
-msgstr ""
+msgstr "'%s' ಎಂಬ ಮಾರ್ಗದಿಂದ ಮಾಡ್ಯೂಲ್ ಅನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: %s"
 
 #: ../src/rygel/rygel-plugin-loader.vala:159
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr ""
+"ಆರಂಭದ ಬಿಂದುವಿನ ಕ್ರಿಯೆ '%s' ಅನ್ನು %s ಎಂಬಲ್ಲಿ ಪತ್ತೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: %s"
 
 #: ../src/rygel/rygel-root-device-factory.vala:106
 #: ../src/rygel/rygel-root-device-factory.vala:139
@@ -534,100 +535,100 @@ msgstr ""
 #: ../src/rygel/rygel-root-device-factory.vala:192
 #, c-format
 msgid "XML node '%s' not found."
-msgstr ""
+msgstr "'%s' ಎಂಬ XML ನೋಡ್ ಕಂಡುಬಂದಿಲ್ಲ."
 
 #: ../src/rygel/rygel-root-device-factory.vala:294
 #: ../src/rygel/rygel-root-device-factory.vala:304
 #, c-format
 msgid "Failed to write modified description to %s"
-msgstr ""
+msgstr "ಮಾರ್ಪಡಿಸಲಾದ ವಿವರಣೆಯನ್ನು %s ಎಂಬುದಕ್ಕೆ ಬರೆಯಲು ವಿಫಲಗೊಂಡಿದೆ"
 
 #: ../src/rygel/rygel-search.vala:89
 #, c-format
 msgid "Failed to search in '%s': %s"
-msgstr ""
+msgstr "'%s' ನಲ್ಲಿ ಹುಡುಕಲು ವಿಫಲಗೊಂಡಿದೆ: %s"
 
 #: ../src/rygel/rygel-http-seekable-response.vala:59
 #, c-format
 msgid "Failed to read from URI: %s: %s"
-msgstr ""
+msgstr "URI ಇಂದ ಓದಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: %s: %s"
 
 #. Failed to seek to media segment (defined by first and last
 #. byte positions).
 #: ../src/rygel/rygel-http-seekable-response.vala:78
 #, c-format
 msgid "Failed to seek to %s-%s on URI %s: %s"
-msgstr ""
+msgstr "%s-%s ಗಾಗಿ %s ಎಂಬ URI ಯಲ್ಲಿ ಕೋರಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: %s"
 
 #: ../src/rygel/rygel-http-seekable-response.vala:97
 #, c-format
 msgid "Failed to read contents from URI: %s: %s"
-msgstr ""
+msgstr "URI ಇಂದ ವಿಷಯಗಳನ್ನು ಓದಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: %s: %s"
 
 #: ../src/rygel/rygel-http-seekable-response.vala:143
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
-msgstr ""
+msgstr "%s ಎಂಬ URI ಗೆ ಸ್ಟ್ರೀಮ್ ಅನ್ನು ಮುಚ್ಚಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: %s"
 
 #: ../src/rygel/rygel-subtitle-manager.vala:65
 msgid "No subtitle available"
-msgstr ""
+msgstr "ಯಾವುದೆ ಉಪಶೀರ್ಷಿಕೆಯು ಲಭ್ಯವಿಲ್ಲ"
 
 #: ../src/rygel/rygel-thumbnailer.vala:56
 msgid "Failed to find thumbnails folder."
-msgstr ""
+msgstr "ತಂಬ್‌ನೈಲ್‌ಗಳ ಕಡತಕೋಶವನ್ನು ಪತ್ತೆಮಾಡುವಲ್ಲಿ ವಿಫಲಗೊಂಡಿದೆ."
 
 #: ../src/rygel/rygel-thumbnailer.vala:82
 #, c-format
 msgid "No thumbnailer available: %s"
-msgstr ""
+msgstr "ಯಾವುದೆ ತಂಬ್‌ನೈಲರ್ ಲಭ್ಯವಿಲ್ಲ: %s"
 
 #: ../src/rygel/rygel-thumbnailer.vala:106
 msgid "No thumbnail available"
-msgstr ""
+msgstr "ಯಾವುದೆ ತಂಬ್‌ನೈಲ್ ಲಭ್ಯವಿಲ್ಲ"
 
 #: ../src/rygel/rygel-transcode-manager.vala:118
 #, c-format
 msgid "No transcoder available for target format '%s'"
-msgstr ""
+msgstr "'%s' ಎಂಬ ಉದ್ಧೇಶಿತ ವಿನ್ಯಾಸಕ್ಕಾಗಿ ಯಾವುದೆ ಟ್ರಾನ್ಸ್‍ಕೋಡರ್ ಲಭ್ಯವಿಲ್ಲ"
 
 #: ../src/rygel/rygel-user-config.vala:169
 #, c-format
 msgid "No value available for '%s'"
-msgstr ""
+msgstr "'%s' ಗಾಗಿ ಯಾವುದೆ ಮೌಲ್ಯವು ಲಭ್ಯವಿಲ್ಲ"
 
 #: ../src/rygel/rygel-user-config.vala:219
 #, c-format
 msgid "Value of '%s' out of range"
-msgstr ""
+msgstr "'%s' ನ ಮೌಲ್ಯವು ವ್ಯಾಪ್ತಿಯ ಹೊರಗಿದೆ"
 
 #: ../src/rygel/rygel-xbox-hacks.vala:42
 msgid "Not Applicable"
-msgstr ""
+msgstr "ಅನ್ವಯಿಸುವುದಿಲ್ಲ"
 
 #: ../src/rygel/rygel-xbox-hacks.vala:178
 #, c-format
 msgid "Failed to write modified description to %s."
-msgstr ""
+msgstr "ಮಾರ್ಪಡಿಸಲಾದ ವಿವರಣೆಯನ್ನು %s ಎಂಬುದಕ್ಕೆ ಬರೆಯುವಲ್ಲಿ ವಿಫಲಗೊಂಡಿದೆ."
 
 #: ../src/ui/rygel-preferences-dialog.vala:89
 #, c-format
 msgid "Failed to create preferences dialog: %s"
-msgstr ""
+msgstr "ಆದ್ಯತಾ ಸಂವಾದ ಚೌಕವನ್ನು ರಚಿಸುವಲ್ಲಿ ವಿಫಲಗೊಂಡಿದೆ: %s"
 
 #: ../src/ui/rygel-writable-user-config.vala:102
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
-msgstr ""
+msgstr "ಸಂರಚನಾ ಮಾಹಿತಿಯನ್ನು '%s' ಎಂಬ ಕಡತಕ್ಕೆ ಉಳಿಸುವಲ್ಲಿ ವಿಫಲಗೊಂಡಿದೆ: %s"
 
 #: ../src/ui/rygel-writable-user-config.vala:193
 #, c-format
 msgid "Failed to start Rygel service: %s"
-msgstr ""
+msgstr "Rygel ಸೇವೆಯನ್ನು ಆರಂಭಿಸಲು ವಿಫಲವಾಗಿದೆ: %s"
 
 #: ../src/ui/rygel-writable-user-config.vala:195
 #, c-format
 msgid "Failed to stop Rygel service: %s"
-msgstr ""
+msgstr "Rygel ಸೇವೆಯನ್ನು ನಿಲ್ಲಿಸಲು ವಿಫಲವಾಗಿದೆ: %s"
 
 
