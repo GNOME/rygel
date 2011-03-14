@@ -1,110 +1,42 @@
 # Czech translation for rygel.
 # Copyright (C) 2010 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
-# Marek Černocký <marek@manet.cz>, 2010.
+#
+# Marek Černocký <marek@manet.cz>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-29 23:42+0100\n"
-"PO-Revision-Date: 2010-12-27 18:26+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&component=general\n"
+"POT-Creation-Date: 2011-03-08 16:40+0000\n"
+"PO-Revision-Date: 2011-03-14 18:57+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Poedit-Language: Czech\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
 #: ../data/rygel-preferences.ui.h:1
-msgid "General"
-msgstr "Obecné"
-
-#: ../data/rygel-preferences.ui.h:2
-msgid "MPE_G TS"
-msgstr "MPE_G TS"
-
-#: ../data/rygel-preferences.ui.h:3
-msgid "Network Options"
-msgstr "Volby sítě"
-
-#: ../data/rygel-preferences.ui.h:4
-msgid "Plugins"
-msgstr "Zásuvné moduly"
-
-#: ../data/rygel-preferences.ui.h:5
 #: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
 msgstr "Předvolby Rygel"
 
-#: ../data/rygel-preferences.ui.h:6
+#: ../data/rygel-preferences.ui.h:2
 msgid "Select folders"
 msgstr "Výběr složek"
 
-#: ../data/rygel-preferences.ui.h:7
-msgid "Share M_usic"
-msgstr "Sdílet _hudbu"
-
-#: ../data/rygel-preferences.ui.h:8
-msgid "Share _Pictures"
-msgstr "Sdílet o_brázky"
-
-#: ../data/rygel-preferences.ui.h:9
-msgid "Share _Videos"
-msgstr "Sdílet _videa"
-
-#: ../data/rygel-preferences.ui.h:10
-msgid "T_itle"
-msgstr "_Název"
-
-#: ../data/rygel-preferences.ui.h:11
-msgid "Ti_tle"
-msgstr "Náz_ev"
-
-#: ../data/rygel-preferences.ui.h:13
-#, no-c-format
-msgid ""
-"Write %u for username, %n for real name of the user and %h for host name"
-msgstr ""
-"Napište %u pro jméno uživatele, %n pro skutečné jméno uživatele a %h pro "
-"název počítače"
-
-#: ../data/rygel-preferences.ui.h:14
-msgid "_Enable UPnP/DLNA"
-msgstr "Povolit _UPnP/DLNA"
-
 #. Network Interface
-#: ../data/rygel-preferences.ui.h:16
-msgid "_Interface"
-msgstr "_Rozhraní"
+#: ../data/rygel-preferences.ui.h:4
+#| msgid "Network Options"
+msgid "_Network"
+msgstr "_Síť"
 
-#: ../data/rygel-preferences.ui.h:17
-msgid "_LPCM"
-msgstr "_LPCM"
-
-#: ../data/rygel-preferences.ui.h:18
-msgid "_MP3"
-msgstr "_MP3"
-
-#: ../data/rygel-preferences.ui.h:19
-msgid "_Media Export"
-msgstr "Export _médií"
-
-#. Network Port
-#: ../data/rygel-preferences.ui.h:21
-msgid "_Port"
-msgstr "_Port"
-
-#: ../data/rygel-preferences.ui.h:22
-msgid "_Transcoding support"
-msgstr "Podpora převo_dů"
-
-#: ../data/rygel-preferences.ui.h:23
-msgid "_URIs"
-msgstr "Adresy _URI"
+#: ../data/rygel-preferences.ui.h:5
+msgid "_Share media through DLNA"
+msgstr "S_dílet média přes DLNA"
 
 #: ../data/rygel-preferences.desktop.in.in.h:2
 msgid "UPnP/DLNA Preferences"
@@ -118,7 +50,7 @@ msgstr "Rygel"
 msgid "UPnP/DLNA Services"
 msgstr "Služby UPnP/DLNA"
 
-#: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
+#: ../src/plugins/playbin/rygel-playbin-plugin.vala:45
 msgid "GStreamer Player"
 msgstr "Přehrávač GStreamer"
 
@@ -127,18 +59,18 @@ msgstr "Přehrávač GStreamer"
 msgid "Failed to open database: %d (%s)"
 msgstr "Selhalo otevření databáze: %d (%s)"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:208
+#: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Selhalo vrácení transakce do předchozího stavu: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:268
+#: ../src/plugins/media-export/rygel-media-export-database.vala:267
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Nepodporovaný typ %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
-#: ../src/rygel/rygel-plugin-loader.vala:178
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:134
+#: ../src/rygel/rygel-plugin-loader.vala:186
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Selhal dotaz na typ obsahu pro „%s“"
@@ -167,22 +99,15 @@ msgstr "Není dispozici žádný nástroj na získávání metadat. Nebude se pr
 msgid "'%s' harvested"
 msgstr "Ze souboru „%s“ byl získána všechna metadata"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:158
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:166
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Chyba při získávání objektu „%s“ z databáze: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:182
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:201
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Chyba při odstraňování objektu z databáze: %s"
-
-#. @REALNAME@ is substituted for user's real name
-#. and it doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-plugin.vala:78
-#: ../src/plugins/tracker/rygel-tracker-plugin.vala:32
-msgid "@REALNAME@'s media"
-msgstr "Média uživatele @REALNAME@"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:77
 #, c-format
@@ -211,30 +136,35 @@ msgstr "Album"
 msgid "Genre"
 msgstr "Žánr"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:94
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:98
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "Selhalo odstranění adresy URI: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:329
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:336
+#: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
+msgid "@REALNAME@'s media"
+msgstr "Média uživatele @REALNAME@"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Selhalo vytvoření služby MediaExport na sběrnici DBus: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:367
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Selhalo odstranění záznamu: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:378
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:397
 msgid "Music"
 msgstr "Hudba"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:400
 msgid "Pictures"
 msgstr "Obrázky"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:383
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:402
 msgid "Videos"
 msgstr "Videa"
 
@@ -259,7 +189,7 @@ msgstr "Selhalo připojení ke sběrnici sezení: %s"
 msgid "Error getting all values for '%s': %s"
 msgstr "Chyba při získávání všech hodnot pro „%s“: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:34
+#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:41
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "Selhalo spuštění služby Tracker: %s. Zásuvný modul zakázán."
@@ -299,24 +229,24 @@ msgstr "Neplatné argumenty"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Selhalo procházení „%s“: %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:130
-#: ../src/rygel/rygel-cmdline-config.vala:135
-#: ../src/rygel/rygel-cmdline-config.vala:143
-#: ../src/rygel/rygel-cmdline-config.vala:151
-#: ../src/rygel/rygel-cmdline-config.vala:159
-#: ../src/rygel/rygel-cmdline-config.vala:167
-#: ../src/rygel/rygel-cmdline-config.vala:175
-#: ../src/rygel/rygel-cmdline-config.vala:183
-#: ../src/rygel/rygel-cmdline-config.vala:191
-#: ../src/rygel/rygel-cmdline-config.vala:199
-#: ../src/rygel/rygel-cmdline-config.vala:207
-#: ../src/rygel/rygel-cmdline-config.vala:233
-#: ../src/rygel/rygel-cmdline-config.vala:252
-#: ../src/rygel/rygel-cmdline-config.vala:276
-#: ../src/rygel/rygel-cmdline-config.vala:302
-#: ../src/rygel/rygel-cmdline-config.vala:331
-#: ../src/rygel/rygel-cmdline-config.vala:357
-#: ../src/rygel/rygel-cmdline-config.vala:382
+#: ../src/rygel/rygel-cmdline-config.vala:137
+#: ../src/rygel/rygel-cmdline-config.vala:145
+#: ../src/rygel/rygel-cmdline-config.vala:153
+#: ../src/rygel/rygel-cmdline-config.vala:161
+#: ../src/rygel/rygel-cmdline-config.vala:169
+#: ../src/rygel/rygel-cmdline-config.vala:177
+#: ../src/rygel/rygel-cmdline-config.vala:185
+#: ../src/rygel/rygel-cmdline-config.vala:193
+#: ../src/rygel/rygel-cmdline-config.vala:201
+#: ../src/rygel/rygel-cmdline-config.vala:209
+#: ../src/rygel/rygel-cmdline-config.vala:217
+#: ../src/rygel/rygel-cmdline-config.vala:243
+#: ../src/rygel/rygel-cmdline-config.vala:262
+#: ../src/rygel/rygel-cmdline-config.vala:286
+#: ../src/rygel/rygel-cmdline-config.vala:312
+#: ../src/rygel/rygel-cmdline-config.vala:341
+#: ../src/rygel/rygel-cmdline-config.vala:367
+#: ../src/rygel/rygel-cmdline-config.vala:392
 #: ../src/rygel/rygel-meta-config.vala:74
 #: ../src/rygel/rygel-meta-config.vala:93
 #: ../src/rygel/rygel-meta-config.vala:112
@@ -480,7 +410,7 @@ msgid "Object removal from %s not allowed"
 msgstr "Odstranění objektu v %s není dovoleno"
 
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-live-response.vala:144
+#: ../src/rygel/rygel-http-gst-response.vala:143
 #: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
@@ -490,32 +420,32 @@ msgid "Failed to link pad %s to %s"
 msgstr "Selhalo napojení propojky %s na %s"
 
 #. 'fakesink' should not be translated
-#: ../src/rygel/rygel-live-response.vala:92
+#: ../src/rygel/rygel-http-gst-response.vala:91
 msgid "Plugin 'fakesink' missing"
 msgstr "Schází zásuvný modul „fakesink“"
 
-#: ../src/rygel/rygel-live-response.vala:109
-#: ../src/rygel/rygel-live-response.vala:131
+#: ../src/rygel/rygel-http-gst-response.vala:108
+#: ../src/rygel/rygel-http-gst-response.vala:130
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Selhalo navázání %s na %s"
 
-#: ../src/rygel/rygel-live-response.vala:218
+#: ../src/rygel/rygel-http-gst-response.vala:216
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Chyba od roury %s: %s"
 
-#: ../src/rygel/rygel-live-response.vala:225
+#: ../src/rygel/rygel-http-gst-response.vala:223
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Varování od roury %s: %s"
 
-#: ../src/rygel/rygel-live-response.vala:259
+#: ../src/rygel/rygel-http-gst-response.vala:256
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Selhal přesun na pozici %lld"
 
-#: ../src/rygel/rygel-log-handler.vala:62
+#: ../src/rygel/rygel-log-handler.vala:68
 #, c-format
 msgid "Failed to get log level from configuration: %s"
 msgstr "Selhalo zjištění úrovně evidence z nastavení: %s"
@@ -528,17 +458,17 @@ msgstr[0] "Za %d sekundu nebyl nalezen žádný zásuvný modul; zanechává se 
 msgstr[1] "Za %d sekundy nebyl nalezen žádný zásuvný modul; zanechává se toho…"
 msgstr[2] "Za %d sekund nebyl nalezen žádný zásuvný modul; zanechává se toho…"
 
-#: ../src/rygel/rygel-main.vala:142
+#: ../src/rygel/rygel-main.vala:145
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Selhalo vytvoření generátoru kořenových zařízení: %s"
 
-#: ../src/rygel/rygel-main.vala:193
+#: ../src/rygel/rygel-main.vala:203
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Selhalo vytvoření kořenového zařízení pro %s. Důvod: %s"
 
-#: ../src/rygel/rygel-main.vala:229
+#: ../src/rygel/rygel-main.vala:239
 #, c-format
 msgid "Failed to start D-Bus service: %s"
 msgstr "Selhalo spuštění služby D-Bus: %s"
@@ -575,22 +505,22 @@ msgstr "Není nastavená žádná hodnota pro „%s/povoleno“"
 msgid "No value available for '%s/%s'"
 msgstr "Není dostupná žádná hodnota pro „%s/%s“"
 
-#: ../src/rygel/rygel-plugin-loader.vala:71
+#: ../src/rygel/rygel-plugin-loader.vala:83
 #, c-format
 msgid "New plugin '%s' available"
 msgstr "Dostupný nový zásuvný modul „%s“"
 
-#: ../src/rygel/rygel-plugin-loader.vala:109
+#: ../src/rygel/rygel-plugin-loader.vala:117
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Chyba při výpisu obsahu složky „%s“: %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:141
+#: ../src/rygel/rygel-plugin-loader.vala:149
 #, c-format
 msgid "Failed to load module from path '%s': %s"
 msgstr "Selhalo načtení modulu z cesty „%s“: %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:151
+#: ../src/rygel/rygel-plugin-loader.vala:159
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Selhalo nalezení vstupního bodu funkce „%s“ v „%s“: %s"
@@ -614,29 +544,29 @@ msgstr "Selhal zápis změněného popisu do %s"
 msgid "Failed to search in '%s': %s"
 msgstr "Selhalo hledání v „%s“: %s"
 
-#: ../src/rygel/rygel-seekable-response.vala:62
+#: ../src/rygel/rygel-http-seekable-response.vala:59
 #, c-format
 msgid "Failed to read from URI: %s: %s"
 msgstr "Selhalo čtení z adresy URI: %s: %s"
 
 #. Failed to seek to media segment (defined by first and last
 #. byte positions).
-#: ../src/rygel/rygel-seekable-response.vala:81
+#: ../src/rygel/rygel-http-seekable-response.vala:78
 #, c-format
 msgid "Failed to seek to %s-%s on URI %s: %s"
 msgstr "Selhal přesun na %s-%s na adrese URI %s: %s"
 
-#: ../src/rygel/rygel-seekable-response.vala:100
+#: ../src/rygel/rygel-http-seekable-response.vala:97
 #, c-format
 msgid "Failed to read contents from URI: %s: %s"
 msgstr "Selhalo čtení obsahu z adresy URI: %s: %s"
 
-#: ../src/rygel/rygel-seekable-response.vala:146
+#: ../src/rygel/rygel-http-seekable-response.vala:143
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
 msgstr "Selhalo uzavření proudu do adresy URI %s: %s"
 
-#: ../src/rygel/rygel-subtitle-manager.vala:66
+#: ../src/rygel/rygel-subtitle-manager.vala:65
 msgid "No subtitle available"
 msgstr "Nejsou dostupné žádné titulky"
 
@@ -658,30 +588,15 @@ msgstr "Žádný náhled není k dispozici"
 msgid "No transcoder available for target format '%s'"
 msgstr "Pro formát „%s“ není k dispozici žádný převodník"
 
-#: ../src/rygel/rygel-user-config.vala:193
-#, c-format
-msgid "Failed to save configuration data to file '%s': %s"
-msgstr "Selhalo uložení dat nastavení do souboru „%s“: %s"
-
-#: ../src/rygel/rygel-user-config.vala:213
+#: ../src/rygel/rygel-user-config.vala:169
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Pro „%s“ není dostupná žádná hodnota"
 
-#: ../src/rygel/rygel-user-config.vala:241
+#: ../src/rygel/rygel-user-config.vala:219
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Hodnota „%s“ je mimo rozsah"
-
-#: ../src/rygel/rygel-user-config.vala:351
-#, c-format
-msgid "Failed to start Rygel service: %s"
-msgstr "Selhalo spuštění služby Rygel: %s"
-
-#: ../src/rygel/rygel-user-config.vala:353
-#, c-format
-msgid "Failed to stop Rygel service: %s"
-msgstr "Selhalo zastavení služby Rygel: %s"
 
 #: ../src/rygel/rygel-xbox-hacks.vala:42
 msgid "Not Applicable"
@@ -692,10 +607,79 @@ msgstr "Nepoužitelné"
 msgid "Failed to write modified description to %s."
 msgstr "Selhal zápis změněného popisu do %s."
 
-#: ../src/ui/rygel-preferences-dialog.vala:78
+#: ../src/ui/rygel-preferences-dialog.vala:89
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Selhalo vytvoření dialogového okna předvoleb: %s"
+
+#: ../src/ui/rygel-writable-user-config.vala:102
+#, c-format
+msgid "Failed to save configuration data to file '%s': %s"
+msgstr "Selhalo uložení dat nastavení do souboru „%s“: %s"
+
+#: ../src/ui/rygel-writable-user-config.vala:193
+#, c-format
+msgid "Failed to start Rygel service: %s"
+msgstr "Selhalo spuštění služby Rygel: %s"
+
+#: ../src/ui/rygel-writable-user-config.vala:195
+#, c-format
+msgid "Failed to stop Rygel service: %s"
+msgstr "Selhalo zastavení služby Rygel: %s"
+
+#~ msgid "General"
+#~ msgstr "Obecné"
+
+#~ msgid "MPE_G TS"
+#~ msgstr "MPE_G TS"
+
+#~ msgid "Plugins"
+#~ msgstr "Zásuvné moduly"
+
+#~ msgid "Share M_usic"
+#~ msgstr "Sdílet _hudbu"
+
+#~ msgid "Share _Pictures"
+#~ msgstr "Sdílet o_brázky"
+
+#~ msgid "Share _Videos"
+#~ msgstr "Sdílet _videa"
+
+#~ msgid "T_itle"
+#~ msgstr "_Název"
+
+#~ msgid "Ti_tle"
+#~ msgstr "Náz_ev"
+
+#~ msgid ""
+#~ "Write %u for username, %n for real name of the user and %h for host name"
+#~ msgstr ""
+#~ "Napište %u pro jméno uživatele, %n pro skutečné jméno uživatele a %h pro "
+#~ "název počítače"
+
+#~ msgid "_Enable UPnP/DLNA"
+#~ msgstr "Povolit _UPnP/DLNA"
+
+#~ msgid "_Interface"
+#~ msgstr "_Rozhraní"
+
+#~ msgid "_LPCM"
+#~ msgstr "_LPCM"
+
+#~ msgid "_MP3"
+#~ msgstr "_MP3"
+
+#~ msgid "_Media Export"
+#~ msgstr "Export _médií"
+
+#~ msgid "_Port"
+#~ msgstr "_Port"
+
+#~ msgid "_Transcoding support"
+#~ msgstr "Podpora převo_dů"
+
+#~ msgid "_URIs"
+#~ msgstr "Adresy _URI"
 
 #~ msgid "Failed to create instance of database"
 #~ msgstr "Selhalo vytvoření instance databáze"
