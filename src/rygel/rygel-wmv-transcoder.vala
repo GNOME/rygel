@@ -23,22 +23,12 @@ using Gst;
 using GUPnP;
 
 internal class Rygel.WMVTranscoder : Rygel.Transcoder {
-    private const int VIDEO_BITRATE = 1200;
     private const int BITRATE = 1200000;
-
-    private const string VIDEO_ENCODER = "ffenc_wmv1";
-    private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
-    private const string VIDEO_RATE = "videorate";
-    private const string VIDEO_SCALE = "videoscale";
+    private const int VIDEO_BITRATE = 1200;
+    private const int AUDIO_BITRATE = 64;
 
     public WMVTranscoder () {
         base ("video/x-ms-wmv", "WMVHIGH_FULL", VideoItem.UPNP_CLASS);
-    }
-
-    public override Element create_source (MediaItem item,
-                                           Element   src)
-                                           throws Error {
-        return new WMVTranscoderBin (item, src, this);
     }
 
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
@@ -53,7 +43,7 @@ internal class Rygel.WMVTranscoder : Rygel.Transcoder {
 
         resource.width = video_item.width;
         resource.height = video_item.height;
-        resource.bitrate = (VIDEO_BITRATE + WMATranscoder.BITRATE) * 1000 / 8;
+        resource.bitrate = (VIDEO_BITRATE + AUDIO_BITRATE) * 1000 / 8;
 
         return resource;
     }
@@ -73,30 +63,29 @@ internal class Rygel.WMVTranscoder : Rygel.Transcoder {
         return distance;
     }
 
-    public Element create_encoder (MediaItem item,
-                                   string?   src_pad_name,
-                                   string?   sink_pad_name)
-                                   throws Error {
-        var convert = GstUtils.create_element (COLORSPACE_CONVERT,
-                                               COLORSPACE_CONVERT);
-        dynamic Element encoder = GstUtils.create_element (VIDEO_ENCODER,
-                                                           VIDEO_ENCODER);
+    protected override EncodingProfile get_encoding_profile () {
+        var container_format = Caps.from_string ("video/x-ms-asf,parsed=true");
 
-        encoder.bitrate = (int) VIDEO_BITRATE * 1000;
+        var video_format = Caps.from_string ("video/x-wmv,wmvversion=1");
+        var audio_format = Caps.from_string ("audio/x-wma,channels=2,wmaversion=1");
 
-        var bin = new Bin ("video-encoder-bin");
-        bin.add_many (convert, encoder);
-        convert.link (encoder);
+        var enc_container_profile = new EncodingContainerProfile("container",
+                                                                 null,
+                                                                 container_format,
+                                                                 null);
+        var enc_video_profile = new EncodingVideoProfile (video_format,
+                                                          null,
+                                                          null,
+                                                          1);
+        var enc_audio_profile = new EncodingAudioProfile (audio_format,
+                                                          null,
+                                                          null,
+                                                          1);
 
-        var pad = convert.get_static_pad ("sink");
-        var ghost = new GhostPad (sink_pad_name, pad);
-        bin.add_pad (ghost);
+        // FIXME: We should use the preset to set bitrate
+        enc_container_profile.add_profile (enc_video_profile);
+        enc_container_profile.add_profile (enc_audio_profile);
 
-        pad = encoder.get_static_pad ("src");
-        ghost = new GhostPad (src_pad_name, pad);
-        bin.add_pad (ghost);
-
-        return bin;
+        return enc_container_profile;
     }
-
 }

@@ -27,11 +27,15 @@ using Gee;
 
 /**
  * The base Transcoder class. Each implementation derives from it and must
- * at least implement create_source method.
+ * implement get_distance and get_encoding_profile methods.
  */
 internal abstract class Rygel.Transcoder : GLib.Object {
     public string mime_type { get; protected set; }
     public string dlna_profile { get; protected set; }
+    public Gst.Caps decoder_caps;
+
+    private const string DECODE_BIN = "decodebin2";
+    private const string ENCODE_BIN = "encodebin";
 
     // Primary UPnP item class that this transcoder is meant for, doesn't
     // necessarily mean it cant be used for other classes.
@@ -53,8 +57,29 @@ internal abstract class Rygel.Transcoder : GLib.Object {
      *
      * @return      the new transcoding source
      */
-    public abstract Element create_source (MediaItem item,
-                                           Element   src) throws Error;
+    public virtual Element create_source (MediaItem item,
+                                          Element   src) throws Error {
+        dynamic Element decoder = GstUtils.create_element (DECODE_BIN,
+                                                           DECODE_BIN);
+        dynamic Element encoder = GstUtils.create_element (ENCODE_BIN,
+                                                           ENCODE_BIN);
+
+        encoder.profile = this.get_encoding_profile ();
+
+        var bin = new Bin ("transcoder-source");
+        bin.add_many (src, decoder, encoder);
+
+        src.link (decoder);
+
+        decoder.pad_added.connect (this.on_decoder_pad_added);
+        decoder.autoplug_continue.connect (this.on_autoplug_continue);
+
+        var pad = encoder.get_static_pad ("src");
+        var ghost = new GhostPad (null, pad);
+        bin.add_pad (ghost);
+
+        return bin;
+    }
 
     public virtual DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
                                                    MediaItem        item,
@@ -105,11 +130,52 @@ internal abstract class Rygel.Transcoder : GLib.Object {
      */
     public abstract uint get_distance (MediaItem item);
 
+    /**
+     * Gets the Gst.EncodingProfile for this transcoder.
+     *
+     * @return      the Gst.EncodingProfile for this transcoder.
+     */
+    protected abstract EncodingProfile get_encoding_profile ();
+
     protected bool mime_type_is_a (string mime_type1, string mime_type2) {
         string content_type1 = ContentType.get_mime_type (mime_type1);
         string content_type2 = ContentType.get_mime_type (mime_type2);
 
         return ContentType.is_a (content_type1, content_type2);
     }
-}
 
+    private bool on_autoplug_continue (Element decodebin,
+                                       Pad     new_pad,
+                                       Caps    caps) {
+        this.decoder_caps = caps;
+        return !this.connect_decoder_pad (decodebin, new_pad);
+    }
+
+    private void on_decoder_pad_added (Element decodebin, Pad new_pad) {
+        this.connect_decoder_pad (decodebin, new_pad);
+    }
+
+    private bool connect_decoder_pad (Element decodebin, Pad new_pad) {
+        var bin = decodebin.get_parent () as Bin;
+        assert (bin != null);
+
+        var encoder = bin.get_by_name (ENCODE_BIN);
+        assert (encoder != null);
+
+        Gst.Pad encoder_pad = null;
+        encoder_pad = encoder.get_compatible_pad (new_pad, null);
+        if (encoder_pad == null) {
+            debug ("No compatible encodebin pad found for pad '%s', ignoring..",
+                   new_pad.name);
+
+            return false;
+        } else {
+            debug ("pad '%s' with caps '%s' is compatible with '%s'",
+                   new_pad.name,
+                   this.decoder_caps.to_string (),
+                   encoder_pad.name);
+        }
+
+        return new_pad.link (encoder_pad) == PadLinkReturn.OK;
+    }
+}

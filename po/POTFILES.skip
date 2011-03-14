@@ -58,7 +58,6 @@ src/rygel/rygel-http-transcode-handler.c
 src/rygel/rygel-import-resource.c
 src/rygel/rygel-item-creator.c
 src/rygel/rygel-item-destroyer.c
-src/rygel/rygel-l16-transcoder-bin.c
 src/rygel/rygel-http-response.c
 src/rygel/rygel-log-handler.c
 src/rygel/rygel-main.c
@@ -79,8 +78,6 @@ src/rygel/rygel-subtitle-manager.c
 src/rygel/rygel-thumbnailer.c
 src/rygel/rygel-transcode-manager.c
 src/rygel/rygel-user-config.c
-src/rygel/rygel-wma-transcoder-bin.c
-src/rygel/rygel-wmv-transcoder-bin.c
 src/rygel/rygel-xbox-hacks.c
 src/rygel/rygel-changelog.c
 src/rygel/rygel-media-query-action.c

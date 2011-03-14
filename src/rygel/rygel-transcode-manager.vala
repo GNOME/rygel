@@ -65,7 +65,7 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
 
         if (transcoding) {
             if (lpcm_transcoder) {
-                transcoders.add (new L16Transcoder (Endianness.BIG));
+                transcoders.add (new L16Transcoder ());
             }
 
             if (mp3_transcoder) {

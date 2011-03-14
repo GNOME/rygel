@@ -43,39 +43,12 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     private const string[] PROFILES = {"MPEG_TS_SD_EU_ISO", "MPEG_TS_HD_NA_ISO"};
     private const int BITRATE = 3000000;
 
-    private const string DECODE_BIN = "decodebin2";
-    private const string ENCODE_BIN = "encodebin";
-
     private MP2TSProfile profile;
 
     public MP2TSTranscoder (MP2TSProfile profile) {
         base ("video/mpeg", PROFILES[profile], VideoItem.UPNP_CLASS);
 
         this.profile = profile;
-    }
-
-    public override Element create_source (MediaItem item,
-                                           Element   src)
-                                           throws Error {
-        dynamic Element decoder = GstUtils.create_element (DECODE_BIN,
-                                                           DECODE_BIN);
-        dynamic Element encoder = GstUtils.create_element (ENCODE_BIN,
-                                                           ENCODE_BIN);
-
-        encoder.profile = this.get_encoding_profile ();
-
-        var bin = new Bin ("mp2-ts-transcoder-bin");
-        bin.add_many (src, decoder, encoder);
-
-        src.link (decoder);
-
-        decoder.pad_added.connect (this.on_decoder_pad_added);
-
-        var pad = encoder.get_static_pad ("src");
-        var ghost = new GhostPad (null, pad);
-        bin.add_pad (ghost);
-
-        return bin;
     }
 
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
@@ -116,72 +89,40 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         return distance;
     }
 
-    private void on_decoder_pad_added (Element decodebin, Pad new_pad) {
-        var bin = decodebin.get_parent () as Bin;
-        assert (bin != null);
+    protected override EncodingProfile get_encoding_profile () {
+        var cont_format = Caps.from_string ("video/mpegts," +
+                                            "systemstream=true," +
+                                            "packetsize=188");
 
-        var encoder = bin.get_by_name (ENCODE_BIN);
-        assert (encoder != null);
+        var video_format = Caps.from_string ("video/mpeg," +
+                                             "mpegversion=2," +
+                                             "systemstream=false," +
+                                             "framerate=(fraction)25/1");
+        var video_restriction = Caps.from_string
+                                            ("video/x-raw-yuv," +
+                                             "framerate=(fraction)25/1," +
+                                             "width=720," +
+                                             "height=576");
 
-        var encoder_pad = encoder.get_compatible_pad (new_pad, null);
-        if (encoder_pad == null) {
-            debug ("No compatible encodebin pad found for pad '%s', ignoring..",
-                   new_pad.name);
-            return;
-        } else {
-            debug ("pad '%s' with caps '%s' is compatible with '%s'",
-                   new_pad.name,
-                   new_pad.get_caps ().to_string (),
-                   encoder_pad.name);
-        }
+        var audio_format = Caps.from_string ("audio/mpeg, mpegversion=(int)4");
 
-        if (new_pad.link (encoder_pad) != PadLinkReturn.OK) {
-            var error = new GstError.LINK (_("Failed to link pad %s to %s"),
-                                           new_pad.name,
-                                           encoder_pad.name);
-            GstUtils.post_error (bin, error);
-        }
-    }
+        var enc_container_profile = new EncodingContainerProfile ("container",
+                                                                  null,
+                                                                  cont_format,
+                                                                  null);
+        var enc_video_profile = new EncodingVideoProfile (video_format,
+                                                          null,
+                                                          video_restriction,
+                                                          1);
+        var enc_audio_profile = new EncodingAudioProfile (audio_format,
+                                                          null,
+                                                          null,
+                                                          1);
 
-    private EncodingContainerProfile get_encoding_profile () {
-        var container_format = Caps.from_string ("video/mpegts," +
-                                                 "systemstream=true," +
-                                                 "packetsize=188");
-
-        var enc_container_profile = new EncodingContainerProfile
-                                        ("mpeg-ts-profile",
-                                         null,
-                                         container_format,
-                                         null);
-
-        enc_container_profile.add_profile (this.get_video_profile ());
-        enc_container_profile.add_profile (this.get_audio_profile ());
+        // FIXME: We should use the preset to set bitrate
+        enc_container_profile.add_profile (enc_video_profile);
+        enc_container_profile.add_profile (enc_audio_profile);
 
         return enc_container_profile;
-    }
-
-    private EncodingVideoProfile get_video_profile () {
-        var format = Caps.from_string ("video/mpeg," +
-                                       "mpegversion=2," +
-                                       "systemstream=false," +
-                                       "framerate=(fraction)25/1");
-        var restriction = Caps.from_string
-                                        ("video/x-raw-yuv,width=" +
-                                         WIDTH[this.profile].to_string () +
-                                         ",height=" +
-                                         HEIGHT[this.profile].to_string () +
-                                         ",framerate=(fraction)" +
-                                         FRAME_RATE[this.profile].to_string () +
-                                         "/1");
-
-        // FIXME: We should use the preset to set bitrate
-        return new EncodingVideoProfile (format, null, restriction, 1);
-    }
-
-    private EncodingAudioProfile get_audio_profile () {
-        var format = Caps.from_string ("audio/mpeg,mpegversion=4");
-
-        // FIXME: We should use the preset to set bitrate
-        return new EncodingAudioProfile (format, null, null, 1);
     }
 }

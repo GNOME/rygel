@@ -30,35 +30,8 @@ using Gee;
 internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     public const int BITRATE = 256;
 
-    private const string DECODE_BIN = "decodebin2";
-    private const string ENCODE_BIN = "encodebin";
-
     public MP3Transcoder () {
         base ("audio/mpeg", "MP3", AudioItem.UPNP_CLASS);
-    }
-
-    public override Element create_source (MediaItem item,
-                                           Element   src)
-                                           throws Error {
-        dynamic Element decoder = GstUtils.create_element (DECODE_BIN,
-                                                           DECODE_BIN);
-        dynamic Element encoder = GstUtils.create_element (ENCODE_BIN,
-                                                           ENCODE_BIN);
-
-        encoder.profile = this.get_encoding_profile ();
-
-        var bin = new Bin ("mp3-transcoder-bin");
-        bin.add_many (src, decoder, encoder);
-
-        src.link (decoder);
-
-        decoder.pad_added.connect (this.on_decoder_pad_added);
-
-        var pad = encoder.get_static_pad ("src");
-        var ghost = new GhostPad (null, pad);
-        bin.add_pad (ghost);
-
-        return bin;
     }
 
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
@@ -90,35 +63,7 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
         return distance;
     }
 
-    private void on_decoder_pad_added (Element decodebin, Pad new_pad) {
-        var bin = decodebin.get_parent () as Bin;
-        assert (bin != null);
-
-        var encoder = bin.get_by_name (ENCODE_BIN);
-        assert (encoder != null);
-
-        var encoder_pad = encoder.get_compatible_pad (new_pad, null);
-        if (encoder_pad == null) {
-            debug ("No compatible encodebin pad found for pad '%s', ignoring..",
-                   new_pad.name);
-
-            return;
-        } else {
-            debug ("pad '%s' with caps '%s' is compatible with '%s'",
-                   new_pad.name,
-                   new_pad.get_caps ().to_string (),
-                   encoder_pad.name);
-        }
-
-        if (new_pad.link (encoder_pad) != PadLinkReturn.OK) {
-            var error = new GstError.LINK (_("Failed to link pad %s to %s"),
-                                           new_pad.name,
-                                           encoder_pad.name);
-            GstUtils.post_error (bin, error);
-        }
-    }
-
-    private EncodingProfile get_encoding_profile () {
+    protected override EncodingProfile get_encoding_profile () {
         var format = Caps.from_string ("audio/mpeg,mpegversion=1,layer=3");
         // FIXME: We should use the preset to set bitrate
         var encoding_profile = new EncodingAudioProfile (format, null, null, 1);

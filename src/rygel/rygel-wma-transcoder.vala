@@ -31,12 +31,6 @@ internal class Rygel.WMATranscoder : Rygel.Transcoder {
         base ("audio/x-wma", "WMA", AudioItem.UPNP_CLASS);
     }
 
-    public override Element create_source (MediaItem item,
-                                           Element   src)
-                                           throws Error {
-        return new WMATranscoderBin (item, src, this);
-    }
-
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
                                                     MediaItem        item,
                                                     TranscodeManager manager)
@@ -66,32 +60,14 @@ internal class Rygel.WMATranscoder : Rygel.Transcoder {
         return distance;
     }
 
-    public Element create_encoder (MediaItem item,
-                                   string?   src_pad_name,
-                                   string?   sink_pad_name)
-                                   throws Error {
-        var l16_transcoder = new L16Transcoder (Endianness.LITTLE);
-        dynamic Element convert = l16_transcoder.create_encoder (
-                                       item,
-                                       null,
-                                       CONVERT_SINK_PAD);
+    protected override EncodingProfile get_encoding_profile () {
+        var format = Caps.from_string ("video/x-ms-asf");
+        // FIXME: We should use the preset to set bitrate
+        var encoding_profile = new EncodingAudioProfile (format,
+                                                         null,
+                                                         null,
+                                                         1);
 
-        dynamic Element encoder = GstUtils.create_element ("ffenc_wmav2",
-                                                           "ffenc_wmav2");
-        encoder.bitrate = BITRATE * 1000;
-
-        var bin = new Bin("wma-encoder-bin");
-        bin.add_many (convert, encoder);
-        convert.link (encoder);
-
-        var pad = convert.get_static_pad (CONVERT_SINK_PAD);
-        var ghost = new GhostPad (sink_pad_name, pad);
-        bin.add_pad (ghost);
-
-        pad = encoder.get_static_pad ("src");
-        ghost = new GhostPad (src_pad_name, pad);
-        bin.add_pad (ghost);
-
-        return bin;
+        return encoding_profile;
     }
 }

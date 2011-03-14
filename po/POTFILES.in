@@ -98,7 +98,6 @@ src/rygel/rygel-icon-info.vala
 src/rygel/rygel-import-resource.vala
 src/rygel/rygel-item-creator.vala
 src/rygel/rygel-item-destroyer.vala
-src/rygel/rygel-l16-transcoder-bin.vala
 src/rygel/rygel-l16-transcoder.vala
 src/rygel/rygel-log-handler.vala
 src/rygel/rygel-logical-expression.vala
@@ -136,9 +135,7 @@ src/rygel/rygel-thumbnail.vala
 src/rygel/rygel-transcode-manager.vala
 src/rygel/rygel-transcoder.vala
 src/rygel/rygel-user-config.vala
-src/rygel/rygel-wma-transcoder-bin.vala
 src/rygel/rygel-wma-transcoder.vala
-src/rygel/rygel-wmv-transcoder-bin.vala
 src/rygel/rygel-wmv-transcoder.vala
 src/rygel/rygel-xbox-hacks.vala
 src/rygel/rygel-changelog.vala
