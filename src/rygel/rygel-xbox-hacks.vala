@@ -39,8 +39,8 @@ internal class Rygel.XBoxHacks : GLib.Object {
     public XBoxHacks.for_action (ServiceAction action) throws XBoxHacksError {
         unowned MessageHeaders headers = action.get_message ().request_headers;
         var agent = headers.get_one ("User-Agent");
-        if (!(agent.contains ("Xbox") &&
-              agent.contains ("Allegro-Software-WebClient"))) {
+        if (!(agent.contains ("Xbox")) &&
+            !(agent.contains ("Allegro-Software-WebClient"))) {
             throw new XBoxHacksError.NA (_("Not Applicable"));
         }
     }
