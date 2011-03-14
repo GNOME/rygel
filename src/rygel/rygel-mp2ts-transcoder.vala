@@ -31,10 +31,10 @@ internal enum Rygel.MP2TSProfile {
 
 /**
  * Transcoder for mpeg transport stream containing mpeg 2 video and mp2 audio.
- * This element uses MP2TSTrancoderBin for actual transcoding.
  */
 internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     private const int VIDEO_BITRATE = 3000;
+    private const int AUDIO_BITRATE = 256;
 
     // HD
     private const int[] WIDTH = {720, 1280};
@@ -43,10 +43,8 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     private const string[] PROFILES = {"MPEG_TS_SD_EU_ISO", "MPEG_TS_HD_NA_ISO"};
     private const int BITRATE = 3000000;
 
-    private const string VIDEO_ENCODER = "ffenc_mpeg2video";
-    private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
-    private const string VIDEO_RATE = "videorate";
-    private const string VIDEO_SCALE = "videoscale";
+    private const string DECODE_BIN = "decodebin2";
+    private const string ENCODE_BIN = "encodebin";
 
     private MP2TSProfile profile;
 
@@ -59,7 +57,25 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     public override Element create_source (MediaItem item,
                                            Element   src)
                                            throws Error {
-        return new MP2TSTranscoderBin (item, src, this);
+        dynamic Element decoder = GstUtils.create_element (DECODE_BIN,
+                                                           DECODE_BIN);
+        dynamic Element encoder = GstUtils.create_element (ENCODE_BIN,
+                                                           ENCODE_BIN);
+
+        encoder.profile = this.get_encoding_profile ();
+
+        var bin = new Bin ("mp2-ts-transcoder-bin");
+        bin.add_many (src, decoder, encoder);
+
+        src.link (decoder);
+
+        decoder.pad_added.connect (this.on_decoder_pad_added);
+
+        var pad = encoder.get_static_pad ("src");
+        var ghost = new GhostPad (null, pad);
+        bin.add_pad (ghost);
+
+        return bin;
     }
 
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
@@ -72,7 +88,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
 
         resource.width = WIDTH[profile];
         resource.height = HEIGHT[profile];
-        resource.bitrate = (VIDEO_BITRATE + MP3Transcoder.BITRATE) * 1000 / 8;
+        resource.bitrate = (VIDEO_BITRATE + AUDIO_BITRATE) * 1000 / 8;
 
         return resource;
     }
@@ -100,67 +116,72 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         return distance;
     }
 
-    public Element create_encoder (MediaItem item,
-                                   string?   src_pad_name,
-                                   string?   sink_pad_name)
-                                   throws Error {
-        var videorate = GstUtils.create_element (VIDEO_RATE, VIDEO_RATE);
-        var videoscale = GstUtils.create_element (VIDEO_SCALE, VIDEO_SCALE);
-        var convert = GstUtils.create_element (COLORSPACE_CONVERT,
-                                               COLORSPACE_CONVERT);
-        dynamic Element encoder = GstUtils.create_element (VIDEO_ENCODER,
-                                                           VIDEO_ENCODER);
+    private void on_decoder_pad_added (Element decodebin, Pad new_pad) {
+        var bin = decodebin.get_parent () as Bin;
+        assert (bin != null);
 
-        encoder.bitrate = (int) VIDEO_BITRATE * 1000;
+        var encoder = bin.get_by_name (ENCODE_BIN);
+        assert (encoder != null);
 
-        var bin = new Bin ("video-encoder-bin");
-        bin.add_many (videorate, videoscale, convert, encoder);
-
-        convert.link_many (videoscale, videorate);
-
-        int pixel_w;
-        int pixel_h;
-
-        var video_item = item as VideoItem;
-
-        if (video_item.pixel_width > 0 && video_item.pixel_height > 0) {
-            pixel_w = video_item.width *
-                      HEIGHT[this.profile] *
-                      video_item.pixel_width;
-            pixel_h = video_item.height *
-                      WIDTH[this.profile] *
-                      video_item.pixel_height;
+        var encoder_pad = encoder.get_compatible_pad (new_pad, null);
+        if (encoder_pad == null) {
+            debug ("No compatible encodebin pad found for pad '%s', ignoring..",
+                   new_pad.name);
+            return;
         } else {
-            // Original pixel-ratio not provided, lets just use 1:1
-            pixel_w = 1;
-            pixel_h = 1;
+            debug ("pad '%s' with caps '%s' is compatible with '%s'",
+                   new_pad.name,
+                   new_pad.get_caps ().to_string (),
+                   encoder_pad.name);
         }
 
-        var caps = new Caps.simple ("video/x-raw-yuv",
-                                    "width",
-                                        typeof (int),
-                                        WIDTH[this.profile],
-                                    "height",
-                                        typeof (int),
-                                        HEIGHT[this.profile],
-                                    "framerate",
-                                        typeof (Fraction),
-                                        FRAME_RATE[this.profile],
-                                        1,
-                                    "pixel-aspect-ratio",
-                                        typeof (Fraction),
-                                        pixel_w,
-                                        pixel_h);
-        videorate.link_filtered (encoder, caps);
+        if (new_pad.link (encoder_pad) != PadLinkReturn.OK) {
+            var error = new GstError.LINK (_("Failed to link pad %s to %s"),
+                                           new_pad.name,
+                                           encoder_pad.name);
+            GstUtils.post_error (bin, error);
+        }
+    }
 
-        var pad = convert.get_static_pad ("sink");
-        var ghost = new GhostPad (sink_pad_name, pad);
-        bin.add_pad (ghost);
+    private EncodingContainerProfile get_encoding_profile () {
+        var container_format = Caps.from_string ("video/mpegts," +
+                                                 "systemstream=true," +
+                                                 "packetsize=188");
 
-        pad = encoder.get_static_pad ("src");
-        ghost = new GhostPad (src_pad_name, pad);
-        bin.add_pad (ghost);
+        var enc_container_profile = new EncodingContainerProfile
+                                        ("mpeg-ts-profile",
+                                         null,
+                                         container_format,
+                                         null);
 
-        return bin;
+        enc_container_profile.add_profile (this.get_video_profile ());
+        enc_container_profile.add_profile (this.get_audio_profile ());
+
+        return enc_container_profile;
+    }
+
+    private EncodingVideoProfile get_video_profile () {
+        var format = Caps.from_string ("video/mpeg," +
+                                       "mpegversion=2," +
+                                       "systemstream=false," +
+                                       "framerate=(fraction)25/1");
+        var restriction = Caps.from_string
+                                        ("video/x-raw-yuv,width=" +
+                                         WIDTH[this.profile].to_string () +
+                                         ",height=" +
+                                         HEIGHT[this.profile].to_string () +
+                                         ",framerate=(fraction)" +
+                                         FRAME_RATE[this.profile].to_string () +
+                                         "/1");
+
+        // FIXME: We should use the preset to set bitrate
+        return new EncodingVideoProfile (format, null, restriction, 1);
+    }
+
+    private EncodingAudioProfile get_audio_profile () {
+        var format = Caps.from_string ("audio/mpeg,mpegversion=4");
+
+        // FIXME: We should use the preset to set bitrate
+        return new EncodingAudioProfile (format, null, null, 1);
     }
 }

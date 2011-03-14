@@ -114,7 +114,6 @@ src/rygel/rygel-visual-item.vala
 src/rygel/rygel-media-object.vala
 src/rygel/rygel-media-receiver-registrar.vala
 src/rygel/rygel-meta-config.vala
-src/rygel/rygel-mp2ts-transcoder-bin.vala
 src/rygel/rygel-mp2ts-transcoder.vala
 src/rygel/rygel-mp3-transcoder-bin.vala
 src/rygel/rygel-mp3-transcoder.vala
