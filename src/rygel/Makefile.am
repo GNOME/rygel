@@ -3,6 +3,8 @@ include ../../common.am
 AM_CFLAGS += \
 	$(LIBGUPNP_DLNA_CFLAGS) \
 	$(LIBSOUP_CFLAGS) \
+	$(LIBGSTREAMER_CFLAGS) \
+	$(GST_PBU_CFLAGS) \
 	-DSMALL_ICON_DIR='"$(smallicondir)"' \
 	-DBIG_ICON_DIR='"$(bigicondir)"' -include config.h \
 	-DLOCALEDIR=\""$(datadir)/locale"\" -DG_LOG_DOMAIN='"Rygel"'
@@ -122,6 +124,7 @@ rygel_LDADD = \
 	librygel-configuration.a \
 	$(RYGEL_COMMON_LDADD) \
 	$(LIBGUPNP_DLNA_LIBS) \
+	$(GST_PBU_LIBS) \
 	$(GIO_LIBS) \
 	$(LIBSOUP_LIBS)
 
