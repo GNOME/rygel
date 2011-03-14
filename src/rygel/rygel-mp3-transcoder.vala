@@ -25,29 +25,40 @@ using GUPnP;
 using Gee;
 
 /**
- * Transcoder for mpeg 1 layer 2 and 3 audio. This element uses MP3TrancoderBin
- * for actual transcoding.
+ * Transcoder for mpeg 1 layer 3 audio.
  */
 internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     public const int BITRATE = 256;
 
-    private const string[] AUDIO_ENCODER = {null, "twolame", "lame"};
-    private const string AUDIO_PARSER = "mp3parse";
+    private const string DECODE_BIN = "decodebin2";
+    private const string ENCODE_BIN = "encodebin";
 
-    private const string CONVERT_SINK_PAD = "convert-sink-pad";
-
-    private MP3Layer layer;
-
-    public MP3Transcoder (MP3Layer layer) {
+    public MP3Transcoder () {
         base ("audio/mpeg", "MP3", AudioItem.UPNP_CLASS);
-
-        this.layer = layer;
     }
 
     public override Element create_source (MediaItem item,
                                            Element   src)
                                            throws Error {
-        return new MP3TranscoderBin (item, src, this);
+        dynamic Element decoder = GstUtils.create_element (DECODE_BIN,
+                                                           DECODE_BIN);
+        dynamic Element encoder = GstUtils.create_element (ENCODE_BIN,
+                                                           ENCODE_BIN);
+
+        encoder.profile = this.get_encoding_profile ();
+
+        var bin = new Bin ("mp3-transcoder-bin");
+        bin.add_many (src, decoder, encoder);
+
+        src.link (decoder);
+
+        decoder.pad_added.connect (this.on_decoder_pad_added);
+
+        var pad = encoder.get_static_pad ("src");
+        var ghost = new GhostPad (null, pad);
+        bin.add_pad (ghost);
+
+        return bin;
     }
 
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
@@ -79,39 +90,39 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
         return distance;
     }
 
-    public Element create_encoder (MediaItem item,
-                                   string?   src_pad_name,
-                                   string?   sink_pad_name)
-                                   throws Error {
-        var l16_transcoder = new L16Transcoder (Endianness.LITTLE);
-        dynamic Element convert = l16_transcoder.create_encoder
-                                        (item, null, CONVERT_SINK_PAD);
-        dynamic Element encoder = GstUtils.create_element
-                                        (AUDIO_ENCODER[this.layer],
-                                         AUDIO_ENCODER[this.layer]);
-        dynamic Element parser = GstUtils.create_element (AUDIO_PARSER,
-                                                          AUDIO_PARSER);
+    private void on_decoder_pad_added (Element decodebin, Pad new_pad) {
+        var bin = decodebin.get_parent () as Bin;
+        assert (bin != null);
 
-        if (this.layer == MP3Layer.THREE) {
-            // Best quality
-            encoder.quality = 0;
+        var encoder = bin.get_by_name (ENCODE_BIN);
+        assert (encoder != null);
+
+        var encoder_pad = encoder.get_compatible_pad (new_pad, null);
+        if (encoder_pad == null) {
+            debug ("No compatible encodebin pad found for pad '%s', ignoring..",
+                   new_pad.name);
+
+            return;
+        } else {
+            debug ("pad '%s' with caps '%s' is compatible with '%s'",
+                   new_pad.name,
+                   new_pad.get_caps ().to_string (),
+                   encoder_pad.name);
         }
 
-        encoder.bitrate = BITRATE;
+        if (new_pad.link (encoder_pad) != PadLinkReturn.OK) {
+            var error = new GstError.LINK (_("Failed to link pad %s to %s"),
+                                           new_pad.name,
+                                           encoder_pad.name);
+            GstUtils.post_error (bin, error);
+        }
+    }
 
-        var bin = new Bin ("mp3-encoder-bin");
-        bin.add_many (convert, encoder, parser);
+    private EncodingProfile get_encoding_profile () {
+        var format = Caps.from_string ("audio/mpeg,mpegversion=1,layer=3");
+        // FIXME: We should use the preset to set bitrate
+        var encoding_profile = new EncodingAudioProfile (format, null, null, 1);
 
-        convert.link_many (encoder, parser);
-
-        var pad = convert.get_static_pad (CONVERT_SINK_PAD);
-        var ghost = new GhostPad (sink_pad_name, pad);
-        bin.add_pad (ghost);
-
-        pad = parser.get_static_pad ("src");
-        ghost = new GhostPad (src_pad_name, pad);
-        bin.add_pad (ghost);
-
-        return bin;
+        return encoding_profile;
     }
 }

@@ -69,7 +69,7 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
             }
 
             if (mp3_transcoder) {
-                transcoders.add (new MP3Transcoder (MP3Layer.THREE));
+                transcoders.add (new MP3Transcoder ());
             }
 
             if (mp2ts_transcoder) {

@@ -72,7 +72,6 @@ src/rygel/rygel-video-item.c
 src/rygel/rygel-visual-item.c
 src/rygel/rygel-meta-config.c
 src/rygel/rygel-metadata-extractor.c
-src/rygel/rygel-mp3-transcoder-bin.c
 src/rygel/rygel-plugin-loader.c
 src/rygel/rygel-root-device-factory.c
 src/rygel/rygel-search.c
