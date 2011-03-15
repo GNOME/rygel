@@ -62,9 +62,11 @@ tests/rygel-http-byte-seek-test
 tests/rygel-http-get-test
 tests/rygel-http-item-uri-test
 tests/rygel-http-time-seek-test
-tests/rygel-live-response-test
+tests/rygel-http-gst-response-test
 tests/rygel-seekable-response-test
 tests/rygel-http-post-test
+tests/rygel-album-art-spec-test
+tests/rygel-http-seekable-response-test
 doc/rygel.1
 doc/rygel.conf.5
 
