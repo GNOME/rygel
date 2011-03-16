@@ -122,11 +122,10 @@ public abstract class Rygel.MediaItem : MediaObject {
         return src;
     }
 
-    // Return true if item should be streamed as a live response with
+    // Return true if item should be streamed as a gstreamer response with
     // time based seeking, or false to serve directly with byte range
     // seeking.
     public bool should_stream () {
-        // Simple heuristic: if size is known and its not image, serve directly.
         return this.streamable () && this.size <= 0;
     }
 
