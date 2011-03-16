@@ -22,7 +22,7 @@
  */
 
 using Soup;
-using Gst;
+using Gee;
 
 public class Rygel.HTTPSeek : GLib.Object {
     public int64 start { get; private set; }
@@ -38,8 +38,6 @@ public class Rygel.HTTPSeek : GLib.Object {
 }
 
 public class Rygel.HTTPSeekableResponseTest : Rygel.HTTPResponseTest {
-    private static string URI = "file:///tmp/rygel-dummy-test-file";
-
     private File dummy_file;
 
     public static int main (string[] args) {
@@ -82,7 +80,7 @@ public class Rygel.HTTPSeekableResponseTest : Rygel.HTTPResponseTest {
     }
 
     private void create_dummy_file () throws Error {
-        this.dummy_file = File.new_for_uri (URI);
+        this.dummy_file = File.new_for_uri (MediaItem.URI);
         var stream = this.dummy_file.replace (null, false, 0, null);
 
         // Put randon stuff into it
@@ -92,12 +90,78 @@ public class Rygel.HTTPSeekableResponseTest : Rygel.HTTPResponseTest {
     internal override HTTPResponse create_response (Soup.Message msg)
                                                     throws Error {
         var seek = new HTTPSeek (0, 1024);
+        var item = new MediaItem ();
 
-        return new HTTPSeekableResponse (this.server.context.server,
-                                         msg,
-                                         this.dummy_file.get_uri (),
-                                         seek,
-                                         1024,
-                                         this.cancellable);
+        var request = new HTTPGet (this.server.context.server,
+                                   msg,
+                                   item,
+                                   seek,
+                                   this.cancellable);
+        var handler = new HTTPGetHandler (this.cancellable);
+
+        return new HTTPSeekableResponse (request, handler);
     }
+}
+
+public class Rygel.HTTPGet : GLib.Object {
+    public Soup.Server server;
+    public Soup.Message msg;
+
+    public Cancellable cancellable;
+
+    public MediaItem item;
+
+    internal HTTPSeek seek;
+
+    public Subtitle subtitle;
+    public Thumbnail thumbnail;
+
+    public HTTPGet (Soup.Server  server,
+                    Soup.Message msg,
+                    MediaItem    item,
+                    HTTPSeek     seek,
+                    Cancellable? cancellable) {
+        this.server = server;
+        this.msg = msg;
+        this.item = item;
+        this.seek = seek;
+        this.cancellable = cancellable;
+    }
+}
+
+public class Rygel.HTTPGetHandler : GLib.Object {
+    public Cancellable cancellable;
+
+    public HTTPGetHandler (Cancellable? cancellable) {
+        this.cancellable = cancellable;
+    }
+}
+
+public class Rygel.MediaItem {
+    public const string URI = "file:///tmp/rygel-dummy-test-file";
+
+    public string id = "Dummy";
+    public Gee.ArrayList<string> uris;
+    public int64 size = 1024;
+
+    public MediaItem () {
+        this.uris = new ArrayList<string> ();
+
+        this.uris.add (URI);
+    }
+}
+
+public class Rygel.Subtitle {
+    public string uri;
+    public int64 size = -1;   // Size in bytes
+}
+
+public class Rygel.Thumbnail {
+    public string uri;
+
+    public int64 size = -1; // Size in bytes
+}
+
+public errordomain Rygel.HTTPRequestError {
+    NOT_FOUND = Soup.KnownStatusCode.NOT_FOUND
 }

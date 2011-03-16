@@ -37,18 +37,24 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
     private int64 buffered;
     private bool out_of_sync;
 
-    public HTTPGstResponse (Soup.Server  server,
-                            Soup.Message msg,
-                            string       name,
-                            Element      src,
-                            HTTPSeek?    seek,
-                            Cancellable? cancellable) throws Error {
-        base (server, msg, false, cancellable);
+    public HTTPGstResponse (HTTPGet        request,
+                            HTTPGetHandler request_handler,
+                            Element?       gst_src = null) throws Error {
+        base (request, request_handler, false);
 
         this.msg.response_headers.set_encoding (Soup.Encoding.EOF);
 
-        this.prepare_pipeline (name, src);
-        this.seek = seek;
+        var src = gst_src;
+        if (src == null) {
+            src = request.item.create_stream_source ();
+
+            if (src == null) {
+                throw new HTTPRequestError.NOT_FOUND (_("Not found"));
+            }
+        }
+
+        this.prepare_pipeline ("RygelHTTPGstResponse", src);
+        this.seek = request.seek;
 
         this.buffered = 0;
         this.out_of_sync = false;

@@ -54,13 +54,12 @@ internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         }
     }
 
-    public HTTPResponse (Soup.Server  server,
-                         Soup.Message msg,
-                         bool         partial,
-                         Cancellable? cancellable) {
-        this.server = server;
-        this.msg = msg;
-        this.cancellable = cancellable;
+    public HTTPResponse (HTTPGet        request,
+                         HTTPGetHandler request_handler,
+                         bool           partial) throws Error {
+        this.server = request.server;
+        this.msg = request.msg;
+        this.cancellable = request_handler.cancellable;
 
         if (partial) {
             this.msg.set_status (Soup.KnownStatusCode.PARTIAL_CONTENT);

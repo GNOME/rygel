@@ -73,49 +73,12 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
     }
 
     private HTTPResponse render_body_real (HTTPGet request) throws Error {
-        if (request.subtitle != null) {
-            return new HTTPSeekableResponse (request.server,
-                                             request.msg,
-                                             request.subtitle.uri,
-                                             request.seek,
-                                             request.subtitle.size,
-                                             this.cancellable);
-        } else if (request.thumbnail != null) {
-            return new HTTPSeekableResponse (request.server,
-                                             request.msg,
-                                             request.thumbnail.uri,
-                                             request.seek,
-                                             request.thumbnail.size,
-                                             this.cancellable);
-        }
-
-        var item = request.item;
-
-        if (item.should_stream ()) {
-            Gst.Element src = item.create_stream_source ();
-            if (src == null) {
-                throw new HTTPRequestError.NOT_FOUND (_("Not found"));
-            }
-
-            return new HTTPGstResponse (request.server,
-                                        request.msg,
-                                        "RygelHTTPGstResponse",
-                                        src,
-                                        request.seek,
-                                        this.cancellable);
+        if (request.subtitle != null ||
+            request.thumbnail != null ||
+            !(request.item.should_stream ())) {
+            return new HTTPSeekableResponse (request, this);
         } else {
-            if (item.uris.size == 0) {
-                throw new HTTPRequestError.NOT_FOUND
-                                        (_("Item '%s' didn't provide a URI"),
-                                         item.id);
-            }
-
-            return new HTTPSeekableResponse (request.server,
-                                             request.msg,
-                                             item.uris.get (0),
-                                             request.seek,
-                                             item.size,
-                                             this.cancellable);
+            return new HTTPGstResponse (request, this);
         }
     }
 }

@@ -34,18 +34,36 @@ internal class Rygel.HTTPSeekableResponse : Rygel.HTTPResponse {
     private uint8[] buffer;
     private size_t total_length;
 
-    public HTTPSeekableResponse (Soup.Server  server,
-                                 Soup.Message msg,
-                                 string       uri,
-                                 HTTPSeek     seek,
-                                 int64        file_length,
-                                 Cancellable? cancellable) {
-        var partial = seek.length < file_length;
+    public HTTPSeekableResponse (HTTPGet        request,
+                                 HTTPGetHandler request_handler) throws Error {
+        string uri;
+        int64 file_length;
 
-        base (server, msg, partial, cancellable);
+        if (request.subtitle != null) {
+            uri = request.subtitle.uri;
+            file_length = request.subtitle.size;
+        } else if (request.thumbnail != null) {
+            uri = request.thumbnail.uri;
+            file_length = request.thumbnail.size;
+        } else {
+            var item = request.item;
 
-        this.seek = seek;
-        this.total_length = (size_t) seek.length;
+            if (item.uris.size == 0) {
+                throw new HTTPRequestError.NOT_FOUND
+                                        (_("Item '%s' didn't provide a URI"),
+                                         item.id);
+            }
+
+            uri = item.uris.get (0);
+            file_length = item.size;
+        }
+
+        var partial = request.seek.length < file_length;
+
+        base (request, request_handler, partial);
+
+        this.seek = request.seek;
+        this.total_length = (size_t) this.seek.length;
 
         this.buffer = new uint8[HTTPSeekableResponse.BUFFER_LENGTH];
         this.file = File.new_for_uri (uri);
