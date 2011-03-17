@@ -33,7 +33,7 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
     private const int WIDTH = 16;
     private const int DEPTH = 16;
     private const bool SIGNED = true;
-    private const int ENDIANNESS = 1234;
+    private const int ENDIANNESS = ByteOrder.BIG_ENDIAN;
 
     public L16Transcoder () {
         var mime_type = "audio/L" + L16Transcoder.WIDTH.to_string () +
