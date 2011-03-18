@@ -32,7 +32,7 @@ private class Rygel.HTTPTranscodeHandler : GLib.Object {}
 private abstract class Rygel.MediaItem : GLib.Object {
     public int64 size = -1;
 
-    public virtual bool should_stream () {
+    public bool is_live_stream () {
         return true;
     }
 }

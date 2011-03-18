@@ -83,7 +83,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
                (request.handler is HTTPTranscodeHandler ||
                 (request.thumbnail == null &&
                  request.subtitle == null &&
-                 request.item.should_stream ()));
+                 request.item.is_live_stream ()));
     }
 
     public static bool requested (HTTPGet request) {

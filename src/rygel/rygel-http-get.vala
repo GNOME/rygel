@@ -162,7 +162,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
         case "Interactive":
         case "Background":
             correct =  this.handler is HTTPIdentityHandler &&
-                       (!this.item.should_stream () ||
+                       (!this.item.is_live_stream () ||
                         this.subtitle != null ||
                         this.thumbnail != null);
 

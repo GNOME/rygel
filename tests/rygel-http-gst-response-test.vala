@@ -122,6 +122,10 @@ public class Rygel.MediaItem {
     public Element? create_stream_source () {
         return this.src;
     }
+
+    public bool is_live_stream () {
+        return ((int) this.src.num_buffers) < 0;
+    }
 }
 
 internal abstract class Rygel.HTTPSeek : GLib.Object {

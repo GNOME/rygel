@@ -122,10 +122,7 @@ public abstract class Rygel.MediaItem : MediaObject {
         return src;
     }
 
-    // Return true if item should be streamed as a gstreamer response with
-    // time based seeking, or false to serve directly with byte range
-    // seeking.
-    public bool should_stream () {
+    public bool is_live_stream () {
         return this.streamable () && this.size <= 0;
     }
 
@@ -261,7 +258,7 @@ public abstract class Rygel.MediaItem : MediaObject {
             protocol_info.dlna_flags |= DLNAFlags.STREAMING_TRANSFER_MODE;
         }
 
-        if (!this.should_stream ()) {
+        if (!this.is_live_stream ()) {
             protocol_info.dlna_flags |= DLNAFlags.BACKGROUND_TRANSFER_MODE;
         }
 

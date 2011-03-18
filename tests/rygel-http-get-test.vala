@@ -249,7 +249,7 @@ public abstract class Rygel.MediaItem : Rygel.MediaObject {
     public ArrayList<Subtitle> subtitles = new ArrayList<Subtitle> ();
     public ArrayList<Thumbnail> thumbnails = new ArrayList<Thumbnail> ();
 
-    public bool should_stream () {
+    public bool is_live_stream () {
         return true;
     }
 

@@ -75,7 +75,7 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
     private HTTPResponse render_body_real (HTTPGet request) throws Error {
         if (request.subtitle != null ||
             request.thumbnail != null ||
-            !(request.item.should_stream ())) {
+            !(request.item.is_live_stream ())) {
             return new HTTPSeekableResponse (request, this);
         } else {
             return new HTTPGstResponse (request, this);
