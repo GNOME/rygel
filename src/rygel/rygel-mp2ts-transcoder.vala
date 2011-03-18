@@ -104,7 +104,9 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
                                              "width=720," +
                                              "height=576");
 
-        var audio_format = Caps.from_string ("audio/mpeg, mpegversion=(int)1");
+        var audio_format = Caps.from_string ("audio/mpeg," +
+                                             "mpegversion=1," +
+                                             "layer=2");
 
         var enc_container_profile = new EncodingContainerProfile ("container",
                                                                   null,
