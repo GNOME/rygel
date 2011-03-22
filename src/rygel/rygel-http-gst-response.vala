@@ -25,7 +25,6 @@
 using Gst;
 
 internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
-    private const string SINK_NAME = "fakesink";
     // High and low threshold for number of buffered chunks
     private const uint MAX_BUFFERED_CHUNKS = 32;
     private const uint MIN_BUFFERED_CHUNKS = 4;
@@ -89,14 +88,8 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
 
     private void prepare_pipeline (string name,
                                    Element src) throws Error {
-        dynamic Element sink = ElementFactory.make ("fakesink", SINK_NAME);
+        var sink = new HTTPGstSink ();
 
-        if (sink == null) {
-            // 'fakesink' should not be translated
-            throw new GstError.MISSING_PLUGIN (_("Plugin 'fakesink' missing"));
-        }
-
-        sink.signal_handoffs = true;
         sink.handoff.connect (this.on_new_buffer);
 
         this.pipeline = new Pipeline (name);
@@ -125,7 +118,7 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
                                 Pad     src_pad) {
         var caps = src_pad.get_caps ();
 
-        var sink = this.pipeline.get_by_name (SINK_NAME);
+        var sink = this.pipeline.get_by_name (HTTPGstSink.NAME);
         Pad sink_pad;
 
         dynamic Element depay = GstUtils.get_rtp_depayloader (caps);

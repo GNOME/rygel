@@ -54,6 +54,7 @@ VAPI_SOURCE_FILES = \
 	rygel-http-response.vala \
 	rygel-http-gst-response.vala \
 	rygel-http-seekable-response.vala \
+	rygel-http-gst-sink.vala \
 	rygel-resource-info.vala \
 	rygel-icon-info.vala \
 	rygel-plugin.vala \
