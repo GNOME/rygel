@@ -26,8 +26,19 @@ using Gst;
 internal class Rygel.HTTPGstSink : BaseSink {
     public const string NAME = "http-gst-sink";
     public const string PAD_NAME = "sink";
+    // High and low threshold for number of buffered chunks
+    private const uint MAX_BUFFERED_CHUNKS = 32;
+    private const uint MIN_BUFFERED_CHUNKS = 4;
 
-    public signal void handoff (Buffer buffer, Pad pad);
+    public Cancellable cancellable;
+
+    private unowned HTTPGstResponse response;
+    private int priority;
+
+    private int64 buffered;
+
+    private Mutex buffer_mutex;
+    private Cond buffer_condition;
 
     static construct {
         var caps = new Caps.any ();
@@ -38,9 +49,24 @@ internal class Rygel.HTTPGstSink : BaseSink {
         add_pad_template (template);
     }
 
-    public HTTPGstSink () {
+    public HTTPGstSink (HTTPGstResponse response) {
+        this.buffered = 0;
+        this.buffer_mutex = new Mutex ();
+        this.buffer_condition = new Cond ();
+
+        this.cancellable = new Cancellable ();
+        this.priority = response.priority;
+        this.response = response;
+
         this.sync = false;
         this.name = NAME;
+
+        this.cancellable.cancelled.connect (this.on_cancelled);
+        response.msg.wrote_chunk.connect (this.on_wrote_chunk);
+    }
+
+    ~HTTPGstSink () {
+        this.response.msg.wrote_chunk.disconnect (this.on_wrote_chunk);
     }
 
     public override FlowReturn preroll (Buffer buffer) {
@@ -48,9 +74,45 @@ internal class Rygel.HTTPGstSink : BaseSink {
     }
 
     public override FlowReturn render (Buffer buffer) {
-        this.handoff (buffer, this.sinkpad);
+        this.buffer_mutex.lock ();
+        while (!this.cancellable.is_cancelled () &&
+               this.buffered > MAX_BUFFERED_CHUNKS) {
+            // Client is either not reading (Paused) or not fast enough
+            this.buffer_condition.wait (this.buffer_mutex);
+        }
+        this.buffer_mutex.unlock ();
+
+        if (this.cancellable.is_cancelled ()) {
+            return FlowReturn.OK;
+        }
+
+        Idle.add_full (this.priority, () => {
+            if (this.cancellable.is_cancelled ()) {
+                return false;
+            }
+
+            this.response.push_data (buffer.data);
+            this.buffered++;
+            return false;
+        });
 
         return FlowReturn.OK;
+    }
+
+    private void on_wrote_chunk (Soup.Message msg) {
+        this.buffer_mutex.lock ();
+        this.buffered--;
+
+        if (this.buffered < MIN_BUFFERED_CHUNKS) {
+            this.buffer_condition.broadcast ();
+        }
+        this.buffer_mutex.unlock ();
+    }
+
+    private void on_cancelled () {
+        this.buffer_mutex.lock ();
+        this.buffer_condition.broadcast ();
+        this.buffer_mutex.unlock ();
     }
 }
 

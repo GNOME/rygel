@@ -25,16 +25,9 @@
 using Gst;
 
 internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
-    // High and low threshold for number of buffered chunks
-    private const uint MAX_BUFFERED_CHUNKS = 32;
-    private const uint MIN_BUFFERED_CHUNKS = 4;
-
     private Pipeline pipeline;
 
     private HTTPSeek seek;
-
-    private int64 buffered;
-    private bool out_of_sync;
 
     public HTTPGstResponse (HTTPGet        request,
                             HTTPGetHandler request_handler,
@@ -54,14 +47,9 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
 
         this.prepare_pipeline ("RygelHTTPGstResponse", src);
         this.seek = request.seek;
-
-        this.buffered = 0;
-        this.out_of_sync = false;
     }
 
     public override async void run () {
-        this.msg.wrote_chunk.connect (this.on_wrote_chunk);
-
         // Only bother attempting to seek if the offset is greater than zero.
         if (this.seek != null && this.seek.start > 0) {
             this.pipeline.set_state (State.PAUSED);
@@ -75,8 +63,10 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
     }
 
     public override void end (bool aborted, uint status) {
+        var sink = this.pipeline.get_by_name (HTTPGstSink.NAME) as HTTPGstSink;
+        sink.cancellable.cancel ();
+
         this.pipeline.set_state (State.NULL);
-        this.msg.wrote_chunk.disconnect (this.on_wrote_chunk);
 
         if (!aborted) {
             this.msg.response_body.complete ();
@@ -88,9 +78,7 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
 
     private void prepare_pipeline (string name,
                                    Element src) throws Error {
-        var sink = new HTTPGstSink ();
-
-        sink.handoff.connect (this.on_new_buffer);
+        var sink = new HTTPGstSink (this);
 
         this.pipeline = new Pipeline (name);
         assert (this.pipeline != null);
@@ -147,36 +135,6 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
 
         if (depay != null) {
             depay.sync_state_with_parent ();
-        }
-    }
-
-    private void on_new_buffer (Element sink,
-                                Buffer  buffer,
-                                Pad     pad) {
-        Idle.add_full (this.priority, () => {
-            if (this.cancellable.is_cancelled ()) {
-                return false;
-            }
-
-            this.push_data (buffer.data);
-            this.buffered++;
-
-            if (this.buffered > MAX_BUFFERED_CHUNKS) {
-                // Client is either not reading (Paused) or not fast enough
-                this.pipeline.set_state (State.PAUSED);
-                this.out_of_sync = true;
-            }
-
-            return false;
-        });
-    }
-
-    private void on_wrote_chunk (Soup.Message msg) {
-        this.buffered--;
-
-        if (out_of_sync && this.buffered < MIN_BUFFERED_CHUNKS) {
-            this.pipeline.set_state (State.PLAYING);
-            this.out_of_sync = false;
         }
     }
 
