@@ -25,13 +25,13 @@ using Gst;
 
 internal abstract class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
     public Soup.Server server { get; private set; }
-    protected Soup.Message msg;
+    public Soup.Message msg;
 
     public Cancellable cancellable { get; set; }
 
     protected SourceFunc run_continue;
     private int _priority = -1;
-    protected int priority {
+    public int priority {
         get {
             if (this._priority != -1) {
                 return this._priority;
