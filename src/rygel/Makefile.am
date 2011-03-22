@@ -114,6 +114,7 @@ rygel_VALAFLAGS = \
 	-H rygel.h -C --library=rygel-1.0 \
 	--pkg rygel-misc \
 	--pkg gstreamer-0.10 \
+	--pkg gstreamer-base-0.10 \
 	--pkg gupnp-dlna-1.0 \
 	--pkg posix \
 	$(RYGEL_COMMON_VALAFLAGS)

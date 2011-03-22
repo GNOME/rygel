@@ -3,6 +3,7 @@ shareddir = $(abs_top_builddir)/data
 AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(LIBGUPNP_AV_CFLAGS) \
 	    $(LIBGSTREAMER_CFLAGS) \
+	    $(GSTREAMER_BASE_CFLAGS) \
 	    $(GIO_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(UUID_CFLAGS) \
@@ -13,6 +14,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 LDADD = $(LIBGUPNP_LIBS) \
 	$(LIBGUPNP_AV_LIBS) \
 	$(LIBGSTREAMER_LIBS) \
+	$(GSTREAMER_BASE_LIBS) \
 	$(GIO_LIBS) \
 	$(GEE_LIBS) \
 	$(UUID_LIBS) \
@@ -20,7 +22,7 @@ LDADD = $(LIBGUPNP_LIBS) \
 
 AM_VALAFLAGS = --disable-warnings --thread \
 	       --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
-               --pkg gconf-2.0 --pkg gstreamer-0.10 \
+               --pkg gconf-2.0 --pkg gstreamer-0.10 --pkg gstreamer-base-0.10 \
                --pkg gio-2.0 --pkg gee-1.0 -g
 
 check_PROGRAMS = rygel-http-item-uri-test \
