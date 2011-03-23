@@ -209,7 +209,8 @@ feature provided by your editor.
          <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
          <allowedValueList>
-            <allowedValue>TRACK_NR</allowedValue>
+            <allowedValue>ABS_TIME</allowedValue>
+            <allowedValue>REL_TIME</allowedValue>
          </allowedValueList>
       </stateVariable>
 
