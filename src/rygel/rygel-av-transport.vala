@@ -414,7 +414,7 @@ internal class Rygel.AVTransport : Service {
             debug ("Seeking to %s.", target);
 
             if (!this.player.seek (GstUtils.time_from_string (target))) {
-                action.return_error (710, _("Seek mode not supported"));
+                action.return_error (710, _("Seek failed"));
 
                 return;
             }
