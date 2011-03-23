@@ -87,16 +87,22 @@ internal class Rygel.HTTPGstSink : BaseSink {
         }
 
         Idle.add_full (this.priority, () => {
-            if (this.cancellable.is_cancelled ()) {
-                return false;
-            }
-
-            this.response.push_data (buffer.data);
-            this.buffered++;
-            return false;
+            return this.push_data (buffer);
         });
 
         return FlowReturn.OK;
+    }
+
+    // Runs in application thread
+    public bool push_data (Buffer buffer) {
+        if (this.cancellable.is_cancelled ()) {
+            return false;
+        }
+
+        this.response.push_data (buffer.data);
+        this.buffered++;
+
+        return false;
     }
 
     private void on_wrote_chunk (Soup.Message msg) {
