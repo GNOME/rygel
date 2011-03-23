@@ -183,6 +183,13 @@ internal abstract class Rygel.Transcoder : GLib.Object {
                    encoder_pad.name);
         }
 
-        return new_pad.link (encoder_pad) == PadLinkReturn.OK;
+        var pad_link_ok = (new_pad.link (encoder_pad) == PadLinkReturn.OK);
+        if (!pad_link_ok) {
+            warning ("Failed to link pad '%s' to '%s'",
+                     new_pad.name,
+                     encoder_pad.name);
+        }
+
+        return pad_link_ok;
     }
 }
