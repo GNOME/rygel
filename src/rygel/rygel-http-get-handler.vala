@@ -28,12 +28,14 @@ using GUPnP;
  * HTTP GET request handler interface.
  */
 internal abstract class Rygel.HTTPGetHandler: GLib.Object {
+    private const string TRANSFER_MODE_HEADER = "transferMode.dlna.org";
+
     public Cancellable cancellable { get; set; }
 
     // Add response headers.
     public virtual void add_response_headers (HTTPGet request)
                                               throws HTTPRequestError {
-        var mode = request.msg.request_headers.get_one ("transferMode.dlna.org");
+        var mode = request.msg.request_headers.get_one (TRANSFER_MODE_HEADER);
         if (mode != null) {
             // FIXME: Is it OK to just copy the value of this header from
             // request to response? All we do to entertain this header is to
