@@ -108,7 +108,8 @@ public class Rygel.MediaItem {
     private dynamic Element src;
 
     public MediaItem () {
-        this.src = GstUtils.create_element ("audiotestsrc", null);
+        this.src = GstUtils.create_element ("fakesrc", null);
+        this.src.sizetype = 2; // fixed
     }
 
     public MediaItem.fixed_size () {
