@@ -682,6 +682,9 @@ public class Rygel.MediaExport.MediaCache : Object {
             case "res":
                 column = "o.uri";
                 break;
+            case "res@duration":
+                column = "m.duration";
+                break;
             case "@refID":
                 column = "NULL";
                 break;
