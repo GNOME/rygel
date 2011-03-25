@@ -42,7 +42,6 @@ rygel_http_gst_response_test_SOURCES = rygel-http-gst-response-test.vala \
                                    rygel-http-response_gst-response.vala \
                                    rygel-http-response-test_gst-response.vala \
 				   rygel-state-machine_gst-response.vala \
-				   rygel-http-seek_gst-response.vala \
 				   rygel-gst-utils.vala
 
 rygel_http_seekable_response_test_SOURCES = \

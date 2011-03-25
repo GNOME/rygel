@@ -123,6 +123,14 @@ public class Rygel.MediaItem {
     }
 }
 
+internal abstract class Rygel.HTTPSeek : GLib.Object {
+    // These are either number of bytes or microseconds
+    public int64 start;
+    public int64 stop;
+    public int64 length;
+    public int64 total_length;
+}
+
 public errordomain Rygel.HTTPRequestError {
     NOT_FOUND = Soup.KnownStatusCode.NOT_FOUND
 }

@@ -1,1 +1,0 @@
-../src/rygel/rygel-http-seek.vala
