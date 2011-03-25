@@ -92,7 +92,13 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
   </refsynopsisdiv>
   <refsect1 id="description">
     <title>DESCRIPTION</title>
-    <para><command>&dhpackage;</command> is a collection of DLNA (UPnP  AV) services (devices in UPnP speak), implemented through a plug-in mechanism. UPnP in simplest words is a set of protocols that defines how different devices on a home network can seamlessly (without or with minimum configuration) communicate with each other. UPnP AV defines how multimedia systems could be built on top of that. DLNA in simple words is a long list of rules that implementers must comply to if they want to achieve interoperability with other implementations in the market. </para>
+    <para><command>&dhpackage;</command> is a home media solution that allows you to easily share audio, video and
+pictures, and control of media player on your home network. In technical terms
+it is both a UPnP AV MediaServer and MediaRenderer implemented through a
+plug-in mechanism. Interoperability with other devices in the market is
+achieved by conformance to very strict requirements of DLNA and on the fly
+conversion of media to format that client devices are capable of
+handling.</para>
   </refsect1>
   <refsect1 id="options">
     <title>OPTIONS</title>
