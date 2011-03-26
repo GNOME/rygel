@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-23 10:13+0100\n"
-"PO-Revision-Date: 2011-02-23 10:13+0100\n"
+"POT-Creation-Date: 2011-03-26 21:10+0100\n"
+"PO-Revision-Date: 2011-03-26 21:11+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -56,12 +56,12 @@ msgstr "GStreamer-uppspelare"
 msgid "Failed to open database: %d (%s)"
 msgstr "Misslyckades med att öppna databas: %d (%s)"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:208
+#: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Misslyckades med att rulla tillbaka transaktion: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:268
+#: ../src/plugins/media-export/rygel-media-export-database.vala:267
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Typen %s stöds inte"
@@ -138,30 +138,30 @@ msgstr "Genre"
 msgid "Failed to remove URI: %s"
 msgstr "Misslyckades med att ta bort URI: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:325
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:336
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "Media för @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:333
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Misslyckades med att skapa MediaExport D-Bus-tjänst: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:372
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Misslyckades med att ta bort post: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:388
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:397
 msgid "Music"
 msgstr "Musik"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:391
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:400
 msgid "Pictures"
 msgstr "Bilder"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:393
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:402
 msgid "Videos"
 msgstr "Videor"
 
@@ -278,6 +278,9 @@ msgid "Play speed not supported"
 msgstr "Uppspelningshastigheten stöds inte"
 
 #: ../src/rygel/rygel-av-transport.vala:417
+msgid "Seek failed"
+msgstr "Sökning misslyckades"
+
 #: ../src/rygel/rygel-av-transport.vala:426
 msgid "Seek mode not supported"
 msgstr "Spolningsläge stöds inte"
@@ -318,16 +321,6 @@ msgstr "Ogiltig Range \"%s\""
 msgid "Invalid Request"
 msgstr "Ogiltig begäran"
 
-#: ../src/rygel/rygel-http-identity-handler.vala:97
-#: ../src/rygel/rygel-http-transcode-handler.vala:56
-msgid "Not found"
-msgstr "Hittades inte"
-
-#: ../src/rygel/rygel-http-identity-handler.vala:109
-#, c-format
-msgid "Item '%s' didn't provide a URI"
-msgstr "Objektet \"%s\" tillhandahöll ingen URI"
-
 #: ../src/rygel/rygel-http-item-uri.vala:58
 #, c-format
 msgid "Invalid URI '%s'"
@@ -352,6 +345,11 @@ msgstr "Ingen skrivbar URI för %s tillgänglig"
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "Begärt objekt \"%s\" hittades inte"
+
+#: ../src/rygel/rygel-http-transcode-handler.vala:56
+#: ../src/rygel/rygel-http-gst-response.vala:44
+msgid "Not found"
+msgstr "Hittades inte"
 
 #: ../src/rygel/rygel-import-resource.vala:109
 #, c-format
@@ -408,7 +406,7 @@ msgid "Object removal from %s not allowed"
 msgstr "Borttagning av objekt från %s tillåts inte"
 
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-http-gst-response.vala:143
+#: ../src/rygel/rygel-http-gst-response.vala:129
 #: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
@@ -417,28 +415,23 @@ msgstr "Borttagning av objekt från %s tillåts inte"
 msgid "Failed to link pad %s to %s"
 msgstr "Misslyckades med att länka pad %s till %s"
 
-#. 'fakesink' should not be translated
-#: ../src/rygel/rygel-http-gst-response.vala:91
-msgid "Plugin 'fakesink' missing"
-msgstr "Insticksmodulen \"fakesink\" saknas"
-
-#: ../src/rygel/rygel-http-gst-response.vala:108
-#: ../src/rygel/rygel-http-gst-response.vala:130
+#: ../src/rygel/rygel-http-gst-response.vala:94
+#: ../src/rygel/rygel-http-gst-response.vala:116
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Misslyckades med att länka %s till %s"
 
-#: ../src/rygel/rygel-http-gst-response.vala:216
+#: ../src/rygel/rygel-http-gst-response.vala:172
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Fel från rörledningen %s: %s"
 
-#: ../src/rygel/rygel-http-gst-response.vala:223
+#: ../src/rygel/rygel-http-gst-response.vala:179
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Varning från rörledningen %s: %s"
 
-#: ../src/rygel/rygel-http-gst-response.vala:256
+#: ../src/rygel/rygel-http-gst-response.vala:212
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Misslyckades med att spola till offset %lld"
@@ -470,13 +463,13 @@ msgstr "Misslyckades med att skapa RootDevice för %s. Anledning: %s"
 msgid "Failed to start D-Bus service: %s"
 msgstr "Misslyckades med att starta D-Bus-tjänst: %s"
 
-#: ../src/rygel/rygel-media-item.vala:272
+#: ../src/rygel/rygel-media-item.vala:271
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Felaktig URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:284
+#: ../src/rygel/rygel-media-item.vala:283
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Misslyckades med att läsa av protokoll för URI %s. Antar \"%s\""
@@ -540,24 +533,29 @@ msgstr "Misslyckades med att skriva ändrad beskrivning till %s"
 msgid "Failed to search in '%s': %s"
 msgstr "Misslyckades med att söka i \"%s\": %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:59
+#: ../src/rygel/rygel-http-seekable-response.vala:53
+#, c-format
+msgid "Item '%s' didn't provide a URI"
+msgstr "Objektet \"%s\" tillhandahöll ingen URI"
+
+#: ../src/rygel/rygel-http-seekable-response.vala:77
 #, c-format
 msgid "Failed to read from URI: %s: %s"
 msgstr "Misslyckades med att läsa från URI: %s: %s"
 
 #. Failed to seek to media segment (defined by first and last
 #. byte positions).
-#: ../src/rygel/rygel-http-seekable-response.vala:78
+#: ../src/rygel/rygel-http-seekable-response.vala:96
 #, c-format
 msgid "Failed to seek to %s-%s on URI %s: %s"
 msgstr "Misslyckades med att spola till %s-%s på URI:n %s: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:97
+#: ../src/rygel/rygel-http-seekable-response.vala:115
 #, c-format
 msgid "Failed to read contents from URI: %s: %s"
 msgstr "Misslyckades med att läsa innehåll från URI: %s: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:143
+#: ../src/rygel/rygel-http-seekable-response.vala:161
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
 msgstr "Misslyckades med att stänga ström till URI:n %s: %s"
@@ -594,11 +592,11 @@ msgstr "Inget värde tillgängligt för \"%s\""
 msgid "Value of '%s' out of range"
 msgstr "Värdet för \"%s\" är utanför intervallet"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:42
+#: ../src/rygel/rygel-xbox-hacks.vala:44
 msgid "Not Applicable"
 msgstr "Inte tillämpligt"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:178
+#: ../src/rygel/rygel-xbox-hacks.vala:180
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Misslyckades med att skriva ändrad beskrivning till %s."
@@ -623,6 +621,8 @@ msgstr "Misslyckades med att starta Rygel-tjänsten: %s"
 msgid "Failed to stop Rygel service: %s"
 msgstr "Misslyckades med att stoppa Rygel-tjänsten: %s"
 
+#~ msgid "Plugin 'fakesink' missing"
+#~ msgstr "Insticksmodulen \"fakesink\" saknas"
 #~ msgid "General"
 #~ msgstr "Allmänt"
 #~ msgid "MPE_G TS"
