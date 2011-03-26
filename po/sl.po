@@ -7,15 +7,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&component=general\n"
-"POT-Creation-Date: 2011-02-21 20:46+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-26 19:04+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Poedit-Language: Slovenian\n"
 "X-Poedit-Country: SLOVENIA\n"
@@ -60,12 +60,12 @@ msgstr "Predvajalnik GStreamer"
 msgid "Failed to open database: %d (%s)"
 msgstr "Odpiranje podatkovne zbirke je spodletelo: %d (%s)"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:208
+#: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Povrnitev prenosa je spodletelo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:268
+#: ../src/plugins/media-export/rygel-media-export-database.vala:267
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Nepodprta vrsta %s"
@@ -142,30 +142,30 @@ msgstr "Zvrst"
 msgid "Failed to remove URI: %s"
 msgstr "Odstranjevanje naslova URI je spodletelo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:325
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:336
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "Uporabnika @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:333
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Ustvarjanje DBus storitve izvoza večpredstavnosti je spodletelo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:372
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Odstranitev vnosa je spodletela: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:388
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:397
 msgid "Music"
 msgstr "Glasba"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:391
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:400
 msgid "Pictures"
 msgstr "Slike"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:393
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:402
 msgid "Videos"
 msgstr "Video"
 
@@ -282,6 +282,9 @@ msgid "Play speed not supported"
 msgstr "Hitrost predvajanja ni podprta"
 
 #: ../src/rygel/rygel-av-transport.vala:417
+msgid "Seek failed"
+msgstr "Iskanje je spodletelo"
+
 #: ../src/rygel/rygel-av-transport.vala:426
 msgid "Seek mode not supported"
 msgstr "Način iskanja ni podprt"
@@ -322,16 +325,6 @@ msgstr "Neveljaven obseg '%s'"
 msgid "Invalid Request"
 msgstr "Neveljavna zahteva"
 
-#: ../src/rygel/rygel-http-identity-handler.vala:97
-#: ../src/rygel/rygel-http-transcode-handler.vala:56
-msgid "Not found"
-msgstr "Ni najden"
-
-#: ../src/rygel/rygel-http-identity-handler.vala:109
-#, c-format
-msgid "Item '%s' didn't provide a URI"
-msgstr "Predmet '%s' ni zagotovil naslova URI"
-
 #: ../src/rygel/rygel-http-item-uri.vala:58
 #, c-format
 msgid "Invalid URI '%s'"
@@ -356,6 +349,11 @@ msgstr "Za %s ni na voljo zapisljivega naslova URI"
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "Zahtevanega predmeta '%s' ni mogoče najti"
+
+#: ../src/rygel/rygel-http-transcode-handler.vala:56
+#: ../src/rygel/rygel-http-gst-response.vala:44
+msgid "Not found"
+msgstr "Ni najden"
 
 #: ../src/rygel/rygel-import-resource.vala:109
 #, c-format
@@ -412,7 +410,7 @@ msgid "Object removal from %s not allowed"
 msgstr "Odstranjevanje predmeta iz %s ni dovoljeno"
 
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-http-gst-response.vala:143
+#: ../src/rygel/rygel-http-gst-response.vala:129
 #: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
@@ -421,28 +419,23 @@ msgstr "Odstranjevanje predmeta iz %s ni dovoljeno"
 msgid "Failed to link pad %s to %s"
 msgstr "Napaka med povezovanjem %s z %s"
 
-#. 'fakesink' should not be translated
-#: ../src/rygel/rygel-http-gst-response.vala:91
-msgid "Plugin 'fakesink' missing"
-msgstr "Vstavek 'fakesink' manjka"
-
-#: ../src/rygel/rygel-http-gst-response.vala:108
-#: ../src/rygel/rygel-http-gst-response.vala:130
+#: ../src/rygel/rygel-http-gst-response.vala:94
+#: ../src/rygel/rygel-http-gst-response.vala:116
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Povezovanje %s z %s je spodletelo"
 
-#: ../src/rygel/rygel-http-gst-response.vala:216
+#: ../src/rygel/rygel-http-gst-response.vala:172
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Napaka iz cevovoda %s: %s"
 
-#: ../src/rygel/rygel-http-gst-response.vala:223
+#: ../src/rygel/rygel-http-gst-response.vala:179
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Opozorilo iz cevovoda %s: %s"
 
-#: ../src/rygel/rygel-http-gst-response.vala:256
+#: ../src/rygel/rygel-http-gst-response.vala:212
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Iskanje na odmik %lld je spodletelo"
@@ -476,13 +469,13 @@ msgstr "Ustvarjanje RootDevice za %s je spodletelo: Vzrok: %s"
 msgid "Failed to start D-Bus service: %s"
 msgstr "Zaganjanje storitve D-Bus je spodletelo: %s"
 
-#: ../src/rygel/rygel-media-item.vala:272
+#: ../src/rygel/rygel-media-item.vala:271
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Slab naslov URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:284
+#: ../src/rygel/rygel-media-item.vala:283
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Neuspešno preiskovanje protokola za naslov URI %s. Uporabljeno bo '%s'"
@@ -546,24 +539,29 @@ msgstr "Zapisovanje spremenjenega zapisa v %s je spodletelo"
 msgid "Failed to search in '%s': %s"
 msgstr "Iskanje v '%s' je spodletelo: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:59
+#: ../src/rygel/rygel-http-seekable-response.vala:53
+#, c-format
+msgid "Item '%s' didn't provide a URI"
+msgstr "Predmet '%s' ni zagotovil naslova URI"
+
+#: ../src/rygel/rygel-http-seekable-response.vala:77
 #, c-format
 msgid "Failed to read from URI: %s: %s"
 msgstr "Branje iz naslova URI je spodletelo: %s: %s"
 
 #. Failed to seek to media segment (defined by first and last
 #. byte positions).
-#: ../src/rygel/rygel-http-seekable-response.vala:78
+#: ../src/rygel/rygel-http-seekable-response.vala:96
 #, c-format
 msgid "Failed to seek to %s-%s on URI %s: %s"
 msgstr "Iskanje do %s-%s na URI je spodletelo: %s: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:97
+#: ../src/rygel/rygel-http-seekable-response.vala:115
 #, c-format
 msgid "Failed to read contents from URI: %s: %s"
 msgstr "Branje vsebine iz naslova URI je spodletelo: %s: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:143
+#: ../src/rygel/rygel-http-seekable-response.vala:161
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
 msgstr "Zapiranje pretoka do naslova URI %s je spodletelo: %s"
@@ -600,11 +598,11 @@ msgstr "Za '%s' ni na voljo nobene vrednosti"
 msgid "Value of '%s' out of range"
 msgstr "Vrednost '%s' je izven obsega"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:42
+#: ../src/rygel/rygel-xbox-hacks.vala:44
 msgid "Not Applicable"
 msgstr "Ni mogoče uporabiti"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:178
+#: ../src/rygel/rygel-xbox-hacks.vala:180
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Zapisovanje spremenjenega opisa na %s je spodletelo."
@@ -629,320 +627,221 @@ msgstr "Začenjanje storitve Rygel je spodletelo: %s"
 msgid "Failed to stop Rygel service: %s"
 msgstr "Zaustavljanje storitve Rygel je spodletelo: %s"
 
+#~ msgid "Plugin 'fakesink' missing"
+#~ msgstr "Vstavek 'fakesink' manjka"
 #~ msgid "General"
 #~ msgstr "Splošno"
-
 #~ msgid "MPE_G TS"
 #~ msgstr "MPE_G TS"
-
 #~ msgid "Plugins"
 #~ msgstr "Vstavki"
-
 #~ msgid "Share M_usic"
 #~ msgstr "Souporaba _glasbe"
-
 #~ msgid "Share _Pictures"
 #~ msgstr "Souporaba _slik"
-
 #~ msgid "Share _Videos"
 #~ msgstr "Souporaba _videov"
-
 #~ msgid "T_itle"
 #~ msgstr "N_aslov"
-
 #~ msgid "Ti_tle"
 #~ msgstr "Na_slov"
-
 #~ msgid ""
 #~ "Write %u for username, %n for real name of the user and %h for host name"
 #~ msgstr ""
 #~ "Vpišite %u za uporabniško ime, %n za pravo ime uporabnika in %h za ime "
 #~ "gostitelja"
-
 #~ msgid "_Enable UPnP/DLNA"
 #~ msgstr "_Omogoči UPnP/DLNA"
-
 #~ msgid "_Interface"
 #~ msgstr "V_mesnik"
-
 #~ msgid "_LPCM"
 #~ msgstr "_LPCM"
-
 #~ msgid "_MP3"
 #~ msgstr "_MP3"
-
 #~ msgid "_Media Export"
 #~ msgstr "_Izvoz večpredstavnosti"
-
 #~ msgid "_Port"
 #~ msgstr "_Vrata"
-
 #~ msgid "_Transcoding support"
 #~ msgstr "Podpora p_rekodiranja"
-
 #~ msgid "_URIs"
 #~ msgstr "Naslovi _URI"
-
 #~ msgid "Failed to create instance of database"
 #~ msgstr "Odstranjevanje primerka podatkovne zbirke je spodletelo"
-
 #~ msgid "Changing playback state to %s."
 #~ msgstr "Spreminjanje stanja predvajanja v %s."
-
 #~ msgid "URI set to %s."
 #~ msgstr "naslov URI je nastavljen na %s."
-
 #~ msgid "volume set to %f."
 #~ msgstr "glasnost je nastavljena na %f."
-
 #~ msgid "Using database file %s"
 #~ msgstr "Uporaba datoteke podatkovne zbirke %s"
-
 #~ msgid "Failed to extract metadata from %s: %s"
 #~ msgstr "Ni mogoče prebrati metapodatkov iz %s: %s"
-
 #~ msgid "Original search: %s"
 #~ msgstr "Izvirno iskanje: %s"
-
 #~ msgid "Parsed search expression: %s"
 #~ msgstr "Razčlenjen izraz iskanja: %s"
-
 #~ msgid "Trying to harvest %s because of %d"
 #~ msgstr "Poskus zbiranja %s zaradi %d"
-
 #~ msgid "Folder %s gone; removing watch"
 #~ msgstr "Mape %s ni več, zato opazovanje ne bo dejavno"
-
 #~ msgid "ID %s no longer in config; deleting..."
 #~ msgstr "ID %s ni več v nastavitvah, možnost bo izbrisana ..."
-
 #~ msgid "Changing playback state to %s.."
 #~ msgstr "Spreminjanje stanja predvajanja v %s ..."
-
 #~ msgid "Executing SPARQL query: %s"
 #~ msgstr "Izvajanje poizvedbe SPARQL: %s"
-
 #~ msgid "Seeking to %s."
 #~ msgstr "Iskanje %s"
-
 #~ msgid "Following HTTP headers appended to response:"
 #~ msgstr "Sledenje HTTP glavam pripetim odgovoru:"
-
 #~ msgid "HTTP %s request for URI '%s' handled."
 #~ msgstr "HTTP %s zahteva za naslov URI '%s' je obravnavana."
-
 #~ msgid "HTTP %s request for URI '%s'. Headers:"
 #~ msgstr "HTTP zahteva %s za uri '%s'. Glave:"
-
 #~ msgid "HTTP client aborted %s request for URI '%s'."
 #~ msgstr "HTTP odjemalec je preklical zahtevo %s za URI '%s'."
-
 #~ msgid "HTTP POST request for URI '%s'"
 #~ msgstr "HTTP POST zahteva za URI '%s'"
-
 #~ msgid "Import of '%s' to '%s' completed"
 #~ msgstr "Uvoz '%s' v '%s' je končan"
-
 #~ msgid "new network context %s (%s) available."
 #~ msgstr "nova omrežna vsebina %s (%s) je na voljo."
-
 #~ msgid "Ignoring network context %s (%s)."
 #~ msgstr "Izpuščanje vsebine omrežja %s (%s)."
-
 #~ msgid "Network context %s (%s) now unavailable."
 #~ msgstr "Vsebina omrežja %s (%s) sedaj ni na voljo."
-
 #~ msgid "Plugin '%s' disabled in user configuration; ignoring.."
 #~ msgstr "Vstavek '%s' je med nastavitvami onemogočen, zato bo prezrt ..."
-
 #~ msgid "Searching for modules in folder '%s'."
 #~ msgstr "Iskanje modulov v mapi '%s'."
-
 #~ msgid "Finished searching for modules in folder '%s'"
 #~ msgstr "Iskanje modulov v mapi '%s' je končano"
-
 #~ msgid "Loaded module source: '%s'"
 #~ msgstr "Naložen je vir modula: '%s'"
-
 #~ msgid "No icon provided by plugin '%s'. Using Rygel logo."
 #~ msgstr "Vstavek '%s' ne zagotavlja ikone. Uporabljen bo logotip Rygel."
-
 #~ msgid "Executing search request: %s"
 #~ msgstr "Izvajanje zahteve iskanja: %s"
-
 #~ msgid "Loaded user configuration from file '%s'"
 #~ msgstr "Uporabniške nastavitve so naložene iz datoteke '%s'"
-
 #~ msgid "Setting up timeout for LastChange"
 #~ msgstr "Nastavljanje zakasnitve za ZadnjaSprememba"
-
 #~ msgid "Unable to serialize unsupported object"
 #~ msgstr "Nepodprtega predmeta ni mogoče postaviti v vrsto"
-
 #~ msgid "No object satisfies given search criteria."
 #~ msgstr "Noben predmet ne zadostuje podanim kriterijem iskanja."
-
 #~ msgid "Failed to query database: %s"
 #~ msgstr "Poizvedba podatkovne zbirke je spodletela: %s"
-
 #~ msgid "Failed to update database: %s"
 #~ msgstr "Posodabljanje podatkovne zbirke je spodletelo: %s"
-
 #~ msgid "failed to enumerate folder: %s"
 #~ msgstr "Številčenje mape je spodletelo: %s"
-
 #~ msgid "Failed to get children of container %s: %s"
 #~ msgstr "Pridobivanje podrejenega predmeta zabojnika %s je spodletelo: %s"
-
 #~ msgid "File %s does not need harvesting"
 #~ msgstr "Datoteka %s ne zahteva zbiranja"
-
 #~ msgid "Failed to harvest file %s: %s"
 #~ msgstr "Spodletelo zbiranje za datoteko %s: %s"
-
 #~ msgid "ID does not contain pairs"
 #~ msgstr "ID ne vsebuje parov"
-
 #~ msgid "Empty part not allowed in virtual ID"
 #~ msgstr "Prazen del ni dovoljen v navidezno določenem ID"
-
 #~ msgid "Placeholder can only be on second place"
 #~ msgstr "Vsebnik je lahko le na drugemu mestu"
-
 #~ msgid "%s is not a valid virtual ID"
 #~ msgstr "%s ni veljaven navidezni ID"
-
 #~ msgid "Got error while trying to find virtual folders: %s"
 #~ msgstr "Med poskusom iskanja navideznih map je prišlo do napake: %s"
-
 #~ msgid "Already harvesting; cancelling"
 #~ msgstr "Zbiranje že teče, zato bo dejanje je preklicano."
-
 #~ msgid "Error creating URI from %s: %s"
 #~ msgstr "Napaka ustvarjanja naslova URI iz %s: %s"
-
 #~ msgid "Failed to create HTTP server for %s: %s"
 #~ msgstr "Ustvarjanje strežnika HTTP za %s je spodletelo: %s"
-
 #~ msgid "Nothing configured, using XDG special folders"
 #~ msgstr "Ni določenih nastavitev, zato bodo uporabljene posebne mape XDG"
-
 #~ msgid "Failed to parse query: %s"
 #~ msgstr "Razčlenitev poizvedbe je spodletela: %s"
-
 #~ msgid "Query: %s, Time: %f"
 #~ msgstr "Poizvedba: %s, Čas: %f"
-
 #~ msgid "Checking for gstreamer playbin..."
 #~ msgstr "Iskanje programnika gstreamer playbin"
-
 #~ msgid "Using playbin2"
 #~ msgstr "Uporaba programnika playbin2"
-
 #~ msgid "Could not create Playbin2, trying Playbin"
 #~ msgstr ""
 #~ "Ni mogoče ustvariti programnika playbin2, zato bo preizkušen playbin"
-
 #~ msgid "Using playbin"
 #~ msgstr "Uporaba programnika playbin"
-
 #~ msgid "Could not find any playbin."
 #~ msgstr "Programnika playbin ni mogoče najti."
-
 #~ msgid "Please check your gstreamer setup"
 #~ msgstr "Preverite vaše nastavitve gstreamer"
-
 #~ msgid "Metadata extractor timed out on %s, restarting"
 #~ msgstr ""
 #~ "Razširnik metapodatkov je časovno pretekel na %s, zato bo opravilo "
 #~ "ponovno zagnano"
-
 #~ msgid "Pipeline stuck while reading file info"
 #~ msgstr "Cevovod je obtičal med branjem podatkov o datoteki"
-
 #~ msgid "Scheduling file %s for metadata extraction"
 #~ msgstr "Razporejanje datoteke %s za izločanje metapodatkov "
-
 #~ msgid "Invalid object type"
 #~ msgstr "Neveljavna vrsta predmeta"
-
 #~ msgid "Failed to detect UPnP class for '%s', assuming '%s'"
 #~ msgstr ""
 #~ "Zaznavanje razreda UPnP za '%s' je spodletelo, predpostavljanje '%s'"
-
 #~ msgid "File '%s' is of unknown format/type."
 #~ msgstr "Datoteka '%s' je neznane oblike/vrste"
-
 #~ msgid "Got empty taglist for file %s"
 #~ msgstr "Pridobljen je bil prazen seznam oznak za datoteko %s"
-
 #~ msgid "We have %u child."
-
 #~ msgid_plural "We have %u children."
 #~ msgstr[0] "Obstaja še %u podrejenih predmetov."
 #~ msgstr[1] "Obstaja še %u podrejen predmet."
 #~ msgstr[2] "Obstajata še %u podrejena predmeta."
 #~ msgstr[3] "Obstajajo še %u podrejeni predmeti."
-
 #~ msgid "Registering %s for %s"
 #~ msgstr "Vpisovanje %s za %s"
-
 #~ msgid "Could not fetch XML"
 #~ msgstr "XML ni mogoče pridobiti"
-
 #~ msgid "Playlist download failed: %u (%s)"
 #~ msgstr "Prejemanje seznama predvajanja je spodletelo: %u (%s)"
-
 #~ msgid "ZDF Mediathek"
 #~ msgstr "ZDF Mediathek"
-
 #~ msgid "Scheduling update for all feeds...."
 #~ msgstr "Razporejanje posodobitev za vse vire ..."
-
 #~ msgid "Could not get RSS from configuration, using defaults"
 #~ msgstr "Ni mogoče dobiti RSS iz nastavitev, zato bo uporabljeno privzato"
-
 #~ msgid "Feed has not changed, nothing to do"
 #~ msgstr "Vir ni spremenjen, zato ni odziva"
-
 #~ msgid "Got unexpected response %u (%s)"
 #~ msgstr "Prejet nepričakovan odgovor %u (%s)"
-
 #~ msgid "Error creating video item: %s"
 #~ msgstr "Napaka med ustvarjanjem predmeta videa: %s"
-
 #~ msgid "XPath query failed"
 #~ msgstr "Poizvedba XPath je spodletela"
-
 #~ msgid "Failed to parse doc"
 #~ msgstr "Razčlenjevanje dokumenta je spodletelo"
-
 #~ msgid "Requesting change since %s"
 #~ msgstr "Zahtevanje spremembe od %s"
-
 #~ msgid "ZDF Mediathek RSS feed %u"
 #~ msgstr "ZDF Mediathek RSS vir %u"
-
 #~ msgid "ZDF - Second German TV Channel Streams"
 #~ msgstr "ZDF - Pretoki kanalov druge nemške TV"
-
 #~ msgid "group node has no 'url' property"
 #~ msgstr "vozlišče skupine nima lastnosti 'url'"
-
 #~ msgid "invalid or no namespace"
 #~ msgstr "neveljavno ali brez imenskega prostora"
-
 #~ msgid "Invalid or no namespace on group node"
 #~ msgstr "Neveljavno ali brez imenskega prostora v vozlišču skupine"
-
 #~ msgid "Could not find title"
 #~ msgstr "Ni mogoče najti naslova"
-
 #~ msgid "Could not find URIs"
 #~ msgstr "Ni mogoče najti URI-jev"
-
 #~ msgid "No such container"
 #~ msgstr "Ni takšnega zabojnika"
-
 #~ msgid "Specified container does not exist."
 #~ msgstr "Navedeni zabojnik ne obstaja."
+
