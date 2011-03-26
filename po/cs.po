@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&component=general\n"
-"POT-Creation-Date: 2011-03-08 16:40+0000\n"
-"PO-Revision-Date: 2011-03-14 18:57+0100\n"
+"product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-26 14:05+0000\n"
+"PO-Revision-Date: 2011-03-26 15:31+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,6 @@ msgstr "Výběr složek"
 
 #. Network Interface
 #: ../data/rygel-preferences.ui.h:4
-#| msgid "Network Options"
 msgid "_Network"
 msgstr "_Síť"
 
@@ -280,6 +279,9 @@ msgid "Play speed not supported"
 msgstr "Rychlost přehrávání není podporována"
 
 #: ../src/rygel/rygel-av-transport.vala:417
+msgid "Seek failed"
+msgstr "Přesun selhal"
+
 #: ../src/rygel/rygel-av-transport.vala:426
 msgid "Seek mode not supported"
 msgstr "Režim přesunu ve stopě není podporován"
@@ -320,16 +322,6 @@ msgstr "Neplatný rozsah „%s“"
 msgid "Invalid Request"
 msgstr "Neplatný požadavek"
 
-#: ../src/rygel/rygel-http-identity-handler.vala:97
-#: ../src/rygel/rygel-http-transcode-handler.vala:56
-msgid "Not found"
-msgstr "Nenalezeno"
-
-#: ../src/rygel/rygel-http-identity-handler.vala:109
-#, c-format
-msgid "Item '%s' didn't provide a URI"
-msgstr "Položka „%s“ neposkytla adresu URI"
-
 #: ../src/rygel/rygel-http-item-uri.vala:58
 #, c-format
 msgid "Invalid URI '%s'"
@@ -354,6 +346,11 @@ msgstr "Pro %s není k dispozici žádná zapisovatelná adresa URI"
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "Vyžadovaná položka „%s“ nenalezena"
+
+#: ../src/rygel/rygel-http-transcode-handler.vala:56
+#: ../src/rygel/rygel-http-gst-response.vala:44
+msgid "Not found"
+msgstr "Nenalezeno"
 
 #: ../src/rygel/rygel-import-resource.vala:109
 #, c-format
@@ -410,7 +407,7 @@ msgid "Object removal from %s not allowed"
 msgstr "Odstranění objektu v %s není dovoleno"
 
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-http-gst-response.vala:143
+#: ../src/rygel/rygel-http-gst-response.vala:129
 #: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
@@ -419,28 +416,23 @@ msgstr "Odstranění objektu v %s není dovoleno"
 msgid "Failed to link pad %s to %s"
 msgstr "Selhalo napojení propojky %s na %s"
 
-#. 'fakesink' should not be translated
-#: ../src/rygel/rygel-http-gst-response.vala:91
-msgid "Plugin 'fakesink' missing"
-msgstr "Schází zásuvný modul „fakesink“"
-
-#: ../src/rygel/rygel-http-gst-response.vala:108
-#: ../src/rygel/rygel-http-gst-response.vala:130
+#: ../src/rygel/rygel-http-gst-response.vala:94
+#: ../src/rygel/rygel-http-gst-response.vala:116
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Selhalo navázání %s na %s"
 
-#: ../src/rygel/rygel-http-gst-response.vala:216
+#: ../src/rygel/rygel-http-gst-response.vala:172
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Chyba od roury %s: %s"
 
-#: ../src/rygel/rygel-http-gst-response.vala:223
+#: ../src/rygel/rygel-http-gst-response.vala:179
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Varování od roury %s: %s"
 
-#: ../src/rygel/rygel-http-gst-response.vala:256
+#: ../src/rygel/rygel-http-gst-response.vala:212
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Selhal přesun na pozici %lld"
@@ -473,13 +465,13 @@ msgstr "Selhalo vytvoření kořenového zařízení pro %s. Důvod: %s"
 msgid "Failed to start D-Bus service: %s"
 msgstr "Selhalo spuštění služby D-Bus: %s"
 
-#: ../src/rygel/rygel-media-item.vala:272
+#: ../src/rygel/rygel-media-item.vala:271
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Chybná adresa URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:284
+#: ../src/rygel/rygel-media-item.vala:283
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr ""
@@ -544,24 +536,29 @@ msgstr "Selhal zápis změněného popisu do %s"
 msgid "Failed to search in '%s': %s"
 msgstr "Selhalo hledání v „%s“: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:59
+#: ../src/rygel/rygel-http-seekable-response.vala:53
+#, c-format
+msgid "Item '%s' didn't provide a URI"
+msgstr "Položka „%s“ neposkytla adresu URI"
+
+#: ../src/rygel/rygel-http-seekable-response.vala:77
 #, c-format
 msgid "Failed to read from URI: %s: %s"
 msgstr "Selhalo čtení z adresy URI: %s: %s"
 
 #. Failed to seek to media segment (defined by first and last
 #. byte positions).
-#: ../src/rygel/rygel-http-seekable-response.vala:78
+#: ../src/rygel/rygel-http-seekable-response.vala:96
 #, c-format
 msgid "Failed to seek to %s-%s on URI %s: %s"
 msgstr "Selhal přesun na %s-%s na adrese URI %s: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:97
+#: ../src/rygel/rygel-http-seekable-response.vala:115
 #, c-format
 msgid "Failed to read contents from URI: %s: %s"
 msgstr "Selhalo čtení obsahu z adresy URI: %s: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:143
+#: ../src/rygel/rygel-http-seekable-response.vala:161
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
 msgstr "Selhalo uzavření proudu do adresy URI %s: %s"
@@ -598,11 +595,11 @@ msgstr "Pro „%s“ není dostupná žádná hodnota"
 msgid "Value of '%s' out of range"
 msgstr "Hodnota „%s“ je mimo rozsah"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:42
+#: ../src/rygel/rygel-xbox-hacks.vala:44
 msgid "Not Applicable"
 msgstr "Nepoužitelné"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:178
+#: ../src/rygel/rygel-xbox-hacks.vala:180
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Selhal zápis změněného popisu do %s."
@@ -626,6 +623,9 @@ msgstr "Selhalo spuštění služby Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Selhalo zastavení služby Rygel: %s"
+
+#~ msgid "Plugin 'fakesink' missing"
+#~ msgstr "Schází zásuvný modul „fakesink“"
 
 #~ msgid "General"
 #~ msgstr "Obecné"
