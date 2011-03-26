@@ -5,7 +5,7 @@
          xmlns="http://usefulinc.com/ns/doap#">
 
   <name xml:lang="en">rygel</name>
-  <shortdesc xml:lang="en">Rygel is a collection of UPnP/DLNA devices, implemented through a plug-in mechanism.</shortdesc>
+  <shortdesc xml:lang="en">Rygel is a home media solution that allows you to easily share audio, video and pictures, and control of media player on your home network.</shortdesc>
 
   <homepage
   rdf:resource="http://live.gnome.org/Rygel" />
