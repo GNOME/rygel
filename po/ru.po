@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-21 19:32+0000\n"
-"PO-Revision-Date: 2011-03-22 23:00+0400\n"
+"POT-Creation-Date: 2011-03-26 14:05+0000\n"
+"PO-Revision-Date: 2011-03-26 22:01+0400\n"
 "Last-Translator: Yuri Myaseodov <omerta13@yandex.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -277,6 +277,9 @@ msgid "Play speed not supported"
 msgstr "Скорость воспроизведения не поддерживается"
 
 #: ../src/rygel/rygel-av-transport.vala:417
+msgid "Seek failed"
+msgstr "Сбой при перемещении"
+
 #: ../src/rygel/rygel-av-transport.vala:426
 msgid "Seek mode not supported"
 msgstr "Режим перемотки не поддерживается"
@@ -317,16 +320,6 @@ msgstr "Недопустимый диапазон «%s»"
 msgid "Invalid Request"
 msgstr "Недопустимый запрос"
 
-#: ../src/rygel/rygel-http-identity-handler.vala:97
-#: ../src/rygel/rygel-http-transcode-handler.vala:56
-msgid "Not found"
-msgstr "Не найдено"
-
-#: ../src/rygel/rygel-http-identity-handler.vala:109
-#, c-format
-msgid "Item '%s' didn't provide a URI"
-msgstr "Элемент «%s» не предоставляет URI"
-
 #: ../src/rygel/rygel-http-item-uri.vala:58
 #, c-format
 msgid "Invalid URI '%s'"
@@ -351,6 +344,11 @@ msgstr "Нет доступного записываемого URI для %s"
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "Запрошенный элемент «%s» не найден"
+
+#: ../src/rygel/rygel-http-transcode-handler.vala:56
+#: ../src/rygel/rygel-http-gst-response.vala:44
+msgid "Not found"
+msgstr "Не найдено"
 
 #: ../src/rygel/rygel-import-resource.vala:109
 #, c-format
@@ -407,7 +405,7 @@ msgid "Object removal from %s not allowed"
 msgstr "Удаление объекта из %s запрещено"
 
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-http-gst-response.vala:143
+#: ../src/rygel/rygel-http-gst-response.vala:129
 #: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
@@ -416,28 +414,23 @@ msgstr "Удаление объекта из %s запрещено"
 msgid "Failed to link pad %s to %s"
 msgstr "Не удалось соединить коннектор %s с %s"
 
-#. 'fakesink' should not be translated
-#: ../src/rygel/rygel-http-gst-response.vala:91
-msgid "Plugin 'fakesink' missing"
-msgstr "Модуль «fakesink» отсутствует"
-
-#: ../src/rygel/rygel-http-gst-response.vala:108
-#: ../src/rygel/rygel-http-gst-response.vala:130
+#: ../src/rygel/rygel-http-gst-response.vala:94
+#: ../src/rygel/rygel-http-gst-response.vala:116
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Не удалось соединить %s с %s"
 
-#: ../src/rygel/rygel-http-gst-response.vala:216
+#: ../src/rygel/rygel-http-gst-response.vala:172
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Ошибка в конвейере %s: %s"
 
-#: ../src/rygel/rygel-http-gst-response.vala:223
+#: ../src/rygel/rygel-http-gst-response.vala:179
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Предупреждение в конвейере %s: %s"
 
-#: ../src/rygel/rygel-http-gst-response.vala:256
+#: ../src/rygel/rygel-http-gst-response.vala:212
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Не удалось переместиться к смещению %lld"
@@ -470,13 +463,13 @@ msgstr "Не удалось создать RootDevice для %s. Причина:
 msgid "Failed to start D-Bus service: %s"
 msgstr "Не удалось запустить службу D-Bus: %s"
 
-#: ../src/rygel/rygel-media-item.vala:272
+#: ../src/rygel/rygel-media-item.vala:271
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Неверный URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:284
+#: ../src/rygel/rygel-media-item.vala:283
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Не удалось проверить протокол для URI %s. Для «%s»"
@@ -540,24 +533,29 @@ msgstr "Не удалось записать изменённое описани
 msgid "Failed to search in '%s': %s"
 msgstr "Не удалось выполнить поиск в «%s»: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:59
+#: ../src/rygel/rygel-http-seekable-response.vala:53
+#, c-format
+msgid "Item '%s' didn't provide a URI"
+msgstr "Элемент «%s» не предоставляет URI"
+
+#: ../src/rygel/rygel-http-seekable-response.vala:77
 #, c-format
 msgid "Failed to read from URI: %s: %s"
 msgstr "Не удалось прочитать изURI: %s: %s"
 
 #. Failed to seek to media segment (defined by first and last
 #. byte positions).
-#: ../src/rygel/rygel-http-seekable-response.vala:78
+#: ../src/rygel/rygel-http-seekable-response.vala:96
 #, c-format
 msgid "Failed to seek to %s-%s on URI %s: %s"
 msgstr "Не удалось переместиться к %s-%s на URI %s: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:97
+#: ../src/rygel/rygel-http-seekable-response.vala:115
 #, c-format
 msgid "Failed to read contents from URI: %s: %s"
 msgstr "Не удалось прочитать содержимое из URI: %s: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:143
+#: ../src/rygel/rygel-http-seekable-response.vala:161
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
 msgstr "Не удалось закрыть поток URI %s: %s"
