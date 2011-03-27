@@ -7,16 +7,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&component=general\n"
-"POT-Creation-Date: 2011-02-17 23:48+0000\n"
-"PO-Revision-Date: 2011-03-02 15:05+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-27 11:53+0200\n"
+"PO-Revision-Date: 2011-03-27 11:54+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pl\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Poedit-Language: Polish\n"
@@ -61,12 +60,12 @@ msgstr "Odtwarzacz biblioteki GStreamer"
 msgid "Failed to open database: %d (%s)"
 msgstr "Otwarcie bazy danych się nie powiodło: %d (%s)"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:208
+#: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Przywrócenie transakcji się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:268
+#: ../src/plugins/media-export/rygel-media-export-database.vala:267
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Nieobsługiwany typ %s"
@@ -102,12 +101,12 @@ msgstr ""
 msgid "'%s' harvested"
 msgstr "Wydobyto z \"%s\""
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:158
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:166
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Błąd podczas pobierania obiektu \"%s\" z bazy danych: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:182
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:201
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Błąd podczas usuwania obiektu z bazy danych: %s"
@@ -139,35 +138,35 @@ msgstr "Album"
 msgid "Genre"
 msgstr "Gatunek"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:94
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:98
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "Usunięcie adresu URI się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:321
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:336
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "Multimedia użytkownika @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:329
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Utworzenie usługi D-Bus MediaExport się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:367
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Usunięcie wpisu się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:378
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:397
 msgid "Music"
 msgstr "Muzyka"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:400
 msgid "Pictures"
 msgstr "Obrazy"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:383
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:402
 msgid "Videos"
 msgstr "Wideo"
 
@@ -283,6 +282,9 @@ msgid "Play speed not supported"
 msgstr "Prędkość odtwarzania nie jest obsługiwana"
 
 #: ../src/rygel/rygel-av-transport.vala:417
+msgid "Seek failed"
+msgstr "Przewijanie się nie powiodło"
+
 #: ../src/rygel/rygel-av-transport.vala:426
 msgid "Seek mode not supported"
 msgstr "Tryb przewijania nie jest obsługiwany"
@@ -323,16 +325,6 @@ msgstr "Nieprawidłowy zakres \"%s\""
 msgid "Invalid Request"
 msgstr "Nieprawidłowe żądanie"
 
-#: ../src/rygel/rygel-http-identity-handler.vala:97
-#: ../src/rygel/rygel-http-transcode-handler.vala:56
-msgid "Not found"
-msgstr "Nie odnaleziono"
-
-#: ../src/rygel/rygel-http-identity-handler.vala:109
-#, c-format
-msgid "Item '%s' didn't provide a URI"
-msgstr "Element \"%s\" nie dostarcza adresu URI"
-
 #: ../src/rygel/rygel-http-item-uri.vala:58
 #, c-format
 msgid "Invalid URI '%s'"
@@ -357,6 +349,11 @@ msgstr "Brak dostępnego adresu URI do zapisania dla %s"
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "Nie odnaleziono żądanego elementu \"%s\""
+
+#: ../src/rygel/rygel-http-transcode-handler.vala:56
+#: ../src/rygel/rygel-http-gst-response.vala:44
+msgid "Not found"
+msgstr "Nie odnaleziono"
 
 #: ../src/rygel/rygel-import-resource.vala:109
 #, c-format
@@ -413,7 +410,7 @@ msgid "Object removal from %s not allowed"
 msgstr "Usunięcie obiektu z %s nie jest dozwolone"
 
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-http-gst-response.vala:143
+#: ../src/rygel/rygel-http-gst-response.vala:129
 #: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
@@ -422,28 +419,23 @@ msgstr "Usunięcie obiektu z %s nie jest dozwolone"
 msgid "Failed to link pad %s to %s"
 msgstr "Dowiązanie podkładki %s do %s się nie powiodło"
 
-#. 'fakesink' should not be translated
-#: ../src/rygel/rygel-http-gst-response.vala:91
-msgid "Plugin 'fakesink' missing"
-msgstr "Brak wtyczki \"fakesink\""
-
-#: ../src/rygel/rygel-http-gst-response.vala:108
-#: ../src/rygel/rygel-http-gst-response.vala:130
+#: ../src/rygel/rygel-http-gst-response.vala:94
+#: ../src/rygel/rygel-http-gst-response.vala:116
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Dowiązanie %s do %s się nie powiodło"
 
-#: ../src/rygel/rygel-http-gst-response.vala:216
+#: ../src/rygel/rygel-http-gst-response.vala:172
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Błąd z potoku %s: %s"
 
-#: ../src/rygel/rygel-http-gst-response.vala:223
+#: ../src/rygel/rygel-http-gst-response.vala:179
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Ostrzeżenie z potoku %s: %s"
 
-#: ../src/rygel/rygel-http-gst-response.vala:256
+#: ../src/rygel/rygel-http-gst-response.vala:212
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Przejście do %lld się nie powiodło"
@@ -476,13 +468,13 @@ msgstr "Utworzenie urządzenia głównego dla %s się nie powiodło. Przyczyna: 
 msgid "Failed to start D-Bus service: %s"
 msgstr "Uruchomienie usługi D-Bus się nie powiodło: %s"
 
-#: ../src/rygel/rygel-media-item.vala:272
+#: ../src/rygel/rygel-media-item.vala:271
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Błędny adres URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:284
+#: ../src/rygel/rygel-media-item.vala:283
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr ""
@@ -548,24 +540,29 @@ msgstr "Zapisanie zmodyfikowanego opisu do %s się nie powiodło"
 msgid "Failed to search in '%s': %s"
 msgstr "Wyszukiwanie w \"%s\" się nie powiodło: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:59
+#: ../src/rygel/rygel-http-seekable-response.vala:53
+#, c-format
+msgid "Item '%s' didn't provide a URI"
+msgstr "Element \"%s\" nie dostarcza adresu URI"
+
+#: ../src/rygel/rygel-http-seekable-response.vala:77
 #, c-format
 msgid "Failed to read from URI: %s: %s"
 msgstr "Odczyt z adresu URI się nie powiódł: %s: %s"
 
 #. Failed to seek to media segment (defined by first and last
 #. byte positions).
-#: ../src/rygel/rygel-http-seekable-response.vala:78
+#: ../src/rygel/rygel-http-seekable-response.vala:96
 #, c-format
 msgid "Failed to seek to %s-%s on URI %s: %s"
 msgstr "Przejście do %s-%s w adresie URI %s się nie powiodło: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:97
+#: ../src/rygel/rygel-http-seekable-response.vala:115
 #, c-format
 msgid "Failed to read contents from URI: %s: %s"
 msgstr "Odczyt zawartości z adresu URI się nie powiódł: %s: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:143
+#: ../src/rygel/rygel-http-seekable-response.vala:161
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
 msgstr "Zamknięcie strumienia do adresu URI %s się nie powiodło: %s"
@@ -602,11 +599,11 @@ msgstr "Brak dostępnej wartości dla \"%s\""
 msgid "Value of '%s' out of range"
 msgstr "Wartość \"%s\" jest spoza zakresu"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:42
+#: ../src/rygel/rygel-xbox-hacks.vala:44
 msgid "Not Applicable"
 msgstr "Nie dotyczy"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:178
+#: ../src/rygel/rygel-xbox-hacks.vala:180
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Zapisanie zmodyfikowanego opisu do %s się nie powiodło."
