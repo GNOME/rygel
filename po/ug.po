@@ -8,9 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&component=general\n"
-"POT-Creation-Date: 2011-02-11 00:27+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&component=general\n"
+"POT-Creation-Date: 2011-03-08 16:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Gheyret Kenji<gheyret@yahoo.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -20,89 +19,23 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/rygel-preferences.ui.h:1
-msgid "General"
-msgstr "ئادەتتىكى"
-
-#: ../data/rygel-preferences.ui.h:2
-msgid "MPE_G TS"
-msgstr "MPE_G TS"
-
-#: ../data/rygel-preferences.ui.h:3
-msgid "Network Options"
-msgstr "تور تاللانمىسى"
-
-#: ../data/rygel-preferences.ui.h:4
-msgid "Plugins"
-msgstr "قىستۇرما"
-
-#: ../data/rygel-preferences.ui.h:5
 #: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
 msgstr "Rygel تەڭشەكلىرى"
 
-#: ../data/rygel-preferences.ui.h:6
+#: ../data/rygel-preferences.ui.h:2
 msgid "Select folders"
 msgstr "قىسقۇچ تاللاش"
 
-#: ../data/rygel-preferences.ui.h:7
-msgid "Share M_usic"
-msgstr "مۇزىكا ھەمبەھىرلەش(_U)"
-
-#: ../data/rygel-preferences.ui.h:8
-msgid "Share _Pictures"
-msgstr "سۈرەت ھەمبەھىرلەش(_P)"
-
-#: ../data/rygel-preferences.ui.h:9
-msgid "Share _Videos"
-msgstr "سىن ھەمبەھىرلەش(_V)"
-
-#: ../data/rygel-preferences.ui.h:10
-msgid "T_itle"
-msgstr "ماۋزۇ(_I)"
-
-#: ../data/rygel-preferences.ui.h:11
-msgid "Ti_tle"
-msgstr "ماۋزۇ(_T)"
-
-#: ../data/rygel-preferences.ui.h:13
-#, no-c-format
-msgid ""
-"Write %u for username, %n for real name of the user and %h for host name"
-msgstr "ئىشلەتكۈچى ئاتى %u، ھېقىقى ئاتى %n، ماشىنا ئاتى %h قىلىپ يېزىلىدۇ"
-
-#: ../data/rygel-preferences.ui.h:14
-msgid "_Enable UPnP/DLNA"
-msgstr "UPnP/DLNA نى قوزغات(_E)"
-
 #. Network Interface
-#: ../data/rygel-preferences.ui.h:16
-msgid "_Interface"
-msgstr "ئارايۈز(_I)"
+#: ../data/rygel-preferences.ui.h:4
+#| msgid "Network Options"
+msgid "_Network"
+msgstr "تور(_N)"
 
-#: ../data/rygel-preferences.ui.h:17
-msgid "_LPCM"
-msgstr "_LPCM"
-
-#: ../data/rygel-preferences.ui.h:18
-msgid "_MP3"
-msgstr "_MP3"
-
-#: ../data/rygel-preferences.ui.h:19
-msgid "_Media Export"
-msgstr "ۋاسىتە ئېكسپورت قىلىش(_M)"
-
-#. Network Port
-#: ../data/rygel-preferences.ui.h:21
-msgid "_Port"
-msgstr "ئېغىز(_P)"
-
-#: ../data/rygel-preferences.ui.h:22
-msgid "_Transcoding support"
-msgstr ""
-
-#: ../data/rygel-preferences.ui.h:23
-msgid "_URIs"
-msgstr "_URIs"
+#: ../data/rygel-preferences.ui.h:5
+msgid "_Share media through DLNA"
+msgstr "DLNA ئارقىلىق ۋاسىتىلەرنى ھەمبەھىرلە(_S)"
 
 #: ../data/rygel-preferences.desktop.in.in.h:2
 msgid "UPnP/DLNA Preferences"
@@ -125,12 +58,12 @@ msgstr "GStreamer قويغۇ"
 msgid "Failed to open database: %d (%s)"
 msgstr "سانداننى ئېچىش مەغلۇپ بولدى: %d (%s)"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:208
+#: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "transaction دىن يېنىۋېلىش مەغلۇپ بولدى: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:268
+#: ../src/plugins/media-export/rygel-media-export-database.vala:267
 #, c-format
 msgid "Unsupported type %s"
 msgstr "تىپ %s نى قوللىمايدۇ(ئىشلەتكىلى بولمايدۇ)"
@@ -139,7 +72,7 @@ msgstr "تىپ %s نى قوللىمايدۇ(ئىشلەتكىلى بولمايد�
 #: ../src/rygel/rygel-plugin-loader.vala:186
 #, c-format
 msgid "Failed to query content type for '%s'"
-msgstr " '%s' نىڭ تىپىنى سۈرۈشتۈرۈش مەغلۇپ بولدى"
+msgstr "'%s' نىڭ تىپىنى سۈرۈشتۈرۈش مەغلۇپ بولدى"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:86
 #, c-format
@@ -163,14 +96,14 @@ msgstr ""
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:101
 #, c-format
 msgid "'%s' harvested"
-msgstr "'%s' نىنغا ئېرىشتى"
+msgstr "'%s' نىڭغا ئېرىشتى"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:158
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:166
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "سانداندىن نەڭ '%s' ئى ئېلىشتا خاتالىق كۆرۈلدى: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:182
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:201
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "سانداندىن نەڭنى ئۆچۈرۈۋاتقاندا خاتالىق كۆرۈلدى: %s"
@@ -202,35 +135,35 @@ msgstr "ئالبوم"
 msgid "Genre"
 msgstr "تىپ"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:94
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:98
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "URI نى چىقىرىۋېتىش مەغلۇپ بولدى: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:321
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:336
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@'s ۋاسىتە"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:329
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "MediaExport D-Bus مۇلازىمىتى قۇرۇش مەغلۇپ بولدى: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:367
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "مەزمۇننى چىقىرىۋېتىش مەغلۇپ بولدى: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:378
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:397
 msgid "Music"
 msgstr "نەغمە"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:400
 msgid "Pictures"
 msgstr "رەسىملەر"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:383
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:402
 msgid "Videos"
 msgstr "سىنلار"
 
@@ -263,9 +196,7 @@ msgstr "Tracker مۇلازىمىتىنى باشلاش مەغلۇپ بولدى: %
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:203
 #, c-format
 msgid "Error getting item count under category '%s': %s"
-msgstr ""
-"كاتېگورىيە '%s' نىڭ ئاستىدىكى تۈرلەرنىڭ سانىنى ئېلىۋاتقاندا خاتالىق كۆرۈلدى: "
-"%s"
+msgstr "كاتېگورىيە '%s' نىڭ ئاستىدىكى تۈرلەرنىڭ سانىنى ئېلىۋاتقاندا خاتالىق كۆرۈلدى: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-albums.vala:35
 msgid "Albums"
@@ -405,14 +336,13 @@ msgstr "URI '%s' ئىناۋەتسىز"
 
 #: ../src/rygel/rygel-http-item-uri.vala:89
 msgid "Not Found"
-msgstr "تاپالمىدى"
+msgstr "تېپىلمىدى"
 
 #: ../src/rygel/rygel-http-post.vala:61
 #: ../src/rygel/rygel-import-resource.vala:169
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
-msgstr ""
-"قۇرۇق بولمىغان تۈر '%s' گە سانلىق-مەلۇماتلارنى كىرگۈزۈشكە يول قويۇلمايدۇ"
+msgstr "قۇرۇق بولمىغان تۈر '%s' گە سانلىق-مەلۇماتلارنى كىرگۈزۈشكە يول قويۇلمايدۇ"
 
 #: ../src/rygel/rygel-http-post.vala:69
 #, c-format
@@ -437,8 +367,7 @@ msgstr "مەزمۇنلارنى ئىمپورت قىلىدىغان URI '%s' ئىن
 #: ../src/rygel/rygel-item-creator.vala:67
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
-msgstr ""
-"خېرىدار(client)دىن كەلگەن DIDL-Lite نىڭ ئىچىدە بىر نەرسە(تۈر) يوق: '%s'"
+msgstr "خېرىدار(client)دىن كەلگەن DIDL-Lite نىڭ ئىچىدە بىر نەرسە(تۈر) يوق: '%s'"
 
 #: ../src/rygel/rygel-item-creator.vala:145
 msgid "'Elements' argument missing."
@@ -674,7 +603,7 @@ msgstr "ماس كەلمەيدۇ"
 msgid "Failed to write modified description to %s."
 msgstr "ئۆزگەرتىلگەن چۈشەندۈرۈشنى %s غا يېزىش مەغلۇپ بولدى."
 
-#: ../src/ui/rygel-preferences-dialog.vala:78
+#: ../src/ui/rygel-preferences-dialog.vala:89
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "تەڭشەك سۆزلەشكۈسى قۇرۇش مەغلۇپ بولدى: %s"
@@ -693,3 +622,52 @@ msgstr "Rygel مۇلازىمىتىنى باشلاش مەغلۇپ بولدى: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Rygel مۇلازىمىتىنى توختىتىش مەغلۇپ بولدى: %s"
+
+#~ msgid "General"
+#~ msgstr "ئادەتتىكى"
+
+#~ msgid "MPE_G TS"
+#~ msgstr "MPE_G TS"
+
+#~ msgid "Plugins"
+#~ msgstr "قىستۇرما"
+
+#~ msgid "Share M_usic"
+#~ msgstr "مۇزىكا ھەمبەھىرلەش(_U)"
+
+#~ msgid "Share _Pictures"
+#~ msgstr "سۈرەت ھەمبەھىرلەش(_P)"
+
+#~ msgid "Share _Videos"
+#~ msgstr "سىن ھەمبەھىرلەش(_V)"
+
+#~ msgid "T_itle"
+#~ msgstr "ماۋزۇ(_I)"
+
+#~ msgid "Ti_tle"
+#~ msgstr "ماۋزۇ(_T)"
+
+#~ msgid ""
+#~ "Write %u for username, %n for real name of the user and %h for host name"
+#~ msgstr "ئىشلەتكۈچى ئاتى %u، ھېقىقى ئاتى %n، ماشىنا ئاتى %h قىلىپ يېزىلىدۇ"
+
+#~ msgid "_Enable UPnP/DLNA"
+#~ msgstr "UPnP/DLNA نى قوزغات(_E)"
+
+#~ msgid "_Interface"
+#~ msgstr "ئارايۈز(_I)"
+
+#~ msgid "_LPCM"
+#~ msgstr "_LPCM"
+
+#~ msgid "_MP3"
+#~ msgstr "_MP3"
+
+#~ msgid "_Media Export"
+#~ msgstr "ۋاسىتە ئېكسپورت قىلىش(_M)"
+
+#~ msgid "_Port"
+#~ msgstr "ئېغىز(_P)"
+
+#~ msgid "_URIs"
+#~ msgstr "_URIs"
