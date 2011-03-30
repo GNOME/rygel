@@ -61,9 +61,17 @@ public class Rygel.HTTPGstResponseTest : Rygel.HTTPResponseTest {
 
     internal override HTTPResponse create_response (Soup.Message msg)
                                                      throws Error {
+        var seek = null as HTTPSeek;
+
+        if (!this.item.is_live_stream ()) {
+            seek = new HTTPByteSeek (0, HTTPResponseTest.MAX_BYTES - 1);
+            msg.response_headers.set_content_length (seek.length);
+        }
+
         var request = new HTTPGet (this.server.context.server,
                                    msg,
                                    this.item,
+                                   seek,
                                    this.cancellable);
         var handler = new HTTPGetHandler (this.cancellable);
 
@@ -84,10 +92,12 @@ public class Rygel.HTTPGet : GLib.Object {
     public HTTPGet (Soup.Server  server,
                     Soup.Message msg,
                     MediaItem    item,
+                    HTTPSeek?    seek,
                     Cancellable? cancellable) {
         this.server = server;
         this.msg = msg;
         this.item = item;
+        this.seek = seek;
         this.cancellable = cancellable;
     }
 }
@@ -129,6 +139,11 @@ public class Rygel.MediaItem {
     }
 }
 
+internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
+    public HTTPByteSeek (int64 start, int64 stop) {
+        base (start, stop);
+    }
+}
 
 internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
     public HTTPTimeSeek (int64 start, int64 stop) {
