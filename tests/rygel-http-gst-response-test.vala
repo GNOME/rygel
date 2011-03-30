@@ -117,6 +117,7 @@ public class Rygel.MediaItem {
 
         this.src.blocksize = BLOCK_SIZE;
         this.src.num_buffers = MAX_BUFFERS;
+        this.src.sizemax = HTTPResponseTest.MAX_BYTES;
     }
 
     public Element? create_stream_source () {
