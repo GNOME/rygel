@@ -67,7 +67,12 @@ internal class Rygel.HTTPSeekableResponse : Rygel.HTTPResponse {
         this.seek = request.seek;
         this.total_length = (size_t) this.seek.length;
 
-        this.buffer = new uint8[HTTPSeekableResponse.BUFFER_LENGTH];
+        if (this.total_length > BUFFER_LENGTH) {
+            this.buffer = new uint8[HTTPSeekableResponse.BUFFER_LENGTH];
+        } else {
+            this.buffer = new uint8[this.total_length];
+        }
+
         this.file = File.new_for_uri (uri);
     }
 
