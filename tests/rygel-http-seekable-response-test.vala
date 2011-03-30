@@ -99,6 +99,8 @@ public class Rygel.HTTPSeekableResponseTest : Rygel.HTTPResponseTest {
                                    this.cancellable);
         var handler = new HTTPGetHandler (this.cancellable);
 
+        msg.response_headers.set_content_length (seek.length);
+
         return new HTTPSeekableResponse (request, handler);
     }
 }
