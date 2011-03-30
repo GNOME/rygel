@@ -232,3 +232,16 @@ public class Rygel.HTTPClient : GLib.Object, StateMachine {
         this.completed ();
     }
 }
+
+public class Rygel.HTTPSeek : GLib.Object {
+    public int64 start { get; private set; }
+    public int64 stop { get; private set; }
+    public int64 length { get; private set; }
+
+    public HTTPSeek (int64 start, int64 stop) {
+        this.start = start;
+        this.stop = stop;
+
+        this.length = stop - start + 1;
+    }
+}
