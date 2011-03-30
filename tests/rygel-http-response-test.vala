@@ -210,7 +210,6 @@ public class Rygel.HTTPClient : GLib.Object, StateMachine {
 
             if (bytes_received >= this.total_bytes &&
                 this.cancellable != null) {
-                bytes_received = bytes_received.clamp (0, this.total_bytes);
 
                 this.cancellable.cancel ();
             }
