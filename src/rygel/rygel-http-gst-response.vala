@@ -33,9 +33,6 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
                             HTTPGetHandler request_handler,
                             Element?       gst_src = null) throws Error {
         base (request, request_handler, false);
-
-        this.msg.response_headers.set_encoding (Soup.Encoding.EOF);
-
         var src = gst_src;
         if (src == null) {
             src = request.item.create_stream_source ();
@@ -47,6 +44,13 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
 
         this.prepare_pipeline ("RygelHTTPGstResponse", src);
         this.seek = request.seek;
+
+        if (this.seek != null && this.seek is HTTPByteSeek) {
+            this.msg.response_headers.set_encoding
+                                        (Soup.Encoding.CONTENT_LENGTH);
+        } else {
+            this.msg.response_headers.set_encoding (Soup.Encoding.EOF);
+        }
     }
 
     public override async void run () {
