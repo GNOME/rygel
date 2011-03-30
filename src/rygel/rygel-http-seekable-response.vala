@@ -62,6 +62,8 @@ internal class Rygel.HTTPSeekableResponse : Rygel.HTTPResponse {
 
         base (request, request_handler, partial);
 
+        this.msg.response_headers.set_encoding (Soup.Encoding.CONTENT_LENGTH);
+
         this.seek = request.seek;
         this.total_length = (size_t) this.seek.length;
 
