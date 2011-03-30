@@ -216,7 +216,7 @@ public class Rygel.HTTPClient : GLib.Object, StateMachine {
         });
 
         this.context.session.queue_message (this.msg, (session, msg) => {
-            assert (cancellable == null || bytes_received == this.total_bytes);
+            assert (cancellable != null || bytes_received == this.total_bytes);
 
             run_continue ();
         });
