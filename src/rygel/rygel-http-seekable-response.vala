@@ -141,8 +141,14 @@ internal class Rygel.HTTPSeekableResponse : Rygel.HTTPResponse {
         });
 
         while (bytes_read > 0) {
-            this.push_data (this.buffer[0:bytes_read]);
-            this.total_length -= bytes_read;
+            var to_push = size_t.min (bytes_read, this.total_length);
+
+            this.push_data (this.buffer[0:to_push]);
+            this.total_length -= to_push;
+
+            if (this.total_length <= 0) {
+                break;
+            }
 
             this.run_continue = read_contents.callback;
             // We return from this call when wrote_chunk signal is emitted
