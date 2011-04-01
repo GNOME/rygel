@@ -72,7 +72,9 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
 
         this.pipeline.set_state (State.NULL);
 
-        if (!aborted) {
+        var encoding = this.msg.response_headers.get_encoding ();
+
+        if (!aborted && encoding != Encoding.CONTENT_LENGTH) {
             this.msg.response_body.complete ();
             this.server.unpause_message (this.msg);
         }
