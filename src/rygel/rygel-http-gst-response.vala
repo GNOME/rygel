@@ -23,6 +23,7 @@
  */
 
 using Gst;
+using Soup;
 
 internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
     private Pipeline pipeline;
@@ -46,10 +47,9 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
         this.seek = request.seek;
 
         if (this.seek != null && this.seek is HTTPByteSeek) {
-            this.msg.response_headers.set_encoding
-                                        (Soup.Encoding.CONTENT_LENGTH);
+            this.msg.response_headers.set_encoding (Encoding.CONTENT_LENGTH);
         } else {
-            this.msg.response_headers.set_encoding (Soup.Encoding.EOF);
+            this.msg.response_headers.set_encoding (Encoding.EOF);
         }
     }
 
@@ -120,7 +120,7 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
                 critical (_("Failed to link %s to %s"),
                           depay.name,
                           sink.name);
-                this.end (false, Soup.KnownStatusCode.NONE);
+                this.end (false, KnownStatusCode.NONE);
                 return;
             }
 
@@ -133,7 +133,7 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
             critical (_("Failed to link pad %s to %s"),
                       src_pad.name,
                       sink_pad.name);
-            this.end (false, Soup.KnownStatusCode.NONE);
+            this.end (false, KnownStatusCode.NONE);
             return;
         }
 
@@ -188,7 +188,7 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
 
         if (!ret) {
                 Idle.add_full (this.priority, () => {
-                    this.end (false, Soup.KnownStatusCode.NONE);
+                    this.end (false, KnownStatusCode.NONE);
 
                     return false;
                 });
@@ -222,8 +222,7 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
                                  this.seek.stop)) {
             warning (_("Failed to seek to offset %lld"), this.seek.start);
 
-            this.end (false,
-                      Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
+            this.end (false, KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
 
             return false;
         }
