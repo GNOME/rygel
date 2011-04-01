@@ -35,7 +35,7 @@ internal class Rygel.HTTPGstSink : BaseSink {
     private unowned HTTPGstResponse response;
     private int priority;
 
-    private int64 buffered;
+    private int64 chunks_buffered;
 
     private Mutex buffer_mutex;
     private Cond buffer_condition;
@@ -50,7 +50,7 @@ internal class Rygel.HTTPGstSink : BaseSink {
     }
 
     public HTTPGstSink (HTTPGstResponse response) {
-        this.buffered = 0;
+        this.chunks_buffered = 0;
         this.buffer_mutex = new Mutex ();
         this.buffer_condition = new Cond ();
 
@@ -76,7 +76,7 @@ internal class Rygel.HTTPGstSink : BaseSink {
     public override FlowReturn render (Buffer buffer) {
         this.buffer_mutex.lock ();
         while (!this.cancellable.is_cancelled () &&
-               this.buffered > MAX_BUFFERED_CHUNKS) {
+               this.chunks_buffered > MAX_BUFFERED_CHUNKS) {
             // Client is either not reading (Paused) or not fast enough
             this.buffer_condition.wait (this.buffer_mutex);
         }
@@ -100,16 +100,16 @@ internal class Rygel.HTTPGstSink : BaseSink {
         }
 
         this.response.push_data (buffer.data);
-        this.buffered++;
+        this.chunks_buffered++;
 
         return false;
     }
 
     private void on_wrote_chunk (Soup.Message msg) {
         this.buffer_mutex.lock ();
-        this.buffered--;
+        this.chunks_buffered--;
 
-        if (this.buffered < MIN_BUFFERED_CHUNKS) {
+        if (this.chunks_buffered < MIN_BUFFERED_CHUNKS) {
             this.buffer_condition.broadcast ();
         }
         this.buffer_mutex.unlock ();
