@@ -43,8 +43,8 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
             }
         }
 
-        this.prepare_pipeline ("RygelHTTPGstResponse", src);
         this.seek = request.seek;
+        this.prepare_pipeline ("RygelHTTPGstResponse", src);
 
         if (this.seek != null && this.seek is HTTPByteSeek) {
             this.msg.response_headers.set_encoding (Encoding.CONTENT_LENGTH);
