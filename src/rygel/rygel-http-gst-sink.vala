@@ -36,6 +36,8 @@ internal class Rygel.HTTPGstSink : BaseSink {
     private int priority;
 
     private int64 chunks_buffered;
+    private int64 bytes_sent;
+    private int64 max_bytes;
 
     private Mutex buffer_mutex;
     private Cond buffer_condition;
@@ -51,6 +53,7 @@ internal class Rygel.HTTPGstSink : BaseSink {
 
     public HTTPGstSink (HTTPGstResponse response) {
         this.chunks_buffered = 0;
+        this.bytes_sent = 0;
         this.buffer_mutex = new Mutex ();
         this.buffer_condition = new Cond ();
 
@@ -60,6 +63,12 @@ internal class Rygel.HTTPGstSink : BaseSink {
 
         this.sync = false;
         this.name = NAME;
+
+        if (response.seek != null && response.seek is HTTPByteSeek) {
+            this.max_bytes = response.seek.length;
+        } else {
+            this.max_bytes = int64.MAX;
+        }
 
         this.cancellable.cancelled.connect (this.on_cancelled);
         response.msg.wrote_chunk.connect (this.on_wrote_chunk);
@@ -95,12 +104,17 @@ internal class Rygel.HTTPGstSink : BaseSink {
 
     // Runs in application thread
     public bool push_data (Buffer buffer) {
-        if (this.cancellable.is_cancelled ()) {
+        var left = this.max_bytes - this.bytes_sent;
+
+        if (this.cancellable.is_cancelled () || left <= 0) {
             return false;
         }
 
-        this.response.push_data (buffer.data);
+        var to_send = int64.min (buffer.size, left);
+
+        this.response.push_data (buffer.data[0:to_send]);
         this.chunks_buffered++;
+        this.bytes_sent += to_send;
 
         return false;
     }
