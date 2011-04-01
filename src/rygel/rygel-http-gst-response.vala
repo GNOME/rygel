@@ -28,7 +28,7 @@ using Soup;
 internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
     private Pipeline pipeline;
 
-    private HTTPSeek seek;
+    public HTTPSeek seek;
 
     public HTTPGstResponse (HTTPGet        request,
                             HTTPGetHandler request_handler,
