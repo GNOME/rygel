@@ -76,8 +76,8 @@ public class Rygel.HTTPSeekableResponseTest : Rygel.HTTPResponseTest {
 
     internal override HTTPResponse create_response (Soup.Message msg)
                                                     throws Error {
-        var seek = new HTTPSeek (0, HTTPResponseTest.MAX_BYTES - 1);
         var item = new MediaItem ();
+        var seek = new HTTPSeek (0, HTTPResponseTest.MAX_BYTES - 1, item.size);
 
         var request = new HTTPGet (this.server.context.server,
                                    msg,

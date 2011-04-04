@@ -237,10 +237,12 @@ public class Rygel.HTTPSeek : GLib.Object {
     public int64 start { get; private set; }
     public int64 stop { get; private set; }
     public int64 length { get; private set; }
+    public int64 total_length { get; private set; }
 
-    public HTTPSeek (int64 start, int64 stop) {
+    public HTTPSeek (int64 start, int64 stop, int64 total_length) {
         this.start = start;
         this.stop = stop;
+        this.total_length = total_length;
 
         this.length = stop - start + 1;
     }

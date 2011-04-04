@@ -64,7 +64,9 @@ public class Rygel.HTTPGstResponseTest : Rygel.HTTPResponseTest {
         var seek = null as HTTPSeek;
 
         if (!this.item.is_live_stream ()) {
-            seek = new HTTPByteSeek (0, HTTPResponseTest.MAX_BYTES - 1);
+            seek = new HTTPByteSeek (0,
+                                     HTTPResponseTest.MAX_BYTES - 1,
+                                     this.item.size);
             msg.response_headers.set_content_length (seek.length);
         }
 
@@ -115,6 +117,12 @@ public class Rygel.MediaItem {
     private static const long MAX_BUFFERS =
                                         HTTPResponseTest.MAX_BYTES / BLOCK_SIZE;
 
+    public int64 size {
+        get {
+            return MAX_BUFFERS * BLOCK_SIZE;
+        }
+    }
+
     private dynamic Element src;
 
     public MediaItem () {
@@ -140,14 +148,14 @@ public class Rygel.MediaItem {
 }
 
 internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
-    public HTTPByteSeek (int64 start, int64 stop) {
-        base (start, stop);
+    public HTTPByteSeek (int64 start, int64 stop, int64 total_length) {
+        base (start, stop, total_length);
     }
 }
 
 internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
-    public HTTPTimeSeek (int64 start, int64 stop) {
-        base (start, stop);
+    public HTTPTimeSeek (int64 start, int64 stop, int64 total_length) {
+        base (start, stop, total_length);
     }
 }
 
