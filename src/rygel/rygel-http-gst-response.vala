@@ -33,7 +33,10 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
     public HTTPGstResponse (HTTPGet        request,
                             HTTPGetHandler request_handler,
                             Element        src) throws Error {
-        base (request, request_handler, false);
+        var partial = (request.seek != null &&
+                       request.seek.length < request.seek.total_length);
+
+        base (request, request_handler, partial);
 
         this.seek = request.seek;
         this.prepare_pipeline ("RygelHTTPGstResponse", src);
