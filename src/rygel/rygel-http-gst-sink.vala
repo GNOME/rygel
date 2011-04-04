@@ -81,10 +81,6 @@ internal class Rygel.HTTPGstSink : BaseSink {
         response.msg.wrote_chunk.connect (this.on_wrote_chunk);
     }
 
-    ~HTTPGstSink () {
-        this.response.msg.wrote_chunk.disconnect (this.on_wrote_chunk);
-    }
-
     public override FlowReturn preroll (Buffer buffer) {
         if (this.render_preroll) {
             return render (buffer);
@@ -151,6 +147,8 @@ internal class Rygel.HTTPGstSink : BaseSink {
         this.buffer_mutex.lock ();
         this.buffer_condition.broadcast ();
         this.buffer_mutex.unlock ();
+
+        this.response.msg.wrote_chunk.disconnect (this.on_wrote_chunk);
     }
 }
 
