@@ -42,6 +42,8 @@ internal class Rygel.HTTPGstSink : BaseSink {
     private Mutex buffer_mutex;
     private Cond buffer_condition;
 
+    private bool render_preroll;
+
     static construct {
         var caps = new Caps.any ();
         var template = new PadTemplate (PAD_NAME,
@@ -54,6 +56,7 @@ internal class Rygel.HTTPGstSink : BaseSink {
     public HTTPGstSink (HTTPGstResponse response) {
         this.chunks_buffered = 0;
         this.bytes_sent = 0;
+        this.max_bytes = int64.MAX;
         this.buffer_mutex = new Mutex ();
         this.buffer_condition = new Cond ();
 
@@ -64,10 +67,14 @@ internal class Rygel.HTTPGstSink : BaseSink {
         this.sync = false;
         this.name = NAME;
 
-        if (response.seek != null && response.seek is HTTPByteSeek) {
-            this.max_bytes = response.seek.length;
+        if (response.seek != null) {
+            if (response.seek is HTTPByteSeek) {
+                this.max_bytes = response.seek.length;
+            }
+
+            this.render_preroll = false;
         } else {
-            this.max_bytes = int64.MAX;
+            this.render_preroll = true;
         }
 
         this.cancellable.cancelled.connect (this.on_cancelled);
@@ -79,7 +86,18 @@ internal class Rygel.HTTPGstSink : BaseSink {
     }
 
     public override FlowReturn preroll (Buffer buffer) {
-        return render (buffer);
+        if (this.render_preroll) {
+            return render (buffer);
+        } else {
+            // If we are seeking, we must not send out first prerolled buffers
+            // since seek event is sent to pipeline after it is in PAUSED state
+            // already and preroll has already happened. i-e we will be always
+            // sending out the beginning of the media if we execute the first
+            // preroll.
+            this.render_preroll = true;
+
+            return FlowReturn.OK;
+        }
     }
 
     public override FlowReturn render (Buffer buffer) {
