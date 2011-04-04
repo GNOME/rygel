@@ -32,16 +32,8 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
 
     public HTTPGstResponse (HTTPGet        request,
                             HTTPGetHandler request_handler,
-                            Element?       gst_src = null) throws Error {
+                            Element        src) throws Error {
         base (request, request_handler, false);
-        var src = gst_src;
-        if (src == null) {
-            src = request.item.create_stream_source ();
-
-            if (src == null) {
-                throw new HTTPRequestError.NOT_FOUND (_("Not found"));
-            }
-        }
 
         this.seek = request.seek;
         this.prepare_pipeline ("RygelHTTPGstResponse", src);

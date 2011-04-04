@@ -22,6 +22,7 @@
  */
 
 using GUPnP;
+using Gst;
 
 // An HTTP request handler that passes the item content through as is.
 internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
@@ -78,7 +79,13 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
             !(request.item.is_live_stream ())) {
             return new HTTPSeekableResponse (request, this);
         } else {
-            return new HTTPGstResponse (request, this);
+            var src = request.item.create_stream_source ();
+
+            if (src == null) {
+                throw new HTTPRequestError.NOT_FOUND (_("Not found"));
+            }
+
+            return new HTTPGstResponse (request, this, src);
         }
     }
 }

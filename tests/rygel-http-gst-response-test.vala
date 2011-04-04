@@ -76,8 +76,9 @@ public class Rygel.HTTPGstResponseTest : Rygel.HTTPResponseTest {
                                    seek,
                                    this.cancellable);
         var handler = new HTTPGetHandler (this.cancellable);
+        var src = this.item.create_stream_source ();
 
-        return new HTTPGstResponse (request, handler);
+        return new HTTPGstResponse (request, handler, src);
     }
 }
 
