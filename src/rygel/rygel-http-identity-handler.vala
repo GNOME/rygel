@@ -74,18 +74,20 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
     }
 
     private HTTPResponse render_body_real (HTTPGet request) throws Error {
-        if (request.subtitle != null ||
-            request.thumbnail != null ||
-            !(request.item.is_live_stream ())) {
-            return new HTTPSeekableResponse (request, this);
+        Element src;
+
+        if (request.subtitle != null) {
+            src = GstUtils.create_source_for_uri (request.subtitle.uri);
+        } else if (request.thumbnail != null) {
+            src = GstUtils.create_source_for_uri (request.thumbnail.uri);
         } else {
-            var src = request.item.create_stream_source ();
-
-            if (src == null) {
-                throw new HTTPRequestError.NOT_FOUND (_("Not found"));
-            }
-
-            return new HTTPGstResponse (request, this, src);
+            src = request.item.create_stream_source ();
         }
+
+        if (src == null) {
+            throw new HTTPRequestError.NOT_FOUND (_("Not found"));
+        }
+
+        return new HTTPGstResponse (request, this, src);
     }
 }
