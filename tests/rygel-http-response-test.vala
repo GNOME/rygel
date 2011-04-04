@@ -31,7 +31,7 @@ public errordomain Rygel.TestError {
 }
 
 public abstract class Rygel.HTTPResponseTest : GLib.Object {
-    public const long MAX_BYTES = 1024;
+    public const long MAX_BYTES = 102400;
 
     protected HTTPServer server;
     protected HTTPClient client;

@@ -114,9 +114,8 @@ public class Rygel.HTTPGetHandler : GLib.Object {
 }
 
 public class Rygel.MediaItem {
-    private static const long BLOCK_SIZE = HTTPResponseTest.MAX_BYTES / 16;
-    private static const long MAX_BUFFERS =
-                                        HTTPResponseTest.MAX_BYTES / BLOCK_SIZE;
+    private static const long BLOCK_SIZE = HTTPResponseTest.MAX_BYTES / 16 + 1;
+    private static const long MAX_BUFFERS = 25;
 
     public int64 size {
         get {
@@ -136,7 +135,7 @@ public class Rygel.MediaItem {
 
         this.src.blocksize = BLOCK_SIZE;
         this.src.num_buffers = MAX_BUFFERS;
-        this.src.sizemax = HTTPResponseTest.MAX_BYTES;
+        this.src.sizemax = MAX_BUFFERS * BLOCK_SIZE;
     }
 
     public Element? create_stream_source () {
