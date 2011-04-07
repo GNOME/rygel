@@ -1,17 +1,16 @@
 # German translation for rygel.
 # Copyright (C) 2010 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
-# Mario Blättermann <mariobl@gnome.org>, 2010, 2011.
+# Mario Blättermann <mariobl@freenet.de>, 2010, 2011.
 # Christian Kirbach  <Christian.Kirbach@googlemail.com>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&component=general\n"
-"POT-Creation-Date: 2011-03-08 16:40+0000\n"
-"PO-Revision-Date: 2011-03-17 15:28+0100\n"
-"Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-26 14:05+0000\n"
+"PO-Revision-Date: 2011-04-07 19:40+0100\n"
+"Last-Translator: Mario Blättermann <mariobl@freenet.de>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +19,8 @@ msgstr ""
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 
-#: ../data/rygel-preferences.ui.h:1 ../data/rygel-preferences.desktop.in.in.h:1
+#: ../data/rygel-preferences.ui.h:1
+#: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
 msgstr "Rygel Einstellungen"
 
@@ -191,8 +191,7 @@ msgstr "Fehler beim Ermitteln aller Werte für »%s«: %s"
 #: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:41
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr ""
-"Start des Tracker-Dienstes ist fehlgeschlagen: %s. Plugin wird deaktiviert."
+msgstr "Start des Tracker-Dienstes ist fehlgeschlagen: %s. Plugin wird deaktiviert."
 
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:203
 #, c-format
@@ -213,7 +212,8 @@ msgstr "Titel"
 
 #: ../src/rygel/rygel-media-query-action.vala:117
 #: ../src/rygel/rygel-media-query-action.vala:141
-#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:154
+#: ../src/rygel/rygel-browse.vala:94
+#: ../src/rygel/rygel-item-creator.vala:154
 #: ../src/rygel/rygel-item-creator.vala:189
 #: ../src/rygel/rygel-item-destroyer.vala:53
 #: ../src/rygel/rygel-item-destroyer.vala:99
@@ -280,6 +280,9 @@ msgid "Play speed not supported"
 msgstr "Wiedergabegeschwindigkeit wird nicht unterstützt"
 
 #: ../src/rygel/rygel-av-transport.vala:417
+msgid "Seek failed"
+msgstr "Durchsuchen fehlgeschlagen"
+
 #: ../src/rygel/rygel-av-transport.vala:426
 msgid "Seek mode not supported"
 msgstr "Suchmodus wird nicht unterstützt"
@@ -320,16 +323,6 @@ msgstr "Ungültiger Bereich »%s«"
 msgid "Invalid Request"
 msgstr "Ungültige Anfrage"
 
-#: ../src/rygel/rygel-http-identity-handler.vala:97
-#: ../src/rygel/rygel-http-transcode-handler.vala:56
-msgid "Not found"
-msgstr "Nicht gefunden"
-
-#: ../src/rygel/rygel-http-identity-handler.vala:109
-#, c-format
-msgid "Item '%s' didn't provide a URI"
-msgstr "Objekt »%s« stellt keine Adresse bereit"
-
 #: ../src/rygel/rygel-http-item-uri.vala:58
 #, c-format
 msgid "Invalid URI '%s'"
@@ -354,6 +347,11 @@ msgstr "Keine schreibbare Adresse für %s verfügbar"
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "Angefordertes Objekt »%s« wurde nicht gefunden"
+
+#: ../src/rygel/rygel-http-transcode-handler.vala:56
+#: ../src/rygel/rygel-http-gst-response.vala:44
+msgid "Not found"
+msgstr "Nicht gefunden"
 
 #: ../src/rygel/rygel-import-resource.vala:109
 #, c-format
@@ -411,7 +409,7 @@ msgstr "Entfernung eines Objekts aus %s ist nicht erlaubt"
 
 # Ich glaube bei Audio/Videoströmen sind Pads so eine Art Daten- oder Zeiteinheiten
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-http-gst-response.vala:143
+#: ../src/rygel/rygel-http-gst-response.vala:129
 #: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
 #: ../src/rygel/rygel-wma-transcoder-bin.vala:58
@@ -420,28 +418,23 @@ msgstr "Entfernung eines Objekts aus %s ist nicht erlaubt"
 msgid "Failed to link pad %s to %s"
 msgstr "Verknüpfen von Pad %s nach %s ist fehlgeschlagen"
 
-#. 'fakesink' should not be translated
-#: ../src/rygel/rygel-http-gst-response.vala:91
-msgid "Plugin 'fakesink' missing"
-msgstr "Plugin »fakesink« fehlt"
-
-#: ../src/rygel/rygel-http-gst-response.vala:108
-#: ../src/rygel/rygel-http-gst-response.vala:130
+#: ../src/rygel/rygel-http-gst-response.vala:94
+#: ../src/rygel/rygel-http-gst-response.vala:116
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Verknüpfung von %s nach %s konnte nicht erstellt werden"
 
-#: ../src/rygel/rygel-http-gst-response.vala:216
+#: ../src/rygel/rygel-http-gst-response.vala:172
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Fehler in Weiterleitung %s: %s"
 
-#: ../src/rygel/rygel-http-gst-response.vala:223
+#: ../src/rygel/rygel-http-gst-response.vala:179
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Warnung von Weiterleitung %s: %s"
 
-#: ../src/rygel/rygel-http-gst-response.vala:256
+#: ../src/rygel/rygel-http-gst-response.vala:212
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Suche der Position %lld ist fehlgeschlagen"
@@ -473,17 +466,16 @@ msgstr "RootDevice für %s konnte nicht eingerichtet werden. Grund: %s"
 msgid "Failed to start D-Bus service: %s"
 msgstr "D-Bus-Dienst konnte nicht gestartet werden: %s"
 
-#: ../src/rygel/rygel-media-item.vala:272
+#: ../src/rygel/rygel-media-item.vala:271
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Fehlerhafte Adresse: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:284
+#: ../src/rygel/rygel-media-item.vala:283
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr ""
-"Protokoll für Adresse %s konnte nicht ermittelt werden. »%s« wird angenommen"
+msgstr "Protokoll für Adresse %s konnte nicht ermittelt werden. »%s« wird angenommen"
 
 #: ../src/rygel/rygel-meta-config.vala:57
 #, c-format
@@ -544,24 +536,29 @@ msgstr "Geänderte Beschreibung konnte nicht in %s gespeichert werden"
 msgid "Failed to search in '%s': %s"
 msgstr "Suche in »%s« ist fehlgeschlagen: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:59
+#: ../src/rygel/rygel-http-seekable-response.vala:53
+#, c-format
+msgid "Item '%s' didn't provide a URI"
+msgstr "Objekt »%s« stellt keine Adresse bereit"
+
+#: ../src/rygel/rygel-http-seekable-response.vala:77
 #, c-format
 msgid "Failed to read from URI: %s: %s"
 msgstr "Aus der Adresse »%s« konnte nicht gelesen werden: %s"
 
 #. Failed to seek to media segment (defined by first and last
 #. byte positions).
-#: ../src/rygel/rygel-http-seekable-response.vala:78
+#: ../src/rygel/rygel-http-seekable-response.vala:96
 #, c-format
 msgid "Failed to seek to %s-%s on URI %s: %s"
 msgstr "Suchlauf nach %s-%s in Adresse %s ist fehlgeschlagen: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:97
+#: ../src/rygel/rygel-http-seekable-response.vala:115
 #, c-format
 msgid "Failed to read contents from URI: %s: %s"
 msgstr "Inhalte aus Adresse %s konnten nicht gelesen werden: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:143
+#: ../src/rygel/rygel-http-seekable-response.vala:161
 #, c-format
 msgid "Failed to close stream to URI %s: %s"
 msgstr "Datenstrom zu Adresse %s konnte nicht geschlossen werden: %s"
@@ -598,11 +595,11 @@ msgstr "Kein Wert verfügbar für »%s«"
 msgid "Value of '%s' out of range"
 msgstr "Wert von »%s« ist außerhalb des Bereichs"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:42
+#: ../src/rygel/rygel-xbox-hacks.vala:44
 msgid "Not Applicable"
 msgstr "Nicht anwendbar"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:178
+#: ../src/rygel/rygel-xbox-hacks.vala:180
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Geänderte Beschreibung konnte nicht in %s gespeichert werden."
@@ -626,6 +623,9 @@ msgstr "Starten des Rygel-Dienstes ist fehlgeschlagen: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Beenden des Rygel-Dienstes ist fehlgeschlagen: %s"
+
+#~ msgid "Plugin 'fakesink' missing"
+#~ msgstr "Plugin »fakesink« fehlt"
 
 #~ msgid "General"
 #~ msgstr "Allgemein"
@@ -886,6 +886,7 @@ msgstr "Beenden des Rygel-Dienstes ist fehlgeschlagen: %s"
 #~ msgstr "Ungültiger Objekttyp"
 
 #~ msgid "We have %u child."
+
 #~ msgid_plural "We have %u children."
 #~ msgstr[0] "Es gibt %u Kindobjekt."
 #~ msgstr[1] "Es gibt %u Kindobjekte."
@@ -907,7 +908,8 @@ msgstr "Beenden des Rygel-Dienstes ist fehlgeschlagen: %s"
 
 #~ msgid "Could not get RSS from configuration, using defaults"
 #~ msgstr ""
-#~ "RSS konnte nicht aus Konfiguration ermittelt werden, Vorgabe wird verwendet"
+#~ "RSS konnte nicht aus Konfiguration ermittelt werden, Vorgabe wird "
+#~ "verwendet"
 
 #~ msgid "Feed has not changed, nothing to do"
 #~ msgstr "Quelle wurde nicht geändert, nichts zu tun"
