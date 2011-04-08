@@ -27,6 +27,7 @@ using Soup;
 
 internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
     private Pipeline pipeline;
+    private uint bus_watch_id;
 
     public HTTPSeek seek;
 
@@ -66,6 +67,7 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
         sink.cancellable.cancel ();
 
         this.pipeline.set_state (State.NULL);
+        Source.remove (this.bus_watch_id);
 
         var encoding = this.msg.response_headers.get_encoding ();
 
@@ -100,7 +102,7 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
 
         // Bus handler
         var bus = this.pipeline.get_bus ();
-        bus.add_watch (bus_handler);
+        this.bus_watch_id = bus.add_watch (this.bus_handler);
     }
 
     private void src_pad_added (Element src,
