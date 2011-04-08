@@ -1,1 +1,0 @@
-../src/rygel/rygel-state-machine.vala

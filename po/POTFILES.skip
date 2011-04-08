@@ -77,7 +77,6 @@ src/rygel/rygel-mp3-transcoder-bin.c
 src/rygel/rygel-plugin-loader.c
 src/rygel/rygel-root-device-factory.c
 src/rygel/rygel-search.c
-src/rygel/rygel-http-seekable-response.c
 src/rygel/rygel-subtitle-manager.c
 src/rygel/rygel-thumbnailer.c
 src/rygel/rygel-transcode-manager.c
@@ -102,7 +101,6 @@ tests/rygel-http-byte-seek.c
 tests/rygel-http-item-uri.c
 tests/rygel-http-time-seek.c
 tests/rygel-http-gst-response.c
-tests/rygel-http-seekable-response.c
 tests/rygel-http-byte-seek_http-get.c
 tests/rygel-http-get.c
 tests/rygel-http-item-uri_http-get.c

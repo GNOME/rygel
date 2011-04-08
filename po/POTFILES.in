@@ -128,7 +128,6 @@ src/rygel/rygel-root-device.vala
 src/rygel/rygel-search-criteria-parser.vala
 src/rygel/rygel-search-expression.vala
 src/rygel/rygel-search.vala
-src/rygel/rygel-http-seekable-response.vala
 src/rygel/rygel-simple-container.vala
 src/rygel/rygel-source-connection-manager.vala
 src/rygel/rygel-sink-connection-manager.vala
