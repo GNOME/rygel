@@ -197,19 +197,17 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
     }
 
     private bool perform_seek () {
-        Gst.SeekType stop_type;
+        var stop_type = Gst.SeekType.NONE;
         Format format;
 
         if (this.seek is HTTPTimeSeek) {
             format = Format.TIME;
+
+            if (this.seek.stop > 0) {
+                stop_type = Gst.SeekType.SET;
+            }
         } else {
             format = Format.BYTES;
-        }
-
-        if (this.seek.stop > 0) {
-            stop_type = Gst.SeekType.SET;
-        } else {
-            stop_type = Gst.SeekType.NONE;
         }
 
         if (!this.pipeline.seek (1.0,
