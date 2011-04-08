@@ -214,7 +214,7 @@ internal class Rygel.HTTPGstResponse : Rygel.HTTPResponse {
 
         if (!this.pipeline.seek (1.0,
                                  format,
-                                 SeekFlags.FLUSH,
+                                 SeekFlags.FLUSH | SeekFlags.ACCURATE,
                                  Gst.SeekType.SET,
                                  this.seek.start,
                                  stop_type,
