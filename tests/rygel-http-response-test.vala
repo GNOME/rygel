@@ -21,16 +21,19 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-// This module contains the common code between the test cases for
-// HTTPResponse subclasses.
 using Soup;
+using Gst;
 
 public errordomain Rygel.TestError {
     SKIP = 77,
     TIMEOUT
 }
 
-public abstract class Rygel.HTTPResponseTest : GLib.Object {
+public errordomain Rygel.HTTPRequestError {
+    NOT_FOUND = Soup.KnownStatusCode.NOT_FOUND
+}
+
+public class Rygel.HTTPResponseTest : GLib.Object {
     public const long MAX_BYTES = 102400;
 
     protected HTTPServer server;
@@ -39,10 +42,32 @@ public abstract class Rygel.HTTPResponseTest : GLib.Object {
     private bool server_done;
     private bool client_done;
 
+    private MediaItem item;
+
     private MainLoop main_loop;
 
     protected Cancellable cancellable;
     private Error error;
+
+    public static int main (string[] args) {
+        Gst.init (ref args);
+
+        try {
+            var test = new HTTPResponseTest.complete ();
+            test.run ();
+
+            test = new HTTPResponseTest.abort ();
+            test.run ();
+        } catch (TestError.SKIP error) {
+            return error.code;
+        } catch (Error error) {
+            critical ("%s", error.message);
+
+            return -1;
+        }
+
+        return 0;
+    }
 
     public HTTPResponseTest (Cancellable? cancellable = null) throws Error {
         this.cancellable = cancellable;
@@ -57,10 +82,14 @@ public abstract class Rygel.HTTPResponseTest : GLib.Object {
 
     public HTTPResponseTest.complete () throws Error {
         this ();
+
+        this.item = new MediaItem.fixed_size ();
     }
 
     public HTTPResponseTest.abort () throws Error {
         this (new Cancellable ());
+
+        this.item = new MediaItem ();
     }
 
     public virtual void run () throws Error {
@@ -82,8 +111,24 @@ public abstract class Rygel.HTTPResponseTest : GLib.Object {
         }
     }
 
-    internal abstract HTTPResponse create_response (Soup.Message msg)
-                                                    throws Error;
+    private HTTPResponse create_response (Soup.Message msg) throws Error {
+        var seek = null as HTTPSeek;
+
+        if (!this.item.is_live_stream ()) {
+            seek = new HTTPByteSeek (0, MAX_BYTES - 1, this.item.size);
+            msg.response_headers.set_content_length (seek.length);
+        }
+
+        var request = new HTTPGet (this.server.context.server,
+                                   msg,
+                                   this.item,
+                                   seek,
+                                   this.cancellable);
+        var handler = new HTTPGetHandler (this.cancellable);
+        var src = this.item.create_stream_source ();
+
+        return new HTTPResponse (request, handler, src);
+    }
 
     private void on_client_completed (StateMachine client) {
         if (this.server_done) {
@@ -245,5 +290,82 @@ public class Rygel.HTTPSeek : GLib.Object {
         this.total_length = total_length;
 
         this.length = stop - start + 1;
+    }
+}
+
+public class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
+    public HTTPByteSeek (int64 start, int64 stop, int64 total_length) {
+        base (start, stop, total_length);
+    }
+}
+
+public class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
+    public HTTPTimeSeek (int64 start, int64 stop, int64 total_length) {
+        base (start, stop, total_length);
+    }
+}
+
+public class Rygel.HTTPGet : GLib.Object {
+    public Soup.Server server;
+    public Soup.Message msg;
+
+    public Cancellable cancellable;
+
+    public MediaItem item;
+
+    internal HTTPSeek seek;
+
+    public HTTPGet (Soup.Server  server,
+                    Soup.Message msg,
+                    MediaItem    item,
+                    HTTPSeek?    seek,
+                    Cancellable? cancellable) {
+        this.server = server;
+        this.msg = msg;
+        this.item = item;
+        this.seek = seek;
+        this.cancellable = cancellable;
+    }
+}
+
+public class Rygel.HTTPGetHandler : GLib.Object {
+    public Cancellable cancellable;
+
+    public HTTPGetHandler (Cancellable? cancellable) {
+        this.cancellable = cancellable;
+    }
+}
+
+public class Rygel.MediaItem {
+    private static const long BLOCK_SIZE = HTTPResponseTest.MAX_BYTES / 16 + 1;
+    private static const long MAX_BUFFERS = 25;
+
+    public int64 size {
+        get {
+            return MAX_BUFFERS * BLOCK_SIZE;
+        }
+    }
+
+    private dynamic Element src;
+
+    public MediaItem () {
+        this.src = GstUtils.create_element ("fakesrc", null);
+        this.src.sizetype = 2; // fixed
+    }
+
+    public MediaItem.fixed_size () {
+        this ();
+
+        this.src.blocksize = BLOCK_SIZE;
+        this.src.num_buffers = MAX_BUFFERS;
+        this.src.sizemax = MAX_BUFFERS * BLOCK_SIZE;
+    }
+
+    public Element? create_stream_source () {
+        return this.src;
+    }
+
+    public bool is_live_stream () {
+        return ((int) this.src.num_buffers) < 0;
     }
 }

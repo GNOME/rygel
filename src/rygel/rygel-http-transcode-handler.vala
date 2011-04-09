@@ -59,7 +59,7 @@ internal class Rygel.HTTPTranscodeHandler : HTTPGetHandler {
         try {
             src = this.transcoder.create_source (item, src);
 
-            return new HTTPGstResponse (request, this, src);
+            return new HTTPResponse (request, this, src);
         } catch (GLib.Error err) {
             throw new HTTPRequestError.NOT_FOUND (err.message);
         }

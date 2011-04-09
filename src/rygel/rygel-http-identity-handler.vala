@@ -88,6 +88,6 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
             throw new HTTPRequestError.NOT_FOUND (_("Not found"));
         }
 
-        return new HTTPGstResponse (request, this, src);
+        return new HTTPResponse (request, this, src);
     }
 }

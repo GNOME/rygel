@@ -32,7 +32,7 @@ internal class Rygel.HTTPGstSink : BaseSink {
 
     public Cancellable cancellable;
 
-    private unowned HTTPGstResponse response;
+    private unowned HTTPResponse response;
     private int priority;
 
     private int64 chunks_buffered;
@@ -51,7 +51,7 @@ internal class Rygel.HTTPGstSink : BaseSink {
         add_pad_template (template);
     }
 
-    public HTTPGstSink (HTTPGstResponse response) {
+    public HTTPGstSink (HTTPResponse response) {
         this.chunks_buffered = 0;
         this.bytes_sent = 0;
         this.max_bytes = int64.MAX;
