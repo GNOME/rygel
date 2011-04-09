@@ -137,8 +137,7 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         this.end (true, Soup.KnownStatusCode.CANCELLED);
     }
 
-    private void prepare_pipeline (string name,
-                                   Element src) throws Error {
+    private void prepare_pipeline (string name, Element src) throws Error {
         var sink = new HTTPGstSink (this);
 
         this.pipeline = new Pipeline (name);
@@ -163,8 +162,7 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         this.bus_watch_id = bus.add_watch (this.bus_handler);
     }
 
-    private void src_pad_added (Element src,
-                                Pad     src_pad) {
+    private void src_pad_added (Element src, Pad src_pad) {
         var caps = src_pad.get_caps ();
 
         var sink = this.pipeline.get_by_name (HTTPGstSink.NAME);
@@ -178,6 +176,7 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
                           depay.name,
                           sink.name);
                 this.end (false, KnownStatusCode.NONE);
+
                 return;
             }
 
@@ -191,6 +190,7 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
                       src_pad.name,
                       sink_pad.name);
             this.end (false, KnownStatusCode.NONE);
+
             return;
         }
 
@@ -199,8 +199,7 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         }
     }
 
-    private bool bus_handler (Gst.Bus     bus,
-                              Gst.Message message) {
+    private bool bus_handler (Gst.Bus bus, Gst.Message message) {
         bool ret = true;
 
         if (message.type == MessageType.EOS) {
@@ -244,11 +243,11 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         }
 
         if (!ret) {
-                Idle.add_full (this.priority, () => {
-                    this.end (false, KnownStatusCode.NONE);
+            Idle.add_full (this.priority, () => {
+                this.end (false, KnownStatusCode.NONE);
 
-                    return false;
-                });
+                return false;
+            });
         }
 
         return ret;
