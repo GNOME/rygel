@@ -9,10 +9,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-15 13:47+0800\n"
-"PO-Revision-Date: 2010-09-09 22:01+0800\n"
-"Last-Translator: YunQiang Su <wzssyqa@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&component=general\n"
+"POT-Creation-Date: 2011-03-07 21:53+0000\n"
+"PO-Revision-Date: 2011-03-21 18:18+0800\n"
+"Last-Translator: Yinghua Wang <wantinghard@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,6 +38,7 @@ msgid "Plugins"
 msgstr "插件"
 
 #: ../data/rygel-preferences.ui.h:5
+#: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
 msgstr "Rygel 首选项"
 
@@ -103,6 +105,18 @@ msgstr "转码支持(_T)"
 #: ../data/rygel-preferences.ui.h:23
 msgid "_URIs"
 msgstr "_URIs"
+
+#: ../data/rygel-preferences.desktop.in.in.h:2
+msgid "UPnP/DLNA Preferences"
+msgstr "UPnP/DLNA 首选项"
+
+#: ../data/rygel.desktop.in.in.h:1
+msgid "Rygel"
+msgstr "Rygel"
+
+#: ../data/rygel.desktop.in.in.h:2
+msgid "UPnP/DLNA Services"
+msgstr "UPnP/DLNA 服务"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
 msgid "GStreamer Player"
@@ -205,25 +219,25 @@ msgstr "无法创建数据库实例"
 msgid "Failed to remove URI: %s"
 msgstr "无法删除 URI：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:319
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:325
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "创建 MediaExport DBus 服务失败：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:357
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:363
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "无法删除条目：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:368
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:374
 msgid "Music"
 msgstr "音乐"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:371
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:377
 msgid "Pictures"
 msgstr "图片"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:373
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:379
 msgid "Videos"
 msgstr "视频"
 
@@ -238,13 +252,13 @@ msgstr "无法为文件夹 '%s' 构建 URI：%s"
 msgid "Object creation in %s not allowed"
 msgstr "不允许在 %s 中创建对象"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:60
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:99
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:59
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:101
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr "连接到会话总线失败：%s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:113
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:112
 #, c-format
 msgid "Error getting all values for '%s': %s"
 msgstr "为 '%s' 获取全部值时出错：%s"
@@ -254,7 +268,7 @@ msgstr "为 '%s' 获取全部值时出错：%s"
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "无法启动 Tracker 服务：%s。插件已禁用。"
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:186
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:188
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr "在分类 '%s' 下获取条目数时出错：%s"
@@ -268,7 +282,7 @@ msgid "Artists"
 msgstr "艺人"
 
 #: ../src/rygel/rygel-media-query-action.vala:121
-#: ../src/rygel/rygel-media-query-action.vala:142
+#: ../src/rygel/rygel-media-query-action.vala:146
 #: ../src/rygel/rygel-browse.vala:93 ../src/rygel/rygel-item-creator.vala:126
 #: ../src/rygel/rygel-item-creator.vala:159
 msgid "No such object"
@@ -463,23 +477,23 @@ msgstr "无法定位到偏移量 %lld"
 msgid "Failed to get log level from configuration: %s"
 msgstr "无法从配置中得到日志等级：%s"
 
-#: ../src/rygel/rygel-main.vala:80
+#: ../src/rygel/rygel-main.vala:81
 #, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
 msgstr[0] "在 %d 秒内没有找到插件，正在放弃..."
 
-#: ../src/rygel/rygel-main.vala:141
+#: ../src/rygel/rygel-main.vala:142
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "无法创建根设备工厂：%s"
 
-#: ../src/rygel/rygel-main.vala:192
+#: ../src/rygel/rygel-main.vala:193
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "为 %s 创建根设备失败。原因为：%s"
 
-#: ../src/rygel/rygel-main.vala:226
+#: ../src/rygel/rygel-main.vala:229
 #, c-format
 msgid "Failed to start D-Bus service: %s"
 msgstr "启动 D-Bus 服务失败：%s"
@@ -535,15 +549,16 @@ msgstr "从路径“%s”加载模块失败：%s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "无法在 %2$s 中找到入口点函数 %1$s ：%3$s"
 
-#: ../src/rygel/rygel-root-device-factory.vala:112
-#: ../src/rygel/rygel-root-device-factory.vala:147
-#: ../src/rygel/rygel-root-device-factory.vala:169
-#: ../src/rygel/rygel-root-device-factory.vala:188
+#: ../src/rygel/rygel-root-device-factory.vala:113
+#: ../src/rygel/rygel-root-device-factory.vala:146
+#: ../src/rygel/rygel-root-device-factory.vala:168
+#: ../src/rygel/rygel-root-device-factory.vala:199
 #, c-format
 msgid "XML node '%s' not found."
 msgstr "没有找到 XML 节点 '%s'"
 
-#: ../src/rygel/rygel-root-device-factory.vala:294
+#: ../src/rygel/rygel-root-device-factory.vala:301
+#: ../src/rygel/rygel-root-device-factory.vala:311
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "无法写入更改后的描述到 %s"
@@ -612,12 +627,12 @@ msgstr "'%s' 无可用值"
 msgid "Value of '%s' out of range"
 msgstr "'%s' 的值超出范围"
 
-#: ../src/rygel/rygel-user-config.vala:350
+#: ../src/rygel/rygel-user-config.vala:351
 #, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "启动 Rygel 服务失败：%s"
 
-#: ../src/rygel/rygel-user-config.vala:352
+#: ../src/rygel/rygel-user-config.vala:353
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "停止 Rygel 服务失败：%s"
@@ -631,7 +646,7 @@ msgstr "不适用"
 msgid "Failed to write modified description to %s."
 msgstr "将修改后的描述写入 %s 时失败。"
 
-#: ../src/ui/rygel-preferences-dialog.vala:72
+#: ../src/ui/rygel-preferences-dialog.vala:78
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "创建首选项对话框失败：%s"
