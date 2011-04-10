@@ -122,7 +122,6 @@ rygel_LDADD = \
 	librygel-configuration.a \
 	$(RYGEL_COMMON_LDADD) \
 	$(LIBGUPNP_DLNA_LIBS) \
-	$(LIBGSTREAMER_LIBS) \
 	$(GIO_LIBS) \
 	$(LIBSOUP_LIBS)
 
