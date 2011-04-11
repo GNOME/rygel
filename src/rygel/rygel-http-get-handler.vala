@@ -40,7 +40,7 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
             // FIXME: Is it OK to just copy the value of this header from
             // request to response? All we do to entertain this header is to
             // set the priority of IO operations.
-            request.msg.response_headers.append ("transferMode.dlna.org", mode);
+            request.msg.response_headers.append (TRANSFER_MODE_HEADER, mode);
         }
 
         // Yes, I know this is not the ideal code to just get a specific
