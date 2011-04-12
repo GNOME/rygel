@@ -32,6 +32,7 @@ public abstract class Rygel.MediaObject : GLib.Object {
     private static Regex host_name_regex;
 
     public string id;
+    public string ref_id;
     public string upnp_class;
     public uint64 modified;
     public Gee.ArrayList<string> uris;
