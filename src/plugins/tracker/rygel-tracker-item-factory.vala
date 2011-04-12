@@ -24,6 +24,8 @@
  */
 
 using Gee;
+using GUPnP;
+using Gst;
 
 /**
  * Abstract Tracker item factory.
@@ -47,12 +49,18 @@ public abstract class Rygel.Tracker.ItemFactory {
 
     public ArrayList<string> properties;
 
+    private DLNADiscoverer discoverer;
+
     public ItemFactory (string  category,
                         string  upnp_class,
                         string? upload_dir) {
         this.category = category;
         this.upnp_class = upnp_class;
         this.upload_dir = upload_dir;
+
+        // FIXME: In order to work around bug#647575, we take mime-type from
+        //        gupnp-dlna rather than Tracker.
+        this.discoverer = new DLNADiscoverer ((ClockTime) SECOND, true, true);
 
         this.properties = new ArrayList<string> ();
 
@@ -92,10 +100,13 @@ public abstract class Rygel.Tracker.ItemFactory {
         if (metadata[Metadata.DATE] != "")
             item.date = metadata[Metadata.DATE];
 
-        if (metadata[Metadata.DLNA_PROFILE] != "")
+        if (metadata[Metadata.DLNA_PROFILE] != "") {
             item.dlna_profile = metadata[Metadata.DLNA_PROFILE];
-
-        item.mime_type = metadata[Metadata.MIME];
+            var profile = this.discoverer.get_profile (item.dlna_profile);
+            item.mime_type = profile.mime;
+        } else {
+            item.mime_type = metadata[Metadata.MIME];
+        }
 
         item.add_uri (uri);
     }
