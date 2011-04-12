@@ -1,3 +1,134 @@
+0.10.0
+======
+
+The first release in the new stable 0.10.x series for GNOME 3.0. Changes since
+0.9.9:
+
+- More user-friendly short description. Downstream integrators might want to
+  update their packages (check README).
+- Simplified transcoding by use of new 'encodebin' GStreamer element. This also
+  implies fixing of MPEG TS transcoder to work with recent GStreamer (plugins).
+- Much more consistent and simpler HTTP stream handling by increased reliability
+  on GStreamer.
+- Many fixes and improvements to HTTP streams.
+- More robust tests for HTTP streams.
+- Fix .po files being all uppercase.
+- Don't crash if log_domain is unset.
+- Apply Xbox hacks on Philips DLNA TV.
+- Time seek header must be locale-independent.
+- Correct supported SeekMode values.
+- Support 'background' mode for all streams.
+- More complete DOAP file.
+- Don't offer audio transcoding for videos.
+- Expose 'dc:date' for items when available.
+- Add some more check.
+- Add support for 'refID' attribute. Although currently no plugin uses this, we
+  are already adding this basic support to satisfy DLNA.
+- Throw error if 'dlnaManaged' attribute or wrong DLNA profile is provided in an
+  item creation request.
+- Throw error with correct code on creation of item of wrong class.
+- Prevent a crash in 'ImportResource' action handling.
+- Report slightly more accurate time seek range.
+- Don't error out on attempt to delete an inexistent file.
+- MediaExport:
+  - Avoid crawling $HOME by default.
+  - Query user folders only once.
+  - Remove huge cache directive.
+  - Implement search by duration.
+  - Properly cancel the file monitor.
+  - Fix crash on file removal.
+- Tracker:
+  - Mark newly added items as available.
+  - Set 'nie:contentCreated' on created items.
+  - Take mime-type from gupnp-dlna to work-around bug#647575.
+  - Properly escape regular expression in title containers.
+  - Create a unique URI for new items.
+  - Mark resources we created as ours.
+- More DLNA requirements satisfied:
+  - 7.3.25.1
+  - 7.3.50.1
+  - 7.3.67.1
+  - 7.3.133.6
+  - 7.3.134.3
+- Localization:
+  - Add more translations:
+    - Bengali India translation
+    - Indonesian translation
+    - Latvian translation
+  - Translation updates:
+    - Japanese
+    - Russian
+    - French
+    - Korean
+    - Slovenian
+    - Norwegian bokmål
+    - Swedish
+    - Bulgarian
+    - Thai
+    - Simplified Chinese
+    - Kannada
+    - Catalan
+    - Portuguese
+    - British English
+    - Polish
+    - Czech
+    - Romanian
+    - German
+    - Galician
+    - Hungarian
+    - Serbian
+    - Dutch
+    - Spanish
+    - UG
+- Many other non-functional and/or minor improvements and fixes.
+
+Dependency-related changes:
+
+- Require gst-plugins-base.
+- Require gstreamer-pbutils.
+
+Bugs fixed in this release:
+
+647551 - Improperly escaped regexes in tracker plugin
+643854 - Rygel is not shown as media source on a Philips TV
+644985 - TimeSeekRange.dlna.org HTTP header is locale dependent
+645159 - PS3 doesn't recognize transcoded MP3 content
+
+All contributors to this release:
+
+Jens Georg <mail@jensge.org>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Luis de Bethencourt <luis@debethencourt.com>
+Topi Santakivi <topi.santakivi@digia.com>
+Abduxukur Abdurixit <abdurixit@gmail.com>
+Akom Chotiphantawanon <knight2000@gmail.com>
+Alexander Shopov <ash@kambanaria.org>
+Andrej Žnidaršič <andrej.znidarsic@gmail.com>
+Aron Xu <aronxu@gnome.org>
+Bruce Cowan <bruce@bcowan.me.uk>
+Bruno Brouard <annoa.b@gmail.com>
+Changwoo Ryu <cwryu@debian.org>
+Daniel Mustieles <daniel.mustieles@gmail.com>
+Daniel Nylander <po@danielnylander.se>
+Dirgita <dirgitadevina@yahoo.co.id>
+Duarte Loreto <happyguy_pt@hotmail.com>
+Fran Diéguez <fran@openhost.es>
+Gabor Kelemen <kelemeng@gnome.hu>
+Joan Duran <jodufi@gmail.com>
+Kentaro KAZUHAMA <kazken3@gmail.com>
+Kjartan Maraas <kmaraas@gnome.org>
+Lucian Adrian Grijincu <lucian.grijincu@gmail.com>
+Marek Černocký <marek@manet.cz>
+Mario Blättermann <mariobl@gnome.org>
+Matej Urbančič <mateju@svn.gnome.org>
+Piotr Drąg <piotrdrag@gmail.com>
+Rudolfs Mazurs <rudolfs.mazurs@gmail.com>
+Runa Bhattacharjee <runab@redhat.com>
+Shankar Prasad <svenkate@redhat.com>
+Wouter Bolsterlee <wbolster@gnome.org>
+Yuri Myasoedov <omerta13@yandex.ru>
+Мирослав Николић <miroslavnikolic@rocketmail.com>
+
 0.9.9
 =====
 
