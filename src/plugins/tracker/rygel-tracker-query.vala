@@ -43,6 +43,20 @@ public abstract class Rygel.Tracker.Query {
     }
 
     /**
+     * Convenience function to combine Query.escape_string and
+     * Regex.escape_string in one function call
+     *
+     * @param literal A string to escape
+     *
+     * @return A newly allocated string with the sparql-escaped regex-escaped
+     * version of literal. The returned string should be freed with g_free()
+     * when no longer needed.
+     */
+    public static string escape_regex (string literal) {
+        return escape_string (Regex.escape_string (literal));
+    }
+
+    /**
      * tracker_sparql_escape_string: Escapes a string so that it can be
      * used in a SPARQL query. Copied from Tracker project.
      *

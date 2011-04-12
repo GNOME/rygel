@@ -74,7 +74,7 @@ public class Rygel.Tracker.Titles : MetadataValues {
     }
 
     protected override string create_filter (string variable, string value) {
-        var title = this.create_title_for_value (value);
+        var title = Query.escape_regex (this.create_title_for_value (value));
 
         return "regex(" + variable + ", \"^" + title + "\", \"i\")";
     }

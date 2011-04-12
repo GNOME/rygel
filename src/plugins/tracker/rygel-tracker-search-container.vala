@@ -276,7 +276,7 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
                 break;
             case SearchCriteriaOp.CONTAINS:
                 // We need to escape this twice for Tracker
-                var regex = Query.escape_string (Regex.escape_string (value));
+                var regex = Query.escape_regex (value);
 
                 filter = "regex(" + variable + ", \"" + regex + "\", \"i\")";
                 break;
