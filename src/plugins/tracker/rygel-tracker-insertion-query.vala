@@ -60,9 +60,13 @@ public class Rygel.Tracker.InsertionQuery : Query {
         }
 
         var now = TimeVal ();
+        var date = now.to_iso8601 ();
         triplets.add (new QueryTriplet (QUERY_ID,
                                         "nfo:fileLastModified",
-                                        "\"" + now.to_iso8601 () + "\""));
+                                        "\"" + date + "\""));
+        triplets.add (new QueryTriplet (QUERY_ID,
+                                        "nie:contentCreated",
+                                        "\"" + date + "\""));
 
         base (triplets);
     }
