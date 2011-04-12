@@ -97,14 +97,19 @@ public class Rygel.RelationalExpression :
 
     public bool compare_string (string? str) {
         var up_operand2 = this.operand2.up ();
-        var up_str = str.up ();
+        string up_str;
+        if (str != null) {
+            up_str = str.up ();
+        } else {
+            up_str = null;
+        }
 
         switch (this.op) {
         case SearchCriteriaOp.EXISTS:
             if (this.operand2 == "true") {
-                return str != null;
+                return up_str != null;
             } else {
-                return str == null;
+                return up_str == null;
             }
         case SearchCriteriaOp.EQ:
             return up_operand2 == up_str;
