@@ -63,7 +63,7 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
     }
 
     public override uint get_distance (MediaItem item) {
-        if (!(item is AudioItem)) {
+        if (!(item is AudioItem) || item is VideoItem) {
             return uint.MAX;
         }
 
