@@ -46,7 +46,7 @@ internal class Rygel.SourceConnectionManager : Rygel.ConnectionManager {
         }
     }
 
-    public ArrayList<ProtocolInfo> get_protocol_info () {
+    private ArrayList<ProtocolInfo> get_protocol_info () {
         var server = this.get_http_server ();
         var protocol_infos = server.get_protocol_info ();
 
