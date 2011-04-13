@@ -100,9 +100,13 @@ public abstract class Rygel.Tracker.ItemFactory {
         if (metadata[Metadata.DATE] != "")
             item.date = metadata[Metadata.DATE];
 
+        var profile = null as DLNAProfile;
         if (metadata[Metadata.DLNA_PROFILE] != "") {
             item.dlna_profile = metadata[Metadata.DLNA_PROFILE];
-            var profile = this.discoverer.get_profile (item.dlna_profile);
+            profile = this.discoverer.get_profile (item.dlna_profile);
+        }
+
+        if (profile != null) {
             item.mime_type = profile.mime;
         } else {
             item.mime_type = metadata[Metadata.MIME];
