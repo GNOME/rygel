@@ -177,6 +177,10 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                                      this.cancellable);
                 if (result.size > 0) {
                     media_object = result[0];
+                } else {
+                    throw new ContentDirectoryError.BAD_METADATA
+                                        ("'%s' UPnP class unsupported",
+                                         didl_item.upnp_class);
                 }
             }
         } else {
