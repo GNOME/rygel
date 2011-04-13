@@ -177,7 +177,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                         // change
                         var id = MediaCache.get_id (file);
                         var object = cache.get_object (id);
-                        var parent = object.parent;
+                        var parent = null as MediaContainer;
 
                         while (object != null) {
                             parent = object.parent;
