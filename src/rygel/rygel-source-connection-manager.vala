@@ -23,6 +23,7 @@
 
 using GUPnP;
 using Gst;
+using Gee;
 
 /**
  * UPnP ConnectionManager service for serving end-points (MediaServer).
@@ -35,6 +36,17 @@ internal class Rygel.SourceConnectionManager : Rygel.ConnectionManager {
         this.av_transport_id = -1;
         this.direction = "Output";
 
+        foreach (var protocol_info in this.get_protocol_info ()) {
+            if (this.source_protocol_info != "") {
+                // No comma before the first one
+                this.source_protocol_info += ",";
+            }
+
+            this.source_protocol_info += protocol_info.to_string ();
+        }
+    }
+
+    public ArrayList<ProtocolInfo> get_protocol_info () {
         var server = this.get_http_server ();
         var protocol_infos = server.get_protocol_info ();
 
@@ -55,14 +67,7 @@ internal class Rygel.SourceConnectionManager : Rygel.ConnectionManager {
             }
         }
 
-        foreach (var protocol_info in protocol_infos) {
-            if (this.source_protocol_info != "") {
-                // No comma before the first one
-                this.source_protocol_info += ",";
-            }
-
-            this.source_protocol_info += protocol_info.to_string ();
-        }
+        return protocol_infos;
     }
 
     private HTTPServer get_http_server () {
