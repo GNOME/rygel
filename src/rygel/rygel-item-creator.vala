@@ -294,9 +294,10 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                          container.id);
         }
 
+        var now = new GLib.DateTime.now_utc ();
         var file = dir.get_child_for_display_name (title);
 
-        return file.get_uri ();
+        return file.get_uri () + now.format ("%s");
     }
 
     private async void wait_for_item (WritableContainer container) {
