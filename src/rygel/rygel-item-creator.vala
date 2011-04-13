@@ -70,6 +70,12 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                 throw new ItemCreatorError.PARSE (message, this.elements);
             }
 
+            if (didl_item.dlna_managed != 0) {
+                throw new ContentDirectoryError.BAD_METADATA
+                                        ("Attribute 'dlnaManaged' must not" +
+                                         " be set");
+            }
+
             var container = yield this.fetch_container ();
 
             this.item = this.create_item (didl_item.id,
