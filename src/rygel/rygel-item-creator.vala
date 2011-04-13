@@ -21,6 +21,7 @@
  */
 
 using GUPnP;
+using Gst;
 
 private errordomain Rygel.ItemCreatorError {
     PARSE
@@ -83,6 +84,12 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
 
                 if (info != null) {
                     if (info.dlna_profile != null) {
+                        if (!this.is_profile_valid (info.dlna_profile)) {
+                            throw new ContentDirectoryError.BAD_METADATA
+                                        ("'%s' DLNA profile unsupported",
+                                         info.dlna_profile);
+                        }
+
                         this.item.dlna_profile = info.dlna_profile;
                     }
 
@@ -338,6 +345,23 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         }
         debug ("Finished waiting for new item to appear under container '%s'",
                container.id);
+    }
+
+    private bool is_profile_valid (string profile) {
+        var discoverer = new GUPnP.DLNADiscoverer ((ClockTime) SECOND,
+                                                   true,
+                                                   false);
+
+        var valid = false;
+        foreach (var known_profile in discoverer.list_profiles ()) {
+            if (known_profile.name == profile) {
+                valid = true;
+
+                break;
+            }
+        }
+
+        return valid;
     }
 }
 
