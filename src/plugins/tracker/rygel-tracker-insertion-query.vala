@@ -39,6 +39,10 @@ public class Rygel.Tracker.InsertionQuery : Query {
         triplets.add (new QueryTriplet (QUERY_ID, "nmm:uPnPShared", "true"));
         triplets.add (new QueryTriplet (QUERY_ID, "tracker:available", "true"));
         triplets.add (new QueryTriplet (QUERY_ID,
+                                        "nie:generator",
+                                        "\"rygel\""));
+
+        triplets.add (new QueryTriplet (QUERY_ID,
                                         "nie:title",
                                         "\"" + item.title + "\""));
         triplets.add (new QueryTriplet (QUERY_ID,
