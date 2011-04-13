@@ -30,6 +30,9 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
         this.cancellable = cancellable;
         this.monitors = new HashMap<File, FileMonitor> (GLib.file_hash,
                                                         GLib.file_equal);
+        if (cancellable != null) {
+            cancellable.cancelled.connect (this.cancel);
+        }
     }
 
     public void on_monitor_changed (File             file,
@@ -79,13 +82,11 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
     }
 
     public void cancel () {
-        if (this.cancellable != null) {
-            this.cancellable.cancel ();
-        } else {
-            foreach (var monitor in this.monitors.values) {
-                monitor.cancel ();
-            }
+        foreach (var monitor in this.monitors.values) {
+            monitor.cancel ();
         }
+
+        this.monitors.clear ();
     }
 
     public signal void changed (File             file,
