@@ -100,10 +100,16 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
                             typeof (string),
                             out this.destination_uri);
 
-        // Set action return arguments
-        this.action.set ("TransferID", typeof (uint32), this.transfer_id);
-
         try {
+            if (this.source_uri == null || this.destination_uri == null) {
+                throw new ContentDirectoryError.INVALID_ARGS
+                                        ("Must provide source " +
+                                         "and destination URIs");
+            }
+
+            // Set action return arguments
+            this.action.set ("TransferID", typeof (uint32), this.transfer_id);
+
             this.item = yield this.fetch_item ();
         } catch (Error error) {
             warning (_("Failed to get original URI for '%s': %s"),
@@ -159,7 +165,6 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
                                                this.http_server);
         var media_object = yield this.root_container.find_object (uri.item_id,
                                                                   null);
-
         string msg = null;
 
         if (media_object == null || !(media_object is MediaItem)) {
