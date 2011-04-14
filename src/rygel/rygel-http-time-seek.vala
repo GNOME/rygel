@@ -36,7 +36,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
         string[] range_tokens;
         int64 start = 0;
         int64 duration = (request.item as AudioItem).duration * SECOND;
-        int64 stop = duration - SECOND;
+        int64 stop = duration - MSECOND;
 
         range = request.msg.request_headers.get_one ("TimeSeekRange.dlna.org");
         if (range != null) {
@@ -74,7 +74,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
             }
         }
 
-        base (request.msg, start, stop, duration);
+        base (request.msg, start, stop, MSECOND, duration);
     }
 
     public static bool needed (HTTPGet request) {
