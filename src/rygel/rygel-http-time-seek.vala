@@ -101,9 +101,9 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
         var stop_str = new char[double.DTOSTR_BUF_SIZE];
         var total_str = new char[double.DTOSTR_BUF_SIZE];
 
-        var range = "npt=" + start.format (start_str, "%.2f") + "-" +
-                             stop.format (stop_str, "%.2f") + "/" +
-                             total.format (total_str, "%.2f");
+        var range = "npt=" + start.format (start_str, "%.3f") + "-" +
+                             stop.format (stop_str, "%.3f") + "/" +
+                             total.format (total_str, "%.3f");
 
         this.msg.response_headers.append ("TimeSeekRange.dlna.org", range);
     }
