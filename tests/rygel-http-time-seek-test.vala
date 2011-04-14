@@ -128,9 +128,9 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
     }
 
     private HTTPTimeSeekTest () {
-        var expression = "npt=[0-9]+\\.[0-9][0-9]-" +
-                         "[0-9]+\\.[0-9][0-9]/" +
-                         "[0-9]+\\.[0-9][0-9]";
+        var expression = "npt=[0-9]+\\.[0-9][0-9][0-9]-" +
+                         "[0-9]+\\.[0-9][0-9][0-9]/" +
+                         "[0-9]+\\.[0-9][0-9][0-9]";
         this.range_regex = new Regex (expression, RegexCompileFlags.CASELESS);
     }
 
