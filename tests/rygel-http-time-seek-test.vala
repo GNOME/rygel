@@ -139,7 +139,7 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
         var request = new HTTPGet (thumbnail, subtitle);
         var audio_item = request.item as AudioItem;
 
-        this.test_seek (request, 0, audio_item.duration - 1);
+        this.test_seek (request, 0, audio_item.duration * SECOND - MSECOND);
     }
 
     private void test_start_only_seek (Thumbnail? thumbnail,
@@ -148,7 +148,9 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
         var request = new HTTPGet.seek_start (128, thumbnail, subtitle);
         var audio_item = request.item as AudioItem;
 
-        this.test_seek (request, 128, audio_item.duration - 1);
+        this.test_seek (request,
+                        128 * SECOND,
+                        audio_item.duration * SECOND - MSECOND);
     }
 
     private void test_stop_only_seek (Thumbnail? thumbnail,
@@ -156,7 +158,7 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
                                       throws HTTPSeekError {
         var request = new HTTPGet.seek_stop (128, thumbnail, subtitle);
 
-        this.test_seek (request, 0, 128);
+        this.test_seek (request, 0, 128 * SECOND);
     }
 
     private void test_start_stop_seek (Thumbnail? thumbnail,
@@ -167,7 +169,7 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
                                                    thumbnail,
                                                    subtitle);
 
-        this.test_seek (request, 128, 256);
+        this.test_seek (request, 128 * SECOND, 256 * SECOND);
     }
 
     private void test_seek (HTTPGet request,
@@ -179,9 +181,9 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
         seek.add_response_headers ();
 
         assert (seek != null);
-        assert (seek.start == start * SECOND);
-        assert (seek.stop == stop * SECOND);
-        assert (seek.length == seek.stop + 1 - seek.start);
+        assert (seek.start == start);
+        assert (seek.stop == stop);
+        assert (seek.length == seek.stop + MSECOND - seek.start);
 
         var audio_item = request.item as AudioItem;
         assert (seek.total_length == audio_item.duration * SECOND);
