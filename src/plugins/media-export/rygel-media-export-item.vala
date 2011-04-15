@@ -66,6 +66,14 @@ namespace Rygel.MediaExport.ItemFactory {
         audio_streams = dlna_info.info.get_audio_streams ();
         video_streams = dlna_info.info.get_video_streams ();
 
+        if (audio_streams == null && video_streams == null) {
+            debug ("%s had neither audio nor video/picture " +
+                   "streams. Ignoring.",
+                   file.get_uri ());
+
+            return null;
+        }
+
         if (audio_streams == null && video_streams.data.is_image()) {
             item = new PhotoItem (id, parent, "");
             return fill_photo_item (item as PhotoItem,
