@@ -37,15 +37,21 @@ internal enum Rygel.MediaExport.ObjectType {
     ITEM
 }
 
+internal struct Rygel.MediaExport.ExistsCacheEntry {
+    int64 mtime;
+    int64 size;
+}
+
 /**
  * Persistent storage of media objects
  *
  *  MediaExportDB is a sqlite3 backed persistent storage of media objects
  */
 public class Rygel.MediaExport.MediaCache : Object {
-    private Database db;
-    private ObjectFactory factory;
-    private SQLFactory sql;
+    private Database                           db;
+    private ObjectFactory                      factory;
+    private SQLFactory                         sql;
+    private HashMap<string, ExistsCacheEntry?> exists_cache;
 
     private static MediaCache instance;
 
@@ -154,13 +160,39 @@ public class Rygel.MediaExport.MediaCache : Object {
         return count;
     }
 
+
+    private void get_exists_cache () throws DatabaseError {
+        this.exists_cache = new HashMap<string, ExistsCacheEntry?> ();
+        this.db.exec (this.sql.make (SQLString.EXISTS_CACHE),
+                      null,
+                      (statement) => {
+                          var entry = ExistsCacheEntry ();
+                          entry.mtime = statement.column_int64 (1);
+                          entry.size = statement.column_int64 (0);
+                          this.exists_cache.set (statement.column_text (2),
+                                                 entry);
+
+                          return true;
+                      });
+    }
+
     public bool exists (File      file,
                         out int64 timestamp,
                         out int64 size) throws DatabaseError {
-        bool exists = false;
-        GLib.Value[] values = { file.get_uri () };
+        var exists = false;
+        var uri = file.get_uri ();
+        GLib.Value[] values = { uri };
         int64 tmp_timestamp = 0;
         int64 tmp_size = 0;
+
+        if (this.exists_cache.has_key (uri)) {
+            var entry = this.exists_cache.get (uri);
+            this.exists_cache.unset (uri);
+            timestamp = entry.mtime;
+            size = entry.size;
+
+            return true;
+        }
 
         this.db.exec (this.sql.make (SQLString.EXISTS),
                       values,
@@ -357,6 +389,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         this.sql = new SQLFactory ();
         this.open_db ("media-export");
         this.factory = new ObjectFactory ();
+        this.get_exists_cache ();
     }
 
     private void open_db (string name) throws Error {

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 Jens Georg <mail@jensge.org>.
+ * Copyright (C) 2010,2011 Jens Georg <mail@jensge.org>.
  *
  * Author: Jens Georg <mail@jensge.org>
  *
@@ -64,6 +64,7 @@ internal enum Rygel.MediaExport.SQLString {
     TRIGGER_COMMON,
     INDEX_COMMON,
     SCHEMA,
+    EXISTS_CACHE,
 }
 
 internal class Rygel.MediaExport.SQLFactory : Object {
@@ -234,6 +235,10 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "CREATE INDEX IF NOT EXISTS idx_uri on Object(uri);";
 
 
+    private const string EXISTS_CACHE_STRING =
+    "SELECT m.size, o.timestamp, o.uri FROM Object o " +
+        "JOIN meta_data m ON o.upnp_id = m.object_fk";
+
     public unowned string make (SQLString query) {
         switch (query) {
             case SQLString.SAVE_METADATA:
@@ -268,6 +273,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                 return CREATE_INDICES_STRING;
             case SQLString.SCHEMA:
                 return SCHEMA_STRING;
+            case SQLString.EXISTS_CACHE:
+                return EXISTS_CACHE_STRING;
             case SQLString.TABLE_CLOSURE:
                 return CREATE_CLOSURE_TABLE;
             default:
