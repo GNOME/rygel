@@ -1,10 +1,214 @@
-Please read doc/design.txt for description of each object.
+  * MediaDB:
+    * Refactor the beast
+    * Some of the new classes need to be 'internal'.
+    * persist update count for containers
+    * More errors needed in MediaDBError
+    * Remove generic save*() & get*()
+    * Fix coding-style/indentation everywhere.
+    * DB tables should directly correspond/map to class hierarchy & naming
+    * scheme.
 
-* Implement MediaExtractor
-* Implement MediaDB
-* Replace MediaTracker with MediaDB
-* Create the MediaProvider interface
-* MediaDB implements MediaProvider
-* Implement plugin system in/for MediaDB
-* Revive MediaTracker as a plugin
-* Port MediaTracker code to Xesam.
+  * MetadataExtractor
+    * Find a way to handle images properly
+      * Will be done automagically by
+      * https://bugzilla.gnome.org/show_bug.cgi?id=626531
+
+  * MediaExport
+    * '''Fix coding-style everywhere'''
+    * Filesystem-based cover art (Implement feeding-part of MediaArtStorageSpec)
+      * Preliminary patch exists, though ugly
+    * React to configuration changes
+    * Add configurable filter on "Genre" to decide between Audio and Music for
+    * UPnP class
+    * check if g_file_enumerator_container can simplify harvester
+    * D-Bus API
+      * Add 'title' param to AddURI?
+        * Patch needs cleaning
+      * Removing URI
+        * causes assertion failure followed by a crash if done during its
+          harvested at rygel-media-export-root-container.vala:393
+
+  * Check in HTTPSeek really needed?
+
+  * crash on trying to trancode ogg to wmv.
+
+  * Always build/run tests if configured with '--enable-tests'.
+
+  * autogen passes '--enable-tests' to configure by default.
+
+  * Use common.m4 in tests/Makefile.am.
+
+  * Cache response(s). If user fast forwards a stream, one request completes and
+    a second will be issued with a new time offset.  It is important to keep the
+    latency of starting the new request small.
+
+  * Refactor ItemCreator class (especially run method).
+
+  * Tracker
+   * Get mime-type from gupnp-dlna when dlna pn is known.
+        OR
+   * Make sure tracker uses mime from gupnp-dlna.
+
+  * Assign priorities to gstreamer threads
+    (See gstreamer/tests/examples/streams/stream-status.c)
+
+  * UI
+    * Make sure we restart rygel when configuration changes.
+    * Fix tooltips.
+    * Get interfaces directly from NM.
+    * Show available APs for Wifi interface.
+
+  * rygel copies config file to user's home dir if not already there.
+    * Copy code from UI.
+
+  * Start rygel as part of user session.
+    * Remove relavent code from UI code.
+
+  * Config for XBox hacks user-agent.
+
+  * Transcoding:
+    * Make use of encodebin when it's ready (update README/wiki afterwards).
+    * Use h264 instead of mpeg2 video?
+
+  * UI:
+    * Kill preferences UI
+      * Move UI components to gnome-user-share (bastien will do this, really?)
+      * Remove rygel-preferences (code and UI file).
+      * Remove unneeded API from UserConfig.
+      * Remove related stuff from this TODO file.
+
+  * MediaItem.add_resource() should take a res (and renamed) rather than
+    taking a didl_item and returning a res.
+
+  * Tracker
+    * More suitable name for SearchContainer (QueryContainer?)
+    * Async creation of containers.
+    * Fetch as much metadata from added item as possible.
+    * Use tracker:id for IDs.
+    * Complete search implementation.
+      * Deal with number search expressions.
+      * Deal with logical expressions too.
+    * Move dbus path constants to relavent interfaces.
+
+  * Document plugin API.
+
+  * Use methods (with errors) in Player's API to set props.
+
+  * Player's APIs should be async.
+
+  * Make all GIO calls async
+
+  * Replace magic keywords in model description as well.
+
+  * Get rid of 'handle_error' in most places.
+
+  * save_modified_desc is in two classes.
+
+  * Unit tests
+    * HTTPGetHandler
+      * HTTPIdentityHandler
+      * HTTPTranscodeHandler
+    * UserConfig
+      * config file not available
+
+  * MediaProviderSpec/External
+    * incrementally browse containers at startup.
+    * Fix search: complete prop translation.
+    * search: What about multvalued props?
+    * Make use of "*" filter.
+
+  * How to hide ContentDirectoryError?
+
+  * mpris
+    * use icons for media objects.
+
+  * AVTransport
+    * Handle Next/Prev
+    * Handle GetMediaInfo_Ext
+    * Actually handle all advertized actions/variables.
+
+  * Playbin
+    * configuration options to set gst playbin props?
+
+  * Handle all provided metadata in CreateObject.
+
+  * Put common code in item and container into object (e.g upnp_class)
+
+  * Totem plugin that implements MediaRenderer spec.
+
+  * plugins should keep version of rygel they were compiled against.
+
+  * ScheduledRecording (ScheduledRecording spec, especially section 2.9.2.2.1)
+    * Add MediaItem.ChannelID prop.
+    * MediaItem.ChannelID prop gets serialized into DIDL.
+    * Skeleton ScheduledRecording service implementation
+    * RecordSchedule : MediaObject
+    * RecordTask : MediaObject
+    * Implement ScheduledRecording and RecordingBrowse classes (only allow
+      single RecordTask in each RecordSchedule)
+    * Make ScheduledRecording and ContentDir derive from a common class
+    (Browsable?). Same goes for RecordingBrowse and ContentDirBrowse.
+
+  * Move common code (construction and serializating) to MediaObject.
+
+  * Move the res field and it's manipulation to MediaObject.
+
+  * ScheduledRecording
+    * export EPG hierarchy
+      * EPG container
+      * EPG item
+
+  * Tracker:
+    * Port to libtracker-sparql.
+    * Set the pixel-aspect-ratio props.
+    * MetadataValues:
+      * Document delegate functions.
+    * Rid of choping tails.
+    * Do something about total_count param of search (using COUNT?)
+    * Missing metadata:
+      * Video: resolution info, author, framerate, bitrate etc.
+      * Image: album.
+    * Make use of refID.
+    * Use ~/.face as icon if available.
+    * Request creation of thumbnails (http://live.gnome.org/ThumbnailerSpec).
+    * Remove redundant "Item" from item class names.
+    * share playlists and other categories?
+
+  * Internal res:
+    * Provide IP.
+
+  * Provide APIs for D-Bus service-based plugins (external,mpris,tracker).
+
+=== Doubtful / issues ===
+
+  * Use cached props instead of Properties.get*() for cleaner code. issue: How
+    to deal with optional properties on MediaServer2?
+
+  * move contents of src dir a level up?
+
+  * Pass a function to HTTPServer and HTTPRequest for item search, rather than
+    ContentDir itself?
+
+  * Implement DLNA's time seeking for non-transcoded contents as well.
+
+  * Turn Rygel into a library?
+    * most c files put into a lib: librygel.so
+    * update pkg-config.
+
+  * remove project prefix from file names?
+
+  * use soup_buffer_new_with_owner() to save memory?
+
+  * UTF16 conversion to UTF8.
+
+  * mark the plugins using %h option.
+
+  * listen to hostname changes and re-create plugins that use %h magic.
+
+  * Port to Gio.Variant and GDBus.
+    * Asynchronous DBusService/Interface.shutdown.
+    * Remove FreeDesktop.Properties ?
+
+=== Wishes ===
+
+  * http://zee-nix.blogspot.com/2008/10/rygel-gnome-upnp-media-server.html
