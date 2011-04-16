@@ -45,6 +45,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
     private Harvester      harvester;
     private Cancellable    cancellable;
     private MediaContainer filesystem_container;
+    private ulong          harvester_signal_id;
 
     private static MediaContainer instance = null;
     private static Error          creation_error = null;
@@ -365,6 +366,9 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             ids = new ArrayList<string> ();
         }
 
+        this.harvester_signal_id = this.harvester.done.connect
+                                        (on_initial_harvesting_done);
+
         foreach (var file in this.get_shared_uris ()) {
             if (file.query_exists (null)) {
                 ids.remove (MediaCache.get_id (file));
@@ -382,14 +386,20 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             }
         }
 
+        this.add_default_virtual_folders ();
+
+        this.updated ();
+    }
+
+    private void on_initial_harvesting_done () {
+        this.harvester.disconnect (this.harvester_signal_id);
+
         this.filesystem_container.container_updated.connect( () => {
             this.add_default_virtual_folders ();
             this.updated ();
         });
 
-        this.add_default_virtual_folders ();
 
-        this.updated ();
     }
 
     private void add_default_virtual_folders () {

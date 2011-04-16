@@ -30,6 +30,8 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
     private Regex file_filter;
     private Cancellable cancellable;
 
+    public signal void done ();
+
     /**
      * Create a new instance of the meta-data extraction manager.
      */
@@ -101,6 +103,9 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         message (_("'%s' harvested"), file.get_uri ());
 
         this.tasks.unset (file);
+        if (this.tasks.is_empty) {
+            done ();
+        }
     }
 
     /**
