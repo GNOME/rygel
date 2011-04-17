@@ -65,6 +65,7 @@ internal enum Rygel.MediaExport.SQLString {
     INDEX_COMMON,
     SCHEMA,
     EXISTS_CACHE,
+    STATISTICS,
 }
 
 internal class Rygel.MediaExport.SQLFactory : Object {
@@ -239,6 +240,9 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "SELECT m.size, o.timestamp, o.uri FROM Object o " +
         "JOIN meta_data m ON o.upnp_id = m.object_fk";
 
+    private const string STATISTICS_STRING =
+    "SELECT class, count(1) FROM meta_data GROUP BY class";
+
     public unowned string make (SQLString query) {
         switch (query) {
             case SQLString.SAVE_METADATA:
@@ -277,6 +281,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                 return EXISTS_CACHE_STRING;
             case SQLString.TABLE_CLOSURE:
                 return CREATE_CLOSURE_TABLE;
+            case SQLString.STATISTICS:
+                return STATISTICS_STRING;
             default:
                 assert_not_reached ();
         }

@@ -395,6 +395,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
 
     private void on_initial_harvesting_done () {
         this.harvester.disconnect (this.harvester_signal_id);
+        this.media_db.debug_statistics ();
 
         this.filesystem_container.container_updated.connect( () => {
             this.add_default_virtual_folders ();

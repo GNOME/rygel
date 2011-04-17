@@ -391,7 +391,17 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
     }
 
-
+    public void debug_statistics () {
+        try {
+            debug ("Database statistics:");
+            var cursor = this.exec_cursor (SQLString.STATISTICS);
+            foreach (var statement in cursor) {
+                debug ("%s: %d",
+                       statement.column_text (0),
+                       statement.column_int (1));
+            }
+        } catch (Error error) { }
+    }
 
     private void save_metadata (Rygel.MediaItem item) throws Error {
         // Fill common properties
