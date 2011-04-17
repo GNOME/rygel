@@ -405,12 +405,12 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
     private void add_default_virtual_folders () {
         try {
             this.add_virtual_containers_for_class (_("Music"),
-                                                   "object.item.audioItem.musicTrack",
-                                                    virtual_folders_music);
+                                                   MusicItem.UPNP_CLASS,
+                                                   virtual_folders_music);
             this.add_virtual_containers_for_class (_("Pictures"),
-                                                   "object.item.imageItem.photo");
+                                                   PhotoItem.UPNP_CLASS);
             this.add_virtual_containers_for_class (_("Videos"),
-                                                   "object.item.videoItem");
+                                                   VideoItem.UPNP_CLASS);
         } catch (Error error) {};
     }
 
