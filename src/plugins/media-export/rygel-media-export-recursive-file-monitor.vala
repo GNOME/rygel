@@ -20,13 +20,26 @@
 
 
 using Gee;
-using Rygel;
 
 public class Rygel.MediaExport.RecursiveFileMonitor : Object {
-    private Cancellable cancellable;
+    private Cancellable        cancellable;
     HashMap<File, FileMonitor> monitors;
+    bool                       monitor_changes;
 
     public RecursiveFileMonitor (Cancellable? cancellable) {
+        this.monitor_changes = true;
+        try {
+            var config = MetaConfig.get_default ();
+            this.monitor_changes = config.get_bool ("MediaExport",
+                                                    "monitor-changes");
+        } catch (Error error) {
+            this.monitor_changes = true;
+        }
+
+        if (!this.monitor_changes) {
+            message (_("Will not monitor file changes"));
+        }
+
         this.cancellable = cancellable;
         this.monitors = new HashMap<File, FileMonitor> (GLib.file_hash,
                                                         GLib.file_equal);
@@ -63,6 +76,11 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
     }
 
     public async void add (File file) {
+        if (!this.monitor_changes ||
+             this.monitors.has_key (file)) {
+            return;
+        }
+
         try {
             var info = yield file.query_info_async
                                         (FILE_ATTRIBUTE_STANDARD_TYPE,

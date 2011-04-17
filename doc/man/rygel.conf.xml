@@ -325,6 +325,14 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <para>Set to <userinput>false</userinput> if you do not care about duration or any other meta-data like artist. This speeds up the initial crawl of the media a lot. Use it to quickly share some files via UPnP. Make sure to define an <option>include-filter</option>, otherwise you will end up with a lot of files exposed which the client cannot display anyway.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <option>monitor-changes</option>
+        </term>
+        <listitem>
+          <para>Set to <userinput>false</userinput> if you don&apos;t want to have new files picked up automatically by &dhpackage;.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsect1>
   <refsect1>
