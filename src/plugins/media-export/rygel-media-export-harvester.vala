@@ -140,76 +140,85 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                                   File?            other,
                                   FileMonitorEvent event) {
         try {
-            var cache = MediaCache.get_default ();
             switch (event) {
                 case FileMonitorEvent.CREATED:
                 case FileMonitorEvent.CHANGES_DONE_HINT:
-                    var type = file.query_file_type (FileQueryInfoFlags.NONE,
-                                                     this.cancellable);
-                    if (type == FileType.DIRECTORY ||
-                        this.file_filter == null ||
-                        this.file_filter.match (file.get_uri ())) {
-                        debug ("Trying to harvest %s because of %s",
-                               file.get_uri (),
-                               event.to_string ());
-                        string id;
-                        try {
-                            MediaContainer parent_container = null;
-                            var current = file;
-                            do {
-                                var parent = current.get_parent ();
-                                id = MediaCache.get_id (parent);
-                                parent_container = cache.get_object (id)
-                                        as MediaContainer;
-                                if (parent_container == null) {
-                                    current = parent;
-                                }
-                            } while (parent_container == null);
-
-                            this.schedule (current, parent_container);
-                        } catch (DatabaseError error) {
-                            warning (_("Error fetching object '%s' from database: %s"),
-                                     id,
-                                     error.message);
-                        }
-                    }
+                    debug ("Trying to harvest %s because of %s",
+                           file.get_uri (),
+                           event.to_string ());
+                    this.on_file_added (file);
                     break;
                 case FileMonitorEvent.DELETED:
-                    this.cancel (file);
-                    try {
-                        // the full object is fetched instead of simply calling
-                        // exists because we need the parent to signalize the
-                        // change
-                        var id = MediaCache.get_id (file);
-                        var object = cache.get_object (id);
-                        var parent = null as MediaContainer;
-
-                        while (object != null) {
-                            parent = object.parent;
-                            cache.remove_object (object);
-                            if (parent == null) {
-                                break;
-                            }
-
-                            parent.child_count--;
-                            if (parent.child_count != 0) {
-                                break;
-                            }
-
-                            object = parent;
-                        }
-
-                        if (parent != null) {
-                            parent.updated ();
-                        }
-                    } catch (Error error) {
-                        warning (_("Error removing object from database: %s"),
-                                 error.message);
-                    }
+                    this.on_file_removed (file);
                     break;
                 default:
                     break;
             }
         } catch (Error error) { }
+    }
+
+    private void on_file_added (File file) throws Error {
+        var cache = MediaCache.get_default ();
+        var type = file.query_file_type (FileQueryInfoFlags.NONE,
+                                         this.cancellable);
+        if (type == FileType.DIRECTORY ||
+            this.file_filter == null ||
+            this.file_filter.match (file.get_uri ())) {
+            string id;
+            try {
+                MediaContainer parent_container = null;
+                var current = file;
+                do {
+                    var parent = current.get_parent ();
+                    id = MediaCache.get_id (parent);
+                    parent_container = cache.get_object (id)
+                                        as MediaContainer;
+                    if (parent_container == null) {
+                        current = parent;
+                    }
+                } while (parent_container == null);
+
+                this.schedule (current, parent_container);
+            } catch (DatabaseError error) {
+                warning (_("Error fetching object '%s' from database: %s"),
+                         id,
+                         error.message);
+            }
+        }
+    }
+
+    private void on_file_removed (File file) throws Error {
+        var cache = MediaCache.get_default ();
+        this.cancel (file);
+        try {
+            // the full object is fetched instead of simply calling
+            // exists because we need the parent to signalize the
+            // change
+            var id = MediaCache.get_id (file);
+            var object = cache.get_object (id);
+            var parent = null as MediaContainer;
+
+            while (object != null) {
+                parent = object.parent;
+                cache.remove_object (object);
+                if (parent == null) {
+                    break;
+                }
+
+                parent.child_count--;
+                if (parent.child_count != 0) {
+                    break;
+                }
+
+                object = parent;
+            }
+
+            if (parent != null) {
+                parent.updated ();
+            }
+        } catch (Error error) {
+            warning (_("Error removing object from database: %s"),
+                     error.message);
+        }
     }
 }
