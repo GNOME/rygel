@@ -127,10 +127,11 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
         opt_context.add_group (Gst.init_get_option_group ());
         opt_context.parse (ref args);
 
-		if (version) {
-			stdout.printf ("%s\n", BuildConfig.PACKAGE_STRING);
-			throw new CmdlineConfigError.VERSION_ONLY ("");
-		}
+        if (version) {
+            stdout.printf ("%s\n", BuildConfig.PACKAGE_STRING);
+
+            throw new CmdlineConfigError.VERSION_ONLY ("");
+        }
     }
 
     public bool get_upnp_enabled () throws GLib.Error {
