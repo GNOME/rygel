@@ -125,7 +125,14 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
         opt_context.set_ignore_unknown_options (true);
         opt_context.add_main_entries (options, null);
         opt_context.add_group (Gst.init_get_option_group ());
-        opt_context.parse (ref args);
+
+        try {
+            opt_context.parse (ref args);
+        } catch (OptionError.BAD_VALUE err) {
+            stdout.printf (opt_context.get_help (true, null));
+
+            throw new CmdlineConfigError.VERSION_ONLY ("");
+        }
 
         if (version) {
             stdout.printf ("%s\n", BuildConfig.PACKAGE_STRING);
