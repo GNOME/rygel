@@ -122,6 +122,7 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
         var parameter_string = "- " + BuildConfig.PACKAGE_NAME;
         var opt_context = new OptionContext (parameter_string);
         opt_context.set_help_enabled (true);
+        opt_context.set_ignore_unknown_options (true);
         opt_context.add_main_entries (options, null);
         opt_context.add_group (Gst.init_get_option_group ());
         opt_context.parse (ref args);
