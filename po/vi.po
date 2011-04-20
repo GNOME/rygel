@@ -6,11 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&keywords=I18N+L10N&component=general\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2011-04-11 13:33+0000\n"
-"PO-Revision-Date: 2010-12-28 09:24+0700\n"
-"Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
+"PO-Revision-Date: 2011-04-20 19:51+0700\n"
+"Last-Translator: Lê Trường An <xinemdungkhoc1@gmail.com>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +19,7 @@ msgstr ""
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
-msgstr "Tuỳ thích Rygel"
+msgstr "Tuỳ chỉnh Rygel"
 
 #: ../data/rygel-preferences.ui.h:2
 msgid "Select folders"
@@ -28,14 +27,13 @@ msgstr "Chọn thư mục"
 
 #. Network Interface
 #: ../data/rygel-preferences.ui.h:4
-#, fuzzy
 #| msgid "Network Options"
 msgid "_Network"
-msgstr "Tuỳ chọn mạng"
+msgstr "_Mạng"
 
 #: ../data/rygel-preferences.ui.h:5
 msgid "_Share media through DLNA"
-msgstr ""
+msgstr "Chia _sẻ đa phương tiện qua DLNA"
 
 #: ../data/rygel-preferences.desktop.in.in.h:2
 msgid "UPnP/DLNA Preferences"
@@ -128,7 +126,7 @@ msgstr "Nghệ sĩ"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:36
 msgid "Album"
-msgstr "Tập nhạc"
+msgstr "Album"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:37
 #: ../src/plugins/tracker/rygel-tracker-genre.vala:33
@@ -138,7 +136,7 @@ msgstr "Thể loại"
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:98
 #, c-format
 msgid "Failed to remove URI: %s"
-msgstr "Lỗi loại URI: %s"
+msgstr "Lỗi loại bỏ URI: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:336
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
@@ -165,7 +163,7 @@ msgstr "Hình"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:402
 msgid "Videos"
-msgstr "Phim"
+msgstr "Video"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:56
 #, c-format
@@ -200,7 +198,7 @@ msgstr "Lỗi đếm số phần tử trong phân loại '%s': %s"
 
 #: ../src/plugins/tracker/rygel-tracker-albums.vala:35
 msgid "Albums"
-msgstr "Tập nhạc"
+msgstr "Album"
 
 #: ../src/plugins/tracker/rygel-tracker-artists.vala:35
 msgid "Artists"
@@ -208,7 +206,7 @@ msgstr "Nghệ sĩ"
 
 #: ../src/plugins/tracker/rygel-tracker-titles.vala:58
 msgid "Titles"
-msgstr "Tựa"
+msgstr "Tựa đề"
 
 #: ../src/rygel/rygel-media-query-action.vala:117
 #: ../src/rygel/rygel-media-query-action.vala:141
@@ -217,7 +215,7 @@ msgstr "Tựa"
 #: ../src/rygel/rygel-item-destroyer.vala:53
 #: ../src/rygel/rygel-item-destroyer.vala:99
 msgid "No such object"
-msgstr "Không có đối tượng đó"
+msgstr "Không có đối tượng"
 
 #: ../src/rygel/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -262,12 +260,12 @@ msgstr "Không có giá trị"
 
 #: ../src/rygel/rygel-connection-manager.vala:107
 msgid "Invalid connection reference"
-msgstr "Tham chiếu kết nối không hợp lệ"
+msgstr "Tùy chỉnh kết nối không hợp lệ"
 
 #: ../src/rygel/rygel-content-directory.vala:207
 #: ../src/rygel/rygel-content-directory.vala:220
 msgid "No such file transfer"
-msgstr "Không có truyền tập tin đó"
+msgstr "Không có tập tin truyền tải"
 
 #: ../src/rygel/rygel-av-transport.vala:205
 #: ../src/rygel/rygel-rendering-control.vala:121
@@ -280,7 +278,7 @@ msgstr "Không hỗ trợ tốc độ phát"
 
 #: ../src/rygel/rygel-av-transport.vala:417
 msgid "Seek failed"
-msgstr ""
+msgstr "Di chuyển thất bại"
 
 #: ../src/rygel/rygel-av-transport.vala:426
 msgid "Seek mode not supported"
@@ -395,7 +393,7 @@ msgstr "Không có gì trong DIDL-Lite từ máy khách: '%s'"
 
 #: ../src/rygel/rygel-item-creator.vala:145
 msgid "'Elements' argument missing."
-msgstr "Thiếu đối số cho yếu tố."
+msgstr "Thiếu đối số cho 'yếu tố'."
 
 #: ../src/rygel/rygel-item-creator.vala:148
 msgid "Comments not allowed in XML"
@@ -425,7 +423,7 @@ msgstr "Lỗi huỷ đối tượng '%s': %s"
 #: ../src/rygel/rygel-item-destroyer.vala:102
 #, c-format
 msgid "Removal of object %s not allowed"
-msgstr "Không cho phép loại đối tượng %s"
+msgstr "Không cho phép loại bỏ đối tượng %s"
 
 #: ../src/rygel/rygel-item-destroyer.vala:105
 #, c-format
@@ -558,7 +556,7 @@ msgstr "Không có giá trị cho '%s'"
 #: ../src/rygel/rygel-user-config.vala:219
 #, c-format
 msgid "Value of '%s' out of range"
-msgstr "Giá trị '%s' ngoài vùng"
+msgstr "Giá trị '%s' ngoài mức cho phép"
 
 #: ../src/rygel/rygel-xbox-hacks.vala:44
 msgid "Not Applicable"
@@ -582,7 +580,7 @@ msgstr "Lỗi lưu dữ liệu cấu hình vào tập tin '%s': %s"
 #: ../src/ui/rygel-writable-user-config.vala:193
 #, c-format
 msgid "Failed to start Rygel service: %s"
-msgstr "Lỗi chạy dịch vụ Rygel: %s"
+msgstr "Lỗi bắt đầu dịch vụ Rygel: %s"
 
 #: ../src/ui/rygel-writable-user-config.vala:195
 #, c-format
