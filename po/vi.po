@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&component=general\n"
-"POT-Creation-Date: 2010-12-24 02:29+0000\n"
+"product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-04-11 13:33+0000\n"
 "PO-Revision-Date: 2010-12-28 09:24+0700\n"
 "Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
@@ -18,89 +18,24 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/rygel-preferences.ui.h:1
-msgid "General"
-msgstr "Chung"
-
-#: ../data/rygel-preferences.ui.h:2
-msgid "MPE_G TS"
-msgstr "MPE_G TS"
-
-#: ../data/rygel-preferences.ui.h:3
-msgid "Network Options"
-msgstr "Tuỳ chọn mạng"
-
-#: ../data/rygel-preferences.ui.h:4
-msgid "Plugins"
-msgstr "Phần bổ sung"
-
-#: ../data/rygel-preferences.ui.h:5
 #: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
 msgstr "Tuỳ thích Rygel"
 
-#: ../data/rygel-preferences.ui.h:6
+#: ../data/rygel-preferences.ui.h:2
 msgid "Select folders"
 msgstr "Chọn thư mục"
 
-#: ../data/rygel-preferences.ui.h:7
-msgid "Share M_usic"
-msgstr "Chia sẻ _nhạc"
-
-#: ../data/rygel-preferences.ui.h:8
-msgid "Share _Pictures"
-msgstr "Chia sẻ _hình"
-
-#: ../data/rygel-preferences.ui.h:9
-msgid "Share _Videos"
-msgstr "Chia sẻ _phim"
-
-#: ../data/rygel-preferences.ui.h:10
-msgid "T_itle"
-msgstr "_Tên"
-
-#: ../data/rygel-preferences.ui.h:11
-msgid "Ti_tle"
-msgstr "Tê_n"
-
-#: ../data/rygel-preferences.ui.h:13
-#, no-c-format
-msgid ""
-"Write %u for username, %n for real name of the user and %h for host name"
-msgstr "Ghi %u cho tên người dùng, %n cho tên thật và %h cho tên máy"
-
-#: ../data/rygel-preferences.ui.h:14
-msgid "_Enable UPnP/DLNA"
-msgstr "_Bật UPnP/DLNA"
-
 #. Network Interface
-#: ../data/rygel-preferences.ui.h:16
-msgid "_Interface"
-msgstr "_Giao tiếp"
+#: ../data/rygel-preferences.ui.h:4
+#, fuzzy
+#| msgid "Network Options"
+msgid "_Network"
+msgstr "Tuỳ chọn mạng"
 
-#: ../data/rygel-preferences.ui.h:17
-msgid "_LPCM"
-msgstr "_LPCM"
-
-#: ../data/rygel-preferences.ui.h:18
-msgid "_MP3"
-msgstr "_MP3"
-
-#: ../data/rygel-preferences.ui.h:19
-msgid "_Media Export"
-msgstr "_Xuất vật chứa"
-
-#. Network Port
-#: ../data/rygel-preferences.ui.h:21
-msgid "_Port"
-msgstr "_Cổng"
-
-#: ../data/rygel-preferences.ui.h:22
-msgid "_Transcoding support"
-msgstr "_Hỗ trợ chuyển đổi"
-
-#: ../data/rygel-preferences.ui.h:23
-msgid "_URIs"
-msgstr "_URIs"
+#: ../data/rygel-preferences.ui.h:5
+msgid "_Share media through DLNA"
+msgstr ""
 
 #: ../data/rygel-preferences.desktop.in.in.h:2
 msgid "UPnP/DLNA Preferences"
@@ -114,7 +49,7 @@ msgstr "Rygel"
 msgid "UPnP/DLNA Services"
 msgstr "Dịch vụ UPnP/DLNA"
 
-#: ../src/plugins/playbin/rygel-playbin-plugin.vala:36
+#: ../src/plugins/playbin/rygel-playbin-plugin.vala:45
 msgid "GStreamer Player"
 msgstr "Bộ phát GStreamer"
 
@@ -123,18 +58,18 @@ msgstr "Bộ phát GStreamer"
 msgid "Failed to open database: %d (%s)"
 msgstr "Lỗi mở cơ sở dữ liệu: %d (%s)"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:208
+#: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Lỗi hoàn nguyên giao dịch: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:268
+#: ../src/plugins/media-export/rygel-media-export-database.vala:267
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Loại không hỗ trợ %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
-#: ../src/rygel/rygel-plugin-loader.vala:178
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:134
+#: ../src/rygel/rygel-plugin-loader.vala:186
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Lỗi truy vấn loại cho '%s'"
@@ -163,22 +98,15 @@ msgstr "Không có bộ trích thông tin. Sẽ không quét."
 msgid "'%s' harvested"
 msgstr "'%s' đã quét"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:158
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:166
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Lỗi lấy đối tượng '%s' từ cơ sở dữ liệu: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:182
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:201
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Lỗi loại đối tượng khỏi cơ sở dữ liệu: %s"
-
-#. @REALNAME@ is substituted for user's real name
-#. and it doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-plugin.vala:78
-#: ../src/plugins/tracker/rygel-tracker-plugin.vala:32
-msgid "@REALNAME@'s media"
-msgstr "Vật chứa của @REALNAME@"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:77
 #, c-format
@@ -207,30 +135,35 @@ msgstr "Tập nhạc"
 msgid "Genre"
 msgstr "Thể loại"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:94
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:98
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "Lỗi loại URI: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:329
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:336
+#: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
+msgid "@REALNAME@'s media"
+msgstr "Vật chứa của @REALNAME@"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Lỗi tạo dịch vụ D-Bus MediaExport: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:367
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Lỗi loại mục: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:378
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:397
 msgid "Music"
 msgstr "Nhạc"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:400
 msgid "Pictures"
 msgstr "Hình"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:383
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:402
 msgid "Videos"
 msgstr "Phim"
 
@@ -255,7 +188,7 @@ msgstr "Lỗi kết nối với tuyến phiên làm việc: %s"
 msgid "Error getting all values for '%s': %s"
 msgstr "Lỗi lấy mọi giá trị của '%s': %s"
 
-#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:34
+#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:41
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "Lỗi khởi động dịch vụ Tracker: %s. Đã tắt phần bổ sung này."
@@ -295,24 +228,24 @@ msgstr "Đối số không hợp lệ"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Lỗi duyệt '%s': %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:130
-#: ../src/rygel/rygel-cmdline-config.vala:135
-#: ../src/rygel/rygel-cmdline-config.vala:143
-#: ../src/rygel/rygel-cmdline-config.vala:151
-#: ../src/rygel/rygel-cmdline-config.vala:159
-#: ../src/rygel/rygel-cmdline-config.vala:167
-#: ../src/rygel/rygel-cmdline-config.vala:175
-#: ../src/rygel/rygel-cmdline-config.vala:183
-#: ../src/rygel/rygel-cmdline-config.vala:191
-#: ../src/rygel/rygel-cmdline-config.vala:199
-#: ../src/rygel/rygel-cmdline-config.vala:207
-#: ../src/rygel/rygel-cmdline-config.vala:233
-#: ../src/rygel/rygel-cmdline-config.vala:252
-#: ../src/rygel/rygel-cmdline-config.vala:276
-#: ../src/rygel/rygel-cmdline-config.vala:302
-#: ../src/rygel/rygel-cmdline-config.vala:331
-#: ../src/rygel/rygel-cmdline-config.vala:357
-#: ../src/rygel/rygel-cmdline-config.vala:382
+#: ../src/rygel/rygel-cmdline-config.vala:137
+#: ../src/rygel/rygel-cmdline-config.vala:145
+#: ../src/rygel/rygel-cmdline-config.vala:153
+#: ../src/rygel/rygel-cmdline-config.vala:161
+#: ../src/rygel/rygel-cmdline-config.vala:169
+#: ../src/rygel/rygel-cmdline-config.vala:177
+#: ../src/rygel/rygel-cmdline-config.vala:185
+#: ../src/rygel/rygel-cmdline-config.vala:193
+#: ../src/rygel/rygel-cmdline-config.vala:201
+#: ../src/rygel/rygel-cmdline-config.vala:209
+#: ../src/rygel/rygel-cmdline-config.vala:217
+#: ../src/rygel/rygel-cmdline-config.vala:243
+#: ../src/rygel/rygel-cmdline-config.vala:262
+#: ../src/rygel/rygel-cmdline-config.vala:286
+#: ../src/rygel/rygel-cmdline-config.vala:312
+#: ../src/rygel/rygel-cmdline-config.vala:341
+#: ../src/rygel/rygel-cmdline-config.vala:367
+#: ../src/rygel/rygel-cmdline-config.vala:392
 #: ../src/rygel/rygel-meta-config.vala:74
 #: ../src/rygel/rygel-meta-config.vala:93
 #: ../src/rygel/rygel-meta-config.vala:112
@@ -346,6 +279,9 @@ msgid "Play speed not supported"
 msgstr "Không hỗ trợ tốc độ phát"
 
 #: ../src/rygel/rygel-av-transport.vala:417
+msgid "Seek failed"
+msgstr ""
+
 #: ../src/rygel/rygel-av-transport.vala:426
 msgid "Seek mode not supported"
 msgstr "Không hỗ trợ chế độ di chuyển"
@@ -386,15 +322,10 @@ msgstr "Khoảng không hợp lệ '%s'"
 msgid "Invalid Request"
 msgstr "Yêu cầu không hợp lệ"
 
-#: ../src/rygel/rygel-http-identity-handler.vala:97
+#: ../src/rygel/rygel-http-identity-handler.vala:88
 #: ../src/rygel/rygel-http-transcode-handler.vala:56
 msgid "Not found"
 msgstr "Không tìm thấy"
-
-#: ../src/rygel/rygel-http-identity-handler.vala:109
-#, c-format
-msgid "Item '%s' didn't provide a URI"
-msgstr "Mục '%s' không cung cấp URI"
 
 #: ../src/rygel/rygel-http-item-uri.vala:58
 #, c-format
@@ -420,6 +351,32 @@ msgstr "Không có URI ghi được cho %s"
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "Không tìm thấy mục yêu cầu '%s'"
+
+#: ../src/rygel/rygel-http-response.vala:154
+#: ../src/rygel/rygel-http-response.vala:175
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr "Lỗi gắn %s vào %s"
+
+#: ../src/rygel/rygel-http-response.vala:189
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr "Lỗi gắn miếng đệm %s vào %s"
+
+#: ../src/rygel/rygel-http-response.vala:232
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr "Lỗi từ ống %s: %s"
+
+#: ../src/rygel/rygel-http-response.vala:239
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr "Cảnh báo từ ống %s: %s"
+
+#: ../src/rygel/rygel-http-response.vala:277
+#, c-format
+msgid "Failed to seek to offset %lld"
+msgstr "Lỗi dịch chuyển đến vị trí %lld"
 
 #: ../src/rygel/rygel-import-resource.vala:109
 #, c-format
@@ -475,43 +432,7 @@ msgstr "Không cho phép loại đối tượng %s"
 msgid "Object removal from %s not allowed"
 msgstr "Không cho phép loại đối tượng %s"
 
-#: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-live-response.vala:144
-#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
-#: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
-#: ../src/rygel/rygel-wma-transcoder-bin.vala:58
-#: ../src/rygel/rygel-wmv-transcoder-bin.vala:100
-#, c-format
-msgid "Failed to link pad %s to %s"
-msgstr "Lỗi gắn miếng đệm %s vào %s"
-
-#. 'fakesink' should not be translated
-#: ../src/rygel/rygel-live-response.vala:92
-msgid "Plugin 'fakesink' missing"
-msgstr "Thiếu phần bổ sung 'fakesink'"
-
-#: ../src/rygel/rygel-live-response.vala:109
-#: ../src/rygel/rygel-live-response.vala:131
-#, c-format
-msgid "Failed to link %s to %s"
-msgstr "Lỗi gắn %s vào %s"
-
-#: ../src/rygel/rygel-live-response.vala:218
-#, c-format
-msgid "Error from pipeline %s: %s"
-msgstr "Lỗi từ ống %s: %s"
-
-#: ../src/rygel/rygel-live-response.vala:225
-#, c-format
-msgid "Warning from pipeline %s: %s"
-msgstr "Cảnh báo từ ống %s: %s"
-
-#: ../src/rygel/rygel-live-response.vala:259
-#, c-format
-msgid "Failed to seek to offset %lld"
-msgstr "Lỗi dịch chuyển đến vị trí %lld"
-
-#: ../src/rygel/rygel-log-handler.vala:62
+#: ../src/rygel/rygel-log-handler.vala:68
 #, c-format
 msgid "Failed to get log level from configuration: %s"
 msgstr "Lỗi lấy mức log từ cấu hình: %s"
@@ -522,28 +443,28 @@ msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
 msgstr[0] "Không tìm thấy phần mở rộng trong %d giây; thôi..."
 
-#: ../src/rygel/rygel-main.vala:142
+#: ../src/rygel/rygel-main.vala:145
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Lỗi tạo bộ tạo thiết bị gốc: %s"
 
-#: ../src/rygel/rygel-main.vala:193
+#: ../src/rygel/rygel-main.vala:203
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Lỗi tạo RootDevice cho %s. Nguyên nhân: %s"
 
-#: ../src/rygel/rygel-main.vala:229
+#: ../src/rygel/rygel-main.vala:239
 #, c-format
 msgid "Failed to start D-Bus service: %s"
 msgstr "Lỗi khởi động dịch vụ D-Bus: %s"
 
-#: ../src/rygel/rygel-media-item.vala:272
+#: ../src/rygel/rygel-media-item.vala:257
 #, c-format
 msgid "Bad URI: %s"
 msgstr "URI xấu: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:284
+#: ../src/rygel/rygel-media-item.vala:269
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Lỗi dò giao thức cho URI %s. Đang giả định '%s'"
@@ -568,22 +489,22 @@ msgstr "Chưa đặt giá trị cho '%s/enabled'"
 msgid "No value available for '%s/%s'"
 msgstr "Không có giá trị cho '%s/%s'"
 
-#: ../src/rygel/rygel-plugin-loader.vala:71
+#: ../src/rygel/rygel-plugin-loader.vala:83
 #, c-format
 msgid "New plugin '%s' available"
 msgstr "Có phần bổ sung mới '%s'"
 
-#: ../src/rygel/rygel-plugin-loader.vala:109
+#: ../src/rygel/rygel-plugin-loader.vala:117
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Lỗi hiện nội dung thư mục '%s': %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:141
+#: ../src/rygel/rygel-plugin-loader.vala:149
 #, c-format
 msgid "Failed to load module from path '%s': %s"
 msgstr "Lỗi nạp module từ đường dẫn '%s': %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:151
+#: ../src/rygel/rygel-plugin-loader.vala:159
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Lỗi tìm hàm vào '%s' trong '%s': %s"
@@ -607,29 +528,7 @@ msgstr "Lỗi ghi thay đổi mô tả vào %s"
 msgid "Failed to search in '%s': %s"
 msgstr "Lỗi tìm trong '%s': %s"
 
-#: ../src/rygel/rygel-seekable-response.vala:62
-#, c-format
-msgid "Failed to read from URI: %s: %s"
-msgstr "Lỗi đọc từ URI: %s: %s"
-
-#. Failed to seek to media segment (defined by first and last
-#. byte positions).
-#: ../src/rygel/rygel-seekable-response.vala:81
-#, c-format
-msgid "Failed to seek to %s-%s on URI %s: %s"
-msgstr "Lỗi di chuyễn đến %s-%s trên URI %s: %s"
-
-#: ../src/rygel/rygel-seekable-response.vala:100
-#, c-format
-msgid "Failed to read contents from URI: %s: %s"
-msgstr "Lỗi đọc nội dung từ URI: %s: %s"
-
-#: ../src/rygel/rygel-seekable-response.vala:146
-#, c-format
-msgid "Failed to close stream to URI %s: %s"
-msgstr "Lỗi đóng luồng từ URI %s: %s"
-
-#: ../src/rygel/rygel-subtitle-manager.vala:66
+#: ../src/rygel/rygel-subtitle-manager.vala:65
 msgid "No subtitle available"
 msgstr "Không có phụ đề"
 
@@ -651,41 +550,111 @@ msgstr "Không có ảnh mẫu"
 msgid "No transcoder available for target format '%s'"
 msgstr "Không có bộ chuyển đổi cho dạng thức cuối '%s'"
 
-#: ../src/rygel/rygel-user-config.vala:193
-#, c-format
-msgid "Failed to save configuration data to file '%s': %s"
-msgstr "Lỗi lưu dữ liệu cấu hình vào tập tin '%s': %s"
-
-#: ../src/rygel/rygel-user-config.vala:213
+#: ../src/rygel/rygel-user-config.vala:169
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Không có giá trị cho '%s'"
 
-#: ../src/rygel/rygel-user-config.vala:241
+#: ../src/rygel/rygel-user-config.vala:219
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Giá trị '%s' ngoài vùng"
 
-#: ../src/rygel/rygel-user-config.vala:351
-#, c-format
-msgid "Failed to start Rygel service: %s"
-msgstr "Lỗi chạy dịch vụ Rygel: %s"
-
-#: ../src/rygel/rygel-user-config.vala:353
-#, c-format
-msgid "Failed to stop Rygel service: %s"
-msgstr "Lỗi dừng dịch vụ Rygel: %s"
-
-#: ../src/rygel/rygel-xbox-hacks.vala:42
+#: ../src/rygel/rygel-xbox-hacks.vala:44
 msgid "Not Applicable"
 msgstr "Không áp dụng"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:178
+#: ../src/rygel/rygel-xbox-hacks.vala:180
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Lỗi ghi thay đổi mô tả vào %s."
 
-#: ../src/ui/rygel-preferences-dialog.vala:78
+#: ../src/ui/rygel-preferences-dialog.vala:89
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Lỗi tạo hộp thoại tuỳ thích: %s"
+
+#: ../src/ui/rygel-writable-user-config.vala:102
+#, c-format
+msgid "Failed to save configuration data to file '%s': %s"
+msgstr "Lỗi lưu dữ liệu cấu hình vào tập tin '%s': %s"
+
+#: ../src/ui/rygel-writable-user-config.vala:193
+#, c-format
+msgid "Failed to start Rygel service: %s"
+msgstr "Lỗi chạy dịch vụ Rygel: %s"
+
+#: ../src/ui/rygel-writable-user-config.vala:195
+#, c-format
+msgid "Failed to stop Rygel service: %s"
+msgstr "Lỗi dừng dịch vụ Rygel: %s"
+
+#~ msgid "General"
+#~ msgstr "Chung"
+
+#~ msgid "MPE_G TS"
+#~ msgstr "MPE_G TS"
+
+#~ msgid "Plugins"
+#~ msgstr "Phần bổ sung"
+
+#~ msgid "Share M_usic"
+#~ msgstr "Chia sẻ _nhạc"
+
+#~ msgid "Share _Pictures"
+#~ msgstr "Chia sẻ _hình"
+
+#~ msgid "Share _Videos"
+#~ msgstr "Chia sẻ _phim"
+
+#~ msgid "T_itle"
+#~ msgstr "_Tên"
+
+#~ msgid "Ti_tle"
+#~ msgstr "Tê_n"
+
+#~ msgid ""
+#~ "Write %u for username, %n for real name of the user and %h for host name"
+#~ msgstr "Ghi %u cho tên người dùng, %n cho tên thật và %h cho tên máy"
+
+#~ msgid "_Enable UPnP/DLNA"
+#~ msgstr "_Bật UPnP/DLNA"
+
+#~ msgid "_Interface"
+#~ msgstr "_Giao tiếp"
+
+#~ msgid "_LPCM"
+#~ msgstr "_LPCM"
+
+#~ msgid "_MP3"
+#~ msgstr "_MP3"
+
+#~ msgid "_Media Export"
+#~ msgstr "_Xuất vật chứa"
+
+#~ msgid "_Port"
+#~ msgstr "_Cổng"
+
+#~ msgid "_Transcoding support"
+#~ msgstr "_Hỗ trợ chuyển đổi"
+
+#~ msgid "_URIs"
+#~ msgstr "_URIs"
+
+#~ msgid "Item '%s' didn't provide a URI"
+#~ msgstr "Mục '%s' không cung cấp URI"
+
+#~ msgid "Plugin 'fakesink' missing"
+#~ msgstr "Thiếu phần bổ sung 'fakesink'"
+
+#~ msgid "Failed to read from URI: %s: %s"
+#~ msgstr "Lỗi đọc từ URI: %s: %s"
+
+#~ msgid "Failed to seek to %s-%s on URI %s: %s"
+#~ msgstr "Lỗi di chuyễn đến %s-%s trên URI %s: %s"
+
+#~ msgid "Failed to read contents from URI: %s: %s"
+#~ msgstr "Lỗi đọc nội dung từ URI: %s: %s"
+
+#~ msgid "Failed to close stream to URI %s: %s"
+#~ msgstr "Lỗi đóng luồng từ URI %s: %s"
