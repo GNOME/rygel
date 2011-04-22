@@ -486,7 +486,6 @@ public class Rygel.MediaExport.MediaCache : Object {
                 values[6] = music_item.album;
                 values[17] = music_item.genre;
                 values[12] = music_item.track_number;
-                music_item.lookup_album_art ();
             }
         }
 
