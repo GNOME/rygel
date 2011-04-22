@@ -78,7 +78,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
                                          this.cancellable);
 
         this.server.unpause_message (this.msg);
-        this.handle_continue = this.handle.callback;
+        this.handle_continue = this.handle_real.callback;
 
         yield;
     }
