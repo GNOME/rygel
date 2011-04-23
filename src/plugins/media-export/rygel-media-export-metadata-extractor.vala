@@ -96,9 +96,13 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
     private void on_done (GUPnP.DLNAInformation dlna,
                           GLib.Error            err) {
-        assert (this.file_hash.has_key (dlna.info.get_uri ()));
-
         var file = this.file_hash.get (dlna.info.get_uri ());
+        if (file == null) {
+            warning ("File %s already handled, ignoring event",
+                     dlna.info.get_uri ());
+
+            return;
+        }
 
         this.file_hash.unset (dlna.info.get_uri ());
 
