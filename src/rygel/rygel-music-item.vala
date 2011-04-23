@@ -132,13 +132,10 @@ public class Rygel.MusicItem : AudioItem {
         if (!this.place_holder &&
             this.album_art != null &&
             server.need_proxy (this.album_art.uri)) {
-            var uri = album_art.uri; // Save the original URI
-
-            album_art.uri = server.create_uri_for_item (this, 0, -1, null);
-            album_art.add_resource (didl_item, server.get_protocol ());
-
-            // Now restore the original URI
-            album_art.uri = uri;
+            didl_item.album_art = server.create_uri_for_item (this,
+                                                              0,
+                                                              -1,
+                                                              null);
         }
     }
 }
