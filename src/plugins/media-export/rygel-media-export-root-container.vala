@@ -118,7 +118,8 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         var object = yield base.find_object (id, cancellable);
 
         if (object == null && id.has_prefix (QueryContainer.PREFIX)) {
-            var container = new QueryContainer (this.media_db, id);
+            var factory = QueryContainerFactory.get_default ();
+            var container = factory.create_from_id (this.media_db, id);
             container.parent = this;
 
             return container;
@@ -256,9 +257,9 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                     return null;
             }
 
-            QueryContainer.register_id (ref id);
+            var factory = QueryContainerFactory.get_default ();
 
-            return new QueryContainer (this.media_db, id);
+            return factory.create_from_description (this.media_db, id);
         }
 
         return null;
@@ -312,8 +313,11 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             virtual_expression = right_expression;
         }
 
-        var last_argument = query_container.plaintext_id.replace
-                                        (QueryContainer.PREFIX, "");
+        var factory = QueryContainerFactory.get_default ();
+        var plaintext_id = factory.get_virtual_container_definition
+                                        (query_container.id);
+
+        var last_argument = plaintext_id.replace (QueryContainer.PREFIX, "");
 
         var escaped_detail = Uri.escape_string (virtual_expression.operand2,
                                                 "",
@@ -323,8 +327,8 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                                           escaped_detail,
                                           last_argument);
 
-        QueryContainer.register_id (ref new_id);
-        container = new QueryContainer (this.media_db, new_id);
+        container = factory.create_from_description (this.media_db,
+                                                     new_id);
 
         return true;
     }
@@ -428,10 +432,12 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             id = id.slice (0,-1);
         }
 
-        QueryContainer.register_id (ref id);
-        var query_container = new QueryContainer (this.media_db,
-                                                  id,
-                                                  definition.title);
+        var factory = QueryContainerFactory.get_default ();
+        var query_container = factory.create_from_description
+                                        (this.media_db,
+                                         id,
+                                         definition.title);
+
         if (query_container.child_count > 0) {
             query_container.parent = container;
             this.media_db.save_container (query_container);
