@@ -220,9 +220,9 @@ public class Rygel.MediaArtStore : GLib.Object {
                 p = re.replace_literal (p, -1, 0, "");
             }
 
-            p = char_remove_regex.replace (p, -1, 0, "");
-            p = char_convert_regex.replace (p, -1, 0, " ");
-            p = space_compress_regex.replace (p, -1, 0, " ");
+            p = char_remove_regex.replace_literal (p, -1, 0, "");
+            p = char_convert_regex.replace_literal (p, -1, 0, " ");
+            p = space_compress_regex.replace_literal (p, -1, 0, " ");
 
             return p;
         } catch (RegexError error) {
