@@ -79,7 +79,7 @@ public class Rygel.Tracker.SearchQuery : Query {
 
         var count_result = yield resources.sparql_query (str);
 
-        return count_result[0,0].to_int ();
+        return int.parse (count_result[0,0]);
     }
 
     public override string to_string () {
