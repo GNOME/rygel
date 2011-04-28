@@ -70,10 +70,13 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                 throw new ItemCreatorError.PARSE (message, this.elements);
             }
 
-            if (didl_item.dlna_managed != 0) {
+            if ((didl_item.dlna_managed &
+                (OCMFlags.UPLOAD |
+                 OCMFlags.CREATE_CONTAINER |
+                 OCMFlags.UPLOAD_DESTROYABLE)) != 0) {
                 throw new ContentDirectoryError.BAD_METADATA
-                                        ("Attribute 'dlnaManaged' must not" +
-                                         " be set");
+                                        ("Flags that must not be set " +
+                                         "were found in 'dlnaManaged'");
             }
 
             var container = yield this.fetch_container ();
