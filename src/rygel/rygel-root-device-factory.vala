@@ -298,7 +298,7 @@ internal class Rygel.RootDeviceFactory {
 
         string mem = null;
         int len = -1;
-        doc.doc.dump_memory_format (out mem, out len, false);
+        doc.doc.dump_memory_enc (out mem, out len, "UTF-8");
 
         if (unlikely (len <= 0)) {
             var message = _("Failed to write modified description to %s");
