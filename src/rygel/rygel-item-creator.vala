@@ -70,6 +70,12 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                 throw new ItemCreatorError.PARSE (message, this.elements);
             }
 
+            if ((didl_item.title == null)) {
+                throw new ContentDirectoryError.BAD_METADATA
+                                        ("dc:title must be set in " +
+                                         "CreateItem");
+            }
+
             if ((didl_item.dlna_managed &
                 (OCMFlags.UPLOAD |
                  OCMFlags.CREATE_CONTAINER |
