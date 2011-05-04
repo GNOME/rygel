@@ -37,9 +37,12 @@ public class Rygel.Tracker.PictureItemFactory : ItemFactory {
     }
 
     private const string CATEGORY = "nmm:Photo";
+    private const string CATEGORY_IRI = "http://www.tracker-project.org/" +
+                                        "temp/nmm#Photo";
 
     public PictureItemFactory () {
         base (CATEGORY,
+              CATEGORY_IRI,
               PhotoItem.UPNP_CLASS,
               Environment.get_user_special_dir (UserDirectory.PICTURES));
 

@@ -38,9 +38,12 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
     }
 
     private const string CATEGORY = "nmm:Video";
+    private const string CATEGORY_IRI = "http://www.tracker-project.org/" +
+                                        "temp/nmm#Video";
 
     public VideoItemFactory () {
         base (CATEGORY,
+              CATEGORY_IRI,
               VideoItem.UPNP_CLASS,
               Environment.get_user_special_dir (UserDirectory.VIDEOS));
 

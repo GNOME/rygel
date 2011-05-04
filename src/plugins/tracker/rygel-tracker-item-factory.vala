@@ -44,6 +44,7 @@ public abstract class Rygel.Tracker.ItemFactory {
     }
 
     public string category;
+    public string category_iri;
     public string upnp_class;
     public string upload_dir;
 
@@ -52,9 +53,11 @@ public abstract class Rygel.Tracker.ItemFactory {
     private DLNADiscoverer discoverer;
 
     public ItemFactory (string  category,
+                        string  category_iri,
                         string  upnp_class,
                         string? upload_dir) {
         this.category = category;
+        this.category_iri = category_iri;
         this.upnp_class = upnp_class;
         this.upload_dir = upload_dir;
 

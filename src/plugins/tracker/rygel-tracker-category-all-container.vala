@@ -66,7 +66,14 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
                      error.message);
         }
 
-        this.resources.graph_updated.connect (this.on_graph_updated);
+        unowned DBusConnection connection = this.resources.get_connection ();
+        connection.signal_subscribe (TRACKER_SERVICE,
+                                     TRACKER_SERVICE + ".Resources",
+                                     "GraphUpdated",
+                                     RESOURCES_PATH,
+                                     this.item_factory.category_iri,
+                                     DBusSignalFlags.NONE,
+                                     this.on_graph_updated);
     }
 
     public async void add_item (MediaItem item, Cancellable? cancellable)
@@ -99,14 +106,12 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
                                          cancellable);
     }
 
-    private void on_graph_updated (string  class_name,
-                                   Event[] deletes,
-                                   Event[] inserts) {
-        var our_suffix = this.item_factory.category.replace (":", "#");
-        if (!class_name.has_suffix (our_suffix)) {
-            return;
-        }
-
+    private void on_graph_updated (DBusConnection connection,
+                                   string         sender,
+                                   string         object_path,
+                                   string         interface_name,
+                                   string         signal_path,
+                                   Variant        parameters) {
         this.get_children_count.begin ();
     }
 

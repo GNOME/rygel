@@ -44,9 +44,12 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
     }
 
     private const string CATEGORY = "nmm:MusicPiece";
+    private const string CATEGORY_IRI = "http://www.tracker-project.org/" +
+                                        "temp/nmm#MusicPiece";
 
     public MusicItemFactory () {
         base (CATEGORY,
+              CATEGORY_IRI,
               MusicItem.UPNP_CLASS,
               Environment.get_user_special_dir (UserDirectory.MUSIC));
 
