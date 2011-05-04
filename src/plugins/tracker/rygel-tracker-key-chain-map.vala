@@ -25,25 +25,34 @@ using Gee;
 /**
  * A map of upnp properties to tracker property key chains
  */
-public class Rygel.Tracker.KeyChainMap : HashMap<string, ArrayList<string>> {
-    private static KeyChainMap key_chain_map;
+public class Rygel.Tracker.KeyChainMap : Object {
+    HashMap<string, ArrayList<string>> key_chain_map;
+    HashMap<string, string> functions;
+    private static KeyChainMap instance;
 
     public static KeyChainMap get_key_chain_map () {
-        if (unlikely (key_chain_map == null)) {
-            key_chain_map = new KeyChainMap ();
+        if (unlikely (instance == null)) {
+            instance = new KeyChainMap ();
         }
 
-        return key_chain_map;
+        return instance;
     }
 
     private KeyChainMap () {
+        this.key_chain_map = new HashMap<string, ArrayList<string>> ();
+        this.functions = new HashMap<string, string> ();
+
         // Item
         add_key_chain ("res", "nie:url");
+        add_function ("place_holder",
+                      "(NOT EXISTS { %s a nfo:FileDataObject })");
         add_key_chain ("fileName", "nfo:fileName");
         add_key_chain ("dc:title", "nie:title");
         add_key_chain ("dlnaProfile", "nmm:dlnaProfile");
         add_key_chain ("mimeType", "nie:mimeType");
-        add_key_chain ("res@size", "nfo:fileSize");
+        add_function ("res@size",
+                      "tracker:coalesce(nfo:fileSize(%1$s)," +
+                      "nie:byteSize(%1$s),\"\")");
         add_key_chain ("date", "nie:contentCreated");
 
         // Music Item
@@ -66,8 +75,12 @@ public class Rygel.Tracker.KeyChainMap : HashMap<string, ArrayList<string>> {
     public string map_property (string property) {
         var str = SelectionQuery.ITEM_VARIABLE;
 
-        foreach (var key in this[property]) {
-            str = key + "(" + str + ")";
+        if (this.key_chain_map.has_key (property)) {
+            foreach (var key in this.key_chain_map[property]) {
+                str = key + "(" + str + ")";
+            }
+        } else if (this.functions.has_key (property)) {
+            str = this.functions[property].printf (str);
         }
 
         return str;
@@ -85,7 +98,11 @@ public class Rygel.Tracker.KeyChainMap : HashMap<string, ArrayList<string>> {
             key = list.arg ();
         }
 
-        this[property] = key_chain;
+        this.key_chain_map[property] = key_chain;
+    }
+
+    private void add_function (string property, string function) {
+        this.functions[property] = function;
     }
 }
 

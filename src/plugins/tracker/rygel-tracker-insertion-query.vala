@@ -35,7 +35,6 @@ public class Rygel.Tracker.InsertionQuery : Query {
         var triplets = new QueryTriplets ();
         triplets.add (new QueryTriplet (QUERY_ID, "a", category));
         triplets.add (new QueryTriplet (QUERY_ID, "a", "nie:DataObject"));
-        triplets.add (new QueryTriplet (QUERY_ID, "a", "nfo:FileDataObject"));
         triplets.add (new QueryTriplet (QUERY_ID, "nmm:uPnPShared", "true"));
         triplets.add (new QueryTriplet (QUERY_ID, "tracker:available", "true"));
         triplets.add (new QueryTriplet (QUERY_ID,
@@ -59,15 +58,12 @@ public class Rygel.Tracker.InsertionQuery : Query {
         if (item.size > 0) {
             triplets.add (new QueryTriplet
                                         (QUERY_ID,
-                                         "nfo:fileSize",
+                                         "nie:byteSize",
                                          "\"" + item.size.to_string () + "\""));
         }
 
         var now = TimeVal ();
         var date = now.to_iso8601 ();
-        triplets.add (new QueryTriplet (QUERY_ID,
-                                        "nfo:fileLastModified",
-                                        "\"" + date + "\""));
         triplets.add (new QueryTriplet (QUERY_ID,
                                         "nie:contentCreated",
                                         "\"" + date + "\""));

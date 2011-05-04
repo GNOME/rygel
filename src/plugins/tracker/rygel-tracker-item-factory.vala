@@ -33,6 +33,7 @@ using Gst;
 public abstract class Rygel.Tracker.ItemFactory {
     protected enum Metadata {
         URL,
+        PLACE_HOLDER,
         FILE_NAME,
         TITLE,
         DLNA_PROFILE,
@@ -69,6 +70,7 @@ public abstract class Rygel.Tracker.ItemFactory {
 
         // These must be the same order as enum Metadata
         this.properties.add ("res");
+        this.properties.add ("place_holder");
         this.properties.add ("fileName");
         this.properties.add ("dc:title");
         this.properties.add ("dlnaProfile");
@@ -99,6 +101,8 @@ public abstract class Rygel.Tracker.ItemFactory {
             // means the size is 0 (i-e a place-holder empty item that we
             // created).
             item.size = 0;
+
+        item.place_holder = bool.parse (metadata[Metadata.PLACE_HOLDER]);
 
         if (metadata[Metadata.DATE] != "")
             item.date = metadata[Metadata.DATE];
