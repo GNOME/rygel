@@ -55,7 +55,7 @@ public abstract class Rygel.MediaItem : MediaObject {
         }
     }   // Size in bytes
 
-    internal bool place_holder { get; private set; default = false; }
+    public bool place_holder { get; set; default = false; }
 
     internal override OCMFlags ocm_flags {
         get {
