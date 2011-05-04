@@ -133,6 +133,10 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             if (this.item.uris.size == 0) {
                 var uri = yield this.create_uri (container, this.item.title);
                 this.item.uris.add (uri);
+                this.item.place_holder = true;
+            } else {
+                var file = File.new_for_uri (this.item.uris[0]);
+                this.item.place_holder = !file.is_native ();
             }
 
             this.item.id = this.item.uris[0];
