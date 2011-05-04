@@ -94,7 +94,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
             main_loop.quit ();
         });
 
-        Timeout.add_seconds (5, () => {
+        var timeout_id = Timeout.add_seconds (5, () => {
             debug ("Timeout while waiting for 'updated' signal on '%s'.",
                    this.item.parent.id);
             main_loop.quit ();
@@ -107,6 +107,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
                this.item.parent.id,
                this.item.id);
         main_loop.run ();
+        Source.remove (timeout_id);
         debug ("Finished waiting for update signal from container '%s'",
                this.item.parent.id);
 
