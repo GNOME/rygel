@@ -24,7 +24,10 @@ using Gee;
  * extraction tasks running within the media-export plugin
  */
 internal class Rygel.MediaExport.Harvester : GLib.Object {
+    private const uint FILE_CHANGE_DEFAULT_GRACE_PERIOD = 5;
+
     private HashMap<File, HarvestingTask> tasks;
+    private HashMap<File, uint> extraction_grace_timers;
     private MetadataExtractor extractor;
     private RecursiveFileMonitor monitor;
     private Regex file_filter;
@@ -43,6 +46,8 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         this.monitor.changed.connect (this.on_file_changed);
 
         this.tasks = new HashMap<File, HarvestingTask> (file_hash, file_equal);
+        this.extraction_grace_timers = new HashMap<File, uint> (file_hash,
+                                                                file_equal);
         this.create_file_filter ();
     }
 
@@ -56,6 +61,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
     public void schedule (File           file,
                           MediaContainer parent,
                           string?        flag = null) {
+        this.extraction_grace_timers.unset (file);
         if (this.extractor == null) {
             warning (_("No metadata extractor available. Will not crawl."));
 
@@ -141,12 +147,8 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                                   FileMonitorEvent event) {
         try {
             switch (event) {
-                case FileMonitorEvent.CREATED:
                 case FileMonitorEvent.CHANGES_DONE_HINT:
-                    debug ("Trying to harvest %s because of %s",
-                           file.get_uri (),
-                           event.to_string ());
-                    this.on_file_added (file);
+                    this.on_changes_done (file);
                     break;
                 case FileMonitorEvent.DELETED:
                     this.on_file_removed (file);
@@ -157,38 +159,49 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         } catch (Error error) { }
     }
 
-    private void on_file_added (File file) throws Error {
-        var cache = MediaCache.get_default ();
-        var type = file.query_file_type (FileQueryInfoFlags.NONE,
-                                         this.cancellable);
-        if (type == FileType.DIRECTORY ||
-            this.file_filter == null ||
-            this.file_filter.match (file.get_uri ())) {
-            string id;
-            try {
-                MediaContainer parent_container = null;
-                var current = file;
-                do {
-                    var parent = current.get_parent ();
-                    id = MediaCache.get_id (parent);
-                    parent_container = cache.get_object (id)
-                                        as MediaContainer;
-                    if (parent_container == null) {
-                        current = parent;
-                    }
-                } while (parent_container == null);
+    private void on_file_added (File file) {
+        debug ("Filesystem events settled for %s, scheduling extraction…",
+               file.get_uri ());
+        try {
+            var cache = MediaCache.get_default ();
+            var type = file.query_file_type (FileQueryInfoFlags.NONE,
+                                             this.cancellable);
+            if (type == FileType.DIRECTORY ||
+                this.file_filter == null ||
+                this.file_filter.match (file.get_uri ())) {
+                string id;
+                try {
+                    MediaContainer parent_container = null;
+                    var current = file;
+                    do {
+                        var parent = current.get_parent ();
+                        id = MediaCache.get_id (parent);
+                        parent_container = cache.get_object (id)
+                            as MediaContainer;
+                        if (parent_container == null) {
+                            current = parent;
+                        }
+                    } while (parent_container == null);
 
-                this.schedule (current, parent_container);
-            } catch (DatabaseError error) {
-                warning (_("Error fetching object '%s' from database: %s"),
-                         id,
-                         error.message);
+                    this.schedule (current, parent_container);
+                } catch (DatabaseError error) {
+                    warning (_("Error fetching object '%s' from database: %s"),
+                            id,
+                            error.message);
+                }
             }
+        } catch (Error error) {
+            warning (_("Failed to access media cache: %s"), error.message);
         }
     }
 
     private void on_file_removed (File file) throws Error {
         var cache = MediaCache.get_default ();
+        if (this.extraction_grace_timers.has_key (file)) {
+            Source.remove (this.extraction_grace_timers[file]);
+            this.extraction_grace_timers.unset (file);
+        }
+
         this.cancel (file);
         try {
             // the full object is fetched instead of simply calling
@@ -220,5 +233,24 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
             warning (_("Error removing object from database: %s"),
                      error.message);
         }
+    }
+
+    private void on_changes_done (File file) throws Error {
+        if (this.extraction_grace_timers.has_key (file)) {
+            Source.remove (this.extraction_grace_timers[file]);
+        } else {
+            debug ("Starting grace timer for harvesting %s…",
+                    file.get_uri ());
+        }
+
+        SourceFunc callback = () => {
+            this.on_file_added (file);
+
+            return false;
+        };
+
+        var timeout = Timeout.add_seconds (FILE_CHANGE_DEFAULT_GRACE_PERIOD,
+                                           callback);
+        this.extraction_grace_timers[file] = timeout;
     }
 }
