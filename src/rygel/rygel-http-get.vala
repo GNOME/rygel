@@ -138,10 +138,14 @@ internal class Rygel.HTTPGet : HTTPRequest {
             throw new HTTPRequestError.UNACCEPTABLE ("Invalid seek request");
         }
 
-        if (need_time_seek) {
-            this.seek = new HTTPTimeSeek (this);
-        } else if (need_byte_seek) {
-            this.seek = new HTTPByteSeek (this);
+        try {
+            if (need_time_seek) {
+                this.seek = new HTTPTimeSeek (this);
+            } else if (need_byte_seek) {
+                this.seek = new HTTPByteSeek (this);
+            }
+        } catch (Error error) {
+            this.end (Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
         }
 
         // Add headers

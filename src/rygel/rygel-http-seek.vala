@@ -40,12 +40,21 @@ internal abstract class Rygel.HTTPSeek : GLib.Object {
                      int64        start,
                      int64        stop,
                      int64        step,
-                     int64        total_length) {
+                     int64        total_length) throws HTTPSeekError {
         this.msg = msg;
         this.start = start;
         this.stop = stop;
         this.length = length;
         this.total_length = total_length;
+
+        if (start < 0 || start > total_length) {
+            throw new HTTPSeekError.OUT_OF_RANGE (_("Out Of Range Start '%ld'"),
+                                                  start);
+        }
+        if (stop < 0 || stop > total_length) {
+            throw new HTTPSeekError.OUT_OF_RANGE (_("Out Of Range Stop '%ld'"),
+                                                  stop);
+        }
 
         if (length > 0) {
             this.stop = stop.clamp (start + 1, length - 1);
