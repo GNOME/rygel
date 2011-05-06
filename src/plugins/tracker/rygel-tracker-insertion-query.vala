@@ -29,6 +29,14 @@ public class Rygel.Tracker.InsertionQuery : Query {
     private const string TEMP_ID = "x";
     private const string QUERY_ID = "_:" + TEMP_ID;
 
+    // We need to add the size in the miner's graph so that the miner will
+    // update it and correct a (possibly wrong) size we got via CreateItem
+    // (DLNA requirement 7.3.128.7)
+    // FIXME: Use constant from libtracker-miner once we port to
+    // libtracker-sparql
+    private const string MINER_GRAPH =
+                              "urn:uuid:472ed0cc-40ff-4e37-9c0c-062d78656540";
+
     public string id;
 
     public InsertionQuery (MediaItem item, string category) {
@@ -55,18 +63,19 @@ public class Rygel.Tracker.InsertionQuery : Query {
         triplets.add (new QueryTriplet (QUERY_ID,
                                         "nie:url",
                                         "\"" + item.uris[0] + "\""));
-        if (item.size > 0) {
-            triplets.add (new QueryTriplet
-                                        (QUERY_ID,
-                                         "nie:byteSize",
-                                         "\"" + item.size.to_string () + "\""));
-        }
-
         var now = TimeVal ();
         var date = now.to_iso8601 ();
         triplets.add (new QueryTriplet (QUERY_ID,
                                         "nie:contentCreated",
                                         "\"" + date + "\""));
+
+        if (item.size > 0) {
+            triplets.add (new QueryTriplet.with_graph
+                                        (MINER_GRAPH,
+                                         QUERY_ID,
+                                         "nie:byteSize",
+                                         "\"" + item.size.to_string () + "\""));
+        }
 
         base (triplets);
     }

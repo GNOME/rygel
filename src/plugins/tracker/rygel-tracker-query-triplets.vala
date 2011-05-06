@@ -46,7 +46,8 @@ public class Rygel.Tracker.QueryTriplets : ArrayList<QueryTriplet> {
             str += this[i].to_string (include_subject);
 
             if (i < this.size - 1) {
-                include_subject = this[i].subject != this[i + 1].subject;
+                include_subject = this[i].subject != this[i + 1].subject ||
+                                  this.check_graph_change (i);
 
                 if (include_subject) {
                     str += " . ";
@@ -65,5 +66,11 @@ public class Rygel.Tracker.QueryTriplets : ArrayList<QueryTriplet> {
         if (!this.contains (triplet)) {
             this.add (triplet);
         }
+    }
+
+    private bool check_graph_change (int i) {
+        return (this[i].graph == null && this[i + 1].graph != null) ||
+               (this[i].graph != null && this[i + 1].graph == null) ||
+               (this[i].graph != this[i + 1].graph);
     }
 }

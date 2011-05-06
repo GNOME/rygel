@@ -26,6 +26,7 @@ using Gee;
  * Represents SPARQL Triplet
  */
 public class Rygel.Tracker.QueryTriplet {
+    public string graph;
     public string subject;
     public string predicate;
     public string obj;
@@ -33,9 +34,20 @@ public class Rygel.Tracker.QueryTriplet {
     public QueryTriplet next;
 
     public QueryTriplet (string subject, string predicate, string obj) {
+        this.graph = null;
         this.subject = subject;
         this.predicate = predicate;
         this.obj = obj;
+    }
+
+    public QueryTriplet.with_graph (string graph,
+                                    string subject,
+                                    string predicate,
+                                    string object) {
+        this.graph = graph;
+        this.subject = subject;
+        this.predicate = predicate;
+        this.obj = object;
     }
 
     public QueryTriplet.chain (string       subject,
@@ -75,6 +87,10 @@ public class Rygel.Tracker.QueryTriplet {
     public string to_string (bool include_subject = true) {
         string str = "";
 
+        if (graph != null) {
+            str += "GRAPH <%s> {".printf (this.graph);
+        }
+
         if (include_subject) {
             str += " " + subject;
         }
@@ -85,6 +101,10 @@ public class Rygel.Tracker.QueryTriplet {
             str += " [ " + this.next.to_string () + " ] ";
         } else {
             str += " " + this.obj;
+        }
+
+        if (graph != null) {
+            str += "}";
         }
 
         return str;
