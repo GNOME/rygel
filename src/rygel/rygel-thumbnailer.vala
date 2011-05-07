@@ -106,7 +106,9 @@ internal class Rygel.Thumbnailer : GLib.Object {
                                         (_("No thumbnail available"));
         }
 
-        thumbnail = new Thumbnail ();
+        thumbnail = new Thumbnail (this.template.mime_type,
+                                   this.template.dlna_profile,
+                                   this.template.file_extension);
         thumbnail.width = this.template.width;
         thumbnail.height = this.template.height;
         thumbnail.depth = this.template.depth;
