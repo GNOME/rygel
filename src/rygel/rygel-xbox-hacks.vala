@@ -32,9 +32,9 @@ internal class Rygel.XBoxHacks : GLib.Object {
     private static string AGENT = ".*Xbox.*|.*Allegro-Software-WebClient.*";
     private static string DMS = "urn:schemas-upnp-org:device:MediaServer";
     private static string DMS_V1 = DMS + ":1";
-    private static string FRIENDLY_NAME_POSTFIX =
-                                        ": 1 : Windows Media Connect";
-    private static string MODEL_NAME = "Windows Media Connect";
+    private static string FRIENDLY_NAME_POSTFIX = ":";
+    private static string MODEL_NAME = "Windows Media Player Sharing";
+    private static string MODEL_VERSION = "11";
 
     public XBoxHacks.for_action (ServiceAction action) throws XBoxHacksError {
         unowned MessageHeaders headers = action.get_message ().request_headers;
@@ -127,6 +127,14 @@ internal class Rygel.XBoxHacks : GLib.Object {
                                         "modelName");
         assert (element != null);
         element->set_content (MODEL_NAME);
+
+        element = XMLUtils.get_element ((Xml.Node *) doc,
+                                        "root",
+                                        "device",
+                                        "modelNumber");
+
+        assert (element != null);
+        element->set_content (MODEL_VERSION);
 
         element = XMLUtils.get_element ((Xml.Node *) doc,
                                         "root",
