@@ -38,12 +38,34 @@ internal class Rygel.XBoxHacks : GLib.Object {
 
     public XBoxHacks.for_action (ServiceAction action) throws XBoxHacksError {
         unowned MessageHeaders headers = action.get_message ().request_headers;
+        this.check_headers (headers);
+    }
+
+    public XBoxHacks.for_headers (MessageHeaders headers)
+                                  throws XBoxHacksError {
+        this.check_headers (headers);
+    }
+
+    private void check_headers (MessageHeaders headers) throws XBoxHacksError {
         var agent = headers.get_one ("User-Agent");
         if (agent == null ||
             !(agent.contains ("Xbox")) &&
             !(agent.contains ("Allegro-Software-WebClient"))) {
             throw new XBoxHacksError.NA (_("Not Applicable"));
         }
+    }
+
+    public bool is_album_art_request (Soup.Message message) {
+        unowned string query = message.get_uri ().query;
+
+        if (query == null) {
+            return false;
+        }
+
+        var params = Soup.Form.decode (query);
+        var album_art = params.lookup ("albumArt");
+
+        return (album_art != null) && bool.parse (album_art);
     }
 
     public void apply_on_device (RootDevice device,

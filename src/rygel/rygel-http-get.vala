@@ -83,6 +83,25 @@ internal class Rygel.HTTPGet : HTTPRequest {
                                                   this.item.id);
         }
 
+        try {
+            var hack = new XBoxHacks.for_headers (this.msg.request_headers);
+            if (hack.is_album_art_request (this.msg) &&
+                this.item is VisualItem) {
+                var visual_item = this.item as VisualItem;
+
+                if (visual_item.thumbnails.size <= 0) {
+                    throw new HTTPRequestError.NOT_FOUND ("No Thumbnail " +
+                                                          "available for " +
+                                                          "item '%s'",
+                                                          visual_item.id);
+                }
+
+                this.thumbnail = visual_item.thumbnails.get (0);
+
+                return;
+            }
+        } catch (XBoxHacksError error) {}
+
         if (this.uri.thumbnail_index >= 0) {
             if (this.item is MusicItem) {
                 var music = this.item as MusicItem;
