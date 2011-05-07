@@ -29,6 +29,20 @@ public errordomain Rygel.TestError {
     TIMEOUT
 }
 
+public errordomain Rygel.XBoxHacksError {
+    NA
+}
+
+public class Rygel.XBoxHacks {
+    public XBoxHacks.for_headers (MessageHeaders headers) throws Error {
+        throw new XBoxHacksError.NA ("");
+    }
+
+    public bool is_album_art_request (Message message) {
+        return false;
+    }
+}
+
 public class Rygel.HTTPGetTest : GLib.Object {
     protected HTTPServer server;
     protected HTTPClient client;
