@@ -62,6 +62,10 @@ public abstract class Rygel.Tracker.ItemFactory {
         this.upnp_class = upnp_class;
         this.upload_dir = upload_dir;
 
+        message ("Using %s as upload directory for %s",
+                 upload_dir == null ? "none" : upload_dir,
+                 upnp_class);
+
         // FIXME: In order to work around bug#647575, we take mime-type from
         //        gupnp-dlna rather than Tracker.
         this.discoverer = new DLNADiscoverer ((ClockTime) SECOND, true, true);
