@@ -144,9 +144,16 @@ internal class Rygel.HTTPGet : HTTPRequest {
             } else if (need_byte_seek) {
                 this.seek = new HTTPByteSeek (this);
             }
-        } catch (HTTPSeekError.OUT_OF_RANGE error) {
+        } catch (HTTPSeekError error) {
             this.server.unpause_message (this.msg);
-            this.end (Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
+
+            if (error is HTTPSeekError.INVALID_RANGE) {
+                this.end (Soup.KnownStatusCode.BAD_REQUEST);
+            } else if (error is HTTPSeekError.OUT_OF_RANGE) {
+                this.end (Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
+            } else {
+                throw error;
+            }
 
             return;
         }
