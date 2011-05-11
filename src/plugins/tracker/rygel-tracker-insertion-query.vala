@@ -40,9 +40,16 @@ public class Rygel.Tracker.InsertionQuery : Query {
     public string id;
 
     public InsertionQuery (MediaItem item, string category) {
+        var type = "nie:DataObject";
+        var file = File.new_for_uri (item.uris[0]);
+
+        if (!file.is_native ()) {
+            type = "nfo:RemoteDataObject";
+        }
+
         var triplets = new QueryTriplets ();
         triplets.add (new QueryTriplet (QUERY_ID, "a", category));
-        triplets.add (new QueryTriplet (QUERY_ID, "a", "nie:DataObject"));
+        triplets.add (new QueryTriplet (QUERY_ID, "a", type));
         triplets.add (new QueryTriplet (QUERY_ID, "nmm:uPnPShared", "true"));
         triplets.add (new QueryTriplet (QUERY_ID, "tracker:available", "true"));
         triplets.add (new QueryTriplet (QUERY_ID,

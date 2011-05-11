@@ -45,7 +45,9 @@ public class Rygel.Tracker.KeyChainMap : Object {
         // Item
         add_key_chain ("res", "nie:url");
         add_function ("place_holder",
-                      "(NOT EXISTS { %s a nfo:FileDataObject })");
+                      "tracker:coalesce((SELECT false WHERE { { %s a ?o } " +
+                      "FILTER (?o IN (nfo:FileDataObject, " +
+                      "nfo:RemoteDataObject)) }), true)");
         add_key_chain ("fileName", "nfo:fileName");
         add_key_chain ("dc:title", "nie:title");
         add_key_chain ("dlnaProfile", "nmm:dlnaProfile");
