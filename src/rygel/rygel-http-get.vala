@@ -145,7 +145,10 @@ internal class Rygel.HTTPGet : HTTPRequest {
                 this.seek = new HTTPByteSeek (this);
             }
         } catch (Error error) {
+            this.server.unpause_message (this.msg);
             this.end (Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
+
+            return;
         }
 
         // Add headers
