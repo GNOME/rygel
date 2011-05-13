@@ -68,10 +68,7 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         this.cancellable = request_handler.cancellable;
         this.seek = request.seek;
 
-        var range = this.msg.request_headers.get_one("Range");
-        if ((this.seek != null &&
-            this.seek.length < this.seek.total_length) ||
-            range != null) {
+        if (request.msg.request_headers.get_one ("Range") != null) {
             this.msg.set_status (Soup.KnownStatusCode.PARTIAL_CONTENT);
         } else {
             this.msg.set_status (Soup.KnownStatusCode.OK);
