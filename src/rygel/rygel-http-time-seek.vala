@@ -24,15 +24,8 @@
 using Gst;
 
 internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
-    // FIXME: We are only accepting time range in this format:
-    //
-    // TimeSeekRange.dlna.org : npt=417.33-779.09
-    //
-    // and not
-    //
-    // TimeSeekRange.dlna.org : npt=10:19:25.7-13:23:33.6
     public HTTPTimeSeek (HTTPGet request) throws HTTPSeekError {
-        string range, time;
+        string range;
         string[] range_tokens;
         int64 start = 0;
         int64 duration = (request.item as AudioItem).duration * SECOND;
@@ -46,31 +39,28 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
             }
 
             range_tokens = range.substring (4).split ("-", 2);
-            if (range_tokens[0] == null || range_tokens[1] == null) {
+            if (range_tokens[0] == null ||
+                // Start token of the range must be provided
+                range_tokens[0] == "" ||
+                range_tokens[1] == null) {
                 throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
                                                        range);
             }
 
-            // Get start time
-            time = range_tokens[0];
-            if (time[0].isdigit ()) {
-                start = (int64) (double.parse (time) * SECOND);
-            } else if (time != "") {
-                throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
-                                                       range);
-            }
-
-            // Get end time
-            time = range_tokens[1];
-            if (time[0].isdigit()) {
-                stop = (int64) (double.parse (time) * SECOND);
-                if (stop < start) {
+            if (range_tokens[0].index_of (":") == -1) {
+                if (!parse_seconds (range_tokens, ref start, ref stop)) {
                     throw new HTTPSeekError.INVALID_RANGE
-                                        (_("Invalid Range '%s'"), range);
+                                        (_("Invalid Range '%s'"),
+                                           range);
                 }
-            } else if (time != "") {
-                throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
-                                                       range);
+            } else {
+                if (!parse_time (range_tokens,
+                                 ref start,
+                                 ref stop)) {
+                    throw new HTTPSeekError.INVALID_RANGE
+                                        (_("Invalid Range '%s'"),
+                                           range);
+                }
             }
         }
 
@@ -106,5 +96,81 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
                              total.format (total_str, "%.3f");
 
         this.msg.response_headers.append ("TimeSeekRange.dlna.org", range);
+    }
+
+    // Parses TimeSeekRanges in the format of '417.33-779.09'
+    private static bool parse_seconds (string[]  range_tokens,
+                                       ref int64 start,
+                                       ref int64 stop) {
+        string time;
+
+        // Get start time
+        time = range_tokens[0];
+        if (time[0].isdigit ()) {
+            start = (int64) (double.parse (time) * SECOND);
+        } else {
+            return false;
+        }
+
+        // Get end time
+        time = range_tokens[1];
+        if (time[0].isdigit ()) {
+            stop = (int64) (double.parse (time) * SECOND);
+            if (stop < start) {
+                return false;
+            }
+        } else if (time != "") {
+            return false;
+        }
+
+        return true;
+    }
+
+    // Parses TimeSeekRanges in the format of '10:19:25.7-13:23:33.6'
+    private static bool parse_time (string[]  range_tokens,
+                                    ref int64 start,
+                                    ref int64 stop ) {
+        int64 seconds_sum = 0;
+        int time_factor = 0;
+        bool parsing_start = true;
+        string[] time_tokens;
+
+        foreach (string range_token in range_tokens) {
+            if (range_token == "") {
+                continue;
+            }
+            seconds_sum = 0;
+            time_factor = 3600;
+
+            time_tokens = range_token.split (":", 3);
+            if (time_tokens[0] == null ||
+                time_tokens[1] == null ||
+                time_tokens[2] == null) {
+                return false;
+            }
+
+            foreach (string time in time_tokens) {
+                if (time[0].isdigit ()) {
+                    seconds_sum += (int64) ((double.parse (time) *
+                                             SECOND) * time_factor);
+                } else {
+                    return false;
+                }
+                time_factor /= 60;
+            }
+
+            if (parsing_start) {
+                start = seconds_sum;
+                parsing_start = false;
+            } else {
+                stop = seconds_sum;
+            }
+        }
+
+        if (start > stop) {
+            return false;
+        }
+
+        return true;
     }
 }
