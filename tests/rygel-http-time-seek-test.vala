@@ -87,15 +87,30 @@ private class Rygel.HTTPGet : GLib.Object {
         this.add_headers (start, stop);
     }
 
+    public HTTPGet.seek_hhmmss (string     start,
+                                string     stop,
+                                Thumbnail? thumbnail,
+                                Subtitle?  subtitle) {
+        this (thumbnail, subtitle);
+
+        this.add_headers_hhmmss (start, stop);
+    }
+
     private void add_headers (int64 start, int64 stop) requires (start >= 0) {
         var stop_str = (stop > 0)? stop.to_string (): "";
         var range = "npt=" + start.to_string () + "-" + stop_str;
+        this.msg.request_headers.append ("TimeSeekRange.dlna.org", range);
+    }
+
+    private void add_headers_hhmmss (string start, string stop) {
+        var range = "npt=" + start + "-" + stop;
         this.msg.request_headers.append ("TimeSeekRange.dlna.org", range);
     }
 }
 
 private class Rygel.HTTPTimeSeekTest : GLib.Object {
     private Regex range_regex;
+    private bool  test_hhmmss;
 
     public static int main (string[] args) {
         try {
@@ -119,7 +134,12 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
 
         foreach (var thumbnail in thumbnails) {
             foreach (var subtitle in subtitles) {
+                this.test_hhmmss = false;
                 this.test_no_seek (thumbnail, subtitle);
+                this.test_start_only_seek (thumbnail, subtitle);
+                this.test_stop_only_seek (thumbnail, subtitle);
+                this.test_start_stop_seek (thumbnail, subtitle);
+                this.test_hhmmss = true;
                 this.test_start_only_seek (thumbnail, subtitle);
                 this.test_stop_only_seek (thumbnail, subtitle);
                 this.test_start_stop_seek (thumbnail, subtitle);
@@ -131,6 +151,7 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
         var expression = "npt=[0-9]+\\.[0-9][0-9][0-9]-" +
                          "[0-9]+\\.[0-9][0-9][0-9]/" +
                          "[0-9]+\\.[0-9][0-9][0-9]";
+
         this.range_regex = new Regex (expression, RegexCompileFlags.CASELESS);
     }
 
@@ -138,16 +159,20 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
                                Subtitle?  subtitle) throws HTTPSeekError {
         var request = new HTTPGet (thumbnail, subtitle);
         var audio_item = request.item as AudioItem;
-
         this.test_seek (request, 0, audio_item.duration * SECOND - MSECOND);
     }
 
     private void test_start_only_seek (Thumbnail? thumbnail,
                                        Subtitle?  subtitle)
                                        throws HTTPSeekError {
-        var request = new HTTPGet.seek_start (128, thumbnail, subtitle);
-        var audio_item = request.item as AudioItem;
+        HTTPGet request = null;
+        if (this.test_hhmmss) {
+            request = new HTTPGet.seek_hhmmss ("00:02:08.000", "", thumbnail, subtitle);
+        } else {
+            request = new HTTPGet.seek_start (128, thumbnail, subtitle);
+        }
 
+        var audio_item = request.item as AudioItem;
         this.test_seek (request,
                         128 * SECOND,
                         audio_item.duration * SECOND - MSECOND);
@@ -156,7 +181,15 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
     private void test_stop_only_seek (Thumbnail? thumbnail,
                                       Subtitle?  subtitle)
                                       throws HTTPSeekError {
-        var request = new HTTPGet.seek_stop (128, thumbnail, subtitle);
+        HTTPGet request = null;
+        if (this.test_hhmmss) {
+            request = new HTTPGet.seek_hhmmss ("00:00:00.000",
+                                               "00:02:08.000",
+                                               thumbnail,
+                                               subtitle);
+        } else {
+            request = new HTTPGet.seek_stop (128, thumbnail, subtitle);
+        }
 
         this.test_seek (request, 0, 128 * SECOND);
     }
@@ -164,10 +197,18 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
     private void test_start_stop_seek (Thumbnail? thumbnail,
                                        Subtitle?  subtitle)
                                        throws HTTPSeekError {
-        var request = new HTTPGet.seek_start_stop (128,
+        HTTPGet request = null;
+        if (this.test_hhmmss) {
+            request = new HTTPGet.seek_hhmmss ("00:02:08.000",
+                                               "00:04:16.000",
+                                               thumbnail,
+                                               subtitle);
+        } else {
+            request = new HTTPGet.seek_start_stop (128,
                                                    256,
                                                    thumbnail,
                                                    subtitle);
+        }
 
         this.test_seek (request, 128 * SECOND, 256 * SECOND);
     }
