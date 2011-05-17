@@ -193,11 +193,11 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
             break;
         case "Interactive":
-            correct =  this.handler is HTTPIdentityHandler &&
-                       (!this.item.is_live_stream () ||
-                        this.subtitle != null ||
-                        this.thumbnail != null) &&
-                       !this.item.streamable ();
+            correct = this.handler is HTTPIdentityHandler &&
+                      ((!this.item.is_live_stream () &&
+                       !this.item.streamable ()) ||
+                       (this.subtitle != null ||
+                        this.thumbnail != null));
 
             break;
         }
