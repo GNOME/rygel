@@ -52,6 +52,7 @@ src/rygel/rygel-http-identity-handler.c
 src/rygel/rygel-http-item-uri.c
 src/rygel/rygel-http-post.c
 src/rygel/rygel-http-request.c
+src/rygel/rygel-http-seek.c
 src/rygel/rygel-http-server.c
 src/rygel/rygel-http-time-seek.c
 src/rygel/rygel-http-transcode-handler.c
@@ -100,6 +101,9 @@ tests/rygel-http-byte-seek_http-get.c
 tests/rygel-http-get.c
 tests/rygel-http-item-uri_http-get.c
 tests/rygel-http-request_http-get.c
+tests/rygel-http-seek.c
+tests/rygel-http-seek_http-get.c
+tests/rygel-http-seek_time-seek.c
 tests/rygel-http-time-seek_http-get.c
 tests/rygel-http-item-uri_http-post.c
 tests/rygel-http-post.c
