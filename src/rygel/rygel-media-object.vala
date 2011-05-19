@@ -180,6 +180,10 @@ public abstract class Rygel.MediaObject : GLib.Object {
 
     private async bool check_writable (File file, Cancellable? cancellable)
                                        throws Error {
+        if (!file.is_native ()) {
+            return false;
+        }
+
         try {
             var info = yield file.query_info_async (
                     FILE_ATTRIBUTE_ACCESS_CAN_WRITE,
