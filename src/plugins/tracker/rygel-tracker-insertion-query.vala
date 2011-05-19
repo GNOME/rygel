@@ -37,7 +37,16 @@ public class Rygel.Tracker.InsertionQuery : Query {
     private const string MINER_GRAPH =
                               "urn:uuid:472ed0cc-40ff-4e37-9c0c-062d78656540";
 
+    private const string RESOURCE_ID_QUERY_TEMPLATE =
+        "SELECT ?resource WHERE { ?resource a nie:DataObject; nie:url '%s' }";
+
+    private const string RESOURCE_NOT_BOUND_TEMPLATE =
+        "OPTIONAL { ?resource a nie:DataObject; nie:url '%s' } " +
+        "FILTER (!bound(?resource))";
+
     public string id;
+
+    private string uri;
 
     public InsertionQuery (MediaItem item, string category) {
         var type = "nie:DataObject";
@@ -85,6 +94,8 @@ public class Rygel.Tracker.InsertionQuery : Query {
         }
 
         base (triplets);
+
+        this.uri = item.uris[0];
     }
 
     public override async void execute (ResourcesIface resources)
@@ -97,10 +108,26 @@ public class Rygel.Tracker.InsertionQuery : Query {
 
         this.id = result[0,0].lookup (TEMP_ID);
 
+        // Item already existed
+        if (this.id == null) {
+            var ids = yield resources.sparql_query
+                                        (this.get_resource_id_query ());
+
+            this.id = ids[0,0];
+        }
+
         debug ("Created item in Tracker store with ID '%s'", this.id);
     }
 
     public override string to_string () {
-        return "INSERT { " + base.to_string () + " }";
+        var query = "INSERT { " + base.to_string () + " }";
+        query += "WHERE {" + RESOURCE_NOT_BOUND_TEMPLATE.printf (this.uri) +
+                 "}";
+
+        return query;
+    }
+
+    private string get_resource_id_query () {
+        return RESOURCE_ID_QUERY_TEMPLATE.printf (this.uri);
     }
 }
