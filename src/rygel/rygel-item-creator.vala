@@ -70,6 +70,12 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                 throw new ItemCreatorError.PARSE (message, this.elements);
             }
 
+            if (didl_item.id == null || didl_item.id != "") {
+                throw new ContentDirectoryError.BAD_METADATA
+                                        ("@id must be set to \"\" in " +
+                                         "CreateItem");
+            }
+
             if ((didl_item.title == null)) {
                 throw new ContentDirectoryError.BAD_METADATA
                                         ("dc:title must be set in " +
