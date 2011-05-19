@@ -54,6 +54,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
                 if (range_token == "") {
                     continue;
                 }
+
                 if (range_token.index_of (":") == -1) {
                     if (!parse_seconds (range_token, ref parsed_value)) {
                         throw new HTTPSeekError.INVALID_RANGE
@@ -76,6 +77,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
                     stop = parsed_value;
                 }
             }
+
             if (start > stop) {
                 throw new HTTPSeekError.INVALID_RANGE
                                     (_("Invalid Range '%s'"),
