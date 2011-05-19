@@ -33,8 +33,6 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
-    private const string MINER_SERVICE = "org.freedesktop.Tracker1.Miner.Files";
-    private const string MINER_PATH = "/org/freedesktop/Tracker1/Miner/Files";
 
     public ArrayList<string> create_classes { get; set; }
 

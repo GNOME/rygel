@@ -41,3 +41,8 @@ public interface Rygel.Tracker.ResourcesIface: DBusProxy {
     public abstract async HashTable<string,string>[,] sparql_update_blank
                                         (string query) throws IOError;
 }
+
+[DBus (name = "org.freedesktop.Tracker1.Miner.Files.Index")]
+public interface Rygel.Tracker.MinerFilesIndexIface: DBusProxy {
+    public abstract async void index_file (string uri) throws IOError;
+}

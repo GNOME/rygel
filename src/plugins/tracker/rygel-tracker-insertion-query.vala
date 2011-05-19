@@ -29,6 +29,9 @@ public class Rygel.Tracker.InsertionQuery : Query {
     private const string TEMP_ID = "x";
     private const string QUERY_ID = "_:" + TEMP_ID;
 
+    private const string MINER_SERVICE = "org.freedesktop.Tracker1.Miner.Files.Index";
+    private const string MINER_PATH = "/org/freedesktop/Tracker1/Miner/Files/Index";
+
     // We need to add the size in the miner's graph so that the miner will
     // update it and correct a (possibly wrong) size we got via CreateItem
     // (DLNA requirement 7.3.128.7)
@@ -114,6 +117,17 @@ public class Rygel.Tracker.InsertionQuery : Query {
                                         (this.get_resource_id_query ());
 
             this.id = ids[0,0];
+        } else {
+            var file = File.new_for_uri (this.uri);
+            if (file.is_native () &&
+                file.query_exists ()) {
+                MinerFilesIndexIface miner  = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                         MINER_SERVICE,
+                                         MINER_PATH,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
+                miner.index_file (this.uri);
+            }
         }
 
         debug ("Created item in Tracker store with ID '%s'", this.id);
