@@ -78,7 +78,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
     protected override async void find_item () throws Error {
         yield base.find_item ();
 
-        if (unlikely (this.item.size == 0)) {
+        if (unlikely (this.item.place_holder)) {
             throw new HTTPRequestError.NOT_FOUND ("Item '%s' is empty",
                                                   this.item.id);
         }
