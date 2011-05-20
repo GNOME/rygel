@@ -88,31 +88,38 @@ internal class Rygel.HTTPPost : HTTPRequest {
             return;
         }
 
-        var main_loop = new MainLoop ();
+        try {
+            this.stream.close (this.cancellable);
 
-        this.item.parent.container_updated.connect ((container) => {
-            main_loop.quit ();
-        });
+            var main_loop = new MainLoop ();
 
-        var timeout_id = Timeout.add_seconds (5, () => {
-            debug ("Timeout while waiting for 'updated' signal on '%s'.",
+            this.item.parent.container_updated.connect ((container) => {
+                main_loop.quit ();
+            });
+
+            var timeout_id = Timeout.add_seconds (5, () => {
+                debug ("Timeout while waiting for 'updated' signal on '%s'.",
+                       this.item.parent.id);
+                main_loop.quit ();
+
+                return false;
+            });
+
+            debug ("Waiting for update signal from container '%s' after pushing" +
+                   " content to its child item '%s'..",
+                   this.item.parent.id,
+                   this.item.id);
+            main_loop.run ();
+            Source.remove (timeout_id);
+            debug ("Finished waiting for update signal from container '%s'",
                    this.item.parent.id);
-            main_loop.quit ();
 
-            return false;
-        });
-
-        debug ("Waiting for update signal from container '%s' after pushing" +
-               " content to its child item '%s'..",
-               this.item.parent.id,
-               this.item.id);
-        main_loop.run ();
-        Source.remove (timeout_id);
-        debug ("Finished waiting for update signal from container '%s'",
-               this.item.parent.id);
-
-        this.end (KnownStatusCode.OK);
-        this.handle_continue ();
+            this.end (KnownStatusCode.OK);
+        } catch (Error error) {
+            this.end (KnownStatusCode.INTERNAL_SERVER_ERROR);
+        } finally {
+            this.handle_continue ();
+        }
     }
 
     private void on_got_chunk (Message msg, Buffer chunk) {
