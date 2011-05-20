@@ -38,6 +38,8 @@ internal class Rygel.HTTPPost : HTTPRequest {
                      Soup.Server  server,
                      Soup.Message msg) {
         base (http_server, server, msg);
+
+        this.cancellable.connect (this.on_request_cancelled);
     }
 
     protected override async void handle () throws Error {
@@ -133,6 +135,15 @@ internal class Rygel.HTTPPost : HTTPRequest {
             this.handle_error (error);
             this.handle_continue ();
         }
+    }
+
+    private void on_request_cancelled () {
+        this.remove_item.begin ();
+    }
+
+    private async void remove_item () {
+        var queue = ItemRemovalQueue.get_default ();
+        yield queue.remove_now (this.item, null);
     }
 }
 
