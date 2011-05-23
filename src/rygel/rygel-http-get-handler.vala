@@ -74,6 +74,8 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
                 request.msg.response_headers.append ("CaptionInfo.sec",
                                                      caption_uri);
         }
+
+        request.msg.response_headers.append ("Connection", "close");
     }
 
     // Create an HTTPResponse object that will render the body.
