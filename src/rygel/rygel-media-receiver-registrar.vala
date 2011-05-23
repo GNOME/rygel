@@ -27,8 +27,13 @@ using GUPnP;
  */
 internal class Rygel.MediaReceiverRegistrar: Service {
     public const string UPNP_ID =
-                    "urn:microsoft.com:serviceId:X_MS_MediaReceiverRegistrar";
+                    "urn:microsoft-com:serviceId:X_MS_MediaReceiverRegistrar";
+    // UPnP requires that points replaced by hyphens in domain names
     public const string UPNP_TYPE =
+                    "urn:microsoft-com:service:X_MS_MediaReceiverRegistrar:1";
+    // The XBox however doesn't like that so we replace it in the service
+    // description later
+    public const string COMPAT_TYPE =
                     "urn:microsoft.com:service:X_MS_MediaReceiverRegistrar:1";
     public const string DESCRIPTION_PATH =
                     "xml/X_MS_MediaReceiverRegistrar1.xml";

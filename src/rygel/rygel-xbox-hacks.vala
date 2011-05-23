@@ -165,19 +165,15 @@ internal class Rygel.XBoxHacks : GLib.Object {
         assert (element != null);
         element->add_content (FRIENDLY_NAME_POSTFIX);
 
-        element = this.find_cds_type_node (doc);
-        assert (element != null);
-        element->set_content (ContentDirectory.UPNP_TYPE_V1);
+        this.modify_service_list (doc);
     }
 
-    private Xml.Node * find_cds_type_node (Xml.Node *doc_node) {
+    private void modify_service_list (Xml.Node *doc_node) {
         Xml.Node *element = XMLUtils.get_element (doc_node,
                                                   "root",
                                                   "device",
                                                   "serviceList");
         assert (element != null && element->children != null);
-
-        Xml.Node *cds_type_node = null;
 
         for (var service_node = element->children;
              service_node != null;
@@ -185,18 +181,22 @@ internal class Rygel.XBoxHacks : GLib.Object {
             for (var type_node = service_node->children;
                  type_node != null;
                  type_node = type_node->next) {
-                if (type_node->name == "serviceType" &&
-                    type_node->get_content () == ContentDirectory.UPNP_TYPE) {
-                    cds_type_node = type_node;
+                if (type_node->name == "serviceType") {
+                    switch (type_node->get_content ()) {
+                        case ContentDirectory.UPNP_TYPE:
+                            type_node->set_content
+                                        (ContentDirectory.UPNP_TYPE_V1);
+                            break;
+                        case MediaReceiverRegistrar.UPNP_TYPE:
+                            type_node->set_content
+                                        (MediaReceiverRegistrar.COMPAT_TYPE);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
-
-            if (cds_type_node != null) {
-                break;
-            }
         }
-
-        return cds_type_node;
     }
 
     private void save_modified_desc (XMLDoc doc,
