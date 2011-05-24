@@ -42,6 +42,15 @@ internal class Rygel.MediaReceiverRegistrar: Service {
         this.action_invoked["IsAuthorized"].connect (this.is_authorized_cb);
         this.action_invoked["IsValidated"].connect (this.is_authorized_cb);
         this.action_invoked["RegisterDevice"].connect (this.register_device_cb);
+
+        this.query_variable["AuthorizationGrantedUpdateID"].connect
+                                        (this.query_state);
+        this.query_variable["AuthorizationDeniedUpdateID"].connect
+                                        (this.query_state);
+        this.query_variable["ValidationSucceededUpdateID"].connect
+                                        (this.query_state);
+        this.query_variable["ValidationRevokedUpdateID"].connect
+                                        (this.query_state);
     }
 
     /* IsAuthorized and IsValided action implementations (fake) */
@@ -59,5 +68,12 @@ internal class Rygel.MediaReceiverRegistrar: Service {
                     "WhatisSupposedToBeHere");
 
         action.return ();
+    }
+
+    private void query_state (Service        registrar,
+                              string         variable,
+                              ref GLib.Value value) {
+        value.init (typeof (int));
+        value.set_int (0);
     }
 }

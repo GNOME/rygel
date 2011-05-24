@@ -74,22 +74,22 @@
         </stateVariable>
         <stateVariable>
             <name>AuthorizationGrantedUpdateID</name>
-            <sendEventsAttribute>no</sendEventsAttribute>
+            <sendEventsAttribute>yes</sendEventsAttribute>
             <dataType>ui4</dataType>
         </stateVariable>
         <stateVariable>
             <name>AuthorizationDeniedUpdateID</name>
-            <sendEventsAttribute>no</sendEventsAttribute>
+            <sendEventsAttribute>yes</sendEventsAttribute>
             <dataType>ui4</dataType>
         </stateVariable>
         <stateVariable>
             <name>ValidationSucceededUpdateID</name>
-            <sendEventsAttribute>no</sendEventsAttribute>
+            <sendEventsAttribute>yes</sendEventsAttribute>
             <dataType>ui4</dataType>
         </stateVariable>
         <stateVariable>
             <name>ValidationRevokedUpdateID</name>
-            <sendEventsAttribute>no</sendEventsAttribute>
+            <sendEventsAttribute>yes</sendEventsAttribute>
             <dataType>ui4</dataType>
         </stateVariable>
     </serviceStateTable>
