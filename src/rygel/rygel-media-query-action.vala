@@ -95,6 +95,7 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
     }
 
     protected virtual void parse_args () throws Error {
+        int64 index, requested_count;
         this.action.get (this.object_id_arg,
                              typeof (string),
                              out this.object_id,
@@ -102,11 +103,11 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
                              typeof (string),
                              out this.filter,
                          "StartingIndex",
-                             typeof (uint),
-                             out this.index,
+                             typeof (int64),
+                             out index,
                          "RequestedCount",
-                             typeof (uint),
-                             out this.requested_count,
+                             typeof (int64),
+                             out requested_count,
                          "SortCriteria",
                              typeof (string),
                              out this.sort_criteria);
@@ -116,6 +117,14 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
             throw new ContentDirectoryError.NO_SUCH_OBJECT
                                         (_("No such object"));
         }
+
+        if (index < 0 || requested_count < 0) {
+            throw new ContentDirectoryError.INVALID_ARGS
+                                        (_("Invalid range"));
+        }
+
+        this.index = (uint) index;
+        this.requested_count = (uint) requested_count;
 
         if (this.sort_criteria == null || this.sort_criteria == "") {
             this.sort_criteria = DEFAULT_SORT_CRITERIA;
