@@ -35,6 +35,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
 
     public ArrayList<string> create_classes { get; set; }
+    public ArrayList<string> search_classes { get; set; }
 
     private ResourcesIface resources;
 
@@ -43,6 +44,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
 
         this.create_classes = new ArrayList<string> ();
         this.create_classes.add (item_factory.upnp_class);
+        this.search_classes = new ArrayList<string> ();
 
         try {
             this.resources = Bus.get_proxy_sync

@@ -149,6 +149,10 @@ public abstract class Rygel.MediaContainer : MediaObject {
             didl_container.parent_id = this.parent.id;
         } else {
             didl_container.parent_id = "-1";
+            if (this is SearchableContainer) {
+                (this as SearchableContainer).serialize_search_parameters
+                                        (didl_container);
+            }
         }
 
         didl_container.id = this.id;

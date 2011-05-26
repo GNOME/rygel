@@ -37,6 +37,7 @@ public class Rygel.External.Container : Rygel.MediaContainer,
 
     private ItemFactory item_factory;
     private ArrayList<Container> containers;
+    public ArrayList<string> search_classes { get; set; }
 
     private bool searchable;
 
@@ -52,6 +53,7 @@ public class Rygel.External.Container : Rygel.MediaContainer,
         this.service_name = service_name;
         this.item_factory = new ItemFactory ();
         this.containers = new ArrayList<Container> ();
+        this.search_classes = new ArrayList<string> ();
 
         // Create proxy to MediaContainer iface
         this.actual_container = Bus.get_proxy_sync

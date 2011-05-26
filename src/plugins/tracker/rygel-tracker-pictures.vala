@@ -31,6 +31,7 @@ public class Rygel.Tracker.Pictures : CategoryContainer {
         base (id, parent, title, new PictureItemFactory ());
 
         this.add_child_container (new Years (this, this.item_factory));
+        this.search_classes.add (ImageItem.UPNP_CLASS);
     }
 }
 

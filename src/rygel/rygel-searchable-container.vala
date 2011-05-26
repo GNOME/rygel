@@ -24,8 +24,11 @@
  */
 
 using GUPnP;
+using Gee;
 
 public interface Rygel.SearchableContainer : MediaContainer {
+    public abstract ArrayList<string> search_classes { get; set; }
+
     /**
      * Recursively searches for all media objects that satisfy the given search
      * expression in this container.
@@ -190,5 +193,12 @@ public interface Rygel.SearchableContainer : MediaContainer {
         }
 
         return result;
+    }
+
+    internal void serialize_search_parameters
+                                        (DIDLLiteContainer didl_container) {
+        foreach (var search_class in this.search_classes) {
+            didl_container.add_search_class (search_class);
+        }
     }
 }

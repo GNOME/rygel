@@ -31,6 +31,7 @@ public class Rygel.Tracker.Videos : CategoryContainer {
         base (id, parent, title, new VideoItemFactory ());
 
         this.add_child_container (new Years (this, this.item_factory));
+        this.search_classes.add (VideoItem.UPNP_CLASS);
     }
 }
 

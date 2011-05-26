@@ -25,11 +25,13 @@ using Gee;
 public class Rygel.MediaExport.DBContainer : MediaContainer,
                                              SearchableContainer {
     protected MediaCache media_db;
+    public ArrayList<string> search_classes { get; set; }
 
     public DBContainer (MediaCache media_db, string id, string title) {
         base (id, null, title, 0);
 
         this.media_db = media_db;
+        this.search_classes = new ArrayList<string> ();
         this.container_updated.connect (on_db_container_updated);
         this.on_db_container_updated (this, this);
     }

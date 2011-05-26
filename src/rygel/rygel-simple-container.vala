@@ -35,6 +35,8 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
 
     private MediaObjects empty_children;
 
+    public ArrayList<string> search_classes { get; set; }
+
     public SimpleContainer (string          id,
                             MediaContainer? parent,
                             string          title) {
@@ -42,6 +44,7 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
 
         this.children = new MediaObjects ();
         this.empty_children = new MediaObjects ();
+        this.search_classes = new ArrayList<string> ();
     }
 
     public SimpleContainer.root (string title) {
@@ -57,6 +60,11 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
      * until it has any children to offer.
      */
     public void add_child_container (MediaContainer child) {
+        if (child is SearchableContainer) {
+            var search_classes = (child as SearchableContainer).search_classes;
+            this.search_classes.add_all (search_classes);
+        }
+
         if (child.child_count > 0) {
             this.add_child (child);
         } else {

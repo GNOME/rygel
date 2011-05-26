@@ -33,6 +33,8 @@ public class Rygel.Tracker.Music : CategoryContainer {
         this.add_child_container (new Artists (this));
         this.add_child_container (new Albums (this));
         this.add_child_container (new Genre (this));
+        this.search_classes.add (AudioItem.UPNP_CLASS);
+        this.search_classes.add (MusicItem.UPNP_CLASS);
     }
 }
 
