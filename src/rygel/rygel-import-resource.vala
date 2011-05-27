@@ -177,7 +177,9 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
                                                                   null);
         string msg = null;
 
-        if (media_object == null || !(media_object is MediaItem)) {
+        if (media_object == null ||
+            !(media_object is MediaItem) ||
+            !(media_object.parent is WritableContainer)) {
             msg = _("URI '%s' invalid for importing contents to").printf
                                         (this.destination_uri);
         } else if (!(media_object as MediaItem).place_holder) {
