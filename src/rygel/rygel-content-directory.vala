@@ -33,6 +33,7 @@ public errordomain Rygel.ContentDirectoryError {
     RESTRICTED_OBJECT = 711,
     BAD_METADATA = 712,
     RESTRICTED_PARENT = 713,
+    NO_SUCH_DESTINATION_RESOURCE = 718,
     CANT_PROCESS = 720,
     INVALID_ARGS = 402
 }

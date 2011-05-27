@@ -106,10 +106,14 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
                             out this.destination_uri);
 
         try {
-            if (this.source_uri == null || this.destination_uri == null) {
+            if (this.source_uri == null) {
                 throw new ContentDirectoryError.INVALID_ARGS
-                                        ("Must provide source " +
-                                         "and destination URIs");
+                                        ("Must provide source URI");
+            }
+
+            if (this.destination_uri == null) {
+                throw new ContentDirectoryError.NO_SUCH_DESTINATION_RESOURCE
+                                        ("Must provide destination URI");
             }
 
             // Set action return arguments
