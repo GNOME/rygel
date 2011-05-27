@@ -290,6 +290,17 @@ public abstract class Rygel.MediaItem : MediaObject {
         } else if (item.date == null) {
             return 1;
         } else {
+            var our_date = this.date;
+            var other_date = item.date;
+
+            if (!our_date.contains ("T")) {
+                our_date += "T00:00:00Z";
+            }
+
+            if (!other_date.contains ("T")) {
+                other_date += "T00:00:00Z";
+            }
+
             var tv1 = TimeVal ();
             assert (tv1.from_iso8601 (this.date));
 
