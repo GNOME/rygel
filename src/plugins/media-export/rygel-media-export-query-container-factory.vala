@@ -123,7 +123,26 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
                                                  ref title);
 
         if (pattern == null || pattern == "") {
-            return new LeafQueryContainer (cache, expression, id, title);
+            var container =  new LeafQueryContainer (cache,
+                                                     expression,
+                                                     id,
+                                                     title);
+            switch (attribute) {
+                case "upnp:album":
+                    container.upnp_class = MediaContainer.MUSIC_ALBUM;
+                    break;
+                case "dc:creator":
+                case "upnp:artist":
+                    container.upnp_class = MediaContainer.MUSIC_ARTIST;
+                    break;
+                case "upnp:genre":
+                    container.upnp_class = MediaContainer.MUSIC_GENRE;
+                    break;
+                default:
+                    break;
+            }
+
+            return container;
         } else {
             return new NodeQueryContainer (cache,
                                            expression,
