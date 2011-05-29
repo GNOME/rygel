@@ -311,6 +311,15 @@ handling.</para>
           <para>Disable advertisement via UPnP and set <application>&dhpackage;</application> into streaming-only mode.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-c</option>
+          <option>--config=<replaceable>CONFIG_FILE</replaceable></option>
+        </term>
+        <listitem>
+          <para>Use <replaceable>CONFIG_FILE</replaceable> instead of <filename>${XDG_CONFIG_DIR}/rygel.conf</filename>.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsect1>
   <refsect1 id="files">

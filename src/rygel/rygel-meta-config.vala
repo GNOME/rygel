@@ -48,13 +48,22 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
     public MetaConfig () {
         this.configs = new ArrayList<Configuration> ();
 
-        this.configs.add (CmdlineConfig.get_default ());
+        var cmdline_config = CmdlineConfig.get_default ();
+
+        this.configs.add (cmdline_config);
         this.configs.add (EnvironmentConfig.get_default ());
+
         try {
-            var user_config = UserConfig.get_default ();
+            var config_file = cmdline_config.get_config_file ();
+            var user_config = new UserConfig (config_file);
             this.configs.add (user_config);
-        } catch (Error err) {
-            warning (_("Failed to load user configuration: %s"), err.message);
+        } catch (Error error) {
+            try {
+                var user_config = UserConfig.get_default ();
+                this.configs.add (user_config);
+            } catch (Error err) {
+                warning (_("Failed to load user configuration: %s"), err.message);
+            }
         }
     }
 

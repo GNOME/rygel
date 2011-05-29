@@ -100,13 +100,16 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
     public static UserConfig get_default () throws Error {
         if (config == null) {
-            config = new UserConfig ();
+            var path = Path.build_filename
+                                        (Environment.get_user_config_dir (),
+                                         CONFIG_FILE);
+            config = new UserConfig (path);
         }
 
         return config;
     }
 
-    public UserConfig () throws Error {
+    public UserConfig (string file) throws Error {
         this.key_file = new KeyFile ();
         this.sys_key_file = new KeyFile ();
 
@@ -119,14 +122,11 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         debug ("Loaded system configuration from file '%s'", path);
 
         try {
-            path = Path.build_filename (Environment.get_user_config_dir (),
-                                        CONFIG_FILE);
-
-            this.key_file.load_from_file (path,
+            this.key_file.load_from_file (file,
                                           KeyFileFlags.KEEP_COMMENTS |
                                           KeyFileFlags.KEEP_TRANSLATIONS);
 
-            debug ("Loaded user configuration from file '%s'", path);
+            debug ("Loaded user configuration from file '%s'", file);
         } catch (Error error) {
             debug ("Failed to load user configuration from file '%s': %s",
                    path,

@@ -51,6 +51,8 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     private static bool version;
 
+    private static string config_file;
+
     [CCode (array_length = false, array_null_terminated = true)]
     [NoArrayLength]
     private static string[] disabled_plugins;
@@ -105,6 +107,8 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
           "Set plugin options", "PluginName:OPTION:VALUE1[,VALUE2,..]" },
         { "disable-upnp", 'P', 0, OptionArg.NONE, ref no_upnp,
           "Disable UPnP (streaming-only)", null },
+        { "config", 'c', 0, OptionArg.FILENAME, ref config_file,
+          "Use configuration file instead of user configuration", null },
         { null }
 	};
 
@@ -270,6 +274,14 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
         } else {
             throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
+    }
+
+    public string get_config_file () throws GLib.Error {
+        if (config_file == null) {
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
+        }
+
+        return config_file;
     }
 
     // Dynamic options
