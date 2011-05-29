@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-26 14:05+0000\n"
+"POT-Creation-Date: 2011-05-13 09:10+0000\n"
 "PO-Revision-Date: 2011-03-28 13:30+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
@@ -67,18 +67,18 @@ msgstr "Falló al deshacer la transacción: %s"
 msgid "Unsupported type %s"
 msgstr "Tipo %s no soportado"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:134
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
 #: ../src/rygel/rygel-plugin-loader.vala:186
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Falló al consultar el tipo de contenido para «%s»"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:86
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:92
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Falló al añadir el elemento con ID %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:122
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:128
 #, c-format
 msgid "Object %s is not an item"
 msgstr "El objeto %s no es un elemento"
@@ -88,26 +88,26 @@ msgstr "El objeto %s no es un elemento"
 msgid "Failed to attach to D-Bus session bus: %s"
 msgstr "Falló al adjuntarse al bus de sesión D-Bus: %su"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:58
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:60
 msgid "No metadata extractor available. Will not crawl."
 msgstr "No existe un extractor de metadatos disponible. No se arrastrará."
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:101
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:103
 #, c-format
 msgid "'%s' harvested"
 msgstr "«%s» recolectado"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:166
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:171
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Error al obtener el objeto «%s» de la base de datos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:201
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:206
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Error al quitar el objeto de la base de datos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:77
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:80
 #, c-format
 msgid "Failed to get file info for %s"
 msgstr "Falló al obtener el archivo de información para %s"
@@ -134,35 +134,35 @@ msgstr "Álbum"
 msgid "Genre"
 msgstr "Género"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:98
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:99
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "Falló al quitar el URI: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:336
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:337
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "Multimedia de @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:345
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Falló al crear el servicio de D-Bus MediaExport: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:385
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Falló al quitar la entrada: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:397
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:407
 msgid "Music"
 msgstr "Música"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:400
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:410
 msgid "Pictures"
 msgstr "Imágenes"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:402
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:412
 msgid "Videos"
 msgstr "Vídeos"
 
@@ -211,10 +211,10 @@ msgstr "Títulos"
 
 #: ../src/rygel/rygel-media-query-action.vala:117
 #: ../src/rygel/rygel-media-query-action.vala:141
-#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:154
-#: ../src/rygel/rygel-item-creator.vala:189
+#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:176
+#: ../src/rygel/rygel-item-creator.vala:215
 #: ../src/rygel/rygel-item-destroyer.vala:53
-#: ../src/rygel/rygel-item-destroyer.vala:99
+#: ../src/rygel/rygel-item-destroyer.vala:101
 msgid "No such object"
 msgstr "No existe el objeto"
 
@@ -227,24 +227,24 @@ msgstr "Argumentos no válidos"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Falló al examinar «%s»: %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:137
-#: ../src/rygel/rygel-cmdline-config.vala:145
-#: ../src/rygel/rygel-cmdline-config.vala:153
-#: ../src/rygel/rygel-cmdline-config.vala:161
-#: ../src/rygel/rygel-cmdline-config.vala:169
-#: ../src/rygel/rygel-cmdline-config.vala:177
-#: ../src/rygel/rygel-cmdline-config.vala:185
-#: ../src/rygel/rygel-cmdline-config.vala:193
-#: ../src/rygel/rygel-cmdline-config.vala:201
-#: ../src/rygel/rygel-cmdline-config.vala:209
-#: ../src/rygel/rygel-cmdline-config.vala:217
-#: ../src/rygel/rygel-cmdline-config.vala:243
-#: ../src/rygel/rygel-cmdline-config.vala:262
-#: ../src/rygel/rygel-cmdline-config.vala:286
-#: ../src/rygel/rygel-cmdline-config.vala:312
-#: ../src/rygel/rygel-cmdline-config.vala:341
-#: ../src/rygel/rygel-cmdline-config.vala:367
-#: ../src/rygel/rygel-cmdline-config.vala:392
+#: ../src/rygel/rygel-cmdline-config.vala:146
+#: ../src/rygel/rygel-cmdline-config.vala:154
+#: ../src/rygel/rygel-cmdline-config.vala:162
+#: ../src/rygel/rygel-cmdline-config.vala:170
+#: ../src/rygel/rygel-cmdline-config.vala:178
+#: ../src/rygel/rygel-cmdline-config.vala:186
+#: ../src/rygel/rygel-cmdline-config.vala:194
+#: ../src/rygel/rygel-cmdline-config.vala:202
+#: ../src/rygel/rygel-cmdline-config.vala:210
+#: ../src/rygel/rygel-cmdline-config.vala:218
+#: ../src/rygel/rygel-cmdline-config.vala:226
+#: ../src/rygel/rygel-cmdline-config.vala:252
+#: ../src/rygel/rygel-cmdline-config.vala:271
+#: ../src/rygel/rygel-cmdline-config.vala:295
+#: ../src/rygel/rygel-cmdline-config.vala:321
+#: ../src/rygel/rygel-cmdline-config.vala:350
+#: ../src/rygel/rygel-cmdline-config.vala:376
+#: ../src/rygel/rygel-cmdline-config.vala:401
 #: ../src/rygel/rygel-meta-config.vala:74
 #: ../src/rygel/rygel-meta-config.vala:93
 #: ../src/rygel/rygel-meta-config.vala:112
@@ -321,6 +321,11 @@ msgstr "Rango «%s» no válido"
 msgid "Invalid Request"
 msgstr "Petición no válida"
 
+#: ../src/rygel/rygel-http-identity-handler.vala:88
+#: ../src/rygel/rygel-http-transcode-handler.vala:56
+msgid "Not found"
+msgstr "No se encontró"
+
 #: ../src/rygel/rygel-http-item-uri.vala:58
 #, c-format
 msgid "Invalid URI '%s'"
@@ -331,7 +336,7 @@ msgid "Not Found"
 msgstr "No se encontró"
 
 #: ../src/rygel/rygel-http-post.vala:61
-#: ../src/rygel/rygel-import-resource.vala:169
+#: ../src/rygel/rygel-import-resource.vala:174
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "No se permite empujar datos al elemento «%s» no vacío"
@@ -346,41 +351,72 @@ msgstr "No existe un URI escribible para %s"
 msgid "Requested item '%s' not found"
 msgstr "No se encontró el elemento requerido «%s»"
 
-#: ../src/rygel/rygel-http-transcode-handler.vala:56
-#: ../src/rygel/rygel-http-gst-response.vala:44
-msgid "Not found"
-msgstr "No se encontró"
+#: ../src/rygel/rygel-http-response.vala:157
+#: ../src/rygel/rygel-http-response.vala:178
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr "Falló al enlazar %s con %s"
 
-#: ../src/rygel/rygel-import-resource.vala:109
+#: ../src/rygel/rygel-http-response.vala:192
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr "Falló al enlazar el relleno de %s a %s"
+
+#: ../src/rygel/rygel-http-response.vala:235
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr "Error de la tubería %s: %s"
+
+#: ../src/rygel/rygel-http-response.vala:242
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr "Advertencia de la tubería %s: %s"
+
+#: ../src/rygel/rygel-http-response.vala:280
+#, c-format
+msgid "Failed to seek to offset %lld"
+msgstr "Falló al buscar hasta el desplazamiento %lld"
+
+#: ../src/rygel/rygel-http-seek.vala:51
+#, c-format
+msgid "Out Of Range Start '%ld'"
+msgstr "Fuera del rango de inicio «%ld»"
+
+#: ../src/rygel/rygel-http-seek.vala:55
+#, c-format
+msgid "Out Of Range Stop '%ld'"
+msgstr "Fuera del rango de fin «%ld»"
+
+#: ../src/rygel/rygel-import-resource.vala:115
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Falló al obtener el URI original para «%s»: %s"
 
-#: ../src/rygel/rygel-import-resource.vala:166
+#: ../src/rygel/rygel-import-resource.vala:171
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "El URI «%s» no es válido para importar contenido de él"
 
-#: ../src/rygel/rygel-item-creator.vala:67
+#: ../src/rygel/rygel-item-creator.vala:68
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "No existen elementos en DIDL-Lite desde el cliente: «%s»"
 
-#: ../src/rygel/rygel-item-creator.vala:145
+#: ../src/rygel/rygel-item-creator.vala:167
 msgid "'Elements' argument missing."
 msgstr "Falta el argumento «elements»."
 
-#: ../src/rygel/rygel-item-creator.vala:148
+#: ../src/rygel/rygel-item-creator.vala:170
 msgid "Comments not allowed in XML"
 msgstr "No se permiten comentarios en XML"
 
-#: ../src/rygel/rygel-item-creator.vala:193
-#: ../src/rygel/rygel-item-creator.vala:282
+#: ../src/rygel/rygel-item-creator.vala:219
+#: ../src/rygel/rygel-item-creator.vala:308
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "No se permite la creación de objetos en %s"
 
-#: ../src/rygel/rygel-item-creator.vala:219
+#: ../src/rygel/rygel-item-creator.vala:245
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Falló al crear un elemento bajo «%s»: %s"
@@ -395,46 +431,15 @@ msgstr "Objeto «%s» destruido correctamente"
 msgid "Failed to destroy object '%s': %s"
 msgstr "Falló al destruir el objeto «%s»: %s"
 
-#: ../src/rygel/rygel-item-destroyer.vala:102
+#: ../src/rygel/rygel-item-destroyer.vala:104
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "No se permite quitar el objeto %s"
 
-#: ../src/rygel/rygel-item-destroyer.vala:105
+#: ../src/rygel/rygel-item-destroyer.vala:107
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "No se permite quitar objetos de %s"
-
-#: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-http-gst-response.vala:129
-#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
-#: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
-#: ../src/rygel/rygel-wma-transcoder-bin.vala:58
-#: ../src/rygel/rygel-wmv-transcoder-bin.vala:100
-#, c-format
-msgid "Failed to link pad %s to %s"
-msgstr "Falló al enlazar el relleno de %s a %s"
-
-#: ../src/rygel/rygel-http-gst-response.vala:94
-#: ../src/rygel/rygel-http-gst-response.vala:116
-#, c-format
-msgid "Failed to link %s to %s"
-msgstr "Falló al enlazar %s con %s"
-
-#: ../src/rygel/rygel-http-gst-response.vala:172
-#, c-format
-msgid "Error from pipeline %s: %s"
-msgstr "Error de la tubería %s: %s"
-
-#: ../src/rygel/rygel-http-gst-response.vala:179
-#, c-format
-msgid "Warning from pipeline %s: %s"
-msgstr "Advertencia de la tubería %s: %s"
-
-#: ../src/rygel/rygel-http-gst-response.vala:212
-#, c-format
-msgid "Failed to seek to offset %lld"
-msgstr "Falló al buscar hasta el desplazamiento %lld"
 
 #: ../src/rygel/rygel-log-handler.vala:68
 #, c-format
@@ -463,13 +468,13 @@ msgstr "Falló al crear el DispositivoRaís para %s. Razón: %s."
 msgid "Failed to start D-Bus service: %s"
 msgstr "Falló al iniciar el servicio D-Bus: %s"
 
-#: ../src/rygel/rygel-media-item.vala:271
+#: ../src/rygel/rygel-media-item.vala:255
 #, c-format
 msgid "Bad URI: %s"
 msgstr "URI errónea: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:283
+#: ../src/rygel/rygel-media-item.vala:267
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Falló al probar el protocolo para el URI %s. Asumiendo «%s»."
@@ -533,33 +538,6 @@ msgstr "Falló al escribir la descripción modificada en %s"
 msgid "Failed to search in '%s': %s"
 msgstr "Falló al buscar en «%s»: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:53
-#, c-format
-msgid "Item '%s' didn't provide a URI"
-msgstr "El elemento «%s» no proporcionó un URI"
-
-#: ../src/rygel/rygel-http-seekable-response.vala:77
-#, c-format
-msgid "Failed to read from URI: %s: %s"
-msgstr "Falló al leer del URI: %s: %s"
-
-#. Failed to seek to media segment (defined by first and last
-#. byte positions).
-#: ../src/rygel/rygel-http-seekable-response.vala:96
-#, c-format
-msgid "Failed to seek to %s-%s on URI %s: %s"
-msgstr "Falló al buscar hasta %s-%s en el URI %s: %s"
-
-#: ../src/rygel/rygel-http-seekable-response.vala:115
-#, c-format
-msgid "Failed to read contents from URI: %s: %s"
-msgstr "Falló al leer el contenido del URI: %s: %s"
-
-#: ../src/rygel/rygel-http-seekable-response.vala:161
-#, c-format
-msgid "Failed to close stream to URI %s: %s"
-msgstr "Falló al cerrar el flujo en el URI %s: %s"
-
 #: ../src/rygel/rygel-subtitle-manager.vala:65
 msgid "No subtitle available"
 msgstr "No existen subtítulos disponibles"
@@ -592,11 +570,11 @@ msgstr "No existe un valor disponible para «%s»"
 msgid "Value of '%s' out of range"
 msgstr "El valor «%s» está fuera de rango"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:44
+#: ../src/rygel/rygel-xbox-hacks.vala:54
 msgid "Not Applicable"
 msgstr "No es aplicable"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:180
+#: ../src/rygel/rygel-xbox-hacks.vala:211
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Falló al escribir la descripción modificada en %s."
@@ -620,6 +598,21 @@ msgstr "Falló al iniciar el servicio Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Falló al parar el servicio Rygel: %s"
+
+#~ msgid "Item '%s' didn't provide a URI"
+#~ msgstr "El elemento «%s» no proporcionó un URI"
+
+#~ msgid "Failed to read from URI: %s: %s"
+#~ msgstr "Falló al leer del URI: %s: %s"
+
+#~ msgid "Failed to seek to %s-%s on URI %s: %s"
+#~ msgstr "Falló al buscar hasta %s-%s en el URI %s: %s"
+
+#~ msgid "Failed to read contents from URI: %s: %s"
+#~ msgstr "Falló al leer el contenido del URI: %s: %s"
+
+#~ msgid "Failed to close stream to URI %s: %s"
+#~ msgstr "Falló al cerrar el flujo en el URI %s: %s"
 
 #~ msgid "Plugin 'fakesink' missing"
 #~ msgstr "Falta el complemento de tubería falsa («fakesink»)"
