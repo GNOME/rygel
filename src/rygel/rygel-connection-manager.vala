@@ -100,10 +100,10 @@ internal class Rygel.ConnectionManager : Service {
 
     private void get_current_connection_info_cb (Service             cm,
                                                  owned ServiceAction action) {
-        int connection_id;
+        string connection_id;
 
-        action.get ("ConnectionID", typeof (int), out connection_id);
-        if (connection_id != 0) {
+        action.get ("ConnectionID", typeof (string), out connection_id);
+        if (connection_id == null || connection_id != "0") {
             action.return_error (706, _("Invalid connection reference"));
 
             return;
