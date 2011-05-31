@@ -1,3 +1,23 @@
+0.10.2
+======
+
+A new release in the stable 0.10.x series for GNOME 3.0. Changes since 0.10.1:
+
+- Fix sorting on dates without time
+- Fix MediaExport plugin skipping m4a files
+- Fix serving of album art
+- Fix an assertion when harvesting files still being downloaded
+- Don't entity-quote UTF-8 characters
+- Fix a hidden potential crasher with vala async functions
+
+Bugs fixed in this release:
+
+648486 - Rygel doesn't show up in Samsung PS50C77 TV
+
+All contributors to this release:
+
+Jens Georg <mail@jensge.org>
+
 0.10.1
 ======
 
