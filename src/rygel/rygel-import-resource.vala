@@ -22,6 +22,7 @@
  */
 
 using GUPnP;
+using Soup;
 
 internal enum Rygel.TransferStatus {
     COMPLETED,
@@ -48,6 +49,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
     public int64 bytes_total;
 
     private MediaItem item;
+    private Session session;
 
     public string status_as_string {
         get {
@@ -70,6 +72,8 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
     private HTTPServer http_server;
     private MediaContainer root_container;
     private ServiceAction action;
+    private SourceFunc run_callback;
+    private FileOutputStream output_stream;
 
     public ImportResource (ContentDirectory    content_dir,
                            owned ServiceAction action) {
@@ -85,6 +89,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         this.bytes_total = 0;
 
         this.status = TransferStatus.IN_PROGRESS;
+        this.session = new SessionAsync ();
 
         content_dir.cancellable.cancelled.connect (() => {
             this.cancellable.cancel ();
@@ -136,21 +141,25 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         var queue = ItemRemovalQueue.get_default ();
         queue.dequeue (this.item);
 
+
+
         try {
-            var destination_file = File.new_for_uri (this.item.uris[0]);
-            var source_file = File.new_for_uri (source_uri);
+            var source_file = File.new_for_uri (this.item.uris[0]);
+            this.output_stream = yield source_file.replace_async (null,
+                                                                  false,
+                                                                  FileCreateFlags.PRIVATE,
+                                                                  Priority.DEFAULT,
+                                                                  this.cancellable);
+            var message = new Message ("GET", source_uri);
+            message.got_chunk.connect (this.got_chunk_cb);
+            message.got_body.connect (this.got_body_cb);
+            message.got_headers.connect (this.got_headers_cb);
+            message.finished.connect (this.finished_cb);
 
-            yield source_file.copy_async (destination_file,
-                                          FileCopyFlags.OVERWRITE,
-                                          Priority.LOW,
-                                          this.cancellable,
-                                          this.copy_progress_cb);
+            this.run_callback = run.callback;
+            this.session.queue_message (message, null);
 
-            this.status = TransferStatus.COMPLETED;
-
-            debug ("Import of '%s' to '%s' completed",
-                   source_uri,
-                   destination_file.get_uri ());
+            yield;
         } catch (Error err) {
             warning ("%s", err.message);
             this.status = TransferStatus.ERROR;
@@ -184,10 +193,40 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         return media_object as MediaItem;
     }
 
-    private void copy_progress_cb (int64 current_num_bytes,
-                                   int64 total_num_bytes) {
-        this.bytes_copied = current_num_bytes;
-        this.bytes_total = total_num_bytes;
+    private void got_headers_cb (Message message) {
+        this.bytes_total = message.response_headers.get_content_length ();
+    }
+
+    private void got_chunk_cb (Message message, Buffer buffer) {
+        this.bytes_copied += buffer.length;
+        try {
+            size_t bytes_written;
+
+            this.output_stream.write_all (buffer.data,
+                                          out bytes_written,
+                                          this.cancellable);
+        } catch (Error error) {
+            warning ("%s", error.message);
+            this.status = TransferStatus.ERROR;
+            this.session.cancel_message (message,
+                                         KnownStatusCode.CANCELLED);
+        }
+    }
+
+    private void got_body_cb (Message message) {
+        try {
+            this.output_stream.close (this.cancellable);
+            if (this.status == TransferStatus.IN_PROGRESS) {
+                this.status = TransferStatus.COMPLETED;
+            }
+        } catch (Error error) {
+            warning ("%s", error.message);
+            this.status = TransferStatus.ERROR;
+        }
+    }
+
+    private void finished_cb (Message message) {
+        this.run_callback ();
     }
 }
 
