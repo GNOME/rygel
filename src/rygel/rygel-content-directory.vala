@@ -58,6 +58,7 @@ internal class Rygel.ContentDirectory: Service {
     private ArrayList<MediaContainer> updated_containers;
 
     private ArrayList<ImportResource> active_imports;
+    private ArrayList<ImportResource> finished_imports;
 
     private bool clear_updated_containers;
     private uint update_notify_id;
@@ -76,6 +77,7 @@ internal class Rygel.ContentDirectory: Service {
 
         this.updated_containers =  new ArrayList<MediaContainer> ();
         this.active_imports = new ArrayList<ImportResource> ();
+        this.finished_imports = new ArrayList<ImportResource> ();
 
         this.root_container.container_updated.connect (on_container_updated);
 
@@ -376,14 +378,18 @@ internal class Rygel.ContentDirectory: Service {
     private void on_import_completed (StateMachine machine) {
         var import = machine as ImportResource;
 
+        this.finished_imports.add (import);
+        this.active_imports.remove (import);
+
+        // signalize end of transfer
+        this.notify ("TransferIDs",
+                        typeof (string),
+                        this.create_transfer_ids ());
+
         // According to CDS specs (v3 section 2.4.17), we must not immediately
         // remove the import from out memory
         Timeout.add_seconds (30, () => {
-                this.active_imports.remove (import);
-
-                this.notify ("TransferIDs",
-                                typeof (string),
-                                this.create_transfer_ids ());
+                this.finished_imports.remove (import);
 
                 return false;
         });
@@ -398,6 +404,14 @@ internal class Rygel.ContentDirectory: Service {
                         out transfer_id);
 
         foreach (var import in this.active_imports) {
+            if (import.transfer_id == transfer_id) {
+                ret = import;
+
+                break;
+            }
+        }
+
+        foreach (var import in this.finished_imports) {
             if (import.transfer_id == transfer_id) {
                 ret = import;
 
