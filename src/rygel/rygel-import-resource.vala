@@ -229,6 +229,14 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
     }
 
     private void got_body_cb (Message message) {
+        if (this.bytes_total == 0) {
+            this.bytes_total = this.bytes_copied;
+        } else if (this.bytes_total != this.bytes_copied) {
+            this.status = TransferStatus.ERROR;
+
+            return;
+        }
+
         try {
             this.output_stream.close (this.cancellable);
             if (this.status == TransferStatus.IN_PROGRESS) {
