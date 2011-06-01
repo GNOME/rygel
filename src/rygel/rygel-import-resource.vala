@@ -135,9 +135,6 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
             return;
         }
 
-        // We can already return the action now
-        this.action.return ();
-
         var queue = ItemRemovalQueue.get_default ();
         queue.dequeue (this.item);
 
@@ -195,6 +192,24 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
 
     private void got_headers_cb (Message message) {
         this.bytes_total = message.response_headers.get_content_length ();
+
+        if (message.status_code >= 200 && message.status_code <= 299) {
+            this.action.return ();
+        } else {
+            this.status = TransferStatus.ERROR;
+            try {
+                this.output_stream.close (this.cancellable);
+                var file = File.new_for_uri (this.item.uris[0]);
+                file.delete (this.cancellable);
+            } catch (Error error) {};
+
+            var phrase = status_get_phrase (message.status_code);
+            if (message.status_code == 404) {
+                this.action.return_error (714, phrase);
+            } else {
+                this.action.return_error (715, phrase);
+            }
+        }
     }
 
     private void got_chunk_cb (Message message, Buffer buffer) {
