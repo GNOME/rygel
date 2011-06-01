@@ -63,7 +63,13 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             this.didl_parser.item_available.connect ((didl_item) => {
                     this.didl_item = didl_item;
             });
-            this.didl_parser.parse_didl (this.elements);
+
+            try {
+                this.didl_parser.parse_didl (this.elements);
+            } catch (Error parse_err) {
+                throw new ContentDirectoryError.BAD_METADATA ("Bad metadata");
+            }
+
             if (this.didl_item == null) {
                 var message = _("No items in DIDL-Lite from client: '%s'");
 
