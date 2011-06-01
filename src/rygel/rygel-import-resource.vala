@@ -222,7 +222,11 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
                                           this.cancellable);
         } catch (Error error) {
             warning ("%s", error.message);
-            this.status = TransferStatus.ERROR;
+            if (error is IOError.CANCELLED) {
+                this.status = TransferStatus.STOPPED;
+            } else {
+                this.status = TransferStatus.ERROR;
+            }
             this.session.cancel_message (message,
                                          KnownStatusCode.CANCELLED);
         }
