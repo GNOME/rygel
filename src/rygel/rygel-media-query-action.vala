@@ -130,8 +130,35 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
             this.sort_criteria = DEFAULT_SORT_CRITERIA;
         }
 
+        this.validate_sort_criteria ();
+
         if (this.xbox_hacks != null) {
             this.xbox_hacks.translate_container_id (this, ref this.object_id);
+        }
+    }
+
+    private void validate_sort_criteria () throws Error {
+        var supported_props = new HashSet<string> ();
+
+        var requested_sort_props = this.sort_criteria.split (",");
+
+        foreach (var property in MediaObjects.SORT_CAPS.split (",")) {
+            supported_props.add (property);
+        }
+
+        foreach (var property in requested_sort_props) {
+            if (!(property.has_prefix ("+") || property.has_prefix ("-"))) {
+                throw new ContentDirectoryError.INVALID_SORT_CRITERIA
+                                        ("%s is missing + or - modifier",
+                                         property);
+
+            }
+
+            if (!supported_props.contains (property.slice(1, property.length))) {
+                throw new ContentDirectoryError.INVALID_SORT_CRITERIA
+                                        ("%s is invalid or not supported",
+                                         property);
+            }
         }
     }
 
