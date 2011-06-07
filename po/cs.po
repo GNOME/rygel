@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-05-13 09:10+0000\n"
-"PO-Revision-Date: 2011-05-15 22:27+0200\n"
+"POT-Creation-Date: 2011-06-07 15:35+0000\n"
+"PO-Revision-Date: 2011-06-07 18:35+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -89,26 +89,36 @@ msgstr "Objekt %s není položkou"
 msgid "Failed to attach to D-Bus session bus: %s"
 msgstr "Selhalo napojení na sběrnici sezení D-Bus: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:60
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:66
 msgid "No metadata extractor available. Will not crawl."
 msgstr "Není dispozici žádný nástroj na získávání metadat. Nebude se procházet"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:103
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:109
 #, c-format
 msgid "'%s' harvested"
 msgstr "Ze souboru „%s“ byl získána všechna metadata"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:171
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:188
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Chyba při získávání objektu „%s“ z databáze: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:206
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:194
+#, c-format
+#| msgid "Failed to remove entry: %s"
+msgid "Failed to access media cache: %s"
+msgstr "Selhal přístup k mezipaměti média: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:233
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Chyba při odstraňování objektu z databáze: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:80
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:40
+msgid "Will not monitor file changes"
+msgstr "Nebudou sledovány změny souborů"
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
 msgid "Failed to get file info for %s"
 msgstr "Selhalo získání informací pro %s"
@@ -167,12 +177,12 @@ msgstr "Obrázky"
 msgid "Videos"
 msgstr "Videa"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:56
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
 msgid "Failed to create D-Bus proxies: %s"
 msgstr "Selhalo vytvoření pamětí proxy pro D-Bus: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:64
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:62
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "Selhalo sestavení adresy URI pro složku „%s“: %s"
@@ -210,14 +220,19 @@ msgstr "Umělci"
 msgid "Titles"
 msgstr "Názvy"
 
-#: ../src/rygel/rygel-media-query-action.vala:117
-#: ../src/rygel/rygel-media-query-action.vala:141
-#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:176
-#: ../src/rygel/rygel-item-creator.vala:215
+#: ../src/rygel/rygel-media-query-action.vala:118
+#: ../src/rygel/rygel-media-query-action.vala:150
+#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:186
+#: ../src/rygel/rygel-item-creator.vala:225
 #: ../src/rygel/rygel-item-destroyer.vala:53
 #: ../src/rygel/rygel-item-destroyer.vala:101
 msgid "No such object"
 msgstr "Žádný takový objekt neexistuje"
+
+#: ../src/rygel/rygel-media-query-action.vala:123
+#| msgid "Invalid Name"
+msgid "Invalid range"
+msgstr "Neplatný rozsah"
 
 #: ../src/rygel/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -264,8 +279,8 @@ msgstr "Není dostupná žádná hodnota"
 msgid "Invalid connection reference"
 msgstr "Neplatný odkaz připojení"
 
-#: ../src/rygel/rygel-content-directory.vala:207
-#: ../src/rygel/rygel-content-directory.vala:220
+#: ../src/rygel/rygel-content-directory.vala:210
+#: ../src/rygel/rygel-content-directory.vala:223
 msgid "No such file transfer"
 msgstr "Žádný takový přenos souboru neexistuje"
 
@@ -310,10 +325,10 @@ msgstr "Vyžadovaný prvek %s schází"
 #: ../src/rygel/rygel-http-byte-seek.vala:58
 #: ../src/rygel/rygel-http-byte-seek.vala:68
 #: ../src/rygel/rygel-http-byte-seek.vala:71
-#: ../src/rygel/rygel-http-time-seek.vala:50
-#: ../src/rygel/rygel-http-time-seek.vala:59
-#: ../src/rygel/rygel-http-time-seek.vala:69
-#: ../src/rygel/rygel-http-time-seek.vala:72
+#: ../src/rygel/rygel-http-time-seek.vala:49
+#: ../src/rygel/rygel-http-time-seek.vala:61
+#: ../src/rygel/rygel-http-time-seek.vala:68
+#: ../src/rygel/rygel-http-time-seek.vala:83
 #, c-format
 msgid "Invalid Range '%s'"
 msgstr "Neplatný rozsah „%s“"
@@ -337,7 +352,7 @@ msgid "Not Found"
 msgstr "Nenalezeno"
 
 #: ../src/rygel/rygel-http-post.vala:61
-#: ../src/rygel/rygel-import-resource.vala:174
+#: ../src/rygel/rygel-import-resource.vala:186
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Vkládání dat do neprázdné položky „%s“ není dovoleno"
@@ -352,28 +367,28 @@ msgstr "Pro %s není k dispozici žádná zapisovatelná adresa URI"
 msgid "Requested item '%s' not found"
 msgstr "Vyžadovaná položka „%s“ nenalezena"
 
-#: ../src/rygel/rygel-http-response.vala:157
-#: ../src/rygel/rygel-http-response.vala:178
+#: ../src/rygel/rygel-http-response.vala:154
+#: ../src/rygel/rygel-http-response.vala:175
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Selhalo navázání %s na %s"
 
-#: ../src/rygel/rygel-http-response.vala:192
+#: ../src/rygel/rygel-http-response.vala:189
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Selhalo napojení propojky %s na %s"
 
-#: ../src/rygel/rygel-http-response.vala:235
+#: ../src/rygel/rygel-http-response.vala:232
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Chyba od roury %s: %s"
 
-#: ../src/rygel/rygel-http-response.vala:242
+#: ../src/rygel/rygel-http-response.vala:239
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Varování od roury %s: %s"
 
-#: ../src/rygel/rygel-http-response.vala:280
+#: ../src/rygel/rygel-http-response.vala:277
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Selhal přesun na pozici %lld"
@@ -388,12 +403,12 @@ msgstr "Mimo rozsah počátku „%ld“"
 msgid "Out Of Range Stop '%ld'"
 msgstr "Mimo rozsah konce „%ld“"
 
-#: ../src/rygel/rygel-import-resource.vala:115
+#: ../src/rygel/rygel-import-resource.vala:124
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Selhalo získání původní adresy URI pro „%s“: %s"
 
-#: ../src/rygel/rygel-import-resource.vala:171
+#: ../src/rygel/rygel-import-resource.vala:183
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Adresa URI „%s“ je neplatná pro import obsahu do ní"
@@ -403,21 +418,21 @@ msgstr "Adresa URI „%s“ je neplatná pro import obsahu do ní"
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Žádné položky v DIDL-Lite od klienta: „%s“"
 
-#: ../src/rygel/rygel-item-creator.vala:167
+#: ../src/rygel/rygel-item-creator.vala:177
 msgid "'Elements' argument missing."
 msgstr "Schází argument „Elements“."
 
-#: ../src/rygel/rygel-item-creator.vala:170
+#: ../src/rygel/rygel-item-creator.vala:180
 msgid "Comments not allowed in XML"
 msgstr "V XML nejsou dovoleny komentáře"
 
-#: ../src/rygel/rygel-item-creator.vala:219
-#: ../src/rygel/rygel-item-creator.vala:308
+#: ../src/rygel/rygel-item-creator.vala:229
+#: ../src/rygel/rygel-item-creator.vala:318
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Vytváření objektů v %s není dovoleno"
 
-#: ../src/rygel/rygel-item-creator.vala:245
+#: ../src/rygel/rygel-item-creator.vala:255
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Selhalo vytvoření položky v „%s“: %s"
@@ -601,78 +616,3 @@ msgstr "Selhalo spuštění služby Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Selhalo zastavení služby Rygel: %s"
-
-#~ msgid "Item '%s' didn't provide a URI"
-#~ msgstr "Položka „%s“ neposkytla adresu URI"
-
-#~ msgid "Failed to read from URI: %s: %s"
-#~ msgstr "Selhalo čtení z adresy URI: %s: %s"
-
-#~ msgid "Failed to seek to %s-%s on URI %s: %s"
-#~ msgstr "Selhal přesun na %s-%s na adrese URI %s: %s"
-
-#~ msgid "Failed to read contents from URI: %s: %s"
-#~ msgstr "Selhalo čtení obsahu z adresy URI: %s: %s"
-
-#~ msgid "Failed to close stream to URI %s: %s"
-#~ msgstr "Selhalo uzavření proudu do adresy URI %s: %s"
-
-#~ msgid "Plugin 'fakesink' missing"
-#~ msgstr "Schází zásuvný modul „fakesink“"
-
-#~ msgid "General"
-#~ msgstr "Obecné"
-
-#~ msgid "MPE_G TS"
-#~ msgstr "MPE_G TS"
-
-#~ msgid "Plugins"
-#~ msgstr "Zásuvné moduly"
-
-#~ msgid "Share M_usic"
-#~ msgstr "Sdílet _hudbu"
-
-#~ msgid "Share _Pictures"
-#~ msgstr "Sdílet o_brázky"
-
-#~ msgid "Share _Videos"
-#~ msgstr "Sdílet _videa"
-
-#~ msgid "T_itle"
-#~ msgstr "_Název"
-
-#~ msgid "Ti_tle"
-#~ msgstr "Náz_ev"
-
-#~ msgid ""
-#~ "Write %u for username, %n for real name of the user and %h for host name"
-#~ msgstr ""
-#~ "Napište %u pro jméno uživatele, %n pro skutečné jméno uživatele a %h pro "
-#~ "název počítače"
-
-#~ msgid "_Enable UPnP/DLNA"
-#~ msgstr "Povolit _UPnP/DLNA"
-
-#~ msgid "_Interface"
-#~ msgstr "_Rozhraní"
-
-#~ msgid "_LPCM"
-#~ msgstr "_LPCM"
-
-#~ msgid "_MP3"
-#~ msgstr "_MP3"
-
-#~ msgid "_Media Export"
-#~ msgstr "Export _médií"
-
-#~ msgid "_Port"
-#~ msgstr "_Port"
-
-#~ msgid "_Transcoding support"
-#~ msgstr "Podpora převo_dů"
-
-#~ msgid "_URIs"
-#~ msgstr "Adresy _URI"
-
-#~ msgid "Failed to create instance of database"
-#~ msgstr "Selhalo vytvoření instance databáze"
