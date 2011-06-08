@@ -1,3 +1,86 @@
+0.11.0
+======
+
+This release marks the beginning of a new unstable release-cycle which will
+eventually be integrated into GNOME 3.2. Changes since 0.10.2:
+
+- Serve video thumbnails to XBox 360
+- Change ImportResource not to use GVFS
+- Validate passed sort criteria string
+- More validation and robustness of input arguments for actions
+- Complete supported formats for TimeSeekRange parsing
+- Ignore unknown commandline options and print help string when
+  encountering those
+- Make sure an uploaded file is closed after HTTP POST
+- Several fixes related to seeking
+- Add restrictions to correct transfer modes
+- MediaExport:
+  - Wait for filesystem events to settle before harvesting new files
+  - General code clean-up, especially in the file monitor
+  - Add option to disable file monitoring
+  - Add more exotic media to be harvested:
+    - .mpc/.mpc: MusePack
+    - .wv: WavPack
+    - .aac: Stand-alone AAC (raw/ADTS)
+    - .mp2: MPEG 1, Audio Profile 2
+    - .webm: WebM video files
+    - .mka: Audio in a Matroska file
+  - Ignore unknown file from discoverer
+- Tracker:
+  - Print the used upload directories
+  - Use D-Bus filtering for GraphUpdated, be waken much less by tracker
+  - Support adding of existing but non-indexed files as well as general
+    objects with all kinds of URIs through the CreateObject call
+  - Generally rework the handling of place holder items which are uploaded
+    later by the Content-Directory
+  - Set item size in the tracker-miner graph
+
+All contributors to this release:
+  - Jens Georg <mail@jensge.org>
+  - Topi Santakivi <topi.santakivi@digia.com>
+  - Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+  - Muhammet Kara <muhammet.k@gmail.com>
+  - Marek Černocký <marek@manet.cz>
+  - Luis de Bethencourt <luis.debethencourt@collabora.co.uk>
+  - Nguyễn Thái Ngọc Duy <pclouds@gmail.com>
+  - Lê Trường An <xinemdungkhoc1@gmail.com>
+  - Jorge González <jorgegonz@svn.gnome.org>
+  - Gabriel F. Vilar <cogumm@gmail.com>
+  - Daniel Mustieles <daniel.mustieles@gmail.com>
+  - Andrej Žnidaršič <andrej.znidarsic@gmail.com>
+
+- Many other non-functional and/or minor improvements and fixes.
+
+Dependency-related changes:
+
+- Bump libsoup requirements
+
+Bugs fixed in this release:
+
+bgo#651965 - Rygel Uses 100% CPU while working on an incomplete MKV file
+
+- UPnP requirements satisfied:
+  - AV-CD:1-4.2
+  - AV-CD:1-4.3
+  - AV-CD:1-9.1
+  - AV-CD:1-11.1
+  - AV-CD:1-12.1
+  - AV-CM:1-5.1
+- DLNA requirements satisfied:
+  - 7.3.128.7
+  - 7.4.31.2
+  - 7.4.38.6
+  - 7.4.40.3
+  - 7.4.40.8
+  - 7.4.49.4
+Added/updated translations:
+  - cs, courtesy of Marek Černocký
+  - es, courtesy of Daniel Mustieles
+  - pt_BR, courtesy of Gabriel F. Vilar
+  - sl, courtesy of Andrej Žnidaršič
+  - tr, courtesy of Muhammet Kara
+  - vi, courtesy of Lê Trường An
+
 0.10.2
 ======
 
