@@ -48,6 +48,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
     public int child_count;
     public uint32 update_id;
+    public int64 storage_used;
 
     internal override OCMFlags ocm_flags {
         get {
@@ -89,6 +90,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.title = title;
         this.child_count = child_count;
         this.update_id = 0;
+        this.storage_used = -1;
         this.upnp_class = STORAGE_FOLDER;
 
         this.container_updated.connect (on_container_updated);
@@ -160,6 +162,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
         didl_container.child_count = this.child_count;
         didl_container.upnp_class = this.upnp_class;
         didl_container.searchable = this is SearchableContainer;
+        didl_container.storage_used = this.storage_used;
 
         if (!this.restricted) {
             didl_container.restricted = false;
