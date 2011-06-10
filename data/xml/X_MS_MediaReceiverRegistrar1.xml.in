@@ -21,21 +21,6 @@
             </argumentList>
         </action>
         <action>
-            <name>RegisterDevice</name>
-            <argumentList>
-                <argument>
-                    <name>RegistrationReqMsg</name>
-                    <direction>in</direction>
-                    <relatedStateVariable>A_ARG_TYPE_RegistrationReqMsg</relatedStateVariable>
-                </argument>
-                <argument>
-                    <name>RegistrationRespMsg</name>
-                    <direction>out</direction>
-                    <relatedStateVariable>A_ARG_TYPE_RegistrationRespMsg</relatedStateVariable>
-                </argument>
-            </argumentList>
-        </action>
-        <action>
             <name>IsValidated</name>
             <argumentList>
                 <argument>

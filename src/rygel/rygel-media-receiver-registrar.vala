@@ -41,7 +41,6 @@ internal class Rygel.MediaReceiverRegistrar: Service {
     public override void constructed () {
         this.action_invoked["IsAuthorized"].connect (this.is_authorized_cb);
         this.action_invoked["IsValidated"].connect (this.is_authorized_cb);
-        this.action_invoked["RegisterDevice"].connect (this.register_device_cb);
 
         this.query_variable["AuthorizationGrantedUpdateID"].connect
                                         (this.query_state);
@@ -57,15 +56,6 @@ internal class Rygel.MediaReceiverRegistrar: Service {
     private void is_authorized_cb (Service             registrar,
                                    owned ServiceAction action) {
         action.set ("Result", typeof (int), 1);
-
-        action.return ();
-    }
-
-    private void register_device_cb (Service             registrar,
-                                     owned ServiceAction action) {
-        action.set ("RegistrationRespMsg",
-                    typeof (string),
-                    "WhatisSupposedToBeHere");
 
         action.return ();
     }
