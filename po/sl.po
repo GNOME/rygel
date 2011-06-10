@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-05-20 17:16+0000\n"
+"POT-Creation-Date: 2011-06-08 11:32+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
@@ -91,26 +91,35 @@ msgstr "Predmet %s ni ustrezen"
 msgid "Failed to attach to D-Bus session bus: %s"
 msgstr "Pripenjanje vodila seje k DBus je spodletelo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:60
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:66
 msgid "No metadata extractor available. Will not crawl."
 msgstr "Na voljo ni ustreznega razširjevalnika. Podatki ne bodo zbrani."
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:103
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:109
 #, c-format
 msgid "'%s' harvested"
 msgstr "'%s' zbrano"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:171
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:188
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Napaka med pridobivanjem predmeta '%s' iz podatkovne zbirke: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:206
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:194
+#, c-format
+msgid "Failed to access media cache: %s"
+msgstr "Napaka med dostopom do predpomnilnika predstavnosti: %s."
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:233
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Napaka med odstranjevanjem predmeta iz podatkovne zbirke: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:80
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:40
+msgid "Will not monitor file changes"
+msgstr "Ne bo nadziral sprememb datoteke"
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
 msgid "Failed to get file info for %s"
 msgstr "Pridobivanje podatkov datoteke za %s je spodletelo"
@@ -212,8 +221,8 @@ msgstr "Izvajalci"
 msgid "Titles"
 msgstr "Naslovi"
 
-#: ../src/rygel/rygel-media-query-action.vala:117
-#: ../src/rygel/rygel-media-query-action.vala:141
+#: ../src/rygel/rygel-media-query-action.vala:118
+#: ../src/rygel/rygel-media-query-action.vala:177
 #: ../src/rygel/rygel-browse.vala:94
 #: ../src/rygel/rygel-item-creator.vala:186
 #: ../src/rygel/rygel-item-creator.vala:225
@@ -221,6 +230,10 @@ msgstr "Naslovi"
 #: ../src/rygel/rygel-item-destroyer.vala:101
 msgid "No such object"
 msgstr "Ni takšnega predmeta"
+
+#: ../src/rygel/rygel-media-query-action.vala:123
+msgid "Invalid range"
+msgstr "Neveljaven obseg"
 
 #: ../src/rygel/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -267,8 +280,8 @@ msgstr "Na voljo ni nobene vrednosti"
 msgid "Invalid connection reference"
 msgstr "Neveljaven sklic povezave"
 
-#: ../src/rygel/rygel-content-directory.vala:207
-#: ../src/rygel/rygel-content-directory.vala:220
+#: ../src/rygel/rygel-content-directory.vala:211
+#: ../src/rygel/rygel-content-directory.vala:224
 msgid "No such file transfer"
 msgstr "Ni takšnega prenosa datotek"
 
@@ -340,7 +353,7 @@ msgid "Not Found"
 msgstr "Ni najden"
 
 #: ../src/rygel/rygel-http-post.vala:61
-#: ../src/rygel/rygel-import-resource.vala:174
+#: ../src/rygel/rygel-import-resource.vala:186
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Objavljanje podatkov na predmet '%s', ki ni prazen, ni dovoljeno"
@@ -391,12 +404,12 @@ msgstr "Začetek '%ld' izven obsega"
 msgid "Out Of Range Stop '%ld'"
 msgstr "Konec '%ld' izven obsega"
 
-#: ../src/rygel/rygel-import-resource.vala:115
+#: ../src/rygel/rygel-import-resource.vala:124
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Pridobivanje izvirnega URI za '%s' je spodletelo: %s"
 
-#: ../src/rygel/rygel-import-resource.vala:171
+#: ../src/rygel/rygel-import-resource.vala:183
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Naslov URI '%s' je neveljaven za uvažanje vsebine"
@@ -778,9 +791,6 @@ msgstr "Zaustavljanje storitve Rygel je spodletelo: %s"
 
 #~ msgid "Failed to query database: %s"
 #~ msgstr "Poizvedba podatkovne zbirke je spodletela: %s"
-
-#~ msgid "Failed to update database: %s"
-#~ msgstr "Posodabljanje podatkovne zbirke je spodletelo: %s"
 
 #~ msgid "failed to enumerate folder: %s"
 #~ msgstr "Številčenje mape je spodletelo: %s"
