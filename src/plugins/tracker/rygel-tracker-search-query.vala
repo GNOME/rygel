@@ -39,7 +39,7 @@ public class Rygel.Tracker.SearchQuery : Query {
                                          ITEM_VARIABLE +
                                          ") = true)";
 
-    public ArrayList<ArrayList<string>> key_chains;
+    public ArrayList<string> properties;
     public QueryFilter filter;
     public string order_by;
     public uint offset;
@@ -47,16 +47,16 @@ public class Rygel.Tracker.SearchQuery : Query {
 
     public string[,] result;
 
-    public SearchQuery (ArrayList<ArrayList<string>>? key_chains,
-                        QueryTriplets                 triplets,
-                        QueryFilter?                  filter,
-                        string?                       order_by = null,
-                        uint                          offset = 0,
-                        uint                          max_count = 0,
-                        Cancellable?                  cancellable) {
+    public SearchQuery (ArrayList<string> properties,
+                        QueryTriplets     triplets,
+                        QueryFilter?      filter,
+                        string?           order_by = null,
+                        uint              offset = 0,
+                        uint              max_count = 0,
+                        Cancellable?      cancellable) {
         base (triplets);
 
-        this.key_chains = key_chains;
+        this.properties = properties;
         this.filter = filter;
         this.order_by = order_by;
         this.offset = offset;
@@ -93,12 +93,10 @@ public class Rygel.Tracker.SearchQuery : Query {
             query += " COUNT(" + this.ITEM_VARIABLE + ")";
         } else {
             query += " " + this.ITEM_VARIABLE;
-            foreach (var chain in this.key_chains) {
-                var variable = this.ITEM_VARIABLE;
-                foreach (var key in chain) {
-                    variable = key + "(" + variable + ")";
-                }
-                query += " " + variable;
+            var key_chain_map = KeyChainMap.get_key_chain_map ();
+
+            foreach (var propery in this.properties) {
+                query += key_chain_map.map_property (propery);
             }
         }
 

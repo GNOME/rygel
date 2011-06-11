@@ -42,11 +42,7 @@ public class Rygel.Tracker.QueryHelper : Object {
                                      uint              max_count = 0,
                                      Cancellable?      cancellable) {
         // Collect key chains
-        var key_chains = new ArrayList<ArrayList<string>> ();
-        var key_chain_map = KeyChainMap.get_key_chain_map ();
-        foreach (var property in this.container.item_factory.properties) {
-            key_chains.add (key_chain_map[property]);
-        }
+        var properties = this.container.item_factory.properties;
 
         // Collect triplets
         var triplets = new QueryTriplets ();
@@ -59,7 +55,7 @@ public class Rygel.Tracker.QueryHelper : Object {
         var filter = this.create_query_filter (expression);
 
         // Create query
-        var query = new SearchQuery (key_chains,
+        var query = new SearchQuery (properties,
                                      triplets,
                                      filter,
                                      order_by,
