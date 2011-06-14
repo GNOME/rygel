@@ -98,6 +98,16 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
 
             var container = yield this.fetch_container ();
 
+            /* Verify the create class. Note that we always assume
+             * createClass@includeDerived to be false */
+            if (!container.create_classes.contains (didl_item.upnp_class)) {
+                throw new ContentDirectoryError.BAD_METADATA
+                                        ("Creating of objects with class %s " +
+                                         "is not supported in %s",
+                                         didl_item.upnp_class,
+                                         container.id);
+            }
+
             this.item = this.create_item (didl_item.id,
                                           container,
                                           didl_item.title,
