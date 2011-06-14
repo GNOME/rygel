@@ -91,6 +91,11 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                          "were found in 'dlnaManaged'");
             }
 
+            if (didl_item.restricted) {
+                throw new ContentDirectoryError.INVALID_ARGS
+                                        ("Cannot create restricted item");
+            }
+
             var container = yield this.fetch_container ();
 
             this.item = this.create_item (didl_item.id,
