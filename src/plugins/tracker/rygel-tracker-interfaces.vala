@@ -30,7 +30,7 @@ public struct Event {
 
 [DBus (name = "org.freedesktop.Tracker1.Statistics")]
 public interface Rygel.Tracker.StatsIface : DBusProxy {
-    public abstract async string[,] get_statistics () throws IOError;
+    public abstract string[,] get_statistics () throws IOError;
 }
 
 [DBus (name = "org.freedesktop.Tracker1.Resources")]
