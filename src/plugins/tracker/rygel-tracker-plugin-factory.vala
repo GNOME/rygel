@@ -37,7 +37,7 @@ public void module_init (PluginLoader loader) {
 
     try {
         plugin_factory = new Tracker.PluginFactory (loader);
-    } catch (IOError err) {
+    } catch (Error err) {
         warning (_("Failed to start Tracker service: %s. Plugin disabled.") +
                  err.message);
     }
@@ -51,7 +51,7 @@ public class Rygel.Tracker.PluginFactory {
     StatsIface stats;
     PluginLoader loader;
 
-    public PluginFactory (PluginLoader loader) throws IOError {
+    public PluginFactory (PluginLoader loader) throws IOError, DBusError {
         this.stats = Bus.get_proxy_sync (BusType.SESSION,
                                          TRACKER_SERVICE,
                                          STATISTICS_OBJECT,

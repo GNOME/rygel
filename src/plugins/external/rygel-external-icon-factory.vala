@@ -29,7 +29,7 @@ public class Rygel.External.IconFactory {
 
     public async IconInfo? create (string                    service_name,
                                    HashTable<string,Variant> container_props)
-                                   throws IOError {
+                                   throws IOError, DBusError {
         var value = container_props.lookup ("Icon");
         if (value == null) {
             // Seems no icon is provided, nevermind

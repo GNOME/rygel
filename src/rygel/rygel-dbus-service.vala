@@ -28,7 +28,7 @@ public class Rygel.DBusService : Object, DBusInterface {
     private Main main;
     private uint connection_id;
 
-    public DBusService (Main main) throws IOError {
+    public DBusService (Main main) throws IOError, DBusError {
         this.main = main;
 
         DBusObject bus = Bus.get_proxy_sync

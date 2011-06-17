@@ -108,7 +108,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
 
         try {
             yield query.execute (this.resources);
-        } catch (IOError error) {
+        } catch (Error error) {
             critical (_("Error getting all values for '%s': %s"),
                       string.joinv (" -> ", this.key_chain),
                       error.message);

@@ -58,7 +58,7 @@ public class Rygel.MPRIS.PluginFactory {
         this.load_plugins.begin ();
     }
 
-    private async void load_plugins () throws IOError {
+    private async void load_plugins () throws DBusError {
         var services = yield this.dbus_obj.list_names ();
 
         foreach (var service in services) {
@@ -71,7 +71,7 @@ public class Rygel.MPRIS.PluginFactory {
         yield this.load_activatable_plugins ();
     }
 
-    private async void load_activatable_plugins () throws IOError {
+    private async void load_activatable_plugins () throws DBusError {
         var services = yield this.dbus_obj.list_activatable_names ();
 
         foreach (var service in services) {

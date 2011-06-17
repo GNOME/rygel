@@ -74,7 +74,7 @@ public class Rygel.Tracker.SelectionQuery : Query {
     }
 
     public override async void execute (ResourcesIface resources)
-                                        throws IOError {
+                                        throws IOError, DBusError {
         var str = this.to_string ();
 
         debug ("Executing SPARQL query: %s", str);

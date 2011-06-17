@@ -35,7 +35,7 @@ public class Rygel.External.ItemFactory {
                                    HashTable<string,Variant> props,
                                    string                    service_name,
                                    MediaContainer            parent)
-                                   throws GLib.Error {
+                                   throws IOError, DBusError {
         MediaItem item;
 
         if (type.has_prefix ("audio")) {
@@ -75,7 +75,7 @@ public class Rygel.External.ItemFactory {
                                         (MusicItem                 music,
                                          HashTable<string,Variant> props,
                                          string                    service_name)
-                                         throws GLib.Error {
+                                         throws IOError, DBusError {
         music.artist = this.get_string (props, "Artist");
         music.album = this.get_string (props, "Album");
         music.genre = this.get_string (props, "Genre");
@@ -94,7 +94,7 @@ public class Rygel.External.ItemFactory {
     private void set_audio_metadata (AudioItem                 audio,
                                      HashTable<string,Variant> props,
                                      string                    service_name)
-                                     throws GLib.Error {
+                                     throws DBusError {
         audio.duration = this.get_int (props, "Duration");
         audio.bitrate = this.get_int (props, "Bitrate");
         audio.sample_freq = this.get_int (props, "SampleRate");
@@ -105,7 +105,7 @@ public class Rygel.External.ItemFactory {
                                         (VisualItem                visual,
                                          HashTable<string,Variant> props,
                                          string                    service_name)
-                                         throws GLib.Error {
+                                         throws IOError, DBusError {
         visual.width = this.get_int (props, "Width");
         visual.height = this.get_int (props, "Height");
         visual.color_depth = this.get_int (props, "ColorDepth");
@@ -125,7 +125,7 @@ public class Rygel.External.ItemFactory {
                                         (VideoItem                 video,
                                          HashTable<string,Variant> props,
                                          string                    service_name)
-                                         throws GLib.Error {
+                                         throws IOError, DBusError {
         yield this.set_visual_metadata (video, props, service_name);
         this.set_audio_metadata (video, props, service_name);
     }
