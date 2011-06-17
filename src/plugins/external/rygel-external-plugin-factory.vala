@@ -31,7 +31,7 @@ private External.PluginFactory plugin_factory;
 public void module_init (PluginLoader loader) {
     try {
         plugin_factory = new External.PluginFactory (loader);
-    } catch (IOError error) {
+    } catch (Error error) {
         critical ("Failed to fetch list of external services: %s\n",
                 error.message);
     }
@@ -45,7 +45,7 @@ public class Rygel.External.PluginFactory {
     PluginLoader loader;
     IconFactory  icon_factory;
 
-    public PluginFactory (PluginLoader loader) throws IOError {
+    public PluginFactory (PluginLoader loader) throws IOError, DBusError {
         this.icon_factory = new IconFactory ();
 
         this.dbus_obj = Bus.get_proxy_sync
@@ -58,7 +58,7 @@ public class Rygel.External.PluginFactory {
         this.load_plugins.begin ();
     }
 
-    private async void load_plugins () throws IOError {
+    private async void load_plugins () throws DBusError {
         var services = yield this.dbus_obj.list_names ();
 
         foreach (var service in services) {
@@ -71,7 +71,7 @@ public class Rygel.External.PluginFactory {
         yield this.load_activatable_plugins ();
     }
 
-    private async void load_activatable_plugins () throws IOError {
+    private async void load_activatable_plugins () throws DBusError {
         var services = yield this.dbus_obj.list_activatable_names ();
 
         foreach (var service in services) {
@@ -108,14 +108,15 @@ public class Rygel.External.PluginFactory {
     private async void load_plugin_n_handle_error (string service_name) {
         try {
             yield this.load_plugin (service_name);
-        } catch (IOError error) {
+        } catch (Error error) {
             warning ("Failed to load external plugin '%s': %s",
                      service_name,
                      error.message);
         }
     }
 
-    private async void load_plugin (string service_name) throws IOError {
+    private async void load_plugin (string service_name)
+                                    throws IOError, DBusError {
         if (this.loader.plugin_disabled (service_name)) {
             message ("Plugin '%s' disabled by user, ignoring..", service_name);
 
@@ -166,7 +167,7 @@ public class Rygel.External.PluginFactory {
                                               icon);
 
             this.loader.add_plugin (plugin);
-        } catch (IOError err) {
+        } catch (Error err) {
             critical ("Failed to create root container for '%s': %s. " +
                       "Ignoring",
                       service_name,

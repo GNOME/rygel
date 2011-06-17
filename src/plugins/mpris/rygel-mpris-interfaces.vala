@@ -40,10 +40,10 @@ public interface Rygel.MPRIS.MediaPlayer.PlayerProxy : DBusProxy,
     public abstract int64 position { get; }
     public abstract HashTable<string,Variant> metadata { owned get; }
 
-    public abstract void pause () throws IOError;
-    public abstract void play_pause () throws IOError;
-    public abstract void stop () throws IOError;
-    public abstract void play () throws IOError;
-    public abstract void seek (int64 offset) throws IOError;
-    public abstract void open_uri (string uri) throws IOError;
+    public abstract void pause () throws DBusError;
+    public abstract void play_pause () throws DBusError;
+    public abstract void stop () throws DBusError;
+    public abstract void play () throws DBusError;
+    public abstract void seek (int64 offset) throws DBusError;
+    public abstract void open_uri (string uri) throws DBusError;
 }

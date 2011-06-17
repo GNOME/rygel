@@ -29,7 +29,8 @@ using FreeDesktop;
  */
 public class Rygel.External.AlbumArtFactory {
     public async Thumbnail create (string service_name,
-                                   string object_path) throws IOError {
+                                   string object_path)
+                                   throws IOError, DBusError {
         Properties props = yield Bus.get_proxy
                                         (BusType.SESSION,
                                          service_name,

@@ -30,7 +30,7 @@ using FreeDesktop;
 public class Rygel.External.ThumbnailFactory {
     public async Thumbnail create (string service_name,
                                    string object_path)
-                                   throws GLib.Error {
+                                   throws IOError, DBusError {
         Properties props = yield Bus.get_proxy
                                         (BusType.SESSION,
                                          service_name,

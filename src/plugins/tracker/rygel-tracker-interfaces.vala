@@ -30,19 +30,19 @@ public struct Event {
 
 [DBus (name = "org.freedesktop.Tracker1.Statistics")]
 public interface Rygel.Tracker.StatsIface : DBusProxy {
-    public abstract string[,] get_statistics () throws IOError;
+    public abstract string[,] get_statistics () throws DBusError;
 }
 
 [DBus (name = "org.freedesktop.Tracker1.Resources")]
 public interface Rygel.Tracker.ResourcesIface: DBusProxy {
     public abstract async string[,] sparql_query (string query)
-                                                  throws IOError;
-    public abstract async void sparql_update (string query) throws IOError;
+                                                  throws DBusError;
+    public abstract async void sparql_update (string query) throws DBusError;
     public abstract async HashTable<string,string>[,] sparql_update_blank
-                                        (string query) throws IOError;
+                                        (string query) throws DBusError;
 }
 
 [DBus (name = "org.freedesktop.Tracker1.Miner.Files.Index")]
 public interface Rygel.Tracker.MinerFilesIndexIface: DBusProxy {
-    public abstract async void index_file (string uri) throws IOError;
+    public abstract async void index_file (string uri) throws DBusError;
 }

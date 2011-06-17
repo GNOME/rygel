@@ -41,16 +41,16 @@ public interface FreeDesktop.DBusObject: Object {
 
     // FIXME: These methods should be async
     public abstract uint32 request_name (string name, uint32 flags)
-                                         throws IOError;
+                                         throws DBusError;
     public abstract uint32 start_service_by_name (string name, uint32 flags)
-                                                  throws IOError;
-    public abstract async string[] list_names () throws IOError;
-    public abstract async string[] list_activatable_names () throws IOError;
+                                                  throws DBusError;
+    public abstract async string[] list_names () throws DBusError;
+    public abstract async string[] list_activatable_names () throws DBusError;
 }
 
 [DBus (name = "org.freedesktop.DBus.Properties")]
 public interface FreeDesktop.Properties: Object {
     public abstract async HashTable<string,Variant> get_all (string iface)
-                                                             throws IOError;
+                                                             throws DBusError;
 }
 
