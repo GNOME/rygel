@@ -1,3 +1,51 @@
+0.11.1
+======
+
+Another release in the unstable release cycle.
+
+This is mostly a comatibility release to be able to build against latest
+unstable releases of GSSDP & GUPnP.
+
+Changes since 0.11.0:
+
+- Fix warnings and critical messages when Rygel is run without a DBus session
+  bus available.
+- Modify XBox support to not disturb UPnP conformance.
+- Bump required minimum versions of GSSDP, GUPnP, GUPnP-AV and GUPnP-Vala.
+- Implement upnp:searchClass.
+- Several improvements to SOAP action parameter validation.
+- MediaExport:
+  - Add APE to the supported media formats.
+
+All contributors to this release:
+  - Jens Georg <mail@jensge.org>
+  - Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+  - Topi Santakivi <topi.santakivi@digia.com>
+  - Andrej Žnidaršič <andrej.znidarsic@gmail.com>
+  - Mario Blättermann <mariobl@gnome.org>
+
+Dependency-related changes:
+- Bump GSSDP requirement to 0.11.0
+- Bump GUPnP requirement to 0.17.0
+- Bump GUPnP-AV requirement to 0.9.0
+- Bump GUPnP-Vala requirement to 0.9.0
+
+- UPnP requirements addressed:
+  - UDA-1.1.1
+  - UDA-1.1.2
+  - UDA-1.1.3
+  - UDA-1.1.4
+  - UDA-3.1.3
+  - UDA-4.2.2
+  - AV-CD:1-6.1
+- DLNA requirements addressed:
+  - 7.3.67.4
+  - 7.3.134.1
+
+Updated translations:
+  - de, courtesy of Mario Blättermann.
+  - sl, courtesy of Andrej Žnidaršič.
+
 0.11.0
 ======
 
