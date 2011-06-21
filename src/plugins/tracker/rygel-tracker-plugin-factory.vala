@@ -58,7 +58,7 @@ public class Rygel.Tracker.PluginFactory {
                                          DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
         this.loader = loader;
 
-        this.stats.get_statistics ();
+        this.stats.get ();
 
         this.loader.add_plugin (new Tracker.Plugin ());
     }
