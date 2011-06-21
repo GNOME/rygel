@@ -62,6 +62,7 @@ Requirements
   * Run-time:
     * Definitely needed:
       * gst-plugins-base
+      * shared-mime-info
     * Might be needed (depending on your usage and media collection):
       * gst-plugins-good
       * gst-ffmpeg
