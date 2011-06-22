@@ -64,7 +64,7 @@ public class Rygel.Tracker.SearchQuery : Query {
     }
 
     public override async void execute (ResourcesIface resources)
-                                        throws IOError {
+                                        throws DBusError, IOError {
         var str = this.to_string_with_count ();
 
         debug ("Executing SPARQL search query: %s", str);
@@ -72,7 +72,8 @@ public class Rygel.Tracker.SearchQuery : Query {
         this.result = yield resources.sparql_query (str);
     }
 
-    public async uint get_count (ResourcesIface resources) throws IOError {
+    public async uint get_count (ResourcesIface resources)
+                                 throws DBusError, IOError {
         var str = this.to_string_with_count (true);
 
         debug ("Executing SPARQL search query for count: %s", str);
