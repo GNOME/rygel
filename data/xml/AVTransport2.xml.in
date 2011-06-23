@@ -14,9 +14,8 @@ feature provided by your editor.
 ================================================================-->
 <scpd>
    <serviceStateTable>
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>TransportState</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
          <allowedValueList>
             <allowedValue>STOPPED</allowedValue>
@@ -24,9 +23,8 @@ feature provided by your editor.
          </allowedValueList>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>TransportStatus</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
          <allowedValueList>
             <allowedValue>OK</allowedValue>
@@ -34,9 +32,8 @@ feature provided by your editor.
          </allowedValueList>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>CurrentMediaCategory</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
          <allowedValueList>
             <allowedValue>NO_MEDIA</allowedValue>
@@ -45,33 +42,28 @@ feature provided by your editor.
          </allowedValueList>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>PlaybackStorageMedium</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>RecordStorageMedium</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>PossiblePlaybackStorageMedia</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>PossibleRecordStorageMedia</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>CurrentPlayMode</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
          <allowedValueList>
             <allowedValue>NORMAL</allowedValue>
@@ -79,9 +71,8 @@ feature provided by your editor.
          <defaultValue>NORMAL</defaultValue>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>TransportPlaySpeed</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
          <allowedValueList>
             <allowedValue>1</allowedValue>
@@ -89,36 +80,31 @@ feature provided by your editor.
          <defaultValue>1</defaultValue>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>RecordMediumWriteStatus</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>CurrentRecordQualityMode</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>PossibleRecordQualityModes</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>NumberOfTracks</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>ui4</dataType>
          <allowedValueRange>
             <minimum>0</minimum>
          </allowedValueRange>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>CurrentTrack</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>ui4</dataType>
          <allowedValueRange>
             <minimum>0</minimum>
@@ -126,87 +112,73 @@ feature provided by your editor.
          </allowedValueRange>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>CurrentTrackDuration</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>CurrentMediaDuration</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>CurrentTrackMetaData</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>CurrentTrackURI</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>AVTransportURI</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>AVTransportURIMetaData</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>NextAVTransportURI</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>NextAVTransportURIMetaData</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>RelativeTimePosition</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>AbsoluteTimePosition</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>RelativeCounterPosition</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>i4</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>AbsoluteCounterPosition</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>i4</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="yes">
          <name>LastChange</name>
-         <sendEventsAttribute>yes</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_SeekMode</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
          <allowedValueList>
             <allowedValue>ABS_TIME</allowedValue>
@@ -214,15 +186,13 @@ feature provided by your editor.
          </allowedValueList>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_SeekTarget</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_InstanceID</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>ui4</dataType>
       </stateVariable>
    </serviceStateTable>
@@ -518,7 +488,6 @@ feature provided by your editor.
       </action>
 
       <action>
-         <Optional/>
          <name>Pause</name>
          <argumentList>
             <argument>

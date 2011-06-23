@@ -18,52 +18,43 @@ feature provided by your editor.
       <minor>0</minor>
    </specVersion>
    <serviceStateTable>
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>SearchCapabilities</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>SortCapabilities</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="yes">
          <name>SystemUpdateID</name>
-         <sendEventsAttribute>yes</sendEventsAttribute>
          <dataType>ui4</dataType>
       </stateVariable>
 
-      <stateVariable>
-         <Optional/>
+      <stateVariable sendEvents="yes">
          <name>ContainerUpdateIDs</name>
-         <sendEventsAttribute>yes</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>FeatureList</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_ObjectID</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_Result</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_BrowseFlag</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
          <allowedValueList>
             <allowedValue>BrowseMetadata</allowedValue>
@@ -71,68 +62,53 @@ feature provided by your editor.
          </allowedValueList>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_Filter</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_SortCriteria</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_Index</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>ui4</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_Count</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>ui4</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_UpdateID</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>ui4</dataType>
       </stateVariable>
 
-      <stateVariable>
-         <Optional/>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_SearchCriteria</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
-         <Optional/>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_URI</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>uri</dataType>
       </stateVariable>
 
-      <stateVariable>
-         <Optional/>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_TransferID</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>ui4</dataType>
       </stateVariable>
 
-      <stateVariable>
-         <Optional/>
+      <stateVariable sendEvents="yes">
          <name>TransferIDs</name>
-         <sendEventsAttribute>yes</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
-         <Optional/>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_TransferStatus</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
          <allowedValueList>
             <allowedValue>COMPLETED</allowedValue>
@@ -142,17 +118,13 @@ feature provided by your editor.
          </allowedValueList>
       </stateVariable>
 
-      <stateVariable>
-         <Optional/>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_TransferLength</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
-         <Optional/>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_TransferTotal</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
    </serviceStateTable>
@@ -260,7 +232,6 @@ feature provided by your editor.
       </action>
 
       <action>
-         <Optional/>
          <name>Search</name>
          <argumentList>
             <argument>
@@ -317,7 +288,6 @@ feature provided by your editor.
       </action>
 
       <action>
-         <Optional/>
          <name>CreateObject</name>
          <argumentList>
             <argument>
@@ -344,7 +314,6 @@ feature provided by your editor.
       </action>
 
       <action>
-         <Optional/>
          <name>DestroyObject</name>
          <argumentList>
             <argument>
@@ -356,7 +325,6 @@ feature provided by your editor.
       </action>
 
       <action>
-         <Optional/>
          <name>ImportResource</name>
          <argumentList>
             <argument>
@@ -378,7 +346,6 @@ feature provided by your editor.
       </action>
 
       <action>
-         <Optional/>
          <name>GetTransferProgress</name>
          <argumentList>
             <argument>
@@ -405,7 +372,6 @@ feature provided by your editor.
       </action>
 
       <action>
-         <Optional/>
          <name>StopTransferResource</name>
          <argumentList>
             <argument>

@@ -14,29 +14,23 @@ feature provided by your editor.
 ================================================================-->
 <scpd>
    <serviceStateTable>
-      <stateVariable>
+      <stateVariable sendEvents="yes">
          <name>LastChange</name>
-         <sendEventsAttribute>yes</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>PresetNameList</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
-         <Optional/>
+      <stateVariable sendEvents="no">
          <name>Mute</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>boolean</dataType>
       </stateVariable>
 
-      <stateVariable>
-         <Optional/>
+      <stateVariable sendEvents="no">
          <name>Volume</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>ui2</dataType>
          <allowedValueRange>
             <minimum>0</minimum>
@@ -44,25 +38,21 @@ feature provided by your editor.
          </allowedValueRange>
       </stateVariable>
 
-      <stateVariable>
-         <Optional/>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_Channel</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
          <allowedValueList>
             <allowedValue>Master</allowedValue>
          </allowedValueList>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_InstanceID</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>ui4</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_PresetName</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
          <allowedValueList>
             <allowedValue>FactoryDefaults</allowedValue>
@@ -104,7 +94,6 @@ feature provided by your editor.
       </action>
 
       <action>
-         <Optional/>
          <name>GetMute</name>
          <argumentList>
             <argument>
@@ -126,7 +115,6 @@ feature provided by your editor.
       </action>
 
       <action>
-         <Optional/>
          <name>SetMute</name>
          <argumentList>
             <argument>
@@ -148,7 +136,6 @@ feature provided by your editor.
       </action>
 
       <action>
-         <Optional/>
          <name>GetVolume</name>
          <argumentList>
             <argument>
@@ -170,7 +157,6 @@ feature provided by your editor.
       </action>
 
       <action>
-         <Optional/>
          <name>SetVolume</name>
          <argumentList>
             <argument>

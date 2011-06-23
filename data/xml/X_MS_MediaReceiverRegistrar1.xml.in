@@ -37,44 +37,36 @@
         </action>
     </actionList>
     <serviceStateTable>
-        <stateVariable>
+        <stateVariable sendEvents="no">
             <name>A_ARG_TYPE_DeviceID</name>
-            <sendEventsAttribute>no</sendEventsAttribute>
             <dataType>string</dataType>
         </stateVariable>
-        <stateVariable>
+        <stateVariable sendEvents="no">
             <name>A_ARG_TYPE_Result</name>
-            <sendEventsAttribute>no</sendEventsAttribute>
             <dataType>int</dataType>
         </stateVariable>
-        <stateVariable>
+        <stateVariable sendEvents="no">
             <name>A_ARG_TYPE_RegistrationReqMsg</name>
-            <sendEventsAttribute>no</sendEventsAttribute>
             <dataType>bin.base64</dataType>
         </stateVariable>
-        <stateVariable>
+        <stateVariable sendEvents="no">
             <name>A_ARG_TYPE_RegistrationRespMsg</name>
-            <sendEventsAttribute>no</sendEventsAttribute>
             <dataType>bin.base64</dataType>
         </stateVariable>
-        <stateVariable>
+        <stateVariable sendEvents="yes">
             <name>AuthorizationGrantedUpdateID</name>
-            <sendEventsAttribute>yes</sendEventsAttribute>
             <dataType>ui4</dataType>
         </stateVariable>
-        <stateVariable>
+        <stateVariable sendEvents="yes">
             <name>AuthorizationDeniedUpdateID</name>
-            <sendEventsAttribute>yes</sendEventsAttribute>
             <dataType>ui4</dataType>
         </stateVariable>
-        <stateVariable>
+        <stateVariable sendEvents="yes">
             <name>ValidationSucceededUpdateID</name>
-            <sendEventsAttribute>yes</sendEventsAttribute>
             <dataType>ui4</dataType>
         </stateVariable>
-        <stateVariable>
+        <stateVariable sendEvents="yes">
             <name>ValidationRevokedUpdateID</name>
-            <sendEventsAttribute>yes</sendEventsAttribute>
             <dataType>ui4</dataType>
         </stateVariable>
     </serviceStateTable>

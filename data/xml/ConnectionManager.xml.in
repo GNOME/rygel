@@ -18,27 +18,23 @@ feature provided by your editor.
       <minor>0</minor>
    </specVersion>
    <serviceStateTable>
-      <stateVariable>
+      <stateVariable sendEvents="yes">
          <name>SourceProtocolInfo</name>
-         <sendEventsAttribute>yes</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="yes">
          <name>SinkProtocolInfo</name>
-         <sendEventsAttribute>yes</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="yes">
          <name>CurrentConnectionIDs</name>
-         <sendEventsAttribute>yes</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_ConnectionStatus</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
          <allowedValueList>
             <allowedValue>OK</allowedValue>
@@ -49,15 +45,13 @@ feature provided by your editor.
          </allowedValueList>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_ConnectionManager</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_Direction</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
          <allowedValueList>
             <allowedValue>Input</allowedValue>
@@ -65,27 +59,23 @@ feature provided by your editor.
          </allowedValueList>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_ProtocolInfo</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>string</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_ConnectionID</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>i4</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_AVTransportID</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>i4</dataType>
       </stateVariable>
 
-      <stateVariable>
+      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_RcsID</name>
-         <sendEventsAttribute>no</sendEventsAttribute>
          <dataType>i4</dataType>
       </stateVariable>
    </serviceStateTable>
