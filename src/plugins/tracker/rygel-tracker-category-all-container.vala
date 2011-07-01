@@ -74,6 +74,9 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
                                      this.item_factory.category_iri,
                                      DBusSignalFlags.NONE,
                                      this.on_graph_updated);
+
+        var cleanup_query = new CleanupQuery (this.item_factory.category);
+        cleanup_query.execute (this.resources);
     }
 
     public async void add_item (MediaItem item, Cancellable? cancellable)

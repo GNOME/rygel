@@ -25,6 +25,7 @@ librygel_tracker_la_SOURCES = \
 	rygel-tracker-selection-query.vala \
 	rygel-tracker-deletion-query.vala \
 	rygel-tracker-insertion-query.vala \
+	rygel-tracker-cleanup-query.vala \
 	rygel-tracker-query-triplet.vala \
 	rygel-tracker-query-triplets.vala \
 	rygel-tracker-query-filter.vala \
