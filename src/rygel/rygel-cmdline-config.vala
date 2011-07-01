@@ -284,6 +284,18 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
         return config_file;
     }
 
+    public string get_video_upload_folder () throws GLib.Error {
+        throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
+    }
+
+    public string get_music_upload_folder () throws GLib.Error {
+        throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
+    }
+
+    public string get_picture_upload_folder () throws GLib.Error {
+        throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
+    }
+
     // Dynamic options
     // FIXME: How to handle them?
     public string get_string (string section,

@@ -43,6 +43,13 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     public static const string ALLOW_DELETION_KEY = "allow-deletion";
     public static const string LOG_LEVELS_KEY = "log-level";
     public static const string PLUGIN_PATH_KEY = "plugin-path";
+    public static const string UPLOAD_FOLDER_KEY = "upload-folder";
+    public static const string VIDEO_UPLOAD_DIR_PATH_KEY =
+                                        "video-" + UPLOAD_FOLDER_KEY;
+    public static const string MUSIC_UPLOAD_DIR_PATH_KEY =
+                                        "music-" + UPLOAD_FOLDER_KEY;
+    public static const string PICTURE_UPLOAD_DIR_PATH_KEY =
+                                        "picture-" + UPLOAD_FOLDER_KEY;
 
     // Our singleton
     private static UserConfig config;
@@ -96,6 +103,18 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
     public string get_plugin_path () throws GLib.Error {
         return this.get_string ("general", PLUGIN_PATH_KEY);
+    }
+
+    public string get_video_upload_folder () throws GLib.Error {
+        return this.get_string ("general", VIDEO_UPLOAD_DIR_PATH_KEY);
+    }
+
+    public string get_music_upload_folder () throws GLib.Error {
+        return this.get_string ("general", MUSIC_UPLOAD_DIR_PATH_KEY);
+    }
+
+    public string get_picture_upload_folder () throws GLib.Error {
+        return this.get_string ("general", PICTURE_UPLOAD_DIR_PATH_KEY);
     }
 
     public static UserConfig get_default () throws Error {

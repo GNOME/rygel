@@ -295,6 +295,50 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         return val;
     }
 
+    public string get_video_upload_folder () throws GLib.Error {
+        unowned string default = Environment.get_user_special_dir
+                                        (UserDirectory.VIDEOS);
+        var value = default;
+
+        foreach (var config in this.configs) {
+            try {
+                value = config.get_video_upload_folder ();
+            } catch (GLib.Error err) { }
+        }
+
+        return value.replace ("@VIDEOS@", default);
+    }
+
+    public string get_music_upload_folder () throws GLib.Error {
+        unowned string default = Environment.get_user_special_dir
+                                        (UserDirectory.MUSIC);
+
+        var value = default;
+
+        foreach (var config in this.configs) {
+            try {
+                value = config.get_music_upload_folder ();
+            } catch (GLib.Error err) {};
+        }
+
+        return value.replace ("@MUSIC@", default);
+    }
+
+    public string get_picture_upload_folder () throws GLib.Error {
+        unowned string default = Environment.get_user_special_dir
+                                        (UserDirectory.PICTURES);
+        var value = default;
+
+        foreach (var config in this.configs) {
+            try {
+                value = config.get_picture_upload_folder ();
+            } catch (GLib.Error err) {};
+        }
+
+        return value.replace ("@PICTURES@", default);
+    }
+
+
     public bool get_enabled (string section) throws GLib.Error {
         bool val = true;
         bool unavailable = true;

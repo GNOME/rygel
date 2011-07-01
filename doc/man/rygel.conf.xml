@@ -219,6 +219,30 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <para>Allow remote media file deletion via UPnP.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <option>video-upload-folder</option>
+        </term>
+        <listitem>
+          <para>If <option>allow-upload</option> is <userinput>true</userinput>, use this folder to store uploaded videos. It defaults to <userinput>@VIDEOS@</userinput> which expands to the default directory for video files (usually <filename><envar>$HOME</envar>/Videos</filename>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>music-upload-folder</option>
+        </term>
+        <listitem>
+          <para>If <option>allow-upload</option> is <userinput>true</userinput>, use this folder to store uploaded music files. It defaults to <userinput>@MUSIC@</userinput> which expands to the default directory for music files (usually <filename><envar>$HOME</envar>/Music</filename>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>picture-upload-folder</option>
+        </term>
+        <listitem>
+          <para>If <option>allow-upload</option> is <userinput>true</userinput>, use this folder to store uploaded pictures. It defaults to <userinput>@PICTURES@</userinput> which expands to the default directory for picture files (usually <filename><envar>$HOME</envar>/Pictures</filename>).</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para>Sections for plugins are denoted with <option>[PluginName]</option>
       and can contain options specific to a plugin (see below)  as well these common options:

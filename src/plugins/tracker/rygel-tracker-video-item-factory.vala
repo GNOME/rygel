@@ -42,10 +42,14 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
                                         "temp/nmm#Video";
 
     public VideoItemFactory () {
-        base (CATEGORY,
-              CATEGORY_IRI,
-              VideoItem.UPNP_CLASS,
-              Environment.get_user_special_dir (UserDirectory.VIDEOS));
+        var upload_folder = Environment.get_user_special_dir
+                                        (UserDirectory.VIDEOS);
+        try {
+            var config = MetaConfig.get_default ();
+            upload_folder = config.get_video_upload_folder ();
+        } catch (Error error) {};
+
+        base (CATEGORY, CATEGORY_IRI, VideoItem.UPNP_CLASS, upload_folder);
 
         // These must be in the same order as enum VideoMetadata
         this.properties.add ("height");

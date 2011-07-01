@@ -41,10 +41,14 @@ public class Rygel.Tracker.PictureItemFactory : ItemFactory {
                                         "temp/nmm#Photo";
 
     public PictureItemFactory () {
-        base (CATEGORY,
-              CATEGORY_IRI,
-              PhotoItem.UPNP_CLASS,
-              Environment.get_user_special_dir (UserDirectory.PICTURES));
+        var upload_folder = Environment.get_user_special_dir
+                                        (UserDirectory.PICTURES);
+        try {
+            var config = MetaConfig.get_default ();
+            upload_folder = config.get_picture_upload_folder ();
+        } catch (Error error) {};
+
+        base (CATEGORY, CATEGORY_IRI, PhotoItem.UPNP_CLASS, upload_folder);
 
         // These must be in the same order as enum PictureMetadata
         this.properties.add ("height");

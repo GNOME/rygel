@@ -48,10 +48,14 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
                                         "temp/nmm#MusicPiece";
 
     public MusicItemFactory () {
-        base (CATEGORY,
-              CATEGORY_IRI,
-              MusicItem.UPNP_CLASS,
-              Environment.get_user_special_dir (UserDirectory.MUSIC));
+        var upload_folder = Environment.get_user_special_dir
+                                        (UserDirectory.MUSIC);
+        try {
+            var config = MetaConfig.get_default ();
+            upload_folder = config.get_music_upload_folder ();
+        } catch (Error error) {};
+
+        base (CATEGORY, CATEGORY_IRI, MusicItem.UPNP_CLASS, upload_folder);
 
         // These must be the same order as enum MusicMetadata
         this.properties.add ("res@duration");

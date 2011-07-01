@@ -105,6 +105,18 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
         return this.get_string_variable (PLUGIN_PATH_ENV);
     }
 
+    public string get_video_upload_folder () throws GLib.Error {
+        throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
+    }
+
+    public string get_music_upload_folder () throws GLib.Error {
+        throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
+    }
+
+    public string get_picture_upload_folder () throws GLib.Error {
+        throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
+    }
+
     public bool get_enabled (string section) throws GLib.Error {
         return get_bool (section, ENABLED_KEY);
     }
