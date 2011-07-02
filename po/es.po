@@ -1,22 +1,22 @@
 # Spanish translation for rygel.
 # Copyright (C) 2010 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
-# Jorge González <jorgegonz@svn.gnome.org>, 2010, 2011.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2011.
+# Jorge González <jorgegonz@svn.gnome.org>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-06-03 22:27+0000\n"
-"PO-Revision-Date: 2011-06-04 10:38+0200\n"
-"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"POT-Creation-Date: 2011-06-18 22:04+0000\n"
+"PO-Revision-Date: 2011-07-02 07:58+0200\n"
+"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Content-Transfer-Encoding: 8bits\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -88,26 +88,36 @@ msgstr "El objeto %s no es un elemento"
 msgid "Failed to attach to D-Bus session bus: %s"
 msgstr "Falló al adjuntarse al bus de sesión D-Bus: %su"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:60
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:66
 msgid "No metadata extractor available. Will not crawl."
 msgstr "No existe un extractor de metadatos disponible. No se arrastrará."
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:103
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:109
 #, c-format
 msgid "'%s' harvested"
 msgstr "«%s» recolectado"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:171
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:188
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Error al obtener el objeto «%s» de la base de datos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:206
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:194
+#, c-format
+#| msgid "Failed to update database: %s"
+msgid "Failed to access media cache: %s"
+msgstr "Falló al acceder a la caché multimedia: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:233
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Error al quitar el objeto de la base de datos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:80
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:40
+msgid "Will not monitor file changes"
+msgstr "No se monitorizarán cambios en archivos"
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
 msgid "Failed to get file info for %s"
 msgstr "Falló al obtener el archivo de información para %s"
@@ -166,12 +176,12 @@ msgstr "Imágenes"
 msgid "Videos"
 msgstr "Vídeos"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:56
 #, c-format
 msgid "Failed to create D-Bus proxies: %s"
 msgstr "Falló al crear los proxies de D-Bus: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:62
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:64
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "Falló al construir el URI para la carpeta «%s»: %s"
@@ -210,16 +220,15 @@ msgid "Titles"
 msgstr "Títulos"
 
 #: ../src/rygel/rygel-media-query-action.vala:118
-#: ../src/rygel/rygel-media-query-action.vala:150
-#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:186
-#: ../src/rygel/rygel-item-creator.vala:225
+#: ../src/rygel/rygel-media-query-action.vala:177
+#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:207
+#: ../src/rygel/rygel-item-creator.vala:246
 #: ../src/rygel/rygel-item-destroyer.vala:53
 #: ../src/rygel/rygel-item-destroyer.vala:101
 msgid "No such object"
 msgstr "No existe el objeto"
 
 #: ../src/rygel/rygel-media-query-action.vala:123
-#| msgid "Invalid Name"
 msgid "Invalid range"
 msgstr "Rango no válido"
 
@@ -264,12 +273,26 @@ msgstr "Falló al examinar «%s»: %s\n"
 msgid "No value available"
 msgstr "No existe un valor disponible"
 
-#: ../src/rygel/rygel-connection-manager.vala:107
+#: ../src/rygel/rygel-connection-manager.vala:89
+#: ../src/rygel/rygel-connection-manager.vala:103
+#: ../src/rygel/rygel-connection-manager.vala:125
+#: ../src/rygel/rygel-content-directory.vala:198
+#: ../src/rygel/rygel-content-directory.vala:225
+#: ../src/rygel/rygel-content-directory.vala:244
+#: ../src/rygel/rygel-content-directory.vala:279
+#: ../src/rygel/rygel-content-directory.vala:304
+#: ../src/rygel/rygel-content-directory.vala:329
+#: ../src/rygel/rygel-media-receiver-registrar.vala:59
+#| msgid "Invalid Arguments"
+msgid "Invalid argument"
+msgstr "Argumento no válido"
+
+#: ../src/rygel/rygel-connection-manager.vala:119
 msgid "Invalid connection reference"
 msgstr "Referencia de conexión no válida"
 
-#: ../src/rygel/rygel-content-directory.vala:209
-#: ../src/rygel/rygel-content-directory.vala:222
+#: ../src/rygel/rygel-content-directory.vala:217
+#: ../src/rygel/rygel-content-directory.vala:236
 msgid "No such file transfer"
 msgstr "No existe tal transferencia de archivo"
 
@@ -340,13 +363,13 @@ msgstr "URI «%s» no válida"
 msgid "Not Found"
 msgstr "No se encontró"
 
-#: ../src/rygel/rygel-http-post.vala:61
-#: ../src/rygel/rygel-import-resource.vala:180
+#: ../src/rygel/rygel-http-post.vala:63
+#: ../src/rygel/rygel-import-resource.vala:186
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "No se permite empujar datos al elemento «%s» no vacío"
 
-#: ../src/rygel/rygel-http-post.vala:69
+#: ../src/rygel/rygel-http-post.vala:71
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "No existe un URI escribible para %s"
@@ -392,36 +415,36 @@ msgstr "Fuera del rango de inicio «%ld»"
 msgid "Out Of Range Stop '%ld'"
 msgstr "Fuera del rango de fin «%ld»"
 
-#: ../src/rygel/rygel-import-resource.vala:120
+#: ../src/rygel/rygel-import-resource.vala:124
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Falló al obtener el URI original para «%s»: %s"
 
-#: ../src/rygel/rygel-import-resource.vala:177
+#: ../src/rygel/rygel-import-resource.vala:183
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "El URI «%s» no es válido para importar contenido de él"
 
-#: ../src/rygel/rygel-item-creator.vala:68
+#: ../src/rygel/rygel-item-creator.vala:74
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "No existen elementos en DIDL-Lite desde el cliente: «%s»"
 
-#: ../src/rygel/rygel-item-creator.vala:177
+#: ../src/rygel/rygel-item-creator.vala:198
 msgid "'Elements' argument missing."
 msgstr "Falta el argumento «elements»."
 
-#: ../src/rygel/rygel-item-creator.vala:180
+#: ../src/rygel/rygel-item-creator.vala:201
 msgid "Comments not allowed in XML"
 msgstr "No se permiten comentarios en XML"
 
-#: ../src/rygel/rygel-item-creator.vala:229
-#: ../src/rygel/rygel-item-creator.vala:318
+#: ../src/rygel/rygel-item-creator.vala:250
+#: ../src/rygel/rygel-item-creator.vala:339
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "No se permite la creación de objetos en %s"
 
-#: ../src/rygel/rygel-item-creator.vala:255
+#: ../src/rygel/rygel-item-creator.vala:276
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Falló al crear un elemento bajo «%s»: %s"
@@ -788,9 +811,6 @@ msgstr "Falló al parar el servicio Rygel: %s"
 
 #~ msgid "Failed to query database: %s"
 #~ msgstr "Falló al consultar la base de datos: %s"
-
-#~ msgid "Failed to update database: %s"
-#~ msgstr "Falló al actualizar la base de datos: %s"
 
 #~ msgid "failed to enumerate folder: %s"
 #~ msgstr "Falló al enumerar la carpeta: %s"
