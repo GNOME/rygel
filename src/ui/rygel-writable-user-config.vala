@@ -32,6 +32,13 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
     private const string RYGEL_PATH = "/org/gnome/Rygel1";
     private const string RYGEL_INTERFACE = "org.gnome.Rygel1";
 
+    public WritableUserConfig () throws Error {
+        var path = Path.build_filename (Environment.get_user_config_dir (),
+                                        CONFIG_FILE);
+
+        base (path);
+    }
+
     public void set_upnp_enabled (bool value) {
         bool enabled = false;
 
