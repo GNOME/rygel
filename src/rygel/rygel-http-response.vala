@@ -242,9 +242,13 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
             }
         }
 
+        // If pipeline state didn't change due to the request being cancelled,
+        // end this request. Otherwise it was already ended.
         if (!ret) {
             Idle.add_full (this.priority, () => {
-                this.end (false, KnownStatusCode.NONE);
+                if (!this.cancellable.is_cancelled ()) {
+                    this.end (false, KnownStatusCode.NONE);
+                }
 
                 return false;
             });
