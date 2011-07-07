@@ -1,3 +1,15 @@
+0.10.3
+======
+
+A new release in the stable 0.10.x series for GNOME 3.0. Changes since 0.10.2:
+
+- Fix many criticals and warnings when running without DBus.
+- Propery check for the presence of tracker in Tracker plugin.
+
+All contributors to this release:
+
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 0.10.2
 ======
 
