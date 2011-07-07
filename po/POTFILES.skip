@@ -83,6 +83,7 @@ src/rygel/rygel-xbox-hacks.c
 src/rygel/rygel-changelog.c
 src/rygel/rygel-media-query-action.c
 src/rygel/rygel-media-receiver-registrar.c
+src/rygel/rygel-environment-config.c
 src/ui/rygel-preferences-dialog.c
 src/ui/rygel-writable-user-config.c
 data/rygel.desktop.in
