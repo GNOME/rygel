@@ -1,3 +1,38 @@
+0.11.2
+======
+
+Another release in the unstable release cycle.
+
+Changes since 0.11.1:
+
+- Fix regression introduced in 0.11.1 which made tracker plugin fail to
+  start.
+- Add commandline options -c, --config to override the user
+  configuration file.
+- Add a config file options to override the upload directories.
+- Use proper UPnP service description syntax.
+- Tracker:
+  - Clean-up left-over place-holder items on plugin start-up.
+
+All contributors to this release:
+  - Jens Georg <mail@jensge.org>
+  - Topi Santakivi <topi.santakivi@digia.com>
+  - Matej Urbančič <mateju@svn.gnome.org>
+  - Marek Černocký <marek@manet.cz>
+  - Jorge González <jorgegonz@svn.gnome.org>
+
+Added/updated translations
+  - cs, courtesy of Marek Černocký
+  - es, courtesy of Jorge González
+  - sl, courtesy of Matej Urbančič
+
+- UPnP requirements addressed:
+  - UPnP CTT 1.5 cases 1.x.y.z.
+
+- DLNA requirements addressed:
+  - 7.3.139.1
+  - Improved robustness for the CreateObject tests.
+
 0.11.1
 ======
 
