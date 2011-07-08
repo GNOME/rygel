@@ -32,6 +32,8 @@ public class Rygel.Tracker.SelectionQuery : Query {
                                          " nmm:uPnPShared(" +
                                          ITEM_VARIABLE +
                                          ") = true)";
+    private const string STRICT_SHARED_FILTER = "(BOUND(nmm:dlnaProfile(" +
+                                                ITEM_VARIABLE + ")))";
     private const string AVAILABLE_FILTER = "(tracker:available(" +
                                             ITEM_VARIABLE + ") = true)";
 
@@ -99,6 +101,14 @@ public class Rygel.Tracker.SelectionQuery : Query {
         // Make sure we don't expose items on removable media that isn't
         // mounted
         filters.add (AVAILABLE_FILTER);
+
+        // If strict sharing is enabled, only expose files that have a DLNA
+        // profile set
+        try {
+            if (config.get_bool ("Tracker", "strict-sharing")) {
+                filters.add (STRICT_SHARED_FILTER);
+            }
+        } catch (Error error) {};
 
         if (filters.size > 0) {
             query += " FILTER (";
