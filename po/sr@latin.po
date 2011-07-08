@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-10 23:04+0000\n"
-"PO-Revision-Date: 2011-03-07 10:35+0200\n"
+"POT-Creation-Date: 2011-07-07 16:29+0000\n"
+"PO-Revision-Date: 2011-06-30 23:41+0200\n"
 "Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Language: Serbian (sr)\n"
 "Plural-Forms: nplurals=4;    plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 :    n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\\n\n"
+"X-Generator: Virtaal 0.5.2\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -68,18 +69,18 @@ msgstr "Ne mogu da vratim stanje prenosa: %s"
 msgid "Unsupported type %s"
 msgstr "Nepodržana vrsta „%s“"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:134
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
 #: ../src/rygel/rygel-plugin-loader.vala:186
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Ne mogu da zakažem ovaj sadržaj na „%s“"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:86
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:92
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Ne mogu da dodam stavku sa IB %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:122
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:128
 #, c-format
 msgid "Object %s is not an item"
 msgstr "„%s“ nije stavka"
@@ -89,29 +90,38 @@ msgstr "„%s“ nije stavka"
 msgid "Failed to attach to D-Bus session bus: %s"
 msgstr "Ne mogu da se zakačim na magistralu D-Bus sesije: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:58
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:66
 msgid "No metadata extractor available. Will not crawl."
 msgstr "Ne postoji program za čupanje metapodataka. Odustajem."
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:101
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:109
 #, c-format
 msgid "'%s' harvested"
 msgstr "„%s“ požnjet"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:166
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:188
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
-msgstr "Ne mogu da preuzmem „%s“ iz baze podatak: %s"
+msgstr "Ne mogu da preuzmem „%s“ iz baze podataka: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:201
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:194
+#, c-format
+msgid "Failed to access media cache: %s"
+msgstr "Ne mogu da pristupim ostavi medija: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:233
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Ne mogu da uklonim objekat iz baze podataka: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:77
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:40
+msgid "Will not monitor file changes"
+msgstr "Neću nadgledati izmene datoteke"
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
 msgid "Failed to get file info for %s"
-msgstr "Ne mogu da dobijem datoteku za „%s“"
+msgstr "Ne mogu da dobavim podatke datoteke za „%s“"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:30
 #: ../src/plugins/tracker/rygel-tracker-years.vala:35
@@ -135,35 +145,35 @@ msgstr "Album"
 msgid "Genre"
 msgstr "Žanr"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:98
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:99
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "Ne mogu da uklonim adresu: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:336
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:337
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "Medija korisnika „@REALNAME@“"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:345
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
-msgstr "Ne mogu da napravim MedijaEksport D-Bus uslugu: %s"
+msgstr "Ne mogu da napravim D-Bus uslugu izvoza medija: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:385
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Ne mogu da uklonim unos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:397
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:407
 msgid "Music"
 msgstr "Muzika"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:400
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:410
 msgid "Pictures"
 msgstr "Slike"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:402
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:412
 msgid "Videos"
 msgstr "Video"
 
@@ -210,14 +220,18 @@ msgstr "Izvođači"
 msgid "Titles"
 msgstr "Naslovi"
 
-#: ../src/rygel/rygel-media-query-action.vala:117
-#: ../src/rygel/rygel-media-query-action.vala:141
-#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:154
-#: ../src/rygel/rygel-item-creator.vala:189
+#: ../src/rygel/rygel-media-query-action.vala:118
+#: ../src/rygel/rygel-media-query-action.vala:177
+#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:207
+#: ../src/rygel/rygel-item-creator.vala:246
 #: ../src/rygel/rygel-item-destroyer.vala:53
-#: ../src/rygel/rygel-item-destroyer.vala:99
+#: ../src/rygel/rygel-item-destroyer.vala:100
 msgid "No such object"
 msgstr "Ne postoji ovaj objekat"
+
+#: ../src/rygel/rygel-media-query-action.vala:123
+msgid "Invalid range"
+msgstr "Neispravan opseg"
 
 #: ../src/rygel/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -228,57 +242,77 @@ msgstr "Neispravan argument"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Ne mogu da razgledam „%s“: %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:137
-#: ../src/rygel/rygel-cmdline-config.vala:145
-#: ../src/rygel/rygel-cmdline-config.vala:153
-#: ../src/rygel/rygel-cmdline-config.vala:161
-#: ../src/rygel/rygel-cmdline-config.vala:169
-#: ../src/rygel/rygel-cmdline-config.vala:177
-#: ../src/rygel/rygel-cmdline-config.vala:185
-#: ../src/rygel/rygel-cmdline-config.vala:193
-#: ../src/rygel/rygel-cmdline-config.vala:201
-#: ../src/rygel/rygel-cmdline-config.vala:209
-#: ../src/rygel/rygel-cmdline-config.vala:217
-#: ../src/rygel/rygel-cmdline-config.vala:243
-#: ../src/rygel/rygel-cmdline-config.vala:262
-#: ../src/rygel/rygel-cmdline-config.vala:286
-#: ../src/rygel/rygel-cmdline-config.vala:312
-#: ../src/rygel/rygel-cmdline-config.vala:341
-#: ../src/rygel/rygel-cmdline-config.vala:367
-#: ../src/rygel/rygel-cmdline-config.vala:392
-#: ../src/rygel/rygel-meta-config.vala:74
-#: ../src/rygel/rygel-meta-config.vala:93
-#: ../src/rygel/rygel-meta-config.vala:112
-#: ../src/rygel/rygel-meta-config.vala:131
-#: ../src/rygel/rygel-meta-config.vala:150
-#: ../src/rygel/rygel-meta-config.vala:169
-#: ../src/rygel/rygel-meta-config.vala:188
-#: ../src/rygel/rygel-meta-config.vala:207
-#: ../src/rygel/rygel-meta-config.vala:226
-#: ../src/rygel/rygel-meta-config.vala:245
-#: ../src/rygel/rygel-meta-config.vala:264
+#: ../src/rygel/rygel-cmdline-config.vala:150
+#: ../src/rygel/rygel-cmdline-config.vala:158
+#: ../src/rygel/rygel-cmdline-config.vala:166
+#: ../src/rygel/rygel-cmdline-config.vala:174
+#: ../src/rygel/rygel-cmdline-config.vala:182
+#: ../src/rygel/rygel-cmdline-config.vala:190
+#: ../src/rygel/rygel-cmdline-config.vala:198
+#: ../src/rygel/rygel-cmdline-config.vala:206
+#: ../src/rygel/rygel-cmdline-config.vala:214
+#: ../src/rygel/rygel-cmdline-config.vala:222
+#: ../src/rygel/rygel-cmdline-config.vala:230
+#: ../src/rygel/rygel-cmdline-config.vala:256
+#: ../src/rygel/rygel-cmdline-config.vala:275
+#: ../src/rygel/rygel-cmdline-config.vala:281
+#: ../src/rygel/rygel-cmdline-config.vala:288
+#: ../src/rygel/rygel-cmdline-config.vala:292
+#: ../src/rygel/rygel-cmdline-config.vala:296
+#: ../src/rygel/rygel-cmdline-config.vala:319
+#: ../src/rygel/rygel-cmdline-config.vala:345
+#: ../src/rygel/rygel-cmdline-config.vala:374
+#: ../src/rygel/rygel-cmdline-config.vala:400
+#: ../src/rygel/rygel-cmdline-config.vala:425
+#: ../src/rygel/rygel-meta-config.vala:83
+#: ../src/rygel/rygel-meta-config.vala:102
+#: ../src/rygel/rygel-meta-config.vala:121
+#: ../src/rygel/rygel-meta-config.vala:140
+#: ../src/rygel/rygel-meta-config.vala:159
+#: ../src/rygel/rygel-meta-config.vala:178
+#: ../src/rygel/rygel-meta-config.vala:197
+#: ../src/rygel/rygel-meta-config.vala:216
+#: ../src/rygel/rygel-meta-config.vala:235
+#: ../src/rygel/rygel-meta-config.vala:254
+#: ../src/rygel/rygel-meta-config.vala:273
 msgid "No value available"
-msgstr "Nije prisutna vrednost"
+msgstr "Vrednost nije dostupna"
 
-#: ../src/rygel/rygel-connection-manager.vala:107
+#: ../src/rygel/rygel-connection-manager.vala:89
+#: ../src/rygel/rygel-connection-manager.vala:103
+#: ../src/rygel/rygel-connection-manager.vala:125
+#: ../src/rygel/rygel-content-directory.vala:198
+#: ../src/rygel/rygel-content-directory.vala:225
+#: ../src/rygel/rygel-content-directory.vala:244
+#: ../src/rygel/rygel-content-directory.vala:279
+#: ../src/rygel/rygel-content-directory.vala:304
+#: ../src/rygel/rygel-content-directory.vala:329
+#: ../src/rygel/rygel-media-receiver-registrar.vala:59
+msgid "Invalid argument"
+msgstr "Neispravan argument"
+
+#: ../src/rygel/rygel-connection-manager.vala:119
 msgid "Invalid connection reference"
 msgstr "Neispravna referenca na vezu"
 
-#: ../src/rygel/rygel-content-directory.vala:207
-#: ../src/rygel/rygel-content-directory.vala:220
+#: ../src/rygel/rygel-content-directory.vala:217
+#: ../src/rygel/rygel-content-directory.vala:236
 msgid "No such file transfer"
 msgstr "Ne postoji ovaj prenos"
 
 #: ../src/rygel/rygel-av-transport.vala:205
 #: ../src/rygel/rygel-rendering-control.vala:121
 msgid "Invalid InstanceID"
-msgstr "Neispravan IB"
+msgstr "Neispravan IB primerka"
 
 #: ../src/rygel/rygel-av-transport.vala:378
 msgid "Play speed not supported"
 msgstr "Brzina puštanja nije podržana"
 
 #: ../src/rygel/rygel-av-transport.vala:417
+msgid "Seek failed"
+msgstr "Neuspelo premotavanje"
+
 #: ../src/rygel/rygel-av-transport.vala:426
 msgid "Seek mode not supported"
 msgstr "Način premotavanja nije podržan"
@@ -295,7 +329,7 @@ msgstr "Neispravno ime"
 #: ../src/rygel/rygel-rendering-control.vala:166
 #: ../src/rygel/rygel-rendering-control.vala:237
 msgid "Action Failed"
-msgstr "Radnja nije uspela"
+msgstr "Neuspela radnja"
 
 #: ../src/rygel/rygel-gst-utils.vala:38
 #, c-format
@@ -307,10 +341,10 @@ msgstr "Potreban element „%s“ ne postoji"
 #: ../src/rygel/rygel-http-byte-seek.vala:58
 #: ../src/rygel/rygel-http-byte-seek.vala:68
 #: ../src/rygel/rygel-http-byte-seek.vala:71
-#: ../src/rygel/rygel-http-time-seek.vala:50
-#: ../src/rygel/rygel-http-time-seek.vala:59
-#: ../src/rygel/rygel-http-time-seek.vala:69
-#: ../src/rygel/rygel-http-time-seek.vala:72
+#: ../src/rygel/rygel-http-time-seek.vala:49
+#: ../src/rygel/rygel-http-time-seek.vala:61
+#: ../src/rygel/rygel-http-time-seek.vala:68
+#: ../src/rygel/rygel-http-time-seek.vala:83
 #, c-format
 msgid "Invalid Range '%s'"
 msgstr "Neispravan opseg „%s“"
@@ -319,15 +353,10 @@ msgstr "Neispravan opseg „%s“"
 msgid "Invalid Request"
 msgstr "Neispravan zahtev"
 
-#: ../src/rygel/rygel-http-identity-handler.vala:97
+#: ../src/rygel/rygel-http-identity-handler.vala:88
 #: ../src/rygel/rygel-http-transcode-handler.vala:56
 msgid "Not found"
 msgstr "Nije pronađeno"
-
-#: ../src/rygel/rygel-http-identity-handler.vala:109
-#, c-format
-msgid "Item '%s' didn't provide a URI"
-msgstr "Stavka „%s“ ne obezbeđuje adresu"
 
 #: ../src/rygel/rygel-http-item-uri.vala:58
 #, c-format
@@ -338,52 +367,88 @@ msgstr "Neispravna adresa „%s“"
 msgid "Not Found"
 msgstr "Nije nađeno"
 
-#: ../src/rygel/rygel-http-post.vala:61
-#: ../src/rygel/rygel-import-resource.vala:169
+#: ../src/rygel/rygel-http-post.vala:63
+#: ../src/rygel/rygel-import-resource.vala:186
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Guranje podataka u ne praznu stavku „%s“ nije dozvoljeno"
 
-#: ../src/rygel/rygel-http-post.vala:69
+#: ../src/rygel/rygel-http-post.vala:71
 #, c-format
 msgid "No writable URI for %s available"
-msgstr "Nisu dostupne adrese sa mogućnošću upisa za „%s“"
+msgstr "Nisu dostupne upisive adrese za „%s“"
 
 #: ../src/rygel/rygel-http-request.vala:82
 #, c-format
 msgid "Requested item '%s' not found"
-msgstr "Nije nađena zahtevana stavka „%s“"
+msgstr "Nisam pronašao zahtevanu stavku „%s“"
 
-#: ../src/rygel/rygel-import-resource.vala:109
+#: ../src/rygel/rygel-http-response.vala:154
+#: ../src/rygel/rygel-http-response.vala:175
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr "Ne mogu da vežem „%s“ za „%s“"
+
+#: ../src/rygel/rygel-http-response.vala:189
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr "Ne mogu da vežem podmetač „%s“ za „%s“"
+
+#: ../src/rygel/rygel-http-response.vala:232
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr "Greška u liniji spoja „%s“: %s"
+
+#: ../src/rygel/rygel-http-response.vala:239
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr "Upozorenje iz linije spoja „%s“: %s"
+
+#: ../src/rygel/rygel-http-response.vala:281
+#, c-format
+msgid "Failed to seek to offset %lld"
+msgstr "Ne mogu da premotam do pomeraja „%lld“"
+
+#: ../src/rygel/rygel-http-seek.vala:51
+#, c-format
+msgid "Out Of Range Start '%ld'"
+msgstr "Izvan opsega počinje „%ld“"
+
+#: ../src/rygel/rygel-http-seek.vala:55
+#, c-format
+msgid "Out Of Range Stop '%ld'"
+msgstr "Izvan opsega zaustavlja „%ld“"
+
+#: ../src/rygel/rygel-import-resource.vala:124
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Ne mogu da dobijem prvobitnu adresu za „%s“: %s"
 
-#: ../src/rygel/rygel-import-resource.vala:166
+#: ../src/rygel/rygel-import-resource.vala:183
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Adresa „%s“ za uvoženje sadržaja nije ispravna"
 
-#: ../src/rygel/rygel-item-creator.vala:67
+#: ../src/rygel/rygel-item-creator.vala:74
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Nema stavki u DIDL-Lajtu sa klijenta: „%s“"
 
-#: ../src/rygel/rygel-item-creator.vala:145
+#: ../src/rygel/rygel-item-creator.vala:198
 msgid "'Elements' argument missing."
 msgstr "Nedostaje argument „elementi“."
 
-#: ../src/rygel/rygel-item-creator.vala:148
+#: ../src/rygel/rygel-item-creator.vala:201
 msgid "Comments not allowed in XML"
 msgstr "Napomene nisu dozvoljene unutar HML-a"
 
-#: ../src/rygel/rygel-item-creator.vala:193
-#: ../src/rygel/rygel-item-creator.vala:282
+#: ../src/rygel/rygel-item-creator.vala:250
+#: ../src/rygel/rygel-item-creator.vala:339
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Nije dozvoljeno pravljenje objekta unutar „%s“"
 
-#: ../src/rygel/rygel-item-creator.vala:219
+#: ../src/rygel/rygel-item-creator.vala:276
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Ne mogu da napravim stavku unutar „%s“: %s"
@@ -398,51 +463,15 @@ msgstr "Uspešno uništen objekt „%s“"
 msgid "Failed to destroy object '%s': %s"
 msgstr "Nisam uspeo da uništim objekat „%s“: %s"
 
-#: ../src/rygel/rygel-item-destroyer.vala:102
+#: ../src/rygel/rygel-item-destroyer.vala:103
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "Uklanjanje objekta „%s“ nije dozvoljeno"
 
-#: ../src/rygel/rygel-item-destroyer.vala:105
+#: ../src/rygel/rygel-item-destroyer.vala:106
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "Uklanjanje objekta sa „%s“ nije dozvoljeno"
-
-#: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-http-gst-response.vala:143
-#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
-#: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
-#: ../src/rygel/rygel-wma-transcoder-bin.vala:58
-#: ../src/rygel/rygel-wmv-transcoder-bin.vala:100
-#, c-format
-msgid "Failed to link pad %s to %s"
-msgstr "Ne mogu da vežem podmetač „%s“ za „%s“"
-
-#. 'fakesink' should not be translated
-#: ../src/rygel/rygel-http-gst-response.vala:91
-msgid "Plugin 'fakesink' missing"
-msgstr "Nedostaje dodatak „fakesink“"
-
-#: ../src/rygel/rygel-http-gst-response.vala:108
-#: ../src/rygel/rygel-http-gst-response.vala:130
-#, c-format
-msgid "Failed to link %s to %s"
-msgstr "Ne mogu da vežem „%s“ za „%s“"
-
-#: ../src/rygel/rygel-http-gst-response.vala:216
-#, c-format
-msgid "Error from pipeline %s: %s"
-msgstr "Greška u procesnom lancu „%s“: %s"
-
-#: ../src/rygel/rygel-http-gst-response.vala:223
-#, c-format
-msgid "Warning from pipeline %s: %s"
-msgstr "Upozorenje procesnog lanca „%s“: %s"
-
-#: ../src/rygel/rygel-http-gst-response.vala:256
-#, c-format
-msgid "Failed to seek to offset %lld"
-msgstr "Ne mogu da premotam do pomeraja „%lld“"
 
 #: ../src/rygel/rygel-log-handler.vala:68
 #, c-format
@@ -473,33 +502,33 @@ msgstr "Ne mogu da napravim koreni uređaj za „%s“. Razlog: %s"
 msgid "Failed to start D-Bus service: %s"
 msgstr "Ne mogu da pokrenem D-Bus uslugu: %s"
 
-#: ../src/rygel/rygel-media-item.vala:272
+#: ../src/rygel/rygel-media-item.vala:255
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Loša adresa: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:284
+#: ../src/rygel/rygel-media-item.vala:267
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Ne mogu da nađem protokol za adresu „%s“. Pretpostaviću da je „%s“"
 
-#: ../src/rygel/rygel-meta-config.vala:57
+#: ../src/rygel/rygel-meta-config.vala:65
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Ne mogu da učitam podešavanja korisnika: %s"
 
-#: ../src/rygel/rygel-meta-config.vala:303
-#: ../src/rygel/rygel-meta-config.vala:322
+#: ../src/rygel/rygel-meta-config.vala:356
+#: ../src/rygel/rygel-meta-config.vala:375
 #, c-format
 msgid "No value set for '%s/enabled'"
 msgstr "Nije postavljena vrednost za „%s/omogućeno“"
 
-#: ../src/rygel/rygel-meta-config.vala:342
-#: ../src/rygel/rygel-meta-config.vala:364
-#: ../src/rygel/rygel-meta-config.vala:390
-#: ../src/rygel/rygel-meta-config.vala:412
-#: ../src/rygel/rygel-meta-config.vala:436
+#: ../src/rygel/rygel-meta-config.vala:395
+#: ../src/rygel/rygel-meta-config.vala:417
+#: ../src/rygel/rygel-meta-config.vala:443
+#: ../src/rygel/rygel-meta-config.vala:465
+#: ../src/rygel/rygel-meta-config.vala:489
 #, c-format
 msgid "No value available for '%s/%s'"
 msgstr "Nije dostupna vrednost za „%s/%s“"
@@ -543,28 +572,6 @@ msgstr "Ne mogu da upišem izmenjen opis u „%s“"
 msgid "Failed to search in '%s': %s"
 msgstr "Ne mogu da tražim unutar „%s“: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:59
-#, c-format
-msgid "Failed to read from URI: %s: %s"
-msgstr "Ne mogu da čitam sa adrese: „%s“: %s"
-
-#. Failed to seek to media segment (defined by first and last
-#. byte positions).
-#: ../src/rygel/rygel-http-seekable-response.vala:78
-#, c-format
-msgid "Failed to seek to %s-%s on URI %s: %s"
-msgstr "Ne mogu da premotam na „%s-%s“ iz adrese „%s“: %s"
-
-#: ../src/rygel/rygel-http-seekable-response.vala:97
-#, c-format
-msgid "Failed to read contents from URI: %s: %s"
-msgstr "Ne mogu da pročitam sadržaj sa adrese: „%s“: %s"
-
-#: ../src/rygel/rygel-http-seekable-response.vala:143
-#, c-format
-msgid "Failed to close stream to URI %s: %s"
-msgstr "Ne mogu da zatvorim tok sa adrese „%s“: %s"
-
 #: ../src/rygel/rygel-subtitle-manager.vala:65
 msgid "No subtitle available"
 msgstr "Nema odgovarajućih dodataka"
@@ -587,21 +594,21 @@ msgstr "Nije dostupan umanjeni prikaz"
 msgid "No transcoder available for target format '%s'"
 msgstr "Nije dostupan program za prekodiranje ciljnog formata „%s“"
 
-#: ../src/rygel/rygel-user-config.vala:169
+#: ../src/rygel/rygel-user-config.vala:188
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Nije dostupna vrednost za „%s“"
 
-#: ../src/rygel/rygel-user-config.vala:219
+#: ../src/rygel/rygel-user-config.vala:238
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Vrednost za „%s“ je izvan opsega"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:44
+#: ../src/rygel/rygel-xbox-hacks.vala:54
 msgid "Not Applicable"
 msgstr "Neupotrebljivo"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:180
+#: ../src/rygel/rygel-xbox-hacks.vala:211
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Ne mogu da upišem izmene opisa u „%s“."
@@ -611,20 +618,38 @@ msgstr "Ne mogu da upišem izmene opisa u „%s“."
 msgid "Failed to create preferences dialog: %s"
 msgstr "Ne mogu da pokrenem prozorče sa postavkama: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:102
+#: ../src/ui/rygel-writable-user-config.vala:109
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr "Ne mogu da sačuvam podešavanja u datoteku „%s“: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:193
+#: ../src/ui/rygel-writable-user-config.vala:200
 #, c-format
 msgid "Failed to start Rygel service: %s"
-msgstr "Ne mogu da pokrenem Rigel uslugu: %s"
+msgstr "Ne mogu da pokrenem uslugu Rigela: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:195
+#: ../src/ui/rygel-writable-user-config.vala:202
 #, c-format
 msgid "Failed to stop Rygel service: %s"
-msgstr "Ne mogu da zaustavim Rigel uslugu: %s"
+msgstr "Ne mogu da zaustavim uslugu Rigela: %s"
+
+#~ msgid "Item '%s' didn't provide a URI"
+#~ msgstr "Stavka „%s“ ne obezbeđuje adresu"
+
+#~ msgid "Plugin 'fakesink' missing"
+#~ msgstr "Nedostaje dodatak „fakesink“"
+
+#~ msgid "Failed to read from URI: %s: %s"
+#~ msgstr "Ne mogu da čitam sa adrese: „%s“: %s"
+
+#~ msgid "Failed to seek to %s-%s on URI %s: %s"
+#~ msgstr "Ne mogu da premotam na „%s-%s“ iz adrese „%s“: %s"
+
+#~ msgid "Failed to read contents from URI: %s: %s"
+#~ msgstr "Ne mogu da pročitam sadržaj sa adrese: „%s“: %s"
+
+#~ msgid "Failed to close stream to URI %s: %s"
+#~ msgstr "Ne mogu da zatvorim tok sa adrese „%s“: %s"
 
 #~ msgid "General"
 #~ msgstr "Opšte"
