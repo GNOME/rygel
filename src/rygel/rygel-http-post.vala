@@ -127,7 +127,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
 
     private void on_got_chunk (Message msg, Buffer chunk) {
         try {
-            this.stream.write (chunk.data, this.cancellable);
+            this.stream.write_all (chunk.data, null, this.cancellable);
         } catch (Error error) {
             this.handle_error (error);
             this.handle_continue ();
