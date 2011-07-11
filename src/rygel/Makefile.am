@@ -96,6 +96,7 @@ VAPI_SOURCE_FILES = \
 	rygel-mp3-transcoder.vala \
 	rygel-l16-transcoder.vala \
 	rygel-wmv-transcoder.vala \
+	rygel-aac-transcoder.vala \
 	rygel-gst-utils.vala \
 	rygel-media-receiver-registrar.vala \
 	rygel-log-handler.vala \
