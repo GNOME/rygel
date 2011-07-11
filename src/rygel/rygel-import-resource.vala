@@ -156,9 +156,14 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
             message.got_body.connect (this.got_body_cb);
             message.got_headers.connect (this.got_headers_cb);
             message.finished.connect (this.finished_cb);
+            message.response_body.set_accumulate (false);
 
             this.run_callback = run.callback;
             this.session.queue_message (message, null);
+
+            debug ("Importing resource from %s to %s",
+                   source_uri,
+                   this.item.uris[0]);
 
             yield;
         } catch (Error err) {
