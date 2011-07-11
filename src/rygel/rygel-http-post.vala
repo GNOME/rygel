@@ -40,6 +40,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
         base (http_server, server, msg);
 
         this.cancellable.connect (this.on_request_cancelled);
+        msg.request_body.set_accumulate (false);
     }
 
     protected override async void handle () throws Error {
@@ -125,10 +126,6 @@ internal class Rygel.HTTPPost : HTTPRequest {
     }
 
     private void on_got_chunk (Message msg, Buffer chunk) {
-        this.write_chunk.begin (chunk);
-    }
-
-    private async void write_chunk (Buffer chunk) {
         try {
             this.stream.write (chunk.data, this.cancellable);
         } catch (Error error) {
