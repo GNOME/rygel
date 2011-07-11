@@ -52,6 +52,7 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
         var mp2ts_transcoder = true;
         var wmv_transcoder = true;
         var aac_transcoder = true;
+        var avc_transcoder = true;
 
         try {
             transcoding = config.get_transcoding ();
@@ -84,6 +85,10 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
 
             if (aac_transcoder) {
                 transcoders.add (new AACTranscoder ());
+            }
+
+            if (avc_transcoder) {
+                transcoders.add (new AVCTranscoder ());
             }
         }
     }
