@@ -41,15 +41,18 @@ internal class Rygel.RootDevice: GUPnP.RootDevice {
                 description_path: description_path,
                 description_dir: description_dir);
 
-        this.services = new ArrayList<ServiceInfo> ();
+        // Yes, this can happen.
+        if (this != null) {
+            this.services = new ArrayList<ServiceInfo> ();
 
-        // Now create the sevice objects
-        foreach (ResourceInfo info in plugin.resource_infos) {
-            // FIXME: We only support plugable services for now
-            if (info.type.is_a (typeof (Service))) {
-                var service = this.get_service (info.upnp_type);
+            // Now create the sevice objects
+            foreach (ResourceInfo info in plugin.resource_infos) {
+                // FIXME: We only support plugable services for now
+                if (info.type.is_a (typeof (Service))) {
+                    var service = this.get_service (info.upnp_type);
 
-                this.services.add (service);
+                    this.services.add (service);
+                }
             }
         }
     }
