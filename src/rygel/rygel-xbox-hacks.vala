@@ -35,6 +35,10 @@ internal class Rygel.XBoxHacks : GLib.Object {
     private static string FRIENDLY_NAME_POSTFIX = ":";
     private static string MODEL_NAME = "Windows Media Player Sharing";
     private static string MODEL_VERSION = "11";
+    private static string CONTAINER_ID = "ContainerID";
+    private static string OBJECT_ID = "ObjectID";
+
+    public unowned string object_id { get; private set; }
 
     public XBoxHacks.for_action (ServiceAction action) throws XBoxHacksError {
         unowned MessageHeaders headers = action.get_message ().request_headers;
@@ -52,6 +56,12 @@ internal class Rygel.XBoxHacks : GLib.Object {
             !(agent.contains ("Xbox")) &&
             !(agent.contains ("Allegro-Software-WebClient"))) {
             throw new XBoxHacksError.NA (_("Not Applicable"));
+        }
+
+        if (agent.contains ("XBox")) {
+            this.object_id = CONTAINER_ID;
+        } else {
+            this.object_id = OBJECT_ID;
         }
     }
 

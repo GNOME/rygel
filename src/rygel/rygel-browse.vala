@@ -40,7 +40,7 @@ internal class Rygel.Browse: Rygel.MediaQueryAction {
         base (content_dir, action);
 
         if (this.xbox_hacks != null) {
-            this.object_id_arg = "ContainerID";
+            this.object_id_arg = this.xbox_hacks.object_id;
         } else {
             this.object_id_arg = "ObjectID";
         }
