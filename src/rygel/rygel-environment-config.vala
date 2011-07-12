@@ -41,6 +41,7 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
     private static string MP2TS_TRANSCODING_ENV = DISABLE_PREFIX +
                                                   "_MP2TS_TRANS";
     private static string WMV_TRANSCODING_ENV = DISABLE_PREFIX + "_WMV_TRANS";
+    private static string AAC_TRANSCODING_ENV = DISABLE_PREFIX + "_AAC_TRANS";
     private static string DISALLOW_UPLOAD_ENV = DISABLE_PREFIX + "_UPLOAD";
     private static string DISALLOW_DELETION_ENV = DISABLE_PREFIX + "_DELETION";
     private static string LOG_LEVELS_ENV = RYGEL_PREFIX + "_LOG";
@@ -83,6 +84,10 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
 
     public bool get_wmv_transcoder () throws GLib.Error {
         return !this.get_bool_variable (WMV_TRANSCODING_ENV);
+    }
+
+    public bool get_aac_transcoder () throws GLib.Error {
+        return !this.get_bool_variable (AAC_TRANSCODING_ENV);
     }
 
     public bool get_lpcm_transcoder () throws GLib.Error {

@@ -222,6 +222,17 @@ handling.</para>
       </varlistentry>
       <varlistentry>
         <term>
+          <option>-a</option>
+        </term>
+        <term>
+          <option>--disable-aac-transcoder</option>
+        </term>
+        <listitem>
+          <para>Disable transcoding to AAC.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <option>-U</option>
         </term>
         <term>
@@ -426,6 +437,14 @@ handling.</para>
         </term>
         <listitem>
           <para>Disable transcoding to WMV format.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_DISABLE_AAC_TRANS</envar>
+        </term>
+        <listitem>
+          <para>Disable transcoding to AAC format.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
