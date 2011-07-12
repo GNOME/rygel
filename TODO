@@ -28,6 +28,8 @@
         * causes assertion failure followed by a crash if done during its
           harvested at rygel-media-export-root-container.vala:393
 
+  * Unify ImportResource and HTTPPost.
+
   * See if any of sunil mohan's changes are mergable.
 
   * Check in HTTPSeek really needed?
