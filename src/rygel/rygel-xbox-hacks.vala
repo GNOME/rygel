@@ -58,7 +58,7 @@ internal class Rygel.XBoxHacks : GLib.Object {
             throw new XBoxHacksError.NA (_("Not Applicable"));
         }
 
-        if (agent.contains ("XBox")) {
+        if (agent.contains ("Xbox")) {
             this.object_id = CONTAINER_ID;
         } else {
             this.object_id = OBJECT_ID;
