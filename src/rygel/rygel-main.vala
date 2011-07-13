@@ -38,6 +38,7 @@ public class Rygel.Main : Object {
     private MainLoop main_loop;
 
     private int exit_code;
+
     public bool need_restart;
 
     private Main () throws GLib.Error {
@@ -48,7 +49,6 @@ public class Rygel.Main : Object {
         this.plugin_loader = new PluginLoader ();
         this.root_devices = new ArrayList <RootDevice> ();
         this.factories = new ArrayList <RootDeviceFactory> ();
-        this.context_manager = this.create_context_manager ();
         this.main_loop = new GLib.MainLoop (null, false);
 
         this.exit_code = 0;
@@ -74,6 +74,13 @@ public class Rygel.Main : Object {
     }
 
     private int run () {
+        this.main_loop.run ();
+
+        return this.exit_code;
+    }
+
+    internal void dbus_available () {
+        this.context_manager = this.create_context_manager ();
         this.plugin_loader.load_plugins ();
 
         Timeout.add_seconds (PLUGIN_TIMEOUT, () => {
@@ -88,11 +95,8 @@ public class Rygel.Main : Object {
 
             return false;
         });
-
-        this.main_loop.run ();
-
-        return this.exit_code;
     }
+
 
     private void on_plugin_loaded (PluginLoader plugin_loader,
                                    Plugin       plugin) {
@@ -235,8 +239,7 @@ public class Rygel.Main : Object {
 
             main = new Main ();
             service = new DBusService (main);
-        } catch (IOError err) {
-            warning (_("Failed to start D-Bus service: %s"), err.message);
+            service.publish ();
         } catch (CmdlineConfigError.VERSION_ONLY err) {
             return 0;
         } catch (GLib.Error err) {
@@ -244,7 +247,6 @@ public class Rygel.Main : Object {
         }
 
         int exit_code = main.run ();
-
         if (service != null) {
             service.unpublish ();
         }
