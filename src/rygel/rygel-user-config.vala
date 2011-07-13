@@ -148,7 +148,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
             debug ("Loaded user configuration from file '%s'", file);
         } catch (Error error) {
             debug ("Failed to load user configuration from file '%s': %s",
-                   path,
+                   file,
                    error.message);
             size_t size;
 
