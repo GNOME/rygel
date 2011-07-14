@@ -1,6 +1,7 @@
 # Czech translation for rygel.
 # Copyright (C) 2010 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
+#
 # Marek Černocký <marek@manet.cz>, 2010, 2011.
 #
 msgid ""
@@ -8,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-06-18 22:04+0000\n"
-"PO-Revision-Date: 2011-07-05 15:16+0200\n"
+"POT-Creation-Date: 2011-07-14 10:17+0000\n"
+"PO-Revision-Date: 2011-07-14 14:11+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -223,7 +224,7 @@ msgstr "Názvy"
 #: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:207
 #: ../src/rygel/rygel-item-creator.vala:246
 #: ../src/rygel/rygel-item-destroyer.vala:53
-#: ../src/rygel/rygel-item-destroyer.vala:101
+#: ../src/rygel/rygel-item-destroyer.vala:100
 msgid "No such object"
 msgstr "Žádný takový objekt neexistuje"
 
@@ -240,35 +241,39 @@ msgstr "Neplatné argumenty"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Selhalo procházení „%s“: %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:146
-#: ../src/rygel/rygel-cmdline-config.vala:154
-#: ../src/rygel/rygel-cmdline-config.vala:162
-#: ../src/rygel/rygel-cmdline-config.vala:170
-#: ../src/rygel/rygel-cmdline-config.vala:178
-#: ../src/rygel/rygel-cmdline-config.vala:186
-#: ../src/rygel/rygel-cmdline-config.vala:194
-#: ../src/rygel/rygel-cmdline-config.vala:202
-#: ../src/rygel/rygel-cmdline-config.vala:210
-#: ../src/rygel/rygel-cmdline-config.vala:218
-#: ../src/rygel/rygel-cmdline-config.vala:226
-#: ../src/rygel/rygel-cmdline-config.vala:252
-#: ../src/rygel/rygel-cmdline-config.vala:271
-#: ../src/rygel/rygel-cmdline-config.vala:295
-#: ../src/rygel/rygel-cmdline-config.vala:321
-#: ../src/rygel/rygel-cmdline-config.vala:350
-#: ../src/rygel/rygel-cmdline-config.vala:376
-#: ../src/rygel/rygel-cmdline-config.vala:401
-#: ../src/rygel/rygel-meta-config.vala:74
-#: ../src/rygel/rygel-meta-config.vala:93
-#: ../src/rygel/rygel-meta-config.vala:112
-#: ../src/rygel/rygel-meta-config.vala:131
-#: ../src/rygel/rygel-meta-config.vala:150
-#: ../src/rygel/rygel-meta-config.vala:169
-#: ../src/rygel/rygel-meta-config.vala:188
-#: ../src/rygel/rygel-meta-config.vala:207
-#: ../src/rygel/rygel-meta-config.vala:226
-#: ../src/rygel/rygel-meta-config.vala:245
-#: ../src/rygel/rygel-meta-config.vala:264
+#: ../src/rygel/rygel-cmdline-config.vala:150
+#: ../src/rygel/rygel-cmdline-config.vala:158
+#: ../src/rygel/rygel-cmdline-config.vala:166
+#: ../src/rygel/rygel-cmdline-config.vala:174
+#: ../src/rygel/rygel-cmdline-config.vala:182
+#: ../src/rygel/rygel-cmdline-config.vala:190
+#: ../src/rygel/rygel-cmdline-config.vala:198
+#: ../src/rygel/rygel-cmdline-config.vala:206
+#: ../src/rygel/rygel-cmdline-config.vala:214
+#: ../src/rygel/rygel-cmdline-config.vala:222
+#: ../src/rygel/rygel-cmdline-config.vala:230
+#: ../src/rygel/rygel-cmdline-config.vala:256
+#: ../src/rygel/rygel-cmdline-config.vala:275
+#: ../src/rygel/rygel-cmdline-config.vala:281
+#: ../src/rygel/rygel-cmdline-config.vala:288
+#: ../src/rygel/rygel-cmdline-config.vala:292
+#: ../src/rygel/rygel-cmdline-config.vala:296
+#: ../src/rygel/rygel-cmdline-config.vala:319
+#: ../src/rygel/rygel-cmdline-config.vala:345
+#: ../src/rygel/rygel-cmdline-config.vala:374
+#: ../src/rygel/rygel-cmdline-config.vala:400
+#: ../src/rygel/rygel-cmdline-config.vala:425
+#: ../src/rygel/rygel-meta-config.vala:83
+#: ../src/rygel/rygel-meta-config.vala:102
+#: ../src/rygel/rygel-meta-config.vala:121
+#: ../src/rygel/rygel-meta-config.vala:140
+#: ../src/rygel/rygel-meta-config.vala:159
+#: ../src/rygel/rygel-meta-config.vala:178
+#: ../src/rygel/rygel-meta-config.vala:197
+#: ../src/rygel/rygel-meta-config.vala:216
+#: ../src/rygel/rygel-meta-config.vala:235
+#: ../src/rygel/rygel-meta-config.vala:254
+#: ../src/rygel/rygel-meta-config.vala:273
 msgid "No value available"
 msgstr "Není dostupná žádná hodnota"
 
@@ -282,7 +287,6 @@ msgstr "Není dostupná žádná hodnota"
 #: ../src/rygel/rygel-content-directory.vala:304
 #: ../src/rygel/rygel-content-directory.vala:329
 #: ../src/rygel/rygel-media-receiver-registrar.vala:59
-#| msgid "Invalid Arguments"
 msgid "Invalid argument"
 msgstr "Neplatný argument"
 
@@ -326,6 +330,14 @@ msgstr "Neplatný název"
 msgid "Action Failed"
 msgstr "Akce selhala"
 
+#: ../src/rygel/rygel-dbus-service.vala:83
+msgid "Another instance of Rygel is taking over. Exiting"
+msgstr "Jiná instance aplikace Rygel již provádí řízení. Ukončuje se."
+
+#: ../src/rygel/rygel-dbus-service.vala:85
+msgid "Another instance of Rygel is already running."
+msgstr "Jiná instance aplikace Rygel již běží."
+
 #: ../src/rygel/rygel-gst-utils.vala:38
 #, c-format
 msgid "Required element %s missing"
@@ -362,13 +374,13 @@ msgstr "Neplatná adresa URI „%s“"
 msgid "Not Found"
 msgstr "Nenalezeno"
 
-#: ../src/rygel/rygel-http-post.vala:63
-#: ../src/rygel/rygel-import-resource.vala:186
+#: ../src/rygel/rygel-http-post.vala:64
+#: ../src/rygel/rygel-import-resource.vala:191
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Vkládání dat do neprázdné položky „%s“ není dovoleno"
 
-#: ../src/rygel/rygel-http-post.vala:71
+#: ../src/rygel/rygel-http-post.vala:72
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "Pro %s není k dispozici žádná zapisovatelná adresa URI"
@@ -399,7 +411,7 @@ msgstr "Chyba od roury %s: %s"
 msgid "Warning from pipeline %s: %s"
 msgstr "Varování od roury %s: %s"
 
-#: ../src/rygel/rygel-http-response.vala:277
+#: ../src/rygel/rygel-http-response.vala:281
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Selhal přesun na pozici %lld"
@@ -419,7 +431,7 @@ msgstr "Mimo rozsah konce „%ld“"
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Selhalo získání původní adresy URI pro „%s“: %s"
 
-#: ../src/rygel/rygel-import-resource.vala:183
+#: ../src/rygel/rygel-import-resource.vala:188
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Adresa URI „%s“ je neplatná pro import obsahu do ní"
@@ -458,12 +470,12 @@ msgstr "Objekt „%s“ úspěšně zničen"
 msgid "Failed to destroy object '%s': %s"
 msgstr "Selhalo zničení objektu „%s“: %s"
 
-#: ../src/rygel/rygel-item-destroyer.vala:104
+#: ../src/rygel/rygel-item-destroyer.vala:103
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "Odstranění objektu %s není dovoleno"
 
-#: ../src/rygel/rygel-item-destroyer.vala:107
+#: ../src/rygel/rygel-item-destroyer.vala:106
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "Odstranění objektu v %s není dovoleno"
@@ -473,7 +485,7 @@ msgstr "Odstranění objektu v %s není dovoleno"
 msgid "Failed to get log level from configuration: %s"
 msgstr "Selhalo zjištění úrovně evidence z nastavení: %s"
 
-#: ../src/rygel/rygel-main.vala:81
+#: ../src/rygel/rygel-main.vala:88
 #, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
@@ -481,20 +493,15 @@ msgstr[0] "Za %d sekundu nebyl nalezen žádný zásuvný modul; zanechává se 
 msgstr[1] "Za %d sekundy nebyl nalezen žádný zásuvný modul; zanechává se toho…"
 msgstr[2] "Za %d sekund nebyl nalezen žádný zásuvný modul; zanechává se toho…"
 
-#: ../src/rygel/rygel-main.vala:145
+#: ../src/rygel/rygel-main.vala:149
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Selhalo vytvoření generátoru kořenových zařízení: %s"
 
-#: ../src/rygel/rygel-main.vala:203
+#: ../src/rygel/rygel-main.vala:207
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Selhalo vytvoření kořenového zařízení pro %s. Důvod: %s"
-
-#: ../src/rygel/rygel-main.vala:239
-#, c-format
-msgid "Failed to start D-Bus service: %s"
-msgstr "Selhalo spuštění služby D-Bus: %s"
 
 #: ../src/rygel/rygel-media-item.vala:255
 #, c-format
@@ -508,22 +515,22 @@ msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr ""
 "Selhalo zjištění protokolu pro adresu URI %s. Bude se předpokládat „%s“"
 
-#: ../src/rygel/rygel-meta-config.vala:57
+#: ../src/rygel/rygel-meta-config.vala:65
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Selhalo načtení uživatelského nastavení: %s"
 
-#: ../src/rygel/rygel-meta-config.vala:303
-#: ../src/rygel/rygel-meta-config.vala:322
+#: ../src/rygel/rygel-meta-config.vala:356
+#: ../src/rygel/rygel-meta-config.vala:375
 #, c-format
 msgid "No value set for '%s/enabled'"
 msgstr "Není nastavená žádná hodnota pro „%s/povoleno“"
 
-#: ../src/rygel/rygel-meta-config.vala:342
-#: ../src/rygel/rygel-meta-config.vala:364
-#: ../src/rygel/rygel-meta-config.vala:390
-#: ../src/rygel/rygel-meta-config.vala:412
-#: ../src/rygel/rygel-meta-config.vala:436
+#: ../src/rygel/rygel-meta-config.vala:395
+#: ../src/rygel/rygel-meta-config.vala:417
+#: ../src/rygel/rygel-meta-config.vala:443
+#: ../src/rygel/rygel-meta-config.vala:465
+#: ../src/rygel/rygel-meta-config.vala:489
 #, c-format
 msgid "No value available for '%s/%s'"
 msgstr "Není dostupná žádná hodnota pro „%s/%s“"
@@ -589,21 +596,21 @@ msgstr "Žádný náhled není k dispozici"
 msgid "No transcoder available for target format '%s'"
 msgstr "Pro formát „%s“ není k dispozici žádný převodník"
 
-#: ../src/rygel/rygel-user-config.vala:169
+#: ../src/rygel/rygel-user-config.vala:188
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Pro „%s“ není dostupná žádná hodnota"
 
-#: ../src/rygel/rygel-user-config.vala:219
+#: ../src/rygel/rygel-user-config.vala:238
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Hodnota „%s“ je mimo rozsah"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:54
+#: ../src/rygel/rygel-xbox-hacks.vala:58
 msgid "Not Applicable"
 msgstr "Nepoužitelné"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:211
+#: ../src/rygel/rygel-xbox-hacks.vala:221
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Selhal zápis změněného popisu do %s."
@@ -613,17 +620,18 @@ msgstr "Selhal zápis změněného popisu do %s."
 msgid "Failed to create preferences dialog: %s"
 msgstr "Selhalo vytvoření dialogového okna předvoleb: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:102
+#: ../src/ui/rygel-writable-user-config.vala:109
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr "Selhalo uložení dat nastavení do souboru „%s“: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:193
+#: ../src/ui/rygel-writable-user-config.vala:200
 #, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "Selhalo spuštění služby Rygel: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:195
+#: ../src/ui/rygel-writable-user-config.vala:202
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Selhalo zastavení služby Rygel: %s"
+
