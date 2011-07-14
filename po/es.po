@@ -1,22 +1,22 @@
 # Spanish translation for rygel.
 # Copyright (C) 2010 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011.
 # Jorge González <jorgegonz@svn.gnome.org>, 2010, 2011.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-06-18 22:04+0000\n"
-"PO-Revision-Date: 2011-07-02 07:58+0200\n"
-"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
-"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
+"POT-Creation-Date: 2011-07-14 10:17+0000\n"
+"PO-Revision-Date: 2011-07-14 14:19+0200\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
+"Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -104,7 +104,6 @@ msgstr "Error al obtener el objeto «%s» de la base de datos: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:194
 #, c-format
-#| msgid "Failed to update database: %s"
 msgid "Failed to access media cache: %s"
 msgstr "Falló al acceder a la caché multimedia: %s"
 
@@ -224,7 +223,7 @@ msgstr "Títulos"
 #: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:207
 #: ../src/rygel/rygel-item-creator.vala:246
 #: ../src/rygel/rygel-item-destroyer.vala:53
-#: ../src/rygel/rygel-item-destroyer.vala:101
+#: ../src/rygel/rygel-item-destroyer.vala:100
 msgid "No such object"
 msgstr "No existe el objeto"
 
@@ -241,35 +240,39 @@ msgstr "Argumentos no válidos"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Falló al examinar «%s»: %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:146
-#: ../src/rygel/rygel-cmdline-config.vala:154
-#: ../src/rygel/rygel-cmdline-config.vala:162
-#: ../src/rygel/rygel-cmdline-config.vala:170
-#: ../src/rygel/rygel-cmdline-config.vala:178
-#: ../src/rygel/rygel-cmdline-config.vala:186
-#: ../src/rygel/rygel-cmdline-config.vala:194
-#: ../src/rygel/rygel-cmdline-config.vala:202
-#: ../src/rygel/rygel-cmdline-config.vala:210
-#: ../src/rygel/rygel-cmdline-config.vala:218
-#: ../src/rygel/rygel-cmdline-config.vala:226
-#: ../src/rygel/rygel-cmdline-config.vala:252
-#: ../src/rygel/rygel-cmdline-config.vala:271
-#: ../src/rygel/rygel-cmdline-config.vala:295
-#: ../src/rygel/rygel-cmdline-config.vala:321
-#: ../src/rygel/rygel-cmdline-config.vala:350
-#: ../src/rygel/rygel-cmdline-config.vala:376
-#: ../src/rygel/rygel-cmdline-config.vala:401
-#: ../src/rygel/rygel-meta-config.vala:74
-#: ../src/rygel/rygel-meta-config.vala:93
-#: ../src/rygel/rygel-meta-config.vala:112
-#: ../src/rygel/rygel-meta-config.vala:131
-#: ../src/rygel/rygel-meta-config.vala:150
-#: ../src/rygel/rygel-meta-config.vala:169
-#: ../src/rygel/rygel-meta-config.vala:188
-#: ../src/rygel/rygel-meta-config.vala:207
-#: ../src/rygel/rygel-meta-config.vala:226
-#: ../src/rygel/rygel-meta-config.vala:245
-#: ../src/rygel/rygel-meta-config.vala:264
+#: ../src/rygel/rygel-cmdline-config.vala:150
+#: ../src/rygel/rygel-cmdline-config.vala:158
+#: ../src/rygel/rygel-cmdline-config.vala:166
+#: ../src/rygel/rygel-cmdline-config.vala:174
+#: ../src/rygel/rygel-cmdline-config.vala:182
+#: ../src/rygel/rygel-cmdline-config.vala:190
+#: ../src/rygel/rygel-cmdline-config.vala:198
+#: ../src/rygel/rygel-cmdline-config.vala:206
+#: ../src/rygel/rygel-cmdline-config.vala:214
+#: ../src/rygel/rygel-cmdline-config.vala:222
+#: ../src/rygel/rygel-cmdline-config.vala:230
+#: ../src/rygel/rygel-cmdline-config.vala:256
+#: ../src/rygel/rygel-cmdline-config.vala:275
+#: ../src/rygel/rygel-cmdline-config.vala:281
+#: ../src/rygel/rygel-cmdline-config.vala:288
+#: ../src/rygel/rygel-cmdline-config.vala:292
+#: ../src/rygel/rygel-cmdline-config.vala:296
+#: ../src/rygel/rygel-cmdline-config.vala:319
+#: ../src/rygel/rygel-cmdline-config.vala:345
+#: ../src/rygel/rygel-cmdline-config.vala:374
+#: ../src/rygel/rygel-cmdline-config.vala:400
+#: ../src/rygel/rygel-cmdline-config.vala:425
+#: ../src/rygel/rygel-meta-config.vala:83
+#: ../src/rygel/rygel-meta-config.vala:102
+#: ../src/rygel/rygel-meta-config.vala:121
+#: ../src/rygel/rygel-meta-config.vala:140
+#: ../src/rygel/rygel-meta-config.vala:159
+#: ../src/rygel/rygel-meta-config.vala:178
+#: ../src/rygel/rygel-meta-config.vala:197
+#: ../src/rygel/rygel-meta-config.vala:216
+#: ../src/rygel/rygel-meta-config.vala:235
+#: ../src/rygel/rygel-meta-config.vala:254
+#: ../src/rygel/rygel-meta-config.vala:273
 msgid "No value available"
 msgstr "No existe un valor disponible"
 
@@ -283,7 +286,6 @@ msgstr "No existe un valor disponible"
 #: ../src/rygel/rygel-content-directory.vala:304
 #: ../src/rygel/rygel-content-directory.vala:329
 #: ../src/rygel/rygel-media-receiver-registrar.vala:59
-#| msgid "Invalid Arguments"
 msgid "Invalid argument"
 msgstr "Argumento no válido"
 
@@ -327,6 +329,14 @@ msgstr "Nombre no válido"
 msgid "Action Failed"
 msgstr "Falló la acción"
 
+#: ../src/rygel/rygel-dbus-service.vala:83
+msgid "Another instance of Rygel is taking over. Exiting"
+msgstr ""
+
+#: ../src/rygel/rygel-dbus-service.vala:85
+msgid "Another instance of Rygel is already running."
+msgstr "Ya se está ejecutando otra instancia del Rygel."
+
 #: ../src/rygel/rygel-gst-utils.vala:38
 #, c-format
 msgid "Required element %s missing"
@@ -363,13 +373,13 @@ msgstr "URI «%s» no válida"
 msgid "Not Found"
 msgstr "No se encontró"
 
-#: ../src/rygel/rygel-http-post.vala:63
-#: ../src/rygel/rygel-import-resource.vala:186
+#: ../src/rygel/rygel-http-post.vala:64
+#: ../src/rygel/rygel-import-resource.vala:191
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "No se permite empujar datos al elemento «%s» no vacío"
 
-#: ../src/rygel/rygel-http-post.vala:71
+#: ../src/rygel/rygel-http-post.vala:72
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "No existe un URI escribible para %s"
@@ -400,7 +410,7 @@ msgstr "Error de la tubería %s: %s"
 msgid "Warning from pipeline %s: %s"
 msgstr "Advertencia de la tubería %s: %s"
 
-#: ../src/rygel/rygel-http-response.vala:277
+#: ../src/rygel/rygel-http-response.vala:281
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Falló al buscar hasta el desplazamiento %lld"
@@ -420,7 +430,7 @@ msgstr "Fuera del rango de fin «%ld»"
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Falló al obtener el URI original para «%s»: %s"
 
-#: ../src/rygel/rygel-import-resource.vala:183
+#: ../src/rygel/rygel-import-resource.vala:188
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "El URI «%s» no es válido para importar contenido de él"
@@ -459,12 +469,12 @@ msgstr "Objeto «%s» destruido correctamente"
 msgid "Failed to destroy object '%s': %s"
 msgstr "Falló al destruir el objeto «%s»: %s"
 
-#: ../src/rygel/rygel-item-destroyer.vala:104
+#: ../src/rygel/rygel-item-destroyer.vala:103
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "No se permite quitar el objeto %s"
 
-#: ../src/rygel/rygel-item-destroyer.vala:107
+#: ../src/rygel/rygel-item-destroyer.vala:106
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "No se permite quitar objetos de %s"
@@ -474,27 +484,22 @@ msgstr "No se permite quitar objetos de %s"
 msgid "Failed to get log level from configuration: %s"
 msgstr "Falló al obtener el nivel de registro de la configuración: %s"
 
-#: ../src/rygel/rygel-main.vala:81
+#: ../src/rygel/rygel-main.vala:88
 #, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
 msgstr[0] "No se econtraron complementos en %d segundo, abortando…"
 msgstr[1] "No se econtraron complementos en %d segundos, abortando…"
 
-#: ../src/rygel/rygel-main.vala:145
+#: ../src/rygel/rygel-main.vala:149
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Falló al crear la fábrica del dispositivo raíz: %s"
 
-#: ../src/rygel/rygel-main.vala:203
+#: ../src/rygel/rygel-main.vala:207
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Falló al crear el DispositivoRaís para %s. Razón: %s."
-
-#: ../src/rygel/rygel-main.vala:239
-#, c-format
-msgid "Failed to start D-Bus service: %s"
-msgstr "Falló al iniciar el servicio D-Bus: %s"
 
 #: ../src/rygel/rygel-media-item.vala:255
 #, c-format
@@ -507,22 +512,22 @@ msgstr "URI errónea: %s"
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Falló al probar el protocolo para el URI %s. Asumiendo «%s»."
 
-#: ../src/rygel/rygel-meta-config.vala:57
+#: ../src/rygel/rygel-meta-config.vala:65
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Falló al cargar la configuración del usuario: %s"
 
-#: ../src/rygel/rygel-meta-config.vala:303
-#: ../src/rygel/rygel-meta-config.vala:322
+#: ../src/rygel/rygel-meta-config.vala:356
+#: ../src/rygel/rygel-meta-config.vala:375
 #, c-format
 msgid "No value set for '%s/enabled'"
 msgstr "No existe un valor establecido para «%s/activado»"
 
-#: ../src/rygel/rygel-meta-config.vala:342
-#: ../src/rygel/rygel-meta-config.vala:364
-#: ../src/rygel/rygel-meta-config.vala:390
-#: ../src/rygel/rygel-meta-config.vala:412
-#: ../src/rygel/rygel-meta-config.vala:436
+#: ../src/rygel/rygel-meta-config.vala:395
+#: ../src/rygel/rygel-meta-config.vala:417
+#: ../src/rygel/rygel-meta-config.vala:443
+#: ../src/rygel/rygel-meta-config.vala:465
+#: ../src/rygel/rygel-meta-config.vala:489
 #, c-format
 msgid "No value available for '%s/%s'"
 msgstr "No existe un valor disponible para «%s/%s»"
@@ -589,21 +594,21 @@ msgid "No transcoder available for target format '%s'"
 msgstr ""
 "No existe un transcodificador disponible para el fomato de destino «%s»"
 
-#: ../src/rygel/rygel-user-config.vala:169
+#: ../src/rygel/rygel-user-config.vala:188
 #, c-format
 msgid "No value available for '%s'"
 msgstr "No existe un valor disponible para «%s»"
 
-#: ../src/rygel/rygel-user-config.vala:219
+#: ../src/rygel/rygel-user-config.vala:238
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "El valor «%s» está fuera de rango"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:54
+#: ../src/rygel/rygel-xbox-hacks.vala:58
 msgid "Not Applicable"
 msgstr "No es aplicable"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:211
+#: ../src/rygel/rygel-xbox-hacks.vala:221
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Falló al escribir la descripción modificada en %s."
@@ -613,20 +618,23 @@ msgstr "Falló al escribir la descripción modificada en %s."
 msgid "Failed to create preferences dialog: %s"
 msgstr "Falló al crear el diálogo de preferencias: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:102
+#: ../src/ui/rygel-writable-user-config.vala:109
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr "Falló al guardar los datos de configuración en el archivo «%s»: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:193
+#: ../src/ui/rygel-writable-user-config.vala:200
 #, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "Falló al iniciar el servicio Rygel: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:195
+#: ../src/ui/rygel-writable-user-config.vala:202
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Falló al parar el servicio Rygel: %s"
+
+#~ msgid "Failed to start D-Bus service: %s"
+#~ msgstr "Falló al iniciar el servicio D-Bus: %s"
 
 #~ msgid "Item '%s' didn't provide a URI"
 #~ msgstr "El elemento «%s» no proporcionó un URI"
