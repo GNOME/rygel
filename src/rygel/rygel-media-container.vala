@@ -151,10 +151,6 @@ public abstract class Rygel.MediaContainer : MediaObject {
             didl_container.parent_id = this.parent.id;
         } else {
             didl_container.parent_id = "-1";
-            if (this is SearchableContainer) {
-                (this as SearchableContainer).serialize_search_parameters
-                                        (didl_container);
-            }
         }
 
         didl_container.id = this.id;
@@ -163,6 +159,11 @@ public abstract class Rygel.MediaContainer : MediaObject {
         didl_container.upnp_class = this.upnp_class;
         didl_container.searchable = this is SearchableContainer;
         didl_container.storage_used = this.storage_used;
+
+        if (this.parent == null && (this is SearchableContainer)) {
+            (this as SearchableContainer).serialize_search_parameters
+                                        (didl_container);
+        }
 
         if (!this.restricted) {
             didl_container.restricted = false;
