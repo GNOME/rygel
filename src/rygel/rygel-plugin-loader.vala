@@ -164,7 +164,7 @@ public class Rygel.PluginLoader : Object {
             return;
         }
 
-        ModuleInitFunc module_init = (ModuleInitFunc) function;
+        unowned ModuleInitFunc module_init = (ModuleInitFunc) function;
         assert (module_init != null);
 
         // We don't want our modules to ever unload

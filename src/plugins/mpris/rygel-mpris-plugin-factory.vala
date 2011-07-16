@@ -44,8 +44,8 @@ public class Rygel.MPRIS.PluginFactory {
     private const string SERVICE_PREFIX = "org.mpris.MediaPlayer2.";
     private const string MEDIA_PLAYER_PATH = "/org/mpris/MediaPlayer2";
 
-    DBusObject   dbus_obj;
-    PluginLoader loader;
+    FreeDesktop.DBusObject dbus_obj;
+    PluginLoader           loader;
 
     public PluginFactory (PluginLoader loader) throws IOError {
         this.dbus_obj = Bus.get_proxy_sync
@@ -84,10 +84,10 @@ public class Rygel.MPRIS.PluginFactory {
         this.dbus_obj.name_owner_changed.connect (this.name_owner_changed);
     }
 
-    private void name_owner_changed (DBusObject dbus_obj,
-                                     string     name,
-                                     string     old_owner,
-                                     string     new_owner) {
+    private void name_owner_changed (FreeDesktop.DBusObject dbus_obj,
+                                     string                 name,
+                                     string                 old_owner,
+                                     string                 new_owner) {
         var plugin = this.loader.get_plugin_by_name (name);
 
         if (plugin != null) {

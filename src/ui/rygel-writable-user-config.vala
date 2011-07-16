@@ -22,8 +22,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using FreeDesktop;
-
 /**
  * Manages the user configuration for Rygel.
  */
@@ -157,13 +155,17 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
             var dest = File.new_for_path (dest_path);
 
             if (enable) {
+                // TODO: Use null in watch_name once vala situation in jhbuild
+                // is cleared and vala dependency is bumped.
+                BusNameAppearedCallback a = null;
+                BusNameVanishedCallback b = null;
+
                 // Creating the proxy starts the service
-                DBusObject dbus = Bus.get_proxy_sync
-                                        (BusType.SESSION,
-                                         DBUS_SERVICE,
-                                         DBUS_OBJECT,
-                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
-                dbus.start_service_by_name (DBusInterface.SERVICE_NAME, 0);
+                Bus.watch_name (BusType.SESSION,
+                                DBusInterface.SERVICE_NAME,
+                                BusNameWatcherFlags.AUTO_START,
+                                a,
+                                b);
 
                 // Then symlink the desktop file to user's autostart dir
                 var source_path = Path.build_filename (BuildConfig.DESKTOP_DIR,

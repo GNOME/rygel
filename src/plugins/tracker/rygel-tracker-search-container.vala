@@ -182,6 +182,8 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
 
             return tokens[1];
         } else {
+            parent_id = null;
+
             return null;
         }
     }

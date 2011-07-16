@@ -343,6 +343,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         Database.RowCallback callback = (statement) => {
             var child_id = statement.column_text (DetailColumn.ID);
             var parent_id = statement.column_text (DetailColumn.PARENT);
+
             if (parent == null || parent_id != parent.id) {
                 parent = new NullContainer ();
                 parent.id = parent_id;
@@ -751,13 +752,12 @@ public class Rygel.MediaExport.MediaCache : Object {
                 throw new MediaCacheError.UNSUPPORTED_SEARCH (message);
         }
 
-        if (&collate != null) {
-            if (use_collation) {
-                collate = "COLLATE CASEFOLD";
-            } else {
-                collate = "";
-            }
+        if (use_collation) {
+            collate = "COLLATE CASEFOLD";
+        } else {
+            collate = "";
         }
+
         return column;
     }
 

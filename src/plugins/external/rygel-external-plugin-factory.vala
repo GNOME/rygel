@@ -41,9 +41,9 @@ public class Rygel.External.PluginFactory {
     private const string SERVICE_PREFIX = "org.gnome.UPnP.MediaServer2.";
     private const string GRILO_UPNP_PREFIX = SERVICE_PREFIX + "grl_upnp";
 
-    DBusObject   dbus_obj;
-    PluginLoader loader;
-    IconFactory  icon_factory;
+    FreeDesktop.DBusObject dbus_obj;
+    PluginLoader           loader;
+    IconFactory            icon_factory;
 
     public PluginFactory (PluginLoader loader) throws IOError, DBusError {
         this.icon_factory = new IconFactory ();
@@ -84,10 +84,10 @@ public class Rygel.External.PluginFactory {
         this.dbus_obj.name_owner_changed.connect (this.name_owner_changed);
     }
 
-    private void name_owner_changed (DBusObject dbus_obj,
-                                     string     name,
-                                     string     old_owner,
-                                     string     new_owner) {
+    private void name_owner_changed (FreeDesktop.DBusObject dbus_obj,
+                                     string                 name,
+                                     string                 old_owner,
+                                     string                 new_owner) {
         var plugin = this.loader.get_plugin_by_name (name);
 
         if (plugin != null) {

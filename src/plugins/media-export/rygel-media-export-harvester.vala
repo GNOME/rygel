@@ -250,7 +250,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         };
 
         var timeout = Timeout.add_seconds (FILE_CHANGE_DEFAULT_GRACE_PERIOD,
-                                           callback);
+                                           (owned) callback);
         this.extraction_grace_timers[file] = timeout;
     }
 }

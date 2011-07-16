@@ -282,6 +282,8 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         RelationalExpression virtual_expression = null;
         QueryContainer query_container;
 
+        container = null;
+
         if (!(expression is LogicalExpression)) {
             return false;
         }

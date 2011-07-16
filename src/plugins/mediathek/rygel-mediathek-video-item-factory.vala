@@ -105,6 +105,7 @@ internal class Rygel.Mediathek.VideoItemFactory : Object {
                                         throws VideoItemError {
         var title_node = XMLUtils.get_element (item, "title");
         var group = XMLUtils.get_element (item, "group");
+        playlist_url = null;
 
         if (title_node == null) {
             throw new VideoItemError.XML_PARSE_ERROR ("No 'title' element");
