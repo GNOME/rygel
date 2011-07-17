@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-07-14 10:17+0000\n"
-"PO-Revision-Date: 2011-07-14 14:19+0200\n"
+"POT-Creation-Date: 2011-07-14 12:20+0000\n"
+"PO-Revision-Date: 2011-07-17 13:20+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -331,7 +331,7 @@ msgstr "Falló la acción"
 
 #: ../src/rygel/rygel-dbus-service.vala:83
 msgid "Another instance of Rygel is taking over. Exiting"
-msgstr ""
+msgstr "Otro instancia de Rygel está asumiendo el control. Saliendo"
 
 #: ../src/rygel/rygel-dbus-service.vala:85
 msgid "Another instance of Rygel is already running."
