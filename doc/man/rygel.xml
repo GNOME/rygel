@@ -233,6 +233,17 @@ handling.</para>
       </varlistentry>
       <varlistentry>
         <term>
+          <option>-z</option>
+        </term>
+        <term>
+          <option>--disable-avc-transcoder</option>
+        </term>
+        <listitem>
+          <para>Disable transcoding to AVC.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <option>-U</option>
         </term>
         <term>
@@ -445,6 +456,14 @@ handling.</para>
         </term>
         <listitem>
           <para>Disable transcoding to AAC format.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_DISABLE_AVC_TRANS</envar>
+        </term>
+        <listitem>
+          <para>Disable transcoding to AVC format.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

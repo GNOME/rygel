@@ -40,6 +40,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     public static const string LPCM_TRANSCODER_KEY = "enable-lpcm-transcoder";
     public static const string WMV_TRANSCODER_KEY = "enable-wmv-transcoder";
     public static const string AAC_TRANSCODER_KEY = "enable-aac-transcoder";
+    public static const string AVC_TRANSCODER_KEY = "enable-avc-transcoder";
     public static const string ALLOW_UPLOAD_KEY = "allow-upload";
     public static const string ALLOW_DELETION_KEY = "allow-deletion";
     public static const string LOG_LEVELS_KEY = "log-level";
@@ -92,6 +93,10 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
     public bool get_aac_transcoder () throws GLib.Error {
         return this.get_bool ("general", AAC_TRANSCODER_KEY);
+    }
+
+    public bool get_avc_transcoder () throws GLib.Error {
+        return this.get_bool ("general", AVC_TRANSCODER_KEY);
     }
 
     public bool get_allow_upload () throws GLib.Error {

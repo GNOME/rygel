@@ -197,6 +197,16 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
       </varlistentry>
       <varlistentry>
         <term>
+          <option>enable-avc-transcoder</option>
+        </term>
+        <listitem>
+          <para>
+            Set to <userinput>true</userinput> to enable transcoding to AVC.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <option>log-level=<replaceable>DOMAIN</replaceable>:<replaceable>LEVEL</replaceable>[,<replaceable>DOMAIN</replaceable>:<replaceable>LEVEL</replaceable>,…]</option>
         </term>
         <listitem>

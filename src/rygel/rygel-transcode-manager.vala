@@ -63,6 +63,7 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
                 mp2ts_transcoder = config.get_mp2ts_transcoder ();
                 wmv_transcoder = config.get_wmv_transcoder ();
                 aac_transcoder = config.get_aac_transcoder ();
+                avc_transcoder = config.get_avc_transcoder ();
             }
         } catch (Error err) {}
 
