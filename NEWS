@@ -1,10 +1,28 @@
+0.10.4
+======
+
+A bugfix release in the stable 0.10.x series for GNOME 3.0.
+
+Changes since 0.10.3:
+
+- Fix a memory leak when uploading items.
+- Fix a crash mainly occuring on browsing images.
+- Work-around an issue in GUPnP that caused Rygel to crash if the SCDP file
+  has syntax errors.
+- Fix a regression that made it impossible for devices using the Allegro stack
+  (Phillips TVs) to access Rygel.
+
+All contributors to this release:
+
+Jens Georg <mail@jensge.org>
+
 0.10.3
 ======
 
 A new release in the stable 0.10.x series for GNOME 3.0. Changes since 0.10.2:
 
 - Fix many criticals and warnings when running without DBus.
-- Propery check for the presence of tracker in Tracker plugin.
+- Properly check for the presence of tracker in Tracker plugin.
 
 All contributors to this release:
 
