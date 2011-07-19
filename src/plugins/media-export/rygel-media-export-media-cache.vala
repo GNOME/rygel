@@ -343,30 +343,24 @@ public class Rygel.MediaExport.MediaCache : Object {
         Database.RowCallback callback = (statement) => {
             var child_id = statement.column_text (DetailColumn.ID);
             var parent_id = statement.column_text (DetailColumn.PARENT);
-            try {
-                if (parent == null || parent_id != parent.id) {
-                    parent = new NullContainer ();
-                    parent.id = parent_id;
-                }
-
-                if (parent != null) {
-                    children.add (get_object_from_statement (parent,
-                                                             child_id,
-                                                             statement));
-                    children.last ().parent_ref = parent;
-                } else {
-                    warning ("Inconsistent database: item %s " +
-                             "has no parent %s",
-                             child_id,
-                             parent_id);
-                }
-
-                return true;
-            } catch (DatabaseError error) {
-                warning ("Failed to get parent item: %s", error.message);
-
-                return false;
+            if (parent == null || parent_id != parent.id) {
+                parent = new NullContainer ();
+                parent.id = parent_id;
             }
+
+            if (parent != null) {
+                children.add (get_object_from_statement (parent,
+                                                         child_id,
+                                                         statement));
+                children.last ().parent_ref = parent;
+            } else {
+                warning ("Inconsistent database: item %s " +
+                         "has no parent %s",
+                         child_id,
+                         parent_id);
+            }
+
+            return true;
         };
 
         var sql = this.sql.make (SQLString.GET_OBJECTS_BY_FILTER);
