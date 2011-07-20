@@ -178,6 +178,10 @@ public abstract class Rygel.MediaObject : GLib.Object {
         }
     }
 
+    protected int compare_int_props (int prop1, int prop2) {
+        return (prop1 - prop2).clamp (-1, 1);
+    }
+
     private async bool check_writable (File file, Cancellable? cancellable)
                                        throws Error {
         if (!file.is_native ()) {

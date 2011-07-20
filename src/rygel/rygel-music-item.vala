@@ -85,6 +85,9 @@ public class Rygel.MusicItem : AudioItem {
             return this.compare_string_props (this.artist, item.artist);
         case "upnp:album":
             return this.compare_string_props (this.album, item.album);
+        case "upnp:originalTrackNumber":
+             return this.compare_int_props (this.track_number,
+                                            item.track_number);
         default:
             return base.compare_by_property (item, property);
         }

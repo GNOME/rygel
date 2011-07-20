@@ -28,7 +28,8 @@ using GUPnP;
  */
 public class Rygel.MediaObjects : ArrayList<MediaObject> {
     public const string SORT_CAPS = "@id,@parentID,dc:title,upnp:class," +
-                                    "dc:artist,dc:author,upnp:album,dc:date";
+                                    "dc:artist,dc:author,upnp:album," +
+                                    "dc:date,upnp:originalTrackNumber";
 
     public override Gee.List<MediaObject>? slice (int start, int stop) {
         var slice = base.slice (start, stop);
