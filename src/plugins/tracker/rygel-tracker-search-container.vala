@@ -29,7 +29,7 @@ using Gee;
 /**
  * A container listing a Tracker search result.
  */
-public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
+public class Rygel.Tracker.SearchContainer : SimpleContainer {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
@@ -47,7 +47,7 @@ public class Rygel.Tracker.SearchContainer : Rygel.MediaContainer {
                             ItemFactory        item_factory,
                             QueryTriplets?     triplets = null,
                             ArrayList<string>? filters = null) {
-        base (id, parent, title, 0);
+        base (id, parent, title);
 
         this.item_factory = item_factory;
 
