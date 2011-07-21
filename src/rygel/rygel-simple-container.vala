@@ -175,19 +175,30 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
 
     private void on_container_updated (MediaContainer source,
                                        MediaContainer updated) {
-        if (!(updated in this.empty_children)) {
-            return;
-        }
-
         if (updated.child_count > 0) {
+            if (!(updated in this.empty_children)) {
+                return;
+            }
+
             this.empty_children.remove (updated);
-            updated.container_updated.disconnect (this.on_container_updated);
 
             this.add_child (updated);
 
             this.updated ();
 
             debug ("Container '%s' now non-empty, added it to hierarchy now.",
+                   updated.id);
+        } else {
+            if (!(updated in this.children)) {
+                return;
+            }
+
+            this.remove_child (updated);
+            this.empty_children.add (updated);
+
+            this.updated ();
+
+            debug ("Container '%s' now empty, removing it from hierarchy now.",
                    updated.id);
         }
     }
