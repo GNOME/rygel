@@ -164,8 +164,8 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
                 Bus.watch_name (BusType.SESSION,
                                 DBusInterface.SERVICE_NAME,
                                 BusNameWatcherFlags.AUTO_START,
-                                a,
-                                b);
+                                (owned) a,
+                                (owned) b);
 
                 // Then symlink the desktop file to user's autostart dir
                 var source_path = Path.build_filename (BuildConfig.DESKTOP_DIR,
