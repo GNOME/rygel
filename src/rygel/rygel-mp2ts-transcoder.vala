@@ -98,11 +98,12 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
                                              "mpegversion=2," +
                                              "systemstream=false," +
                                              "framerate=(fraction)25/1");
-        var video_restriction = Caps.from_string
-                                            ("video/x-raw-yuv," +
-                                             "framerate=(fraction)25/1," +
-                                             "width=720," +
-                                             "height=576");
+        var restriction = "video/x-raw-yuv," +
+                          "framerate=(fraction)25/1," +
+                          "width=%d,".printf (HEIGHT[this.profile]) +
+                          "height=%d".printf (WIDTH[this.profile]);
+
+        var video_restriction = Caps.from_string (restriction);
 
         var audio_format = Caps.from_string ("audio/mpeg," +
                                              "mpegversion=1," +
