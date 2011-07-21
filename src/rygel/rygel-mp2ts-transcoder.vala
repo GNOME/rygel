@@ -93,13 +93,15 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         var cont_format = Caps.from_string ("video/mpegts," +
                                             "systemstream=true," +
                                             "packetsize=188");
+        var framerate = "framerate=(fraction)%d/1".printf
+                                        (FRAME_RATE[this.profile]);
 
         var video_format = Caps.from_string ("video/mpeg," +
                                              "mpegversion=2," +
                                              "systemstream=false," +
-                                             "framerate=(fraction)25/1");
+                                             framerate);
         var restriction = "video/x-raw-yuv," +
-                          "framerate=(fraction)25/1," +
+                          framerate + "," +
                           "width=%d,".printf (HEIGHT[this.profile]) +
                           "height=%d".printf (WIDTH[this.profile]);
 
