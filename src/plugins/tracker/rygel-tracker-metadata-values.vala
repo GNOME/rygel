@@ -178,7 +178,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
     }
 
     protected virtual string create_filter (string variable, string value) {
-        return variable + " = \"" + value + "\"";
+        return variable + " = \"" + Query.escape_string (value) + "\"";
     }
 
     private bool is_our_child (string id) {
