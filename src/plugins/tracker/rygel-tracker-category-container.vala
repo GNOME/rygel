@@ -45,9 +45,41 @@ public abstract class Rygel.Tracker.CategoryContainer : Rygel.SimpleContainer {
         this.add_child_container (new Tags (this, item_factory));
         this.add_child_container (new Titles (this, this.item_factory));
         this.add_child_container (new New (this, this.item_factory));
+        ulong signal_id = 0;
+
+        signal_id = this.all_container.container_updated.connect( () => {
+            // ingore first update
+            this.all_container.container_updated.connect
+                                        (this.on_all_container_updated);
+            this.all_container.disconnect (signal_id);
+        });
     }
 
     public void add_create_class (string create_class) {
         this.all_container.create_classes.add (create_class);
+    }
+
+    private void trigger_child_update (MediaObjects children) {
+        foreach (var container in children) {
+            if (container == this.all_container ||
+                container == null) {
+                continue;
+            }
+
+            if (container is MetadataValues) {
+                (container as MetadataValues).fetch_metadata_values ();
+            } else if (container is SearchContainer) {
+                (container as SearchContainer).get_children_count ();
+            }
+        }
+    }
+
+    private void on_all_container_updated (MediaContainer other) {
+        if (other != this.all_container) {
+            // otherwise we'd do a recursive update
+            return;
+        }
+
+        this.trigger_child_update (this.get_all_children ());
     }
 }

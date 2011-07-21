@@ -33,6 +33,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
 
     private ItemFactory item_factory;
+    private bool update_in_progress = false;
 
     // In tracker 0.7, we might don't get values of keys in place so you need a
     // chain of keys to reach to final destination. For instances:
@@ -66,7 +67,12 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         this.fetch_metadata_values.begin ();
     }
 
-    private async void fetch_metadata_values () {
+    internal async void fetch_metadata_values () {
+        if (this.update_in_progress) {
+            return;
+        }
+
+        this.update_in_progress = true;
         // First thing, clear the existing hierarchy, if any
         this.clear ();
 
@@ -112,6 +118,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
             critical (_("Error getting all values for '%s': %s"),
                       string.joinv (" -> ", this.key_chain),
                       error.message);
+            this.update_in_progress = false;
 
             return;
         }
@@ -157,6 +164,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         }
 
         this.updated ();
+        this.update_in_progress = false;
     }
 
     public override async MediaObject? find_object (string       id,

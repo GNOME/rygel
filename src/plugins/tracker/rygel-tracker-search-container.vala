@@ -188,7 +188,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
         }
     }
 
-    protected async void get_children_count () {
+    internal async void get_children_count () {
         try {
             var query = new SelectionQuery.clone (this.query);
 
