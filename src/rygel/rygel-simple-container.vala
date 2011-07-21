@@ -55,6 +55,14 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
         this.add_child (child);
     }
 
+    public MediaObjects get_all_children () {
+        var all = new MediaObjects ();
+        all.add_all (this.children);
+        all.add_all (this.empty_children);
+
+        return all;
+    }
+
     /**
      * NOTE: This method only actually adds the child container to the hierarchy
      * until it has any children to offer.
