@@ -27,7 +27,7 @@ using Gee;
 /**
  * Transcoder for linear PCM audio (LPCM).
  */
-internal class Rygel.L16Transcoder : Rygel.Transcoder {
+internal class Rygel.L16Transcoder : Rygel.AudioTranscoder {
     private const int CHANNELS = 2;
     private const int FREQUENCY = 44100;
     private const int WIDTH = 16;
@@ -40,7 +40,19 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
                         ";rate=" + L16Transcoder.FREQUENCY.to_string () +
                         ";channels=" + L16Transcoder.CHANNELS.to_string ();
 
-        base (mime_type, "LPCM", AudioItem.UPNP_CLASS);
+        var caps_str = "audio/x-raw-int" +
+                       ",channels=" + CHANNELS.to_string () +
+                       ",rate=" +  FREQUENCY.to_string () +
+                       ",width=" + WIDTH.to_string () +
+                       ",depth=" + DEPTH.to_string () +
+                       ",signed=" + SIGNED.to_string () +
+                       ",endianness=" + ENDIANNESS.to_string();
+
+        base (mime_type,
+              "LPCM",
+              0,
+              AudioTranscoder.NO_CONTAINER,
+              caps_str);
     }
 
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
@@ -48,8 +60,9 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
                                                     TranscodeManager manager)
                                                     throws Error {
         var resource = base.add_resource (didl_item, item, manager);
-        if (resource == null)
+        if (resource == null) {
             return null;
+        }
 
         resource.sample_freq = L16Transcoder.FREQUENCY;
         resource.audio_channels = L16Transcoder.CHANNELS;
@@ -83,22 +96,5 @@ internal class Rygel.L16Transcoder : Rygel.Transcoder {
         }
 
         return distance;
-    }
-
-    protected override EncodingProfile get_encoding_profile () {
-        var caps_str = "audio/x-raw-int" +
-                       ",channels=" + CHANNELS.to_string () +
-                       ",rate=" +  FREQUENCY.to_string () +
-                       ",width=" + WIDTH.to_string () +
-                       ",depth=" + DEPTH.to_string () +
-                       ",signed=" + SIGNED.to_string () +
-                       ",endianness=" + ENDIANNESS.to_string();
-        var format = Caps.from_string (caps_str);
-
-        var encoding_profile =  new EncodingAudioProfile (format,
-                                                          null,
-                                                          null,
-                                                          1);
-        return encoding_profile;
     }
 }

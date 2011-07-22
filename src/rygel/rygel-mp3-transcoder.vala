@@ -27,47 +27,15 @@ using Gee;
 /**
  * Transcoder for mpeg 1 layer 3 audio.
  */
-internal class Rygel.MP3Transcoder : Rygel.Transcoder {
+internal class Rygel.MP3Transcoder : Rygel.AudioTranscoder {
     public const int BITRATE = 256;
+    private const string FORMAT = "audio/mpeg,mpegversion=1,layer=3";
 
     public MP3Transcoder () {
-        base ("audio/mpeg", "MP3", AudioItem.UPNP_CLASS);
-    }
-
-    public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
-                                                    MediaItem        item,
-                                                    TranscodeManager manager)
-                                                    throws Error {
-        var resource = base.add_resource (didl_item, item, manager);
-        if (resource == null)
-            return null;
-
-        // Convert bitrate to bytes/second
-        resource.bitrate = BITRATE * 1000 / 8;
-
-        return resource;
-    }
-
-    public override uint get_distance (MediaItem item) {
-        if (!(item is AudioItem) || item is VideoItem) {
-            return uint.MAX;
-        }
-
-        var audio_item = item as AudioItem;
-        var distance = uint.MIN;
-
-        if (audio_item.bitrate > 0) {
-            distance += (audio_item.bitrate - BITRATE).abs ();
-        }
-
-        return distance;
-    }
-
-    protected override EncodingProfile get_encoding_profile () {
-        var format = Caps.from_string ("audio/mpeg,mpegversion=1,layer=3");
-        // FIXME: We should use the preset to set bitrate
-        var encoding_profile = new EncodingAudioProfile (format, null, null, 1);
-
-        return encoding_profile;
+        base ("audio/mpeg",
+              "MP3",
+              BITRATE,
+              AudioTranscoder.NO_CONTAINER,
+              FORMAT);
     }
 }
