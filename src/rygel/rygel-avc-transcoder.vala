@@ -22,79 +22,29 @@
 using Gst;
 using GUPnP;
 
-internal class Rygel.AVCTranscoder : Rygel.Transcoder {
-    private const int BITRATE = 1200000;
+/**
+ * Transcoder for H.264 in MP4 conforming to DLNA profile
+ * AVC_MP4_BL_CIF15_AAC_520 (15 fps, CIF resolution)
+ */
+internal class Rygel.AVCTranscoder : Rygel.VideoTranscoder {
     private const int VIDEO_BITRATE = 1200;
     private const int AUDIO_BITRATE = 64;
+    private const string CONTAINER = "video/quicktime,variant=iso";
+    private const string AUDIO_CAPS = "audio/mpeg,mpegversion=4";
+    private const string VIDEO_CAPS =
+        "video/x-h264,stream-format=avc,framerate=(fraction)15/1";
 
-    private const string RESTRICTIONS = "framerate=(fraction)15/1," +
-                                        "width=352,height=288";
+    private const string RESTRICTIONS =
+        "framerate=(fraction)15/1,width=352,height=288";
 
     public AVCTranscoder () {
-        base ("video/mp4", "AVC_MP4_BL_CIF15_AAC_520", VideoItem.UPNP_CLASS);
-    }
-
-    public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
-                                                    MediaItem        item,
-                                                    TranscodeManager manager)
-                                                    throws Error {
-        var resource = base.add_resource (didl_item, item, manager);
-        if (resource == null) {
-            return null;
-        }
-
-        var video_item = item as VideoItem;
-
-        resource.width = video_item.width;
-        resource.height = video_item.height;
-        resource.bitrate = (VIDEO_BITRATE + AUDIO_BITRATE) * 1000 / 8;
-
-        return resource;
-    }
-
-    public override uint get_distance (MediaItem item) {
-        if (!(item is VideoItem)) {
-            return uint.MAX;
-        }
-
-        var video_item = item as VideoItem;
-        var distance = uint.MIN;
-
-        if (video_item.bitrate > 0) {
-            distance += (video_item.bitrate - BITRATE).abs ();
-        }
-
-        return distance;
-    }
-
-    protected override EncodingProfile get_encoding_profile () {
-        var container_format = Caps.from_string ("video/quicktime,variant=iso");
-
-        var video_format = Caps.from_string ("video/x-h264," +
-                                             "stream-format=avc," +
-                                             "framerate=(fraction)15/1");
-        var audio_format = Caps.from_string ("audio/mpeg,mpegversion=4");
-
-        var enc_container_profile = new EncodingContainerProfile("container",
-                                                                 null,
-                                                                 container_format,
-                                                                 null);
-
-        var video_restriction = Caps.from_string (RESTRICTIONS);
-
-        var enc_video_profile = new EncodingVideoProfile (video_format,
-                                                          null,
-                                                          video_restriction,
-                                                          1);
-        var enc_audio_profile = new EncodingAudioProfile (audio_format,
-                                                          null,
-                                                          null,
-                                                          1);
-
-        // FIXME: We should use the preset to set bitrate
-        enc_container_profile.add_profile (enc_video_profile);
-        enc_container_profile.add_profile (enc_audio_profile);
-
-        return enc_container_profile;
+        base ("video/mp4",
+              "AVC_MP4_BL_CIF15_AAC_520",
+              AUDIO_BITRATE,
+              VIDEO_BITRATE,
+              CONTAINER,
+              AUDIO_CAPS,
+              VIDEO_CAPS,
+              RESTRICTIONS);
     }
 }

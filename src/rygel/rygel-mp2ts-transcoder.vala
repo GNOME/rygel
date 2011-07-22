@@ -22,7 +22,6 @@
  */
 using Gst;
 using GUPnP;
-using Gee;
 
 internal enum Rygel.MP2TSProfile {
     SD = 0,
@@ -32,7 +31,7 @@ internal enum Rygel.MP2TSProfile {
 /**
  * Transcoder for mpeg transport stream containing mpeg 2 video and mp2 audio.
  */
-internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
+internal class Rygel.MP2TSTranscoder : Rygel.VideoTranscoder {
     private const int VIDEO_BITRATE = 3000;
     private const int AUDIO_BITRATE = 256;
 
@@ -41,12 +40,32 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     private const int[] HEIGHT = {576, 720};
     private const int[] FRAME_RATE = {25, 30};
     private const string[] PROFILES = {"MPEG_TS_SD_EU_ISO", "MPEG_TS_HD_NA_ISO"};
-    private const int BITRATE = 3000000;
+
+    private const string CONTAINER =
+        "video/mpegts,systemstream=true,paketsize=188";
+
+    private const string AUDIO_FORMAT =
+        "audio/mpeg,mpegversion=1,layer=2";
+
+    private const string BASE_VIDEO_FORMAT =
+        "video/mpeg,mpegversion=2,systemstream=false,framerate=(fraction)%d/1";
+
+    private const string RESTRICTION_TEMPLATE =
+        "video/x-raw-yuv,framerate=(fraction)%d/1,width=%d,height=%d";
 
     private MP2TSProfile profile;
 
     public MP2TSTranscoder (MP2TSProfile profile) {
-        base ("video/mpeg", PROFILES[profile], VideoItem.UPNP_CLASS);
+        base ("video/mpeg",
+              PROFILES[profile],
+              AUDIO_BITRATE,
+              VIDEO_BITRATE,
+              CONTAINER,
+              AUDIO_FORMAT,
+              BASE_VIDEO_FORMAT.printf (FRAME_RATE[profile]),
+              RESTRICTION_TEMPLATE.printf (FRAME_RATE[profile],
+                                           WIDTH[profile],
+                                           HEIGHT[profile]));
 
         this.profile = profile;
     }
@@ -56,11 +75,12 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
                                                     TranscodeManager manager)
                                                     throws Error {
         var resource = base.add_resource (didl_item, item, manager);
-        if (resource == null)
+        if (resource == null) {
             return null;
+        }
 
-        resource.width = WIDTH[profile];
-        resource.height = HEIGHT[profile];
+        resource.width = WIDTH[this.profile];
+        resource.height = HEIGHT[this.profile];
         resource.bitrate = (VIDEO_BITRATE + AUDIO_BITRATE) * 1000 / 8;
 
         return resource;
@@ -72,10 +92,10 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         }
 
         var video_item = item as VideoItem;
-        var distance = uint.MIN;
+        var distance = base.get_distance (item);
 
         if (video_item.bitrate > 0) {
-            distance += (video_item.bitrate - BITRATE).abs ();
+            distance += (video_item.bitrate - VIDEO_BITRATE).abs ();
         }
 
         if (video_item.width > 0) {
@@ -87,47 +107,5 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         }
 
         return distance;
-    }
-
-    protected override EncodingProfile get_encoding_profile () {
-        var cont_format = Caps.from_string ("video/mpegts," +
-                                            "systemstream=true," +
-                                            "packetsize=188");
-        var framerate = "framerate=(fraction)%d/1".printf
-                                        (FRAME_RATE[this.profile]);
-
-        var video_format = Caps.from_string ("video/mpeg," +
-                                             "mpegversion=2," +
-                                             "systemstream=false," +
-                                             framerate);
-        var restriction = "video/x-raw-yuv," +
-                          framerate + "," +
-                          "width=%d,".printf (WIDTH[this.profile]) +
-                          "height=%d".printf (HEIGHT[this.profile]);
-
-        var video_restriction = Caps.from_string (restriction);
-
-        var audio_format = Caps.from_string ("audio/mpeg," +
-                                             "mpegversion=1," +
-                                             "layer=2");
-
-        var enc_container_profile = new EncodingContainerProfile ("container",
-                                                                  null,
-                                                                  cont_format,
-                                                                  null);
-        var enc_video_profile = new EncodingVideoProfile (video_format,
-                                                          null,
-                                                          video_restriction,
-                                                          1);
-        var enc_audio_profile = new EncodingAudioProfile (audio_format,
-                                                          null,
-                                                          null,
-                                                          1);
-
-        // FIXME: We should use the preset to set bitrate
-        enc_container_profile.add_profile (enc_video_profile);
-        enc_container_profile.add_profile (enc_audio_profile);
-
-        return enc_container_profile;
     }
 }

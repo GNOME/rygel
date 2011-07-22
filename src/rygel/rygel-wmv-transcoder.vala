@@ -22,70 +22,17 @@
 using Gst;
 using GUPnP;
 
-internal class Rygel.WMVTranscoder : Rygel.Transcoder {
-    private const int BITRATE = 1200000;
+internal class Rygel.WMVTranscoder : Rygel.VideoTranscoder {
     private const int VIDEO_BITRATE = 1200;
     private const int AUDIO_BITRATE = 64;
 
     public WMVTranscoder () {
-        base ("video/x-ms-wmv", "WMVHIGH_FULL", VideoItem.UPNP_CLASS);
-    }
-
-    public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
-                                                    MediaItem        item,
-                                                    TranscodeManager manager)
-                                                    throws Error {
-        var resource = base.add_resource (didl_item, item, manager);
-        if (resource == null)
-            return null;
-
-        var video_item = item as VideoItem;
-
-        resource.width = video_item.width;
-        resource.height = video_item.height;
-        resource.bitrate = (VIDEO_BITRATE + AUDIO_BITRATE) * 1000 / 8;
-
-        return resource;
-    }
-
-    public override uint get_distance (MediaItem item) {
-        if (!(item is VideoItem)) {
-            return uint.MAX;
-        }
-
-        var video_item = item as VideoItem;
-        var distance = uint.MIN;
-
-        if (video_item.bitrate > 0) {
-            distance += (video_item.bitrate - BITRATE).abs ();
-        }
-
-        return distance;
-    }
-
-    protected override EncodingProfile get_encoding_profile () {
-        var container_format = Caps.from_string ("video/x-ms-asf,parsed=true");
-
-        var video_format = Caps.from_string ("video/x-wmv,wmvversion=1");
-        var audio_format = Caps.from_string ("audio/x-wma,channels=2,wmaversion=1");
-
-        var enc_container_profile = new EncodingContainerProfile("container",
-                                                                 null,
-                                                                 container_format,
-                                                                 null);
-        var enc_video_profile = new EncodingVideoProfile (video_format,
-                                                          null,
-                                                          null,
-                                                          1);
-        var enc_audio_profile = new EncodingAudioProfile (audio_format,
-                                                          null,
-                                                          null,
-                                                          1);
-
-        // FIXME: We should use the preset to set bitrate
-        enc_container_profile.add_profile (enc_video_profile);
-        enc_container_profile.add_profile (enc_audio_profile);
-
-        return enc_container_profile;
+        base ("video/x-ms-wmv",
+              "WMVHIGH_FULL",
+              AUDIO_BITRATE,
+              VIDEO_BITRATE,
+              "video/x-ms-asf,parsed=true",
+              "audio/x-wma,channels=2,wmaversion=1",
+              "video/x-wmv,wmvversion=1");
     }
 }

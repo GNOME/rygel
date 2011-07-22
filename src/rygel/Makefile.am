@@ -96,6 +96,7 @@ VAPI_SOURCE_FILES = \
 	rygel-search-criteria-parser.vala \
 	rygel-transcoder.vala \
 	rygel-audio-transcoder.vala \
+	rygel-video-transcoder.vala \
 	rygel-mp2ts-transcoder.vala \
 	rygel-mp3-transcoder.vala \
 	rygel-l16-transcoder.vala \
