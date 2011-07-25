@@ -176,7 +176,6 @@
     * Missing metadata:
       * Video: resolution info, author, framerate, bitrate etc.
       * Image: album.
-    * Make use of refID.
     * Use ~/.face as icon if available.
     * Request creation of thumbnails (http://live.gnome.org/ThumbnailerSpec).
     * Remove redundant "Item" from item class names.
