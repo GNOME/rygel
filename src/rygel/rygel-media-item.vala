@@ -175,6 +175,11 @@ public abstract class Rygel.MediaItem : MediaObject {
         var didl_item = writer.add_item ();
 
         didl_item.id = this.id;
+
+        if (this.ref_id != null) {
+            didl_item.ref_id = this.ref_id;
+        }
+
         if (this.parent != null) {
             didl_item.parent_id = this.parent.id;
         } else {

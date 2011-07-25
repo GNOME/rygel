@@ -89,6 +89,19 @@ public abstract class Rygel.Tracker.ItemFactory {
                                       string[]        metadata)
                                       throws GLib.Error;
 
+    protected void set_ref_id (MediaItem item, string prefix) {
+        if (item.id.has_prefix (prefix)) {
+            return;
+        }
+
+        var split_id = item.id.split (",");
+        if (split_id.length != 2) {
+            return;
+        }
+
+        item.ref_id = prefix + "," + split_id[1];
+    }
+
     protected virtual void set_metadata (MediaItem item,
                                          string    uri,
                                          string[]  metadata) throws GLib.Error {

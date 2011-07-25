@@ -75,6 +75,8 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
                                           throws GLib.Error {
         base.set_metadata (item, uri, metadata);
 
+        this.set_ref_id (item, "AllVideos");
+
         var video = item as VideoItem;
 
         if (metadata[VideoMetadata.WIDTH] != "")

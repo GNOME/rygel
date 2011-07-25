@@ -73,6 +73,8 @@ public class Rygel.Tracker.PictureItemFactory : ItemFactory {
                                           throws GLib.Error {
         base.set_metadata (item, uri, metadata);
 
+        this.set_ref_id (item, "AllPictures");
+
         var photo = item as PhotoItem;
 
         if (metadata[PictureMetadata.WIDTH] != "") {
