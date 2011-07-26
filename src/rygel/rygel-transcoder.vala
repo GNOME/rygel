@@ -166,13 +166,6 @@ internal abstract class Rygel.Transcoder : GLib.Object {
         Gst.Pad encoder_pad = null;
         encoder_pad = encoder.get_compatible_pad (new_pad, null);
         if (encoder_pad == null) {
-            Signal.emit_by_name (encoder,
-                                 "request-pad",
-                                 new_pad.get_caps (),
-                                 out encoder_pad);
-        }
-
-        if (encoder_pad == null) {
             debug ("No compatible encodebin pad found for pad '%s', ignoring..",
                    new_pad.name);
 
