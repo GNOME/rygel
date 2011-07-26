@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <root xmlns="urn:schemas-upnp-org:device-1-0" xmlns:dlna="urn:schemas-dlna-org:device-1-0">
   <specVersion>
-    <major>2</major>
+    <major>1</major>
     <minor>0</minor>
   </specVersion>
   <device>
