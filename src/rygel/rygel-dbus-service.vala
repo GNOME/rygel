@@ -38,8 +38,7 @@ public class Rygel.DBusService : Object, DBusInterface {
     internal void publish () {
         this.name_id = Bus.own_name (BusType.SESSION,
                                      DBusInterface.SERVICE_NAME,
-                                     BusNameOwnerFlags.ALLOW_REPLACEMENT |
-                                     BusNameOwnerFlags.REPLACE,
+                                     BusNameOwnerFlags.NONE,
                                      this.on_bus_aquired,
                                      this.on_name_available,
                                      this.on_name_lost);
@@ -79,13 +78,19 @@ public class Rygel.DBusService : Object, DBusInterface {
             return;
         }
 
-        if (this.connection_id != 0) {
-            message (_("Another instance of Rygel is taking over. Exiting"));
-        } else {
-            message (_("Another instance of Rygel is already running."));
-        }
+        // Cleanly shutdown other instance.
+        try {
+            DBusInterface rygel = Bus.get_proxy_sync (BusType.SESSION,
+                                                      DBusInterface.SERVICE_NAME,
+                                                      DBusInterface.OBJECT_PATH,
+                                                      DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
+            rygel.shutdown ();
+        } catch (Error error) {
+            warning ("Failed to shut-down other rygel instance: %s",
+                     error.message);
 
-        this.main.exit (12);
+            this.main.exit (-12);
+        }
     }
 }
 

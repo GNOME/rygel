@@ -212,6 +212,10 @@ public class Rygel.Main : Object {
 
     private void on_plugin_active_notify (Object    obj,
                                           ParamSpec spec) {
+        if (unlikely (this.root_devices == null)) {
+            return;
+        }
+
         var plugin = obj as Plugin;
 
         foreach (var device in this.root_devices) {
