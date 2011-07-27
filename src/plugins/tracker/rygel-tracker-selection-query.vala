@@ -105,6 +105,7 @@ public class Rygel.Tracker.SelectionQuery : Query {
         // If strict sharing is enabled, only expose files that have a DLNA
         // profile set
         try {
+            var config = MetaConfig.get_default ();
             if (config.get_bool ("Tracker", "strict-sharing")) {
                 filters.add (STRICT_SHARED_FILTER);
             }
