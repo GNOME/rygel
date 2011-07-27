@@ -32,10 +32,12 @@ using Gee;
 internal abstract class Rygel.Transcoder : GLib.Object {
     public string mime_type { get; protected set; }
     public string dlna_profile { get; protected set; }
-    public Gst.Caps decoder_caps;
 
     private const string DECODE_BIN = "decodebin2";
     private const string ENCODE_BIN = "encodebin";
+
+    dynamic Element decoder;
+    dynamic Element encoder;
 
     // Primary UPnP item class that this transcoder is meant for, doesn't
     // necessarily mean it cant be used for other classes.
@@ -59,10 +61,10 @@ internal abstract class Rygel.Transcoder : GLib.Object {
      */
     public virtual Element create_source (MediaItem item,
                                           Element   src) throws Error {
-        dynamic Element decoder = GstUtils.create_element (DECODE_BIN,
-                                                           DECODE_BIN);
-        dynamic Element encoder = GstUtils.create_element (ENCODE_BIN,
-                                                           ENCODE_BIN);
+        this.decoder = GstUtils.create_element (DECODE_BIN,
+                                                DECODE_BIN);
+        this.encoder = GstUtils.create_element (ENCODE_BIN,
+                                                ENCODE_BIN);
 
         encoder.profile = this.get_encoding_profile ();
 
@@ -148,49 +150,40 @@ internal abstract class Rygel.Transcoder : GLib.Object {
     private bool on_autoplug_continue (Element decodebin,
                                        Pad     new_pad,
                                        Caps    caps) {
-        this.decoder_caps = caps;
-        return !this.connect_decoder_pad (decodebin, new_pad);
+        Gst.Pad sinkpad = null;
+
+        Signal.emit_by_name (this.encoder, "request-pad", caps, out sinkpad);
+        if (sinkpad == null) {
+            return true;
+        }
+
+        return false;
     }
 
     private void on_decoder_pad_added (Element decodebin, Pad new_pad) {
-        this.connect_decoder_pad (decodebin, new_pad);
-    }
+        Gst.Pad sinkpad;
 
-    private bool connect_decoder_pad (Element decodebin, Pad new_pad) {
-        var bin = decodebin.get_parent () as Bin;
-        assert (bin != null);
+        sinkpad = this.encoder.get_compatible_pad (new_pad, null);
 
-        var encoder = bin.get_by_name (ENCODE_BIN);
-        assert (encoder != null);
-
-        Gst.Pad encoder_pad = null;
-        encoder_pad = encoder.get_compatible_pad (new_pad, null);
-        if (encoder_pad == null) {
-            Signal.emit_by_name (encoder,
-                                 "request-pad",
-                                 new_pad.get_caps (),
-                                 out encoder_pad);
+        if (sinkpad == null) {
+            var caps = new_pad.get_caps ();
+            Signal.emit_by_name (this.encoder, "request-pad", caps, out sinkpad);
         }
 
-        if (encoder_pad == null) {
+        if (sinkpad == null) {
             debug ("No compatible encodebin pad found for pad '%s', ignoring..",
                    new_pad.name);
 
-            return false;
-        } else {
-            debug ("pad '%s' with caps '%s' is compatible with '%s'",
-                   new_pad.name,
-                   this.decoder_caps.to_string (),
-                   encoder_pad.name);
+            return;
         }
 
-        var pad_link_ok = (new_pad.link (encoder_pad) == PadLinkReturn.OK);
+        var pad_link_ok = (new_pad.link (sinkpad) == PadLinkReturn.OK);
         if (!pad_link_ok) {
             warning ("Failed to link pad '%s' to '%s'",
                      new_pad.name,
-                     encoder_pad.name);
+                     sinkpad.name);
         }
 
-        return pad_link_ok;
+        return;
     }
 }
