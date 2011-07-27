@@ -29,7 +29,8 @@ internal errordomain Rygel.XBoxHacksError {
 }
 
 internal class Rygel.XBoxHacks : GLib.Object {
-    private static string AGENT = ".*Xbox.*|.*Allegro-Software-WebClient.*";
+    private static string AGENT =
+        ".*Xbox.*|.*Allegro-Software-WebClient.*|.*SEC_HHP_Galaxy S/1\\.0.*";
     private static string DMS = "urn:schemas-upnp-org:device:MediaServer";
     private static string DMS_V1 = DMS + ":1";
     private static string FRIENDLY_NAME_POSTFIX = ":";
@@ -54,7 +55,8 @@ internal class Rygel.XBoxHacks : GLib.Object {
         var agent = headers.get_one ("User-Agent");
         if (agent == null ||
             !(agent.contains ("Xbox")) &&
-            !(agent.contains ("Allegro-Software-WebClient"))) {
+            !(agent.contains ("Allegro-Software-WebClient")) &&
+            !(agent.contains ("SEC_HHP_Galaxy S/1.0"))) {
             throw new XBoxHacksError.NA (_("Not Applicable"));
         }
 
