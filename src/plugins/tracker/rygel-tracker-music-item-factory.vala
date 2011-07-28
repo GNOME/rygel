@@ -117,9 +117,20 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
             music.track_number = int.parse (track_number);
         }
 
-        music.artist = metadata[MusicMetadata.AUDIO_ARTIST];
-        music.album = metadata[MusicMetadata.AUDIO_ALBUM];
-        music.genre = metadata[MusicMetadata.AUDIO_GENRE];
+        // FIXME: For the following three properties:
+        // Once converted to libtracker-sparql, check for null again.
+        // DBus translates a (null) to ''
+        if (metadata[MusicMetadata.AUDIO_ARTIST] != "") {
+            music.artist = metadata[MusicMetadata.AUDIO_ARTIST];
+        }
+
+        if (metadata[MusicMetadata.AUDIO_ALBUM] != "") {
+            music.album = metadata[MusicMetadata.AUDIO_ALBUM];
+        }
+
+        if (metadata[MusicMetadata.AUDIO_GENRE] != "") {
+            music.genre = metadata[MusicMetadata.AUDIO_GENRE];
+        }
 
         music.lookup_album_art ();
     }
