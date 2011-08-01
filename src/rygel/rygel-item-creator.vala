@@ -105,8 +105,14 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             var container = yield this.fetch_container ();
 
             /* Verify the create class. Note that we always assume
-             * createClass@includeDerived to be false */
-            if (!container.create_classes.contains (didl_item.upnp_class)) {
+             * createClass@includeDerived to be false.
+             *
+             * DLNA_ORG.AnyContainer is a special case. We are allowed to
+             * modify the UPnP class to something we support and
+             * fetch_container took care of this already.
+             */
+            if (!container.create_classes.contains (didl_item.upnp_class) &&
+                this.container_id != "DLNA_ORG.AnyContainer") {
                 throw new ContentDirectoryError.BAD_METADATA
                                         ("Creating of objects with class %s " +
                                          "is not supported in %s",
@@ -208,33 +214,52 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         }
     }
 
+    private void generalize_upnp_class (ref string upnp_class) {
+        char *needle = upnp_class.rstr_len (-1, ".");
+        if (needle != null) {
+            *needle = '\0';
+        }
+    }
+
     private async WritableContainer fetch_container () throws Error {
         MediaObject media_object = null;
 
         if (this.container_id == "DLNA.ORG_AnyContainer") {
-            var expression = new RelationalExpression ();
-            expression.op = SearchCriteriaOp.DERIVED_FROM;
-            expression.operand1 = "upnp:createClass";
-            expression.operand2 = didl_item.upnp_class;
+            var upnp_class = didl_item.upnp_class;
 
-            uint total_matches;
+            while (upnp_class != "object.item") {
+                var expression = new RelationalExpression ();
+                expression.op = SearchCriteriaOp.DERIVED_FROM;
+                expression.operand1 = "upnp:createClass";
+                expression.operand2 = upnp_class;
 
-            var container = this.content_dir.root_container
-                            as SearchableContainer;
+                uint total_matches;
 
-            if (container != null) {
-                var result = yield container.search (expression,
-                                                     0,
-                                                     1,
-                                                     out total_matches,
-                                                     this.cancellable);
-                if (result.size > 0) {
-                    media_object = result[0];
+                var container = this.content_dir.root_container
+                                as SearchableContainer;
+
+                if (container != null) {
+                    var result = yield container.search (expression,
+                                                         0,
+                                                         1,
+                                                         out total_matches,
+                                                         this.cancellable);
+                    if (result.size > 0) {
+                        media_object = result[0];
+                        didl_item.upnp_class = upnp_class;
+                        break;
+                    } else {
+                        this.generalize_upnp_class (ref upnp_class);
+                    }
                 } else {
-                    throw new ContentDirectoryError.BAD_METADATA
+                    break;
+                }
+            }
+
+            if (upnp_class == "object.item") {
+                throw new ContentDirectoryError.BAD_METADATA
                                         ("'%s' UPnP class unsupported",
                                          didl_item.upnp_class);
-                }
             }
         } else {
             media_object = yield this.content_dir.root_container.find_object
