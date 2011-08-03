@@ -100,7 +100,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
                 main_loop.quit ();
             });
 
-            var timeout_id = Timeout.add_seconds (5, () => {
+            var timeout_id = Timeout.add_seconds (30, () => {
                 debug ("Timeout while waiting for 'updated' signal on '%s'.",
                        this.item.parent.id);
                 main_loop.quit ();
