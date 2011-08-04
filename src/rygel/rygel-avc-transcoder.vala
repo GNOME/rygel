@@ -27,6 +27,9 @@ internal class Rygel.AVCTranscoder : Rygel.Transcoder {
     private const int VIDEO_BITRATE = 1200;
     private const int AUDIO_BITRATE = 64;
 
+    private const string RESTRICTIONS = "framerate=(fraction)15/1," +
+                                        "width=352,height=288";
+
     public AVCTranscoder () {
         base ("video/mp4", "AVC_MP4_BL_CIF15_AAC_520", VideoItem.UPNP_CLASS);
     }
@@ -67,16 +70,21 @@ internal class Rygel.AVCTranscoder : Rygel.Transcoder {
     protected override EncodingProfile get_encoding_profile () {
         var container_format = Caps.from_string ("video/quicktime,variant=iso");
 
-        var video_format = Caps.from_string ("video/x-h264,stream-format=avc");
+        var video_format = Caps.from_string ("video/x-h264," +
+                                             "stream-format=avc," +
+                                             "framerate=(fraction)15/1");
         var audio_format = Caps.from_string ("audio/mpeg,mpegversion=4");
 
         var enc_container_profile = new EncodingContainerProfile("container",
                                                                  null,
                                                                  container_format,
                                                                  null);
+
+        var video_restriction = Caps.from_string (RESTRICTIONS);
+
         var enc_video_profile = new EncodingVideoProfile (video_format,
                                                           null,
-                                                          null,
+                                                          video_restriction,
                                                           1);
         var enc_audio_profile = new EncodingAudioProfile (audio_format,
                                                           null,
