@@ -1,3 +1,75 @@
+0.11.3
+======
+
+Another release in the unstable release cycle.
+
+Changes since 0.11.2:
+
+- Fixed an abort if the client requested chunks of data being too small.
+- Fix memory leaking related to file upload.
+- Work-around a crash when the service description file is invalid.
+- Make rygel a single-instance app. If a new instance is started, the old
+  instance will be shut down. This is likely to be reveresed in a future
+  release.
+- Fix an UPnP compatibility regression.
+- Fix resolution and framerate for MPEG_TS_HD_NA_ISO transcoder.
+- Adapt to changes in upcoming vala-0.14
+- Allow UPnP class generalization on upload to DLNA_ORG.AnyContainer.
+- Add transcoders for AAC_ISO_320 and AVC_MP4_BL_CIF15_AAC_520. Note that both
+  are disabled by default since GStreamer has some issues with these
+  pipelines.
+
+- IOP:
+  - Fix IOP with XBox 360's music browsing.
+  - Fix IOP with Samsung Galaxy S.
+  - Fix IOP with Allegro clients.
+
+- Tracker:
+  - Properly escape meta-data strings.
+  - Update search containers if tracker content changes.
+  - Fix wrong search result when "exists true" was searched for artist, album
+    and genre.
+  - Implement @refID.
+  - Add an option to share only those files that have a nmm:dlnaProfile set.
+
+- MediaExport:
+  - Refactor database access code.
+
+All contributors to this release:
+  - Jens Georg <mail@jensge.org>
+  - Luis de Bethencourt <luis.debethencourt@collabora.com>
+  - Daniel Mustieles <daniel.mustieles@gmail.com>
+  - Мирослав Николић <miroslavnikolic@rocketmail.com>
+  - Yuri Myasoedov <omerta13@yandex.ru>
+  - Thijs Vermeir <thijsvermeir@gmail.com>
+  - Mario Blättermann <mariobl@gnome.org>
+  - Marek Černocký <marek@manet.cz>
+  - Kjartan Maraas <kmaraas@gnome.org>
+  - Andrej Žnidaršič <andrej.znidarsic@gmail.com>
+
+Added/updated translations
+  - cs, courtesy of Marek Černocký
+  - de, courtesy of Mario Blättermann
+  - es, courtesy of Daniel Mustieles
+  - nb, courtesy of Kjartan Maraas
+  - ru, courtesy of Yuri Myasoedov
+  - sl, courtesy of Andrej Žnidaršič
+  - sr, courtesy of Мирослав Николић
+  - sr@latin, courtesy of Miroslav Nikolić
+
+- UPnP requirements addressed:
+  - UPnP CTT 2.0 cases AV-CD:1-4.1
+
+- DLNA requirements addressed:
+  - 7.3.66.3
+  - 7.3.120.4
+  - 7.3.136.1
+  - 7.3.136.4
+
+- Bugs fixed:
+  bgo#629582 - MediaServer doesn't work with Samsung Galaxy S
+  bgo#654833 - compiler warning in media-export plugin
+
 0.11.2
 ======
 
