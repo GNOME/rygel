@@ -152,7 +152,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                   Format.TIME,
                                   SeekFlags.FLUSH,
                                   Gst.SeekType.SET,
-                                  time,
+                                  (int64) time,
                                   Gst.SeekType.NONE,
                                   -1);
     }

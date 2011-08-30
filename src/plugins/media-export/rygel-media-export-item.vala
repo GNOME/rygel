@@ -111,7 +111,7 @@ namespace Rygel.MediaExport.ItemFactory {
                                          DLNAInformation      dlna_info,
                                          DiscovererAudioInfo? audio_info) {
         if (dlna_info.info.get_duration () > 0) {
-            item.duration = dlna_info.info.get_duration () / Gst.SECOND;
+            item.duration = (long) (dlna_info.info.get_duration () / Gst.SECOND);
         } else {
             item.duration = -1;
         }
