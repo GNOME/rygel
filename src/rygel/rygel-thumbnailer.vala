@@ -39,6 +39,8 @@ internal class Rygel.Thumbnailer : GLib.Object {
     private Thumbnail template;
     private string extension;
 
+    private DbusThumbnailer thumbler = null;
+
     private Thumbnailer () throws ThumbnailerError {
         var dir = Path.build_filename (Environment.get_home_dir (),
                                        ".thumbnails",
@@ -72,6 +74,11 @@ internal class Rygel.Thumbnailer : GLib.Object {
         }
 
         this.directory = dir;
+
+        try {
+            this.thumbler = new DbusThumbnailer ();
+       } catch (GLib.IOError error) {}
+
     }
 
     public static Thumbnailer? get_default () {
@@ -88,13 +95,18 @@ internal class Rygel.Thumbnailer : GLib.Object {
         return thumbnailer;
     }
 
-    public Thumbnail get_thumbnail (string uri) throws Error {
+    public Thumbnail get_thumbnail (string uri, string mime_type) throws Error {
         Thumbnail thumbnail = null;
 
         var path = Checksum.compute_for_string (ChecksumType.MD5, uri) +
                    this.extension;
         var full_path = Path.build_filename (this.directory, path);
         var file = File.new_for_path (full_path);
+
+        // send a request to create thumbnail if it does not exist
+        if ((this.thumbler != null) && (!file.query_exists ())) {
+            this.thumbler.create_thumbnail_task (uri, mime_type, "normal");
+        }
 
         var info = file.query_info (FILE_ATTRIBUTE_ACCESS_CAN_READ + "," +
                                     FILE_ATTRIBUTE_STANDARD_SIZE,

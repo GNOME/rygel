@@ -55,7 +55,7 @@ public class Rygel.ImageItem : MediaItem, VisualItem {
     public override void add_uri (string uri) {
         base.add_uri (uri);
 
-        this.add_thumbnail_for_uri (uri);
+        this.add_thumbnail_for_uri (uri, this.mime_type);
     }
 
     internal override void add_resources (DIDLLiteItem didl_item,

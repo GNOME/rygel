@@ -76,6 +76,7 @@ VAPI_SOURCE_FILES = \
 	rygel-photo-item.vala \
 	rygel-thumbnail.vala \
 	rygel-thumbnailer.vala \
+	rygel-dbus-thumbnailer.vala \
 	rygel-media-art-store.vala \
 	rygel-subtitle.vala \
 	rygel-subtitle-manager.vala \

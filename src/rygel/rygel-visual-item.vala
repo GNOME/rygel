@@ -38,13 +38,13 @@ public interface Rygel.VisualItem : MediaItem {
 
     public abstract ArrayList<Thumbnail> thumbnails { get; protected set; }
 
-    internal void add_thumbnail_for_uri (string uri) {
+    internal void add_thumbnail_for_uri (string uri, string mime_type) {
         // Lets see if we can provide the thumbnails
         var thumbnailer = Thumbnailer.get_default ();
 
         if (thumbnailer != null) {
             try {
-                var thumb = thumbnailer.get_thumbnail (uri);
+                var thumb = thumbnailer.get_thumbnail (uri, this.mime_type);
                 this.thumbnails.add (thumb);
             } catch (Error err) {}
         }

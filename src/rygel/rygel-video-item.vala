@@ -60,7 +60,7 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
     public override void add_uri (string uri) {
         base.add_uri (uri);
 
-        this.add_thumbnail_for_uri (uri);
+        this.add_thumbnail_for_uri (uri, this.mime_type);
 
         var subtitle_manager = SubtitleManager.get_default ();
 
