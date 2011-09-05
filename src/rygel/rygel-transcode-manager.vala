@@ -51,8 +51,6 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
         var mp3_transcoder = true;
         var mp2ts_transcoder = true;
         var wmv_transcoder = true;
-        var aac_transcoder = true;
-        var avc_transcoder = true;
 
         try {
             transcoding = config.get_transcoding ();
@@ -62,18 +60,16 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
                 mp3_transcoder = config.get_mp3_transcoder ();
                 mp2ts_transcoder = config.get_mp2ts_transcoder ();
                 wmv_transcoder = config.get_wmv_transcoder ();
-                aac_transcoder = config.get_aac_transcoder ();
-                avc_transcoder = config.get_avc_transcoder ();
             }
         } catch (Error err) {}
 
         if (transcoding) {
             if (lpcm_transcoder) {
-                transcoders.add (new L16Transcoder ());
+                transcoders.add (new L16Transcoder (Endianness.BIG));
             }
 
             if (mp3_transcoder) {
-                transcoders.add (new MP3Transcoder ());
+                transcoders.add (new MP3Transcoder (MP3Layer.THREE));
             }
 
             if (mp2ts_transcoder) {
@@ -83,14 +79,6 @@ internal abstract class Rygel.TranscodeManager : GLib.Object {
 
             if (wmv_transcoder) {
                 transcoders.add (new WMVTranscoder ());
-            }
-
-            if (aac_transcoder) {
-                transcoders.add (new AACTranscoder ());
-            }
-
-            if (avc_transcoder) {
-                transcoders.add (new AVCTranscoder ());
             }
         }
     }

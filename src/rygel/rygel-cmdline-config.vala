@@ -41,8 +41,6 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static bool no_mp2ts_trans;
     private static bool no_lpcm_trans;
     private static bool no_wmv_trans;
-    private static bool no_aac_trans;
-    private static bool no_avc_trans;
 
     private static bool disallow_upload;
     private static bool disallow_deletion;
@@ -87,10 +85,6 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
           "Disable Linear PCM transcoder", null },
         { "disable-wmv-transcoder", 'w', 0, OptionArg.NONE, ref no_wmv_trans,
           "Disable WMV transcoder", null },
-        { "disable-aac-transcoder", 'a', 0, OptionArg.NONE, ref no_aac_trans,
-          "Disable AAC_ISO_320 transcoder", null },
-        { "disable-avc-transcoder", 'z', 0, OptionArg.NONE, ref no_avc_trans,
-          "Disable AVC_MP4 transcoder", null },
         { "disallow-upload", 'U', 0, OptionArg.NONE,
           ref disallow_upload, "Disallow upload", null },
         { "disallow-deletion", 'D', 0, OptionArg.NONE,
@@ -209,22 +203,6 @@ internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     public bool get_wmv_transcoder () throws GLib.Error {
         if (!no_wmv_trans) {
-            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
-        } else {
-            return false;
-        }
-    }
-
-    public bool get_aac_transcoder () throws GLib.Error {
-        if (!no_aac_trans) {
-            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
-        } else {
-            return false;
-        }
-    }
-
-    public bool get_avc_transcoder () throws GLib.Error {
-        if (!no_avc_trans) {
             throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         } else {
             return false;

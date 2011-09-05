@@ -3,8 +3,6 @@ include ../../common.am
 AM_CFLAGS += \
 	$(LIBGUPNP_DLNA_CFLAGS) \
 	$(LIBSOUP_CFLAGS) \
-	$(LIBGSTREAMER_CFLAGS) \
-	$(GST_PBU_CFLAGS) \
 	-DSMALL_ICON_DIR='"$(smallicondir)"' \
 	-DBIG_ICON_DIR='"$(bigicondir)"' -include config.h \
 	-DLOCALEDIR=\""$(datadir)/locale"\" -DG_LOG_DOMAIN='"Rygel"'
@@ -96,9 +94,13 @@ VAPI_SOURCE_FILES = \
 	rygel-mp2ts-transcoder.vala \
 	rygel-mp3-transcoder.vala \
 	rygel-l16-transcoder.vala \
+	rygel-mp2ts-transcoder-bin.vala \
+	rygel-mp3-transcoder-bin.vala \
+	rygel-l16-transcoder-bin.vala \
+	rygel-wma-transcoder.vala \
+	rygel-wma-transcoder-bin.vala \
 	rygel-wmv-transcoder.vala \
-	rygel-aac-transcoder.vala \
-	rygel-avc-transcoder.vala \
+	rygel-wmv-transcoder-bin.vala \
 	rygel-gst-utils.vala \
 	rygel-media-receiver-registrar.vala \
 	rygel-log-handler.vala \
@@ -121,7 +123,6 @@ rygel_LDADD = \
 	librygel-configuration.a \
 	$(RYGEL_COMMON_LDADD) \
 	$(LIBGUPNP_DLNA_LIBS) \
-	$(GST_PBU_LIBS) \
 	$(GIO_LIBS) \
 	$(LIBSOUP_LIBS)
 

@@ -219,44 +219,6 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         return val;
     }
 
-    public bool get_aac_transcoder () throws GLib.Error {
-        bool val = true;
-        bool unavailable = true;
-
-        foreach (var config in this.configs) {
-            try {
-                val = config.get_aac_transcoder ();
-                unavailable = false;
-                break;
-            } catch (GLib.Error err) {}
-        }
-
-        if (unavailable) {
-            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
-        }
-
-        return val;
-    }
-
-    public bool get_avc_transcoder () throws GLib.Error {
-        bool val = true;
-        bool unavailable = true;
-
-        foreach (var config in this.configs) {
-            try {
-                val = config.get_avc_transcoder ();
-                unavailable = false;
-                break;
-            } catch (GLib.Error err) {}
-        }
-
-        if (unavailable) {
-            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
-        }
-
-        return val;
-    }
-
     public bool get_allow_upload () throws GLib.Error {
         bool val = true;
         bool unavailable = true;

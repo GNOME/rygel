@@ -42,6 +42,11 @@ internal abstract class Rygel.GstUtils {
         return element;
     }
 
+    public static void post_error (Element dest, Error error) {
+        Message msg = new Message.error (dest, error, error.message);
+        dest.post_message (msg);
+    }
+
     public static ClockTime time_from_string (string str) {
         uint64 hours, minutes, seconds;
 

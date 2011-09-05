@@ -140,6 +140,7 @@ src/rygel/rygel-item-creator.c
 src/rygel/rygel-item-destroyer.c
 src/rygel/rygel-item-removal-queue.c
 src/rygel/rygel-l16-transcoder.c
+src/rygel/rygel-l16-transcoder-bin.c
 src/rygel/rygel-log-handler.c
 src/rygel/rygel-logical-expression.c
 src/rygel/rygel-main.c
@@ -156,7 +157,9 @@ src/rygel/rygel-media-server-plugin.c
 src/rygel/rygel-meta-config.c
 src/rygel/rygel-metadata-extractor.c
 src/rygel/rygel-mp2ts-transcoder.c
+src/rygel/rygel-mp2ts-transcoder-bin.c
 src/rygel/rygel-mp3-transcoder.c
+src/rygel/rygel-mp3-transcoder-bin.c
 src/rygel/rygel-music-item.c
 src/rygel/rygel-photo-item.c
 src/rygel/rygel-plugin.c
@@ -185,7 +188,9 @@ src/rygel/rygel-user-config.c
 src/rygel/rygel-video-item.c
 src/rygel/rygel-visual-item.c
 src/rygel/rygel-volume.c
+src/rygel/rygel-wma-transcoder-bin.c
 src/rygel/rygel-wmv-transcoder.c
+src/rygel/rygel-wmv-transcoder-bin.c
 src/rygel/rygel-writable-container.c
 src/rygel/rygel-xbox-hacks.c
 src/rygel/rygel-xml-utils.c

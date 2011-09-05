@@ -47,10 +47,6 @@ public interface Rygel.Configuration : GLib.Object {
 
     public abstract bool get_wmv_transcoder () throws GLib.Error;
 
-    public abstract bool get_aac_transcoder () throws GLib.Error;
-
-    public abstract bool get_avc_transcoder () throws GLib.Error;
-
     public abstract bool get_allow_upload () throws GLib.Error;
 
     public abstract bool get_allow_deletion () throws GLib.Error;

@@ -25,13 +25,29 @@ using GUPnP;
 using Gee;
 
 /**
- * Transcoder for mpeg 1 layer 3 audio.
+ * Transcoder for mpeg 1 layer 2 and 3 audio. This element uses MP3TrancoderBin
+ * for actual transcoding.
  */
 internal class Rygel.MP3Transcoder : Rygel.Transcoder {
     public const int BITRATE = 256;
 
-    public MP3Transcoder () {
+    private const string[] AUDIO_ENCODER = {null, "twolame", "lame"};
+    private const string AUDIO_PARSER = "mp3parse";
+
+    private const string CONVERT_SINK_PAD = "convert-sink-pad";
+
+    private MP3Layer layer;
+
+    public MP3Transcoder (MP3Layer layer) {
         base ("audio/mpeg", "MP3", AudioItem.UPNP_CLASS);
+
+        this.layer = layer;
+    }
+
+    public override Element create_source (MediaItem item,
+                                           Element   src)
+                                           throws Error {
+        return new MP3TranscoderBin (item, src, this);
     }
 
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
@@ -63,11 +79,39 @@ internal class Rygel.MP3Transcoder : Rygel.Transcoder {
         return distance;
     }
 
-    protected override EncodingProfile get_encoding_profile () {
-        var format = Caps.from_string ("audio/mpeg,mpegversion=1,layer=3");
-        // FIXME: We should use the preset to set bitrate
-        var encoding_profile = new EncodingAudioProfile (format, null, null, 1);
+    public Element create_encoder (MediaItem item,
+                                   string?   src_pad_name,
+                                   string?   sink_pad_name)
+                                   throws Error {
+        var l16_transcoder = new L16Transcoder (Endianness.LITTLE);
+        dynamic Element convert = l16_transcoder.create_encoder
+                                        (item, null, CONVERT_SINK_PAD);
+        dynamic Element encoder = GstUtils.create_element
+                                        (AUDIO_ENCODER[this.layer],
+                                         AUDIO_ENCODER[this.layer]);
+        dynamic Element parser = GstUtils.create_element (AUDIO_PARSER,
+                                                          AUDIO_PARSER);
 
-        return encoding_profile;
+        if (this.layer == MP3Layer.THREE) {
+            // Best quality
+            encoder.quality = 0;
+        }
+
+        encoder.bitrate = BITRATE;
+
+        var bin = new Bin ("mp3-encoder-bin");
+        bin.add_many (convert, encoder, parser);
+
+        convert.link_many (encoder, parser);
+
+        var pad = convert.get_static_pad (CONVERT_SINK_PAD);
+        var ghost = new GhostPad (sink_pad_name, pad);
+        bin.add_pad (ghost);
+
+        pad = parser.get_static_pad ("src");
+        ghost = new GhostPad (src_pad_name, pad);
+        bin.add_pad (ghost);
+
+        return bin;
     }
 }

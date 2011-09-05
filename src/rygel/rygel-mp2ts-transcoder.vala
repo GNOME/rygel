@@ -31,10 +31,10 @@ internal enum Rygel.MP2TSProfile {
 
 /**
  * Transcoder for mpeg transport stream containing mpeg 2 video and mp2 audio.
+ * This element uses MP2TSTrancoderBin for actual transcoding.
  */
 internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     private const int VIDEO_BITRATE = 3000;
-    private const int AUDIO_BITRATE = 256;
 
     // HD
     private const int[] WIDTH = {720, 1280};
@@ -43,12 +43,23 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
     private const string[] PROFILES = {"MPEG_TS_SD_EU_ISO", "MPEG_TS_HD_NA_ISO"};
     private const int BITRATE = 3000000;
 
+    private const string VIDEO_ENCODER = "ffenc_mpeg2video";
+    private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
+    private const string VIDEO_RATE = "videorate";
+    private const string VIDEO_SCALE = "videoscale";
+
     private MP2TSProfile profile;
 
     public MP2TSTranscoder (MP2TSProfile profile) {
         base ("video/mpeg", PROFILES[profile], VideoItem.UPNP_CLASS);
 
         this.profile = profile;
+    }
+
+    public override Element create_source (MediaItem item,
+                                           Element   src)
+                                           throws Error {
+        return new MP2TSTranscoderBin (item, src, this);
     }
 
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
@@ -61,7 +72,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
 
         resource.width = WIDTH[profile];
         resource.height = HEIGHT[profile];
-        resource.bitrate = (VIDEO_BITRATE + AUDIO_BITRATE) * 1000 / 8;
+        resource.bitrate = (VIDEO_BITRATE + MP3Transcoder.BITRATE) * 1000 / 8;
 
         return resource;
     }
@@ -89,45 +100,67 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
         return distance;
     }
 
-    protected override EncodingProfile get_encoding_profile () {
-        var cont_format = Caps.from_string ("video/mpegts," +
-                                            "systemstream=true," +
-                                            "packetsize=188");
-        var framerate = "framerate=(fraction)%d/1".printf
-                                        (FRAME_RATE[this.profile]);
+    public Element create_encoder (MediaItem item,
+                                   string?   src_pad_name,
+                                   string?   sink_pad_name)
+                                   throws Error {
+        var videorate = GstUtils.create_element (VIDEO_RATE, VIDEO_RATE);
+        var videoscale = GstUtils.create_element (VIDEO_SCALE, VIDEO_SCALE);
+        var convert = GstUtils.create_element (COLORSPACE_CONVERT,
+                                               COLORSPACE_CONVERT);
+        dynamic Element encoder = GstUtils.create_element (VIDEO_ENCODER,
+                                                           VIDEO_ENCODER);
 
-        var video_format = Caps.from_string ("video/mpeg," +
-                                             "mpegversion=2," +
-                                             "systemstream=false," +
-                                             framerate);
-        var restriction = "video/x-raw-yuv," +
-                          framerate + "," +
-                          "width=%d,".printf (HEIGHT[this.profile]) +
-                          "height=%d".printf (WIDTH[this.profile]);
+        encoder.bitrate = (int) VIDEO_BITRATE * 1000;
 
-        var video_restriction = Caps.from_string (restriction);
+        var bin = new Bin ("video-encoder-bin");
+        bin.add_many (videorate, videoscale, convert, encoder);
 
-        var audio_format = Caps.from_string ("audio/mpeg," +
-                                             "mpegversion=1," +
-                                             "layer=2");
+        convert.link_many (videoscale, videorate);
 
-        var enc_container_profile = new EncodingContainerProfile ("container",
-                                                                  null,
-                                                                  cont_format,
-                                                                  null);
-        var enc_video_profile = new EncodingVideoProfile (video_format,
-                                                          null,
-                                                          video_restriction,
-                                                          1);
-        var enc_audio_profile = new EncodingAudioProfile (audio_format,
-                                                          null,
-                                                          null,
-                                                          1);
+        int pixel_w;
+        int pixel_h;
 
-        // FIXME: We should use the preset to set bitrate
-        enc_container_profile.add_profile (enc_video_profile);
-        enc_container_profile.add_profile (enc_audio_profile);
+        var video_item = item as VideoItem;
 
-        return enc_container_profile;
+        if (video_item.pixel_width > 0 && video_item.pixel_height > 0) {
+            pixel_w = video_item.width *
+                      HEIGHT[this.profile] *
+                      video_item.pixel_width;
+            pixel_h = video_item.height *
+                      WIDTH[this.profile] *
+                      video_item.pixel_height;
+        } else {
+            // Original pixel-ratio not provided, lets just use 1:1
+            pixel_w = 1;
+            pixel_h = 1;
+        }
+
+        var caps = new Caps.simple ("video/x-raw-yuv",
+                                    "width",
+                                        typeof (int),
+                                        WIDTH[this.profile],
+                                    "height",
+                                        typeof (int),
+                                        HEIGHT[this.profile],
+                                    "framerate",
+                                        typeof (Fraction),
+                                        FRAME_RATE[this.profile],
+                                        1,
+                                    "pixel-aspect-ratio",
+                                        typeof (Fraction),
+                                        pixel_w,
+                                        pixel_h);
+        videorate.link_filtered (encoder, caps);
+
+        var pad = convert.get_static_pad ("sink");
+        var ghost = new GhostPad (sink_pad_name, pad);
+        bin.add_pad (ghost);
+
+        pad = encoder.get_static_pad ("src");
+        ghost = new GhostPad (src_pad_name, pad);
+        bin.add_pad (ghost);
+
+        return bin;
     }
 }

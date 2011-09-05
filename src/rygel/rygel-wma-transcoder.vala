@@ -22,23 +22,19 @@
 using Gst;
 using GUPnP;
 
-internal class Rygel.WMVTranscoder : Rygel.Transcoder {
-    private const int VIDEO_BITRATE = 1200;
-    private const int BITRATE = 1200000;
+internal class Rygel.WMATranscoder : Rygel.Transcoder {
+    public const int BITRATE = 64;
 
-    private const string VIDEO_ENCODER = "ffenc_wmv1";
-    private const string COLORSPACE_CONVERT = "ffmpegcolorspace";
-    private const string VIDEO_RATE = "videorate";
-    private const string VIDEO_SCALE = "videoscale";
+    private const string CONVERT_SINK_PAD = "convert-sink-pad";
 
-    public WMVTranscoder () {
-        base ("video/x-ms-wmv", "WMVHIGH_FULL", VideoItem.UPNP_CLASS);
+    public WMATranscoder () {
+        base ("audio/x-wma", "WMA", AudioItem.UPNP_CLASS);
     }
 
     public override Element create_source (MediaItem item,
                                            Element   src)
                                            throws Error {
-        return new WMVTranscoderBin (item, src, this);
+        return new WMATranscoderBin (item, src, this);
     }
 
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
@@ -49,25 +45,22 @@ internal class Rygel.WMVTranscoder : Rygel.Transcoder {
         if (resource == null)
             return null;
 
-        var video_item = item as VideoItem;
-
-        resource.width = video_item.width;
-        resource.height = video_item.height;
-        resource.bitrate = (VIDEO_BITRATE + WMATranscoder.BITRATE) * 1000 / 8;
+        // Convert bitrate to bytes/second
+        resource.bitrate = BITRATE * 1000 / 8;
 
         return resource;
     }
 
     public override uint get_distance (MediaItem item) {
-        if (!(item is VideoItem)) {
+        if (!(item is AudioItem)) {
             return uint.MAX;
         }
 
-        var video_item = item as VideoItem;
+        var audio_item = item as AudioItem;
         var distance = uint.MIN;
 
-        if (video_item.bitrate > 0) {
-            distance += (video_item.bitrate - BITRATE).abs ();
+        if (audio_item.bitrate > 0) {
+            distance += (audio_item.bitrate - BITRATE).abs ();
         }
 
         return distance;
@@ -77,18 +70,21 @@ internal class Rygel.WMVTranscoder : Rygel.Transcoder {
                                    string?   src_pad_name,
                                    string?   sink_pad_name)
                                    throws Error {
-        var convert = GstUtils.create_element (COLORSPACE_CONVERT,
-                                               COLORSPACE_CONVERT);
-        dynamic Element encoder = GstUtils.create_element (VIDEO_ENCODER,
-                                                           VIDEO_ENCODER);
+        var l16_transcoder = new L16Transcoder (Endianness.LITTLE);
+        dynamic Element convert = l16_transcoder.create_encoder (
+                                       item,
+                                       null,
+                                       CONVERT_SINK_PAD);
 
-        encoder.bitrate = (int) VIDEO_BITRATE * 1000;
+        dynamic Element encoder = GstUtils.create_element ("ffenc_wmav2",
+                                                           "ffenc_wmav2");
+        encoder.bitrate = BITRATE * 1000;
 
-        var bin = new Bin ("video-encoder-bin");
+        var bin = new Bin("wma-encoder-bin");
         bin.add_many (convert, encoder);
         convert.link (encoder);
 
-        var pad = convert.get_static_pad ("sink");
+        var pad = convert.get_static_pad (CONVERT_SINK_PAD);
         var ghost = new GhostPad (sink_pad_name, pad);
         bin.add_pad (ghost);
 
@@ -98,5 +94,4 @@ internal class Rygel.WMVTranscoder : Rygel.Transcoder {
 
         return bin;
     }
-
 }
