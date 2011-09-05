@@ -1,3 +1,26 @@
+0.12.0
+======
+
+The first release in the stable 0.12.0 series to accompany the GNOME 3.2 cycle.
+
+Changes since 0.11.3:
+
+- Make use of the Thumbnailer DBus service if available.
+- Revert encodebin transcoder to pre 0.10.0 state. Transcoding should now work
+  for everyone again.
+
+All contributors to this release:
+  - Lukasz Pawlik <lucas.pawlik@gmail.com>
+  - Jens Georg <mail@jensge.org>
+  - Мирослав Николић <miroslavnikolic@rocketmail.com>
+
+Added/updated translations
+  - sr, courtesy of Мирослав Николић
+  - sr@latin, courtesy of Miroslav Nikolić
+
+- DLNA requirements addressed:
+  - 7.3.60.3
+
 0.11.3
 ======
 
