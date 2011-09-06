@@ -58,7 +58,7 @@ AC_DEFUN([RYGEL_ADD_PLUGIN],
 ])
 
 AC_DEFUN([RYGEL_CHECK_VALA],
-[AC_REQUIRE([AM_PROG_VALAC])[]dnl
+[
     AC_ARG_ENABLE([vala],
         [AS_HELP_STRING([--enable-vala],[enable checks for vala])],,
             [enable_vala=no])
