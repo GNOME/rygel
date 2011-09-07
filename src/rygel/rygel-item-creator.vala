@@ -97,6 +97,13 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                          "were found in 'dlnaManaged'");
             }
 
+            if (didl_item.upnp_class == null ||
+                didl_item.upnp_class == "" ||
+                !didl_item.upnp_class.has_prefix ("object.item")) {
+                throw new ContentDirectoryError.BAD_METADATA
+                                        ("Invalid upnp:class given ");
+            }
+
             if (didl_item.restricted) {
                 throw new ContentDirectoryError.INVALID_ARGS
                                         ("Cannot create restricted item");
