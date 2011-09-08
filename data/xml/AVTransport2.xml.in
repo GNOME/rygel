@@ -12,7 +12,11 @@ Any updates to this file should maintain this convention.
 This includes disabling any automatic tab-to-space conversion
 feature provided by your editor.
 ================================================================-->
-<scpd>
+<scpd xmlns="urn:schemas-upnp-org:service-1-0">
+   <specVersion>
+      <major>1</major>
+      <minor>0</minor>
+   </specVersion>
    <serviceStateTable>
       <stateVariable sendEvents="no">
          <name>TransportState</name>
@@ -100,6 +104,7 @@ feature provided by your editor.
          <dataType>ui4</dataType>
          <allowedValueRange>
             <minimum>0</minimum>
+            <maximum>512</maximum>
          </allowedValueRange>
       </stateVariable>
 
@@ -108,6 +113,7 @@ feature provided by your editor.
          <dataType>ui4</dataType>
          <allowedValueRange>
             <minimum>0</minimum>
+            <maximum>512</maximum>
             <step>1</step>
          </allowedValueRange>
       </stateVariable>
