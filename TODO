@@ -40,7 +40,7 @@
 
   * autogen passes '--enable-tests' to configure by default.
 
-  * Use common.m4 in tests/Makefile.am.
+  * Use common.m4 in tests/Makefile.am (Probably not possible).
 
   * Cache response(s). If user fast forwards a stream, one request completes and
     a second will be issued with a new time offset.  It is important to keep the
@@ -177,7 +177,6 @@
       * Video: resolution info, author, framerate, bitrate etc.
       * Image: album.
     * Use ~/.face as icon if available.
-    * Request creation of thumbnails (http://live.gnome.org/ThumbnailerSpec).
     * Remove redundant "Item" from item class names.
     * share playlists and other categories?
 
