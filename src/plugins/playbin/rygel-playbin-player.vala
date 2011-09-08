@@ -45,6 +45,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                         "video/x-3ivx",
                                         "video/x-3ivx",
                                         "video/x-matroska",
+                                        "video/x-mkv",
                                         "video/mpeg",
                                         "video/mp4",
                                         "video/x-ms-asf",
