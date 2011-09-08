@@ -233,7 +233,13 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "CREATE INDEX IF NOT EXISTS idx_closure on Closure(descendant,depth);" +
     "CREATE INDEX IF NOT EXISTS idx_closure_descendant on Closure(descendant);" +
     "CREATE INDEX IF NOT EXISTS idx_closure_ancestor on Closure(ancestor);" +
-    "CREATE INDEX IF NOT EXISTS idx_uri on Object(uri);";
+    "CREATE INDEX IF NOT EXISTS idx_uri on Object(uri);" +
+    "CREATE INDEX IF NOT EXISTS idx_meta_data_date on meta_data(date);" +
+    "CREATE INDEX IF NOT EXISTS idx_meta_data_genre on meta_data(genre);" +
+    "CREATE INDEX IF NOT EXISTS idx_meta_data_album on meta_data(album);" +
+    "CREATE INDEX IF NOT EXISTS idx_meta_data_artist_album on " +
+                                "meta_data(author, album);";
+
 
 
     private const string EXISTS_CACHE_STRING =
