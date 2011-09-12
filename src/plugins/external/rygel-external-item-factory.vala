@@ -79,6 +79,7 @@ public class Rygel.External.ItemFactory {
         music.artist = this.get_string (props, "Artist");
         music.album = this.get_string (props, "Album");
         music.genre = this.get_string (props, "Genre");
+        music.track_number = this.get_int (props, "TrackNumber");
 
         var value = props.lookup ("AlbumArt");
         if (value != null) {

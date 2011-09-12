@@ -91,7 +91,8 @@ public interface Rygel.External.MediaItemProxy : DBusProxy, MediaObjectProxy {
                                                 "PixelWidth",
                                                 "PixelHeight",
                                                 "Thumbnail",
-                                                "AlbumArt" };
+                                                "AlbumArt",
+                                                "TrackNumber" };
 
     [DBus (name = "URLs")]
     public abstract string[] urls { owned get; set; }
