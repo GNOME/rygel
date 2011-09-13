@@ -113,7 +113,7 @@ public class Rygel.Main : Object {
             port = this.config.get_port ();
         } catch (GLib.Error err) {}
 
-        var manager = new ContextManager (null, port);
+        var manager = ContextManager.create (port);
 
         manager.context_available.connect (this.on_context_available);
         manager.context_unavailable.connect (this.on_context_unavailable);
