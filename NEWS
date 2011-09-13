@@ -1,3 +1,42 @@
+0.12.1
+======
+
+Another release in the stabe 0.12 series of Rygel
+
+Changes since 0.12.0:
+
+- Fix service description templates for RenderingControl and AVTransport.
+- Update documentation for run-time dependencies.
+
+MediaExport:
+- Speed-up virtual container browsing by adding indices to the database.
+
+Playbin:
+- Fix setting of current playback URI, preventing a possible crash later on.
+- Announce support for video/x-mkv additonaly to video/x-matroska.
+
+Tracker:
+- Only consider objects with URIs, otherwise a search or browse will error out
+  unnecessarily.
+
+External:
+- Add TrackNumber to optional properties.
+
+All contributors to this release:
+  - Jens Georg <mail@jensge.org>
+  - Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+  - Piotr Drąg <piotrdrag@gmail.com>
+  - Jonathan Matthew <jonathan@d14n.org>
+
+Added/updated translations:
+  - pl, courtesy of Piotr Drąg
+
+Bugs fixed:
+
+https://bugzilla.gnome.org/show_bug.cgi?id=657550
+https://bugzilla.gnome.org/show_bug.cgi?id=652191
+http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=638006
+
 0.12.0
 ======
 
