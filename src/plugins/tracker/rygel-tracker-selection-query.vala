@@ -31,7 +31,9 @@ public class Rygel.Tracker.SelectionQuery : Query {
                                          ITEM_VARIABLE + ")) ||" +
                                          " nmm:uPnPShared(" +
                                          ITEM_VARIABLE +
-                                         ") = true)";
+                                         ") = true) && " +
+                                         "(BOUND(nie:url(" +
+                                         ITEM_VARIABLE + ")))";
     private const string STRICT_SHARED_FILTER = "(BOUND(nmm:dlnaProfile(" +
                                                 ITEM_VARIABLE + ")))";
     private const string AVAILABLE_FILTER = "(tracker:available(" +
