@@ -266,6 +266,9 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
                                  FileMonitorEvent event_type) {
         this.container_updated (this);
     }
+
+    public void disconnect (ulong id) {
+    }
 }
 
 public class Rygel.MediaItem : Rygel.MediaObject {
