@@ -147,7 +147,7 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
     }
 
     private void on_server_weak_ref (GLib.Object object) {
-        this.needs_weak_unref = false;
+        this.unref_soup_server = false;
         this.cancellable.cancel ();
     }
 
