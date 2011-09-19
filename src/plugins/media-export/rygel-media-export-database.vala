@@ -47,9 +47,9 @@ internal class Rygel.MediaExport.Database : SqliteWrapper {
            return;
         }
 
-        var pattern = Regex.escape_string (args[0].to_text ());
+        var pattern = Regex.escape_string (args[1].to_text ());
         if (Regex.match_simple (pattern,
-                                args[1].to_text (),
+                                args[0].to_text (),
                                 RegexCompileFlags.CASELESS)) {
             context.result_int (1);
         } else {
