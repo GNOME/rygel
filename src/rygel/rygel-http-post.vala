@@ -91,38 +91,55 @@ internal class Rygel.HTTPPost : HTTPRequest {
             return;
         }
 
+        this.finalize_post ();
+    }
+
+    private async void finalize_post () {
         try {
             this.stream.close (this.cancellable);
+        } catch (Error error) {
+            this.end (KnownStatusCode.INTERNAL_SERVER_ERROR);
+            this.handle_continue ();
 
-            var main_loop = new MainLoop ();
+            return;
+        }
 
-            this.item.parent.container_updated.connect ((container) => {
-                main_loop.quit ();
-            });
+        this.server.pause_message (this.msg);
 
-            var timeout_id = Timeout.add_seconds (30, () => {
-                debug ("Timeout while waiting for 'updated' signal on '%s'.",
-                       this.item.parent.id);
-                main_loop.quit ();
+        debug ("Waiting for update signal from container '%s' after pushing" +
+               " content to its child item '%s'..",
+               this.item.parent.id,
+               this.item.id);
 
-                return false;
-            });
-
-            debug ("Waiting for update signal from container '%s' after pushing" +
-                   " content to its child item '%s'..",
-                   this.item.parent.id,
-                   this.item.id);
-            main_loop.run ();
-            Source.remove (timeout_id);
+        var id = this.item.parent.container_updated.connect ((container) => {
             debug ("Finished waiting for update signal from container '%s'",
                    this.item.parent.id);
 
-            this.end (KnownStatusCode.OK);
-        } catch (Error error) {
-            this.end (KnownStatusCode.INTERNAL_SERVER_ERROR);
-        } finally {
-            this.handle_continue ();
+            finalize_post.callback ();
+        });
+
+        uint timeout_id = 0;
+        timeout_id = Timeout.add_seconds (30, () => {
+            debug ("Timeout while waiting for 'updated' signal on '%s'.",
+                   this.item.parent.id);
+            this.item.parent.disconnect (id);
+            timeout_id = 0;
+
+            finalize_post.callback ();
+
+            return false;
+        });
+
+        yield;
+
+        this.item.parent.disconnect (id);
+        if (timeout_id != 0) {
+            Source.remove (timeout_id);
         }
+
+        this.server.unpause_message (this.msg);
+        this.end (KnownStatusCode.OK);
+        this.handle_continue ();
     }
 
     private void on_got_chunk (Message msg, Buffer chunk) {
