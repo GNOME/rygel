@@ -35,7 +35,7 @@ internal errordomain Rygel.HTTPRequestError {
 internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     public unowned HTTPServer http_server;
     private MediaContainer root_container;
-    public Soup.Server server;
+    public unowned Soup.Server server;
     public Soup.Message msg;
 
     public Cancellable cancellable { get; set; }
