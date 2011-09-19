@@ -59,6 +59,7 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
 
     private Pipeline pipeline;
     private uint bus_watch_id;
+    private bool unref_soup_server;
 
     public HTTPResponse (HTTPGet        request,
                          HTTPGetHandler request_handler,
@@ -87,6 +88,14 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         this.msg.response_body.set_accumulate (false);
 
         this.prepare_pipeline ("RygelHTTPGstResponse", src);
+        this.server.weak_ref (this.on_server_weak_ref);
+        this.unref_soup_server = true;
+    }
+
+    ~HTTPResponse () {
+        if (this.unref_soup_server) {
+            this.server.weak_unref (this.on_server_weak_ref);
+        }
     }
 
     public async void run () {
@@ -135,6 +144,11 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
 
     private void on_cancelled (Cancellable cancellable) {
         this.end (true, Soup.KnownStatusCode.CANCELLED);
+    }
+
+    private void on_server_weak_ref (GLib.Object object) {
+        this.needs_weak_unref = false;
+        this.cancellable.cancel ();
     }
 
     private void prepare_pipeline (string name, Element src) throws Error {
