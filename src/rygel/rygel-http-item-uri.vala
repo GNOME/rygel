@@ -28,7 +28,7 @@ internal class Rygel.HTTPItemURI : Object {
     public int thumbnail_index;
     public int subtitle_index;
     public string? transcode_target;
-    public HTTPServer http_server;
+    public unowned HTTPServer http_server;
 
     public HTTPItemURI (string     item_id,
                         HTTPServer http_server,
