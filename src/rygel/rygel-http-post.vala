@@ -32,6 +32,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
     SourceFunc handle_continue;
 
     File file;
+    File dotfile;
     OutputStream stream;
 
     public HTTPPost (HTTPServer   http_server,
@@ -73,7 +74,9 @@ internal class Rygel.HTTPPost : HTTPRequest {
                                          this.item.id);
         }
 
-        this.stream = yield this.file.replace_async
+        this.dotfile = this.file.get_parent ().get_child
+                                        ("." + this.file.get_basename ());
+        this.stream = yield this.dotfile.replace_async
                                         (null,
                                          false,
                                          FileCreateFlags.REPLACE_DESTINATION,
@@ -129,6 +132,25 @@ internal class Rygel.HTTPPost : HTTPRequest {
 
             return false;
         });
+
+        try {
+            this.dotfile.move (this.file,
+                               FileCopyFlags.NONE,
+                               this.cancellable);
+        } catch (Error move_error) {
+            // translators: Dotfile is the filename with prefix "."
+            warning (_("Failed to move dotfile %s: %s"),
+                     this.dotfile.get_uri (),
+                     move_error.message);
+
+            Source.remove (timeout_id);
+            this.item.parent.disconnect (id);
+            this.server.unpause_message (this.msg);
+            this.end (KnownStatusCode.INTERNAL_SERVER_ERROR);
+            this.handle_continue ();
+
+            return;
+        }
 
         yield;
 
