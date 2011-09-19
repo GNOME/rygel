@@ -110,8 +110,6 @@
 
   * save_modified_desc is in two classes.
 
-  * Check nested Mainloop usage
-
   * Unit tests
     * HTTPGetHandler
       * HTTPIdentityHandler
