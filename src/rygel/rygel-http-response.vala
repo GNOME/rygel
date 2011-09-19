@@ -25,7 +25,7 @@ using Gst;
 using Soup;
 
 internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
-    public Soup.Server server { get; private set; }
+    public unowned Soup.Server server { get; private set; }
     public Soup.Message msg;
 
     public Cancellable cancellable { get; set; }
