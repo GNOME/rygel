@@ -1,7 +1,40 @@
+0.12.2
+======
+
+Another release in the stable 0.12 series of Rygel
+
+Changes since 0.12.1:
+
+- Fix a crash when a context disappears and reappears while Rygel is
+  streaming media.
+- Only check for vala compiler when --enable-vala is passed.
+- Sanity check of upnp:class in CreateObject call.
+- Properly finish ImportResource call when the host in SourceUri is not
+  reachable.
+
+MediaExport:
+- Fix "contains" search
+- Add m2ts to harvested media files
+
+All contributors to this release:
+  - Jens Georg <mail@jensge.org>
+  - Duarte Loreto <happyguy_pt@hotmail.com>
+  - Rudolfs Mazurs <rudolfs.mazurs@gmail.com>
+
+Added/updated translations:
+  - pt, courtesy of Duarte Loreto
+  - lv, courtesy of Rudolfs Mazurs
+
+Bugs fixed:
+
+https://bugzilla.gnome.org/show_bug.cgi?id=659419
+https://bugzilla.gnome.org/show_bug.cgi?id=654180
+https://bugzilla.gnome.org/show_bug.cgi?id=659457
+
 0.12.1
 ======
 
-Another release in the stabe 0.12 series of Rygel
+Another release in the stable 0.12 series of Rygel
 
 Changes since 0.12.0:
 
