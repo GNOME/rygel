@@ -496,7 +496,7 @@ msgstr "Nenhum valor disponível para \"%s/%s\""
 #: ../src/rygel/rygel-plugin-loader.vala:83
 #, c-format
 msgid "New plugin '%s' available"
-msgstr "Nenhum plug-in \"%s\" disponível"
+msgstr "Novo plug-in \"%s\" disponível"
 
 #: ../src/rygel/rygel-plugin-loader.vala:117
 #, c-format
