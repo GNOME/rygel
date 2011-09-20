@@ -266,9 +266,6 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
                                  FileMonitorEvent event_type) {
         this.container_updated (this);
     }
-
-    public void disconnect (ulong id) {
-    }
 }
 
 public class Rygel.MediaItem : Rygel.MediaObject {
@@ -359,7 +356,7 @@ public class Rygel.ItemRemovalQueue: GLib.Object {
     }
 }
 
-public class Rygel.MediaObject {}
+public class Rygel.MediaObject : GLib.Object {}
 
 public errordomain Rygel.ContentDirectoryError {
     INVALID_ARGS = 402
