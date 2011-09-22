@@ -39,6 +39,8 @@ internal class Rygel.DbusThumbnailer : GLib.Object {
     private bool is_running  = false;
     private string file_path;
 
+    public bool available { get; private set; }
+
     const string THUMBNAILER_IFACE = "org.freedesktop.thumbnails.Thumbnailer1";
     const string THUMBNAILER_SERVICE =
                                     "/org/freedesktop/thumbnails/Thumbnailer1";
@@ -51,12 +53,35 @@ internal class Rygel.DbusThumbnailer : GLib.Object {
 
 
     public DbusThumbnailer () throws GLib.IOError {
-        this.tumbler = GLib.Bus.get_proxy_sync (BusType.SESSION,
-                                                THUMBNAILER_IFACE,
-                                                THUMBNAILER_SERVICE);
+        this.available = false;
+        Bus.watch_name (BusType.SESSION,
+                        THUMBNAILER_IFACE,
+                        BusNameWatcherFlags.AUTO_START,
+                        this.on_name_available,
+                        this.on_name_unavailable);
 
-        tumbler.Finished.connect (on_finished);
-        tumbler.Error.connect (on_error);
+    }
+
+    public void on_name_available (DBusConnection connection,
+                                   string         name,
+                                   string         owner) {
+        try {
+            this.tumbler = connection.get_proxy_sync (THUMBNAILER_IFACE,
+                                                      THUMBNAILER_SERVICE);
+
+            tumbler.Finished.connect (on_finished);
+            tumbler.Error.connect (on_error);
+            this.available = true;
+            debug ("DBus thumbnailer service available");
+        } catch (Error error) {
+            this.available = false;
+        }
+    }
+
+    public void on_name_unavailable (DBusConnection connection,
+                                     string         name) {
+        this.available = false;
+        debug ("DBus thumbnailer service not available");
     }
 
     public async void create_thumbnail_task (string file_path,
