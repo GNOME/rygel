@@ -24,7 +24,9 @@ interface Tumbler : GLib.Object {
                                           string[] mime_types,
                                           string flavor,
                                           string sheduler,
-                                          uint handle) throws GLib.IOError;
+                                          uint handle)
+                                          throws GLib.IOError,
+                                                 GLib.DBusError;
 
         public signal void Finished (uint handle);
         public signal void Error (uint handle,
@@ -102,7 +104,9 @@ internal class Rygel.DbusThumbnailer : GLib.Object {
 
         try {
             yield this.tumbler.Queue (uris, mimes, flavor, "default", 0);
-        } catch (GLib.IOError e) {}
+        } catch (Error error) {
+            this.available = false;
+        }
     }
 
     public bool in_progress () {
