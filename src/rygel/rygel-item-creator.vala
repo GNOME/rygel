@@ -33,6 +33,8 @@ private errordomain Rygel.ItemCreatorError {
 internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
     private static PatternSpec comment_pattern = new PatternSpec ("*<!--*-->*");
 
+    private const string INVALID_CHARS = "/?<>\\:*|\"";
+
     // In arguments
     public string container_id;
     public string elements;
@@ -44,6 +46,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
     private ServiceAction action;
     private DIDLLiteWriter didl_writer;
     private DIDLLiteParser didl_parser;
+    private Regex title_regex;
 
     public Cancellable cancellable { get; set; }
 
@@ -54,6 +57,12 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         this.action = (owned) action;
         this.didl_writer = new DIDLLiteWriter (null);
         this.didl_parser = new DIDLLiteParser ();
+        try {
+            var pattern = "[" + Regex.escape_string (INVALID_CHARS) + "]";
+            this.title_regex = new Regex (pattern,
+                                          RegexCompileFlags.OPTIMIZE,
+                                          RegexMatchFlags.NOTEMPTY);
+        } catch (Error error) { } /* ignore */
     }
 
     public async void run () {
@@ -363,6 +372,14 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         return true;
     }
 
+    private string mangle_title (string title) throws Error {
+        return this.title_regex.replace_literal (title,
+                                                 -1,
+                                                 0,
+                                                 "_",
+                                                 RegexMatchFlags.NOTEMPTY);
+    }
+
     private async string create_uri (WritableContainer container, string title)
                                     throws Error {
         var dir = yield container.get_writable (this.cancellable);
@@ -373,7 +390,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         }
 
         var now = new GLib.DateTime.now_utc ();
-        var file = dir.get_child_for_display_name (title);
+        var file = dir.get_child_for_display_name (this.mangle_title (title));
 
         return file.get_uri () + now.format ("%s");
     }
