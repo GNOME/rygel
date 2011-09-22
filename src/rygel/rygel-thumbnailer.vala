@@ -77,8 +77,8 @@ internal class Rygel.Thumbnailer : GLib.Object {
 
         try {
             this.thumbler = new DbusThumbnailer ();
-       } catch (GLib.IOError error) {}
-
+       } catch (GLib.Error error) {
+       }
     }
 
     public static Thumbnailer? get_default () {
@@ -104,7 +104,9 @@ internal class Rygel.Thumbnailer : GLib.Object {
         var file = File.new_for_path (full_path);
 
         // send a request to create thumbnail if it does not exist
-        if ((this.thumbler != null) && (!file.query_exists ())) {
+        if (this.thumbler != null &&
+            this.thumbler.available &&
+            !file.query_exists ()) {
             this.thumbler.create_thumbnail_task (uri, mime_type, "normal");
         }
 
