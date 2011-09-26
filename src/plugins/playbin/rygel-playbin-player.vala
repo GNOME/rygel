@@ -37,6 +37,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                         "audio/x-wav",
                                         "audio/x-ac3",
                                         "audio/x-m4a",
+                                        "image/jpeg",
+                                        "image/png",
                                         "video/x-theora",
                                         "video/x-dirac",
                                         "video/x-wmv",
@@ -168,13 +170,27 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         return mime_types;
     }
 
+    private bool is_rendering_image () {
+        dynamic Element typefind;
+
+        typefind = (this.playbin as Gst.Bin).get_by_name ("typefind");
+        Caps caps = typefind.caps;
+        var structure = caps.get_structure (0);
+
+        return structure.get_name () == "image/jpeg" ||
+               structure.get_name () == "image/png";
+    }
+
     private bool bus_handler (Gst.Bus bus,
                               Message message) {
         switch (message.type) {
         case MessageType.EOS:
-            debug ("EOS");
-
-            this.playback_state = "STOPPED";
+            if (!this.is_rendering_image ()) {
+                debug ("EOS");
+                this.playback_state = "STOPPED";
+            } else {
+                debug ("Content is image, ignoring EOS");
+            }
 
             break;
         case MessageType.ERROR:
