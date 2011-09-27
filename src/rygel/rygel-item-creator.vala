@@ -162,8 +162,9 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                     }
                 }
 
-                if (this.is_valid_uri (resource.uri)) {
-                    this.item.add_uri (resource.uri);
+                string sanitized_uri;
+                if (this.is_valid_uri (resource.uri, out sanitized_uri)) {
+                    this.item.add_uri (sanitized_uri);
                 }
 
                 if (resource.size >= 0) {
@@ -354,20 +355,19 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         }
     }
 
-    // FIXME: This function is hardly completely. Perhaps we should just make
-    // use of a regex here.
-    private bool is_valid_uri (string? uri) {
+    private bool is_valid_uri (string? uri, out string sanitized_uri) {
+        sanitized_uri = null;
         if (uri == null || uri == "") {
             return false;
         }
 
-        for (var next = uri.next_char ();
-             next != "";
-             next = next.next_char ()) {
-            if (next.get_char ().isspace ()) {
-                return false;
-            }
+        var soup_uri = new Soup.URI (uri);
+
+        if (soup_uri == null || soup_uri.scheme == null) {
+            return false;
         }
+
+        sanitized_uri = soup_uri.to_string (false);
 
         return true;
     }
