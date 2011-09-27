@@ -1,3 +1,27 @@
+0.12.3
+======
+
+Another release in the stable 0.12 series of Rygel
+
+Changes since 0.12.2:
+
+- Fix item upload when the upload directory was on a FAT partition and
+  the title contained characters which are illegal on FAT.
+- Do not show a critical when the thumbnailer DBus service is not available.
+
+All contributors to this release:
+  - Jens Georg <mail@jensge.org>
+  - Henrique P Machado <zehrique@gmail.com>
+  - Daniel Nylander <po@danielnylander.se>
+  - Claude Paroz <claude@2xlibre.net>
+  - Marek Černocký <marek@manet.cz>
+
+Added/updated translations:
+  - pt_BR, courtesy of Henrique P Machado
+  - sv, courtesy of Daniel Nylander
+  - fr, courtesy of Claude Paroz
+  - cz, courtesy of Marek Černocký
+
 0.12.2
 ======
 
