@@ -57,9 +57,6 @@ internal class Rygel.HTTPPost : HTTPRequest {
     }
 
     private async void handle_real () throws Error {
-        this.msg.got_chunk.connect (this.on_got_chunk);
-        this.msg.got_body.connect (this.on_got_body);
-
         if (!this.item.place_holder) {
             var msg = _("Pushing data to non-empty item '%s' not allowed");
 
@@ -79,6 +76,9 @@ internal class Rygel.HTTPPost : HTTPRequest {
                                          FileCreateFlags.REPLACE_DESTINATION,
                                          Priority.LOW,
                                          this.cancellable);
+
+        this.msg.got_chunk.connect (this.on_got_chunk);
+        this.msg.got_body.connect (this.on_got_body);
 
         this.server.unpause_message (this.msg);
         this.handle_continue = this.handle_real.callback;
