@@ -264,7 +264,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
     }
 
     private void finished_cb (Message message) {
-        if (this.status != TransferStatus.ERROR) {
+        if (this.status == TransferStatus.IN_PROGRESS) {
             if (!(message.status_code >= 200 && message.status_code <= 299)) {
                 this.status = TransferStatus.ERROR;
 
