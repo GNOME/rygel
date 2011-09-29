@@ -26,7 +26,6 @@ rygel_SOURCES = \
 	rygel-root-device.vala \
 	rygel-root-device-factory.vala \
 	rygel-xml-utils.vala \
-	rygel-signal-handler.vala \
 	rygel-main.vala
 
 VAPI_SOURCE_FILES = \

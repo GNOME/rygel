@@ -23,6 +23,7 @@
 
 using Gee;
 using GUPnP;
+using Posix;
 
 public class Rygel.Main : Object {
     private static int PLUGIN_TIMEOUT = 5;
@@ -55,7 +56,9 @@ public class Rygel.Main : Object {
 
         this.plugin_loader.plugin_available.connect (this.on_plugin_loaded);
 
-        SignalHandler.setup (this);
+        Unix.signal_add (SIGHUP, () => { this.restart (); return true; });
+        Unix.signal_add (SIGINT, () => { this.exit (0); return false; });
+        Unix.signal_add (SIGTERM, () => { this.exit (0); return false; });
     }
 
     public void exit (int exit_code) {
@@ -63,8 +66,6 @@ public class Rygel.Main : Object {
 
         this.root_devices = null;
         this.main_loop.quit ();
-
-        SignalHandler.cleanup ();
     }
 
     public void restart () {

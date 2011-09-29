@@ -28,4 +28,5 @@ namespace Rygel.Misc {
                                    array_null_terminated = true)]
                            string[] argv);
     }
+
 }
