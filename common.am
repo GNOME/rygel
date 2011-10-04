@@ -4,17 +4,16 @@ sysconfigdir = $(shareddir)
 desktopdir = $(shareddir)
 plugindir = $(abs_top_builddir)/src/plugins
 icondir = $(shareddir)/icons/32x32
-smallicondir = $(shareddir)/icons/48x48
-bigicondir = $(shareddir)/icons/120x120
 else
 shareddir = $(datadir)/rygel
 sysconfigdir = $(sysconfdir)
 desktopdir = $(datadir)/applications
 plugindir = $(libdir)/rygel-1.0
-smallicondir = $(datadir)/icons/hicolor/48x48/apps
-bigicondir = $(datadir)/icons/hicolor/120x120/apps
 icondir = $(datadir)/icons/hicolor/32x32/apps
 endif
+
+smallicondir = $(shareddir)/icons/48x48
+bigicondir = $(shareddir)/icons/120x120
 
 rygeldir = $(top_srcdir)/src/rygel
 
