@@ -1,4 +1,4 @@
-icondir = $(datadir)/icons/hicolor/120x120/apps
-icon_DATA = rygel.png rygel.jpg
+dlnaicondir = $(datadir)/rygel/icons/120x120
+dlnaicon_DATA = rygel.png rygel.jpg
 
-EXTRA_DIST = $(icon_DATA)
+EXTRA_DIST = $(dlnaicon_DATA)
