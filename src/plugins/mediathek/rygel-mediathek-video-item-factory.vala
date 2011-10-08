@@ -30,6 +30,7 @@ internal class Rygel.Mediathek.VideoItemFactory : Object {
     private PlaylistParser playlist_parser;
     private const string VIDEO_FORMAT_WMV = "wmv";
     private const string VIDEO_FORMAT_MP4 = "mp4";
+    private string video_format;
 
     public static VideoItemFactory get_default () {
         if (instance == null) {
@@ -60,6 +61,10 @@ internal class Rygel.Mediathek.VideoItemFactory : Object {
         item.mime_type = this.playlist_parser.mime_type;
         item.author = "ZDF - Second German TV Channel Streams";
 
+        if (this.video_format == VIDEO_FORMAT_WMV) {
+            item.dlna_profile = "WMVMED_FULL";
+        }
+
         foreach (var uri in resolved_uris) {
             item.add_uri (uri);
         }
@@ -72,11 +77,12 @@ internal class Rygel.Mediathek.VideoItemFactory : Object {
         string video_format = VIDEO_FORMAT_WMV;
 
         try {
-            video_format = config.get_string ("ZDFMediathek",
-                                              "video-format").casefold ();
-            if (video_format != VIDEO_FORMAT_WMV &&
-                video_format != VIDEO_FORMAT_MP4) {
-                video_format = VIDEO_FORMAT_WMV;
+            this.video_format = config.get_string ("ZDFMediathek",
+                                                   "video-format");
+            this.video_format = this.video_format.casefold ();
+            if (this.video_format != VIDEO_FORMAT_WMV &&
+                this.video_format != VIDEO_FORMAT_MP4) {
+                this.video_format = VIDEO_FORMAT_WMV;
             }
         } catch (Error error) { }
 
