@@ -142,7 +142,6 @@ if test x$try_ui = xyes ; then
         fi
       ],
       [
-        HAVE_GTK=no
         AC_MSG_WARN([gtk $GTK_REQUIRED or greater not found.])
         AC_MSG_WARN([UI applications will not be built.])
       ])
@@ -150,15 +149,7 @@ else
     AC_MSG_NOTICE([UI applications disabled.])
 fi
 
-if test x$HAVE_GTK = xno; then
-  BUILD_UI=no
-else
-  BUILD_UI=yes
-  AC_DEFINE(HAVE_GTK, , [Build UI applications])
-fi
-
-AC_SUBST(HAVE_GTK)
-AM_CONDITIONAL(BUILD_UI, test x$BUILD_UI = xyes)
+AM_CONDITIONAL(BUILD_UI, test "x$HAVE_GTK" = "xyes")
 
 dnl Tests
 AC_ARG_ENABLE([tests],
@@ -231,7 +222,7 @@ echo "
         CFLAGS:                 ${CFLAGS}
         VALAFLAGS:              ${VALAFLAGS}
         uninstalled:            ${enable_uninstalled}
-        preferences ui:         ${BUILD_UI}
+        preferences ui:         ${HAVE_GTK}
     Plugins:
         test:                   ${enable_test_plugin}
         tracker:                ${enable_tracker_plugin}
