@@ -1,3 +1,31 @@
+0.12.4
+======
+
+Another release in the stable 0.12 series of Rygel
+
+Changes since 0.12.3:
+
+- Fix an assertion when one of the preconditions failed during HTTP Post.
+- Limit the length of the filename generated in CreateObject to avoid problems
+  on FAT.
+- Use SoupURI to validate and properly escape the URI given during
+  CreateObject. This could cause huge CPU consumption if the URI was really
+  long (1k).
+- Do not crash if ImportResource is cancelled.
+- Fix DBUS  thumbnailer regression introduced in 0.12.3
+
+All contributors to this release:
+  - Jens Georg <mail@jensge.org>
+  - Joe Hansen <joedalton2@yahoo.dk>
+  - Kentaro KAZUHAMA <kazken3@gmail.com>
+
+Added/updated translations:
+  - dk, courtesy of Joe Hansen
+  - ja, courtesy of Kentaro KAZUHAMA
+
+Bugs fixed:
+  https://bugzilla.gnome.org/show_bug.cgi?id=660892
+
 0.12.3
 ======
 
