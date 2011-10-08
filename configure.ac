@@ -160,6 +160,12 @@ fi
 AC_SUBST(HAVE_GTK)
 AM_CONDITIONAL(BUILD_UI, test x$BUILD_UI = xyes)
 
+dnl Tests
+AC_ARG_ENABLE([tests],
+              AS_HELP_STRING([--enable-tests],[always build tests]),,
+              enable_tests=no)
+AM_CONDITIONAL([ALWAYS_TEST], [test "x$enable_tests" = "xyes"])
+
 dnl Check additional requirements for MediaExport plugins
 if test "x$enable_media_export_plugin" = "xyes";
 then

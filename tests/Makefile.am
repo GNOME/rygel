@@ -71,3 +71,7 @@ rygel_album_art_spec_test_SOURCES = rygel-album-art-spec-test.vala \
 			       rygel-media-art-store.vala \
 				   ../src/rygel/rygel-thumbnail.vala \
 				   ../src/rygel/rygel-icon-info.vala
+
+if ALWAYS_TEST
+all-local: check
+endif

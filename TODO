@@ -36,10 +36,6 @@
 
   * crash on trying to trancode ogg to wmv.
 
-  * Always build/run tests if configured with '--enable-tests'.
-
-  * autogen passes '--enable-tests' to configure by default.
-
   * Use common.m4 in tests/Makefile.am (Probably not possible).
 
   * Cache response(s). If user fast forwards a stream, one request completes and
