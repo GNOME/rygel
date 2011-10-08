@@ -52,7 +52,8 @@ internal class Rygel.DbusThumbnailer : GLib.Object {
 
 
 
-    public DbusThumbnailer () throws GLib.IOError {
+    public DbusThumbnailer () throws GLib.IOError,
+                                     GLib.DBusError{
         this.tumbler = GLib.Bus.get_proxy_sync (BusType.SESSION,
                                                 THUMBNAILER_IFACE,
                                                 THUMBNAILER_SERVICE);

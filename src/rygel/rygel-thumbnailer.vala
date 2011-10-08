@@ -77,7 +77,7 @@ internal class Rygel.Thumbnailer : GLib.Object {
 
         try {
             this.thumbler = new DbusThumbnailer ();
-       } catch (GLib.IOError error) {}
+       } catch (GLib.Error error) { }
 
     }
 
