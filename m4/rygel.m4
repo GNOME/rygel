@@ -26,6 +26,22 @@ AC_DEFUN([RYGEL_ADD_VALAFLAGS],
     VALAFLAGS="${VALAFLAGS:+$VALAFLAGS }$1"
 ])
 
+# RYGEL_CHECK_PACKAGES(LIST-OF-PACKAGES,
+#   ACTION-IF-FOUND)
+# ---------------------------------------
+# Version of VALA_CHECK_PACKAGES that will only run if vala support is
+# enabled. Otherwise ACTION-IF-FOUND will be run.
+AC_DEFUN([RYGEL_CHECK_PACKAGES],
+[
+    AS_IF([test "x$enable_vala" = "xyes"],
+          [
+                VALA_CHECK_PACKAGES([$1],[$2])
+          ],
+          [
+                $2
+          ])
+])
+
 # _RYGEL_ADD_PLUGIN_INTERNAL(NAME-OF-PLUGIN,
 #   NAME-OF-PLUGIN-WITH-UNDERSCORES,
 #   NAME-OF-PLUGIN-FOR-HELP,

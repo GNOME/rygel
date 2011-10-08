@@ -135,11 +135,7 @@ if test x$try_ui = xyes ; then
     dnl check for gtk
     PKG_CHECK_MODULES(GTK, gtk+-3.0 >= $GTK_REQUIRED,
       [
-        if test x$enable_vala = xyes ; then
-                VALA_CHECK_PACKAGES([gtk+-3.0], [HAVE_GTK=yes])
-        else
-                HAVE_GTK=yes
-        fi
+        RYGEL_CHECK_PACKAGES([gtk+-3.0], [HAVE_GTK=yes])
       ],
       [
         AC_MSG_WARN([gtk $GTK_REQUIRED or greater not found.])
@@ -163,11 +159,7 @@ then
     PKG_CHECK_MODULES(LIBSQLITE3, sqlite3 >= $LIBSQLITE3_REQUIRED)
     PKG_CHECK_MODULES(GSTREAMER_TAG, gstreamer-tag-0.10 >= $GSTREAMER_TAG_REQUIRED);
     PKG_CHECK_MODULES(GSTREAMER_APP, gstreamer-app-0.10 >= $GSTREAMER_APP_REQUIRED);
-    if test x$enable_vala = xyes ; then
-        VALA_CHECK_PACKAGES([sqlite3
-                             gstreamer-tag-0.10
-                             gstreamer-app-0.10])
-    fi
+    RYGEL_CHECK_PACKAGES([sqlite3 gstreamer-tag-0.10 gstreamer-app-0.10])
 fi
 
 dnl Gettext
