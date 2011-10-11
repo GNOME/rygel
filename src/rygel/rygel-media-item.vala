@@ -195,7 +195,10 @@ public abstract class Rygel.MediaItem : MediaObject {
 
         didl_item.title = this.title;
         didl_item.upnp_class = this.upnp_class;
-        didl_item.date = this.date;
+
+        if (this.date != null) {
+            didl_item.date = this.date;
+        }
 
         /* We list proxy/transcoding resources first instead of original URIs
          * because some crappy MediaRenderer/ControlPoint implemenation out
