@@ -135,21 +135,51 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
                                                     Cancellable? cancellable)
                                                     throws Error {
         MediaObject media_object = null;
+        var restart_count = 0;
+        var restart = false;
 
-        foreach (var child in this.children) {
-            if (child.id == id) {
-                media_object = child;
+        do {
+            restart = false;
+            ulong updated_id = 0;
 
-                break;
-            } else if (child is MediaContainer) {
-                var container = child as MediaContainer;
+            foreach (var child in this.children) {
+                if (child.id == id) {
+                    media_object = child;
 
-                media_object = yield container.find_object (id, cancellable);
-                if (media_object != null) {
                     break;
+                } else if (child is MediaContainer) {
+                    updated_id = this.container_updated.connect ( (_, updated) => {
+                        if (updated == this) {
+                            restart = true;
+                            restart_count++;
+
+                            // bail out on first update
+                            this.disconnect (updated_id);
+                            updated_id = 0;
+                        }
+                    });
+
+                    var container = child as MediaContainer;
+                    media_object = yield container.find_object (id, cancellable);
+
+                    if (media_object != null) {
+                        // no need to loop when we've found what we were looking
+                        // for
+                        restart = false;
+
+                        break;
+                    }
+
+                    if (restart) {
+                        break;
+                    }
+
+                    if (updated_id != 0) {
+                        this.disconnect (updated_id);
+                    }
                 }
             }
-        }
+        } while (restart && restart_count < 10);
 
         return media_object;
     }
