@@ -39,6 +39,7 @@ public class Rygel.SignalHandler : GLib.Object {
 
         /* Hook the handler for SIGTERM */
         sigaction (SIGINT, action, null);
+        sigaction (SIGTERM, action, null);
         sigaction (SIGHUP, action, null);
     }
 
