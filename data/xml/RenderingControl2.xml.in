@@ -1,17 +1,4 @@
 <?xml version="1.0"?>
-<!--============================================================
-Title: UPnP AV Rendering Control Service (RCS) Template
-
-Purpose:
-To identify the required/optional actions and state variables
-and the required allowed values defined by this service type.
-
-Note:
-This file uses tabs (not spaces) for block indentation.
-Any updates to this file should maintain this convention.
-This includes disabling any automatic tab-to-space conversion
-feature provided by your editor.
-================================================================-->
 <scpd xmlns="urn:schemas-upnp-org:service-1-0">
    <specVersion>
       <major>1</major>
