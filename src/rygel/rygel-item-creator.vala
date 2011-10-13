@@ -373,7 +373,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
     }
 
     private string mangle_title (string title) throws Error {
-        var mangled = title.substring (0, int.min (title.length, 240));
+        var mangled = title.substring (0, int.min (title.length, 205));
         mangled = this.title_regex.replace_literal (mangled,
                                                     -1,
                                                     0,
@@ -392,10 +392,15 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                          container.id);
         }
 
-        var now = new GLib.DateTime.now_utc ();
         var file = dir.get_child_for_display_name (this.mangle_title (title));
 
-        return file.get_uri () + now.format ("%s");
+        var udn = new uchar[50];
+        var id = new uchar[16];
+
+        uuid_generate (id);
+        uuid_unparse (id, udn);
+
+        return file.get_uri () + (string) udn;
     }
 
     private async void wait_for_item (WritableContainer container) {
