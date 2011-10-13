@@ -109,15 +109,14 @@ public class Rygel.Tracker.InsertionQuery : Query {
 
         var result = yield resources.sparql_update_blank (str);
 
-        this.id = result[0,0].lookup (TEMP_ID);
-
         // Item already existed
-        if (this.id == null) {
+        if (result[0,0] == null || result[0,0].lookup (TEMP_ID) == null)  {
             var ids = yield resources.sparql_query
                                         (this.get_resource_id_query ());
 
             this.id = ids[0,0];
         } else {
+            this.id = result[0,0].lookup (TEMP_ID);
             var file = File.new_for_uri (this.uri);
             if (file.is_native () &&
                 file.query_exists ()) {
