@@ -373,13 +373,14 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
     }
 
     private string mangle_title (string title) throws Error {
-        var mangled = this.title_regex.replace_literal (title,
-                                                 -1,
-                                                 0,
-                                                 "_",
-                                                 RegexMatchFlags.NOTEMPTY);
+        var mangled = title.substring (0, int.min (title.length, 240));
+        mangled = this.title_regex.replace_literal (mangled,
+                                                    -1,
+                                                    0,
+                                                    "_",
+                                                    RegexMatchFlags.NOTEMPTY);
 
-        return mangled.substring (0, int.min (mangled.length, 240));
+        return mangled;
     }
 
     private async string create_uri (WritableContainer container, string title)
