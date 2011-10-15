@@ -64,6 +64,7 @@ public class Rygel.Thumbnail : Rygel.IconInfo {
                                     DLNAFlags.CONNECTION_STALL |
                                     DLNAFlags.DLNA_V15;
         protocol_info.dlna_operation = DLNAOperation.RANGE;
+        protocol_info.dlna_conversion = DLNAConversion.TRANSCODED;
 
         return protocol_info;
     }
