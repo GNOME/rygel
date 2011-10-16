@@ -84,7 +84,8 @@ internal class Rygel.HTTPGet : HTTPRequest {
         }
 
         try {
-            var hack = new XBoxHacks.for_headers (this.msg.request_headers);
+            var hack = ClientHacks.create_for_headers
+                                        (this.msg.request_headers);
             if (hack.is_album_art_request (this.msg) &&
                 this.item is VisualItem) {
                 var visual_item = this.item as VisualItem;
@@ -100,7 +101,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
                 return;
             }
-        } catch (XBoxHacksError error) {}
+        } catch (ClientHacksError error) {}
 
         if (this.uri.thumbnail_index >= 0) {
             if (this.item is MusicItem) {

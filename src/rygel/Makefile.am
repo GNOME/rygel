@@ -83,6 +83,7 @@ VAPI_SOURCE_FILES = \
 	rygel-media-query-action.vala \
 	rygel-browse.vala \
 	rygel-search.vala \
+	rygel-client-hacks.vala \
 	rygel-xbox-hacks.vala \
 	rygel-import-resource.vala \
 	rygel-item-creator.vala \

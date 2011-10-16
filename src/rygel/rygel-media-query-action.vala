@@ -49,7 +49,7 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
     protected uint32 system_update_id;
     protected ServiceAction action;
     protected DIDLLiteWriter didl_writer;
-    protected XBoxHacks xbox_hacks;
+    protected ClientHacks hacks;
     protected string object_id_arg;
 
     protected MediaQueryAction (ContentDirectory    content_dir,
@@ -63,8 +63,8 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
         this.didl_writer = new DIDLLiteWriter (null);
 
         try {
-            this.xbox_hacks = new XBoxHacks.for_action (this.action);
-        } catch { /* This just means we are not dealing with Xbox, yay! */ }
+            this.hacks = ClientHacks.create_for_action (this.action);
+        } catch { /* This just means we need no hacks, yay! */ }
     }
 
     public async void run () {
@@ -85,7 +85,7 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
 
             results.serialize (this.didl_writer,
                                this.http_server,
-                               this.xbox_hacks);
+                               this.hacks);
 
             // Conclude the successful Browse/Search action
             this.conclude ();
@@ -132,8 +132,8 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
 
         this.validate_sort_criteria ();
 
-        if (this.xbox_hacks != null) {
-            this.xbox_hacks.translate_container_id (this, ref this.object_id);
+        if (this.hacks != null) {
+            this.hacks.translate_container_id (this, ref this.object_id);
         }
     }
 

@@ -69,13 +69,13 @@ internal class Rygel.Search:  Rygel.MediaQueryAction {
             throw parser.err;
         }
 
-        if (this.xbox_hacks != null) {
-            return yield this.xbox_hacks.search (container,
-                                                 parser.expression,
-                                                 this.index,
-                                                 this.requested_count,
-                                                 out this.total_matches,
-                                                 this.cancellable);
+        if (this.hacks != null) {
+            return yield this.hacks.search (container,
+                                            parser.expression,
+                                            this.index,
+                                            this.requested_count,
+                                            out this.total_matches,
+                                            this.cancellable);
         } else {
             return yield container.search (parser.expression,
                                            this.index,

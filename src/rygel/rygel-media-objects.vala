@@ -56,10 +56,10 @@ public class Rygel.MediaObjects : ArrayList<MediaObject> {
 
     internal void serialize (DIDLLiteWriter didl_writer,
                              HTTPServer     http_server,
-                             XBoxHacks?     xbox_hacks) throws Error {
+                             ClientHacks?   hacks) throws Error {
         foreach (var result in this) {
-            if (result is MediaItem && xbox_hacks != null) {
-                xbox_hacks.apply (result as MediaItem);
+            if (result is MediaItem && hacks != null) {
+                hacks.apply (result as MediaItem);
             }
 
             result.serialize (didl_writer, http_server);

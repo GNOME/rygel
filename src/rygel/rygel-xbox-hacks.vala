@@ -24,11 +24,7 @@
 using Soup;
 using GUPnP;
 
-internal errordomain Rygel.XBoxHacksError {
-    NA
-}
-
-internal class Rygel.XBoxHacks : GLib.Object {
+internal class Rygel.XBoxHacks : ClientHacks {
     private static string AGENT =
         ".*Xbox.*|.*Allegro-Software-WebClient.*|.*SEC_HHP_Galaxy S/1\\.0.*";
     private static string DMS = "urn:schemas-upnp-org:device:MediaServer";
@@ -37,47 +33,24 @@ internal class Rygel.XBoxHacks : GLib.Object {
     private static string MODEL_NAME = "Windows Media Player Sharing";
     private static string MODEL_VERSION = "11";
     private static string CONTAINER_ID = "ContainerID";
-    private static string OBJECT_ID = "ObjectID";
 
-    public unowned string object_id { get; private set; }
+    public XBoxHacks () throws ClientHacksError {
+        base (AGENT);
+    }
 
-    public XBoxHacks.for_action (ServiceAction action) throws XBoxHacksError {
+    public XBoxHacks.for_action (ServiceAction action) throws ClientHacksError {
         unowned MessageHeaders headers = action.get_message ().request_headers;
-        this.check_headers (headers);
+        this.for_headers (headers);
     }
 
     public XBoxHacks.for_headers (MessageHeaders headers)
-                                  throws XBoxHacksError {
-        this.check_headers (headers);
-    }
+                                  throws ClientHacksError {
+        base (AGENT, headers);
 
-    private void check_headers (MessageHeaders headers) throws XBoxHacksError {
         var agent = headers.get_one ("User-Agent");
-        if (agent == null ||
-            !(agent.contains ("Xbox")) &&
-            !(agent.contains ("Allegro-Software-WebClient")) &&
-            !(agent.contains ("SEC_HHP_Galaxy S/1.0"))) {
-            throw new XBoxHacksError.NA (_("Not Applicable"));
-        }
-
         if (agent.contains ("Xbox")) {
             this.object_id = CONTAINER_ID;
-        } else {
-            this.object_id = OBJECT_ID;
         }
-    }
-
-    public bool is_album_art_request (Soup.Message message) {
-        unowned string query = message.get_uri ().query;
-
-        if (query == null) {
-            return false;
-        }
-
-        var params = Soup.Form.decode (query);
-        var album_art = params.lookup ("albumArt");
-
-        return (album_art != null) && bool.parse (album_art);
     }
 
     public void apply_on_device (RootDevice device,
@@ -92,13 +65,15 @@ internal class Rygel.XBoxHacks : GLib.Object {
         var desc_path = template_path.replace (".xml", "-xbox.xml");
         this.save_modified_desc (doc, desc_path);
 
-        var regex = new Regex (AGENT, RegexCompileFlags.CASELESS, 0);
         var server_path = "/" + device.get_relative_location ();
-        device.context.host_path_for_agent (desc_path, server_path, regex);
+        device.context.host_path_for_agent (desc_path,
+                                            server_path,
+                                            this.agent_regex);
     }
 
-    public void translate_container_id (MediaQueryAction action,
-                                        ref string       container_id) {
+    public override void translate_container_id
+                                        (MediaQueryAction action,
+                                         ref string       container_id) {
         if (action is Search &&
             (container_id == "1" ||
              container_id == "4" ||
@@ -114,7 +89,7 @@ internal class Rygel.XBoxHacks : GLib.Object {
         }
     }
 
-    public void apply (MediaItem item) {
+    public override void apply (MediaItem item) {
         if (item.mime_type == "video/x-msvideo") {
             item.mime_type = "video/avi";
         } else if (item.mime_type == "video/mpeg") {
@@ -123,13 +98,14 @@ internal class Rygel.XBoxHacks : GLib.Object {
         }
     }
 
-    public async MediaObjects? search (SearchableContainer container,
-                                       SearchExpression?   expression,
-                                       uint                offset,
-                                       uint                max_count,
-                                       out uint            total_matches,
-                                       Cancellable?        cancellable)
-                                       throws Error {
+    public override async MediaObjects? search
+                                        (SearchableContainer container,
+                                         SearchExpression?   expression,
+                                         uint                offset,
+                                         uint                max_count,
+                                         out uint            total_matches,
+                                         Cancellable?        cancellable)
+                                         throws Error {
         var results = yield container.search (expression,
                                               offset,
                                               max_count,
