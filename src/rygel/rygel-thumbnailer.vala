@@ -105,7 +105,7 @@ internal class Rygel.Thumbnailer : GLib.Object {
 
         // send a request to create thumbnail if it does not exist
         if ((this.thumbler != null) && (!file.query_exists ())) {
-            this.thumbler.create_thumbnail_task (uri, mime_type, "normal");
+            this.thumbler.queue_thumbnail_task (uri, mime_type);
         }
 
         var info = file.query_info (FILE_ATTRIBUTE_ACCESS_CAN_READ + "," +
