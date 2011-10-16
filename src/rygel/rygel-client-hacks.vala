@@ -37,12 +37,20 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
 
     public static ClientHacks create_for_action (ServiceAction action)
                                                  throws ClientHacksError {
-        return new XBoxHacks.for_action (action);
+        try {
+            return new XBoxHacks.for_action (action);
+        } catch {}
+
+        return new PanasonicHacks.for_action (action);
     }
 
     public static ClientHacks create_for_headers (MessageHeaders headers)
                                                   throws ClientHacksError {
-        return new XBoxHacks.for_headers (headers);
+        try {
+            return new XBoxHacks.for_headers (headers);
+        } catch {}
+
+        return new PanasonicHacks.for_headers (headers);
     }
 
     protected ClientHacks (string agent_pattern, MessageHeaders? headers = null)
