@@ -396,21 +396,19 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             }
         }
 
-        this.add_default_virtual_folders ();
-
         this.updated ();
     }
 
     private void on_initial_harvesting_done () {
         this.harvester.disconnect (this.harvester_signal_id);
         this.media_db.debug_statistics ();
+        this.add_default_virtual_folders ();
+        this.updated ();
 
         this.filesystem_container.container_updated.connect( () => {
             this.add_default_virtual_folders ();
             this.updated ();
         });
-
-
     }
 
     private void add_default_virtual_folders () {
