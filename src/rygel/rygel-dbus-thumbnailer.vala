@@ -18,6 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+using Gee;
+
 [DBus (name = "org.freedesktop.thumbnails.Thumbnailer1")]
 interface Tumbler : GLib.Object {
         public abstract async uint Queue (string[] uris,
@@ -27,75 +29,65 @@ interface Tumbler : GLib.Object {
                                           uint handle)
                                           throws GLib.IOError,
                                                  GLib.DBusError;
-
-        public signal void Finished (uint handle);
-        public signal void Error (uint handle,
-                                  string[] failed_uris,
-                                  int error_code,
-                                  string message);
 }
-
 
 internal class Rygel.DbusThumbnailer : GLib.Object {
     private Tumbler tumbler;
-    private bool is_running  = false;
-    private string file_path;
+    private ArrayList<string> uris;
+    private ArrayList<string> mimes;
+    private uint timeout_id;
+    private string flavor;
 
-    const string THUMBNAILER_IFACE = "org.freedesktop.thumbnails.Thumbnailer1";
-    const string THUMBNAILER_SERVICE =
-                                    "/org/freedesktop/thumbnails/Thumbnailer1";
+    private const string THUMBNAILER_IFACE =
+                                "org.freedesktop.thumbnails.Thumbnailer1";
+    private const string THUMBNAILER_SERVICE =
+                                "/org/freedesktop/thumbnails/Thumbnailer1";
 
-    public signal void generated (string file_path);
-    public signal void error (string file_path,
-                              int error_code,
-                              string message);
+    private const uint THUMBNAIL_MAX_QUEUE_SIZE = 50;
 
+    public DbusThumbnailer (string flavor = "normal") throws GLib.IOError,
+                                                             GLib.DBusError {
+        this.uris = new ArrayList<string> ();
+        this.mimes = new ArrayList<string> ();
+        this.timeout_id = 0;
+        this.flavor = flavor;
 
-
-    public DbusThumbnailer () throws GLib.IOError,
-                                     GLib.DBusError{
         this.tumbler = GLib.Bus.get_proxy_sync (BusType.SESSION,
                                                 THUMBNAILER_IFACE,
                                                 THUMBNAILER_SERVICE);
-
-        tumbler.Finished.connect (on_finished);
-        tumbler.Error.connect (on_error);
     }
 
-    public async void create_thumbnail_task (string file_path,
-                                             string mime,
-                                             string flavor) {
-        string uris[1];
-        string mimes[1];
+    public void queue_thumbnail_task (string file_path, string mime) {
+        this.uris.add (file_path);
+        this.mimes.add (mime);
 
-        if (in_progress ()) {
-            return;
+        if (this.timeout_id != 0) {
+            Source.remove (this.timeout_id);
         }
 
-        this.is_running = true;
-        this.file_path = file_path;
-
-        uris[0] = file_path;
-        mimes[0] = mime;
-
-        try {
-            yield this.tumbler.Queue (uris, mimes, flavor, "default", 0);
-        } catch (Error error) { }
+        if (this.uris.size < THUMBNAIL_MAX_QUEUE_SIZE) {
+            // delay update to collect more thumbnail creation requests
+            this.timeout_id = Timeout.add (100, this.on_timeout);
+        } else {
+            // queue has grown quite large, flush directly
+            this.on_timeout ();
+        }
     }
 
-    public bool in_progress () {
-        return this.is_running;
-    }
+    private bool on_timeout () {
+        debug ("Queueing thumbnail creation for %d files",
+               this.uris.size);
 
-    private void on_finished (uint handle) {
-        generated (this.file_path);
-        this.is_running = false;
-    }
+        this.tumbler.Queue (this.uris.to_array (),
+                            this.mimes.to_array (),
+                            this.flavor,
+                            "default",
+                            0);
 
-    private void on_error (uint handle,
-                           string[] failed_uris,
-                           int error_code,
-                           string message) {
-        error (this.file_path, error_code, message);
+        this.uris.clear ();
+        this.mimes.clear ();
+        this.timeout_id = 0;
+
+        return false;
     }
 }
