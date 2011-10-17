@@ -63,30 +63,44 @@ public void module_init (PluginLoader loader) {
 }
 
 public void on_plugin_available (Plugin plugin, Plugin our_plugin) {
-    if (plugin.name == TRACKER_PLUGIN &&
-        our_plugin.active == plugin.active) {
-        if (plugin.active) {
-            message ("Deactivating plugin '%s' in favor of plugin '%s'",
-                     MediaExport.Plugin.NAME,
-                     TRACKER_PLUGIN);
-            try {
-                var config = MetaConfig.get_default ();
-                var enabled = config.get_bool ("MediaExport", "enabled");
-                if (enabled) {
-                    var root = Rygel.MediaExport.RootContainer.get_instance ()
-                        as Rygel.MediaExport.RootContainer;
-
-                    root.shutdown ();
+    warning ("%s %s %s", plugin.name, our_plugin.active.to_string (),
+            plugin.active.to_string ());
+    if (plugin.name == TRACKER_PLUGIN) {
+        if (our_plugin.active && !plugin.active) {
+            // Tracker plugin might be activated later
+            plugin.notify["active"].connect (() => {
+                if (plugin.active) {
+                    shutdown_media_export ();
+                    our_plugin.active = !plugin.active;
                 }
-            } catch (Error error) {};
-        } else {
-            message ("Plugin '%s' inactivate, activating '%s' plugin",
-                     TRACKER_PLUGIN,
-                     MediaExport.Plugin.NAME);
+            });
+        } else if (our_plugin.active == plugin.active) {
+            if (plugin.active) {
+                shutdown_media_export ();
+            } else {
+                message ("Plugin '%s' inactivate, activating '%s' plugin",
+                         TRACKER_PLUGIN,
+                         MediaExport.Plugin.NAME);
+            }
+            our_plugin.active = !plugin.active;
         }
-
-        our_plugin.active = !plugin.active;
     }
+}
+
+private void shutdown_media_export () {
+    message ("Deactivating plugin '%s' in favor of plugin '%s'",
+             MediaExport.Plugin.NAME,
+             TRACKER_PLUGIN);
+    try {
+        var config = MetaConfig.get_default ();
+        var enabled = config.get_bool ("MediaExport", "enabled");
+        if (enabled) {
+            var root = Rygel.MediaExport.RootContainer.get_instance ()
+                                        as Rygel.MediaExport.RootContainer;
+
+            root.shutdown ();
+        }
+    } catch (Error error) {};
 }
 
 public class Rygel.MediaExport.Plugin : Rygel.MediaServerPlugin {
