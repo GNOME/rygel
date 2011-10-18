@@ -243,6 +243,20 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
         return query;
     }
 
+    private string? urn_to_utf8 (string urn) {
+        var urn_builder = new StringBuilder ();
+        unowned string s = urn;
+
+        for (; s.get_char () != 0; s = s.next_char ()) {
+            unichar character = s.get_char ();
+            if (!(character.iscntrl () || !character.validate ())) {
+                urn_builder.append_unichar (character);
+            }
+        }
+
+        return urn_builder.str;
+    }
+
     private string? create_filter_for_child (RelationalExpression expression) {
         string filter = null;
         string variable = null;
@@ -254,9 +268,16 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
             string parent_id;
 
             var urn = this.get_item_info (expression.operand2, out parent_id);
+
+            if (!urn.validate ()) {
+                urn = urn_to_utf8 (urn);
+            }
+
             if (urn == null || parent_id == null || parent_id != this.id) {
                 return null;
             }
+
+            urn = Query.escape_string (urn);
 
             switch (expression.op) {
                 case SearchCriteriaOp.EQ:
