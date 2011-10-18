@@ -24,7 +24,7 @@ using Soup;
 using GUPnP;
 
 internal class Rygel.PanasonicHacks : ClientHacks {
-    private static string AGENT = ".*Panasonic MIL DLNA CP.*";
+    private const string AGENT = ".*Panasonic MIL DLNA CP.*";
 
     private static Regex mime_regex;
     private static Regex dlna_regex;

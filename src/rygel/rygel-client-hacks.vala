@@ -29,7 +29,7 @@ internal errordomain Rygel.ClientHacksError {
 }
 
 internal abstract class Rygel.ClientHacks : GLib.Object {
-    private static string OBJECT_ID = "ObjectID";
+    private const string CORRECT_OBJECT_ID = "ObjectID";
 
     public unowned string object_id { get; protected set; }
 
@@ -68,7 +68,7 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
             this.check_headers (headers);
         }
 
-        this.object_id = OBJECT_ID;
+        this.object_id = CORRECT_OBJECT_ID;
     }
 
     public bool is_album_art_request (Soup.Message message) {

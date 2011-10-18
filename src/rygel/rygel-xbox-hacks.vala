@@ -25,14 +25,14 @@ using Soup;
 using GUPnP;
 
 internal class Rygel.XBoxHacks : ClientHacks {
-    private static string AGENT =
+    private const string AGENT =
         ".*Xbox.*|.*Allegro-Software-WebClient.*|.*SEC_HHP_Galaxy S/1\\.0.*";
-    private static string DMS = "urn:schemas-upnp-org:device:MediaServer";
-    private static string DMS_V1 = DMS + ":1";
-    private static string FRIENDLY_NAME_POSTFIX = ":";
-    private static string MODEL_NAME = "Windows Media Player Sharing";
-    private static string MODEL_VERSION = "11";
-    private static string CONTAINER_ID = "ContainerID";
+    private const string DMS = "urn:schemas-upnp-org:device:MediaServer";
+    private const string DMS_V1 = DMS + ":1";
+    private const string FRIENDLY_NAME_POSTFIX = ":";
+    private const string MODEL_NAME = "Windows Media Player Sharing";
+    private const string MODEL_VERSION = "11";
+    private const string CONTAINER_ID = "ContainerID";
 
     public XBoxHacks () throws ClientHacksError {
         base (AGENT);
