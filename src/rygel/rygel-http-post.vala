@@ -121,11 +121,11 @@ internal class Rygel.HTTPPost : HTTPRequest {
             }
 
             if (item.place_holder) {
-                uint timeout_id = 0;
-                timeout = Timeout.add_seconds (30, () => {
+                uint source_id = 0;
+                source_id = Timeout.add_seconds (30, () => {
                     debug ("Timeout on waiting for 'updated' signal on '%s'.",
                            container.id);
-                    timeout_id = 0;
+                    source_id = 0;
                     this.wait_for_item.callback ();
 
                     return false;
@@ -142,8 +142,8 @@ internal class Rygel.HTTPPost : HTTPRequest {
 
                 container.disconnect (update_id);
 
-                if (timeout_id != 0) {
-                    Source.remove (timeout);
+                if (source_id != 0) {
+                    Source.remove (source_id);
                 } else {
                     break;
                 }
