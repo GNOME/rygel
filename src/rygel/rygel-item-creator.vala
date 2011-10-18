@@ -410,6 +410,17 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         MediaItem item = null;
 
         while (item == null) {
+            try {
+                item = (yield container.find_object (this.item.id,
+                                                     this.cancellable))
+                       as MediaItem;
+            } catch (Error error) {
+                warning ("Error from container '%s' on trying to find newly " +
+                         "added child item '%s' in it",
+                         container.id,
+                         this.item.id);
+            }
+
             if (item == null) {
                 var id = container.container_updated.connect ((container) => {
                     this.wait_for_item.callback ();
@@ -428,18 +439,6 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                 yield;
 
                 container.disconnect (id);
-
-                try {
-                    item = (yield container.find_object (this.item.id,
-                                                         this.cancellable))
-                                        as MediaItem;
-                } catch (Error error) {
-                    warning ("Error from container '%s' on trying to find newly " +
-                            "added child item '%s' in it",
-                            container.id,
-                            this.item.id);
-                }
-
 
                 if (timeout != 0) {
                     Source.remove (timeout);

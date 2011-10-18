@@ -97,6 +97,60 @@ internal class Rygel.HTTPPost : HTTPRequest {
         this.finalize_post ();
     }
 
+    /**
+     * Waits for an item with @id to change its state to non-placeholder under
+     * @container, but at most @timeout seconds.
+     *
+     * @param container The container to watch for changes
+     * @param id The child id to look for
+     * @param timeout Seconds to wait befor cancelling
+     */
+    private async void wait_for_item (MediaContainer container,
+                                      string         id,
+                                      uint           timeout) {
+        MediaItem item = null;
+
+        while (item == null || item.place_holder) {
+            try {
+                item = (yield container.find_object (id,
+                                                     this.cancellable))
+                                                     as MediaItem;
+            } catch (Error error) {
+                // Handle
+                break;
+            }
+
+            if (item.place_holder) {
+                uint timeout_id = 0;
+                timeout = Timeout.add_seconds (30, () => {
+                    debug ("Timeout on waiting for 'updated' signal on '%s'.",
+                           container.id);
+                    timeout_id = 0;
+                    this.wait_for_item.callback ();
+
+                    return false;
+                });
+
+                var update_id = container.container_updated.connect (() => {
+                    debug ("Finished waiting for update signal from container '%s'",
+                           container.id);
+
+                        wait_for_item.callback ();
+                });
+
+                yield;
+
+                container.disconnect (update_id);
+
+                if (timeout_id != 0) {
+                    Source.remove (timeout);
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+
     private async void finalize_post () {
         try {
             this.stream.close (this.cancellable);
@@ -114,25 +168,6 @@ internal class Rygel.HTTPPost : HTTPRequest {
                this.item.parent.id,
                this.item.id);
 
-        var id = this.item.parent.container_updated.connect ((container) => {
-            debug ("Finished waiting for update signal from container '%s'",
-                   this.item.parent.id);
-
-            finalize_post.callback ();
-        });
-
-        uint timeout_id = 0;
-        timeout_id = Timeout.add_seconds (30, () => {
-            debug ("Timeout while waiting for 'updated' signal on '%s'.",
-                   this.item.parent.id);
-            this.item.parent.disconnect (id);
-            timeout_id = 0;
-
-            finalize_post.callback ();
-
-            return false;
-        });
-
         try {
             this.dotfile.move (this.file,
                                FileCopyFlags.NONE,
@@ -143,8 +178,6 @@ internal class Rygel.HTTPPost : HTTPRequest {
                      this.dotfile.get_uri (),
                      move_error.message);
 
-            Source.remove (timeout_id);
-            this.item.parent.disconnect (id);
             this.server.unpause_message (this.msg);
             this.end (KnownStatusCode.INTERNAL_SERVER_ERROR);
             this.handle_continue ();
@@ -152,12 +185,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
             return;
         }
 
-        yield;
-
-        this.item.parent.disconnect (id);
-        if (timeout_id != 0) {
-            Source.remove (timeout_id);
-        }
+        yield wait_for_item (this.item.parent, this.item.id, 30);
 
         this.server.unpause_message (this.msg);
         this.end (KnownStatusCode.OK);
