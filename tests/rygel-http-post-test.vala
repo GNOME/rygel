@@ -267,6 +267,7 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
                                  File             file,
                                  File?            other_file,
                                  FileMonitorEvent event_type) {
+        this.item.place_holder = false;
         this.container_updated (this);
     }
 }
