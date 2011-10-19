@@ -29,13 +29,13 @@ public errordomain Rygel.TestError {
     TIMEOUT
 }
 
-public errordomain Rygel.XBoxHacksError {
+public errordomain Rygel.ClientHacksError {
     NA
 }
 
-public class Rygel.XBoxHacks {
-    public XBoxHacks.for_headers (MessageHeaders headers) throws Error {
-        throw new XBoxHacksError.NA ("");
+public class Rygel.ClientHacks {
+    public static ClientHacks create_for_headers (MessageHeaders headers) throws Error {
+        throw new ClientHacksError.NA ("");
     }
 
     public bool is_album_art_request (Message message) {
