@@ -292,7 +292,7 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
                                  Gst.SeekType.SET,
                                  this.seek.start,
                                  stop_type,
-                                 this.seek.stop)) {
+                                 this.seek.stop + 1)) {
             warning (_("Failed to seek to offset %lld"), this.seek.start);
 
             this.end (false, KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
