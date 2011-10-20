@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2011-09-19 10:14+0000\n"
-"PO-Revision-Date: 2011-10-18 20:35+0100\n"
+"PO-Revision-Date: 2011-10-20 22:18+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@freenet.de>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -369,7 +369,7 @@ msgstr "Keine schreibbare Adresse für %s verfügbar"
 
 #. translators: Dotfile is the filename with prefix "."
 #: ../src/rygel/rygel-http-post.vala:142
-#, c-format
+#, fuzzy, c-format
 msgid "Failed to move dotfile %s: %s"
 msgstr "Verborgene Datei %s konnte nicht verschoben werden: %s"
 
