@@ -43,6 +43,10 @@ public class Rygel.Tracker.QueryTriplets : ArrayList<QueryTriplet> {
         var include_subject = true;
 
         for (int i = 0; i < this.size; i++) {
+            if (this[i].graph != null && include_subject) {
+                str += "GRAPH <%s> {".printf (this[i].graph);
+            }
+
             str += this[i].to_string (include_subject);
 
             if (i < this.size - 1) {
@@ -51,8 +55,17 @@ public class Rygel.Tracker.QueryTriplets : ArrayList<QueryTriplet> {
 
                 if (include_subject) {
                     str += " . ";
+                    // close the graph if we change the subject
+                    if (this[i].graph != null) {
+                        str += "} ";
+                    }
                 } else {
                     str += " ; ";
+                }
+            } else {
+                // need to explicitly close the graph for the last triplet
+                if (this[i].graph != null) {
+                    str += " . } ";
                 }
             }
         }

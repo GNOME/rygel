@@ -59,6 +59,7 @@ public class Rygel.Tracker.QueryTriplet {
     }
 
     public QueryTriplet.clone (QueryTriplet triplet) {
+        this.graph = triplet.graph;
         this.subject = triplet.subject;
         this.predicate = triplet.predicate;
 
@@ -78,7 +79,8 @@ public class Rygel.Tracker.QueryTriplet {
             chain_equal = a.next == b.next;
         }
 
-        return a.subject == b.subject &&
+        return a.graph == b.graph &&
+               a.subject == b.subject &&
                a.obj == b.obj &&
                a.predicate == b.predicate &&
                chain_equal;
@@ -86,10 +88,6 @@ public class Rygel.Tracker.QueryTriplet {
 
     public string to_string (bool include_subject = true) {
         string str = "";
-
-        if (graph != null) {
-            str += "GRAPH <%s> {".printf (this.graph);
-        }
 
         if (include_subject) {
             str += " " + subject;
@@ -101,10 +99,6 @@ public class Rygel.Tracker.QueryTriplet {
             str += " [ " + this.next.to_string () + " ] ";
         } else {
             str += " " + this.obj;
-        }
-
-        if (graph != null) {
-            str += "}";
         }
 
         return str;
