@@ -278,11 +278,12 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         if (this.seek is HTTPTimeSeek) {
             format = Format.TIME;
 
-            if (this.seek.stop > 0) {
-                stop_type = Gst.SeekType.SET;
-            }
         } else {
             format = Format.BYTES;
+        }
+
+        if (this.seek.stop > 0) {
+            stop_type = Gst.SeekType.SET;
         }
 
         if (!this.pipeline.seek (1.0,
