@@ -90,8 +90,8 @@ internal class Rygel.Browse: Rygel.MediaQueryAction {
                                         (MediaObject media_object)
                                          throws Error {
         if (!(media_object is MediaContainer)) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT
-                                        (_("No such object"));
+            throw new ContentDirectoryError.INVALID_ARGS
+                                        (_("Cannot browse children on item"));
         }
 
         var container = (MediaContainer) media_object;
