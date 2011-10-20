@@ -430,8 +430,8 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                 timeout = Timeout.add_seconds (5, () => {
                     debug ("Timeout on waiting for 'updated' signal on '%s'.",
                            container.id);
-                    this.wait_for_item.callback ();
                     timeout = 0;
+                    this.wait_for_item.callback ();
 
                     return false;
                 });
