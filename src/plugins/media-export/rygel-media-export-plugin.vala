@@ -63,8 +63,6 @@ public void module_init (PluginLoader loader) {
 }
 
 public void on_plugin_available (Plugin plugin, Plugin our_plugin) {
-    warning ("%s %s %s", plugin.name, our_plugin.active.to_string (),
-            plugin.active.to_string ());
     if (plugin.name == TRACKER_PLUGIN) {
         if (our_plugin.active && !plugin.active) {
             // Tracker plugin might be activated later
