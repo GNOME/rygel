@@ -53,6 +53,11 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
     internal const string FILESYSTEM_FOLDER_NAME = "Files & Folders";
     internal const string FILESYSTEM_FOLDER_ID   = "Filesystem";
 
+    private const string SEARCH_CONTAINER_PREFIX = QueryContainer.PREFIX +
+                                                   "upnp:class," +
+                                                   MusicItem.UPNP_CLASS +
+                                                   ",";
+
     public static MediaContainer get_instance () throws Error {
         if (RootContainer.instance == null) {
             try {
@@ -239,7 +244,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                                        RelationalExpression expression) {
         if (expression.operand1 == "upnp:class" &&
             expression.op == SearchCriteriaOp.EQ) {
-            string id = QueryContainer.PREFIX;
+            string id = SEARCH_CONTAINER_PREFIX;
             switch (expression.operand2) {
                 case "object.container.album.musicAlbum":
                     id += "upnp:album,?";
