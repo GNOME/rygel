@@ -1,3 +1,38 @@
+0.12.5
+======
+
+Another release in the stable 0.12 series of Rygel
+
+Changes since 0.12.4:
+
+- Send proper SSDP notification when killed with SIGTERM.
+- Fix out-of-tree builds.
+- Prevent a crash when searching and uploading in parallel.
+- Prevent a critical error when the uri to be added already exists.
+- Prevent a name clash when an uploader is really fast in creating items.
+- Mark thumbnail resources as transcoded. This helps certain devices to use
+  them as thumbnails and not as the original stream.
+- Prevent a false-positive test success in http-post-test.
+- Use proper error if a client tries to get the children of a media item.
+- Fix huge CPU load if a client did a lot of byte-range requests on a large
+  media file.
+
+Tracker:
+ - Fall back to nfo:fileLastModified if nie:creationDate is not available.
+ - Properly clean and escape any passed item ID.
+
+MediaExport:
+ - Properly disable MediaExport if Tracker start-up is slow.
+
+All contributors to this release:
+  - Jens Georg <mail@jensge.org>
+  - Krzesimir Nowak <qdlacz@gmail.com>
+  - Lukasz Pawlik <lucas.pawlik@gmail.com>
+
+Bugs fixed:
+  - https://bugzilla.gnome.org/show_bug.cgi?id=662125
+  - https://bugzilla.gnome.org/show_bug.cgi?id=662031
+
 0.12.4
 ======
 
@@ -12,7 +47,7 @@ Changes since 0.12.3:
   CreateObject. This could cause huge CPU consumption if the URI was really
   long (1k).
 - Do not crash if ImportResource is cancelled.
-- Fix DBUS  thumbnailer regression introduced in 0.12.3
+- Fix DBUS thumbnailer regression introduced in 0.12.3.
 
 All contributors to this release:
   - Jens Georg <mail@jensge.org>
