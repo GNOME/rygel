@@ -1,9 +1,92 @@
+0.13.0
+======
+
+The beginning of a new unstable release cycle.
+
+Many of the commits in this release already have been released in one of
+our stable 0.12.x versions. A list of all changes that already were released
+is available in the stable branch's NEWS file:
+
+http://git.gnome.org/browse/rygel/tree/NEWS?h=RYGEL_0_12_5
+
+Changes compared to 0.12.5:
+
+- Use context-less API from gupnp-0.18.
+- Switch to .xz tarballs as default.
+- Get rid of a nested MainLoop in HTTP POST handling that caused a lot of
+  trouble with vala's async support.
+- Refactor ClientHacks into a generic part and XBox support.
+- Add a hack for Panasonic TVs that can only handle PNG thumbnails if you
+  tell them they're JPEG.
+- Always build and run tests when using autogen.sh.
+- Write uploaded data to a temporary hidden file first and move to real file
+  later, helping file monitors to only create a single event.
+- Add a 128x128 version of the icon.
+- Move the 48x48 JPEG icon and 120x120 icons necessary for DLNA out of the
+  icon theme.
+- Drop XML comments from the content description files which might cause
+  issues in IOP.
+- Stabilize the error handling in HTTP POST.
+- Clean-up GTK+ checks in configure.ac.
+- Only pass -g to valac when --enable-debug was passed.
+- More robust transcoding on faulty input.
+- Clean-up and refactor audio- and video-transcoders.
+- Clean-up RTP depayloader guessing.
+- Fix deadlock on Ctrl-C.
+- Fix a crash on filesystem error while uploading.
+
+- MediaExport:
+  - Refactor and clean QueryContainer.
+  - Use proper UPnP classes like object.container.album.musicAlbum for virtual
+    folders.
+  - Support audio-less videos.
+
+- Mediathek:
+  - Set proper DLNA profile on the WMV streams.
+
+- Playbin:
+  - Add support for image/jpeg and image/png.
+
+- Tracker:
+  - Fix querybuilder for graphed statements.
+  - Let tracker-fs-miner override properties and chose the proper RDF type
+    for an uploaded file.
+  - Cache ContainerUpdateIDs for metadata-based containers.
+
+- Bugs fixed in this release:
+  gnome:660107 - Mediathek HTTP proxy URL doesn't have a DLNA profile for WMV
+  gnome:661336 - No thumbnails for Panasonic
+  gnome:637226 - rygel installs 120x120 icons, instead of 128x128
+
+- All contributors to this release:
+  - Jens Georg <mail@jensge.org>
+  - Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+  - Grzegorz Grabowski <grzegorz.grabowski@comarch.com>
+  - Mario Blättermann <mariobl@gnome.org>
+  - Marek Černocký <marek@manet.cz>
+  - Matej Urbančič <mateju@svn.gnome.org>
+  - Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>
+  - Jorge González <jorgegonz@svn.gnome.org>
+
+- Added/updated translations:
+  - de, courtesy of Mario Blättermann
+  - sl, courtesy of Matej Urbančič
+  - cz, courtesy of Marek Černocký
+  - eo, courtesy of Kristjan SCHMIDT
+  - es, courtesy of Jorge González
+
+
 0.11.3
 ======
 
 Another release in the unstable release cycle.
 
 Changes since 0.11.2:
+
+- Dependency-related changes:
+  - Bump GStreamer version to 0.10.35 for important encodebin fixes.
+  - Bump Vala version to version 0.14.
+  - Bump libsoup maximum version.
 
 - Fixed an abort if the client requested chunks of data being too small.
 - Fix memory leaking related to file upload.
