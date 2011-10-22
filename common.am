@@ -48,7 +48,8 @@ RYGEL_COMMON_PLUGIN_VALAFLAGS = \
 RYGEL_COMMON_VALAFLAGS = \
 	--pkg rygel-build-config --pkg gupnp-1.0 \
 	--vapidir=$(rygeldir) \
-	--pkg gupnp-av-1.0 --pkg gee-1.0 -g
+	--pkg gupnp-av-1.0 --pkg gee-1.0 \
+	$(RYGEL_DEBUG_VALAFLAGS)
 
 RYGEL_PLUGIN_LINKER_FLAGS = -shared -fPIC -module -avoid-version
 
