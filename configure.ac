@@ -104,7 +104,10 @@ AC_ARG_ENABLE(debug,
         enable_debug=no)
 if test "x$enable_debug" = "xyes"; then
         CFLAGS="$CFLAGS -O0 -g"
+        RYGEL_DEBUG_VALAFLAGS="-g"
 fi
+
+AC_SUBST(RYGEL_DEBUG_VALAFLAGS)
 
 dnl Strict compiler
 AC_ARG_ENABLE(strict-cc,
