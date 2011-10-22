@@ -1,0 +1,17 @@
+#!/bin/sh
+(
+cat <<'__EOF__'
+data/rygel.desktop.in
+data/rygel-preferences.desktop.in
+data/xml/AVTransport2.xml
+data/xml/ConnectionManager.xml
+data/xml/ContentDirectory.xml
+data/xml/MediaRenderer2.xml
+data/xml/MediaServer2.xml
+data/xml/RenderingControl2.xml
+__EOF__
+) > POTFILES.skip
+
+(cd .. && find src/plugins/mediathek -name "*.vala" | sort) >> POTFILES.skip
+(cd .. && find src -name "*.c" | sort ) >> POTFILES.skip
+(cd .. && find tests -name "*.c" | sort ) >> POTFILES.skip
