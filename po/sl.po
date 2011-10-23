@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-09-19 22:23+0000\n"
+"POT-Creation-Date: 2011-10-22 08:33+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Poedit-Language: Slovenian\n"
 "X-Poedit-Country: SLOVENIA\n"
@@ -131,35 +131,35 @@ msgstr "Album"
 msgid "Genre"
 msgstr "Zvrst"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:99
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:104
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "Odstranjevanje naslova URI je spodletelo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:343
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:348
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "Uporabnika @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:351
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:356
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Ustvarjanje DBus storitve izvoza večpredstavnosti je spodletelo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:391
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:396
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Odstranitev vnosa je spodletela: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:414
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:419
 msgid "Music"
 msgstr "Glasba"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:417
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:422
 msgid "Pictures"
 msgstr "Slike"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:419
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:424
 msgid "Videos"
 msgstr "Video"
 
@@ -208,9 +208,8 @@ msgstr "Naslovi"
 
 #: ../src/rygel/rygel-media-query-action.vala:118
 #: ../src/rygel/rygel-media-query-action.vala:177
-#: ../src/rygel/rygel-browse.vala:94
-#: ../src/rygel/rygel-item-creator.vala:220
-#: ../src/rygel/rygel-item-creator.vala:278
+#: ../src/rygel/rygel-item-creator.vala:230
+#: ../src/rygel/rygel-item-creator.vala:288
 #: ../src/rygel/rygel-item-destroyer.vala:53
 #: ../src/rygel/rygel-item-destroyer.vala:100
 msgid "No such object"
@@ -223,6 +222,10 @@ msgstr "Neveljaven obseg"
 #: ../src/rygel/rygel-browse.vala:63
 msgid "Invalid Arguments"
 msgstr "Neveljavni argumenti"
+
+#: ../src/rygel/rygel-browse.vala:94
+msgid "Cannot browse children on item"
+msgstr "Ni mogoče brskati podrejenih predmetov"
 
 #: ../src/rygel/rygel-browse.vala:121
 #, c-format
@@ -358,19 +361,19 @@ msgstr "Neveljaven naslov URI '%s'"
 msgid "Not Found"
 msgstr "Ni najden"
 
-#: ../src/rygel/rygel-http-post.vala:65
+#: ../src/rygel/rygel-http-post.vala:62
 #: ../src/rygel/rygel-import-resource.vala:191
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Objavljanje podatkov na predmet '%s', ki ni prazen, ni dovoljeno"
 
-#: ../src/rygel/rygel-http-post.vala:73
+#: ../src/rygel/rygel-http-post.vala:70
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "Za %s ni na voljo zapisljivega naslova URI"
 
 #. translators: Dotfile is the filename with prefix "."
-#: ../src/rygel/rygel-http-post.vala:142
+#: ../src/rygel/rygel-http-post.vala:177
 #, c-format
 msgid "Failed to move dotfile %s: %s"
 msgstr "Premikanje skrite datoteke %s je spodletelo: %s"
@@ -401,7 +404,7 @@ msgstr "Napaka iz cevovoda %s: %s"
 msgid "Warning from pipeline %s: %s"
 msgstr "Opozorilo iz cevovoda %s: %s"
 
-#: ../src/rygel/rygel-http-response.vala:295
+#: ../src/rygel/rygel-http-response.vala:296
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Iskanje na odmik %lld je spodletelo"
@@ -426,26 +429,26 @@ msgstr "Pridobivanje izvirnega URI za '%s' je spodletelo: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Naslov URI '%s' je neveljaven za uvažanje vsebine"
 
-#: ../src/rygel/rygel-item-creator.vala:74
+#: ../src/rygel/rygel-item-creator.vala:83
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Ni predmetov v DIDL-Lite od odjemalca: %s"
 
-#: ../src/rygel/rygel-item-creator.vala:211
+#: ../src/rygel/rygel-item-creator.vala:221
 msgid "'Elements' argument missing."
 msgstr "Manjka argument 'predmetov'"
 
-#: ../src/rygel/rygel-item-creator.vala:214
+#: ../src/rygel/rygel-item-creator.vala:224
 msgid "Comments not allowed in XML"
 msgstr "Opombe v XML niso dovoljene"
 
-#: ../src/rygel/rygel-item-creator.vala:282
-#: ../src/rygel/rygel-item-creator.vala:371
+#: ../src/rygel/rygel-item-creator.vala:292
+#: ../src/rygel/rygel-item-creator.vala:391
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Ustvarjanje predmeta v %s ni dovoljeno"
 
-#: ../src/rygel/rygel-item-creator.vala:308
+#: ../src/rygel/rygel-item-creator.vala:318
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Ustvarjanje predmeta pod '%s' je spodletelo: %s"
@@ -494,13 +497,13 @@ msgstr "Ustvarjanje tovarne korenske naprave je spodletelo: %s"
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Ustvarjanje RootDevice za %s je spodletelo: Vzrok: %s"
 
-#: ../src/rygel/rygel-media-item.vala:260
+#: ../src/rygel/rygel-media-item.vala:263
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Slab naslov URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:272
+#: ../src/rygel/rygel-media-item.vala:275
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Neuspešno preiskovanje protokola za naslov URI %s. Uporabljeno bo '%s'"
@@ -596,11 +599,7 @@ msgstr "Za '%s' ni na voljo nobene vrednosti"
 msgid "Value of '%s' out of range"
 msgstr "Vrednost '%s' je izven obsega"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:60
-msgid "Not Applicable"
-msgstr "Ni mogoče uporabiti"
-
-#: ../src/rygel/rygel-xbox-hacks.vala:223
+#: ../src/rygel/rygel-xbox-hacks.vala:199
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Zapisovanje spremenjenega opisa na %s je spodletelo."
@@ -624,6 +623,9 @@ msgstr "Začenjanje storitve Rygel je spodletelo: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Zaustavljanje storitve Rygel je spodletelo: %s"
+
+#~ msgid "Not Applicable"
+#~ msgstr "Ni mogoče uporabiti"
 
 #~ msgid "Another instance of Rygel is taking over. Exiting"
 #~ msgstr "Drug primerek Rygel prevzema. Program se bo končal"
