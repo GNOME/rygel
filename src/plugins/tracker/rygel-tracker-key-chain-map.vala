@@ -57,7 +57,7 @@ public class Rygel.Tracker.KeyChainMap : Object {
                       "nie:byteSize(%1$s),\"\")");
         add_function ("date",
                       "tracker:coalesce(nie:contentCreated(%1$s)," +
-                      "nfo:fileLastAccessed(%1$s))");
+                      "nfo:fileLastModified(%1$s))");
 
         // Music Item
         add_key_chain ("res@duration", "nfo:duration");
