@@ -39,6 +39,8 @@ internal abstract class Rygel.Transcoder : GLib.Object {
     dynamic Element decoder;
     dynamic Element encoder;
 
+    private bool link_failed;
+
     // Primary UPnP item class that this transcoder is meant for, doesn't
     // necessarily mean it cant be used for other classes.
     public string upnp_class { get; protected set; }
@@ -49,6 +51,7 @@ internal abstract class Rygel.Transcoder : GLib.Object {
         this.mime_type = mime_type;
         this.dlna_profile = dlna_profile;
         this.upnp_class = upnp_class;
+        this.link_failed = true;
     }
 
     /**
@@ -75,6 +78,7 @@ internal abstract class Rygel.Transcoder : GLib.Object {
 
         decoder.pad_added.connect (this.on_decoder_pad_added);
         decoder.autoplug_continue.connect (this.on_autoplug_continue);
+        decoder.no_more_pads.connect (this.on_no_more_pads);
 
         var pad = encoder.get_static_pad ("src");
         var ghost = new GhostPad (null, pad);
@@ -182,8 +186,28 @@ internal abstract class Rygel.Transcoder : GLib.Object {
             warning ("Failed to link pad '%s' to '%s'",
                      new_pad.name,
                      sinkpad.name);
+        } else {
+            this.link_failed = false;
         }
 
         return;
+    }
+
+    private void on_no_more_pads (Element decodebin) {
+        // We haven't found any pads we could link
+        if (this.link_failed) {
+            // Signalize that error
+            var bin = this.encoder.get_parent () as Bin;
+            const string description = "Encoder and decoder are not " +
+                                       "compatible";
+            var error = new IOError.FAILED ("Could not link");
+            var message = new Message.error (bin,
+                                             error,
+                                             description);
+
+
+            var bus = bin.get_bus ();
+            bus.post (message);
+        }
     }
 }
