@@ -193,13 +193,14 @@ internal abstract class Rygel.Transcoder : GLib.Object {
         return;
     }
 
+    private const string description = "Encoder and decoder are not " +
+                                       "compatible";
+
     private void on_no_more_pads (Element decodebin) {
         // We haven't found any pads we could link
         if (this.link_failed) {
             // Signalize that error
             var bin = this.encoder.get_parent () as Bin;
-            const string description = "Encoder and decoder are not " +
-                                       "compatible";
             var error = new IOError.FAILED ("Could not link");
             var message = new Message.error (bin,
                                              error,
