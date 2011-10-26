@@ -77,13 +77,16 @@ public class Rygel.Tracker.InsertionQuery : Query {
                                          QUERY_ID,
                                          "nie:mimeType",
                                          "\"" + item.mime_type + "\""));
+        var dlna_profile = "";
         if (item.dlna_profile != null) {
-            triplets.add (new QueryTriplet.with_graph
+            dlna_profile = item.dlna_profile;
+        }
+
+        triplets.add (new QueryTriplet.with_graph
                                         (MINER_GRAPH,
                                          QUERY_ID,
                                          "nmm:dlnaProfile",
-                                         "\"" + item.dlna_profile + "\""));
-        }
+                                         "\"" + dlna_profile + "\""));
 
         triplets.add (new QueryTriplet (QUERY_ID,
                                         "nie:url",
