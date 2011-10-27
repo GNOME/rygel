@@ -26,7 +26,8 @@
 internal errordomain Rygel.HTTPRequestError {
     UNACCEPTABLE = Soup.KnownStatusCode.NOT_ACCEPTABLE,
     BAD_REQUEST = Soup.KnownStatusCode.BAD_REQUEST,
-    NOT_FOUND = Soup.KnownStatusCode.NOT_FOUND
+    NOT_FOUND = Soup.KnownStatusCode.NOT_FOUND,
+    INTERNAL_SERVER_ERROR = Soup.KnownStatusCode.INTERNAL_SERVER_ERROR
 }
 
 /**

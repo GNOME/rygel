@@ -204,7 +204,9 @@ internal class Rygel.HTTPPost : HTTPRequest {
         try {
             this.stream.write_all (chunk.data, null, this.cancellable);
         } catch (Error error) {
-            this.handle_error (error);
+            this.disconnect_message_signals ();
+            this.handle_error (
+                new HTTPRequestError.INTERNAL_SERVER_ERROR (error.message));
             this.handle_continue ();
         }
     }
@@ -217,5 +219,11 @@ internal class Rygel.HTTPPost : HTTPRequest {
         var queue = ItemRemovalQueue.get_default ();
         yield queue.remove_now (this.item, null);
     }
+
+    private void disconnect_message_signals () {
+        this.msg.got_body.disconnect (this.on_got_body);
+        this.msg.got_chunk.disconnect (this.on_got_chunk);
+    }
+
 }
 
