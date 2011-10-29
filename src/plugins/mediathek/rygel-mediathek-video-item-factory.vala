@@ -74,7 +74,7 @@ internal class Rygel.Mediathek.VideoItemFactory : Object {
 
     private VideoItemFactory () {
         var config = Rygel.MetaConfig.get_default ();
-        string video_format = VIDEO_FORMAT_WMV;
+        this.video_format = VIDEO_FORMAT_WMV;
 
         try {
             this.video_format = config.get_string ("ZDFMediathek",
