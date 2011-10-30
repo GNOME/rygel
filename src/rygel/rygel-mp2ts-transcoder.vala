@@ -102,8 +102,8 @@ internal class Rygel.MP2TSTranscoder : Rygel.Transcoder {
                                              framerate);
         var restriction = "video/x-raw-yuv," +
                           framerate + "," +
-                          "width=%d,".printf (HEIGHT[this.profile]) +
-                          "height=%d".printf (WIDTH[this.profile]);
+                          "width=%d,".printf (WIDTH[this.profile]) +
+                          "height=%d".printf (HEIGHT[this.profile]);
 
         var video_restriction = Caps.from_string (restriction);
 
