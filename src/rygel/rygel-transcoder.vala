@@ -23,7 +23,6 @@
 
 using Gst;
 using GUPnP;
-using Gee;
 
 /**
  * The base Transcoder class. Each implementation derives from it and must
