@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-09-19 10:14+0000\n"
-"PO-Revision-Date: 2011-09-25 14:17+0200\n"
+"POT-Creation-Date: 2011-10-20 09:13+0000\n"
+"PO-Revision-Date: 2011-11-02 19:15+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -206,8 +206,8 @@ msgstr "Názvy"
 
 #: ../src/rygel/rygel-media-query-action.vala:118
 #: ../src/rygel/rygel-media-query-action.vala:177
-#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:220
-#: ../src/rygel/rygel-item-creator.vala:278
+#: ../src/rygel/rygel-item-creator.vala:230
+#: ../src/rygel/rygel-item-creator.vala:288
 #: ../src/rygel/rygel-item-destroyer.vala:53
 #: ../src/rygel/rygel-item-destroyer.vala:100
 msgid "No such object"
@@ -220,6 +220,10 @@ msgstr "Neplatný rozsah"
 #: ../src/rygel/rygel-browse.vala:63
 msgid "Invalid Arguments"
 msgstr "Neplatné argumenty"
+
+#: ../src/rygel/rygel-browse.vala:94
+msgid "Cannot browse children on item"
+msgstr "Nelze procházet potomky položky"
 
 #: ../src/rygel/rygel-browse.vala:121
 #, c-format
@@ -355,21 +359,20 @@ msgstr "Neplatná adresa URI „%s“"
 msgid "Not Found"
 msgstr "Nenalezeno"
 
-#: ../src/rygel/rygel-http-post.vala:65
+#: ../src/rygel/rygel-http-post.vala:62
 #: ../src/rygel/rygel-import-resource.vala:191
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Vkládání dat do neprázdné položky „%s“ není dovoleno"
 
-#: ../src/rygel/rygel-http-post.vala:73
+#: ../src/rygel/rygel-http-post.vala:70
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "Pro %s není k dispozici žádná zapisovatelná adresa URI"
 
 #. translators: Dotfile is the filename with prefix "."
-#: ../src/rygel/rygel-http-post.vala:142
+#: ../src/rygel/rygel-http-post.vala:177
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "Failed to move dotfile %s: %s"
 msgstr "Selhal přesun souboru s tečkou na začátku %s: %s"
 
@@ -424,26 +427,26 @@ msgstr "Selhalo získání původní adresy URI pro „%s“: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Adresa URI „%s“ je neplatná pro import obsahu do ní"
 
-#: ../src/rygel/rygel-item-creator.vala:74
+#: ../src/rygel/rygel-item-creator.vala:83
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Žádné položky v DIDL-Lite od klienta: „%s“"
 
-#: ../src/rygel/rygel-item-creator.vala:211
+#: ../src/rygel/rygel-item-creator.vala:221
 msgid "'Elements' argument missing."
 msgstr "Schází argument „Elements“."
 
-#: ../src/rygel/rygel-item-creator.vala:214
+#: ../src/rygel/rygel-item-creator.vala:224
 msgid "Comments not allowed in XML"
 msgstr "V XML nejsou dovoleny komentáře"
 
-#: ../src/rygel/rygel-item-creator.vala:282
-#: ../src/rygel/rygel-item-creator.vala:371
+#: ../src/rygel/rygel-item-creator.vala:292
+#: ../src/rygel/rygel-item-creator.vala:391
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Vytváření objektů v %s není dovoleno"
 
-#: ../src/rygel/rygel-item-creator.vala:308
+#: ../src/rygel/rygel-item-creator.vala:318
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Selhalo vytvoření položky v „%s“: %s"
@@ -491,13 +494,13 @@ msgstr "Selhalo vytvoření generátoru kořenových zařízení: %s"
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Selhalo vytvoření kořenového zařízení pro %s. Důvod: %s"
 
-#: ../src/rygel/rygel-media-item.vala:260
+#: ../src/rygel/rygel-media-item.vala:263
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Chybná adresa URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:272
+#: ../src/rygel/rygel-media-item.vala:275
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr ""
@@ -594,11 +597,7 @@ msgstr "Pro „%s“ není dostupná žádná hodnota"
 msgid "Value of '%s' out of range"
 msgstr "Hodnota „%s“ je mimo rozsah"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:60
-msgid "Not Applicable"
-msgstr "Nepoužitelné"
-
-#: ../src/rygel/rygel-xbox-hacks.vala:223
+#: ../src/rygel/rygel-xbox-hacks.vala:199
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Selhal zápis změněného popisu do %s."
