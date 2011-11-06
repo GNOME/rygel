@@ -169,7 +169,7 @@ internal abstract class Rygel.Transcoder : GLib.Object {
         sinkpad = this.encoder.get_compatible_pad (new_pad, null);
 
         if (sinkpad == null) {
-            var caps = new_pad.get_caps ();
+            var caps = new_pad.get_caps_reffed ();
             Signal.emit_by_name (this.encoder, "request-pad", caps, out sinkpad);
         }
 

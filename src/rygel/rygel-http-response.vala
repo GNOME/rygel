@@ -177,7 +177,7 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
     }
 
     private void src_pad_added (Element src, Pad src_pad) {
-        var caps = src_pad.get_caps ();
+        var caps = src_pad.get_caps_reffed ();
 
         var sink = this.pipeline.get_by_name (HTTPGstSink.NAME);
         Pad sink_pad;
