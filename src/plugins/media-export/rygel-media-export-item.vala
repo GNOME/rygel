@@ -83,13 +83,19 @@ namespace Rygel.MediaExport.ItemFactory {
                                     mime,
                                     size,
                                     mtime);
-        } else if (audio_streams != null && video_streams != null) {
+        } else if (video_streams != null) {
             item = new VideoItem (id, parent, "");
+
+            var audio_info = null as DiscovererAudioInfo;
+            if (audio_streams != null) {
+                audio_info = audio_streams.data;
+            }
+
             return fill_video_item (item as VideoItem,
                                     file,
                                     dlna_info,
                                     video_streams.data,
-                                    audio_streams.data,
+                                    audio_info,
                                     mime,
                                     size,
                                     mtime);
