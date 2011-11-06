@@ -189,6 +189,7 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
                 critical (_("Failed to link %s to %s"),
                           depay.name,
                           sink.name);
+
                 this.end (false, KnownStatusCode.NONE);
 
                 return;

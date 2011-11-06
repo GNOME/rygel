@@ -105,7 +105,13 @@ internal abstract class Rygel.GstUtils {
         // First construct a list of relevant factories
         foreach (PluginFeature feature in features) {
             var factory = (ElementFactory) feature;
-            if (factory.can_sink_caps (caps)) {
+
+            // Skip "rtpdepay" since it's more like a proxy
+            if (factory.get_name () == "rtpdepay") {
+                continue;
+            }
+
+            if (factory.can_sink_any_caps (caps)) {
                relevant_factories.append (factory);
             }
         }
