@@ -159,7 +159,7 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
 
         this.pipeline.add_many (src, sink);
 
-        if (src.numpads == 0) {
+        if (src.numsrcpads == 0) {
             // Seems source uses dynamic pads, link when pad available
             src.pad_added.connect (this.src_pad_added);
         } else {
