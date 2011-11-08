@@ -28,7 +28,7 @@ LT_PREREQ([2.2.6])
 LT_INIT([dlopen disable-static])
 
 dnl Required versions of library packages
-VALA_REQUIRED=0.11.6
+VALA_REQUIRED=0.14.0
 GSSDP_MAX_VERSION=0.12.9999
 GSSDP_REQUIRED=0.11.0
 GUPNP_MAX_VERSION=0.18.9999
