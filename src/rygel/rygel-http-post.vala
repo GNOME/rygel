@@ -123,7 +123,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
             // This means that either someone externally has removed the item
             // or that the back-end decided it's not a shareable item anymore.
             if (item == null) {
-                warning ("Item %s disappeared, stop waiting for it");
+                warning ("Item %s disappeared, stop waiting for it", id);
 
                 break;
             }
