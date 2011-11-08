@@ -120,6 +120,14 @@ internal class Rygel.HTTPPost : HTTPRequest {
                 break;
             }
 
+            // This means that either someone externally has removed the item
+            // or that the back-end decided it's not a shareable item anymore.
+            if (item == null) {
+                warning ("Item %s disappeared, stop waiting for it");
+
+                break;
+            }
+
             if (item.place_holder) {
                 uint source_id = 0;
                 source_id = Timeout.add_seconds (30, () => {
