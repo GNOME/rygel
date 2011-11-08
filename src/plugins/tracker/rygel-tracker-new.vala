@@ -34,12 +34,12 @@ public class Rygel.Tracker.New : Rygel.Tracker.SearchContainer {
     public New (MediaContainer parent, ItemFactory item_factory) {
         var triplets = new QueryTriplets ();
 
-        triplets.add_triplet (new QueryTriplet (SelectionQuery.ITEM_VARIABLE,
-                                                "a",
-                                                item_factory.category));
-        triplets.add_triplet (new QueryTriplet (SelectionQuery.ITEM_VARIABLE,
-                                                ADDED_PREDICATE,
-                                                ADDED_VARIABLE));
+        triplets.add (new QueryTriplet (SelectionQuery.ITEM_VARIABLE,
+                                        "a",
+                                        item_factory.category));
+        triplets.add (new QueryTriplet (SelectionQuery.ITEM_VARIABLE,
+                                        ADDED_PREDICATE,
+                                        ADDED_VARIABLE));
 
         var time = TimeVal ();
         time.tv_sec -= THREE_DAYS_AS_SEC;

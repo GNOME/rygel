@@ -73,12 +73,12 @@ public class Rygel.Tracker.QueryTriplets : ArrayList<QueryTriplet> {
         return str;
     }
 
-    // FIXME: Remove this method and override 'add' method from the base class
-    //        instead once bug#623685 is fixed.
-    public void add_triplet (QueryTriplet triplet) {
+    public override bool add (QueryTriplet triplet) {
         if (!this.contains (triplet)) {
-            this.add (triplet);
+            return base.add (triplet);
         }
+
+        return false;
     }
 
     private bool check_graph_change (int i) {

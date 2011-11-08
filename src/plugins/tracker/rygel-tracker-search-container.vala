@@ -77,10 +77,10 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
             our_triplets = new QueryTriplets ();
         }
 
-        our_triplets.add_triplet (new QueryTriplet
-                                        (SelectionQuery.ITEM_VARIABLE,
-                                         "a",
-                                         item_factory.category));
+        our_triplets.add (new QueryTriplet
+                                (SelectionQuery.ITEM_VARIABLE,
+                                 "a",
+                                 item_factory.category));
 
         var key_chain_map = KeyChainMap.get_key_chain_map ();
         foreach (var property in this.item_factory.properties) {
