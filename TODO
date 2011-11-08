@@ -54,7 +54,6 @@
 
   * UI
     * Make sure we restart rygel when configuration changes.
-    * Fix tooltips.
     * Get interfaces directly from NM.
     * Show available APs for Wifi interface.
 

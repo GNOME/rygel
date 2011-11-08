@@ -31,13 +31,15 @@ public class Rygel.MediaPrefSection : PreferencesSection {
     const string URIS_DIALOG = URIS_KEY + "-dialog";
     const string ADD_BUTTON = "add-button";
     const string REMOVE_BUTTON = "remove-button";
-    const string CLEAR_BUTTON = "clear-button";
+    const string TREE_SELECTION = "treeview-selection";
 
     private ArrayList<Widget> widgets; // All widgets in this section
 
     private TreeView treeview;
     private ListStore liststore;
+    private TreeSelection tree_selection;
     private FileChooserDialog dialog;
+    private ToolButton remove_button;
 
     public MediaPrefSection (Builder            builder,
                              WritableUserConfig config) {
@@ -49,6 +51,9 @@ public class Rygel.MediaPrefSection : PreferencesSection {
         assert (this.treeview != null);
         this.liststore = (ListStore) builder.get_object (URIS_LISTSTORE);
         assert (this.liststore != null);
+        this.tree_selection = builder.get_object (TREE_SELECTION)
+                                                  as TreeSelection;
+        assert (this.tree_selection != null);
         this.dialog = (FileChooserDialog) builder.get_object (URIS_DIALOG);
         assert (this.dialog != null);
 
@@ -74,17 +79,17 @@ public class Rygel.MediaPrefSection : PreferencesSection {
         this.dialog.set_current_folder (Environment.get_home_dir ());
         this.dialog.show_hidden = false;
 
-        var button = (Button) builder.get_object (ADD_BUTTON);
-        button.clicked.connect (this.on_add_button_clicked);
-        this.widgets.add (button);
+        var add_button = builder.get_object (ADD_BUTTON) as ToolButton;
+        add_button.clicked.connect (this.on_add_button_clicked);
+        this.widgets.add (add_button);
 
-        button = (Button) builder.get_object (REMOVE_BUTTON);
-        button.clicked.connect (this.on_remove_button_clicked);
-        this.widgets.add (button);
+        remove_button = builder.get_object (REMOVE_BUTTON) as ToolButton;
+        remove_button.clicked.connect (this.on_remove_button_clicked);
+        this.widgets.add (remove_button);
 
-        button = (Button) builder.get_object (CLEAR_BUTTON);
-        button.clicked.connect (this.on_clear_button_clicked);
-        this.widgets.add (button);
+        // Update the sensitivity of the remove button
+        this.on_tree_selection_changed ();
+        this.tree_selection.changed.connect (this.on_tree_selection_changed);
     }
 
     public override void save () {
@@ -108,9 +113,14 @@ public class Rygel.MediaPrefSection : PreferencesSection {
         foreach (var widget in this.widgets) {
             widget.sensitive = sensitivity;
         }
+
+        // Force an update of the remove button.
+        if (sensitivity) {
+            this.on_tree_selection_changed ();
+        }
     }
 
-    private void on_add_button_clicked (Button button) {
+    private void on_add_button_clicked (ToolButton button) {
         if (this.dialog.run () == ResponseType.OK) {
             TreeIter iter;
 
@@ -131,7 +141,7 @@ public class Rygel.MediaPrefSection : PreferencesSection {
         this.dialog.hide ();
     }
 
-    private void on_remove_button_clicked (Button button) {
+    private void on_remove_button_clicked (ToolButton button) {
         var selection = this.treeview.get_selection ();
         var rows = selection.get_selected_rows (null);
 
@@ -150,10 +160,6 @@ public class Rygel.MediaPrefSection : PreferencesSection {
 
            this.liststore.remove (iter);
         }
-    }
-
-    private void on_clear_button_clicked (Button button) {
-        this.liststore.clear ();
     }
 
     private string get_real_uri (string uri) {
@@ -180,6 +186,15 @@ public class Rygel.MediaPrefSection : PreferencesSection {
             return "@PICTURES@";
         } else {
             return uri;
+        }
+    }
+
+    private void on_tree_selection_changed () {
+        // Remove button cannot be sensitive if no row is selected
+        if (tree_selection.get_selected (null, null)) {
+            remove_button.set_sensitive (true);
+        } else {
+            remove_button.set_sensitive (false);
         }
     }
 }

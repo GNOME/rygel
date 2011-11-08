@@ -25,7 +25,6 @@ using GUPnP;
 
 public class Rygel.NetworkPrefSection : PreferencesSection {
     const string IFACE_ENTRY = "iface-entry";
-    const string ANY_NETWORK = "Any";
 
     private ComboBoxText iface_entry;
 
@@ -40,10 +39,9 @@ public class Rygel.NetworkPrefSection : PreferencesSection {
 
         this.context_manager = new ContextManager (null, 0);
 
-        // Apparently glade/GtkBuilder is unable to do this for us
-        this.iface_entry.set_entry_text_column (0);
         try {
             this.iface_entry.append_text (config.get_interface ());
+            // TODO: Set the current interface to be active.
             this.iface_entry.set_active (0);
         } catch (GLib.Error err) {
             // No problem if we fail to read the config, the default values
@@ -59,7 +57,8 @@ public class Rygel.NetworkPrefSection : PreferencesSection {
     public override void save () {
         var iface = this.iface_entry.get_active_text ();
 
-        if (iface == ANY_NETWORK) {
+        // The zeroth item is "Any" network. -1 represents no active item.
+        if (this.iface_entry.active <= 0 ) {
             iface = "";
         }
 
