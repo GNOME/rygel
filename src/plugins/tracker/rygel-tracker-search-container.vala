@@ -41,6 +41,8 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
 
     private ResourcesIface resources;
 
+    private static HashMap<string, uint> update_id_hash;
+
     public SearchContainer (string             id,
                             MediaContainer     parent,
                             string             title,
@@ -48,6 +50,20 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                             QueryTriplets?     triplets = null,
                             ArrayList<string>? filters = null) {
         base (id, parent, title);
+
+        if (unlikely (update_id_hash == null)) {
+            update_id_hash = new HashMap<string, uint> ();
+        }
+
+        if (update_id_hash.has_key (this.id)) {
+            this.update_id = update_id_hash[this.id];
+        }
+
+        this.container_updated.connect ( (_, b) => {
+            if (b == this) {
+                update_id_hash[this.id] = this.update_id;
+            }
+        });
 
         this.item_factory = item_factory;
 
