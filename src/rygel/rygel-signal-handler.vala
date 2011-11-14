@@ -48,10 +48,26 @@ public class Rygel.SignalHandler : GLib.Object {
     }
 
     private static void signal_handler (int signum) {
+        if (main == null) {
+            debug ("Signal handler already called, ignoring");
+
+            return;
+        }
+
         if (signum == SIGHUP) {
-            main.restart ();
+            Idle.add (() => {
+                main.restart ();
+
+                return false;
+            });
         } else {
-            main.exit (0);
+            Idle.add (() => {
+                if (main != null) {
+                    main.exit (0);
+                }
+
+                return false;
+            });
         }
     }
 }
