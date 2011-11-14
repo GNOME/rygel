@@ -59,8 +59,8 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
             this.update_id = update_id_hash[this.id];
         }
 
-        this.container_updated.connect ( (_, b) => {
-            if (b == this) {
+        this.container_updated.connect ( (container, origin) => {
+            if (origin == this) {
                 update_id_hash[this.id] = this.update_id;
             }
         });
