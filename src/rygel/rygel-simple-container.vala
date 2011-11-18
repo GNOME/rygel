@@ -162,6 +162,10 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
                     var container = child as MediaContainer;
                     media_object = yield container.find_object (id, cancellable);
 
+                    if (updated_id != 0) {
+                        this.disconnect (updated_id);
+                    }
+
                     if (media_object != null) {
                         // no need to loop when we've found what we were looking
                         // for
@@ -172,10 +176,6 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
 
                     if (restart) {
                         break;
-                    }
-
-                    if (updated_id != 0) {
-                        this.disconnect (updated_id);
                     }
                 }
             }
