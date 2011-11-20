@@ -1,22 +1,22 @@
 # Spanish translation for rygel.
 # Copyright (C) 2010 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
-# Jorge González <jorgegonz@svn.gnome.org>, 2010, 2011.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2011.
+# Jorge González <jorgegonz@svn.gnome.org>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-09-19 10:14+0000\n"
-"PO-Revision-Date: 2011-09-20 11:34+0200\n"
-"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"POT-Creation-Date: 2011-10-20 09:13+0000\n"
+"PO-Revision-Date: 2011-11-20 10:32+0100\n"
+"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -205,8 +205,8 @@ msgstr "Títulos"
 
 #: ../src/rygel/rygel-media-query-action.vala:118
 #: ../src/rygel/rygel-media-query-action.vala:177
-#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:220
-#: ../src/rygel/rygel-item-creator.vala:278
+#: ../src/rygel/rygel-item-creator.vala:230
+#: ../src/rygel/rygel-item-creator.vala:288
 #: ../src/rygel/rygel-item-destroyer.vala:53
 #: ../src/rygel/rygel-item-destroyer.vala:100
 msgid "No such object"
@@ -219,6 +219,10 @@ msgstr "Rango no válido"
 #: ../src/rygel/rygel-browse.vala:63
 msgid "Invalid Arguments"
 msgstr "Argumentos no válidos"
+
+#: ../src/rygel/rygel-browse.vala:94
+msgid "Cannot browse children on item"
+msgstr "No se puede examinar en el elemento hijo"
 
 #: ../src/rygel/rygel-browse.vala:121
 #, c-format
@@ -354,21 +358,20 @@ msgstr "URI «%s» no válida"
 msgid "Not Found"
 msgstr "No se encontró"
 
-#: ../src/rygel/rygel-http-post.vala:65
+#: ../src/rygel/rygel-http-post.vala:62
 #: ../src/rygel/rygel-import-resource.vala:191
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "No se permite empujar datos al elemento «%s» no vacío"
 
-#: ../src/rygel/rygel-http-post.vala:73
+#: ../src/rygel/rygel-http-post.vala:70
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "No existe un URI escribible para %s"
 
 #. translators: Dotfile is the filename with prefix "."
-#: ../src/rygel/rygel-http-post.vala:142
+#: ../src/rygel/rygel-http-post.vala:177
 #, c-format
-#| msgid "Failed to harvest file %s: %s"
 msgid "Failed to move dotfile %s: %s"
 msgstr "Falló al mover el archivo %s: %s"
 
@@ -423,26 +426,26 @@ msgstr "Falló al obtener el URI original para «%s»: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "El URI «%s» no es válido para importar contenido de él"
 
-#: ../src/rygel/rygel-item-creator.vala:74
+#: ../src/rygel/rygel-item-creator.vala:83
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "No existen elementos en DIDL-Lite desde el cliente: «%s»"
 
-#: ../src/rygel/rygel-item-creator.vala:211
+#: ../src/rygel/rygel-item-creator.vala:221
 msgid "'Elements' argument missing."
 msgstr "Falta el argumento «elements»."
 
-#: ../src/rygel/rygel-item-creator.vala:214
+#: ../src/rygel/rygel-item-creator.vala:224
 msgid "Comments not allowed in XML"
 msgstr "No se permiten comentarios en XML"
 
-#: ../src/rygel/rygel-item-creator.vala:282
-#: ../src/rygel/rygel-item-creator.vala:371
+#: ../src/rygel/rygel-item-creator.vala:292
+#: ../src/rygel/rygel-item-creator.vala:391
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "No se permite la creación de objetos en %s"
 
-#: ../src/rygel/rygel-item-creator.vala:308
+#: ../src/rygel/rygel-item-creator.vala:318
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Falló al crear un elemento bajo «%s»: %s"
@@ -489,13 +492,13 @@ msgstr "Falló al crear la fábrica del dispositivo raíz: %s"
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Falló al crear el DispositivoRaís para %s. Razón: %s."
 
-#: ../src/rygel/rygel-media-item.vala:260
+#: ../src/rygel/rygel-media-item.vala:263
 #, c-format
 msgid "Bad URI: %s"
 msgstr "URI errónea: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:272
+#: ../src/rygel/rygel-media-item.vala:275
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Falló al probar el protocolo para el URI %s. Asumiendo «%s»."
@@ -579,7 +582,8 @@ msgstr "No existe generador de miniaturas disponible"
 #: ../src/rygel/rygel-transcode-manager.vala:130
 #, c-format
 msgid "No transcoder available for target format '%s'"
-msgstr "No existe un transcodificador disponible para el fomato de destino «%s»"
+msgstr ""
+"No existe un transcodificador disponible para el fomato de destino «%s»"
 
 #: ../src/rygel/rygel-user-config.vala:198
 #, c-format
@@ -591,11 +595,7 @@ msgstr "No existe un valor disponible para «%s»"
 msgid "Value of '%s' out of range"
 msgstr "El valor «%s» está fuera de rango"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:60
-msgid "Not Applicable"
-msgstr "No es aplicable"
-
-#: ../src/rygel/rygel-xbox-hacks.vala:223
+#: ../src/rygel/rygel-xbox-hacks.vala:199
 #, c-format
 msgid "Failed to write modified description to %s."
 msgstr "Falló al escribir la descripción modificada en %s."
@@ -619,6 +619,9 @@ msgstr "Falló al iniciar el servicio Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Falló al parar el servicio Rygel: %s"
+
+#~ msgid "Not Applicable"
+#~ msgstr "No es aplicable"
 
 #~ msgid "Failed to open database: %d (%s)"
 #~ msgstr "Falló al abrir la base de datos: %d (%s)"
