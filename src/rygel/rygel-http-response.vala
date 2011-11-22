@@ -69,18 +69,6 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         this.cancellable = request_handler.cancellable;
         this.seek = request.seek;
 
-        if (request.msg.request_headers.get_one ("Range") != null) {
-            this.msg.set_status (Soup.KnownStatusCode.PARTIAL_CONTENT);
-        } else {
-            this.msg.set_status (Soup.KnownStatusCode.OK);
-        }
-
-        if (this.seek != null && this.seek is HTTPByteSeek) {
-            this.msg.response_headers.set_encoding (Encoding.CONTENT_LENGTH);
-        } else {
-            this.msg.response_headers.set_encoding (Encoding.EOF);
-        }
-
         if (this.cancellable != null) {
             this.cancellable.cancelled.connect (this.on_cancelled);
         }

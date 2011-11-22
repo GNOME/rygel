@@ -161,6 +161,20 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
         // Add headers
         this.handler.add_response_headers (this);
+
+        // Add general headers
+        if (this.msg.request_headers.get_one ("Range") != null) {
+            this.msg.set_status (Soup.KnownStatusCode.PARTIAL_CONTENT);
+        } else {
+            this.msg.set_status (Soup.KnownStatusCode.OK);
+        }
+
+        if (this.seek != null && this.seek is HTTPByteSeek) {
+            this.msg.response_headers.set_encoding (Soup.Encoding.CONTENT_LENGTH);
+        } else {
+            this.msg.response_headers.set_encoding (Soup.Encoding.EOF);
+        }
+
         debug ("Following HTTP headers appended to response:");
         this.msg.response_headers.foreach ((name, value) => {
             debug ("%s : %s", name, value);
@@ -169,7 +183,6 @@ internal class Rygel.HTTPGet : HTTPRequest {
         if (this.msg.method == "HEAD") {
             // Only headers requested, no need to send contents
             this.server.unpause_message (this.msg);
-            this.end (Soup.KnownStatusCode.OK);
 
             return;
         }
