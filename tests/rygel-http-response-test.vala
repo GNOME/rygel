@@ -325,6 +325,8 @@ public class Rygel.HTTPGet : GLib.Object {
         this.item = item;
         this.seek = seek;
         this.cancellable = cancellable;
+        this.msg.response_headers.set_encoding (Soup.Encoding.EOF);
+        this.msg.set_status (Soup.KnownStatusCode.OK);
     }
 }
 
