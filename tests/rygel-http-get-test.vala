@@ -319,6 +319,7 @@ internal class Rygel.HTTPResponse : Rygel.StateMachine, GLib.Object {
 
     public HTTPResponse (HTTPGet get_request) {
         this.msg = get_request.msg;
+        this.msg.response_headers.set_encoding (Soup.Encoding.CONTENT_LENGTH);
         this.server = get_request.server;
     }
 
