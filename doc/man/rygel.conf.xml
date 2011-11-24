@@ -263,6 +263,17 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <para>If <option>allow-upload</option> is <userinput>true</userinput>, use this folder to store uploaded pictures. It defaults to <userinput>@PICTURES@</userinput> which expands to the default directory for picture files (usually <filename><envar>$HOME</envar>/Pictures</filename>).</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <option>force-downgrade-for</option>
+        </term>
+        <listitem>
+          <para>Semicolon-separated list of device user-agents (or parts thereof) which need a forced downgrade to <userinput>MediaServer:1</userinput> and/or <userinput>ContentDirectory:1</userinput>.</para>
+          <para><warning>
+              <para>Only use this parameter if you know what your&apos;re doing or are being told to do so; overriding the default value might cause incompatibilites. If you find that adding your device here enables its usage with Rygel, please  <ulink url="https://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&amp;component=IOP">file an IOP bug</ulink> so we can include it into the default configuration.</para>
+            </warning></para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para>Sections for plugins are denoted with <option>[PluginName]</option>
       and can contain options specific to a plugin (see below)  as well these common options:

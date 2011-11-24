@@ -64,9 +64,6 @@
   * Start rygel as part of user session.
     * Remove relavent code from UI code.
 
-  * XBox hacks:
-    * Config for device hacks user-agent.
-
   * Transcoding:
     * Make use of encodebin when it's ready (update README/wiki afterwards).
     * Use h264 instead of mpeg2 video?
