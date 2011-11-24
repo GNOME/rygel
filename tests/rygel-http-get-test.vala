@@ -41,6 +41,9 @@ public class Rygel.ClientHacks {
     public bool is_album_art_request (Message message) {
         return false;
     }
+
+    public void apply (MediaItem item) {
+    }
 }
 
 public class Rygel.HTTPGetTest : GLib.Object {

@@ -100,6 +100,8 @@ internal class Rygel.HTTPGet : HTTPRequest {
                 this.thumbnail = visual_item.thumbnails.get (0);
 
                 return;
+            } else {
+                hack.apply (this.item);
             }
         } catch (ClientHacksError error) {}
 
