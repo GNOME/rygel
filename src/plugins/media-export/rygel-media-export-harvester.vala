@@ -147,6 +147,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                                   FileMonitorEvent event) {
         try {
             switch (event) {
+                case FileMonitorEvent.CREATED:
                 case FileMonitorEvent.CHANGES_DONE_HINT:
                     this.on_changes_done (file);
                     break;
