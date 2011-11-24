@@ -79,6 +79,9 @@ internal class Rygel.RootDeviceFactory {
         var xbox_hacks = new XBoxHacks ();
         xbox_hacks.apply_on_device (device, desc_path);
 
+        var v1_hacks = new V1Hacks ();
+        v1_hacks.apply_on_device (device, desc_path);
+
         return device;
     }
 

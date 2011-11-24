@@ -26,7 +26,7 @@ using GUPnP;
 
 internal class Rygel.XBoxHacks : ClientHacks {
     private const string AGENT =
-        ".*Xbox.*|.*Allegro-Software-WebClient.*|.*SEC_HHP_Galaxy S/1\\.0.*";
+        ".*Xbox.*";
     private const string DMS = "urn:schemas-upnp-org:device:MediaServer";
     private const string DMS_V1 = DMS + ":1";
     private const string FRIENDLY_NAME_POSTFIX = ":";

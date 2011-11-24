@@ -65,7 +65,6 @@
     * Remove relavent code from UI code.
 
   * XBox hacks:
-    * Split in XBox hacks and ContentDirectory:1 hacks
     * Config for device hacks user-agent.
 
   * Transcoding:

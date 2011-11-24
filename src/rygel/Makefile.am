@@ -87,6 +87,7 @@ VAPI_SOURCE_FILES = \
 	rygel-xbox-hacks.vala \
 	rygel-panasonic-hacks.vala \
 	rygel-xbmc-hacks.vala \
+	rygel-v1-hacks.vala \
 	rygel-import-resource.vala \
 	rygel-item-creator.vala \
 	rygel-item-destroyer.vala \
