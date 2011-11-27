@@ -130,6 +130,10 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
             this.sort_criteria = DEFAULT_SORT_CRITERIA;
         }
 
+        if (this.hacks != null) {
+            hacks.filter_sort_criteria (ref this.sort_criteria);
+        }
+
         this.validate_sort_criteria ();
 
         if (this.hacks != null) {

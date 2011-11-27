@@ -98,6 +98,14 @@ internal class Rygel.XBoxHacks : ClientHacks {
         }
     }
 
+    public override void filter_sort_criteria (ref string sort_criteria) {
+        sort_criteria = sort_criteria.replace ("+microsoft:sourceURL", "");
+        sort_criteria = sort_criteria.replace (",,", ",");
+        if (sort_criteria.has_prefix (",")) {
+            sort_criteria = sort_criteria.slice (1, sort_criteria.length);
+        }
+    }
+
     public override async MediaObjects? search
                                         (SearchableContainer container,
                                          SearchExpression?   expression,

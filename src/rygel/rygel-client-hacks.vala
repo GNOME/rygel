@@ -97,6 +97,8 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
 
     public virtual void apply (MediaItem item) {}
 
+    public virtual void filter_sort_criteria (ref string sort_criteria) {}
+
     public virtual async MediaObjects? search
                                         (SearchableContainer container,
                                          SearchExpression?   expression,
