@@ -123,6 +123,14 @@ internal class Rygel.XBoxHacks : GLib.Object {
         }
     }
 
+    public void filter_sort_criteria (ref string sort_criteria) {
+        sort_criteria = sort_criteria.replace ("+microsoft:sourceURL", "");
+        sort_criteria = sort_criteria.replace (",,", ",");
+        if (sort_criteria.has_prefix (",")) {
+            sort_criteria = sort_criteria.slice (1, sort_criteria.length);
+        }
+    }
+
     public async MediaObjects? search (SearchableContainer container,
                                        SearchExpression?   expression,
                                        uint                offset,
