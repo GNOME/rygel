@@ -112,7 +112,8 @@ VAPI_SOURCE_FILES = \
 	rygel-changelog.vala \
 	rygel-volume.vala \
 	rygel-free-desktop-interfaces.vala \
-	rygel-dbus-interface.vala
+	rygel-dbus-interface.vala \
+	rygel-description-file.vala
 
 rygel_VALAFLAGS = \
 	-H rygel.h -C --library=rygel-1.0 \

@@ -37,6 +37,8 @@ internal class Rygel.V1Hacks : ClientHacks {
 
     private static string agent_pattern;
 
+    public string description_path;
+
     /**
      * Read the user-agent snippets from the config file and generate the
      * regular expression string for matching.
@@ -81,68 +83,17 @@ internal class Rygel.V1Hacks : ClientHacks {
             return;
         }
 
-        var doc = new XMLDoc.from_path (template_path);
-        this.modify_dms_desc (doc.doc);
+        var description_file = new DescriptionFile (template_path);
+        description_file.set_device_type (DMS_V1);
+        description_file.modify_service_type (ContentDirectory.UPNP_TYPE,
+                                              ContentDirectory.UPNP_TYPE_V1);
 
-        var desc_path = template_path.replace (".xml", "-v1.xml");
-        this.save_modified_desc (doc, desc_path);
+        this.description_path = template_path.replace (".xml", "-v1.xml");
+        description_file.save (this.description_path);
 
         var server_path = "/" + device.get_relative_location ();
-        device.context.host_path_for_agent (desc_path,
+        device.context.host_path_for_agent (this.description_path,
                                             server_path,
                                             this.agent_regex);
-    }
-
-    private void modify_dms_desc (Xml.Doc doc) {
-        Xml.Node *element = XMLUtils.get_element ((Xml.Node *) doc,
-                                                  "root",
-                                                  "device",
-                                                  "deviceType");
-        assert (element != null);
-        element->set_content (DMS_V1);
-
-        this.modify_service_list (doc);
-    }
-
-    private void modify_service_list (Xml.Node *doc_node) {
-        Xml.Node *element = XMLUtils.get_element (doc_node,
-                                                  "root",
-                                                  "device",
-                                                  "serviceList");
-        assert (element != null && element->children != null);
-
-        for (var service_node = element->children;
-             service_node != null;
-             service_node = service_node->next) {
-            for (var type_node = service_node->children;
-                 type_node != null;
-                 type_node = type_node->next) {
-                if (type_node->name == "serviceType") {
-                    switch (type_node->get_content ()) {
-                        case ContentDirectory.UPNP_TYPE:
-                            type_node->set_content
-                                        (ContentDirectory.UPNP_TYPE_V1);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-        }
-    }
-
-    private void save_modified_desc (XMLDoc doc,
-                                     string desc_path) throws GLib.Error {
-        FileStream f = FileStream.open (desc_path, "w+");
-        int res = -1;
-
-        if (f != null)
-            res = doc.doc.dump (f);
-
-        if (f == null || res == -1) {
-            var message = _("Failed to write modified description to %s.");
-
-            throw new IOError.FAILED (message, desc_path);
-        }
     }
 }

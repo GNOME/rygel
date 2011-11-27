@@ -74,13 +74,13 @@ internal class Rygel.RootDeviceFactory {
                                      doc,
                                      desc_path,
                                      BuildConfig.DATA_DIR);
-
-        /* Now apply the Xbox hacks */
-        var xbox_hacks = new XBoxHacks ();
-        xbox_hacks.apply_on_device (device, desc_path);
-
+        // Apply V1 downgrades
         var v1_hacks = new V1Hacks ();
         v1_hacks.apply_on_device (device, desc_path);
+
+        // Apply XBox hacks on top of that
+        var xbox_hacks = new XBoxHacks ();
+        xbox_hacks.apply_on_device (device, v1_hacks.description_path);
 
         return device;
     }

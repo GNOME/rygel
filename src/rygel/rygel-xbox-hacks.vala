@@ -64,11 +64,20 @@ internal class Rygel.XBoxHacks : ClientHacks {
             return;
         }
 
-        var doc = new XMLDoc.from_path (template_path);
-        this.modify_dms_desc (doc.doc);
+        var description_file = new DescriptionFile (template_path);
+        description_file.set_model_name (MODEL_NAME);
+        description_file.set_model_number (MODEL_VERSION);
 
-        var desc_path = template_path.replace (".xml", "-xbox.xml");
-        this.save_modified_desc (doc, desc_path);
+        var friendly_name = description_file.get_friendly_name ();
+        description_file.set_friendly_name (friendly_name +
+                                            FRIENDLY_NAME_POSTFIX);
+
+        description_file.modify_service_type
+                                        (MediaReceiverRegistrar.UPNP_TYPE,
+                                         MediaReceiverRegistrar.COMPAT_TYPE);
+
+        var desc_path = template_path.replace ("v1.xml", "xbox.xml");
+        description_file.save (desc_path);
 
         var server_path = "/" + device.get_relative_location ();
         device.context.host_path_for_agent (desc_path,
@@ -134,84 +143,5 @@ internal class Rygel.XBoxHacks : ClientHacks {
         }
 
         return results;
-    }
-
-    private void modify_dms_desc (Xml.Doc doc) {
-        Xml.Node *element = XMLUtils.get_element ((Xml.Node *) doc,
-                                                  "root",
-                                                  "device",
-                                                  "deviceType");
-        assert (element != null);
-        element->set_content (DMS_V1);
-
-        element = XMLUtils.get_element ((Xml.Node *) doc,
-                                        "root",
-                                        "device",
-                                        "modelName");
-        assert (element != null);
-        element->set_content (MODEL_NAME);
-
-        element = XMLUtils.get_element ((Xml.Node *) doc,
-                                        "root",
-                                        "device",
-                                        "modelNumber");
-
-        assert (element != null);
-        element->set_content (MODEL_VERSION);
-
-        element = XMLUtils.get_element ((Xml.Node *) doc,
-                                        "root",
-                                        "device",
-                                        "friendlyName");
-        assert (element != null);
-        element->add_content (FRIENDLY_NAME_POSTFIX);
-
-        this.modify_service_list (doc);
-    }
-
-    private void modify_service_list (Xml.Node *doc_node) {
-        Xml.Node *element = XMLUtils.get_element (doc_node,
-                                                  "root",
-                                                  "device",
-                                                  "serviceList");
-        assert (element != null && element->children != null);
-
-        for (var service_node = element->children;
-             service_node != null;
-             service_node = service_node->next) {
-            for (var type_node = service_node->children;
-                 type_node != null;
-                 type_node = type_node->next) {
-                if (type_node->name == "serviceType") {
-                    switch (type_node->get_content ()) {
-                        case ContentDirectory.UPNP_TYPE:
-                            type_node->set_content
-                                        (ContentDirectory.UPNP_TYPE_V1);
-                            break;
-                        case MediaReceiverRegistrar.UPNP_TYPE:
-                            type_node->set_content
-                                        (MediaReceiverRegistrar.COMPAT_TYPE);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-        }
-    }
-
-    private void save_modified_desc (XMLDoc doc,
-                                     string desc_path) throws GLib.Error {
-        FileStream f = FileStream.open (desc_path, "w+");
-        int res = -1;
-
-        if (f != null)
-            res = doc.doc.dump (f);
-
-        if (f == null || res == -1) {
-            var message = _("Failed to write modified description to %s.");
-
-            throw new IOError.FAILED (message, desc_path);
-        }
     }
 }
