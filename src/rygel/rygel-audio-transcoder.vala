@@ -98,6 +98,7 @@ internal class Rygel.AudioTranscoder : Rygel.Transcoder {
                                                           null,
                                                           null,
                                                           1);
+        enc_audio_profile.set_name ("audio");
 
         if (this.container_format != null) {
             var enc_container_profile = new EncodingContainerProfile ("container",

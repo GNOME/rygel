@@ -92,6 +92,23 @@ internal abstract class Rygel.GstUtils {
         return get_best_depay (features, caps);
     }
 
+    public static void dump_encoding_profile (EncodingProfile profile,
+                                              int             indent = 0) {
+        var indent_s = string.nfill (indent, ' ');
+        debug (indent_s + "Dumping %s", profile.get_name ());
+        debug (indent_s + "  Format: %s", profile.get_format ().to_string ());
+        if (profile.get_restriction () != null) {
+            debug (indent_s + "  Restriction: %s",
+                   profile.get_restriction ().to_string ());
+        }
+
+        if (profile is EncodingContainerProfile) {
+        foreach (var subprofile in (profile as EncodingContainerProfile).get_profiles ()) {
+            dump_encoding_profile (subprofile, indent + 4);
+        }
+        }
+    }
+
     private static bool need_rtp_depayloader (Caps caps) {
         var structure = caps.get_structure (0);
         return structure.get_name () == "application/x-rtp";
