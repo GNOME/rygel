@@ -42,7 +42,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.VideoTranscoder {
     private const string[] PROFILES = {"MPEG_TS_SD_EU_ISO", "MPEG_TS_HD_NA_ISO"};
 
     private const string CONTAINER =
-        "video/mpegts,systemstream=true,paketsize=188";
+        "video/mpegts,systemstream=true,packetsize=188";
 
     private const string AUDIO_FORMAT =
         "audio/mpeg,mpegversion=1,layer=2";
