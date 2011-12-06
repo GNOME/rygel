@@ -93,9 +93,9 @@ internal abstract class Rygel.GstUtils {
     }
 
     public static void dump_encoding_profile (EncodingProfile profile,
-                                              int             indent = 0) {
+                                              int             indent = 2) {
         var indent_s = string.nfill (indent, ' ');
-        debug (indent_s + "Dumping %s", profile.get_name ());
+        debug (indent_s + "%s:", profile.get_name ());
         debug (indent_s + "  Format: %s", profile.get_format ().to_string ());
         if (profile.get_restriction () != null) {
             debug (indent_s + "  Restriction: %s",
@@ -103,9 +103,10 @@ internal abstract class Rygel.GstUtils {
         }
 
         if (profile is EncodingContainerProfile) {
-        foreach (var subprofile in (profile as EncodingContainerProfile).get_profiles ()) {
-            dump_encoding_profile (subprofile, indent + 4);
-        }
+            var container = profile as EncodingContainerProfile;
+            foreach (var subprofile in container.get_profiles ()) {
+                dump_encoding_profile (subprofile, indent + 4);
+            }
         }
     }
 

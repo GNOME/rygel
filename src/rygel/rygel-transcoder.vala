@@ -69,6 +69,8 @@ internal abstract class Rygel.Transcoder : GLib.Object {
                                                 ENCODE_BIN);
 
         encoder.profile = this.get_encoding_profile ();
+        debug ("%s using the following encoding profile:",
+               this.get_class ().get_type ().name ());
         GstUtils.dump_encoding_profile (encoder.profile);
 
         var bin = new Bin ("transcoder-source");
