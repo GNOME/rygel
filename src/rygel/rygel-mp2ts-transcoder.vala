@@ -48,7 +48,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.VideoTranscoder {
         "audio/mpeg,mpegversion=1,layer=2";
 
     private const string BASE_VIDEO_FORMAT =
-        "video/mpeg,mpegversion=2,systemstream=false,framerate=(fraction)%d/1";
+        "video/mpeg,mpegversion=2,systemstream=false";
 
     private const string RESTRICTION_TEMPLATE =
         "video/x-raw-yuv,framerate=(fraction)%d/1,width=%d,height=%d";
@@ -62,7 +62,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.VideoTranscoder {
               VIDEO_BITRATE,
               CONTAINER,
               AUDIO_FORMAT,
-              BASE_VIDEO_FORMAT.printf (FRAME_RATE[profile]),
+              BASE_VIDEO_FORMAT,
               RESTRICTION_TEMPLATE.printf (FRAME_RATE[profile],
                                            WIDTH[profile],
                                            HEIGHT[profile]));

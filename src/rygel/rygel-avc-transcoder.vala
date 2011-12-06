@@ -32,10 +32,10 @@ internal class Rygel.AVCTranscoder : Rygel.VideoTranscoder {
     private const string CONTAINER = "video/quicktime,variant=iso";
     private const string AUDIO_CAPS = "audio/mpeg,mpegversion=4";
     private const string VIDEO_CAPS =
-        "video/x-h264,stream-format=avc,framerate=(fraction)15/1";
+        "video/x-h264,stream-format=avc";
 
     private const string RESTRICTIONS =
-        "framerate=(fraction)15/1,width=352,height=288";
+        "video/x-raw-yuv,framerate=(fraction)15/1,width=352,height=288";
 
     public AVCTranscoder () {
         base ("video/mp4",
