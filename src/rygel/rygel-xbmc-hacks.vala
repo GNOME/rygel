@@ -28,19 +28,8 @@ internal class Rygel.XBMCHacks : ClientHacks {
     // promised by developers.
     private const string AGENT = ".*Platinum/.*|.*XBMC/.*";
 
-    public XBMCHacks () throws ClientHacksError, RegexError {
-        base (AGENT);
-    }
-
-    public XBMCHacks.for_action (ServiceAction action)
-                                 throws ClientHacksError {
-        unowned MessageHeaders headers = action.get_message ().request_headers;
-        this.for_headers (headers);
-    }
-
-    public XBMCHacks.for_headers (MessageHeaders headers)
-                                  throws ClientHacksError {
-        base (AGENT, headers);
+    public XBMCHacks (Message? message = null) throws ClientHacksError {
+        base (AGENT, message);
     }
 
     public override void apply (MediaItem item) {

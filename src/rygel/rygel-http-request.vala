@@ -44,6 +44,8 @@ internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     protected HTTPItemURI uri;
     public MediaItem item;
 
+    protected ClientHacks hack;
+
     public HTTPRequest (HTTPServer   http_server,
                         Soup.Server  server,
                         Soup.Message msg) {
@@ -52,6 +54,9 @@ internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         this.root_container = http_server.root_container;
         this.server = server;
         this.msg = msg;
+        try {
+            this.hack = ClientHacks.create (msg);
+        } catch (Error error) { }
     }
 
     public async void run () {

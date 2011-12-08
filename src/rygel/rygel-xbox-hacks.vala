@@ -25,8 +25,7 @@ using Soup;
 using GUPnP;
 
 internal class Rygel.XBoxHacks : ClientHacks {
-    private const string AGENT =
-        ".*Xbox.*";
+    private const string AGENT = ".*Xbox.*";
     private const string DMS = "urn:schemas-upnp-org:device:MediaServer";
     private const string DMS_V1 = DMS + ":1";
     private const string FRIENDLY_NAME_POSTFIX = ":";
@@ -34,23 +33,10 @@ internal class Rygel.XBoxHacks : ClientHacks {
     private const string MODEL_VERSION = "11";
     private const string CONTAINER_ID = "ContainerID";
 
-    public XBoxHacks () throws ClientHacksError {
-        base (AGENT);
-    }
+    public XBoxHacks (Message? message = null) throws ClientHacksError {
+        base (AGENT, message);
 
-    public XBoxHacks.for_action (ServiceAction action) throws ClientHacksError {
-        unowned MessageHeaders headers = action.get_message ().request_headers;
-        this.for_headers (headers);
-    }
-
-    public XBoxHacks.for_headers (MessageHeaders headers)
-                                  throws ClientHacksError {
-        base (AGENT, headers);
-
-        var agent = headers.get_one ("User-Agent");
-        if (agent.contains ("Xbox")) {
-            this.object_id = CONTAINER_ID;
-        }
+        this.object_id = CONTAINER_ID;
     }
 
     public void apply_on_device (RootDevice device,

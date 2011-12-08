@@ -34,7 +34,7 @@ public errordomain Rygel.ClientHacksError {
 }
 
 public class Rygel.ClientHacks {
-    public static ClientHacks create_for_headers (MessageHeaders headers) throws Error {
+    public static ClientHacks create (Message? message) throws Error {
         throw new ClientHacksError.NA ("");
     }
 

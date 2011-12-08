@@ -31,40 +31,16 @@ internal errordomain Rygel.ClientHacksError {
 internal abstract class Rygel.ClientHacks : GLib.Object {
     private const string CORRECT_OBJECT_ID = "ObjectID";
 
-    public unowned string object_id { get; protected set; }
-
+    public unowned string object_id { get;
+                                      protected set;
+                                      default = CORRECT_OBJECT_ID; }
     protected Regex agent_regex;
 
-    public static ClientHacks create_for_action (ServiceAction action)
-                                                 throws ClientHacksError {
-        try {
-            return new XBoxHacks.for_action (action);
-        } catch {}
-
-        try {
-            return new PanasonicHacks.for_action (action);
-        } catch {}
-
-        return new XBMCHacks.for_action (action);
-    }
-
-    public static ClientHacks create_for_headers (MessageHeaders headers)
-                                                  throws ClientHacksError {
-        try {
-            return new XBoxHacks.for_headers (headers);
-        } catch {}
-
-        try {
-            return new PanasonicHacks.for_headers (headers);
-        } catch {};
-
-        return new XBMCHacks.for_headers (headers);
-    }
-
-    protected ClientHacks (string agent_pattern, MessageHeaders? headers = null)
+    protected ClientHacks (string   agent,
+                           Message? message)
                            throws ClientHacksError {
         try {
-            this.agent_regex = new Regex (agent_pattern,
+            this.agent_regex = new Regex (agent,
                                           RegexCompileFlags.CASELESS,
                                           0);
         } catch (RegexError error) {
@@ -72,11 +48,9 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
             assert_not_reached ();
         }
 
-        if (headers != null) {
-            this.check_headers (headers);
+        if (message != null) {
+            this.check_headers (message.request_headers);
         }
-
-        this.object_id = CORRECT_OBJECT_ID;
     }
 
     public bool is_album_art_request (Soup.Message message) {
@@ -90,6 +64,19 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
         var album_art = params.lookup ("albumArt");
 
         return (album_art != null) && bool.parse (album_art);
+    }
+
+    public static ClientHacks create (Message? message)
+                                      throws ClientHacksError {
+        try {
+            return new PanasonicHacks (message);
+        } catch (Error error) { }
+
+        try {
+            return new XBoxHacks (message);
+        } catch (Error error) { }
+
+        return new XBMCHacks (message);
     }
 
     public virtual void translate_container_id (MediaQueryAction action,

@@ -63,7 +63,7 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
         this.didl_writer = new DIDLLiteWriter (null);
 
         try {
-            this.hacks = ClientHacks.create_for_action (this.action);
+            this.hacks = ClientHacks.create (this.action.get_message ());
         } catch { /* This just means we need no hacks, yay! */ }
     }
 

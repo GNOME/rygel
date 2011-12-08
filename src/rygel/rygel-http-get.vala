@@ -83,10 +83,8 @@ internal class Rygel.HTTPGet : HTTPRequest {
                                                   this.item.id);
         }
 
-        try {
-            var hack = ClientHacks.create_for_headers
-                                        (this.msg.request_headers);
-            if (hack.is_album_art_request (this.msg) &&
+        if (this.hack != null) {
+            if (this.hack.is_album_art_request (this.msg) &&
                 this.item is VisualItem) {
                 var visual_item = this.item as VisualItem;
 
@@ -101,9 +99,9 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
                 return;
             } else {
-                hack.apply (this.item);
+                this.hack.apply (this.item);
             }
-        } catch (ClientHacksError error) {}
+        }
 
         if (this.uri.thumbnail_index >= 0) {
             if (this.item is MusicItem) {

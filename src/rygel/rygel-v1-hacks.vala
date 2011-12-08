@@ -71,19 +71,8 @@ internal class Rygel.V1Hacks : ClientHacks {
         return agent_pattern;
     }
 
-    public V1Hacks () throws ClientHacksError, RegexError {
-        base (generate_agent_pattern ());
-    }
-
-    public V1Hacks.for_action (ServiceAction action)
-                                 throws ClientHacksError {
-        unowned MessageHeaders headers = action.get_message ().request_headers;
-        this.for_headers (headers);
-    }
-
-    public V1Hacks.for_headers (MessageHeaders headers)
-                                  throws ClientHacksError {
-        base (generate_agent_pattern (), headers);
+    public V1Hacks () throws ClientHacksError {
+        base (generate_agent_pattern (), null);
     }
 
     public void apply_on_device (RootDevice device,

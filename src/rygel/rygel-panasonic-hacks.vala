@@ -38,19 +38,8 @@ internal class Rygel.PanasonicHacks : ClientHacks {
         }
     }
 
-    public PanasonicHacks () throws ClientHacksError, RegexError {
-        base (AGENT);
-    }
-
-    public PanasonicHacks.for_action (ServiceAction action)
-                                      throws ClientHacksError {
-        unowned MessageHeaders headers = action.get_message ().request_headers;
-        this.for_headers (headers);
-    }
-
-    public PanasonicHacks.for_headers (MessageHeaders headers)
-                                       throws ClientHacksError {
-        base (AGENT, headers);
+    public PanasonicHacks (Message? message = null) throws ClientHacksError {
+        base (AGENT, message);
     }
 
     public override void apply (MediaItem item) {
