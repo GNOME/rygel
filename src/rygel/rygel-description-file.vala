@@ -50,6 +50,15 @@ internal class DescriptionFile : Object {
     }
 
     /**
+     * Constructor which wraps an existing GUPnP.XMLDoc as a description file.
+     *
+     * @param doc is the GUPnP.XMLDoc to wrap.
+     */
+    public DescriptionFile.from_xml_document (XMLDoc doc) {
+        this.doc = doc;
+    }
+
+    /**
      * Change the type of a service.
      *
      * Usually used to modify the device version, e.g. default device type is

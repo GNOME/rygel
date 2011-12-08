@@ -93,7 +93,8 @@ internal class Rygel.RootDeviceFactory {
         /* Modify description to include Plugin-specific stuff */
         this.prepare_desc_for_plugin (doc, plugin);
 
-        save_modified_desc (doc, desc_path);
+        var file = new DescriptionFile.from_xml_document (doc);
+        file.save (desc_path);
 
         return doc;
     }
@@ -287,30 +288,6 @@ internal class Rygel.RootDeviceFactory {
             uri = uri.replace ("@ADDRESS@", this.context.host_ip);
             icon_node->new_child (null, "url", uri);
         }
-    }
-
-    private void save_modified_desc (XMLDoc doc,
-                                     string desc_path) throws GLib.Error {
-        var file = FileStream.open (desc_path, "w+");
-
-        if (unlikely (file == null)) {
-            var message = _("Failed to write modified description to %s");
-
-            throw new IOError.FAILED (message, desc_path);
-        }
-
-        string mem = null;
-        int len = -1;
-        doc.doc.dump_memory_enc (out mem, out len, "UTF-8");
-
-        if (unlikely (len <= 0)) {
-            var message = _("Failed to write modified description to %s");
-
-            throw new IOError.FAILED (message, desc_path);
-        }
-
-        // Make sure we don't have any newlines
-        file.puts (mem.replace ("\n", ""));
     }
 
     private XMLDoc get_latest_doc (string path1,

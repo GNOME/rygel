@@ -100,8 +100,6 @@
 
   * Get rid of 'handle_error' in most places.
 
-  * save_modified_desc is in two classes.
-
   * Unit tests
     * HTTPGetHandler
       * HTTPIdentityHandler
