@@ -53,19 +53,6 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
         }
     }
 
-    public bool is_album_art_request (Soup.Message message) {
-        unowned string query = message.get_uri ().query;
-
-        if (query == null) {
-            return false;
-        }
-
-        var params = Soup.Form.decode (query);
-        var album_art = params.lookup ("albumArt");
-
-        return (album_art != null) && bool.parse (album_art);
-    }
-
     public static ClientHacks create (Message? message)
                                       throws ClientHacksError {
         try {

@@ -38,10 +38,6 @@ public class Rygel.ClientHacks {
         throw new ClientHacksError.NA ("");
     }
 
-    public bool is_album_art_request (Message message) {
-        return false;
-    }
-
     public void apply (MediaItem item) {
     }
 }

@@ -37,6 +37,25 @@ internal class Rygel.XBoxHacks : ClientHacks {
         base (AGENT, message);
 
         this.object_id = CONTAINER_ID;
+        // Rewrite request URI to be a thumbnail request if it matches those
+        // weird XBox thumbnail requests
+        if (message == null) {
+            return;
+        }
+
+        unowned Soup.URI uri = message.get_uri ();
+        unowned string query = uri.query;
+        if (query == null) {
+            return;
+        }
+        var params = Soup.Form.decode (query);
+        var album_art = params.lookup ("albumArt");
+
+        if ((album_art == null) || !bool.parse (album_art)) {
+            return;
+        }
+
+        uri.set_path (uri.get_path () + "/th/0");
     }
 
     public void apply_on_device (RootDevice device,

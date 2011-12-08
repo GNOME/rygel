@@ -84,23 +84,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
         }
 
         if (this.hack != null) {
-            if (this.hack.is_album_art_request (this.msg) &&
-                this.item is VisualItem) {
-                var visual_item = this.item as VisualItem;
-
-                if (visual_item.thumbnails.size <= 0) {
-                    throw new HTTPRequestError.NOT_FOUND ("No Thumbnail " +
-                                                          "available for " +
-                                                          "item '%s'",
-                                                          visual_item.id);
-                }
-
-                this.thumbnail = visual_item.thumbnails.get (0);
-
-                return;
-            } else {
-                this.hack.apply (this.item);
-            }
+            this.hack.apply (item);
         }
 
         if (this.uri.thumbnail_index >= 0) {

@@ -29,6 +29,19 @@ public errordomain Rygel.TestError {
     TIMEOUT
 }
 
+public errordomain Rygel.ClientHacksError {
+    NA
+}
+
+public class Rygel.ClientHacks {
+    public static ClientHacks create (Message? message) throws Error {
+        throw new ClientHacksError.NA ("");
+    }
+
+    public void apply (MediaItem item) {
+    }
+}
+
 public class Rygel.HTTPPostTest : GLib.Object {
     protected HTTPServer server;
     protected HTTPClient client;
