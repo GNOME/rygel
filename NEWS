@@ -1,3 +1,54 @@
+0.12.6
+======
+Another release in the stable 0.12 series of Rygel
+
+Changes since 0.12.5:
+
+- Request creation of more than one thumbnail.
+- Make headers send in HTTP HEAD equal to the ones in HTTP GET. This fixes an
+  issue where certain clients that do a HEAD request on transcoded resources
+  would not play them since we reported Content-Length: 0.
+
+Tracker:
+  - Really fall back to nfo:fileLastModified.
+  - Cache ContainerUpdateID for meta-data containers, otherwise invalid
+    notifications were sent.
+
+Playbin:
+  - Add possibility to render images.
+
+Mediathek:
+  - Set the DLNA profile for WMV videos.
+
+MediaExport:
+  - Fix the issue that videos without audio were not shared.
+  - Fix a regression in the file monitor that moved files were not recognized.
+
+All contributors to this release:
+  - Jens Georg <mail@jensge.org>
+  - Mario Blättermann <mariobl@gnome.org>
+  - Matej Urbančič <mateju@svn.gnome.org>
+  - Marek Černocký <marek@manet.cz>
+  - Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>
+  - Jorge González <jorgegonz@svn.gnome.org>
+  - Alexandre Franke <alexandre.franke@gmail.com>
+
+Added/updated translations:
+  - de, courtesy of Mario Blättermann
+  - sl, courtesy of Matej Urbančič
+  - cz, courtesy of Marek Černocký
+  - eo, courtesy of Kristjan SCHMIDT
+  - es, courtesy of Jorge González
+  - fr, courtesy of Alexandre Franke
+
+Bugs fixed:
+  - https://bugzilla.gnome.org/show_bug.cgi?id=633011
+  - https://bugzilla.gnome.org/show_bug.cgi?id=661334
+
+DLNA requirements addressed:
+  - 7.3.56.1
+  - 7.4.28.2,3,4,6
+
 0.12.5
 ======
 
