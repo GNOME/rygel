@@ -47,4 +47,19 @@ internal class Rygel.AVCTranscoder : Rygel.VideoTranscoder {
               VIDEO_CAPS,
               RESTRICTIONS);
     }
+
+    public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
+                                                    MediaItem        item,
+                                                    TranscodeManager manager)
+                                                    throws Error {
+        var resource = base.add_resource (didl_item, item, manager);
+        if (resource == null) {
+            return null;
+        }
+
+        resource.width = 352;
+        resource.height = 288;
+
+        return resource;
+    }
 }
