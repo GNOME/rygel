@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-08 22:08+0200\n"
-"PO-Revision-Date: 2011-09-08 22:09+0200\n"
+"POT-Creation-Date: 2011-12-11 17:24+0100\n"
+"PO-Revision-Date: 2011-12-11 17:25+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -86,18 +86,18 @@ msgstr ""
 msgid "'%s' harvested"
 msgstr "Wydobyto z \"%s\""
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:188
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:189
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Błąd podczas pobierania obiektu \"%s\" z bazy danych: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:194
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:195
 #, c-format
 msgid "Failed to access media cache: %s"
 msgstr ""
 "Uzyskanie dostępu do pamięci podręcznej multimediów się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:233
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:234
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Błąd podczas usuwania obiektu z bazy danych: %s"
@@ -176,7 +176,7 @@ msgid "Failed to construct URI for folder '%s': %s"
 msgstr "Utworzenie adresu URI dla katalogu \"%s\" się nie powiodło: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:62
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:93
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:109
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr "Połączenie z magistralą sesji się nie powiodło: %s"
@@ -191,7 +191,7 @@ msgstr "Błąd podczas pobierania wszystkich wartości dla \"%s\": %s"
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "Uruchomienie usługi Tracker się nie powiodło: %s. Wyłączono wtyczkę."
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:205
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:221
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr "Błąd podczas uzyskiwania liczby elementów w kategorii \"%s\": %s"
@@ -210,8 +210,8 @@ msgstr "Tytuły"
 
 #: ../src/rygel/rygel-media-query-action.vala:118
 #: ../src/rygel/rygel-media-query-action.vala:177
-#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:213
-#: ../src/rygel/rygel-item-creator.vala:271
+#: ../src/rygel/rygel-item-creator.vala:230
+#: ../src/rygel/rygel-item-creator.vala:288
 #: ../src/rygel/rygel-item-destroyer.vala:53
 #: ../src/rygel/rygel-item-destroyer.vala:100
 msgid "No such object"
@@ -224,6 +224,10 @@ msgstr "Nieprawidłowy zakres"
 #: ../src/rygel/rygel-browse.vala:63
 msgid "Invalid Arguments"
 msgstr "Nieprawidłowe parametry"
+
+#: ../src/rygel/rygel-browse.vala:94
+msgid "Cannot browse children on item"
+msgstr "Nie można przeglądać potomka elementu"
 
 #: ../src/rygel/rygel-browse.vala:121
 #, c-format
@@ -355,13 +359,13 @@ msgstr "Nieprawidłowy adres URI \"%s\""
 msgid "Not Found"
 msgstr "Nie odnaleziono"
 
-#: ../src/rygel/rygel-http-post.vala:64
+#: ../src/rygel/rygel-http-post.vala:61
 #: ../src/rygel/rygel-import-resource.vala:191
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Wysyłanie danych do niepustego elementu \"%s\" jest niedozwolone"
 
-#: ../src/rygel/rygel-http-post.vala:72
+#: ../src/rygel/rygel-http-post.vala:69
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "Brak dostępnego adresu URI do zapisania dla %s"
@@ -371,13 +375,13 @@ msgstr "Brak dostępnego adresu URI do zapisania dla %s"
 msgid "Requested item '%s' not found"
 msgstr "Nie odnaleziono żądanego elementu \"%s\""
 
-#: ../src/rygel/rygel-http-response.vala:154
-#: ../src/rygel/rygel-http-response.vala:175
+#: ../src/rygel/rygel-http-response.vala:156
+#: ../src/rygel/rygel-http-response.vala:177
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Dowiązanie %s do %s się nie powiodło"
 
-#: ../src/rygel/rygel-http-response.vala:189
+#: ../src/rygel/rygel-http-response.vala:191
 #: ../src/rygel/rygel-l16-transcoder-bin.vala:66
 #: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
 #: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
@@ -387,17 +391,17 @@ msgstr "Dowiązanie %s do %s się nie powiodło"
 msgid "Failed to link pad %s to %s"
 msgstr "Dowiązanie podkładki %s do %s się nie powiodło"
 
-#: ../src/rygel/rygel-http-response.vala:232
+#: ../src/rygel/rygel-http-response.vala:234
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Błąd z potoku %s: %s"
 
-#: ../src/rygel/rygel-http-response.vala:239
+#: ../src/rygel/rygel-http-response.vala:241
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Ostrzeżenie z potoku %s: %s"
 
-#: ../src/rygel/rygel-http-response.vala:281
+#: ../src/rygel/rygel-http-response.vala:284
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Przejście do %lld się nie powiodło"
@@ -422,26 +426,26 @@ msgstr "Uzyskanie pierwotnego adresu URI dla \"%s\" się nie powiodło: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Adres URI \"%s\" jest nieprawidłowy do importowania zawartości"
 
-#: ../src/rygel/rygel-item-creator.vala:74
+#: ../src/rygel/rygel-item-creator.vala:83
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Brak elementów w w DIDL-Lite od klienta: \"%s\""
 
-#: ../src/rygel/rygel-item-creator.vala:204
+#: ../src/rygel/rygel-item-creator.vala:221
 msgid "'Elements' argument missing."
 msgstr "Brak parametru \"elementy\"."
 
-#: ../src/rygel/rygel-item-creator.vala:207
+#: ../src/rygel/rygel-item-creator.vala:224
 msgid "Comments not allowed in XML"
 msgstr "Komentarze nie są dozwolone w XML"
 
-#: ../src/rygel/rygel-item-creator.vala:275
-#: ../src/rygel/rygel-item-creator.vala:364
+#: ../src/rygel/rygel-item-creator.vala:292
+#: ../src/rygel/rygel-item-creator.vala:391
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Utworzenie obiektu w %s nie jest dozwolone"
 
-#: ../src/rygel/rygel-item-creator.vala:301
+#: ../src/rygel/rygel-item-creator.vala:318
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Utworzenie elementu w \"%s\" się nie powiodło: %s"
@@ -489,13 +493,13 @@ msgstr "Utworzenie generatora urządzenia głównego się nie powiodło: %s"
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Utworzenie urządzenia głównego dla %s się nie powiodło. Przyczyna: %s"
 
-#: ../src/rygel/rygel-media-item.vala:260
+#: ../src/rygel/rygel-media-item.vala:263
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Błędny adres URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:272
+#: ../src/rygel/rygel-media-item.vala:275
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr ""
