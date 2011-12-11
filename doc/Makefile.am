@@ -4,7 +4,8 @@ dist_man_MANS = \
 
 EXTRA_DIST = \
 		man/rygel.xml \
-		man/rygel.conf.xml
+		man/rygel.conf.xml \
+		README.Mediathek
 
 if HAVE_XSLTPROC
 %.5 %.1: man/%.xml

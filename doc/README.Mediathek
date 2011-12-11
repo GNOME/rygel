@@ -4,19 +4,17 @@ Konfiguration des Mediathekplugins
 Das Mediathekplugin bietet eine Möglichkeit, bequem Sendungen aus der ZDF
 Mediathek anzuschauen.
 
-Im Moment werden nur RSS-Feeds unterstützt. Die zu abbonierenden RSS-Feeds
-werden im GConf-Schlüssel
+Im Moment werden nur die RSS-Feeds unterstützt. Die zu abbonierenden RSS-Feeds
+werden in der Konfiguationstadatei im Abschnitt [ZDFMediathek] unter dem
+Schlüssel "rss" mit Semikolon getrennt eingetragen. Er enthält die
+"Contentidentifier" der Sendungen oder Kategorien. Diese kann man am
+einfachsten über die Seite
 
-    /apps/rygel/ZDFMediathek/rss
+http://www.zdf.de/ZDFmediathek/kanaluebersicht/884708/rubrik/Film?flash=off
 
-konfiguriert. Er enthält die "Contentidentifier" der Sendungen oder
-Kategorieren. Diese kann man in Erfahrung bringen, wenn man auf der Seite
-
-http://www.zdf.de/ZDFmediathek/content/9602?inPopup=true
-
-oben rechts auf "Inhalt" klickt. Dann die entsprechende Sendung oder
-Themengruppe heraussuchen und auf das RSS-Icon klicken. Für "aspekte" hat man
-dann folgende URL:
+in Erfahrung bringen, indem man sich die entsprechende Sendung oder
+Themengruppe heraussucht und bis zum Abschnitt "RSS" scrollt. Für das Magazin
+"aspekte" steht dann dort z.B. folgende URL:
 
     http://www.zdf.de/ZDFmediathek/content/500?view=rss
 
