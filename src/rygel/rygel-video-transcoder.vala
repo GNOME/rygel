@@ -37,6 +37,7 @@ internal class Rygel.VideoTranscoder : Rygel.AudioTranscoder {
                             string  container_caps,
                             string  audio_codec_caps,
                             string  video_codec_caps,
+                            string  extension,
                             string? restrictions = null) {
 
         base.with_class (content_type,
@@ -44,7 +45,8 @@ internal class Rygel.VideoTranscoder : Rygel.AudioTranscoder {
                          VideoItem.UPNP_CLASS,
                          audio_bitrate,
                          container_caps,
-                         audio_codec_caps);
+                         audio_codec_caps,
+                         extension);
 
         this.video_bitrate = video_bitrate;
         this.video_codec_format = Caps.from_string (video_codec_caps);

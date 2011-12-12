@@ -21,6 +21,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+using Gee;
+
 private errordomain Rygel.HTTPRequestError {
     UNACCEPTABLE = Soup.KnownStatusCode.NOT_ACCEPTABLE,
     BAD_REQUEST = Soup.KnownStatusCode.BAD_REQUEST,
@@ -29,6 +31,14 @@ private errordomain Rygel.HTTPRequestError {
 
 private errordomain Rygel.TestError {
     SKIP
+}
+
+private class Rygel.Transcoder : GLib.Object {
+    public string extension { get; protected set; }
+
+    public Transcoder (string extension) {
+        this.extension = extension;
+    }
 }
 
 private class Rygel.HTTPServer : GLib.Object {
@@ -51,14 +61,44 @@ private class Rygel.HTTPServer : GLib.Object {
         assert (this.context.host_ip != null);
         assert (this.context.port > 0);
     }
+
+    public Transcoder get_transcoder (string  target) throws Error {
+        if (target == "MP3") {
+            return new Transcoder ("mp3");
+        }
+        throw new HTTPRequestError.NOT_FOUND (
+                            "No transcoder available for target format '%s'",
+                            target);
+    }
+}
+
+private class Rygel.MediaItem : GLib.Object {
+    public string id;
+    public ArrayList<string> uris = new ArrayList<string> ();
+    public string mime_type;
+}
+
+private class Rygel.Thumbnail {
+    public string file_extension;
+}
+
+private class Rygel.VisualItem : MediaItem {
+    public ArrayList<Thumbnail> thumbnails = new ArrayList<Thumbnail> ();
+}
+
+private class Rygel.Subtitle : GLib.Object {
+    public string caption_type;
+}
+
+private class Rygel.VideoItem : VisualItem {
+    public ArrayList<Subtitle> subtitles = new ArrayList<Subtitle> ();
 }
 
 private class Rygel.HTTPItemURITest : GLib.Object {
-    private const string ITEM_ID = "HELLO";
     private const int THUMBNAIL_INDEX = 1;
     private const int SUBTITLE_INDEX = 1;
     private const string TRANSCODE_TARGET = "MP3";
-
+    private VisualItem item = new VisualItem ();
     private HTTPServer server;
 
     public static int main (string[] args) {
@@ -78,6 +118,14 @@ private class Rygel.HTTPItemURITest : GLib.Object {
     }
 
     public void run () throws Error {
+        Thumbnail thumb = new Thumbnail ();
+
+        thumb.file_extension = "png";
+        this.item.thumbnails.add (thumb);
+        this.item.id = "HELLO";
+        this.item.uris.add ("foo.mp3");
+        this.item.mime_type = "audio/mp3";
+
         var uris = new HTTPItemURI[] {
             this.test_construction (),
             this.test_construction_with_thumbnail (),
@@ -96,14 +144,14 @@ private class Rygel.HTTPItemURITest : GLib.Object {
     }
 
     private HTTPItemURI test_construction () {
-        var uri = new HTTPItemURI (ITEM_ID, this.server);
+        var uri = new HTTPItemURI (this.item, this.server);
         assert (uri != null);
 
         return uri;
     }
 
     private HTTPItemURI test_construction_with_subtitle () {
-        var uri = new HTTPItemURI (ITEM_ID,
+        var uri = new HTTPItemURI (this.item,
                                    this.server,
                                    -1,
                                    SUBTITLE_INDEX);
@@ -113,7 +161,7 @@ private class Rygel.HTTPItemURITest : GLib.Object {
     }
 
     private HTTPItemURI test_construction_with_thumbnail () {
-        var uri = new HTTPItemURI (ITEM_ID,
+        var uri = new HTTPItemURI (this.item,
                                    this.server,
                                    THUMBNAIL_INDEX);
         assert (uri != null);
@@ -122,7 +170,7 @@ private class Rygel.HTTPItemURITest : GLib.Object {
     }
 
     private HTTPItemURI test_construction_with_transcoder () {
-        var uri = new HTTPItemURI (ITEM_ID,
+        var uri = new HTTPItemURI (this.item,
                                    this.server,
                                    THUMBNAIL_INDEX,
                                    -1,

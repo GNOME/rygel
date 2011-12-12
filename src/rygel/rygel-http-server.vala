@@ -100,7 +100,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
                                                   int       thumbnail_index,
                                                   int       subtitle_index,
                                                   string?   transcode_target) {
-        var uri = new HTTPItemURI (item.id,
+        var uri = new HTTPItemURI (item,
                                    this,
                                    thumbnail_index,
                                    subtitle_index,

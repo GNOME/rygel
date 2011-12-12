@@ -170,7 +170,7 @@ public class Rygel.HTTPServer : GLib.Object {
 
     public string uri {
         owned get {
-            var item_uri = new HTTPItemURI (this.root_container.ITEM_ID,
+            var item_uri = new HTTPItemURI (this.root_container.item,
                                             this);
 
             return item_uri.to_string ();
@@ -203,6 +203,15 @@ public class Rygel.HTTPServer : GLib.Object {
 
     private void on_got_headers (Soup.Message msg) {
         this.message_received (msg);
+    }
+
+    public Transcoder get_transcoder (string target) throws Error {
+        if (target == "MP3") {
+            return new Transcoder ("mp3");
+        }
+        throw new HTTPRequestError.NOT_FOUND (
+                            "No transcoder available for target format '%s'",
+                            target);
     }
 }
 
@@ -293,10 +302,13 @@ public class Rygel.MediaItem : Rygel.MediaObject {
     public string id;
     public long size = 1024;
     public long duration = 1024;
+    public ArrayList<string> uris = new ArrayList<string> ();
 
     public bool place_holder = true;
 
     public File file;
+
+    public MediaItem.for_visual_item () {}
 
     public MediaItem (string id, MediaContainer parent) {
         this.id = id;
@@ -373,8 +385,38 @@ public class Rygel.ItemRemovalQueue: GLib.Object {
     }
 }
 
-public class Rygel.MediaObject : GLib.Object {}
+public class Rygel.MediaObject : GLib.Object {
+    public string mime_type = "";
+}
+
+public class Rygel.Thumbnail : GLib.Object {
+    public string file_extension;
+}
+
+public class Rygel.VisualItem : Rygel.MediaItem {
+    public ArrayList<Thumbnail> thumbnails = new ArrayList<Thumbnail> ();
+
+    public VisualItem () {
+        base.for_visual_item();
+    }
+}
+
+private class Rygel.Subtitle : GLib.Object {
+    public string caption_type;
+}
+
+private class Rygel.VideoItem : Rygel.VisualItem {
+    public ArrayList<Subtitle> subtitles = new ArrayList<Subtitle> ();
+}
 
 public errordomain Rygel.ContentDirectoryError {
     INVALID_ARGS = 402
+}
+
+public class Rygel.Transcoder : GLib.Object {
+    public string extension { get; protected set; }
+
+    public Transcoder (string extension) {
+        this.extension = extension;
+    }
 }

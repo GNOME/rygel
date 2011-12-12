@@ -45,6 +45,7 @@ internal class Rygel.AVCTranscoder : Rygel.VideoTranscoder {
               CONTAINER,
               AUDIO_CAPS,
               VIDEO_CAPS,
+              "mp4",
               RESTRICTIONS);
     }
 

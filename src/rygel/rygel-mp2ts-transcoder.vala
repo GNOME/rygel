@@ -63,6 +63,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.VideoTranscoder {
               CONTAINER,
               AUDIO_FORMAT,
               BASE_VIDEO_FORMAT,
+              "mpg",
               RESTRICTION_TEMPLATE.printf (FRAME_RATE[profile],
                                            WIDTH[profile],
                                            HEIGHT[profile]));

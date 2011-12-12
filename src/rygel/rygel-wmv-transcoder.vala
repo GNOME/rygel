@@ -33,6 +33,7 @@ internal class Rygel.WMVTranscoder : Rygel.VideoTranscoder {
               VIDEO_BITRATE,
               "video/x-ms-asf,parsed=true",
               "audio/x-wma,channels=2,wmaversion=1",
-              "video/x-wmv,wmvversion=1");
+              "video/x-wmv,wmvversion=1",
+              "wmv");
     }
 }

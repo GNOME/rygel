@@ -52,7 +52,8 @@ internal class Rygel.L16Transcoder : Rygel.AudioTranscoder {
               "LPCM",
               0,
               AudioTranscoder.NO_CONTAINER,
-              caps_str);
+              caps_str,
+              "lpcm");
     }
 
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,

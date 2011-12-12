@@ -36,6 +36,7 @@ internal class Rygel.MP3Transcoder : Rygel.AudioTranscoder {
               "MP3",
               BITRATE,
               AudioTranscoder.NO_CONTAINER,
-              FORMAT);
+              FORMAT,
+              "mp3");
     }
 }

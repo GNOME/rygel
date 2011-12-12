@@ -33,6 +33,6 @@ internal class Rygel.AACTranscoder : Rygel.AudioTranscoder {
                                  "channels=1";
 
     public AACTranscoder () {
-        base ("audio/3gpp", "AAC_ISO_320", BITRATE, CONTAINER, CODEC);
+        base ("audio/3gpp", "AAC_ISO_320", BITRATE, CONTAINER, CODEC, "3gp");
     }
 }

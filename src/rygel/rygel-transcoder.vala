@@ -31,6 +31,7 @@ using GUPnP;
 internal abstract class Rygel.Transcoder : GLib.Object {
     public string mime_type { get; protected set; }
     public string dlna_profile { get; protected set; }
+    public string extension { get; protected set; }
 
     private const string DECODE_BIN = "decodebin2";
     private const string ENCODE_BIN = "encodebin";
@@ -46,11 +47,13 @@ internal abstract class Rygel.Transcoder : GLib.Object {
 
     public Transcoder (string mime_type,
                        string dlna_profile,
-                       string upnp_class) {
+                       string upnp_class,
+                       string extension) {
         this.mime_type = mime_type;
         this.dlna_profile = dlna_profile;
         this.upnp_class = upnp_class;
         this.link_failed = true;
+        this.extension = extension;
     }
 
     /**

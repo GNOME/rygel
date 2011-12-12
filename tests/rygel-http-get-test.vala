@@ -132,7 +132,7 @@ public class Rygel.HTTPGetTest : GLib.Object {
         requests.add (new TestRequestFactory (request, Soup.KnownStatusCode.OK));
 
         string uri = this.server.create_uri ("VideoItem");
-        uri = uri + "/tr/MPEG";
+        uri = uri + "/tr/MP3";
         request = new Soup.Message ("HEAD", uri);
         requests.add (new TestRequestFactory (request, Soup.KnownStatusCode.OK));
 
@@ -261,10 +261,13 @@ public class Rygel.HTTPServer : GLib.Object {
         }
     }
 
-    public string create_uri(string item_id) {
-            var item_uri = new HTTPItemURI (item_id,
-                                            this);
-            return item_uri.to_string ();
+    public string create_uri (string item_id) {
+        var item = new VideoItem ();
+        item.id = item_id;
+
+        var item_uri = new HTTPItemURI (item, this);
+
+        return item_uri.to_string ();
     }
 
     public signal void message_received (Soup.Message message);
@@ -295,7 +298,12 @@ public class Rygel.HTTPServer : GLib.Object {
     }
 
     public Transcoder get_transcoder (string target) throws Error {
-        return new Transcoder ();
+        if (target == "MP3") {
+            return new Transcoder ("mp3");
+        }
+        throw new HTTPRequestError.NOT_FOUND (
+                            "No transcoder available for target format '%s'",
+                            target);
     }
 }
 
@@ -368,6 +376,7 @@ public abstract class Rygel.MediaItem : Rygel.MediaObject {
     public long size = 1024;
     public ArrayList<Subtitle> subtitles = new ArrayList<Subtitle> ();
     public ArrayList<Thumbnail> thumbnails = new ArrayList<Thumbnail> ();
+    public ArrayList<string> uris = new ArrayList<string> ();
 
     public bool place_holder = false;
 
@@ -441,10 +450,12 @@ private class Rygel.MusicItem : AudioItem {
 
 public class Rygel.Thumbnail {
     public long size = 1024;
+    public string file_extension;
 }
 
 public class Rygel.Subtitle {
     public long size = 1024;
+    public string caption_type;
 }
 
 internal class Rygel.HTTPResponse : Rygel.StateMachine, GLib.Object {
@@ -479,6 +490,13 @@ internal class Rygel.HTTPResponse : Rygel.StateMachine, GLib.Object {
 
 public class Rygel.MediaObject {
     public string id;
+    public string mime_type = "";
 }
 
-public class Rygel.Transcoder {}
+public class Rygel.Transcoder : GLib.Object {
+    public string extension { get; protected set; }
+
+    public Transcoder (string extension) {
+        this.extension = extension;
+    }
+}

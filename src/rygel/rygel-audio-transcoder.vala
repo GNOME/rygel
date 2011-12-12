@@ -36,8 +36,9 @@ internal class Rygel.AudioTranscoder : Rygel.Transcoder {
                             string  dlna_profile,
                             int     audio_bitrate,
                             string? container_caps,
-                            string  audio_codec_caps) {
-        base (content_type, dlna_profile, AudioItem.UPNP_CLASS);
+                            string  audio_codec_caps,
+                            string  extension) {
+        base (content_type, dlna_profile, AudioItem.UPNP_CLASS, extension);
 
         this.audio_bitrate = audio_bitrate;
         if (container_caps != null) {
@@ -52,8 +53,9 @@ internal class Rygel.AudioTranscoder : Rygel.Transcoder {
                                        string  upnp_class,
                                        int     audio_bitrate,
                                        string? container_caps,
-                                       string  audio_codec_caps) {
-        base (content_type, dlna_profile, upnp_class);
+                                       string  audio_codec_caps,
+                                       string  extension) {
+        base (content_type, dlna_profile, upnp_class, extension);
 
         this.audio_bitrate = audio_bitrate;
         if (container_caps != null) {
