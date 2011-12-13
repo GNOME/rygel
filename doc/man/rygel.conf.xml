@@ -276,7 +276,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
     <title>Tracker Plugin</title>
     <para>The tracker plugin uses the centralized database of meta information
       from the tracker project. See the
-      <ulink url="http://www.tracker-project.org">tracker project website </ulink> for more information about tracker.
+      <ulink url="http://projects.gnome.org/tracker/">tracker project website </ulink> for more information about tracker.
     </para>
     <variablelist>
       <varlistentry>
@@ -441,7 +441,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
   </refsect1>
   <refsect1>
     <title>External</title>
-    <para>The External plugin is an consumer of the <ulink url="http://live.gnome.org/Rygel/MediaServer2Spec">MediaServer2 DBus interface specification</ulink>. This allows external programs to share their data via UPnP by implementing this DBus specification. The plugin picks up any implementation of this interface on the session bus and exposes the presented media via UPnP. Known implementors of this spec are  <ulink url="http://live.gnome.org/DVBDaemon">gnome-dvb-daemon</ulink> and <ulink url="http://live.gnome.org/Grilo">Grilo </ulink> via the grilo-rygel project.</para>
+    <para>The External plugin is an consumer of the <ulink url="http://live.gnome.org/Rygel/MediaServer2Spec">MediaServer2 DBus interface specification</ulink>. This allows external programs to share their data via UPnP by implementing this DBus specification. The plugin picks up any implementation of this interface on the session bus and exposes the presented media via UPnP. Known implementors of this spec are  <ulink url="http://live.gnome.org/DVBDaemon">gnome-dvb-daemon</ulink>, <ulink url="http://www.rhythmbox.org">Rhythmbox</ulink> and <ulink url="http://live.gnome.org/Grilo">Grilo </ulink> via the grilo-ms2 project.</para>
     <para>This plugin has no additional options.</para>
   </refsect1>
   <refsect1>
@@ -449,7 +449,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
     <para>The MPRIS plugin is a consumer of the  <ulink url="http://www.mpris.org">MPRIS2 DBus interface specification</ulink>. The implementation conforms to version 2.0 of the standard.
       </para>
     <para><application>&dhpackage;</application> exposes media players that implement the provider side of this DBus specification as DLNA Digital Media Renderers (DMR) similar to the Playbin plugin. This means that you can easily turn your media player into a DMR by implementing this DBus specification.</para>
-    <para>Players that implement this spec and are known to work with <application>&dhpackage;</application> are  <ulink url="http://banshee.fm">Banshee</ulink> and  <ulink url="http://www.rhythmbox.org">Rhythmbox</ulink>.
+    <para>Players that implement this spec and are known to work with <application>&dhpackage;</application> are  <ulink url="http://banshee.fm">Banshee</ulink>, <ulink url="http://www.rhythmbox.org">Rhythmbox</ulink> and <ulink url="http://live.gnome.org/Totem">Totem</ulink>
       </para>
     <para>The configuration of this plugin is special. Plugin configuration is not done on the plugin but rather per peer that is found providing the MPRIS2 interface. See the following example to set the title for Banshee on MPRIS:</para>
     <para><programlisting>[org.mpris.MediaPlayer2.banshee]
