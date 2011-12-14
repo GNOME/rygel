@@ -180,6 +180,7 @@
   * Provide APIs for D-Bus service-based plugins (external,mpris,tracker).
 
 === Doubtful / issues ===
+  * Generate default rygel.conf from rygel.conf.xml?
 
   * Use cached props instead of Properties.get*() for cleaner code. issue: How
     to deal with optional properties on MediaServer2?
@@ -190,6 +191,8 @@
     ContentDir itself?
 
   * Implement DLNA's time seeking for non-transcoded contents as well.
+      * Probably next to impossible since that would need a byte ←→ time
+        mapping
 
   * Turn Rygel into a library?
     * most c files put into a lib: librygel.so
