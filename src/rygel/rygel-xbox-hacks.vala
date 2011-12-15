@@ -59,8 +59,12 @@ internal class Rygel.XBoxHacks : ClientHacks {
     }
 
     public void apply_on_device (RootDevice device,
-                                 string     template_path) throws Error {
+                                 string?    template_path) throws Error {
         if (!device.get_device_type ().has_prefix (DMS)) {
+            return;
+        }
+
+        if (template_path == null) {
             return;
         }
 
