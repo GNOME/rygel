@@ -81,17 +81,6 @@ internal abstract class Rygel.GstUtils {
         return src;
     }
 
-    public static dynamic Element? get_rtp_depayloader (Caps caps) {
-        if (!need_rtp_depayloader (caps)) {
-            return null;
-        }
-
-        unowned Registry registry = Registry.get_default ();
-        var features = registry.feature_filter (rtp_depay_filter, false);
-
-        return get_best_depay (features, caps);
-    }
-
     public static void dump_encoding_profile (EncodingProfile profile,
                                               int             indent = 2) {
         var indent_s = string.nfill (indent, ' ');
@@ -110,56 +99,35 @@ internal abstract class Rygel.GstUtils {
         }
     }
 
-    private static bool need_rtp_depayloader (Caps caps) {
-        var structure = caps.get_structure (0);
-        return structure.get_name () == "application/x-rtp";
-    }
-
-    private static dynamic Element? get_best_depay
-                                        (GLib.List<PluginFeature> features,
-                                         Caps                     caps) {
-        var relevant_factories = new GLib.List<ElementFactory> ();
-
-        // First construct a list of relevant factories
-        foreach (PluginFeature feature in features) {
-            var factory = (ElementFactory) feature;
-
-            // Skip "rtpdepay" since it's more like a proxy
-            if (factory.get_name () == "rtpdepay") {
-                continue;
-            }
-
-            if (factory.can_sink_any_caps (caps)) {
-               relevant_factories.append (factory);
-            }
-        }
-
-        if (relevant_factories.length () == 0) {
-            // No relevant factory available, hence no depayloader
+    public static dynamic Element? get_rtp_depayloader (Caps caps) {
+        if (!need_rtp_depayloader (caps)) {
             return null;
         }
 
-        // Then sort the list through their ranks
-        relevant_factories.sort (compare_factories);
+        var features = ElementFactory.list_get_elements
+                                        (ELEMENT_FACTORY_TYPE_DEPAYLOADER,
+                                         Rank.NONE);
+        features = ElementFactory.list_filter (features,
+                                               caps,
+                                               PadDirection.SINK,
+                                               false);
 
-        // create an element of the top ranking factory and return it
-        var factory = relevant_factories.data;
+        // If most "fitting" depayloader was rtpdepay skip it because it is
+        // just some kind of proxy.
+        if (features.data.get_name () == "rtpdepay") {
+            if (features.next != null) {
+                return features.next.data.create (null);
+           }
 
-        return ElementFactory.make (factory.get_name (), null);
-    }
-
-    private static bool rtp_depay_filter (PluginFeature feature) {
-        if (!feature.get_type ().is_a (typeof (ElementFactory))) {
-            return false;
+           return null;
+        } else {
+            return features.data.create (null);
         }
-
-        var factory = (ElementFactory) feature;
-
-        return factory.get_klass ().contains ("Depayloader");
     }
 
-    private static int compare_factories (ElementFactory factory_a,
-                                          ElementFactory factory_b) {
-        return (int) (factory_b.get_rank () - factory_a.get_rank ());
+    private static bool need_rtp_depayloader (Caps caps) {
+        var structure = caps.get_structure (0);
+
+        return structure.get_name () == "application/x-rtp";
     }
 }
