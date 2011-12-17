@@ -52,12 +52,10 @@ public class Rygel.Tracker.KeyChainMap : Object {
         add_key_chain ("dc:title", "nie:title");
         add_key_chain ("dlnaProfile", "nmm:dlnaProfile");
         add_key_chain ("mimeType", "nie:mimeType");
-        add_function ("res@size",
-                      "tracker:coalesce(nfo:fileSize(%1$s)," +
-                      "nie:byteSize(%1$s),\"\")");
-        add_function ("date",
-                      "tracker:coalesce(nie:contentCreated(%1$s)," +
-                      "nfo:fileLastModified(%1$s))");
+        this.add_alternative ("res@size", "nfo:fileSize", "nie:byteSize");
+        this.add_alternative ("date",
+                              "nie:contentCreated",
+                              "nfo:fileLastModified");
 
         // Music Item
         add_key_chain ("res@duration", "nfo:duration");
@@ -107,6 +105,23 @@ public class Rygel.Tracker.KeyChainMap : Object {
 
     private void add_function (string property, string function) {
         this.functions[property] = function;
+    }
+
+    private void add_alternative (string property, ...) {
+        var list = va_list ();
+
+        var str = new StringBuilder ("tracker:coalesce(");
+
+        string alternative = list.arg ();
+        while (alternative != null) {
+            str.append_printf ("%s(%%1$s),", alternative);
+            alternative = list.arg ();
+        }
+
+        str.truncate (str.len - 1);
+        str.append (")");
+
+        this.add_function (property, str.str);
     }
 }
 
