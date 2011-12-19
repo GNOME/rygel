@@ -65,9 +65,10 @@ internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             yield this.handle ();
         } catch (Error error) {
             this.handle_error (error);
-
-            return;
         }
+
+        // break probable cyclic references
+        this.cancellable = null;
     }
 
     protected abstract async void handle () throws Error;
