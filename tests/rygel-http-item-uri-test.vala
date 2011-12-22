@@ -104,6 +104,7 @@ private class Rygel.HTTPItemURITest : GLib.Object {
     private HTTPItemURI test_construction_with_subtitle () {
         var uri = new HTTPItemURI (ITEM_ID,
                                    this.server,
+                                   -1,
                                    SUBTITLE_INDEX);
         assert (uri != null);
 
