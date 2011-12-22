@@ -88,6 +88,7 @@ private class Rygel.HTTPItemURITest : GLib.Object {
             var str = this.test_to_string (uri);
             this.test_construction_from_string (str);
         }
+        this.test_error_construction ("/Ttt", Soup.KnownStatusCode.BAD_REQUEST);
     }
 
     private HTTPItemURITest () throws TestError {
@@ -138,6 +139,16 @@ private class Rygel.HTTPItemURITest : GLib.Object {
         assert (uri.to_string () == str);
 
         return uri;
+    }
+
+    private void test_error_construction (string str,
+                                          Soup.KnownStatusCode error_code) {
+        try {
+            var uri = new HTTPItemURI.from_string (str, this.server);
+            assert (uri == null);
+        } catch (HTTPRequestError error) {
+            assert (error.code == error_code);
+        }
     }
 
     private string test_to_string (HTTPItemURI uri) {
