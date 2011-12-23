@@ -35,10 +35,35 @@ public errordomain Rygel.ClientHacksError {
 
 public class Rygel.ClientHacks {
     public static ClientHacks create (Message? message) throws Error {
-        throw new ClientHacksError.NA ("");
+        var headers = message.request_headers;
+        if (headers.get_one ("clienthacks.test.rygel") != null) {
+            return new ClientHacks ();
+        } else {
+            throw new ClientHacksError.NA ("");
+        }
     }
 
-    public void apply (MediaItem item) {
+    public void apply (MediaItem? item) {
+    }
+}
+
+public class Rygel.TestRequestFactory {
+    public Soup.Message msg;
+    public Soup.KnownStatusCode expected_code;
+
+    public TestRequestFactory (Soup.Message msg,
+                               Soup.KnownStatusCode expected_code) {
+        this.msg = msg;
+        this.expected_code = expected_code;
+    }
+
+    internal HTTPGet create_get (HTTPServer http_server,
+                                 Soup.Server server,
+                                 Soup.Message msg) {
+        HTTPGet request = new HTTPGet (http_server, server, msg);
+        request.handler = null;
+
+        return request;
     }
 }
 
@@ -52,6 +77,9 @@ public class Rygel.HTTPGetTest : GLib.Object {
     private MainLoop main_loop;
 
     private Error error;
+
+    private ArrayList<TestRequestFactory> requests;
+    private TestRequestFactory current_request;
 
     public static int main (string[] args) {
         try {
@@ -71,9 +99,9 @@ public class Rygel.HTTPGetTest : GLib.Object {
 
     public HTTPGetTest () throws Error {
         this.server = new HTTPServer ();
-        this.client = new HTTPClient (this.server.context,
-                                      this.server.uri);
+        this.client = new HTTPClient (this.server.context);
         this.main_loop = new MainLoop (null, false);
+        this.create_test_messages();
     }
 
     public virtual void run () throws Error {
@@ -81,7 +109,7 @@ public class Rygel.HTTPGetTest : GLib.Object {
         this.server.message_received.connect (this.on_message_received);
         this.client.completed.connect (this.on_client_completed);
 
-        this.client.run.begin ();
+        this.start_next_test_request ();
 
         this.main_loop.run ();
 
@@ -90,18 +118,93 @@ public class Rygel.HTTPGetTest : GLib.Object {
         }
     }
 
-    private HTTPRequest create_request (Soup.Message msg) throws Error {
-        return new HTTPGet (this.server,
-                            this.server.context.server,
-                            msg);
+    private void create_test_messages () {
+        requests = new ArrayList<TestRequestFactory> ();
+
+        Soup.Message request = new Soup.Message ("POST", this.server.uri);
+        requests.add (new TestRequestFactory (request,
+                      Soup.KnownStatusCode.BAD_REQUEST));
+
+        request = new Soup.Message ("HEAD", this.server.uri);
+        requests.add (new TestRequestFactory (request, Soup.KnownStatusCode.OK));
+
+        request = new Soup.Message ("GET", this.server.uri);
+        requests.add (new TestRequestFactory (request, Soup.KnownStatusCode.OK));
+
+        string uri = this.server.create_uri ("VideoItem");
+        uri = uri + "/tr/MPEG";
+        request = new Soup.Message ("HEAD", uri);
+        requests.add (new TestRequestFactory (request, Soup.KnownStatusCode.OK));
+
+        request = new Soup.Message ("GET", this.server.uri);
+        request.request_headers.append ("transferMode.dlna.org", "Streaming");
+        requests.add (new TestRequestFactory (request, Soup.KnownStatusCode.OK));
+
+        request = new Soup.Message ("GET", this.server.uri);
+        request.request_headers.append ("transferMode.dlna.org", "Interactive");
+        requests.add (new TestRequestFactory (request,
+                      Soup.KnownStatusCode.NOT_ACCEPTABLE));
+
+        request = new Soup.Message ("GET", this.server.uri);
+        request.request_headers.append ("Range", "bytes=1-2");
+        requests.add (new TestRequestFactory (request,
+                      Soup.KnownStatusCode.OK));
+
+        uri = this.server.create_uri ("AudioItem");
+        uri = uri + "/th/0";
+
+        request = new Soup.Message ("GET", uri);
+        requests.add (new TestRequestFactory (request,
+                      Soup.KnownStatusCode.NOT_FOUND));
+
+        request = new Soup.Message ("GET", this.server.uri);
+        request.request_headers.append ("TimeSeekRange.dlna.org", "0");
+        requests.add (new TestRequestFactory (request,
+                      Soup.KnownStatusCode.NOT_ACCEPTABLE));
+
+        uri = this.server.create_uri ("AudioItem");
+        request = new Soup.Message ("GET", uri);
+        request.request_headers.append ("TimeSeekRange.dlna.org", "0");
+        requests.add (new TestRequestFactory (request,
+                      Soup.KnownStatusCode.BAD_REQUEST));
+
+        uri = this.server.create_uri ("AudioItem");
+        request = new Soup.Message ("GET", uri);
+        request.request_headers.append ("TimeSeekRange.dlna.org", "npt=1-2049");
+        requests.add (new TestRequestFactory (request,
+                      Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE));
+
+        request = new Soup.Message ("GET", this.server.uri);
+        request.request_headers.append ("clienthacks.test.rygel", "f");
+        requests.add (new TestRequestFactory (request,
+                      Soup.KnownStatusCode.OK));
+
+        request = new Soup.Message ("GET", this.server.uri);
+        request.request_headers.append ("clienthacks.test.rygel", "t");
+        requests.add (new TestRequestFactory (request,
+                      Soup.KnownStatusCode.OK));
+    }
+
+    private HTTPGet create_request (Soup.Message msg) throws Error {
+        HTTPGet request = this.current_request.create_get (this.server,
+                            this.server.context.server, msg);
+        return request;
     }
 
     private void on_client_completed (StateMachine client) {
-        if (this.server_done) {
+        if (requests.size > 0) {
+            this.start_next_test_request ();
+            this.client.run.begin ();
+        } else {
             this.main_loop.quit ();
+            this.client_done = true;
         }
+    }
 
-        this.client_done = true;
+    private void start_next_test_request() {
+        this.current_request = requests.remove_at (0);
+        this.client.msg = this.current_request.msg;
+        this.client.run.begin ();
     }
 
     private void on_message_received (HTTPServer   server,
@@ -116,6 +219,9 @@ public class Rygel.HTTPGetTest : GLib.Object {
             yield request.run ();
 
             assert ((request as HTTPGet).item != null);
+
+            debug ("status.code: %d", (int) msg.status_code);
+            assert (msg.status_code == this.current_request.expected_code);
 
             if (this.client_done) {
                 this.main_loop.quit ();
@@ -151,11 +257,14 @@ public class Rygel.HTTPServer : GLib.Object {
 
     public string uri {
         owned get {
-            var item_uri = new HTTPItemURI (this.root_container.ITEM_ID,
-                                            this);
-
-            return item_uri.to_string ();
+            return create_uri("VideoItem");
         }
+    }
+
+    public string create_uri(string item_id) {
+            var item_uri = new HTTPItemURI (item_id,
+                                            this);
+            return item_uri.to_string ();
     }
 
     public signal void message_received (Soup.Message message);
@@ -196,12 +305,8 @@ public class Rygel.HTTPClient : GLib.Object, StateMachine {
 
     public Cancellable cancellable { get; set; }
 
-    public HTTPClient (GUPnP.Context context,
-                       string        uri) {
+    public HTTPClient (GUPnP.Context context) {
         this.context = context;
-
-        this.msg = new Soup.Message ("GET",  uri);
-        assert (this.msg != null);
     }
 
     public async void run () {
@@ -218,7 +323,6 @@ public class Rygel.HTTPClient : GLib.Object, StateMachine {
 }
 
 public class Rygel.MediaContainer : Rygel.MediaObject {
-    public const string ITEM_ID = "TestItem";
 
     public async MediaObject? find_object (string       item_id,
                                            Cancellable? cancellable)
@@ -232,8 +336,11 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
 
         yield;
 
-        if (item_id == ITEM_ID) {
+        debug ("item id: %s", item_id);
+        if (item_id == "VideoItem") {
             return new VideoItem ();
+        } else if (item_id == "AudioItem") {
+            return new AudioItem ();
         } else {
             return null;
         }
@@ -265,7 +372,10 @@ public abstract class Rygel.MediaItem : Rygel.MediaObject {
     public bool place_holder = false;
 
     public bool is_live_stream () {
-        return true;
+        if (this.id == "VideoItem")
+            return false;
+        else
+            return true;
     }
 
     public bool streamable () {
@@ -275,6 +385,10 @@ public abstract class Rygel.MediaItem : Rygel.MediaObject {
 
 private class Rygel.AudioItem : MediaItem {
     public int64 duration = 2048;
+
+    public AudioItem () {
+        this.id = "AudioItem";
+    }
 }
 
 private interface Rygel.VisualItem : MediaItem {
@@ -285,6 +399,14 @@ private interface Rygel.VisualItem : MediaItem {
     public abstract int color_depth { get; set; }
 
     public abstract ArrayList<Thumbnail> thumbnails { get; protected set; }
+
+    public bool is_live_stream () {
+        return false;
+    }
+
+    public bool streamable () {
+        return false;
+    }
 }
 
 private class Rygel.VideoItem : AudioItem, VisualItem {
@@ -294,7 +416,22 @@ private class Rygel.VideoItem : AudioItem, VisualItem {
     public int pixel_height { get; set; default = -1; }
     public int color_depth { get; set; default = -1; }
 
-    public ArrayList<Thumbnail> thumbnails { get; protected set; }
+    private ArrayList<Thumbnail> ts;
+
+    public VideoItem () {
+        this.id = "VideoItem";
+    }
+
+    public ArrayList<Thumbnail> thumbnails {
+        get {
+            this.ts = new ArrayList<Thumbnail>();
+            ts.add(new Rygel.Thumbnail());
+            return this.ts;
+        }
+
+        protected set {}
+    }
+
     public ArrayList<Subtitle> subtitles;
 }
 
