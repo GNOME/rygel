@@ -211,7 +211,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         }
     }
 
-    private async void parse_args () throws Error {
+    private void parse_args () throws Error {
         /* Start by parsing the 'in' arguments */
         this.action.get ("ContainerID", typeof (string), out this.container_id,
                          "Elements", typeof (string), out this.elements);
