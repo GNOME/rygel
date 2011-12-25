@@ -1,0 +1,1 @@
+../src/rygel/rygel-search-expression.vala

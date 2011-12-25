@@ -9,6 +9,7 @@ AM_CFLAGS = $(LIBGUPNP_CFLAGS) \
 	    $(GEE_CFLAGS) \
 	    $(UUID_CFLAGS) \
 	    $(LIBSOUP_CFLAGS) \
+	    $(LIBGUPNP_DLNA_CFLAGS) \
 	    -I$(top_srcdir) -DDATA_DIR='"$(shareddir)"' \
 	    -include config.h  -DG_LOG_DOMAIN='"Rygel"' \
 	    $(COVERAGE_CFLAGS)
@@ -22,12 +23,14 @@ LDADD = $(LIBGUPNP_LIBS) \
 	$(GEE_LIBS) \
 	$(UUID_LIBS) \
 	$(LIBSOUP_LIBS) \
+	$(LIBGUPNP_DLNA_LIBS) \
 	$(COVERAGE_LIBS)
 
 AM_VALAFLAGS = --disable-warnings --thread \
 	       --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
                --pkg gconf-2.0 --pkg gstreamer-0.10 --pkg gstreamer-base-0.10 \
                --pkg gio-2.0 --pkg gee-1.0 --pkg gstreamer-pbutils-0.10 \
+               --pkg gupnp-dlna-1.0 -g
 	       $(COVERAGE_VALAFLAGS)
 
 check_PROGRAMS = rygel-http-item-uri-test \
@@ -37,7 +40,8 @@ check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-http-get-test \
 		 rygel-album-art-spec-test \
 		 rygel-http-post-test \
-		 rygel-searchable-container-test
+		 rygel-searchable-container-test \
+		 rygel-item-creator-test
 
 TESTS = $(check_PROGRAMS)
 
@@ -82,6 +86,11 @@ rygel_searchable_container_test_SOURCES = \
 	rygel-searchable-container.vala \
 	rygel-searchable-container-test.vala
 
+rygel_item_creator_test_SOURCES = rygel-item-creator-test.vala \
+				  rygel-item-creator.vala \
+				  rygel-state-machine_item-creator.vala \
+				  rygel-relational-expression.vala \
+				  rygel-search-expression.vala
 
 if ALWAYS_TEST
 all-local: check
