@@ -228,6 +228,8 @@ internal class Rygel.AVTransport : Service {
         this.uri = _uri;
         this.metadata = _metadata;
 
+        this.n_tracks = 1;
+
         action.return ();
     }
 
