@@ -390,6 +390,12 @@ internal class Rygel.AVTransport : Service {
             return;
         }
 
+        if (this.player.playback_state != "PLAYING") {
+            action.return_error (701, _("Transition not available"));
+
+            return;
+        }
+
         this.player.playback_state = "PAUSED_PLAYBACK";
 
         action.return ();
