@@ -114,9 +114,17 @@ internal class Rygel.RenderingControl : Service {
 
     // Error out if InstanceID is not 0
     private bool check_instance_id (ServiceAction action) {
-        uint instance_id;
+        string instance_id_string;
+        int64 instance_id = -1;
 
-        action.get ("InstanceID", typeof (uint), out instance_id);
+        action.get ("InstanceID", typeof (string), out instance_id_string);
+        if (instance_id_string == null ||
+            !int64.try_parse (instance_id_string, out instance_id)) {
+            action.return_error (402, _("Invalid Args"));
+
+            return false;
+        }
+
         if (instance_id != 0) {
             action.return_error (702, _("Invalid InstanceID"));
 
