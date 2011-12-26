@@ -72,7 +72,7 @@ internal class Rygel.RenderingControl : Service {
         }
     }
 
-    private string preset_name_list = "";
+    private string preset_name_list = "FactoryDefaults";
 
     private ChangeLog changelog;
     private MediaPlayer player;
