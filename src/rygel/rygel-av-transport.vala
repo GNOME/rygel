@@ -143,6 +143,7 @@ internal class Rygel.AVTransport : Service {
         action_invoked["SetAVTransportURI"].connect
                                         (this.set_av_transport_uri_cb);
         action_invoked["GetMediaInfo"].connect (this.get_media_info_cb);
+        action_invoked["GetMediaInfo_Ext"].connect (this.get_media_info_ex_cb);
         action_invoked["GetTransportInfo"].connect (this.get_transport_info_cb);
         action_invoked["GetPositionInfo"].connect (this.get_position_info_cb);
         action_invoked["GetDeviceCapabilities"].connect
@@ -262,6 +263,46 @@ internal class Rygel.AVTransport : Service {
                         "NOT_IMPLEMENTED",
                     "RecordMedium",
                         typeof (string),
+                        "",
+                    "WriteStatus",
+                        typeof (string),
+                        "NOT_IMPLEMENTED");
+
+        action.return ();
+    }
+
+    private void get_media_info_ex_cb (Service             service,
+                                       owned ServiceAction action) {
+        if (!this.check_instance_id (action)) {
+            return;
+        }
+
+        action.set ("CurrentType",
+                        typeof (string),
+                        "NO_MEDIA",
+                    "NrTracks",
+                        typeof (uint),
+                        this.n_tracks,
+                    "MediaDuration",
+                        typeof (string),
+                        this.player.duration_as_str,
+                    "CurrentURI",
+                        typeof (string),
+                        this.uri,
+                    "CurrentURIMetaData",
+                        typeof (string),
+                        this.metadata,
+                    "NextURI",
+                        typeof (string),
+                        "NOT_IMPLEMENTED",
+                    "NextURIMetaData",
+                        typeof (string),
+                        "NOT_IMPLEMENTED",
+                    "PlayMedium",
+                        typeof (string),
+                        "NOT_IMPLEMENTED",
+                    "RecordMedium",
+                        typeof (string),
                         "NOT_IMPLEMENTED",
                     "WriteStatus",
                         typeof (string),
@@ -269,6 +310,7 @@ internal class Rygel.AVTransport : Service {
 
         action.return ();
     }
+
 
     private void get_transport_info_cb (Service             service,
                                         owned ServiceAction action) {
