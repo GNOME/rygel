@@ -286,7 +286,8 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         if (media_object == null || !(media_object is MediaContainer)) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT
                                         (_("No such object"));
-        } else if (!(OCMFlags.UPLOAD in media_object.ocm_flags)) {
+        } else if (!(OCMFlags.UPLOAD in media_object.ocm_flags) ||
+                   !(media_object is WritableContainer)) {
             throw new ContentDirectoryError.RESTRICTED_PARENT
                                         (_("Object creation in %s not allowed"),
                                         media_object.id);
