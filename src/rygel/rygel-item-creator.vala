@@ -97,6 +97,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                          "CreateItem");
             }
 
+            // FIXME: Is this check really necessary?
             if ((didl_item.dlna_managed &
                 (OCMFlags.UPLOAD |
                  OCMFlags.CREATE_CONTAINER |
@@ -292,6 +293,8 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                         (_("Object creation in %s not allowed"),
                                         media_object.id);
         }
+
+        // FIXME: Check for @restricted=1 missing?
 
         return media_object as WritableContainer;
     }
