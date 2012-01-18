@@ -1,3 +1,28 @@
+0.12.7
+======
+Another release in the stable 0.12 series of Rygel
+
+Changes since 0.12.6:
+
+- Fix selecting the "Slideshow" option on XBox 360 when on top-level picture
+  browser.
+- Update some websites in the manpages.
+- Fix leaking of HTTP requests.
+- Fix reference leak of containers being searched.
+- Fix error handling of SOAP parameter parsing in CreateItem call.
+- Use correct error code in CreateItem when the ObjectID was not a container.
+- Don't crash if a MediaServer plugin sets the OCM Upload flag on containers
+  that are not writable.
+
+External:
+  - Prevent crash if the provider sends too many updates
+
+All contributors to this release:
+  - Jens Georg <mail@jensge.org>
+
+Bugs fixed:
+  - https://bugzilla.redhat.com/show_bug.cgi?id=759206
+
 0.12.6
 ======
 Another release in the stable 0.12 series of Rygel
