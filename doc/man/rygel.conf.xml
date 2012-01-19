@@ -360,7 +360,15 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>uris</option>
         </term>
         <listitem>
-          <para>A list of uris to expose via UPnP. May be files, folders or anything supported by gvfs. If left emtpy it defaults to export the user&apos;s music, video and picture folders as defined per XDG special user directories spec.</para>
+          <para>A list of URIS to expose via UPnP. May be files, folders or anything supported by GVFS. If left emtpy it defaults to export the user&apos;s music, video and picture folders as defined per XDG special user directories spec. These default folders can be referenced by <userinput>@MUSIC@</userinput>, <userinput>@PICTURES@</userinput> and <userinput>@VIDEOS@</userinput>. Locations can be entered as either fully escaped URIS or normal paths.</para>
+          <para><note>
+              <para>If you enter a normal path that contains whitespace there is no need to escape them with either a backslash or putting the string in quotes.</para>
+            </note></para>
+          <example>
+            <title>Possible values for <userinput>uris</userinput></title>
+            <para/>
+            <para><userinput>uris=@MUSIC@;/home/user/My Pictures;file:///home/user/My%20Videos</userinput></para>
+          </example>
         </listitem>
       </varlistentry>
       <varlistentry>
