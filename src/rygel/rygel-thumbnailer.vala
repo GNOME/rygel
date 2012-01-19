@@ -61,10 +61,11 @@ internal class Rygel.Thumbnailer : GLib.Object {
             } else {
                 this.template.mime_type = "image/png";
                 this.template.dlna_profile = "PNG_TN";
+                this.template.file_extension = "png";
                 this.template.width = 128;
                 this.template.height = 128;
                 this.template.depth = 32;
-                this.extension = ".png";
+                this.extension = "." + this.template.file_extension;
             }
         } else {
             this.template.width = 124;

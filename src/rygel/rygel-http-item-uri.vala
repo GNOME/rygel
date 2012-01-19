@@ -72,8 +72,7 @@ internal class Rygel.HTTPItemURI : Object {
                 this.extension = "jpg";
                 // what now? throw an error?
             }
-        }
-        else if (subtitle_index > -1) {
+        } else if (subtitle_index > -1) {
             if (item is VideoItem) {
                 var subtitles = (item as VideoItem).subtitles;
 
@@ -87,14 +86,14 @@ internal class Rygel.HTTPItemURI : Object {
                 // what now? throw an error?
                 this.extension = "srt";
             }
-        }
-        else if (transcode_target != null) {
+        } else if (transcode_target != null) {
             try {
                 var tc = this.http_server.get_transcoder (transcode_target);
 
                 this.extension = tc.extension;
-            } catch (Error err) {}
+            } catch (Error error) {}
         }
+
         if (this.extension == "") {
             string uri_extension = "";
 
@@ -104,12 +103,13 @@ internal class Rygel.HTTPItemURI : Object {
 
                 if (dot_index > -1) {
                     uri_extension = basename.substring (dot_index + 1);
+
                     break;
                 }
             }
 
             if (uri_extension == "") {
-                this.extension = ext_from_mime_type (item.mime_type);
+                this.extension = this.ext_from_mime_type (item.mime_type);
             } else {
                 this.extension = uri_extension;
             }
@@ -211,7 +211,7 @@ internal class Rygel.HTTPItemURI : Object {
             foreach (string video in videos) {
                 mime_to_ext.set ("video/" + video, video);
             }
-            mime_to_ext.set("video/x-matroska", "mkv");
+            mime_to_ext.set ("video/x-matroska", "mkv");
 
             // audios
             mime_to_ext.set ("audio/x-wav", "wav");
