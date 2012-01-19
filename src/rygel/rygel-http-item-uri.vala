@@ -64,13 +64,7 @@ internal class Rygel.HTTPItemURI : Object {
 
                 if (thumbnails.size > thumbnail_index) {
                     this.extension = thumbnails[thumbnail_index].file_extension;
-                } else {
-                    this.extension = "jpg";
-                    // what now? throw an error?
                 }
-            } else {
-                this.extension = "jpg";
-                // what now? throw an error?
             }
         } else if (subtitle_index > -1) {
             if (item is VideoItem) {
@@ -78,13 +72,6 @@ internal class Rygel.HTTPItemURI : Object {
 
                 if (subtitles.size > subtitle_index) {
                     this.extension = subtitles[subtitle_index].caption_type;
-                } else {
-                    // what now? throw an error?
-                    this.extension = "srt";
-                }
-            } else {
-                // what now? throw an error?
-                this.extension = "srt";
             }
         } else if (transcode_target != null) {
             try {
