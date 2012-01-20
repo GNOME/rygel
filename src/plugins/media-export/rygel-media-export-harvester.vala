@@ -33,13 +33,24 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
     private Regex file_filter;
     private Cancellable cancellable;
 
+    // Properties
+    public ArrayList<File> locations { get; private set; }
+
     public signal void done ();
 
     /**
      * Create a new instance of the meta-data extraction manager.
      */
-    public Harvester (Cancellable cancellable) {
+    public Harvester (Cancellable     cancellable,
+                      ArrayList<File> locations) {
         this.cancellable = cancellable;
+        this.locations = new ArrayList<File> ((EqualFunc) File.equal);
+        foreach (var file in locations) {
+            if (file.query_exists ()) {
+                this.locations.add (file);
+            }
+        }
+
         this.extractor = new MetadataExtractor ();
 
         this.monitor = new RecursiveFileMonitor (cancellable);
@@ -178,9 +189,19 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                         var parent = current.get_parent ();
                         id = MediaCache.get_id (parent);
                         parent_container = cache.get_object (id)
-                            as MediaContainer;
+                                        as MediaContainer;
+
                         if (parent_container == null) {
                             current = parent;
+                        }
+
+                        if (current in this.locations) {
+                            // We have reached the top
+                            parent_container = cache.get_object
+                                        (RootContainer.FILESYSTEM_FOLDER_ID)
+                                        as MediaContainer;
+
+                            break;
                         }
                     } while (parent_container == null);
 

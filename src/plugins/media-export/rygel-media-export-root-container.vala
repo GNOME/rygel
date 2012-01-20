@@ -348,7 +348,6 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         base (db, "0", _("@REALNAME@'s media"));
 
         this.cancellable = new Cancellable ();
-        this.harvester = new Harvester (this.cancellable);
 
         try {
             this.service = new DBusService (this);
@@ -377,15 +376,15 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             ids = new ArrayList<string> ();
         }
 
+        this.harvester = new Harvester (this.cancellable,
+                                        this.get_shared_uris ());
         this.harvester_signal_id = this.harvester.done.connect
                                         (on_initial_harvesting_done);
 
-        foreach (var file in this.get_shared_uris ()) {
-            if (file.query_exists (null)) {
-                ids.remove (MediaCache.get_id (file));
-                this.harvester.schedule (file,
-                                         this.filesystem_container);
-            }
+        foreach (var file in this.harvester.locations) {
+            ids.remove (MediaCache.get_id (file));
+            this.harvester.schedule (file,
+                                     this.filesystem_container);
         }
 
         foreach (var id in ids) {
