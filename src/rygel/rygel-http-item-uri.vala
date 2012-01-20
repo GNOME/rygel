@@ -72,6 +72,7 @@ internal class Rygel.HTTPItemURI : Object {
 
                 if (subtitles.size > subtitle_index) {
                     this.extension = subtitles[subtitle_index].caption_type;
+                }
             }
         } else if (transcode_target != null) {
             try {
