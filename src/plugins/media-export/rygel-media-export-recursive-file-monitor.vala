@@ -41,8 +41,8 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
         }
 
         this.cancellable = cancellable;
-        this.monitors = new HashMap<File, FileMonitor> (GLib.file_hash,
-                                                        GLib.file_equal);
+        this.monitors = new HashMap<File, FileMonitor> (File.hash,
+                                                        (EqualFunc) File.equal);
         if (cancellable != null) {
             cancellable.cancelled.connect (this.cancel);
         }
@@ -83,7 +83,7 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
 
         try {
             var info = yield file.query_info_async
-                                        (FILE_ATTRIBUTE_STANDARD_TYPE,
+                                        (FileAttribute.STANDARD_TYPE,
                                          FileQueryInfoFlags.NONE,
                                          Priority.DEFAULT,
                                          null);

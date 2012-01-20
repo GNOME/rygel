@@ -109,12 +109,12 @@ internal class Rygel.Thumbnailer : GLib.Object {
             this.thumbler.queue_thumbnail_task (uri, mime_type);
         }
 
-        var info = file.query_info (FILE_ATTRIBUTE_ACCESS_CAN_READ + "," +
-                                    FILE_ATTRIBUTE_STANDARD_SIZE,
+        var info = file.query_info (FileAttribute.ACCESS_CAN_READ + "," +
+                                    FileAttribute.STANDARD_SIZE,
                                     FileQueryInfoFlags.NONE,
                                     null);
 
-        if (!info.get_attribute_boolean (FILE_ATTRIBUTE_ACCESS_CAN_READ)) {
+        if (!info.get_attribute_boolean (FileAttribute.ACCESS_CAN_READ)) {
             throw new ThumbnailerError.NO_THUMBNAIL
                                         (_("No thumbnail available"));
         }
@@ -127,7 +127,7 @@ internal class Rygel.Thumbnailer : GLib.Object {
         thumbnail.depth = this.template.depth;
         thumbnail.uri = Filename.to_uri (full_path, null);
         thumbnail.size = (int64) info.get_attribute_uint64
-                                        (FILE_ATTRIBUTE_STANDARD_SIZE);
+                                        (FileAttribute.STANDARD_SIZE);
 
         return thumbnail;
     }

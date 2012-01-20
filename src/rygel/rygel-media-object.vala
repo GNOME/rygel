@@ -190,12 +190,12 @@ public abstract class Rygel.MediaObject : GLib.Object {
 
         try {
             var info = yield file.query_info_async (
-                    FILE_ATTRIBUTE_ACCESS_CAN_WRITE,
+                    FileAttribute.ACCESS_CAN_WRITE,
                     FileQueryInfoFlags.NONE,
                     Priority.DEFAULT,
                     cancellable);
 
-            return info.get_attribute_boolean (FILE_ATTRIBUTE_ACCESS_CAN_WRITE);
+            return info.get_attribute_boolean (FileAttribute.ACCESS_CAN_WRITE);
         } catch (IOError.NOT_FOUND error) {
             return true;
         }

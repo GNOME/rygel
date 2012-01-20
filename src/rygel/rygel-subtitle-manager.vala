@@ -55,12 +55,12 @@ internal class Rygel.SubtitleManager : GLib.Object {
 
         var srt_file = directory.get_child (filename);
 
-        var info = srt_file.query_info (FILE_ATTRIBUTE_ACCESS_CAN_READ + "," +
-                                        FILE_ATTRIBUTE_STANDARD_SIZE,
+        var info = srt_file.query_info (FileAttribute.ACCESS_CAN_READ + "," +
+                                        FileAttribute.STANDARD_SIZE,
                                         FileQueryInfoFlags.NONE,
                                         null);
 
-        if (!info.get_attribute_boolean (FILE_ATTRIBUTE_ACCESS_CAN_READ)) {
+        if (!info.get_attribute_boolean (FileAttribute.ACCESS_CAN_READ)) {
             throw new SubtitleManagerError.NO_SUBTITLE
                                         (_("No subtitle available"));
         }
@@ -68,7 +68,7 @@ internal class Rygel.SubtitleManager : GLib.Object {
         var subtitle = new Subtitle ();
         subtitle.uri = srt_file.get_uri ();
         subtitle.size = (int64) info.get_attribute_uint64
-                                        (FILE_ATTRIBUTE_STANDARD_SIZE);
+                                        (FileAttribute.STANDARD_SIZE);
 
         return subtitle;
     }

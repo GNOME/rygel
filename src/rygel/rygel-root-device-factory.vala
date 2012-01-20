@@ -322,14 +322,14 @@ internal class Rygel.RootDeviceFactory {
             return new XMLDoc.from_path (path2);
         }
 
-        var info = file.query_info (FILE_ATTRIBUTE_TIME_MODIFIED,
+        var info = file.query_info (FileAttribute.TIME_MODIFIED,
                                     FileQueryInfoFlags.NONE);
-        var mod1 = info.get_attribute_uint64 (FILE_ATTRIBUTE_TIME_MODIFIED);
+        var mod1 = info.get_attribute_uint64 (FileAttribute.TIME_MODIFIED);
 
         file = File.new_for_path (path2);
-        info = file.query_info (FILE_ATTRIBUTE_TIME_MODIFIED,
+        info = file.query_info (FileAttribute.TIME_MODIFIED,
                                 FileQueryInfoFlags.NONE);
-        var mod2 = info.get_attribute_uint64 (FILE_ATTRIBUTE_TIME_MODIFIED);
+        var mod2 = info.get_attribute_uint64 (FileAttribute.TIME_MODIFIED);
 
         if (mod1 > mod2) {
             return new XMLDoc.from_path (path1);

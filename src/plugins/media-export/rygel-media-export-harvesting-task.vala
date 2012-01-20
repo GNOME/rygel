@@ -37,10 +37,10 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
     public Cancellable cancellable { get; set; }
 
     private const string HARVESTER_ATTRIBUTES =
-                                        FILE_ATTRIBUTE_STANDARD_NAME + "," +
-                                        FILE_ATTRIBUTE_STANDARD_TYPE + "," +
-                                        FILE_ATTRIBUTE_TIME_MODIFIED + "," +
-                                        FILE_ATTRIBUTE_STANDARD_SIZE;
+                                        FileAttribute.STANDARD_NAME + "," +
+                                        FileAttribute.STANDARD_TYPE + "," +
+                                        FileAttribute.TIME_MODIFIED + "," +
+                                        FileAttribute.STANDARD_SIZE;
 
 
     public HarvestingTask (MetadataExtractor    extractor,
@@ -142,7 +142,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         try {
             if (this.cache.exists (file, out timestamp, out size)) {
                 int64 mtime = (int64) info.get_attribute_uint64
-                                        (FILE_ATTRIBUTE_TIME_MODIFIED);
+                                        (FileAttribute.TIME_MODIFIED);
 
                 if (mtime > timestamp ||
                     info.get_size () != size) {

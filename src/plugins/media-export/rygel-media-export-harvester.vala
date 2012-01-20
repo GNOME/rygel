@@ -56,9 +56,10 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         this.monitor = new RecursiveFileMonitor (cancellable);
         this.monitor.changed.connect (this.on_file_changed);
 
-        this.tasks = new HashMap<File, HarvestingTask> (file_hash, file_equal);
-        this.extraction_grace_timers = new HashMap<File, uint> (file_hash,
-                                                                file_equal);
+        this.tasks = new HashMap<File, HarvestingTask> (File.hash,
+                                                        (EqualFunc) File.equal);
+        this.extraction_grace_timers = new HashMap<File, uint> (File.hash,
+                                                                (EqualFunc)File.equal);
         this.create_file_filter ();
     }
 

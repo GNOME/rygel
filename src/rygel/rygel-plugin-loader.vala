@@ -98,9 +98,9 @@ public class Rygel.PluginLoader : Object {
     private async void load_modules_from_dir (File dir) {
         debug ("Searching for modules in folder '%s'.", dir.get_path ());
 
-        string attributes = FILE_ATTRIBUTE_STANDARD_NAME + "," +
-                            FILE_ATTRIBUTE_STANDARD_TYPE + "," +
-                            FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE;
+        string attributes = FileAttribute.STANDARD_NAME + "," +
+                            FileAttribute.STANDARD_TYPE + "," +
+                            FileAttribute.STANDARD_CONTENT_TYPE;
 
         GLib.List<FileInfo> infos;
         FileEnumerator enumerator;
@@ -187,7 +187,7 @@ public class Rygel.PluginLoader : Object {
         FileInfo file_info;
 
         try {
-            file_info = file.query_info (FILE_ATTRIBUTE_STANDARD_TYPE,
+            file_info = file.query_info (FileAttribute.STANDARD_TYPE,
                                          FileQueryInfoFlags.NONE,
                                          null);
         } catch (Error error) {

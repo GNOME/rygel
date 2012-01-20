@@ -128,10 +128,10 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
             try {
                 file_info = file.query_info
-                                        (FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE
+                                        (FileAttribute.STANDARD_CONTENT_TYPE
                                          + "," +
-                                         FILE_ATTRIBUTE_STANDARD_SIZE + "," +
-                                         FILE_ATTRIBUTE_TIME_MODIFIED,
+                                         FileAttribute.STANDARD_SIZE + "," +
+                                         FileAttribute.TIME_MODIFIED,
                                          FileQueryInfoFlags.NONE,
                                          null);
             } catch (Error error) {
@@ -148,7 +148,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             var mime = ContentType.get_mime_type (content_type);
             var size = file_info.get_size ();
             var mtime = file_info.get_attribute_uint64
-                                        (FILE_ATTRIBUTE_TIME_MODIFIED);
+                                        (FileAttribute.TIME_MODIFIED);
 
             this.extraction_done (file,
                                   dlna,

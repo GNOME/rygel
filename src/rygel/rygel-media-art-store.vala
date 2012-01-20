@@ -72,11 +72,11 @@ public class Rygel.MediaArtStore : GLib.Object {
             return null;
         }
 
-        var info = file.query_info (FILE_ATTRIBUTE_ACCESS_CAN_READ + "," +
-                                    FILE_ATTRIBUTE_STANDARD_SIZE,
+        var info = file.query_info (FileAttribute.ACCESS_CAN_READ + "," +
+                                    FileAttribute.STANDARD_SIZE,
                                     FileQueryInfoFlags.NONE,
                                     null);
-        if (!info.get_attribute_boolean (FILE_ATTRIBUTE_ACCESS_CAN_READ)) {
+        if (!info.get_attribute_boolean (FileAttribute.ACCESS_CAN_READ)) {
             return null;
         }
 
