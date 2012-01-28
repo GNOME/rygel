@@ -82,7 +82,7 @@ public interface Rygel.SearchableContainer : MediaContainer {
         // The maximum number of results we need to be able to slice-out
         // the needed portion from it.
         uint limit;
-        if (offset > 0 || max_count > 0) {
+        if (max_count > 0) {
             limit = offset + max_count;
         } else {
             limit = 0; // No limits on searches
@@ -110,29 +110,32 @@ public interface Rygel.SearchableContainer : MediaContainer {
             result.add_all (child_results);
         }
 
+        // Since we limited our search, we don't know how many objects
+        // actually satisfy the give search expression
+        if (max_count > 0) {
+            total_matches = 0;
+        } else {
+            total_matches = result.size;
+        }
+
+        if (offset >= result.size) {
+            return new MediaObjects ();
+        }
+
         // See if we need to slice the results
-        if (result.size > 0 && limit > 0) {
-            uint start;
+        if (result.size > 0 && (max_count > 0 || offset > 0)) {
             uint stop;
 
-            start = offset.clamp (0, result.size - 1);
-
-            if (max_count != 0 && start + max_count <= result.size) {
-                stop = start + max_count;
+            if (max_count != 0 && offset + max_count <= result.size) {
+                stop = offset + max_count;
             } else {
                 stop = result.size;
             }
 
-            // Since we limited our search, we don't know how many objects
-            // actually satisfy the give search expression
-            total_matches = 0;
-
-            return result.slice ((int) start, (int) stop) as MediaObjects;
-        } else {
-            total_matches = result.size;
-
-            return result;
+            return result.slice ((int) offset, (int) stop) as MediaObjects;
         }
+
+        return result;
     }
 
     /**
