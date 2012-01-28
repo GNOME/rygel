@@ -98,11 +98,21 @@ public abstract class Rygel.MediaItem : MediaObject {
 
     // Live media items need to provide a nice working implementation of this
     // method if they can/do not provide a valid URI
-    public virtual Element? create_stream_source () {
+    public virtual Element? create_stream_source (string? host_ip = null) {
         dynamic Element src = null;
 
         if (this.uris.size != 0) {
-            src = GstUtils.create_source_for_uri (this.uris.get (0));
+            string translated_uri = this.uris.get (0);
+            if (host_ip != null) {
+                try {
+                    translated_uri = this.address_regex.replace_literal
+                                        (this.uris.get (0), -1, 0, host_ip);
+                } catch (Error error) {
+                    assert_not_reached ();
+                }
+            }
+
+            src = GstUtils.create_source_for_uri (translated_uri);
         }
 
         return src;

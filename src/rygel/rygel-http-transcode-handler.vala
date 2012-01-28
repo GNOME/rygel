@@ -51,7 +51,8 @@ internal class Rygel.HTTPTranscodeHandler : HTTPGetHandler {
     public override HTTPResponse render_body (HTTPGet request)
                                               throws HTTPRequestError {
         var item = request.item;
-        var src = item.create_stream_source ();
+        var src = item.create_stream_source
+                                        (request.http_server.context.host_ip);
         if (src == null) {
             throw new HTTPRequestError.NOT_FOUND (_("Not found"));
         }
