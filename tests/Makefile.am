@@ -36,7 +36,8 @@ check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-http-time-seek-test \
 		 rygel-http-get-test \
 		 rygel-album-art-spec-test \
-		 rygel-http-post-test
+		 rygel-http-post-test \
+		 rygel-searchable-container-test
 
 TESTS = $(check_PROGRAMS)
 
@@ -76,6 +77,11 @@ rygel_album_art_spec_test_SOURCES = rygel-album-art-spec-test.vala \
 			       rygel-media-art-store.vala \
 				   ../src/rygel/rygel-thumbnail.vala \
 				   ../src/rygel/rygel-icon-info.vala
+
+rygel_searchable_container_test_SOURCES = \
+	rygel-searchable-container.vala \
+	rygel-searchable-container-test.vala
+
 
 if ALWAYS_TEST
 all-local: check
