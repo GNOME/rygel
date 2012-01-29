@@ -39,7 +39,7 @@ public class Rygel.Test.VideoItem : Rygel.VideoItem {
         this.mime_type = TEST_MIMETYPE;
     }
 
-    public override Element? create_stream_source () {
+    public override Element? create_stream_source (string? host_ip) {
         try {
             return parse_bin_from_description (PIPELINE, true);
         } catch (Error err) {

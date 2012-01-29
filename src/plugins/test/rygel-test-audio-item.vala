@@ -37,7 +37,7 @@ public class Rygel.Test.AudioItem : Rygel.AudioItem {
         this.mime_type = TEST_MIMETYPE;
     }
 
-    public override Element? create_stream_source () {
+    public override Element? create_stream_source (string? host_ip) {
         try {
             return parse_bin_from_description (PIPELINE, true);
         } catch (Error err) {
