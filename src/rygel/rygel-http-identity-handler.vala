@@ -83,6 +83,9 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
         } else {
             src = request.item.create_stream_source
                                         (request.http_server.context.host_ip);
+            if (src.is_floating ()) {
+                src.ref_sink ();
+            }
         }
 
         if (src == null) {
