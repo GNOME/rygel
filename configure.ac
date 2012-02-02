@@ -49,6 +49,10 @@ GSTREAMER_TAG_REQUIRED=0.10.28
 GSTREAMER_APP_REQUIRED=0.10.28
 LIBSQLITE3_REQUIRED=3.5
 
+dnl Additional requirements for tracker plugin
+TRACKER_SPARQL_REQUIRED_MIN=0.12.7
+TRACKER_SPARQL_REQUIRED_MAX=0.12.9999
+
 PKG_CHECK_MODULES(LIBGLIB, glib-2.0 >= $GLIB_REQUIRED)
 VALAFLAGS="--target-glib=2.32 $VALAFLAGS"
 
@@ -182,6 +186,15 @@ then
         AC_SUBST([COLLATION_LIBS])
     fi
 fi
+
+AS_IF([test "x$enable_tracker_plugin" = "xyes"],
+  [
+    PKG_CHECK_MODULES(TRACKER_SPARQL,
+                      tracker-sparql-0.12 >= $TRACKER_SPARQL_REQUIRED_MIN
+                      tracker-sparql-0.12 <= $TRACKER_SPARQL_REQUIRED_MAX)
+    AS_IF([test "x$enable_vala" = "xyes"],
+          [VALA_CHECK_PACKAGES([tracker-sparql-0.12])])
+  ])
 
 dnl Gettext
 GETTEXT_PACKAGE=rygel
