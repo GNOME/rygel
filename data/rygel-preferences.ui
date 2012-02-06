@@ -98,6 +98,8 @@
                   <object class="GtkToolbar" id="toolbar1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="toolbar_style">icons</property>
+                    <property name="icon_size">1</property>
                     <child>
                       <object class="GtkToolButton" id="add-button">
                         <property name="use_action_appearance">False</property>
@@ -115,13 +117,12 @@
                     </child>
                     <child>
                       <object class="GtkToolButton" id="remove-button">
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Remove a directory from the list of shared directories</property>
                         <property name="use_action_appearance">False</property>
                         <property name="label" translatable="yes">Remove shared directory</property>
-                        <property name="icon_name">list-add-symbolic</property>
+                        <property name="icon_name">list-remove-symbolic</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
