@@ -42,16 +42,40 @@ public class Rygel.ClientHacks {
     }
 }
 
+public class Rygel.TestRequestFactory {
+    public Soup.Message msg;
+    public Soup.KnownStatusCode? expected_code;
+    public bool cancel;
+
+    public TestRequestFactory (Soup.Message msg,
+                               Soup.KnownStatusCode? expected_code,
+                               bool cancel = false) {
+        this.msg = msg;
+        this.expected_code = expected_code;
+        this.cancel = cancel;
+    }
+
+    internal HTTPPost create_post (HTTPServer http_server,
+                                   Soup.Server server,
+                                   Soup.Message msg) {
+        HTTPPost request = new HTTPPost (http_server, server, msg);
+
+        return request;
+    }
+}
+
 public class Rygel.HTTPPostTest : GLib.Object {
     protected HTTPServer server;
     protected HTTPClient client;
-
     private bool server_done;
     private bool client_done;
+    private bool ready;
 
     private MainLoop main_loop;
-
     private Error error;
+
+    private ArrayList<TestRequestFactory> requests;
+    private TestRequestFactory current_request;
 
     public static int main (string[] args) {
         try {
@@ -71,20 +95,21 @@ public class Rygel.HTTPPostTest : GLib.Object {
 
     public HTTPPostTest () throws Error {
         this.server = new HTTPServer ();
-        this.client = new HTTPClient (this.server.context,
-                                      this.server.uri);
+        this.client = new HTTPClient (this.server.context);
         this.main_loop = new MainLoop (null, false);
+        this.create_test_messages();
     }
 
     public virtual void run () throws Error {
         // cleanup
         var file = File.new_for_uri (MediaItem.URI);
         FileUtils.remove (file.get_path ());
+
         Timeout.add_seconds (3, this.on_timeout);
         this.server.message_received.connect (this.on_message_received);
         this.client.completed.connect (this.on_client_completed);
 
-        this.client.run.begin ();
+        this.start_next_test_request ();
 
         this.main_loop.run ();
 
@@ -93,15 +118,63 @@ public class Rygel.HTTPPostTest : GLib.Object {
         }
     }
 
+    private void create_test_messages () {
+        requests = new ArrayList<TestRequestFactory> ();
+
+        var request = new Soup.Message ("POST", this.server.uri);
+        requests.add (new TestRequestFactory (request, Soup.KnownStatusCode.OK));
+
+        request = new Soup.Message ("POST", this.server.uri);
+        requests.add (new TestRequestFactory (request,
+                                             Soup.KnownStatusCode.NOT_FOUND));
+
+        request = new Soup.Message ("POST", this.server.create_uri ("NullItem"));
+        requests.add (new TestRequestFactory (request,
+                                              Soup.KnownStatusCode.BAD_REQUEST));
+
+        request = new Soup.Message ("POST",
+                                    this.server.create_uri ("ErrorItem"));
+        requests.add (new TestRequestFactory (request,
+                                              Soup.KnownStatusCode.OK));
+
+        request = new Soup.Message ("POST",
+                                    this.server.create_uri ("CancelItem"));
+        requests.add (new TestRequestFactory (request,
+                                              Soup.KnownStatusCode.OK, true));
+
+        request = new Soup.Message ("POST",
+                                    this.server.create_uri ("VanishingItem"));
+        requests.add (new TestRequestFactory (request, Soup.KnownStatusCode.OK));
+    }
+
     private HTTPRequest create_request (Soup.Message msg) throws Error {
-        return new HTTPPost (this.server,
-                            this.server.context.server,
-                            msg);
+        var srv = this.server.context.server;
+        var request = this.current_request.create_post (this.server, srv, msg);
+
+        return request;
+    }
+
+    private void start_next_test_request() {
+        this.current_request = requests.remove_at (0);
+        this.client.msg = this.current_request.msg;
+
+        this.client.run.begin ();
     }
 
     private void on_client_completed (StateMachine client) {
-        this.client_done = true;
-        this.check_and_exit.begin ();
+        if (requests.size > 0) {
+            if (this.server_done) {
+                this.server_done = false;
+                this.start_next_test_request ();
+            } else {
+                this.ready = true;
+            }
+        } else {
+            if (this.server_done) {
+                this.main_loop.quit ();
+            }
+            this.client_done = true;
+        }
     }
 
     private void on_message_received (HTTPServer   server,
@@ -113,12 +186,26 @@ public class Rygel.HTTPPostTest : GLib.Object {
         try {
             var request = this.create_request (msg);
 
-            yield request.run ();
+            if (this.current_request.cancel) {
+                request.cancellable.cancel ();
+            } else {
+                yield request.run ();
 
-            assert ((request as HTTPPost).item != null);
+                debug ("status.code: %d", (int) msg.status_code);
+                assert (msg.status_code == this.current_request.expected_code);
 
-            this.server_done = true;
-            this.check_and_exit.begin ();
+                this.check_result.begin ();
+            }
+
+            if (this.client_done) {
+                this.main_loop.quit ();
+            } else if (this.ready) {
+                this.ready = false;
+
+                start_next_test_request ();
+            } else {
+                this.server_done = true;
+            }
         } catch (Error error) {
             this.error = error;
             this.main_loop.quit ();
@@ -134,26 +221,23 @@ public class Rygel.HTTPPostTest : GLib.Object {
         return false;
     }
 
-    private async void check_and_exit () {
-        if (!(this.server_done && this.client_done)) {
-            return;
-        }
-
+    private async void check_result () {
         try {
             var file = this.server.root_container.item.file;
             var stream = yield file.read_async (Priority.HIGH, null);
             var buffer = new uint8[HTTPClient.LENGTH];
-
             yield stream.read_async (buffer, Priority.HIGH, null);
 
             for (var i = 0; i < HTTPClient.LENGTH; i++) {
                 assert (buffer[i] == this.client.content[i]);
             }
+        } catch (IOError.NOT_FOUND e) {
+            return;
         } catch (Error error) {
             this.error = error;
-        }
 
-        this.main_loop.quit ();
+            this.main_loop.quit ();
+        }
     }
 }
 
@@ -170,11 +254,16 @@ public class Rygel.HTTPServer : GLib.Object {
 
     public string uri {
         owned get {
-            var item_uri = new HTTPItemURI (this.root_container.item,
-                                            this);
-
+			var item = new MediaItem (this.root_container.ITEM_ID, this.root_container);
+			var item_uri = new HTTPItemURI (item, this);
             return item_uri.to_string ();
         }
+    }
+
+    public string create_uri(string item_id) {
+        var item = new MediaItem (item_id, this.root_container);
+        var item_uri = new HTTPItemURI (item, this);
+        return item_uri.to_string ();
     }
 
     public signal void message_received (Soup.Message message);
@@ -225,13 +314,9 @@ public class Rygel.HTTPClient : GLib.Object, StateMachine {
 
     public Cancellable cancellable { get; set; }
 
-    public HTTPClient (GUPnP.Context context,
-                       string        uri) {
+    public HTTPClient (GUPnP.Context context) {
         this.context = context;
         this.content = new uint8[1024];
-
-        this.msg = new Soup.Message ("POST",  uri);
-        assert (this.msg != null);
     }
 
     public async void run () {
@@ -256,13 +341,19 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
 
     public string id = "TesContainer";
     public MediaItem item;
+    private bool vanish;
+    private bool error;
 
+    public File file;
     private FileMonitor monitor;
 
     public MediaContainer () {
+        this.file = File.new_for_uri (MediaItem.URI);
         this.item = new MediaItem (ITEM_ID, this);
+        this.vanish = false;
+        this.error = false;
 
-        this.monitor = this.item.file.monitor_file (FileMonitorFlags.NONE);
+        this.monitor = this.file.monitor_file (FileMonitorFlags.NONE);
         this.monitor.changed.connect (this.on_file_changed);
     }
 
@@ -278,11 +369,28 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
 
         yield;
 
-        if (item_id == ITEM_ID) {
-            return this.item;
-        } else {
-            return null;
+        if (item_id == "ErrorItem" && this.error) {
+            var msg = _("Fake error caused by %s object.");
+            this.file.delete (null);
+
+            throw new ContentDirectoryError.INVALID_ARGS (msg, item_id);
+        } else if (item_id == "ErrorItem" && !this.error) {
+            this.error = true;
         }
+
+        if (item_id == "VanishingItem" && this.vanish) {
+            this.file.delete (null);
+
+            return null;
+        } else if (item_id == "VanishingItem" && !this.vanish) {
+            this.vanish = true;
+        }
+
+        if (item_id != this.item.id) {
+            this.item = new MediaItem (item_id, this);
+        }
+
+        return this.item;
     }
 
     public void on_file_changed (FileMonitor      monitor,
@@ -290,7 +398,16 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
                                  File?            other_file,
                                  FileMonitorEvent event_type) {
         this.item.place_holder = false;
+
         this.container_updated (this);
+    }
+
+    ~MediaContainer() {
+        try {
+            this.file.delete (null);
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
     }
 }
 
@@ -314,15 +431,7 @@ public class Rygel.MediaItem : Rygel.MediaObject {
         this.id = id;
         this.parent = parent;
 
-        this.file = File.new_for_uri (URI);
-    }
-
-    ~MediaItem() {
-        try {
-            this.file.delete (null);
-        } catch (GLib.Error error) {
-            assert_not_reached ();
-        }
+        this.file = parent.file;
     }
 
     public async File? get_writable (Cancellable? cancellable) throws Error {
@@ -336,7 +445,13 @@ public class Rygel.MediaItem : Rygel.MediaObject {
 
         yield;
 
-        return this.file;
+        if (this.id == "NullItem") {
+            this.file.delete (null);
+
+            return null;
+        } else {
+            return this.file;
+        }
     }
 }
 
@@ -348,6 +463,7 @@ internal class Rygel.HTTPResponse : Rygel.StateMachine, GLib.Object {
 
     public HTTPResponse (HTTPPost get_request) {
         this.msg = get_request.msg;
+
         this.server = get_request.server;
     }
 
