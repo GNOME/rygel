@@ -1,3 +1,97 @@
+0.13.1
+======
+
+A new release in the current unstable release cycle
+
+Changes compared to 0.13.0:
+
+- Fix MPEG2 transcoding to not fail due to a typo in the container caps.
+- Output debug information about the used transcoding profile.
+- Fix AVC transcoding: Framerate and resource resolution.
+- Some documentation updates.
+- Simplify the RTP depayloader guessing code by using GStreamer functionality.
+- Stop leaking HTTPRequests due to a ref cycle.
+- Some stability errors and conformance changes.
+- Add coverage reports for unittests.
+- Increase the coverage of some classes.
+- Fix basic search implementation for offset > 0 and limit == 0.
+- Add an environment variable to set the time-out for plug-in loading to help
+  when running in valgrind.
+
+IOP:
+ - More refactoring: Version downgrade is not longer bound to the XBox 360
+   hacks and configurable. That makes the ugly trailing colon disappear for
+   devices that are not a XBox 360 but still need the downgrade.
+ - Add hacks for XBMC which has problems to play AAC/M4A files shared with the
+   "correct" DLNA mime-type.
+ - Fix Slideshow option in XBox 360 when called from top-level image browser.
+ - If a time-seek requests everything, just ignore that it's a seek.
+ - Add a file extension to all served URIs to help those devices that need
+   them.
+ - Fix an issue where Windows Media Player 12 only showed the first 200 items.
+
+UI:
+ - Minor clean-up and polishing.
+ - Tooltips.
+
+Tracker:
+ - Get rid of work-around for gnome-bug 623685
+
+MediaExport:
+ - Fix a regression in the file monitor that caused moved files to be missed.
+ - Update the documentation to clarify how to enter URIs in the configuration
+   file.
+ - Fix an endless loop when adding media to an empty but watched directory.
+ - Delay the creation of the virtual folder hierarchy until the initial walk
+   is done.
+
+Mediathek:
+ - Update the documentation on how to configure it and distribute those.
+
+MPRIS:
+ - Add possibility to disable the whole module.
+
+External:
+ - Don't crash if the D-Bus server doesn't behave as specified when sending
+   updates.
+ - Transcoding/Proxying if the uri contained the @ADDRESS@ template
+ - Fix icons; it was still using the MediaItem1 interface.
+ - Update child count properly if container changes.
+ - Add possibility to disable the whole module.
+
+Changes in dependencies:
+ - Require Vala 0.14.1 for GStreamer VAPI fixes.
+
+Bugs fixed:
+ https://bugzilla.gnome.org/show_bug.cgi?id=659432
+ https://bugzilla.redhat.com/show_bug.cgi?id=759206
+ https://bugzilla.gnome.org/show_bug.cgi?id=666363
+ https://bugzilla.gnome.org/show_bug.cgi?id=644538
+ https://bugzilla.gnome.org/show_bug.cgi?id=668335
+ https://bugzilla.gnome.org/show_bug.cgi?id=663826
+ https://bugzilla.gnome.org/show_bug.cgi?id=653120
+ https://bugzilla.gnome.org/show_bug.cgi?id=663631
+ https://bugzilla.gnome.org/show_bug.cgi?id=669677
+ https://bugzilla.gnome.org/show_bug.cgi?id=669680
+
+Updated/Added translations:
+ - es, courtesy of Daniel Mustieles
+ - fr, courtesy of Alexandre Franke
+ - ja, courtesy of Jiro Matsuzawa
+ - pl, courtesy of Piotr Drąg
+
+All contributors to this release:
+ Jens Georg <mail@jensge.org>
+ Marcin Kazmierczak <marcin.kazmierczak@comarch.com>
+ Krzesimir Nowak <qdlacz@gmail.com>
+ Piotr Drąg <piotrdrag@gmail.com>
+ Lukasz Pawlik <lucas.pawlik@gmail.com>
+ Jiro Matsuzawa <jmatsuzawa@src.gnome.org>
+ David King <amigadave@amigadave.com>
+ Daniel Mustieles <daniel.mustieles@gmail.com>
+ Alexandre Franke <alexandre.franke@gmail.com>
+
+
 0.13.0
 ======
 
