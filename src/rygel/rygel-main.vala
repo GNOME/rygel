@@ -83,7 +83,16 @@ public class Rygel.Main : Object {
         this.context_manager = this.create_context_manager ();
         this.plugin_loader.load_plugins ();
 
-        Timeout.add_seconds (PLUGIN_TIMEOUT, () => {
+        var timeout = PLUGIN_TIMEOUT;
+        try {
+            var config = MetaConfig.get_default ();
+            timeout = config.get_int ("plugin",
+                                      "TIMEOUT",
+                                      PLUGIN_TIMEOUT,
+                                      int.MAX);
+        } catch (Error error) {};
+
+        Timeout.add_seconds (timeout, () => {
             if (this.plugin_loader.list_plugins ().size == 0) {
                 warning (ngettext ("No plugins found in %d second; giving up..",
                                    "No plugins found in %d seconds; giving up..",
