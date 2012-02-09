@@ -274,6 +274,22 @@ public class Rygel.External.Container : Rygel.MediaContainer,
 
     private async void update_container (bool connect_signal = false) {
         try {
+            Properties props_iface = yield Bus.get_proxy
+                                        (BusType.SESSION,
+                                         this.service_name,
+                                         this.actual_container.get_object_path (),
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
+            var props = yield props_iface.get_all (MediaContainerProxy.IFACE);
+            var child_count = (uint) props.lookup ("ChildCount");
+            this.title = (string) props.lookup ("DisplayName");
+            this.child_count = (int) child_count;
+        } catch (GLib.Error property_error) {
+            warning ("Failed to update information about container '%s': %s",
+                     this.actual_container.get_object_path (),
+                     property_error.message);
+        }
+
+        try {
             // Update our information about the container
             yield this.refresh_child_containers ();
         } catch (GLib.Error err) {
