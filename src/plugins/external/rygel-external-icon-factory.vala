@@ -25,7 +25,7 @@
 using FreeDesktop;
 
 public class Rygel.External.IconFactory {
-    private static string ITEM_IFACE = "org.gnome.UPnP.MediaItem1";
+    private static string ITEM_IFACE = "org.gnome.UPnP.MediaItem2";
 
     public async IconInfo? create (string                    service_name,
                                    HashTable<string,Variant> container_props)

@@ -128,7 +128,7 @@ public class Rygel.External.PluginFactory {
             return;
         }
 
-        // org.gnome.UPnP.MediaServer1.NAME => /org/gnome/UPnP/MediaServer1/NAME
+        // org.gnome.UPnP.MediaServer2.NAME => /org/gnome/UPnP/MediaServer2/NAME
         var root_object = "/" + service_name.replace (".", "/");
 
         // Create proxy to MediaObject iface to get the display name through
