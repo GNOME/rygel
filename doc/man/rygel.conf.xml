@@ -481,6 +481,10 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
   <refsect1>
     <title>External</title>
     <para>The External plugin is an consumer of the <ulink url="http://live.gnome.org/Rygel/MediaServer2Spec">MediaServer2 DBus interface specification</ulink>. This allows external programs to share their data via UPnP by implementing this DBus specification. The plugin picks up any implementation of this interface on the session bus and exposes the presented media via UPnP. Known implementors of this spec are  <ulink url="http://live.gnome.org/DVBDaemon">gnome-dvb-daemon</ulink>, <ulink url="http://www.rhythmbox.org">Rhythmbox</ulink> and <ulink url="http://live.gnome.org/Grilo">Grilo </ulink> via the grilo-ms2 project.</para>
+    <para>You can disable the whole functionality by setting <userinput>enabled=false</userinput> in the <userinput>[External]</userinput> section of the configuration file.</para>
+    <para>Individual peers may be enabled or disabled by creating sections corresponding to the D-Bus names of the peer:</para>
+    <programlisting>[org.gnome.UPnP.MediaServer2.Rhythmbox]
+enabled=false</programlisting>
     <para>This plugin has no additional options.</para>
   </refsect1>
   <refsect1>

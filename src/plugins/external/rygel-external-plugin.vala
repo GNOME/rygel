@@ -25,6 +25,8 @@
 using FreeDesktop;
 
 public class Rygel.External.Plugin : Rygel.MediaServerPlugin {
+    public const string MODULE_NAME = "External";
+
     public Plugin (string    service_name,
                    string    title,
                    uint      child_count,
