@@ -27,6 +27,7 @@ using Rygel.MPRIS.MediaPlayer;
 using FreeDesktop;
 
 public class Rygel.MPRIS.Plugin : Rygel.MediaRendererPlugin {
+    public const string MODULE_NAME = "MPRIS";
     private const string MEDIA_PLAYER_PATH = "/org/mpris/MediaPlayer2";
 
     public PlayerProxy actual_player;
