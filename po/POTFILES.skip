@@ -109,6 +109,7 @@ src/plugins/tracker/rygel-tracker-videos.c
 src/plugins/tracker/rygel-tracker-years.c
 src/rygel/rygel-aac-transcoder.c
 src/rygel/rygel-audio-item.c
+src/rygel/rygel-audio-transcoder.c
 src/rygel/rygel-avc-transcoder.c
 src/rygel/rygel-av-transport.c
 src/rygel/rygel-browse.c
@@ -121,6 +122,7 @@ src/rygel/rygel-content-directory.c
 src/rygel/rygel-dbus-interface.c
 src/rygel/rygel-dbus-service.c
 src/rygel/rygel-dbus-thumbnailer.c
+src/rygel/rygel-description-file.c
 src/rygel/rygel-environment-config.c
 src/rygel/rygel-free-desktop-interfaces.c
 src/rygel/rygel-gst-utils.c
@@ -186,11 +188,15 @@ src/rygel/rygel-thumbnailer.c
 src/rygel/rygel-transcode-manager.c
 src/rygel/rygel-transcoder.c
 src/rygel/rygel-user-config.c
+src/rygel/rygel-v1-hacks.c
 src/rygel/rygel-video-item.c
+src/rygel/rygel-video-transcoder.c
 src/rygel/rygel-visual-item.c
 src/rygel/rygel-volume.c
+src/rygel/rygel-wmp-hacks.c
 src/rygel/rygel-wmv-transcoder.c
 src/rygel/rygel-writable-container.c
+src/rygel/rygel-xbmc-hacks.c
 src/rygel/rygel-xbox-hacks.c
 src/rygel/rygel-xml-utils.c
 src/ui/rygel-media-pref-section.c
@@ -224,6 +230,8 @@ tests/rygel-http-time-seek_http-get.c
 tests/rygel-http-time-seek-test.c
 tests/rygel-icon-info.c
 tests/rygel-media-art-store.c
+tests/rygel-searchable-container.c
+tests/rygel-searchable-container-test.c
 tests/rygel-state-machine_http-get.c
 tests/rygel-state-machine_http-post.c
 tests/rygel-state-machine_http-response.c
