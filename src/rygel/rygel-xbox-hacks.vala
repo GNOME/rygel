@@ -132,20 +132,52 @@ internal class Rygel.XBoxHacks : ClientHacks {
                                          out uint            total_matches,
                                          Cancellable?        cancellable)
                                          throws Error {
-        var results = yield container.search (expression,
-                                              offset,
-                                              max_count,
-                                              out total_matches,
-                                              cancellable);
-        if (total_matches == 0 && expression is RelationalExpression) {
+        var set_total_matches = false;
+        var modified_expression = expression;
+
+        // check if the XBox is trying to get all the songs.
+        // If so, rewrite the search to exclude @refID items, otherwise they
+        // songs will show up multiple times in the listing.
+        if (expression is RelationalExpression) {
             var rel_expression = expression as RelationalExpression;
 
             if (likely (rel_expression.operand1 != null) &&
                 rel_expression.operand1 == "upnp:class") {
-                total_matches = results.size;
+                set_total_matches = true;
+
+                if (rel_expression.op == SearchCriteriaOp.DERIVED_FROM &&
+                    rel_expression.operand2 != null &&
+                    rel_expression.operand2 == AudioItem.UPNP_CLASS) {
+                    modified_expression = this.rewrite_search_expression
+                                        (expression);
+                }
             }
         }
 
+        var results = yield container.search (modified_expression,
+                                              offset,
+                                              max_count,
+                                              out total_matches,
+                                              cancellable);
+        if (total_matches == 0 && set_total_matches) {
+            total_matches = results.size;
+        }
+
         return results;
+    }
+
+    private SearchExpression rewrite_search_expression
+                                        (SearchExpression expression) {
+        var ref_id_expression = new RelationalExpression ();
+        ref_id_expression.operand1 = "@refID";
+        ref_id_expression.op = SearchCriteriaOp.EXISTS;
+        ref_id_expression.operand2 = "false";
+
+        var new_expression = new LogicalExpression ();
+        new_expression.operand1 = expression;
+        new_expression.op = LogicalOperator.AND;
+        new_expression.operand2 = ref_id_expression;
+
+        return new_expression;
     }
 }
