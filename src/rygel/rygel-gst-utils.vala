@@ -65,6 +65,10 @@ internal abstract class Rygel.GstUtils {
     public static Element? create_source_for_uri (string uri) {
         dynamic Element src = Element.make_from_uri (URIType.SRC, uri, null);
         if (src != null) {
+            if (src.is_floating ()) {
+                src.ref_sink ();
+            }
+
             if (src.get_class ().find_property ("blocksize") != null) {
                 // The default is usually 4KiB which is not really big enough
                 // for most cases so we set this to 65KiB.
