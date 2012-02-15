@@ -65,6 +65,12 @@ internal class Rygel.HTTPItemURI : Object {
                 if (thumbnails.size > thumbnail_index) {
                     this.extension = thumbnails[thumbnail_index].file_extension;
                 }
+            } else if (item is MusicItem) {
+                var album_art = (item as MusicItem).album_art;
+
+                if (album_art != null) {
+                    this.extension = album_art.file_extension;
+                }
             }
         } else if (subtitle_index > -1) {
             if (item is VideoItem) {
