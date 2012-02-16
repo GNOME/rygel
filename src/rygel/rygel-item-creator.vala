@@ -68,56 +68,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
     public async void run () {
         try {
             this.parse_args ();
-
-            this.didl_parser.item_available.connect ((didl_item) => {
-                    this.didl_item = didl_item;
-            });
-
-            try {
-                this.didl_parser.parse_didl (this.elements);
-            } catch (Error parse_err) {
-                throw new ContentDirectoryError.BAD_METADATA ("Bad metadata");
-            }
-
-            if (this.didl_item == null) {
-                var message = _("No items in DIDL-Lite from client: '%s'");
-
-                throw new ItemCreatorError.PARSE (message, this.elements);
-            }
-
-            if (didl_item.id == null || didl_item.id != "") {
-                throw new ContentDirectoryError.BAD_METADATA
-                                        ("@id must be set to \"\" in " +
-                                         "CreateItem");
-            }
-
-            if ((didl_item.title == null)) {
-                throw new ContentDirectoryError.BAD_METADATA
-                                        ("dc:title must be set in " +
-                                         "CreateItem");
-            }
-
-            // FIXME: Is this check really necessary?
-            if ((didl_item.dlna_managed &
-                (OCMFlags.UPLOAD |
-                 OCMFlags.CREATE_CONTAINER |
-                 OCMFlags.UPLOAD_DESTROYABLE)) != 0) {
-                throw new ContentDirectoryError.BAD_METADATA
-                                        ("Flags that must not be set " +
-                                         "were found in 'dlnaManaged'");
-            }
-
-            if (didl_item.upnp_class == null ||
-                didl_item.upnp_class == "" ||
-                !didl_item.upnp_class.has_prefix ("object.item")) {
-                throw new ContentDirectoryError.BAD_METADATA
-                                        ("Invalid upnp:class given ");
-            }
-
-            if (didl_item.restricted) {
-                throw new ContentDirectoryError.INVALID_ARGS
-                                        ("Cannot create restricted item");
-            }
+            this.parse_didl ();
 
             var container = yield this.fetch_container ();
 
@@ -229,6 +180,58 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             // Sorry we can't do anything without ContainerID
             throw new ContentDirectoryError.NO_SUCH_OBJECT
                                         (_("No such object"));
+        }
+    }
+
+    private void parse_didl () throws Error {
+        this.didl_parser.item_available.connect ((didl_item) => {
+            this.didl_item = didl_item;
+        });
+
+        try {
+            this.didl_parser.parse_didl (this.elements);
+        } catch (Error parse_err) {
+            throw new ContentDirectoryError.BAD_METADATA ("Bad metadata");
+        }
+
+        if (this.didl_item == null) {
+            var message = _("No items in DIDL-Lite from client: '%s'");
+
+            throw new ItemCreatorError.PARSE (message, this.elements);
+        }
+
+        if (didl_item.id == null || didl_item.id != "") {
+            throw new ContentDirectoryError.BAD_METADATA
+                                        ("@id must be set to \"\" in " +
+                                         "CreateItem");
+        }
+
+        if ((didl_item.title == null)) {
+            throw new ContentDirectoryError.BAD_METADATA
+                                    ("dc:title must be set in " +
+                                     "CreateItem");
+        }
+
+        // FIXME: Is this check really necessary?
+        if ((didl_item.dlna_managed &
+            (OCMFlags.UPLOAD |
+             OCMFlags.CREATE_CONTAINER |
+             OCMFlags.UPLOAD_DESTROYABLE)) != 0) {
+            throw new ContentDirectoryError.BAD_METADATA
+                                        ("Flags that must not be set " +
+                                         "were found in 'dlnaManaged'");
+        }
+
+        if (didl_item.upnp_class == null ||
+            didl_item.upnp_class == "" ||
+            !didl_item.upnp_class.has_prefix ("object.item")) {
+            throw new ContentDirectoryError.BAD_METADATA
+                                        ("Invalid upnp:class given ");
+        }
+
+        if (didl_item.restricted) {
+            throw new ContentDirectoryError.INVALID_ARGS
+                                        ("Cannot create restricted item");
         }
     }
 
