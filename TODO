@@ -30,8 +30,6 @@
      → How to handle devices that query a lot of byte ranges in parallel (LG
      blueray player e.g.)
 
-  * Refactor ItemCreator class (especially run method).
-
   * Tracker
    * Once we can depend on a certain tracker version use dlna mime from
      tracker.
