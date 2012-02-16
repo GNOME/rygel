@@ -202,6 +202,10 @@ public class Rygel.MediaObjects : Gee.ArrayList<MediaObject> {
 }
 
 public class Rygel.WritableContainer : Rygel.MediaContainer {
+    public bool can_create (string upnp_class) {
+        return this.create_classes.contains (upnp_class);
+    }
+
     public async File? get_writable (Cancellable? cancellable = null) {
         return File.new_for_commandline_arg ("/tmp");
     }

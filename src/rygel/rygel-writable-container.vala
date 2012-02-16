@@ -1,8 +1,9 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
- * Copyright (C) 2010 Nokia Corporation.
+ * Copyright (C) 2010-2012 Nokia Corporation.
  *
- * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ * Author: Jens Georg <jensg@openismus.com>
+ *         Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *
  * This file is part of Rygel.
@@ -39,6 +40,18 @@ using Gee;
 public interface Rygel.WritableContainer : MediaContainer {
     // List of classes that an object in this container could be created of
     public abstract ArrayList<string> create_classes { get; set; }
+
+    /**
+     * Check if this container claims to be able to create an item with the
+     * given upnp class.
+     *
+     * @param upnp_class The class of an item to check
+     *
+     * @return true if it can, false, if not.¨
+     */
+    public bool can_create (string upnp_class) {
+        return this.create_classes.contains (upnp_class);
+    }
 
     /**
      * Add a new item directly under this container.

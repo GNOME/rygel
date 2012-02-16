@@ -79,7 +79,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
              * modify the UPnP class to something we support and
              * fetch_container took care of this already.
              */
-            if (!container.create_classes.contains (didl_item.upnp_class) &&
+            if (!container.can_create (this.didl_item.upnp_class) &&
                 this.container_id != "DLNA_ORG.AnyContainer") {
                 throw new ContentDirectoryError.BAD_METADATA
                                         ("Creating of objects with class %s " +
