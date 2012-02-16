@@ -84,65 +84,11 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                 throw new ContentDirectoryError.BAD_METADATA
                                         ("Creating of objects with class %s " +
                                          "is not supported in %s",
-                                         didl_item.upnp_class,
+                                         this.didl_item.upnp_class,
                                          container.id);
             }
 
-            this.item = this.create_item (didl_item.id,
-                                          container,
-                                          didl_item.title,
-                                          didl_item.upnp_class);
-
-            var resources = didl_item.get_resources ();
-            if (resources != null && resources.length () > 0) {
-                var resource = resources.nth (0).data;
-                var info = resource.protocol_info;
-
-                if (info != null) {
-                    if (info.dlna_profile != null) {
-                        if (!this.is_profile_valid (info.dlna_profile)) {
-                            throw new ContentDirectoryError.BAD_METADATA
-                                        ("'%s' DLNA profile unsupported",
-                                         info.dlna_profile);
-                        }
-
-                        this.item.dlna_profile = info.dlna_profile;
-                    }
-
-                    if (info.mime_type != null) {
-                        this.item.mime_type = info.mime_type;
-                    }
-                }
-
-                string sanitized_uri;
-                if (this.is_valid_uri (resource.uri, out sanitized_uri)) {
-                    this.item.add_uri (sanitized_uri);
-                }
-
-                if (resource.size >= 0) {
-                    this.item.size = resource.size;
-                }
-            }
-
-            if (this.item.mime_type == null) {
-                this.item.mime_type = this.get_generic_mime_type ();
-            }
-
-            if (this.item.size < 0) {
-                this.item.size = 0;
-            }
-
-            if (this.item.uris.size == 0) {
-                var uri = yield this.create_uri (container, this.item.title);
-                this.item.uris.add (uri);
-                this.item.place_holder = true;
-            } else {
-                var file = File.new_for_uri (this.item.uris[0]);
-                this.item.place_holder = !file.is_native ();
-            }
-
-            this.item.id = this.item.uris[0];
-
+            yield this.create_item_from_didl (container);
             yield container.add_item (this.item, this.cancellable);
 
             yield this.wait_for_item (container);
@@ -336,6 +282,64 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         } else {
             return "audio";
         }
+    }
+
+    private async void create_item_from_didl (WritableContainer container)
+                                                   throws Error {
+        this.item = this.create_item (this.didl_item.id,
+                                      container,
+                                      this.didl_item.title,
+                                      this.didl_item.upnp_class);
+
+        var resources = this.didl_item.get_resources ();
+        if (resources != null && resources.length () > 0) {
+            var resource = resources.nth (0).data;
+            var info = resource.protocol_info;
+
+            if (info != null) {
+                if (info.dlna_profile != null) {
+                    if (!this.is_profile_valid (info.dlna_profile)) {
+                        throw new ContentDirectoryError.BAD_METADATA
+                                    ("'%s' DLNA profile unsupported",
+                                     info.dlna_profile);
+                    }
+
+                    this.item.dlna_profile = info.dlna_profile;
+                }
+
+                if (info.mime_type != null) {
+                    this.item.mime_type = info.mime_type;
+                }
+            }
+
+            string sanitized_uri;
+            if (this.is_valid_uri (resource.uri, out sanitized_uri)) {
+                this.item.add_uri (sanitized_uri);
+            }
+
+            if (resource.size >= 0) {
+                this.item.size = resource.size;
+            }
+        }
+
+        if (this.item.mime_type == null) {
+            this.item.mime_type = this.get_generic_mime_type ();
+        }
+
+        if (this.item.size < 0) {
+            this.item.size = 0;
+        }
+
+        if (this.item.uris.size == 0) {
+            var uri = yield this.create_uri (container, this.item.title);
+            this.item.uris.add (uri);
+            this.item.place_holder = true;
+        } else {
+            var file = File.new_for_uri (this.item.uris[0]);
+            this.item.place_holder = !file.is_native ();
+        }
+
+        this.item.id = this.item.uris[0];
     }
 
     private MediaItem create_item (string            id,
