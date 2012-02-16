@@ -525,6 +525,14 @@ private class Rygel.VideoItem : Rygel.VisualItem {
     public ArrayList<Subtitle> subtitles = new ArrayList<Subtitle> ();
 }
 
+private class Rygel.MusicItem : MediaItem {
+    public Thumbnail album_art;
+
+    public MusicItem (string id, MediaContainer parent) {
+        base (id, parent);
+    }
+}
+
 public errordomain Rygel.ContentDirectoryError {
     INVALID_ARGS = 402
 }

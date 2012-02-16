@@ -94,6 +94,10 @@ private class Rygel.VideoItem : VisualItem {
     public ArrayList<Subtitle> subtitles = new ArrayList<Subtitle> ();
 }
 
+private class Rygel.MusicItem : MediaItem {
+    public Thumbnail album_art;
+}
+
 private class Rygel.HTTPItemURITest : GLib.Object {
     private const int THUMBNAIL_INDEX = 1;
     private const int SUBTITLE_INDEX = 1;
