@@ -62,7 +62,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             this.title_regex = new Regex (pattern,
                                           RegexCompileFlags.OPTIMIZE,
                                           RegexMatchFlags.NOTEMPTY);
-        } catch (Error error) { } /* ignore */
+        } catch (Error error) { assert_not_reached (); }
     }
 
     public async void run () {
