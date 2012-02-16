@@ -152,7 +152,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                          "CreateItem");
         }
 
-        if ((didl_item.title == null)) {
+        if (didl_item.title == null) {
             throw new ContentDirectoryError.BAD_METADATA
                                     ("dc:title must be set in " +
                                      "CreateItem");
@@ -194,18 +194,18 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         if (this.container_id == "DLNA.ORG_AnyContainer") {
             var upnp_class = didl_item.upnp_class;
 
-            while (upnp_class != "object.item") {
-                var expression = new RelationalExpression ();
-                expression.op = SearchCriteriaOp.DERIVED_FROM;
-                expression.operand1 = "upnp:createClass";
-                expression.operand2 = upnp_class;
+            var expression = new RelationalExpression ();
+            expression.op = SearchCriteriaOp.DERIVED_FROM;
+            expression.operand1 = "upnp:createClass";
 
-                uint total_matches;
+            while (upnp_class != "object.item") {
+                expression.operand2 = upnp_class;
 
                 var container = this.content_dir.root_container
                                 as SearchableContainer;
 
                 if (container != null) {
+                    uint total_matches;
                     var result = yield container.search (expression,
                                                          0,
                                                          1,
@@ -214,6 +214,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                     if (result.size > 0) {
                         media_object = result[0];
                         didl_item.upnp_class = upnp_class;
+
                         break;
                     } else {
                         this.generalize_upnp_class (ref upnp_class);
@@ -240,7 +241,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                    !(media_object is WritableContainer)) {
             throw new ContentDirectoryError.RESTRICTED_PARENT
                                         (_("Object creation in %s not allowed"),
-                                        media_object.id);
+                                         media_object.id);
         }
 
         // FIXME: Check for @restricted=1 missing?
