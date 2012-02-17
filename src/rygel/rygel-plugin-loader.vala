@@ -122,10 +122,7 @@ public class Rygel.PluginLoader : Object {
         }
 
         foreach (var info in infos) {
-            string file_name = info.get_name ();
-            string file_path = Path.build_filename (dir.get_path (), file_name);
-
-            File file = File.new_for_path (file_path);
+            var file = dir.get_child (info.get_name ());
             FileType file_type = info.get_file_type ();
             string content_type = info.get_content_type ();
             string mime = ContentType.get_mime_type (content_type);
@@ -135,7 +132,7 @@ public class Rygel.PluginLoader : Object {
                 this.load_modules_from_dir.begin (file);
             } else if (mime == "application/x-sharedlib") {
                 // Seems like we found a module
-                this.load_module_from_file (file_path);
+                this.load_module_from_file (file.get_path ());
             }
         }
 
