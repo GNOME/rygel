@@ -36,12 +36,14 @@ public class Rygel.PluginLoader : Object {
     private delegate void ModuleInitFunc (PluginLoader loader);
 
     private HashMap<string,Plugin> plugin_hash;
+    private HashSet<string>        loaded_modules;
 
     // Signals
     public signal void plugin_available (Plugin plugin);
 
     public PluginLoader () {
         this.plugin_hash = new HashMap<string,Plugin> (str_hash, str_equal);
+        this.loaded_modules = new HashSet<string> ();
     }
 
     // Plugin loading functions
@@ -132,7 +134,7 @@ public class Rygel.PluginLoader : Object {
                 this.load_modules_from_dir.begin (file);
             } else if (mime == "application/x-sharedlib") {
                 // Seems like we found a module
-                this.load_module_from_file (file.get_path ());
+                this.load_module_from_file (file);
             }
         }
 
@@ -140,11 +142,19 @@ public class Rygel.PluginLoader : Object {
                dir.get_path ());
     }
 
-    private void load_module_from_file (string file_path) {
-        Module module = Module.open (file_path, ModuleFlags.BIND_LOCAL);
+    private void load_module_from_file (File module_file) {
+        if (module_file.get_basename () in this.loaded_modules) {
+            warning (_("A module named %s is already loaded"),
+                     module_file.get_basename ());
+
+            return;
+        }
+
+        Module module = Module.open (module_file.get_path (),
+                                     ModuleFlags.BIND_LOCAL);
         if (module == null) {
             warning (_("Failed to load module from path '%s': %s"),
-                     file_path,
+                     module_file.get_path (),
                      Module.error ());
 
             return;
@@ -155,7 +165,7 @@ public class Rygel.PluginLoader : Object {
         if (!module.symbol("module_init", out function)) {
             warning (_("Failed to find entry point function '%s' in '%s': %s"),
                      "module_init",
-                     file_path,
+                     module_file.get_path (),
                      Module.error ());
 
             return;
@@ -163,6 +173,7 @@ public class Rygel.PluginLoader : Object {
 
         unowned ModuleInitFunc module_init = (ModuleInitFunc) function;
         assert (module_init != null);
+        this.loaded_modules.add (module_file.get_basename ());
 
         // We don't want our modules to ever unload
         module.make_resident ();
