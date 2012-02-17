@@ -1,19 +1,6 @@
-  * MediaDB:
-    * Refactor the beast
-    * Some of the new classes need to be 'internal'.
-    * persist update count for containers
-    * More errors needed in MediaDBError
-    * Remove generic save*() & get*()
-    * Fix coding-style/indentation everywhere.
-    * DB tables should directly correspond/map to class hierarchy & naming
-    * scheme.
-
-  * MetadataExtractor
-    * Find a way to handle images properly
-      * Will be done automagically by
-      * https://bugzilla.gnome.org/show_bug.cgi?id=626531
-
   * MediaExport
+    * persist update count for containers
+    * Fix coding-style/indentation everywhere.
     * '''Fix coding-style everywhere'''
     * Filesystem-based cover art (Implement feeding-part of MediaArtStorageSpec)
       * Preliminary patch exists, though ugly
@@ -27,27 +14,27 @@
       * Removing URI
         * causes assertion failure followed by a crash if done during its
           harvested at rygel-media-export-root-container.vala:393
+    * Find a way to handle images properly
+      * Will be done automagically by
+      * https://bugzilla.gnome.org/show_bug.cgi?id=626531
 
   * Unify ImportResource and HTTPPost.
 
-  * See if any of sunil mohan's changes are mergable.
-
   * Check in HTTPSeek really needed?
-
-  * crash on trying to trancode ogg to wmv.
 
   * Use common.m4 in tests/Makefile.am (Probably not possible).
 
   * Cache response(s). If user fast forwards a stream, one request completes and
     a second will be issued with a new time offset.  It is important to keep the
     latency of starting the new request small.
+     → How to handle devices that query a lot of byte ranges in parallel (LG
+     blueray player e.g.)
 
   * Refactor ItemCreator class (especially run method).
 
   * Tracker
-   * Get mime-type from gupnp-dlna when dlna pn is known.
-        OR
-   * Make sure tracker uses mime from gupnp-dlna.
+   * Once we can depend on a certain tracker version use dlna mime from
+     tracker.
 
   * Assign priorities to gstreamer threads
     (See gstreamer/tests/examples/streams/stream-status.c)
@@ -173,6 +160,9 @@
   * Provide APIs for D-Bus service-based plugins (external,mpris,tracker).
 
 === Doubtful / issues ===
+
+  * See if any of sunil mohan's changes are mergable.
+
   * Generate default rygel.conf from rygel.conf.xml?
 
   * Use cached props instead of Properties.get*() for cleaner code. issue: How
