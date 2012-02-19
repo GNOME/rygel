@@ -14,4 +14,5 @@ REQUIRED_LIBTOOL_VERSION=2.2.6 \
 REQUIRED_INTLTOOL_VERSION=0.40.0 \
 gnome-autogen.sh --enable-vala --enable-maintainer-mode --enable-debug \
                  --enable-tests --enable-test-plugin \
-                 --enable-mediathek-plugin --enable-gst-launch-plugin "$@"
+                 --enable-mediathek-plugin --enable-gst-launch-plugin \
+                 --enable-strict-valac "$@"
