@@ -39,8 +39,8 @@ internal class Rygel.HTTPGstSink : BaseSink {
     private int64 bytes_sent;
     private int64 max_bytes;
 
-    private Mutex buffer_mutex;
-    private Cond buffer_condition;
+    private Mutex buffer_mutex = Mutex ();
+    private Cond buffer_condition = Cond ();
 
     static construct {
         var caps = new Caps.any ();
@@ -55,8 +55,6 @@ internal class Rygel.HTTPGstSink : BaseSink {
         this.chunks_buffered = 0;
         this.bytes_sent = 0;
         this.max_bytes = int64.MAX;
-        this.buffer_mutex = new Mutex ();
-        this.buffer_condition = new Cond ();
 
         this.cancellable = new Cancellable ();
         this.priority = response.priority;
