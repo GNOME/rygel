@@ -23,10 +23,6 @@
 using GUPnP;
 using Gst;
 
-private errordomain Rygel.ItemCreatorError {
-    PARSE
-}
-
 /**
  * CreateObject action implementation.
  */
@@ -143,7 +139,8 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         if (this.didl_item == null) {
             var message = _("No items in DIDL-Lite from client: '%s'");
 
-            throw new ItemCreatorError.PARSE (message, this.elements);
+            throw new ContentDirectoryError.BAD_METADATA
+                                        (message, this.elements);
         }
 
         if (didl_item.id == null || didl_item.id != "") {

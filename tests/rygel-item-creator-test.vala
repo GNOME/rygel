@@ -316,7 +316,7 @@ public class Rygel.HTTPItemCreatorTest : GLib.Object {
         // test empty DIDL
         item_node->unlink ();
         didl_node->set_content ("  ");
-        this.test_didl_parsing_step (xml, 701);
+        this.test_didl_parsing_step (xml, bad_metadata.code);
 
         // test item node with missing restricted attribute
         var tmp = item_node->copy (1);
