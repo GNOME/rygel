@@ -36,11 +36,11 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
     private const string INVALID_CHARS = "/?<>\\:*|\"";
 
     // In arguments
-    public string container_id;
-    public string elements;
+    private string container_id;
+    private string elements;
 
-    public DIDLLiteItem didl_item;
-    public MediaItem item;
+    private DIDLLiteItem didl_item;
+    private MediaItem item;
 
     private ContentDirectory content_dir;
     private ServiceAction action;
