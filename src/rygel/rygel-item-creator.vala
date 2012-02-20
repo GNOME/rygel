@@ -105,6 +105,9 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         }
     }
 
+    /**
+     * Check the supplied input parameters.
+     */
     private void parse_args () throws Error {
         /* Start by parsing the 'in' arguments */
         this.action.get ("ContainerID", typeof (string), out this.container_id,
@@ -125,6 +128,12 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         }
     }
 
+    /**
+     * Parse the given DIDL-Lite snippet.
+     *
+     * Parses the DIDL-Lite and performs checking of the passed meta-data
+     * according to UPnP and DLNA guidelines.
+     */
     private void parse_didl () throws Error {
         this.didl_parser.item_available.connect ((didl_item) => {
             this.didl_item = didl_item;
@@ -178,6 +187,15 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         }
     }
 
+    /**
+     * Modify the give UPnP class to be a more general one.
+     *
+     * Used to simplify the search for a valid container in the
+     * DLNA.ORG_AnyContainer use-case.
+     * Example: object.item.videoItem.videoBroadcast → object.item.videoItem
+     *
+     * @param upnp_class the current UPnP class which will be modified in-place.
+     */
     private void generalize_upnp_class (ref string upnp_class) {
         char *needle = upnp_class.rstr_len (-1, ".");
         if (needle != null) {
@@ -236,6 +254,16 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         return null;
     }
 
+    /**
+     * Get the container to create the item in.
+     *
+     * This will either try to fetch the container supplied by the caller or
+     * search for a container if the caller supplied the "DLNA.ORG_AnyContainer"
+     * id.
+     *
+     * @return a instance of WritableContainer matching the criteria
+     * @throws ContentDirectoryError for various problems
+     */
     private async WritableContainer fetch_container () throws Error {
         MediaObject media_object = null;
 
@@ -297,6 +325,16 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         }
     }
 
+    /**
+     * Transfer information passed by caller to a MediaItem.
+     *
+     * WritableContainer works on MediaItem so we transfer the supplied data to
+     * one. Additionally some checks are performed (e.g. whether the DLNA
+     * profile is supported or not) or sanitize the supplied title for use as
+     * part of the on-disk filename.
+     *
+     * This function fills ItemCreator.item.
+     */
     private async void create_item_from_didl (WritableContainer container)
                                                    throws Error {
         this.item = this.create_item (this.didl_item.id,
@@ -378,6 +416,16 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         }
     }
 
+    /**
+     * Simple check for the validity of an URI.
+     *
+     * Check is done by parsing the URI with soup. Additionaly a cleaned-up
+     * version of the URI is returned in sanitized_uri.
+     *
+     * @param uri the input URI
+     * @param sanitized_uri containes a sanitized version of the URI on return
+     * @returns true if the URI is valid, false otherwise.
+     */
     private bool is_valid_uri (string? uri, out string sanitized_uri) {
         sanitized_uri = null;
         if (uri == null || uri == "") {
@@ -395,6 +443,15 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         return true;
     }
 
+    /**
+     * Transform the title to be usable on legacy file-systems such as FAT32.
+     *
+     * The function trims down the title to 205 chars (leaving room for an UUID)
+     * and replaces all special characters.
+     *
+     * @param title of the the media item
+     * @return the cleaned and shortened title
+     */
     private string mangle_title (string title) throws Error {
         var mangled = title.substring (0, int.min (title.length, 205));
         mangled = this.title_regex.replace_literal (mangled,
@@ -406,6 +463,16 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         return mangled;
     }
 
+    /**
+     * Create an URI from the item's title.
+     *
+     * Create an unique URI from the supplied title by cleaning it from
+     * unwanted characters, shortening it and adding an UUID.
+     *
+     * @param container to create the item in
+     * @param title of the item to base the name on
+     * @returns an URI for the newly created item
+     */
     private async string create_uri (WritableContainer container, string title)
                                     throws Error {
         var dir = yield container.get_writable (this.cancellable);
@@ -426,6 +493,17 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         return file.get_uri () + (string) udn;
     }
 
+    /**
+     * Wait for the new item
+     *
+     * When creating an item in the back-end via WritableContainer.add_item
+     * there might be a delay between the creation and the back-end having the
+     * newly created item available. This function waits for the item to become
+     * available by hooking into the container_updated signal. The maximum time
+     * to wait is 5 seconds.
+     *
+     * @param container to watch
+     */
     private async void wait_for_item (WritableContainer container) {
         debug ("Waiting for new item to appear under container '%s'..",
                container.id);
@@ -474,6 +552,15 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                container.id);
     }
 
+    /**
+     * Check if the profile is supported.
+     *
+     * The check is performed against GUPnP-DLNA's database explicitly excluding
+     * the transcoders.
+     *
+     * @param profile to check
+     * @returns true if the profile is supported, false otherwise.
+     */
     private bool is_profile_valid (string profile) {
         var discoverer = new GUPnP.DLNADiscoverer ((ClockTime) SECOND,
                                                    true,
