@@ -132,16 +132,13 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                                               uint              offset,
                                               uint              max_count,
                                               out uint          total_matches,
-                                              Cancellable?      cancellable,
-                                              bool              generic_type = false)
+                                              Cancellable?      cancellable)
                                               throws GLib.Error {
         var results = new MediaObjects ();
 
         var query = this.create_query (expression as RelationalExpression,
                                        (int) offset,
-                                       (int) max_count,
-                                       generic_type);
-
+                                       (int) max_count);
         if (query != null) {
             yield query.execute (this.resources);
 
@@ -178,8 +175,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                                                 0,
                                                 1,
                                                 out total_matches,
-                                                cancellable,
-                                                true);
+                                                cancellable);
         if (results.size > 0) {
             return results[0];
         } else {
@@ -236,8 +232,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
 
     private SelectionQuery? create_query (RelationalExpression? expression,
                                           int                   offset,
-                                          int                   max_count,
-                                          bool                  generic_type) {
+                                          int                   max_count) {
         if (expression.operand1 == "upnp:class" &&
             !this.item_factory.upnp_class.has_prefix (expression.operand2)) {
             return null;
@@ -255,16 +250,6 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                 query.filters.insert (0, filter);
             } else {
                 return null;
-            }
-        }
-
-        // Drop to generic RDF type for find_object
-        if (generic_type) {
-            foreach (var triplet in query.triplets) {
-                if (triplet.predicate == "a" &&
-                    triplet.obj.has_prefix ("nmm:")) {
-                    triplet.obj = "nfo:Media";
-                }
             }
         }
 

@@ -60,7 +60,7 @@ public class Rygel.Tracker.InsertionQuery : Query {
         }
 
         var triplets = new QueryTriplets ();
-        triplets.add (new QueryTriplet (QUERY_ID, "a", "nfo:Media"));
+        triplets.add (new QueryTriplet (QUERY_ID, "a", category));
         triplets.add (new QueryTriplet (QUERY_ID, "a", type));
         triplets.add (new QueryTriplet (QUERY_ID, "nmm:uPnPShared", "true"));
         triplets.add (new QueryTriplet (QUERY_ID, "tracker:available", "true"));
