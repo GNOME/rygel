@@ -188,47 +188,62 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         }
     }
 
+    /**
+     * Find a container that can create items matching the UPnP class of the
+     * requested item.
+     *
+     * If the item's UPnP class cannot be found, generalize the UPnP class until
+     * we reach object.item according to DLNA guideline 7.3.120.4.
+     *
+     * @returns a container able to create the item or null if no such container
+     *          can be found.
+     */
+    private async MediaObject? find_any_container () throws Error {
+        var root_container = this.content_dir.root_container
+                                        as SearchableContainer;
+
+        if (root_container == null) {
+            return null;
+        }
+
+        var upnp_class = this.didl_item.upnp_class;
+
+        var expression = new RelationalExpression ();
+        expression.op = SearchCriteriaOp.DERIVED_FROM;
+        expression.operand1 = "upnp:createClass";
+
+        while (upnp_class != "object.item") {
+            expression.operand2 = upnp_class;
+
+            uint total_matches;
+            var result = yield root_container.search (expression,
+                                                      0,
+                                                      1,
+                                                      out total_matches,
+                                                      this.cancellable);
+            if (result.size > 0) {
+                this.didl_item.upnp_class = upnp_class;
+
+                return result[0];
+            } else {
+                this.generalize_upnp_class (ref upnp_class);
+            }
+        }
+
+        if (upnp_class == "object.item") {
+            throw new ContentDirectoryError.BAD_METADATA
+                                    ("'%s' UPnP class unsupported",
+                                     this.didl_item.upnp_class);
+        }
+
+        return null;
+    }
+
     private async WritableContainer fetch_container () throws Error {
         MediaObject media_object = null;
 
         if (this.container_id == "DLNA.ORG_AnyContainer") {
-            var upnp_class = didl_item.upnp_class;
-
-            var expression = new RelationalExpression ();
-            expression.op = SearchCriteriaOp.DERIVED_FROM;
-            expression.operand1 = "upnp:createClass";
-
-            while (upnp_class != "object.item") {
-                expression.operand2 = upnp_class;
-
-                var container = this.content_dir.root_container
-                                as SearchableContainer;
-
-                if (container != null) {
-                    uint total_matches;
-                    var result = yield container.search (expression,
-                                                         0,
-                                                         1,
-                                                         out total_matches,
-                                                         this.cancellable);
-                    if (result.size > 0) {
-                        media_object = result[0];
-                        didl_item.upnp_class = upnp_class;
-
-                        break;
-                    } else {
-                        this.generalize_upnp_class (ref upnp_class);
-                    }
-                } else {
-                    break;
-                }
-            }
-
-            if (upnp_class == "object.item") {
-                throw new ContentDirectoryError.BAD_METADATA
-                                        ("'%s' UPnP class unsupported",
-                                         didl_item.upnp_class);
-            }
+            media_object = yield this.find_any_container ();
         } else {
             media_object = yield this.content_dir.root_container.find_object
                                         (this.container_id, this.cancellable);
