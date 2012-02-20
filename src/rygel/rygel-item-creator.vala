@@ -158,7 +158,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                      "CreateItem");
         }
 
-        // FIXME: Is this check really necessary?
+        // FIXME: Is this check really necessary? 7.3.118.4 passes without it.
         if ((didl_item.dlna_managed &
             (OCMFlags.UPLOAD |
              OCMFlags.CREATE_CONTAINER |
