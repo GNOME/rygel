@@ -391,6 +391,43 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         }
 
         this.item.id = this.item.uris[0];
+
+        this.parse_and_verify_didl_date ();
+    }
+
+    private void parse_and_verify_didl_date () throws Error {
+        if (this.didl_item.date == null) {
+            return;
+        }
+
+        var parsed_date = new Soup.Date.from_string (this.didl_item.date);
+        if (parsed_date != null) {
+            this.item.date = parsed_date.to_string (Soup.DateFormat.ISO8601);
+
+            return;
+        }
+
+        int year = 0, month = 0, day = 0;
+
+        if (this.didl_item.date.scanf ("%4d-%02d-%02d",
+                                       out year,
+                                       out month,
+                                       out day) != 3) {
+            throw new ContentDirectoryError.BAD_METADATA
+                                    ("Invalid date format: %s",
+                                     this.didl_item.date);
+        }
+
+        var date = GLib.Date ();
+        date.set_dmy ((DateDay) day, (DateMonth) month, (DateYear) year);
+
+        if (!date.valid ()) {
+            throw new ContentDirectoryError.BAD_METADATA
+                                    ("Invalid date: %s",
+                                     this.didl_item.date);
+        }
+
+        this.item.date = this.didl_item.date + "T00:00:00";
     }
 
     private MediaItem create_item (string            id,
