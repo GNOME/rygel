@@ -124,6 +124,7 @@ public class Rygel.MediaItem : Rygel.MediaObject {
     public string mime_type;
     public long size;
     public bool place_holder;
+    public string date;
 
     public MediaItem (string id, MediaContainer parent, string title) {
         this.id = id;
