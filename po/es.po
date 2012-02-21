@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-02-06 19:11+0000\n"
-"PO-Revision-Date: 2012-02-07 11:27+0100\n"
+"POT-Creation-Date: 2012-02-20 08:51+0000\n"
+"PO-Revision-Date: 2012-02-21 14:03+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +51,6 @@ msgstr "Quitar carpeta compartida"
 
 #. Network Interface
 #: ../data/rygel-preferences.ui.h:9
-#| msgid "_Network"
 msgid "_Network:"
 msgstr "_Red:"
 
@@ -93,7 +92,7 @@ msgid "Failed to roll back transaction: %s"
 msgstr "Falló al deshacer la transacción: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
-#: ../src/rygel/rygel-plugin-loader.vala:186
+#: ../src/rygel/rygel-plugin-loader.vala:194
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Falló al consultar el tipo de contenido para «%s»"
@@ -384,12 +383,12 @@ msgstr "Petición no válida"
 msgid "Not found"
 msgstr "No se encontró"
 
-#: ../src/rygel/rygel-http-item-uri.vala:121
+#: ../src/rygel/rygel-http-item-uri.vala:127
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "URI «%s» no válida"
 
-#: ../src/rygel/rygel-http-item-uri.vala:160
+#: ../src/rygel/rygel-http-item-uri.vala:166
 msgid "Not Found"
 msgstr "No se encontró"
 
@@ -510,19 +509,19 @@ msgstr "No se permite quitar objetos de %s"
 msgid "Failed to get log level from configuration: %s"
 msgstr "Falló al obtener el nivel de registro de la configuración: %s"
 
-#: ../src/rygel/rygel-main.vala:88
+#: ../src/rygel/rygel-main.vala:97
 #, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
 msgstr[0] "No se econtraron complementos en %d segundo, abortando…"
 msgstr[1] "No se econtraron complementos en %d segundos, abortando…"
 
-#: ../src/rygel/rygel-main.vala:149
+#: ../src/rygel/rygel-main.vala:158
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Falló al crear la fábrica del dispositivo raíz: %s"
 
-#: ../src/rygel/rygel-main.vala:207
+#: ../src/rygel/rygel-main.vala:216
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Falló al crear el DispositivoRaís para %s. Razón: %s."
@@ -558,22 +557,27 @@ msgstr "No existe un valor establecido para «%s/activado»"
 msgid "No value available for '%s/%s'"
 msgstr "No existe un valor disponible para «%s/%s»"
 
-#: ../src/rygel/rygel-plugin-loader.vala:83
+#: ../src/rygel/rygel-plugin-loader.vala:85
 #, c-format
 msgid "New plugin '%s' available"
 msgstr "Existe un nuevo complemento «%s» disponible"
 
-#: ../src/rygel/rygel-plugin-loader.vala:117
+#: ../src/rygel/rygel-plugin-loader.vala:119
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Error al listar el contenido de la carpeta «%s»: %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:149
+#: ../src/rygel/rygel-plugin-loader.vala:147
+#, c-format
+msgid "A module named %s is already loaded"
+msgstr "Ya se ha cargado un módulo llamado %s"
+
+#: ../src/rygel/rygel-plugin-loader.vala:156
 #, c-format
 msgid "Failed to load module from path '%s': %s"
 msgstr "Falló al cargar el módulo desde la ruta «%s»: %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:159
+#: ../src/rygel/rygel-plugin-loader.vala:166
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Falló al encontrar la función del punto de entrada «%s» en «%s»: %s"
