@@ -1,3 +1,39 @@
+0.13.2
+======
+
+A new release in the current unstable release cycle
+
+Changes compared to 0.13.1:
+
+- Work around a reference issue when using vala-0.16.
+- Really add the hack for WMP 12.
+- Fix XBox 360 showing the same songs multiple times in the "Songs" listing
+  when not using MediaExport back-end.
+- Drop obsolete gconf dependency.
+- Don't crash when loading the same module twice accidently.
+- Add tests for ItemCreator class.
+- Refactor, document and clean-up ItemCreator class.
+- Use supplied <dc:date> in CreateObject call.
+
+Tracker:
+ - Revert the change that lets the fs-miner chose the RDF type. This broke
+   uploading very badly.
+ - Use the item's date when creating a new item.
+
+Bugs fixed:
+ https://bugzilla.gnome.org/show_bug.cgi?id=664184
+ https://bugzilla.gnome.org/show_bug.cgi?id=669858
+ https://bugzilla.gnome.org/show_bug.cgi?id=660477
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - es, courtesy of Daniel Mustieles
+
+All contributors to this release:
+ Jens Georg <mail@jensge.org>
+ Marek Černocký <marek@manet.cz>
+ Daniel Mustieles <daniel.mustieles@gmail.com>
+
 0.13.1
 ======
 

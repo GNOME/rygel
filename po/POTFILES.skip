@@ -229,10 +229,15 @@ tests/rygel-http-time-seek.c
 tests/rygel-http-time-seek_http-get.c
 tests/rygel-http-time-seek-test.c
 tests/rygel-icon-info.c
+tests/rygel-item-creator.c
+tests/rygel-item-creator-test.c
 tests/rygel-media-art-store.c
+tests/rygel-relational-expression.c
 tests/rygel-searchable-container.c
 tests/rygel-searchable-container-test.c
+tests/rygel-search-expression.c
 tests/rygel-state-machine_http-get.c
 tests/rygel-state-machine_http-post.c
 tests/rygel-state-machine_http-response.c
+tests/rygel-state-machine_item-creator.c
 tests/rygel-thumbnail.c
