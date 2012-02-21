@@ -91,8 +91,14 @@ public class Rygel.Tracker.InsertionQuery : Query {
         triplets.add (new QueryTriplet (QUERY_ID,
                                         "nie:url",
                                         "\"" + item.uris[0] + "\""));
-        var now = TimeVal ();
-        var date = now.to_iso8601 ();
+        string date;
+        if (item.date == null) {
+            var now = TimeVal ();
+            date = now.to_iso8601 ();
+        } else {
+            // Rygel core makes sure that this is a valid ISO8601 date.
+            date = item.date;
+        }
         triplets.add (new QueryTriplet (QUERY_ID,
                                         "nie:contentCreated",
                                         "\"" + date + "\""));
