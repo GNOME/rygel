@@ -42,7 +42,11 @@ public class MediaObject : Object {
 
 public class MediaContainer : MediaObject {
     public string sort_criteria = "+dc:title";
-    public uint child_count = 10;
+    public int child_count = 10;
+    public bool create_mode_enabled = false;
+    public int all_child_count {
+        get { return this.child_count; }
+    }
     public async MediaObjects? get_children (
                                             uint offset,
                                             uint max_count,
@@ -59,6 +63,8 @@ public class MediaContainer : MediaObject {
 
         return result;
     }
+
+    internal void check_search_expression (SearchExpression? expression) {}
 }
 
 public class TestContainer : MediaContainer, Rygel.SearchableContainer {

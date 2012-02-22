@@ -86,8 +86,15 @@ public interface Rygel.SearchableContainer : MediaContainer {
                                               throws Error {
         var result = new MediaObjects ();
 
+        int count = this.child_count;
+        this.check_search_expression (expression);
+
+        if (this.create_mode_enabled) {
+            count = this.all_child_count;
+        }
+
         var children = yield this.get_children (0,
-                                                this.child_count,
+                                                count,
                                                 sort_criteria,
                                                 cancellable);
 

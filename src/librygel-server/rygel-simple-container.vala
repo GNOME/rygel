@@ -119,6 +119,7 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
                    "until it has any children to offer.",
                    child.id);
             this.empty_children.add (child);
+            this.empty_child_count++;
             child.container_updated.connect (this.on_container_updated);
         }
     }
@@ -183,13 +184,21 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
                                                      Cancellable? cancellable)
                                                      throws Error {
         uint stop = offset + max_count;
-        stop = stop.clamp (0, this.child_count);
+        MediaObjects unsorted_children;
 
-        var sorted_children = this.children.slice (0, this.child_count)
+        if (this.create_mode_enabled) {
+            stop = stop.clamp (0, this.all_child_count);
+            unsorted_children = this.get_all_children ();
+        } else {
+            stop = stop.clamp (0, this.child_count);
+
+            unsorted_children = this.children.slice (0, this.child_count)
                                         as MediaObjects;
-        sorted_children.sort_by_criteria (sort_criteria);
+        }
 
-        return sorted_children.slice ((int) offset, (int) stop)
+        unsorted_children.sort_by_criteria (sort_criteria);
+
+        return unsorted_children.slice ((int) offset, (int) stop)
                                         as MediaObjects;
     }
 
@@ -197,14 +206,22 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
                                                     Cancellable? cancellable)
                                                     throws Error {
         MediaObject media_object = null;
+        var max_count = 0;
         var restart_count = 0;
         var restart = false;
+
+        if (this.create_mode_enabled) {
+            max_count = this.all_child_count;
+        } else {
+            max_count = this.child_count;
+        }
+        var children_to_search = yield this.get_children (0, max_count, "", cancellable);
 
         do {
             restart = false;
             ulong updated_id = 0;
 
-            foreach (var child in this.children) {
+            foreach (var child in children_to_search) {
                 if (child.id == id) {
                     media_object = child;
 
@@ -278,6 +295,7 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
             }
 
             this.empty_children.remove (updated);
+            this.empty_child_count--;
 
             this.add_child (updated);
 
@@ -292,6 +310,7 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
 
             this.remove_child (updated);
             this.empty_children.add (updated);
+            this.empty_child_count++;
 
             this.updated ();
 

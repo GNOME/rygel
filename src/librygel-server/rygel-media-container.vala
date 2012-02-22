@@ -108,8 +108,15 @@ public abstract class Rygel.MediaContainer : MediaObject {
     public signal void sub_tree_updates_finished (MediaObject sub_tree_root);
 
     public int child_count { get; set construct; }
+    protected int empty_child_count;
+    public int all_child_count {
+        get {
+            return this.child_count + this.empty_child_count;
+        }
+    }
     public uint32 update_id;
     public int64 storage_used;
+    public bool create_mode_enabled;
 
     // This is an uint32 in UPnP. SystemUpdateID should reach uint32.MAX way
     // before this variable and cause a SystemResetProcedure.
@@ -190,10 +197,12 @@ public abstract class Rygel.MediaContainer : MediaObject {
     public override void constructed () {
         base.constructed ();
 
+        this.empty_child_count = 0;
         this.update_id = 0;
         this.storage_used = -1;
         this.total_deleted_child_count = 0;
         this.upnp_class = STORAGE_FOLDER;
+        this.create_mode_enabled = false;
 
         this.container_updated.connect (on_container_updated);
         this.sub_tree_updates_finished.connect (on_sub_tree_updates_finished);
@@ -368,6 +377,17 @@ public abstract class Rygel.MediaContainer : MediaObject {
                                                MediaObject sub_tree_root) {
         if (this.parent != null) {
             this.parent.sub_tree_updates_finished (sub_tree_root);
+        }
+    }
+
+    internal void check_search_expression (SearchExpression? expression) {
+        this.create_mode_enabled = false;
+        if (expression != null && expression is RelationalExpression) {
+            var relational_exp = expression as RelationalExpression;
+            if (relational_exp.op == SearchCriteriaOp.DERIVED_FROM &&
+                relational_exp.operand1 == "upnp:createClass") {
+                this.create_mode_enabled = true;
+            }
         }
     }
 }
