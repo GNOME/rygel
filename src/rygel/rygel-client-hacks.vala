@@ -41,7 +41,8 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
                            throws ClientHacksError {
         try {
             this.agent_regex = new Regex (agent,
-                                          RegexCompileFlags.CASELESS,
+                                          RegexCompileFlags.CASELESS |
+                                          RegexCompileFlags.RAW,
                                           0);
         } catch (RegexError error) {
             // This means subclasses did not provide a proper regular expression
