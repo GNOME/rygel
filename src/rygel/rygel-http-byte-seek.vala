@@ -23,8 +23,7 @@
 
 internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
     public HTTPByteSeek (HTTPGet request) throws HTTPSeekError {
-        string range, pos;
-        string[] range_tokens;
+        Soup.Range[] ranges;
         int64 start = 0, total_length;
 
         if (request.thumbnail != null) {
@@ -36,41 +35,11 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
         }
         var stop = total_length - 1;
 
-        range = request.msg.request_headers.get_one ("Range");
-        if (range != null) {
-            // We have a Range header. Parse.
-            if (!range.has_prefix ("bytes=")) {
-                throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
-                                                       range);
-            }
-
-            range_tokens = range.substring (6).split ("-", 2);
-            if (range_tokens[0] == null || range_tokens[1] == null) {
-                throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
-                                                       range);
-            }
-
-            // Get first byte position
-            pos = range_tokens[0];
-            if (pos[0].isdigit ()) {
-                start = int64.parse (pos);
-            } else if (pos  != "") {
-                throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
-                                                       range);
-            }
-
-            // Get last byte position if specified
-            pos = range_tokens[1];
-            if (pos[0].isdigit ()) {
-                stop = int64.parse (pos);
-                if (stop < start) {
-                    throw new HTTPSeekError.INVALID_RANGE
-                                        (_("Invalid Range '%s'"), range);
-                }
-            } else if (pos != "") {
-                throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
-                                                       range);
-            }
+        if (request.msg.request_headers.get_ranges (total_length,
+                                                    out ranges)) {
+            // TODO: Somehow deal with multipart/byterange properly
+            start = ranges[0].start;
+            stop = ranges[0].end;
         }
 
         base (request.msg, start, stop, 1, total_length);
