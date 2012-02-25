@@ -48,7 +48,7 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                       string     service_name,
                       string     path,
                       Container? parent = null) throws IOError {
-        base (id, parent, title, (int) child_count);
+        base (id, parent, title, (int) child_count.clamp (0, int.MAX));
 
         this.service_name = service_name;
         this.item_factory = new ItemFactory ();

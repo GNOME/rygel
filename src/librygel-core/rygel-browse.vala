@@ -95,7 +95,11 @@ internal class Rygel.Browse: Rygel.MediaQueryAction {
         }
 
         var container = (MediaContainer) media_object;
-        this.total_matches = container.child_count;
+        if (container.child_count < int.MAX) {
+            this.total_matches = container.child_count;
+        } else {
+            this.total_matches = 0;
+        }
 
         if (this.requested_count == 0) {
             // No max count requested, try to fetch all children
