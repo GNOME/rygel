@@ -57,8 +57,12 @@ internal class Rygel.DbusThumbnailer : GLib.Object {
                                                 THUMBNAILER_SERVICE);
     }
 
-    public void queue_thumbnail_task (string file_path, string mime) {
-        this.uris.add (file_path);
+    public void queue_thumbnail_task (string uri, string mime) {
+        var file = File.new_for_uri (uri);
+        if (!file.is_native ()) {
+            return;
+        }
+        this.uris.add (uri);
         this.mimes.add (mime);
 
         if (this.timeout_id != 0) {
