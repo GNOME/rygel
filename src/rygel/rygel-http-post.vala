@@ -130,7 +130,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
 
             if (item.place_holder) {
                 uint source_id = 0;
-                source_id = Timeout.add_seconds (30, () => {
+                source_id = Timeout.add_seconds (timeout, () => {
                     debug ("Timeout on waiting for 'updated' signal on '%s'.",
                            container.id);
                     source_id = 0;
@@ -193,7 +193,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
             return;
         }
 
-        yield wait_for_item (this.item.parent, this.item.id, 30);
+        yield wait_for_item (this.item.parent, this.item.id, 5);
 
         this.server.unpause_message (this.msg);
         this.end (KnownStatusCode.OK);
