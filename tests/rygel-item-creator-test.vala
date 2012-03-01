@@ -223,6 +223,7 @@ public class Rygel.SearchableContainer : Rygel.MediaContainer {
                                       int              offset,
                                       int              count,
                                       out int          total_matches,
+                                      string           soer_criteria,
                                       Cancellable?     cancellable = null) {
         Idle.add (() => { search.callback (); return false; });
         yield;

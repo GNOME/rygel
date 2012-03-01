@@ -42,10 +42,12 @@ public class MediaObject : Object {
 
 public class MediaContainer : MediaObject {
     public uint child_count = 10;
-    public async MediaObjects? get_children (uint offset,
-                                             uint max_count,
-                                             Cancellable? cancellable)
-                                             throws Error {
+    public async MediaObjects? get_children (
+                                            uint offset,
+                                            uint max_count,
+                                            string sort_criteria,
+                                            Cancellable? cancellable)
+                                            throws Error {
         Idle.add ( () => { get_children.callback (); return false; });
         yield;
 
@@ -67,16 +69,16 @@ public class TestContainer : MediaContainer, Rygel.SearchableContainer {
         uint total_matches;
 
         // check corners
-        var result = yield search (null, 0, 0, out total_matches, null);
+        var result = yield search (null, 0, 0, out total_matches, "", null);
         assert (total_matches == 10);
         assert (result.size == 10);
 
-        result = yield search (null, 10, 0, out total_matches, null);
+        result = yield search (null, 10, 0, out total_matches, "",  null);
         assert (total_matches == 10);
         assert (result.size == 0);
 
         for (int i = 1; i < 10; ++i) {
-            result = yield search (null, i, 0, out total_matches, null);
+            result = yield search (null, i, 0, out total_matches, "", null);
             assert (total_matches == 10);
             assert (result.size == 10 - i);
         }
@@ -88,16 +90,16 @@ public class TestContainer : MediaContainer, Rygel.SearchableContainer {
         uint total_matches;
 
         // check corners
-        var result = yield search (null, 0, 4, out total_matches, null);
+        var result = yield search (null, 0, 4, out total_matches, "", null);
         assert (total_matches == 0);
         assert (result.size == 4);
 
-        result = yield search (null, 10, 4, out total_matches, null);
+        result = yield search (null, 10, 4, out total_matches, "", null);
         assert (total_matches == 0);
         assert (result.size == 0);
 
         for (int i = 1; i < 10; ++i) {
-            result = yield search (null, i, 3, out total_matches, null);
+            result = yield search (null, i, 3, out total_matches, "", null);
             assert (total_matches == 0);
             assert (result.size == int.min (10 - i, 3));
         }
@@ -110,12 +112,14 @@ public class TestContainer : MediaContainer, Rygel.SearchableContainer {
                                        uint              offset,
                                        uint              max_count,
                                        out uint          total_matches,
+                                       string            sort_criteria,
                                        Cancellable?      cancellable)
                                        throws Error {
         return yield this.simple_search (expression,
                                          offset,
                                          max_count,
                                          out total_matches,
+                                         sort_criteria,
                                          cancellable);
     }
 
