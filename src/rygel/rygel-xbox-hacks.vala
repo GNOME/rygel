@@ -147,7 +147,8 @@ internal class Rygel.XBoxHacks : ClientHacks {
 
                 if (rel_expression.op == SearchCriteriaOp.DERIVED_FROM &&
                     rel_expression.operand2 != null &&
-                    rel_expression.operand2 == AudioItem.UPNP_CLASS) {
+                    rel_expression.operand2 == AudioItem.UPNP_CLASS &&
+                    container.id == "0") {
                     modified_expression = this.rewrite_search_expression
                                         (expression);
                 }
