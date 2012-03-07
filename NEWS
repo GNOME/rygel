@@ -1,3 +1,25 @@
+0.13.3
+======
+
+A new release in the current unstable release cycle
+
+Changes compared to 0.13.2:
+
+- Fix a regression introduced in 0.13.2 that caused the XBox 360 to show empty
+  Album, Artist and Genre folders with the Tracker plugin.
+- Fix the time-out used on item creation.
+- Only ask tumbler to create thumbnails if it's not a remote resource.
+
+Added/updated translations
+ - sl, courtesy of Matej Urbančič
+ - sr, courtesy of Мирослав Николић
+ - sr@latin, courtesy of Miroslav Nikolić
+
+All contributors to this release
+ Jens Georg <mail@jensge.org>
+ Мирослав Николић <miroslavnikolic@rocketmail.com>
+ Matej Urbančič <mateju@svn.gnome.org>
+
 0.13.2
 ======
 
