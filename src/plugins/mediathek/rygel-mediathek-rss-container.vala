@@ -112,8 +112,8 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
                     this.add_child_item (item);
                 }
             } catch (VideoItemError error) {
-                warning ("Error creating video item: %s",
-                         error.message);
+                debug ("Could not create video item: %s, skipping",
+                       error.message);
             }
         }
 
