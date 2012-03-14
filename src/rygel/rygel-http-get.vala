@@ -94,9 +94,10 @@ internal class Rygel.HTTPGet : HTTPRequest {
                 this.thumbnail = music.album_art;
             } else if (this.item is VisualItem) {
                 var visual = this.item as VisualItem;
-
-                this.thumbnail = visual.thumbnails.get
-                                        (this.uri.thumbnail_index);
+                if (visual.thumbnails.size >= this.uri.thumbnail_index) {
+                    this.thumbnail = visual.thumbnails.get
+                                            (this.uri.thumbnail_index);
+                }
             } else {
                 throw new HTTPRequestError.NOT_FOUND
                                         ("No Thumbnail available for item '%s",
@@ -109,8 +110,11 @@ internal class Rygel.HTTPGet : HTTPRequest {
                                          this.item.id);
             }
 
-            this.subtitle = (this.item as VideoItem).subtitles.get
-                                        (this.uri.subtitle_index);
+            var video = this.item as VideoItem;
+
+            if (this.uri.subtitle_index <= video.subtitles.size) {
+                this.subtitle = video.subtitles.get (this.uri.subtitle_index);
+            }
         }
     }
 
