@@ -90,31 +90,36 @@ internal class Rygel.HTTPGet : HTTPRequest {
         if (this.uri.thumbnail_index >= 0) {
             if (this.item is MusicItem) {
                 var music = this.item as MusicItem;
-
                 this.thumbnail = music.album_art;
+
+                return;
             } else if (this.item is VisualItem) {
                 var visual = this.item as VisualItem;
-                if (visual.thumbnails.size >= this.uri.thumbnail_index) {
+                if (this.uri.thumbnail_index < visual.thumbnails.size) {
                     this.thumbnail = visual.thumbnails.get
                                             (this.uri.thumbnail_index);
+
+                    return;
                 }
-            } else {
-                throw new HTTPRequestError.NOT_FOUND
+            }
+
+            throw new HTTPRequestError.NOT_FOUND
                                         ("No Thumbnail available for item '%s",
                                          this.item.id);
-            }
-        } else if (this.uri.subtitle_index >= 0) {
-            if (!(this.item is VideoItem)) {
-                throw new HTTPRequestError.NOT_FOUND
-                                        ("No subtitles available for item '%s",
-                                         this.item.id);
-            }
+        }
 
+        if (this.uri.subtitle_index >= 0 && this.item is VideoItem) {
             var video = this.item as VideoItem;
 
-            if (this.uri.subtitle_index <= video.subtitles.size) {
+            if (this.uri.subtitle_index < video.subtitles.size) {
                 this.subtitle = video.subtitles.get (this.uri.subtitle_index);
+
+                return;
             }
+
+            throw new HTTPRequestError.NOT_FOUND
+                                        ("No subtitles available for item '%s",
+                                         this.item.id);
         }
     }
 
