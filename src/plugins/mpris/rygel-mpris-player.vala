@@ -155,6 +155,10 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
     private void on_properties_changed (DBusProxy actual_player,
                                         Variant   changed,
                                         string[]  invalidated) {
+        if (!changed.get_type().equal (VariantType.VARDICT)) {
+            return;
+        }
+
         foreach (var changed_prop in changed) {
             var key = (string) changed_prop.get_child_value (0);
             var value = changed_prop.get_child_value (1).get_child_value (0);
