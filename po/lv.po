@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the rygel package.
 #
 # Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2011.
-# Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011.
+# Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
-"cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-07-27 10:55+0000\n"
-"PO-Revision-Date: 2011-09-16 13:38+0300\n"
-"Last-Translator: Rūdofls Mazurs <rudolfs.mazurs@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-02-20 08:51+0000\n"
+"PO-Revision-Date: 2012-03-15 21:33+0200\n"
+"Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,17 +27,52 @@ msgid "Rygel Preferences"
 msgstr "Rygel iestatījumi"
 
 #: ../data/rygel-preferences.ui.h:2
-msgid "Select folders"
-msgstr "Izvēlieties mapi"
-
-#. Network Interface
-#: ../data/rygel-preferences.ui.h:4
-msgid "_Network"
-msgstr "_Tīkls"
-
-#: ../data/rygel-preferences.ui.h:5
 msgid "_Share media through DLNA"
 msgstr "Koplietot multimediju_s izmantojot DLNA"
+
+#: ../data/rygel-preferences.ui.h:3
+msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
+msgstr ""
+"Aktivē multimediju, tādu kā fotogrāfijas, video un mūzika, koplietošanu, "
+"izmantojot DLNA"
+
+#: ../data/rygel-preferences.ui.h:4
+msgid "Add a directory to the list of shared directories"
+msgstr "Pievieno direktoriju pie koplietoto direktoriju saraksta"
+
+#: ../data/rygel-preferences.ui.h:5
+msgid "Add shared directory"
+msgstr "Pievienot koplietotu direktoriju"
+
+#: ../data/rygel-preferences.ui.h:6
+msgid "Remove a directory from the list of shared directories"
+msgstr "Izņemt direktoriju no koplietoto direktoriju saraksta"
+
+#: ../data/rygel-preferences.ui.h:7
+msgid "Remove shared directory"
+msgstr "Izņemt koplietotu direktoriju"
+
+#. Network Interface
+#: ../data/rygel-preferences.ui.h:9
+#| msgid "_Network"
+msgid "_Network:"
+msgstr "_Tīkls:"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid ""
+"Select the network interface that DLNA media will be shared on, or share "
+"media on all interfaces"
+msgstr ""
+"Izvēlieties tīkla saskarni, uz kuras tiks koplietota DLNA multimedija, vai "
+"koplietot multimediju uz visām saskarnēm"
+
+#: ../data/rygel-preferences.ui.h:11
+msgid "Any"
+msgstr "Jebkurš"
+
+#: ../data/rygel-preferences.ui.h:12
+msgid "Select folders"
+msgstr "Izvēlieties mapi"
 
 #: ../data/rygel-preferences.desktop.in.in.h:2
 msgid "UPnP/DLNA Preferences"
@@ -61,7 +96,7 @@ msgid "Failed to roll back transaction: %s"
 msgstr "Neizdevās atsaukt transakciju: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
-#: ../src/rygel/rygel-plugin-loader.vala:186
+#: ../src/rygel/rygel-plugin-loader.vala:194
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Neizdevās vaicāt '%s' satura tipu"
@@ -76,27 +111,26 @@ msgstr "Neizdevās pievienot vienību ar ID %s: %s"
 msgid "Failed to attach to D-Bus session bus: %s"
 msgstr "Neizdevās pievienoties D-Bus sesijas kopnei: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:66
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:77
 msgid "No metadata extractor available. Will not crawl."
 msgstr "Nav pieejams metadatu izvilcējs. Neapstaigās."
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:109
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:120
 #, c-format
 msgid "'%s' harvested"
 msgstr "'%s' ievākts"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:188
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:210
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Kļūda, saņemot objektu '%s' no datubāzes: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:194
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:216
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "Failed to access media cache: %s"
 msgstr "Neizdevās piekļūt multimediju kešam: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:233
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:255
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Kļūda, izņemto objektu no datu bāzes: %s"
@@ -132,35 +166,35 @@ msgstr "Albums"
 msgid "Genre"
 msgstr "Žanrs"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:99
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:104
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "Neizdevās izņemt URI: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:339
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:348
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@'s medijs"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:347
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:355
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Neizdevās izveidot MediaExport D-Bus servisu: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:387
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:395
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Neizdevās izņemt ierakstu: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:410
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:416
 msgid "Music"
 msgstr "Mūzika"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:413
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:419
 msgid "Pictures"
 msgstr "Attēli"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:415
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:421
 msgid "Videos"
 msgstr "Video"
 
@@ -175,7 +209,7 @@ msgid "Failed to construct URI for folder '%s': %s"
 msgstr "Neizdevās izveidot URI mapei '%s': %s"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:62
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:93
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:109
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr "Neizdevās savienoties ar sesijas kopni: %s"
@@ -190,7 +224,7 @@ msgstr "Kļūda, saņemot visas '%s' vērtības: %s"
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "Neizdevās palaist Tracker servisu: %s. Spraudnis atslēgts."
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:205
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:225
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr "Kļūda, saņemot priekšmetu skaitu kategorijā '%s': %s"
@@ -208,16 +242,15 @@ msgid "Titles"
 msgstr "Nosaukumi"
 
 #: ../src/rygel/rygel-media-query-action.vala:118
-#: ../src/rygel/rygel-media-query-action.vala:177
-#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:207
-#: ../src/rygel/rygel-item-creator.vala:246
+#: ../src/rygel/rygel-media-query-action.vala:181
+#: ../src/rygel/rygel-item-creator.vala:230
+#: ../src/rygel/rygel-item-creator.vala:288
 #: ../src/rygel/rygel-item-destroyer.vala:53
 #: ../src/rygel/rygel-item-destroyer.vala:100
 msgid "No such object"
 msgstr "Nav tāda objekta"
 
 #: ../src/rygel/rygel-media-query-action.vala:123
-#| msgid "Invalid Name"
 msgid "Invalid range"
 msgstr "Nederīgs diapazons"
 
@@ -225,33 +258,39 @@ msgstr "Nederīgs diapazons"
 msgid "Invalid Arguments"
 msgstr "Nederīgi parametri"
 
+#: ../src/rygel/rygel-browse.vala:94
+msgid "Cannot browse children on item"
+msgstr "Nevar pārlūkot bērnus vienumam"
+
 #: ../src/rygel/rygel-browse.vala:121
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "Neizdevās pārlūkot '%s': %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:150
-#: ../src/rygel/rygel-cmdline-config.vala:158
-#: ../src/rygel/rygel-cmdline-config.vala:166
-#: ../src/rygel/rygel-cmdline-config.vala:174
-#: ../src/rygel/rygel-cmdline-config.vala:182
-#: ../src/rygel/rygel-cmdline-config.vala:190
-#: ../src/rygel/rygel-cmdline-config.vala:198
-#: ../src/rygel/rygel-cmdline-config.vala:206
-#: ../src/rygel/rygel-cmdline-config.vala:214
-#: ../src/rygel/rygel-cmdline-config.vala:222
-#: ../src/rygel/rygel-cmdline-config.vala:230
-#: ../src/rygel/rygel-cmdline-config.vala:256
-#: ../src/rygel/rygel-cmdline-config.vala:275
-#: ../src/rygel/rygel-cmdline-config.vala:281
-#: ../src/rygel/rygel-cmdline-config.vala:288
-#: ../src/rygel/rygel-cmdline-config.vala:292
-#: ../src/rygel/rygel-cmdline-config.vala:296
-#: ../src/rygel/rygel-cmdline-config.vala:319
-#: ../src/rygel/rygel-cmdline-config.vala:345
-#: ../src/rygel/rygel-cmdline-config.vala:374
-#: ../src/rygel/rygel-cmdline-config.vala:400
-#: ../src/rygel/rygel-cmdline-config.vala:425
+#: ../src/rygel/rygel-cmdline-config.vala:156
+#: ../src/rygel/rygel-cmdline-config.vala:164
+#: ../src/rygel/rygel-cmdline-config.vala:172
+#: ../src/rygel/rygel-cmdline-config.vala:180
+#: ../src/rygel/rygel-cmdline-config.vala:188
+#: ../src/rygel/rygel-cmdline-config.vala:196
+#: ../src/rygel/rygel-cmdline-config.vala:204
+#: ../src/rygel/rygel-cmdline-config.vala:212
+#: ../src/rygel/rygel-cmdline-config.vala:220
+#: ../src/rygel/rygel-cmdline-config.vala:228
+#: ../src/rygel/rygel-cmdline-config.vala:236
+#: ../src/rygel/rygel-cmdline-config.vala:244
+#: ../src/rygel/rygel-cmdline-config.vala:252
+#: ../src/rygel/rygel-cmdline-config.vala:278
+#: ../src/rygel/rygel-cmdline-config.vala:297
+#: ../src/rygel/rygel-cmdline-config.vala:303
+#: ../src/rygel/rygel-cmdline-config.vala:310
+#: ../src/rygel/rygel-cmdline-config.vala:314
+#: ../src/rygel/rygel-cmdline-config.vala:318
+#: ../src/rygel/rygel-cmdline-config.vala:341
+#: ../src/rygel/rygel-cmdline-config.vala:367
+#: ../src/rygel/rygel-cmdline-config.vala:396
+#: ../src/rygel/rygel-cmdline-config.vala:422
+#: ../src/rygel/rygel-cmdline-config.vala:447
 #: ../src/rygel/rygel-meta-config.vala:83
 #: ../src/rygel/rygel-meta-config.vala:102
 #: ../src/rygel/rygel-meta-config.vala:121
@@ -263,6 +302,8 @@ msgstr "Neizdevās pārlūkot '%s': %s\n"
 #: ../src/rygel/rygel-meta-config.vala:235
 #: ../src/rygel/rygel-meta-config.vala:254
 #: ../src/rygel/rygel-meta-config.vala:273
+#: ../src/rygel/rygel-meta-config.vala:292
+#: ../src/rygel/rygel-meta-config.vala:311
 msgid "No value available"
 msgstr "Nav pieejama vērtība"
 
@@ -276,7 +317,6 @@ msgstr "Nav pieejama vērtība"
 #: ../src/rygel/rygel-content-directory.vala:304
 #: ../src/rygel/rygel-content-directory.vala:329
 #: ../src/rygel/rygel-media-receiver-registrar.vala:59
-#| msgid "Invalid Arguments"
 msgid "Invalid argument"
 msgstr "Nederīgs parametrs"
 
@@ -342,58 +382,65 @@ msgstr "Nederīgs apgabals '%s'"
 msgid "Invalid Request"
 msgstr "Nederīgs pieprasījums"
 
-#: ../src/rygel/rygel-http-identity-handler.vala:88
-#: ../src/rygel/rygel-http-transcode-handler.vala:56
+#: ../src/rygel/rygel-http-identity-handler.vala:92
+#: ../src/rygel/rygel-http-transcode-handler.vala:57
 msgid "Not found"
 msgstr "Nav atrasts"
 
-#: ../src/rygel/rygel-http-item-uri.vala:58
+#: ../src/rygel/rygel-http-item-uri.vala:127
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Nederīgs URI '%s'"
 
-#: ../src/rygel/rygel-http-item-uri.vala:89
+#: ../src/rygel/rygel-http-item-uri.vala:166
 msgid "Not Found"
 msgstr "Nav atrasts"
 
-#: ../src/rygel/rygel-http-post.vala:64
+#: ../src/rygel/rygel-http-post.vala:62
 #: ../src/rygel/rygel-import-resource.vala:191
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Datu grūšana netukšā vienumā '%s' nav atļauta"
 
-#: ../src/rygel/rygel-http-post.vala:72
+#: ../src/rygel/rygel-http-post.vala:70
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "%s nav pieejami rakstāmi URI"
 
-#: ../src/rygel/rygel-http-request.vala:82
+#. translators: Dotfile is the filename with prefix "."
+#: ../src/rygel/rygel-http-post.vala:185
+#, c-format
+#| msgid "Failed to remove entry: %s"
+msgid "Failed to move dotfile %s: %s"
+msgstr "Neizdevās pārvietot slēpto failu %s: %s"
+
+#: ../src/rygel/rygel-http-request.vala:89
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "Pieprasītais vienums '%s' nav atrasts"
 
-#: ../src/rygel/rygel-http-response.vala:154
-#: ../src/rygel/rygel-http-response.vala:175
+#: ../src/rygel/rygel-http-response.vala:156
+#: ../src/rygel/rygel-http-response.vala:177
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Neizdevās savienot %s ar %s"
 
-#: ../src/rygel/rygel-http-response.vala:189
+#: ../src/rygel/rygel-http-response.vala:192
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Neizdevās savienot kontaktu %s ar %s"
 
-#: ../src/rygel/rygel-http-response.vala:232
+#: ../src/rygel/rygel-http-response.vala:235
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Kļūda no konveijera %s: %s"
 
-#: ../src/rygel/rygel-http-response.vala:239
+#: ../src/rygel/rygel-http-response.vala:242
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Brīdinājums no konveijera %s: %s"
 
-#: ../src/rygel/rygel-http-response.vala:281
+#: ../src/rygel/rygel-http-response.vala:285
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Neizdevās meklēt nobīdi %lld"
@@ -418,26 +465,26 @@ msgstr "Neizdevās iegūt %s' sākotnējo URI: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URI '%s' nav derīgi, lai tajos importētu saturu"
 
-#: ../src/rygel/rygel-item-creator.vala:74
+#: ../src/rygel/rygel-item-creator.vala:83
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Nav DIDL-Lite vienību no klienta: '%s'"
 
-#: ../src/rygel/rygel-item-creator.vala:198
+#: ../src/rygel/rygel-item-creator.vala:221
 msgid "'Elements' argument missing."
 msgstr "Trūkst 'Elements' parametra."
 
-#: ../src/rygel/rygel-item-creator.vala:201
+#: ../src/rygel/rygel-item-creator.vala:224
 msgid "Comments not allowed in XML"
 msgstr "XML nav atļauti komentāri"
 
-#: ../src/rygel/rygel-item-creator.vala:250
-#: ../src/rygel/rygel-item-creator.vala:339
+#: ../src/rygel/rygel-item-creator.vala:292
+#: ../src/rygel/rygel-item-creator.vala:391
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Objekta izveidošana iekš %s nav atļauta"
 
-#: ../src/rygel/rygel-item-creator.vala:276
+#: ../src/rygel/rygel-item-creator.vala:318
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Neizdevās izveidot vienību zem '%s': %s"
@@ -467,7 +514,7 @@ msgstr "Objekta izņemšana no %s nav atļauta"
 msgid "Failed to get log level from configuration: %s"
 msgstr "Neizdevās saņemt reģistrēšanas līmeni no konfigurācijas: %s"
 
-#: ../src/rygel/rygel-main.vala:88
+#: ../src/rygel/rygel-main.vala:97
 #, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
@@ -475,23 +522,23 @@ msgstr[0] "Neizdevās atrast spraudni %d sekundē; padodos..."
 msgstr[1] "Neizdevās atrast spraudni %d sekundēs; padodos..."
 msgstr[2] "Neizdevās atrast spraudni %d sekundēs; padodos..."
 
-#: ../src/rygel/rygel-main.vala:149
+#: ../src/rygel/rygel-main.vala:158
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Neizdevās izveidot saknes ierīci ražotnei: %s"
 
-#: ../src/rygel/rygel-main.vala:207
+#: ../src/rygel/rygel-main.vala:216
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Neizdevās izveidot %s RootDevice. Iemesls: %s"
 
-#: ../src/rygel/rygel-media-item.vala:255
+#: ../src/rygel/rygel-media-item.vala:273
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Slikts URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:267
+#: ../src/rygel/rygel-media-item.vala:285
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Neizdevās zondēt URI %s protokolu. Pieņem '%s'"
@@ -501,54 +548,53 @@ msgstr "Neizdevās zondēt URI %s protokolu. Pieņem '%s'"
 msgid "Failed to load user configuration: %s"
 msgstr "Neizdevās ielādēt lietotāja konfigurāciju: %s"
 
-#: ../src/rygel/rygel-meta-config.vala:356
-#: ../src/rygel/rygel-meta-config.vala:375
+#: ../src/rygel/rygel-meta-config.vala:394
+#: ../src/rygel/rygel-meta-config.vala:413
 #, c-format
 msgid "No value set for '%s/enabled'"
 msgstr "'%s/enabled' nav iestatīta vērtība"
 
-#: ../src/rygel/rygel-meta-config.vala:395
-#: ../src/rygel/rygel-meta-config.vala:417
-#: ../src/rygel/rygel-meta-config.vala:443
-#: ../src/rygel/rygel-meta-config.vala:465
-#: ../src/rygel/rygel-meta-config.vala:489
+#: ../src/rygel/rygel-meta-config.vala:433
+#: ../src/rygel/rygel-meta-config.vala:455
+#: ../src/rygel/rygel-meta-config.vala:481
+#: ../src/rygel/rygel-meta-config.vala:503
+#: ../src/rygel/rygel-meta-config.vala:527
 #, c-format
 msgid "No value available for '%s/%s'"
 msgstr "'%s/%s' nav pieejama vērtība"
 
-#: ../src/rygel/rygel-plugin-loader.vala:83
+#: ../src/rygel/rygel-plugin-loader.vala:85
 #, c-format
 msgid "New plugin '%s' available"
 msgstr "Ir pieejams jauns spraudnis '%s'"
 
-#: ../src/rygel/rygel-plugin-loader.vala:117
+#: ../src/rygel/rygel-plugin-loader.vala:119
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Kļūda, veidojot mapes satura sarakstu '%s': %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:149
+#: ../src/rygel/rygel-plugin-loader.vala:147
+#, c-format
+msgid "A module named %s is already loaded"
+msgstr "Modulis %s ir jau ielādēts"
+
+#: ../src/rygel/rygel-plugin-loader.vala:156
 #, c-format
 msgid "Failed to load module from path '%s': %s"
 msgstr "Neizdevās ielādēt moduli no ceļa '%s': %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:159
+#: ../src/rygel/rygel-plugin-loader.vala:166
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Neizdevās atrast ievades punktu funkcijai '%s' iekš '%s': %s"
 
-#: ../src/rygel/rygel-root-device-factory.vala:106
-#: ../src/rygel/rygel-root-device-factory.vala:139
-#: ../src/rygel/rygel-root-device-factory.vala:161
-#: ../src/rygel/rygel-root-device-factory.vala:192
+#: ../src/rygel/rygel-root-device-factory.vala:110
+#: ../src/rygel/rygel-root-device-factory.vala:143
+#: ../src/rygel/rygel-root-device-factory.vala:165
+#: ../src/rygel/rygel-root-device-factory.vala:196
 #, c-format
 msgid "XML node '%s' not found."
 msgstr "Nav atrasts XML mezgls '%s'."
-
-#: ../src/rygel/rygel-root-device-factory.vala:294
-#: ../src/rygel/rygel-root-device-factory.vala:304
-#, c-format
-msgid "Failed to write modified description to %s"
-msgstr "Neizdevās %s ierakstīt mainītos aprakstus"
 
 #: ../src/rygel/rygel-search.vala:89
 #, c-format
@@ -559,44 +605,35 @@ msgstr "Neizdevās meklēt iekš '%s': %s"
 msgid "No subtitle available"
 msgstr "Subtitri nav pieejami"
 
-#: ../src/rygel/rygel-thumbnailer.vala:56
+#: ../src/rygel/rygel-thumbnailer.vala:58
 msgid "Failed to find thumbnails folder."
 msgstr "Neizdevās atrast sīktēlu mapi."
 
-#: ../src/rygel/rygel-thumbnailer.vala:82
+#: ../src/rygel/rygel-thumbnailer.vala:90
 #, c-format
 msgid "No thumbnailer available: %s"
 msgstr "Nav pieejams sīktēls: %s"
 
-#: ../src/rygel/rygel-thumbnailer.vala:106
+#: ../src/rygel/rygel-thumbnailer.vala:119
 msgid "No thumbnail available"
 msgstr "Nav pieejams sīktēls"
 
-#: ../src/rygel/rygel-transcode-manager.vala:118
+#: ../src/rygel/rygel-transcode-manager.vala:130
 #, c-format
 msgid "No transcoder available for target format '%s'"
 msgstr "Nav pieejams transkoderis mērķa formātam '%s'"
 
-#: ../src/rygel/rygel-user-config.vala:188
+#: ../src/rygel/rygel-user-config.vala:198
 #, c-format
 msgid "No value available for '%s'"
 msgstr "'%s' nav pieejama vērtība"
 
-#: ../src/rygel/rygel-user-config.vala:238
+#: ../src/rygel/rygel-user-config.vala:248
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "'%s' vērtība ir ārpus apgabala"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:60
-msgid "Not Applicable"
-msgstr "Nav piemērojams"
-
-#: ../src/rygel/rygel-xbox-hacks.vala:223
-#, c-format
-msgid "Failed to write modified description to %s."
-msgstr "Neizdevās ierakstīt izmainīto aprakstu uz %s."
-
-#: ../src/ui/rygel-preferences-dialog.vala:89
+#: ../src/ui/rygel-preferences-dialog.vala:93
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Neizdevās izveidot iestatījumu dialogu: %s"
@@ -615,6 +652,15 @@ msgstr "Neizdevās palaist Rygel servisu: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Neizdevās apturēt Rygel servisu: %s"
+
+#~ msgid "Failed to write modified description to %s"
+#~ msgstr "Neizdevās %s ierakstīt mainītos aprakstus"
+
+#~ msgid "Not Applicable"
+#~ msgstr "Nav piemērojams"
+
+#~ msgid "Failed to write modified description to %s."
+#~ msgstr "Neizdevās ierakstīt izmainīto aprakstu uz %s."
 
 #~ msgid "Failed to open database: %d (%s)"
 #~ msgstr "Neizdevās atvērt datubāzi: %d (%s)"
