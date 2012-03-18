@@ -116,6 +116,7 @@ internal class Rygel.RootDeviceFactory {
         this.set_friendly_name_and_udn (device_element,
                                         plugin.name,
                                         plugin.title);
+        this.set_dlnacap (device_element);
 
         if (plugin.description != null) {
             this.set_description (device_element, plugin.description);
@@ -173,6 +174,30 @@ internal class Rygel.RootDeviceFactory {
 
             element->set_content (udn);
         }
+    }
+
+    private void set_dlnacap (Xml.Node *device_element) {
+        var element = XMLUtils.get_element (device_element,
+                                            "X_DLNACAP",
+                                            null);
+
+        var content = "";
+        var allow_upload = true;
+        var allow_delete = false;
+
+        try {
+            allow_upload = config.get_allow_upload ();
+            allow_delete = config.get_allow_deletion ();
+        } catch (Error error) { }
+
+        if (allow_upload) {
+            content += "av-upload,image-upload,audio-upload";
+        }
+
+        if (allow_delete) {
+            content += ",create-item-with-OCM-destroy-item";
+        }
+        element->set_content (content);
     }
 
     private void set_description (Xml.Node *device_element,
