@@ -164,9 +164,7 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
      * @param description The plaintext container description
      * @param pattern     Contains the pattern used for child containers if
      *                    descrption is for a node container, null otherwise.
-     * @param attribute   Contains the UPnP attribute the container describes
-     *                    if description is for a node container, null
-     *                    otherwise.
+     * @param attribute   Contains the UPnP attribute the container describes.
      * @param name        If passed empty, name will be generated from the
      *                    description.
      * @return A SearchExpression corresponding to the non-variable part of
@@ -183,14 +181,14 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
 
         int i = 0;
         while (i < args.length) {
+            attribute = args[i].replace (QueryContainer.PREFIX, "");
+            attribute = Uri.unescape_string (attribute);
             if (args[i + 1] != "?") {
                 this.update_search_expression (ref expression,
                                                args[i],
                                                args[i + 1]);
             } else {
                 args[i + 1] = "%s";
-                attribute = args[i].replace (QueryContainer.PREFIX, "");
-                attribute = Uri.unescape_string (attribute);
                 pattern = string.joinv (",", args);
 
                 if (name == "" && i > 0) {
