@@ -98,14 +98,8 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
     }
 
     public static bool requested (HTTPGet request) {
-        var seek_request = request.msg.request_headers.get_one
-                                        ("TimeSeekRange.dlna.org");
-
-        if (seek_request != null) {
-            return seek_request != "npt=0-";
-        }
-
-        return false;
+        return request.msg.request_headers.get_one ("TimeSeekRange.dlna.org") !=
+               null;
     }
 
     public override void add_response_headers () {
