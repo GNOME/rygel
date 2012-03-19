@@ -1,3 +1,43 @@
+0.13.4
+======
+
+A new release in the current unstabel release cycle
+
+Changes compared to 0.13.3:
+
+- Add the new logo.
+- Don't abort if a client requests an invalid thumbnail or subtitle.
+- Don't crash if a GStreamer element is missing.
+- Set X_DLNACAP according to the allow-upload/allow-deletion configuration.
+- Drop the "maximum version" requirements in configure.ac.
+- Revert the ¨npt=0- is not a seek" patch since it broke DLNA requirement
+  7.3.33.4.
+- Don't crash if a User-Agent contains non-UTF-8 characters.
+
+Mediathek:
+ - Reduce severity of a warning message.
+
+Playbin:
+ - Emit duration change once the playbin can know it.
+
+Tracker:
+ - Refactor alternative properties.
+
+MPRIS:
+ - Don't abort if a server doesn't use the proper type for the "Metadata"
+   property.
+
+MediaExport:
+ - Set proper UPnP class for virtual containers.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=672048
+ - https://bugzilla.gnome.org/show_bug.cgi?id=667781
+
+Added/updated translations
+ - lv, courtesy of Rūdolfs Mazurs
+ - pl, courtesy of Piotr Drąg
+
 0.13.3
 ======
 
