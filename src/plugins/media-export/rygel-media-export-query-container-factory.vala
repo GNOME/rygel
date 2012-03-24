@@ -113,47 +113,60 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
         var title = name;
         string attribute = null;
         string pattern = null;
+        string upnp_class = null;
         var id = definition;
+        QueryContainer container;
 
         this.register_id (ref id);
 
         var expression = this.parse_description (definition,
                                                  out pattern,
                                                  out attribute,
+                                                 out upnp_class,
                                                  ref title);
 
         if (pattern == null || pattern == "") {
-            var container =  new LeafQueryContainer (cache,
-                                                     expression,
-                                                     id,
-                                                     title);
-            switch (attribute) {
-                case "upnp:album":
-                    container.upnp_class = MediaContainer.MUSIC_ALBUM;
-                    break;
-                case "dc:creator":
-                case "upnp:artist":
-                    container.upnp_class = MediaContainer.MUSIC_ARTIST;
-                    break;
-                case "upnp:genre":
-                    container.upnp_class = MediaContainer.MUSIC_GENRE;
-                    break;
-                default:
-                    break;
-            }
-
-            return container;
+            container =  new LeafQueryContainer (cache,
+                                                 expression,
+                                                 id,
+                                                 title);
         } else {
-            return new NodeQueryContainer (cache,
-                                           expression,
-                                           id,
-                                           title,
-                                           pattern,
-                                           attribute);
+            container = new NodeQueryContainer (cache,
+                                                expression,
+                                                id,
+                                                title,
+                                                pattern,
+                                                attribute);
         }
+
+        if (upnp_class != null) {
+            container.upnp_class = upnp_class;
+        }
+
+        return container;
     }
 
     // private methods
+
+    /**
+     * Map a DIDL attribute to a UPnP container class.
+     *
+     * @return A matching UPnP class for the attribute or null if it can't be
+     *         mapped.
+     */
+    private string? map_upnp_class (string attribute) {
+        switch (attribute) {
+            case "upnp:album":
+                return MediaContainer.MUSIC_ALBUM;
+            case "dc:creator":
+            case "upnp:artist":
+                return MediaContainer.MUSIC_ARTIST;
+            case "dc:genre":
+                return MediaContainer.MUSIC_GENRE;
+            default:
+                return null;
+        }
+    }
 
     /**
      * Parse a plaintext container description into a search expression.
@@ -173,23 +186,37 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
     private SearchExpression parse_description (string     description,
                                                 out string pattern,
                                                 out string attribute,
+                                                out string upnp_class,
                                                 ref string name) {
         var args = description.split (",");
         var expression = null as SearchExpression;
         pattern = null;
         attribute = null;
+        upnp_class = null;
 
         int i = 0;
         while (i < args.length) {
+            string previous_attribute = attribute;
+
             attribute = args[i].replace (QueryContainer.PREFIX, "");
             attribute = Uri.unescape_string (attribute);
+
             if (args[i + 1] != "?") {
                 this.update_search_expression (ref expression,
                                                args[i],
                                                args[i + 1]);
+
+                // We're on the end of the list, map UPnP class
+                if (i + 2 == args.length) {
+                    upnp_class = this.map_upnp_class (attribute);
+                }
             } else {
                 args[i + 1] = "%s";
                 pattern = string.joinv (",", args);
+
+                // This container has the previouss attribute's content, so
+                // use that to map the UPnP class.
+                upnp_class = this.map_upnp_class (previous_attribute);
 
                 if (name == "" && i > 0) {
                     name = Uri.unescape_string (args[i - 1]);
