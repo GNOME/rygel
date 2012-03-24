@@ -185,11 +185,13 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                               Message message) {
         switch (message.type) {
         case MessageType.STATE_CHANGED:
-            State old_state, new_state;
+            if (message.src == this.playbin) {
+                State old_state, new_state;
 
-            message.parse_state_changed (out old_state, out new_state, null);
-            if (old_state == State.READY && new_state == State.PAUSED) {
-                this.notify_property ("duration");
+                message.parse_state_changed (out old_state, out new_state, null);
+                if (old_state == State.READY && new_state == State.PAUSED) {
+                    this.notify_property ("duration");
+                }
             }
             break;
         case MessageType.EOS:
