@@ -1,7 +1,7 @@
 0.13.4
 ======
 
-A new release in the current unstabel release cycle
+A new release in the current unstable release cycle
 
 Changes compared to 0.13.3:
 
@@ -37,6 +37,12 @@ Bugs fixed in this release:
 Added/updated translations
  - lv, courtesy of Rūdolfs Mazurs
  - pl, courtesy of Piotr Drąg
+
+All contributors to this release:
+ Jens Georg <mail@jensge.org>
+ Rudolfs Mazurs <rudolfs.mazurs@gmail.com>
+ Piotr Drąg <piotrdrag@gmail.com>
+ Lukasz Pawlik <lukasz.pawlik@comarch.com>
 
 0.13.3
 ======
