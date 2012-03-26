@@ -1,3 +1,22 @@
+0.14.0
+======
+
+A new stable release for GNOME 3.4
+
+Changes compared to 0.13.4:
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - gl, courtesy of Fran Dieguez
+ - ja, courtesy of Kentaro KAZUHAMA
+ - sv, courtesy of Daniel Nylander
+
+All contributors to this release:
+ Marek Černocký <marek@manet.cz>
+ Kentaro KAZUHAMA <kazken3@gmail.com>
+ Fran Diéguez <fran.dieguez@mabishu.com>
+ Daniel Nylander <po@danielnylander.se>
+
 0.13.4
 ======
 
