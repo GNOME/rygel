@@ -1,7 +1,8 @@
 /*
- * Copyright (C) 2010 Nokia Corporation.
+ * Copyright (C) 2010-2012 Nokia Corporation.
  *
  * Author: Zeeshan Ali <zeenix@gmail.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -21,6 +22,7 @@
  */
 
 using Gee;
+using Tracker;
 
 /**
  * Represents Tracker SPARQL Insertion query
@@ -116,22 +118,40 @@ public class Rygel.Tracker.InsertionQuery : Query {
         this.uri = item.uris[0];
     }
 
-    public override async void execute (ResourcesIface resources)
-                                        throws IOError, DBusError {
+    public override async void execute (Sparql.Connection resources)
+                                        throws IOError,
+                                        Sparql.Error,
+                                        DBusError {
         var str = this.to_string ();
 
         debug ("Executing SPARQL query: %s", str);
 
-        var result = yield resources.sparql_update_blank (str);
+        Variant v = yield resources.update_blank_async (str);
+        VariantIter iter1, iter2, iter3;
+        string key = null;
+
+        iter1 = v.iterator ();
+        while (iter1.next ("aa{ss}", out iter2)) {
+            while (iter2.next ("a{ss}", out iter3)) {
+                while (iter3.next ("{ss}", out key, out this.id)) {
+                    break;
+                }
+            }
+        }
 
         // Item already existed
-        if (result[0,0] == null || result[0,0].lookup (TEMP_ID) == null)  {
-            var ids = yield resources.sparql_query
+        if (this.id == null)  {
+            var cursor = yield resources.query_async
                                         (this.get_resource_id_query ());
 
-            this.id = ids[0,0];
+            try {
+                while (cursor.next ()) {
+                    this.id = cursor.get_string (0);
+                    break;
+                }
+            } catch (Error error) {
+            }
         } else {
-            this.id = result[0,0].lookup (TEMP_ID);
             var file = File.new_for_uri (this.uri);
             if (file.is_native () &&
                 file.query_exists ()) {

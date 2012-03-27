@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 Nokia Corporation.
+ * Copyright (C) 2011-2012 Nokia Corporation.
  *
  * Author: Jens Georg <jensg@openismus.com>
  *
@@ -21,6 +21,7 @@
  */
 
 using Gee;
+using Tracker;
 
 /**
  * Represents Tracker SPARQL Deletion query
@@ -37,13 +38,15 @@ public class Rygel.Tracker.CleanupQuery : Query {
         this.category = category;
     }
 
-    public override async void execute (ResourcesIface resources)
-                                        throws IOError, DBusError {
+    public override async void execute (Sparql.Connection resources)
+                                        throws IOError,
+                                               Sparql.Error,
+                                               DBusError {
         var str = this.to_string ();
 
         debug ("Executing SPARQL query: %s", str);
 
-        yield resources.sparql_update (str);
+        yield resources.update_async (str);
     }
 
     public override string to_string () {

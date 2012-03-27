@@ -1,7 +1,8 @@
 /*
- * Copyright (C) 2010 Nokia Corporation.
+ * Copyright (C) 2010-2012 Nokia Corporation.
  *
  * Author: Zeeshan Ali <zeenix@gmail.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -21,6 +22,7 @@
  */
 
 using Gee;
+using Tracker;
 
 /**
  * Represents Tracker SPARQL Selection query
@@ -46,7 +48,7 @@ public class Rygel.Tracker.SelectionQuery : Query {
     public int offset;
     public int max_count;
 
-    public string[,] result;
+    public Sparql.Cursor result;
 
     public SelectionQuery (ArrayList<string>  variables,
                            QueryTriplets      triplets,
@@ -77,13 +79,15 @@ public class Rygel.Tracker.SelectionQuery : Query {
               query.max_count);
     }
 
-    public override async void execute (ResourcesIface resources)
-                                        throws IOError, DBusError {
+    public override async void execute (Sparql.Connection resources)
+                                        throws IOError,
+                                               Sparql.Error,
+                                               DBusError {
         var str = this.to_string ();
 
         debug ("Executing SPARQL query: %s", str);
 
-        result = yield resources.sparql_query (str);
+        result = yield resources.query_async (str);
     }
 
     public override string to_string () {

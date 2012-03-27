@@ -1,9 +1,10 @@
 /*
  * Copyright (C) 2009 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
- * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2009-2012 Nokia Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -25,18 +26,18 @@
 using Rygel;
 using Gee;
 
-private Tracker.PluginFactory plugin_factory;
+private Rygel.Tracker.PluginFactory plugin_factory;
 
 public void module_init (PluginLoader loader) {
-    if (loader.plugin_disabled (Tracker.Plugin.NAME)) {
+    if (loader.plugin_disabled (Rygel.Tracker.Plugin.NAME)) {
         message ("Plugin '%s' disabled by user, ignoring..",
-                 Tracker.Plugin.NAME);
+                 Rygel.Tracker.Plugin.NAME);
 
         return;
     }
 
     try {
-        plugin_factory = new Tracker.PluginFactory (loader);
+        plugin_factory = new Rygel.Tracker.PluginFactory (loader);
     } catch (Error err) {
         warning (_("Failed to start Tracker service: %s. Plugin disabled."),
                  err.message);

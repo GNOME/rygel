@@ -1,8 +1,10 @@
 /*
- * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2008-2012 Nokia Corporation.
  *
  * Authors: Zeeshan Ali <zeenix@gmail.com>
  *          Ivan Frade <ivan.frade@nokia.com>
+ *          Jens Georg <jensg@openismus.com>
+ *          Luis de Bethencourt <luisbg@collabora.com>
  *
  * This file is part of Rygel.
  *
@@ -22,6 +24,7 @@
  */
 
 using Gee;
+using Tracker;
 
 /**
  * Represents Tracker SPARQL query
@@ -33,8 +36,10 @@ public abstract class Rygel.Tracker.Query {
         this.triplets = triplets;
     }
 
-    public abstract async void execute (ResourcesIface resources)
-                                        throws IOError, DBusError;
+    public abstract async void execute (Sparql.Connection resources)
+                                        throws IOError,
+                                               Sparql.Error,
+                                               DBusError;
 
     // Deriving classes should override this method and complete it by
     // adding the first part of the query

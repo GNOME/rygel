@@ -1,9 +1,10 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
- * Copyright (C) 2008-2010 Nokia Corporation.
+ * Copyright (C) 2008-2012 Nokia Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -23,6 +24,7 @@
  */
 
 using Gee;
+using Tracker;
 
 /**
  * A search container that contains all the items in a category.
@@ -37,7 +39,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
     public ArrayList<string> create_classes { get; set; }
     public ArrayList<string> search_classes { get; set; }
 
-    private ResourcesIface resources;
+    private Sparql.Connection resources;
 
     public CategoryAllContainer (CategoryContainer parent) {
         base ("All" + parent.id, parent, "All", parent.item_factory);
@@ -47,13 +49,9 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         this.search_classes = new ArrayList<string> ();
 
         try {
-            this.resources = Bus.get_proxy_sync
-                                        (BusType.SESSION,
-                                         TRACKER_SERVICE,
-                                         RESOURCES_PATH,
-                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
-        } catch (IOError io_error) {
-            critical (_("Failed to create D-Bus proxies: %s"),
+            this.resources = Connection.get ();
+        } catch (Error io_error) {
+            critical (_("Failed to create a Tracker connection:: %s"),
                       io_error.message);
         }
 
@@ -66,14 +64,19 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
                      error.message);
         }
 
-        unowned DBusConnection connection = this.resources.get_connection ();
-        connection.signal_subscribe (TRACKER_SERVICE,
-                                     TRACKER_SERVICE + ".Resources",
-                                     "GraphUpdated",
-                                     RESOURCES_PATH,
-                                     this.item_factory.category_iri,
-                                     DBusSignalFlags.NONE,
-                                     this.on_graph_updated);
+        try {
+            var connection = Bus.get_sync (BusType.SESSION);
+            connection.signal_subscribe (TRACKER_SERVICE,
+                                         TRACKER_SERVICE + ".Resources",
+                                         "GraphUpdated",
+                                         RESOURCES_PATH,
+                                         this.item_factory.category_iri,
+                                         DBusSignalFlags.NONE,
+                                         this.on_graph_updated);
+        } catch (Error error) {
+            critical (_("Could not subscribe to tracker signals: %s"),
+                      error.message);
+        }
 
         var cleanup_query = new CleanupQuery (this.item_factory.category);
         cleanup_query.execute (this.resources);

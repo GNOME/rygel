@@ -1,8 +1,9 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
- * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2008-2012 Nokia Corporation.
  *
  * Author: Zeeshan Ali <zeenix@gmail.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -23,6 +24,7 @@
 
 using GUPnP;
 using Gee;
+using Tracker;
 
 /**
  * Container listing possible values of a particuler Tracker metadata key.
@@ -42,7 +44,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
 
     private string child_class;
 
-    private ResourcesIface resources;
+    private Sparql.Connection resources;
 
     public MetadataValues (string         id,
                            MediaContainer parent,
@@ -58,8 +60,8 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
 
         try {
             this.create_proxies ();
-        } catch (IOError error) {
-            critical (_("Failed to connect to session bus: %s"), error.message);
+        } catch (Error error) {
+            critical (_("Failed to create Tracker connection: %s"), error.message);
 
             return;
         }
@@ -114,6 +116,45 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
 
         try {
             yield query.execute (this.resources);
+
+            while (query.result.next ()) {
+                string value = query.result.get_string (0);
+
+                if (value == "") {
+                    continue;
+                }
+
+                var title = this.create_title_for_value (value);
+                if (title == null) {
+                    continue;
+                }
+
+                var id = this.create_id_for_title (title);
+                if (id == null || !this.is_child_id_unique (id)) {
+                    continue;
+                }
+
+                // The child container can use the same triplets we used in our
+                // query.
+                var child_triplets = new QueryTriplets.clone (triplets);
+
+                // However we constrain the object of our last triplet.
+                var filters = new ArrayList<string> ();
+                var filter = this.create_filter (child_triplets.last ().obj, value);
+                filters.add (filter);
+
+                var container = new SearchContainer (id,
+                                                     this,
+                                                     title,
+                                                     this.item_factory,
+                                                     child_triplets,
+                                                     filters);
+                if (this.child_class != null) {
+                    container.upnp_class = child_class;
+                }
+
+                this.add_child_container (container);
+            }
         } catch (Error error) {
             critical (_("Error getting all values for '%s': %s"),
                       string.joinv (" -> ", this.key_chain),
@@ -123,45 +164,6 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
             return;
         }
 
-        /* Iterate through all the values */
-        for (i = 0; i < query.result.length[0]; i++) {
-            string value = query.result[i, 0];
-
-            if (value == "") {
-                continue;
-            }
-
-            var title = this.create_title_for_value (value);
-            if (title == null) {
-                continue;
-            }
-
-            var id = this.create_id_for_title (title);
-            if (id == null || !this.is_child_id_unique (id)) {
-                continue;
-            }
-
-            // The child container can use the same triplets we used in our
-            // query.
-            var child_triplets = new QueryTriplets.clone (triplets);
-
-            // However we constrain the object of our last triplet.
-            var filters = new ArrayList<string> ();
-            var filter = this.create_filter (child_triplets.last ().obj, value);
-            filters.add (filter);
-
-            var container = new SearchContainer (id,
-                                                 this,
-                                                 title,
-                                                 this.item_factory,
-                                                 child_triplets,
-                                                 filters);
-            if (this.child_class != null) {
-                container.upnp_class = child_class;
-            }
-
-            this.add_child_container (container);
-        }
 
         this.updated ();
         this.update_in_progress = false;
@@ -193,12 +195,8 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         return id.has_prefix (this.id + ":");
     }
 
-    private void create_proxies () throws IOError {
-        this.resources = Bus.get_proxy_sync
-                                        (BusType.SESSION,
-                                         TRACKER_SERVICE,
-                                         RESOURCES_PATH,
-                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
+    private void create_proxies () throws Error {
+        this.resources = Connection.get ();
     }
 }
 
