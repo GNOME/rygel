@@ -27,12 +27,14 @@
 using Gee;
 using GUPnP;
 using Gst;
+using Tracker;
 
 /**
  * Abstract Tracker item factory.
  */
 public abstract class Rygel.Tracker.ItemFactory {
     protected enum Metadata {
+        TRACKER_ID,
         URL,
         PLACE_HOLDER,
         FILE_NAME,
@@ -87,7 +89,7 @@ public abstract class Rygel.Tracker.ItemFactory {
     public abstract MediaItem create (string          id,
                                       string          uri,
                                       SearchContainer parent,
-                                      string[]        metadata)
+                                      Sparql.Cursor   metadata)
                                       throws GLib.Error;
 
     protected void set_ref_id (MediaItem item, string prefix) {
@@ -103,38 +105,42 @@ public abstract class Rygel.Tracker.ItemFactory {
         item.ref_id = prefix + "," + split_id[1];
     }
 
-    protected virtual void set_metadata (MediaItem item,
-                                         string    uri,
-                                         string[]  metadata) throws GLib.Error {
-        if (metadata[Metadata.TITLE] != "")
-            item.title = metadata[Metadata.TITLE];
-        else
+    protected virtual void set_metadata (MediaItem     item,
+                                         string        uri,
+                                         Sparql.Cursor metadata)
+                                         throws GLib.Error {
+        if (metadata.is_bound (Metadata.TITLE)) {
+            item.title = metadata.get_string (Metadata.TITLE);
+        } else {
             /* If title wasn't provided, use filename instead */
-            item.title = metadata[Metadata.FILE_NAME];
+            item.title = metadata.get_string (Metadata.FILE_NAME);
+        }
 
-        if (metadata[Metadata.SIZE] != "")
-            item.size = int64.parse (metadata[Metadata.SIZE]);
-        else
+        if (metadata.is_bound (Metadata.SIZE)) {
+            item.size = metadata.get_integer (Metadata.SIZE);
+        } else {
             // If its in tracker store and size is unknown, it most probably
             // means the size is 0 (i-e a place-holder empty item that we
             // created).
             item.size = 0;
+        }
 
-        item.place_holder = bool.parse (metadata[Metadata.PLACE_HOLDER]);
+        item.place_holder = metadata.get_boolean (Metadata.PLACE_HOLDER);
 
-        if (metadata[Metadata.DATE] != "")
-            item.date = metadata[Metadata.DATE];
+        if (metadata.is_bound (Metadata.DATE)) {
+            item.date = metadata.get_string (Metadata.DATE);
+        }
 
         var profile = null as DLNAProfile;
-        if (metadata[Metadata.DLNA_PROFILE] != "") {
-            item.dlna_profile = metadata[Metadata.DLNA_PROFILE];
+        if (metadata.is_bound (Metadata.DLNA_PROFILE)) {
+            item.dlna_profile = metadata.get_string (Metadata.DLNA_PROFILE);
             profile = this.discoverer.get_profile (item.dlna_profile);
         }
 
         if (profile != null) {
             item.mime_type = profile.mime;
         } else {
-            item.mime_type = metadata[Metadata.MIME];
+            item.mime_type = metadata.get_string (Metadata.MIME);
         }
 
         item.add_uri (uri);

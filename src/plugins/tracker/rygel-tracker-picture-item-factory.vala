@@ -24,6 +24,7 @@
  */
 
 using Gee;
+using Tracker;
 
 /**
  * Tracker picture item factory.
@@ -58,7 +59,7 @@ public class Rygel.Tracker.PictureItemFactory : ItemFactory {
     public override MediaItem create (string          id,
                                       string          uri,
                                       SearchContainer parent,
-                                      string[]        metadata)
+                                      Sparql.Cursor   metadata)
                                       throws GLib.Error {
         var item = new PhotoItem (id, parent, "");
 
@@ -67,9 +68,9 @@ public class Rygel.Tracker.PictureItemFactory : ItemFactory {
         return item;
     }
 
-    protected override void set_metadata (MediaItem item,
-                                          string    uri,
-                                          string[]  metadata)
+    protected override void set_metadata (MediaItem     item,
+                                          string        uri,
+                                          Sparql.Cursor metadata)
                                           throws GLib.Error {
         base.set_metadata (item, uri, metadata);
 
@@ -77,12 +78,12 @@ public class Rygel.Tracker.PictureItemFactory : ItemFactory {
 
         var photo = item as PhotoItem;
 
-        if (metadata[PictureMetadata.WIDTH] != "") {
-            photo.width = int.parse (metadata[PictureMetadata.WIDTH]);
+        if (metadata.is_bound (PictureMetadata.WIDTH)) {
+            photo.width = (int) metadata.get_integer (PictureMetadata.WIDTH);
         }
 
-        if (metadata[PictureMetadata.HEIGHT] != "") {
-            photo.height = int.parse (metadata[PictureMetadata.HEIGHT]);
+        if (metadata.is_bound (PictureMetadata.HEIGHT)) {
+            photo.height = (int) metadata.get_integer (PictureMetadata.HEIGHT);
         }
     }
 }

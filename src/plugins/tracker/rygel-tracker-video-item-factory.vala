@@ -25,6 +25,7 @@
  */
 
 using Gee;
+using Tracker;
 
 /**
  * Tracker video item factory.
@@ -61,7 +62,7 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
     public override MediaItem create (string          id,
                                       string          uri,
                                       SearchContainer parent,
-                                      string[]        metadata)
+                                      Sparql.Cursor   metadata)
                                       throws GLib.Error {
         var item = new VideoItem (id, parent, "");
 
@@ -72,7 +73,7 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
 
     protected override void set_metadata (MediaItem item,
                                           string    uri,
-                                          string[]  metadata)
+                                          Sparql.Cursor  metadata)
                                           throws GLib.Error {
         base.set_metadata (item, uri, metadata);
 
@@ -80,14 +81,15 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
 
         var video = item as VideoItem;
 
-        if (metadata[VideoMetadata.WIDTH] != "")
-            video.width = int.parse (metadata[VideoMetadata.WIDTH]);
+        if (metadata.is_bound (VideoMetadata.WIDTH))
+            video.width = (int) metadata.get_integer (VideoMetadata.WIDTH);
 
-        if (metadata[VideoMetadata.HEIGHT] != "")
-            video.height = int.parse (metadata[VideoMetadata.HEIGHT]);
+        if (metadata.is_bound (VideoMetadata.HEIGHT))
+            video.height = (int) metadata.get_integer (VideoMetadata.HEIGHT);
 
-        if (metadata[VideoMetadata.DURATION] != "")
-            video.duration = int.parse (metadata[VideoMetadata.DURATION]);
+        if (metadata.is_bound (VideoMetadata.DURATION))
+            video.duration = (int) metadata.get_integer
+                                        (VideoMetadata.DURATION);
     }
 }
 

@@ -25,6 +25,7 @@
  */
 
 using Gee;
+using Tracker;
 
 /**
  * Tracker music item factory.
@@ -73,7 +74,7 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
     public override MediaItem create (string          id,
                                       string          uri,
                                       SearchContainer parent,
-                                      string[]        metadata)
+                                      Sparql.Cursor   metadata)
                                       throws GLib.Error {
         var item = new MusicItem (id, parent, "");
 
@@ -84,7 +85,7 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
 
     protected override void set_metadata (MediaItem item,
                                           string    uri,
-                                          string[]  metadata)
+                                          Sparql.Cursor metadata)
                                           throws GLib.Error {
         base.set_metadata (item, uri, metadata);
 
@@ -92,47 +93,47 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
 
         var music = item as MusicItem;
 
-        if (metadata[MusicMetadata.DURATION] != "" &&
-            metadata[MusicMetadata.DURATION] != "0") {
-            music.duration = int.parse (metadata[MusicMetadata.DURATION]);
+        if (metadata.is_bound (MusicMetadata.DURATION) &&
+            metadata.get_string (MusicMetadata.DURATION) != "0") {
+            music.duration = (long) metadata.get_integer
+                                        (MusicMetadata.DURATION);
         }
 
-        if (metadata[MusicMetadata.SAMPLE_RATE] != "") {
-            music.sample_freq = int.parse
-                                        (metadata[MusicMetadata.SAMPLE_RATE]);
+        if (metadata.is_bound (MusicMetadata.SAMPLE_RATE)) {
+            music.sample_freq = (int) metadata.get_integer
+                                        (MusicMetadata.SAMPLE_RATE);
         }
 
-        if (metadata[MusicMetadata.CHANNELS] != "") {
-            music.channels = int.parse (metadata[MusicMetadata.CHANNELS]);
+        if (metadata.is_bound (MusicMetadata.CHANNELS)) {
+            music.channels = (int) metadata.get_integer
+                                        (MusicMetadata.CHANNELS);
         }
 
-        if (metadata[MusicMetadata.BITS_PER_SAMPLE] != "") {
-            var bits_per_sample = metadata[MusicMetadata.BITS_PER_SAMPLE];
-            music.bits_per_sample = int.parse (bits_per_sample);
+        if (metadata.is_bound (MusicMetadata.BITS_PER_SAMPLE)) {
+            music.bits_per_sample = (int) metadata.get_integer
+                                        (MusicMetadata.BITS_PER_SAMPLE);
         }
 
-        if (metadata[MusicMetadata.BITRATE] != "") {
-            music.bitrate = int.parse (metadata[MusicMetadata.BITRATE]) / 8;
+        if (metadata.is_bound (MusicMetadata.BITRATE)) {
+            music.bitrate = (int) metadata.get_integer
+                                        (MusicMetadata.BITRATE) / 8;
         }
 
-        if (metadata[MusicMetadata.AUDIO_TRACK_NUM] != "") {
-            var track_number = metadata[MusicMetadata.AUDIO_TRACK_NUM];
-            music.track_number = int.parse (track_number);
+        if (metadata.is_bound (MusicMetadata.AUDIO_TRACK_NUM)) {
+            music.track_number = (int) metadata.get_integer
+                                        (MusicMetadata.AUDIO_TRACK_NUM);
         }
 
-        // FIXME: For the following three properties:
-        // Once converted to libtracker-sparql, check for null again.
-        // DBus translates a (null) to ''
-        if (metadata[MusicMetadata.AUDIO_ARTIST] != "") {
-            music.artist = metadata[MusicMetadata.AUDIO_ARTIST];
+        if (metadata.is_bound (MusicMetadata.AUDIO_ARTIST)) {
+            music.artist = metadata.get_string (MusicMetadata.AUDIO_ARTIST);
         }
 
-        if (metadata[MusicMetadata.AUDIO_ALBUM] != "") {
-            music.album = metadata[MusicMetadata.AUDIO_ALBUM];
+        if (metadata.is_bound (MusicMetadata.AUDIO_ALBUM)) {
+            music.album = metadata.get_string (MusicMetadata.AUDIO_ALBUM);
         }
 
-        if (metadata[MusicMetadata.AUDIO_GENRE] != "") {
-            music.genre = metadata[MusicMetadata.AUDIO_GENRE];
+        if (metadata.is_bound (MusicMetadata.AUDIO_GENRE)) {
+            music.genre = metadata.get_string (MusicMetadata.AUDIO_GENRE);
         }
 
         music.lookup_album_art ();

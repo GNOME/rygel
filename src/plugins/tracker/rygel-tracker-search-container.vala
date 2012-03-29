@@ -140,16 +140,14 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
 
             /* Iterate through all items */
             while (yield query.result.next_async ()) {
-                var id = this.create_child_id_for_urn
-                                        (query.result.get_string (0));
+                var id = query.result.get_string (0);
+                id = this.create_child_id_for_urn (id);
                 var uri = query.result.get_string (1);
 
-                string[] metadata = new string[0];
-                for (int i = 1; i < query.result.n_columns; ++i) {
-                    metadata += query.result.get_string (i);
-                }
-
-                var item = this.item_factory.create (id, uri, this, metadata);
+                var item = this.item_factory.create (id,
+                                                     uri,
+                                                     this,
+                                                     query.result);
                 results.add (item);
             }
         }
