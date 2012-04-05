@@ -82,6 +82,16 @@ private class Rygel.HTTPGet : GLib.Object {
         this.add_headers (start, stop);
     }
 
+    public HTTPGet.inverted_range () {
+        this (null, null);
+        this.msg.request_headers.append ("Range", "bytes=34-0");
+    }
+
+    public HTTPGet.invalid_range () {
+        this (null, null);
+        this.msg.request_headers.append ("Range", "bytes=a-b");
+    }
+
     private void add_headers (int64 start, int64 stop) {
         this.msg.request_headers.set_range (start, stop);
     }
@@ -118,6 +128,16 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
                 this.test_start_stop_seek (thumbnail, subtitle);
             }
         }
+
+        try {
+            new HTTPByteSeek (new HTTPGet.inverted_range ());
+            assert_not_reached ();
+        } catch (HTTPSeekError error) {}
+
+        try {
+            new HTTPByteSeek (new HTTPGet.invalid_range ());
+            assert_not_reached ();
+        } catch (HTTPSeekError error) {}
     }
 
     private HTTPByteSeekTest () {

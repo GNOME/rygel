@@ -25,6 +25,7 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
     public HTTPByteSeek (HTTPGet request) throws HTTPSeekError {
         Soup.Range[] ranges;
         int64 start = 0, total_length;
+        unowned string range = request.msg.request_headers.get_one ("Range");
 
         if (request.thumbnail != null) {
             total_length = request.thumbnail.size;
@@ -35,11 +36,22 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
         }
         var stop = total_length - 1;
 
-        if (request.msg.request_headers.get_ranges (total_length,
-                                                    out ranges)) {
-            // TODO: Somehow deal with multipart/byterange properly
-            start = ranges[0].start;
-            stop = ranges[0].end;
+        if (range != null) {
+            if (request.msg.request_headers.get_ranges (total_length,
+                                                        out ranges)) {
+                // TODO: Somehow deal with multipart/byterange properly
+                start = ranges[0].start;
+                stop = ranges[0].end;
+            } else {
+                // Range header was present but invalid
+                throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
+                                                       range);
+            }
+
+            if (start > stop) {
+                throw new HTTPSeekError.INVALID_RANGE (_("Invalid Range '%s'"),
+                                                       range);
+            }
         }
 
         base (request.msg, start, stop, 1, total_length);
