@@ -35,8 +35,12 @@ internal class Rygel.SinkConnectionManager : Rygel.ConnectionManager {
 
         var plugin = this.root_device.resource_factory as MediaRendererPlugin;
         this.player = plugin.get_player ();
+        var protocols = this.player.get_protocols ();
 
-        foreach (var protocol in this.player.get_protocols ()) {
+        foreach (var protocol in protocols) {
+            if (protocols[0] != protocol) {
+                this.sink_protocol_info += ",";
+            }
             var mime_types = this.player.get_mime_types ();
 
             foreach (var mime_type in mime_types) {
