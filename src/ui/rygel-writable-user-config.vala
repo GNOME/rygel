@@ -30,19 +30,34 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
     private const string RYGEL_PATH = "/org/gnome/Rygel1";
     private const string RYGEL_INTERFACE = "org.gnome.Rygel1";
 
+    private string user_config;
+
     public WritableUserConfig () throws Error {
         var path = Path.build_filename (Environment.get_user_config_dir (),
                                         CONFIG_FILE);
 
         base (path);
+
+        this.user_config = path;
+    }
+
+    public bool is_upnp_enabled () {
+        try {
+            var file = File.new_for_path (this.user_config);
+            if (file.query_exists ()) {
+                return this.get_upnp_enabled ();
+            }
+
+            return false;
+        } catch (Error error) {
+            return false;
+        }
     }
 
     public void set_upnp_enabled (bool value) {
         bool enabled = false;
 
-        try {
-            enabled = this.get_upnp_enabled ();
-        } catch (GLib.Error err) {}
+        enabled = this.is_upnp_enabled ();
 
         if (value != enabled) {
             this.enable_upnp (value);
@@ -177,7 +192,7 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
                 this.set_bool ("general", UPNP_ENABLED_KEY, true);
             } else {
                 // Stop service only if already running
-                if (this.get_upnp_enabled ()) {
+                if (this.is_upnp_enabled ()) {
                     // Create proxy to Rygel
                     DBusInterface rygel_proxy = Bus.get_proxy_sync
                                         (BusType.SESSION,
