@@ -52,9 +52,7 @@ public class Rygel.PreferencesDialog : GLib.Object {
 
         this.dialog.set_icon_from_file (ICON);
 
-        try {
-            this.upnp_check.active = this.config.get_upnp_enabled ();
-        } catch (GLib.Error err) {}
+        this.upnp_check.active = this.config.is_upnp_enabled ();
 
         this.sections = new ArrayList<PreferencesSection> ();
         this.sections.add (new NetworkPrefSection (this.builder, this.config));
