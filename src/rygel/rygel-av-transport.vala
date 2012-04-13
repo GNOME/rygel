@@ -87,8 +87,8 @@ internal class Rygel.AVTransport : Service {
         set {
             this.player.uri = value;
 
-            this.changelog.log ("CurrentTrackURI", value);
-            this.changelog.log ("AVTransportURI", value);
+            this.changelog.log ("CurrentTrackURI", this.uri);
+            this.changelog.log ("AVTransportURI", this.uri);
         }
     }
 
