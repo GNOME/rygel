@@ -57,19 +57,33 @@ public class Rygel.GstLaunch.RootContainer : SimpleContainer {
                                                "%s-mime".printf (name));
             var launch_line = config.get_string (CONFIG_GROUP,
                                                  "%s-launch".printf (name));
+            string dlna_profile = null;
+            MediaItem item;
+            try {
+                dlna_profile = config.get_string (CONFIG_GROUP,
+                                                  "%s-dlnaprofile".printf
+                                                  (name));
+            } catch (Error error) {}
 
             if (mime_type.has_prefix ("audio")) {
-                this.add_child_item (new AudioItem (name,
-                                                    this,
-                                                    title,
-                                                    mime_type,
-                                                    launch_line));
+                item = new AudioItem (name,
+                                      this,
+                                      title,
+                                      mime_type,
+                                      launch_line);
             } else {
-                this.add_child_item (new VideoItem (name,
-                                                    this,
-                                                    title,
-                                                    mime_type,
-                                                    launch_line));
+                item = new VideoItem (name,
+                                      this,
+                                      title,
+                                      mime_type,
+                                      launch_line);
+            }
+
+            if (item != null) {
+                if (dlna_profile != null) {
+                    item.dlna_profile = dlna_profile;
+                }
+                this.add_child_item (item);
             }
         } catch (GLib.Error err) {
             debug ("GstLaunch failed item '%s': %s", name, err.message);

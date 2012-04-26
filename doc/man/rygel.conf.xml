@@ -475,6 +475,14 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
             </citerefentry>.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <option>identifier-dlnaprofile</option>
+        </term>
+        <listitem>
+            <para>DLNA profile for the stream.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para>An example configuration is available in the distributed configuration file <filename>/etc/&dhucpackage;</filename>.</para>
   </refsect1>
