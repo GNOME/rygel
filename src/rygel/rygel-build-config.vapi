@@ -57,4 +57,7 @@ public class Rygel.BuildConfig {
 
     [CCode (cname = "LOCALEDIR")]
     public static const string LOCALEDIR;
+
+    [CCode (cname = "PRESET_DIR")]
+    public static const string PRESET_DIR;
 }

@@ -1,0 +1,7 @@
+[_presets_]
+version=0.10
+element-name=GstX264Enc
+
+[Rygel AVC_MP4_BL_CIF15_AAC_520]
+preset=1
+bitrate=1200

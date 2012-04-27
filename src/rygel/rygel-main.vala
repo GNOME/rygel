@@ -25,6 +25,9 @@ using Gee;
 using GUPnP;
 using Posix;
 
+[CCode (cname="gst_preset_set_app_dir")]
+extern bool gst_preset_set_app_dir (string app_dir);
+
 public class Rygel.Main : Object {
     private static int PLUGIN_TIMEOUT = 5;
 
@@ -59,6 +62,8 @@ public class Rygel.Main : Object {
         Unix.signal_add (SIGHUP, () => { this.restart (); return true; });
         Unix.signal_add (SIGINT, () => { this.exit (0); return false; });
         Unix.signal_add (SIGTERM, () => { this.exit (0); return false; });
+
+        gst_preset_set_app_dir (BuildConfig.PRESET_DIR);
     }
 
     public void exit (int exit_code) {

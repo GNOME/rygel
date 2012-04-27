@@ -47,6 +47,7 @@ internal class Rygel.AVCTranscoder : Rygel.VideoTranscoder {
               VIDEO_CAPS,
               "mp4",
               RESTRICTIONS);
+        this.preset = "Rygel AVC_MP4_BL_CIF15_AAC_520 preset";
     }
 
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,

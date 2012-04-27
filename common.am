@@ -4,12 +4,14 @@ sysconfigdir = $(shareddir)
 desktopdir = $(shareddir)
 plugindir = $(abs_top_builddir)/src/plugins
 icondir = $(shareddir)/icons/32x32
+presetdir = $(shareddir)/presets
 else
 shareddir = $(datadir)/rygel
 sysconfigdir = $(sysconfdir)
 desktopdir = $(datadir)/applications
 plugindir = $(libdir)/rygel-1.0
 icondir = $(datadir)/icons/hicolor/32x32/apps
+presetdir = $(shareddir)/presets
 endif
 
 smallicondir = $(shareddir)/icons/48x48
@@ -30,6 +32,7 @@ AM_CFLAGS = \
 	-I$(rygeldir) \
 	-DDATA_DIR='"$(shareddir)"' -DSYS_CONFIG_DIR='"$(sysconfigdir)"'\
 	-DPLUGIN_DIR='"$(plugindir)"' -DDESKTOP_DIR='"$(desktopdir)"'\
+	-DPRESET_DIR='"$(presetdir)"'\
 	-include config.h
 
 RYGEL_COMMON_LIBS = \

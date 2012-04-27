@@ -1,0 +1,9 @@
+[_presets_]
+version=0.10
+element-name=ffenc_aac
+
+[Rygel DLNA preset]
+bitrate=64000
+
+[Rygel AAC_ISO_320 preset]
+bitrate=256000

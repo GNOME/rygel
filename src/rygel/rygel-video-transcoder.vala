@@ -95,7 +95,7 @@ internal class Rygel.VideoTranscoder : Rygel.AudioTranscoder {
 
         var enc_video_profile = new EncodingVideoProfile
                                         (this.video_codec_format,
-                                         null,
+                                         this.preset,
                                          this.video_restrictions,
                                          1);
         enc_video_profile.set_name ("video");

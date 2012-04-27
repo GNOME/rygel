@@ -32,9 +32,13 @@ internal abstract class Rygel.Transcoder : GLib.Object {
     public string mime_type { get; protected set; }
     public string dlna_profile { get; protected set; }
     public string extension { get; protected set; }
+    public string preset { get;
+                           protected set;
+                           default =  DEFAULT_ENCODING_PRESET; }
 
     private const string DECODE_BIN = "decodebin2";
     private const string ENCODE_BIN = "encodebin";
+    private const string DEFAULT_ENCODING_PRESET = "Rygel DLNA preset";
 
     dynamic Element decoder;
     dynamic Element encoder;

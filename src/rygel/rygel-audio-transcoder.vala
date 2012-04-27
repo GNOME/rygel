@@ -97,7 +97,7 @@ internal class Rygel.AudioTranscoder : Rygel.Transcoder {
 
     protected override EncodingProfile get_encoding_profile () {
         var enc_audio_profile = new EncodingAudioProfile (audio_codec_format,
-                                                          null,
+                                                          this.preset,
                                                           null,
                                                           1);
         enc_audio_profile.set_name ("audio");
@@ -106,7 +106,7 @@ internal class Rygel.AudioTranscoder : Rygel.Transcoder {
             var enc_container_profile = new EncodingContainerProfile ("container",
                                                                       null,
                                                                       container_format,
-                                                                      null);
+                                                                      this.preset);
             enc_container_profile.add_profile (enc_audio_profile);
 
             return enc_container_profile;

@@ -1,0 +1,6 @@
+[_presets_]
+version=0.10
+element-name=ffenc_wmv1
+
+[Rygel DLNA preset]
+bitrate=1200000
