@@ -11,5 +11,5 @@ librygel_test_la_SOURCES = \
 	rygel-test-plugin.vala
 
 librygel_test_la_VALAFLAGS = $(RYGEL_COMMON_PLUGIN_VALAFLAGS)
-librygel_test_la_LIBADD = $(RYGEL_COMMON_LDADD)
+librygel_test_la_LIBADD = $(RYGEL_COMMON_LIBS)
 librygel_test_la_LDFLAGS = $(RYGEL_PLUGIN_LINKER_FLAGS)

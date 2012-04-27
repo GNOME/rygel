@@ -11,5 +11,5 @@ librygel_mpris_la_SOURCES = \
 	rygel-mpris-interfaces.vala
 
 librygel_mpris_la_VALAFLAGS = $(RYGEL_COMMON_PLUGIN_VALAFLAGS)
-librygel_mpris_la_LIBADD = $(RYGEL_COMMON_LDADD)
+librygel_mpris_la_LIBADD = $(RYGEL_COMMON_LIBS)
 librygel_mpris_la_LDFLAGS = $(RYGEL_PLUGIN_LINKER_FLAGS)

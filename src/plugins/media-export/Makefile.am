@@ -45,7 +45,7 @@ librygel_media_export_la_VALAFLAGS = \
 	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
 
 librygel_media_export_la_LIBADD = \
-	$(RYGEL_COMMON_LDADD) \
+	$(RYGEL_COMMON_LIBS) \
 	$(LIBGUPNP_DLNA_LIBS) \
 	$(GSTREAMER_TAG_LIBS) \
 	$(GSTREAMER_APP_LIBS) \

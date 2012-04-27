@@ -126,7 +126,7 @@ rygel_VALAFLAGS = \
 
 rygel_LDADD = \
 	librygel-configuration.a \
-	$(RYGEL_COMMON_LDADD) \
+	$(RYGEL_COMMON_LIBS) \
 	$(LIBGUPNP_DLNA_LIBS) \
 	$(GST_PBU_LIBS) \
 	$(GIO_LIBS) \

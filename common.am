@@ -32,7 +32,7 @@ AM_CFLAGS = \
 	-DPLUGIN_DIR='"$(plugindir)"' -DDESKTOP_DIR='"$(desktopdir)"'\
 	-include config.h
 
-RYGEL_COMMON_LDADD = \
+RYGEL_COMMON_LIBS = \
 	$(LIBGUPNP_LIBS) \
 	$(LIBGUPNP_AV_LIBS) \
 	$(LIBGSTREAMER_LIBS) \

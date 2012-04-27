@@ -44,5 +44,5 @@ librygel_tracker_la_SOURCES = \
 librygel_tracker_la_VALAFLAGS = --pkg posix \
 				--pkg gupnp-dlna-1.0 \
 				$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
-librygel_tracker_la_LIBADD = $(RYGEL_COMMON_LDADD) $(LIBGUPNP_DLNA_LIBS)
+librygel_tracker_la_LIBADD = $(RYGEL_COMMON_LIBS) $(LIBGUPNP_DLNA_LIBS)
 librygel_tracker_la_LDFLAGS = $(RYGEL_PLUGIN_LINKER_FLAGS)
