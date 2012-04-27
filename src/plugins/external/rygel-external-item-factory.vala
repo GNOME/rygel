@@ -38,17 +38,18 @@ public class Rygel.External.ItemFactory {
                                    throws IOError, DBusError {
         MediaItem item;
 
-        if (type.has_prefix ("audio")) {
-            item = new AudioItem (id, parent, title);
-
-            this.set_audio_metadata (item as AudioItem, props, service_name);
-        } else if (type.has_prefix ("music")) {
+        if (type.has_prefix ("music") ||
+            type.has_prefix ("audio.music")) {
             item = new MusicItem (id, parent, title);
 
             yield this.set_music_metadata (item as MusicItem,
                                            props,
                                            service_name);
-        } else if (type.has_prefix ("video")) {
+        } else if (type.has_prefix ("audio")) {
+            item = new AudioItem (id, parent, title);
+
+            this.set_audio_metadata (item as AudioItem, props, service_name);
+        } else  if (type.has_prefix ("video")) {
             item = new VideoItem (id, parent, title);
 
             yield this.set_video_metadata (item as VideoItem,
