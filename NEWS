@@ -1,3 +1,35 @@
+0.14.1
+======
+
+A bugfix release in the stable 0.14 series of Rygel.
+
+Changes compared to 0.14.0:
+
+- Fix compilation with GLib <= 2.28.
+- Fix generation of SinkProtocolInfo in all players.
+- Add work-around for Onkyo TX-NRxxx devices.
+- Escape URIs in player's ChangeLog.
+
+MediaExport:
+ - Fix the fix for using the correct container UPnP class.
+
+Playbin:
+ - Notify listeners about duration change only once.
+
+UI:
+ - Fix enabling and disabling of service autostart
+
+Added/updated translations:
+ - ru, courtesy of Yuri Myasoedov
+
+All contributors to this release:
+ Jens Georg <mail@jensge.org>
+ Yuri Myasoedov <omerta13@yandex.ru>
+
+Bugs fixed in this release:
+ https://bugzilla.gnome.org/show_bug.cgi?id=674733
+ https://bugzilla.gnome.org/show_bug.cgi?id=674071
+
 0.14.0
 ======
 
