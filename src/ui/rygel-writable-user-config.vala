@@ -192,6 +192,13 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
                 this.set_bool ("general", UPNP_ENABLED_KEY, true);
             } else {
                 // Stop service only if already running
+                // Then delete the symlink from user's autostart dir
+                try {
+                    dest.delete (null);
+                } catch (IOError.NOT_FOUND err) {}
+
+                this.set_bool ("general", UPNP_ENABLED_KEY, false);
+
                 if (this.is_upnp_enabled ()) {
                     // Create proxy to Rygel
                     DBusInterface rygel_proxy = Bus.get_proxy_sync
@@ -202,13 +209,6 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
 
                     rygel_proxy.shutdown ();
                 }
-
-                // Then delete the symlink from user's autostart dir
-                try {
-                    dest.delete (null);
-                } catch (IOError.NOT_FOUND err) {}
-
-                this.set_bool ("general", UPNP_ENABLED_KEY, false);
             }
         } catch (GLib.Error err) {
             string message;
