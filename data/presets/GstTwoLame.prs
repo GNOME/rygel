@@ -3,4 +3,4 @@ version=0.10
 element-name=GstTwoLame
 
 [Rygel DLNA preset]
-bitrate=256
+bitrate=192

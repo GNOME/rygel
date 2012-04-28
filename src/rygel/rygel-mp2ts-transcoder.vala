@@ -32,8 +32,8 @@ internal enum Rygel.MP2TSProfile {
  * Transcoder for mpeg transport stream containing mpeg 2 video and mp2 audio.
  */
 internal class Rygel.MP2TSTranscoder : Rygel.VideoTranscoder {
-    private const int VIDEO_BITRATE = 3000;
-    private const int AUDIO_BITRATE = 256;
+    private const int VIDEO_BITRATE = 1500;
+    private const int AUDIO_BITRATE = 192;
 
     // HD
     private const int[] WIDTH = {720, 1280};

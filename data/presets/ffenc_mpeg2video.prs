@@ -3,4 +3,4 @@ version=0.10
 element-name=ffenc_mpeg2video
 
 [Rygel DLNA preset]
-bitrate=3000000
+bitrate=1500000
