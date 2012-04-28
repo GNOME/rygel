@@ -170,17 +170,10 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
             var dest = File.new_for_path (dest_path);
 
             if (enable) {
-                // TODO: Use null in watch_name once vala situation in jhbuild
-                // is cleared and vala dependency is bumped.
-                BusNameAppearedCallback a = null;
-                BusNameVanishedCallback b = null;
-
                 // Creating the proxy starts the service
                 Bus.watch_name (BusType.SESSION,
                                 DBusInterface.SERVICE_NAME,
-                                BusNameWatcherFlags.AUTO_START,
-                                (owned) a,
-                                (owned) b);
+                                BusNameWatcherFlags.AUTO_START);
 
                 // Then symlink the desktop file to user's autostart dir
                 var source_path = Path.build_filename (BuildConfig.DESKTOP_DIR,
