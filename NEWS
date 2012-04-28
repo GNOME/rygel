@@ -20,11 +20,17 @@ UI:
  - Fix enabling and disabling of service autostart
 
 Added/updated translations:
+ - bg, courtesy of Alexander Shopov
+ - lt, courtesy of Aurimas Černius
+ - pt_BR, courtesy of Jonh Wendell
  - ru, courtesy of Yuri Myasoedov
 
 All contributors to this release:
  Jens Georg <mail@jensge.org>
+ Jonh Wendell <jwendell@gnome.org>
  Yuri Myasoedov <omerta13@yandex.ru>
+ Aurimas Černius <aurisc4@gmail.com>
+ Alexander Shopov <ash@kambanaria.org>
 
 Bugs fixed in this release:
  https://bugzilla.gnome.org/show_bug.cgi?id=674733
