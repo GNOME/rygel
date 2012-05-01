@@ -28,7 +28,7 @@ using Gee;
  * Transcoder for mpeg 1 layer 3 audio.
  */
 internal class Rygel.MP3Transcoder : Rygel.AudioTranscoder {
-    public const int BITRATE = 256;
+    public const int BITRATE = 128;
     private const string FORMAT = "audio/mpeg,mpegversion=1,layer=3";
 
     public MP3Transcoder () {

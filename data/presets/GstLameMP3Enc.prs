@@ -4,4 +4,4 @@ element-name=GstLameMP3Enc
 
 [Rygel DLNA preset]
 target=1
-bitrate=256
+bitrate=128
