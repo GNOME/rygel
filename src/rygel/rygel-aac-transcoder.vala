@@ -25,15 +25,11 @@
  */
 internal class Rygel.AACTranscoder : Rygel.AudioTranscoder {
     private const int BITRATE = 256;
-    private const string CONTAINER = "application/x-3gp,profile=basic";
     private const string CODEC = "audio/mpeg,mpegversion=4," +
-                                 "framed=true,stream-format=raw," +
-                                 //"level=2," +
-                                 "profile=lc,codec_data=1208,rate=44100," +
-                                 "channels=1";
+                                 "stream-format=adts,rate=44100,base-profile=lc";
 
     public AACTranscoder () {
-        base ("audio/3gpp", "AAC_ISO_320", BITRATE, CONTAINER, CODEC, "3gp");
-        this.preset = "Rygel AAC_ISO_320 preset";
+        base ("audio/vnd.dlna.adts", "AAC_ADTS_320", BITRATE, null, CODEC, "adts");
+        this.preset = "Rygel AAC_ADTS_320 preset";
     }
 }

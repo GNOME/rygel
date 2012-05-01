@@ -27,6 +27,7 @@ preset_DATA = $(srcdir)/presets/ffenc_aac.prs \
 	$(srcdir)/presets/ffenc_mpeg2video.prs \
 	$(srcdir)/presets/ffenc_wmav1.prs \
 	$(srcdir)/presets/ffenc_wmv1.prs \
+	$(srcdir)/presets/GstFaac.prs \
 	$(srcdir)/presets/GstLameMP3Enc.prs \
 	$(srcdir)/presets/GstMP4Mux.prs \
 	$(srcdir)/presets/GstTwoLame.prs \
