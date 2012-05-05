@@ -13,7 +13,7 @@ EXTRA_DIST = \
 
 if HAVE_XSLTPROC
 %.5 %.1: man/%.xml
-	$(XSLTPROC) -o $@ -nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl $<
+	$(AM_V_GEN)$(XSLTPROC) -o $@ -nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl >/dev/null 2>&1 $<
 CLEANFILES = \
 		$(dist_man1_MANS) $(dist_man5_MANS)
 endif
