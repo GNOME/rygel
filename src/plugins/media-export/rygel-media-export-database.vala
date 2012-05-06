@@ -27,6 +27,10 @@ public errordomain Rygel.MediaExport.DatabaseError {
     SQLITE_ERROR
 }
 
+namespace Rygel.MediaExport {
+    extern static int utf8_collate_str (string a, string b);
+}
+
 /**
  * This class is a thin wrapper around SQLite's database object.
  *
@@ -70,10 +74,10 @@ internal class Rygel.MediaExport.Database : SqliteWrapper {
         unowned uint8[] _b = (uint8[]) b;
         _b.length = blen;
 
-        var str_a = ((string) _a).casefold ();
-        var str_b = ((string) _b).casefold ();
+        var str_a = ((string) _a);
+        var str_b = ((string) _b);
 
-        return str_a.collate (str_b);
+        return utf8_collate_str (str_a, str_b);
     }
 
     /**

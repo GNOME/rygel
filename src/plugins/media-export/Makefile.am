@@ -35,7 +35,8 @@ librygel_media_export_la_SOURCES = \
 	rygel-media-export-item.vala \
 	rygel-media-export-jpeg-writer.vala \
 	rygel-media-export-object-factory.vala \
-	rygel-media-export-writable-db-container.vala
+	rygel-media-export-writable-db-container.vala \
+	rygel-media-export-collate.c
 
 librygel_media_export_la_VALAFLAGS = \
 	--pkg gupnp-dlna-1.0 \
@@ -49,7 +50,8 @@ librygel_media_export_la_LIBADD = \
 	$(LIBGUPNP_DLNA_LIBS) \
 	$(GSTREAMER_TAG_LIBS) \
 	$(GSTREAMER_APP_LIBS) \
-	$(LIBSQLITE3_LIBS)
+	$(LIBSQLITE3_LIBS) \
+	$(COLLATION_LIBS)
 
 librygel_media_export_la_LDFLAGS = $(RYGEL_PLUGIN_LINKER_FLAGS)
 
