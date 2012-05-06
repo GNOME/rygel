@@ -169,6 +169,17 @@ then
     PKG_CHECK_MODULES(GSTREAMER_TAG, gstreamer-tag-0.10 >= $GSTREAMER_TAG_REQUIRED);
     PKG_CHECK_MODULES(GSTREAMER_APP, gstreamer-app-0.10 >= $GSTREAMER_APP_REQUIRED);
     RYGEL_CHECK_PACKAGES([sqlite3 gstreamer-tag-0.10 gstreamer-app-0.10])
+    AC_CHECK_HEADER([unistr.h],
+                    AC_CHECK_LIB([unistring],
+                                 [u8_strcoll],
+                                 [have_unistring=yes],[have_unistring=no]))
+    if test "x$have_unistring" = "xyes"; then
+        AC_DEFINE([HAVE_UNISTRING],[1],[Use libunistring for collation])
+        COLLATION_CFLAGS=
+        COLLATION_LIBS=-lunistring
+        AC_SUBST([COLLATION_CFLAGS])
+        AC_SUBST([COLLATION_LIBS])
+    fi
 fi
 
 dnl Gettext
