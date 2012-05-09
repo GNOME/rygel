@@ -22,6 +22,7 @@
  */
 
 using GUPnP;
+using Soup;
 
 internal class Rygel.AVTransport : Service {
     public const string UPNP_ID = "urn:upnp-org:serviceId:AVTransport";
@@ -30,6 +31,8 @@ internal class Rygel.AVTransport : Service {
     public const string DESCRIPTION_PATH = "xml/AVTransport2.xml";
     public const string LAST_CHANGE_NS =
                     "urn:schemas-upnp-org:metadata-1-0/AVT/";
+
+    private Session session;
 
     // The setters below update the LastChange message
     private uint _n_tracks = 0;
@@ -159,6 +162,8 @@ internal class Rygel.AVTransport : Service {
 
         this.player.notify["playback-state"].connect (this.notify_state_cb);
         this.player.notify["duration"].connect (this.notify_duration_cb);
+
+        this.session = new SessionAsync ();
     }
 
     private MediaPlayer get_player () {
@@ -234,12 +239,43 @@ internal class Rygel.AVTransport : Service {
                         typeof (string),
                         out _metadata);
 
-        this.uri = _uri;
         this.metadata = _metadata;
 
-        this.n_tracks = 1;
+        if (_uri.has_prefix ("http://") || _uri.has_prefix ("https://")) {
+            var message = new Message ("HEAD", _uri);
+            message.request_headers.append ("getContentFeatures.dlna.org",
+                                            "1");
+            message.finished.connect ((msg) => {
+                if (msg.status_code != KnownStatusCode.OK) {
+                    warning ("Failed to access %s: %s",
+                             _uri,
+                             msg.reason_phrase);
 
-        action.return ();
+                    action.return_error (716, "Resource not found");
+
+                    return;
+                } else {
+                    var mime = msg.response_headers.get_content_type (null);
+                    if (mime != null &&
+                        !(mime in this.player.get_mime_types ())) {
+                        action.return_error (714, "Illegal MIME-type");
+
+                        return;
+                    }
+
+                    this.uri = _uri;
+                    this.n_tracks = 1;
+
+                    action.return ();
+                }
+            });
+            this.session.queue_message (message, null);
+        } else {
+            this.uri = _uri;
+            this.n_tracks = 1;
+
+            action.return ();
+        }
     }
 
     private void get_media_info_cb (Service             service,
