@@ -10,7 +10,12 @@
          <dataType>string</dataType>
          <allowedValueList>
             <allowedValue>STOPPED</allowedValue>
+            <allowedValue>PAUSED_PLAYBACK</allowedValue>
+            <allowedValue>PAUSED_RECORDING</allowedValue>
             <allowedValue>PLAYING</allowedValue>
+            <allowedValue>RECORDING</allowedValue>
+            <allowedValue>TRANSITIONING</allowedValue>
+            <allowedValue>NO_MEDIA_PRESENT</allowedValue>
          </allowedValueList>
       </stateVariable>
 
@@ -36,11 +41,93 @@
       <stateVariable sendEvents="no">
          <name>PlaybackStorageMedium</name>
          <dataType>string</dataType>
+         <allowedValueList>
+            <allowedValue>UNKNOWN</allowedValue>
+            <allowedValue>DV</allowedValue>
+            <allowedValue>MINI-DV</allowedValue>
+            <allowedValue>VHS</allowedValue>
+            <allowedValue>W-VHS</allowedValue>
+            <allowedValue>S-VHS</allowedValue>
+            <allowedValue>D-VHS</allowedValue>
+            <allowedValue>VHSC</allowedValue>
+            <allowedValue>VIDEO8</allowedValue>
+            <allowedValue>HI8</allowedValue>
+            <allowedValue>CD-ROM</allowedValue>
+            <allowedValue>CD-DA</allowedValue>
+            <allowedValue>CD-R</allowedValue>
+            <allowedValue>CD-RW</allowedValue>
+            <allowedValue>VIDEO-CD</allowedValue>
+            <allowedValue>SACD</allowedValue>
+            <allowedValue>MD-AUDIO</allowedValue>
+            <allowedValue>MD-PICTURE</allowedValue>
+            <allowedValue>DVD-ROM</allowedValue>
+            <allowedValue>DVD-VIDEO</allowedValue>
+            <allowedValue>DVD-R</allowedValue>
+            <allowedValue>DVD+RW</allowedValue>
+            <allowedValue>DVD-RW</allowedValue>
+            <allowedValue>DVD-RAM</allowedValue>
+            <allowedValue>DVD-AUDIO</allowedValue>
+            <allowedValue>DAT</allowedValue>
+            <allowedValue>LD</allowedValue>
+            <allowedValue>HDD</allowedValue>
+            <allowedValue>MICRO-MV</allowedValue>
+            <allowedValue>NETWORK</allowedValue>
+            <allowedValue>NONE</allowedValue>
+            <allowedValue>NOT_IMPLEMENTED</allowedValue>
+            <allowedValue>SD</allowedValue>
+            <allowedValue>PC-CARD</allowedValue>
+            <allowedValue>MMC</allowedValue>
+            <allowedValue>CF</allowedValue>
+            <allowedValue>BD</allowedValue>
+            <allowedValue>MS</allowedValue>
+            <allowedValue>HD_DVD</allowedValue>
+         </allowedValueList>
       </stateVariable>
 
       <stateVariable sendEvents="no">
          <name>RecordStorageMedium</name>
          <dataType>string</dataType>
+         <allowedValueList>
+            <allowedValue>UNKNOWN</allowedValue>
+            <allowedValue>DV</allowedValue>
+            <allowedValue>MINI-DV</allowedValue>
+            <allowedValue>VHS</allowedValue>
+            <allowedValue>W-VHS</allowedValue>
+            <allowedValue>S-VHS</allowedValue>
+            <allowedValue>D-VHS</allowedValue>
+            <allowedValue>VHSC</allowedValue>
+            <allowedValue>VIDEO8</allowedValue>
+            <allowedValue>HI8</allowedValue>
+            <allowedValue>CD-ROM</allowedValue>
+            <allowedValue>CD-DA</allowedValue>
+            <allowedValue>CD-R</allowedValue>
+            <allowedValue>CD-RW</allowedValue>
+            <allowedValue>VIDEO-CD</allowedValue>
+            <allowedValue>SACD</allowedValue>
+            <allowedValue>MD-AUDIO</allowedValue>
+            <allowedValue>MD-PICTURE</allowedValue>
+            <allowedValue>DVD-ROM</allowedValue>
+            <allowedValue>DVD-VIDEO</allowedValue>
+            <allowedValue>DVD-R</allowedValue>
+            <allowedValue>DVD+RW</allowedValue>
+            <allowedValue>DVD-RW</allowedValue>
+            <allowedValue>DVD-RAM</allowedValue>
+            <allowedValue>DVD-AUDIO</allowedValue>
+            <allowedValue>DAT</allowedValue>
+            <allowedValue>LD</allowedValue>
+            <allowedValue>HDD</allowedValue>
+            <allowedValue>MICRO-MV</allowedValue>
+            <allowedValue>NETWORK</allowedValue>
+            <allowedValue>NONE</allowedValue>
+            <allowedValue>NOT_IMPLEMENTED</allowedValue>
+            <allowedValue>SD</allowedValue>
+            <allowedValue>PC-CARD</allowedValue>
+            <allowedValue>MMC</allowedValue>
+            <allowedValue>CF</allowedValue>
+            <allowedValue>BD</allowedValue>
+            <allowedValue>MS</allowedValue>
+            <allowedValue>HD_DVD</allowedValue>
+         </allowedValueList>
       </stateVariable>
 
       <stateVariable sendEvents="no">
@@ -74,11 +161,27 @@
       <stateVariable sendEvents="no">
          <name>RecordMediumWriteStatus</name>
          <dataType>string</dataType>
+         <allowedValueList>
+            <allowedValue>WRITABLE</allowedValue>
+            <allowedValue>PROTECTED</allowedValue>
+            <allowedValue>NOT_WRITABLE</allowedValue>
+            <allowedValue>UNKNOWN</allowedValue>
+            <allowedValue>NOT_IMPLEMENTED</allowedValue>
+         </allowedValueList>
       </stateVariable>
 
       <stateVariable sendEvents="no">
          <name>CurrentRecordQualityMode</name>
          <dataType>string</dataType>
+         <allowedValueList>
+            <allowedValue>0:EP</allowedValue>
+            <allowedValue>1:LP</allowedValue>
+            <allowedValue>2:SP</allowedValue>
+            <allowedValue>0:BASIC</allowedValue>
+            <allowedValue>1:MEDIUM</allowedValue>
+            <allowedValue>2:HIGH</allowedValue>
+            <allowedValue>NOT_IMPLEMENTED</allowedValue>
+         </allowedValueList>
       </stateVariable>
 
       <stateVariable sendEvents="no">
@@ -138,11 +241,13 @@
       <stateVariable sendEvents="no">
          <name>NextAVTransportURI</name>
          <dataType>string</dataType>
+         <defaultValue>NOT_IMPLEMENTED</defaultValue>
       </stateVariable>
 
       <stateVariable sendEvents="no">
          <name>NextAVTransportURIMetaData</name>
          <dataType>string</dataType>
+         <defaultValue>NOT_IMPLEMENTED</defaultValue>
       </stateVariable>
 
       <stateVariable sendEvents="no">
@@ -162,7 +267,7 @@
 
       <stateVariable sendEvents="no">
          <name>AbsoluteCounterPosition</name>
-         <dataType>i4</dataType>
+         <dataType>ui4</dataType>
       </stateVariable>
 
       <stateVariable sendEvents="yes">
@@ -187,6 +292,31 @@
       <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_InstanceID</name>
          <dataType>ui4</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>A_ARG_TYPE_DeviceUDN</name>
+         <dataType>string</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>A_ARG_TYPE_ServiceType</name>
+         <dataType>string</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>A_ARG_TYPE_ServiceID</name>
+         <dataType>string</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>A_ARG_TYPE_StateVariableValuePairs</name>
+         <dataType>string</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>A_ARG_TYPE_StateVariableList</name>
+         <dataType>string</dataType>
       </stateVariable>
    </serviceStateTable>
 
