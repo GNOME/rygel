@@ -193,10 +193,12 @@ internal class Rygel.AVTransport : Service {
         log.log ("CurrentTrack",                 this.track.to_string ());
         log.log ("CurrentTrackDuration",         this.player.duration_as_str);
         log.log ("CurrentMediaDuration",         this.player.duration_as_str);
-        log.log ("CurrentTrackMetadata",         this.metadata);
+        log.log ("CurrentTrackMetaData",         this.metadata);
+        log.log ("AVTransportURIMetaData",       this.metadata);
         log.log ("CurrentTrackURI",              this.uri);
         log.log ("AVTransportURI",               this.uri);
         log.log ("NextAVTransportURI",           "NOT_IMPLEMENTED");
+        log.log ("NextAVTransportURIMetaData",   "NOT_IMPLEMENTED");
 
         value.init (typeof (string));
         value.set_string (log.finish ());
