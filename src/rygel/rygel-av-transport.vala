@@ -309,7 +309,7 @@ internal class Rygel.AVTransport : Service {
                         "NOT_IMPLEMENTED",
                     "RecordMedium",
                         typeof (string),
-                        "",
+                        "NOT_IMPLEMENTED",
                     "WriteStatus",
                         typeof (string),
                         "NOT_IMPLEMENTED");
