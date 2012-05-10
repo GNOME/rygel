@@ -218,7 +218,7 @@ internal class Rygel.AVTransport : Service {
         }
 
         if (instance_id != 0) {
-            action.return_error (702, _("Invalid InstanceID"));
+            action.return_error (718, _("Invalid InstanceID"));
 
             return false;
         }
