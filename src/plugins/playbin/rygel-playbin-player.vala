@@ -22,8 +22,13 @@
  */
 
 using Gst;
+using GUPnP;
 
 public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
+    private const string TRANSFER_MODE_STREAMING = "Streaming";
+    private const string TRANSFER_MODE_INTERACTIVE = "Interactive";
+    private const string PROTOCOL_INFO_TEMPLATE = "http-get:%s:*:%s";
+
     private const string[] protocols = { "http-get", "rtsp" };
     private const string[] mime_types = {
                                         "audio/mpeg",
@@ -85,6 +90,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    private string transfer_mode = null;
+
     public string? uri {
         owned get {
             return this.playbin.uri;
@@ -121,13 +128,30 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     }
 
     private string _content_features = "";
+    private ProtocolInfo protocol_info;
     public string? content_features {
         owned get {
             return this._content_features;
         }
 
         set {
-            this.content_features = value;
+            var pi_string = PROTOCOL_INFO_TEMPLATE.printf (this.mime_type,
+                                                           value);
+            try {
+                this.protocol_info = new ProtocolInfo.from_string (pi_string);
+                var flags = this.protocol_info.dlna_flags;
+                if (DLNAFlags.INTERACTIVE_TRANSFER_MODE in flags) {
+                    this.transfer_mode = TRANSFER_MODE_INTERACTIVE;
+                } else if (DLNAFlags.STREAMING_TRANSFER_MODE in flags) {
+                    this.transfer_mode = TRANSFER_MODE_STREAMING;
+                } else {
+                    this.transfer_mode = null;
+                }
+            } catch (Error error) {
+                this.protocol_info = null;
+                this.transfer_mode = null;
+            }
+            this._content_features = value;
         }
     }
 
@@ -171,6 +195,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     private Player () {
         this.playbin = ElementFactory.make ("playbin2", null);
         assert (this.playbin != null);
+
+        playbin.source_setup.connect (this.on_source_setup);
 
         // Bus handler
         var bus = this.playbin.get_bus ();
@@ -253,5 +279,17 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
 
         return true;
+    }
+
+    private void on_source_setup (Element pipeline, dynamic Element source) {
+        if (source.get_type ().name () == "GstSoupHTTPSrc" &&
+            this.transfer_mode != null) {
+            debug ("Setting transfer mode to %s", this.transfer_mode);
+
+            var structure = new Structure.empty ("Extra Headers");
+            structure.set_value ("transferMode.dlna.org", this.transfer_mode);
+
+            source.extra_headers = structure;
+        }
     }
 }
