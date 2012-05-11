@@ -264,6 +264,15 @@ internal class Rygel.AVTransport : Service {
 
                         return;
                     }
+                    this.player.mime_type = mime;
+                    var features = msg.response_headers.get_one
+                                        ("contentFeatures.dlna.org");
+
+                    if (features != null) {
+                        this.player.content_features = features;
+                    } else {
+                        this.player.content_features = "*";
+                    }
 
                     this.uri = _uri;
                     this.n_tracks = 1;

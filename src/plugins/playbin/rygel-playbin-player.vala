@@ -98,6 +98,39 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    private string _mime_type = "";
+    public string? mime_type {
+        owned get {
+            return this._mime_type;
+        }
+
+        set {
+            this._mime_type = value;
+        }
+    }
+
+    private string _metadata = "";
+    public string? metadata {
+        owned get {
+            return this._metadata;
+        }
+
+        set {
+            this._metadata = value;
+        }
+    }
+
+    private string _content_features = "";
+    public string? content_features {
+        owned get {
+            return this._content_features;
+        }
+
+        set {
+            this.content_features = value;
+        }
+    }
+
     public double volume {
         get {
             return this.playbin.volume;

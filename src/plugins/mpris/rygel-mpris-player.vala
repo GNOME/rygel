@@ -83,6 +83,10 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    public string? mime_type { owned get; set; }
+    public string? metadata { owned get; set; }
+    public string? content_features { owned get; set; }
+
     public double volume {
         get {
             return this.actual_player.volume;
