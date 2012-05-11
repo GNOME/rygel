@@ -274,7 +274,11 @@ internal class Rygel.AVTransport : Service {
             this.session.queue_message (message, null);
         } else {
             this.uri = _uri;
-            this.n_tracks = 1;
+            if (_uri == "") {
+                this.n_tracks = 0;
+            } else {
+                this.n_tracks = 1;
+            }
 
             action.return ();
         }
