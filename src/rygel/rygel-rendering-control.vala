@@ -171,7 +171,7 @@ internal class Rygel.RenderingControl : Service {
 
         action.get ("Channel", typeof (string), out channel);
         if (channel != "Master") {
-            action.return_error (501, _("Action Failed"));
+            action.return_error (703, _("Invalid Channel"));
 
             return false;
         }
