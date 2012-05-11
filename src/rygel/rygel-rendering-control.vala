@@ -204,6 +204,14 @@ internal class Rygel.RenderingControl : Service {
             return;
         }
 
+        string mute_str;
+        action.get ("DesiredMute", typeof (string), out mute_str);
+        if (mute_str.has_prefix ("-")) {
+            action.return_error (501, _("ActionFailed"));
+
+            return;
+        }
+
         bool mute;
 
         action.get ("DesiredMute", typeof (bool), out mute);
@@ -235,6 +243,14 @@ internal class Rygel.RenderingControl : Service {
         }
 
         if (!check_channel (action)) {
+            return;
+        }
+
+        string volume_str;
+        action.get ("DesiredVolume", typeof (string), out volume_str);
+        if ("." in volume_str || "," in volume_str) {
+            action.return_error (501, _("ActionFailed"));
+
             return;
         }
 
