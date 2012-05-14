@@ -100,7 +100,9 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         set {
             this.playbin.set_state (State.NULL);
             this.playbin.uri = value;
-            this.playbin.set_state (State.PLAYING);
+            if (value != "") {
+                this.playbin.set_state (State.PLAYING);
+            }
             debug ("URI set to %s.", value);
         }
     }
