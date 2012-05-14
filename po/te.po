@@ -1,0 +1,641 @@
+# Telugu translation for rygel.
+# Copyright (C) 2012 Swecha Telugu Localisation Team <localisation@swecha.org>
+# This file is distributed under the same license as the rygel package.
+# Hari Krishna <hari@swecha.net>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: rygel master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-05-06 14:17+0000\n"
+"PO-Revision-Date: 2012-05-06 14:17+0000\n"
+"Last-Translator: Hari Krishna <hari@swecha.net>\n"
+"Language-Team: Telugu <indlinux-telugu@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../data/rygel-preferences.ui.h:1
+#: ../data/rygel-preferences.desktop.in.in.h:1
+msgid "Rygel Preferences"
+msgstr "రైజల్ అభీష్టాలు"
+
+#: ../data/rygel-preferences.ui.h:2
+msgid "_Share media through DLNA"
+msgstr ""
+
+#: ../data/rygel-preferences.ui.h:3
+msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
+msgstr ""
+
+#: ../data/rygel-preferences.ui.h:4
+msgid "Add a directory to the list of shared directories"
+msgstr "పంచుకున్న సంచయముల జాబితా నుంచి పంచుకున్న సంచయము జోడించుము"
+
+#: ../data/rygel-preferences.ui.h:5
+msgid "Add shared directory"
+msgstr "పంచుకున్న సంచయమును జోడించుము"
+
+#: ../data/rygel-preferences.ui.h:6
+msgid "Remove a directory from the list of shared directories"
+msgstr "పంచుకున్న సంచయముల జాబితా నుంచి పంచుకున్న సంచయము తొలగించుము"
+
+#: ../data/rygel-preferences.ui.h:7
+msgid "Remove shared directory"
+msgstr "పంచుకున్న సంచయము తొలగించుము"
+
+#. Network Interface
+#: ../data/rygel-preferences.ui.h:9
+msgid "_Network:"
+msgstr "నెట్వర్కు:(_N)"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid ""
+"Select the network interface that DLNA media will be shared on, or share "
+"media on all interfaces"
+msgstr ""
+
+#: ../data/rygel-preferences.ui.h:11
+msgid "Any"
+msgstr "ఏవైనా"
+
+#: ../data/rygel-preferences.ui.h:12
+msgid "Select folders"
+msgstr "ఎంచుకున్న సంచయములు"
+
+#: ../data/rygel-preferences.desktop.in.in.h:2
+msgid "UPnP/DLNA Preferences"
+msgstr "UPnP/DLNA అభీష్టాలు"
+
+#: ../data/rygel.desktop.in.in.h:1
+msgid "Rygel"
+msgstr "రైజల్"
+
+#: ../data/rygel.desktop.in.in.h:2
+msgid "UPnP/DLNA Services"
+msgstr "UPnP/DLNA సేవలు"
+
+#: ../src/plugins/playbin/rygel-playbin-plugin.vala:45
+msgid "GStreamer Player"
+msgstr "జిస్ట్రీమర్ ప్లేయర్"
+
+#: ../src/plugins/media-export/rygel-media-export-database.vala:206
+#, c-format
+msgid "Failed to roll back transaction: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/rygel/rygel-plugin-loader.vala:194
+#, c-format
+msgid "Failed to query content type for '%s'"
+msgstr "'%s'యొక్క విషయ రకమును క్వయరీ చేయుటలో విఫలం"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:112
+#, c-format
+msgid "Failed to add item with ID %s: %s"
+msgstr "%s ID నకు అంశము జోడించుటలో విఫలము: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:38
+#, c-format
+msgid "Failed to attach to D-Bus session bus: %s"
+msgstr "డి-బస్ సెషన్ బస్ నకు జతపరుచుటలో విఫలం: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:78
+msgid "No metadata extractor available. Will not crawl."
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:121
+#, c-format
+msgid "'%s' harvested"
+msgstr "'%s' హార్వెస్ట్ చేయబడినది"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:211
+#, c-format
+msgid "Error fetching object '%s' from database: %s"
+msgstr "'%s' అంశమును డేటాబేస్ నుంచి తెచ్చుటలో దోషము: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:217
+#, c-format
+msgid "Failed to access media cache: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:256
+#, c-format
+msgid "Error removing object from database: %s"
+msgstr "డేటాబేస్ నుంచి అంశము తొలగించుటలో దోషము: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:40
+msgid "Will not monitor file changes"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
+#, c-format
+msgid "Failed to get file info for %s"
+msgstr "%s యొక్క సమాచారము పొందుటలో విఫలము"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:30
+#: ../src/plugins/tracker/rygel-tracker-years.vala:35
+msgid "Year"
+msgstr "సంవత్సరం"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:31
+msgid "All"
+msgstr "అన్నీ"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:35
+msgid "Artist"
+msgstr "కళాకారుడు"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:36
+msgid "Album"
+msgstr "ఆల్బమ్"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:37
+#: ../src/plugins/tracker/rygel-tracker-genre.vala:33
+msgid "Genre"
+msgstr "జెన్ రే"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:104
+#, c-format
+msgid "Failed to remove URI: %s"
+msgstr "URI తొలగించుటలో విఫలము: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:348
+#: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
+msgid "@REALNAME@'s media"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:355
+#, c-format
+msgid "Failed to create MediaExport D-Bus service: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:395
+#, c-format
+msgid "Failed to remove entry: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:416
+msgid "Music"
+msgstr "సంగీతము"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:419
+msgid "Pictures"
+msgstr "చిత్రము"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:421
+msgid "Videos"
+msgstr "వీడియో"
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:56
+#, c-format
+msgid "Failed to create D-Bus proxies: %s"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:64
+#, c-format
+msgid "Failed to construct URI for folder '%s': %s"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:62
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:109
+#, c-format
+msgid "Failed to connect to session bus: %s"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:118
+#, c-format
+msgid "Error getting all values for '%s': %s"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:41
+#, c-format
+msgid "Failed to start Tracker service: %s. Plugin disabled."
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:221
+#, c-format
+msgid "Error getting item count under category '%s': %s"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-albums.vala:35
+msgid "Albums"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-artists.vala:35
+msgid "Artists"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-titles.vala:58
+msgid "Titles"
+msgstr ""
+
+#: ../src/rygel/rygel-media-query-action.vala:118
+#: ../src/rygel/rygel-media-query-action.vala:181
+#: ../src/rygel/rygel-item-creator.vala:127
+#: ../src/rygel/rygel-item-creator.vala:279
+#: ../src/rygel/rygel-item-destroyer.vala:53
+#: ../src/rygel/rygel-item-destroyer.vala:100
+msgid "No such object"
+msgstr "అలాంటి అంశములేదు"
+
+#: ../src/rygel/rygel-media-query-action.vala:123
+msgid "Invalid range"
+msgstr "నిస్సారమైన పరిధి"
+
+#: ../src/rygel/rygel-browse.vala:63
+msgid "Invalid Arguments"
+msgstr "నిస్సారమైన రమానుగత సంకేతములు"
+
+#: ../src/rygel/rygel-browse.vala:94
+msgid "Cannot browse children on item"
+msgstr ""
+
+#: ../src/rygel/rygel-browse.vala:121
+#, c-format
+msgid "Failed to browse '%s': %s\n"
+msgstr "బ్రౌజ్ చేయుటలో విఫలము '%s': %s\n"
+
+#: ../src/rygel/rygel-cmdline-config.vala:156
+#: ../src/rygel/rygel-cmdline-config.vala:164
+#: ../src/rygel/rygel-cmdline-config.vala:172
+#: ../src/rygel/rygel-cmdline-config.vala:180
+#: ../src/rygel/rygel-cmdline-config.vala:188
+#: ../src/rygel/rygel-cmdline-config.vala:196
+#: ../src/rygel/rygel-cmdline-config.vala:204
+#: ../src/rygel/rygel-cmdline-config.vala:212
+#: ../src/rygel/rygel-cmdline-config.vala:220
+#: ../src/rygel/rygel-cmdline-config.vala:228
+#: ../src/rygel/rygel-cmdline-config.vala:236
+#: ../src/rygel/rygel-cmdline-config.vala:244
+#: ../src/rygel/rygel-cmdline-config.vala:252
+#: ../src/rygel/rygel-cmdline-config.vala:278
+#: ../src/rygel/rygel-cmdline-config.vala:297
+#: ../src/rygel/rygel-cmdline-config.vala:303
+#: ../src/rygel/rygel-cmdline-config.vala:310
+#: ../src/rygel/rygel-cmdline-config.vala:314
+#: ../src/rygel/rygel-cmdline-config.vala:318
+#: ../src/rygel/rygel-cmdline-config.vala:341
+#: ../src/rygel/rygel-cmdline-config.vala:367
+#: ../src/rygel/rygel-cmdline-config.vala:396
+#: ../src/rygel/rygel-cmdline-config.vala:422
+#: ../src/rygel/rygel-cmdline-config.vala:447
+#: ../src/rygel/rygel-meta-config.vala:83
+#: ../src/rygel/rygel-meta-config.vala:102
+#: ../src/rygel/rygel-meta-config.vala:121
+#: ../src/rygel/rygel-meta-config.vala:140
+#: ../src/rygel/rygel-meta-config.vala:159
+#: ../src/rygel/rygel-meta-config.vala:178
+#: ../src/rygel/rygel-meta-config.vala:197
+#: ../src/rygel/rygel-meta-config.vala:216
+#: ../src/rygel/rygel-meta-config.vala:235
+#: ../src/rygel/rygel-meta-config.vala:254
+#: ../src/rygel/rygel-meta-config.vala:273
+#: ../src/rygel/rygel-meta-config.vala:292
+#: ../src/rygel/rygel-meta-config.vala:311
+msgid "No value available"
+msgstr "ఎటువంటి విలువ లేదు"
+
+#: ../src/rygel/rygel-connection-manager.vala:89
+#: ../src/rygel/rygel-connection-manager.vala:103
+#: ../src/rygel/rygel-connection-manager.vala:125
+#: ../src/rygel/rygel-content-directory.vala:198
+#: ../src/rygel/rygel-content-directory.vala:225
+#: ../src/rygel/rygel-content-directory.vala:244
+#: ../src/rygel/rygel-content-directory.vala:279
+#: ../src/rygel/rygel-content-directory.vala:304
+#: ../src/rygel/rygel-content-directory.vala:329
+#: ../src/rygel/rygel-media-receiver-registrar.vala:59
+msgid "Invalid argument"
+msgstr "నిస్సారమైన రమానుగత సంకేతము"
+
+#: ../src/rygel/rygel-connection-manager.vala:119
+msgid "Invalid connection reference"
+msgstr ""
+
+#: ../src/rygel/rygel-content-directory.vala:217
+#: ../src/rygel/rygel-content-directory.vala:236
+msgid "No such file transfer"
+msgstr ""
+
+#: ../src/rygel/rygel-av-transport.vala:205
+#: ../src/rygel/rygel-rendering-control.vala:121
+msgid "Invalid InstanceID"
+msgstr "నిస్సారమైన ఇంస్టంస్‌ ఐడి"
+
+#: ../src/rygel/rygel-av-transport.vala:378
+msgid "Play speed not supported"
+msgstr ""
+
+#: ../src/rygel/rygel-av-transport.vala:417
+msgid "Seek failed"
+msgstr ""
+
+#: ../src/rygel/rygel-av-transport.vala:426
+msgid "Seek mode not supported"
+msgstr ""
+
+#: ../src/rygel/rygel-av-transport.vala:433
+#: ../src/rygel/rygel-av-transport.vala:437
+msgid "Transition not available"
+msgstr ""
+
+#: ../src/rygel/rygel-rendering-control.vala:152
+msgid "Invalid Name"
+msgstr "నిస్సారమైన నామము"
+
+#: ../src/rygel/rygel-rendering-control.vala:166
+#: ../src/rygel/rygel-rendering-control.vala:237
+msgid "Action Failed"
+msgstr "క్రియ విఫలము"
+
+#: ../src/rygel/rygel-gst-utils.vala:38
+#, c-format
+msgid "Required element %s missing"
+msgstr ""
+
+#. Range header was present but invalid
+#: ../src/rygel/rygel-http-byte-seek.vala:47
+#: ../src/rygel/rygel-http-byte-seek.vala:52
+#: ../src/rygel/rygel-http-time-seek.vala:49
+#: ../src/rygel/rygel-http-time-seek.vala:61
+#: ../src/rygel/rygel-http-time-seek.vala:68
+#: ../src/rygel/rygel-http-time-seek.vala:83
+#, c-format
+msgid "Invalid Range '%s'"
+msgstr ""
+
+#: ../src/rygel/rygel-http-get.vala:59
+msgid "Invalid Request"
+msgstr "నిస్సారమైన విన్నపము"
+
+#: ../src/rygel/rygel-http-identity-handler.vala:89
+#: ../src/rygel/rygel-http-transcode-handler.vala:57
+msgid "Not found"
+msgstr "దొరకలేదు"
+
+#: ../src/rygel/rygel-http-item-uri.vala:127
+#, c-format
+msgid "Invalid URI '%s'"
+msgstr "నిస్సారమైన్ URI '%s'"
+
+#: ../src/rygel/rygel-http-item-uri.vala:166
+msgid "Not Found"
+msgstr "దొరకలేదు"
+
+#: ../src/rygel/rygel-http-post.vala:62
+#: ../src/rygel/rygel-import-resource.vala:191
+#, c-format
+msgid "Pushing data to non-empty item '%s' not allowed"
+msgstr ""
+
+#: ../src/rygel/rygel-http-post.vala:70
+#, c-format
+msgid "No writable URI for %s available"
+msgstr ""
+
+#. translators: Dotfile is the filename with prefix "."
+#: ../src/rygel/rygel-http-post.vala:185
+#, c-format
+msgid "Failed to move dotfile %s: %s"
+msgstr "డాట్ ఫైలునుజరుపుటలో విఫలము %s: %s"
+
+#: ../src/rygel/rygel-http-request.vala:89
+#, c-format
+msgid "Requested item '%s' not found"
+msgstr "అభ్యర్దించిన అంశము '%s' దొరకలేదు"
+
+#: ../src/rygel/rygel-http-response.vala:156
+#: ../src/rygel/rygel-http-response.vala:177
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr "%s ను %s తో బంధించుటలో విఫలము"
+
+#: ../src/rygel/rygel-http-response.vala:192
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr ""
+
+#: ../src/rygel/rygel-http-response.vala:235
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr ""
+
+#: ../src/rygel/rygel-http-response.vala:242
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr ""
+
+#: ../src/rygel/rygel-http-response.vala:285
+#, c-format
+msgid "Failed to seek to offset %lld"
+msgstr ""
+
+#: ../src/rygel/rygel-http-seek.vala:51
+#, c-format
+msgid "Out Of Range Start '%ld'"
+msgstr ""
+
+#: ../src/rygel/rygel-http-seek.vala:55
+#, c-format
+msgid "Out Of Range Stop '%ld'"
+msgstr ""
+
+#: ../src/rygel/rygel-import-resource.vala:124
+#, c-format
+msgid "Failed to get original URI for '%s': %s"
+msgstr "'%s' మునకు అసలైన URI తెచ్చుటలో విఫలం: %s"
+
+#: ../src/rygel/rygel-import-resource.vala:188
+#, c-format
+msgid "URI '%s' invalid for importing contents to"
+msgstr ""
+
+#: ../src/rygel/rygel-item-creator.vala:118
+msgid "'Elements' argument missing."
+msgstr ""
+
+#: ../src/rygel/rygel-item-creator.vala:121
+msgid "Comments not allowed in XML"
+msgstr "XML లో వ్యాఖ్యానములు చేయకూడదు"
+
+#: ../src/rygel/rygel-item-creator.vala:149
+#, c-format
+msgid "No items in DIDL-Lite from client: '%s'"
+msgstr ""
+
+#: ../src/rygel/rygel-item-creator.vala:283
+#: ../src/rygel/rygel-item-creator.vala:518
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr "%s లో అంశమును సృష్టించుట కుదరదు"
+
+#: ../src/rygel/rygel-item-creator.vala:311
+#, c-format
+msgid "Failed to create item under '%s': %s"
+msgstr "'%s'లో ఐటంను సృష్టించుట విఫలం: %s"
+
+#: ../src/rygel/rygel-item-destroyer.vala:60
+#, c-format
+msgid "Successfully destroyed object '%s'"
+msgstr "అంశము విజయవంతముగా నాశనముచేయడినది: %s"
+
+#: ../src/rygel/rygel-item-destroyer.vala:68
+#, c-format
+msgid "Failed to destroy object '%s': %s"
+msgstr "'%s' అంశమును నాశనము చేయుటలో విఫలము: %s"
+
+#: ../src/rygel/rygel-item-destroyer.vala:103
+#, c-format
+msgid "Removal of object %s not allowed"
+msgstr "%s అంశమును తోలగించుట కుదరదు"
+
+#: ../src/rygel/rygel-item-destroyer.vala:106
+#, c-format
+msgid "Object removal from %s not allowed"
+msgstr "%s నుంచి అంశమును తోలగించుట కుదరదు"
+
+#: ../src/rygel/rygel-log-handler.vala:68
+#, c-format
+msgid "Failed to get log level from configuration: %s"
+msgstr ""
+
+#: ../src/rygel/rygel-main.vala:98
+#, c-format
+msgid "No plugins found in %d second; giving up.."
+msgid_plural "No plugins found in %d seconds; giving up.."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/rygel/rygel-main.vala:159
+#, c-format
+msgid "Failed to create root device factory: %s"
+msgstr ""
+
+#: ../src/rygel/rygel-main.vala:217
+#, c-format
+msgid "Failed to create RootDevice for %s. Reason: %s"
+msgstr ""
+
+#: ../src/rygel/rygel-media-item.vala:273
+#, c-format
+msgid "Bad URI: %s"
+msgstr "చెడు URI: %s"
+
+#. Assume the protocol to be the scheme of the URI
+#: ../src/rygel/rygel-media-item.vala:285
+#, c-format
+msgid "Failed to probe protocol for URI %s. Assuming '%s'"
+msgstr ""
+
+#: ../src/rygel/rygel-meta-config.vala:65
+#, c-format
+msgid "Failed to load user configuration: %s"
+msgstr ""
+
+#: ../src/rygel/rygel-meta-config.vala:394
+#: ../src/rygel/rygel-meta-config.vala:413
+#, c-format
+msgid "No value set for '%s/enabled'"
+msgstr "'%s/క్రియాశీలీకరించబడ్డ' నకు ఎటువంటి విలువ అమర్చబడలేదు"
+
+#: ../src/rygel/rygel-meta-config.vala:433
+#: ../src/rygel/rygel-meta-config.vala:455
+#: ../src/rygel/rygel-meta-config.vala:481
+#: ../src/rygel/rygel-meta-config.vala:503
+#: ../src/rygel/rygel-meta-config.vala:527
+#, c-format
+msgid "No value available for '%s/%s'"
+msgstr "'%s/%s' నకు ఎటువంటి విలువ లభ్యమగుటలేదు"
+
+#: ../src/rygel/rygel-plugin-loader.vala:85
+#, c-format
+msgid "New plugin '%s' available"
+msgstr "కొత్త ప్లగిన్ '%s' లభించునది"
+
+#: ../src/rygel/rygel-plugin-loader.vala:119
+#, c-format
+msgid "Error listing contents of folder '%s': %s"
+msgstr ""
+
+#: ../src/rygel/rygel-plugin-loader.vala:147
+#, c-format
+msgid "A module named %s is already loaded"
+msgstr "%s నామము గల మాడ్యూల్ ముందుగానే లోడైయున్నది"
+
+#: ../src/rygel/rygel-plugin-loader.vala:156
+#, c-format
+msgid "Failed to load module from path '%s': %s"
+msgstr "'%s' దారి నుంచి మాడ్యూల్ లోడగుటలో విఫలం: %s"
+
+#: ../src/rygel/rygel-plugin-loader.vala:166
+#, c-format
+msgid "Failed to find entry point function '%s' in '%s': %s"
+msgstr ""
+
+#: ../src/rygel/rygel-root-device-factory.vala:110
+#: ../src/rygel/rygel-root-device-factory.vala:144
+#: ../src/rygel/rygel-root-device-factory.vala:166
+#: ../src/rygel/rygel-root-device-factory.vala:221
+#, c-format
+msgid "XML node '%s' not found."
+msgstr "'%s'XML నోడ్ దొరకలేదు."
+
+#: ../src/rygel/rygel-search.vala:89
+#, c-format
+msgid "Failed to search in '%s': %s"
+msgstr "'%s'లో శోధించుట విఫలము: %s"
+
+#: ../src/rygel/rygel-subtitle-manager.vala:65
+msgid "No subtitle available"
+msgstr "ఎటువంటి ఉపశీర్షిక లభించలేదు"
+
+#: ../src/rygel/rygel-thumbnailer.vala:58
+msgid "Failed to find thumbnails folder."
+msgstr "థంబ్ నెయిల్  సంచయము శోధించుటలో విఫలము."
+
+#: ../src/rygel/rygel-thumbnailer.vala:90
+#, c-format
+msgid "No thumbnailer available: %s"
+msgstr "ఎటువంటి థంబ్ నెయిలర్ లభించలేదు: %s"
+
+#: ../src/rygel/rygel-thumbnailer.vala:119
+msgid "No thumbnail available"
+msgstr "ఎటువంటి థంబ్ నెయిల్ లభించలేదు"
+
+#: ../src/rygel/rygel-transcode-manager.vala:130
+#, c-format
+msgid "No transcoder available for target format '%s'"
+msgstr ""
+
+#: ../src/rygel/rygel-user-config.vala:198
+#, c-format
+msgid "No value available for '%s'"
+msgstr "'%s' నకు ఎటువంటి విలువ లభించలేదు"
+
+#: ../src/rygel/rygel-user-config.vala:248
+#, c-format
+msgid "Value of '%s' out of range"
+msgstr "'%s' యొక్క విలువ పరిధిని అతిక్రమించింది"
+
+#: ../src/ui/rygel-preferences-dialog.vala:91
+#, c-format
+msgid "Failed to create preferences dialog: %s"
+msgstr ""
+
+#: ../src/ui/rygel-writable-user-config.vala:122
+#, c-format
+msgid "Failed to save configuration data to file '%s': %s"
+msgstr "ఐచ్చికాంశముల సమాచారమును ఫైల్ '%s' నకు దాచుటలో విఫలము: %s"
+
+#: ../src/ui/rygel-writable-user-config.vala:210
+#, c-format
+msgid "Failed to start Rygel service: %s"
+msgstr "రైజల్ సేవలను మొదలుపెట్టుటలో విఫలం: %s"
+
+#: ../src/ui/rygel-writable-user-config.vala:212
+#, c-format
+msgid "Failed to stop Rygel service: %s"
+msgstr "రైజల్ సేవలను నిలిపివేయుటలో విఫలం: %s"
