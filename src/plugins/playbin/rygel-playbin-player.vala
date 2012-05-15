@@ -64,7 +64,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
     private dynamic Element playbin;
 
-    private string _playback_state = "STOPPED";
+    private string _playback_state = "NO_MEDIA_PRESENT";
     public string playback_state {
         owned get {
             return this._playback_state;
@@ -101,7 +101,21 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
             this.playbin.set_state (State.NULL);
             this.playbin.uri = value;
             if (value != "") {
-                this.playbin.set_state (State.PLAYING);
+                switch (this._playback_state) {
+                    case "NO_MEDIA_PRESENT":
+                        this.playback_state = "STOPPED";
+                        break;
+                    case "STOPPED":
+                    case "PAUSED_PLAYBACK":
+                        break;
+                    case "PLAYING":
+                        this.playbin.set_state (State.PLAYING);
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                this.playback_state = "NO_MEDIA_PRESENT";
             }
             debug ("URI set to %s.", value);
         }
