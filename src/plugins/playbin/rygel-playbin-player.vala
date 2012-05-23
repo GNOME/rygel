@@ -120,12 +120,14 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
     private string transfer_mode = null;
 
+    private string? _uri = null;
     public string? uri {
         owned get {
-            return this.playbin.uri;
+            return _uri;
         }
 
         set {
+            this._uri = value;
             this.playbin.set_state (State.READY);
             this.playbin.uri = value;
             if (value != "") {
