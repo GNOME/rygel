@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-13 02:04+0300\n"
-"PO-Revision-Date: 2012-04-13 02:08+0200\n"
+"POT-Creation-Date: 2012-05-25 10:25+0300\n"
+"PO-Revision-Date: 2012-05-25 10:25+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Gezer <sh.yaron@gmail.com>\n"
 "Language: \n"
@@ -21,46 +21,50 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: ../data/rygel-preferences.ui.h:1
-msgid "Add a directory to the list of shared directories"
-msgstr "הוספת תיקייה לרשימת התיקיות המשותפות"
+#: ../data/rygel-preferences.desktop.in.in.h:1
+msgid "Rygel Preferences"
+msgstr "העדפות Rygel"
 
 #: ../data/rygel-preferences.ui.h:2
-msgid "Add shared directory"
-msgstr "הוספת תיקייה משותפת"
+msgid "_Share media through DLNA"
+msgstr "_שיתוף מדיה דרך DLNA"
 
 #: ../data/rygel-preferences.ui.h:3
 msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
 msgstr "הפעלת שיתוף מדיה כגון תמונות, וידאו ומוזיקה באמצעות DLNA"
 
 #: ../data/rygel-preferences.ui.h:4
+msgid "Add a directory to the list of shared directories"
+msgstr "הוספת תיקייה לרשימת התיקיות המשותפות"
+
+#: ../data/rygel-preferences.ui.h:5
+msgid "Add shared directory"
+msgstr "הוספת תיקייה משותפת"
+
+#: ../data/rygel-preferences.ui.h:6
 msgid "Remove a directory from the list of shared directories"
 msgstr "הסרת תיקייה מרשימת התיקיות המשותפות"
 
-#: ../data/rygel-preferences.ui.h:5
+#: ../data/rygel-preferences.ui.h:7
 msgid "Remove shared directory"
 msgstr "הסרת תיקייה משותפת"
 
-#: ../data/rygel-preferences.ui.h:6
-#: ../data/rygel-preferences.desktop.in.in.h:1
-msgid "Rygel Preferences"
-msgstr "העדפות Rygel"
-
-#: ../data/rygel-preferences.ui.h:7
-msgid "Select folders"
-msgstr "בחירת תיקיות"
-
-#: ../data/rygel-preferences.ui.h:8
-msgid "Select the network interface that DLNA media will be shared on, or share media on all interfaces"
-msgstr "נא לבחור את מנשק הרשת שדרכו תשותף המדיה שלך דרך DLNA או שיתוף המדיה דרך כל המנשקים."
-
 #. Network Interface
-#: ../data/rygel-preferences.ui.h:10
+#: ../data/rygel-preferences.ui.h:9
 msgid "_Network:"
 msgstr "_רשת:"
 
+#: ../data/rygel-preferences.ui.h:10
+msgid "Select the network interface that DLNA media will be shared on, or share media on all interfaces"
+msgstr "נא לבחור את מנשק הרשת שדרכו תשותף המדיה שלך דרך DLNA או שיתוף המדיה דרך כל המנשקים."
+
 #: ../data/rygel-preferences.ui.h:11
-msgid "_Share media through DLNA"
-msgstr "_שיתוף מדיה דרך DLNA"
+msgid "Any"
+msgstr "כלשהו"
+
+#: ../data/rygel-preferences.ui.h:12
+msgid "Select folders"
+msgstr "בחירת תיקיות"
 
 #: ../data/rygel-preferences.desktop.in.in.h:2
 msgid "UPnP/DLNA Preferences"
@@ -499,19 +503,19 @@ msgstr "הסרת עצמים מ־%s אינה מורשית"
 msgid "Failed to get log level from configuration: %s"
 msgstr "ארע כשל בקבלת רמת הרישום מהתצורה: %s"
 
-#: ../src/rygel/rygel-main.vala:98
+#: ../src/rygel/rygel-main.vala:103
 #, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
 msgstr[0] "לא נמצאו תוספים תוך שנייה; מוותר..."
 msgstr[1] "לא נמצאו תוספים בתוך %d שניות; מוותר..."
 
-#: ../src/rygel/rygel-main.vala:159
+#: ../src/rygel/rygel-main.vala:164
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "ארע כשל ביצירת מפעל התקן על: %s"
 
-#: ../src/rygel/rygel-main.vala:217
+#: ../src/rygel/rygel-main.vala:222
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "ארע כשל ביצירת התקן על עבור %s. סיבה: %s"
@@ -617,22 +621,22 @@ msgstr "אין ערך זמין עבור '%s'"
 msgid "Value of '%s' out of range"
 msgstr "הערך של '%s' אינו בטווח"
 
-#: ../src/ui/rygel-preferences-dialog.vala:93
+#: ../src/ui/rygel-preferences-dialog.vala:91
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "ארע כשל ביצירת דו־שיח ההעדפות: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:107
+#: ../src/ui/rygel-writable-user-config.vala:122
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr "ארע כשל בשמירת נתוני התצורה לקובץ '%s':‏ %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:202
+#: ../src/ui/rygel-writable-user-config.vala:210
 #, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "ארע כשל בהפעלת השירות Rygel:‏ %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:204
+#: ../src/ui/rygel-writable-user-config.vala:212
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "ארע כשל בעצירת השירות Rygel:‏ %s"
