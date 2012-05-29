@@ -1,3 +1,97 @@
+0.15.0
+======
+
+A new unstable cycle for GNOME 3.6!
+
+Changes compared to 0.14.0:
+
+- Port to Vala 0.16 vapis.
+- Use new GMutex/GCond api.
+- Use GLib 2.30 Unix signal handling code.
+- Parse "Range:" HTTP headers using libsoup functions.
+- Fix SinkProtocolInfo generation in SinkConnectionManager.
+- Fix URI escaping in AVTransport ChangeLog generation.
+- Use the correct XML namespace for upnp:author and upnp:album in
+  GetSortCapabilities.
+- Use GStreamer presets to set the encoding bitrates in our transcoders.
+- Lower the MP3 and MPEG2 bitrates a bit.
+- Remove the current AAC transcoder and add a working one.
+- Fix state machine transitions in AVTransport.
+- Set correct number of tracks and reset when URI is empty.
+- Implement GetMediaInfo_Ext.
+- Check InstanceID in AVTransport and RenderingControl.
+- Use "FactoryDefault" as default RenderingControl preset.
+- Update service description files to include the proper allowed values.
+- Verify if the URI passed in SetAVTransportURI is accessible and the media
+  matches any of the advertised mime types.
+- Fix initial LastChange event to include all state variables.
+- Fix RecordMedium state variable to return "NOT_IMPLEMENTED".
+- Fix serveral error codes in AVTransport.
+- Add some checks for "Mute" and "Volume" in RenderingControl.
+- Push meta-data, mime type and contentFeatures.dlna.org to the MediaPlayer
+  instance.
+- Select streamingMode.dlna.org header based on DLNA flags.
+
+IOP:
+ - Force version downgrade for devices using the Mediabolic UPnP stack.
+
+Playbin:
+ - Fix duration notification
+ - Avoid Warning from GStreamer when an empty URI is set.
+ - Use "NO_MEDIA_PRESENT" as initial state instead of "STOPPED".
+
+GstLaunch:
+ - Add an option to set the DLNA profile of a stream if applicable
+
+Ui:
+ - Fix initial set-up.
+ - Fix removing autostart file when Rygel is not running.
+
+Changes in dependencies:
+ - Vala >= 0.16 for newer vapis
+ - glib >= 2.32 for Unix signal handlers and new GMutex/GCond APIs
+
+Bugs fixed in this release:
+ https://bugzilla.gnome.org/show_bug.cgi?id=675234
+ https://bugzilla.gnome.org/show_bug.cgi?id=674071
+ https://bugzilla.gnome.org/show_bug.cgi?id=674733
+
+All contributors to this release:
+ Jens Georg <mail@jensge.org>
+ Yaron Shahrabani <sh.yaron@gmail.com>
+ Sasi Bhushan <sasi@swecha.net>
+ Jonh Wendell <jwendell@gnome.org>
+ Yuri Myasoedov <omerta13@yandex.ru>
+ Matej Urbančič <mateju@svn.gnome.org>
+ Marek Černocký <marek@manet.cz>
+ Luca Ferretti <lferrett@gnome.org>
+ Kentaro KAZUHAMA <kazken3@gmail.com>
+ Joe Hansen <joedalton2@yahoo.dk>
+ Gil Forcada <gforcada@gnome.org>
+ Gabor Kelemen <kelemeng@gnome.hu>
+ Fran Diéguez <fran.dieguez@mabishu.com>
+ Daniel Nylander <po@danielnylander.se>
+ Christian Kirbach <Christian.Kirbach@googlemail.com>
+ Bruno Brouard <annoa.b@gmail.com>
+ Alexander Shopov <ash@kambanaria.org>
+
+Added/updated translations
+ - bg, courtesy of Alexander Shopov
+ - ca, courtesy of Joan Duran
+ - cs, courtesy of Marek Černocký
+ - da, courtesy of Joe Hansen
+ - de, courtesy of Christian Kirbach
+ - fr, courtesy of Pierre Henry
+ - gl, courtesy of Fran Dieguez
+ - he, courtesy of Yaron Shahrabani
+ - hu, courtesy of Gabor Kelemen
+ - it, courtesy of Luca Ferretti
+ - ja, courtesy of Kentaro KAZUHAMA
+ - pt_BR, courtesy of Jonh Wendell
+ - ru, courtesy of Yuri Myasoedov
+ - sl, courtesy of Matej Urbančič
+ - sv, courtesy of Daniel Nylander
+
 0.13.4
 ======
 
