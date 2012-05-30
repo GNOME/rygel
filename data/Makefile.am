@@ -38,5 +38,5 @@ EXTRA_DIST = $(dbusservice_in_files) \
 	     $(desktop_in_files) \
 	     $(sysconf_DATA) \
 	     $(pixmaps_DATA) \
-	     $(presets_DATA)
+	     $(preset_DATA)
 
