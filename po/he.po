@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-25 10:25+0300\n"
-"PO-Revision-Date: 2012-05-25 10:25+0200\n"
+"POT-Creation-Date: 2012-06-02 12:52+0300\n"
+"PO-Revision-Date: 2012-06-02 12:53+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Gezer <sh.yaron@gmail.com>\n"
 "Language: \n"
@@ -321,34 +321,48 @@ msgstr "הפניית חיבור שגויה"
 msgid "No such file transfer"
 msgstr "אין כזאת העברת קבצים"
 
-#: ../src/rygel/rygel-av-transport.vala:205
-#: ../src/rygel/rygel-rendering-control.vala:121
+#: ../src/rygel/rygel-av-transport.vala:215
+#: ../src/rygel/rygel-rendering-control.vala:123
+msgid "Invalid Args"
+msgstr "ארגומנטים שגויים"
+
+#: ../src/rygel/rygel-av-transport.vala:221
+#: ../src/rygel/rygel-rendering-control.vala:129
 msgid "Invalid InstanceID"
 msgstr "מזהה המופע שגוי"
 
-#: ../src/rygel/rygel-av-transport.vala:378
+#: ../src/rygel/rygel-av-transport.vala:481
 msgid "Play speed not supported"
 msgstr "מהירות הנגינה אינה נתמכת"
 
-#: ../src/rygel/rygel-av-transport.vala:417
-msgid "Seek failed"
-msgstr "החיפוש נכשל"
-
-#: ../src/rygel/rygel-av-transport.vala:426
-msgid "Seek mode not supported"
-msgstr "מצב סקירה אינו נתמך"
-
-#: ../src/rygel/rygel-av-transport.vala:433
-#: ../src/rygel/rygel-av-transport.vala:437
+#: ../src/rygel/rygel-av-transport.vala:497
+#: ../src/rygel/rygel-av-transport.vala:542
+#: ../src/rygel/rygel-av-transport.vala:546
 msgid "Transition not available"
 msgstr "העברה אינה זמינה"
 
-#: ../src/rygel/rygel-rendering-control.vala:152
+#: ../src/rygel/rygel-av-transport.vala:526
+msgid "Seek failed"
+msgstr "החיפוש נכשל"
+
+#: ../src/rygel/rygel-av-transport.vala:535
+msgid "Seek mode not supported"
+msgstr "מצב סקירה אינו נתמך"
+
+#: ../src/rygel/rygel-rendering-control.vala:160
 msgid "Invalid Name"
 msgstr "שם בלתי תקני"
 
-#: ../src/rygel/rygel-rendering-control.vala:166
-#: ../src/rygel/rygel-rendering-control.vala:237
+#: ../src/rygel/rygel-rendering-control.vala:174
+msgid "Invalid Channel"
+msgstr "ערוץ בלתי תקני"
+
+#: ../src/rygel/rygel-rendering-control.vala:210
+#: ../src/rygel/rygel-rendering-control.vala:252
+msgid "ActionFailed"
+msgstr "הפעולה נכשלה"
+
+#: ../src/rygel/rygel-rendering-control.vala:261
 msgid "Action Failed"
 msgstr "הפעולה נכשלה"
 
