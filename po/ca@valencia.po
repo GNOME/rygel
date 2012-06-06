@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-07 00:02+0200\n"
-"PO-Revision-Date: 2012-05-06 16:11+0200\n"
+"PO-Revision-Date: 2012-06-07 00:04+0200\n"
 "Last-Translator: Joan Duran <jodufi@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca-XV\n"
@@ -700,45 +700,3 @@ msgstr "No s'ha pogut parar el servei Rygel: %s"
 
 #~ msgid "Share M_usic"
 #~ msgstr "Comparteix la _música"
-
-#~ msgid "Share _Pictures"
-#~ msgstr "Comparteix les _imatges"
-
-#~ msgid "Share _Videos"
-#~ msgstr "Comparteix els _vídeos"
-
-#~ msgid "Ti_tle"
-#~ msgstr "Tít_ol"
-
-#~ msgid ""
-#~ "Write %u for username, %n for real name of the user and %h for host name"
-#~ msgstr ""
-#~ "Escriviu %u per al nom d'usuari, %n per al nom real de l'usuari i %h per "
-#~ "al nom de l'ordinador"
-
-#~ msgid "_Enable UPnP/DLNA"
-#~ msgstr "_Habilita l'UPnP/DLNA"
-
-#~ msgid "_Interface"
-#~ msgstr "_Interfície"
-
-#~ msgid "_LPCM"
-#~ msgstr "_LPCM"
-
-#~ msgid "_MP3"
-#~ msgstr "_MP3"
-
-#~ msgid "_Media Export"
-#~ msgstr "Exportació _multimèdia"
-
-#~ msgid "_Port"
-#~ msgstr "_Port"
-
-#~ msgid "_Transcoding support"
-#~ msgstr "Compatibilitat de _transcodificació"
-
-#~ msgid "_URIs"
-#~ msgstr "_URI"
-
-#~ msgid "Failed to create instance of database"
-#~ msgstr "No s'ha pogut crear la instància de la base de dades"
