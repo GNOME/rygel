@@ -223,6 +223,7 @@ doc/Makefile
 po/Makefile.in
 rygel-1.0.pc
 tests/Makefile
+examples/Makefile
 ])
 AC_OUTPUT
 
