@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2008 Nokia Corporation.
  * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
+ * Copyright (C) 2012 Openismus GmbH.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -27,7 +29,7 @@ using Gee;
 /**
  * Represents a Root device.
  */
-internal class Rygel.RootDevice: GUPnP.RootDevice {
+public class Rygel.RootDevice: GUPnP.RootDevice {
     internal ArrayList<ServiceInfo> services;   /* Services we implement */
 
     public RootDevice (GUPnP.Context context,

@@ -1,9 +1,11 @@
 /*
  * Copyright (C) 2008,2009 Nokia Corporation.
  * Copyright (C) 2008,2009 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
+ * Copyright (C) 2012 Openismus GmbH.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -24,14 +26,14 @@
 
 using Gee;
 
-internal errordomain Rygel.CmdlineConfigError {
+public errordomain Rygel.CmdlineConfigError {
     VERSION_ONLY
 }
 
 /**
  * Manages configuration from Commandline arguments.
  */
-internal class Rygel.CmdlineConfig : GLib.Object, Configuration {
+public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static string iface;
     private static int port;
 

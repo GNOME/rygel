@@ -19,7 +19,6 @@ rygel_preferences_VALAFLAGS = \
 	--pkg gtk+-3.0 $(RYGEL_COMMON_PLUGIN_VALAFLAGS)
 
 rygel_preferences_LDADD = \
-	$(abs_top_builddir)/src/rygel/librygel-configuration.a \
 	$(RYGEL_COMMON_LIBS) \
 	$(GTK_LIBS)
 rygel_preferences_LDFLAGS = -export-dynamic

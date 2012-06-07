@@ -2,10 +2,12 @@
  * Copyright (C) 2008-2010 Nokia Corporation.
  * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
  * Copyright (C) 2007 OpenedHand Ltd.
+ * Copyright (C) 2012 Openismus GmbH.
  *
  * Authors: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                                <zeeshan.ali@nokia.com>
  *          Jorn Baayen <jorn@openedhand.com>
+ *          Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -43,7 +45,7 @@ public errordomain RootDeviceFactoryError {
  * Factory for RootDevice objects. Give it a plugin and it will create a
  * Root device for that.
  */
-internal class Rygel.RootDeviceFactory {
+public class Rygel.RootDeviceFactory {
     public GUPnP.Context context;
 
     private Configuration config;

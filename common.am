@@ -35,7 +35,7 @@ AM_CFLAGS = \
 	-DPRESET_DIR='"$(presetdir)"'\
 	-include config.h
 
-RYGEL_COMMON_LIBS = \
+RYGEL_BASE_LIBS = \
 	$(LIBGUPNP_LIBS) \
 	$(LIBGUPNP_AV_LIBS) \
 	$(LIBGSTREAMER_LIBS) \
@@ -43,6 +43,10 @@ RYGEL_COMMON_LIBS = \
 	$(GEE_LIBS) \
 	$(UUID_LIBS) \
 	$(COVERAGE_LIBS)
+
+RYGEL_COMMON_LIBS = \
+	$(RYGEL_BASE_LIBS) \
+	$(top_builddir)/src/rygel/librygel-core.la
 
 # Note: the -g needs to be at the end of VALAFLAGS to not break make dist
 RYGEL_COMMON_PLUGIN_VALAFLAGS = \

@@ -13,20 +13,50 @@ librygelincdir = $(includedir)/rygel-1.0
 
 librygelinc_HEADERS = rygel.h
 
-bin_PROGRAMS = rygel
+lib_LTLIBRARIES = librygel-core.la
 
-BUILT_SOURCES = \
-	rygel-1.0.vapi \
-	rygel.h
-
-rygel_SOURCES = \
-	$(VAPI_SOURCE_FILES) \
-	rygel-http-item-uri.vala \
-	rygel-dbus-service.vala \
+VAPI_SOURCE_FILES = \
+	rygel-cmdline-config.vala \
 	rygel-root-device.vala \
 	rygel-root-device-factory.vala \
-	rygel-main.vala \
-	rygel-cmdline-config.vala \
+	rygel-audio-item.vala \
+	rygel-dbus-interface.vala \
+	rygel-icon-info.vala \
+	rygel-image-item.vala \
+	rygel-log-handler.vala \
+	rygel-logical-expression.vala \
+	rygel-media-art-store.vala \
+	rygel-media-objects.vala \
+	rygel-media-renderer-plugin.vala \
+	rygel-meta-config.vala \
+	rygel-music-item.vala \
+	rygel-photo-item.vala \
+	rygel-plugin-loader.vala \
+	rygel-plugin.vala \
+	rygel-relational-expression.vala \
+	rygel-resource-info.vala \
+	rygel-simple-container.vala \
+	rygel-subtitle.vala \
+	rygel-thumbnail.vala \
+	rygel-user-config.vala \
+	rygel-video-item.vala \
+	rygel-media-container.vala \
+	rygel-media-item.vala \
+	rygel-media-object.vala \
+	rygel-media-server-plugin.vala \
+	rygel-search-expression.vala \
+	rygel-configuration.vala \
+	rygel-free-desktop-interfaces.vala \
+	rygel-media-player.vala \
+	rygel-searchable-container.vala \
+	rygel-state-machine.vala \
+	rygel-visual-item.vala \
+	rygel-writable-container.vala \
+	rygel-xml-utils.vala
+
+librygel_core_la_SOURCES = \
+	$(VAPI_SOURCE_FILES) \
+	rygel-http-item-uri.vala \
 	rygel-environment-config.vala \
 	rygel-content-directory.vala \
 	rygel-connection-manager.vala \
@@ -79,58 +109,38 @@ rygel_SOURCES = \
 	rygel-volume.vala \
 	rygel-description-file.vala
 
-VAPI_SOURCE_FILES = \
-	rygel-audio-item.vala \
-	rygel-dbus-interface.vala \
-	rygel-icon-info.vala \
-	rygel-image-item.vala \
-	rygel-log-handler.vala \
-	rygel-logical-expression.vala \
-	rygel-media-art-store.vala \
-	rygel-media-objects.vala \
-	rygel-media-renderer-plugin.vala \
-	rygel-meta-config.vala \
-	rygel-music-item.vala \
-	rygel-photo-item.vala \
-	rygel-plugin-loader.vala \
-	rygel-plugin.vala \
-	rygel-relational-expression.vala \
-	rygel-resource-info.vala \
-	rygel-simple-container.vala \
-	rygel-subtitle.vala \
-	rygel-thumbnail.vala \
-	rygel-user-config.vala \
-	rygel-video-item.vala \
-	rygel-media-container.vala \
-	rygel-media-item.vala \
-	rygel-media-object.vala \
-	rygel-media-server-plugin.vala \
-	rygel-search-expression.vala \
-	rygel-configuration.vala \
-	rygel-free-desktop-interfaces.vala \
-	rygel-media-player.vala \
-	rygel-searchable-container.vala \
-	rygel-state-machine.vala \
-	rygel-visual-item.vala \
-	rygel-writable-container.vala \
-	rygel-xml-utils.vala
-
-rygel_VALAFLAGS = \
+librygel_core_la_VALAFLAGS = \
 	-H rygel.h -C --library=rygel-1.0 \
-	--pkg rygel-misc \
 	--pkg gstreamer-0.10 \
 	--pkg gstreamer-base-0.10 \
 	--pkg gupnp-dlna-1.0 \
-	--pkg posix \
 	$(RYGEL_COMMON_VALAFLAGS)
 
-rygel_LDADD = \
-	librygel-configuration.a \
-	$(RYGEL_COMMON_LIBS) \
-	$(LIBGUPNP_DLNA_LIBS) \
+librygel_core_la_LIBADD = \
 	$(GST_PBU_LIBS) \
+	$(RYGEL_BASE_LIBS) \
+	$(LIBGUPNP_DLNA_LIBS) \
 	$(GIO_LIBS) \
 	$(LIBSOUP_LIBS)
+
+bin_PROGRAMS = rygel
+
+BUILT_SOURCES = \
+	rygel-1.0.vapi \
+	rygel.h
+
+rygel_SOURCES = \
+	rygel-dbus-service.vala \
+	rygel-main.vala
+
+rygel_VALAFLAGS = \
+	--pkg posix \
+	--pkg rygel-misc \
+	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
+
+rygel_LDADD = \
+	librygel-core.la \
+	$(RYGEL_COMMON_LIBS)
 
 rygel_LDFLAGS = -export-dynamic
 
@@ -140,17 +150,6 @@ DEPS_FILES = rygel-1.0.deps
 vapidir = $(VAPIDIR)
 vapi_DATA = $(VAPI_FILES) $(DEPS_FILES)
 rygel-1.0.vapi rygel.h: $(VAPI_SOURCE_FILES)
-
-noinst_LIBRARIES = librygel-configuration.a
-
-librygel_configuration_a_SOURCES = \
-	rygel-configuration.c \
-	rygel-user-config.c \
-	rygel-meta-config.c \
-	rygel-cmdline-config.c \
-	rygel-environment-config.c \
-	rygel-dbus-interface.c \
-	rygel-free-desktop-interfaces.c
 
 MAINTAINERCLEANFILES += $(BUILT_SOURCES)
 
