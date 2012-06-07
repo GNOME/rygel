@@ -22,7 +22,7 @@
  */
 
 [DBus (name = "org.gnome.Rygel1")]
-public class Rygel.DBusService : Object, DBusInterface {
+internal class Rygel.DBusService : Object, DBusInterface {
     private Main main;
     private uint name_id;
     private uint connection_id;

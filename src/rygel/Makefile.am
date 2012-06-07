@@ -25,13 +25,7 @@ rygel_SOURCES = \
 	rygel-dbus-service.vala \
 	rygel-root-device.vala \
 	rygel-root-device-factory.vala \
-	rygel-xml-utils.vala \
-	rygel-main.vala
-
-VAPI_SOURCE_FILES = \
-	rygel-configuration.vala \
-	rygel-user-config.vala \
-	rygel-meta-config.vala \
+	rygel-main.vala \
 	rygel-cmdline-config.vala \
 	rygel-environment-config.vala \
 	rygel-content-directory.vala \
@@ -42,7 +36,6 @@ VAPI_SOURCE_FILES = \
 	rygel-rendering-control.vala \
 	rygel-transcode-manager.vala \
 	rygel-http-server.vala \
-	rygel-state-machine.vala \
 	rygel-http-request.vala \
 	rygel-http-get-handler.vala \
 	rygel-http-get.vala \
@@ -54,30 +47,8 @@ VAPI_SOURCE_FILES = \
 	rygel-http-time-seek.vala \
 	rygel-http-response.vala \
 	rygel-http-gst-sink.vala \
-	rygel-resource-info.vala \
-	rygel-icon-info.vala \
-	rygel-plugin.vala \
-	rygel-media-server-plugin.vala \
-	rygel-media-renderer-plugin.vala \
-	rygel-plugin-loader.vala \
-	rygel-media-object.vala \
-	rygel-media-objects.vala \
-	rygel-media-container.vala \
-	rygel-simple-container.vala \
-	rygel-writable-container.vala \
-	rygel-searchable-container.vala \
-	rygel-media-item.vala \
-	rygel-audio-item.vala \
-	rygel-music-item.vala \
-	rygel-visual-item.vala \
-	rygel-video-item.vala \
-	rygel-image-item.vala \
-	rygel-photo-item.vala \
-	rygel-thumbnail.vala \
 	rygel-thumbnailer.vala \
 	rygel-dbus-thumbnailer.vala \
-	rygel-media-art-store.vala \
-	rygel-subtitle.vala \
 	rygel-subtitle-manager.vala \
 	rygel-media-query-action.vala \
 	rygel-browse.vala \
@@ -92,9 +63,6 @@ VAPI_SOURCE_FILES = \
 	rygel-item-creator.vala \
 	rygel-item-destroyer.vala \
 	rygel-item-removal-queue.vala \
-	rygel-search-expression.vala \
-	rygel-relational-expression.vala \
-	rygel-logical-expression.vala \
 	rygel-search-criteria-parser.vala \
 	rygel-transcoder.vala \
 	rygel-audio-transcoder.vala \
@@ -107,13 +75,45 @@ VAPI_SOURCE_FILES = \
 	rygel-avc-transcoder.vala \
 	rygel-gst-utils.vala \
 	rygel-media-receiver-registrar.vala \
-	rygel-log-handler.vala \
-	rygel-media-player.vala \
 	rygel-changelog.vala \
 	rygel-volume.vala \
-	rygel-free-desktop-interfaces.vala \
-	rygel-dbus-interface.vala \
 	rygel-description-file.vala
+
+VAPI_SOURCE_FILES = \
+	rygel-audio-item.vala \
+	rygel-dbus-interface.vala \
+	rygel-icon-info.vala \
+	rygel-image-item.vala \
+	rygel-log-handler.vala \
+	rygel-logical-expression.vala \
+	rygel-media-art-store.vala \
+	rygel-media-objects.vala \
+	rygel-media-renderer-plugin.vala \
+	rygel-meta-config.vala \
+	rygel-music-item.vala \
+	rygel-photo-item.vala \
+	rygel-plugin-loader.vala \
+	rygel-plugin.vala \
+	rygel-relational-expression.vala \
+	rygel-resource-info.vala \
+	rygel-simple-container.vala \
+	rygel-subtitle.vala \
+	rygel-thumbnail.vala \
+	rygel-user-config.vala \
+	rygel-video-item.vala \
+	rygel-media-container.vala \
+	rygel-media-item.vala \
+	rygel-media-object.vala \
+	rygel-media-server-plugin.vala \
+	rygel-search-expression.vala \
+	rygel-configuration.vala \
+	rygel-free-desktop-interfaces.vala \
+	rygel-media-player.vala \
+	rygel-searchable-container.vala \
+	rygel-state-machine.vala \
+	rygel-visual-item.vala \
+	rygel-writable-container.vala \
+	rygel-xml-utils.vala
 
 rygel_VALAFLAGS = \
 	-H rygel.h -C --library=rygel-1.0 \

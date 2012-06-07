@@ -28,7 +28,7 @@ using Posix;
 [CCode (cname="gst_preset_set_app_dir")]
 extern bool gst_preset_set_app_dir (string app_dir);
 
-public class Rygel.Main : Object {
+internal class Rygel.Main : Object {
     private static int PLUGIN_TIMEOUT = 5;
 
     private PluginLoader plugin_loader;
