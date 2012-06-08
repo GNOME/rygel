@@ -1,11 +1,7 @@
 /*
- * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
- * Copyright (C) 2008 Nokia Corporation.
  * Copyright (C) 2012 Openismus GmbH.
  *
- * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
- *                               <zeeshan.ali@nokia.com>
- *         Jens Georg <jensg@openismus.com>
+ * Author: Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -25,17 +21,16 @@
  */
 
 using Rygel;
-using Gee;
 
-public class Rygel.Playbin.Plugin : Rygel.MediaRendererPlugin {
-    public const string NAME = "Playbin";
+public void module_init (PluginLoader loader) {
+    if (loader.plugin_disabled (Playbin.Plugin.NAME)) {
+        message ("Plugin '%s' disabled by user, ignoring..",
+                 Playbin.Plugin.NAME);
 
-    public Plugin () {
-        base (Plugin.NAME, _("GStreamer Player"));
+        return;
     }
 
-    public override MediaPlayer? get_player () {
-        return Playbin.Player.get_default ();
-    }
+    var plugin = new Playbin.Plugin ();
+
+    loader.add_plugin (plugin);
 }
-
