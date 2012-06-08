@@ -80,18 +80,36 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
 
         set {
-            debug ("Changing playback state to %s.", value);
-            this._playback_state = value;
+            Gst.State state, pending;
 
-            switch (this._playback_state) {
+            this.playbin.get_state (out state, out pending, Gst.MSECOND);
+
+            debug ("Changing playback state to %s.", value);
+
+            switch (value) {
                 case "STOPPED":
-                    this.playbin.set_state (State.NULL);
+                    // bgo#TBD: Does not generate a state-change event
+                    if (state != State.NULL || pending != State.VOID_PENDING) {
+                        this.playbin.set_state (State.NULL);
+                    }
+                    this._playback_state = value;
                 break;
                 case "PAUSED_PLAYBACK":
-                    this.playbin.set_state (State.PAUSED);
+                    if (state != State.PAUSED || pending != State.VOID_PENDING) {
+                        this._playback_state = "TRANSITIONING";
+                        this.playbin.set_state (State.PAUSED);
+                    } else {
+                        this._playback_state = value;
+                    }
                 break;
                 case "PLAYING":
-                    this.playbin.set_state (State.PLAYING);
+                    if (state != State.PLAYING ||
+                        pending != State.VOID_PENDING) {
+                        this._playback_state = "TRANSITIONING";
+                        this.playbin.set_state (State.PLAYING);
+                    } else {
+                        this._playback_state = value;
+                    }
                 break;
                 default:
                 break;
@@ -112,7 +130,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
             if (value != "") {
                 switch (this._playback_state) {
                     case "NO_MEDIA_PRESENT":
-                        this.playback_state = "STOPPED";
+                        this._playback_state = "STOPPED";
+                        this.notify_property ("playback-state");
                         break;
                     case "STOPPED":
                     case "PAUSED_PLAYBACK":
@@ -124,7 +143,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                         break;
                 }
             } else {
-                this.playback_state = "NO_MEDIA_PRESENT";
+                this._playback_state = "NO_MEDIA_PRESENT";
+                this.notify_property ("playback-state");
             }
             debug ("URI set to %s.", value);
         }
@@ -270,11 +290,32 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         switch (message.type) {
         case MessageType.STATE_CHANGED:
             if (message.src == this.playbin) {
-                State old_state, new_state;
+                State old_state, new_state, pending;
 
-                message.parse_state_changed (out old_state, out new_state, null);
+                message.parse_state_changed (out old_state,
+                                             out new_state,
+                                             out pending);
                 if (old_state == State.READY && new_state == State.PAUSED) {
                     this.notify_property ("duration");
+                }
+
+                debug ("%d %d %d", old_state, new_state, pending);
+
+                if (pending == State.VOID_PENDING) {
+                    switch (new_state) {
+                        case State.PAUSED:
+                            this.playback_state = "PAUSED_PLAYBACK";
+                            break;
+                        case State.NULL:
+                        case State.READY:
+                            this.playback_state = "STOPPED";
+                            break;
+                        case State.PLAYING:
+                            this.playback_state = "PLAYING";
+                            break;
+                        default:
+                            assert_not_reached ();
+                    }
                 }
             }
             break;
