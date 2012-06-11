@@ -88,11 +88,12 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
             switch (value) {
                 case "STOPPED":
-                    // bgo#TBD: Does not generate a state-change event
                     if (state != State.NULL || pending != State.VOID_PENDING) {
+                        this._playback_state = "TRANSITIONING";
                         this.playbin.set_state (State.NULL);
+                    } else {
+                        this._playback_state = value;
                     }
-                    this._playback_state = value;
                 break;
                 case "PAUSED_PLAYBACK":
                     if (state != State.PAUSED || pending != State.VOID_PENDING) {
@@ -125,7 +126,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
 
         set {
-            this.playbin.set_state (State.NULL);
+            this.playbin.set_state (State.READY);
             this.playbin.uri = value;
             if (value != "") {
                 switch (this._playback_state) {
@@ -239,6 +240,9 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
     private Player () {
         this.playbin = ElementFactory.make ("playbin2", null);
+        // Needed to get "Stop" events from the playbin.
+        // We can do this because we have a bus watch
+        this.playbin.auto_flush_bus = false;
         assert (this.playbin != null);
 
         playbin.source_setup.connect (this.on_source_setup);
@@ -307,14 +311,13 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                             this.playback_state = "PAUSED_PLAYBACK";
                             break;
                         case State.NULL:
-                        case State.READY:
                             this.playback_state = "STOPPED";
                             break;
                         case State.PLAYING:
                             this.playback_state = "PLAYING";
                             break;
                         default:
-                            assert_not_reached ();
+                            break;
                     }
                 }
             }
