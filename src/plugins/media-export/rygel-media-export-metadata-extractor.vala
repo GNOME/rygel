@@ -35,10 +35,8 @@ using GUPnP;
 public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     /* Signals */
     public signal void extraction_done (File                   file,
-                                        GUPnP.DLNAInformation? info,
-                                        string                 mime,
-                                        uint64                 size,
-                                        uint64                 mtime);
+                                        GUPnP.DLNAInformation? dlna,
+                                        FileInfo               file_info);
 
     /**
      * Signalize that an error occured during metadata extraction
@@ -131,7 +129,8 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                                         (FileAttribute.STANDARD_CONTENT_TYPE
                                          + "," +
                                          FileAttribute.STANDARD_SIZE + "," +
-                                         FileAttribute.TIME_MODIFIED,
+                                         FileAttribute.TIME_MODIFIED + "," +
+                                         FileAttribute.STANDARD_DISPLAY_NAME,
                                          FileQueryInfoFlags.NONE,
                                          null);
             } catch (Error error) {
@@ -144,17 +143,9 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                 throw error;
             }
 
-            var content_type = file_info.get_content_type ();
-            var mime = ContentType.get_mime_type (content_type);
-            var size = file_info.get_size ();
-            var mtime = file_info.get_attribute_uint64
-                                        (FileAttribute.TIME_MODIFIED);
-
             this.extraction_done (file,
                                   dlna,
-                                  mime,
-                                  size,
-                                  mtime);
+                                  file_info);
         } catch (Error error) {
             debug ("Failed to extract basic metadata from %s: %s",
                    file.get_uri (),
