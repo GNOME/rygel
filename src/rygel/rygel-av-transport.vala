@@ -241,8 +241,6 @@ internal class Rygel.AVTransport : Service {
                         typeof (string),
                         out _metadata);
 
-        this.metadata = _metadata;
-
         if (_uri.has_prefix ("http://") || _uri.has_prefix ("https://")) {
             var message = new Message ("HEAD", _uri);
             message.request_headers.append ("getContentFeatures.dlna.org",
@@ -274,6 +272,7 @@ internal class Rygel.AVTransport : Service {
                         this.player.content_features = "*";
                     }
 
+                    this.metadata = _metadata;
                     this.uri = _uri;
                     this.n_tracks = 1;
 
@@ -282,6 +281,7 @@ internal class Rygel.AVTransport : Service {
             });
             this.session.queue_message (message, null);
         } else {
+            this.metadata = _metadata;
             this.uri = _uri;
             if (_uri == "") {
                 this.n_tracks = 0;
