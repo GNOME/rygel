@@ -284,9 +284,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
     private void on_extracted_cb (File                   file,
                                   GUPnP.DLNAInformation? dlna,
-                                  string                 mime,
-                                  uint64                 size,
-                                  uint64                 mtime) {
+                                  FileInfo               file_info) {
         if (this.cancellable.is_cancelled ()) {
             this.completed ();
         }
@@ -302,16 +300,12 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         if (dlna == null) {
             item = ItemFactory.create_simple (this.containers.peek_head (),
                                               file,
-                                              mime,
-                                              size,
-                                              mtime);
+                                              file_info);
         } else {
             item = ItemFactory.create_from_info (this.containers.peek_head (),
                                                  file,
                                                  dlna,
-                                                 mime,
-                                                 size,
-                                                 mtime);
+                                                 file_info);
         }
 
         if (item != null) {

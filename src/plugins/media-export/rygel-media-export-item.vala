@@ -30,11 +30,10 @@ using Gst;
 namespace Rygel.MediaExport.ItemFactory {
     public static MediaItem create_simple (MediaContainer parent,
                                            File           file,
-                                           string         mime,
-                                           uint64         size,
-                                           uint64         mtime) {
-        var title = file.get_basename ();
+                                           FileInfo       info) {
+        var title = info.get_display_name ();
         MediaItem item;
+        var mime = ContentType.get_mime_type (info.get_content_type ());
 
         if (mime.has_prefix ("video/")) {
             item = new VideoItem (MediaCache.get_id (file), parent, title);
@@ -45,19 +44,19 @@ namespace Rygel.MediaExport.ItemFactory {
         }
 
         item.mime_type = mime;
-        item.size = (int64) size;
-        item.modified = mtime;
+        item.size = (int64) info.get_size ();
+        item.modified = info.get_attribute_uint64
+                                        (FILE_ATTRIBUTE_TIME_MODIFIED);
         item.add_uri (file.get_uri ());
 
         return item;
     }
 
-    public static MediaItem? create_from_info (MediaContainer        parent,
-                                               File                  file,
-                                               GUPnP.DLNAInformation dlna_info,
-                                               string                mime,
-                                               uint64                size,
-                                               uint64                mtime) {
+    public static MediaItem? create_from_info
+                                        (MediaContainer        parent,
+                                         File                  file,
+                                         GUPnP.DLNAInformation dlna_info,
+                                         FileInfo              file_info) {
         MediaItem item;
         string id = MediaCache.get_id (file);
         GLib.List<DiscovererAudioInfo> audio_streams;
@@ -80,9 +79,7 @@ namespace Rygel.MediaExport.ItemFactory {
                                     file,
                                     dlna_info,
                                     video_streams.data,
-                                    mime,
-                                    size,
-                                    mtime);
+                                    file_info);
         } else if (video_streams != null) {
             item = new VideoItem (id, parent, "");
 
@@ -96,18 +93,14 @@ namespace Rygel.MediaExport.ItemFactory {
                                     dlna_info,
                                     video_streams.data,
                                     audio_info,
-                                    mime,
-                                    size,
-                                    mtime);
+                                    file_info);
         } else if (audio_streams != null) {
             item = new MusicItem (id, parent, "");
             return fill_music_item (item as MusicItem,
                                     file,
                                     dlna_info,
                                     audio_streams.data,
-                                    mime,
-                                    size,
-                                    mtime);
+                                    file_info);
         } else {
             return null;
         }
@@ -135,15 +128,13 @@ namespace Rygel.MediaExport.ItemFactory {
 
 
     private static MediaItem fill_video_item (VideoItem            item,
-                                                File                 file,
+                                              File                 file,
                                               DLNAInformation      dlna_info,
                                               DiscovererVideoInfo  video_info,
                                               DiscovererAudioInfo? audio_info,
-                                              string               mime,
-                                              uint64               size,
-                                              uint64               mtime) {
+                                              FileInfo             file_info) {
         fill_audio_item (item as AudioItem, dlna_info, audio_info);
-        fill_media_item (item, file, dlna_info, mime, size, mtime);
+        fill_media_item (item, file, dlna_info, file_info);
 
         item.width = (int) video_info.get_width ();
         item.height = (int) video_info.get_height ();
@@ -156,10 +147,8 @@ namespace Rygel.MediaExport.ItemFactory {
                                               File                file,
                                               DLNAInformation     dlna_info,
                                               DiscovererVideoInfo video_info,
-                                              string              mime,
-                                              uint64              size,
-                                              uint64              mtime) {
-        fill_media_item (item, file, dlna_info, mime, size, mtime);
+                                              FileInfo            file_info) {
+        fill_media_item (item, file, dlna_info, file_info);
 
         item.width = (int) video_info.get_width ();
         item.height = (int) video_info.get_height ();
@@ -172,11 +161,9 @@ namespace Rygel.MediaExport.ItemFactory {
                                               File                 file,
                                               DLNAInformation      dlna_info,
                                               DiscovererAudioInfo? audio_info,
-                                              string               mime,
-                                              uint64               size,
-                                              uint64               mtime) {
+                                              FileInfo             file_info) {
         fill_audio_item (item as AudioItem, dlna_info, audio_info);
-        fill_media_item (item, file, dlna_info, mime, size, mtime);
+        fill_media_item (item, file, dlna_info, file_info);
 
         if (audio_info != null) {
             if (audio_info.get_tags () != null) {
@@ -218,16 +205,14 @@ namespace Rygel.MediaExport.ItemFactory {
     }
 
     private static void fill_media_item (MediaItem       item,
-                                  File                   file,
-                                  DLNAInformation dlna_info,
-                                  string           mime,
-                                  uint64           size,
-                                  uint64           mtime) {
+                                         File            file,
+                                         DLNAInformation dlna_info,
+                                         FileInfo        file_info) {
         string title = null;
 
         if (dlna_info.info.get_tags () == null ||
             !dlna_info.info.get_tags ().get_string (TAG_TITLE, out title)) {
-            title = file.get_basename ();
+            title = file_info.get_display_name ();
         }
 
         item.title = title;
@@ -242,19 +227,22 @@ namespace Rygel.MediaExport.ItemFactory {
         }
 
         // use mtime if no time tag was available
+        var mtime = file_info.get_attribute_uint64
+                                        (FILE_ATTRIBUTE_TIME_MODIFIED);
+
         if (item.date == null) {
             TimeVal tv = { (long) mtime, 0 };
             item.date = tv.to_iso8601 ();
         }
 
-        item.size = (int64) size;
+        item.size = (int64) file_info.get_size ();
         item.modified = (int64) mtime;
-
         if (dlna_info.name != null) {
             item.dlna_profile = dlna_info.name;
             item.mime_type = dlna_info.mime;
         } else {
-            item.mime_type = mime;
+            item.mime_type = ContentType.get_mime_type
+                                        (file_info.get_content_type ());
         }
 
         item.add_uri (file.get_uri ());
