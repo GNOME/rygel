@@ -1,3 +1,48 @@
+0.14.2
+======
+
+A bugfix release in the stable 0.14 series of Rygel.
+
+Changes compared to 0.14.1:
+
+- Fix content range checks.
+- Fix compatibility with Samsung's UE40E* devices.
+
+MediaExport:
+ - Force UTF-8 for titles, fixing invalid DIDLLite snippets.
+ - Use libunistring for UTF-8 collation if available.
+ - Get rid of unnecessary joins in virtual folders.
+ - Fix database upgrade from Rygel 0.6 (DB version 5)
+
+Playbin:
+ - Add more mime-types for containers and codecs from the XIPH family.
+
+Added/updated translations:
+ - ca, courtesy of Joan Duran
+ - ca@valencia, courtesy of Joan Duran
+ - de, courtesy of Christian Kirbach
+ - fr, courtesy of Alexandre Franke
+ - hu, courtesy of Gabor Kelemen
+ - id, courtesy of Andika Triwidada
+ - it, courtesy of Luca Ferretti
+ - te, courtesy of Hari Krishna
+
+All contributors to this release:
+ Jens Georg <mail@jensge.org>
+ Sasi Bhushan <sasi@swecha.net>
+ Gil Forcada <gforcada@gnome.org>
+ Luca Ferretti <lferrett@gnome.org>
+ Gabor Kelemen <kelemeng@gnome.hu>
+ Christian Kirbach <Christian.Kirbach@googlemail.com>
+ Carles Ferrando <carles.ferrando@gmail.com>
+ Bruno Brouard <annoa.b@gmail.com>
+ Andika Triwidada <andika@gmail.com>
+
+Bugs fixed in this release:
+ https://bugzilla.gnome.org/show_bug.cgi?id=676037
+ https://bugzilla.gnome.org/show_bug.cgi?id=677959
+ https://bugzilla.gnome.org/show_bug.cgi?id=674542
+
 0.14.1
 ======
 
