@@ -45,6 +45,11 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                         "audio/x-wav",
                                         "audio/x-ac3",
                                         "audio/x-m4a",
+                                        "audio/L16;rate=44100;channels=2",
+                                        "audio/L16;rate=44100;channels=1",
+                                        "audio/L16;channels=2;rate=44100",
+                                        "audio/L16;channels=1;rate=44100",
+                                        "audio/L16;rate=44100",
                                         "image/jpeg",
                                         "image/png",
                                         "video/x-theora",
@@ -63,9 +68,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                         "video/mp4",
                                         "video/x-ms-asf",
                                         "video/x-xvid",
-                                        "video/x-ms-wmv",
-                                        "audio/L16;rate=44100;channels=2",
-                                        "audio/L16;rate=44100;channels=1" };
+                                        "video/x-ms-wmv" };
     private static Player player;
 
     private dynamic Element playbin;

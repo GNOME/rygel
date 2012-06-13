@@ -255,7 +255,7 @@ internal class Rygel.AVTransport : Service {
 
                     return;
                 } else {
-                    var mime = msg.response_headers.get_content_type (null);
+                    var mime = msg.response_headers.get_one ("Content-Type");
                     if (mime != null &&
                         !(mime in this.player.get_mime_types ())) {
                         action.return_error (714, "Illegal MIME-type");
