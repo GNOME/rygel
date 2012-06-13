@@ -200,10 +200,10 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
         try {
             database.begin ();
             database.exec ("DROP TABLE object_type");
+            database.exec ("DROP TRIGGER IF EXISTS trgr_delete_uris");
             database.exec ("ALTER TABLE Object ADD COLUMN uri TEXT");
             database.exec ("UPDATE Object SET uri = (SELECT uri " +
                      "FROM uri WHERE Uri.object_fk == Object.upnp_id LIMIT 1)");
-            database.exec ("DROP TRIGGER IF EXISTS trgr_delete_uris");
             database.exec ("DROP INDEX IF EXISTS idx_uri_fk");
             database.exec ("DROP TABLE Uri");
             database.exec ("UPDATE schema_info SET version = '6'");
@@ -284,13 +284,13 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             this.database.exec ("DROP TRIGGER trgr_delete_closure");
             this.database.exec ("DROP INDEX idx_parent");
             this.database.exec ("DROP INDEX idx_meta_data_fk");
-            this.database.exec ("DROP INDEX idx_closure");
+            this.database.exec ("DROP INDEX IF EXISTS idx_closure");
             this.database.exec ("DROP TABLE Closure");
 
             // keep meta-data although we're deleting loads of objects
             this.database.exec ("DROP TRIGGER trgr_delete_metadata");
 
-            this.database.exec ("INSERT INTO Object (parent, upnp_id, " +
+            this.database.exec ("INSERT OR REPLACE INTO Object (parent, upnp_id, " +
                                 "type_fk, title, timestamp) VALUES " +
                                 "('0', '" +
                                 RootContainer.FILESYSTEM_FOLDER_ID +
