@@ -68,7 +68,7 @@ internal abstract class Rygel.MediaExport.QueryContainer : DBContainer {
         try {
             children = this.media_db.get_objects_by_search_expression
                                         (combined_expression,
-                                         RootContainer.FILESYSTEM_FOLDER_ID,
+                                         null,
                                          offset,
                                          max_count,
                                          out total_matches);

@@ -202,7 +202,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     public MediaObjects get_objects_by_search_expression
                                         (SearchExpression? expression,
-                                         string            container_id,
+                                         string?           container_id,
                                          uint              offset,
                                          uint              max_count,
                                          out uint          total_matches)
@@ -233,7 +233,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     public long get_object_count_by_search_expression
                                         (SearchExpression? expression,
-                                         string            container_id)
+                                         string?           container_id)
                                          throws Error {
         var args = new GLib.ValueArray (0);
         var filter = this.translate_search_expression (expression, args);
@@ -255,14 +255,22 @@ public class Rygel.MediaExport.MediaCache : Object {
     public long get_object_count_by_filter
                                         (string          filter,
                                          GLib.ValueArray args,
-                                         string          container_id)
+                                         string?         container_id)
                                          throws Error {
-        GLib.Value v = container_id;
-        args.prepend (v);
+        if (container_id != null) {
+            GLib.Value v = container_id;
+            args.prepend (v);
+        }
 
         debug ("Parameters to bind: %u", args.n_values);
-        unowned string pattern = this.sql.make
-                                        (SQLString.GET_OBJECT_COUNT_BY_FILTER);
+        unowned string pattern;
+        SQLString string_id;
+        if (container_id != null) {
+            string_id = SQLString.GET_OBJECT_COUNT_BY_FILTER_WITH_ANCESTOR;
+        } else {
+            string_id = SQLString.GET_OBJECT_COUNT_BY_FILTER;
+        }
+        pattern = this.sql.make (string_id);
 
         return this.db.query_value (pattern.printf (filter), args.values);
     }
@@ -270,7 +278,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     public MediaObjects get_objects_by_filter (string          filter,
                                                GLib.ValueArray args,
-                                               string          container_id,
+                                               string?         container_id,
                                                long            offset,
                                                long            max_count)
                                                throws Error {
@@ -283,7 +291,12 @@ public class Rygel.MediaExport.MediaCache : Object {
 
         debug ("Parameters to bind: %u", args.n_values);
 
-        unowned string sql = this.sql.make (SQLString.GET_OBJECTS_BY_FILTER);
+        unowned string sql;
+        if (container_id != null) {
+            sql = this.sql.make (SQLString.GET_OBJECTS_BY_FILTER_WITH_ANCESTOR);
+        } else {
+            sql = this.sql.make (SQLString.GET_OBJECTS_BY_FILTER);
+        }
         var cursor = this.db.exec_cursor (sql.printf (filter), args.values);
         foreach (var statement in cursor) {
             unowned string parent_id = statement.column_text (DetailColumn.PARENT);
