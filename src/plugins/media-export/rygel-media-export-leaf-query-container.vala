@@ -45,7 +45,6 @@ internal class Rygel.MediaExport.LeafQueryContainer : QueryContainer {
 
     protected override int count_children () throws Error {
         return (int) this.media_db.get_object_count_by_search_expression
-                                        (this.expression,
-                                         RootContainer.FILESYSTEM_FOLDER_ID);
+                                        (this.expression, null);
     }
 }

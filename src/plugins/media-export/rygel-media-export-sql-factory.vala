@@ -53,7 +53,9 @@ internal enum Rygel.MediaExport.SQLString {
     GET_OBJECT,
     GET_CHILDREN,
     GET_OBJECTS_BY_FILTER,
+    GET_OBJECTS_BY_FILTER_WITH_ANCESTOR,
     GET_OBJECT_COUNT_BY_FILTER,
+    GET_OBJECT_COUNT_BY_FILTER_WITH_ANCESTOR,
     GET_META_DATA_COLUMN,
     CHILD_COUNT,
     EXISTS,
@@ -122,8 +124,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                  "o.title ASC " +
     "LIMIT ?,?";
 
-
-    private const string GET_OBJECTS_BY_FILTER_STRING =
+    private const string GET_OBJECTS_BY_FILTER_STRING_WITH_ANCESTOR =
     "SELECT DISTINCT " + ALL_DETAILS_STRING +
     "FROM Object o " +
         "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
@@ -136,11 +137,26 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                  "o.title ASC " +
     "LIMIT ?,?";
 
-    private const string GET_OBJECT_COUNT_BY_FILTER_STRING =
+    private const string GET_OBJECTS_BY_FILTER_STRING =
+    "SELECT DISTINCT " + ALL_DETAILS_STRING +
+    "FROM Object o " +
+        "LEFT OUTER JOIN meta_data m " +
+            "ON o.upnp_id = m.object_fk %s" +
+        "ORDER BY o.parent ASC, " +
+                 "o.type_fk ASC, " +
+                 "m.class ASC, " +
+                 "m.track ASC, " +
+                 "o.title ASC " +
+    "LIMIT ?,?";
+
+    private const string GET_OBJECT_COUNT_BY_FILTER_STRING_WITH_ANCESTOR =
     "SELECT COUNT(o.type_fk) FROM Object o " +
         "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
         "LEFT OUTER JOIN meta_data m " +
             "ON o.upnp_id = m.object_fk %s";
+
+    private const string GET_OBJECT_COUNT_BY_FILTER_STRING =
+    "SELECT COUNT(1) FROM meta_data m %s";
 
     private const string CHILDREN_COUNT_STRING =
     "SELECT COUNT(upnp_id) FROM Object WHERE Object.parent = ?";
@@ -263,8 +279,12 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                 return GET_CHILDREN_STRING;
             case SQLString.GET_OBJECTS_BY_FILTER:
                 return GET_OBJECTS_BY_FILTER_STRING;
+            case SQLString.GET_OBJECTS_BY_FILTER_WITH_ANCESTOR:
+                return GET_OBJECTS_BY_FILTER_STRING_WITH_ANCESTOR;
             case SQLString.GET_OBJECT_COUNT_BY_FILTER:
                 return GET_OBJECT_COUNT_BY_FILTER_STRING;
+            case SQLString.GET_OBJECT_COUNT_BY_FILTER_WITH_ANCESTOR:
+                return GET_OBJECT_COUNT_BY_FILTER_STRING_WITH_ANCESTOR;
             case SQLString.GET_META_DATA_COLUMN:
                 return GET_META_DATA_COLUMN_STRING;
             case SQLString.CHILD_COUNT:
