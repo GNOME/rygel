@@ -1,10 +1,12 @@
 /*
  * Copyright (C) 2008 OpenedHand Ltd.
- * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2009,2010,2011,2012 Nokia Corporation.
+ * Copyright (C) 2012 Openismus GmbH
  *
  * Author: Jorn Baayen <jorn@openedhand.com>
  *         Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * Rygel is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
