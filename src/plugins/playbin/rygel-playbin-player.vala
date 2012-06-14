@@ -120,6 +120,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
     private string transfer_mode = null;
 
+    private bool uri_update_hint = false;
     private string? _uri = null;
     public string? uri {
         owned get {
@@ -133,11 +134,15 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
             if (value != "") {
                 switch (this._playback_state) {
                     case "NO_MEDIA_PRESENT":
+                        this.playbin.set_state (State.READY);
                         this._playback_state = "STOPPED";
                         this.notify_property ("playback-state");
                         break;
                     case "STOPPED":
+                        this.playbin.set_state (State.READY);
+                        break;
                     case "PAUSED_PLAYBACK":
+                        this.playbin.set_state (State.PAUSED);
                         break;
                     case "PLAYING":
                         this.playbin.set_state (State.PLAYING);
@@ -247,7 +252,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         this.playbin.auto_flush_bus = false;
         assert (this.playbin != null);
 
-        playbin.source_setup.connect (this.on_source_setup);
+        this.playbin.source_setup.connect (this.on_source_setup);
+        this.playbin.notify["uri"].connect (this.on_uri_notify);
 
         // Bus handler
         var bus = this.playbin.get_bus ();
@@ -303,6 +309,15 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                              out pending);
                 if (old_state == State.READY && new_state == State.PAUSED) {
                     this.notify_property ("duration");
+                    if (this.uri_update_hint) {
+                        this.uri_update_hint = false;
+                        string uri = this.playbin.uri;
+                        if (this._uri != uri) {
+                            // uri changed externally
+                            this._uri = this.playbin.uri;
+                            this.notify_property("uri");
+                        }
+                    }
                 }
 
                 debug ("%d %d %d", old_state, new_state, pending);
@@ -362,5 +377,9 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
             source.extra_headers = structure;
         }
+    }
+
+    private void on_uri_notify (ParamSpec pspec) {
+        this.uri_update_hint = true;
     }
 }

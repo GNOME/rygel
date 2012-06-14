@@ -1,10 +1,12 @@
 /*
  * Copyright (C) 2008 OpenedHand Ltd.
  * Copyright (C) 2009,2010 Nokia Corporation.
+ * Copyright (C) 2012 Openismus GmbH.
  *
  * Author: Jorn Baayen <jorn@openedhand.com>
  *         Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * Rygel is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -89,9 +91,6 @@ internal class Rygel.AVTransport : Service {
 
         set {
             this.player.uri = value;
-
-            this.changelog.log ("CurrentTrackURI", this.uri);
-            this.changelog.log ("AVTransportURI", this.uri);
         }
     }
 
@@ -162,6 +161,7 @@ internal class Rygel.AVTransport : Service {
 
         this.player.notify["playback-state"].connect (this.notify_state_cb);
         this.player.notify["duration"].connect (this.notify_duration_cb);
+        this.player.notify["uri"].connect (this.notify_uri_cb);
 
         this.session = new SessionAsync ();
     }
@@ -555,5 +555,10 @@ internal class Rygel.AVTransport : Service {
                             this.player.duration_as_str);
         this.changelog.log ("CurrentMediaDuration",
                             this.player.duration_as_str);
+    }
+
+    private void notify_uri_cb (Object player, ParamSpec p) {
+        this.changelog.log ("CurrentTrackURI", this.uri);
+        this.changelog.log ("AVTransportURI", this.uri);
     }
 }
