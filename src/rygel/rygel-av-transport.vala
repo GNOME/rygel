@@ -73,7 +73,7 @@ internal class Rygel.AVTransport : Service {
 
         set {
             this._metadata = value;
-
+            this.player.metadata = value;
             this.changelog.log ("CurrentTrackMetadata", this.metadata);
         }
     }
