@@ -76,7 +76,6 @@ internal class Rygel.AVTransport : Service {
         set {
             this._metadata = value;
             this.player.metadata = value;
-            this.changelog.log ("CurrentTrackMetadata", this.metadata);
         }
     }
 
@@ -162,6 +161,7 @@ internal class Rygel.AVTransport : Service {
         this.player.notify["playback-state"].connect (this.notify_state_cb);
         this.player.notify["duration"].connect (this.notify_duration_cb);
         this.player.notify["uri"].connect (this.notify_uri_cb);
+        this.player.notify["metadata"].connect (this.notify_meta_data_cb);
 
         this.session = new SessionAsync ();
     }
@@ -560,5 +560,10 @@ internal class Rygel.AVTransport : Service {
     private void notify_uri_cb (Object player, ParamSpec p) {
         this.changelog.log ("CurrentTrackURI", this.uri);
         this.changelog.log ("AVTransportURI", this.uri);
+    }
+
+    private void notify_meta_data_cb (Object player, ParamSpec p) {
+        this._metadata = this.player.metadata;
+        this.changelog.log ("CurrentTrackMetadata", this.metadata);
     }
 }

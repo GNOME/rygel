@@ -316,6 +316,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                             // uri changed externally
                             this._uri = this.playbin.uri;
                             this.notify_property("uri");
+                            this.metadata = this.generate_basic_didl ();
                         }
                     }
                 }
@@ -381,5 +382,25 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
     private void on_uri_notify (ParamSpec pspec) {
         this.uri_update_hint = true;
+    }
+
+    /**
+     * Generate basic DIDLLite information.
+     *
+     * This is used when the URI gets changed externally. DLNA requires that a
+     * minimum DIDLLite is always present if the URI is not empty.
+     */
+    private string generate_basic_didl () {
+        var writer = new DIDLLiteWriter (null);
+        var item = writer.add_item ();
+        item.id = "1";
+        item.parent_id = "-1";
+        item.upnp_class = "object.item";
+        var resource = item.add_resource ();
+        resource.uri = this._uri;
+        var file = File.new_for_uri (this.uri);
+        item.title = file.get_basename ();
+
+        return writer.get_string ();
     }
 }
