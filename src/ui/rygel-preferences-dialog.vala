@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2012 Openismus GmbH.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -84,6 +86,7 @@ public class Rygel.PreferencesDialog : GLib.Object {
         Gtk.init (ref args);
 
         try {
+            MetaConfig.register_default_configurations ();
             var dialog = new PreferencesDialog ();
 
             dialog.run ();

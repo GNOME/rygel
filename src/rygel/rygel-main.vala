@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2008 Nokia Corporation.
  * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
+ * Copyright (C) 2012 Openismus GmbH.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -255,6 +257,7 @@ internal class Rygel.Main : Object {
         try {
             // Parse commandline options
             CmdlineConfig.parse_args (ref args);
+            MetaConfig.register_default_configurations ();
 
             main = new Main ();
             service = new DBusService (main);

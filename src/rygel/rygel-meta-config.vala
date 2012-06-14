@@ -1,9 +1,11 @@
 /*
  * Copyright (C) 2008,2009 Nokia Corporation.
  * Copyright (C) 2008,2009 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
+ * Copyright (C) 2012 Openismus GmbH.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -35,9 +37,13 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
     // Our singleton
     private static MetaConfig meta_config;
 
-    private ArrayList<Configuration> configs;
+    private static ArrayList<Configuration> configs;
 
     public static MetaConfig get_default () {
+        if (MetaConfig.configs == null) {
+            MetaConfig.configs = new ArrayList<Configuration> ();
+        }
+
         if (meta_config == null) {
             meta_config = new MetaConfig ();
         }
@@ -45,22 +51,28 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         return meta_config;
     }
 
-    public MetaConfig () {
-        this.configs = new ArrayList<Configuration> ();
+    public static void register_configuration (Configuration config) {
+        if (MetaConfig.configs == null) {
+            MetaConfig.configs = new ArrayList<Configuration> ();
+        }
+        configs.add (config);
+    }
+
+    public static void register_default_configurations () {
 
         var cmdline_config = CmdlineConfig.get_default ();
 
-        this.configs.add (cmdline_config);
-        this.configs.add (EnvironmentConfig.get_default ());
+        MetaConfig.register_configuration (cmdline_config);
+        MetaConfig.register_configuration (EnvironmentConfig.get_default ());
 
         try {
             var config_file = cmdline_config.get_config_file ();
             var user_config = new UserConfig (config_file);
-            this.configs.add (user_config);
+            MetaConfig.register_configuration (user_config);
         } catch (Error error) {
             try {
                 var user_config = UserConfig.get_default ();
-                this.configs.add (user_config);
+                MetaConfig.register_configuration (user_config);
             } catch (Error err) {
                 warning (_("Failed to load user configuration: %s"), err.message);
             }
