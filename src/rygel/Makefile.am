@@ -140,7 +140,7 @@ rygel_VALAFLAGS = \
 
 rygel_LDADD = \
 	librygel-core.la \
-	$(RYGEL_COMMON_LIBS)
+	$(RYGEL_BASE_LIBS)
 
 rygel_LDFLAGS = -export-dynamic
 
