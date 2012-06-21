@@ -438,7 +438,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         var query_container = factory.create_from_description
                                         (this.media_db,
                                          id,
-                                         definition.title);
+                                         _(definition.title));
 
         if (query_container.child_count > 0) {
             query_container.parent = container;
