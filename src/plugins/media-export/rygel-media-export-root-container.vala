@@ -50,7 +50,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
     private static MediaContainer instance = null;
     private static Error          creation_error = null;
 
-    internal const string FILESYSTEM_FOLDER_NAME = "Files & Folders";
+    internal const string FILESYSTEM_FOLDER_NAME = N_("Files & Folders");
     internal const string FILESYSTEM_FOLDER_ID   = "Filesystem";
 
     private const string SEARCH_CONTAINER_PREFIX = QueryContainer.PREFIX +
@@ -364,7 +364,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             this.filesystem_container = new DBContainer
                                         (media_db,
                                          FILESYSTEM_FOLDER_ID,
-                                         FILESYSTEM_FOLDER_NAME);
+                                         _(FILESYSTEM_FOLDER_NAME));
             this.filesystem_container.parent = this;
             this.media_db.save_container (this.filesystem_container);
         } catch (Error error) { }

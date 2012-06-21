@@ -295,7 +295,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                                 "('0', '" +
                                 RootContainer.FILESYSTEM_FOLDER_ID +
                                 "', 0, '" +
-                                RootContainer.FILESYSTEM_FOLDER_NAME +
+                                _(RootContainer.FILESYSTEM_FOLDER_NAME) +
                                 "', 0)");
             this.database.exec ("UPDATE Object SET parent = '" +
                                 RootContainer.FILESYSTEM_FOLDER_ID +
