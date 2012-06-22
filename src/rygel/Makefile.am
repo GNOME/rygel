@@ -123,6 +123,9 @@ librygel_core_1_0_la_LIBADD = \
 	$(GIO_LIBS) \
 	$(LIBSOUP_LIBS)
 
+RYGEL_CORE_VERSION=0:0:0
+librygel_core_1_0_la_LDFLAGS = -version-info $(RYGEL_CORE_VERSION)
+
 bin_PROGRAMS = rygel
 
 BUILT_SOURCES = \
