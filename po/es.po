@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-05-28 17:27+0000\n"
-"PO-Revision-Date: 2012-05-30 17:32+0200\n"
+"POT-Creation-Date: 2012-06-21 19:02+0000\n"
+"PO-Revision-Date: 2012-06-22 13:02+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -86,12 +86,12 @@ msgstr "Servicios UPnP/DLNA"
 msgid "GStreamer Player"
 msgstr "Reproductor GStreamer"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:206
+#: ../src/plugins/media-export/rygel-media-export-database.vala:210
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Falló al deshacer la transacción: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:137
 #: ../src/rygel/rygel-plugin-loader.vala:194
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -161,6 +161,11 @@ msgstr "Álbum"
 #: ../src/plugins/tracker/rygel-tracker-genre.vala:33
 msgid "Genre"
 msgstr "Género"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:53
+#| msgid "Select folders"
+msgid "Files & Folders"
+msgstr "Archivos y carpetas"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:104
 #, c-format
@@ -327,7 +332,6 @@ msgstr "No existe tal transferencia de archivo"
 
 #: ../src/rygel/rygel-av-transport.vala:215
 #: ../src/rygel/rygel-rendering-control.vala:123
-#| msgid "Invalid Arguments"
 msgid "Invalid Args"
 msgstr "Argumentos no válidos"
 
@@ -359,13 +363,11 @@ msgid "Invalid Name"
 msgstr "Nombre no válido"
 
 #: ../src/rygel/rygel-rendering-control.vala:174
-#| msgid "Invalid range"
 msgid "Invalid Channel"
 msgstr "Canal no válido"
 
 #: ../src/rygel/rygel-rendering-control.vala:210
 #: ../src/rygel/rygel-rendering-control.vala:252
-#| msgid "Action Failed"
 msgid "ActionFailed"
 msgstr "Falló la acción"
 
