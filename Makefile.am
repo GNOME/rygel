@@ -1,9 +1,9 @@
 SUBDIRS = src data tests po doc examples
 
-pkgconfig_DATA= rygel-core-1.0.pc
+pkgconfig_DATA= rygel-core-1.0.pc rygel-renderer-1.0.pc
 pkgconfigdir = $(libdir)/pkgconfig
 
-EXTRA_DIST = rygel-core-1.0.pc.in \
+EXTRA_DIST = rygel-core-1.0.pc.in rygel-renderer-1.0.pc.in \
              .version
 
 DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
