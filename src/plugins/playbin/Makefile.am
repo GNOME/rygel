@@ -12,11 +12,13 @@ librygel_renderer_la_VALAFLAGS = \
 	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
 librygel_renderer_la_LIBADD = $(RYGEL_COMMON_LIBS)
 
+rygel-renderer.h rygel-renderer-1.0.vapi: librygel_renderer_la_vala.stamp
+
 plugin_LTLIBRARIES = librygel-playbin.la
 
 AM_CFLAGS += -DG_LOG_DOMAIN='"Playbin"'
 
-librygel_playbin_la_SOURCES = rygel-module.vala
-librygel_playbin_la_VALAFLAGS = $(RYGEL_COMMON_PLUGIN_VALAFLAGS) --pkg rygel-renderer-1.0 --vapidir=$(builddir)
+librygel_playbin_la_SOURCES = rygel-module.vala rygel-renderer-1.0.vapi
+librygel_playbin_la_VALAFLAGS = $(RYGEL_COMMON_PLUGIN_VALAFLAGS)
 librygel_playbin_la_LIBADD = $(RYGEL_COMMON_LIBS) librygel-renderer.la
 librygel_playbin_la_LDFLAGS = $(RYGEL_PLUGIN_LINKER_FLAGS)
