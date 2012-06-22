@@ -221,7 +221,7 @@ data/rygel.desktop.in
 data/rygel-preferences.desktop.in
 doc/Makefile
 po/Makefile.in
-rygel-1.0.pc
+rygel-core-1.0.pc
 tests/Makefile
 examples/Makefile
 ])

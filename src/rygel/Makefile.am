@@ -13,7 +13,7 @@ librygelincdir = $(includedir)/rygel-1.0
 
 librygelinc_HEADERS = rygel-core.h
 
-lib_LTLIBRARIES = librygel-core.la
+lib_LTLIBRARIES = librygel-core-1.0.la
 
 VAPI_SOURCE_FILES = \
 	rygel-cmdline-config.vala \
@@ -54,7 +54,7 @@ VAPI_SOURCE_FILES = \
 	rygel-writable-container.vala \
 	rygel-xml-utils.vala
 
-librygel_core_la_SOURCES = \
+librygel_core_1_0_la_SOURCES = \
 	$(VAPI_SOURCE_FILES) \
 	rygel-http-item-uri.vala \
 	rygel-environment-config.vala \
@@ -109,14 +109,14 @@ librygel_core_la_SOURCES = \
 	rygel-volume.vala \
 	rygel-description-file.vala
 
-librygel_core_la_VALAFLAGS = \
-	-H rygel-core.h -C --library=rygel-1.0 \
+librygel_core_1_0_la_VALAFLAGS = \
+	-H rygel-core.h -C --library=rygel-core-1.0 \
 	--pkg gstreamer-0.10 \
 	--pkg gstreamer-base-0.10 \
 	--pkg gupnp-dlna-1.0 \
 	$(RYGEL_COMMON_VALAFLAGS)
 
-librygel_core_la_LIBADD = \
+librygel_core_1_0_la_LIBADD = \
 	$(GST_PBU_LIBS) \
 	$(RYGEL_BASE_LIBS) \
 	$(LIBGUPNP_DLNA_LIBS) \
@@ -126,30 +126,32 @@ librygel_core_la_LIBADD = \
 bin_PROGRAMS = rygel
 
 BUILT_SOURCES = \
-	rygel-1.0.vapi \
+	rygel-core-1.0.vapi \
 	rygel-core.h
 
 rygel_SOURCES = \
 	rygel-dbus-service.vala \
-	rygel-main.vala
+	rygel-main.vala \
+	rygel-core-1.0.vapi
 
 rygel_VALAFLAGS = \
 	--pkg posix \
 	--pkg rygel-misc \
-	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
+	--pkg gstreamer-0.10 \
+	$(RYGEL_COMMON_VALAFLAGS)
 
 rygel_LDADD = \
-	librygel-core.la \
+	librygel-core-1.0.la \
 	$(RYGEL_BASE_LIBS)
 
 rygel_LDFLAGS = -export-dynamic
 
-VAPI_FILES = rygel-1.0.vapi
-DEPS_FILES = rygel-1.0.deps
+VAPI_FILES = rygel-core-1.0.vapi
+DEPS_FILES = rygel-core-1.0.deps
 
 vapidir = $(VAPIDIR)
 vapi_DATA = $(VAPI_FILES) $(DEPS_FILES)
-rygel-1.0.vapi rygel-core.h: $(VAPI_SOURCE_FILES)
+rygel-core-1.0.vapi rygel-core.h: librygel_core_1_0_la_vala.stamp
 
 MAINTAINERCLEANFILES += $(BUILT_SOURCES)
 

@@ -46,11 +46,11 @@ RYGEL_BASE_LIBS = \
 
 RYGEL_COMMON_LIBS = \
 	$(RYGEL_BASE_LIBS) \
-	$(top_builddir)/src/rygel/librygel-core.la
+	$(top_builddir)/src/rygel/librygel-core-1.0.la
 
 # Note: the -g needs to be at the end of VALAFLAGS to not break make dist
 RYGEL_COMMON_PLUGIN_VALAFLAGS = \
-	--pkg rygel-1.0 \
+	--pkg rygel-core-1.0 \
 	$(RYGEL_COMMON_VALAFLAGS)
 
 RYGEL_COMMON_VALAFLAGS = \
