@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-03 02:57+0200\n"
-"PO-Revision-Date: 2012-06-03 02:58+0200\n"
+"POT-Creation-Date: 2012-06-24 23:32+0200\n"
+"PO-Revision-Date: 2012-06-24 23:32+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
 "Language: gl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Gtranslator 2.91.4\n"
+"X-Generator: Gtranslator 2.91.5\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -86,12 +86,12 @@ msgstr "Servizos de UPnP/DLNA"
 msgid "GStreamer Player"
 msgstr "Reprodutor de GStreamer"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:206
+#: ../src/plugins/media-export/rygel-media-export-database.vala:210
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Produciuse un fallo ao desfacer a transacción: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:137
 #: ../src/rygel/rygel-plugin-loader.vala:194
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -161,6 +161,10 @@ msgstr "Álbum"
 #: ../src/plugins/tracker/rygel-tracker-genre.vala:33
 msgid "Genre"
 msgstr "Xénero"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:53
+msgid "Files & Folders"
+msgstr "Ficheiros e cartafoles"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:104
 #, c-format
