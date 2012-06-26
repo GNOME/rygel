@@ -3,9 +3,8 @@ if ENABLE_VALADOC
 include $(top_srcdir)/common.am
 include $(top_srcdir)/src/librygel-core/filelist.am
 
-# TODO: Generate API documentation for LIBRYGEL_CORE_VAPI_SOURCE_FILES,
-# without generating it for the LIBRYGEL_CORE_NONVAPI_SOURCE_FILES files
-# that are also needed by valadoc.
+# Note that LIBRYGEL_CORE_NONVAPI_SOURCE_FILES all (should) use the internal keyword
+# so they are not shown as part of the public API.
 VALA_SOURCE_FILES = $(LIBRYGEL_CORE_VAPI_SOURCE_FILES) \
 		$(LIBRYGEL_CORE_NONVAPI_SOURCE_FILES)
 
