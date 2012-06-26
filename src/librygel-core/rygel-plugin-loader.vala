@@ -69,7 +69,7 @@ public class Rygel.PluginLoader : Object {
      *
      * @param name the name of plugin to check for.
      *
-     * return true if plugin is disabled, false if not.
+     * @return true if plugin is disabled, false if not.
      */
     public bool plugin_disabled (string name) {
         var enabled = true;

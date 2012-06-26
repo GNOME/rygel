@@ -62,7 +62,7 @@ public interface Rygel.WritableContainer : MediaContainer {
      * @param item The item to add to this container
      * @param cancellable optional cancellable for this operation
      *
-     * return nothing.
+     * @return nothing.
      *
      */
     public async abstract void add_item (MediaItem    item,
@@ -77,7 +77,7 @@ public interface Rygel.WritableContainer : MediaContainer {
      * @param item The ID of the item to remove from this container
      * @param cancellable optional cancellable for this operation
      *
-     * return nothing.
+     * @return nothing.
      *
      */
     public async abstract void remove_item (string id, Cancellable? cancellable)

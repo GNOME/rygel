@@ -108,7 +108,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
      * @param max_count maximum number of objects to return
      * @param cancellable optional cancellable for this operation
      *
-     * return A list of media objects.
+     * @return A list of media objects.
      */
     public async abstract MediaObjects? get_children (uint         offset,
                                                       uint         max_count,
@@ -123,7 +123,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
      * @param cancellable optional cancellable for this operation
      * @param callback function to call when result is ready
      *
-     * return the found media object.
+     * @return the found media object.
      */
     public async abstract MediaObject? find_object (string       id,
                                                     Cancellable? cancellable)

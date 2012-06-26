@@ -33,16 +33,13 @@ public interface Rygel.SearchableContainer : MediaContainer {
      * Recursively searches for all media objects that satisfy the given search
      * expression in this container.
      *
-     * @param expression the search expression or `null` for wildcard
+     * @param expression the search expression or null for wildcard
      * @param offet zero-based index of the first object to return
      * @param max_count maximum number of objects to return
      * @param total_matches sets it to the actual number of objects that satisfy
-     *                      the given search expression. If it is not possible
-     *                      to compute this value (in a timely mannger), it is
-     *                      set to '0'.
-     * @param cancellable optional cancellable for this operation
+     * @param cancellable optional cancellable for this operation.
      *
-     * return A list of media objects.
+     * @return yaddayadda
      */
     public abstract async MediaObjects? search (SearchExpression? expression,
                                                 uint              offset,
@@ -65,7 +62,7 @@ public interface Rygel.SearchableContainer : MediaContainer {
      *                      set to '0'.
      * @param cancellable optional cancellable for this operation
      *
-     * return A list of media objects.
+     * @return A list of media objects.
      */
     public async MediaObjects? simple_search (SearchExpression? expression,
                                               uint              offset,
@@ -146,7 +143,7 @@ public interface Rygel.SearchableContainer : MediaContainer {
      * @param cancellable optional cancellable for this operation
      * @param callback function to call when result is ready
      *
-     * return the found media object.
+     * @return the found media object.
      */
     public async MediaObject? find_object (string       id,
                                            Cancellable? cancellable)
