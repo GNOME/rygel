@@ -104,7 +104,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
     /**
      * Fetches the list of media objects directly under this container.
      *
-     * @param offet zero-based index of the first item to return
+     * @param offset zero-based index of the first item to return
      * @param max_count maximum number of objects to return
      * @param cancellable optional cancellable for this operation
      *

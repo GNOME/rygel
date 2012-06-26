@@ -34,7 +34,7 @@ public interface Rygel.SearchableContainer : MediaContainer {
      * expression in this container.
      *
      * @param expression the search expression or null for wildcard
-     * @param offet zero-based index of the first object to return
+     * @param offset zero-based index of the first object to return
      * @param max_count maximum number of objects to return
      * @param total_matches sets it to the actual number of objects that satisfy
      * @param cancellable optional cancellable for this operation.
@@ -54,7 +54,7 @@ public interface Rygel.SearchableContainer : MediaContainer {
      * container.
      *
      * @param expression the search expression or `null` for wildcard
-     * @param offet zero-based index of the first object to return
+     * @param offset zero-based index of the first object to return
      * @param max_count maximum number of objects to return
      * @param total_matches sets it to the actual number of objects that satisfy
      *                      the given search expression. If it is not possible
