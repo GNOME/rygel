@@ -207,6 +207,7 @@ AC_CONFIG_FILES([
 Makefile
 src/Makefile
 src/librygel-core/Makefile
+src/librygel-renderer/Makefile
 src/rygel/Makefile
 src/ui/Makefile
 src/plugins/Makefile

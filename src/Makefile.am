@@ -1,7 +1,7 @@
 if BUILD_UI
-SUBDIRS = librygel-core rygel ui plugins
+SUBDIRS = librygel-core librygel-renderer rygel ui plugins
 else
-SUBDIRS = librygel-core rygel plugins
+SUBDIRS = librygel-core librygel-renderer rygel plugins
 endif
 
 MAINTAINERCLEANFILES = Makefile.in

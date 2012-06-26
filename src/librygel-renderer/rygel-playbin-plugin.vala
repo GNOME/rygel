@@ -38,4 +38,3 @@ public class Rygel.Playbin.Plugin : Rygel.MediaRendererPlugin {
         return Playbin.Player.get_default ();
     }
 }
-
