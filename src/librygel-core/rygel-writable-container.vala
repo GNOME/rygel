@@ -33,9 +33,9 @@ using Gee;
  * In addition to implementing this interface, a writable container must also:
  *
  * 1. Provide one URI that points to a writable folder on a GIO supported
- *    filesystem.
+ * filesystem.
  * 2. Monitor not only it's own URI but also that of it's child items, though
- *    the latter is implied in the former if you use GIO for monitoring.
+ * the latter is implied in the former if you use GIO for monitoring.
  */
 public interface Rygel.WritableContainer : MediaContainer {
     // List of classes that an object in this container could be created of
@@ -74,7 +74,7 @@ public interface Rygel.WritableContainer : MediaContainer {
      * This doesn't imply deletion of file(s) pointed to by item's URI(s), that
      * is handled for you.
      *
-     * @param item The ID of the item to remove from this container
+     * @param id The ID of the item to remove from this container
      * @param cancellable optional cancellable for this operation
      *
      * @return nothing.
