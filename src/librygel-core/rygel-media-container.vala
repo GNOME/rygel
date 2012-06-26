@@ -121,7 +121,6 @@ public abstract class Rygel.MediaContainer : MediaObject {
      *
      * @param id ID of the media object to search for
      * @param cancellable optional cancellable for this operation
-     * @param callback function to call when result is ready
      *
      * @return the found media object.
      */
@@ -134,7 +133,6 @@ public abstract class Rygel.MediaContainer : MediaObject {
      * changes for this container, items under it gets removed/added or their
      * metadata changes etc).
      *
-     * @param container the container that just got updated.
      */
     public void updated () {
         this.update_id++;
