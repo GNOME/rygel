@@ -30,6 +30,7 @@ LT_INIT([dlopen disable-static])
 dnl Required versions of library packages
 GLIB_REQUIRED=2.31.13
 VALA_REQUIRED=0.15.2
+VALADOC_REQUIRED=0.2
 GSSDP_REQUIRED=0.11.0
 GUPNP_REQUIRED=0.17.1
 GUPNP_AV_REQUIRED=0.9.0
@@ -202,6 +203,24 @@ dnl documenation
 AC_PATH_PROG([XSLTPROC], [xsltproc])
 AM_CONDITIONAL([HAVE_XSLTPROC], [test x"$XSLTPROC" != x])
 
+dnl Use valadoc for API documentation:
+AC_ARG_ENABLE(valadoc,
+  AS_HELP_STRING([--enable-valadoc[=@<:@no/auto/yes@:>@]], [Enable valadoc support]),,
+    [enable_valadoc=auto])
+
+found_valadoc=no
+AS_IF([test "x$enable_valadoc" != "xno"], [
+    AC_PATH_PROG(VALADOC, valadoc, :)
+    AS_IF([test -x "$VALADOC"], [
+      found_valadoc=yes
+      AC_SUBST(VALADOC)
+    ], [
+      AS_IF([test "x$enable_valadoc" == "xyes"], AC_MSG_ERROR([Unable to find valadoc]))
+    ])
+  ])
+
+AM_CONDITIONAL(ENABLE_VALADOC, test x$found_valadoc = xyes)
+
 
 AC_CONFIG_FILES([
 Makefile
@@ -222,6 +241,8 @@ data/icons/scalable/Makefile
 data/rygel.desktop.in
 data/rygel-preferences.desktop.in
 doc/Makefile
+doc/reference/Makefile
+doc/reference/librygel-core/Makefile
 po/Makefile.in
 rygel-core-1.0.pc
 rygel-renderer-1.0.pc

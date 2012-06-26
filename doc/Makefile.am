@@ -1,3 +1,5 @@
+SUBDIRS = reference
+
 dist_man1_MANS = \
 		rygel.1
 

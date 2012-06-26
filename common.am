@@ -55,11 +55,13 @@ RYGEL_COMMON_PLUGIN_VALAFLAGS = \
 	--pkg rygel-core-1.0 \
 	$(RYGEL_COMMON_VALAFLAGS)
 
+RYGEL_COMMON_VALAFLAGS_PKG = --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gee-1.0
+
 RYGEL_COMMON_VALAFLAGS = \
-	--pkg rygel-build-config --pkg gupnp-1.0 \
+	--pkg rygel-build-config \
 	--vapidir=$(rygeldir) \
 	--vapidir=$(librygelcoredir) \
-	--pkg gupnp-av-1.0 --pkg gee-1.0 \
+	$(RYGEL_COMMON_VALAFLAGS_PKG)
 	$(RYGEL_DEBUG_VALAFLAGS) \
 	$(COVERAGE_VALAFLAGS)
 
