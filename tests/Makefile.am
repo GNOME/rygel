@@ -79,8 +79,8 @@ rygel_http_post_test_SOURCES = rygel-http-post-test.vala \
 
 rygel_album_art_spec_test_SOURCES = rygel-album-art-spec-test.vala \
 			       rygel-media-art-store.vala \
-				   ../src/rygel/rygel-thumbnail.vala \
-				   ../src/rygel/rygel-icon-info.vala
+				   $(top_srcdir)/src/librygel-core/rygel-thumbnail.vala \
+				   $(top_srcdir)/src/librygel-core/rygel-icon-info.vala
 
 rygel_searchable_container_test_SOURCES = \
 	rygel-searchable-container.vala \

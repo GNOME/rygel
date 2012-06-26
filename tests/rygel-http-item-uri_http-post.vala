@@ -1,1 +1,1 @@
-../src/rygel/rygel-http-item-uri.vala
+../src/librygel-core/rygel-http-item-uri.vala

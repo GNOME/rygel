@@ -1,1 +1,1 @@
-../src/rygel/rygel-item-creator.vala
+../src/librygel-core/rygel-item-creator.vala

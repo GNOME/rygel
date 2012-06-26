@@ -18,6 +18,7 @@ smallicondir = $(shareddir)/icons/48x48
 bigicondir = $(shareddir)/icons/120x120
 
 rygeldir = $(top_srcdir)/src/rygel
+librygelcoredir = $(top_srcdir)/src/librygel-core
 
 MAINTAINERCLEANFILES = Makefile.in
 
@@ -30,6 +31,7 @@ AM_CFLAGS = \
 	$(UUID_CFLAGS) \
 	$(COVERAGE_CFLAGS) \
 	-I$(rygeldir) \
+	-I$(librygelcoredir) \
 	-DDATA_DIR='"$(shareddir)"' -DSYS_CONFIG_DIR='"$(sysconfigdir)"'\
 	-DPLUGIN_DIR='"$(plugindir)"' -DDESKTOP_DIR='"$(desktopdir)"'\
 	-DPRESET_DIR='"$(presetdir)"'\
@@ -46,7 +48,7 @@ RYGEL_BASE_LIBS = \
 
 RYGEL_COMMON_LIBS = \
 	$(RYGEL_BASE_LIBS) \
-	$(top_builddir)/src/rygel/librygel-core-1.0.la
+	$(top_builddir)/src/librygel-core/librygel-core-1.0.la
 
 # Note: the -g needs to be at the end of VALAFLAGS to not break make dist
 RYGEL_COMMON_PLUGIN_VALAFLAGS = \
@@ -56,6 +58,7 @@ RYGEL_COMMON_PLUGIN_VALAFLAGS = \
 RYGEL_COMMON_VALAFLAGS = \
 	--pkg rygel-build-config --pkg gupnp-1.0 \
 	--vapidir=$(rygeldir) \
+	--vapidir=$(librygelcoredir) \
 	--pkg gupnp-av-1.0 --pkg gee-1.0 \
 	$(RYGEL_DEBUG_VALAFLAGS) \
 	$(COVERAGE_VALAFLAGS)

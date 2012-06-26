@@ -1,1 +1,1 @@
-../src/rygel/rygel-searchable-container.vala
+../src/librygel-core/rygel-searchable-container.vala

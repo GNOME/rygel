@@ -1,1 +1,1 @@
-../src/rygel/rygel-http-time-seek.vala
+../src/librygel-core/rygel-http-time-seek.vala

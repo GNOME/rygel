@@ -6,7 +6,7 @@ AC_INIT([Rygel],
 	[http://live.gnome.org/Rygel])
 AC_CONFIG_AUX_DIR([build-aux])
 
-AC_CONFIG_SRCDIR([src/rygel/rygel-root-device.vala])
+AC_CONFIG_SRCDIR([src/librygel-core/rygel-root-device.vala])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 
@@ -206,6 +206,7 @@ AM_CONDITIONAL([HAVE_XSLTPROC], [test x"$XSLTPROC" != x])
 AC_CONFIG_FILES([
 Makefile
 src/Makefile
+src/librygel-core/Makefile
 src/rygel/Makefile
 src/ui/Makefile
 src/plugins/Makefile

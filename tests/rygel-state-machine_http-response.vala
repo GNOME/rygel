@@ -1,1 +1,1 @@
-../src/rygel/rygel-state-machine.vala
+../src/librygel-core/rygel-state-machine.vala

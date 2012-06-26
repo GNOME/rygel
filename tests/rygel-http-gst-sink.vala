@@ -1,1 +1,1 @@
-../src/rygel/rygel-http-gst-sink.vala
+../src/librygel-core/rygel-http-gst-sink.vala

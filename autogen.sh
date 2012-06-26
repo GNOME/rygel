@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 which gnome-autogen.sh || {
     echo "You need to install gnome-common from the GNOME git"
@@ -12,7 +12,7 @@ REQUIRED_AUTOMAKE_VERSION=1.11 \
 REQUIRED_AUTOCONF_VERSION=2.64 \
 REQUIRED_LIBTOOL_VERSION=2.2.6 \
 REQUIRED_INTLTOOL_VERSION=0.40.0 \
-gnome-autogen.sh --enable-vala --enable-maintainer-mode --enable-debug \
+bash gnome-autogen.sh --enable-vala --enable-maintainer-mode --enable-debug \
                  --enable-tests --enable-test-plugin \
                  --enable-mediathek-plugin --enable-gst-launch-plugin \
                  --enable-strict-valac "$@"

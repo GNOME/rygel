@@ -1,1 +1,1 @@
-../src/rygel/rygel-relational-expression.vala
+../src/librygel-core/rygel-relational-expression.vala
