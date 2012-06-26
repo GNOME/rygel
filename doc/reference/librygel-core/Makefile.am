@@ -63,4 +63,6 @@ install-data-hook: devhelp gtkdoc
 
 all: valadoc devhelp gtkdoc
 
+EXTRA_DIST = devhelp gtkdoc valadoc
+
 endif
