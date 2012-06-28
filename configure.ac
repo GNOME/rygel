@@ -243,6 +243,7 @@ data/rygel-preferences.desktop.in
 doc/Makefile
 doc/reference/Makefile
 doc/reference/librygel-core/Makefile
+doc/reference/librygel-renderer/Makefile
 po/Makefile.in
 rygel-core-1.0.pc
 rygel-renderer-1.0.pc

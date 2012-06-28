@@ -1,13 +1,13 @@
 include ../../common.am
+include $(srcdir)/filelist.am
 
 lib_LTLIBRARIES = librygel-renderer-1.0.la
 
 LIBRYGEL_RENDERER_VERSION=0:0:0
 
 librygel_renderer_1_0_la_SOURCES = \
-	rygel-playbin-player.vala \
-	rygel-playbin-plugin.vala \
-	rygel-playbin-renderer.vala
+	$(LIBRYGEL_RENDERER_VAPI_SOURCE_FILES) \
+	$(LIBRYGEL_RENDERER_NONVAPI_SOURCE_FILES)
 
 librygel_renderer_1_0_la_VALAFLAGS = \
 	-H rygel-renderer.h --library=rygel-renderer-1.0 \

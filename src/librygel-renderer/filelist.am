@@ -1,0 +1,8 @@
+LIBRYGEL_RENDERER_VAPI_SOURCE_FILES = \
+	rygel-playbin-player.vala \
+	rygel-playbin-plugin.vala \
+	rygel-playbin-renderer.vala
+
+LIBRYGEL_RENDERER_NONVAPI_SOURCE_FILES =
+
+LIBRYGEL_RENDERER_VALAFLAGS_PKG =

@@ -1,1 +1,1 @@
-SUBDIRS = librygel-core
+SUBDIRS = librygel-core librygel-renderer

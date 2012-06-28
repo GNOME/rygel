@@ -1,0 +1,73 @@
+if ENABLE_VALADOC
+
+include $(top_srcdir)/common.am
+include $(top_srcdir)/src/librygel-renderer/filelist.am
+
+# Note that LIBRYGEL_RENDERER_NONVAPI_SOURCE_FILES all (should) use the internal keyword
+# so they are not shown as part of the public API.
+VALA_SOURCE_FILES = $(LIBRYGEL_RENDERER_VAPI_SOURCE_FILES)
+# There are no LIBRYGEL_RENDERER_NONVAPI_SOURCE_FILES
+
+VALA_SOURCE_FILES_WITH_PATHS = $(addprefix $(top_srcdir)/src/librygel-renderer/, $(VALA_SOURCE_FILES))
+
+#debug:
+#	echo $(VALA_SOURCE_FILES_WITH_PATHS);
+
+# TODO: The need for rygel-build-config here reminds us that we shouldn't need that in librygel-renderer either.
+# TODO: Why is gstreamer-pbutils-0.10 needed here, but not needed in librygel-renderer/Makefile.am?
+VALADOC_FLAGS = --force \
+		--vapidir $(top_srcdir)/src/librygel-core \
+		--pkg rygel-core-1.0 \
+		--vapidir $(top_srcdir)/src/librygel-renderer \
+		$(RYGEL_COMMON_VALAFLAGS_PKG) \
+		$(LIBRYGEL_RENDERER_VALAFLAGS_PKG) \
+	        --pkg gstreamer-pbutils-0.10 \
+	        --target-glib=2.32 \
+	        --vapidir=$(rygeldir) \
+	        --pkg rygel-build-config \
+		-b $(top_srcdir)/src/librygel-renderer \
+		--package-name librygel-renderer \
+		--package-version 1.0 \
+		$(VALA_SOURCE_FILES_WITH_PATHS)
+
+valadoc:
+	$(VALADOC) \
+		-o valadoc \
+		$(VALADOC_FLAGS) \
+		$(NULL)
+
+devhelp:
+	$(VALADOC) \
+		-o devhelp \
+		--doclet devhelp \
+		$(VALADOC_FLAGS) \
+		$(NULL)
+
+gtkdoc:
+	$(VALADOC) \
+		-X $(top_builddir)/src/librygel-renderer/rygel-renderer.h \
+		-X -l -X $(top_builddir)/src/librygel-renderer/.libs/librygel-renderer-1.0.so \
+		-o gtkdoc \
+		--doclet gtkdoc \
+		$(VALADOC_FLAGS) \
+		$(NULL)
+
+clean-local:
+	rm -rf valadoc devhelp gtkdoc
+
+uninstall-hook:
+	rm -rf $(DESTDIR)$(datadir)/devhelp/books/librygel-renderer
+	rm -rf $(DESTDIR)$(datadir)/gtk-doc/html/librygel-renderer
+
+install-data-hook: devhelp gtkdoc
+	$(MKDIR_P) $(DESTDIR)$(datadir)/devhelp/books/librygel-renderer/img
+	$(INSTALL_DATA) -t $(DESTDIR)$(datadir)/devhelp/books/librygel-renderer devhelp/librygel-renderer/*.*
+	$(INSTALL_DATA) -t $(DESTDIR)$(datadir)/devhelp/books/librygel-renderer/img devhelp/librygel-renderer/img/*
+	$(MKDIR_P) $(DESTDIR)$(datadir)/gtk-doc/html/librygel-renderer
+	cp -R gtkdoc/html $(DESTDIR)$(datadir)/gtk-doc/html/librygel-renderer
+
+all: valadoc devhelp gtkdoc
+
+EXTRA_DIST = devhelp gtkdoc valadoc
+
+endif
