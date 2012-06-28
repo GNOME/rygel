@@ -30,9 +30,8 @@ using GUPnP;
  */
 internal class Rygel.V1Hacks : ClientHacks {
     private const string DEFAULT_AGENT = ".*Allegro-Software-WebClient.*|" +
-                                         ".*SEC_HHP_Galaxy S/1\\.0.*|" +
-                                         ".*Mediabolic-IMHTTP/1.*|" +
-                                         ".*SEC_HPP\\[TV\\].*";
+                                         ".*SEC[_ ]HHP.*|" +
+                                         ".*Mediabolic-IMHTTP/1.*";
     private const string DMS = "urn:schemas-upnp-org:device:MediaServer";
     private const string DMS_V1 = DMS + ":1";
     private const string MATCHING_PATTERN = ".*%s.*";
