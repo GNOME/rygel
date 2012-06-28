@@ -59,12 +59,13 @@ uninstall-hook:
 	rm -rf $(DESTDIR)$(datadir)/devhelp/books/librygel-renderer
 	rm -rf $(DESTDIR)$(datadir)/gtk-doc/html/librygel-renderer
 
+# The chmod corrects the directory permissions so that distcheck can remove the installed files.
 install-data-hook: devhelp gtkdoc
 	$(MKDIR_P) $(DESTDIR)$(datadir)/devhelp/books/librygel-renderer/img
-	$(INSTALL_DATA) -t $(DESTDIR)$(datadir)/devhelp/books/librygel-renderer devhelp/librygel-renderer/*.*
-	$(INSTALL_DATA) -t $(DESTDIR)$(datadir)/devhelp/books/librygel-renderer/img devhelp/librygel-renderer/img/*
-	$(MKDIR_P) $(DESTDIR)$(datadir)/gtk-doc/html/librygel-renderer
-	cp -R gtkdoc/html $(DESTDIR)$(datadir)/gtk-doc/html/librygel-renderer
+	$(INSTALL_DATA) -t $(DESTDIR)$(datadir)/devhelp/books/librygel-renderer $(srcdir)/devhelp/librygel-renderer/*.*
+	$(INSTALL_DATA) -t $(DESTDIR)$(datadir)/devhelp/books/librygel-renderer/img $(srcdir)/devhelp/librygel-renderer/img/*
+	cp -d -R $(srcdir)/gtkdoc/html $(DESTDIR)$(datadir)/gtk-doc/html/librygel-renderer
+	chmod -R u+w $(DESTDIR)$(datadir)/gtk-doc/html/librygel-renderer
 
 all: valadoc devhelp gtkdoc
 
