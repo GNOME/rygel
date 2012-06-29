@@ -26,20 +26,18 @@ VALADOC_FLAGS = --force \
 		$(VALA_SOURCE_FILES_WITH_PATHS)
 
 valadoc: $(VALA_SOURCE_FILES_WITH_PATHS)
-	$(VALADOC) \
+	$(AM_V_GEN)$(VALADOC) \
 		-o valadoc \
-		$(VALADOC_FLAGS) \
-		$(NULL)
+		$(VALADOC_FLAGS) 2>/dev/null
 
 gtkdoc: $(VALA_SOURCE_FILES_WITH_PATHS)
 	@rm -rf gtkdoc
-	$(VALADOC) \
+	$(AM_V_GEN)$(VALADOC) \
 		-X $(top_builddir)/src/librygel-core/rygel-core.h \
 		-X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-1.0.so \
 		-o gtkdoc \
 		--doclet gtkdoc \
-		$(VALADOC_FLAGS) \
-		$(NULL)
+		$(VALADOC_FLAGS) 2>/dev/null
 
 clean-local:
 	rm -rf valadoc gtkdoc
