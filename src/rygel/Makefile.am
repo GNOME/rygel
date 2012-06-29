@@ -11,7 +11,7 @@ AM_CFLAGS += \
 
 librygelincdir = $(includedir)/rygel-1.0
 
-librygelinc_HEADERS = rygel.h
+librygelinc_HEADERS = rygel-core.h
 
 lib_LTLIBRARIES = librygel-core.la
 
@@ -110,7 +110,7 @@ librygel_core_la_SOURCES = \
 	rygel-description-file.vala
 
 librygel_core_la_VALAFLAGS = \
-	-H rygel.h -C --library=rygel-1.0 \
+	-H rygel-core.h -C --library=rygel-1.0 \
 	--pkg gstreamer-0.10 \
 	--pkg gstreamer-base-0.10 \
 	--pkg gupnp-dlna-1.0 \
@@ -127,7 +127,7 @@ bin_PROGRAMS = rygel
 
 BUILT_SOURCES = \
 	rygel-1.0.vapi \
-	rygel.h
+	rygel-core.h
 
 rygel_SOURCES = \
 	rygel-dbus-service.vala \
@@ -149,7 +149,7 @@ DEPS_FILES = rygel-1.0.deps
 
 vapidir = $(VAPIDIR)
 vapi_DATA = $(VAPI_FILES) $(DEPS_FILES)
-rygel-1.0.vapi rygel.h: $(VAPI_SOURCE_FILES)
+rygel-1.0.vapi rygel-core.h: $(VAPI_SOURCE_FILES)
 
 MAINTAINERCLEANFILES += $(BUILT_SOURCES)
 

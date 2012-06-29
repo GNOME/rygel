@@ -55,7 +55,7 @@ po/POTFILES
 rygel-1.0.pc
 src/rygel/rygel
 src/rygel/rygel-1.0.vapi
-src/rygel/rygel.h
+src/rygel/rygel-core.h
 src/ui/rygel-preferences
 !src/rygel/cstuff.c
 tests/rygel-http-byte-seek-test
