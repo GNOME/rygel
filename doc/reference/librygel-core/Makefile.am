@@ -31,14 +31,6 @@ valadoc: $(VALA_SOURCE_FILES_WITH_PATHS)
 		$(VALADOC_FLAGS) \
 		$(NULL)
 
-devhelp: $(VALA_SOURCE_FILES_WITH_PATHS)
-	@rm -rf devhelp
-	$(VALADOC) \
-		-o devhelp \
-		--doclet devhelp \
-		$(VALADOC_FLAGS) \
-		$(NULL)
-
 gtkdoc: $(VALA_SOURCE_FILES_WITH_PATHS)
 	@rm -rf gtkdoc
 	$(VALADOC) \
@@ -50,23 +42,19 @@ gtkdoc: $(VALA_SOURCE_FILES_WITH_PATHS)
 		$(NULL)
 
 clean-local:
-	rm -rf valadoc devhelp gtkdoc
+	rm -rf valadoc gtkdoc
 
 uninstall-hook:
-	rm -rf $(DESTDIR)$(datadir)/devhelp/books/librygel-core
 	rm -rf $(DESTDIR)$(datadir)/gtk-doc/html/librygel-core
 
 # The chmod corrects the directory permissions so that distcheck can remove the installed files.
-install-data-hook: devhelp gtkdoc
-	$(MKDIR_P) $(DESTDIR)$(datadir)/devhelp/books/librygel-core/img
-	$(INSTALL_DATA) -t $(DESTDIR)$(datadir)/devhelp/books/librygel-core $(srcdir)/devhelp/librygel-core/*.*
-	$(INSTALL_DATA) -t $(DESTDIR)$(datadir)/devhelp/books/librygel-core/img $(srcdir)/devhelp/librygel-core/img/*
+install-data-hook: gtkdoc
 	$(MKDIR_P) $(DESTDIR)$(datadir)/gtk-doc/html/librygel-core
 	cp -d -R $(srcdir)/gtkdoc/html $(DESTDIR)$(datadir)/gtk-doc/html/librygel-core
 	chmod -R u+w $(DESTDIR)$(datadir)/gtk-doc/html/librygel-core
 
-all: valadoc devhelp gtkdoc
+all: valadoc gtkdoc
 
-EXTRA_DIST = devhelp gtkdoc valadoc
+EXTRA_DIST = gtkdoc valadoc
 
 endif
