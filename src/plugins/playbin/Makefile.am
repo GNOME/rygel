@@ -4,7 +4,8 @@ lib_LTLIBRARIES = librygel-renderer.la
 
 librygel_renderer_la_SOURCES = \
 	rygel-playbin-player.vala \
-	rygel-playbin-plugin.vala
+	rygel-playbin-plugin.vala \
+	rygel-playbin-renderer.vala
 
 librygel_renderer_la_VALAFLAGS = \
 	-H rygel-renderer.h --library=rygel-renderer-1.0 \
