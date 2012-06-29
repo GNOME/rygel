@@ -71,7 +71,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                         "video/x-ms-wmv" };
     private static Player player;
 
-    public dynamic Element playbin;
+    public dynamic Element playbin { get; private set; }
 
     private string _playback_state = "NO_MEDIA_PRESENT";
     public string playback_state {
