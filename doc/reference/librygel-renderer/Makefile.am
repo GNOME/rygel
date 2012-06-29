@@ -30,20 +30,22 @@ VALADOC_FLAGS = --force \
 		--package-version 1.0 \
 		$(VALA_SOURCE_FILES_WITH_PATHS)
 
-valadoc:
+valadoc: $(VALA_SOURCE_FILES_WITH_PATHS)
 	$(VALADOC) \
 		-o valadoc \
 		$(VALADOC_FLAGS) \
 		$(NULL)
 
-devhelp:
+devhelp: $(VALA_SOURCE_FILES_WITH_PATHS)
+	@rm -rf devhelp
 	$(VALADOC) \
 		-o devhelp \
 		--doclet devhelp \
 		$(VALADOC_FLAGS) \
 		$(NULL)
 
-gtkdoc:
+gtkdoc: $(VALA_SOURCE_FILES_WITH_PATHS)
+	@rm -rf gtkdoc
 	$(VALADOC) \
 		-X $(top_builddir)/src/librygel-renderer/rygel-renderer.h \
 		-X -l -X $(top_builddir)/src/librygel-renderer/.libs/librygel-renderer-1.0.so \
