@@ -332,7 +332,13 @@ internal class Rygel.RootDeviceFactory {
         var mod2 = info.get_attribute_uint64 (FileAttribute.TIME_MODIFIED);
 
         if (mod1 > mod2) {
-            return new XMLDoc.from_path (path1);
+            // If we fail to load the derived description file, try the
+            // template instead.
+            try {
+                return new XMLDoc.from_path (path1);
+            } catch (Error error) {
+                return new XMLDoc.from_path (path2);
+            }
         } else {
             return new XMLDoc.from_path (path2);
         }
