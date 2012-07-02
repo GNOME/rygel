@@ -48,6 +48,14 @@ internal class Rygel.Playbin.WrappingPlugin : Rygel.MediaRendererPlugin {
     }
 }
 
+/**
+ * Convert a GStreamer Playbin2 element into an UPnP renderer.
+ *
+ * Using Playbin2 as a model it reflects any changes done externally, such as
+ * changing the currently played URI, volume, pause/play etc. to UPnP.
+ *
+ * Likewise the playbin can be modified externally using UPnP.
+ */
 public class Rygel.Playbin.Renderer : Object {
     private ArrayList<string> interfaces;
     private HashMap<string, Context> contexts;
@@ -55,16 +63,39 @@ public class Rygel.Playbin.Renderer : Object {
     private ContextManager manager;
     private MediaRendererPlugin plugin;
 
+    /**
+     * Create a new instance of Renderer.
+     *
+     * Renderer will instanciate its own instance of playbin.
+     * The Playbin can be accessed by using Player.get_default().playbin
+     *
+     * @param title Friendly name of the new UPnP renderer on the network.
+     */
     public Renderer (string title) {
         this.plugin = new Plugin ();
         this.prepare_upnp (title);
     }
 
+    /**
+     * Create a new instance of Renderer, wrapping an existing playbin
+     * instance.
+     *
+     * @param pipeline Instance of Gst.PlayBin2 to wrap.
+     * @param title Friendly name of the new UPnP renderer on the network.
+     */
     public Renderer.wrap (Gst.Element pipeline, string title) {
         this.plugin = new WrappingPlugin (pipeline);
         this.prepare_upnp (title);
     }
 
+    /**
+     * Add a network interface the renderer should listen on.
+     *
+     * If the network interface is not already up, it will be used as soon as
+     * it's ready, otherwise it's used right away.
+     *
+     * @param iface Name of the network interface, e.g. eth0
+     */
     public void add_interface (string iface) {
         if (!(iface in this.interfaces)) {
             this.interfaces.add (iface);
@@ -77,6 +108,11 @@ public class Rygel.Playbin.Renderer : Object {
         }
     }
 
+    /**
+     * Remove a previously added network interface from the renderer.
+     *
+     * @param iface Name of the network interface, e.g. eth0
+     */
     public void remove_interface (string iface) {
         if (!(iface in this.interfaces)) {
             return;
@@ -92,6 +128,12 @@ public class Rygel.Playbin.Renderer : Object {
         }
     }
 
+    /**
+     * Get a list of the network interfaces the renderer is currently allowed
+     * to use.
+     *
+     * @return list of interface names.
+     */
     public GLib.List<string> get_interfaces () {
         GLib.List<string> result = null;
 
