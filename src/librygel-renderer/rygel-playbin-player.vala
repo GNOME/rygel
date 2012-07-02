@@ -259,7 +259,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
         // Bus handler
         var bus = this.playbin.get_bus ();
-        bus.add_watch (this.bus_handler);
+        bus.add_signal_watch ();
+        bus.message.connect (this.bus_handler);
     }
 
     public static Player get_default () {
@@ -299,7 +300,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                structure.get_name () == "image/png";
     }
 
-    private bool bus_handler (Gst.Bus bus,
+    private void bus_handler (Gst.Bus bus,
                               Message message) {
         switch (message.type) {
         case MessageType.STATE_CHANGED:
@@ -366,8 +367,6 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
             break;
         }
-
-        return true;
     }
 
     private void on_source_setup (Element pipeline, dynamic Element source) {
