@@ -26,11 +26,25 @@ internal class Rygel.Playbin.RendererContext {
     public RootDeviceFactory factory;
     public Context context;
 
-    public RendererContext (Context context, Plugin plugin) throws Error {
+    public RendererContext (Context context, MediaRendererPlugin plugin) throws Error {
         this.context = context;
         this.factory = new RootDeviceFactory (context);
         this.device = this.factory.create (plugin);
         this.device.available = true;
+    }
+}
+
+internal class Rygel.Playbin.WrappingPlugin : Rygel.MediaRendererPlugin {
+    private MediaPlayer player;
+
+    public WrappingPlugin (Gst.Element playbin) {
+        base ("LibRygel-Renderer", _("LibRygel Renderer"));
+        this.player = new Player.wrap (playbin);
+    }
+
+
+    public override MediaPlayer? get_player () {
+        return this.player;
     }
 }
 
@@ -39,20 +53,16 @@ public class Rygel.Playbin.Renderer : Object {
     private HashMap<string, Context> contexts;
     private HashMap<string, RendererContext> renderer;
     private ContextManager manager;
-    private Plugin plugin;
+    private MediaRendererPlugin plugin;
 
     public Renderer (string title) {
-        manager = ContextManager.create (0);
-        manager.context_available.connect (this.on_context_available);
-        manager.context_unavailable.connect (this.on_context_unavailable);
-        this.interfaces = new ArrayList<string> ();
-        this.contexts = new HashMap<string, Context> ();
-        this.renderer = new HashMap<string, RendererContext> ();
-        plugin = new Plugin ();
-        plugin.title = title;
+        this.plugin = new Plugin ();
+        this.prepare_upnp (title);
+    }
 
-        // Always listen on localhost
-        this.add_interface ("lo");
+    public Renderer.wrap (Gst.Element pipeline, string title) {
+        this.plugin = new WrappingPlugin (pipeline);
+        this.prepare_upnp (title);
     }
 
     public void add_interface (string iface) {
@@ -110,5 +120,18 @@ public class Rygel.Playbin.Renderer : Object {
 
     private void on_context_unavailable (Context context) {
         this.remove_interface (context.interface);
+    }
+
+    private void prepare_upnp (string title) {
+        this.manager = ContextManager.create (0);
+        this.manager.context_available.connect (this.on_context_available);
+        this.manager.context_unavailable.connect (this.on_context_unavailable);
+        this.interfaces = new ArrayList<string> ();
+        this.contexts = new HashMap<string, Context> ();
+        this.renderer = new HashMap<string, RendererContext> ();
+        this.plugin.title = title;
+
+        // Always listen on localhost
+        this.add_interface ("lo");
     }
 }

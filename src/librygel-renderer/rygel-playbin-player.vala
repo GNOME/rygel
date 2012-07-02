@@ -249,18 +249,12 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
     private Player () {
         this.playbin = ElementFactory.make ("playbin2", null);
-        // Needed to get "Stop" events from the playbin.
-        // We can do this because we have a bus watch
-        this.playbin.auto_flush_bus = false;
-        assert (this.playbin != null);
+        this.setup_playbin ();
+    }
 
-        this.playbin.source_setup.connect (this.on_source_setup);
-        this.playbin.notify["uri"].connect (this.on_uri_notify);
-
-        // Bus handler
-        var bus = this.playbin.get_bus ();
-        bus.add_signal_watch ();
-        bus.message.connect (this.bus_handler);
+    public Player.wrap (Gst.Element playbin) {
+        this.playbin = playbin;
+        this.setup_playbin ();
     }
 
     public static Player get_default () {
@@ -403,5 +397,20 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         item.title = file.get_basename ();
 
         return writer.get_string ();
+    }
+
+    private void setup_playbin () {
+        // Needed to get "Stop" events from the playbin.
+        // We can do this because we have a bus watch
+        this.playbin.auto_flush_bus = false;
+        assert (this.playbin != null);
+
+        this.playbin.source_setup.connect (this.on_source_setup);
+        this.playbin.notify["uri"].connect (this.on_uri_notify);
+
+        // Bus handler
+        var bus = this.playbin.get_bus ();
+        bus.add_signal_watch ();
+        bus.message.connect (this.bus_handler);
     }
 }
