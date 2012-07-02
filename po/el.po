@@ -7,105 +7,64 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-19 12:53+0200\n"
-"PO-Revision-Date: 2011-01-16 22:41+0200\n"
-"Last-Translator: Marios Zindilis <m.zindilis@dmajor.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-06-21 19:02+0000\n"
+"PO-Revision-Date: 2012-07-02 17:42+0200\n"
+"Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
-"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Poedit-Language: Greek\n"
 "X-Poedit-Country: GREECE\n"
 
 #: ../data/rygel-preferences.ui.h:1
-msgid "General"
-msgstr "Γενικά"
-
-#: ../data/rygel-preferences.ui.h:2
-msgid "MPE_G TS"
-msgstr "MPE_G TS"
-
-#: ../data/rygel-preferences.ui.h:3
-msgid "Network Options"
-msgstr "Επιλογές δικτύου"
-
-#: ../data/rygel-preferences.ui.h:4
-msgid "Plugins"
-msgstr "Πρόσθετες λειτουργίες"
-
-#: ../data/rygel-preferences.ui.h:5
 #: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
 msgstr "Προτιμήσεις του Rygel"
 
+#: ../data/rygel-preferences.ui.h:2
+msgid "_Share media through DLNA"
+msgstr "_Διαμοιραστείτε πολυμέσα μέσω του DLNA"
+
+#: ../data/rygel-preferences.ui.h:3
+msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
+msgstr "Ενεργοποιήστε την κοινή χρήση πολυμέσων, όπως φωτογραφίες, βίντεο και μουσική, με το DLNA"
+
+#: ../data/rygel-preferences.ui.h:4
+msgid "Add a directory to the list of shared directories"
+msgstr "Προσθέστε έναν κατάλογο στη λίστα με τους κοινόχρηστους καταλόγους"
+
+#: ../data/rygel-preferences.ui.h:5
+msgid "Add shared directory"
+msgstr "Προσθήκη κοινόχρηστου καταλόγου"
+
 #: ../data/rygel-preferences.ui.h:6
-msgid "Select folders"
-msgstr "Επιλογή φακέλων"
+msgid "Remove a directory from the list of shared directories"
+msgstr "Αφαίρεση ενός καταλόγου από τη λίστα των κοινόχρηστων καταλόγων"
 
 #: ../data/rygel-preferences.ui.h:7
-msgid "Share M_usic"
-msgstr "Κοινή χρήση _μουσικής"
-
-#: ../data/rygel-preferences.ui.h:8
-msgid "Share _Pictures"
-msgstr "Κοινή χρήση _εικόνων"
-
-#: ../data/rygel-preferences.ui.h:9
-msgid "Share _Videos"
-msgstr "Κοινή χρήση _βίντεο"
-
-#: ../data/rygel-preferences.ui.h:10
-msgid "T_itle"
-msgstr "Τί_τλος"
-
-#: ../data/rygel-preferences.ui.h:11
-msgid "Ti_tle"
-msgstr "Τίτ_λος"
-
-#: ../data/rygel-preferences.ui.h:13
-#, no-c-format
-msgid ""
-"Write %u for username, %n for real name of the user and %h for host name"
-msgstr ""
-"Εισάγετε %u για το όνομα χρήστη, %n για το πραγματικό όνομα του χρήστη και "
-"%h για το όνομα διακομιστή"
-
-#: ../data/rygel-preferences.ui.h:14
-msgid "_Enable UPnP/DLNA"
-msgstr "_Ενεργοποίηση UPnP/DLNA"
+msgid "Remove shared directory"
+msgstr "Αφαίρεση κοινόχρηστου καταλόγου"
 
 #. Network Interface
-#: ../data/rygel-preferences.ui.h:16
-msgid "_Interface"
-msgstr "_Διεπαφή"
+#: ../data/rygel-preferences.ui.h:9
+msgid "_Network:"
+msgstr "Δί_κτυο:"
 
-#: ../data/rygel-preferences.ui.h:17
-msgid "_LPCM"
-msgstr "_LPCM"
+#: ../data/rygel-preferences.ui.h:10
+msgid "Select the network interface that DLNA media will be shared on, or share media on all interfaces"
+msgstr ""
 
-#: ../data/rygel-preferences.ui.h:18
-msgid "_MP3"
-msgstr "_MP3"
+#: ../data/rygel-preferences.ui.h:11
+msgid "Any"
+msgstr "Κάθε"
 
-#: ../data/rygel-preferences.ui.h:19
-msgid "_Media Export"
-msgstr "Εξαγωγή _πολυμέσων"
-
-#. Network Port
-#: ../data/rygel-preferences.ui.h:21
-msgid "_Port"
-msgstr "_Θύρα"
-
-#: ../data/rygel-preferences.ui.h:22
-msgid "_Transcoding support"
-msgstr "Υποστήριξη επανα_κωδικοποίησης"
-
-#: ../data/rygel-preferences.ui.h:23
-msgid "_URIs"
-msgstr "_URI"
+#: ../data/rygel-preferences.ui.h:12
+msgid "Select folders"
+msgstr "Επιλογή φακέλων"
 
 #: ../data/rygel-preferences.desktop.in.in.h:2
 msgid "UPnP/DLNA Preferences"
@@ -119,67 +78,61 @@ msgstr "Rygel"
 msgid "UPnP/DLNA Services"
 msgstr "Υπηρεσίες UPnP/DLNA"
 
-#: ../src/plugins/playbin/rygel-playbin-plugin.vala:38
+#: ../src/plugins/playbin/rygel-playbin-plugin.vala:45
 msgid "GStreamer Player"
 msgstr "Αναπαραγωγή GStreamer"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:94
-#, c-format
-msgid "Failed to open database: %d (%s)"
-msgstr "Αποτυχία κατά το άνοιγμα της βάσης δεδομένων: %d (%s)"
-
-#: ../src/plugins/media-export/rygel-media-export-database.vala:208
+#: ../src/plugins/media-export/rygel-media-export-database.vala:210
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Αποτυχία επανόρθωσης της συναλλαγής: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:268
-#, c-format
-msgid "Unsupported type %s"
-msgstr "Μη υποστηριζόμενος τύπος %s"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:134
-#: ../src/rygel/rygel-plugin-loader.vala:178
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:137
+#: ../src/rygel/rygel-plugin-loader.vala:194
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Αποτυχία ερωτήματος για τον τύπο περιεχομένου για '%s'"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:86
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:112
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Αποτυχία προσθήκης αντικειμένου με ID %s: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:122
-#, c-format
-msgid "Object %s is not an item"
-msgstr "Το αντικείμενο %s δεν αποτελεί στοιχείο"
 
 #: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:38
 #, c-format
 msgid "Failed to attach to D-Bus session bus: %s"
 msgstr "Αποτυχία σύνδεσης στο δίαυλο της συνεδρίας D-Bus: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:58
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:78
 msgid "No metadata extractor available. Will not crawl."
 msgstr "Μη διαθέσιμος εξαγωγέας μεταδεδομένων. Δεν θα γίνει ανίχνευση."
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:101
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:121
 #, c-format
 msgid "'%s' harvested"
 msgstr "Συγκεντρώθηκαν '%s'"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:158
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:211
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
-msgstr ""
-"Σφάλμα κατά την ανάκτηση του αντικειμένου '%s' από τη βάση δεδομένων: %s"
+msgstr "Σφάλμα κατά την ανάκτηση του αντικειμένου '%s' από τη βάση δεδομένων: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:182
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:217
+#, fuzzy, c-format
+#| msgid "Failed to remove entry: %s"
+msgid "Failed to access media cache: %s"
+msgstr "Αποτυχία εγγραφής αρχείου λανθάνουσας μνήμης: %s\n"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:256
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Σφάλμα κατά τη διαγραφή του αντικειμένου από τη βάση δεδομένων: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:77
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:40
+msgid "Will not monitor file changes"
+msgstr "Δεν θα παρακολουθήσει τις αλλαγές αρχείων"
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
 msgid "Failed to get file info for %s"
 msgstr "Αποτυχία ανάκτησης πληροφοριών αρχείου για %s"
@@ -206,35 +159,40 @@ msgstr "Άλμπουμ"
 msgid "Genre"
 msgstr "Είδος"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:94
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:53
+#| msgid "Select folders"
+msgid "Files & Folders"
+msgstr "Αρχεία & Φάκελοι"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:104
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "Αποτυχία κατά τη διαγραφή του URI: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:321
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:348
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "Πολυμέσα @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:329
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:355
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Αποτυχία δημιουργίας της υπηρεσίας MediaExport D-Bus: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:367
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:395
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Αποτυχία κατά τη διαγραφή της καταχώρησης: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:378
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:416
 msgid "Music"
 msgstr "Μουσική"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:419
 msgid "Pictures"
 msgstr "Εικόνες"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:383
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:421
 msgid "Videos"
 msgstr "Βίντεο"
 
@@ -248,30 +206,26 @@ msgstr "Αποτυχία κατά τη δημιουργία διαμεσολαβ
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "Αποτυχία κατά την κατασκευή URI για τον φάκελο '%s': %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:61
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:93
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:62
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:109
 #, c-format
 msgid "Failed to connect to session bus: %s"
 msgstr "Αποτυχία κατά τη σύνδεση στη συνεδρία: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:112
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:118
 #, c-format
 msgid "Error getting all values for '%s': %s"
 msgstr "Σφάλμα κατά την ανάκτηση όλων των τιμών για το '%s': %s"
 
-#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:34
+#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:41
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr ""
-"Αποτυχία κατά την έναρξη της υπηρεσίας Tracker: %s. Η πρόσθετη λειτουργία "
-"απενεργοποιήθηκε."
+msgstr "Αποτυχία κατά την έναρξη της υπηρεσίας Tracker: %s. Η πρόσθετη λειτουργία απενεργοποιήθηκε."
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:203
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:221
 #, c-format
 msgid "Error getting item count under category '%s': %s"
-msgstr ""
-"Σφάλμα κατά την ανάκτηση της καταμέτρησης των αντικειμένων για την κατηγορία "
-"'%s': %s"
+msgstr "Σφάλμα κατά την ανάκτηση της καταμέτρησης των αντικειμένων για την κατηγορία '%s': %s"
 
 #: ../src/plugins/tracker/rygel-tracker-albums.vala:35
 msgid "Albums"
@@ -285,90 +239,141 @@ msgstr "Καλλιτέχνες"
 msgid "Titles"
 msgstr "Τίτλοι"
 
-#: ../src/rygel/rygel-media-query-action.vala:117
-#: ../src/rygel/rygel-media-query-action.vala:141
-#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:154
-#: ../src/rygel/rygel-item-creator.vala:189
+#: ../src/rygel/rygel-media-query-action.vala:118
+#: ../src/rygel/rygel-media-query-action.vala:181
+#: ../src/rygel/rygel-item-creator.vala:127
+#: ../src/rygel/rygel-item-creator.vala:279
 #: ../src/rygel/rygel-item-destroyer.vala:53
-#: ../src/rygel/rygel-item-destroyer.vala:99
+#: ../src/rygel/rygel-item-destroyer.vala:100
 msgid "No such object"
 msgstr "Κανένα τέτοιο αντικείμενο"
+
+#: ../src/rygel/rygel-media-query-action.vala:123
+#| msgid "Invalid Name"
+msgid "Invalid range"
+msgstr "Μη έγκυρο εύρος"
 
 #: ../src/rygel/rygel-browse.vala:63
 msgid "Invalid Arguments"
 msgstr "Μη έγκυρα ορίσματα"
+
+#: ../src/rygel/rygel-browse.vala:94
+msgid "Cannot browse children on item"
+msgstr ""
 
 #: ../src/rygel/rygel-browse.vala:121
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "Αποτυχία κατά την περιήγηση στο '%s': %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:133
-#: ../src/rygel/rygel-cmdline-config.vala:141
-#: ../src/rygel/rygel-cmdline-config.vala:149
-#: ../src/rygel/rygel-cmdline-config.vala:157
-#: ../src/rygel/rygel-cmdline-config.vala:165
-#: ../src/rygel/rygel-cmdline-config.vala:173
-#: ../src/rygel/rygel-cmdline-config.vala:181
-#: ../src/rygel/rygel-cmdline-config.vala:189
-#: ../src/rygel/rygel-cmdline-config.vala:197
-#: ../src/rygel/rygel-cmdline-config.vala:205
-#: ../src/rygel/rygel-cmdline-config.vala:213
-#: ../src/rygel/rygel-cmdline-config.vala:239
-#: ../src/rygel/rygel-cmdline-config.vala:258
-#: ../src/rygel/rygel-cmdline-config.vala:282
-#: ../src/rygel/rygel-cmdline-config.vala:308
-#: ../src/rygel/rygel-cmdline-config.vala:337
-#: ../src/rygel/rygel-cmdline-config.vala:363
-#: ../src/rygel/rygel-cmdline-config.vala:388
-#: ../src/rygel/rygel-meta-config.vala:74
-#: ../src/rygel/rygel-meta-config.vala:93
-#: ../src/rygel/rygel-meta-config.vala:112
-#: ../src/rygel/rygel-meta-config.vala:131
-#: ../src/rygel/rygel-meta-config.vala:150
-#: ../src/rygel/rygel-meta-config.vala:169
-#: ../src/rygel/rygel-meta-config.vala:188
-#: ../src/rygel/rygel-meta-config.vala:207
-#: ../src/rygel/rygel-meta-config.vala:226
-#: ../src/rygel/rygel-meta-config.vala:245
-#: ../src/rygel/rygel-meta-config.vala:264
+#: ../src/rygel/rygel-cmdline-config.vala:156
+#: ../src/rygel/rygel-cmdline-config.vala:164
+#: ../src/rygel/rygel-cmdline-config.vala:172
+#: ../src/rygel/rygel-cmdline-config.vala:180
+#: ../src/rygel/rygel-cmdline-config.vala:188
+#: ../src/rygel/rygel-cmdline-config.vala:196
+#: ../src/rygel/rygel-cmdline-config.vala:204
+#: ../src/rygel/rygel-cmdline-config.vala:212
+#: ../src/rygel/rygel-cmdline-config.vala:220
+#: ../src/rygel/rygel-cmdline-config.vala:228
+#: ../src/rygel/rygel-cmdline-config.vala:236
+#: ../src/rygel/rygel-cmdline-config.vala:244
+#: ../src/rygel/rygel-cmdline-config.vala:252
+#: ../src/rygel/rygel-cmdline-config.vala:278
+#: ../src/rygel/rygel-cmdline-config.vala:297
+#: ../src/rygel/rygel-cmdline-config.vala:303
+#: ../src/rygel/rygel-cmdline-config.vala:310
+#: ../src/rygel/rygel-cmdline-config.vala:314
+#: ../src/rygel/rygel-cmdline-config.vala:318
+#: ../src/rygel/rygel-cmdline-config.vala:341
+#: ../src/rygel/rygel-cmdline-config.vala:367
+#: ../src/rygel/rygel-cmdline-config.vala:396
+#: ../src/rygel/rygel-cmdline-config.vala:422
+#: ../src/rygel/rygel-cmdline-config.vala:447
+#: ../src/rygel/rygel-meta-config.vala:83
+#: ../src/rygel/rygel-meta-config.vala:102
+#: ../src/rygel/rygel-meta-config.vala:121
+#: ../src/rygel/rygel-meta-config.vala:140
+#: ../src/rygel/rygel-meta-config.vala:159
+#: ../src/rygel/rygel-meta-config.vala:178
+#: ../src/rygel/rygel-meta-config.vala:197
+#: ../src/rygel/rygel-meta-config.vala:216
+#: ../src/rygel/rygel-meta-config.vala:235
+#: ../src/rygel/rygel-meta-config.vala:254
+#: ../src/rygel/rygel-meta-config.vala:273
+#: ../src/rygel/rygel-meta-config.vala:292
+#: ../src/rygel/rygel-meta-config.vala:311
 msgid "No value available"
 msgstr "Μη διαθέσιμη τιμή"
 
-#: ../src/rygel/rygel-connection-manager.vala:107
+#: ../src/rygel/rygel-connection-manager.vala:89
+#: ../src/rygel/rygel-connection-manager.vala:103
+#: ../src/rygel/rygel-connection-manager.vala:125
+#: ../src/rygel/rygel-content-directory.vala:198
+#: ../src/rygel/rygel-content-directory.vala:225
+#: ../src/rygel/rygel-content-directory.vala:244
+#: ../src/rygel/rygel-content-directory.vala:279
+#: ../src/rygel/rygel-content-directory.vala:304
+#: ../src/rygel/rygel-content-directory.vala:329
+#: ../src/rygel/rygel-media-receiver-registrar.vala:59
+#| msgid "Invalid Arguments"
+msgid "Invalid argument"
+msgstr "Μη έγκυρο όρισμα"
+
+#: ../src/rygel/rygel-connection-manager.vala:119
 msgid "Invalid connection reference"
 msgstr "Μη έγκυρη αναφορά σύνδεσης"
 
-#: ../src/rygel/rygel-content-directory.vala:207
-#: ../src/rygel/rygel-content-directory.vala:220
+#: ../src/rygel/rygel-content-directory.vala:217
+#: ../src/rygel/rygel-content-directory.vala:236
 msgid "No such file transfer"
 msgstr "Καμία μεταφορά τέτοιου αρχείου"
 
-#: ../src/rygel/rygel-av-transport.vala:205
-#: ../src/rygel/rygel-rendering-control.vala:121
+#: ../src/rygel/rygel-av-transport.vala:215
+#: ../src/rygel/rygel-rendering-control.vala:123
+#| msgid "Invalid Arguments"
+msgid "Invalid Args"
+msgstr "Μη έγκυρα ορίσματα"
+
+#: ../src/rygel/rygel-av-transport.vala:221
+#: ../src/rygel/rygel-rendering-control.vala:129
 msgid "Invalid InstanceID"
 msgstr "Μη έγκυρο ID υπόδειξης"
 
-#: ../src/rygel/rygel-av-transport.vala:378
+#: ../src/rygel/rygel-av-transport.vala:481
 msgid "Play speed not supported"
 msgstr "Η ταχύτητα αναπαραγωγής δεν υποστηρίζεται"
 
-#: ../src/rygel/rygel-av-transport.vala:417
-#: ../src/rygel/rygel-av-transport.vala:426
-msgid "Seek mode not supported"
-msgstr "Δεν υποστηρίζεται η λειτουργία αναζήτησης"
-
-#: ../src/rygel/rygel-av-transport.vala:433
-#: ../src/rygel/rygel-av-transport.vala:437
+#: ../src/rygel/rygel-av-transport.vala:497
+#: ../src/rygel/rygel-av-transport.vala:542
+#: ../src/rygel/rygel-av-transport.vala:546
 msgid "Transition not available"
 msgstr "Μη διαθέσιμη μετάβαση"
 
-#: ../src/rygel/rygel-rendering-control.vala:152
+#: ../src/rygel/rygel-av-transport.vala:526
+msgid "Seek failed"
+msgstr "Αποτυχία προσπέλασης"
+
+#: ../src/rygel/rygel-av-transport.vala:535
+msgid "Seek mode not supported"
+msgstr "Δεν υποστηρίζεται η λειτουργία αναζήτησης"
+
+#: ../src/rygel/rygel-rendering-control.vala:160
 msgid "Invalid Name"
 msgstr "Μη έγκυρο όνομα"
 
-#: ../src/rygel/rygel-rendering-control.vala:166
-#: ../src/rygel/rygel-rendering-control.vala:237
+#: ../src/rygel/rygel-rendering-control.vala:174
+#| msgid "Invalid Name"
+msgid "Invalid Channel"
+msgstr "Μη έγκυρο κανάλι"
+
+#: ../src/rygel/rygel-rendering-control.vala:210
+#: ../src/rygel/rygel-rendering-control.vala:252
+#| msgid "Action Failed"
+msgid "ActionFailed"
+msgstr "Αποτυχία ενέργειας"
+
+#: ../src/rygel/rygel-rendering-control.vala:261
 msgid "Action Failed"
 msgstr "Αποτυχία ενέργειας"
 
@@ -377,15 +382,13 @@ msgstr "Αποτυχία ενέργειας"
 msgid "Required element %s missing"
 msgstr "Λείπει το απαιτούμενο στοιχείο %s"
 
-#: ../src/rygel/rygel-http-byte-seek.vala:43
-#: ../src/rygel/rygel-http-byte-seek.vala:49
-#: ../src/rygel/rygel-http-byte-seek.vala:58
-#: ../src/rygel/rygel-http-byte-seek.vala:68
-#: ../src/rygel/rygel-http-byte-seek.vala:71
-#: ../src/rygel/rygel-http-time-seek.vala:50
-#: ../src/rygel/rygel-http-time-seek.vala:59
-#: ../src/rygel/rygel-http-time-seek.vala:69
-#: ../src/rygel/rygel-http-time-seek.vala:72
+#. Range header was present but invalid
+#: ../src/rygel/rygel-http-byte-seek.vala:47
+#: ../src/rygel/rygel-http-byte-seek.vala:52
+#: ../src/rygel/rygel-http-time-seek.vala:49
+#: ../src/rygel/rygel-http-time-seek.vala:61
+#: ../src/rygel/rygel-http-time-seek.vala:68
+#: ../src/rygel/rygel-http-time-seek.vala:83
 #, c-format
 msgid "Invalid Range '%s'"
 msgstr "Μη έγκυρο εύρος '%s'"
@@ -394,71 +397,109 @@ msgstr "Μη έγκυρο εύρος '%s'"
 msgid "Invalid Request"
 msgstr "Μη έγκυρο αίτημα"
 
-#: ../src/rygel/rygel-http-identity-handler.vala:97
-#: ../src/rygel/rygel-http-transcode-handler.vala:56
+#: ../src/rygel/rygel-http-identity-handler.vala:89
+#: ../src/rygel/rygel-http-transcode-handler.vala:57
 msgid "Not found"
 msgstr "Δεν βρέθηκε"
 
-#: ../src/rygel/rygel-http-identity-handler.vala:109
-#, c-format
-msgid "Item '%s' didn't provide a URI"
-msgstr "Το στοιχείο '%s' δεν παρείχε κάποιο URI"
-
-#: ../src/rygel/rygel-http-item-uri.vala:58
+#: ../src/rygel/rygel-http-item-uri.vala:127
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Μη έγκυρο URI '%s'"
 
-#: ../src/rygel/rygel-http-item-uri.vala:89
+#: ../src/rygel/rygel-http-item-uri.vala:166
 msgid "Not Found"
 msgstr "Δεν βρέθηκε"
 
-#: ../src/rygel/rygel-http-post.vala:61
-#: ../src/rygel/rygel-import-resource.vala:169
+#: ../src/rygel/rygel-http-post.vala:62
+#: ../src/rygel/rygel-import-resource.vala:191
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Δεν επιτρέπεται η προώθηση δεδομένων στο μη άδειο αντικείμενο «%s»"
 
-#: ../src/rygel/rygel-http-post.vala:69
+#: ../src/rygel/rygel-http-post.vala:70
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "Κανένα διαθέσιμο εγγράψιμο URΙ για το %s"
 
-#: ../src/rygel/rygel-http-request.vala:82
+#. translators: Dotfile is the filename with prefix "."
+#: ../src/rygel/rygel-http-post.vala:185
+#, c-format
+#| msgid "Failed to remove entry: %s"
+msgid "Failed to move dotfile %s: %s"
+msgstr "Αποτυχία κατά τη  μετακίνηση του dotfile %s: %s"
+
+#: ../src/rygel/rygel-http-request.vala:89
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "Δεν βρέθηκε το αντικείμενο '%s' που ζητήσατε"
 
-#: ../src/rygel/rygel-import-resource.vala:109
+#: ../src/rygel/rygel-http-response.vala:156
+#: ../src/rygel/rygel-http-response.vala:177
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr "Αποτυχία κατά τη σύνδεση του %s στο %s"
+
+#: ../src/rygel/rygel-http-response.vala:192
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr "Αποτυχία σύνδεσης συνθήκης του %s στο %s"
+
+#: ../src/rygel/rygel-http-response.vala:235
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr "Σφάλμα από το μέσο πληροφορίας %s: %s"
+
+#: ../src/rygel/rygel-http-response.vala:242
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr "Προειδοποίηση από το μέσο πληροφορίας %s: %s"
+
+#: ../src/rygel/rygel-http-response.vala:285
+#, c-format
+msgid "Failed to seek to offset %lld"
+msgstr "Αποτυχία κατά την αίτηση για αντιστάθμιση του %lld"
+
+#: ../src/rygel/rygel-http-seek.vala:51
+#, fuzzy, c-format
+msgid "Out Of Range Start '%ld'"
+msgstr "Έναρξη αριθμού πλαισίου της περιοχής επιλογής"
+
+#: ../src/rygel/rygel-http-seek.vala:55
+#, fuzzy, c-format
+msgid "Out Of Range Stop '%ld'"
+msgstr "Integer value '%s' είναι εκτός εύρους"
+
+#: ../src/rygel/rygel-import-resource.vala:124
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Αποτυχία κατά την ανάκτηση του αρχικού URI για το '%s': %s"
 
-#: ../src/rygel/rygel-import-resource.vala:166
+#: ../src/rygel/rygel-import-resource.vala:188
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Το URI «%s» δεν είναι έγκυρο για εισαγωγή περιεχομένων"
 
-#: ../src/rygel/rygel-item-creator.vala:67
+#: ../src/rygel/rygel-item-creator.vala:118
+msgid "'Elements' argument missing."
+msgstr "Λείπει το όρισμα 'Στοιχεία'."
+
+#: ../src/rygel/rygel-item-creator.vala:121
+msgid "Comments not allowed in XML"
+msgstr "Δεν επιτρέπονται σχόλια στην XML"
+
+#: ../src/rygel/rygel-item-creator.vala:149
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Κανένα αντικείμενο στο DIDL-Lite από τον πελάτη: '%s'"
 
-#: ../src/rygel/rygel-item-creator.vala:145
-msgid "'Elements' argument missing."
-msgstr "Λείπει το όρισμα 'Στοιχεία'."
-
-#: ../src/rygel/rygel-item-creator.vala:148
-msgid "Comments not allowed in XML"
-msgstr "Δεν επιτρέπονται σχόλια στην XML"
-
-#: ../src/rygel/rygel-item-creator.vala:193
-#: ../src/rygel/rygel-item-creator.vala:282
+#: ../src/rygel/rygel-item-creator.vala:283
+#: ../src/rygel/rygel-item-creator.vala:518
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Δεν επιτρέπεται η δημιουργία αντικειμένων στο %s"
 
-#: ../src/rygel/rygel-item-creator.vala:219
+#: ../src/rygel/rygel-item-creator.vala:311
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Αποτυχία δημιουργία αντικειμένου στο '%s': %s"
@@ -473,231 +514,251 @@ msgstr "Επιτυχής καταστροφής αντικειμένου «%s»"
 msgid "Failed to destroy object '%s': %s"
 msgstr "Αποτυχία κατά την καταστροφή του αντικειμένου «%s»: %s"
 
-#: ../src/rygel/rygel-item-destroyer.vala:102
+#: ../src/rygel/rygel-item-destroyer.vala:103
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "Δεν επιτρέπεται η αφαίρεση του αντικειμένου %s"
 
-#: ../src/rygel/rygel-item-destroyer.vala:105
+#: ../src/rygel/rygel-item-destroyer.vala:106
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "Δεν επιτρέπεται η αφαίρεση του αντικειμένου από το %s"
 
-#: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-http-gst-response.vala:143
-#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
-#: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
-#: ../src/rygel/rygel-wma-transcoder-bin.vala:58
-#: ../src/rygel/rygel-wmv-transcoder-bin.vala:100
-#, c-format
-msgid "Failed to link pad %s to %s"
-msgstr "Αποτυχία σύνδεσης συνθήκης του %s στο %s"
-
-#. 'fakesink' should not be translated
-#: ../src/rygel/rygel-http-gst-response.vala:91
-msgid "Plugin 'fakesink' missing"
-msgstr "Λείπει η πρόσθετη λειτουργία 'fakesink'"
-
-#: ../src/rygel/rygel-http-gst-response.vala:108
-#: ../src/rygel/rygel-http-gst-response.vala:130
-#, c-format
-msgid "Failed to link %s to %s"
-msgstr "Αποτυχία κατά τη σύνδεση του %s στο %s"
-
-#: ../src/rygel/rygel-http-gst-response.vala:217
-#, c-format
-msgid "Error from pipeline %s: %s"
-msgstr "Σφάλμα από το μέσο πληροφορίας %s: %s"
-
-#: ../src/rygel/rygel-http-gst-response.vala:224
-#, c-format
-msgid "Warning from pipeline %s: %s"
-msgstr "Προειδοποίηση από το μέσο πληροφορίας %s: %s"
-
-#: ../src/rygel/rygel-http-gst-response.vala:258
-#, c-format
-msgid "Failed to seek to offset %lld"
-msgstr "Αποτυχία κατά την αίτηση για αντιστάθμιση του %lld"
-
-#: ../src/rygel/rygel-log-handler.vala:62
+#: ../src/rygel/rygel-log-handler.vala:68
 #, c-format
 msgid "Failed to get log level from configuration: %s"
 msgstr "Αποτυχία κατά την ανάκτηση του επιπέδου log από τη ρύθμιση: %s"
 
-#: ../src/rygel/rygel-main.vala:81
+#: ../src/rygel/rygel-main.vala:103
 #, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
 msgstr[0] "Δεν βρέθηκαν πρόσθετες λειτουργίες σε %d δευτερόλεπτο, εγκατάλειψη…"
-msgstr[1] ""
-"Δεν βρέθηκαν πρόσθετες λειτουργίες σε %d δευτερόλεπτα, γίνεται εγκατάλειψη…"
+msgstr[1] "Δεν βρέθηκαν πρόσθετες λειτουργίες σε %d δευτερόλεπτα, γίνεται εγκατάλειψη…"
 
-#: ../src/rygel/rygel-main.vala:142
+#: ../src/rygel/rygel-main.vala:164
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Αποτυχία δημιουργίας εργασιών αρχικής συσκευής: %s"
 
-#: ../src/rygel/rygel-main.vala:199
+#: ../src/rygel/rygel-main.vala:222
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Αποτυχία κατά τη δημιουργία RootDevice για το %s. Η αιτία: %s"
 
-#: ../src/rygel/rygel-main.vala:235
-#, c-format
-msgid "Failed to start D-Bus service: %s"
-msgstr "Αποτυχία κατά την έναρξη της υπηρεσίας D-Bus: %s"
-
-#: ../src/rygel/rygel-media-item.vala:272
+#: ../src/rygel/rygel-media-item.vala:273
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Μη αποδεκτό URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:284
+#: ../src/rygel/rygel-media-item.vala:285
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr ""
-"Αποτυχία κατά τη διερεύνηση του πρωτοκόλλου για το URΙ %s. Ας θεωρήσουμε το "
-"'%s'"
+msgstr "Αποτυχία κατά τη διερεύνηση του πρωτοκόλλου για το URΙ %s. Ας θεωρήσουμε το '%s'"
 
-#: ../src/rygel/rygel-meta-config.vala:57
+#: ../src/rygel/rygel-meta-config.vala:65
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Αποτυχία φόρτωση των ρυθμίσεων του χρήστη: %s"
 
-#: ../src/rygel/rygel-meta-config.vala:303
-#: ../src/rygel/rygel-meta-config.vala:322
+#: ../src/rygel/rygel-meta-config.vala:394
+#: ../src/rygel/rygel-meta-config.vala:413
 #, c-format
 msgid "No value set for '%s/enabled'"
 msgstr "Δεν καθορίστηκε τιμή για το '%s/enabled'"
 
-#: ../src/rygel/rygel-meta-config.vala:342
-#: ../src/rygel/rygel-meta-config.vala:364
-#: ../src/rygel/rygel-meta-config.vala:390
-#: ../src/rygel/rygel-meta-config.vala:412
-#: ../src/rygel/rygel-meta-config.vala:436
+#: ../src/rygel/rygel-meta-config.vala:433
+#: ../src/rygel/rygel-meta-config.vala:455
+#: ../src/rygel/rygel-meta-config.vala:481
+#: ../src/rygel/rygel-meta-config.vala:503
+#: ../src/rygel/rygel-meta-config.vala:527
 #, c-format
 msgid "No value available for '%s/%s'"
 msgstr "Μη διαθέσιμη τιμή για το '%s/%s'"
 
-#: ../src/rygel/rygel-plugin-loader.vala:71
+#: ../src/rygel/rygel-plugin-loader.vala:85
 #, c-format
 msgid "New plugin '%s' available"
 msgstr "Είναι διαθέσιμη η νέα πρόσθετη λειτουργία '%s'"
 
-#: ../src/rygel/rygel-plugin-loader.vala:109
+#: ../src/rygel/rygel-plugin-loader.vala:119
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Σφάλμα κατά την εμφάνιση της λίστας περιεχομένων του φακέλου '%s': %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:141
+#: ../src/rygel/rygel-plugin-loader.vala:147
+#, c-format
+msgid "A module named %s is already loaded"
+msgstr "Έχει ήδη φορτωθεί ένα άρθρωμα με όνομα %s"
+
+#: ../src/rygel/rygel-plugin-loader.vala:156
 #, c-format
 msgid "Failed to load module from path '%s': %s"
 msgstr "Αποτυχία φόρτωσης του αρθρώματος από τη διαδρομή '%s' : %s"
 
-#: ../src/rygel/rygel-plugin-loader.vala:151
+#: ../src/rygel/rygel-plugin-loader.vala:166
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Αποτυχία εύρεσης της συνάρτησης '%s' του σημείου εισόδου στο '%s': %s"
 
-#: ../src/rygel/rygel-root-device-factory.vala:106
-#: ../src/rygel/rygel-root-device-factory.vala:139
-#: ../src/rygel/rygel-root-device-factory.vala:161
-#: ../src/rygel/rygel-root-device-factory.vala:192
+#: ../src/rygel/rygel-root-device-factory.vala:110
+#: ../src/rygel/rygel-root-device-factory.vala:144
+#: ../src/rygel/rygel-root-device-factory.vala:166
+#: ../src/rygel/rygel-root-device-factory.vala:221
 #, c-format
 msgid "XML node '%s' not found."
 msgstr "Δεν βρέθηκε ο XML κόμβος '%s'."
-
-#: ../src/rygel/rygel-root-device-factory.vala:294
-#: ../src/rygel/rygel-root-device-factory.vala:304
-#, c-format
-msgid "Failed to write modified description to %s"
-msgstr "Αποτυχία εγγραφής της τροποποιημένης περιγραφής στο %s"
 
 #: ../src/rygel/rygel-search.vala:89
 #, c-format
 msgid "Failed to search in '%s': %s"
 msgstr "Αποτυχία αναζήτησης στο '%s': %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:62
-#, c-format
-msgid "Failed to read from URI: %s: %s"
-msgstr "Αποτυχία ανάγνωσης από το URI: %s: %s"
-
-#. Failed to seek to media segment (defined by first and last
-#. byte positions).
-#: ../src/rygel/rygel-http-seekable-response.vala:81
-#, c-format
-msgid "Failed to seek to %s-%s on URI %s: %s"
-msgstr "Αποτυχία αίτησης για το %s-%s στο URI %s: %s"
-
-#: ../src/rygel/rygel-http-seekable-response.vala:100
-#, c-format
-msgid "Failed to read contents from URI: %s: %s"
-msgstr "Αποτυχία ανάγνωσης περιεχομένων από το URI: %s: %s"
-
-#: ../src/rygel/rygel-http-seekable-response.vala:146
-#, c-format
-msgid "Failed to close stream to URI %s: %s"
-msgstr "Αποτυχία διακοπής της αναπαραγωγής στο URI %s: %s"
-
-#: ../src/rygel/rygel-subtitle-manager.vala:66
+#: ../src/rygel/rygel-subtitle-manager.vala:65
 msgid "No subtitle available"
 msgstr "Μη διαθέσιμος υπότιτλος"
 
-#: ../src/rygel/rygel-thumbnailer.vala:56
+#: ../src/rygel/rygel-thumbnailer.vala:58
 msgid "Failed to find thumbnails folder."
 msgstr "Σφάλμα κατά την εύρεση του φακέλου μικρογραφιών."
 
-#: ../src/rygel/rygel-thumbnailer.vala:82
+#: ../src/rygel/rygel-thumbnailer.vala:90
 #, c-format
 msgid "No thumbnailer available: %s"
 msgstr "Μη διαθέσιμη μικρογραφία: %s"
 
-#: ../src/rygel/rygel-thumbnailer.vala:106
+#: ../src/rygel/rygel-thumbnailer.vala:119
 msgid "No thumbnail available"
 msgstr "Μη διαθέσιμη μικρογραφία"
 
-#: ../src/rygel/rygel-transcode-manager.vala:118
+#: ../src/rygel/rygel-transcode-manager.vala:130
 #, c-format
 msgid "No transcoder available for target format '%s'"
 msgstr "Μη διαθέσιμη επανακωδικοποίηση για τη μορφή προορισμού '%s'"
 
-#: ../src/rygel/rygel-user-config.vala:140
+#: ../src/rygel/rygel-user-config.vala:198
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Μη διαθέσιμη τιμή για το '%s'"
 
-#: ../src/rygel/rygel-user-config.vala:168
+#: ../src/rygel/rygel-user-config.vala:248
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Η τιμή του '%s' είναι εκτός ορίων"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:42
-msgid "Not Applicable"
-msgstr "Δεν μπορεί να εφαρμοστεί"
-
-#: ../src/rygel/rygel-xbox-hacks.vala:178
-#, c-format
-msgid "Failed to write modified description to %s."
-msgstr "Σφάλμα κατά την εγγραφή της τροποποιημένης περιγραφής στο %s."
-
-#: ../src/ui/rygel-preferences-dialog.vala:78
+#: ../src/ui/rygel-preferences-dialog.vala:91
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Αποτυχία δημιουργίας διαλόγου προτιμήσεων: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:110
+#: ../src/ui/rygel-writable-user-config.vala:122
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr "Αποτυχία αποθήκευσης των προτιμήσεων στο αρχείο '%s': %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:201
+#: ../src/ui/rygel-writable-user-config.vala:210
 #, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "Αποτυχία εκκίνησης της υπηρεσίας Rygel: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:203
+#: ../src/ui/rygel-writable-user-config.vala:212
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Αποτυχία τερματισμού της υπηρεσίας Rygel: %s"
+
+#~ msgid "General"
+#~ msgstr "Γενικά"
+
+#~ msgid "MPE_G TS"
+#~ msgstr "MPE_G TS"
+
+#~ msgid "Network Options"
+#~ msgstr "Επιλογές δικτύου"
+
+#~ msgid "Plugins"
+#~ msgstr "Πρόσθετες λειτουργίες"
+
+#~ msgid "Share M_usic"
+#~ msgstr "Κοινή χρήση _μουσικής"
+
+#~ msgid "Share _Pictures"
+#~ msgstr "Κοινή χρήση _εικόνων"
+
+#~ msgid "Share _Videos"
+#~ msgstr "Κοινή χρήση _βίντεο"
+
+#~ msgid "T_itle"
+#~ msgstr "Τί_τλος"
+
+#~ msgid "Ti_tle"
+#~ msgstr "Τίτ_λος"
+
+#~ msgid ""
+#~ "Write %u for username, %n for real name of the user and %h for host name"
+#~ msgstr ""
+#~ "Εισάγετε %u για το όνομα χρήστη, %n για το πραγματικό όνομα του χρήστη "
+#~ "και %h για το όνομα διακομιστή"
+
+#~ msgid "_Enable UPnP/DLNA"
+#~ msgstr "_Ενεργοποίηση UPnP/DLNA"
+
+#~ msgid "_Interface"
+#~ msgstr "_Διεπαφή"
+
+#~ msgid "_LPCM"
+#~ msgstr "_LPCM"
+
+#~ msgid "_MP3"
+#~ msgstr "_MP3"
+
+#~ msgid "_Media Export"
+#~ msgstr "Εξαγωγή _πολυμέσων"
+
+#~ msgid "_Port"
+#~ msgstr "_Θύρα"
+
+#~ msgid "_Transcoding support"
+#~ msgstr "Υποστήριξη επανα_κωδικοποίησης"
+
+#~ msgid "_URIs"
+#~ msgstr "_URI"
+
+#~ msgid "Failed to open database: %d (%s)"
+#~ msgstr "Αποτυχία κατά το άνοιγμα της βάσης δεδομένων: %d (%s)"
+
+#~ msgid "Unsupported type %s"
+#~ msgstr "Μη υποστηριζόμενος τύπος %s"
+
+#~ msgid "Object %s is not an item"
+#~ msgstr "Το αντικείμενο %s δεν αποτελεί στοιχείο"
+
+#~ msgid "Item '%s' didn't provide a URI"
+#~ msgstr "Το στοιχείο '%s' δεν παρείχε κάποιο URI"
+
+#~ msgid "Plugin 'fakesink' missing"
+#~ msgstr "Λείπει η πρόσθετη λειτουργία 'fakesink'"
+
+#~ msgid "Failed to start D-Bus service: %s"
+#~ msgstr "Αποτυχία κατά την έναρξη της υπηρεσίας D-Bus: %s"
+
+#~ msgid "Failed to write modified description to %s"
+#~ msgstr "Αποτυχία εγγραφής της τροποποιημένης περιγραφής στο %s"
+
+#~ msgid "Failed to read from URI: %s: %s"
+#~ msgstr "Αποτυχία ανάγνωσης από το URI: %s: %s"
+
+#~ msgid "Failed to seek to %s-%s on URI %s: %s"
+#~ msgstr "Αποτυχία αίτησης για το %s-%s στο URI %s: %s"
+
+#~ msgid "Failed to read contents from URI: %s: %s"
+#~ msgstr "Αποτυχία ανάγνωσης περιεχομένων από το URI: %s: %s"
+
+#~ msgid "Failed to close stream to URI %s: %s"
+#~ msgstr "Αποτυχία διακοπής της αναπαραγωγής στο URI %s: %s"
+
+#~ msgid "Not Applicable"
+#~ msgstr "Δεν μπορεί να εφαρμοστεί"
+
+#~ msgid "Failed to write modified description to %s."
+#~ msgstr "Σφάλμα κατά την εγγραφή της τροποποιημένης περιγραφής στο %s."
