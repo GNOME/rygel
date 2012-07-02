@@ -58,7 +58,7 @@ public class Rygel.External.PluginFactory {
         this.dbus_obj = Bus.get_proxy_sync
                                         (BusType.SESSION,
                                          DBUS_SERVICE,
-                                         DBUS_OBJECT,
+                                         DBUS_OBJECT_PATH,
                                          DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
         this.loader = loader;
 

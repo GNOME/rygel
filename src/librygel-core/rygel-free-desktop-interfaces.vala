@@ -23,7 +23,7 @@
 
 namespace FreeDesktop {
     public const string DBUS_SERVICE = "org.freedesktop.DBus";
-    public const string DBUS_OBJECT = "/org/freedesktop/DBus";
+    public const string DBUS_OBJECT_PATH = "/org/freedesktop/DBus";
 }
 
 public enum FreeDesktop.DBusRequestNameReply {
