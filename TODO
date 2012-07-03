@@ -175,10 +175,6 @@
       * Probably next to impossible since that would need a byte ←→ time
         mapping
 
-  * Turn Rygel into a library?
-    * most c files put into a lib: librygel.so
-    * update pkg-config.
-
   * remove project prefix from file names?
 
   * use soup_buffer_new_with_owner() to save memory?
