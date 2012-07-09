@@ -34,52 +34,22 @@ internal class Rygel.Thumbnailer : GLib.Object {
     private static Thumbnailer thumbnailer; // Our singleton object
     private static bool first_time = true;
 
-    public string directory;
-
     private Thumbnail template;
     private string extension;
 
     private DbusThumbnailer thumbler = null;
 
     private Thumbnailer () throws ThumbnailerError {
-        var dir = Path.build_filename (Environment.get_home_dir (),
-                                       ".thumbnails",
-                                       "cropped");
-        var file = File.new_for_path (dir);
-        this.template = new Thumbnail ();
-
-        if (!file.query_exists (null)) {
-            dir = Path.build_filename (Environment.get_home_dir (),
-                                       ".thumbnails",
-                                       "normal");
-            file = File.new_for_path (dir);
-
-            if (!file.query_exists (null)) {
-                var message = _("Failed to find thumbnails folder.");
-
-                throw new ThumbnailerError.NO_DIR (message);
-            } else {
-                this.template.mime_type = "image/png";
-                this.template.dlna_profile = "PNG_TN";
-                this.template.file_extension = "png";
-                this.template.width = 128;
-                this.template.height = 128;
-                this.template.depth = 32;
-                this.extension = "." + this.template.file_extension;
-            }
-        } else {
-            this.template.width = 124;
-            this.template.height = 124;
-            this.template.depth = 24;
-            this.extension = ".jpeg";
-        }
-
-        this.directory = dir;
+        this.template = new Thumbnail ("image/png", "PNG_TN", "png");
+        this.template.width = 128;
+        this.template.height = 128;
+        this.template.depth = 32;
+        this.extension = "." + this.template.file_extension;
 
         try {
             this.thumbler = new DbusThumbnailer ();
-       } catch (GLib.Error error) { }
-
+            this.thumbler.ready.connect (this.on_dbus_thumbnailer_ready);
+        } catch (Error error) {}
     }
 
     public static Thumbnailer? get_default () {
@@ -97,41 +67,58 @@ internal class Rygel.Thumbnailer : GLib.Object {
     }
 
     public Thumbnail get_thumbnail (string uri, string mime_type) throws Error {
-        Thumbnail thumbnail = null;
+        var file = File.new_for_uri (uri);
+        var info = file.query_info (FileAttribute.THUMBNAIL_PATH + "," +
+                                    FileAttribute.THUMBNAILING_FAILED,
+                                    FileQueryInfoFlags.NONE);
+        var path = info.get_attribute_as_string (FileAttribute.THUMBNAIL_PATH);
+        var failed = info.get_attribute_boolean
+                                        (FileAttribute.THUMBNAILING_FAILED);
 
-        var path = Checksum.compute_for_string (ChecksumType.MD5, uri) +
-                   this.extension;
-        var full_path = Path.build_filename (this.directory, path);
-        var file = File.new_for_path (full_path);
+        if (failed) {
+            // Thumbnailing failed previously, so there's no current thumbnail
+            // and it doesn't make any sense to request one.
+            throw new ThumbnailerError.NO_THUMBNAIL
+                                        (_("No thumbnail available"));
+        }
 
-        // send a request to create thumbnail if it does not exist
-        if ((this.thumbler != null) && (!file.query_exists ())) {
+        // Send a request to create thumbnail if it does not exist, signalize
+        // that there's no thumbnail available now.
+        if (this.thumbler != null && path == null) {
             this.thumbler.queue_thumbnail_task (uri, mime_type);
 
             throw new ThumbnailerError.NO_THUMBNAIL
                                         (_("No thumbnail available"));
         }
 
-        var info = file.query_info (FileAttribute.ACCESS_CAN_READ + "," +
-                                    FileAttribute.STANDARD_SIZE,
-                                    FileQueryInfoFlags.NONE,
-                                    null);
+        file = File.new_for_path (path);
+        info = file.query_info (FileAttribute.ACCESS_CAN_READ + "," +
+                                FileAttribute.STANDARD_SIZE,
+                                FileQueryInfoFlags.NONE,
+                                null);
 
         if (!info.get_attribute_boolean (FileAttribute.ACCESS_CAN_READ)) {
             throw new ThumbnailerError.NO_THUMBNAIL
                                         (_("No thumbnail available"));
         }
 
-        thumbnail = new Thumbnail (this.template.mime_type,
-                                   this.template.dlna_profile,
-                                   this.template.file_extension);
+        var thumbnail = new Thumbnail (this.template.mime_type,
+                                       this.template.dlna_profile,
+                                       this.template.file_extension);
         thumbnail.width = this.template.width;
         thumbnail.height = this.template.height;
         thumbnail.depth = this.template.depth;
-        thumbnail.uri = Filename.to_uri (full_path, null);
+        thumbnail.uri = Filename.to_uri (path, null);
         thumbnail.size = (int64) info.get_attribute_uint64
                                         (FileAttribute.STANDARD_SIZE);
 
         return thumbnail;
+    }
+
+    private void on_dbus_thumbnailer_ready (bool available) {
+        if (!available) {
+            this.thumbler = null;
+            message (_("No D-Bus thumbnailer available"));
+        }
     }
 }

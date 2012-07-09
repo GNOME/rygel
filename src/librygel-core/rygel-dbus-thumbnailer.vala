@@ -37,6 +37,7 @@ internal class Rygel.DbusThumbnailer : GLib.Object {
     private ArrayList<string> mimes;
     private uint timeout_id;
     private string flavor;
+    FreeDesktop.DBusObject fdo;
 
     private const string THUMBNAILER_IFACE =
                                 "org.freedesktop.thumbnails.Thumbnailer1";
@@ -45,6 +46,8 @@ internal class Rygel.DbusThumbnailer : GLib.Object {
 
     private const uint THUMBNAIL_MAX_QUEUE_SIZE = 50;
 
+    public signal void ready (bool available);
+
     public DbusThumbnailer (string flavor = "normal") throws GLib.IOError,
                                                              GLib.DBusError {
         this.uris = new ArrayList<string> ();
@@ -52,9 +55,11 @@ internal class Rygel.DbusThumbnailer : GLib.Object {
         this.timeout_id = 0;
         this.flavor = flavor;
 
-        this.tumbler = GLib.Bus.get_proxy_sync (BusType.SESSION,
-                                                THUMBNAILER_IFACE,
-                                                THUMBNAILER_SERVICE);
+        this.fdo = Bus.get_proxy_sync (BusType.SESSION,
+                                       FreeDesktop.DBUS_SERVICE,
+                                       FreeDesktop.DBUS_OBJECT_PATH);
+
+        this.fdo.list_activatable_names.begin (this.on_activatable_names);
     }
 
     public void queue_thumbnail_task (string uri, string mime) {
@@ -79,6 +84,11 @@ internal class Rygel.DbusThumbnailer : GLib.Object {
     }
 
     private bool on_timeout () {
+        if (this.tumbler == null) {
+            // D-Bus service is not ready yet, keep on queuing
+            return true;
+        }
+
         debug ("Queueing thumbnail creation for %d files",
                this.uris.size);
 
@@ -93,5 +103,22 @@ internal class Rygel.DbusThumbnailer : GLib.Object {
         this.timeout_id = 0;
 
         return false;
+    }
+
+    private void on_activatable_names (Object? source, AsyncResult res) {
+        try {
+            var names = this.fdo.list_activatable_names.end (res);
+            if (THUMBNAILER_IFACE in names) {
+                this.tumbler = GLib.Bus.get_proxy_sync (BusType.SESSION,
+                                                        THUMBNAILER_IFACE,
+                                                        THUMBNAILER_SERVICE);
+            } else {
+                debug (_("No D-Bus thumbnailer service available"));
+            }
+        } catch (DBusError error) {
+        } catch (IOError io_error) {
+        }
+
+        this.ready (this.tumbler != null);
     }
 }
