@@ -1,0 +1,93 @@
+
+#include <gio/gio.h>
+#include <rygel-server.h>
+#include <rygel-core.h>
+
+int main (int argc, char *argv[])
+{
+    RygelMediaServer *server;
+    RygelSimpleContainer *root_container;
+    char *path;
+    GFile *source_dir;
+    GFileEnumerator *enumerator;
+    GFileInfo *info;
+    int i;
+    GMainLoop *loop;
+
+    g_type_init ();
+
+    gst_init (&argc, &argv);
+
+    g_set_application_name ("Standalone-Server");
+
+    root_container = rygel_simple_container_new_root ("Sample implementation");
+    if (argc >= 2) {
+        path = g_strdup (argv[1]);
+    } else {
+        path = g_get_current_dir ();
+    }
+
+    source_dir = g_file_new_for_commandline_arg (path);
+    g_free (path);
+
+    enumerator = g_file_enumerate_children (source_dir,
+                                            G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME ","
+                                            G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,
+                                            G_FILE_QUERY_INFO_NONE,
+                                            NULL,
+                                            NULL);
+    info = g_file_enumerator_next_file (enumerator, NULL, NULL);
+    i = 0;
+    while (info != NULL) {
+        GFile *file;
+        const char *display_name, *content_type;
+        char *uri, *id;
+        RygelMediaItem *item = NULL;
+        GError *error = NULL;
+
+        display_name = g_file_info_get_display_name (info);
+        content_type = g_file_info_get_content_type (info);
+        file = g_file_get_child_for_display_name (source_dir, display_name, &error);
+        if (error != NULL) {
+            g_critical ("Failed to get child: %s", error->message);
+
+            return 127;
+        }
+        uri = g_file_get_uri (file);
+        g_object_unref (file);
+        id = g_strdup_printf ("%06d", i);
+
+        if (g_str_has_prefix (content_type, "audio/")) {
+            item = rygel_audio_item_new (id,
+                                         root_container,
+                                         display_name,
+                                         RYGEL_AUDIO_ITEM_UPNP_CLASS);
+        } else if (g_str_has_prefix (content_type, "video/")) {
+            item = rygel_video_item_new (id,
+                                         root_container,
+                                         display_name,
+                                         RYGEL_VIDEO_ITEM_UPNP_CLASS);
+        } else if (g_str_has_prefix (content_type, "image/")) {
+            item = rygel_image_item_new (id,
+                                         root_container,
+                                         display_name,
+                                         RYGEL_IMAGE_ITEM_UPNP_CLASS);
+        }
+        g_free (id);
+
+        if (item != NULL) {
+            RYGEL_MEDIA_ITEM (item)->mime_type = g_strdup (content_type);
+            rygel_simple_container_add_child_item (root_container, item);
+        }
+
+        i++;
+        info = g_file_enumerator_next_file (enumerator, NULL, NULL);
+    }
+
+    server = rygel_media_server_new ("LibRygel sample server", root_container);
+    rygel_media_device_add_interface (RYGEL_MEDIA_DEVICE (server), "eth0");
+    rygel_media_device_add_interface (RYGEL_MEDIA_DEVICE (server), "wlan0");
+
+    loop = g_main_loop_new (NULL, FALSE);
+    g_main_loop_run (loop);
+}

@@ -223,6 +223,7 @@ Makefile
 src/Makefile
 src/librygel-core/Makefile
 src/librygel-renderer/Makefile
+src/librygel-server/Makefile
 src/rygel/Makefile
 src/ui/Makefile
 src/plugins/Makefile
@@ -240,9 +241,11 @@ doc/Makefile
 doc/reference/Makefile
 doc/reference/librygel-core/Makefile
 doc/reference/librygel-renderer/Makefile
+doc/reference/librygel-server/Makefile
 po/Makefile.in
 rygel-core-1.0.pc
 rygel-renderer-1.0.pc
+rygel-server-1.0.pc
 tests/Makefile
 examples/Makefile
 ])
