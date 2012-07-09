@@ -24,6 +24,7 @@ LIBRYGEL_CORE_VAPI_SOURCE_FILES = \
 	rygel-user-config.vala \
 	rygel-video-item.vala \
 	rygel-media-container.vala \
+	rygel-media-device.vala \
 	rygel-media-item.vala \
 	rygel-media-object.vala \
 	rygel-media-server-plugin.vala \

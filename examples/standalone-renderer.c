@@ -68,9 +68,9 @@ int main(int argc, char *argv[])
                   NULL);
 
     if (argc >= 2) {
-        rygel_playbin_renderer_add_interface (renderer, argv[1]);
+        rygel_media_device_add_interface (RYGEL_MEDIA_DEVICE (renderer), argv[1]);
     } else {
-        rygel_playbin_renderer_add_interface (renderer, "eth0");
+        rygel_media_device_add_interface (RYGEL_MEDIA_DEVICE (renderer), "eth0");
     }
 
     loop = g_main_loop_new (NULL, FALSE);
