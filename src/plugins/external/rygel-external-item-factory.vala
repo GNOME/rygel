@@ -134,9 +134,14 @@ public class Rygel.External.ItemFactory {
     private void set_generic_metadata (MediaItem                 item,
                                        HashTable<string,Variant> props,
                                        string                    service_name) {
-        item.mime_type = this.get_string (props, "MIMEType");
-
-        var uris = (string[]) props.lookup ("URLs");
+        item.mime_type = get_mandatory_string_value (props,
+                                                     "MIMEType",
+                                                     "image/jpeg",
+                                                     service_name);
+        var uris = get_mandatory_string_list_value (props,
+                                                    "URLs",
+                                                    null,
+                                                    service_name);
         if (uris != null) {
             for (var i = 0; uris[i] != null; i++) {
                 item.add_uri (uris[i]);

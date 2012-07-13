@@ -175,10 +175,10 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                 var searchable = (bool) props.lookup ("Searchable");
                 props = yield props_iface.get_all (MediaObjectProxy.IFACE);
                 var path = (string) props.lookup ("Path");
-                var title = (string) props.lookup ("DisplayName");
-                if (title == null) {
-                    title = path;
-                }
+                title = get_mandatory_string_value (props,
+                                                    "DisplayName",
+                                                    path,
+                                                    this.service_name);
 
                 media_object = new Container (path,
                                               title,
@@ -244,7 +244,10 @@ public class Rygel.External.Container : Rygel.MediaContainer,
             }
 
             if (media_object == null) {
-                var title = (string) props.lookup ("DisplayName");
+                title = get_mandatory_string_value (props,
+                                                    "DisplayName",
+                                                    id,
+                                                    this.service_name);
 
                 if (type == "container") {
                     var child_count = (uint) props.lookup ("ChildCount");
@@ -312,10 +315,10 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                                          DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
             var props = yield props_iface.get_all (MediaContainerProxy.IFACE);
             var child_count = (uint) props.lookup ("ChildCount");
-            var title = props.lookup ("DisplayName");
-            if (title != null) {
-                this.title = (string) title;
-            }
+            this.title = get_mandatory_string_value (props,
+                                                     "DisplayName",
+                                                     this.id,
+                                                     this.service_name);
             this.child_count = (int) child_count;
         } catch (GLib.Error property_error) {
             warning ("Failed to update information about container '%s': %s",
