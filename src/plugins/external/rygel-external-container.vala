@@ -84,6 +84,10 @@ public class Rygel.External.Container : Rygel.MediaContainer,
             filter += object_prop;
         }
 
+        foreach (var container_prop in MediaContainerProxy.PROPERTIES) {
+            filter += container_prop;
+        }
+
         foreach (var item_prop in MediaItemProxy.PROPERTIES) {
             filter += item_prop;
         }
@@ -156,6 +160,33 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                         break;
                     }
                 }
+
+                // still not found; could be it's a child of a container we
+                // couldn't browse at create-time since it had an unknown
+                // number of children
+                Properties props_iface = yield Bus.get_proxy
+                                            (BusType.SESSION,
+                                             this.service_name,
+                                             id,
+                                             DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
+
+                var props = yield props_iface.get_all (MediaContainerProxy.IFACE);
+                var child_count = (uint) props.lookup ("ChildCount");
+                var searchable = (bool) props.lookup ("Searchable");
+                props = yield props_iface.get_all (MediaObjectProxy.IFACE);
+                var path = (string) props.lookup ("Path");
+                var title = (string) props.lookup ("DisplayName");
+                if (title == null) {
+                    title = path;
+                }
+
+                media_object = new Container (path,
+                                              title,
+                                              child_count,
+                                              searchable,
+                                              this.service_name,
+                                              path,
+                                              this);
             }
         } else {
             var parent_container = new DummyContainer
@@ -293,8 +324,10 @@ public class Rygel.External.Container : Rygel.MediaContainer,
         }
 
         try {
-            // Update our information about the container
-            yield this.refresh_child_containers ();
+            if (this.child_count < int.MAX) {
+                // Update our information about the container
+                yield this.refresh_child_containers ();
+            }
         } catch (GLib.Error err) {
             warning ("Failed to update information about container '%s': %s",
                      this.actual_container.get_object_path (),
