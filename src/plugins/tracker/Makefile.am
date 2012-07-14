@@ -40,7 +40,6 @@ librygel_tracker_la_SOURCES = \
 	rygel-tracker-music-item-factory.vala \
 	rygel-tracker-picture-item-factory.vala \
 	rygel-tracker-plugin.vala \
-	rygel-tracker-sparql-connection.vala \
 	rygel-tracker-plugin-factory.vala \
 	rygel-tracker-interfaces.vala
 

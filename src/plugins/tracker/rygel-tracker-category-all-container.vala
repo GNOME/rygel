@@ -49,7 +49,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         this.search_classes = new ArrayList<string> ();
 
         try {
-            this.resources = Connection.get ();
+            this.resources = Sparql.Connection.get ();
         } catch (Error io_error) {
             critical (_("Failed to create a Tracker connection:: %s"),
                       io_error.message);

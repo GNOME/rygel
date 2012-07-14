@@ -59,7 +59,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         this.child_class = child_class;
 
         try {
-            this.create_proxies ();
+            this.resources = Sparql.Connection.get ();
         } catch (Error error) {
             critical (_("Failed to create Tracker connection: %s"), error.message);
 
@@ -193,10 +193,6 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
 
     private bool is_our_child (string id) {
         return id.has_prefix (this.id + ":");
-    }
-
-    private void create_proxies () throws Error {
-        this.resources = Connection.get ();
     }
 }
 

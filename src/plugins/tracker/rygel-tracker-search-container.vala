@@ -97,7 +97,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                                          order_by);
 
         try {
-            this.resources = Connection.get ();
+            this.resources = Sparql.Connection.get ();
 
             this.get_children_count.begin ();
         } catch (Error error) {
