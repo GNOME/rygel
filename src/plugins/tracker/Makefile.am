@@ -41,11 +41,12 @@ librygel_tracker_la_SOURCES = \
 	rygel-tracker-picture-item-factory.vala \
 	rygel-tracker-plugin.vala \
 	rygel-tracker-sparql-connection.vala \
+	rygel-tracker-plugin-factory.vala \
 	rygel-tracker-interfaces.vala
 
 librygel_tracker_la_VALAFLAGS = --pkg posix \
 	--pkg gupnp-dlna-1.0 \
-	--pkg tracker-sparql-0.12 \
+	--pkg tracker-sparql-0.14 \
 	$(RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS)
 librygel_tracker_la_LIBADD = $(RYGEL_COMMON_SERVER_LIBS) $(LIBGUPNP_DLNA_LIBS) \
 	$(TRACKER_SPARQL_LIBS)
