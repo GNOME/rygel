@@ -50,14 +50,14 @@
  *   |..
  */
 public class Rygel.Tracker.Titles : MetadataValues {
-    private const string[] KEY_CHAIN = { "nie:title", null };
+    private const string[] KEY_CHAIN = { "dc:title", null };
 
     public Titles (MediaContainer parent, ItemFactory item_factory) {
         base (parent.id + "Titles",
               parent,
               _("Titles"),
               item_factory,
-              KEY_CHAIN);
+              "dc:title");
     }
 
     // The parent class will only create a child container for each unique

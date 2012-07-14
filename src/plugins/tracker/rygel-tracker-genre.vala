@@ -26,13 +26,11 @@
  */
 public class Rygel.Tracker.Genre : MetadataValues {
     public Genre (Music parent) {
-        var key_chain = new string[] { "nfo:genre", null };
-
         base (parent.id + "Genre",
               parent,
               _("Genre"),
               parent.item_factory,
-              key_chain,
+              "upnp:genre",
               MediaContainer.MUSIC_GENRE);
     }
 }

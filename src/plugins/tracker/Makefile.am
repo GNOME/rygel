@@ -13,6 +13,7 @@ librygel_tracker_la_SOURCES = \
 	rygel-tracker-videos.vala \
 	rygel-tracker-pictures.vala \
 	rygel-tracker-metadata-values.vala \
+	rygel-tracker-metadata-multivalues.vala \
 	rygel-tracker-tags.vala \
 	rygel-tracker-years.vala \
 	rygel-tracker-titles.vala \

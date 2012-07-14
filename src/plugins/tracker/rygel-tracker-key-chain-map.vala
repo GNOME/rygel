@@ -124,4 +124,3 @@ public class Rygel.Tracker.KeyChainMap : Object {
         this.add_function (property, str.str);
     }
 }
-

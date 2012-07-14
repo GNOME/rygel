@@ -26,15 +26,11 @@
  */
 public class Rygel.Tracker.Artists : MetadataValues {
     public Artists (Music parent) {
-        var key_chain = new string[] { "nmm:performer",
-                                       "nmm:artistName",
-                                       null };
-
         base (parent.id + "Artists",
               parent,
               _("Artists"),
               parent.item_factory,
-              key_chain,
+              "upnp:artist",
               MediaContainer.MUSIC_ARTIST);
     }
 }

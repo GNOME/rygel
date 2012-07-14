@@ -26,15 +26,11 @@
  */
 public class Rygel.Tracker.Albums : MetadataValues {
     public Albums (Music parent) {
-        var key_chain = new string[] { "nmm:musicAlbum",
-                                       "nmm:albumTitle",
-                                       null };
-
         base (parent.id + "Albums",
               parent,
               _("Albums"),
               parent.item_factory,
-              key_chain,
+              "upnp:album",
               MediaContainer.MUSIC_ALBUM);
     }
 }

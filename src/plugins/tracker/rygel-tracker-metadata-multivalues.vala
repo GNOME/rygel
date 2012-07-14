@@ -29,7 +29,7 @@ using Tracker;
 /**
  * Container listing possible values of a particuler Tracker metadata key.
  */
-public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
+public abstract class Rygel.Tracker.MetadataMultiValues : Rygel.SimpleContainer {
     /* class-wide constants */
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
@@ -37,22 +37,25 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
     private ItemFactory item_factory;
     private bool update_in_progress = false;
 
-    private string property;
+    // In tracker 0.7, we might don't get values of keys in place so you need a
+    // chain of keys to reach to final destination. For instances:
+    // nmm:Performer -> nmm:artistName
+    public string[] key_chain;
 
     private string child_class;
 
     private Sparql.Connection resources;
 
-    public MetadataValues (string         id,
-                           MediaContainer parent,
-                           string         title,
-                           ItemFactory    item_factory,
-                           string         property,
-                           string?        child_class = null) {
+    public MetadataMultiValues (string         id,
+                                MediaContainer parent,
+                                string         title,
+                                ItemFactory    item_factory,
+                                string[]       key_chain,
+                                string?        child_class = null) {
         base (id, parent, title);
 
         this.item_factory = item_factory;
-        this.property = property;
+        this.key_chain = key_chain;
         this.child_class = child_class;
 
         try {
@@ -82,16 +85,34 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
                                         "a",
                                         this.item_factory.category));
 
-        var key_chain_map = KeyChainMap.get_key_chain_map ();
+        // All variables used in the query
+        var num_keys = this.key_chain.length - 1;
+        var variables = new string[num_keys];
+        for (i = 0; i < num_keys; i++) {
+            variables[i] = "?" + key_chain[i].replace (":", "_");
+
+            string subject;
+            if (i == 0) {
+                subject = SelectionQuery.ITEM_VARIABLE;
+            } else {
+                subject = variables[i - 1];
+            }
+
+            triplets.add (new QueryTriplet (subject,
+                                            this.key_chain[i],
+                                            variables[i]));
+        }
+
+        // Variables to select from query
         var selected = new ArrayList<string> ();
-        selected.add ("DISTINCT " +
-                      key_chain_map.map_property (this.property) +
-                      " AS x");
+        // Last variable is the only thing we are interested in the result
+        var last_variable = variables[num_keys - 1];
+        selected.add ("DISTINCT " + last_variable);
 
         var query = new SelectionQuery (selected,
                                         triplets,
                                         null,
-                                        "?x");
+                                        last_variable);
 
         try {
             yield query.execute (this.resources);
@@ -119,8 +140,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
 
                 // However we constrain the object of our last triplet.
                 var filters = new ArrayList<string> ();
-                var property = key_chain_map.map_property (this.property);
-                var filter = this.create_filter (property, value);
+                var filter = this.create_filter (child_triplets.last ().obj, value);
                 filters.add (filter);
 
                 var container = new SearchContainer (id,
@@ -137,7 +157,7 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
             }
         } catch (Error error) {
             critical (_("Error getting all values for '%s': %s"),
-                      this.id,
+                      string.joinv (" -> ", this.key_chain),
                       error.message);
             this.update_in_progress = false;
 
@@ -175,4 +195,3 @@ public abstract class Rygel.Tracker.MetadataValues : Rygel.SimpleContainer {
         return id.has_prefix (this.id + ":");
     }
 }
-
