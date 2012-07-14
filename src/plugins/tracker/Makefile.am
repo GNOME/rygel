@@ -2,7 +2,7 @@ include ../../../common.am
 
 plugin_LTLIBRARIES = librygel-tracker.la
 
-AM_CFLAGS += -DG_LOG_DOMAIN='"Tracker"' \
+AM_CFLAGS += -DG_LOG_DOMAIN='"Rygel-Tracker"' \
     $(LIBGUPNP_DLNA_CFLAGS) \
     $(TRACKER_SPARQL_CFLAGS)
 
