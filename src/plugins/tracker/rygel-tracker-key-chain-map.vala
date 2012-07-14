@@ -49,7 +49,7 @@ public class Rygel.Tracker.KeyChainMap : Object {
                       "FILTER (?o IN (nfo:FileDataObject, " +
                       "nfo:RemoteDataObject)) }), true)");
         add_key_chain ("fileName", "nfo:fileName");
-        add_key_chain ("dc:title", "nie:title");
+        this.add_alternative ("dc:title", "nie:title", "nfo:fileName");
         add_key_chain ("dlnaProfile", "nmm:dlnaProfile");
         add_key_chain ("mimeType", "nie:mimeType");
         this.add_alternative ("res@size", "nfo:fileSize", "nie:byteSize");
