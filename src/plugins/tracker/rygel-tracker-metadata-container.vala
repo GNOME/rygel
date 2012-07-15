@@ -78,7 +78,11 @@ public abstract class Rygel.Tracker.MetadataContainer : Rygel.SimpleContainer {
 
             /* Iterate through all the values */
             while (query.result.next ()) {
-                string value = query.result.get_string (0);
+                if (!query.result.is_bound (0)) {
+                    continue;
+                }
+
+                var value = query.result.get_string (0);
 
                 if (value == "") {
                     continue;
