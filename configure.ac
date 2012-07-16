@@ -64,10 +64,6 @@ PKG_CHECK_MODULES(GEE, gee-1.0 >= $GEE_REQUIRED)
 PKG_CHECK_MODULES(UUID, uuid >= $UUID_REQUIRED)
 PKG_CHECK_MODULES(LIBSOUP, libsoup-2.4 >= $LIBSOUP_REQUIRED)
 
-dnl glib-genmarshal
-GLIB_GENMARSHAL=`pkg-config --variable=glib_genmarshal glib-2.0`
-AC_SUBST(GLIB_GENMARSHAL)
-
 dnl Add plugins
 RYGEL_ADD_PLUGIN([test],[Test],[no])
 RYGEL_ADD_PLUGIN([tracker],[Tracker],[yes])
