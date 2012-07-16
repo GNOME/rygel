@@ -19,7 +19,7 @@ AC_SUBST(abs_top_builddir)
 AC_SUBST(VERSION)
 
 dnl Initialize automake
-AM_INIT_AUTOMAKE([1.11.1 tar-ustar no-dist-gzip dist-xz])
+AM_INIT_AUTOMAKE([1.11.1 tar-ustar no-dist-gzip dist-xz -Wno-portability])
 AM_MAINTAINER_MODE([enable])
 
 dnl Initialize libtool
