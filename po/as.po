@@ -1,0 +1,670 @@
+# Assamese translation for rygel.
+# Copyright (C) 2012 rygel's COPYRIGHT HOLDER
+# This file is distributed under the same license as the rygel package.
+#
+# Nilamdyuti Goswami <ngoswami@redhat.com>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: rygel rygel-0-14\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-07-17 10:05+0000\n"
+"PO-Revision-Date: 2012-07-17 20:37+0530\n"
+"Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
+"Language-Team: as_IN <kde-i18n-doc@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: as\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 1.0\n"
+
+#: ../data/rygel-preferences.ui.h:1
+#: ../data/rygel-preferences.desktop.in.in.h:1
+msgid "Rygel Preferences"
+msgstr "Rygel পছন্দসমূহ"
+
+#: ../data/rygel-preferences.ui.h:2
+msgid "_Share media through DLNA"
+msgstr "DLNA ৰে মাধ্যম অংশীদাৰী কৰক (_S)"
+
+#: ../data/rygel-preferences.ui.h:3
+msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
+msgstr ""
+"DLNA ৰ সহায়ত মাধ্যম, যেনে ফ'টোসমূহ, ভিডিঅ'সমূহ আৰু সংগিত অংশীদাৰী কৰা সামৰ্থবান "
+"কৰক"
+
+#: ../data/rygel-preferences.ui.h:4
+msgid "Add a directory to the list of shared directories"
+msgstr "অংশীদাৰী ডাইৰেকটৰিসমূহৰ তালিকালে এটা ডাইৰেকটৰি যোগ কৰক"
+
+#: ../data/rygel-preferences.ui.h:5
+msgid "Add shared directory"
+msgstr "অংশীদাৰী ডাইৰেকটৰি যোগ কৰক"
+
+#: ../data/rygel-preferences.ui.h:6
+msgid "Remove a directory from the list of shared directories"
+msgstr "অংশীদাৰী ডাইৰেকটৰিসমূহৰ তালিকাৰ পৰা এটা ডাইৰেকটৰি আতৰাওক"
+
+#: ../data/rygel-preferences.ui.h:7
+msgid "Remove shared directory"
+msgstr "অংশীদাৰী ডাইৰেকটৰি আতৰাওক"
+
+#. Network Interface
+#: ../data/rygel-preferences.ui.h:9
+msgid "_Network:"
+msgstr "নেটৱাৰ্ক (_N):"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid ""
+"Select the network interface that DLNA media will be shared on, or share "
+"media on all interfaces"
+msgstr ""
+"DLNA মাধ্যম অংশীদাৰী কৰা নেটৱাৰ্ক আন্তঃপৃষ্ঠ বাছক, অথবা মাধ্যমক সকলো আন্তঃপৃষ্টত "
+"অংশীদাৰী কৰক"
+
+#: ../data/rygel-preferences.ui.h:11
+msgid "Any"
+msgstr "যিকোনো"
+
+#: ../data/rygel-preferences.ui.h:12
+msgid "Select folders"
+msgstr "ফোল্ডাৰসমূহ বাছক"
+
+#: ../data/rygel-preferences.desktop.in.in.h:2
+msgid "UPnP/DLNA Preferences"
+msgstr "UPnP/DLNA পছন্দসমূহ"
+
+#: ../data/rygel.desktop.in.in.h:1
+msgid "Rygel"
+msgstr "Rygel"
+
+#: ../data/rygel.desktop.in.in.h:2
+msgid "UPnP/DLNA Services"
+msgstr "UPnP/DLNA সেৱাসমূহ"
+
+#: ../src/librygel-renderer/rygel-playbin-plugin.vala:34
+msgid "GStreamer Player"
+msgstr "GStreamer প্লেয়াৰ"
+
+#: ../src/plugins/media-export/rygel-media-export-database.vala:210
+#, c-format
+msgid "Failed to roll back transaction: %s"
+msgstr "লেন-দেন উভতাই নিওতে ত্ৰুটি: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:137
+#: ../src/librygel-core/rygel-plugin-loader.vala:194
+#, c-format
+msgid "Failed to query content type for '%s'"
+msgstr "'%s' ৰ বাবে সমল ধৰণ প্ৰশ্ন কৰিবলে ব্যৰ্থ"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:112
+#, c-format
+msgid "Failed to add item with ID %s: %s"
+msgstr "ID %s ৰ সৈতে বস্তু যোগ কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:38
+#, c-format
+msgid "Failed to attach to D-Bus session bus: %s"
+msgstr "D-Bus অধিবেশন বাচৰ সৈতে সংলগ্ন কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:78
+msgid "No metadata extractor available. Will not crawl."
+msgstr "কোনো মেটাডাটা নিষ্কাষক উপলব্ধ নাই। বগুৱা নহব।"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:121
+#, c-format
+msgid "'%s' harvested"
+msgstr "'%s' উপাৰ্জন কৰা হৈছে"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:211
+#, c-format
+msgid "Error fetching object '%s' from database: %s"
+msgstr "ডাটাবেইচৰ পৰা অবজেক্ট '%s' প্ৰাপ্ত কৰোতে ত্ৰুটি: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:217
+#, c-format
+msgid "Failed to access media cache: %s"
+msgstr "মাধ্যম ক্যাশ অভিগম কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:256
+#, c-format
+msgid "Error removing object from database: %s"
+msgstr "ডাটাবেইচৰ পৰা অবজেক্ট আতৰাওতে ত্ৰুটি: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:40
+msgid "Will not monitor file changes"
+msgstr "নথিপত্ৰ পৰিবৰ্তনসমূহ পৰ্যবেক্ষণ কৰা নহব"
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
+#, c-format
+msgid "Failed to get file info for %s"
+msgstr "%s ৰ বাবে নথিপত্ৰ তথ্য প্ৰাপ্ত কৰিবলে ব্যৰ্থ"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:30
+#: ../src/plugins/tracker/rygel-tracker-years.vala:35
+msgid "Year"
+msgstr "বছৰ"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:31
+msgid "All"
+msgstr "সকলো"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:35
+msgid "Artist"
+msgstr "শিল্পী"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:36
+msgid "Album"
+msgstr "এলবাম"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:37
+#: ../src/plugins/tracker/rygel-tracker-genre.vala:33
+msgid "Genre"
+msgstr "ধৰণ"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:53
+msgid "Files & Folders"
+msgstr "নথিপত্ৰসমূহ & ফোল্ডাৰসমূহ"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:104
+#, c-format
+msgid "Failed to remove URI: %s"
+msgstr "URl আতৰাবলে ব্যৰ্থ:  %s"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:348
+#: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
+msgid "@REALNAME@'s media"
+msgstr "@REALNAME@ ৰ মাধ্যম"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:355
+#, c-format
+msgid "Failed to create MediaExport D-Bus service: %s"
+msgstr "MediaExport D-Bus সেৱা সৃষ্টি কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:395
+#, c-format
+msgid "Failed to remove entry: %s"
+msgstr "প্ৰৱিষ্টি আতৰাবলে ব্যৰ্থ: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:416
+msgid "Music"
+msgstr "সংগীত"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:419
+msgid "Pictures"
+msgstr "ছবিসমূহ"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:421
+msgid "Videos"
+msgstr "ভিডিঅ'সমূহ"
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:56
+#, c-format
+msgid "Failed to create D-Bus proxies: %s"
+msgstr "D-Bus প্ৰক্সিসমূহ সৃষ্টি কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:64
+#, c-format
+msgid "Failed to construct URI for folder '%s': %s"
+msgstr "ফোল্ডাৰ '%s' ৰ বাবে URl নিৰ্মাণ কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:62
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:109
+#, c-format
+msgid "Failed to connect to session bus: %s"
+msgstr "অধিবেশন বাচৰ সৈতে সংযোগ কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:118
+#, c-format
+msgid "Error getting all values for '%s': %s"
+msgstr "'%s' ৰ বাবে সকলো মান প্ৰাপ্ত কৰিবলে ত্ৰুটি: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:41
+#, c-format
+msgid "Failed to start Tracker service: %s. Plugin disabled."
+msgstr "অনুকৰক সেৱা আৰম্ভ কৰিবলে ব্যৰ্থ: %s। প্লাগিন অসামৰ্থবান।"
+
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:221
+#, c-format
+msgid "Error getting item count under category '%s': %s"
+msgstr "'%s' বিভাগৰ অন্তৰ্গত বস্তুৰ গণনা প্ৰাপ্ত কৰিবলে ত্ৰুটি: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-albums.vala:35
+msgid "Albums"
+msgstr "এলবামসমূহ"
+
+#: ../src/plugins/tracker/rygel-tracker-artists.vala:35
+msgid "Artists"
+msgstr "শিল্পীসকল"
+
+#: ../src/plugins/tracker/rygel-tracker-titles.vala:58
+msgid "Titles"
+msgstr "শীৰ্ষকসমূহ"
+
+#: ../src/librygel-core/rygel-media-query-action.vala:118
+#: ../src/librygel-core/rygel-media-query-action.vala:181
+#: ../src/librygel-core/rygel-item-creator.vala:127
+#: ../src/librygel-core/rygel-item-creator.vala:279
+#: ../src/librygel-core/rygel-item-destroyer.vala:53
+#: ../src/librygel-core/rygel-item-destroyer.vala:100
+msgid "No such object"
+msgstr "এনে কোনো অবজেক্ট নাই"
+
+#: ../src/librygel-core/rygel-media-query-action.vala:123
+msgid "Invalid range"
+msgstr "অবৈধ বিস্তাৰ"
+
+#: ../src/librygel-core/rygel-browse.vala:63
+msgid "Invalid Arguments"
+msgstr "অবৈধ তৰ্কসমূহ"
+
+#: ../src/librygel-core/rygel-browse.vala:94
+msgid "Cannot browse children on item"
+msgstr "বস্তুত চাইল্ড ব্ৰাউছ কৰিব নোৱাৰি"
+
+#: ../src/librygel-core/rygel-browse.vala:125
+#, c-format
+msgid "Failed to browse '%s': %s\n"
+msgstr "'%s' ব্ৰাউছ কৰিবলে ব্যৰ্থ: %s\n"
+
+#: ../src/librygel-core/rygel-cmdline-config.vala:158
+#: ../src/librygel-core/rygel-cmdline-config.vala:166
+#: ../src/librygel-core/rygel-cmdline-config.vala:174
+#: ../src/librygel-core/rygel-cmdline-config.vala:182
+#: ../src/librygel-core/rygel-cmdline-config.vala:190
+#: ../src/librygel-core/rygel-cmdline-config.vala:198
+#: ../src/librygel-core/rygel-cmdline-config.vala:206
+#: ../src/librygel-core/rygel-cmdline-config.vala:214
+#: ../src/librygel-core/rygel-cmdline-config.vala:222
+#: ../src/librygel-core/rygel-cmdline-config.vala:230
+#: ../src/librygel-core/rygel-cmdline-config.vala:238
+#: ../src/librygel-core/rygel-cmdline-config.vala:246
+#: ../src/librygel-core/rygel-cmdline-config.vala:254
+#: ../src/librygel-core/rygel-cmdline-config.vala:280
+#: ../src/librygel-core/rygel-cmdline-config.vala:299
+#: ../src/librygel-core/rygel-cmdline-config.vala:305
+#: ../src/librygel-core/rygel-cmdline-config.vala:312
+#: ../src/librygel-core/rygel-cmdline-config.vala:316
+#: ../src/librygel-core/rygel-cmdline-config.vala:320
+#: ../src/librygel-core/rygel-cmdline-config.vala:343
+#: ../src/librygel-core/rygel-cmdline-config.vala:369
+#: ../src/librygel-core/rygel-cmdline-config.vala:398
+#: ../src/librygel-core/rygel-cmdline-config.vala:424
+#: ../src/librygel-core/rygel-cmdline-config.vala:449
+#: ../src/librygel-core/rygel-meta-config.vala:95
+#: ../src/librygel-core/rygel-meta-config.vala:114
+#: ../src/librygel-core/rygel-meta-config.vala:133
+#: ../src/librygel-core/rygel-meta-config.vala:152
+#: ../src/librygel-core/rygel-meta-config.vala:171
+#: ../src/librygel-core/rygel-meta-config.vala:190
+#: ../src/librygel-core/rygel-meta-config.vala:209
+#: ../src/librygel-core/rygel-meta-config.vala:228
+#: ../src/librygel-core/rygel-meta-config.vala:247
+#: ../src/librygel-core/rygel-meta-config.vala:266
+#: ../src/librygel-core/rygel-meta-config.vala:285
+#: ../src/librygel-core/rygel-meta-config.vala:304
+#: ../src/librygel-core/rygel-meta-config.vala:323
+msgid "No value available"
+msgstr "কোনো মান উপলব্ধ নাই"
+
+#: ../src/librygel-core/rygel-connection-manager.vala:89
+#: ../src/librygel-core/rygel-connection-manager.vala:103
+#: ../src/librygel-core/rygel-connection-manager.vala:125
+#: ../src/librygel-core/rygel-content-directory.vala:198
+#: ../src/librygel-core/rygel-content-directory.vala:225
+#: ../src/librygel-core/rygel-content-directory.vala:244
+#: ../src/librygel-core/rygel-content-directory.vala:279
+#: ../src/librygel-core/rygel-content-directory.vala:304
+#: ../src/librygel-core/rygel-content-directory.vala:329
+#: ../src/librygel-core/rygel-media-receiver-registrar.vala:59
+msgid "Invalid argument"
+msgstr "অবৈধ তৰ্ক"
+
+#: ../src/librygel-core/rygel-connection-manager.vala:119
+msgid "Invalid connection reference"
+msgstr "অবৈধ সংযোগ প্ৰসংগ"
+
+#: ../src/librygel-core/rygel-content-directory.vala:217
+#: ../src/librygel-core/rygel-content-directory.vala:236
+msgid "No such file transfer"
+msgstr "এনে কোনো নথিপত্ৰ স্থানান্তৰ নাই"
+
+#: ../src/librygel-core/rygel-av-transport.vala:215
+#: ../src/librygel-core/rygel-rendering-control.vala:123
+msgid "Invalid Args"
+msgstr "অবৈধ Args"
+
+#: ../src/librygel-core/rygel-av-transport.vala:221
+#: ../src/librygel-core/rygel-rendering-control.vala:129
+msgid "Invalid InstanceID"
+msgstr "অবৈধ InstanceID"
+
+#: ../src/librygel-core/rygel-av-transport.vala:481
+msgid "Play speed not supported"
+msgstr "খেল গতি সমৰ্থিত নহয়"
+
+#: ../src/librygel-core/rygel-av-transport.vala:497
+#: ../src/librygel-core/rygel-av-transport.vala:542
+#: ../src/librygel-core/rygel-av-transport.vala:546
+msgid "Transition not available"
+msgstr "স্থানান্তৰ উপলব্ধ নহয়"
+
+#: ../src/librygel-core/rygel-av-transport.vala:526
+msgid "Seek failed"
+msgstr "সন্ধান ব্যৰ্থ"
+
+#: ../src/librygel-core/rygel-av-transport.vala:535
+msgid "Seek mode not supported"
+msgstr "সন্ধান অৱস্থা সমৰ্থিত নহয়"
+
+#: ../src/librygel-core/rygel-rendering-control.vala:160
+msgid "Invalid Name"
+msgstr "অবৈধ নাম"
+
+#: ../src/librygel-core/rygel-rendering-control.vala:174
+msgid "Invalid Channel"
+msgstr "অবৈধ চেনেল"
+
+#: ../src/librygel-core/rygel-rendering-control.vala:210
+#: ../src/librygel-core/rygel-rendering-control.vala:252
+msgid "ActionFailed"
+msgstr "ActionFailed"
+
+#: ../src/librygel-core/rygel-rendering-control.vala:261
+msgid "Action Failed"
+msgstr "কাৰ্য্য ব্যৰ্থ হল"
+
+#: ../src/librygel-core/rygel-gst-utils.vala:38
+#, c-format
+msgid "Required element %s missing"
+msgstr "প্ৰয়োজনীয় উপাদান %s সন্ধানহিন"
+
+#. Range header was present but invalid
+#: ../src/librygel-core/rygel-http-byte-seek.vala:47
+#: ../src/librygel-core/rygel-http-byte-seek.vala:52
+#: ../src/librygel-core/rygel-http-time-seek.vala:49
+#: ../src/librygel-core/rygel-http-time-seek.vala:61
+#: ../src/librygel-core/rygel-http-time-seek.vala:68
+#: ../src/librygel-core/rygel-http-time-seek.vala:83
+#, c-format
+msgid "Invalid Range '%s'"
+msgstr "অবৈধ বিস্তাৰ '%s'"
+
+#: ../src/librygel-core/rygel-http-get.vala:59
+msgid "Invalid Request"
+msgstr "অবৈধ অনুৰোধ"
+
+#: ../src/librygel-core/rygel-http-identity-handler.vala:89
+#: ../src/librygel-core/rygel-http-transcode-handler.vala:57
+msgid "Not found"
+msgstr "পোৱা নগল"
+
+#: ../src/librygel-core/rygel-http-item-uri.vala:127
+#, c-format
+msgid "Invalid URI '%s'"
+msgstr "অবৈধ URl '%s'"
+
+#: ../src/librygel-core/rygel-http-item-uri.vala:166
+msgid "Not Found"
+msgstr "পোৱা নগল"
+
+#: ../src/librygel-core/rygel-http-post.vala:62
+#: ../src/librygel-core/rygel-import-resource.vala:191
+#, c-format
+msgid "Pushing data to non-empty item '%s' not allowed"
+msgstr "ৰিক্ত নহোৱা বস্তু '%s' লে তথ্য ঠেলা মৰাৰ অনুমতি নাই"
+
+#: ../src/librygel-core/rygel-http-post.vala:70
+#, c-format
+msgid "No writable URI for %s available"
+msgstr "%s ৰ বাবে কোনো লিখিব পৰা URl উপলব্ধ নাই"
+
+#. translators: Dotfile is the filename with prefix "."
+#: ../src/librygel-core/rygel-http-post.vala:185
+#, c-format
+msgid "Failed to move dotfile %s: %s"
+msgstr "dotfile %s স্থানান্তৰ কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/librygel-core/rygel-http-request.vala:89
+#, c-format
+msgid "Requested item '%s' not found"
+msgstr "অনুৰোধ কৰা বস্তু '%s' পোৱা নগল"
+
+#: ../src/librygel-core/rygel-http-response.vala:156
+#: ../src/librygel-core/rygel-http-response.vala:177
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr "%s ক %s লে সংযোগ কৰিবলে ব্যৰ্থ"
+
+#: ../src/librygel-core/rygel-http-response.vala:192
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr "পেড %s ক %s লে সংযোগ কৰিবলে ব্যৰ্থ"
+
+#: ../src/librygel-core/rygel-http-response.vala:235
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr "পাইপলাইন %s ৰ পৰা ত্ৰুটি: %s"
+
+#: ../src/librygel-core/rygel-http-response.vala:242
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr "পাইপলাইন %s ৰ পৰা সতৰ্কবাৰ্তা: %s"
+
+#: ../src/librygel-core/rygel-http-response.vala:285
+#, c-format
+msgid "Failed to seek to offset %lld"
+msgstr "অফচেট %lld লে সন্ধান কৰিবলে ব্যৰ্থ"
+
+#: ../src/librygel-core/rygel-http-seek.vala:51
+#, c-format
+msgid "Out Of Range Start '%ld'"
+msgstr "বিস্তাৰৰ বাহিৰ আৰম্ভণি '%ld'"
+
+#: ../src/librygel-core/rygel-http-seek.vala:55
+#, c-format
+msgid "Out Of Range Stop '%ld'"
+msgstr "বিস্তাৰৰ বাহিৰ বন্ধ '%ld'"
+
+#: ../src/librygel-core/rygel-import-resource.vala:124
+#, c-format
+msgid "Failed to get original URI for '%s': %s"
+msgstr "'%s' ৰ বাবে প্ৰকৃত URl প্ৰাপ্ত কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/librygel-core/rygel-import-resource.vala:188
+#, c-format
+msgid "URI '%s' invalid for importing contents to"
+msgstr "URl '%s' সমলসমূহ ইমপোৰ্ট কৰাৰ বাবে অবৈধ"
+
+#: ../src/librygel-core/rygel-item-creator.vala:118
+msgid "'Elements' argument missing."
+msgstr "'Elements' তৰ্ক সন্ধানহিন।"
+
+#: ../src/librygel-core/rygel-item-creator.vala:121
+msgid "Comments not allowed in XML"
+msgstr "XML ত মন্তব্যৰ অনুমতি নাই"
+
+#: ../src/librygel-core/rygel-item-creator.vala:149
+#, c-format
+msgid "No items in DIDL-Lite from client: '%s'"
+msgstr "ক্লাএন্টৰ পৰা DIDL-Lite ত কোনো বস্তু নাই: '%s'"
+
+#: ../src/librygel-core/rygel-item-creator.vala:283
+#: ../src/librygel-core/rygel-item-creator.vala:518
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr "%s ত অবজেক্ট সৃষ্টি কৰাৰ অনুমতি নাই"
+
+#: ../src/librygel-core/rygel-item-creator.vala:311
+#, c-format
+msgid "Failed to create item under '%s': %s"
+msgstr "'%s' ৰ অন্তৰ্গত বস্তু সৃষ্টি কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/librygel-core/rygel-item-destroyer.vala:60
+#, c-format
+msgid "Successfully destroyed object '%s'"
+msgstr "অবজেক্ট '%s' সফলভাৱে ধ্বংস কৰা হল"
+
+#: ../src/librygel-core/rygel-item-destroyer.vala:68
+#, c-format
+msgid "Failed to destroy object '%s': %s"
+msgstr "অবজেক্ট '%s' ধ্বংস কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/librygel-core/rygel-item-destroyer.vala:103
+#, c-format
+msgid "Removal of object %s not allowed"
+msgstr "অবজেক্ট %s আতৰোৱাৰ অনুমতি নাই"
+
+#: ../src/librygel-core/rygel-item-destroyer.vala:106
+#, c-format
+msgid "Object removal from %s not allowed"
+msgstr "%s ৰ পৰা অবজেক্ট আতৰোৱাৰ অনুমতি নাই"
+
+#: ../src/librygel-core/rygel-log-handler.vala:68
+#, c-format
+msgid "Failed to get log level from configuration: %s"
+msgstr "সংৰূপৰ পৰা লগ স্তৰ প্ৰাপ্ত কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/librygel-core/rygel-media-item.vala:273
+#, c-format
+msgid "Bad URI: %s"
+msgstr "বেয়া URl: %s"
+
+#. Assume the protocol to be the scheme of the URI
+#: ../src/librygel-core/rygel-media-item.vala:285
+#, c-format
+msgid "Failed to probe protocol for URI %s. Assuming '%s'"
+msgstr "URl %s ৰ বাবে প্ৰটোকল বিশ্লেষণ কৰিবলে ব্যৰ্থ। অনুমান কৰা হৈছে '%s'"
+
+#: ../src/librygel-core/rygel-meta-config.vala:77
+#, c-format
+msgid "Failed to load user configuration: %s"
+msgstr "ব্যৱহাৰকাৰী সংৰূপ ল'ড কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/librygel-core/rygel-meta-config.vala:406
+#: ../src/librygel-core/rygel-meta-config.vala:425
+#, c-format
+msgid "No value set for '%s/enabled'"
+msgstr "'%s/enabled' ৰ বাবে কোনো মান সংহতি কৰা হোৱা নাই"
+
+#: ../src/librygel-core/rygel-meta-config.vala:445
+#: ../src/librygel-core/rygel-meta-config.vala:467
+#: ../src/librygel-core/rygel-meta-config.vala:493
+#: ../src/librygel-core/rygel-meta-config.vala:515
+#: ../src/librygel-core/rygel-meta-config.vala:539
+#, c-format
+msgid "No value available for '%s/%s'"
+msgstr "'%s/%s' ৰ বাবে কোনো মান উপলব্ধ নাই"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:85
+#, c-format
+msgid "New plugin '%s' available"
+msgstr "নতুন প্লাগিন '%s' উপলব্ধ"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:119
+#, c-format
+msgid "Error listing contents of folder '%s': %s"
+msgstr "ফোল্ডাৰ '%s' ৰ সমলসমূহ তালিকাভুক্ত কৰিবলে ত্ৰুটি: %s"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:147
+#, c-format
+msgid "A module named %s is already loaded"
+msgstr "%s নামৰ মডিউল ইতিমধ্যে ল'ড কৰা আছে"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:156
+#, c-format
+msgid "Failed to load module from path '%s': %s"
+msgstr "পথ '%s' ৰ পৰা মডিউল ল'ড কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:166
+#, c-format
+msgid "Failed to find entry point function '%s' in '%s': %s"
+msgstr "'%s' ত প্ৰৱিষ্টি বিন্দু ফলন '%s' বিচাৰি পাবলে ব্যৰ্থ: %s"
+
+#: ../src/librygel-core/rygel-root-device-factory.vala:113
+#: ../src/librygel-core/rygel-root-device-factory.vala:147
+#: ../src/librygel-core/rygel-root-device-factory.vala:169
+#: ../src/librygel-core/rygel-root-device-factory.vala:224
+#, c-format
+msgid "XML node '%s' not found."
+msgstr "XML ন'ড '%s' পোৱা নগল।"
+
+#: ../src/librygel-core/rygel-search.vala:89
+#, c-format
+msgid "Failed to search in '%s': %s"
+msgstr "'%s' ত সন্ধান কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/librygel-core/rygel-subtitle-manager.vala:65
+msgid "No subtitle available"
+msgstr "কোনো উপশীৰ্ষক উপলব্ধ নাই"
+
+#: ../src/librygel-core/rygel-thumbnailer.vala:60
+#, c-format
+msgid "No thumbnailer available: %s"
+msgstr "কোনো থাম্বনেইলাৰ উপলব্ধ নাই: %s"
+
+#: ../src/librygel-core/rygel-thumbnailer.vala:82
+#: ../src/librygel-core/rygel-thumbnailer.vala:91
+#: ../src/librygel-core/rygel-thumbnailer.vala:102
+msgid "No thumbnail available"
+msgstr "কোনো থাম্বনেইল উপলব্ধ নাই"
+
+#: ../src/librygel-core/rygel-thumbnailer.vala:121
+msgid "No D-Bus thumbnailer available"
+msgstr "কোনো D-Bus থাম্বনেইলাৰ উপলব্ধ নাই"
+
+#: ../src/librygel-core/rygel-transcode-manager.vala:130
+#, c-format
+msgid "No transcoder available for target format '%s'"
+msgstr "লক্ষ্য বিন্যাস '%s' ৰ বাবে কোনো ট্ৰান্সক'ডাৰ উপলব্ধ নাই"
+
+#: ../src/librygel-core/rygel-user-config.vala:198
+#, c-format
+msgid "No value available for '%s'"
+msgstr "'%s' ৰ বাবে কোনো মান উপলব্ধ নাই"
+
+#: ../src/librygel-core/rygel-user-config.vala:248
+#, c-format
+msgid "Value of '%s' out of range"
+msgstr "মান '%s' বিস্তাৰৰ বাহিৰ"
+
+#: ../src/rygel/rygel-main.vala:105
+#, c-format
+msgid "No plugins found in %d second; giving up.."
+msgid_plural "No plugins found in %d seconds; giving up.."
+msgstr[0] "%d ছেকেণ্ডত কোনো প্লাগিন পোৱা নগল; বাদ দিয়া হৈছে.."
+msgstr[1] "%d ছেকেণ্ডত কোনো প্লাগিন পোৱা নগল; বাদ দিয়া হৈছে.."
+
+#: ../src/rygel/rygel-main.vala:166
+#, c-format
+msgid "Failed to create root device factory: %s"
+msgstr "ৰুট ডিভাইচ কলঘৰ সৃষ্টি কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/rygel/rygel-main.vala:224
+#, c-format
+msgid "Failed to create RootDevice for %s. Reason: %s"
+msgstr "%s ৰ বাবে RootDevice সৃষ্টি কৰিবলে ব্যৰ্থ। কাৰণ: %s"
+
+#: ../src/ui/rygel-preferences-dialog.vala:94
+#, c-format
+msgid "Failed to create preferences dialog: %s"
+msgstr "পছন্দসমূহ ডাইলগ সৃষ্টি কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/ui/rygel-writable-user-config.vala:122
+#, c-format
+msgid "Failed to save configuration data to file '%s': %s"
+msgstr "সংৰূপ তথ্যক নথিপত্ৰ '%s' লে সংৰক্ষণ কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/ui/rygel-writable-user-config.vala:210
+#, c-format
+msgid "Failed to start Rygel service: %s"
+msgstr "Rygel সেৱা আৰম্ভ কৰিবলে ব্যৰ্থ: %s"
+
+#: ../src/ui/rygel-writable-user-config.vala:212
+#, c-format
+msgid "Failed to stop Rygel service: %s"
+msgstr "Rygel সেৱা বন্ধ কৰিবলে ব্যৰ্থ: %s"
+
+#~ msgid "Failed to find thumbnails folder."
+#~ msgstr "থাম্বনেইল ফোল্ডাৰ সন্ধান কৰিবলে ব্যৰ্থ।"
