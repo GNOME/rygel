@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2010 MediaNet Inh.
+ * Copyright (C) 2012 Jens Georg <mail@jensge.org>
  *
  * Author: Sunil Mohan Adapa <sunil@medhas.org>
  *
@@ -23,62 +24,63 @@
 using Gee;
 
 /**
- * A map of upnp properties to tracker property key chains
+ * A map of UPnP properties to tracker property functions, coalesces,
+ * subqueries or other custom functions
  */
-public class Rygel.Tracker.KeyChainMap : Object {
-    HashMap<string, ArrayList<string>> key_chain_map;
+public class Rygel.Tracker.UPnPPropertyMap : Object {
+    HashMap<string, ArrayList<string>> property_map;
     HashMap<string, string> functions;
-    private static KeyChainMap instance;
+    private static UPnPPropertyMap instance;
 
-    public static KeyChainMap get_key_chain_map () {
+    public static UPnPPropertyMap get_property_map () {
         if (unlikely (instance == null)) {
-            instance = new KeyChainMap ();
+            instance = new UPnPPropertyMap ();
         }
 
         return instance;
     }
 
-    private KeyChainMap () {
-        this.key_chain_map = new HashMap<string, ArrayList<string>> ();
+    private UPnPPropertyMap () {
+        this.property_map = new HashMap<string, ArrayList<string>> ();
         this.functions = new HashMap<string, string> ();
 
         // Item
-        add_key_chain ("res", "nie:url");
-        add_function ("place_holder",
+        this.add_key_chain ("res", "nie:url");
+        this.add_function ("place_holder",
                       "tracker:coalesce((SELECT false WHERE { { %s a ?o } " +
                       "FILTER (?o IN (nfo:FileDataObject, " +
                       "nfo:RemoteDataObject)) }), true)");
-        add_key_chain ("fileName", "nfo:fileName");
+        this.add_key_chain ("fileName", "nfo:fileName");
         this.add_alternative ("dc:title", "nie:title", "nfo:fileName");
-        add_key_chain ("dlnaProfile", "nmm:dlnaProfile");
-        add_key_chain ("mimeType", "nie:mimeType");
+        this.add_key_chain ("dlnaProfile", "nmm:dlnaProfile");
+        this.add_key_chain ("mimeType", "nie:mimeType");
         this.add_alternative ("res@size", "nfo:fileSize", "nie:byteSize");
         this.add_alternative ("date",
                               "nie:contentCreated",
                               "nfo:fileLastModified");
 
         // Music Item
-        add_key_chain ("res@duration", "nfo:duration");
-        add_key_chain ("upnp:artist", "nmm:performer", "nmm:artistName");
-        add_key_chain ("dc:creator", "nmm:performer", "nmm:artistName");
-        add_key_chain ("upnp:album", "nmm:musicAlbum", "nmm:albumTitle");
-        add_key_chain ("upnp:originalTrackNumber", "nmm:trackNumber");
-        add_key_chain ("upnp:genre", "nfo:genre");
-        add_key_chain ("sampleRate", "nfo:sampleRate");
-        add_key_chain ("upnp:nrAudioChannels", "nfo:channels");
-        add_key_chain ("upnp:bitsPerSample", "nfo:bitsPerSample");
-        add_key_chain ("upnp:bitrate", "nfo:averageBitrate");
+        this.add_key_chain ("res@duration", "nfo:duration");
+        this.add_key_chain ("upnp:artist", "nmm:performer", "nmm:artistName");
+        this.add_key_chain ("dc:creator", "nmm:performer", "nmm:artistName");
+        this.add_key_chain ("upnp:album", "nmm:musicAlbum", "nmm:albumTitle");
+        this.add_key_chain ("upnp:originalTrackNumber", "nmm:trackNumber");
+        this.add_key_chain ("upnp:genre", "nfo:genre");
+        this.add_key_chain ("sampleRate", "nfo:sampleRate");
+        this.add_key_chain ("upnp:nrAudioChannels", "nfo:channels");
+        this.add_key_chain ("upnp:bitsPerSample", "nfo:bitsPerSample");
+        this.add_key_chain ("upnp:bitrate", "nfo:averageBitrate");
 
         // Picture & Video Items
-        add_key_chain ("width", "nfo:width");
-        add_key_chain ("height", "nfo:height");
+        this.add_key_chain ("width", "nfo:width");
+        this.add_key_chain ("height", "nfo:height");
     }
 
     public string map_property (string property) {
         var str = SelectionQuery.ITEM_VARIABLE;
 
-        if (this.key_chain_map.has_key (property)) {
-            foreach (var key in this.key_chain_map[property]) {
+        if (this.property_map.has_key (property)) {
+            foreach (var key in this.property_map[property]) {
                 str = key + "(" + str + ")";
             }
         } else if (this.functions.has_key (property)) {
@@ -100,7 +102,7 @@ public class Rygel.Tracker.KeyChainMap : Object {
             key = list.arg ();
         }
 
-        this.key_chain_map[property] = key_chain;
+        this.property_map[property] = key_chain;
     }
 
     private void add_function (string property, string function) {

@@ -81,9 +81,9 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                                  "a",
                                  item_factory.category));
 
-        var key_chain_map = KeyChainMap.get_key_chain_map ();
+        var property_map = UPnPPropertyMap.get_property_map ();
         foreach (var property in this.item_factory.properties) {
-            variables.add (key_chain_map.map_property (property));
+            variables.add (property_map.map_property (property));
         }
 
         var order_by = MODIFIED_PROPERTY +

@@ -52,10 +52,10 @@ public abstract class Rygel.Tracker.MetadataValues : MetadataContainer {
     }
 
     protected override SelectionQuery create_query () {
-        var key_chain_map = KeyChainMap.get_key_chain_map ();
+        var property_map = UPnPPropertyMap.get_property_map ();
         var selected = new ArrayList<string> ();
         selected.add ("DISTINCT " +
-                      key_chain_map.map_property (this.property) +
+                      property_map.map_property (this.property) +
                       " AS x");
 
         return new SelectionQuery (selected, triplets, null, "?x");
@@ -70,8 +70,8 @@ public abstract class Rygel.Tracker.MetadataValues : MetadataContainer {
 
         // However we constrain the object of our last triplet.
         var filters = new ArrayList<string> ();
-        var key_chain_map = KeyChainMap.get_key_chain_map ();
-        var property = key_chain_map.map_property (this.property);
+        var property_map = UPnPPropertyMap.get_property_map ();
+        var property = property_map.map_property (this.property);
         var filter = this.create_filter (property, value);
         filters.add (filter);
 
