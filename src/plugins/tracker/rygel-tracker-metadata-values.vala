@@ -55,7 +55,7 @@ public abstract class Rygel.Tracker.MetadataValues : MetadataContainer {
         var property_map = UPnPPropertyMap.get_property_map ();
         var selected = new ArrayList<string> ();
         selected.add ("DISTINCT " +
-                      property_map.map_property (this.property) +
+                      property_map[this.property] +
                       " AS x");
 
         return new SelectionQuery (selected, triplets, null, "?x");
@@ -71,7 +71,7 @@ public abstract class Rygel.Tracker.MetadataValues : MetadataContainer {
         // However we constrain the object of our last triplet.
         var filters = new ArrayList<string> ();
         var property_map = UPnPPropertyMap.get_property_map ();
-        var property = property_map.map_property (this.property);
+        var property = property_map[this.property];
         var filter = this.create_filter (property, value);
         filters.add (filter);
 

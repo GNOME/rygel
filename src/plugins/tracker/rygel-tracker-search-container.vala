@@ -83,7 +83,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
 
         var property_map = UPnPPropertyMap.get_property_map ();
         foreach (var property in this.item_factory.properties) {
-            variables.add (property_map.map_property (property));
+            variables.add (property_map[property]);
         }
 
         var order_by = MODIFIED_PROPERTY +

@@ -76,7 +76,7 @@ public class Rygel.Tracker.UPnPPropertyMap : Object {
         this.add_key_chain ("height", "nfo:height");
     }
 
-    public string map_property (string property) {
+    public new string @get (string property) {
         var str = SelectionQuery.ITEM_VARIABLE;
 
         if (this.property_map.has_key (property)) {
