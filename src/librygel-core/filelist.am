@@ -1,5 +1,6 @@
 LIBRYGEL_CORE_VAPI_SOURCE_FILES = \
 	rygel-cmdline-config.vala \
+	rygel-connection-manager.vala \
 	rygel-root-device.vala \
 	rygel-root-device-factory.vala \
 	rygel-audio-item.vala \
@@ -10,7 +11,6 @@ LIBRYGEL_CORE_VAPI_SOURCE_FILES = \
 	rygel-logical-expression.vala \
 	rygel-media-art-store.vala \
 	rygel-media-objects.vala \
-	rygel-media-renderer-plugin.vala \
 	rygel-meta-config.vala \
 	rygel-music-item.vala \
 	rygel-photo-item.vala \
@@ -31,7 +31,6 @@ LIBRYGEL_CORE_VAPI_SOURCE_FILES = \
 	rygel-search-expression.vala \
 	rygel-configuration.vala \
 	rygel-free-desktop-interfaces.vala \
-	rygel-media-player.vala \
 	rygel-searchable-container.vala \
 	rygel-state-machine.vala \
 	rygel-visual-item.vala \
@@ -42,11 +41,7 @@ LIBRYGEL_CORE_NONVAPI_SOURCE_FILES = \
 	rygel-http-item-uri.vala \
 	rygel-environment-config.vala \
 	rygel-content-directory.vala \
-	rygel-connection-manager.vala \
 	rygel-source-connection-manager.vala \
-	rygel-sink-connection-manager.vala \
-	rygel-av-transport.vala \
-	rygel-rendering-control.vala \
 	rygel-transcode-manager.vala \
 	rygel-http-server.vala \
 	rygel-http-request.vala \
@@ -88,8 +83,6 @@ LIBRYGEL_CORE_NONVAPI_SOURCE_FILES = \
 	rygel-avc-transcoder.vala \
 	rygel-gst-utils.vala \
 	rygel-media-receiver-registrar.vala \
-	rygel-changelog.vala \
-	rygel-volume.vala \
 	rygel-description-file.vala
 
 LIBRYGEL_CORE_VALAFLAGS_PKG = \

@@ -42,26 +42,6 @@ internal abstract class Rygel.GstUtils {
         return element;
     }
 
-    public static ClockTime time_from_string (string str) {
-        uint64 hours, minutes, seconds;
-
-        str.scanf ("%llu:%2llu:%2llu%*s", out hours, out minutes, out seconds);
-
-        return (ClockTime) ((hours * 3600 + minutes * 60 + seconds) *
-                            Gst.SECOND);
-    }
-
-    public static string time_to_string (ClockTime time) {
-        uint64 hours, minutes, seconds;
-
-        hours   = time / Gst.SECOND / 3600;
-        seconds = time / Gst.SECOND % 3600;
-        minutes = seconds / 60;
-        seconds = seconds % 60;
-
-        return "%llu:%.2llu:%.2llu".printf (hours, minutes, seconds);
-    }
-
     public static Element? create_source_for_uri (string uri) {
         dynamic Element src = Element.make_from_uri (URIType.SRC, uri, null);
         if (src != null) {

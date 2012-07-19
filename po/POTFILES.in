@@ -11,8 +11,6 @@ data/xml/ContentDirectory.xml.in
 data/xml/MediaRenderer2.xml.in
 data/xml/MediaServer2.xml.in
 data/xml/RenderingControl2.xml.in
-src/librygel-renderer/rygel-playbin-player.vala
-src/librygel-renderer/rygel-playbin-plugin.vala
 src/plugins/external/rygel-external-container.vala
 src/plugins/external/rygel-external-icon-factory.vala
 src/plugins/external/rygel-external-interfaces.vala
@@ -78,8 +76,6 @@ src/librygel-core/rygel-cmdline-config.vala
 src/librygel-core/rygel-configuration.vala
 src/librygel-core/rygel-connection-manager.vala
 src/librygel-core/rygel-content-directory.vala
-src/librygel-core/rygel-av-transport.vala
-src/librygel-core/rygel-rendering-control.vala
 src/librygel-core/rygel-gst-utils.vala
 src/librygel-core/rygel-http-byte-seek.vala
 src/librygel-core/rygel-http-get-handler.vala
@@ -124,7 +120,6 @@ src/librygel-core/rygel-search-expression.vala
 src/librygel-core/rygel-search.vala
 src/librygel-core/rygel-simple-container.vala
 src/librygel-core/rygel-source-connection-manager.vala
-src/librygel-core/rygel-sink-connection-manager.vala
 src/librygel-core/rygel-state-machine.vala
 src/librygel-core/rygel-subtitle-manager.vala
 src/librygel-core/rygel-subtitle.vala
@@ -135,7 +130,13 @@ src/librygel-core/rygel-transcoder.vala
 src/librygel-core/rygel-user-config.vala
 src/librygel-core/rygel-wmv-transcoder.vala
 src/librygel-core/rygel-xbox-hacks.vala
-src/librygel-core/rygel-changelog.vala
+src/librygel-renderer/rygel-av-transport.vala
+src/librygel-renderer/rygel-changelog.vala
+src/librygel-renderer/rygel-gst-utils.vala
+src/librygel-renderer/rygel-playbin-player.vala
+src/librygel-renderer/rygel-playbin-plugin.vala
+src/librygel-renderer/rygel-rendering-control.vala
+src/librygel-renderer/rygel-sink-connection-manager.vala
 src/rygel/rygel-dbus-service.vala
 src/rygel/rygel-main.vala
 src/ui/rygel-media-pref-section.vala
