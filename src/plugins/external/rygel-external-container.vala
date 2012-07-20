@@ -315,11 +315,13 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                                          DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
             var props = yield props_iface.get_all (MediaContainerProxy.IFACE);
             var child_count = (uint) props.lookup ("ChildCount");
+            this.child_count = (int) child_count;
+            props = yield props_iface.get_all (MediaObjectProxy.IFACE);
+
             this.title = get_mandatory_string_value (props,
                                                      "DisplayName",
                                                      this.id,
                                                      this.service_name);
-            this.child_count = (int) child_count;
         } catch (GLib.Error property_error) {
             warning ("Failed to update information about container '%s': %s",
                      this.actual_container.get_object_path (),
