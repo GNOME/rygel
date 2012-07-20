@@ -1,1 +1,1 @@
-../src/librygel-core/rygel-http-byte-seek.vala
+../src/librygel-server/rygel-http-byte-seek.vala

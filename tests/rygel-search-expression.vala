@@ -1,1 +1,1 @@
-../src/librygel-core/rygel-search-expression.vala
+../src/librygel-server/rygel-search-expression.vala

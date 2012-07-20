@@ -68,6 +68,18 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
         }
     }
 
+    public override void apply_hacks (RootDevice device,
+                                     string     description_path)
+                                     throws Error {
+        // Apply V1 downgrades
+        var v1_hacks = new V1Hacks ();
+        v1_hacks.apply_on_device (device, description_path);
+
+        // Apply XBox hacks on top of that
+        var xbox_hacks = new XBoxHacks ();
+        xbox_hacks.apply_on_device (device, v1_hacks.description_path);
+    }
+
     private void on_container_updated (MediaContainer root_container,
                                        MediaContainer updated) {
         if (updated != root_container || updated.child_count == 0) {

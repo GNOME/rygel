@@ -28,15 +28,6 @@
 
 using GUPnP;
 
-[CCode (cname = "uuid_generate", cheader_filename = "uuid/uuid.h")]
-internal extern static void uuid_generate ([CCode (array_length = false)]
-                                           uchar[] uuid);
-[CCode (cname = "uuid_unparse", cheader_filename = "uuid/uuid.h")]
-internal extern static void uuid_unparse ([CCode (array_length = false)]
-                                          uchar[] uuid,
-                                          [CCode (array_length = false)]
-                                          uchar[] output);
-
 public errordomain RootDeviceFactoryError {
     XML_PARSE,
 }
@@ -77,13 +68,7 @@ public class Rygel.RootDeviceFactory {
                                      doc,
                                      desc_path,
                                      BuildConfig.DATA_DIR);
-        // Apply V1 downgrades
-        var v1_hacks = new V1Hacks ();
-        v1_hacks.apply_on_device (device, desc_path);
-
-        // Apply XBox hacks on top of that
-        var xbox_hacks = new XBoxHacks ();
-        xbox_hacks.apply_on_device (device, v1_hacks.description_path);
+        plugin.apply_hacks (device, desc_path);
 
         return device;
     }
@@ -359,8 +344,8 @@ public class Rygel.RootDeviceFactory {
         var id = new uchar[16];
 
         /* Generate new UUID */
-        uuid_generate (id);
-        uuid_unparse (id, udn);
+        UUID.generate (id);
+        UUID.unparse (id, udn);
 
         return "uuid:" + (string) udn;
     }

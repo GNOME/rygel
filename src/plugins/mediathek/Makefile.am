@@ -14,6 +14,6 @@ librygel_mediathek_la_SOURCES = \
 	rygel-mediathek-rss-container.vala \
 	rygel-mediathek-soup-utils.vala
 
-librygel_mediathek_la_VALAFLAGS = $(RYGEL_COMMON_PLUGIN_VALAFLAGS)
-librygel_mediathek_la_LIBADD = $(RYGEL_COMMON_LIBS)
+librygel_mediathek_la_VALAFLAGS = $(RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS)
+librygel_mediathek_la_LIBADD = $(RYGEL_COMMON_SERVER_LIBS)
 librygel_mediathek_la_LDFLAGS = $(RYGEL_PLUGIN_LINKER_FLAGS)

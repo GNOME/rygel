@@ -1,1 +1,1 @@
-../src/librygel-core/rygel-media-art-store.vala
+../src/librygel-server/rygel-media-art-store.vala

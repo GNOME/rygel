@@ -5,8 +5,8 @@ include $(top_srcdir)/src/librygel-renderer/filelist.am
 
 # Note that LIBRYGEL_RENDERER_NONVAPI_SOURCE_FILES all (should) use the internal keyword
 # so they are not shown as part of the public API.
-VALA_SOURCE_FILES = $(LIBRYGEL_RENDERER_VAPI_SOURCE_FILES)
-# There are no LIBRYGEL_RENDERER_NONVAPI_SOURCE_FILES
+VALA_SOURCE_FILES = $(LIBRYGEL_RENDERER_VAPI_SOURCE_FILES) \
+	$(LIBRYGEL_RENDERER_NONVAPI_SOURCE_FILES)
 
 VALA_SOURCE_FILES_WITH_PATHS = $(addprefix $(top_srcdir)/src/librygel-renderer/, $(VALA_SOURCE_FILES))
 
@@ -40,6 +40,7 @@ gtkdoc: $(VALA_SOURCE_FILES_WITH_PATHS)
 	$(AM_V_GEN)$(VALADOC) \
 		-X $(top_builddir)/src/librygel-renderer/rygel-renderer.h \
 		-X -l -X $(top_builddir)/src/librygel-renderer/.libs/librygel-renderer-1.0.so \
+		-X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-1.0.so \
 		-o gtkdoc \
 		--doclet gtkdoc \
 		$(VALADOC_FLAGS) 2>/dev/null

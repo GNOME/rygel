@@ -17,6 +17,7 @@ VALADOC_FLAGS = --force \
 		$(RYGEL_COMMON_VALAFLAGS_PKG) \
 		$(LIBRYGEL_CORE_VALAFLAGS_PKG) \
 	        --pkg gstreamer-pbutils-0.10 \
+			--pkg gio-2.0 \
 	        --target-glib=2.32 \
 	        --vapidir=$(rygeldir) \
 	        --pkg rygel-build-config \

@@ -19,6 +19,8 @@ bigicondir = $(shareddir)/icons/120x120
 
 rygeldir = $(top_srcdir)/src/rygel
 librygelcoredir = $(top_srcdir)/src/librygel-core
+librygelserverdir = $(top_srcdir)/src/librygel-server
+librygelrendererdir = $(top_srcdir)/src/librygel-renderer
 
 MAINTAINERCLEANFILES = Makefile.in
 
@@ -32,6 +34,8 @@ AM_CFLAGS = \
 	$(COVERAGE_CFLAGS) \
 	-I$(rygeldir) \
 	-I$(librygelcoredir) \
+	-I$(librygelserverdir) \
+	-I$(librygelrendererdir) \
 	-DDATA_DIR='"$(shareddir)"' -DSYS_CONFIG_DIR='"$(sysconfigdir)"'\
 	-DPLUGIN_DIR='"$(plugindir)"' -DDESKTOP_DIR='"$(desktopdir)"'\
 	-DPRESET_DIR='"$(presetdir)"'\
@@ -50,10 +54,30 @@ RYGEL_COMMON_LIBS = \
 	$(RYGEL_BASE_LIBS) \
 	$(top_builddir)/src/librygel-core/librygel-core-1.0.la
 
+RYGEL_COMMON_SERVER_LIBS = \
+	$(top_builddir)/src/librygel-server/librygel-server-1.0.la \
+	$(RYGEL_COMMON_LIBS) \
+	$(GST_PBU_LIBS) \
+	$(LIBGUPNP_DLNA_LIBS)
+
+RYGEL_COMMON_RENDERER_LIBS = \
+	$(top_builddir)/src/librygel-renderer/librygel-renderer-1.0.la \
+	$(RYGEL_COMMON_LIBS)
+
 # Note: the -g needs to be at the end of VALAFLAGS to not break make dist
 RYGEL_COMMON_PLUGIN_VALAFLAGS = \
 	--pkg rygel-core-1.0 \
 	$(RYGEL_COMMON_VALAFLAGS)
+
+RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS = \
+	--pkg rygel-server-1.0 \
+	--vapidir=$(top_builddir)/src/librygel-server \
+	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
+
+RYGEL_COMMON_RENDERER_PLUGIN_VALAFLAGS = \
+	--pkg rygel-renderer-1.0 \
+	--vapidir=$(top_builddir)/src/librygel-renderer \
+	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
 
 RYGEL_COMMON_VALAFLAGS_PKG = --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gee-1.0
 

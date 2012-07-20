@@ -43,10 +43,10 @@ librygel_media_export_la_VALAFLAGS = \
 	--pkg gstreamer-tag-0.10 \
 	--pkg gstreamer-app-0.10 \
 	--pkg sqlite3 \
-	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
+	$(RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS)
 
 librygel_media_export_la_LIBADD = \
-	$(RYGEL_COMMON_LIBS) \
+	$(RYGEL_COMMON_SERVER_LIBS) \
 	$(LIBGUPNP_DLNA_LIBS) \
 	$(GSTREAMER_TAG_LIBS) \
 	$(GSTREAMER_APP_LIBS) \

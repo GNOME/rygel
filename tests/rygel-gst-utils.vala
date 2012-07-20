@@ -1,1 +1,1 @@
-../src/librygel-core/rygel-gst-utils.vala
+../src/librygel-server/rygel-gst-utils.vala

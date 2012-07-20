@@ -524,8 +524,8 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         var udn = new uchar[50];
         var id = new uchar[16];
 
-        uuid_generate (id);
-        uuid_unparse (id, udn);
+        UUID.generate (id);
+        UUID.unparse (id, udn);
 
         return file.get_uri () + (string) udn;
     }

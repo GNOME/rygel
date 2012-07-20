@@ -27,7 +27,7 @@ using Xml;
  * Represents a device description document and offers methods for easy
  * manipulation of those.
  */
-internal class DescriptionFile : Object {
+public class DescriptionFile : Object {
     /// XML doc wrapper representing the description document
     private XMLDoc doc;
 
@@ -75,7 +75,7 @@ internal class DescriptionFile : Object {
      *
      * Usually the name of the software implementing this device.
      *
-     * @param device_type is the new model name.
+     * @param model_name is the new model name.
      */
     public void set_model_name (string model_name) {
         this.set_device_element ("modelName", model_name);
@@ -150,7 +150,7 @@ internal class DescriptionFile : Object {
      * If a file with the same name exists it will be overwritten.
      *
      * @param path is a path to a file.
-     * @throws IOError.FAILED if anything fails while creating the XML dump.
+     * @throws GLib.Error if anything fails while creating the XML dump.
      */
     public void save (string path) throws GLib.Error {
         var file = FileStream.open (path, "w+");

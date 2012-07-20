@@ -127,6 +127,11 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
         this.icon_infos.add (icon_info);
     }
 
+    public virtual void apply_hacks (RootDevice device,
+                                     string     description_path)
+                                     throws Error {
+    }
+
     private void add_default_icon (string mime_type,
                                    string file_extension,
                                    string uri,
