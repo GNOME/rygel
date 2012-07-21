@@ -65,20 +65,9 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             this.extract_metadata = true;
         }
 
-        if (this.extract_metadata) {
-            var gst_timeout = (ClockTime) (this.timeout * Gst.SECOND);
 
-            this.discoverer = new GUPnP.DLNADiscoverer (gst_timeout,
-                                                        true,
-                                                        true);
-            this.discoverer.done.connect (on_done);
-            this.discoverer.start ();
-        }
-    }
-
-    ~MetadataExtractor () {
         if (this.extract_metadata) {
-            this.discoverer.stop ();
+
         }
     }
 
@@ -86,6 +75,12 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         if (this.extract_metadata) {
             string uri = file.get_uri ();
             this.file_hash.set (uri, file);
+            var gst_timeout = (ClockTime) (this.timeout * Gst.SECOND);
+            this.discoverer = new GUPnP.DLNADiscoverer (gst_timeout,
+                                                        true,
+                                                        true);
+            this.discoverer.done.connect (on_done);
+            this.discoverer.start ();
             this.discoverer.discover_uri (uri);
         } else {
             this.extract_basic_information (file);
@@ -94,6 +89,8 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
     private void on_done (GUPnP.DLNAInformation dlna,
                           GLib.Error            err) {
+        this.discoverer.done.disconnect (on_done);
+        this.discoverer = null;
         var file = this.file_hash.get (dlna.info.get_uri ());
         if (file == null) {
             warning ("File %s already handled, ignoring event",

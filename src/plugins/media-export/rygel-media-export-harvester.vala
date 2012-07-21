@@ -82,7 +82,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         // Cancel a probably running harvester
         this.cancel (file);
 
-        var task = new HarvestingTask (this.extractor,
+        var task = new HarvestingTask (new MetadataExtractor (),
                                        this.monitor,
                                        this.file_filter,
                                        file,
