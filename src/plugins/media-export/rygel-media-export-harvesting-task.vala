@@ -106,7 +106,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                 if (info.get_file_type () != FileType.DIRECTORY) {
                     this.containers.push_tail (this.parent);
                 }
-                Idle.add (this.on_idle);
+                this.on_idle ();
             } else {
                 this.completed ();
             }
@@ -361,6 +361,6 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             this.containers.pop_head ();
         }
 
-        Idle.add (this.on_idle);
+        this.on_idle ();
     }
 }
