@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-10 22:43+0300\n"
-"PO-Revision-Date: 2012-07-10 22:43+0200\n"
+"POT-Creation-Date: 2012-07-24 22:22+0300\n"
+"PO-Revision-Date: 2012-07-24 22:23+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Gezer <sh.yaron@gmail.com>\n"
 "Language: \n"
@@ -87,7 +87,7 @@ msgstr "נגן GStreamer"
 msgid "Failed to roll back transaction: %s"
 msgstr "ארע כשל בהחזרת ההעברה: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:137
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:134
 #: ../src/librygel-core/rygel-plugin-loader.vala:194
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -258,7 +258,7 @@ msgstr "ארגומנטים שגויים"
 msgid "Cannot browse children on item"
 msgstr "לא ניתן לעיין בצאצא של פריט"
 
-#: ../src/librygel-core/rygel-browse.vala:121
+#: ../src/librygel-core/rygel-browse.vala:125
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "ארע כשל בסיור ב־'%s':‏ %s\n"
@@ -594,18 +594,20 @@ msgstr "ארע כשל בחיפוש תחת '%s':‏ %s"
 msgid "No subtitle available"
 msgstr "אין כתוביות זמינות"
 
-#: ../src/librygel-core/rygel-thumbnailer.vala:58
-msgid "Failed to find thumbnails folder."
-msgstr "ארע כשל באיתור תיקיית התמונות הממוזערות."
-
-#: ../src/librygel-core/rygel-thumbnailer.vala:90
+#: ../src/librygel-core/rygel-thumbnailer.vala:60
 #, c-format
 msgid "No thumbnailer available: %s"
 msgstr "תכנית למזעור תמונות אינה זמינה: %s"
 
-#: ../src/librygel-core/rygel-thumbnailer.vala:119
+#: ../src/librygel-core/rygel-thumbnailer.vala:82
+#: ../src/librygel-core/rygel-thumbnailer.vala:91
+#: ../src/librygel-core/rygel-thumbnailer.vala:102
 msgid "No thumbnail available"
 msgstr "אין תמונה ממוזערת"
+
+#: ../src/librygel-core/rygel-thumbnailer.vala:121
+msgid "No D-Bus thumbnailer available"
+msgstr "אין מנהל D-Bus לתמונות ממוזערות"
 
 #: ../src/librygel-core/rygel-transcode-manager.vala:130
 #, c-format
@@ -658,6 +660,9 @@ msgstr "ארע כשל בהפעלת השירות Rygel:‏ %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "ארע כשל בעצירת השירות Rygel:‏ %s"
+
+#~ msgid "Failed to find thumbnails folder."
+#~ msgstr "ארע כשל באיתור תיקיית התמונות הממוזערות."
 
 #~ msgid "Failed to open database: %d (%s)"
 #~ msgstr "ארע כשל בפתיחת מסד הנתונים: %d‏ (%s)"
