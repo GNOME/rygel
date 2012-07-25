@@ -1,6 +1,6 @@
-# Norwegian (bokmål) translation of rygel.
+# Norwegian bokmål translation of rygel.
 # Copyright (C) Kjartan Maraas
-# This file is distributed under the same license as the RhythmBox package.
+# This file is distributed under the same license as the rygel package.
 # Kjartan Maraas <kmaraas@gnome.org>, 2002-2012.
 # Terance Edward Sola <terance@lyse.net>, 2005.
 # Øivind Hoel <oivind.hoel@gmail.com>, 2007.
@@ -10,10 +10,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel 3.5.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-10 08:04+0200\n"
-"PO-Revision-Date: 2012-07-10 08:07+0200\n"
+"POT-Creation-Date: 2012-07-25 16:39+0200\n"
+"PO-Revision-Date: 2012-07-25 16:40+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
-"Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
+"Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,7 +58,9 @@ msgstr "_Nettverk:"
 msgid ""
 "Select the network interface that DLNA media will be shared on, or share "
 "media on all interfaces"
-msgstr "Velg nettverksgrensesnitt som DLNA-media vil bli delt på, eller del media på alle grensesnitt"
+msgstr ""
+"Velg nettverksgrensesnitt som DLNA-media vil bli delt på, eller del media på "
+"alle grensesnitt"
 
 #: ../data/rygel-preferences.ui.h:11
 msgid "Any"
@@ -89,7 +91,7 @@ msgstr "GStreamer avspiller"
 msgid "Failed to roll back transaction: %s"
 msgstr "Klarte ikke å rulle tilbake transaksjon: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:137
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:134
 #: ../src/librygel-core/rygel-plugin-loader.vala:194
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -260,7 +262,7 @@ msgstr "Ugyldige argumenter"
 msgid "Cannot browse children on item"
 msgstr "Kan ikke bla gjennom underoppføringer på oppføringen"
 
-#: ../src/librygel-core/rygel-browse.vala:121
+#: ../src/librygel-core/rygel-browse.vala:125
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "Klarte ikke å vise «%s»: %s\n"
@@ -596,18 +598,20 @@ msgstr "Klarte ikke å søke i «%s»: %s"
 msgid "No subtitle available"
 msgstr "Ingen undertekst tilgjengelig"
 
-#: ../src/librygel-core/rygel-thumbnailer.vala:58
-msgid "Failed to find thumbnails folder."
-msgstr "Klarte ikke å finne mappe for miniatyrer."
-
-#: ../src/librygel-core/rygel-thumbnailer.vala:90
+#: ../src/librygel-core/rygel-thumbnailer.vala:60
 #, c-format
 msgid "No thumbnailer available: %s"
 msgstr "Ingen tjeneste for å lage miniatyrer tilgjengelig: %s"
 
-#: ../src/librygel-core/rygel-thumbnailer.vala:119
+#: ../src/librygel-core/rygel-thumbnailer.vala:82
+#: ../src/librygel-core/rygel-thumbnailer.vala:91
+#: ../src/librygel-core/rygel-thumbnailer.vala:102
 msgid "No thumbnail available"
 msgstr "Ingen miniatyr tilgjengelig"
+
+#: ../src/librygel-core/rygel-thumbnailer.vala:121
+msgid "No D-Bus thumbnailer available"
+msgstr "Ingen D-Bus miniatyrprogram tilgjengelig"
 
 #: ../src/librygel-core/rygel-transcode-manager.vala:130
 #, c-format
