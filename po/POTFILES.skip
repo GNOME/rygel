@@ -170,8 +170,6 @@ src/plugins/test/rygel-test-root-container.c
 src/plugins/test/rygel-test-video-item.c
 src/plugins/tracker/rygel-tracker-albums.c
 src/plugins/tracker/rygel-tracker-artists.c
-src/plugins/tracker/rygel-tracker-boolean-filter.c
-src/plugins/tracker/rygel-tracker-bound-filter.c
 src/plugins/tracker/rygel-tracker-category-all-container.c
 src/plugins/tracker/rygel-tracker-category-container.c
 src/plugins/tracker/rygel-tracker-cleanup-query.c
@@ -180,8 +178,8 @@ src/plugins/tracker/rygel-tracker-genre.c
 src/plugins/tracker/rygel-tracker-insertion-query.c
 src/plugins/tracker/rygel-tracker-interfaces.c
 src/plugins/tracker/rygel-tracker-item-factory.c
-src/plugins/tracker/rygel-tracker-key-chain-map.c
-src/plugins/tracker/rygel-tracker-logical-filter.c
+src/plugins/tracker/rygel-tracker-metadata-container.c
+src/plugins/tracker/rygel-tracker-metadata-multivalues.c
 src/plugins/tracker/rygel-tracker-metadata-values.c
 src/plugins/tracker/rygel-tracker-music.c
 src/plugins/tracker/rygel-tracker-music-item-factory.c
@@ -191,15 +189,14 @@ src/plugins/tracker/rygel-tracker-pictures.c
 src/plugins/tracker/rygel-tracker-plugin.c
 src/plugins/tracker/rygel-tracker-plugin-factory.c
 src/plugins/tracker/rygel-tracker-query.c
-src/plugins/tracker/rygel-tracker-query-filter.c
 src/plugins/tracker/rygel-tracker-query-triplet.c
 src/plugins/tracker/rygel-tracker-query-triplets.c
-src/plugins/tracker/rygel-tracker-regex-filter.c
 src/plugins/tracker/rygel-tracker-root-container.c
 src/plugins/tracker/rygel-tracker-search-container.c
 src/plugins/tracker/rygel-tracker-selection-query.c
 src/plugins/tracker/rygel-tracker-tags.c
 src/plugins/tracker/rygel-tracker-titles.c
+src/plugins/tracker/rygel-tracker-upnp-property-map.c
 src/plugins/tracker/rygel-tracker-video-item-factory.c
 src/plugins/tracker/rygel-tracker-videos.c
 src/plugins/tracker/rygel-tracker-years.c

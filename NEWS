@@ -1,3 +1,85 @@
+0.15.1
+======
+
+A new release in Rygel's unstable cycle!
+
+Changes compared to 0.15.1:
+
+- Fix setting of meta-data in AVTransport.
+- Fix compatibility with various new Samsung devices.
+- Fix content-range checking.
+- Relay meta-data to player instances in AVTransport.
+- Fall-back to template description if cached description is not readable.
+- Add librygel-core, librygel-server and librygel-renderer.
+- Generate documentation for newly created libraries.
+- Use GIO for thumbnail requests and don't fail if there's no thumbnail
+  directory as tumbler creates that.
+
+MediaExport:
+ - Use display_name instead of filename to prevent encoding issues in DIDL.
+ - Speed up browsing of virtual folders.
+ - Fix upgrade from Rygel 0.6 (be nice to Debian stable users).
+ - Fix translation of virtual folders.
+ - Massively speed up initial meta-data extraction.
+
+Playbin:
+ - Uptime content-types for various XIPH formats.
+ - Fix LPCM playback.
+
+External:
+ - Don't browse external containers recursively.
+ - Guard against empty mandatory properties.
+
+Tracker;
+ - Port to libtracker-sparql.
+ - Use nfo:fileName as alternative title if nie:title is not available.
+ - Remove some dead code.
+ - Unify query code.
+
+New dependencies:
+ - libtracker-sparql-0.14
+ - libunistring (optional)
+
+Bugs fixed:
+ https://bugzilla.gnome.org/show_bug.cgi?id=677959
+ https://bugzilla.gnome.org/show_bug.cgi?id=677966
+ https://bugzilla.gnome.org/show_bug.cgi?id=674542
+ https://bugzilla.gnome.org/show_bug.cgi?id=676037
+ https://bugzilla.gnome.org/show_bug.cgi?id=661988
+ https://bugzilla.gnome.org/show_bug.cgi?id=644491
+ https://bugzilla.gnome.org/show_bug.cgi?id=679648
+
+Added/updated translations
+ - as, courtesy of Nilamdyuti Goswami
+ - bg, courtesy of Alexander Shopov
+ - el, courtesy of Tom Tryfonidis
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Fran Dieguez
+ - he, courtesy of Yaron Shahrabani
+ - lt, courtesy of Aurimas Černius
+ - nb, courtesy of Kjartan Maraas
+ - sl, courtesy of Matej Urbančič
+ - te, courtesy of Hari Krishna
+ - zh_HK, courtesy of Chao-Hsiung Liao
+ - zh_TW, courtesy of Chao-Hsiung Liao
+
+All contributors to this release:
+ Jens Georg <mail@jensge.org>
+ Murray Cumming <murrayc@murrayc.com>
+ Yaron Shahrabani <sh.yaron@gmail.com>
+ Daniel Mustieles <daniel.mustieles@gmail.com>
+ Nilamdyuti Goswami <nilamdyuti@gmail.com>
+ Matej Urbančič <mateju@svn.gnome.org>
+ Luis de Bethencourt <luis@debethencourt.com>
+ Kjartan Maraas <kmaraas@gnome.org>
+ Fran Diéguez <fran.dieguez@mabishu.com>
+ Tom Tryfonidis <tomtryf@gmail.com>
+ Sasi Bhushan Boddepalli <sasi@swecha.net>
+ Murray Cumming <murrayc@openismus.com>
+ Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+ Aurimas Černius <aurisc4@gmail.com>
+ Alexander Shopov <ash@kambanaria.org>
+
 0.15.0
 ======
 
