@@ -210,6 +210,7 @@ AS_IF([test "x$enable_valadoc" != "xno"], [
     AS_IF([test -x "$VALADOC"], [
       found_valadoc=yes
       AC_SUBST(VALADOC)
+      PKG_CHECK_MODULES([GTKDOCK],[gtk-doc >= 1.0])
     ], [
       AS_IF([test "x$enable_valadoc" == "xyes"], AC_MSG_ERROR([Unable to find valadoc]))
     ])
