@@ -91,6 +91,11 @@ internal class Rygel.Thumbnailer : GLib.Object {
                                         (_("No thumbnail available"));
         }
 
+        if (path == null) {
+            throw new ThumbnailerError.NO_THUMBNAIL
+                                        (_("No thumbnail available"));
+        }
+
         file = File.new_for_path (path);
         info = file.query_info (FileAttribute.ACCESS_CAN_READ + "," +
                                 FileAttribute.STANDARD_SIZE,
