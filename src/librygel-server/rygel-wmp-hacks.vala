@@ -35,6 +35,7 @@ internal class Rygel.WMPHacks : ClientHacks {
                                          uint                offset,
                                          uint                requested,
                                          out uint            total_matches,
+                                         string              sort_criteria,
                                          Cancellable?        cancellable)
                                          throws Error {
         // Drop the limit. WMP has a problem if we don't know the number of
@@ -46,6 +47,7 @@ internal class Rygel.WMPHacks : ClientHacks {
                                        offset,
                                        0,
                                        out total_matches,
+                                       sort_criteria,
                                        cancellable);
     }
 }

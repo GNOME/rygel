@@ -47,10 +47,12 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
         }
     }
 
-    public override async MediaObjects? get_children (uint         offset,
-                                                      uint         max_count,
-                                                      Cancellable? cancellable)
-                                                      throws GLib.Error {
+    public override async MediaObjects? get_children (
+                                                     uint         offset,
+                                                     uint         max_count,
+                                                     string       sort_criteria,
+                                                     Cancellable? cancellable)
+                                                     throws GLib.Error {
         return this.media_db.get_children (this, offset, max_count);
     }
 
@@ -58,6 +60,7 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
                                                uint              offset,
                                                uint              max_count,
                                                out uint          total_matches,
+                                               string            sort_criteria,
                                                Cancellable?      cancellable)
                                                throws GLib.Error {
         MediaObjects children = null;
@@ -75,6 +78,7 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
                                                      offset,
                                                      max_count,
                                                      out total_matches,
+                                                     sort_criteria,
                                                      cancellable);
             } else {
                 throw error;

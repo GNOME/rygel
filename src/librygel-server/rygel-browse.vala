@@ -110,9 +110,12 @@ internal class Rygel.Browse: Rygel.MediaQueryAction {
                this.requested_count,
                this.object_id,
                this.index);
+
         var children = yield container.get_children (this.index,
                                                      this.requested_count,
+                                                     this.sort_criteria,
                                                      this.cancellable);
+
         debug ("Fetched %u children of container '%s' from index %u.",
                this.requested_count,
                this.object_id,

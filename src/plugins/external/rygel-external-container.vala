@@ -74,10 +74,12 @@ public class Rygel.External.Container : Rygel.MediaContainer,
         }
     }
 
-    public override async MediaObjects? get_children (uint         offset,
-                                                      uint         max_count,
-                                                      Cancellable? cancellable)
-                                                      throws GLib.Error {
+    public override async MediaObjects? get_children (
+                                                     uint         offset,
+                                                     uint         max_count,
+                                                     string       sort_criteria,
+                                                     Cancellable? cancellable)
+                                                     throws GLib.Error {
         string[] filter = {};
 
         foreach (var object_prop in MediaObjectProxy.PROPERTIES) {
@@ -102,6 +104,7 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                                        uint              offset,
                                        uint              max_count,
                                        out uint          total_matches,
+                                       string            sort_criteria,
                                        Cancellable?      cancellable)
                                        throws GLib.Error {
         if (expression == null || !this.searchable) {
@@ -110,6 +113,7 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                                              offset,
                                              max_count,
                                              out total_matches,
+                                             sort_criteria,
                                              cancellable);
         }
 

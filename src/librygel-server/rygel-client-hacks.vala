@@ -84,12 +84,14 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
                                          uint                offset,
                                          uint                max_count,
                                          out uint            total_matches,
+                                         string              sort_criteria,
                                          Cancellable?        cancellable)
                                          throws Error {
         return yield container.search (expression,
                                        offset,
                                        max_count,
                                        out total_matches,
+                                       sort_criteria,
                                        cancellable);
     }
 

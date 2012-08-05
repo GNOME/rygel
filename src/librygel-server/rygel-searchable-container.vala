@@ -45,6 +45,7 @@ public interface Rygel.SearchableContainer : MediaContainer {
                                                 uint              offset,
                                                 uint              max_count,
                                                 out uint          total_matches,
+                                                string            sort_criteria,
                                                 Cancellable?      cancellable)
                                                 throws Error;
 
@@ -68,12 +69,14 @@ public interface Rygel.SearchableContainer : MediaContainer {
                                               uint              offset,
                                               uint              max_count,
                                               out uint          total_matches,
+                                              string            sort_criteria,
                                               Cancellable?      cancellable)
                                               throws Error {
         var result = new MediaObjects ();
 
         var children = yield this.get_children (0,
                                                 this.child_count,
+                                                sort_criteria,
                                                 cancellable);
 
         // The maximum number of results we need to be able to slice-out
@@ -99,7 +102,6 @@ public interface Rygel.SearchableContainer : MediaContainer {
         if (limit == 0 || result.size < limit) {
             // Then search in the children
             var child_limit = (limit == 0)? 0: limit - result.size;
-
             var child_results = yield this.search_in_children (expression,
                                                                children,
                                                                child_limit,
@@ -158,6 +160,7 @@ public interface Rygel.SearchableContainer : MediaContainer {
                                          0,
                                          1,
                                          out total_matches,
+                                         "",
                                          cancellable);
         if (results.size > 0) {
             return results[0];
@@ -182,6 +185,7 @@ public interface Rygel.SearchableContainer : MediaContainer {
                                                            0,
                                                            limit,
                                                            out tmp,
+                                                           "",
                                                            cancellable);
 
                 result.add_all (child_result);

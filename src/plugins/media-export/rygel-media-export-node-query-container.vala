@@ -43,14 +43,17 @@ internal class Rygel.MediaExport.NodeQueryContainer : QueryContainer {
 
     // MediaContainer overrides
 
-    public override async MediaObjects? get_children (uint         offset,
-                                                      uint         max_count,
-                                                      Cancellable? cancellable)
-                                                      throws GLib.Error {
+    public override async MediaObjects? get_children
+                                        (uint         offset,
+                                         uint         max_count,
+                                         string       sort_criteria,
+                                         Cancellable? cancellable)
+                                         throws GLib.Error {
         var children = new MediaObjects ();
         var data = this.media_db.get_object_attribute_by_search_expression
                                         (this.attribute,
                                          this.expression,
+                                         // sort criteria
                                          offset,
                                          max_count);
 

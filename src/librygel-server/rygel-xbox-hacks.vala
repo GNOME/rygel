@@ -130,6 +130,7 @@ internal class Rygel.XBoxHacks : ClientHacks {
                                          uint                offset,
                                          uint                max_count,
                                          out uint            total_matches,
+                                         string              sort_criteria,
                                          Cancellable?        cancellable)
                                          throws Error {
         var set_total_matches = false;
@@ -159,6 +160,7 @@ internal class Rygel.XBoxHacks : ClientHacks {
                                               offset,
                                               max_count,
                                               out total_matches,
+                                              sort_criteria,
                                               cancellable);
         if (total_matches == 0 && set_total_matches) {
             total_matches = results.size;

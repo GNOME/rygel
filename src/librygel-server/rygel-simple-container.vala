@@ -121,10 +121,12 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
         return unique;
     }
 
-    public override async MediaObjects? get_children (uint         offset,
-                                                      uint         max_count,
-                                                      Cancellable? cancellable)
-                                                      throws Error {
+    public override async MediaObjects? get_children (
+                                                     uint         offset,
+                                                     uint         max_count,
+                                                     string       sort_criteria,
+                                                     Cancellable? cancellable)
+                                                     throws Error {
         uint stop = offset + max_count;
         stop = stop.clamp (0, this.child_count);
 
@@ -188,12 +190,14 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
                                        uint              offset,
                                        uint              max_count,
                                        out uint          total_matches,
+                                       string            sort_criteria,
                                        Cancellable?      cancellable)
                                        throws Error {
         return yield this.simple_search (expression,
                                          offset,
                                          max_count,
                                          out total_matches,
+                                         sort_criteria,
                                          cancellable);
     }
 

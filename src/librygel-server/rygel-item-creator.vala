@@ -235,6 +235,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                                       0,
                                                       1,
                                                       out total_matches,
+                                                      "",
                                                       this.cancellable);
             if (result.size > 0) {
                 this.didl_item.upnp_class = upnp_class;

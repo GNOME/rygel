@@ -35,6 +35,8 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
     /* class-wide constants */
     private const string MODIFIED_PROPERTY = "nfo:fileLastModified";
 
+    private string sort_criteria = "";
+
     public SelectionQuery query;
     public ItemFactory item_factory;
 
@@ -105,8 +107,9 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
         }
     }
 
-    public override async MediaObjects? get_children (uint         offset,
-                                                      uint         max_count,
+    public override async MediaObjects? get_children (uint       offset,
+                                                      uint       max_count,
+                                                      string     sort_criteria,
                                                       Cancellable? cancellable)
                                                       throws GLib.Error {
         var expression = new RelationalExpression ();
@@ -115,6 +118,8 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
         expression.operand2 = this.id;
 
         uint total_matches;
+
+        this.sort_criteria = sort_criteria;
 
         return yield this.execute_query (expression,
                                          offset,
@@ -133,7 +138,8 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
 
         var query = this.create_query (expression as RelationalExpression,
                                        (int) offset,
-                                       (int) max_count);
+                                       (int) max_count,
+                                       this.sort_criteria);
 
         if (query != null) {
             yield query.execute (this.resources);
@@ -233,14 +239,20 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
     }
 
     private SelectionQuery? create_query (RelationalExpression? expression,
-                                          int                   offset,
-                                          int                   max_count) {
+                                          int offset,
+                                          int max_count,
+                                          string sort_criteria = "") {
         if (expression.operand1 == "upnp:class" &&
             !this.item_factory.upnp_class.has_prefix (expression.operand2)) {
             return null;
         }
 
-        var query = new SelectionQuery.clone (this.query);
+        SelectionQuery query;
+        if (sort_criteria == null || sort_criteria == "") {
+            query = new SelectionQuery.clone (this.query);
+        } else {
+            query = create_sorted_query ();
+        }
 
         if (expression.operand1 == "@parentID") {
             if (!expression.compare_string (this.id)) {
@@ -257,8 +269,44 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
 
         query.offset = offset;
         query.max_count = max_count;
+        this.sort_criteria = "";
 
         return query;
+    }
+
+    private SelectionQuery? create_sorted_query () {
+         var key_chain_map = UPnPPropertyMap.get_property_map ();
+         var sort_props = sort_criteria.split (",");
+         string order = "";
+         ArrayList<string> variables = new ArrayList<string> ();
+         ArrayList<string> filters = new ArrayList<string> ();
+
+         variables.add_all (this.query.variables);
+         filters.add_all (this.query.filters);
+
+         foreach (string s in sort_props) {
+             var key = key_chain_map[s.substring(1)];
+             if (key.index_of (SelectionQuery.ITEM_VARIABLE) == 0) {
+                 continue;
+             }
+
+             if (s.has_prefix("-")) {
+                 order += "DESC (" +
+                           key + ") ";
+             } else {
+                 order += key + " ";
+             }
+         }
+
+         if (order == "") {
+             order = this.query.order_by;
+         }
+
+         return new SelectionQuery (
+                                variables,
+                                new QueryTriplets.clone(this.query.triplets),
+                                filters,
+                                order);
     }
 
     private string? urn_to_utf8 (string urn) {

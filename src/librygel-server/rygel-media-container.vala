@@ -106,12 +106,14 @@ public abstract class Rygel.MediaContainer : MediaObject {
      *
      * @param offset zero-based index of the first item to return
      * @param max_count maximum number of objects to return
+     * @param sort_criteria sorting order of objects to return
      * @param cancellable optional cancellable for this operation
      *
      * @return A list of media objects.
      */
     public async abstract MediaObjects? get_children (uint         offset,
                                                       uint         max_count,
+                                                      string       sort_criteria,
                                                       Cancellable? cancellable)
                                                       throws Error;
 

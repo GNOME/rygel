@@ -75,12 +75,14 @@ internal class Rygel.Search:  Rygel.MediaQueryAction {
                                             this.index,
                                             this.requested_count,
                                             out this.total_matches,
+                                            this.sort_criteria,
                                             this.cancellable);
         } else {
             return yield container.search (parser.expression,
                                            this.index,
                                            this.requested_count,
                                            out this.total_matches,
+                                           this.sort_criteria,
                                            this.cancellable);
         }
     }

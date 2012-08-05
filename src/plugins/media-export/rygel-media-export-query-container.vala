@@ -49,6 +49,7 @@ internal abstract class Rygel.MediaExport.QueryContainer : DBContainer {
                                                 uint              offset,
                                                 uint              max_count,
                                                 out uint          total_matches,
+                                                string            sort_criteria,
                                                 Cancellable?      cancellable)
                                                 throws GLib.Error {
         MediaObjects children = null;
