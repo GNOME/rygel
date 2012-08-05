@@ -130,7 +130,12 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
         uint stop = offset + max_count;
         stop = stop.clamp (0, this.child_count);
 
-        return this.children.slice ((int) offset, (int) stop) as MediaObjects;
+        var sorted_children = this.children.slice (0, this.child_count)
+                                        as MediaObjects;
+        sorted_children.sort_by_criteria (sort_criteria);
+
+        return sorted_children.slice ((int) offset, (int) stop)
+                                        as MediaObjects;
     }
 
     public override async MediaObject? find_object (string       id,

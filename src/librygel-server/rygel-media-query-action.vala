@@ -81,7 +81,6 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
                 this.update_id = uint32.MAX;
             }
 
-            results.sort_by_criteria (this.sort_criteria);
 
             results.serialize (this.didl_writer,
                                this.http_server,
