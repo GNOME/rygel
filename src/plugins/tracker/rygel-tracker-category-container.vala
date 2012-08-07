@@ -67,9 +67,9 @@ public abstract class Rygel.Tracker.CategoryContainer : Rygel.SimpleContainer {
             }
 
             if (container is MetadataValues) {
-                (container as MetadataValues).fetch_metadata_values ();
+                (container as MetadataValues).fetch_metadata_values.begin ();
             } else if (container is SearchContainer) {
-                (container as SearchContainer).get_children_count ();
+                (container as SearchContainer).get_children_count.begin ();
             }
         }
     }

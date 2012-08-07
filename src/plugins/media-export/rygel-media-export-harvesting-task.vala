@@ -171,7 +171,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
         if (info.get_file_type () == FileType.DIRECTORY) {
             // queue directory for processing later
-            this.monitor.add (file);
+            this.monitor.add.begin (file);
 
             var container = new DummyContainer (file, parent);
             this.containers.push_tail (container);
@@ -224,7 +224,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
             GLib.List<FileInfo> list = null;
             do {
-                list = yield enumerator.next_files_async (this.BATCH_SIZE,
+                list = yield enumerator.next_files_async (BATCH_SIZE,
                                                           Priority.DEFAULT,
                                                           this.cancellable);
             } while (this.process_children (list));
@@ -265,7 +265,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                    this.files.peek ().get_uri ());
             this.extractor.extract (this.files.peek ());
         } else if (this.containers.get_length () > 0) {
-            this.enumerate_directory ();
+            this.enumerate_directory.begin ();
         } else {
             // nothing to do
             if (this.flag != null) {

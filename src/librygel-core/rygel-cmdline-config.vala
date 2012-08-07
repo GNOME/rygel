@@ -170,7 +170,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     }
 
     public int get_port () throws GLib.Error {
-        if (this.port <= 0) {
+        if (port <= 0) {
             throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
 

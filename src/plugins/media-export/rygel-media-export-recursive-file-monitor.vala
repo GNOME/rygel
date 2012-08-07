@@ -55,7 +55,7 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
 
         switch (event_type) {
             case FileMonitorEvent.CREATED:
-                this.add (file);
+                this.add.begin (file);
 
                 break;
             case FileMonitorEvent.DELETED:

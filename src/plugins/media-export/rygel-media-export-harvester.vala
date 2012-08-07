@@ -92,7 +92,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         task.cancellable = this.cancellable;
         task.completed.connect (this.on_file_harvested);
         this.tasks[file] = task;
-        task.run ();
+        task.run.begin ();
     }
 
     /**

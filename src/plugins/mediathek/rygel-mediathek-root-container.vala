@@ -79,7 +79,7 @@ public class Rygel.Mediathek.RootContainer : Rygel.SimpleContainer {
             foreach (var child in this.children) {
                 var container = child as RssContainer;
 
-                container.update ();
+                container.update.begin ();
             }
 
             return true;

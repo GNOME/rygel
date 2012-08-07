@@ -79,7 +79,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         }
 
         var cleanup_query = new CleanupQuery (this.item_factory.category);
-        cleanup_query.execute (this.resources);
+        cleanup_query.execute.begin (this.resources);
     }
 
     public async void add_item (MediaItem item, Cancellable? cancellable)

@@ -225,7 +225,7 @@ internal class Rygel.HTTPItemURI : Object {
             mime_to_ext.set ("application/ogg", "ogg");
         }
 
-        if (this.mime_to_ext.has_key (mime_type)) {
+        if (HTTPItemURI.mime_to_ext.has_key (mime_type)) {
             return mime_to_ext.get (mime_type);
         }
 

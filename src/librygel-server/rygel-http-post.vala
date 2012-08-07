@@ -94,7 +94,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
             return;
         }
 
-        this.finalize_post ();
+        this.finalize_post.begin ();
     }
 
     /**

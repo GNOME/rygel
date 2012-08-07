@@ -38,7 +38,7 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
 
         this.content_id = id;
         this.feed_uri = uri_template.printf (id);
-        this.update ();
+        this.update.begin ();
     }
 
     public async void update () {

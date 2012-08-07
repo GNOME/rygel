@@ -160,7 +160,7 @@ public class Rygel.Tracker.InsertionQuery : Query {
                                          MINER_SERVICE,
                                          MINER_PATH,
                                          DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
-                miner.index_file (this.uri);
+                miner.index_file.begin (this.uri);
             }
         }
 

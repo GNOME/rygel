@@ -92,11 +92,11 @@ internal class Rygel.DbusThumbnailer : GLib.Object {
         debug ("Queueing thumbnail creation for %d files",
                this.uris.size);
 
-        this.tumbler.Queue (this.uris.to_array (),
-                            this.mimes.to_array (),
-                            this.flavor,
-                            "default",
-                            0);
+        this.tumbler.Queue.begin (this.uris.to_array (),
+                                  this.mimes.to_array (),
+                                  this.flavor,
+                                  "default",
+                                  0);
 
         this.uris.clear ();
         this.mimes.clear ();

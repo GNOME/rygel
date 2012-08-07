@@ -83,7 +83,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         bool val = true;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_upnp_enabled ();
                 unavailable = false;
@@ -102,7 +102,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         string val = null;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_interface ();
                 unavailable = false;
@@ -121,7 +121,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         int val = 0;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_port ();
                 unavailable = false;
@@ -140,7 +140,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         bool val = true;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_transcoding ();
                 unavailable = false;
@@ -159,7 +159,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         bool val = true;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_mp3_transcoder ();
                 unavailable = false;
@@ -178,7 +178,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         bool val = true;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_mp2ts_transcoder ();
                 unavailable = false;
@@ -197,7 +197,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         bool val = true;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_lpcm_transcoder ();
                 unavailable = false;
@@ -216,7 +216,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         bool val = true;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_wmv_transcoder ();
                 unavailable = false;
@@ -235,7 +235,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         bool val = true;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_aac_transcoder ();
                 unavailable = false;
@@ -254,7 +254,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         bool val = true;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_avc_transcoder ();
                 unavailable = false;
@@ -273,7 +273,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         bool val = true;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_allow_upload ();
                 unavailable = false;
@@ -292,7 +292,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         bool val = true;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_allow_deletion ();
                 unavailable = false;
@@ -311,7 +311,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         string val = null;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_log_levels ();
                 unavailable = false;
@@ -330,7 +330,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         string val = null;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_plugin_path ();
                 unavailable = false;
@@ -350,7 +350,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
                                         (UserDirectory.VIDEOS);
         var value = default;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 value = config.get_video_upload_folder ();
             } catch (GLib.Error err) { }
@@ -365,7 +365,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
 
         var value = default;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 value = config.get_music_upload_folder ();
             } catch (GLib.Error err) {};
@@ -379,7 +379,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
                                         (UserDirectory.PICTURES);
         var value = default;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 value = config.get_picture_upload_folder ();
             } catch (GLib.Error err) {};
@@ -393,7 +393,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         bool val = true;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_enabled (section);
                 unavailable = false;
@@ -413,7 +413,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
     public string get_title (string section) throws GLib.Error {
         string val = null;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_title (section);
                 break;
@@ -433,7 +433,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
                               string key) throws GLib.Error {
         string val = null;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_string (section, key);
                 break;
@@ -455,7 +455,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
                                                   throws GLib.Error {
         Gee.ArrayList<string> val = null;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_string_list (section, key);
                 break;
@@ -480,7 +480,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         int val = 0;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_int (section, key, min, max);
                 unavailable = false;
@@ -503,7 +503,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
                                             throws GLib.Error {
         Gee.ArrayList<int> val = null;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_int_list (section, key);
                 break;
@@ -526,7 +526,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         bool val = false;
         bool unavailable = true;
 
-        foreach (var config in this.configs) {
+        foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_bool (section, key);
                 unavailable = false;
