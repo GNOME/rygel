@@ -1,0 +1,12 @@
+[Unit]
+Description=Rygel DLNA server
+After=syslog.target
+
+[Service]
+User=rygel
+Group=rygel
+ExecStart=/usr/bin/rygel
+# ExecStart=/usr/bin/wrap-dbus /usr/bin/rygel
+
+[Install]
+WantedBy=multi-user.target
