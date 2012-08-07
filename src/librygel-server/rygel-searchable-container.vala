@@ -105,6 +105,7 @@ public interface Rygel.SearchableContainer : MediaContainer {
             var child_results = yield this.search_in_children (expression,
                                                                children,
                                                                child_limit,
+                                                               sort_criteria,
                                                                cancellable);
             result.add_all (child_results);
         }
@@ -169,11 +170,13 @@ public interface Rygel.SearchableContainer : MediaContainer {
         }
     }
 
-    private async MediaObjects search_in_children (SearchExpression expression,
-                                                   MediaObjects     children,
-                                                   uint             limit,
-                                                   Cancellable?     cancellable)
-                                                   throws Error {
+    private async MediaObjects search_in_children
+                                        (SearchExpression expression,
+                                         MediaObjects     children,
+                                         uint             limit,
+                                         string           sort_criteria,
+                                         Cancellable?     cancellable)
+                                        throws Error {
         var result = new MediaObjects ();
 
         foreach (var child in children) {
@@ -185,7 +188,7 @@ public interface Rygel.SearchableContainer : MediaContainer {
                                                            0,
                                                            limit,
                                                            out tmp,
-                                                           "",
+                                                           sort_criteria,
                                                            cancellable);
 
                 result.add_all (child_result);
