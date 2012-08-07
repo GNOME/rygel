@@ -1,3 +1,24 @@
+0.14.3
+======
+
+A bugfix release in the stable 0.14 series of Rygel.
+
+Changes compared to 0.14.2:
+
+- Fix Samsung compatibility fix from 0.14.1.
+
+MediaExport:
+ - Massively speed up indexing.
+
+Added/updated translations
+ - as, courtesy of Nilamdyuti Goswami
+ - te, courtesy of Hari Krishna
+
+All contributors to this release:
+ Nilamdyuti Goswami <nilamdyuti@gmail.com>
+ Jens Georg <mail@jensge.org>
+ Sasi Bhushan Boddepalli <sasi@swecha.net>
+
 0.14.2
 ======
 
