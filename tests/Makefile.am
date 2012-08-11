@@ -41,7 +41,8 @@ check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-album-art-spec-test \
 		 rygel-http-post-test \
 		 rygel-searchable-container-test \
-		 rygel-item-creator-test
+		 rygel-item-creator-test \
+		 rygel-regression
 
 TESTS = $(check_PROGRAMS)
 
@@ -91,6 +92,25 @@ rygel_item_creator_test_SOURCES = rygel-item-creator-test.vala \
 				  rygel-state-machine_item-creator.vala \
 				  rygel-relational-expression.vala \
 				  rygel-search-expression.vala
+
+rygel_regression_SOURCES = \
+	rygel-regression.vala
+
+rygel_regression_VALAFLAGS = \
+	$(AM_VALAFLAGS) \
+	--pkg rygel-server-1.0 \
+	--pkg rygel-core-1.0 \
+	--vapidir $(top_builddir)/src/librygel-server \
+	--vapidir $(top_builddir)/src/librygel-core
+
+rygel_regression_CFLAGS = \
+	$(AM_CFLAGS) -I$(top_builddir)/src/librygel-server \
+	-I$(top_builddir)/src/librygel-core
+
+rygel_regression_LDADD = \
+	$(LDADD) \
+	$(top_builddir)/src/librygel-server/librygel-server-1.0.la \
+	$(top_builddir)/src/librygel-core/librygel-core-1.0.la
 
 if ALWAYS_TEST
 all-local: check
