@@ -117,11 +117,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
         "JOIN Closure c ON (o.upnp_id = c.descendant) " +
         "LEFT OUTER JOIN meta_data m " +
         "ON c.descendant = m.object_fk " +
-    "WHERE c.ancestor = ? AND c.depth = 1 " +
-        "ORDER BY o.type_fk ASC, " +
-                 "m.class ASC, " +
-                 "m.track ASC, " +
-                 "o.title ASC " +
+    "WHERE c.ancestor = ? AND c.depth = 1 %s" +
     "LIMIT ?,?";
 
     private const string GET_OBJECTS_BY_FILTER_STRING_WITH_ANCESTOR =
@@ -129,24 +125,14 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "FROM Object o " +
         "JOIN Closure c ON o.upnp_id = c.descendant AND c.ancestor = ? " +
         "LEFT OUTER JOIN meta_data m " +
-            "ON o.upnp_id = m.object_fk %s" +
-        "ORDER BY o.parent ASC, " +
-                 "o.type_fk ASC, " +
-                 "m.class ASC, " +
-                 "m.track ASC, " +
-                 "o.title ASC " +
+            "ON o.upnp_id = m.object_fk %s %s " +
     "LIMIT ?,?";
 
     private const string GET_OBJECTS_BY_FILTER_STRING =
     "SELECT DISTINCT " + ALL_DETAILS_STRING +
     "FROM Object o " +
         "LEFT OUTER JOIN meta_data m " +
-            "ON o.upnp_id = m.object_fk %s" +
-        "ORDER BY o.parent ASC, " +
-                 "o.type_fk ASC, " +
-                 "m.class ASC, " +
-                 "m.track ASC, " +
-                 "o.title ASC " +
+            "ON o.upnp_id = m.object_fk %s %s " +
     "LIMIT ?,?";
 
     private const string GET_OBJECT_COUNT_BY_FILTER_STRING_WITH_ANCESTOR =

@@ -180,6 +180,7 @@ public class Rygel.MediaExport.MediaCache : Object {
     }
 
     public MediaObjects get_children (MediaContainer container,
+                                      string?        sort_criteria,
                                       long           offset,
                                       long           max_count)
                                       throws Error {
@@ -189,7 +190,9 @@ public class Rygel.MediaExport.MediaCache : Object {
                                 offset,
                                 max_count };
 
-        var cursor = this.exec_cursor (SQLString.GET_CHILDREN, values);
+        var sql = this.sql.make (SQLString.GET_CHILDREN);
+        var sort_order = this.translate_sort_criteria (sort_criteria);
+        var cursor = this.db.exec_cursor (sql.printf (sort_order), values);
 
         foreach (var statement in cursor) {
             children.add (this.get_object_from_statement (container,
@@ -203,6 +206,7 @@ public class Rygel.MediaExport.MediaCache : Object {
     public MediaObjects get_objects_by_search_expression
                                         (SearchExpression? expression,
                                          string?           container_id,
+                                         string?           sort_criteria,
                                          uint              offset,
                                          uint              max_count,
                                          out uint          total_matches)
@@ -215,10 +219,6 @@ public class Rygel.MediaExport.MediaCache : Object {
             debug ("Parsed search expression: %s", filter);
         }
 
-        for (int i = 0; i < args.n_values; i++) {
-            debug ("Arg %d: %s", i, args.get_nth (i).get_string ());
-        }
-
         var max_objects = modify_limit (max_count);
         total_matches = (uint) get_object_count_by_filter (filter,
                                                            args,
@@ -227,6 +227,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         return this.get_objects_by_filter (filter,
                                            args,
                                            container_id,
+                                           sort_criteria,
                                            offset,
                                            max_objects);
     }
@@ -244,7 +245,10 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
 
         for (int i = 0; i < args.n_values; i++) {
-            debug ("Arg %d: %s", i, args.get_nth (i).get_string ());
+            var arg = args.get_nth (i);
+            debug ("Arg %d: %s", i, arg.holds (typeof (string)) ?
+                                        arg.get_string () :
+                                        arg.strdup_contents ());
         }
 
         return this.get_object_count_by_filter (filter,
@@ -275,10 +279,10 @@ public class Rygel.MediaExport.MediaCache : Object {
         return this.db.query_value (pattern.printf (filter), args.values);
     }
 
-
     public MediaObjects get_objects_by_filter (string          filter,
                                                GLib.ValueArray args,
                                                string?         container_id,
+                                               string?         sort_criteria,
                                                long            offset,
                                                long            max_count)
                                                throws Error {
@@ -290,6 +294,12 @@ public class Rygel.MediaExport.MediaCache : Object {
         MediaContainer parent = null;
 
         debug ("Parameters to bind: %u", args.n_values);
+        for (int i = 0; i < args.n_values; i++) {
+            var arg = args.get_nth (i);
+            debug ("Arg %d: %s", i, arg.holds (typeof (string)) ?
+                                        arg.get_string () :
+                                        arg.strdup_contents ());
+        }
 
         unowned string sql;
         if (container_id != null) {
@@ -297,7 +307,10 @@ public class Rygel.MediaExport.MediaCache : Object {
         } else {
             sql = this.sql.make (SQLString.GET_OBJECTS_BY_FILTER);
         }
-        var cursor = this.db.exec_cursor (sql.printf (filter), args.values);
+
+        var sort_order = this.translate_sort_criteria (sort_criteria);
+        var cursor = this.db.exec_cursor (sql.printf (filter, sort_order),
+                                          args.values);
         foreach (var statement in cursor) {
             unowned string parent_id = statement.column_text (DetailColumn.PARENT);
 
@@ -766,6 +779,9 @@ public class Rygel.MediaExport.MediaCache : Object {
                 column = "m.genre";
                 use_collation = true;
                 break;
+            case "upnp:originalTrackNumber":
+                column = "m.track";
+                break;
             default:
                 var message = "Unsupported column %s".printf (operand);
 
@@ -844,5 +860,32 @@ public class Rygel.MediaExport.MediaCache : Object {
                              GLib.Value[]?  values = null)
                              throws DatabaseError {
         return this.db.query_value (this.sql.make (id), values);
+    }
+
+    private string translate_sort_criteria (string? sort_criteria) {
+        if (sort_criteria == null) {
+            return "ORDER BY o.title COLLATE CASEFOLD ASC ";
+        }
+
+        string? collate;
+        var builder = new StringBuilder("ORDER BY ");
+        var fields = sort_criteria.split (",");
+        foreach (var field in fields) {
+            try {
+                var column = this.map_operand_to_column (field[1:field.length],
+                                                         out collate);
+                if (field != fields[0]) {
+                    builder.append (",");
+                }
+                builder.append_printf ("%s %s %s ",
+                                       column,
+                                       collate,
+                                       field[0] == '-' ? "DESC" : "ASC");
+            } catch (Error error) {
+                warning ("Skipping nsupported field: %s", field);
+            }
+        }
+
+        return builder.str;
     }
 }

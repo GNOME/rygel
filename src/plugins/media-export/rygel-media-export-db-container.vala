@@ -53,7 +53,10 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
                                                      string       sort_criteria,
                                                      Cancellable? cancellable)
                                                      throws GLib.Error {
-        return this.media_db.get_children (this, offset, max_count);
+        return this.media_db.get_children (this,
+                                           sort_criteria,
+                                           offset,
+                                           max_count);
     }
 
     public virtual async MediaObjects? search (SearchExpression? expression,
@@ -68,6 +71,7 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
         try {
             children = this.media_db.get_objects_by_search_expression
                                         (expression,
+                                         sort_criteria,
                                          this.id,
                                          offset,
                                          max_count,
