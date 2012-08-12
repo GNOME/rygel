@@ -85,12 +85,15 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
      * @param name  An the title of the container. If not supplied, it will
      *              be derived from the plain-text description of the
      *              container
-     * @return A new instance of QueryContainer
+     * @return A new instance of QueryContainer or null if id does not exist
      */
-    public QueryContainer create_from_id (MediaCache cache,
+    public QueryContainer? create_from_id (MediaCache cache,
                                           string     id,
                                           string     name = "") {
         var definition = this.get_virtual_container_definition (id);
+        if (definition == null) {
+            return null;
+        }
 
         return this.create_from_description (cache, definition, name);
     }

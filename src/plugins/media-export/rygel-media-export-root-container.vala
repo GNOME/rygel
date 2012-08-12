@@ -125,7 +125,9 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         if (object == null && id.has_prefix (QueryContainer.PREFIX)) {
             var factory = QueryContainerFactory.get_default ();
             var container = factory.create_from_id (this.media_db, id);
-            container.parent = this;
+            if (container != null) {
+                container.parent = this;
+            }
 
             return container;
         }
