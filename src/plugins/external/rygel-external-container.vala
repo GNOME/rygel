@@ -97,7 +97,10 @@ public class Rygel.External.Container : Rygel.MediaContainer,
         var children_props = yield this.actual_container.list_children
                                         (offset, max_count, filter);
 
-        return yield this.create_media_objects (children_props, this);
+        var result = yield this.create_media_objects (children_props, this);
+        result.sort_by_criteria (sort_criteria);
+
+        return result;
     }
 
     public async MediaObjects? search (SearchExpression? expression,
@@ -138,7 +141,12 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                                          filter);
         total_matches = result.length;
 
-        return yield this.create_media_objects (result);
+        var objects = yield this.create_media_objects (result);
+
+        // FIXME: Delegate sorting to remote peer
+        objects.sort_by_criteria (sort_criteria);
+
+        return objects;
     }
 
     public override async MediaObject? find_object (string       id,

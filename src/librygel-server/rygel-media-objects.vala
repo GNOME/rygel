@@ -40,7 +40,7 @@ public class Rygel.MediaObjects : ArrayList<MediaObject> {
         return ret;
     }
 
-    internal void sort_by_criteria (string sort_criteria) {
+    public void sort_by_criteria (string sort_criteria) {
         var sort_props = sort_criteria.split (",");
         if (sort_props.length == 0) {
             return;
