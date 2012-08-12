@@ -212,7 +212,7 @@ internal class Rygel.AVTransport : Service {
         action.get ("InstanceID", typeof (string), out instance_id_string);
         if (instance_id_string == null ||
             !int64.try_parse (instance_id_string, out instance_id)) {
-            action.return_error (402, _("Invalid Args"));
+            action.return_error (402, _("Invalid argument"));
 
             return false;
         }
@@ -523,7 +523,7 @@ internal class Rygel.AVTransport : Service {
             debug ("Seeking to %s.", target);
 
             if (!this.player.seek (GstUtils.time_from_string (target))) {
-                action.return_error (710, _("Seek failed"));
+                action.return_error (710, _("Seek mode not supported"));
 
                 return;
             }

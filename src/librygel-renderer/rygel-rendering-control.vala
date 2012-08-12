@@ -120,7 +120,7 @@ internal class Rygel.RenderingControl : Service {
         action.get ("InstanceID", typeof (string), out instance_id_string);
         if (instance_id_string == null ||
             !int64.try_parse (instance_id_string, out instance_id)) {
-            action.return_error (402, _("Invalid Args"));
+            action.return_error (402, _("Invalid argument"));
 
             return false;
         }
@@ -207,7 +207,7 @@ internal class Rygel.RenderingControl : Service {
         string mute_str;
         action.get ("DesiredMute", typeof (string), out mute_str);
         if (mute_str.has_prefix ("-")) {
-            action.return_error (501, _("ActionFailed"));
+            action.return_error (501, _("Action Failed"));
 
             return;
         }
@@ -249,7 +249,7 @@ internal class Rygel.RenderingControl : Service {
         string volume_str;
         action.get ("DesiredVolume", typeof (string), out volume_str);
         if ("." in volume_str || "," in volume_str) {
-            action.return_error (501, _("ActionFailed"));
+            action.return_error (501, _("Action Failed"));
 
             return;
         }
