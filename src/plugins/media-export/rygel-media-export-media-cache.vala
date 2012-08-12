@@ -515,7 +515,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                                 -1,
                                 item.id,
                                 item.dlna_profile,
-                                Database.null ()};
+                                Database.null (),
+                                -1};
 
         if (item is AudioItem) {
             var audio_item = item as AudioItem;
@@ -530,6 +531,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                 values[6] = music_item.album;
                 values[17] = music_item.genre;
                 values[12] = music_item.track_number;
+                values[18] = music_item.disc;
             }
         }
 
@@ -781,6 +783,9 @@ public class Rygel.MediaExport.MediaCache : Object {
                 break;
             case "upnp:originalTrackNumber":
                 column = "m.track";
+                break;
+            case "rygel:originalVolumeNumber":
+                column = "m.disc";
                 break;
             default:
                 var message = "Unsupported column %s".printf (operand);

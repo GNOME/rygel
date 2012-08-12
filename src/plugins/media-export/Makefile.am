@@ -36,6 +36,7 @@ librygel_media_export_la_SOURCES = \
 	rygel-media-export-jpeg-writer.vala \
 	rygel-media-export-object-factory.vala \
 	rygel-media-export-writable-db-container.vala \
+	rygel-media-export-music-item.vala \
 	rygel-media-export-collate.c
 
 librygel_media_export_la_VALAFLAGS = \

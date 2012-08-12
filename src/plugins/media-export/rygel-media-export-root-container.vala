@@ -55,7 +55,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
 
     private const string SEARCH_CONTAINER_PREFIX = QueryContainer.PREFIX +
                                                    "upnp:class," +
-                                                   MusicItem.UPNP_CLASS +
+                                                   Rygel.MusicItem.UPNP_CLASS +
                                                    ",";
 
     public static MediaContainer get_instance () throws Error {
@@ -421,7 +421,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
     private void add_default_virtual_folders () {
         try {
             this.add_virtual_containers_for_class (_("Music"),
-                                                   MusicItem.UPNP_CLASS,
+                                                   Rygel.MusicItem.UPNP_CLASS,
                                                    virtual_folders_music);
             this.add_virtual_containers_for_class (_("Pictures"),
                                                    PhotoItem.UPNP_CLASS);

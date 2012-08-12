@@ -195,8 +195,11 @@ namespace Rygel.MediaExport.ItemFactory {
             dlna_info.info.get_tags ().get_string (TAG_ARTIST, out item.artist);
             dlna_info.info.get_tags ().get_string (TAG_ALBUM, out item.album);
             dlna_info.info.get_tags ().get_string (TAG_GENRE, out item.genre);
-
             uint tmp;
+            dlna_info.info.get_tags ().get_uint (TAG_ALBUM_VOLUME_NUMBER,
+                                                 out tmp);
+            item.disc = (int) tmp;
+
             dlna_info.info.get_tags() .get_uint (TAG_TRACK_NUMBER, out tmp);
             item.track_number = (int) tmp;
         }

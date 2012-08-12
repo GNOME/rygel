@@ -40,6 +40,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
     private const string DEFAULT_SORT_CRITERIA = "+upnp:class,+dc:title";
     public const string ALBUM_SORT_CRITERIA = "+upnp:class," +
+                                              "+rygel:originalVolumeNumber," +
                                               "+upnp:originalTrackNumber," +
                                               "+dc:title";
 

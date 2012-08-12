@@ -74,6 +74,10 @@ public class Rygel.Tracker.UPnPPropertyMap : Object {
         // Picture & Video Items
         this.add_key_chain ("width", "nfo:width");
         this.add_key_chain ("height", "nfo:height");
+
+        this.add_key_chain ("rygel:originalVolumeNumber",
+                            "nmm:musicAlbumDisc",
+                            "nmm:setNumber");
     }
 
     public new string @get (string property) {

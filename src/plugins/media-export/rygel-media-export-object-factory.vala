@@ -76,7 +76,7 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
                                        string         title,
                                        string         upnp_class) {
         switch (upnp_class) {
-            case MusicItem.UPNP_CLASS:
+            case Rygel.MusicItem.UPNP_CLASS:
             case AudioItem.UPNP_CLASS:
                 return new MusicItem (id, parent, title);
             case VideoItem.UPNP_CLASS:

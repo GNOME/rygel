@@ -43,7 +43,8 @@ internal enum Rygel.MediaExport.DetailColumn {
     TIMESTAMP,
     URI,
     DLNA_PROFILE,
-    GENRE
+    GENRE,
+    DISC
 }
 
 internal enum Rygel.MediaExport.SQLString {
@@ -76,8 +77,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
         "(size, mime_type, width, height, class, " +
          "author, album, date, bitrate, " +
          "sample_freq, bits_per_sample, channels, " +
-         "track, color_depth, duration, object_fk, dlna_profile, genre) VALUES " +
-         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         "track, color_depth, duration, object_fk, dlna_profile, genre, disc) VALUES " +
+         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     private const string INSERT_OBJECT_STRING =
     "INSERT OR REPLACE INTO Object (upnp_id, title, type_fk, parent, timestamp, uri) " +
@@ -92,7 +93,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "m.height, m.class, m.author, m.album, m.date, m.bitrate, " +
     "m.sample_freq, m.bits_per_sample, m.channels, m.track, " +
     "m.color_depth, m.duration, o.upnp_id, o.parent, o.timestamp, " +
-    "o.uri, m.dlna_profile, m.genre ";
+    "o.uri, m.dlna_profile, m.genre, m.disc ";
 
     private const string GET_OBJECT_WITH_PATH =
     "SELECT DISTINCT " + ALL_DETAILS_STRING +
@@ -159,7 +160,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "SELECT DISTINCT %s AS _column FROM meta_data AS m " +
         "WHERE _column IS NOT NULL %s ORDER BY _column LIMIT ?,?";
 
-    internal const string schema_version = "10";
+    internal const string schema_version = "11";
     internal const string CREATE_META_DATA_TABLE_STRING =
     "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
                             "mime_type TEXT NOT NULL, " +
@@ -177,6 +178,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                             "bits_per_sample INTEGER, " +
                             "channels INTEGER, " +
                             "track INTEGER, " +
+                            "disc INTEGER, " +
                             "color_depth INTEGER, " +
                             "object_fk TEXT UNIQUE CONSTRAINT " +
                                 "object_fk_id REFERENCES Object(upnp_id) " +
