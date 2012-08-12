@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-17 15:26+0800\n"
-"PO-Revision-Date: 2012-07-17 15:26+0800\n"
+"POT-Creation-Date: 2012-08-12 23:37+0800\n"
+"PO-Revision-Date: 2012-08-12 23:37+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "Language: \n"
@@ -78,16 +78,12 @@ msgstr "Rygel"
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA 服務"
 
-#: ../src/librygel-renderer/rygel-playbin-plugin.vala:34
-msgid "GStreamer Player"
-msgstr "GStreamer 播放程式"
-
 #: ../src/plugins/media-export/rygel-media-export-database.vala:210
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "無法退回處理：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:137
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:134
 #: ../src/librygel-core/rygel-plugin-loader.vala:194
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -137,7 +133,7 @@ msgid "Failed to get file info for %s"
 msgstr "無法取得 %s 的檔案資訊"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:30
-#: ../src/plugins/tracker/rygel-tracker-years.vala:35
+#: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "年"
 
@@ -154,7 +150,7 @@ msgid "Album"
 msgstr "專輯"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:37
-#: ../src/plugins/tracker/rygel-tracker-genre.vala:33
+#: ../src/plugins/tracker/rygel-tracker-genre.vala:31
 msgid "Genre"
 msgstr "樂曲分類"
 
@@ -194,74 +190,47 @@ msgstr "圖片"
 msgid "Videos"
 msgstr "影片"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:56
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
-msgid "Failed to create D-Bus proxies: %s"
-msgstr "無法建立 D-Bus 代理伺服器：%s"
+msgid "Failed to create a Tracker connection:: %s"
+msgstr "無法建立 Tracker 連線：%s"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:64
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:62
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "無法建立資料夾「%s」的 URI：%s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:62
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:109
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:77
 #, c-format
-msgid "Failed to connect to session bus: %s"
-msgstr "無法連線至作業階段匯流排：%s"
+msgid "Could not subscribe to tracker signals: %s"
+msgstr "無法訂閱 Tracker 信號：%s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:118
-#, c-format
-msgid "Error getting all values for '%s': %s"
-msgstr "取得「%s」所有數值時發生錯誤：%s"
-
-#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:41
+#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:42
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "無法啟動 Tracker 服務：%s。外掛程式已停用。"
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:221
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:104
+#, c-format
+msgid "Failed to get Tracker connection: %s"
+msgstr "取得 Tracker 的連線失敗：%s"
+
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:223
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr "在型錄「%s」下取得項目數量時發生錯誤：%s"
 
-#: ../src/plugins/tracker/rygel-tracker-albums.vala:35
+#: ../src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
 msgstr "專輯"
 
-#: ../src/plugins/tracker/rygel-tracker-artists.vala:35
+#: ../src/plugins/tracker/rygel-tracker-artists.vala:31
 msgid "Artists"
 msgstr "演出者"
 
 #: ../src/plugins/tracker/rygel-tracker-titles.vala:58
 msgid "Titles"
 msgstr "標題"
-
-#: ../src/librygel-core/rygel-media-query-action.vala:118
-#: ../src/librygel-core/rygel-media-query-action.vala:181
-#: ../src/librygel-core/rygel-item-creator.vala:127
-#: ../src/librygel-core/rygel-item-creator.vala:279
-#: ../src/librygel-core/rygel-item-destroyer.vala:53
-#: ../src/librygel-core/rygel-item-destroyer.vala:100
-msgid "No such object"
-msgstr "沒有這個物件"
-
-#: ../src/librygel-core/rygel-media-query-action.vala:123
-msgid "Invalid range"
-msgstr "無效的範圍"
-
-#: ../src/librygel-core/rygel-browse.vala:63
-msgid "Invalid Arguments"
-msgstr "無效的引數"
-
-#: ../src/librygel-core/rygel-browse.vala:94
-msgid "Cannot browse children on item"
-msgstr "不能瀏覽項目中的子項"
-
-#: ../src/librygel-core/rygel-browse.vala:125
-#, c-format
-msgid "Failed to browse '%s': %s\n"
-msgstr "無法瀏覽「%s」：%s\n"
 
 #: ../src/librygel-core/rygel-cmdline-config.vala:158
 #: ../src/librygel-core/rygel-cmdline-config.vala:166
@@ -306,13 +275,13 @@ msgstr "沒有數值可用"
 #: ../src/librygel-core/rygel-connection-manager.vala:89
 #: ../src/librygel-core/rygel-connection-manager.vala:103
 #: ../src/librygel-core/rygel-connection-manager.vala:125
-#: ../src/librygel-core/rygel-content-directory.vala:198
-#: ../src/librygel-core/rygel-content-directory.vala:225
-#: ../src/librygel-core/rygel-content-directory.vala:244
-#: ../src/librygel-core/rygel-content-directory.vala:279
-#: ../src/librygel-core/rygel-content-directory.vala:304
-#: ../src/librygel-core/rygel-content-directory.vala:329
-#: ../src/librygel-core/rygel-media-receiver-registrar.vala:59
+#: ../src/librygel-server/rygel-content-directory.vala:198
+#: ../src/librygel-server/rygel-content-directory.vala:225
+#: ../src/librygel-server/rygel-content-directory.vala:244
+#: ../src/librygel-server/rygel-content-directory.vala:279
+#: ../src/librygel-server/rygel-content-directory.vala:304
+#: ../src/librygel-server/rygel-content-directory.vala:329
+#: ../src/librygel-server/rygel-media-receiver-registrar.vala:59
 msgid "Invalid argument"
 msgstr "無效的引數"
 
@@ -320,217 +289,10 @@ msgstr "無效的引數"
 msgid "Invalid connection reference"
 msgstr "無效的連線參照"
 
-#: ../src/librygel-core/rygel-content-directory.vala:217
-#: ../src/librygel-core/rygel-content-directory.vala:236
-msgid "No such file transfer"
-msgstr "沒有這個檔案傳輸"
-
-#: ../src/librygel-core/rygel-av-transport.vala:215
-#: ../src/librygel-core/rygel-rendering-control.vala:123
-msgid "Invalid Args"
-msgstr "無效的參數"
-
-#: ../src/librygel-core/rygel-av-transport.vala:221
-#: ../src/librygel-core/rygel-rendering-control.vala:129
-msgid "Invalid InstanceID"
-msgstr "無效的 InstanceID"
-
-#: ../src/librygel-core/rygel-av-transport.vala:481
-msgid "Play speed not supported"
-msgstr "不支援這個播放速度"
-
-#: ../src/librygel-core/rygel-av-transport.vala:497
-#: ../src/librygel-core/rygel-av-transport.vala:542
-#: ../src/librygel-core/rygel-av-transport.vala:546
-msgid "Transition not available"
-msgstr "無法使用過度"
-
-#: ../src/librygel-core/rygel-av-transport.vala:526
-msgid "Seek failed"
-msgstr "搜尋失敗"
-
-#: ../src/librygel-core/rygel-av-transport.vala:535
-msgid "Seek mode not supported"
-msgstr "不支援搜尋模式"
-
-#: ../src/librygel-core/rygel-rendering-control.vala:160
-msgid "Invalid Name"
-msgstr "無效的名稱"
-
-#: ../src/librygel-core/rygel-rendering-control.vala:174
-msgid "Invalid Channel"
-msgstr "無效的頻道"
-
-#: ../src/librygel-core/rygel-rendering-control.vala:210
-#: ../src/librygel-core/rygel-rendering-control.vala:252
-msgid "ActionFailed"
-msgstr "動作失敗"
-
-#: ../src/librygel-core/rygel-rendering-control.vala:261
-msgid "Action Failed"
-msgstr "動作失敗"
-
-#: ../src/librygel-core/rygel-gst-utils.vala:38
-#, c-format
-msgid "Required element %s missing"
-msgstr "缺少了必要的元素 %s"
-
-#. Range header was present but invalid
-#: ../src/librygel-core/rygel-http-byte-seek.vala:47
-#: ../src/librygel-core/rygel-http-byte-seek.vala:52
-#: ../src/librygel-core/rygel-http-time-seek.vala:49
-#: ../src/librygel-core/rygel-http-time-seek.vala:61
-#: ../src/librygel-core/rygel-http-time-seek.vala:68
-#: ../src/librygel-core/rygel-http-time-seek.vala:83
-#, c-format
-msgid "Invalid Range '%s'"
-msgstr "無效的範圍「%s」"
-
-#: ../src/librygel-core/rygel-http-get.vala:59
-msgid "Invalid Request"
-msgstr "無效的要求"
-
-#: ../src/librygel-core/rygel-http-identity-handler.vala:89
-#: ../src/librygel-core/rygel-http-transcode-handler.vala:57
-msgid "Not found"
-msgstr "找不到"
-
-#: ../src/librygel-core/rygel-http-item-uri.vala:127
-#, c-format
-msgid "Invalid URI '%s'"
-msgstr "無效的 URI「%s」"
-
-#: ../src/librygel-core/rygel-http-item-uri.vala:166
-msgid "Not Found"
-msgstr "找不到"
-
-#: ../src/librygel-core/rygel-http-post.vala:62
-#: ../src/librygel-core/rygel-import-resource.vala:191
-#, c-format
-msgid "Pushing data to non-empty item '%s' not allowed"
-msgstr "不允許將資料推播到非空白項目「%s」"
-
-#: ../src/librygel-core/rygel-http-post.vala:70
-#, c-format
-msgid "No writable URI for %s available"
-msgstr "沒有 %s 可用的可寫入 URI"
-
-#. translators: Dotfile is the filename with prefix "."
-#: ../src/librygel-core/rygel-http-post.vala:185
-#, c-format
-msgid "Failed to move dotfile %s: %s"
-msgstr "無法移動以點為前綴的檔案 %s：%s"
-
-#: ../src/librygel-core/rygel-http-request.vala:89
-#, c-format
-msgid "Requested item '%s' not found"
-msgstr "找不到要求的項目「%s」"
-
-#: ../src/librygel-core/rygel-http-response.vala:156
-#: ../src/librygel-core/rygel-http-response.vala:177
-#, c-format
-msgid "Failed to link %s to %s"
-msgstr "無法連結 %s 到 %s"
-
-#: ../src/librygel-core/rygel-http-response.vala:192
-#, c-format
-msgid "Failed to link pad %s to %s"
-msgstr "無法連接 pad %s 至 %s"
-
-#: ../src/librygel-core/rygel-http-response.vala:235
-#, c-format
-msgid "Error from pipeline %s: %s"
-msgstr "來自管線 %s 的錯誤：%s"
-
-#: ../src/librygel-core/rygel-http-response.vala:242
-#, c-format
-msgid "Warning from pipeline %s: %s"
-msgstr "來自管線 %s 的警告：%s"
-
-#: ../src/librygel-core/rygel-http-response.vala:285
-#, c-format
-msgid "Failed to seek to offset %lld"
-msgstr "無法搜尋到偏移量 %lld"
-
-#: ../src/librygel-core/rygel-http-seek.vala:51
-#, c-format
-msgid "Out Of Range Start '%ld'"
-msgstr "超出範圍起點「%ld」"
-
-#: ../src/librygel-core/rygel-http-seek.vala:55
-#, c-format
-msgid "Out Of Range Stop '%ld'"
-msgstr "超出範圍終點「%ld」"
-
-#: ../src/librygel-core/rygel-import-resource.vala:124
-#, c-format
-msgid "Failed to get original URI for '%s': %s"
-msgstr "無法取得「%s」的原始 URI：%s"
-
-#: ../src/librygel-core/rygel-import-resource.vala:188
-#, c-format
-msgid "URI '%s' invalid for importing contents to"
-msgstr "URI「%s」無效，不能匯入內容"
-
-#: ../src/librygel-core/rygel-item-creator.vala:118
-msgid "'Elements' argument missing."
-msgstr "缺少「Elements」參數。"
-
-#: ../src/librygel-core/rygel-item-creator.vala:121
-msgid "Comments not allowed in XML"
-msgstr "在 XML 中不允許註解"
-
-#: ../src/librygel-core/rygel-item-creator.vala:149
-#, c-format
-msgid "No items in DIDL-Lite from client: '%s'"
-msgstr "客戶端的 DIDL-Lite 沒有項目：「%s」"
-
-#: ../src/librygel-core/rygel-item-creator.vala:283
-#: ../src/librygel-core/rygel-item-creator.vala:518
-#, c-format
-msgid "Object creation in %s not allowed"
-msgstr "在 %s 中建立物件是不允許的"
-
-#: ../src/librygel-core/rygel-item-creator.vala:311
-#, c-format
-msgid "Failed to create item under '%s': %s"
-msgstr "無法在「%s」下建立項目：%s"
-
-#: ../src/librygel-core/rygel-item-destroyer.vala:60
-#, c-format
-msgid "Successfully destroyed object '%s'"
-msgstr "成功的破壞物件「%s」"
-
-#: ../src/librygel-core/rygel-item-destroyer.vala:68
-#, c-format
-msgid "Failed to destroy object '%s': %s"
-msgstr "無法破壞物件「%s」：%s"
-
-#: ../src/librygel-core/rygel-item-destroyer.vala:103
-#, c-format
-msgid "Removal of object %s not allowed"
-msgstr "物件 %s 的移除是不允許的"
-
-#: ../src/librygel-core/rygel-item-destroyer.vala:106
-#, c-format
-msgid "Object removal from %s not allowed"
-msgstr "從 %s 移除物件是不允許的"
-
 #: ../src/librygel-core/rygel-log-handler.vala:68
 #, c-format
 msgid "Failed to get log level from configuration: %s"
 msgstr "無法從組態中取得記錄等級：%s"
-
-#: ../src/librygel-core/rygel-media-item.vala:273
-#, c-format
-msgid "Bad URI: %s"
-msgstr "錯誤的 URI：%s"
-
-#. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-core/rygel-media-item.vala:285
-#, c-format
-msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr "無法偵測 URI %s 的通訊協定。猜測為「%s」"
 
 #: ../src/librygel-core/rygel-meta-config.vala:77
 #, c-format
@@ -577,44 +339,13 @@ msgstr "無法從路徑「%s」載入模組：%s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "無法在「%2$s」中找到進入點函數「%1$s」：%3$s"
 
-#: ../src/librygel-core/rygel-root-device-factory.vala:113
-#: ../src/librygel-core/rygel-root-device-factory.vala:147
-#: ../src/librygel-core/rygel-root-device-factory.vala:169
-#: ../src/librygel-core/rygel-root-device-factory.vala:224
+#: ../src/librygel-core/rygel-root-device-factory.vala:98
+#: ../src/librygel-core/rygel-root-device-factory.vala:132
+#: ../src/librygel-core/rygel-root-device-factory.vala:154
+#: ../src/librygel-core/rygel-root-device-factory.vala:209
 #, c-format
 msgid "XML node '%s' not found."
 msgstr "找不到 XML 節點「%s」。"
-
-#: ../src/librygel-core/rygel-search.vala:89
-#, c-format
-msgid "Failed to search in '%s': %s"
-msgstr "無法在「%s」中搜尋：%s"
-
-#: ../src/librygel-core/rygel-subtitle-manager.vala:65
-msgid "No subtitle available"
-msgstr "沒有字幕可用"
-
-#: ../src/librygel-core/rygel-thumbnailer.vala:60
-#, c-format
-msgid "No thumbnailer available: %s"
-msgstr "沒有可用的縮圖：%s"
-
-#: ../src/librygel-core/rygel-thumbnailer.vala:82
-#: ../src/librygel-core/rygel-thumbnailer.vala:91
-#: ../src/librygel-core/rygel-thumbnailer.vala:102
-msgid "No thumbnail available"
-msgstr "沒有可用的縮圖"
-
-#: ../src/librygel-core/rygel-thumbnailer.vala:121
-#, fuzzy
-#| msgid "No thumbnail available"
-msgid "No D-Bus thumbnailer available"
-msgstr "沒有可用的縮圖"
-
-#: ../src/librygel-core/rygel-transcode-manager.vala:130
-#, c-format
-msgid "No transcoder available for target format '%s'"
-msgstr "沒有目標格式「%s」適用的轉碼器"
 
 #: ../src/librygel-core/rygel-user-config.vala:198
 #, c-format
@@ -625,6 +356,273 @@ msgstr "沒有給「%s」的數值"
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "「%s」的數值超過界限"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:215
+#: ../src/librygel-renderer/rygel-rendering-control.vala:123
+msgid "Invalid Args"
+msgstr "無效的參數"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:221
+#: ../src/librygel-renderer/rygel-rendering-control.vala:129
+msgid "Invalid InstanceID"
+msgstr "無效的 InstanceID"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:481
+msgid "Play speed not supported"
+msgstr "不支援這個播放速度"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:497
+#: ../src/librygel-renderer/rygel-av-transport.vala:542
+#: ../src/librygel-renderer/rygel-av-transport.vala:546
+msgid "Transition not available"
+msgstr "無法使用過度"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:526
+msgid "Seek failed"
+msgstr "搜尋失敗"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:535
+msgid "Seek mode not supported"
+msgstr "不支援搜尋模式"
+
+#: ../src/librygel-renderer/rygel-playbin-plugin.vala:34
+msgid "GStreamer Player"
+msgstr "GStreamer 播放程式"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:160
+msgid "Invalid Name"
+msgstr "無效的名稱"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:174
+msgid "Invalid Channel"
+msgstr "無效的頻道"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:210
+#: ../src/librygel-renderer/rygel-rendering-control.vala:252
+msgid "ActionFailed"
+msgstr "動作失敗"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:261
+msgid "Action Failed"
+msgstr "動作失敗"
+
+#: ../src/librygel-server/rygel-browse.vala:63
+msgid "Invalid Arguments"
+msgstr "無效的引數"
+
+#: ../src/librygel-server/rygel-browse.vala:94
+msgid "Cannot browse children on item"
+msgstr "不能瀏覽項目中的子項"
+
+#: ../src/librygel-server/rygel-browse.vala:125
+#, c-format
+msgid "Failed to browse '%s': %s\n"
+msgstr "無法瀏覽「%s」：%s\n"
+
+#: ../src/librygel-server/rygel-content-directory.vala:217
+#: ../src/librygel-server/rygel-content-directory.vala:236
+msgid "No such file transfer"
+msgstr "沒有這個檔案傳輸"
+
+#: ../src/librygel-server/rygel-gst-utils.vala:38
+#, c-format
+msgid "Required element %s missing"
+msgstr "缺少了必要的元素 %s"
+
+#. Range header was present but invalid
+#: ../src/librygel-server/rygel-http-byte-seek.vala:47
+#: ../src/librygel-server/rygel-http-byte-seek.vala:52
+#: ../src/librygel-server/rygel-http-time-seek.vala:49
+#: ../src/librygel-server/rygel-http-time-seek.vala:61
+#: ../src/librygel-server/rygel-http-time-seek.vala:68
+#: ../src/librygel-server/rygel-http-time-seek.vala:83
+#, c-format
+msgid "Invalid Range '%s'"
+msgstr "無效的範圍「%s」"
+
+#: ../src/librygel-server/rygel-http-get.vala:59
+msgid "Invalid Request"
+msgstr "無效的要求"
+
+#: ../src/librygel-server/rygel-http-identity-handler.vala:89
+#: ../src/librygel-server/rygel-http-transcode-handler.vala:57
+msgid "Not found"
+msgstr "找不到"
+
+#: ../src/librygel-server/rygel-http-item-uri.vala:127
+#, c-format
+msgid "Invalid URI '%s'"
+msgstr "無效的 URI「%s」"
+
+#: ../src/librygel-server/rygel-http-item-uri.vala:166
+msgid "Not Found"
+msgstr "找不到"
+
+#: ../src/librygel-server/rygel-http-post.vala:62
+#: ../src/librygel-server/rygel-import-resource.vala:191
+#, c-format
+msgid "Pushing data to non-empty item '%s' not allowed"
+msgstr "不允許將資料推播到非空白項目「%s」"
+
+#: ../src/librygel-server/rygel-http-post.vala:70
+#, c-format
+msgid "No writable URI for %s available"
+msgstr "沒有 %s 可用的可寫入 URI"
+
+#. translators: Dotfile is the filename with prefix "."
+#: ../src/librygel-server/rygel-http-post.vala:185
+#, c-format
+msgid "Failed to move dotfile %s: %s"
+msgstr "無法移動以點為前綴的檔案 %s：%s"
+
+#: ../src/librygel-server/rygel-http-request.vala:89
+#, c-format
+msgid "Requested item '%s' not found"
+msgstr "找不到要求的項目「%s」"
+
+#: ../src/librygel-server/rygel-http-response.vala:156
+#: ../src/librygel-server/rygel-http-response.vala:177
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr "無法連結 %s 到 %s"
+
+#: ../src/librygel-server/rygel-http-response.vala:192
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr "無法連接 pad %s 至 %s"
+
+#: ../src/librygel-server/rygel-http-response.vala:235
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr "來自管線 %s 的錯誤：%s"
+
+#: ../src/librygel-server/rygel-http-response.vala:242
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr "來自管線 %s 的警告：%s"
+
+#: ../src/librygel-server/rygel-http-response.vala:285
+#, c-format
+msgid "Failed to seek to offset %lld"
+msgstr "無法搜尋到偏移量 %lld"
+
+#: ../src/librygel-server/rygel-http-seek.vala:51
+#, c-format
+msgid "Out Of Range Start '%ld'"
+msgstr "超出範圍起點「%ld」"
+
+#: ../src/librygel-server/rygel-http-seek.vala:55
+#, c-format
+msgid "Out Of Range Stop '%ld'"
+msgstr "超出範圍終點「%ld」"
+
+#: ../src/librygel-server/rygel-import-resource.vala:124
+#, c-format
+msgid "Failed to get original URI for '%s': %s"
+msgstr "無法取得「%s」的原始 URI：%s"
+
+#: ../src/librygel-server/rygel-import-resource.vala:188
+#, c-format
+msgid "URI '%s' invalid for importing contents to"
+msgstr "URI「%s」無效，不能匯入內容"
+
+#: ../src/librygel-server/rygel-item-creator.vala:118
+msgid "'Elements' argument missing."
+msgstr "缺少「Elements」參數。"
+
+#: ../src/librygel-server/rygel-item-creator.vala:121
+msgid "Comments not allowed in XML"
+msgstr "在 XML 中不允許註解"
+
+#: ../src/librygel-server/rygel-item-creator.vala:127
+#: ../src/librygel-server/rygel-item-creator.vala:279
+#: ../src/librygel-server/rygel-item-destroyer.vala:53
+#: ../src/librygel-server/rygel-item-destroyer.vala:100
+#: ../src/librygel-server/rygel-media-query-action.vala:118
+#: ../src/librygel-server/rygel-media-query-action.vala:181
+msgid "No such object"
+msgstr "沒有這個物件"
+
+#: ../src/librygel-server/rygel-item-creator.vala:149
+#, c-format
+msgid "No items in DIDL-Lite from client: '%s'"
+msgstr "客戶端的 DIDL-Lite 沒有項目：「%s」"
+
+#: ../src/librygel-server/rygel-item-creator.vala:283
+#: ../src/librygel-server/rygel-item-creator.vala:518
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr "在 %s 中建立物件是不允許的"
+
+#: ../src/librygel-server/rygel-item-creator.vala:311
+#, c-format
+msgid "Failed to create item under '%s': %s"
+msgstr "無法在「%s」下建立項目：%s"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:60
+#, c-format
+msgid "Successfully destroyed object '%s'"
+msgstr "成功的破壞物件「%s」"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:68
+#, c-format
+msgid "Failed to destroy object '%s': %s"
+msgstr "無法破壞物件「%s」：%s"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:103
+#, c-format
+msgid "Removal of object %s not allowed"
+msgstr "物件 %s 的移除是不允許的"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:106
+#, c-format
+msgid "Object removal from %s not allowed"
+msgstr "從 %s 移除物件是不允許的"
+
+#: ../src/librygel-server/rygel-media-item.vala:273
+#, c-format
+msgid "Bad URI: %s"
+msgstr "錯誤的 URI：%s"
+
+#. Assume the protocol to be the scheme of the URI
+#: ../src/librygel-server/rygel-media-item.vala:285
+#, c-format
+msgid "Failed to probe protocol for URI %s. Assuming '%s'"
+msgstr "無法偵測 URI %s 的通訊協定。猜測為「%s」"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:123
+msgid "Invalid range"
+msgstr "無效的範圍"
+
+#: ../src/librygel-server/rygel-search.vala:89
+#, c-format
+msgid "Failed to search in '%s': %s"
+msgstr "無法在「%s」中搜尋：%s"
+
+#: ../src/librygel-server/rygel-subtitle-manager.vala:65
+msgid "No subtitle available"
+msgstr "沒有字幕可用"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:60
+#, c-format
+msgid "No thumbnailer available: %s"
+msgstr "沒有可用的縮圖：%s"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:82
+#: ../src/librygel-server/rygel-thumbnailer.vala:91
+#: ../src/librygel-server/rygel-thumbnailer.vala:96
+#: ../src/librygel-server/rygel-thumbnailer.vala:107
+msgid "No thumbnail available"
+msgstr "沒有可用的縮圖"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:126
+msgid "No D-Bus thumbnailer available"
+msgstr "沒有可用的 D-Bus 縮圖"
+
+#: ../src/librygel-server/rygel-transcode-manager.vala:130
+#, c-format
+msgid "No transcoder available for target format '%s'"
+msgstr "沒有目標格式「%s」適用的轉碼器"
 
 #: ../src/rygel/rygel-main.vala:105
 #, c-format
@@ -661,6 +659,15 @@ msgstr "無法啟動 Rygel 服務：%s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "無法停止 Rygel 服務：%s"
+
+#~ msgid "Failed to create D-Bus proxies: %s"
+#~ msgstr "無法建立 D-Bus 代理伺服器：%s"
+
+#~ msgid "Failed to connect to session bus: %s"
+#~ msgstr "無法連線至作業階段匯流排：%s"
+
+#~ msgid "Error getting all values for '%s': %s"
+#~ msgstr "取得「%s」所有數值時發生錯誤：%s"
 
 #~ msgid "Failed to find thumbnails folder."
 #~ msgstr "無法找到縮圖資料夾。"
