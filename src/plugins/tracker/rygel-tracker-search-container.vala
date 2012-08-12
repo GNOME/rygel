@@ -35,8 +35,6 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
     /* class-wide constants */
     private const string MODIFIED_PROPERTY = "nfo:fileLastModified";
 
-    private string sort_criteria = "";
-
     public SelectionQuery query;
     public ItemFactory item_factory;
 
@@ -109,7 +107,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
 
     public override async MediaObjects? get_children (uint       offset,
                                                       uint       max_count,
-                                                      string     sort_criteria,
+                                                      string?    sort_criteria,
                                                       Cancellable? cancellable)
                                                       throws GLib.Error {
         var expression = new RelationalExpression ();
@@ -119,9 +117,8 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
 
         uint total_matches;
 
-        this.sort_criteria = sort_criteria;
-
         return yield this.execute_query (expression,
+                                         sort_criteria ?? this.sort_criteria,
                                          offset,
                                          max_count,
                                          out total_matches,
@@ -129,6 +126,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
     }
 
     public async MediaObjects? execute_query (SearchExpression? expression,
+                                              string?           sort_criteria,
                                               uint              offset,
                                               uint              max_count,
                                               out uint          total_matches,
@@ -139,7 +137,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
         var query = this.create_query (expression as RelationalExpression,
                                        (int) offset,
                                        (int) max_count,
-                                       this.sort_criteria);
+                                       sort_criteria);
 
         if (query != null) {
             yield query.execute (this.resources);
@@ -177,6 +175,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
 
         uint total_matches;
         var results = yield this.execute_query (expression,
+                                                null,
                                                 0,
                                                 1,
                                                 out total_matches,
@@ -251,7 +250,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
         if (sort_criteria == null || sort_criteria == "") {
             query = new SelectionQuery.clone (this.query);
         } else {
-            query = create_sorted_query ();
+            query = create_sorted_query (sort_criteria);
         }
 
         if (expression.operand1 == "@parentID") {
@@ -269,12 +268,11 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
 
         query.offset = offset;
         query.max_count = max_count;
-        this.sort_criteria = "";
 
         return query;
     }
 
-    private SelectionQuery? create_sorted_query () {
+    private SelectionQuery? create_sorted_query (string sort_criteria) {
          var key_chain_map = UPnPPropertyMap.get_property_map ();
          var sort_props = sort_criteria.split (",");
          string order = "";

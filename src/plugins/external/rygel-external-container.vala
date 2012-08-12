@@ -77,7 +77,7 @@ public class Rygel.External.Container : Rygel.MediaContainer,
     public override async MediaObjects? get_children (
                                                      uint         offset,
                                                      uint         max_count,
-                                                     string       sort_criteria,
+                                                     string?      sort_criteria,
                                                      Cancellable? cancellable)
                                                      throws GLib.Error {
         string[] filter = {};
@@ -107,16 +107,17 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                                        uint              offset,
                                        uint              max_count,
                                        out uint          total_matches,
-                                       string            sort_criteria,
+                                       string?           sort_criteria,
                                        Cancellable?      cancellable)
                                        throws GLib.Error {
+        var real_sort_criteria = sort_criteria ?? this.sort_criteria;
         if (expression == null || !this.searchable) {
             // Either its wildcard or backend doesn't implement search :(
             return yield this.simple_search (expression,
                                              offset,
                                              max_count,
                                              out total_matches,
-                                             sort_criteria,
+                                             real_sort_criteria,
                                              cancellable);
         }
 
@@ -144,7 +145,7 @@ public class Rygel.External.Container : Rygel.MediaContainer,
         var objects = yield this.create_media_objects (result);
 
         // FIXME: Delegate sorting to remote peer
-        objects.sort_by_criteria (sort_criteria);
+        objects.sort_by_criteria (real_sort_criteria);
 
         return objects;
     }
@@ -229,9 +230,9 @@ public class Rygel.External.Container : Rygel.MediaContainer,
     }
 
     private async MediaObjects create_media_objects
-                                        (HashTable<string,Variant>[] all_props,
-                                         MediaContainer?             parent
-                                         = null) throws GLib.Error {
+                                   (HashTable<string, Variant>[] all_props,
+                                    MediaContainer?              parent = null)
+                                    throws GLib.Error {
         var media_objects = new MediaObjects ();
 
         foreach (var props in all_props) {

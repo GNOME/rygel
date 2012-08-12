@@ -41,6 +41,7 @@ public class MediaObject : Object {
 }
 
 public class MediaContainer : MediaObject {
+    public string sort_criteria = "+dc:title";
     public uint child_count = 10;
     public async MediaObjects? get_children (
                                             uint offset,
@@ -112,14 +113,14 @@ public class TestContainer : MediaContainer, Rygel.SearchableContainer {
                                        uint              offset,
                                        uint              max_count,
                                        out uint          total_matches,
-                                       string            sort_criteria,
+                                       string?           sort_criteria,
                                        Cancellable?      cancellable)
                                        throws Error {
         return yield this.simple_search (expression,
                                          offset,
                                          max_count,
                                          out total_matches,
-                                         sort_criteria,
+                                         sort_criteria ?? this.sort_criteria,
                                          cancellable);
     }
 

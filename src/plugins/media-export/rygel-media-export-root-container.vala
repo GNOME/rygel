@@ -139,7 +139,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                                                 uint              offset,
                                                 uint              max_count,
                                                 out uint          total_matches,
-                                                string            sort_criteria,
+                                                string?           sort_criteria,
                                                 Cancellable?      cancellable)
                                                 throws GLib.Error {
          if (expression == null) {
@@ -167,9 +167,10 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         }
 
         if (query_container != null) {
+            var real_sort_criteria = sort_criteria ?? this.sort_criteria;
             list = yield query_container.get_children (offset,
                                                        max_count,
-                                                       sort_criteria,
+                                                       real_sort_criteria,
                                                        cancellable);
             total_matches = query_container.child_count;
 

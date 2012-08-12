@@ -124,7 +124,7 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
     public override async MediaObjects? get_children (
                                                      uint         offset,
                                                      uint         max_count,
-                                                     string       sort_criteria,
+                                                     string?      sort_criteria,
                                                      Cancellable? cancellable)
                                                      throws Error {
         uint stop = offset + max_count;
@@ -132,7 +132,7 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
 
         var sorted_children = this.children.slice (0, this.child_count)
                                         as MediaObjects;
-        sorted_children.sort_by_criteria (sort_criteria);
+        sorted_children.sort_by_criteria (sort_criteria ?? this.sort_criteria);
 
         return sorted_children.slice ((int) offset, (int) stop)
                                         as MediaObjects;
@@ -195,14 +195,14 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
                                        uint              offset,
                                        uint              max_count,
                                        out uint          total_matches,
-                                       string            sort_criteria,
+                                       string?           sort_criteria,
                                        Cancellable?      cancellable)
                                        throws Error {
         return yield this.simple_search (expression,
                                          offset,
                                          max_count,
                                          out total_matches,
-                                         sort_criteria,
+                                         sort_criteria ?? this.sort_criteria,
                                          cancellable);
     }
 

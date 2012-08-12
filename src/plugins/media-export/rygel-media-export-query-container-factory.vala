@@ -144,6 +144,9 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
 
         if (upnp_class != null) {
             container.upnp_class = upnp_class;
+            if (upnp_class == MediaContainer.MUSIC_ALBUM) {
+                container.sort_criteria = MediaContainer.ALBUM_SORT_CRITERIA;
+            }
         }
 
         return container;

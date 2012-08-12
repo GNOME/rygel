@@ -75,12 +75,17 @@ public abstract class Rygel.Tracker.MetadataValues : MetadataContainer {
         var filter = this.create_filter (property, value);
         filters.add (filter);
 
-        return new SearchContainer (id,
-                                    this,
-                                    title,
-                                    this.item_factory,
-                                    child_triplets,
-                                    filters);
+        var child = new SearchContainer (id,
+                                         this,
+                                         title,
+                                         this.item_factory,
+                                         child_triplets,
+                                         filters);
+        if (this.property == "upnp:album") {
+            child.sort_criteria = MediaContainer.ALBUM_SORT_CRITERIA;
+        }
+
+        return child;
     }
 }
 

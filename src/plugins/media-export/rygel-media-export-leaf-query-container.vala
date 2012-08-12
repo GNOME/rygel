@@ -29,7 +29,7 @@ internal class Rygel.MediaExport.LeafQueryContainer : QueryContainer {
     public override async MediaObjects? get_children
                                         (uint         offset,
                                          uint         max_count,
-                                         string       sort_criteria,
+                                         string?      sort_criteria,
                                          Cancellable? cancellable)
                                          throws GLib.Error {
         uint total_matches;
@@ -37,7 +37,7 @@ internal class Rygel.MediaExport.LeafQueryContainer : QueryContainer {
                                           offset,
                                           max_count,
                                           out total_matches,
-                                          sort_criteria,
+                                          sort_criteria ?? this.sort_criteria,
                                           cancellable);
         foreach (var child in children) {
             child.parent = this;

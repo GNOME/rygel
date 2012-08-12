@@ -50,11 +50,11 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
     public override async MediaObjects? get_children (
                                                      uint         offset,
                                                      uint         max_count,
-                                                     string       sort_criteria,
+                                                     string?      sort_criteria,
                                                      Cancellable? cancellable)
                                                      throws GLib.Error {
         return this.media_db.get_children (this,
-                                           sort_criteria,
+                                           sort_criteria ?? this.sort_criteria,
                                            offset,
                                            max_count);
     }
@@ -63,15 +63,16 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
                                                uint              offset,
                                                uint              max_count,
                                                out uint          total_matches,
-                                               string            sort_criteria,
+                                               string?           sort_criteria,
                                                Cancellable?      cancellable)
                                                throws GLib.Error {
         MediaObjects children = null;
+        var real_sort_criteria = sort_criteria ?? this.sort_criteria;
 
         try {
             children = this.media_db.get_objects_by_search_expression
                                         (expression,
-                                         sort_criteria,
+                                         real_sort_criteria,
                                          this.id,
                                          offset,
                                          max_count,
@@ -82,7 +83,7 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
                                                      offset,
                                                      max_count,
                                                      out total_matches,
-                                                     sort_criteria,
+                                                     real_sort_criteria,
                                                      cancellable);
             } else {
                 throw error;

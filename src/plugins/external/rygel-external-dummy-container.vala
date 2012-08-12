@@ -41,7 +41,7 @@ internal class Rygel.External.DummyContainer : MediaContainer {
     public override async MediaObjects? get_children (
                                                      uint         offset,
                                                      uint         max_count,
-                                                     string       sort_criteria,
+                                                     string?      sort_criteria,
                                                      Cancellable? cancellable)
                                                      throws Error {
         return new MediaObjects ();

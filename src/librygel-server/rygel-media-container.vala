@@ -38,6 +38,11 @@ public abstract class Rygel.MediaContainer : MediaObject {
     public const string MUSIC_ARTIST = UPNP_CLASS + ".person.musicArtist";
     public const string MUSIC_GENRE = UPNP_CLASS + ".genre.musicGenre";
 
+    private const string DEFAULT_SORT_CRITERIA = "+upnp:class,+dc:title";
+    public const string ALBUM_SORT_CRITERIA = "+upnp:class," +
+                                              "+upnp:originalTrackNumber," +
+                                              "+dc:title";
+
     /**
      * container_updated signal that is emitted if a child container under the
      * tree of this container gets updated.
@@ -49,6 +54,8 @@ public abstract class Rygel.MediaContainer : MediaObject {
     public int child_count;
     public uint32 update_id;
     public int64 storage_used;
+
+    public string sort_criteria { set; get; default = DEFAULT_SORT_CRITERIA; }
 
     internal override OCMFlags ocm_flags {
         get {
@@ -113,7 +120,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
      */
     public async abstract MediaObjects? get_children (uint         offset,
                                                       uint         max_count,
-                                                      string       sort_criteria,
+                                                      string?      sort_criteria,
                                                       Cancellable? cancellable)
                                                       throws Error;
 

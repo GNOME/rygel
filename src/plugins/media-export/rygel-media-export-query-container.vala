@@ -49,7 +49,7 @@ internal abstract class Rygel.MediaExport.QueryContainer : DBContainer {
                                                 uint              offset,
                                                 uint              max_count,
                                                 out uint          total_matches,
-                                                string            sort_criteria,
+                                                string?           sort_criteria,
                                                 Cancellable?      cancellable)
                                                 throws GLib.Error {
         MediaObjects children = null;
@@ -70,7 +70,7 @@ internal abstract class Rygel.MediaExport.QueryContainer : DBContainer {
             children = this.media_db.get_objects_by_search_expression
                                         (combined_expression,
                                          null,
-                                         sort_criteria,
+                                         sort_criteria ?? this.sort_criteria,
                                          offset,
                                          max_count,
                                          out total_matches);

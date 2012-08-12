@@ -39,13 +39,13 @@ public interface Rygel.SearchableContainer : MediaContainer {
      * @param total_matches sets it to the actual number of objects that satisfy
      * @param cancellable optional cancellable for this operation.
      *
-     * @return yaddayadda
+     * @return A list of matching media objects or null if no object matched.
      */
     public abstract async MediaObjects? search (SearchExpression? expression,
                                                 uint              offset,
                                                 uint              max_count,
                                                 out uint          total_matches,
-                                                string            sort_criteria,
+                                                string?           sort_criteria,
                                                 Cancellable?      cancellable)
                                                 throws Error;
 

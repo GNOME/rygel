@@ -27,8 +27,6 @@ using Gee;
  * Base class of Browse and Search actions.
  */
 internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
-    private const string DEFAULT_SORT_CRITERIA = "+dc:title";
-
     // In arguments
     public string object_id;
     public string browse_flag;
@@ -125,11 +123,11 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
         this.index = (uint) index;
         this.requested_count = (uint) requested_count;
 
-        if (this.sort_criteria == null || this.sort_criteria == "") {
-            this.sort_criteria = DEFAULT_SORT_CRITERIA;
+        if (this.sort_criteria == "") {
+            this.sort_criteria = null;
         }
 
-        if (this.hacks != null) {
+        if (this.hacks != null && this.sort_criteria != null) {
             hacks.filter_sort_criteria (ref this.sort_criteria);
         }
 
@@ -141,6 +139,10 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
     }
 
     private void validate_sort_criteria () throws Error {
+        if (this.sort_criteria == null) {
+            return;
+        }
+
         var supported_props = new HashSet<string> ();
 
         var requested_sort_props = this.sort_criteria.split (",");
