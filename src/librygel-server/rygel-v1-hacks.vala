@@ -1,7 +1,9 @@
 /*
  * Copyright (C) 2011 Nokia Corporation.
+ * Copyright (C) 2012 Jens Georg.
  *
  * Author: Jens Georg <jensg@openismus.com>
+ *         Jens Georg <mail@jensge.org>
  *
  * This file is part of Rygel.
  *
@@ -29,9 +31,12 @@ using GUPnP;
  * required to be backwards-compatible.
  */
 internal class Rygel.V1Hacks : ClientHacks {
-    private const string DEFAULT_AGENT = ".*Allegro-Software-WebClient.*|" +
-                                         ".*SEC[_ ]HHP.*|" +
-                                         ".*Mediabolic-IMHTTP/1.*";
+    private const string[] AGENTS = { "Allegro-Software-WebClient",
+                                      "SEC HHP",
+                                      "SEC_HHP",
+                                      "Mediabolic-IMHTTP/1.",
+                                      "TwoPlayer" };
+
     private const string DMS = "urn:schemas-upnp-org:device:MediaServer";
     private const string DMS_V1 = DMS + ":1";
     private const string MATCHING_PATTERN = ".*%s.*";
@@ -53,20 +58,22 @@ internal class Rygel.V1Hacks : ClientHacks {
         }
 
         var config = MetaConfig.get_default ();
-        agent_pattern = DEFAULT_AGENT;
+        var raw_agents = AGENTS;
         try {
-            var raw_agents = config.get_string_list ("general",
-                                                     "force-downgrade-for");
-            var agents = new string[0];
-            foreach (var agent in raw_agents) {
-                agents += MATCHING_PATTERN.printf
-                                        (Regex.escape_string (agent));
-            }
-
-            if (agents.length > 0) {
-                agent_pattern = string.joinv ("|", agents);
-            }
+            raw_agents = config.get_string_list ("general",
+                                                 "force-downgrade-for").
+                                                 to_array ();
         } catch (Error error) {}
+
+        var agents = new string[0];
+        foreach (var agent in raw_agents) {
+            agents += MATCHING_PATTERN.printf
+                                    (Regex.escape_string (agent));
+        }
+
+        if (agents.length > 0) {
+            agent_pattern = string.joinv ("|", agents);
+        }
 
         debug ("V1 downgrade will be applied for devices matching %s",
                agent_pattern);
