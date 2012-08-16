@@ -1,23 +1,26 @@
-# Galician translations for PACKAGE package.
-# Copyright (C) 2010 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# Fran Diéguez <frandieguez@gnome.org>, 2010, 2011.
-# Fran Dieguez <frandieguez@gnome.org>, 2010, 2012.
+# Galician translations for rygel.
+# Copyright (C) 2012 Leandro Regueiro
+# This file is distributed under the same license as the rygel package.
 #
+# Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
+# colaborar connosco, podes atopar máis información en http://www.trasno.net
+#
+# Fran Diéguez <frandieguez@gnome.org>, 2010, 2011, 2012.
+# Leandro Regueiro <leandro.regueiro@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-30 03:17+0200\n"
-"PO-Revision-Date: 2012-07-30 03:18+0200\n"
-"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
-"Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
+"POT-Creation-Date: 2012-08-17 00:06+0200\n"
+"PO-Revision-Date: 2012-08-16 12:18+0200\n"
+"Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
+"Language-Team: Galego <kde-i18n-doc@kde.org>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Gtranslator 2.91.5\n"
+"X-Generator: Lokalize 1.0\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -43,11 +46,11 @@ msgstr "Engadir un cartafol compartido"
 
 #: ../data/rygel-preferences.ui.h:6
 msgid "Remove a directory from the list of shared directories"
-msgstr "Quitar un cartafol da lista de cartafoles compartidos"
+msgstr "Retirar un cartafol da lista de cartafoles compartidos"
 
 #: ../data/rygel-preferences.ui.h:7
 msgid "Remove shared directory"
-msgstr "Quitar cartafol compartido"
+msgstr "Retirar cartafol compartido"
 
 #. Network Interface
 #: ../data/rygel-preferences.ui.h:9
@@ -85,23 +88,23 @@ msgstr "Servizos de UPnP/DLNA"
 #: ../src/plugins/media-export/rygel-media-export-database.vala:210
 #, c-format
 msgid "Failed to roll back transaction: %s"
-msgstr "Produciuse un fallo ao desfacer a transacción: %s"
+msgstr "Produciuse un erro ao desfacer a transacción: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:134
 #: ../src/librygel-core/rygel-plugin-loader.vala:194
 #, c-format
 msgid "Failed to query content type for '%s'"
-msgstr "Produciuse un fallo ao consultar o tipo de contido para «%s»"
+msgstr "Produciuse un erro ao consultar o tipo de contido para «%s»"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:112
 #, c-format
 msgid "Failed to add item with ID %s: %s"
-msgstr "Produciuse un fallo ao engadir o elemento con ID %s: %s"
+msgstr "Produciuse un erro ao engadir o elemento con ID %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:38
 #, c-format
 msgid "Failed to attach to D-Bus session bus: %s"
-msgstr "Produciuse un fallo ao anexarse ao bus de sesión D-Bus: %s"
+msgstr "Produciuse un erro ao anexarse ao bus de sesión D-Bus: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:78
 msgid "No metadata extractor available. Will not crawl."
@@ -115,17 +118,17 @@ msgstr "«%s» recolectado"
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:211
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
-msgstr "Produciuse un fallo ao obter o obxecto «%s» desde a base de datos: %s"
+msgstr "Produciuse un erro ao obter o obxecto «%s» desde a base de datos: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:217
 #, c-format
 msgid "Failed to access media cache: %s"
-msgstr "Produciuse un fallo ao acceder á caché multimedia: %s"
+msgstr "Produciuse un erro ao acceder á caché multimedia: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:256
 #, c-format
 msgid "Error removing object from database: %s"
-msgstr "Produciuse un fallo ao eliminar o obxecto desde a base de datos: %s"
+msgstr "Produciuse un erro ao retirar o obxecto da base de datos: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:40
 msgid "Will not monitor file changes"
@@ -134,7 +137,7 @@ msgstr "Non se monitorizarán cambios en ficheiros"
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
 msgid "Failed to get file info for %s"
-msgstr "Produciuse un fallo ao obter o ficheiro de información para %s"
+msgstr "Produciuse un erro ao obter o ficheiro de información para %s"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:30
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
@@ -165,44 +168,44 @@ msgstr "Ficheiros e cartafoles"
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:104
 #, c-format
 msgid "Failed to remove URI: %s"
-msgstr "Produciuse un fallo ao eliminar o URI: %s"
+msgstr "Produciuse un erro ao retirar o URI: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:348
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:355
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "Multimedia de @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:355
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:362
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
-msgstr "Produciuse un fallo ao crear o servizo de D-Bus MediaExpot: %s"
+msgstr "Produciuse un erro ao crear o servizo de D-Bus MediaExpot: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:395
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:402
 #, c-format
 msgid "Failed to remove entry: %s"
-msgstr "Produciuse un fallo ao quitar a entrada: %s"
+msgstr "Produciuse un erro ao retirar a entrada: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:416
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:423
 msgid "Music"
 msgstr "Música"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:419
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:426
 msgid "Pictures"
 msgstr "Imaxes"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:421
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:428
 msgid "Videos"
 msgstr "Vídeos"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
 msgid "Failed to create a Tracker connection:: %s"
-msgstr "Produciuse un fallo ao crear a conexión a Tracker: %s"
+msgstr "Produciuse un erro ao crear a conexión a Tracker: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:62
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
-msgstr "Produciuse un fallo ao construir o URI para o cartafol «%s»: %s"
+msgstr "Produciuse un erro ao construir o URI para o cartafol «%s»: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:77
 #, c-format
@@ -213,18 +216,18 @@ msgstr "Non foi posíbel subscribirse ás sinais de tracker: %s"
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr ""
-"Produciuse un fallo ao iniciar o servizo Tracker: %s. Engadido desactivado."
+"Produciuse un erro ao iniciar o servizo Tracker: %s. Engadido desactivado."
 
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:104
 #, c-format
 msgid "Failed to get Tracker connection: %s"
-msgstr "Produciuse un fallo ao obter a conexión de Tracker: %s"
+msgstr "Produciuse un erro ao obter a conexión de Tracker: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:223
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr ""
-"Produciuse un fallo ao obter a contía de elementos baixo a categoría «%s»: %s"
+"Produciuse un erro ao obter a contía de elementos baixo a categoría «%s»: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
@@ -281,6 +284,8 @@ msgstr "Non está dispoñíbel o valor"
 #: ../src/librygel-core/rygel-connection-manager.vala:89
 #: ../src/librygel-core/rygel-connection-manager.vala:103
 #: ../src/librygel-core/rygel-connection-manager.vala:125
+#: ../src/librygel-renderer/rygel-av-transport.vala:215
+#: ../src/librygel-renderer/rygel-rendering-control.vala:123
 #: ../src/librygel-server/rygel-content-directory.vala:198
 #: ../src/librygel-server/rygel-content-directory.vala:225
 #: ../src/librygel-server/rygel-content-directory.vala:244
@@ -299,12 +304,12 @@ msgstr "Referencia de conexión non válida"
 #, c-format
 msgid "Failed to get log level from configuration: %s"
 msgstr ""
-"Produciuse un fallo ao obter o nivel de rexistro desde a configuración: %s"
+"Produciuse un erro ao obter o nivel de rexistro desde a configuración: %s"
 
 #: ../src/librygel-core/rygel-meta-config.vala:77
 #, c-format
 msgid "Failed to load user configuration: %s"
-msgstr "Produciuse un fallo ao cargar a configuración do usuario: %s"
+msgstr "Produciuse un erro ao cargar a configuración do usuario: %s"
 
 #: ../src/librygel-core/rygel-meta-config.vala:406
 #: ../src/librygel-core/rygel-meta-config.vala:425
@@ -329,7 +334,7 @@ msgstr "Está dispoñíbel o engadido «%s» novo"
 #: ../src/librygel-core/rygel-plugin-loader.vala:119
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
-msgstr "Produciuse un erro ao mostrar os contidos do cartafol «%s»: %s"
+msgstr "Produciuse un erro ao listar os contidos do cartafol «%s»: %s"
 
 #: ../src/librygel-core/rygel-plugin-loader.vala:147
 #, c-format
@@ -339,13 +344,13 @@ msgstr "Xa se cargou un módulo chamado %s"
 #: ../src/librygel-core/rygel-plugin-loader.vala:156
 #, c-format
 msgid "Failed to load module from path '%s': %s"
-msgstr "Produciuse un fallo ao cargar o módulo desde a ruta «%s»: %s"
+msgstr "Produciuse un erro ao cargar o módulo desde a ruta «%s»: %s"
 
 #: ../src/librygel-core/rygel-plugin-loader.vala:166
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr ""
-"Produciuse un fallo ao buscar a función do punto de entrada  «%s» en «%s»: %s"
+"Produciuse un erro ao buscar a función do punto de entrada  «%s» en «%s»: %s"
 
 #: ../src/librygel-core/rygel-root-device-factory.vala:98
 #: ../src/librygel-core/rygel-root-device-factory.vala:132
@@ -365,11 +370,6 @@ msgstr "Non existe un valor dispoñíbel para «%s»"
 msgid "Value of '%s' out of range"
 msgstr "O valor «%s» está fora de rango"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:215
-#: ../src/librygel-renderer/rygel-rendering-control.vala:123
-msgid "Invalid Args"
-msgstr "Argumentos non válidos"
-
 #: ../src/librygel-renderer/rygel-av-transport.vala:221
 #: ../src/librygel-renderer/rygel-rendering-control.vala:129
 msgid "Invalid InstanceID"
@@ -386,9 +386,6 @@ msgid "Transition not available"
 msgstr "Transición non dispoñíbel"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:526
-msgid "Seek failed"
-msgstr "Fallou a busca"
-
 #: ../src/librygel-renderer/rygel-av-transport.vala:535
 msgid "Seek mode not supported"
 msgstr "Non se admite o modo de busca"
@@ -407,9 +404,6 @@ msgstr "Canle non válida"
 
 #: ../src/librygel-renderer/rygel-rendering-control.vala:210
 #: ../src/librygel-renderer/rygel-rendering-control.vala:252
-msgid "ActionFailed"
-msgstr "AcciónFallada"
-
 #: ../src/librygel-renderer/rygel-rendering-control.vala:261
 msgid "Action Failed"
 msgstr "Produciuse un fallo na acción"
@@ -422,10 +416,10 @@ msgstr "Argumentos non válidos"
 msgid "Cannot browse children on item"
 msgstr "Non é posíbel examinar no elemento fillo"
 
-#: ../src/librygel-server/rygel-browse.vala:125
+#: ../src/librygel-server/rygel-browse.vala:128
 #, c-format
 msgid "Failed to browse '%s': %s\n"
-msgstr "Produciuse un fallo ao explorar «%s»: %s\n"
+msgstr "Produciuse un erro ao explorar «%s»: %s\n"
 
 #: ../src/librygel-server/rygel-content-directory.vala:217
 #: ../src/librygel-server/rygel-content-directory.vala:236
@@ -481,7 +475,7 @@ msgstr "Non está dispoñíbel un URI escribíbel para %s"
 #: ../src/librygel-server/rygel-http-post.vala:185
 #, c-format
 msgid "Failed to move dotfile %s: %s"
-msgstr "Produciuse un fallo ao mover o ficheiro %s: %s"
+msgstr "Produciuse un erro ao mover o ficheiro %s: %s"
 
 #: ../src/librygel-server/rygel-http-request.vala:89
 #, c-format
@@ -492,12 +486,12 @@ msgstr "O elemento «%s» solicitado non se atopou"
 #: ../src/librygel-server/rygel-http-response.vala:177
 #, c-format
 msgid "Failed to link %s to %s"
-msgstr "Produciuse un fallo ao ligar %s a %s"
+msgstr "Produciuse un erro ao ligar %s a %s"
 
 #: ../src/librygel-server/rygel-http-response.vala:192
 #, c-format
 msgid "Failed to link pad %s to %s"
-msgstr "Produciuse un fallo ao ligar o recheo %s a %s"
+msgstr "Produciuse un erro ao ligar o recheo %s a %s"
 
 #: ../src/librygel-server/rygel-http-response.vala:235
 #, c-format
@@ -512,7 +506,7 @@ msgstr "Aviso desde a tubería %s: %s"
 #: ../src/librygel-server/rygel-http-response.vala:285
 #, c-format
 msgid "Failed to seek to offset %lld"
-msgstr "Produciuse un fallo ao buscar ao desprazamento: %lld"
+msgstr "Produciuse un erro ao buscar ao desprazamento: %lld"
 
 #: ../src/librygel-server/rygel-http-seek.vala:51
 #, c-format
@@ -527,7 +521,7 @@ msgstr "Fóra do rango de fin «%ld»"
 #: ../src/librygel-server/rygel-import-resource.vala:124
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
-msgstr "Produciuse un fallo ao obter o URI orixinal para «%s»: %s"
+msgstr "Produciuse un erro ao obter o URI orixinal para «%s»: %s"
 
 #: ../src/librygel-server/rygel-import-resource.vala:188
 #, c-format
@@ -543,11 +537,11 @@ msgid "Comments not allowed in XML"
 msgstr "Non se permiten os comentarios no XML"
 
 #: ../src/librygel-server/rygel-item-creator.vala:127
-#: ../src/librygel-server/rygel-item-creator.vala:279
+#: ../src/librygel-server/rygel-item-creator.vala:280
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 #: ../src/librygel-server/rygel-item-destroyer.vala:100
-#: ../src/librygel-server/rygel-media-query-action.vala:118
-#: ../src/librygel-server/rygel-media-query-action.vala:181
+#: ../src/librygel-server/rygel-media-query-action.vala:115
+#: ../src/librygel-server/rygel-media-query-action.vala:182
 msgid "No such object"
 msgstr "Non existe o obxecto"
 
@@ -556,16 +550,16 @@ msgstr "Non existe o obxecto"
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Non hai elementos en DIDL-Lite desde o cliente «%s»"
 
-#: ../src/librygel-server/rygel-item-creator.vala:283
-#: ../src/librygel-server/rygel-item-creator.vala:518
+#: ../src/librygel-server/rygel-item-creator.vala:284
+#: ../src/librygel-server/rygel-item-creator.vala:519
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "A creación do obxecto en %s non está permitida"
 
-#: ../src/librygel-server/rygel-item-creator.vala:311
+#: ../src/librygel-server/rygel-item-creator.vala:312
 #, c-format
 msgid "Failed to create item under '%s': %s"
-msgstr "Produciuse un fallo ao crear o elemento baixo «%s»: %s"
+msgstr "Produciuse un erro ao crear o elemento baixo «%s»: %s"
 
 #: ../src/librygel-server/rygel-item-destroyer.vala:60
 #, c-format
@@ -575,7 +569,7 @@ msgstr "Obxecto «%s» destruído correctamente"
 #: ../src/librygel-server/rygel-item-destroyer.vala:68
 #, c-format
 msgid "Failed to destroy object '%s': %s"
-msgstr "Produciuse un fallo ao destruír o obxecto «%s»: %s"
+msgstr "Produciuse un erro ao destruír o obxecto «%s»: %s"
 
 #: ../src/librygel-server/rygel-item-destroyer.vala:103
 #, c-format
@@ -596,16 +590,16 @@ msgstr "URI erróneo: %s"
 #: ../src/librygel-server/rygel-media-item.vala:285
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr "Produciuse un fallo ao probar o protocolo para o URI %s. Asumindo «%s»"
+msgstr "Produciuse un erro ao probar o protocolo para o URI %s. Asumindo «%s»"
 
-#: ../src/librygel-server/rygel-media-query-action.vala:123
+#: ../src/librygel-server/rygel-media-query-action.vala:120
 msgid "Invalid range"
 msgstr "Rango non válido"
 
-#: ../src/librygel-server/rygel-search.vala:89
+#: ../src/librygel-server/rygel-search.vala:91
 #, c-format
 msgid "Failed to search in '%s': %s"
-msgstr "Produciuse un fallo ao buscar en «%s»: %s"
+msgstr "Produciuse un erro ao buscar en «%s»: %s"
 
 #: ../src/librygel-server/rygel-subtitle-manager.vala:65
 msgid "No subtitle available"
@@ -618,11 +612,12 @@ msgstr "Non está dispoñíbel o xerador de miniaturas: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:82
 #: ../src/librygel-server/rygel-thumbnailer.vala:91
-#: ../src/librygel-server/rygel-thumbnailer.vala:102
+#: ../src/librygel-server/rygel-thumbnailer.vala:96
+#: ../src/librygel-server/rygel-thumbnailer.vala:107
 msgid "No thumbnail available"
 msgstr "Non está dispoñíbel a miniatura"
 
-#: ../src/librygel-server/rygel-thumbnailer.vala:121
+#: ../src/librygel-server/rygel-thumbnailer.vala:126
 msgid "No D-Bus thumbnailer available"
 msgstr "No hai ningún xerador de miniaturas de D-Bus dispoñíbel"
 
@@ -641,33 +636,42 @@ msgstr[1] "Non foi posíbel atopar engadidos en %d segundos, abortando.."
 #: ../src/rygel/rygel-main.vala:166
 #, c-format
 msgid "Failed to create root device factory: %s"
-msgstr "Produciuse un fallo ao crear a factoría de dispositivo raíz: %s"
+msgstr "Produciuse un erro ao crear a factoría de dispositivo raíz: %s"
 
 #: ../src/rygel/rygel-main.vala:224
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
-msgstr "Produciuse un fallo ao crear o RootDevice para %s. Razón: %s"
+msgstr "Produciuse un erro ao crear o RootDevice para %s. Razón: %s"
 
 #: ../src/ui/rygel-preferences-dialog.vala:94
 #, c-format
 msgid "Failed to create preferences dialog: %s"
-msgstr "Produciuse un fallo ao crear o diálogo de preferencias: %s"
+msgstr "Produciuse un erro ao crear o diálogo de preferencias: %s"
 
 #: ../src/ui/rygel-writable-user-config.vala:122
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr ""
-"Produciuse un fallo ao gardar os datos de configuración no ficheiro «%s»: %s"
+"Produciuse un erro ao gardar os datos de configuración no ficheiro «%s»: %s"
 
 #: ../src/ui/rygel-writable-user-config.vala:210
 #, c-format
 msgid "Failed to start Rygel service: %s"
-msgstr "Produciuse un fallo ao iniciar o servizo Rygel: %s"
+msgstr "Produciuse un erro ao iniciar o servizo Rygel: %s"
 
 #: ../src/ui/rygel-writable-user-config.vala:212
 #, c-format
 msgid "Failed to stop Rygel service: %s"
-msgstr "Produciuse un fallo ao deter o servizo Rygel: %s"
+msgstr "Produciuse un erro ao deter o servizo Rygel: %s"
+
+#~ msgid "Invalid Args"
+#~ msgstr "Argumentos non válidos"
+
+#~ msgid "Seek failed"
+#~ msgstr "Fallou a busca"
+
+#~ msgid "ActionFailed"
+#~ msgstr "AcciónFallada"
 
 #~ msgid "Failed to create D-Bus proxies: %s"
 #~ msgstr "Produciuse un fallo ao iniciar o servizo de D-Bus: %s"
