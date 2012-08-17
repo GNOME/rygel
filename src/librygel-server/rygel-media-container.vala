@@ -121,7 +121,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
      */
     public async abstract MediaObjects? get_children (uint         offset,
                                                       uint         max_count,
-                                                      string?      sort_criteria,
+                                                      string       sort_criteria,
                                                       Cancellable? cancellable)
                                                       throws Error;
 

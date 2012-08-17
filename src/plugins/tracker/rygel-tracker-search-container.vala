@@ -107,7 +107,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
 
     public override async MediaObjects? get_children (uint       offset,
                                                       uint       max_count,
-                                                      string?    sort_criteria,
+                                                      string     sort_criteria,
                                                       Cancellable? cancellable)
                                                       throws GLib.Error {
         var expression = new RelationalExpression ();
@@ -118,7 +118,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
         uint total_matches;
 
         return yield this.execute_query (expression,
-                                         sort_criteria ?? this.sort_criteria,
+                                         sort_criteria,
                                          offset,
                                          max_count,
                                          out total_matches,
@@ -126,7 +126,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
     }
 
     public async MediaObjects? execute_query (SearchExpression? expression,
-                                              string?           sort_criteria,
+                                              string            sort_criteria,
                                               uint              offset,
                                               uint              max_count,
                                               out uint          total_matches,
@@ -175,7 +175,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
 
         uint total_matches;
         var results = yield this.execute_query (expression,
-                                                null,
+                                                "",
                                                 0,
                                                 1,
                                                 out total_matches,

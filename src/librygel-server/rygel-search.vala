@@ -69,20 +69,22 @@ internal class Rygel.Search:  Rygel.MediaQueryAction {
             throw parser.err;
         }
 
+        var sort_criteria = this.sort_criteria ?? container.sort_criteria;
+
         if (this.hacks != null) {
             return yield this.hacks.search (container,
                                             parser.expression,
                                             this.index,
                                             this.requested_count,
                                             out this.total_matches,
-                                            this.sort_criteria,
+                                            sort_criteria,
                                             this.cancellable);
         } else {
             return yield container.search (parser.expression,
                                            this.index,
                                            this.requested_count,
                                            out this.total_matches,
-                                           this.sort_criteria,
+                                           sort_criteria,
                                            this.cancellable);
         }
     }

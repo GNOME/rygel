@@ -180,7 +180,7 @@ public class Rygel.MediaExport.MediaCache : Object {
     }
 
     public MediaObjects get_children (MediaContainer container,
-                                      string?        sort_criteria,
+                                      string         sort_criteria,
                                       long           offset,
                                       long           max_count)
                                       throws Error {
@@ -206,7 +206,7 @@ public class Rygel.MediaExport.MediaCache : Object {
     public MediaObjects get_objects_by_search_expression
                                         (SearchExpression? expression,
                                          string?           container_id,
-                                         string?           sort_criteria,
+                                         string            sort_criteria,
                                          uint              offset,
                                          uint              max_count,
                                          out uint          total_matches)
@@ -282,7 +282,7 @@ public class Rygel.MediaExport.MediaCache : Object {
     public MediaObjects get_objects_by_filter (string          filter,
                                                GLib.ValueArray args,
                                                string?         container_id,
-                                               string?         sort_criteria,
+                                               string          sort_criteria,
                                                long            offset,
                                                long            max_count)
                                                throws Error {
@@ -867,11 +867,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         return this.db.query_value (this.sql.make (id), values);
     }
 
-    private string translate_sort_criteria (string? sort_criteria) {
-        if (sort_criteria == null) {
-            return "ORDER BY o.title COLLATE CASEFOLD ASC ";
-        }
-
+    private string translate_sort_criteria (string sort_criteria) {
         string? collate;
         var builder = new StringBuilder("ORDER BY ");
         var fields = sort_criteria.split (",");

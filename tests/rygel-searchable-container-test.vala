@@ -113,7 +113,7 @@ public class TestContainer : MediaContainer, Rygel.SearchableContainer {
                                        uint              offset,
                                        uint              max_count,
                                        out uint          total_matches,
-                                       string?           sort_criteria,
+                                       string            sort_criteria,
                                        Cancellable?      cancellable)
                                        throws Error {
         return yield this.simple_search (expression,
