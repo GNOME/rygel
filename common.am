@@ -85,7 +85,7 @@ RYGEL_COMMON_VALAFLAGS = \
 	--pkg rygel-build-config \
 	--vapidir=$(rygeldir) \
 	--vapidir=$(librygelcoredir) \
-	$(RYGEL_COMMON_VALAFLAGS_PKG)
+	$(RYGEL_COMMON_VALAFLAGS_PKG) \
 	$(RYGEL_DEBUG_VALAFLAGS) \
 	$(COVERAGE_VALAFLAGS)
 
