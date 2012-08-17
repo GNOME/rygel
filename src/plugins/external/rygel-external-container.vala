@@ -98,7 +98,7 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                                         (offset, max_count, filter);
 
         var result = yield this.create_media_objects (children_props, this);
-        result.sort_by_criteria (sort_criteria);
+        result.sort_by_criteria (sort_criteria ?? this.sort_criteria);
 
         return result;
     }
