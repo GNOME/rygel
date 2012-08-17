@@ -57,6 +57,8 @@ public abstract class Rygel.MediaItem : MediaObject {
 
     public bool place_holder { get; set; default = false; }
 
+    public string description { get; set; default = null; }
+
     internal override OCMFlags ocm_flags {
         get {
             if (this.place_holder) {
@@ -208,6 +210,10 @@ public abstract class Rygel.MediaItem : MediaObject {
 
         if (this.date != null) {
             didl_item.date = this.date;
+        }
+
+        if (this.description != null) {
+            didl_item.description = this.description;
         }
 
         /* We list proxy/transcoding resources first instead of original URIs
