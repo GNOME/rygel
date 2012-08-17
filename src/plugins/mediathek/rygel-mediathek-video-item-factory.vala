@@ -45,9 +45,12 @@ internal class Rygel.Mediathek.VideoItemFactory : Object {
                                     throws VideoItemError {
         string title;
         string playlist_url;
+        string date;
+
         this.extract_data_from_xml (xml_item,
                                     out title,
-                                    out playlist_url);
+                                    out playlist_url,
+                                    out date);
 
         var resolved_uris = yield playlist_parser.parse (playlist_url);
 
@@ -60,6 +63,7 @@ internal class Rygel.Mediathek.VideoItemFactory : Object {
 
         item.mime_type = this.playlist_parser.mime_type;
         item.author = "ZDF - Second German TV Channel Streams";
+        item.date = date;
 
         if (this.video_format == VIDEO_FORMAT_WMV) {
             item.dlna_profile = "WMVMED_FULL";
@@ -101,13 +105,14 @@ internal class Rygel.Mediathek.VideoItemFactory : Object {
         }
     }
 
-    private bool namespace_ok (Xml.Node* node) {
-        return node->ns != null && node->ns->prefix == "media";
+    private bool namespace_ok (Xml.Node* node, string prefix = "media") {
+        return node->ns != null && node->ns->prefix == prefix;
     }
 
     private void extract_data_from_xml (Xml.Node   *item,
                                         out string  title,
-                                        out string  playlist_url)
+                                        out string  playlist_url,
+                                        out string? date)
                                         throws VideoItemError {
         var title_node = XMLUtils.get_element (item, "title");
         var group = XMLUtils.get_element (item, "group");
@@ -152,5 +157,12 @@ internal class Rygel.Mediathek.VideoItemFactory : Object {
         }
 
         title = title_node->get_content ();
+
+        var date_node = XMLUtils.get_element (item, "date");
+        if (date_node != null && this.namespace_ok (date_node, "dc")) {
+            date = date_node->get_content ();
+        } else {
+            date = null;
+        }
     }
 }

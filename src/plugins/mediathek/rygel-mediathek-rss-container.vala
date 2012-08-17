@@ -38,6 +38,7 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
 
         this.content_id = id;
         this.feed_uri = uri_template.printf (id);
+        this.sort_criteria = "-dc:date,+dc:title";
         this.update.begin ();
     }
 
