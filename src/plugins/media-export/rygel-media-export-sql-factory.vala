@@ -158,7 +158,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
 
     private const string GET_META_DATA_COLUMN_STRING =
     "SELECT DISTINCT %s AS _column FROM meta_data AS m " +
-        "WHERE _column IS NOT NULL %s ORDER BY _column LIMIT ?,?";
+        "WHERE _column IS NOT NULL %s ORDER BY _column COLLATE CASEFOLD " +
+    "LIMIT ?,?";
 
     internal const string schema_version = "11";
     internal const string CREATE_META_DATA_TABLE_STRING =
