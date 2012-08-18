@@ -29,7 +29,7 @@ LT_INIT([dlopen disable-static])
 
 dnl Required versions of library packages
 GLIB_REQUIRED=2.31.13
-VALA_REQUIRED=0.15.2
+VALA_REQUIRED=0.16.1
 VALADOC_REQUIRED=0.2
 GSSDP_REQUIRED=0.11.0
 GUPNP_REQUIRED=0.17.1

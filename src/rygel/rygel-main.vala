@@ -274,7 +274,7 @@ internal class Rygel.Main : Object {
         }
 
         if (main.need_restart) {
-            Misc.Posix.execvp (original_args[0], original_args);
+            Posix.execvp (original_args[0], original_args);
         }
 
         return exit_code;

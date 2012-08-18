@@ -18,7 +18,6 @@ rygel_SOURCES = \
 
 rygel_VALAFLAGS = \
 	--pkg posix \
-	--pkg rygel-misc \
 	--pkg gstreamer-0.10 \
 	$(RYGEL_COMMON_VALAFLAGS)
 
@@ -35,7 +34,6 @@ MAINTAINERCLEANFILES += $(BUILT_SOURCES)
 
 EXTRA_DIST = \
 	rygel-build-config.vapi \
-	rygel-misc.vapi \
 	$(VAPI_FILES) \
 	$(DEPS_FILES) \
 	$(BUILT_SOURCES)
