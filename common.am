@@ -5,6 +5,10 @@ desktopdir = $(shareddir)
 plugindir = $(abs_top_builddir)/src/plugins
 icondir = $(shareddir)/icons/32x32
 presetdir = $(shareddir)/presets
+
+install: all-am
+	@echo "You called configure with --enable-uninstalled. Cannot install"
+
 else
 shareddir = $(datadir)/rygel
 sysconfigdir = $(sysconfdir)
