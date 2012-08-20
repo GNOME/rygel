@@ -1,3 +1,72 @@
+0.15.2
+======
+
+A new release in Rygel's unstable cycle!
+
+Changes compared to 0.15.2:
+
+- Prevent a critical if the thumbnail for a file does not exist.
+- Fix all warnings from newer Vala.
+- Let the plugins do the sorting to prevent that we slice before we sort.
+- Move the default sort criteria into MediaContainer to allow containers to
+  override it if necessary.
+- Canonicalize common error messages.
+- Add TwoPlayer to V1 downgrades.
+- Small refactoring of the V1 handling.
+- Fix debug builds.
+- Add "description" property to MediaItem.
+- Remove misc.vapi.
+- Disable installing if --enable-uninstalled was used.
+
+Tracker:
+ - Sort browse results using SPARQL.
+ - Sort album containers by disc, track and title.
+
+MediaExport:
+ - Sort browse and search results using SQL.
+ - Fix a crash when a client tried to access a non-existent query container.
+ - Sort album containers by disc, track and title.
+ - Properly collate query containers.
+
+Mediathek:
+ - Extract date and description from RSS feed.
+ - Sort by date descending (newest entry first) by default.
+
+Changes in dependencies:
+ - Vala 0.16.1 for Posix.execvp.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=661482
+ - https://bugzilla.gnome.org/show_bug.cgi?id=668376
+ - https://bugzilla.gnome.org/show_bug.cgi?id=652375
+ - https://bugzilla.gnome.org/show_bug.cgi?id=639809
+ - https://bugzilla.gnome.org/show_bug.cgi?id=681452
+ - https://bugzilla.gnome.org/show_bug.cgi?id=680742
+
+All contributors to this release:
+  Jens Georg <mail@jensge.org>
+  Lukasz Pawlik <lukasz.pawlik@comarch.com>
+  Fran Diéguez <fran.dieguez@mabishu.com>
+  Мирослав Николић <miroslavnikolic@rocketmail.com>
+  Yaron Shahrabani <sh.yaron@gmail.com>
+  Nilamdyuti Goswami <nilamdyuti@gmail.com>
+  Matej Urbančič <mateju@svn.gnome.org>
+  Kentaro KAZUHAMA <kazken3@gmail.com>
+  Daniel Mustieles <daniel.mustieles@gmail.com>
+  Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+
+Added/updated translations
+ - as, courtesy of Nilamdyuti Goswami
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Leandro Regueiro
+ - he, courtesy of Yaron Shahrabani
+ - ja, courtesy of Kentaro KAZUHAMA
+ - sl, courtesy of Matej Urbančič
+ - sr, courtesy of Мирослав Николић
+ - sr@latin, courtesy of Miroslav Nikolić
+ - zh_HK, courtesy of Chao-Hsiung Liao
+ - zh_TW, courtesy of Chao-Hsiung Liao
+
 0.15.1
 ======
 
