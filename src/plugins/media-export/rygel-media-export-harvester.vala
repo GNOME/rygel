@@ -212,6 +212,8 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                             id,
                             error.message);
                 }
+            } else {
+                debug ("%s is not eligible for extraction", file.get_uri ());
             }
         } catch (Error error) {
             warning (_("Failed to access media cache: %s"), error.message);
