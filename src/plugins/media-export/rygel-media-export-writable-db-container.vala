@@ -39,7 +39,12 @@ internal class Rygel.MediaExport.WritableDbContainer : DBContainer,
     public async void add_item (Rygel.MediaItem item, Cancellable? cancellable)
                                 throws Error {
         item.parent = this;
-        item.id = MediaCache.get_id (File.new_for_uri (item.uris[0]));
+        var file = File.new_for_uri (item.uris[0]);
+        // TODO: Mark as place-holder. Make this proper some time.
+        if (file.is_native ()) {
+            item.modified = int64.MAX;
+        }
+        item.id = MediaCache.get_id (file);
         this.media_db.save_item (item);
     }
 
