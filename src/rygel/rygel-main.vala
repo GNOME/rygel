@@ -242,6 +242,28 @@ internal class Rygel.Main : Object {
         }
     }
 
+    private static void register_default_configurations () {
+
+        var cmdline_config = CmdlineConfig.get_default ();
+
+        MetaConfig.register_configuration (cmdline_config);
+        MetaConfig.register_configuration (EnvironmentConfig.get_default ());
+
+        try {
+            var config_file = cmdline_config.get_config_file ();
+            var user_config = new UserConfig (config_file);
+            MetaConfig.register_configuration (user_config);
+        } catch (Error error) {
+            try {
+                var user_config = UserConfig.get_default ();
+                MetaConfig.register_configuration (user_config);
+            } catch (Error err) {
+                warning (_("Failed to load user configuration: %s"), err.message);
+            }
+        }
+    }
+
+
     private static int main (string[] args) {
         Main main = null;
         DBusService service = null;
@@ -257,7 +279,7 @@ internal class Rygel.Main : Object {
         try {
             // Parse commandline options
             CmdlineConfig.parse_args (ref args);
-            MetaConfig.register_default_configurations ();
+            Main.register_default_configurations ();
 
             main = new Main ();
             service = new DBusService (main);

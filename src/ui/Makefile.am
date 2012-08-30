@@ -12,7 +12,8 @@ rygel_preferences_SOURCES =  \
 	rygel-preferences-section.vala \
 	rygel-media-pref-section.vala \
 	rygel-writable-user-config.vala \
-	rygel-network-pref-section.vala
+	rygel-network-pref-section.vala \
+	rygel-user-config.vala
 
 rygel_preferences_VALAFLAGS = \
 	--thread --pkg gio-2.0 \

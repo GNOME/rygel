@@ -86,7 +86,7 @@ public class Rygel.PreferencesDialog : GLib.Object {
         Gtk.init (ref args);
 
         try {
-            MetaConfig.register_default_configurations ();
+            MetaConfig.register_configuration (UserConfig.get_default ());
             var dialog = new PreferencesDialog ();
 
             dialog.run ();

@@ -14,6 +14,9 @@ bin_PROGRAMS = rygel
 rygel_SOURCES = \
 	rygel-dbus-service.vala \
 	rygel-main.vala \
+	rygel-cmdline-config.vala \
+	rygel-environment-config.vala \
+	rygel-user-config.vala \
 	$(top_builddir)/src/librygel-core/rygel-core-1.0.vapi
 
 rygel_VALAFLAGS = \

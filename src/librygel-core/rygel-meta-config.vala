@@ -58,27 +58,6 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         configs.add (config);
     }
 
-    public static void register_default_configurations () {
-
-        var cmdline_config = CmdlineConfig.get_default ();
-
-        MetaConfig.register_configuration (cmdline_config);
-        MetaConfig.register_configuration (EnvironmentConfig.get_default ());
-
-        try {
-            var config_file = cmdline_config.get_config_file ();
-            var user_config = new UserConfig (config_file);
-            MetaConfig.register_configuration (user_config);
-        } catch (Error error) {
-            try {
-                var user_config = UserConfig.get_default ();
-                MetaConfig.register_configuration (user_config);
-            } catch (Error err) {
-                warning (_("Failed to load user configuration: %s"), err.message);
-            }
-        }
-    }
-
     public bool get_upnp_enabled () throws GLib.Error {
         bool val = true;
         bool unavailable = true;
