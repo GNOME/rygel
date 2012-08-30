@@ -1,8 +1,10 @@
 /*
- * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2009-2012 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -26,39 +28,12 @@ using GUPnP;
 
 /**
  * The base Transcoder class. Each implementation derives from it and must
- * implement get_distance and get_encoding_profile methods.
+ * implement get_distance.
  */
-internal abstract class Rygel.Transcoder : GLib.Object {
+public abstract class Rygel.Transcoder : GLib.Object {
     public string mime_type { get; protected set; }
     public string dlna_profile { get; protected set; }
     public string extension { get; protected set; }
-    public string preset { get;
-                           protected set;
-                           default =  DEFAULT_ENCODING_PRESET; }
-
-    private const string DECODE_BIN = "decodebin2";
-    private const string ENCODE_BIN = "encodebin";
-    private const string DEFAULT_ENCODING_PRESET = "Rygel DLNA preset";
-
-    dynamic Element decoder;
-    dynamic Element encoder;
-
-    private bool link_failed;
-
-    // Primary UPnP item class that this transcoder is meant for, doesn't
-    // necessarily mean it cant be used for other classes.
-    public string upnp_class { get; protected set; }
-
-    public Transcoder (string mime_type,
-                       string dlna_profile,
-                       string upnp_class,
-                       string extension) {
-        this.mime_type = mime_type;
-        this.dlna_profile = dlna_profile;
-        this.upnp_class = upnp_class;
-        this.link_failed = true;
-        this.extension = extension;
-    }
 
     /**
      * Creates a transcoding source.
@@ -68,32 +43,8 @@ internal abstract class Rygel.Transcoder : GLib.Object {
      *
      * @return      the new transcoding source
      */
-    public virtual Element create_source (MediaItem item,
-                                          Element   src) throws Error {
-        this.decoder = GstUtils.create_element (DECODE_BIN,
-                                                DECODE_BIN);
-        this.encoder = GstUtils.create_element (ENCODE_BIN,
-                                                ENCODE_BIN);
-
-        encoder.profile = this.get_encoding_profile ();
-        debug ("%s using the following encoding profile:",
-               this.get_class ().get_type ().name ());
-        GstUtils.dump_encoding_profile (encoder.profile);
-
-        var bin = new Bin ("transcoder-source");
-        bin.add_many (src, decoder, encoder);
-
-        src.link (decoder);
-
-        decoder.pad_added.connect (this.on_decoder_pad_added);
-        decoder.no_more_pads.connect (this.on_no_more_pads);
-
-        var pad = encoder.get_static_pad ("src");
-        var ghost = new GhostPad (null, pad);
-        bin.add_pad (ghost);
-
-        return bin;
-    }
+    public abstract Element create_source (MediaItem item,
+                                           Element   src) throws Error;
 
     public virtual DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
                                                    MediaItem        item,
@@ -145,65 +96,10 @@ internal abstract class Rygel.Transcoder : GLib.Object {
      */
     public abstract uint get_distance (MediaItem item);
 
-    /**
-     * Gets the Gst.EncodingProfile for this transcoder.
-     *
-     * @return      the Gst.EncodingProfile for this transcoder.
-     */
-    protected abstract EncodingProfile get_encoding_profile ();
-
     protected bool mime_type_is_a (string mime_type1, string mime_type2) {
         string content_type1 = ContentType.get_mime_type (mime_type1);
         string content_type2 = ContentType.get_mime_type (mime_type2);
 
         return ContentType.is_a (content_type1, content_type2);
-    }
-
-    private void on_decoder_pad_added (Element decodebin, Pad new_pad) {
-        Gst.Pad sinkpad;
-
-        sinkpad = this.encoder.get_compatible_pad (new_pad, null);
-
-        if (sinkpad == null) {
-            var caps = new_pad.get_caps_reffed ();
-            Signal.emit_by_name (this.encoder, "request-pad", caps, out sinkpad);
-        }
-
-        if (sinkpad == null) {
-            debug ("No compatible encodebin pad found for pad '%s', ignoring..",
-                   new_pad.name);
-
-            return;
-        }
-
-        var pad_link_ok = (new_pad.link (sinkpad) == PadLinkReturn.OK);
-        if (!pad_link_ok) {
-            warning ("Failed to link pad '%s' to '%s'",
-                     new_pad.name,
-                     sinkpad.name);
-        } else {
-            this.link_failed = false;
-        }
-
-        return;
-    }
-
-    private const string description = "Encoder and decoder are not " +
-                                       "compatible";
-
-    private void on_no_more_pads (Element decodebin) {
-        // We haven't found any pads we could link
-        if (this.link_failed) {
-            // Signalize that error
-            var bin = this.encoder.get_parent () as Bin;
-            var error = new IOError.FAILED ("Could not link");
-            var message = new Message.error (bin,
-                                             error,
-                                             description);
-
-
-            var bus = bin.get_bus ();
-            bus.post (message);
-        }
     }
 }

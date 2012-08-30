@@ -1,8 +1,10 @@
 /*
- * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2009-2012 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -27,10 +29,10 @@ using Gst;
 
 /**
  * Responsible for management of all transcoders:
- *    - gets the appropriate transcoder given a transcoding target.
- *    - provide all possible transcoding resources for items.
+ * # Gets the appropriate transcoder given a transcoding target.
+ * # Provide all possible transcoding resources for items.
  */
-internal abstract class Rygel.TranscodeManager : GLib.Object {
+public abstract class Rygel.TranscodeManager : GLib.Object {
     private ArrayList<Transcoder> transcoders;
 
     private static bool protocol_equal_func (void *a, void *b) {

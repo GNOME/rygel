@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2011 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Jens Georg <jensg@openismus.com>
  *
@@ -25,7 +26,7 @@ using GUPnP;
 /**
  * Base class for all transcoders that handle audio.
  */
-internal class Rygel.AudioTranscoder : Rygel.Transcoder {
+internal class Rygel.AudioTranscoder : Rygel.GstTranscoder {
     protected int audio_bitrate;
     protected Caps container_format = null;
     protected Caps audio_codec_format = null;

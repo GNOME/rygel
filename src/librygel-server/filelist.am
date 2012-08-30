@@ -18,6 +18,8 @@ LIBRYGEL_SERVER_VAPI_SOURCE_FILES = \
 	rygel-media-server-plugin.vala \
 	rygel-search-expression.vala \
 	rygel-searchable-container.vala \
+	rygel-transcode-manager.vala \
+	rygel-transcoder.vala \
 	rygel-visual-item.vala \
 	rygel-writable-container.vala \
 	rygel-media-server.vala \
@@ -60,15 +62,14 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-source-connection-manager.vala \
 	rygel-subtitle-manager.vala \
 	rygel-thumbnailer.vala \
-	rygel-transcode-manager.vala \
-	rygel-transcoder.vala \
 	rygel-v1-hacks.vala \
 	rygel-video-transcoder.vala \
 	rygel-wmp-hacks.vala \
 	rygel-wmv-transcoder.vala \
 	rygel-xbmc-hacks.vala \
 	rygel-xbox-hacks.vala \
-	rygel-gst-media-engine.vala
+	rygel-gst-media-engine.vala \
+	rygel-gst-transcoder.vala
 
 LIBRYGEL_SERVER_VALAFLAGS_PKG = \
 	--pkg gstreamer-0.10 \
