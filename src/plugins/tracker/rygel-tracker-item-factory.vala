@@ -2,6 +2,7 @@
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2008-2012 Nokia Corporation.
  * Copyright (C) 2010 MediaNet Inh.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Authors: Zeeshan Ali <zeenix@gmail.com>
  *          Sunil Mohan Adapa <sunil@medhas.org>

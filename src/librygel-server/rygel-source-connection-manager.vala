@@ -1,8 +1,10 @@
 /*
- * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2009-2011 Nokia Corporation.
  * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -22,7 +24,6 @@
  */
 
 using GUPnP;
-using Gst;
 using Gee;
 
 /**
@@ -50,12 +51,12 @@ internal class Rygel.SourceConnectionManager : Rygel.ConnectionManager {
         var server = this.get_http_server ();
         var protocol_infos = server.get_protocol_info ();
 
-        var discoverer = new GUPnP.DLNADiscoverer ((ClockTime) SECOND,
-                                                   true,
-                                                   false);
+        unowned GLib.List<DLNAProfile> profiles = MediaEngine.get_default ().
+                                                              get_dlna_profiles ();
+
         var protocol = server.get_protocol ();
 
-        foreach (var profile in discoverer.list_profiles ()) {
+        foreach (var profile in profiles) {
             var protocol_info = new ProtocolInfo ();
 
             protocol_info.protocol = protocol;

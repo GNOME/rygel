@@ -1,7 +1,9 @@
 /*
- * Copyright (C) 2010 Nokia Corporation.
+ * Copyright (C) 2010-2011 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -21,7 +23,6 @@
  */
 
 using GUPnP;
-using Gst;
 
 /**
  * CreateObject action implementation.
@@ -593,26 +594,20 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
     /**
      * Check if the profile is supported.
      *
-     * The check is performed against GUPnP-DLNA's database explicitly excluding
+     * The check is performed against the MediaEngine's database explicitly excluding
      * the transcoders.
      *
      * @param profile to check
      * @returns true if the profile is supported, false otherwise.
      */
     private bool is_profile_valid (string profile) {
-        var discoverer = new GUPnP.DLNADiscoverer ((ClockTime) SECOND,
-                                                   true,
-                                                   false);
+        unowned GLib.List<DLNAProfile> profiles, result;
 
-        var valid = false;
-        foreach (var known_profile in discoverer.list_profiles ()) {
-            if (known_profile.name == profile) {
-                valid = true;
+        profiles = MediaEngine.get_default ().get_dlna_profiles ();
+        var p = new DLNAProfile (profile, "");
 
-                break;
-            }
-        }
+        result = profiles.find_custom (p, DLNAProfile.compare_by_name);
 
-        return valid;
+        return result != null;
     }
 }

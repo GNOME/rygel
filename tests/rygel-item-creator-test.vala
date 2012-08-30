@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Jens Georg <jensg@openismus.com>
  *
@@ -239,6 +240,12 @@ public errordomain Rygel.ContentDirectoryError {
     INVALID_ARGS,
     RESTRICTED_PARENT,
     ERROR
+}
+
+public class Rygel.GstMediaEngine : Rygel.MediaEngine {
+    public override unowned GLib.List<DLNAProfile> get_dlna_profiles () {
+        return null;
+    }
 }
 
 public class Rygel.HTTPItemCreatorTest : GLib.Object {

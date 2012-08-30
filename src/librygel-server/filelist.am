@@ -20,7 +20,8 @@ LIBRYGEL_SERVER_VAPI_SOURCE_FILES = \
 	rygel-searchable-container.vala \
 	rygel-visual-item.vala \
 	rygel-writable-container.vala \
-	rygel-media-server.vala
+	rygel-media-server.vala \
+	rygel-media-engine.vala
 
 LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-aac-transcoder.vala \
@@ -66,7 +67,8 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-wmp-hacks.vala \
 	rygel-wmv-transcoder.vala \
 	rygel-xbmc-hacks.vala \
-	rygel-xbox-hacks.vala
+	rygel-xbox-hacks.vala \
+	rygel-gst-media-engine.vala
 
 LIBRYGEL_SERVER_VALAFLAGS_PKG = \
 	--pkg gstreamer-0.10 \
