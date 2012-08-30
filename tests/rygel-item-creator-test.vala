@@ -184,6 +184,7 @@ public class Rygel.ContentDirectory : GLib.Object {
 public class Rygel.MediaContainer : Rygel.MediaObject {
     public Gee.ArrayList<string> create_classes = new Gee.ArrayList<string> ();
     public int child_count;
+    public string sort_criteria = "+dc:title";
 
     // mockable elements
     public MediaObject found_object = null;
