@@ -41,6 +41,10 @@ internal class Rygel.ItemRemovalQueue: GLib.Object {
     }
 
     public void queue (MediaItem item, Cancellable? cancellable) {
+        if (item.parent_ref == null) {
+            item.parent_ref = item.parent;
+        }
+
         var timeout = Timeout.add_seconds (TIMEOUT, () => {
             debug ("Timeout on temporary item '%s'.", item.id);
             this.remove_now.begin (item, cancellable);
