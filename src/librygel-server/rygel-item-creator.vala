@@ -498,7 +498,13 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                                     "_",
                                                     RegexMatchFlags.NOTEMPTY);
 
-        return mangled;
+        var udn = new uchar[50];
+        var id = new uchar[16];
+
+        UUID.generate (id);
+        UUID.unparse (id, udn);
+
+        return (string) udn + "-" + mangled;
     }
 
     /**
@@ -522,13 +528,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
 
         var file = dir.get_child_for_display_name (this.mangle_title (title));
 
-        var udn = new uchar[50];
-        var id = new uchar[16];
-
-        UUID.generate (id);
-        UUID.unparse (id, udn);
-
-        return file.get_uri () + (string) udn;
+        return file.get_uri ();
     }
 
     /**
