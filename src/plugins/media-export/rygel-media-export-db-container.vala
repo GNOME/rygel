@@ -71,8 +71,8 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
         try {
             children = this.media_db.get_objects_by_search_expression
                                         (expression,
-                                         sort_criteria,
                                          this.id,
+                                         sort_criteria,
                                          offset,
                                          max_count,
                                          out total_matches);
