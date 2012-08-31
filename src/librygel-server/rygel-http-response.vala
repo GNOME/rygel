@@ -211,15 +211,25 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
             if (message.src != this.pipeline) {
                 return true;
             }
+            State old_state;
+            State new_state;
+
+            message.parse_state_changed (out old_state,
+                                         out new_state,
+                                         null);
+            if (old_state == State.NULL && new_state == State.READY) {
+                dynamic Element element = this.pipeline.get_by_name ("muxer");
+                if (element != null) {
+                    var name = element.get_factory ().get_name ();
+                    // Awesome gross hack, really.
+                    if (name == "mp4mux") {
+                        element.streamable = true;
+                        element.fragment_duration = 1000;
+                    }
+                }
+            }
 
             if (this.seek != null && this.seek.start > 0) {
-                State old_state;
-                State new_state;
-
-                message.parse_state_changed (out old_state,
-                                             out new_state,
-                                             null);
-
                 if (old_state == State.READY && new_state == State.PAUSED) {
                     if (this.perform_seek ()) {
                         this.pipeline.set_state (State.PLAYING);

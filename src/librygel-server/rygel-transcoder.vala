@@ -86,7 +86,6 @@ internal abstract class Rygel.Transcoder : GLib.Object {
         src.link (decoder);
 
         decoder.pad_added.connect (this.on_decoder_pad_added);
-        decoder.autoplug_continue.connect (this.on_autoplug_continue);
         decoder.no_more_pads.connect (this.on_no_more_pads);
 
         var pad = encoder.get_static_pad ("src");
@@ -158,19 +157,6 @@ internal abstract class Rygel.Transcoder : GLib.Object {
         string content_type2 = ContentType.get_mime_type (mime_type2);
 
         return ContentType.is_a (content_type1, content_type2);
-    }
-
-    private bool on_autoplug_continue (Element decodebin,
-                                       Pad     new_pad,
-                                       Caps    caps) {
-        Gst.Pad sinkpad = null;
-
-        Signal.emit_by_name (this.encoder, "request-pad", caps, out sinkpad);
-        if (sinkpad == null) {
-            return true;
-        }
-
-        return false;
     }
 
     private void on_decoder_pad_added (Element decodebin, Pad new_pad) {
