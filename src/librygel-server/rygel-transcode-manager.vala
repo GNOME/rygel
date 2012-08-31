@@ -25,7 +25,6 @@
 
 using GUPnP;
 using Gee;
-using Gst;
 
 /**
  * Responsible for management of all transcoders:
@@ -33,7 +32,6 @@ using Gst;
  * # Provide all possible transcoding resources for items.
  */
 public abstract class Rygel.TranscodeManager : GLib.Object {
-    private ArrayList<Transcoder> transcoders;
 
     private static bool protocol_equal_func (void *a, void *b) {
         var protocol_a = a as ProtocolInfo;
@@ -43,59 +41,7 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
                protocol_a.mime_type == protocol_b.mime_type;
     }
 
-    public TranscodeManager () {
-        transcoders = new ArrayList<Transcoder> ();
-
-        var config = MetaConfig.get_default ();
-
-        var transcoding = true;
-        var lpcm_transcoder = true;
-        var mp3_transcoder = true;
-        var mp2ts_transcoder = true;
-        var wmv_transcoder = true;
-        var aac_transcoder = true;
-        var avc_transcoder = true;
-
-        try {
-            transcoding = config.get_transcoding ();
-
-            if (transcoding) {
-                lpcm_transcoder = config.get_lpcm_transcoder ();
-                mp3_transcoder = config.get_mp3_transcoder ();
-                mp2ts_transcoder = config.get_mp2ts_transcoder ();
-                wmv_transcoder = config.get_wmv_transcoder ();
-                aac_transcoder = config.get_aac_transcoder ();
-                avc_transcoder = config.get_avc_transcoder ();
-            }
-        } catch (Error err) {}
-
-        if (transcoding) {
-            if (lpcm_transcoder) {
-                transcoders.add (new L16Transcoder ());
-            }
-
-            if (mp3_transcoder) {
-                transcoders.add (new MP3Transcoder ());
-            }
-
-            if (mp2ts_transcoder) {
-                transcoders.add (new MP2TSTranscoder(MP2TSProfile.SD));
-                transcoders.add (new MP2TSTranscoder(MP2TSProfile.HD));
-            }
-
-            if (wmv_transcoder) {
-                transcoders.add (new WMVTranscoder ());
-            }
-
-            if (aac_transcoder) {
-                transcoders.add (new AACTranscoder ());
-            }
-
-            if (avc_transcoder) {
-                transcoders.add (new AVCTranscoder ());
-            }
-        }
-    }
+    public TranscodeManager () { }
 
     public abstract string create_uri_for_item (MediaItem  item,
                                                 int        thumbnail_index,
@@ -104,9 +50,11 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
 
     public void add_resources (DIDLLiteItem didl_item, MediaItem item)
                                throws Error {
+        var engine = MediaEngine.get_default ();
         var list = new GLib.List<Transcoder> ();
+        unowned GLib.List<Transcoder> transcoders = engine.get_transcoders ();
 
-        foreach (var transcoder in this.transcoders) {
+        foreach (var transcoder in transcoders) {
             if (transcoder.get_distance (item) != uint.MAX) {
                 list.append (transcoder);
             }
@@ -121,7 +69,7 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
     public Transcoder get_transcoder (string  target) throws Error {
         Transcoder transcoder = null;
 
-        foreach (var iter in this.transcoders) {
+        foreach (var iter in MediaEngine.get_default ().get_transcoders ()) {
             if (iter.can_handle (target)) {
                 transcoder = iter;
             }
@@ -139,9 +87,11 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
     internal abstract string get_protocol ();
 
     internal virtual ArrayList<ProtocolInfo> get_protocol_info () {
+        var engine = MediaEngine.get_default ();
         var protocol_infos = new ArrayList<ProtocolInfo> (protocol_equal_func);
+        unowned GLib.List<Transcoder> transcoders = engine.get_transcoders ();
 
-        foreach (var transcoder in this.transcoders) {
+        foreach (var transcoder in transcoders) {
             var protocol_info = new ProtocolInfo ();
 
             protocol_info.protocol = this.get_protocol ();

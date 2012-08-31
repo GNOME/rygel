@@ -24,6 +24,7 @@ using Gst;
 
 internal class Rygel.GstMediaEngine : Rygel.MediaEngine {
     private GLib.List<DLNAProfile> dlna_profiles = null;
+    private GLib.List<Transcoder> transcoders = null;
 
     public GstMediaEngine () {
         var discoverer = new GUPnP.DLNADiscoverer ((ClockTime) SECOND,
@@ -35,9 +36,64 @@ internal class Rygel.GstMediaEngine : Rygel.MediaEngine {
         }
 
         this.dlna_profiles.reverse ();
+
+        var transcoding = true;
+        var lpcm_transcoder = true;
+        var mp3_transcoder = true;
+        var mp2ts_transcoder = true;
+        var wmv_transcoder = true;
+        var aac_transcoder = true;
+        var avc_transcoder = true;
+
+        var config = MetaConfig.get_default ();
+        try {
+            transcoding = config.get_transcoding ();
+
+            if (transcoding) {
+                lpcm_transcoder = config.get_lpcm_transcoder ();
+                mp3_transcoder = config.get_mp3_transcoder ();
+                mp2ts_transcoder = config.get_mp2ts_transcoder ();
+                wmv_transcoder = config.get_wmv_transcoder ();
+                aac_transcoder = config.get_aac_transcoder ();
+                avc_transcoder = config.get_avc_transcoder ();
+            }
+        } catch (Error err) {}
+
+        if (transcoding) {
+            if (lpcm_transcoder) {
+                this.transcoders.prepend (new L16Transcoder ());
+            }
+
+            if (mp3_transcoder) {
+                this.transcoders.prepend (new MP3Transcoder ());
+            }
+
+            if (mp2ts_transcoder) {
+                this.transcoders.prepend (new MP2TSTranscoder(MP2TSProfile.SD));
+                this.transcoders.prepend (new MP2TSTranscoder(MP2TSProfile.HD));
+            }
+
+            if (wmv_transcoder) {
+                this.transcoders.prepend (new WMVTranscoder ());
+            }
+
+            if (aac_transcoder) {
+                this.transcoders.prepend (new AACTranscoder ());
+            }
+
+            if (avc_transcoder) {
+                this.transcoders.prepend (new AVCTranscoder ());
+            }
+
+            this.transcoders.reverse ();
+        }
     }
 
     public override unowned GLib.List<DLNAProfile> get_dlna_profiles () {
         return this.dlna_profiles;
+    }
+
+    public override unowned GLib.List<Transcoder>? get_transcoders () {
+        return this.transcoders;
     }
 }

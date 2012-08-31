@@ -70,4 +70,11 @@ public abstract class Rygel.MediaEngine : GLib.Object {
      * @return A list of #DLNAProfile<!-- -->s
      */
     public abstract unowned List<DLNAProfile> get_dlna_profiles ();
+
+    /**
+     * Get a list of the Transcoders that are supported by this media engine.
+     *
+     * @return A list of #Transcoder<!-- -->s or null if not supported.
+     */
+    public abstract unowned List<Transcoder>? get_transcoders ();
 }

@@ -242,8 +242,15 @@ public errordomain Rygel.ContentDirectoryError {
     ERROR
 }
 
+public class Rygel.Transcoder {
+}
+
 public class Rygel.GstMediaEngine : Rygel.MediaEngine {
     public override unowned GLib.List<DLNAProfile> get_dlna_profiles () {
+        return null;
+    }
+
+    public override unowned GLib.List<Transcoder>? get_transcoders () {
         return null;
     }
 }
