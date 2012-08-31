@@ -1,11 +1,12 @@
 /*
  * Copyright (C) 2008,2009 Nokia Corporation.
  * Copyright (C) 2008,2009 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
- * Copyright (C) 2012 Intel Corporation
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Krzesimir Nowak <krnowak@openismus.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -44,12 +45,6 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     public static const string UPNP_ENABLED_KEY = "upnp-" + ENABLED_KEY;
     public static const string TITLE_KEY = "title";
     public static const string TRANSCODING_KEY = "enable-transcoding";
-    public static const string MP3_TRANSCODER_KEY = "enable-mp3-transcoder";
-    public static const string MP2TS_TRANSCODER_KEY = "enable-mp2ts-transcoder";
-    public static const string LPCM_TRANSCODER_KEY = "enable-lpcm-transcoder";
-    public static const string WMV_TRANSCODER_KEY = "enable-wmv-transcoder";
-    public static const string AAC_TRANSCODER_KEY = "enable-aac-transcoder";
-    public static const string AVC_TRANSCODER_KEY = "enable-avc-transcoder";
     public static const string ALLOW_UPLOAD_KEY = "allow-upload";
     public static const string ALLOW_DELETION_KEY = "allow-deletion";
     public static const string LOG_LEVELS_KEY = "log-level";
@@ -166,30 +161,6 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
     public bool get_transcoding () throws GLib.Error {
         return this.get_bool (GENERAL_SECTION, TRANSCODING_KEY);
-    }
-
-    public bool get_mp3_transcoder () throws GLib.Error {
-        return this.get_bool (GENERAL_SECTION, MP3_TRANSCODER_KEY);
-    }
-
-    public bool get_mp2ts_transcoder () throws GLib.Error {
-        return this.get_bool (GENERAL_SECTION, MP2TS_TRANSCODER_KEY);
-    }
-
-    public bool get_lpcm_transcoder () throws GLib.Error {
-        return this.get_bool (GENERAL_SECTION, LPCM_TRANSCODER_KEY);
-    }
-
-    public bool get_wmv_transcoder () throws GLib.Error {
-        return this.get_bool (GENERAL_SECTION, WMV_TRANSCODER_KEY);
-    }
-
-    public bool get_aac_transcoder () throws GLib.Error {
-        return this.get_bool (GENERAL_SECTION, AAC_TRANSCODER_KEY);
-    }
-
-    public bool get_avc_transcoder () throws GLib.Error {
-        return this.get_bool (GENERAL_SECTION, AVC_TRANSCODER_KEY);
     }
 
     public bool get_allow_upload () throws GLib.Error {

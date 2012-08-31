@@ -1,11 +1,12 @@
 /*
  * Copyright (C) 2008,2009 Nokia Corporation.
  * Copyright (C) 2008,2009 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
- * Copyright (C) 2012 Intel Corporation
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Krzesimir Nowak <krnowak@openismus.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -79,18 +80,6 @@ public interface Rygel.Configuration : GLib.Object {
     public abstract int get_port () throws GLib.Error;
 
     public abstract bool get_transcoding () throws GLib.Error;
-
-    public abstract bool get_mp3_transcoder () throws GLib.Error;
-
-    public abstract bool get_mp2ts_transcoder () throws GLib.Error;
-
-    public abstract bool get_lpcm_transcoder () throws GLib.Error;
-
-    public abstract bool get_wmv_transcoder () throws GLib.Error;
-
-    public abstract bool get_aac_transcoder () throws GLib.Error;
-
-    public abstract bool get_avc_transcoder () throws GLib.Error;
 
     public abstract bool get_allow_upload () throws GLib.Error;
 

@@ -1,9 +1,11 @@
 /*
  * Copyright (C) 2008-2010 Nokia Corporation.
  * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -36,13 +38,6 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
     private static string PORT_ENV = RYGEL_PREFIX + "_PORT";
     private static string DISABLE_UPNP_ENV = DISABLE_PREFIX + "_UPNP";
     private static string TRANSCODING_ENV = DISABLE_PREFIX + "_TRANSCODING";
-    private static string MP3_TRANSCODING_ENV = DISABLE_PREFIX + "_MP3_TRANS";
-    private static string LPCM_TRANSCODING_ENV = DISABLE_PREFIX + "_LPCM_TRANS";
-    private static string MP2TS_TRANSCODING_ENV = DISABLE_PREFIX +
-                                                  "_MP2TS_TRANS";
-    private static string WMV_TRANSCODING_ENV = DISABLE_PREFIX + "_WMV_TRANS";
-    private static string AAC_TRANSCODING_ENV = DISABLE_PREFIX + "_AAC_TRANS";
-    private static string AVC_TRANSCODING_ENV = DISABLE_PREFIX + "_AVC_TRANS";
     private static string DISALLOW_UPLOAD_ENV = DISABLE_PREFIX + "_UPLOAD";
     private static string DISALLOW_DELETION_ENV = DISABLE_PREFIX + "_DELETION";
     private static string LOG_LEVELS_ENV = RYGEL_PREFIX + "_LOG";
@@ -73,30 +68,6 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
 
     public bool get_transcoding () throws GLib.Error {
         return !this.get_bool_variable (TRANSCODING_ENV);
-    }
-
-    public bool get_mp3_transcoder () throws GLib.Error {
-        return !this.get_bool_variable (MP3_TRANSCODING_ENV);
-    }
-
-    public bool get_mp2ts_transcoder () throws GLib.Error {
-        return !this.get_bool_variable (MP2TS_TRANSCODING_ENV);
-    }
-
-    public bool get_wmv_transcoder () throws GLib.Error {
-        return !this.get_bool_variable (WMV_TRANSCODING_ENV);
-    }
-
-    public bool get_aac_transcoder () throws GLib.Error {
-        return !this.get_bool_variable (AAC_TRANSCODING_ENV);
-    }
-
-    public bool get_avc_transcoder () throws GLib.Error {
-        return !this.get_bool_variable (AVC_TRANSCODING_ENV);
-    }
-
-    public bool get_lpcm_transcoder () throws GLib.Error {
-        return !this.get_bool_variable (LPCM_TRANSCODING_ENV);
     }
 
     public bool get_allow_upload () throws GLib.Error {

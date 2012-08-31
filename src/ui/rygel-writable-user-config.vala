@@ -1,9 +1,11 @@
 /*
  * Copyright (C) 2008-2011 Nokia Corporation.
  * Copyright (C) 2008,2009 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -82,22 +84,6 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
 
     public void set_transcoding (bool value) {
         this.set_bool ("general", TRANSCODING_KEY, value);
-    }
-
-    public void set_mp3_transcoder (bool value) {
-        this.set_bool ("general", MP3_TRANSCODER_KEY, value);
-    }
-
-    public void set_mp2ts_transcoder (bool value) {
-        this.set_bool ("general", MP2TS_TRANSCODER_KEY, value);
-    }
-
-    public void set_lpcm_transcoder (bool value) {
-        this.set_bool ("general", LPCM_TRANSCODER_KEY, value);
-    }
-
-    public void set_wmv_transcoder (bool value) {
-        this.set_bool ("general", WMV_TRANSCODER_KEY, value);
     }
 
     public void set_allow_upload (bool value) throws GLib.Error {

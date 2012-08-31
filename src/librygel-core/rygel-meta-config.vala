@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2008,2009 Nokia Corporation.
  * Copyright (C) 2008,2009 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
- * Copyright (C) 2012 Openismus GmbH.
+ * Copyright (C) 2012 Intel Corporation.
  * Copyright (C) 2012 Intel Corporation
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
@@ -138,120 +138,6 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_transcoding ();
-                unavailable = false;
-                break;
-            } catch (GLib.Error err) {}
-        }
-
-        if (unavailable) {
-            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
-        }
-
-        return val;
-    }
-
-    public bool get_mp3_transcoder () throws GLib.Error {
-        bool val = true;
-        bool unavailable = true;
-
-        foreach (var config in MetaConfig.configs) {
-            try {
-                val = config.get_mp3_transcoder ();
-                unavailable = false;
-                break;
-            } catch (GLib.Error err) {}
-        }
-
-        if (unavailable) {
-            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
-        }
-
-        return val;
-    }
-
-    public bool get_mp2ts_transcoder () throws GLib.Error {
-        bool val = true;
-        bool unavailable = true;
-
-        foreach (var config in MetaConfig.configs) {
-            try {
-                val = config.get_mp2ts_transcoder ();
-                unavailable = false;
-                break;
-            } catch (GLib.Error err) {}
-        }
-
-        if (unavailable) {
-            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
-        }
-
-        return val;
-    }
-
-    public bool get_lpcm_transcoder () throws GLib.Error {
-        bool val = true;
-        bool unavailable = true;
-
-        foreach (var config in MetaConfig.configs) {
-            try {
-                val = config.get_lpcm_transcoder ();
-                unavailable = false;
-                break;
-            } catch (GLib.Error err) {}
-        }
-
-        if (unavailable) {
-            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
-        }
-
-        return val;
-    }
-
-    public bool get_wmv_transcoder () throws GLib.Error {
-        bool val = true;
-        bool unavailable = true;
-
-        foreach (var config in MetaConfig.configs) {
-            try {
-                val = config.get_wmv_transcoder ();
-                unavailable = false;
-                break;
-            } catch (GLib.Error err) {}
-        }
-
-        if (unavailable) {
-            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
-        }
-
-        return val;
-    }
-
-    public bool get_aac_transcoder () throws GLib.Error {
-        bool val = true;
-        bool unavailable = true;
-
-        foreach (var config in MetaConfig.configs) {
-            try {
-                val = config.get_aac_transcoder ();
-                unavailable = false;
-                break;
-            } catch (GLib.Error err) {}
-        }
-
-        if (unavailable) {
-            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
-        }
-
-        return val;
-    }
-
-    public bool get_avc_transcoder () throws GLib.Error {
-        bool val = true;
-        bool unavailable = true;
-
-        foreach (var config in MetaConfig.configs) {
-            try {
-                val = config.get_avc_transcoder ();
                 unavailable = false;
                 break;
             } catch (GLib.Error err) {}

@@ -178,72 +178,6 @@ handling.</para>
       </varlistentry>
       <varlistentry>
         <term>
-          <option>-m</option>
-        </term>
-        <term>
-          <option>--disable-mp3-transcoder</option>
-        </term>
-        <listitem>
-          <para>Disable transcoding to MP3.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>-s</option>
-        </term>
-        <term>
-          <option>--disable-mp2ts-transcoder</option>
-        </term>
-        <listitem>
-          <para>Disable transcoding to MPEG2 in TS container.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>-l</option>
-        </term>
-        <term>
-          <option>--disable-lpcm-transcoder</option>
-        </term>
-        <listitem>
-          <para>Disable transcoding to Linear PCM.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>-w</option>
-        </term>
-        <term>
-          <option>--disable-wmv-transcoder</option>
-        </term>
-        <listitem>
-          <para>Disable transcoding to WMV.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>-a</option>
-        </term>
-        <term>
-          <option>--disable-aac-transcoder</option>
-        </term>
-        <listitem>
-          <para>Disable transcoding to AAC.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>-z</option>
-        </term>
-        <term>
-          <option>--disable-avc-transcoder</option>
-        </term>
-        <listitem>
-          <para>Disable transcoding to AVC.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
           <option>-U</option>
         </term>
         <term>
@@ -416,54 +350,6 @@ handling.</para>
         </term>
         <listitem>
           <para>Disable transcoding globally.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <envar>RYGEL_DISABLE_MP3_TRANS</envar>
-        </term>
-        <listitem>
-          <para>Disable the MP3 transcoder.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <envar>RYGEL_DISABLE_LPCM_TRANS</envar>
-        </term>
-        <listitem>
-          <para>Disable the Linear PCM transcoder.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <envar>RYGEL_DISABLE_MP2TS_TRANS</envar>
-        </term>
-        <listitem>
-          <para>Disable the MPEG2 in TS transcoder.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <envar>RYGEL_DISABLE_WMV_TRANS</envar>
-        </term>
-        <listitem>
-          <para>Disable transcoding to WMV format.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <envar>RYGEL_DISABLE_AAC_TRANS</envar>
-        </term>
-        <listitem>
-          <para>Disable transcoding to AAC format.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <envar>RYGEL_DISABLE_AVC_TRANS</envar>
-        </term>
-        <listitem>
-          <para>Disable transcoding to AVC format.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

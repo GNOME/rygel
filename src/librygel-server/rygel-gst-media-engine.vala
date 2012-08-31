@@ -21,6 +21,7 @@
  */
 
 using Gst;
+using Gee;
 
 internal class Rygel.GstMediaEngine : Rygel.MediaEngine {
     private GLib.List<DLNAProfile> dlna_profiles = null;
@@ -38,51 +39,41 @@ internal class Rygel.GstMediaEngine : Rygel.MediaEngine {
         this.dlna_profiles.reverse ();
 
         var transcoding = true;
-        var lpcm_transcoder = true;
-        var mp3_transcoder = true;
-        var mp2ts_transcoder = true;
-        var wmv_transcoder = true;
-        var aac_transcoder = true;
-        var avc_transcoder = true;
+        var transcoder_list = new ArrayList<string> ();
 
         var config = MetaConfig.get_default ();
         try {
             transcoding = config.get_transcoding ();
-
-            if (transcoding) {
-                lpcm_transcoder = config.get_lpcm_transcoder ();
-                mp3_transcoder = config.get_mp3_transcoder ();
-                mp2ts_transcoder = config.get_mp2ts_transcoder ();
-                wmv_transcoder = config.get_wmv_transcoder ();
-                aac_transcoder = config.get_aac_transcoder ();
-                avc_transcoder = config.get_avc_transcoder ();
-            }
+            transcoder_list = config.get_string_list ("MediaEngine",
+                                                      "transcoders");
         } catch (Error err) {}
 
         if (transcoding) {
-            if (lpcm_transcoder) {
-                this.transcoders.prepend (new L16Transcoder ());
-            }
-
-            if (mp3_transcoder) {
-                this.transcoders.prepend (new MP3Transcoder ());
-            }
-
-            if (mp2ts_transcoder) {
-                this.transcoders.prepend (new MP2TSTranscoder(MP2TSProfile.SD));
-                this.transcoders.prepend (new MP2TSTranscoder(MP2TSProfile.HD));
-            }
-
-            if (wmv_transcoder) {
-                this.transcoders.prepend (new WMVTranscoder ());
-            }
-
-            if (aac_transcoder) {
-                this.transcoders.prepend (new AACTranscoder ());
-            }
-
-            if (avc_transcoder) {
-                this.transcoders.prepend (new AVCTranscoder ());
+            foreach (var transcoder in transcoder_list) {
+                switch (transcoder) {
+                    case "lpcm":
+                        this.transcoders.prepend (new L16Transcoder ());
+                        break;
+                    case "mp3":
+                        this.transcoders.prepend (new MP3Transcoder ());
+                        break;
+                    case "mp2ts":
+                        this.transcoders.prepend (new MP2TSTranscoder(MP2TSProfile.SD));
+                        this.transcoders.prepend (new MP2TSTranscoder(MP2TSProfile.HD));
+                        break;
+                    case "wmv":
+                        this.transcoders.prepend (new WMVTranscoder ());
+                        break;
+                    case "aac":
+                        this.transcoders.prepend (new AACTranscoder ());
+                        break;
+                    case "avc":
+                        this.transcoders.prepend (new AVCTranscoder ());
+                        break;
+                    default:
+                        debug ("Unsupported transcoder \"%s\"", transcoder);
+                        break;
+                }
             }
 
             this.transcoders.reverse ();
