@@ -22,7 +22,6 @@
  */
 
 using Soup;
-using Gst;
 
 public errordomain Rygel.TestError {
     SKIP = 77,
@@ -338,8 +337,58 @@ public class Rygel.HTTPGetHandler : GLib.Object {
     }
 }
 
+internal class Rygel.TestDataSource : Rygel.DataSource, Object {
+    private long block_size;
+    private long buffers;
+    private uint64 data_sent;
+    private bool frozen;
+
+    public TestDataSource (long block_size, long buffers) {
+        this.block_size = block_size;
+        this.buffers = buffers;
+        this.data_sent = 0;
+    }
+
+    public void start (HTTPSeek? seek) throws Error {
+        Idle.add ( () => {
+            if (frozen) {
+                return false;
+            }
+
+            var data = new uint8[block_size];
+            this.data_sent += block_size;
+            if (this.data_sent > HTTPResponseTest.MAX_BYTES) {
+                this.done ();
+
+                return false;
+            }
+
+            this.data_available (data);
+
+            return true;
+        });
+    }
+
+    public void freeze () {
+        this.frozen = true;
+    }
+
+    public void thaw () {
+        if (!this.frozen) {
+            return;
+        }
+
+        this.frozen = false;
+        this.start (null);
+    }
+
+    public void stop () {
+        this.freeze ();
+    }
+}
+
 public class Rygel.MediaItem {
-    private static const long BLOCK_SIZE = HTTPResponseTest.MAX_BYTES / 16 + 1;
+    private static const long BLOCK_SIZE = HTTPResponseTest.MAX_BYTES / 16;
     private static const long MAX_BUFFERS = 25;
 
     public int64 size {
@@ -348,26 +397,23 @@ public class Rygel.MediaItem {
         }
     }
 
-    private dynamic Element src;
+    private DataSource src;
+    bool is_live = false;
 
     public MediaItem () {
-        this.src = GstUtils.create_element ("fakesrc", null);
-        this.src.sizetype = 2; // fixed
+        this.src = new TestDataSource (BLOCK_SIZE, MAX_BUFFERS);
+        this.is_live = true;
     }
 
     public MediaItem.fixed_size () {
         this ();
-
-        this.src.blocksize = BLOCK_SIZE;
-        this.src.num_buffers = MAX_BUFFERS;
-        this.src.sizemax = MAX_BUFFERS * BLOCK_SIZE;
     }
 
-    public Element? create_stream_source () {
+    public DataSource? create_stream_source () {
         return this.src;
     }
 
     public bool is_live_stream () {
-        return ((int) this.src.num_buffers) < 0;
+        return this.is_live;
     }
 }

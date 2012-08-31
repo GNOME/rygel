@@ -87,4 +87,8 @@ internal class Rygel.GstMediaEngine : Rygel.MediaEngine {
     public override unowned GLib.List<Transcoder>? get_transcoders () {
         return this.transcoders;
     }
+
+    public override DataSource create_data_source (string uri) {
+        return new GstDataSource (uri);
+    }
 }

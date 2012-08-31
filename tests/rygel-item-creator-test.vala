@@ -253,6 +253,10 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
     public override unowned GLib.List<Transcoder>? get_transcoders () {
         return null;
     }
+
+    public override DataSource create_data_source (string uri) {
+        return null;
+    }
 }
 
 public class Rygel.HTTPItemCreatorTest : GLib.Object {

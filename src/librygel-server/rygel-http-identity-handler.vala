@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2008, 2009 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -74,12 +76,13 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
     }
 
     private HTTPResponse render_body_real (HTTPGet request) throws Error {
-        Element src;
+        DataSource src;
+        var engine = MediaEngine.get_default ();
 
         if (request.subtitle != null) {
-            src = GstUtils.create_source_for_uri (request.subtitle.uri);
+            src = engine.create_data_source (request.subtitle.uri);
         } else if (request.thumbnail != null) {
-            src = GstUtils.create_source_for_uri (request.thumbnail.uri);
+            src = engine.create_data_source (request.thumbnail.uri);
         } else {
             src = request.item.create_stream_source
                                         (request.http_server.context.host_ip);
@@ -87,10 +90,6 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
 
         if (src == null) {
             throw new HTTPRequestError.NOT_FOUND (_("Not found"));
-        }
-
-        if (src.is_floating ()) {
-            src.ref_sink ();
         }
 
         return new HTTPResponse (request, this, src);

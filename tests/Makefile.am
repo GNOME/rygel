@@ -54,8 +54,8 @@ rygel_http_item_uri_test_SOURCES = rygel-http-item-uri-test.vala \
 rygel_http_response_test_SOURCES = rygel-http-response-test.vala \
 				   rygel-http-response.vala \
 				   rygel-state-machine_http-response.vala \
-				   rygel-http-gst-sink.vala \
-				   rygel-gst-utils.vala
+				   rygel-data-source_http-response.vala \
+				   rygel-data-sink_http-response.vala
 
 rygel_http_byte_seek_test_SOURCES = rygel-http-byte-seek-test.vala \
 				    rygel-http-byte-seek.vala \
@@ -91,6 +91,8 @@ rygel_searchable_container_test_SOURCES = \
 
 rygel_item_creator_test_SOURCES = rygel-item-creator-test.vala \
 				  rygel-item-creator.vala \
+				  rygel-data-source.vala \
+				  rygel-http-seek_item-creator.vala \
 				  rygel-state-machine_item-creator.vala \
 				  rygel-relational-expression.vala \
 				  rygel-search-expression.vala \

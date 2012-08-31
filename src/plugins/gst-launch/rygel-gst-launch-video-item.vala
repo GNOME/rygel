@@ -1,10 +1,12 @@
 /*
  * Copyright (C) 2009 Thijs Vermeir <thijsvermeir@gmail.com>
  * Copyright (C) 2010 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Thijs Vermeir <thijsvermeir@gmail.com>
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -42,7 +44,7 @@ public class Rygel.GstLaunch.VideoItem : Rygel.VideoItem, Item {
         this.launch_line = launch_line;
     }
 
-    public override Element? create_stream_source (string? host_ip) {
-        return this.create_source ();
+    public override DataSource? create_stream_source (string? host_ip) {
+        return new GstDataSource.from_element (this.create_source ());
     }
 }

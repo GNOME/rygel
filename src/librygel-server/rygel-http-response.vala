@@ -1,8 +1,10 @@
 /*
- * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2008-2012 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -57,17 +59,30 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         }
     }
 
-    private Pipeline pipeline;
-    private uint bus_watch_id;
+    private DataSource src;
+    private DataSink sink;
     private bool unref_soup_server;
 
     public HTTPResponse (HTTPGet        request,
                          HTTPGetHandler request_handler,
-                         Element        src) throws Error {
+                         DataSource     src) throws Error {
         this.server = request.server;
         this.msg = request.msg;
         this.cancellable = request_handler.cancellable;
         this.seek = request.seek;
+        this.src = src;
+        this.sink = new DataSink (this.src, this.server, this.msg, this.seek);
+        this.src.done.connect ( () => {
+            this.end (false, KnownStatusCode.NONE);
+        });
+        this.src.error.connect ( (error) => {
+            if (error is DataSourceError.SEEK_FAILED) {
+                this.end (false,
+                          KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
+            } else {
+                this.end (false, KnownStatusCode.NONE);
+            }
+        });
 
         if (this.cancellable != null) {
             this.cancellable.cancelled.connect (this.on_cancelled);
@@ -75,7 +90,6 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
 
         this.msg.response_body.set_accumulate (false);
 
-        this.prepare_pipeline ("RygelHTTPGstResponse", src);
         this.server.weak_ref (this.on_server_weak_ref);
         this.unref_soup_server = true;
     }
@@ -87,30 +101,22 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
     }
 
     public async void run () {
-        // Only bother attempting to seek if the offset is greater than zero.
-        if (this.seek != null) {
-            this.pipeline.set_state (State.PAUSED);
-        } else {
-            this.pipeline.set_state (State.PLAYING);
-        }
-
         this.run_continue = run.callback;
+        try {
+            this.src.start (this.seek);
+        } catch (Error error) {
+            Idle.add (() => {
+                this.end (false, KnownStatusCode.NONE);
+
+                return false;
+            });
+        }
 
         yield;
     }
 
-    public void push_data (uint8[] data) {
-        this.msg.response_body.append (Soup.MemoryUse.COPY, data);
-
-        this.server.unpause_message (this.msg);
-    }
-
     public virtual void end (bool aborted, uint status) {
-        var sink = this.pipeline.get_by_name (HTTPGstSink.NAME) as HTTPGstSink;
-        sink.cancellable.cancel ();
-
-        this.pipeline.set_state (State.NULL);
-        Source.remove (this.bus_watch_id);
+        this.src.stop ();
 
         var encoding = this.msg.response_headers.get_encoding ();
 
@@ -137,168 +143,5 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
     private void on_server_weak_ref (GLib.Object object) {
         this.unref_soup_server = false;
         this.cancellable.cancel ();
-    }
-
-    private void prepare_pipeline (string name, Element src) throws Error {
-        var sink = new HTTPGstSink (this);
-
-        this.pipeline = new Pipeline (name);
-        assert (this.pipeline != null);
-
-        this.pipeline.add_many (src, sink);
-
-        if (src.numsrcpads == 0) {
-            // Seems source uses dynamic pads, link when pad available
-            src.pad_added.connect (this.src_pad_added);
-        } else {
-            // static pads? easy!
-            if (!src.link (sink)) {
-                throw new GstError.LINK (_("Failed to link %s to %s"),
-                                         src.name,
-                                         sink.name);
-            }
-        }
-
-        // Bus handler
-        var bus = this.pipeline.get_bus ();
-        this.bus_watch_id = bus.add_watch (this.bus_handler);
-    }
-
-    private void src_pad_added (Element src, Pad src_pad) {
-        var caps = src_pad.get_caps_reffed ();
-
-        var sink = this.pipeline.get_by_name (HTTPGstSink.NAME);
-        Pad sink_pad;
-
-        dynamic Element depay = GstUtils.get_rtp_depayloader (caps);
-        if (depay != null) {
-            this.pipeline.add (depay);
-            if (!depay.link (sink)) {
-                critical (_("Failed to link %s to %s"),
-                          depay.name,
-                          sink.name);
-
-                this.end (false, KnownStatusCode.NONE);
-
-                return;
-            }
-
-            sink_pad = depay.get_compatible_pad (src_pad, caps);
-        } else {
-            sink_pad = sink.get_compatible_pad (src_pad, caps);
-        }
-
-        if (src_pad.link (sink_pad) != PadLinkReturn.OK) {
-            critical (_("Failed to link pad %s to %s"),
-                      src_pad.name,
-                      sink_pad.name);
-            this.end (false, KnownStatusCode.NONE);
-
-            return;
-        }
-
-        if (depay != null) {
-            depay.sync_state_with_parent ();
-        }
-    }
-
-    private bool bus_handler (Gst.Bus bus, Gst.Message message) {
-        bool ret = true;
-
-        if (message.type == MessageType.EOS) {
-            ret = false;
-        } else if (message.type == MessageType.STATE_CHANGED) {
-            if (message.src != this.pipeline) {
-                return true;
-            }
-            State old_state;
-            State new_state;
-
-            message.parse_state_changed (out old_state,
-                                         out new_state,
-                                         null);
-            if (old_state == State.NULL && new_state == State.READY) {
-                dynamic Element element = this.pipeline.get_by_name ("muxer");
-                if (element != null) {
-                    var name = element.get_factory ().get_name ();
-                    // Awesome gross hack, really.
-                    if (name == "mp4mux") {
-                        element.streamable = true;
-                        element.fragment_duration = 1000;
-                    }
-                }
-            }
-
-            if (this.seek != null) {
-                if (old_state == State.READY && new_state == State.PAUSED) {
-                    if (this.perform_seek ()) {
-                        this.pipeline.set_state (State.PLAYING);
-                    }
-                }
-            }
-        } else {
-            GLib.Error err;
-            string err_msg;
-
-            if (message.type == MessageType.ERROR) {
-                message.parse_error (out err, out err_msg);
-                critical (_("Error from pipeline %s: %s"),
-                          this.pipeline.name,
-                          err_msg);
-
-                ret = false;
-            } else if (message.type == MessageType.WARNING) {
-                message.parse_warning (out err, out err_msg);
-                warning (_("Warning from pipeline %s: %s"),
-                         this.pipeline.name,
-                         err_msg);
-            }
-        }
-
-        // If pipeline state didn't change due to the request being cancelled,
-        // end this request. Otherwise it was already ended.
-        if (!ret) {
-            Idle.add_full (this.priority, () => {
-                if (!this.cancellable.is_cancelled ()) {
-                    this.end (false, KnownStatusCode.NONE);
-                }
-
-                return false;
-            });
-        }
-
-        return ret;
-    }
-
-    private bool perform_seek () {
-        var stop_type = Gst.SeekType.NONE;
-        Format format;
-
-        if (this.seek is HTTPTimeSeek) {
-            format = Format.TIME;
-
-        } else {
-            format = Format.BYTES;
-        }
-
-        if (this.seek.stop > 0) {
-            stop_type = Gst.SeekType.SET;
-        }
-
-        if (!this.pipeline.seek (1.0,
-                                 format,
-                                 SeekFlags.FLUSH | SeekFlags.ACCURATE,
-                                 Gst.SeekType.SET,
-                                 this.seek.start,
-                                 stop_type,
-                                 this.seek.stop + 1)) {
-            warning (_("Failed to seek to offset %lld"), this.seek.start);
-
-            this.end (false, KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
-
-            return false;
-        }
-
-        return true;
     }
 }

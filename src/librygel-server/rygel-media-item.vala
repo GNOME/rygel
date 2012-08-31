@@ -24,7 +24,6 @@
  */
 
 using GUPnP;
-using Gst;
 
 private errordomain Rygel.MediaItemError {
     BAD_URI
@@ -103,24 +102,22 @@ public abstract class Rygel.MediaItem : MediaObject {
 
     // Live media items need to provide a nice working implementation of this
     // method if they can/do not provide a valid URI
-    public virtual Element? create_stream_source (string? host_ip = null) {
-        dynamic Element src = null;
-
-        if (this.uris.size != 0) {
-            string translated_uri = this.uris.get (0);
-            if (host_ip != null) {
-                try {
-                    translated_uri = this.address_regex.replace_literal
-                                        (this.uris.get (0), -1, 0, host_ip);
-                } catch (Error error) {
-                    assert_not_reached ();
-                }
-            }
-
-            src = GstUtils.create_source_for_uri (translated_uri);
+    public virtual DataSource? create_stream_source (string? host_ip = null) {
+        if (this.uris.size == 0) {
+            return null;
         }
 
-        return src;
+        string translated_uri = this.uris.get (0);
+        if (host_ip != null) {
+            try {
+                translated_uri = this.address_regex.replace_literal
+                    (this.uris.get (0), -1, 0, host_ip);
+            } catch (Error error) {
+                assert_not_reached ();
+            }
+        }
+
+        return MediaEngine.get_default ().create_data_source (translated_uri);
     }
 
     public bool is_live_stream () {

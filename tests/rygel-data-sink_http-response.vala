@@ -1,0 +1,1 @@
+../src/librygel-server/rygel-data-sink.vala

@@ -77,4 +77,12 @@ public abstract class Rygel.MediaEngine : GLib.Object {
      * @return A list of #Transcoder<!-- -->s or null if not supported.
      */
     public abstract unowned List<Transcoder>? get_transcoders ();
+
+    /**
+     * Get a data source for the URI.
+     *
+     * @param uri to create the data source for.
+     * @return A data source representing the uri
+     */
+    public abstract DataSource create_data_source (string uri);
 }

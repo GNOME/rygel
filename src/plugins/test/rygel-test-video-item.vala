@@ -1,9 +1,11 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
  * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -39,9 +41,11 @@ public class Rygel.Test.VideoItem : Rygel.VideoItem {
         this.mime_type = TEST_MIMETYPE;
     }
 
-    public override Element? create_stream_source (string? host_ip) {
+    public override DataSource? create_stream_source (string? host_ip) {
         try {
-            return parse_bin_from_description (PIPELINE, true);
+            var element =  parse_bin_from_description (PIPELINE, true);
+
+            return new GstDataSource.from_element (element);
         } catch (Error err) {
             warning ("Required plugin missing (%s)", err.message);
 

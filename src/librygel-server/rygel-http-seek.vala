@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2008-2009 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -21,12 +23,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-internal errordomain Rygel.HTTPSeekError {
+public errordomain Rygel.HTTPSeekError {
     INVALID_RANGE = Soup.KnownStatusCode.BAD_REQUEST,
     OUT_OF_RANGE = Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE,
 }
 
-internal abstract class Rygel.HTTPSeek : GLib.Object {
+public abstract class Rygel.HTTPSeek : GLib.Object {
     public Soup.Message msg { get; private set; }
 
     // These are either number of bytes or microseconds
