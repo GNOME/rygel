@@ -1,9 +1,40 @@
-0.15.2
+0.15.3
 ======
 
 A new release in Rygel's unstable cycle!
 
 Changes compared to 0.15.2:
+
+- Fix typos in NEWS file.
+- Update/Add some copyright headers.
+- Fix the AVC_MP4_BL_CIF15_AAC_520 transcoder and enable it by default.
+- Disable broken transmuxing. Was only working by chance anyway.
+- Add start-up scripts for upstart, systemd and debian systemv.
+
+MediaExport:
+ - Fix a regression in searching introduced in 0.15.2.
+ - Fix uploading. This was a "regression" we introduced while fixing uploading
+   for the N9. The new method works for Tracker and MediaExport.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=683028
+
+All contributors to this release:
+  Jens Georg <mail@jensge.org>
+  Piotr Drąg <piotrdrag@gmail.com>
+  Mark Ryan <mark.d.ryan@intel.com>
+  Andika Triwidada <andika@gmail.com>
+
+Added/updated translations
+ - id, courtesy of Andika Triwidada
+ - pl, courtesy of Piotr Drąg
+
+0.15.2
+======
+
+A new release in Rygel's unstable cycle!
+
+Changes compared to 0.15.1:
 
 - Prevent a critical if the thumbnail for a file does not exist.
 - Fix all warnings from newer Vala.
