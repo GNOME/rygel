@@ -6,48 +6,54 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Rygel master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-03 09:56+0200\n"
-"PO-Revision-Date: 2012-05-03 02:31+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-08-12 18:15+0000\n"
+"PO-Revision-Date: 2012-09-04 21:25+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
-"Language-Team: Magyar <gnome-hu-list at gnome dot org>\n"
-"Language: \n"
+"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.4\n"
 
 #: ../data/rygel-preferences.ui.h:1
-msgid "Add a directory to the list of shared directories"
-msgstr "Könyvtár hozzáadása a megosztott könyvtárak listájához"
+#: ../data/rygel-preferences.desktop.in.in.h:1
+msgid "Rygel Preferences"
+msgstr "Rygel beállításai"
 
 #: ../data/rygel-preferences.ui.h:2
-msgid "Add shared directory"
-msgstr "Megosztott könyvtár hozzáadása"
+msgid "_Share media through DLNA"
+msgstr "Mé_dia megosztása DLNA-n"
 
 #: ../data/rygel-preferences.ui.h:3
 msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
 msgstr "Médiamegosztás (fényképek, videók és zene) engedélyezése DLNA-val"
 
 #: ../data/rygel-preferences.ui.h:4
+msgid "Add a directory to the list of shared directories"
+msgstr "Könyvtár hozzáadása a megosztott könyvtárak listájához"
+
+#: ../data/rygel-preferences.ui.h:5
+msgid "Add shared directory"
+msgstr "Megosztott könyvtár hozzáadása"
+
+#: ../data/rygel-preferences.ui.h:6
 msgid "Remove a directory from the list of shared directories"
 msgstr "Könyvtár eltávolítása a megosztott könyvtárak listájából"
 
-#: ../data/rygel-preferences.ui.h:5
+#: ../data/rygel-preferences.ui.h:7
 msgid "Remove shared directory"
 msgstr "Megosztott könyvtár eltávolítása"
 
-#: ../data/rygel-preferences.ui.h:6
-#: ../data/rygel-preferences.desktop.in.in.h:1
-msgid "Rygel Preferences"
-msgstr "Rygel beállításai"
+#. Network Interface
+#: ../data/rygel-preferences.ui.h:9
+msgid "_Network:"
+msgstr "_Hálózat:"
 
-#: ../data/rygel-preferences.ui.h:7
-msgid "Select folders"
-msgstr "Válasszon mappákat"
-
-#: ../data/rygel-preferences.ui.h:8
+#: ../data/rygel-preferences.ui.h:10
 msgid ""
 "Select the network interface that DLNA media will be shared on, or share "
 "media on all interfaces"
@@ -55,14 +61,13 @@ msgstr ""
 "Válassza ki azt a hálózati csatolót, amelyen a DLNA média megosztásra kerül, "
 "vagy az összes csatolót"
 
-#. Network Interface
-#: ../data/rygel-preferences.ui.h:10
-msgid "_Network:"
-msgstr "_Hálózat:"
-
 #: ../data/rygel-preferences.ui.h:11
-msgid "_Share media through DLNA"
-msgstr "Mé_dia megosztása DLNA-n"
+msgid "Any"
+msgstr "Bármely"
+
+#: ../data/rygel-preferences.ui.h:12
+msgid "Select folders"
+msgstr "Válasszon mappákat"
 
 #: ../data/rygel-preferences.desktop.in.in.h:2
 msgid "UPnP/DLNA Preferences"
@@ -76,17 +81,13 @@ msgstr "Rygel"
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA szolgáltatások"
 
-#: ../src/plugins/playbin/rygel-playbin-plugin.vala:45
-msgid "GStreamer Player"
-msgstr "GStreamer lejátszó"
-
-#: ../src/plugins/media-export/rygel-media-export-database.vala:206
+#: ../src/plugins/media-export/rygel-media-export-database.vala:210
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "A tranzakció visszagörgetése meghiúsult: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
-#: ../src/rygel/rygel-plugin-loader.vala:194
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:134
+#: ../src/librygel-core/rygel-plugin-loader.vala:194
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "A tartalomtípus lekérése meghiúsult ehhez: „%s”"
@@ -101,26 +102,26 @@ msgstr "A(z) %s azonosítójú elem hozzáadása meghiúsult: %s"
 msgid "Failed to attach to D-Bus session bus: %s"
 msgstr "A D-Bus munkamenetbuszhoz csatlakozás meghiúsult: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:77
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:78
 msgid "No metadata extractor available. Will not crawl."
 msgstr "Nem érhető el metaadat-kinyerő. Nem történik bejárás."
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:120
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:121
 #, c-format
 msgid "'%s' harvested"
 msgstr "„%s” begyűjtve"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:210
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:211
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Hiba az objektum („%s”) lekérésekor az adatbázisból: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:216
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:217
 #, c-format
 msgid "Failed to access media cache: %s"
 msgstr "A média-gyorsítótár elérése meghiúsult: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:255
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:256
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Hiba az objektum eltávolításakor az adatbázisból: %s"
@@ -135,7 +136,7 @@ msgid "Failed to get file info for %s"
 msgstr "Nem sikerült a(z) %s fájlinformációinak lekérése"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:30
-#: ../src/plugins/tracker/rygel-tracker-years.vala:35
+#: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Év"
 
@@ -152,79 +153,85 @@ msgid "Album"
 msgstr "Album"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:37
-#: ../src/plugins/tracker/rygel-tracker-genre.vala:33
+#: ../src/plugins/tracker/rygel-tracker-genre.vala:31
 msgid "Genre"
 msgstr "Műfaj"
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:53
+#| msgid "Select folders"
+msgid "Files & Folders"
+msgstr "Fájlok és mappák"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:104
 #, c-format
 msgid "Failed to remove URI: %s"
 msgstr "Az URI eltávolítása meghiúsult: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:348
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:355
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@ médiái"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:355
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:362
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "A MediaExport D-Bus szolgáltatás létrehozása meghiúsult: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:395
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:402
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "A bejegyzés eltávolítása meghiúsult: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:416
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:423
 msgid "Music"
 msgstr "Zene"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:419
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:426
 msgid "Pictures"
 msgstr "Képek"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:421
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:428
 msgid "Videos"
 msgstr "Videók"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:56
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
-msgid "Failed to create D-Bus proxies: %s"
-msgstr "A D-Bus proxyk létrehozása meghiúsult: %s"
+#| msgid "Failed to create preferences dialog: %s"
+msgid "Failed to create a Tracker connection:: %s"
+msgstr "A Tracker kapcsolat létrehozása meghiúsult: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:64
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:62
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "Nem sikerült URI-címet készíteni a mappához („%s”): %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:62
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:109
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:77
 #, c-format
-msgid "Failed to connect to session bus: %s"
-msgstr "Nem sikerült a munkamenetbuszhoz csatlakozni: %s"
+msgid "Could not subscribe to tracker signals: %s"
+msgstr "Nem sikerült feliratkozni a Tracker szignálokra: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:118
-#, c-format
-msgid "Error getting all values for '%s': %s"
-msgstr "Hiba a(z) „%s” összes értékének lekérésekor: %s"
-
-#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:41
+#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:42
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr ""
 "A Tracker szolgáltatás elindítása meghiúsult: %s. A bővítmény letiltva."
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:221
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:104
+#, c-format
+#| msgid "Failed to roll back transaction: %s"
+msgid "Failed to get Tracker connection: %s"
+msgstr "A Tracker kapcsolat beszerzése meghiúsult: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr "Hiba az elemszám lekérésekor a(z) „%s” kategóriában: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-albums.vala:35
+#: ../src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
 msgstr "Albumok"
 
-#: ../src/plugins/tracker/rygel-tracker-artists.vala:35
+#: ../src/plugins/tracker/rygel-tracker-artists.vala:31
 msgid "Artists"
 msgstr "Művészek"
 
@@ -232,398 +239,410 @@ msgstr "Művészek"
 msgid "Titles"
 msgstr "Címek"
 
-#: ../src/rygel/rygel-media-query-action.vala:118
-#: ../src/rygel/rygel-media-query-action.vala:181
-#: ../src/rygel/rygel-item-creator.vala:127
-#: ../src/rygel/rygel-item-creator.vala:279
-#: ../src/rygel/rygel-item-destroyer.vala:53
-#: ../src/rygel/rygel-item-destroyer.vala:100
-msgid "No such object"
-msgstr "Nincs ilyen objektum"
+#: ../src/librygel-core/rygel-cmdline-config.vala:158
+#: ../src/librygel-core/rygel-cmdline-config.vala:166
+#: ../src/librygel-core/rygel-cmdline-config.vala:174
+#: ../src/librygel-core/rygel-cmdline-config.vala:182
+#: ../src/librygel-core/rygel-cmdline-config.vala:190
+#: ../src/librygel-core/rygel-cmdline-config.vala:198
+#: ../src/librygel-core/rygel-cmdline-config.vala:206
+#: ../src/librygel-core/rygel-cmdline-config.vala:214
+#: ../src/librygel-core/rygel-cmdline-config.vala:222
+#: ../src/librygel-core/rygel-cmdline-config.vala:230
+#: ../src/librygel-core/rygel-cmdline-config.vala:238
+#: ../src/librygel-core/rygel-cmdline-config.vala:246
+#: ../src/librygel-core/rygel-cmdline-config.vala:254
+#: ../src/librygel-core/rygel-cmdline-config.vala:280
+#: ../src/librygel-core/rygel-cmdline-config.vala:299
+#: ../src/librygel-core/rygel-cmdline-config.vala:305
+#: ../src/librygel-core/rygel-cmdline-config.vala:312
+#: ../src/librygel-core/rygel-cmdline-config.vala:316
+#: ../src/librygel-core/rygel-cmdline-config.vala:320
+#: ../src/librygel-core/rygel-cmdline-config.vala:343
+#: ../src/librygel-core/rygel-cmdline-config.vala:369
+#: ../src/librygel-core/rygel-cmdline-config.vala:398
+#: ../src/librygel-core/rygel-cmdline-config.vala:424
+#: ../src/librygel-core/rygel-cmdline-config.vala:449
+#: ../src/librygel-core/rygel-meta-config.vala:95
+#: ../src/librygel-core/rygel-meta-config.vala:114
+#: ../src/librygel-core/rygel-meta-config.vala:133
+#: ../src/librygel-core/rygel-meta-config.vala:152
+#: ../src/librygel-core/rygel-meta-config.vala:171
+#: ../src/librygel-core/rygel-meta-config.vala:190
+#: ../src/librygel-core/rygel-meta-config.vala:209
+#: ../src/librygel-core/rygel-meta-config.vala:228
+#: ../src/librygel-core/rygel-meta-config.vala:247
+#: ../src/librygel-core/rygel-meta-config.vala:266
+#: ../src/librygel-core/rygel-meta-config.vala:285
+#: ../src/librygel-core/rygel-meta-config.vala:304
+#: ../src/librygel-core/rygel-meta-config.vala:323
+msgid "No value available"
+msgstr "Nem érhető el érték"
 
-#: ../src/rygel/rygel-media-query-action.vala:123
-msgid "Invalid range"
-msgstr "Érvénytelen tartomány"
+#: ../src/librygel-core/rygel-connection-manager.vala:89
+#: ../src/librygel-core/rygel-connection-manager.vala:103
+#: ../src/librygel-core/rygel-connection-manager.vala:125
+#: ../src/librygel-renderer/rygel-av-transport.vala:215
+#: ../src/librygel-renderer/rygel-rendering-control.vala:123
+#: ../src/librygel-server/rygel-content-directory.vala:198
+#: ../src/librygel-server/rygel-content-directory.vala:225
+#: ../src/librygel-server/rygel-content-directory.vala:244
+#: ../src/librygel-server/rygel-content-directory.vala:279
+#: ../src/librygel-server/rygel-content-directory.vala:304
+#: ../src/librygel-server/rygel-content-directory.vala:329
+#: ../src/librygel-server/rygel-media-receiver-registrar.vala:59
+msgid "Invalid argument"
+msgstr "Érvénytelen argumentum"
 
-#: ../src/rygel/rygel-browse.vala:63
+#: ../src/librygel-core/rygel-connection-manager.vala:119
+msgid "Invalid connection reference"
+msgstr "Érvénytelen kapcsolathivatkozás"
+
+#: ../src/librygel-core/rygel-log-handler.vala:68
+#, c-format
+msgid "Failed to get log level from configuration: %s"
+msgstr "A naplózási szint lekérése meghiúsult a konfigurációból: %s"
+
+#: ../src/librygel-core/rygel-meta-config.vala:77
+#, c-format
+msgid "Failed to load user configuration: %s"
+msgstr "A felhasználói konfiguráció betöltése meghiúsult: %s"
+
+#: ../src/librygel-core/rygel-meta-config.vala:406
+#: ../src/librygel-core/rygel-meta-config.vala:425
+#, c-format
+msgid "No value set for '%s/enabled'"
+msgstr "Nincs beállítva érték a következőhöz: „%s/enabled”"
+
+#: ../src/librygel-core/rygel-meta-config.vala:445
+#: ../src/librygel-core/rygel-meta-config.vala:467
+#: ../src/librygel-core/rygel-meta-config.vala:493
+#: ../src/librygel-core/rygel-meta-config.vala:515
+#: ../src/librygel-core/rygel-meta-config.vala:539
+#, c-format
+msgid "No value available for '%s/%s'"
+msgstr "Nem érhető el érték a következőhöz: „%s/%s”"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:85
+#, c-format
+msgid "New plugin '%s' available"
+msgstr "Új bővítmény („%s”) érhető el"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:119
+#, c-format
+msgid "Error listing contents of folder '%s': %s"
+msgstr "Hiba a mappa („%s”) tartalmának felsorolásakor: %s"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:147
+#, c-format
+msgid "A module named %s is already loaded"
+msgstr "Már be van töltve egy %s nevű modul"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:156
+#, c-format
+msgid "Failed to load module from path '%s': %s"
+msgstr "A modul betöltése meghiúsult a(z) „%s” útvonalról: %s"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:166
+#, c-format
+msgid "Failed to find entry point function '%s' in '%s': %s"
+msgstr "A(z) „%s” belépésipont-függvény nem található itt: „%s”: %s"
+
+#: ../src/librygel-core/rygel-root-device-factory.vala:98
+#: ../src/librygel-core/rygel-root-device-factory.vala:132
+#: ../src/librygel-core/rygel-root-device-factory.vala:154
+#: ../src/librygel-core/rygel-root-device-factory.vala:209
+#, c-format
+msgid "XML node '%s' not found."
+msgstr "A(z) „%s” XML csomópont nem található."
+
+#: ../src/librygel-core/rygel-user-config.vala:198
+#, c-format
+msgid "No value available for '%s'"
+msgstr "Nem érhető el érték ehhez: „%s”"
+
+#: ../src/librygel-core/rygel-user-config.vala:248
+#, c-format
+msgid "Value of '%s' out of range"
+msgstr "A(z) „%s” értéke kívül esik a tartományon"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:221
+#: ../src/librygel-renderer/rygel-rendering-control.vala:129
+msgid "Invalid InstanceID"
+msgstr "Érvénytelen példányazonosító"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:481
+msgid "Play speed not supported"
+msgstr "A lejátszás sebessége nem támogatott"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:497
+#: ../src/librygel-renderer/rygel-av-transport.vala:542
+#: ../src/librygel-renderer/rygel-av-transport.vala:546
+msgid "Transition not available"
+msgstr "Az átmenet nem támogatott"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:526
+#: ../src/librygel-renderer/rygel-av-transport.vala:535
+msgid "Seek mode not supported"
+msgstr "A tekerési mód nem támogatott"
+
+#: ../src/librygel-renderer/rygel-playbin-plugin.vala:34
+msgid "GStreamer Player"
+msgstr "GStreamer lejátszó"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:160
+msgid "Invalid Name"
+msgstr "Érvénytelen név"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:174
+#| msgid "Invalid range"
+msgid "Invalid Channel"
+msgstr "Érvénytelen csatorna"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:210
+#: ../src/librygel-renderer/rygel-rendering-control.vala:252
+#: ../src/librygel-renderer/rygel-rendering-control.vala:261
+msgid "Action Failed"
+msgstr "A művelet meghiúsult"
+
+#: ../src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
 msgstr "Érvénytelen argumentumok"
 
-#: ../src/rygel/rygel-browse.vala:94
+#: ../src/librygel-server/rygel-browse.vala:94
 msgid "Cannot browse children on item"
 msgstr "Nem tallózhatók az elem gyermekei"
 
-#: ../src/rygel/rygel-browse.vala:121
+#: ../src/librygel-server/rygel-browse.vala:128
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "„%s” tallózása sikertelen: %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:156
-#: ../src/rygel/rygel-cmdline-config.vala:164
-#: ../src/rygel/rygel-cmdline-config.vala:172
-#: ../src/rygel/rygel-cmdline-config.vala:180
-#: ../src/rygel/rygel-cmdline-config.vala:188
-#: ../src/rygel/rygel-cmdline-config.vala:196
-#: ../src/rygel/rygel-cmdline-config.vala:204
-#: ../src/rygel/rygel-cmdline-config.vala:212
-#: ../src/rygel/rygel-cmdline-config.vala:220
-#: ../src/rygel/rygel-cmdline-config.vala:228
-#: ../src/rygel/rygel-cmdline-config.vala:236
-#: ../src/rygel/rygel-cmdline-config.vala:244
-#: ../src/rygel/rygel-cmdline-config.vala:252
-#: ../src/rygel/rygel-cmdline-config.vala:278
-#: ../src/rygel/rygel-cmdline-config.vala:297
-#: ../src/rygel/rygel-cmdline-config.vala:303
-#: ../src/rygel/rygel-cmdline-config.vala:310
-#: ../src/rygel/rygel-cmdline-config.vala:314
-#: ../src/rygel/rygel-cmdline-config.vala:318
-#: ../src/rygel/rygel-cmdline-config.vala:341
-#: ../src/rygel/rygel-cmdline-config.vala:367
-#: ../src/rygel/rygel-cmdline-config.vala:396
-#: ../src/rygel/rygel-cmdline-config.vala:422
-#: ../src/rygel/rygel-cmdline-config.vala:447
-#: ../src/rygel/rygel-meta-config.vala:83
-#: ../src/rygel/rygel-meta-config.vala:102
-#: ../src/rygel/rygel-meta-config.vala:121
-#: ../src/rygel/rygel-meta-config.vala:140
-#: ../src/rygel/rygel-meta-config.vala:159
-#: ../src/rygel/rygel-meta-config.vala:178
-#: ../src/rygel/rygel-meta-config.vala:197
-#: ../src/rygel/rygel-meta-config.vala:216
-#: ../src/rygel/rygel-meta-config.vala:235
-#: ../src/rygel/rygel-meta-config.vala:254
-#: ../src/rygel/rygel-meta-config.vala:273
-#: ../src/rygel/rygel-meta-config.vala:292
-#: ../src/rygel/rygel-meta-config.vala:311
-msgid "No value available"
-msgstr "Nem érhető el érték"
-
-#: ../src/rygel/rygel-connection-manager.vala:89
-#: ../src/rygel/rygel-connection-manager.vala:103
-#: ../src/rygel/rygel-connection-manager.vala:125
-#: ../src/rygel/rygel-content-directory.vala:198
-#: ../src/rygel/rygel-content-directory.vala:225
-#: ../src/rygel/rygel-content-directory.vala:244
-#: ../src/rygel/rygel-content-directory.vala:279
-#: ../src/rygel/rygel-content-directory.vala:304
-#: ../src/rygel/rygel-content-directory.vala:329
-#: ../src/rygel/rygel-media-receiver-registrar.vala:59
-msgid "Invalid argument"
-msgstr "Érvénytelen argumentum"
-
-#: ../src/rygel/rygel-connection-manager.vala:119
-msgid "Invalid connection reference"
-msgstr "Érvénytelen kapcsolathivatkozás"
-
-#: ../src/rygel/rygel-content-directory.vala:217
-#: ../src/rygel/rygel-content-directory.vala:236
+#: ../src/librygel-server/rygel-content-directory.vala:217
+#: ../src/librygel-server/rygel-content-directory.vala:236
 msgid "No such file transfer"
 msgstr "Nincs ilyen fájlátvitel"
 
-#: ../src/rygel/rygel-av-transport.vala:205
-#: ../src/rygel/rygel-rendering-control.vala:121
-msgid "Invalid InstanceID"
-msgstr "Érvénytelen példányazonosító"
-
-#: ../src/rygel/rygel-av-transport.vala:378
-msgid "Play speed not supported"
-msgstr "A lejátszás sebessége nem támogatott"
-
-#: ../src/rygel/rygel-av-transport.vala:417
-msgid "Seek failed"
-msgstr "A pozicionálás meghiúsult"
-
-#: ../src/rygel/rygel-av-transport.vala:426
-msgid "Seek mode not supported"
-msgstr "A tekerési mód nem támogatott"
-
-#: ../src/rygel/rygel-av-transport.vala:433
-#: ../src/rygel/rygel-av-transport.vala:437
-msgid "Transition not available"
-msgstr "Az átmenet nem támogatott"
-
-#: ../src/rygel/rygel-rendering-control.vala:152
-msgid "Invalid Name"
-msgstr "Érvénytelen név"
-
-#: ../src/rygel/rygel-rendering-control.vala:166
-#: ../src/rygel/rygel-rendering-control.vala:237
-msgid "Action Failed"
-msgstr "A művelet meghiúsult"
-
-#: ../src/rygel/rygel-gst-utils.vala:38
+#: ../src/librygel-server/rygel-gst-utils.vala:38
 #, c-format
 msgid "Required element %s missing"
 msgstr "A szükséges %s elem hiányzik"
 
-#: ../src/rygel/rygel-http-byte-seek.vala:43
-#: ../src/rygel/rygel-http-byte-seek.vala:49
-#: ../src/rygel/rygel-http-byte-seek.vala:58
-#: ../src/rygel/rygel-http-byte-seek.vala:68
-#: ../src/rygel/rygel-http-byte-seek.vala:71
-#: ../src/rygel/rygel-http-time-seek.vala:49
-#: ../src/rygel/rygel-http-time-seek.vala:61
-#: ../src/rygel/rygel-http-time-seek.vala:68
-#: ../src/rygel/rygel-http-time-seek.vala:83
+#. Range header was present but invalid
+#: ../src/librygel-server/rygel-http-byte-seek.vala:47
+#: ../src/librygel-server/rygel-http-byte-seek.vala:52
+#: ../src/librygel-server/rygel-http-time-seek.vala:49
+#: ../src/librygel-server/rygel-http-time-seek.vala:61
+#: ../src/librygel-server/rygel-http-time-seek.vala:68
+#: ../src/librygel-server/rygel-http-time-seek.vala:83
 #, c-format
 msgid "Invalid Range '%s'"
 msgstr "Érvénytelen tartomány: „%s”"
 
-#: ../src/rygel/rygel-http-get.vala:59
+#: ../src/librygel-server/rygel-http-get.vala:59
 msgid "Invalid Request"
 msgstr "Érvénytelen kérés"
 
-#: ../src/rygel/rygel-http-identity-handler.vala:89
-#: ../src/rygel/rygel-http-transcode-handler.vala:57
+#: ../src/librygel-server/rygel-http-identity-handler.vala:89
+#: ../src/librygel-server/rygel-http-transcode-handler.vala:57
 msgid "Not found"
 msgstr "Nem található"
 
-#: ../src/rygel/rygel-http-item-uri.vala:127
+#: ../src/librygel-server/rygel-http-item-uri.vala:127
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Érvénytelen URI: „%s”"
 
-#: ../src/rygel/rygel-http-item-uri.vala:166
+#: ../src/librygel-server/rygel-http-item-uri.vala:166
 msgid "Not Found"
 msgstr "Nem található"
 
-#: ../src/rygel/rygel-http-post.vala:62
-#: ../src/rygel/rygel-import-resource.vala:191
+#: ../src/librygel-server/rygel-http-post.vala:62
+#: ../src/librygel-server/rygel-import-resource.vala:191
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Adatok küldése a nem üres „%s” elembe nem engedélyezett"
 
-#: ../src/rygel/rygel-http-post.vala:70
+#: ../src/librygel-server/rygel-http-post.vala:70
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "Nem érhető el írható URI ehhez: %s"
 
 #. translators: Dotfile is the filename with prefix "."
-#: ../src/rygel/rygel-http-post.vala:185
+#: ../src/librygel-server/rygel-http-post.vala:185
 #, c-format
 msgid "Failed to move dotfile %s: %s"
 msgstr "A rejtett fájl (%s) áthelyezése meghiúsult: %s"
 
-#: ../src/rygel/rygel-http-request.vala:89
+#: ../src/librygel-server/rygel-http-request.vala:89
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "A kért „%s” elem nem található"
 
-#: ../src/rygel/rygel-http-response.vala:156
-#: ../src/rygel/rygel-http-response.vala:177
+#: ../src/librygel-server/rygel-http-response.vala:156
+#: ../src/librygel-server/rygel-http-response.vala:177
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "A(z) %s és a(z) %s összekötése meghiúsult"
 
-#: ../src/rygel/rygel-http-response.vala:192
+#: ../src/librygel-server/rygel-http-response.vala:192
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "A(z) %s kitöltő és a(z) %s összekötése meghiúsult"
 
-#: ../src/rygel/rygel-http-response.vala:235
+#: ../src/librygel-server/rygel-http-response.vala:235
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Hiba a(z) %s adatcsatornától: %s"
 
-#: ../src/rygel/rygel-http-response.vala:242
+#: ../src/librygel-server/rygel-http-response.vala:242
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Figyelmeztetés a(z) %s adatcsatornától: %s"
 
-#: ../src/rygel/rygel-http-response.vala:285
+#: ../src/librygel-server/rygel-http-response.vala:285
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Nem sikerült a tekerés a(z) %lld eltolásra"
 
-#: ../src/rygel/rygel-http-seek.vala:51
+#: ../src/librygel-server/rygel-http-seek.vala:51
 #, c-format
 msgid "Out Of Range Start '%ld'"
 msgstr "Tartományon kívüli kezdés: „%ld”"
 
-#: ../src/rygel/rygel-http-seek.vala:55
+#: ../src/librygel-server/rygel-http-seek.vala:55
 #, c-format
 msgid "Out Of Range Stop '%ld'"
 msgstr "Tartományon kívüli befejezés: „%ld”"
 
-#: ../src/rygel/rygel-import-resource.vala:124
+#: ../src/librygel-server/rygel-import-resource.vala:124
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
 msgstr "A(z) „%s” eredeti URI-címének lekérése meghiúsult: %s"
 
-#: ../src/rygel/rygel-import-resource.vala:188
+#: ../src/librygel-server/rygel-import-resource.vala:188
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "A(z) „%s” URI érvénytelen a tartalom importálásához"
 
-#: ../src/rygel/rygel-item-creator.vala:118
+#: ../src/librygel-server/rygel-item-creator.vala:118
 msgid "'Elements' argument missing."
 msgstr "Az „Elements” argumentum hiányzik."
 
-#: ../src/rygel/rygel-item-creator.vala:121
+#: ../src/librygel-server/rygel-item-creator.vala:121
 msgid "Comments not allowed in XML"
 msgstr "A megjegyzések nem engedélyezettek az XML-ben"
 
-#: ../src/rygel/rygel-item-creator.vala:149
+#: ../src/librygel-server/rygel-item-creator.vala:127
+#: ../src/librygel-server/rygel-item-creator.vala:280
+#: ../src/librygel-server/rygel-item-destroyer.vala:53
+#: ../src/librygel-server/rygel-item-destroyer.vala:100
+#: ../src/librygel-server/rygel-media-query-action.vala:115
+#: ../src/librygel-server/rygel-media-query-action.vala:182
+msgid "No such object"
+msgstr "Nincs ilyen objektum"
+
+#: ../src/librygel-server/rygel-item-creator.vala:149
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Nincsenek elemek a DIDL-Lite-ban a klienstől: „%s”"
 
-#: ../src/rygel/rygel-item-creator.vala:283
-#: ../src/rygel/rygel-item-creator.vala:518
+#: ../src/librygel-server/rygel-item-creator.vala:284
+#: ../src/librygel-server/rygel-item-creator.vala:519
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Az objektumok létrehozása nem engedélyezett itt: %s"
 
-#: ../src/rygel/rygel-item-creator.vala:311
+#: ../src/librygel-server/rygel-item-creator.vala:312
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Az elem létrehozása meghiúsult a(z) „%s” alatt: %s"
 
-#: ../src/rygel/rygel-item-destroyer.vala:60
+#: ../src/librygel-server/rygel-item-destroyer.vala:60
 #, c-format
 msgid "Successfully destroyed object '%s'"
 msgstr "Az objektum sikeresen megsemmisítve: „%s”"
 
-#: ../src/rygel/rygel-item-destroyer.vala:68
+#: ../src/librygel-server/rygel-item-destroyer.vala:68
 #, c-format
 msgid "Failed to destroy object '%s': %s"
 msgstr "„%s” objektum megsemmisítése sikertelen: %s"
 
-#: ../src/rygel/rygel-item-destroyer.vala:103
+#: ../src/librygel-server/rygel-item-destroyer.vala:103
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "A(z) %s objektum eltávolítása nem engedélyezett"
 
-#: ../src/rygel/rygel-item-destroyer.vala:106
+#: ../src/librygel-server/rygel-item-destroyer.vala:106
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "Az objektumok eltávolítása nem engedélyezett innen: %s"
 
-#: ../src/rygel/rygel-log-handler.vala:68
+#: ../src/librygel-server/rygel-media-item.vala:273
 #, c-format
-msgid "Failed to get log level from configuration: %s"
-msgstr "A naplózási szint lekérése meghiúsult a konfigurációból: %s"
+msgid "Bad URI: %s"
+msgstr "Hibás URI: %s"
 
-#: ../src/rygel/rygel-main.vala:97
+#. Assume the protocol to be the scheme of the URI
+#: ../src/librygel-server/rygel-media-item.vala:285
+#, c-format
+msgid "Failed to probe protocol for URI %s. Assuming '%s'"
+msgstr ""
+"A protokollvizsgálat meghiúsult a(z) %s URI-címhez. „%s” lesz feltételezve."
+
+#: ../src/librygel-server/rygel-media-query-action.vala:120
+msgid "Invalid range"
+msgstr "Érvénytelen tartomány"
+
+#: ../src/librygel-server/rygel-search.vala:91
+#, c-format
+msgid "Failed to search in '%s': %s"
+msgstr "A keresés meghiúsult itt: „%s”: %s"
+
+#: ../src/librygel-server/rygel-subtitle-manager.vala:65
+msgid "No subtitle available"
+msgstr "Nem érhető el felirat"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:60
+#, c-format
+msgid "No thumbnailer available: %s"
+msgstr "Nem érhető el bélyegképkészítő: %s"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:82
+#: ../src/librygel-server/rygel-thumbnailer.vala:91
+#: ../src/librygel-server/rygel-thumbnailer.vala:96
+#: ../src/librygel-server/rygel-thumbnailer.vala:107
+msgid "No thumbnail available"
+msgstr "Nem érhető el bélyegkép"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:126
+#| msgid "No thumbnail available"
+msgid "No D-Bus thumbnailer available"
+msgstr "Nem érhető el D-Bus bélyegképkészítő"
+
+#: ../src/librygel-server/rygel-transcode-manager.vala:130
+#, c-format
+msgid "No transcoder available for target format '%s'"
+msgstr "Nem érhető el átkódoló a(z) „%s” célformátumhoz"
+
+#: ../src/rygel/rygel-main.vala:105
 #, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
 msgstr[0] "Nem található bővítmény %d másodperc alatt, feladom."
 msgstr[1] "Nem található bővítmény %d másodperc alatt, feladom."
 
-#: ../src/rygel/rygel-main.vala:158
+#: ../src/rygel/rygel-main.vala:166
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "A gyökéreszköz-gyár létrehozása meghiúsult: %s"
 
-#: ../src/rygel/rygel-main.vala:216
+#: ../src/rygel/rygel-main.vala:224
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "%s gyökéreszközének létrehozása meghiúsult. Ok: %s"
 
-#: ../src/rygel/rygel-media-item.vala:273
-#, c-format
-msgid "Bad URI: %s"
-msgstr "Hibás URI: %s"
-
-#. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:285
-#, c-format
-msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr ""
-"A protokollvizsgálat meghiúsult a(z) %s URI-címhez. „%s” lesz feltételezve."
-
-#: ../src/rygel/rygel-meta-config.vala:65
-#, c-format
-msgid "Failed to load user configuration: %s"
-msgstr "A felhasználói konfiguráció betöltése meghiúsult: %s"
-
-#: ../src/rygel/rygel-meta-config.vala:394
-#: ../src/rygel/rygel-meta-config.vala:413
-#, c-format
-msgid "No value set for '%s/enabled'"
-msgstr "Nincs beállítva érték a következőhöz: „%s/enabled”"
-
-#: ../src/rygel/rygel-meta-config.vala:433
-#: ../src/rygel/rygel-meta-config.vala:455
-#: ../src/rygel/rygel-meta-config.vala:481
-#: ../src/rygel/rygel-meta-config.vala:503
-#: ../src/rygel/rygel-meta-config.vala:527
-#, c-format
-msgid "No value available for '%s/%s'"
-msgstr "Nem érhető el érték a következőhöz: „%s/%s”"
-
-#: ../src/rygel/rygel-plugin-loader.vala:85
-#, c-format
-msgid "New plugin '%s' available"
-msgstr "Új bővítmény („%s”) érhető el"
-
-#: ../src/rygel/rygel-plugin-loader.vala:119
-#, c-format
-msgid "Error listing contents of folder '%s': %s"
-msgstr "Hiba a mappa („%s”) tartalmának felsorolásakor: %s"
-
-#: ../src/rygel/rygel-plugin-loader.vala:147
-#, c-format
-msgid "A module named %s is already loaded"
-msgstr "Már be van töltve egy %s nevű modul"
-
-#: ../src/rygel/rygel-plugin-loader.vala:156
-#, c-format
-msgid "Failed to load module from path '%s': %s"
-msgstr "A modul betöltése meghiúsult a(z) „%s” útvonalról: %s"
-
-#: ../src/rygel/rygel-plugin-loader.vala:166
-#, c-format
-msgid "Failed to find entry point function '%s' in '%s': %s"
-msgstr "A(z) „%s” belépésipont-függvény nem található itt: „%s”: %s"
-
-#: ../src/rygel/rygel-root-device-factory.vala:110
-#: ../src/rygel/rygel-root-device-factory.vala:144
-#: ../src/rygel/rygel-root-device-factory.vala:166
-#: ../src/rygel/rygel-root-device-factory.vala:221
-#, c-format
-msgid "XML node '%s' not found."
-msgstr "A(z) „%s” XML csomópont nem található."
-
-#: ../src/rygel/rygel-search.vala:89
-#, c-format
-msgid "Failed to search in '%s': %s"
-msgstr "A keresés meghiúsult itt: „%s”: %s"
-
-#: ../src/rygel/rygel-subtitle-manager.vala:65
-msgid "No subtitle available"
-msgstr "Nem érhető el felirat"
-
-#: ../src/rygel/rygel-thumbnailer.vala:58
-msgid "Failed to find thumbnails folder."
-msgstr "Nem található a bélyegképek mappája."
-
-#: ../src/rygel/rygel-thumbnailer.vala:90
-#, c-format
-msgid "No thumbnailer available: %s"
-msgstr "Nem érhető el bélyegképkészítő: %s"
-
-#: ../src/rygel/rygel-thumbnailer.vala:119
-msgid "No thumbnail available"
-msgstr "Nem érhető el bélyegkép"
-
-#: ../src/rygel/rygel-transcode-manager.vala:130
-#, c-format
-msgid "No transcoder available for target format '%s'"
-msgstr "Nem érhető el átkódoló a(z) „%s” célformátumhoz"
-
-#: ../src/rygel/rygel-user-config.vala:198
-#, c-format
-msgid "No value available for '%s'"
-msgstr "Nem érhető el érték ehhez: „%s”"
-
-#: ../src/rygel/rygel-user-config.vala:248
-#, c-format
-msgid "Value of '%s' out of range"
-msgstr "A(z) „%s” értéke kívül esik a tartományon"
-
-#: ../src/ui/rygel-preferences-dialog.vala:91
+#: ../src/ui/rygel-preferences-dialog.vala:94
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "A beállítóablak létrehozása meghiúsult: %s"
@@ -633,18 +652,30 @@ msgstr "A beállítóablak létrehozása meghiúsult: %s"
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr "A konfigurációs adatok mentése meghiúsult a(z) „%s” fájlba: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:217
+#: ../src/ui/rygel-writable-user-config.vala:210
 #, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "A Rygel szolgáltatás indítása meghiúsult: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:219
+#: ../src/ui/rygel-writable-user-config.vala:212
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "A Rygel szolgáltatás leállítása meghiúsult: %s"
 
-#~ msgid "Any"
-#~ msgstr "Bármely"
+#~ msgid "Failed to create D-Bus proxies: %s"
+#~ msgstr "A D-Bus proxyk létrehozása meghiúsult: %s"
+
+#~ msgid "Failed to connect to session bus: %s"
+#~ msgstr "Nem sikerült a munkamenetbuszhoz csatlakozni: %s"
+
+#~ msgid "Error getting all values for '%s': %s"
+#~ msgstr "Hiba a(z) „%s” összes értékének lekérésekor: %s"
+
+#~ msgid "Seek failed"
+#~ msgstr "A pozicionálás meghiúsult"
+
+#~ msgid "Failed to find thumbnails folder."
+#~ msgstr "Nem található a bélyegképek mappája."
 
 #~ msgid "Failed to open database: %d (%s)"
 #~ msgstr "Az adatbázis megnyitása meghiúsult: %d (%s)"
