@@ -4,12 +4,14 @@
 # pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas:
 # gnomepl@aviary.pl
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# Piotr Drąg <piotrdrag@gmail.com>, 2010-2012.
+# Aviary.pl <gnomepl@aviary.pl>, 2010-2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-25 04:49+0200\n"
-"PO-Revision-Date: 2012-08-25 04:50+0200\n"
+"POT-Creation-Date: 2012-09-04 20:36+0200\n"
+"PO-Revision-Date: 2012-09-04 20:37+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -121,13 +123,13 @@ msgstr "Wydobyto z \"%s\""
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Błąd podczas pobierania obiektu \"%s\" z bazy danych: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:217
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:219
 #, c-format
 msgid "Failed to access media cache: %s"
 msgstr ""
 "Uzyskanie dostępu do pamięci podręcznej multimediów się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:256
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:258
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Błąd podczas usuwania obiektu z bazy danych: %s"
@@ -492,17 +494,17 @@ msgstr "Dowiązanie %s do %s się nie powiodło"
 msgid "Failed to link pad %s to %s"
 msgstr "Dowiązanie podkładki %s do %s się nie powiodło"
 
-#: ../src/librygel-server/rygel-http-response.vala:235
+#: ../src/librygel-server/rygel-http-response.vala:245
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Błąd z potoku %s: %s"
 
-#: ../src/librygel-server/rygel-http-response.vala:242
+#: ../src/librygel-server/rygel-http-response.vala:252
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Ostrzeżenie z potoku %s: %s"
 
-#: ../src/librygel-server/rygel-http-response.vala:285
+#: ../src/librygel-server/rygel-http-response.vala:295
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Przejście do %lld się nie powiodło"
@@ -550,7 +552,7 @@ msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Brak elementów w w DIDL-Lite od klienta: \"%s\""
 
 #: ../src/librygel-server/rygel-item-creator.vala:284
-#: ../src/librygel-server/rygel-item-creator.vala:519
+#: ../src/librygel-server/rygel-item-creator.vala:525
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Utworzenie obiektu w %s nie jest dozwolone"
