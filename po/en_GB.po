@@ -194,8 +194,8 @@ msgstr "Videos"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
-msgid "Failed to create a Tracker connection:: %s"
-msgstr "Failed to create a Tracker connection:: %s"
+msgid "Failed to create a Tracker connection: %s"
+msgstr "Failed to create a Tracker connection: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:62
 #, c-format
