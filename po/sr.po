@@ -197,8 +197,8 @@ msgstr "Снимци"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
-msgid "Failed to create a Tracker connection:: %s"
-msgstr "Нисам успео да направим везу пратиоца:: %s"
+msgid "Failed to create a Tracker connection: %s"
+msgstr "Нисам успео да направим везу пратиоца: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:62
 #, c-format
@@ -218,7 +218,7 @@ msgstr "Нисам успео да покренем услугу пратиоц�
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:104
 #, c-format
 msgid "Failed to get Tracker connection: %s"
-msgstr "Нисам успео да добавим везу пратиоца:: %s"
+msgstr "Нисам успео да добавим везу пратиоца: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:223
 #, c-format

@@ -51,7 +51,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         try {
             this.resources = Sparql.Connection.get ();
         } catch (Error io_error) {
-            critical (_("Failed to create a Tracker connection:: %s"),
+            critical (_("Failed to create a Tracker connection: %s"),
                       io_error.message);
         }
 

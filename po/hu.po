@@ -197,7 +197,7 @@ msgstr "Videók"
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
 #| msgid "Failed to create preferences dialog: %s"
-msgid "Failed to create a Tracker connection:: %s"
+msgid "Failed to create a Tracker connection: %s"
 msgstr "A Tracker kapcsolat létrehozása meghiúsult: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:62
