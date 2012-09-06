@@ -88,7 +88,7 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
 
     public async void run () {
         // Only bother attempting to seek if the offset is greater than zero.
-        if (this.seek != null && this.seek.start > 0) {
+        if (this.seek != null) {
             this.pipeline.set_state (State.PAUSED);
         } else {
             this.pipeline.set_state (State.PLAYING);
@@ -229,7 +229,7 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
                 }
             }
 
-            if (this.seek != null && this.seek.start > 0) {
+            if (this.seek != null) {
                 if (old_state == State.READY && new_state == State.PAUSED) {
                     if (this.perform_seek ()) {
                         this.pipeline.set_state (State.PLAYING);
