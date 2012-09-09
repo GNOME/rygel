@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-04 10:06+0000\n"
-"PO-Revision-Date: 2012-09-05 20:24+0200\n"
+"POT-Creation-Date: 2012-09-06 23:20+0000\n"
+"PO-Revision-Date: 2012-09-09 18:37+0200\n"
 "Last-Translator: Pierre Henry <pierrehenry73@yahoo.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: \n"
@@ -203,7 +203,7 @@ msgstr "Vidéos"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
-msgid "Failed to create a Tracker connection:: %s"
+msgid "Failed to create a Tracker connection: %s"
 msgstr "Impossible de créer une connexion à Tracker : %s"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:62
