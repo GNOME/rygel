@@ -2,6 +2,7 @@
  * Copyright (C) 2008 OpenedHand Ltd.
  * Copyright (C) 2009,2010,2011,2012 Nokia Corporation.
  * Copyright (C) 2012 Openismus GmbH
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Jorn Baayen <jorn@openedhand.com>
  *         Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
@@ -26,6 +27,9 @@
 using Gst;
 using GUPnP;
 
+/**
+ * Implementation of RygelMediaPlayer for GStreamer.
+ */
 public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     private const string TRANSFER_MODE_STREAMING = "Streaming";
     private const string TRANSFER_MODE_INTERACTIVE = "Interactive";
