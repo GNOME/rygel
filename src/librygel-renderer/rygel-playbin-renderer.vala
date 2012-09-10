@@ -43,6 +43,17 @@ internal class Rygel.Playbin.WrappingPlugin : Rygel.MediaRendererPlugin {
  * changing the currently played URI, volume, pause/play etc., to UPnP.
  *
  * Likewise, the playbin can be modified externally using UPnP.
+ *
+ * You can retrieve the Gst.Playbin2 by calling rygel_playbin_player_get_playbin()
+ * on the default player - see rygel_playbin_player_get_default().
+ * You should then set the "video-sink" and "audio-sink" properties of the
+ * playbin.
+ *
+ * Call rygel_media_device_add_interface() on the Renderer to allow it
+ * to be controlled by a control point and to retrieve data streams via that
+ * network interface.
+ *
+ * See the standalone-renderer.c example.
  */
 public class Rygel.Playbin.Renderer : Rygel.MediaDevice {
     /**
