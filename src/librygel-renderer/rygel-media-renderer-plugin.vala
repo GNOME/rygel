@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2008,2010 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
@@ -21,6 +22,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+/**
+ * Base class for every Rygel UPnP renderer plugin.
+ */
 public class Rygel.MediaRendererPlugin : Rygel.Plugin {
     private static const string MEDIA_RENDERER_DESC_PATH =
                                 BuildConfig.DATA_DIR +

@@ -2,6 +2,7 @@
  * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
  * Copyright (C) 2008 Nokia Corporation.
  * Copyright (C) 2012 Openismus GmbH.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
@@ -27,6 +28,9 @@
 using Rygel;
 using Gee;
 
+/**
+ * Implementation of RygelMediaRendererPlugin for GStreamer.
+ */
 public class Rygel.Playbin.Plugin : Rygel.MediaRendererPlugin {
     public const string NAME = "Playbin";
 

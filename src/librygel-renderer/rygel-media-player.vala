@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2008 OpenedHand Ltd.
  * Copyright (C) 2009,2010 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Jorn Baayen <jorn@openedhand.com>
  *         Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
@@ -23,6 +24,9 @@
 
 using Gst;
 
+/**
+ * Interface for mapping AVTransport:2 methods to the specific implementation.
+ */
 public interface Rygel.MediaPlayer : GLib.Object {
     public abstract string playback_state { owned get; set; }
     public abstract string? uri { owned get; set; }
