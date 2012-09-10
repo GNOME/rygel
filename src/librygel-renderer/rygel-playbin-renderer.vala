@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 Openismus GmbH.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Jens Georg <jensg@openismus.com>
  *
@@ -36,19 +37,19 @@ internal class Rygel.Playbin.WrappingPlugin : Rygel.MediaRendererPlugin {
 }
 
 /**
- * Convert a GStreamer Playbin2 element into an UPnP renderer.
+ * A UPnP renderer that uses a GStreamer Playbin2 element.
  *
- * Using Playbin2 as a model it reflects any changes done externally, such as
- * changing the currently played URI, volume, pause/play etc. to UPnP.
+ * Using Gst.Playbin2 as a model, it reflects any changes done externally, such as
+ * changing the currently played URI, volume, pause/play etc., to UPnP.
  *
- * Likewise the playbin can be modified externally using UPnP.
+ * Likewise, the playbin can be modified externally using UPnP.
  */
 public class Rygel.Playbin.Renderer : Rygel.MediaDevice {
     /**
      * Create a new instance of Renderer.
      *
-     * Renderer will instanciate its own instance of playbin.
-     * The Playbin can be accessed by using Player.get_default().playbin
+     * Renderer will instantiate its own instance of Gst.Playbin2.
+     * The Gst.Playbin2 can be accessed by using Player.get_default().playbin
      *
      * @param title Friendly name of the new UPnP renderer on the network.
      */
@@ -59,7 +60,7 @@ public class Rygel.Playbin.Renderer : Rygel.MediaDevice {
     }
 
     /**
-     * Create a new instance of Renderer, wrapping an existing playbin
+     * Create a new instance of Renderer, wrapping an existing Playbin2
      * instance.
      *
      * @param pipeline Instance of Gst.PlayBin2 to wrap.
