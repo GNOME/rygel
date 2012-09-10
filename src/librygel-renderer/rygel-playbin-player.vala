@@ -253,6 +253,10 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     }
 
     public Player.wrap (Gst.Element playbin) {
+
+        return_if_fail (playbin != null);
+        return_if_fail (playbin.get_type ().name() == "GstPlayBin2");
+
         this.playbin = playbin;
         this.setup_playbin ();
     }

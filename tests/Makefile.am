@@ -42,6 +42,7 @@ check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-http-post-test \
 		 rygel-searchable-container-test \
 		 rygel-item-creator-test \
+		 rygel-playbin-renderer-test \
 		 rygel-regression
 
 TESTS = $(check_PROGRAMS)
@@ -92,6 +93,29 @@ rygel_item_creator_test_SOURCES = rygel-item-creator-test.vala \
 				  rygel-state-machine_item-creator.vala \
 				  rygel-relational-expression.vala \
 				  rygel-search-expression.vala
+
+
+rygel_playbin_renderer_test_SOURCES = rygel-playbin-renderer-test.vala
+
+rygel_playbin_renderer_test_VALAFLAGS = \
+	$(AM_VALAFLAGS) \
+	--pkg rygel-renderer-1.0 \
+	--pkg rygel-core-1.0 \
+	--vapidir $(top_builddir)/src/librygel-renderer \
+	--vapidir $(top_builddir)/src/librygel-core
+
+rygel_playbin_renderer_test_LDADD = \
+	$(LDADD) \
+	$(top_builddir)/src/librygel-renderer/librygel-renderer-1.0.la \
+	$(top_builddir)/src/librygel-core/librygel-core-1.0.la
+
+rygel_playbin_renderer_test_CFLAGS = \
+	$(AM_CFLAGS) \
+	-I$(top_builddir)/src/librygel-renderer \
+	-I$(top_srcdir)/src/librygel-renderer \
+	-I$(top_builddir)/src/librygel-core \
+	-I$(top_srcdir)/src/librygel-core
+
 
 rygel_regression_SOURCES = \
 	rygel-regression.vala
