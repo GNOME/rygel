@@ -24,6 +24,8 @@
 
 /**
  * Base class for every Rygel UPnP renderer plugin.
+ *
+ * This class is useful only when implementing Rygel plugins.
  */
 public class Rygel.MediaRendererPlugin : Rygel.Plugin {
     private static const string MEDIA_RENDERER_DESC_PATH =
