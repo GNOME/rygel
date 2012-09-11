@@ -26,6 +26,8 @@ using Gst;
 
 /**
  * Interface for mapping AVTransport:2 methods to the specific implementation.
+ *
+ * This class is useful only when implementing Rygel plugins.
  */
 public interface Rygel.MediaPlayer : GLib.Object {
     public abstract string playback_state { owned get; set; }

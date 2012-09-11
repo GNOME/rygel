@@ -29,6 +29,8 @@ using GUPnP;
 
 /**
  * Implementation of RygelMediaPlayer for GStreamer.
+ *
+ * This class is useful only when implementing Rygel plugins.
  */
 public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     private const string TRANSFER_MODE_STREAMING = "Streaming";
