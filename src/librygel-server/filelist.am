@@ -48,6 +48,12 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-item-creator.vala \
 	rygel-item-destroyer.vala \
 	rygel-item-removal-queue.vala \
+	rygel-last-change-entry.vala \
+	rygel-last-change-obj-add.vala \
+	rygel-last-change-obj-del.vala \
+	rygel-last-change-obj-mod.vala \
+	rygel-last-change-st-done.vala \
+	rygel-last-change.vala \
 	rygel-media-query-action.vala \
 	rygel-media-receiver-registrar.vala \
 	rygel-panasonic-hacks.vala \
