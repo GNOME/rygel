@@ -43,12 +43,12 @@ internal class Rygel.Playbin.WrappingPlugin : Rygel.MediaRendererPlugin {
 /**
  * A UPnP renderer that uses a GStreamer Playbin2 element.
  *
- * Using Gst.Playbin2 as a model, it reflects any changes done externally, such as
+ * Using GstPlayBin2 as a model, it reflects any changes done externally, such as
  * changing the currently played URI, volume, pause/play etc., to UPnP.
  *
  * Likewise, the playbin can be modified externally using UPnP.
  *
- * You can retrieve the Gst.Playbin2 by calling rygel_playbin_player_get_playbin()
+ * You can retrieve the GstPlayBin2 by calling rygel_playbin_player_get_playbin()
  * on the default player - see rygel_playbin_player_get_default().
  * You should then set the "video-sink" and "audio-sink" properties of the
  * playbin.
@@ -63,8 +63,8 @@ public class Rygel.Playbin.Renderer : Rygel.MediaDevice {
     /**
      * Create a new instance of Renderer.
      *
-     * Renderer will instantiate its own instance of Gst.Playbin2.
-     * The Gst.Playbin2 can be accessed by using Player.get_default().playbin
+     * Renderer will instantiate its own instance of GstPlayBin2.
+     * The GstPlayBin2 can be accessed by using rygel_playbin_player_get_playbin().
      *
      * @param title Friendly name of the new UPnP renderer on the network.
      */
@@ -75,10 +75,10 @@ public class Rygel.Playbin.Renderer : Rygel.MediaDevice {
     }
 
     /**
-     * Create a new instance of Renderer, wrapping an existing Playbin2
+     * Create a new instance of Renderer, wrapping an existing GstPlayBin2
      * instance.
      *
-     * @param pipeline Instance of Gst.PlayBin2 to wrap.
+     * @param pipeline Instance of GstPlayBin2 to wrap.
      * @param title Friendly name of the new UPnP renderer on the network.
      */
     public Renderer.wrap (Gst.Element pipeline, string title) {
