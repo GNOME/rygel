@@ -41,7 +41,9 @@ public interface Rygel.External.MediaContainerProxy : DBusProxy,
     public static const string IFACE = "org.gnome.UPnP.MediaContainer2";
     public static const string[] PROPERTIES = { "ChildCount", "Searchable" };
 
-    public abstract signal void updated ();
+    public abstract signal void updated (MediaObject object,
+                                         ObjectEventType event_type,
+                                         bool sub_tree_update);
 
     public abstract uint child_count { get; set; }
     public abstract uint item_count { get; set; }

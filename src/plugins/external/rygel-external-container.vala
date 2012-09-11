@@ -62,7 +62,7 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                                          path,
                                          DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
 
-        this.update_container.begin (true);
+        this.update_container.begin (this, ObjectEventType.ADD, false, true);
         if (parent != null) {
             parent.add_weak_pointer (&this.parent);
         }
@@ -318,7 +318,10 @@ public class Rygel.External.Container : Rygel.MediaContainer,
         }
     }
 
-    private async void update_container (bool connect_signal = false) {
+    private async void update_container (MediaObject object,
+                                         ObjectEventType event_type,
+                                         bool sub_tree_update,
+                                         bool connect_signal = false) {
         try {
             Properties props_iface = yield Bus.get_proxy
                                         (BusType.SESSION,
@@ -352,15 +355,18 @@ public class Rygel.External.Container : Rygel.MediaContainer,
         }
 
         // and signal the clients
-        this.updated ();
+        this.updated (object, event_type, sub_tree_update);
 
         if (connect_signal) {
             this.actual_container.updated.connect (this.on_updated);
         }
     }
 
-    private void on_updated (MediaContainerProxy actual_container) {
-        this.update_container.begin ();
+    private void on_updated (MediaContainerProxy actual_container,
+                             MediaObject object,
+                             ObjectUpdateEvent event_type,
+                             bool sub_tree_update) {
+        this.update_container.begin (object, event_type, sub_tree_update);
     }
 
     private MediaContainer find_container_by_id (string id) {

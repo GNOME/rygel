@@ -72,6 +72,7 @@ public abstract class Rygel.Tracker.MetadataContainer : Rygel.SimpleContainer {
         this.clear ();
 
         var query = this.create_query ();
+        SearchContainer container;
 
         try {
             yield query.execute (this.resources);
@@ -98,7 +99,7 @@ public abstract class Rygel.Tracker.MetadataContainer : Rygel.SimpleContainer {
                     continue;
                 }
 
-                var container = this.create_container (id, title, value);
+                container = this.create_container (id, title, value);
 
                 if (this.child_class != null) {
                     container.upnp_class = child_class;
@@ -115,7 +116,7 @@ public abstract class Rygel.Tracker.MetadataContainer : Rygel.SimpleContainer {
             return;
         }
 
-        this.updated ();
+        this.updated (container, ObjectEventType.ADDED, false);
         this.update_in_progress = false;
     }
 

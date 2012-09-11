@@ -220,8 +220,12 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
             yield query.execute (this.resources);
 
             if (query.result.next ()) {
-                this.child_count = int.parse (query.result.get_string (0));
-                this.updated ();
+                var new_child_count = int.parse (query.result.get_string (0));
+
+                if (new_child_count != this.child_count) {
+                    this.child_count = new_child_count;
+                    this.updated (this, ObjectEventType.MODIFIED, false);
+                }
             }
 
         } catch (GLib.Error error) {
