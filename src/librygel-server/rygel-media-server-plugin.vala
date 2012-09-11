@@ -87,7 +87,10 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
     }
 
     private void on_container_updated (MediaContainer root_container,
-                                       MediaContainer updated) {
+                                       MediaContainer updated,
+                                       MediaObject object,
+                                       ObjectEventType event_type,
+                                       bool sub_tree_update) {
         if (updated != root_container || updated.child_count == 0) {
             return;
         }

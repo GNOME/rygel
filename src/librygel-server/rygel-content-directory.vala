@@ -373,8 +373,12 @@ internal class Rygel.ContentDirectory: Service {
      * @param updated_container the container that just got updated
      */
     private void on_container_updated (MediaContainer root_container,
-                                       MediaContainer updated_container) {
+                                       MediaContainer updated_container,
+                                       MediaObject object,
+                                       ObjectEventType event_type,
+                                       bool sub_tree_update) {
         this.system_update_id++;
+        updated_container.update_id = this.system_update_id++;
 
         if (this.clear_updated_containers) {
             this.updated_containers.clear ();
