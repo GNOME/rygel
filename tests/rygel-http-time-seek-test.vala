@@ -21,8 +21,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Gst;
-
 private errordomain Rygel.TestError {
     SKIP
 }
@@ -167,7 +165,9 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
                                Subtitle?  subtitle) throws HTTPSeekError {
         var request = new HTTPGet (thumbnail, subtitle);
         var audio_item = request.item as AudioItem;
-        this.test_seek (request, 0, audio_item.duration * SECOND - MSECOND);
+        this.test_seek (request,
+                        0,
+                        audio_item.duration * TimeSpan.SECOND - TimeSpan.MILLISECOND);
     }
 
     private void test_start_only_seek (Thumbnail? thumbnail,
@@ -189,8 +189,8 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
 
         var audio_item = request.item as AudioItem;
         this.test_seek (request,
-                        128 * SECOND,
-                        audio_item.duration * SECOND - MSECOND);
+                        128 * TimeSpan.SECOND,
+                        audio_item.duration * TimeSpan.SECOND - TimeSpan.MILLISECOND);
     }
 
     private void test_stop_only_seek (Thumbnail? thumbnail,
@@ -213,7 +213,7 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
             break;
         }
 
-        this.test_seek (request, 0, 128 * SECOND);
+        this.test_seek (request, 0, 128 * TimeSpan.SECOND);
     }
 
     private void test_start_stop_seek (Thumbnail? thumbnail,
@@ -248,7 +248,7 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
         }
 
 
-        this.test_seek (request, 128 * SECOND, 256 * SECOND);
+        this.test_seek (request, 128 * TimeSpan.SECOND, 256 * TimeSpan.SECOND);
     }
 
     private void test_seek (HTTPGet request,
@@ -262,10 +262,10 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
         assert (seek != null);
         assert (seek.start == start);
         assert (seek.stop == stop);
-        assert (seek.length == seek.stop + MSECOND - seek.start);
+        assert (seek.length == seek.stop + TimeSpan.MILLISECOND - seek.start);
 
         var audio_item = request.item as AudioItem;
-        assert (seek.total_length == audio_item.duration * SECOND);
+        assert (seek.total_length == audio_item.duration * TimeSpan.SECOND);
 
         var header = request.msg.response_headers.get_one
                                         ("TimeSeekRange.dlna.org");

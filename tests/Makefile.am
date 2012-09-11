@@ -44,7 +44,8 @@ check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-item-creator-test \
 		 rygel-playbin-renderer-test \
 		 rygel-user-config-test \
-		 rygel-regression
+		 rygel-regression \
+		 rygel-environment-test
 
 TESTS = $(check_PROGRAMS)
 
@@ -155,6 +156,11 @@ rygel_regression_LDADD = \
 	$(LDADD) \
 	$(top_builddir)/src/librygel-server/librygel-server-1.0.la \
 	$(top_builddir)/src/librygel-core/librygel-core-1.0.la
+
+rygel_environment_test_SOURCES = rygel-environment-test.vala
+rygel_environment_test_CFLAGS = $(AM_CFLAGS)
+rygel_environment_test_LDADD = $(LDADD)
+rygel_environment_test_VALAFLAGS = $(AM_VALAFLAGS) --pkg gstreamer-0.10
 
 if ALWAYS_TEST
 all-local: check

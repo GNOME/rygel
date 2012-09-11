@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -21,15 +23,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Gst;
-
 internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
     public HTTPTimeSeek (HTTPGet request) throws HTTPSeekError {
         string range;
         string[] range_tokens;
         int64 start = 0;
-        int64 duration = (request.item as AudioItem).duration * SECOND;
-        int64 stop = duration - MSECOND;
+        int64 duration = (request.item as AudioItem).duration * TimeSpan.SECOND;
+        int64 stop = duration - TimeSpan.MILLISECOND;
         int64 parsed_value = 0;
         bool parsing_start = true;
 
@@ -85,7 +85,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
             }
         }
 
-        base (request.msg, start, stop, MSECOND, duration);
+        base (request.msg, start, stop, TimeSpan.MILLISECOND, duration);
     }
 
     public static bool needed (HTTPGet request) {
@@ -104,9 +104,9 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
 
     public override void add_response_headers () {
         // TimeSeekRange.dlna.org: npt=START_TIME-END_TIME/DURATION
-        double start = (double) this.start / SECOND;
-        double stop = (double) this.stop / SECOND;
-        double total = (double) this.total_length / SECOND;
+        double start = (double) this.start / TimeSpan.SECOND;
+        double stop = (double) this.stop / TimeSpan.SECOND;
+        double total = (double) this.total_length / TimeSpan.SECOND;
 
         var start_str = new char[double.DTOSTR_BUF_SIZE];
         var stop_str = new char[double.DTOSTR_BUF_SIZE];
@@ -123,7 +123,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
     private static bool parse_seconds (string    range_token,
                                        ref int64 value) {
         if (range_token[0].isdigit ()) {
-            value = (int64) (double.parse (range_token) * SECOND);
+            value = (int64) (double.parse (range_token) * TimeSpan.SECOND);
         } else {
             return false;
         }
@@ -150,7 +150,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
         foreach (string time in time_tokens) {
             if (time[0].isdigit ()) {
                 seconds_sum += (int64) ((double.parse (time) *
-                                         SECOND) * time_factor);
+                                         TimeSpan.SECOND) * time_factor);
             } else {
                 return false;
             }

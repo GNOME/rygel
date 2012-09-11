@@ -204,13 +204,18 @@ public class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
         var stop_type = Gst.SeekType.NONE;
         Format format;
         var flags = SeekFlags.FLUSH;
+        int64 start, stop;
 
         if (this.seek is HTTPTimeSeek) {
             format = Format.TIME;
             flags |= SeekFlags.KEY_UNIT;
+            start = (this.seek.start) * Gst.USECOND;
+            stop = (this.seek.stop) * Gst.USECOND;
         } else {
             format = Format.BYTES;
             flags |= SeekFlags.ACCURATE;
+            start = this.seek.start;
+            stop = this.seek.stop;
         }
 
         if (this.seek.stop > 0) {
@@ -221,9 +226,9 @@ public class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
                                  format,
                                  flags,
                                  Gst.SeekType.SET,
-                                 this.seek.start,
+                                 start,
                                  stop_type,
-                                 this.seek.stop + 1)) {
+                                 stop + 1)) {
             warning (_("Failed to seek to offsets %lld:%lld"),
                      this.seek.start,
                      this.seek.stop);
