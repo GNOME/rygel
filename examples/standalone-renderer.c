@@ -42,8 +42,7 @@
 
 int main(int argc, char *argv[])
 {
-    GstElement *sink, *asink;
-    RygelPlaybinPlayer *player;
+    GstElement *playbin, *sink, *asink;
     RygelPlaybinRenderer *renderer;
     GError *error = NULL;
     GMainLoop *loop;
@@ -54,7 +53,7 @@ int main(int argc, char *argv[])
     g_set_application_name ("Standalone-Renderer");
 
     renderer = rygel_playbin_renderer_new ("LibRygel renderer demo");
-    player = rygel_playbin_player_get_default ();
+    playbin = rygel_playbin_renderer_get_playbin (renderer);
     sink = gst_element_factory_make ("cacasink", NULL);
     g_object_set (G_OBJECT (sink),
                   "dither", 53,
@@ -63,7 +62,7 @@ int main(int argc, char *argv[])
 
     asink = gst_element_factory_make ("pulsesink", NULL);
 
-    g_object_set (G_OBJECT (rygel_playbin_player_get_playbin (player)),
+    g_object_set (G_OBJECT (playbin),
                   "video-sink", sink,
                   "audio-sink", asink,
                   NULL);

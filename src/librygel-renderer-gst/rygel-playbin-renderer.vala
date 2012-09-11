@@ -91,6 +91,16 @@ public class Rygel.Playbin.Renderer : Rygel.MediaDevice {
         this.prepare_upnp (title);
     }
 
+    /**
+     * Get the GstPlaybin2 used by this Renderer.
+     */
+    public Gst.Element? get_playbin () {
+        var player = Rygel.Playbin.Player.get_default ();
+        return_val_if_fail (player != null, null);
+
+        return player.playbin;
+    }
+
     private void prepare_upnp (string title) {
         this.plugin.title = title;
 
