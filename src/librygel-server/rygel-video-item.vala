@@ -5,6 +5,7 @@
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -25,7 +26,6 @@
 
 using GUPnP;
 using Gee;
-using Gst;
 
 /**
  * Represents a video item.

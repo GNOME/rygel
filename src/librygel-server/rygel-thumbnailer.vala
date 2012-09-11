@@ -1,7 +1,10 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
+ * Copyright (C) 2010-2011 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali <zeenix@gmail.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -19,8 +22,6 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
-
-using Gst;
 
 internal errordomain ThumbnailerError {
     NO_DIR,

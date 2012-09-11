@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2008, 2009 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -21,7 +23,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Gst;
 using GUPnP;
 using Gee;
 

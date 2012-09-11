@@ -24,7 +24,6 @@
  */
 
 using GUPnP;
-using Gst;
 
 // An HTTP request handler that passes the item content through as is.
 internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {

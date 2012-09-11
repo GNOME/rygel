@@ -1,10 +1,12 @@
 /*
  * Copyright (C) 2008-2010 Nokia Corporation.
  * Copyright (C) 2006, 2007, 2008 OpenedHand Ltd.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Jorn Baayen <jorn.baayen@gmail.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -22,8 +24,6 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
-
-using Gst;
 
 /**
  * Responsible for handling HTTP GET & HEAD client requests.
