@@ -42,6 +42,10 @@ public abstract class Rygel.MediaObject : GLib.Object {
     public string ref_id;
     public string upnp_class;
     public uint64 modified;
+    // TODO: Spec says that upnp.objectUpdateID is unsigned int.
+    // Should I add a compare_uint to RelationalExpression or just use
+    // signed int?
+    public uint object_update_id;
     public Gee.ArrayList<string> uris;
 
     // You can keep both a unowned and owned ref to parent of this MediaObject.

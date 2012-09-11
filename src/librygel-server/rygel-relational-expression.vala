@@ -31,7 +31,8 @@ public class Rygel.RelationalExpression :
              Rygel.SearchExpression<SearchCriteriaOp,string,string> {
     internal const string CAPS = "@id,@parentID,@refID,upnp:class," +
                                  "dc:title,upnp:artist,upnp:album," +
-                                 "dc:creator,upnp:createClass,@childCount";
+                                 "dc:creator,upnp:createClass,@childCount," +
+                                 "upnp:objectUpdateID,upnp:containerUpdateID";
 
     public override bool satisfied_by (MediaObject media_object) {
         switch (this.operand1) {
@@ -77,6 +78,12 @@ public class Rygel.RelationalExpression :
 
             var container = media_object as MediaContainer;
             return this.compare_int (container.child_count);
+            /*
+        case "upnp:objectUpdateID":
+            return this.compare_int ();
+        case "upnp:containerUpdateID":
+            return this.compare_int ();
+            */
         default:
             return false;
         }
