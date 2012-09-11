@@ -273,7 +273,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                                             this.flag);
                 } catch (Error error) {};
             }
-            parent.updated ();
+            parent.updated (parent);
 
             this.completed ();
         }
@@ -352,7 +352,8 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             try {
                 var cache = MediaCache.get_default ();
                 if (cache.get_child_count (container.id) > 0) {
-                    this.containers.peek_head ().updated ();
+                    var head = this.containers.peek_head ();
+                    head.updated (head);
                 } else {
                     cache.remove_by_id (container.id);
                 }

@@ -27,6 +27,12 @@
 using GUPnP;
 using Gee;
 
+public enum Rygel.ObjectEventType {
+    ADDED = 0,
+    MODIFIED = 1,
+    DELETED = 2
+}
+
 /**
  * This is a container (folder) for media items and child containers.
  *
@@ -54,11 +60,29 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
     /**
      * The container_updated signal is emitted if a child container under the
-     * tree of this container has been updated.
+     * tree of this container has been updated. object is set to
+     * the MediaObject being the source of container update. Note that
+     * it may be even set to container itself.
      *
      * @param container The child container that has been updated.
+     * @param object the object that got changed.
+     * @param event_type describes what actually happened to object.
+     * @param sub_tree_update whether the modification is part of
+     * sub-tree update.
      */
-    public signal void container_updated (MediaContainer container);
+    public signal void container_updated (MediaContainer container,
+                                          MediaObject object,
+                                          ObjectEventType event_type,
+                                          bool sub_tree_update);
+
+    /**
+     * sub_tree_updates_finished signal is emitted when all of
+     * sub-tree operations are finished.
+     *
+     * @param sub_tree_root - root of a sub-tree where all operations
+     * were performed.
+     */
+    public signal void sub_tree_updates_finished (MediaObject sub_tree_root);
 
     public int child_count;
     public uint32 update_id;
@@ -110,6 +134,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.upnp_class = STORAGE_FOLDER;
 
         this.container_updated.connect (on_container_updated);
+        this.sub_tree_updates_finished.connect (on_sub_tree_updates_finished);
     }
 
     public MediaContainer.root (string title,
@@ -152,11 +177,11 @@ public abstract class Rygel.MediaContainer : MediaObject {
      * for this container, if items under it are removed or added, if
      * there are metadata changes to items under it, etc.
      */
-    public void updated () {
-        this.update_id++;
-
+    public void updated (MediaObject object = this,
+                         ObjectEventType event_type = ObjectEventType.MODIFIED,
+                         bool sub_tree_update = false) {
         // Emit the signal that will start the bump-up process for this event.
-        this.container_updated (this);
+        this.container_updated (this, object, event_type, sub_tree_update);
     }
 
     internal override DIDLLiteObject serialize (DIDLLiteWriter writer,
@@ -205,9 +230,22 @@ public abstract class Rygel.MediaContainer : MediaObject {
      * @param updated_container the container that just got updated
      */
     private void on_container_updated (MediaContainer container,
-                                       MediaContainer updated_container) {
+                                       MediaContainer updated_container,
+                                       MediaObject object,
+                                       ObjectEventType event_type,
+                                       bool sub_tree_update) {
         if (this.parent != null) {
-            this.parent.container_updated (updated_container);
+            this.parent.container_updated (updated_container,
+                                           object,
+                                           event_type,
+                                           sub_tree_update);
+        }
+    }
+
+    private void on_sub_tree_updates_finished (MediaContainer container,
+                                               MediaObject sub_tree_root) {
+        if (this.parent != null) {
+            this.parent.sub_tree_updates_finished (sub_tree_root);
         }
     }
 }

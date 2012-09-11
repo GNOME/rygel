@@ -127,6 +127,7 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
      * from the container.
      */
     public void clear () {
+        // TODO: this will have to emit sub-tree events of object being deleted.
         this.children.clear ();
 
         this.child_count = 0;
@@ -257,7 +258,10 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
     }
 
     private void on_container_updated (MediaContainer source,
-                                       MediaContainer updated) {
+                                       MediaContainer updated,
+                                       MediaObject object,
+                                       ObjectEventType event_type,
+                                       bool sub_tree_update) {
         if (updated.child_count > 0) {
             if (!(updated in this.empty_children)) {
                 return;
