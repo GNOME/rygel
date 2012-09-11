@@ -28,7 +28,7 @@ using Gee;
 /**
  * Errors used by ContentDirectory and deriving classes.
  */
-public errordomain Rygel.ContentDirectoryError {
+internal errordomain Rygel.ContentDirectoryError {
     NO_SUCH_OBJECT = 701,
     INVALID_SORT_CRITERIA = 709,
     RESTRICTED_OBJECT = 711,
