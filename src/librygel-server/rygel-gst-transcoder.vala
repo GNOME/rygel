@@ -62,8 +62,13 @@ internal abstract class Rygel.GstTranscoder : Rygel.Transcoder {
      *
      * @return      the new transcoding source
      */
-    public override Element create_source (MediaItem item,
-                                           Element   src) throws Error {
+    public override DataSource create_source (MediaItem  item,
+                                              DataSource src) throws Error {
+        // We can only link GStreamer data sources together
+        assert (src is GstDataSource);
+
+        var orig_source = src as GstDataSource;
+
         this.decoder = GstUtils.create_element (DECODE_BIN,
                                                 DECODE_BIN);
         this.encoder = GstUtils.create_element (ENCODE_BIN,
@@ -75,9 +80,9 @@ internal abstract class Rygel.GstTranscoder : Rygel.Transcoder {
         GstUtils.dump_encoding_profile (encoder.profile);
 
         var bin = new Bin ("transcoder-source");
-        bin.add_many (src, decoder, encoder);
+        bin.add_many (orig_source.src, decoder, encoder);
 
-        src.link (decoder);
+        orig_source.src.link (decoder);
 
         decoder.pad_added.connect (this.on_decoder_pad_added);
         decoder.autoplug_continue.connect (this.on_autoplug_continue);
@@ -87,7 +92,7 @@ internal abstract class Rygel.GstTranscoder : Rygel.Transcoder {
         var ghost = new GhostPad (null, pad);
         bin.add_pad (ghost);
 
-        return bin;
+        return new GstDataSource.from_element (bin);
     }
 
     /**

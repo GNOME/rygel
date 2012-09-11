@@ -24,7 +24,6 @@
  */
 
 using GUPnP;
-using Gst;
 
 /**
  * The base Transcoder class. Each implementation derives from it and must
@@ -43,8 +42,8 @@ public abstract class Rygel.Transcoder : GLib.Object {
      *
      * @return      the new transcoding source
      */
-    public abstract Element create_source (MediaItem item,
-                                           Element   src) throws Error;
+    public abstract DataSource create_source (MediaItem  item,
+                                              DataSource src) throws Error;
 
     public virtual DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
                                                    MediaItem        item,

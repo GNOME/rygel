@@ -23,7 +23,7 @@
 using Gst;
 
 public class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
-    private dynamic Element src;
+    internal dynamic Element src;
     private Pipeline pipeline;
     private HTTPSeek seek = null;
     private GstSink sink;

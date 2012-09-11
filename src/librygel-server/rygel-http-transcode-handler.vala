@@ -59,14 +59,13 @@ internal class Rygel.HTTPTranscodeHandler : HTTPGetHandler {
             throw new HTTPRequestError.NOT_FOUND (_("Not found"));
         }
 
-/*        try {
+        try {
             src = this.transcoder.create_source (item, src);
 
             return new HTTPResponse (request, this, src);
         } catch (GLib.Error err) {
             throw new HTTPRequestError.NOT_FOUND (err.message);
-        }*/
-        throw new HTTPRequestError.NOT_FOUND ("Transcoding temporarily disabled");
+        }
     }
 
     protected override DIDLLiteResource add_resource (DIDLLiteItem didl_item,
