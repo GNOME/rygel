@@ -25,6 +25,11 @@
          <dataType>string</dataType>
       </stateVariable>
 
+      <stateVariable sendEvents="yes">
+          <name>LastChange</name>
+          <dataType>string</dataType>
+      </stateVariable>
+
       <stateVariable sendEvents="no">
          <name>FeatureList</name>
          <dataType>string</dataType>

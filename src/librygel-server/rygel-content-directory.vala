@@ -48,7 +48,7 @@ internal errordomain Rygel.ContentDirectoryError {
 internal class Rygel.ContentDirectory: Service {
     public const string UPNP_ID = "urn:upnp-org:serviceId:ContentDirectory";
     public const string UPNP_TYPE =
-                    "urn:schemas-upnp-org:service:ContentDirectory:2";
+                    "urn:schemas-upnp-org:service:ContentDirectory:3";
     public const string UPNP_TYPE_V1 =
                     "urn:schemas-upnp-org:service:ContentDirectory:1";
     public const string DESCRIPTION_PATH = "xml/ContentDirectory.xml";
@@ -70,6 +70,8 @@ internal class Rygel.ContentDirectory: Service {
 
     public uint32 system_update_id;
 
+    private LastChange last_change;
+
     public override void constructed () {
         this.cancellable = new Cancellable ();
 
@@ -83,6 +85,10 @@ internal class Rygel.ContentDirectory: Service {
         this.finished_imports = new ArrayList<ImportResource> ();
 
         this.root_container.container_updated.connect (on_container_updated);
+        this.root_container.sub_tree_updates_finished.connect
+                                        (on_sub_tree_updates_finished);
+
+        this.last_change = new LastChange ();
 
         this.feature_list =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
@@ -128,6 +134,9 @@ internal class Rygel.ContentDirectory: Service {
         this.action_invoked["GetFeatureList"].connect (
                                         this.get_feature_list_cb);
         this.query_variable["FeatureList"].connect (this.query_feature_list);
+
+        /* Connect LastChange related signals */
+        this.query_variable["LastChange"].connect (this.query_last_change);
 
         this.http_server.run.begin ();
     }
@@ -377,6 +386,7 @@ internal class Rygel.ContentDirectory: Service {
                                        MediaObject object,
                                        ObjectEventType event_type,
                                        bool sub_tree_update) {
+        this.add_last_change_entry (object, event_type, sub_tree_update);
         this.system_update_id++;
         updated_container.update_id = this.system_update_id++;
 
@@ -389,9 +399,19 @@ internal class Rygel.ContentDirectory: Service {
         this.updated_containers.remove (updated_container);
         this.updated_containers.add (updated_container);
 
-        if (this.update_notify_id == 0) {
-            this.update_notify_id = Timeout.add (200, this.update_notify);
-        }
+        this.ensure_timeout ();
+    }
+
+    private void on_sub_tree_updates_finished (MediaContainer root_container,
+                                               MediaObject sub_tree_root)
+    {
+        this.system_update_id++;
+
+        var entry = new LastChangeStDone (sub_tree_root.id,
+                                          this.system_update_id);
+
+        this.last_change.add_event (entry);
+        this.ensure_timeout ();
     }
 
     private bool update_notify () {
@@ -399,9 +419,11 @@ internal class Rygel.ContentDirectory: Service {
 
         this.notify ("ContainerUpdateIDs", typeof (string), update_ids);
         this.notify ("SystemUpdateID", typeof (uint32), this.system_update_id);
+        this.notify ("LastChange", typeof (string), this.last_change.get_log ());
 
         this.clear_updated_containers = true;
         this.update_notify_id = 0;
+        this.last_change.clear_on_new_event ();
 
         return false;
     }
@@ -465,5 +487,55 @@ internal class Rygel.ContentDirectory: Service {
         }
 
         return ret;
+    }
+
+    /* Query LastChange */
+    private void query_last_change (Service          content_dir,
+                                    string           variable,
+                                    ref GLib.Value   value) {
+        value.init (typeof (string));
+        value.set_string (this.last_change.get_log ());
+    }
+
+    private void ensure_timeout ()
+    {
+        if (this.update_notify_id == 0) {
+            this.update_notify_id = Timeout.add (200, this.update_notify);
+        }
+    }
+
+    private void add_last_change_entry (MediaObject object,
+                                        ObjectEventType event_type,
+                                        bool sub_tree_update)
+    {
+        LastChangeEntry entry;
+
+        this.system_update_id++;
+        switch (event_type) {
+        case ObjectEventType.ADDED:
+            entry = new LastChangeObjAdd (object.id,
+                                          this.system_update_id,
+                                          sub_tree_update,
+                                          object.parent.id,
+                                          object.upnp_class);
+            break;
+
+        case ObjectEventType.MODIFIED:
+            entry = new LastChangeObjMod (object.id,
+                                          this.system_update_id,
+                                          sub_tree_update);
+            break;
+
+        case ObjectEventType.DELETED:
+            entry = new LastChangeObjDel (object.id,
+                                          this.system_update_id,
+                                          sub_tree_update);
+            break;
+
+        default:
+            assert_not_reached ();
+        }
+
+        this.last_change.add_event (entry);
     }
 }
