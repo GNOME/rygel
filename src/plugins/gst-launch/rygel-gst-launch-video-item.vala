@@ -45,6 +45,15 @@ public class Rygel.GstLaunch.VideoItem : Rygel.VideoItem, Item {
     }
 
     public override DataSource? create_stream_source (string? host_ip) {
-        return new GstDataSource.from_element (this.create_source ());
+        var engine = MediaEngine.get_default ();
+        var gst_engine = engine as GstMediaEngine;
+        if (gst_engine == null) {
+            warning ("The current media engine is not based on GStreamer.");
+
+            return null;
+        }
+
+        return gst_engine.create_data_source_from_element
+                                        (this.create_source ());
     }
 }

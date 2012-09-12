@@ -49,6 +49,8 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     public static const string ALLOW_DELETION_KEY = "allow-deletion";
     public static const string LOG_LEVELS_KEY = "log-level";
     public static const string PLUGIN_PATH_KEY = "plugin-path";
+    public static const string ENGINE_PATH_KEY = "engine-path";
+    public static const string MEDIA_ENGINE_KEY = "media-engine";
     public static const string UPLOAD_FOLDER_KEY = "upload-folder";
     public static const string VIDEO_UPLOAD_DIR_PATH_KEY =
                                         "video-" + UPLOAD_FOLDER_KEY;
@@ -177,6 +179,14 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
     public string get_plugin_path () throws GLib.Error {
         return this.get_string (GENERAL_SECTION, PLUGIN_PATH_KEY);
+    }
+
+    public string get_engine_path () throws GLib.Error {
+        return this.get_string (GENERAL_SECTION, ENGINE_PATH_KEY);
+    }
+
+    public string get_media_engine () throws GLib.Error {
+        return this.get_string (GENERAL_SECTION, MEDIA_ENGINE_KEY);
     }
 
     public string get_video_upload_folder () throws GLib.Error {

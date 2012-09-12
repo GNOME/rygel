@@ -7,6 +7,7 @@ LIBRYGEL_CORE_VAPI_SOURCE_FILES = \
 	rygel-log-handler.vala \
 	rygel-meta-config.vala \
 	rygel-plugin-loader.vala \
+	rygel-recursive-module-loader.vala \
 	rygel-plugin.vala \
 	rygel-resource-info.vala \
 	rygel-media-device.vala \

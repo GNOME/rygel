@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2009 Thijs Vermeir <thijsvermeir@gmail.com>
  * Copyright (C) 2010 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Thijs Vermeir <thijsvermeir@gmail.com>
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
@@ -44,6 +45,15 @@ public class Rygel.GstLaunch.AudioItem : Rygel.AudioItem, Item {
     }
 
     public override DataSource? create_stream_source (string? host_ip) {
-        return new GstDataSource.from_element (this.create_source ());
+        var engine = MediaEngine.get_default ();
+        var gst_engine = engine as GstMediaEngine;
+        if (gst_engine == null) {
+            warning ("The current media engine is not based on GStreamer.");
+
+            return null;
+        }
+
+        return gst_engine.create_data_source_from_element
+                                        (this.create_source ());
     }
 }

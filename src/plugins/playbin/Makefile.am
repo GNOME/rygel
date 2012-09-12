@@ -2,7 +2,8 @@ include ../../../common.am
 
 plugin_LTLIBRARIES = librygel-playbin.la
 
-AM_CFLAGS += -DG_LOG_DOMAIN='"Playbin"'
+AM_CFLAGS += -DG_LOG_DOMAIN='"Playbin"' \
+	$(LIBGSTREAMER_CFLAGS)
 
 librygel_playbin_la_SOURCES = rygel-module.vala
 librygel_playbin_la_CFLAGS = $(AM_CFLAGS)

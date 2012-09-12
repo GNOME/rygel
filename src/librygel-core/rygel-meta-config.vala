@@ -2,12 +2,11 @@
  * Copyright (C) 2008,2009 Nokia Corporation.
  * Copyright (C) 2008,2009 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
  * Copyright (C) 2012 Intel Corporation.
- * Copyright (C) 2012 Intel Corporation
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
- *         Jens Georg <jensg@openismus.com>
  *         Krzesimir Nowak <krnowak@openismus.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -214,6 +213,44 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         foreach (var config in MetaConfig.configs) {
             try {
                 val = config.get_plugin_path ();
+                unavailable = false;
+                break;
+            } catch (GLib.Error err) {}
+        }
+
+        if (unavailable) {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        }
+
+        return val;
+    }
+
+    public string get_media_engine () throws GLib.Error {
+        string val = null;
+        bool unavailable = true;
+
+        foreach (var config in MetaConfig.configs) {
+            try {
+                val = config.get_media_engine ();
+                unavailable = false;
+                break;
+            } catch (GLib.Error err) {}
+        }
+
+        if (unavailable) {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        }
+
+        return val;
+    }
+
+    public string get_engine_path () throws GLib.Error {
+        string val = null;
+        bool unavailable = true;
+
+        foreach (var config in MetaConfig.configs) {
+            try {
+                val = config.get_engine_path ();
                 unavailable = false;
                 break;
             } catch (GLib.Error err) {}

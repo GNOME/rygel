@@ -2,7 +2,8 @@ include ../../../common.am
 
 plugin_LTLIBRARIES = librygel-mpris.la
 
-AM_CFLAGS += -DG_LOG_DOMAIN='"MPRIS"'
+AM_CFLAGS += -DG_LOG_DOMAIN='"MPRIS"' \
+	$(LIBGSTREAMER_CFLAGS)
 
 librygel_mpris_la_SOURCES = \
 	rygel-mpris-player.vala \

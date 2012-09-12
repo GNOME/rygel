@@ -89,6 +89,10 @@ public interface Rygel.Configuration : GLib.Object {
 
     public abstract string get_plugin_path () throws GLib.Error;
 
+    public abstract string get_engine_path () throws GLib.Error;
+
+    public abstract string get_media_engine () throws GLib.Error;
+
     public abstract string get_video_upload_folder () throws GLib.Error;
 
     public abstract string get_music_upload_folder () throws GLib.Error;

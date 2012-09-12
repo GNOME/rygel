@@ -237,6 +237,8 @@ src/librygel-renderer/Makefile
 src/librygel-server/Makefile
 src/rygel/Makefile
 src/ui/Makefile
+src/media-engines/Makefile
+src/media-engines/gstreamer/Makefile
 src/plugins/Makefile
 data/Makefile
 data/xml/Makefile

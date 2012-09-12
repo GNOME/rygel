@@ -1,7 +1,10 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
+ * Copyright (C) 2008-2012 Nokia Corporation.
+ * Copytight (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -58,6 +61,6 @@ public class Rygel.BuildConfig {
     [CCode (cname = "LOCALEDIR")]
     public static const string LOCALEDIR;
 
-    [CCode (cname = "PRESET_DIR")]
-    public static const string PRESET_DIR;
+    [CCode (cname = "ENGINE_DIR")]
+    public static const string ENGINE_DIR;
 }

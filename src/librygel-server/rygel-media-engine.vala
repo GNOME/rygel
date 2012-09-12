@@ -43,6 +43,10 @@ public class Rygel.DLNAProfile {
     }
 }
 
+public errordomain Rygel.MediaEngineError {
+    NOT_FOUND
+}
+
 /**
  * Base class for the media engine that will contain knowledge about streaming
  * and transcoding capabilites of the media library in use.
@@ -50,14 +54,24 @@ public class Rygel.DLNAProfile {
 public abstract class Rygel.MediaEngine : GLib.Object {
     private static MediaEngine instance;
 
+    public static void init () throws Error {
+        // lazy-load the engine plug-in
+        var loader = new EngineLoader ();
+        MediaEngine.instance = loader.load_engine ();
+        if (MediaEngine.instance == null) {
+            throw new MediaEngineError.NOT_FOUND
+                                        (_("No media engine found."));
+        }
+    }
+
     /**
      * Get the singleton instance of the currently used media engine.
      *
-     * @return An instance of a concreate #MediaEngine implementation.
+     * @return An instance of a concrete #MediaEngine implementation.
      */
     public static MediaEngine get_default () {
         if (instance == null) {
-            instance = new GstMediaEngine ();
+            error (_("MediaEngine.init was not called. Cannot continue."));
         }
 
         return instance;

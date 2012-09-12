@@ -2,6 +2,7 @@
  * Copyright (C) 2008 Nokia Corporation.
  * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
  * Copyright (C) 2012 Openismus GmbH.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *         Jens Georg <jensg@openismus.com>
@@ -26,9 +27,6 @@
 using Gee;
 using GUPnP;
 using Posix;
-
-[CCode (cname="gst_preset_set_app_dir")]
-extern bool gst_preset_set_app_dir (string app_dir);
 
 internal class Rygel.Main : Object {
     private static int PLUGIN_TIMEOUT = 5;
@@ -64,8 +62,6 @@ internal class Rygel.Main : Object {
         Unix.signal_add (SIGHUP, () => { this.restart (); return true; });
         Unix.signal_add (SIGINT, () => { this.exit (0); return false; });
         Unix.signal_add (SIGTERM, () => { this.exit (0); return false; });
-
-        gst_preset_set_app_dir (BuildConfig.PRESET_DIR);
     }
 
     public void exit (int exit_code) {
@@ -89,7 +85,7 @@ internal class Rygel.Main : Object {
 
     internal void dbus_available () {
         this.context_manager = this.create_context_manager ();
-        this.plugin_loader.load_plugins ();
+        this.plugin_loader.load_modules ();
 
         var timeout = PLUGIN_TIMEOUT;
         try {
@@ -280,6 +276,7 @@ internal class Rygel.Main : Object {
             // Parse commandline options
             CmdlineConfig.parse_args (ref args);
             Main.register_default_configurations ();
+            MediaEngine.init ();
 
             main = new Main ();
             service = new DBusService (main);

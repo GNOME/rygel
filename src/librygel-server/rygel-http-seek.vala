@@ -28,7 +28,13 @@ public errordomain Rygel.HTTPSeekError {
     OUT_OF_RANGE = Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE,
 }
 
+public enum Rygel.HTTPSeekType {
+    BYTE,
+    TIME
+}
+
 public abstract class Rygel.HTTPSeek : GLib.Object {
+    public HTTPSeekType seek_type { get; protected set; }
     public Soup.Message msg { get; private set; }
 
     // These are either number of bytes or microseconds

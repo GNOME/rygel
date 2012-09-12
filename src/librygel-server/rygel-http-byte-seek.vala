@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -55,6 +57,7 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
         }
 
         base (request.msg, start, stop, 1, total_length);
+        this.seek_type = HTTPSeekType.BYTE;
     }
 
     public static bool needed (HTTPGet request) {

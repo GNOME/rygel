@@ -70,7 +70,7 @@ internal class Rygel.GstSink : BaseSink {
         this.frozen = false;
 
         if (this.offsets != null) {
-            if (this.offsets is HTTPByteSeek) {
+            if (this.offsets.seek_type == HTTPSeekType.BYTE) {
                 this.max_bytes = this.offsets.length;
             }
         }

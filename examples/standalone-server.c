@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 Openismus GmbH.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Jens Georg <jensg@openismus.com>
  *
@@ -46,10 +47,19 @@ int main (int argc, char *argv[])
     GFileInfo *info;
     int i;
     GMainLoop *loop;
+    GError *error = NULL;
 
     g_type_init ();
 
-    gst_init (&argc, &argv);
+    rygel_media_engine_init (&error);
+
+    if (error != NULL) {
+        g_print ("Could not initialize media engine: %s\n",
+                 error->message);
+        g_error_free (error);
+
+        return EXIT_FAILURE;
+    }
 
     g_set_application_name ("Standalone-Server");
 

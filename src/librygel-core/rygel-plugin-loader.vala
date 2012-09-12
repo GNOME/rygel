@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2008 Nokia Corporation.
  * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -32,7 +34,7 @@ using Gee;
  * disabled by user using plugin_disabled method before creating the plugin
  * instance and resources related to that instance.
  */
-public class Rygel.PluginLoader : Object {
+public class Rygel.PluginLoader : RecursiveModuleLoader {
     private delegate void ModuleInitFunc (PluginLoader loader);
 
     private HashMap<string,Plugin> plugin_hash;
@@ -42,26 +44,16 @@ public class Rygel.PluginLoader : Object {
     public signal void plugin_available (Plugin plugin);
 
     public PluginLoader () {
-        this.plugin_hash = new HashMap<string,Plugin> (str_hash, str_equal);
-        this.loaded_modules = new HashSet<string> ();
-    }
-
-    // Plugin loading functions
-    public void load_plugins () {
-        assert (Module.supported());
-
-        string path;
+        var path = BuildConfig.PLUGIN_DIR;
         try {
             var config = MetaConfig.get_default ();
             path = config.get_plugin_path ();
-        } catch (Error error) {
-            path = BuildConfig.PLUGIN_DIR;
-        }
+        } catch (Error error) { }
 
-        File dir = File.new_for_path (path);
-        assert (dir != null && is_dir (dir));
+        base (path);
 
-        this.load_modules_from_dir.begin (dir);
+        this.plugin_hash = new HashMap<string,Plugin> (str_hash, str_equal);
+        this.loaded_modules = new HashSet<string> ();
     }
 
     /**
@@ -95,59 +87,12 @@ public class Rygel.PluginLoader : Object {
         return this.plugin_hash.values;
     }
 
-    private async void load_modules_from_dir (File dir) {
-        debug ("Searching for modules in folder '%s'.", dir.get_path ());
-
-        string attributes = FileAttribute.STANDARD_NAME + "," +
-                            FileAttribute.STANDARD_TYPE + "," +
-                            FileAttribute.STANDARD_CONTENT_TYPE;
-
-        GLib.List<FileInfo> infos;
-        FileEnumerator enumerator;
-
-        try {
-            enumerator = yield dir.enumerate_children_async
-                                        (attributes,
-                                         FileQueryInfoFlags.NONE,
-                                         Priority.DEFAULT,
-                                         null);
-
-            infos = yield enumerator.next_files_async (int.MAX,
-                                                       Priority.DEFAULT,
-                                                       null);
-        } catch (Error error) {
-            critical (_("Error listing contents of folder '%s': %s"),
-                      dir.get_path (),
-                      error.message);
-
-            return;
-        }
-
-        foreach (var info in infos) {
-            var file = dir.get_child (info.get_name ());
-            FileType file_type = info.get_file_type ();
-            string content_type = info.get_content_type ();
-            string mime = ContentType.get_mime_type (content_type);
-
-            if (file_type == FileType.DIRECTORY) {
-                // Recurse into directories
-                this.load_modules_from_dir.begin (file);
-            } else if (mime == "application/x-sharedlib") {
-                // Seems like we found a module
-                this.load_module_from_file (file);
-            }
-        }
-
-        debug ("Finished searching for modules in folder '%s'",
-               dir.get_path ());
-    }
-
-    private void load_module_from_file (File module_file) {
+    protected override bool load_module_from_file (File module_file) {
         if (module_file.get_basename () in this.loaded_modules) {
             warning (_("A module named %s is already loaded"),
                      module_file.get_basename ());
 
-            return;
+            return true;
         }
 
         Module module = Module.open (module_file.get_path (),
@@ -157,7 +102,7 @@ public class Rygel.PluginLoader : Object {
                      module_file.get_path (),
                      Module.error ());
 
-            return;
+            return true;
         }
 
         void* function;
@@ -168,7 +113,7 @@ public class Rygel.PluginLoader : Object {
                      module_file.get_path (),
                      Module.error ());
 
-            return;
+            return true;
         }
 
         unowned ModuleInitFunc module_init = (ModuleInitFunc) function;
@@ -181,22 +126,7 @@ public class Rygel.PluginLoader : Object {
         module_init (this);
 
         debug ("Loaded module source: '%s'", module.name());
-    }
 
-    private static bool is_dir (File file) {
-        FileInfo file_info;
-
-        try {
-            file_info = file.query_info (FileAttribute.STANDARD_TYPE,
-                                         FileQueryInfoFlags.NONE,
-                                         null);
-        } catch (Error error) {
-            critical (_("Failed to query content type for '%s'"),
-                      file.get_path ());
-
-            return false;
-        }
-
-        return file_info.get_file_type () == FileType.DIRECTORY;
+        return true;
     }
 }

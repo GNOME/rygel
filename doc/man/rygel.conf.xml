@@ -165,6 +165,22 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
       </varlistentry>
       <varlistentry>
         <term>
+          <option>engine-path=<replaceable>PATH</replaceable></option>
+        </term>
+        <listitem>
+          <para>Set the engine search path.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>media-engine=<replaceable>ENGINE</replaceable></option>
+        </term>
+        <listitem>
+          <para>Name of the loadable module to use as media engine back-end.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <option>allow-upload</option>
         </term>
         <listitem>

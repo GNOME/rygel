@@ -3,6 +3,7 @@ shareddir = $(abs_top_builddir)/data
 sysconfigdir = $(shareddir)
 desktopdir = $(shareddir)
 plugindir = $(abs_top_builddir)/src/plugins
+enginedir = $(abs_top_builddir)/src/media-engines
 icondir = $(shareddir)/icons/32x32
 presetdir = $(shareddir)/presets
 
@@ -13,7 +14,8 @@ else
 shareddir = $(datadir)/rygel
 sysconfigdir = $(sysconfdir)
 desktopdir = $(datadir)/applications
-plugindir = $(libdir)/rygel-1.0
+plugindir = $(libdir)/rygel-1.0/plugins
+enginedir = $(libdir)/rygel-1.0/engines
 icondir = $(datadir)/icons/hicolor/32x32/apps
 presetdir = $(shareddir)/presets
 endif
@@ -31,8 +33,6 @@ MAINTAINERCLEANFILES = Makefile.in
 AM_CFLAGS = \
 	$(LIBGUPNP_CFLAGS) \
 	$(LIBGUPNP_AV_CFLAGS) \
-	$(LIBGSTREAMER_CFLAGS) \
-	$(GSTREAMER_BASE_CFLAGS) \
 	$(GEE_CFLAGS) \
 	$(UUID_CFLAGS) \
 	$(COVERAGE_CFLAGS) \
@@ -42,14 +42,12 @@ AM_CFLAGS = \
 	-I$(librygelrendererdir) \
 	-DDATA_DIR='"$(shareddir)"' -DSYS_CONFIG_DIR='"$(sysconfigdir)"'\
 	-DPLUGIN_DIR='"$(plugindir)"' -DDESKTOP_DIR='"$(desktopdir)"'\
-	-DPRESET_DIR='"$(presetdir)"'\
+	-DPRESET_DIR='"$(presetdir)"' -DENGINE_DIR='"$(enginedir)"' \
 	-include config.h
 
 RYGEL_BASE_LIBS = \
 	$(LIBGUPNP_LIBS) \
 	$(LIBGUPNP_AV_LIBS) \
-	$(LIBGSTREAMER_LIBS) \
-	$(GSTREAMER_BASE_LIBS) \
 	$(GEE_LIBS) \
 	$(UUID_LIBS) \
 	$(COVERAGE_LIBS)
@@ -66,6 +64,7 @@ RYGEL_COMMON_SERVER_LIBS = \
 
 RYGEL_COMMON_RENDERER_LIBS = \
 	$(top_builddir)/src/librygel-renderer/librygel-renderer-1.0.la \
+	$(LIBGSTREAMER_LIBS)
 	$(RYGEL_COMMON_LIBS)
 
 # Note: the -g needs to be at the end of VALAFLAGS to not break make dist

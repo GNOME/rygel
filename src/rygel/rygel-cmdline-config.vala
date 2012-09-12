@@ -46,6 +46,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static string log_levels;
 
     private static string plugin_path;
+    private static string engine_path;
 
     private static bool version;
 
@@ -87,6 +88,8 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
           "DOMAIN1:LEVEL1[,DOMAIN2:LEVEL2,..]" },
         { "plugin-path", 'u', 0, OptionArg.STRING, ref plugin_path,
           "Plugin Path", "PLUGIN_PATH" },
+        { "engine-path", 'e', 0, OptionArg.STRING, ref engine_path,
+          "Engine Path", "ENGINE_PATH" },
         { "disable-plugin", 'd', 0, OptionArg.STRING_ARRAY,
           ref disabled_plugins,
           "Disable plugin", "PluginName" },
@@ -117,7 +120,6 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         opt_context.set_help_enabled (true);
         opt_context.set_ignore_unknown_options (true);
         opt_context.add_main_entries (options, null);
-        opt_context.add_group (Gst.init_get_option_group ());
 
         try {
             opt_context.parse (ref args);
@@ -196,6 +198,19 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         }
 
         return plugin_path;
+    }
+
+    public string get_engine_path () throws GLib.Error {
+        if (engine_path == null) {
+            throw new ConfigurationError.NO_VALUE_SET ("No value available");
+        }
+
+        return plugin_path;
+    }
+
+    public string get_media_engine () throws GLib.Error {
+        // We don't support setting this via commandline
+        throw new ConfigurationError.NO_VALUE_SET ("No value available");
     }
 
     public bool get_enabled (string section) throws GLib.Error {

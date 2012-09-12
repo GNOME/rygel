@@ -42,6 +42,8 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
     private static string DISALLOW_DELETION_ENV = DISABLE_PREFIX + "_DELETION";
     private static string LOG_LEVELS_ENV = RYGEL_PREFIX + "_LOG";
     private static string PLUGIN_PATH_ENV = RYGEL_PREFIX + "_PLUGIN_PATH";
+    private static string ENGINE_PATH_ENV = RYGEL_PREFIX + "_ENGINE_PATH";
+    private static string MEDIA_ENGINE_ENV = RYGEL_PREFIX + "_MEDIA_ENGINE";
 
     // Our singleton
     private static EnvironmentConfig config;
@@ -84,6 +86,14 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
 
     public string get_plugin_path () throws GLib.Error {
         return this.get_string_variable (PLUGIN_PATH_ENV);
+    }
+
+    public string get_engine_path () throws GLib.Error {
+        return this.get_string_variable (ENGINE_PATH_ENV);
+    }
+
+    public string get_media_engine () throws GLib.Error {
+        return this.get_string_variable (MEDIA_ENGINE_ENV);
     }
 
     public string get_video_upload_folder () throws GLib.Error {

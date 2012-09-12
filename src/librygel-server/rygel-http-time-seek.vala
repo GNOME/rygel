@@ -86,6 +86,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
         }
 
         base (request.msg, start, stop, TimeSpan.MILLISECOND, duration);
+        this.seek_type = HTTPSeekType.TIME;
     }
 
     public static bool needed (HTTPGet request) {

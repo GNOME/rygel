@@ -23,11 +23,24 @@
 using Gst;
 using Gee;
 
-internal class Rygel.GstMediaEngine : Rygel.MediaEngine {
+// Remove for GStreamer 1.0
+[CCode (cname = "PRESET_DIR")]
+internal extern static const string PRESET_DIR;
+
+[CCode (cname="gst_preset_set_app_dir")]
+extern bool gst_preset_set_app_dir (string app_dir);
+
+public class Rygel.GstMediaEngine : Rygel.MediaEngine {
     private GLib.List<DLNAProfile> dlna_profiles = null;
     private GLib.List<Transcoder> transcoders = null;
 
     public GstMediaEngine () {
+        // Work-around vapi bug, fixed for GStreamer 1.0
+        unowned string[] args = null;
+
+        Gst.init (ref args);
+        gst_preset_set_app_dir (PRESET_DIR);
+
         var discoverer = new GUPnP.DLNADiscoverer ((ClockTime) SECOND,
                                                    true,
                                                    false);
@@ -91,4 +104,12 @@ internal class Rygel.GstMediaEngine : Rygel.MediaEngine {
     public override DataSource create_data_source (string uri) {
         return new GstDataSource (uri);
     }
+
+    public DataSource create_data_source_from_element (Element element) {
+        return new GstDataSource.from_element (element);
+    }
+}
+
+public static Rygel.MediaEngine module_get_instance () {
+    return new Rygel.GstMediaEngine ();
 }

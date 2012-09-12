@@ -24,27 +24,23 @@ LIBRYGEL_SERVER_VAPI_SOURCE_FILES = \
 	rygel-writable-container.vala \
 	rygel-media-server.vala \
 	rygel-media-engine.vala \
+	rygel-http-seek.vala \
 	rygel-data-source.vala
 
 LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
-	rygel-aac-transcoder.vala \
-	rygel-audio-transcoder.vala \
-	rygel-avc-transcoder.vala \
 	rygel-browse.vala \
 	rygel-client-hacks.vala \
 	rygel-content-directory.vala \
 	rygel-dbus-thumbnailer.vala \
-	rygel-gst-utils.vala \
+    rygel-engine-loader.vala \
 	rygel-http-byte-seek.vala \
 	rygel-http-get-handler.vala \
 	rygel-http-get.vala \
-	rygel-gst-sink.vala \
 	rygel-http-identity-handler.vala \
 	rygel-http-item-uri.vala \
 	rygel-http-post.vala \
 	rygel-http-request.vala \
 	rygel-http-response.vala \
-	rygel-http-seek.vala \
 	rygel-http-server.vala \
 	rygel-http-time-seek.vala \
 	rygel-http-transcode-handler.vala \
@@ -52,11 +48,8 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-item-creator.vala \
 	rygel-item-destroyer.vala \
 	rygel-item-removal-queue.vala \
-	rygel-l16-transcoder.vala \
 	rygel-media-query-action.vala \
 	rygel-media-receiver-registrar.vala \
-	rygel-mp2ts-transcoder.vala \
-	rygel-mp3-transcoder.vala \
 	rygel-panasonic-hacks.vala \
 	rygel-search-criteria-parser.vala \
 	rygel-search.vala \
@@ -64,14 +57,9 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-subtitle-manager.vala \
 	rygel-thumbnailer.vala \
 	rygel-v1-hacks.vala \
-	rygel-video-transcoder.vala \
 	rygel-wmp-hacks.vala \
-	rygel-wmv-transcoder.vala \
 	rygel-xbmc-hacks.vala \
 	rygel-xbox-hacks.vala \
-	rygel-gst-media-engine.vala \
-	rygel-gst-transcoder.vala \
-	rygel-gst-data-source.vala \
 	rygel-data-sink.vala
 
 LIBRYGEL_SERVER_VALAFLAGS_PKG = \

@@ -12,11 +12,15 @@ librygel_renderer_1_0_la_SOURCES = \
 	$(LIBRYGEL_RENDERER_VAPI_SOURCE_FILES) \
 	$(LIBRYGEL_RENDERER_NONVAPI_SOURCE_FILES)
 
+librygel_renderer_1_0_la_CFLAGS = \
+	$(AM_CFLAGS) \
+	$(LIBGSTREAMER_CFLAGS)
+
 librygel_renderer_1_0_la_VALAFLAGS = \
 	-H rygel-renderer.h --library=rygel-renderer-1.0 \
 	$(LIBRYGEL_RENDERER_VALAFLAGS_PKG) \
 	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
-librygel_renderer_1_0_la_LIBADD = $(RYGEL_COMMON_LIBS)
+librygel_renderer_1_0_la_LIBADD = $(RYGEL_COMMON_LIBS) $(LIBGSTREAMER_LIBS)
 librygel_renderer_1_0_la_LDFLAGS = -version-info $(LIBRYGEL_RENDERER_VERSION)
 
 vapidir = $(VAPIDIR)

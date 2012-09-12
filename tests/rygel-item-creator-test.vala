@@ -245,7 +245,7 @@ public errordomain Rygel.ContentDirectoryError {
 public class Rygel.Transcoder {
 }
 
-public class Rygel.GstMediaEngine : Rygel.MediaEngine {
+public class Rygel.TestMediaEngine : Rygel.MediaEngine {
     public override unowned GLib.List<DLNAProfile> get_dlna_profiles () {
         return null;
     }
@@ -256,6 +256,14 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
 
     public override DataSource create_data_source (string uri) {
         return null;
+    }
+}
+
+public class Rygel.EngineLoader {
+    public EngineLoader () { }
+
+    public MediaEngine load_engine () {
+        return new TestMediaEngine ();
     }
 }
 

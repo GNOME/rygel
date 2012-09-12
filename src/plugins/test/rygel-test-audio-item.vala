@@ -40,10 +40,18 @@ public class Rygel.Test.AudioItem : Rygel.AudioItem {
     }
 
     public override DataSource? create_stream_source (string? host_ip) {
+        var engine = MediaEngine.get_default ();
+        var gst_engine = engine as GstMediaEngine;
+        if (gst_engine == null) {
+            warning ("The current media engine is not based on GStreamer.");
+
+            return null;
+        }
+
         try {
             var element = parse_bin_from_description (PIPELINE, true);
 
-            return new GstDataSource.from_element (element);
+            return gst_engine.create_data_source_from_element (element);
         } catch (Error err) {
             warning ("Required plugin missing (%s)", err.message);
 

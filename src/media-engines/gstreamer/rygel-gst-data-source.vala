@@ -22,7 +22,7 @@
 
 using Gst;
 
-public class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
+internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
     internal dynamic Element src;
     private Pipeline pipeline;
     private HTTPSeek seek = null;
@@ -206,7 +206,7 @@ public class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
         var flags = SeekFlags.FLUSH;
         int64 start, stop;
 
-        if (this.seek is HTTPTimeSeek) {
+        if (this.seek.seek_type == HTTPSeekType.TIME) {
             format = Format.TIME;
             flags |= SeekFlags.KEY_UNIT;
             start = (this.seek.start) * Gst.USECOND;

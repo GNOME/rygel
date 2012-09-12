@@ -16,7 +16,7 @@ rygel_preferences_SOURCES =  \
 	rygel-user-config.vala
 
 rygel_preferences_VALAFLAGS = \
-	--thread --pkg gio-2.0 \
+	--pkg gio-2.0 \
 	--pkg gtk+-3.0 $(RYGEL_COMMON_PLUGIN_VALAFLAGS)
 
 rygel_preferences_LDADD = \
