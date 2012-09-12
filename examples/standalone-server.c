@@ -23,7 +23,7 @@
 /*
  * Demo application for librygel-server.
  *
- * Creates a stand-aline UPnP server that exposes the contents of the current
+ * Creates a stand-alone UPnP server that exposes the contents of the current
  * folder or the folder passed as argument.
  *
  * Usage:
