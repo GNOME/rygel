@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 Openismus GmbH.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Jens Georg <jensg@openismus.com>
  *
@@ -24,7 +25,25 @@ internal class Plugin : Rygel.MediaServerPlugin {
     }
 }
 
+/**
+ * This class may be used to implement in-process UPnP-AV media servers.
+ *
+ * Call rygel_media_device_add_interface() on the RygelMediaServer to allow it
+ * to serve media via that network interface.
+ *
+ * See the standalone-server.c example.
+ */
 public class Rygel.MediaServer : MediaDevice {
+
+    /**
+     * Create a MediaServer to serve the media in the RygelMediaContainer.
+     * For instance, you might use a RygelSimpleContainer. Alternatively,
+     * you might use your own RygelMediaContainer implementation.
+     *
+     * Assuming that the RygelMediaContainer is correctly implemented,
+     * the RygelMediaServer will respond appropriately to changes in the
+     * RygelMediaContainer. 
+     */
     public MediaServer (string title, MediaContainer root_container) {
         base ();
         this.plugin = new global::Plugin (root_container);
