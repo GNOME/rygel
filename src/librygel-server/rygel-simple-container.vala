@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2009 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
  * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
@@ -25,9 +26,8 @@
 using Gee;
 
 /**
- * A simple implementation of MediaContainer that keeps all MediaObjects
- * in memory. In order for it to be of any use, you must add children to
- * children ArrayList field.
+ * A simple implementation of RygelMediaContainer that keeps all RygelMediaObjects
+ * in memory. You should add children via rygel_simple_container_add_child_item().
  */
 public class Rygel.SimpleContainer : Rygel.MediaContainer,
                                      Rygel.SearchableContainer {
@@ -37,6 +37,13 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
 
     public ArrayList<string> search_classes { get; set; }
 
+    /**
+     * Creates a child RygelSimpleContainer.
+     *
+     * @param id The ID of the item. This should be unique in the server.
+     * @param parent The parent of the container.
+     * @param title The title of the container. 
+     */
     public SimpleContainer (string          id,
                             MediaContainer? parent,
                             string          title) {
@@ -47,10 +54,20 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
         this.search_classes = new ArrayList<string> ();
     }
 
+    /**
+     * Creates a RygelSimpleContainer as a root container.
+     *
+     * @param title The title of the container.
+     */
     public SimpleContainer.root (string title) {
         this ("0", null, title);
     }
 
+    /**
+     * Adds an item to the container.
+     *
+     * @param child The child item to add to the container.
+     */
     public void add_child_item (MediaItem child) {
         this.add_child (child);
     }
@@ -64,8 +81,10 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
     }
 
     /**
-     * NOTE: This method only actually adds the child container to the hierarchy
-     * until it has any children to offer.
+     * Adds a child container to this container.
+     *
+     * The child container will only be added to the hierarchy if, or when,
+     * it contains some children.
      */
     public void add_child_container (MediaContainer child) {
         if (child is SearchableContainer) {
@@ -84,12 +103,19 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
         }
     }
 
+    /**
+     * Removes the item from the container.
+     */
     public void remove_child (MediaObject child) {
         this.children.remove (child);
 
         this.child_count--;
     }
 
+    /**
+     * Removes all child items and child containers
+     * from the container.
+     */
     public void clear () {
         this.children.clear ();
 

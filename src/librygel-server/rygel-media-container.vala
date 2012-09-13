@@ -2,6 +2,7 @@
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2010 MediaNet Inh.
  * Copyright (C) 2010 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Authors: Zeeshan Ali <zeenix@gmail.com>
  *          Sunil Mohan Adapa <sunil@medhas.org>
@@ -27,9 +28,12 @@ using GUPnP;
 using Gee;
 
 /**
- * Represents a container (folder) for media items and containers. Provides
- * basic serialization (to DIDLLiteWriter) implementation. Deriving classes
- * are supposed to provide working implementations of get_children.
+ * This is a container (folder) for media items and child containers.
+ *
+ * It provides a basic serialization implementation (to DIDLLiteWriter).
+ *
+ * A derived class should provide a working implementation of get_children
+ * and should emit the container_updated signal.
  */
 public abstract class Rygel.MediaContainer : MediaObject {
     public const string UPNP_CLASS = "object.container";
@@ -44,11 +48,15 @@ public abstract class Rygel.MediaContainer : MediaObject {
                                               "+upnp:originalTrackNumber," +
                                               "+dc:title";
 
+    /* TODO: When we implement ContentDirectory v4, this will be emitted also
+     * when child _items_ are updated.
+     */
+
     /**
-     * container_updated signal that is emitted if a child container under the
-     * tree of this container gets updated.
+     * The container_updated signal is emitted if a child container under the
+     * tree of this container has been updated.
      *
-     * @param container the container that just got updated.
+     * @param container The child container that has been updated.
      */
     public signal void container_updated (MediaContainer container);
 
@@ -126,8 +134,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
                                                       throws Error;
 
     /**
-     * Recursively searches for media object with the given id in this
-     * container.
+     * Recursively searches this container for a media object with the given ID.
      *
      * @param id ID of the media object to search for
      * @param cancellable optional cancellable for this operation
@@ -139,10 +146,11 @@ public abstract class Rygel.MediaContainer : MediaObject {
                                                     throws Error;
 
     /**
-     * Method to be be called each time this container is updated (metadata
-     * changes for this container, items under it gets removed/added or their
-     * metadata changes etc).
+     * This method should be called each time this container is updated.
      *
+     * For instance, this should be called if there are metadata changes
+     * for this container, if items under it are removed or added, if
+     * there are metadata changes to items under it, etc.
      */
     public void updated () {
         this.update_id++;
