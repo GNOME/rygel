@@ -70,6 +70,7 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
      */
     public void add_child_item (MediaItem child) {
         this.add_child (child);
+        this.updated (child, ObjectEventType.ADDED, false);
     }
 
     /**
@@ -104,6 +105,12 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
 
         if (child.child_count > 0) {
             this.add_child (child);
+            this.updated (child, ObjectEventType.ADDED, false);
+            var grand_children = child.get_children (0, UINT_MAX, "", null);
+
+            foreach (var grand_child in grand_children) {
+                updated.updated (grand_child, ObjectEventType.ADDED, false);
+            }
         } else {
             debug ("Container '%s' empty, refusing to add to hierarchy " +
                    "until it has any children to offer.",
@@ -120,6 +127,15 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
         this.children.remove (child);
 
         this.child_count--;
+        if (child is MediaContainer) {
+            var grand_children = child.get_children (0, UINT_MAX, "", null);
+
+            foreach (var grand_child in grand_children) {
+                updated.updated (grand_child, ObjectEventType.DELETED, false);
+            }
+        }
+        this.updated (child, ObjectEventType.DELETED, false);
+        this.updated (this, ObjectEventType.MODIFIED, false);
     }
 
     /**
@@ -129,6 +145,7 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
     public void clear () {
         // TODO: this will have to emit sub-tree events of object being deleted.
         this.children.clear ();
+        foreach (var child
 
         this.child_count = 0;
     }
