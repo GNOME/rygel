@@ -72,6 +72,16 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
         this.add_child (child);
     }
 
+    /**
+     * Get all children, including the empty children.
+     *
+     * This is useful when all children are empty,
+     * so get_children() would return no objects,
+     * but when you need to add items to the empty
+     * items.
+     *
+     * This is useful only when implementing derived classes.
+     */
     public MediaObjects get_all_children () {
         var all = new MediaObjects ();
         all.add_all (this.children);
@@ -122,6 +132,14 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
         this.child_count = 0;
     }
 
+    /**
+     * Check that the ID is unique within this container.
+     *
+     * This is useful only when implementing derived classes.
+     *
+     * @param child_id The ID to check for uniqueness.
+     * @return true if the child ID is unique within this container.
+     */
     public bool is_child_id_unique (string child_id) {
         var unique = true;
 
