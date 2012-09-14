@@ -33,7 +33,6 @@ vapi_DATA = $(VAPI_FILES) $(DEPS_FILES)
 MAINTAINERCLEANFILES += $(BUILT_SOURCES)
 
 EXTRA_DIST = \
-	rygel-build-config.vapi \
 	$(VAPI_FILES) \
 	$(DEPS_FILES) \
 	$(BUILT_SOURCES)
