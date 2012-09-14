@@ -5,6 +5,8 @@
 *.a
 *.c
 .exrc
+*.orig
+*.pc
 .*.swp
 .deps
 .libs
@@ -12,6 +14,9 @@ stamp-*
 *.stamp
 *.service
 *.gmo
+core
+*.log
+.intltool-merge-cache
 po/rygel.pot
 .version
 aclocal.m4
@@ -56,6 +61,12 @@ rygel-1.0.pc
 src/rygel/rygel
 src/rygel/rygel-1.0.vapi
 src/rygel/rygel-core.h
+src/librygel-core/rygel-core.h
+src/librygel-core/rygel-core-1.0.vapi
+src/librygel-server/rygel-server.h
+src/librygel-server/rygel-server-1.0.vapi
+src/librygel-renderer/rygel-renderer.h
+src/librygel-renderer/rygel-renderer-1.0.vapi
 src/ui/rygel-preferences
 !src/rygel/cstuff.c
 tests/rygel-http-byte-seek-test
