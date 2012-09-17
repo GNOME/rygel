@@ -1,3 +1,65 @@
+0.15.4
+======
+
+An new release in Rygel's unstable cycle!
+
+Changes compared to 0.15.3:
+
+- Fix seeking issue.
+- Fix server doc generation.
+- Fix hierarchy, signals and properties doc generation.
+- Fix tarball to include everything necessary to rebuild from vala code.
+- Fix tarball to include the upstart, sysv and systemd files.
+
+MediaExport:
+ - Drop the file extension filter and rely on content-types. Final puzzle
+   piece in fixing uploading.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=671361
+
+All contributors to this release:
+  Murray Cumming <murrayc@murrayc.com>
+  Jens Georg <mail@jensge.org>
+  Piotr Drąg <piotrdrag@gmail.com>
+  Alexandre Franke <alexandre.franke@gmail.com>
+  Tom Tryfonidis <tomtryf@gmail.com>
+  Timo Jyrinki <timo@debian.org>
+  Rafael Ferreira <rafael.f.f1@gmail.com>
+  Milo Casagrande <milo@ubuntu.com>
+  Jens Georg <jensg@openismus.com>
+  Gabor Kelemen <kelemeng@gnome.hu>
+  Duarte Loreto <happyguy_pt@hotmail.com>
+  Changwoo Ryu <cwryu@debian.org>
+  Bruce Cowan <bruce@bcowan.me.uk>
+  Aurimas Černius <aurisc4@gmail.com>
+  Ask H. Larsen <asklarsen@gmail.com>
+
+Added/updated translations
+ - as, courtesy of Nilamdyuti Goswami
+ - da, courtesy of Joe Hansen
+ - el, courtesy of Tom Tryfonidis
+ - en_GB, courtesy of Bruce Cowan
+ - es, courtesy of Daniel Mustieles
+ - fi, courtesy of Jiri Grönroos
+ - fr, courtesy of Pierre Henry
+ - gl, courtesy of Leandro Regueiro
+ - he, courtesy of Yaron Shahrabani
+ - hu, courtesy of Gabor Kelemen
+ - id, courtesy of Andika Triwidada
+ - it, courtesy of Milo Casagrande
+ - ja, courtesy of Kentaro KAZUHAMA
+ - ko, courtesy of Changwoo Ryu
+ - lt, courtesy of Aurimas Černius
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Rafael Ferreira
+ - pt, courtesy of Duarte Loreto
+ - sl, courtesy of Matej Urbančič
+ - sr, courtesy of Мирослав Николић
+ - sr@latin, courtesy of Miroslav Nikolić
+ - zh_HK, courtesy of Chao-Hsiung Liao
+ - zh_TW, courtesy of Chao-Hsiung Liao
+
 0.15.3
 ======
 
