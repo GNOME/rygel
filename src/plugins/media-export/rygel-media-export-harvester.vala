@@ -30,7 +30,6 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
     private HashMap<File, uint> extraction_grace_timers;
     private MetadataExtractor extractor;
     private RecursiveFileMonitor monitor;
-    private Regex file_filter;
     private Cancellable cancellable;
 
     // Properties
@@ -60,7 +59,6 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                                                         (EqualFunc) File.equal);
         this.extraction_grace_timers = new HashMap<File, uint> (File.hash,
                                                                 (EqualFunc)File.equal);
-        this.create_file_filter ();
     }
 
     /**
@@ -85,7 +83,6 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
 
         var task = new HarvestingTask (new MetadataExtractor (),
                                        this.monitor,
-                                       this.file_filter,
                                        file,
                                        parent,
                                        flag);
@@ -126,34 +123,6 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         }
     }
 
-    /**
-     * Construct positive filter from config
-     *
-     * Takes a list of file extensions from config, escapes them and builds a
-     * regular expression to match against the files encountered.
-     */
-    private void create_file_filter () {
-        try {
-            var config = MetaConfig.get_default ();
-            var extensions = config.get_string_list ("MediaExport",
-                                                     "include-filter");
-
-            // never trust user input
-            string[] escaped_extensions = new string[0];
-            foreach (var extension in extensions) {
-                escaped_extensions += Regex.escape_string (extension);
-            }
-
-            var list = string.joinv ("|", escaped_extensions);
-            this.file_filter = new Regex (
-                                     "(%s)$".printf (list),
-                                     RegexCompileFlags.CASELESS |
-                                     RegexCompileFlags.OPTIMIZE);
-        } catch (Error error) {
-            this.file_filter = null;
-        }
-    }
-
     private void on_file_changed (File             file,
                                   File?            other,
                                   FileMonitorEvent event) {
@@ -177,11 +146,15 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                file.get_uri ());
         try {
             var cache = MediaCache.get_default ();
-            var type = file.query_file_type (FileQueryInfoFlags.NONE,
-                                             this.cancellable);
-            if (type == FileType.DIRECTORY ||
-                this.file_filter == null ||
-                this.file_filter.match (file.get_uri ())) {
+            var info = file.query_info (FileAttribute.STANDARD_TYPE + "," +
+                                        FileAttribute.STANDARD_CONTENT_TYPE,
+                                        FileQueryInfoFlags.NONE,
+                                        this.cancellable);
+            if (info.get_file_type () == FileType.DIRECTORY ||
+                info.get_content_type ().has_prefix ("image/") ||
+                info.get_content_type ().has_prefix ("video/") ||
+                info.get_content_type ().has_prefix ("audio/") ||
+                info.get_content_type () == "application/ogg") {
                 string id;
                 try {
                     MediaContainer parent_container = null;

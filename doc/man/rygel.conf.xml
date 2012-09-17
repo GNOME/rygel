@@ -373,14 +373,6 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
       </varlistentry>
       <varlistentry>
         <term>
-          <option>include-filter</option>
-        </term>
-        <listitem>
-          <para>A list of filename extensions. If this option is omitted or empty, every file will be analyzed for meta-data. The extensions are case-insensitive.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
           <option>extract-metadata</option>
         </term>
         <listitem>
