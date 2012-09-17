@@ -18,3 +18,9 @@ standalone_server_SOURCES = standalone-server.c
 standalone_server_LDADD = \
 	$(top_builddir)/src/librygel-server/librygel-server-1.0.la \
 	$(RYGEL_COMMON_LIBS)
+
+EXTRA_DIST = service/wrap-dbus \
+service/sysv/rygel \
+service/README.Ubuntu \
+service/upstart/rygel.conf \
+service/systemd/rygel.service
