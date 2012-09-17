@@ -40,6 +40,7 @@ gtkdoc: $(VALA_SOURCE_FILES_WITH_PATHS)
 	$(AM_V_GEN)$(VALADOC) \
 		-X $(top_builddir)/src/librygel-server/rygel-server.h \
 		-X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-1.0.so \
+		-X -l -X $(top_builddir)/src/librygel-server/.libs/librygel-server-1.0.so \
 		-o gtkdoc \
 		--doclet gtkdoc \
 		$(VALADOC_FLAGS) 2>/dev/null

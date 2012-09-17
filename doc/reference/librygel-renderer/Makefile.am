@@ -39,8 +39,8 @@ gtkdoc: $(VALA_SOURCE_FILES_WITH_PATHS)
 	@rm -rf gtkdoc
 	$(AM_V_GEN)$(VALADOC) \
 		-X $(top_builddir)/src/librygel-renderer/rygel-renderer.h \
-		-X -l -X $(top_builddir)/src/librygel-renderer/.libs/librygel-renderer-1.0.so \
 		-X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-1.0.so \
+		-X -l -X $(top_builddir)/src/librygel-renderer/.libs/librygel-renderer-1.0.so \
 		-o gtkdoc \
 		--doclet gtkdoc \
 		$(VALADOC_FLAGS) 2>/dev/null
