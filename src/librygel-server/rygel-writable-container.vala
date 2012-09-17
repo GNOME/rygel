@@ -26,10 +26,6 @@
 
 using Gee;
 
-//TODO: #, i. or 1. should work for valadoc list syntax, but it doesn't seem to
-//work even for regular valadoc html output:
-//https://bugzilla.gnome.org/show_bug.cgi?id=684183
-
 /**
  * This interface should be implemented by 'writable' containers - ones that allow
  * adding, removal and editing of items directly under them. Currently, only
@@ -37,11 +33,8 @@ using Gee;
  *
  * In addition to implementing this interface, a writable container must also:
  *
- * * Provide one URI that points to a writable folder on a GIO-supported
- * filesystem.
- *
- * * Monitor not only its own URI but also that of its child items, though
- * the latter is implied in the former if you use GIO for monitoring.
+ *  # Provide one URI that points to a writable folder on a GIO-supported filesystem.
+ *  # Monitor not only its own URI but also that of its child items, though the latter is implied in the former if you use GIO for monitoring.
  */
 public interface Rygel.WritableContainer : MediaContainer {
     //TODO: The valadoc gtk-doc doclet doesn't use the property's documentation:
@@ -68,6 +61,9 @@ public interface Rygel.WritableContainer : MediaContainer {
         return this.create_classes.contains (upnp_class);
     }
 
+    //TODO: See this bug if we want to support adding of child containers too:
+    //https://bugzilla.gnome.org/show_bug.cgi?id=684196
+
     /**
      * Add a new item directly under this container.
      *
@@ -75,6 +71,7 @@ public interface Rygel.WritableContainer : MediaContainer {
      * is handled by the container class.
      *
      * This method corresponds to the UPnP ContentDirectory's CreateObject action.
+     * Currently there is no way to add child containers.
      *
      * @param item The item to add to this container
      * @param cancellable optional cancellable for this operation
