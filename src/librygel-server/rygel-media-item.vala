@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2010 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
@@ -30,7 +31,9 @@ private errordomain Rygel.MediaItemError {
 }
 
 /**
- * Represents a media (Music, Video and Image) item.
+ * Represents a media item (Music, Video or Image).
+ *
+ * These objects correspond to items in the UPnP ContentDirectory's DIDL-Lite XML.
  */
 public abstract class Rygel.MediaItem : MediaObject {
     public string date;

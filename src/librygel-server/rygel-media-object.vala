@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali <zeenix@gmail.com>
  *
@@ -24,7 +25,13 @@ using GUPnP;
 using Gee;
 
 /**
- * Represents a media object (container and item).
+ * Represents a media object (container or item).
+ *
+ * The derived RygelMediaContainer class represents a container,
+ * and the derived RygelMediaItem classes (RygelAudioItem,
+ * RygelImageItem and RygelVideoItem) represent media items.
+ *
+ * These objects correspond to items and containers in the UPnP ContentDirectory's DIDL-Lite XML.
  */
 public abstract class Rygel.MediaObject : GLib.Object {
     private static Regex real_name_regex;
