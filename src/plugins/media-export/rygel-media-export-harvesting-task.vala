@@ -29,7 +29,6 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
     private GLib.Queue<MediaContainer> containers;
     private Gee.Queue<File> files;
     private RecursiveFileMonitor monitor;
-    private Regex file_filter;
     private string flag;
     private MediaContainer parent;
     private const int BATCH_SIZE = 256;
@@ -40,12 +39,11 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                                         FileAttribute.STANDARD_NAME + "," +
                                         FileAttribute.STANDARD_TYPE + "," +
                                         FileAttribute.TIME_MODIFIED + "," +
+                                        FileAttribute.STANDARD_CONTENT_TYPE + "," +
                                         FileAttribute.STANDARD_SIZE;
-
 
     public HarvestingTask (MetadataExtractor    extractor,
                            RecursiveFileMonitor monitor,
-                           Regex?               file_filter,
                            File                 file,
                            MediaContainer       parent,
                            string?              flag = null) {
@@ -69,7 +67,6 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         this.containers = new GLib.Queue<MediaContainer> ();
         this.monitor = monitor;
         this.flag = flag;
-        this.file_filter = file_filter;
     }
 
     public void cancel () {
@@ -187,12 +184,14 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         } else {
             // Check if the file needs to be harvested at all either because
             // it is denied by filter or it hasn't updated
-            if (this.file_filter != null &&
-                !this.file_filter.match (file.get_uri ())) {
-                return false;
+            if (info.get_content_type ().has_prefix ("image/") ||
+                info.get_content_type ().has_prefix ("video/") ||
+                info.get_content_type ().has_prefix ("audio/") ||
+                info.get_content_type () == "application/ogg") {
+                return this.push_if_changed_or_unknown (file, info);
             }
 
-             return this.push_if_changed_or_unknown (file, info);
+            return false;
         }
     }
 
