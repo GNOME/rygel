@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2010-2012 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Jens Georg <jensg@openismus.com>
  *         Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
@@ -25,29 +26,43 @@
 
 using Gee;
 
+//TODO: #, i. or 1. should work for valadoc list syntax, but it doesn't seem to
+//work even for regular valadoc html output:
+//https://bugzilla.gnome.org/show_bug.cgi?id=684183
+
 /**
- * Interface to be implemented by 'writable' container: ones that allow
- * creation, removal and editing of items directly under them. Currently, only
+ * This interface should be implemented by 'writable' containers - ones that allow
+ * adding, removal and editing of items directly under them. Currently, only
  * addition and removal is supported.
  *
  * In addition to implementing this interface, a writable container must also:
  *
- * 1. Provide one URI that points to a writable folder on a GIO supported
+ * * Provide one URI that points to a writable folder on a GIO-supported
  * filesystem.
- * 2. Monitor not only it's own URI but also that of it's child items, though
+ *
+ * * Monitor not only its own URI but also that of its child items, though
  * the latter is implied in the former if you use GIO for monitoring.
  */
 public interface Rygel.WritableContainer : MediaContainer {
-    // List of classes that an object in this container could be created of
+    //TODO: The valadoc gtk-doc doclet doesn't use the property's documentation:
+    //https://bugzilla.gnome.org/show_bug.cgi?id=684193
+
+    /**
+     * The list of upnp classes that can be added to this container.
+     *
+     * See rygel_writable_container_add_item().
+     *
+     * This corresponds to the UPnP ContentDirectory's createClass properties.
+     */
     public abstract ArrayList<string> create_classes { get; set; }
 
     /**
-     * Check if this container claims to be able to create an item with the
-     * given upnp class.
+     * Check if this container can contain an item with the given upnp class,
+     * meaning that rygel_writable_container_add_item() should succeed.
      *
-     * @param upnp_class The class of an item to check
+     * @param upnp_class The upnp class of an item to check
      *
-     * @return true if it can, false, if not.¨
+     * @return true if it can, false, if not.
      */
     public bool can_create (string upnp_class) {
         return this.create_classes.contains (upnp_class);
@@ -56,14 +71,15 @@ public interface Rygel.WritableContainer : MediaContainer {
     /**
      * Add a new item directly under this container.
      *
-     * This doesn't imply creation of file(s) pointed to by item's URI(s), that
-     * is handled for you.
+     * The caller should not first create the file(s) pointed to by the item's URI(s). That
+     * is handled by the container class.
+     *
+     * This method corresponds to the UPnP ContentDirectory's CreateObject action.
      *
      * @param item The item to add to this container
      * @param cancellable optional cancellable for this operation
      *
      * @return nothing.
-     *
      */
     public async abstract void add_item (MediaItem    item,
                                          Cancellable? cancellable) throws Error;
@@ -71,14 +87,15 @@ public interface Rygel.WritableContainer : MediaContainer {
     /**
      * Remove an item directly under this container that has the ID @id.
      *
-     * This doesn't imply deletion of file(s) pointed to by item's URI(s), that
-     * is handled for you.
+     * The caller should not first remove the file(s) pointed to by the item's URI(s). That
+     * is handled by the container class.
+     *
+     * This method corresponds to the UPnP ContentDirectory's DestroyObject action.
      *
      * @param id The ID of the item to remove from this container
      * @param cancellable optional cancellable for this operation
      *
      * @return nothing.
-     *
      */
     public async abstract void remove_item (string id, Cancellable? cancellable)
                                             throws Error;
