@@ -231,19 +231,17 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         return config;
     }
 
-    public UserConfig (string file) throws Error {
+    private void initialize (string local_path,
+                             string system_path) throws Error {
         this.key_file = new KeyFile ();
         this.sys_key_file = new KeyFile ();
 
-        var path = Path.build_filename (BuildConfig.SYS_CONFIG_DIR,
-                                        CONFIG_FILE);
-
-        this.sys_key_file.load_from_file (path,
+        this.sys_key_file.load_from_file (system_path,
                                           KeyFileFlags.KEEP_COMMENTS |
                                           KeyFileFlags.KEEP_TRANSLATIONS);
-        debug ("Loaded system configuration from file '%s'", path);
+        debug ("Loaded system configuration from file '%s'", system_path);
 
-        var sys_key_g_file = File.new_for_path (path);
+        var sys_key_g_file = File.new_for_path (system_path);
         this.sys_key_file_monitor = sys_key_g_file.monitor_file
                                         (FileMonitorFlags.NONE,
                                          null);
@@ -252,23 +250,35 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                                         (this.on_system_config_changed);
 
         try {
-            this.key_file.load_from_file (file,
+            this.key_file.load_from_file (local_path,
                                           KeyFileFlags.KEEP_COMMENTS |
                                           KeyFileFlags.KEEP_TRANSLATIONS);
 
-            debug ("Loaded user configuration from file '%s'", file);
+            debug ("Loaded user configuration from file '%s'", local_path);
         } catch (Error error) {
             debug ("Failed to load user configuration from file '%s': %s",
-                   file,
+                   local_path,
                    error.message);
             this.key_file = new KeyFile ();
         }
 
-        var key_g_file = File.new_for_path (file);
+        var key_g_file = File.new_for_path (local_path);
 
         this.key_file_monitor = key_g_file.monitor_file (FileMonitorFlags.NONE,
                                                          null);
         this.key_file_monitor.changed.connect (this.on_local_config_changed);
+    }
+
+    public UserConfig (string local_path) throws Error {
+        var system_path = Path.build_filename (BuildConfig.SYS_CONFIG_DIR,
+                                               CONFIG_FILE);
+
+        this.initialize (local_path, system_path);
+    }
+
+    public UserConfig.with_paths (string local_path,
+                                  string system_path) throws Error {
+        this.initialize (local_path, system_path);
     }
 
     public bool get_enabled (string section) throws GLib.Error {
