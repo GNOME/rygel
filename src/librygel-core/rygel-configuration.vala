@@ -1,9 +1,11 @@
 /*
  * Copyright (C) 2008,2009 Nokia Corporation.
  * Copyright (C) 2008,2009 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
+ * Copyright (C) 2012 Intel Corporation
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Krzesimir Nowak <krnowak@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -27,10 +29,49 @@ public errordomain Rygel.ConfigurationError {
     VALUE_OUT_OF_RANGE
 }
 
+public enum Rygel.ConfigurationEntry {
+    UPNP_ENABLED,
+    INTERFACE,
+    PORT,
+    TRANSCODING,
+    ALLOW_UPLOAD,
+    ALLOW_DELETION,
+    LOG_LEVELS,
+    PLUGIN_PATH,
+    VIDEO_UPLOAD_FOLDER,
+    MUSIC_UPLOAD_FOLDER,
+    PICTURE_UPLOAD_FOLDER
+}
+
+public enum Rygel.SectionEntry {
+    TITLE,
+    ENABLED
+}
+
 /**
  * Interface for dealing with Rygel configuration.
  */
 public interface Rygel.Configuration : GLib.Object {
+    /**
+     * Emitted when any of known configuration settings has
+     * changed. RygelConfigurationEntry lists known configuration
+     * settings.
+     */
+    public signal void configuration_changed (ConfigurationEntry entry);
+
+    /**
+     * Emitted when any of section settings has
+     * changed. RygelSectionEntry lists known section settings.
+     */
+    public signal void section_changed (string section, SectionEntry entry);
+
+    /**
+     * Emitted when some custom setting has changed. That happens when
+     * changed setting does fit into neither configuration_changed nor
+     * section_changed signal.
+     */
+    public signal void setting_changed (string section, string key);
+
     public abstract bool get_upnp_enabled () throws GLib.Error;
 
     public abstract string get_interface () throws GLib.Error;
