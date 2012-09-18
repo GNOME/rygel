@@ -401,7 +401,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
 
         if (val == null) {
             throw new ConfigurationError.NO_VALUE_SET
-                                        (_("No value set for '%s/enabled'"),
+                                        (_("No value set for '%s/title'"),
                                          section);
         }
 
