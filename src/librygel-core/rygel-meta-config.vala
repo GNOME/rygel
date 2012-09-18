@@ -2,10 +2,12 @@
  * Copyright (C) 2008,2009 Nokia Corporation.
  * Copyright (C) 2008,2009 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
  * Copyright (C) 2012 Openismus GmbH.
+ * Copyright (C) 2012 Intel Corporation
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Jens Georg <jensg@openismus.com>
+ *         Krzesimir Nowak <krnowak@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -39,6 +41,12 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
 
     private static ArrayList<Configuration> configs;
 
+    private void connect_signals (Configuration config) {
+        config.configuration_changed.connect (this.on_configuration_changed);
+        config.section_changed.connect (this.on_section_changed);
+        config.setting_changed.connect (this.on_setting_changed);
+    }
+
     public static MetaConfig get_default () {
         if (MetaConfig.configs == null) {
             MetaConfig.configs = new ArrayList<Configuration> ();
@@ -46,6 +54,10 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
 
         if (meta_config == null) {
             meta_config = new MetaConfig ();
+
+            foreach (var config in MetaConfig.configs) {
+                meta_config.connect_signals (config);
+            }
         }
 
         return meta_config;
@@ -56,6 +68,10 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
             MetaConfig.configs = new ArrayList<Configuration> ();
         }
         configs.add (config);
+
+        if (meta_config != null) {
+            meta_config.connect_signals (config);
+        }
     }
 
     public bool get_upnp_enabled () throws GLib.Error {
@@ -521,5 +537,121 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         }
 
         return val;
+    }
+
+    private bool configuration_value_available (Configuration config,
+                                                ConfigurationEntry entry) {
+        try {
+            switch (entry) {
+            case ConfigurationEntry.UPNP_ENABLED:
+                config.get_upnp_enabled ();
+                break;
+
+            case ConfigurationEntry.INTERFACE:
+                config.get_interface ();
+                break;
+
+            case ConfigurationEntry.PORT:
+                config.get_port ();
+                break;
+
+            case ConfigurationEntry.TRANSCODING:
+                config.get_transcoding ();
+                break;
+
+            case ConfigurationEntry.ALLOW_UPLOAD:
+                config.get_allow_upload ();
+                break;
+
+            case ConfigurationEntry.ALLOW_DELETION:
+                config.get_allow_deletion ();
+                break;
+
+            case ConfigurationEntry.LOG_LEVELS:
+                config.get_log_levels ();
+                break;
+
+            case ConfigurationEntry.PLUGIN_PATH:
+                config.get_plugin_path ();
+                break;
+
+            case ConfigurationEntry.VIDEO_UPLOAD_FOLDER:
+                config.get_video_upload_folder ();
+                break;
+
+            case ConfigurationEntry.MUSIC_UPLOAD_FOLDER:
+                config.get_music_upload_folder ();
+                break;
+
+            case ConfigurationEntry.PICTURE_UPLOAD_FOLDER:
+                config.get_picture_upload_folder ();
+                break;
+
+            default:
+                assert_not_reached ();
+            }
+        } catch (GLib.Error e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private void on_configuration_changed (Configuration affected_config,
+                                           ConfigurationEntry entry) {
+        foreach (var config in MetaConfig.configs) {
+            if (config == affected_config) {
+                this.configuration_changed (entry);
+            } else {
+                if (configuration_value_available (config, entry)) {
+                    return;
+                }
+            }
+        }
+    }
+
+    private bool setting_value_available (Configuration config,
+                                          string section,
+                                          SectionEntry entry) {
+        try {
+            switch (entry) {
+            case SectionEntry.TITLE:
+                config.get_title (section);
+                break;
+
+            case SectionEntry.ENABLED:
+                config.get_enabled (section);
+                break;
+
+            default:
+                assert_not_reached ();
+            }
+        } catch (GLib.Error e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private void on_section_changed (Configuration affected_config,
+                                     string section,
+                                     SectionEntry entry) {
+        foreach (var config in MetaConfig.configs) {
+            if (config == affected_config) {
+                this.section_changed (section, entry);
+            } else {
+                if (setting_value_available (config, section, entry)) {
+                    return;
+                }
+            }
+        }
+    }
+
+    private void on_setting_changed (Configuration affected_config,
+                                     string section,
+                                     string key) {
+        // The section and key here is actually a catch-wrestling.
+        // We emit the setting changed straight away.
+        this.setting_changed (section, key);
     }
 }
