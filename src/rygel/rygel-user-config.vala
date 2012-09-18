@@ -243,7 +243,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
             }
         }
 
-        if (val == 0 || val < min || val > max) {
+        if (val < min || val > max) {
             throw new ConfigurationError.VALUE_OUT_OF_RANGE
                                         (_("Value of '%s' out of range"), key);
         }
