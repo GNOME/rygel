@@ -43,6 +43,7 @@ check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-searchable-container-test \
 		 rygel-item-creator-test \
 		 rygel-playbin-renderer-test \
+		 rygel-user-config-test \
 		 rygel-regression
 
 TESTS = $(check_PROGRAMS)
@@ -115,6 +116,19 @@ rygel_playbin_renderer_test_CFLAGS = \
 	-I$(top_srcdir)/src/librygel-renderer \
 	-I$(top_builddir)/src/librygel-core \
 	-I$(top_srcdir)/src/librygel-core
+
+
+rygel_user_config_test_SOURCES = rygel-configuration.vala \
+				 rygel-user-config.vala \
+				 rygel-user-config-test.vala
+
+rygel_user_config_test_VALAFLAGS = \
+	$(AM_VALAFLAGS) \
+	--pkg rygel-build-config
+
+rygel_user_config_test_CFLAGS = \
+	$(AM_CFLAGS) \
+	-DSYS_CONFIG_DIR='"$(sysconfigdir)"'
 
 
 rygel_regression_SOURCES = \
