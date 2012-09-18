@@ -27,6 +27,7 @@
  * Manages the user configuration for Rygel.
  */
 public class Rygel.UserConfig : GLib.Object, Configuration {
+    public static const string GENERAL_SECTION = "general";
     public static const string CONFIG_FILE = "rygel.conf";
     public static const string IFACE_KEY = "interface";
     public static const string PORT_KEY = "port";
@@ -59,71 +60,71 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     protected KeyFile sys_key_file;
 
     public bool get_upnp_enabled () throws GLib.Error {
-        return this.get_bool ("general", UPNP_ENABLED_KEY);
+        return this.get_bool (GENERAL_SECTION, UPNP_ENABLED_KEY);
     }
 
     public string get_interface () throws GLib.Error {
-        return this.get_string ("general", IFACE_KEY);
+        return this.get_string (GENERAL_SECTION, IFACE_KEY);
     }
 
     public int get_port () throws GLib.Error {
-        return this.get_int ("general", PORT_KEY, uint16.MIN, uint16.MAX);
+        return this.get_int (GENERAL_SECTION, PORT_KEY, uint16.MIN, uint16.MAX);
     }
 
     public bool get_transcoding () throws GLib.Error {
-        return this.get_bool ("general", TRANSCODING_KEY);
+        return this.get_bool (GENERAL_SECTION, TRANSCODING_KEY);
     }
 
     public bool get_mp3_transcoder () throws GLib.Error {
-        return this.get_bool ("general", MP3_TRANSCODER_KEY);
+        return this.get_bool (GENERAL_SECTION, MP3_TRANSCODER_KEY);
     }
 
     public bool get_mp2ts_transcoder () throws GLib.Error {
-        return this.get_bool ("general", MP2TS_TRANSCODER_KEY);
+        return this.get_bool (GENERAL_SECTION, MP2TS_TRANSCODER_KEY);
     }
 
     public bool get_lpcm_transcoder () throws GLib.Error {
-        return this.get_bool ("general", LPCM_TRANSCODER_KEY);
+        return this.get_bool (GENERAL_SECTION, LPCM_TRANSCODER_KEY);
     }
 
     public bool get_wmv_transcoder () throws GLib.Error {
-        return this.get_bool ("general", WMV_TRANSCODER_KEY);
+        return this.get_bool (GENERAL_SECTION, WMV_TRANSCODER_KEY);
     }
 
     public bool get_aac_transcoder () throws GLib.Error {
-        return this.get_bool ("general", AAC_TRANSCODER_KEY);
+        return this.get_bool (GENERAL_SECTION, AAC_TRANSCODER_KEY);
     }
 
     public bool get_avc_transcoder () throws GLib.Error {
-        return this.get_bool ("general", AVC_TRANSCODER_KEY);
+        return this.get_bool (GENERAL_SECTION, AVC_TRANSCODER_KEY);
     }
 
     public bool get_allow_upload () throws GLib.Error {
-        return this.get_bool ("general", ALLOW_UPLOAD_KEY);
+        return this.get_bool (GENERAL_SECTION, ALLOW_UPLOAD_KEY);
     }
 
     public bool get_allow_deletion () throws GLib.Error {
-        return this.get_bool ("general", ALLOW_DELETION_KEY);
+        return this.get_bool (GENERAL_SECTION, ALLOW_DELETION_KEY);
     }
 
     public string get_log_levels () throws GLib.Error {
-        return this.get_string ("general", LOG_LEVELS_KEY);
+        return this.get_string (GENERAL_SECTION, LOG_LEVELS_KEY);
     }
 
     public string get_plugin_path () throws GLib.Error {
-        return this.get_string ("general", PLUGIN_PATH_KEY);
+        return this.get_string (GENERAL_SECTION, PLUGIN_PATH_KEY);
     }
 
     public string get_video_upload_folder () throws GLib.Error {
-        return this.get_string ("general", VIDEO_UPLOAD_DIR_PATH_KEY);
+        return this.get_string (GENERAL_SECTION, VIDEO_UPLOAD_DIR_PATH_KEY);
     }
 
     public string get_music_upload_folder () throws GLib.Error {
-        return this.get_string ("general", MUSIC_UPLOAD_DIR_PATH_KEY);
+        return this.get_string (GENERAL_SECTION, MUSIC_UPLOAD_DIR_PATH_KEY);
     }
 
     public string get_picture_upload_folder () throws GLib.Error {
-        return this.get_string ("general", PICTURE_UPLOAD_DIR_PATH_KEY);
+        return this.get_string (GENERAL_SECTION, PICTURE_UPLOAD_DIR_PATH_KEY);
     }
 
     public static UserConfig get_default () throws Error {
