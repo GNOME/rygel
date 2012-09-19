@@ -47,13 +47,13 @@ AM_CFLAGS = \
 
 RYGEL_BASE_LIBS = \
 	$(LIBGUPNP_LIBS) \
-	$(LIBGUPNP_AV_LIBS) \
 	$(GEE_LIBS) \
 	$(UUID_LIBS) \
 	$(COVERAGE_LIBS)
 
 RYGEL_COMMON_LIBS = \
 	$(RYGEL_BASE_LIBS) \
+	$(LIBGUPNP_AV_LIBS) \
 	$(top_builddir)/src/librygel-core/librygel-core-2.0.la
 
 RYGEL_COMMON_SERVER_LIBS = \

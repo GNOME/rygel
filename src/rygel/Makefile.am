@@ -28,6 +28,7 @@ rygel_VALAFLAGS = \
 rygel_LDADD = \
 	$(top_builddir)/src/librygel-core/librygel-core-2.0.la \
 	$(top_builddir)/src/librygel-server/librygel-server-2.0.la \
+	$(LIBGUPNP_AV_LIBS) \
 	$(RYGEL_BASE_LIBS)
 
 rygel_LDFLAGS = -export-dynamic
