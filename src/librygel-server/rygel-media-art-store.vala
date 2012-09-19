@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2010 Jens Georg <mail@jensge.org>.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Jens Georg <mail@jensge.org>
  *
@@ -25,6 +26,11 @@ internal errordomain MediaArtStoreError {
     NO_MEDIA_ART
 }
 
+/**
+ * This maps RygelMusicItem objects to their cached cover art,
+ * implementing the GNOME [[https://live.gnome.org/MediaArtStorageSpec|MediaArt storage specification]]
+ * and the simplified version that Banshee uses.
+ */
 public class Rygel.MediaArtStore : GLib.Object {
     private const string PLACEHOLDER_HASH = "7215ee9c7d9dc229d2921a40e899ec5f";
     private const string invalid_chars = "()[]<>{}_!@#$^&*+=|\\/\"'?~";
