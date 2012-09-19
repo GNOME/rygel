@@ -2,10 +2,7 @@ include ../../common.am
 include $(srcdir)/filelist.am
 
 AM_CFLAGS += \
-	$(LIBGUPNP_DLNA_CFLAGS) \
-	$(LIBSOUP_CFLAGS) \
 	$(LIBGSTREAMER_CFLAGS) \
-	$(GST_PBU_CFLAGS) \
 	-DSMALL_ICON_DIR='"$(smallicondir)"' \
 	-DBIG_ICON_DIR='"$(bigicondir)"' -include config.h \
 	-DLOCALEDIR=\""$(datadir)/locale"\" -DG_LOG_DOMAIN='"Rygel"'
@@ -26,11 +23,8 @@ librygel_core_2_0_la_VALAFLAGS = \
 	$(RYGEL_COMMON_VALAFLAGS)
 
 librygel_core_2_0_la_LIBADD = \
-	$(GST_PBU_LIBS) \
 	$(RYGEL_BASE_LIBS) \
-	$(LIBGUPNP_DLNA_LIBS) \
-	$(GIO_LIBS) \
-	$(LIBSOUP_LIBS)
+	$(GIO_LIBS)
 
 RYGEL_CORE_VERSION=1:0:0
 librygel_core_2_0_la_LDFLAGS = -version-info $(RYGEL_CORE_VERSION)
