@@ -56,7 +56,11 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
      */
     public int color_depth { get; set; default = -1; }
 
+    /**
+     * Thumbnail pictures to represent the video.
+     */
     public ArrayList<Thumbnail> thumbnails { get; protected set; }
+
     public ArrayList<Subtitle> subtitles;
 
     public VideoItem (string         id,

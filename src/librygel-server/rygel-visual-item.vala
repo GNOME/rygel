@@ -50,6 +50,9 @@ public interface Rygel.VisualItem : MediaItem {
      */
     public abstract int color_depth { get; set; }
 
+    /**
+     * Thumbnail pictures to represent the video or image resource.
+     */
     public abstract ArrayList<Thumbnail> thumbnails { get; protected set; }
 
     internal void add_thumbnail_for_uri (string uri, string mime_type) {

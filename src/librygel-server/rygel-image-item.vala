@@ -53,6 +53,9 @@ public class Rygel.ImageItem : MediaItem, VisualItem {
      */
     public int color_depth { get; set; default = -1; }
 
+    /**
+     * Thumbnail pictures to represent the image.
+     */
     public ArrayList<Thumbnail> thumbnails { get; protected set; }
 
     public ImageItem (string         id,
