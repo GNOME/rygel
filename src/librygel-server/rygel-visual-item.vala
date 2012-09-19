@@ -32,8 +32,6 @@ using Gst;
 public interface Rygel.VisualItem : MediaItem {
     public abstract int width { get; set; }
     public abstract int height { get; set; }
-    public abstract int pixel_width { get; set; }
-    public abstract int pixel_height { get; set; }
     public abstract int color_depth { get; set; }
 
     public abstract ArrayList<Thumbnail> thumbnails { get; protected set; }

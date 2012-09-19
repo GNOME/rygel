@@ -110,8 +110,6 @@ public class Rygel.External.ItemFactory {
         visual.width = this.get_int (props, "Width");
         visual.height = this.get_int (props, "Height");
         visual.color_depth = this.get_int (props, "ColorDepth");
-        visual.pixel_width = this.get_int (props, "PixelWidth");
-        visual.pixel_height = this.get_int (props, "PixelHeight");
 
         var value = props.lookup ("Thumbnail");
         if (value != null) {

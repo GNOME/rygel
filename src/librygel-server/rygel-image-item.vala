@@ -33,8 +33,6 @@ public class Rygel.ImageItem : MediaItem, VisualItem {
 
     public int width { get; set; default = -1; }
     public int height { get; set; default = -1; }
-    public int pixel_width { get; set; default = -1; }
-    public int pixel_height { get; set; default = -1; }
     public int color_depth { get; set; default = -1; }
 
     public ArrayList<Thumbnail> thumbnails { get; protected set; }

@@ -403,8 +403,6 @@ private class Rygel.AudioItem : MediaItem {
 private interface Rygel.VisualItem : MediaItem {
     public abstract int width { get; set; }
     public abstract int height { get; set; }
-    public abstract int pixel_width { get; set; }
-    public abstract int pixel_height { get; set; }
     public abstract int color_depth { get; set; }
 
     public abstract ArrayList<Thumbnail> thumbnails { get; protected set; }
@@ -421,8 +419,6 @@ private interface Rygel.VisualItem : MediaItem {
 private class Rygel.VideoItem : AudioItem, VisualItem {
     public int width { get; set; default = -1; }
     public int height { get; set; default = -1; }
-    public int pixel_width { get; set; default = -1; }
-    public int pixel_height { get; set; default = -1; }
     public int color_depth { get; set; default = -1; }
 
     private ArrayList<Thumbnail> ts;
