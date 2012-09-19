@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2008,2010 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
@@ -21,6 +22,11 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+/**
+ * This is the base class for every Rygel implementation of a UPnP media
+ * server. It should be used either for a real plug-in for the rygel process or used
+ * in-process via the librygel-server API (see the standalone-server.c example).
+ */
 public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
     private static const string MEDIA_SERVER_DESC_PATH =
                                 BuildConfig.DATA_DIR + "/xml/MediaServer2.xml";

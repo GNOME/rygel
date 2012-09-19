@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *
@@ -22,8 +23,10 @@
 
 using GUPnP;
 
-// Represents a search expression that consists of two strings joined by a
-// relational operator.
+/**
+ * This is a parsed UPnP search expression consisting of two strings joined by a
+ * relational operator such as such <, <=, ==, !=, >, >=, derivedFrom or exists.
+ */
 public class Rygel.RelationalExpression :
              Rygel.SearchExpression<SearchCriteriaOp,string,string> {
     internal const string CAPS = "@id,@parentID,@refID,upnp:class," +

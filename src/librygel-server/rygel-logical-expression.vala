@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *
@@ -25,8 +26,10 @@ public enum Rygel.LogicalOperator {
     OR
 }
 
-// Represents a search expression that consists of two search expressions joined
-// by a logical operator
+/**
+ * This is a parsed UPnP search expression consisting of two other search expressions
+ * joined by a boolean operator such as AND or OR.
+ */
 public class Rygel.LogicalExpression :
              Rygel.SearchExpression<LogicalOperator,
                                     SearchExpression,
