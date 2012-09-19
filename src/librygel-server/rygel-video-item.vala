@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2010 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
@@ -34,8 +35,25 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
 
     public string author;
 
+    //TODO: This property documentation is not used.
+    //See valadoc bug: https://bugzilla.gnome.org/show_bug.cgi?id=684367
+
+    /**
+     * The width of the item in pixels.
+     * A value of -1 means that the width is unknown and will not, or did not, appear in DIDL-Lite XML.
+     */
     public int width { get; set; default = -1; }
+
+    /**
+     * The height of the item in pixels.
+     * A value of -1 means that the height is unknown and will not, or did not, appear in DIDL-Lite XML.
+     */
     public int height { get; set; default = -1; }
+
+    /**
+     * The number of bits per pixel used to represent the video resource.
+     * A value of -1 means that the color depth is unknown and will not, or did not, appear in DIDL-Lite XML.
+     */
     public int color_depth { get; set; default = -1; }
 
     public ArrayList<Thumbnail> thumbnails { get; protected set; }
