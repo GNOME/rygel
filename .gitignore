@@ -78,6 +78,11 @@ tests/rygel-seekable-response-test
 tests/rygel-http-post-test
 tests/rygel-album-art-spec-test
 tests/rygel-http-seekable-response-test
+tests/rygel-http-response-test
+tests/rygel-item-creator-test
+tests/rygel-regression
+tests/rygel-searchable-container-test
+tests/rygel-playbin-renderer-test
+tests/rygel-user-config-test
 doc/rygel.1
 doc/rygel.conf.5
-
