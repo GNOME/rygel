@@ -194,7 +194,6 @@ public class Rygel.HTTPGetTest : GLib.Object {
     private void on_client_completed (StateMachine client) {
         if (requests.size > 0) {
             this.start_next_test_request ();
-            this.client.run.begin ();
         } else {
             this.main_loop.quit ();
             this.client_done = true;
