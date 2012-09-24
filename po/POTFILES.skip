@@ -14,7 +14,6 @@ src/plugins/mediathek/rygel-mediathek-root-container.vala
 src/plugins/mediathek/rygel-mediathek-rss-container.vala
 src/plugins/mediathek/rygel-mediathek-soup-utils.vala
 src/plugins/mediathek/rygel-mediathek-video-item-factory.vala
-src/librygel-core/rygel-cmdline-config.c
 src/librygel-core/rygel-configuration.c
 src/librygel-core/rygel-connection-manager.c
 src/librygel-core/rygel-dbus-interface.c
@@ -31,7 +30,6 @@ src/librygel-core/rygel-resource-info.c
 src/librygel-core/rygel-root-device.c
 src/librygel-core/rygel-root-device-factory.c
 src/librygel-core/rygel-state-machine.c
-src/librygel-core/rygel-user-config.c
 src/librygel-core/rygel-xml-utils.c
 src/librygel-renderer/rygel-av-transport.c
 src/librygel-renderer/rygel-changelog.c

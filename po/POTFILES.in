@@ -70,7 +70,6 @@ src/plugins/tracker/rygel-tracker-albums.vala
 src/plugins/tracker/rygel-tracker-artists.vala
 src/plugins/tracker/rygel-tracker-genre.vala
 src/plugins/tracker/rygel-tracker-titles.vala
-src/librygel-core/rygel-cmdline-config.vala
 src/librygel-core/rygel-configuration.vala
 src/librygel-core/rygel-connection-manager.vala
 src/librygel-core/rygel-icon-info.vala
@@ -82,7 +81,6 @@ src/librygel-core/rygel-resource-info.vala
 src/librygel-core/rygel-root-device-factory.vala
 src/librygel-core/rygel-root-device.vala
 src/librygel-core/rygel-state-machine.vala
-src/librygel-core/rygel-user-config.vala
 src/librygel-renderer/rygel-av-transport.vala
 src/librygel-renderer/rygel-changelog.vala
 src/librygel-renderer/rygel-gst-utils.vala
