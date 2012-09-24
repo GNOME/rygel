@@ -1,6 +1,9 @@
 include ../../common.am
 include $(srcdir)/filelist.am
 
+librygel_renderer_includedir=$(includedir)/rygel-1.0
+librygel_renderer_include_HEADERS = rygel-renderer.h
+
 lib_LTLIBRARIES = librygel-renderer-1.0.la
 
 LIBRYGEL_RENDERER_VERSION=0:0:0
