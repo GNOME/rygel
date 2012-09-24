@@ -10,6 +10,7 @@ noinst_PROGRAMS = standalone-server
 standalone_server_SOURCES = standalone-server.c
 standalone_server_LDADD = \
 	$(top_builddir)/src/librygel-server/librygel-server-2.0.la \
+	$(LIBGIO_LIBS) \
 	$(RYGEL_COMMON_LIBS)
 
 if HAVE_GSTREAMER
