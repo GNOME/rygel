@@ -25,7 +25,7 @@ librygel_core_2_0_la_VALAFLAGS = \
 librygel_core_2_0_la_LIBADD = \
 	$(RYGEL_BASE_LIBS) \
 	$(LIBGSSDP_LIBS) \
-	$(GIO_LIBS)
+	$(LIBGIO_LIBS)
 
 RYGEL_CORE_VERSION=1:0:0
 librygel_core_2_0_la_LDFLAGS = -version-info $(RYGEL_CORE_VERSION)
