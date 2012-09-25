@@ -1,3 +1,46 @@
+0.16.0
+======
+
+A new stable release for Rygel!
+
+Changes compared to 0.15.4:
+
+- Install header files for librygel-server and librygel-renderer.
+- Add more API documentation.
+- Fix Rygel HTTP GET test failure on recent libsoup.
+
+Added/updated translations
+ - bg, courtesy of Alexander Shopov
+ - ca, courtesy of Joan Duran
+ - ca@valencia, courtesy of Joan Duran
+ - cs, courtesy of Marek Černocký
+ - de, courtesy of Mario Blättermann
+ - et, courtesy of Mattias Põldaru
+ - hi, courtesy of rajesh
+ - lv, courtesy of Rūdolfs Mazurs
+ - pa, courtesy of A S Alam
+ - ru, courtesy of Yuri Myasoedov
+ - th, courtesy of Akom Chotiphantawanon
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=684387
+
+All contributors to this release:
+  Murray Cumming <murrayc@openismus.com>
+  Yuri Myasoedov <omerta13@yandex.ru>
+  Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+  Rajesh Ranjan <rranjan@redhat.com>
+  Mattias Põldaru <mahfiaz@gmail.com>
+  Mario Blättermann <mario.blaettermann@gmail.com>
+  Marek Černocký <marek@manet.cz>
+  Krzesimir Nowak <krnowak@openismus.com>
+  Joan Duran <jodufi@gmail.com>
+  Jens Georg <mail@jensge.org>
+  Carles Ferrando <carles.ferrando@gmail.com>
+  A S Alam <aalam@users.sf.net>
+  Alexander Shopov <ash@kambanaria.org>
+  Akom Chotiphantawanon <knight2000@gmail.com>
+
 0.15.4
 ======
 
