@@ -21,6 +21,7 @@ librygel_server_2_0_la_VALAFLAGS = \
 
 librygel_server_2_0_la_LIBADD = \
 	$(RYGEL_COMMON_LIBS) \
+	$(UUID_LIBS) \
 	$(LIBGIO_LIBS) \
 	$(LIBSOUP_LIBS) \
 	$(LIBGSSDP_LIBS)

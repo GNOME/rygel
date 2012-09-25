@@ -24,6 +24,7 @@ librygel_core_2_0_la_VALAFLAGS = \
 
 librygel_core_2_0_la_LIBADD = \
 	$(RYGEL_BASE_LIBS) \
+	$(UUID_LIBS) \
 	$(LIBGSSDP_LIBS) \
 	$(LIBGIO_LIBS)
 
