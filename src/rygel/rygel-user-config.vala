@@ -221,14 +221,13 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     }
 
     public static UserConfig get_default () throws Error {
-        if (config == null) {
-            var path = Path.build_filename
-                                        (Environment.get_user_config_dir (),
-                                         CONFIG_FILE);
-            config = new UserConfig (path);
+        if (UserConfig.config == null) {
+            var path = Path.build_filename (Environment.get_user_config_dir (),
+                                            CONFIG_FILE);
+            UserConfig.config = new UserConfig (path);
         }
 
-        return config;
+        return UserConfig.config;
     }
 
     private void initialize (string local_path,
