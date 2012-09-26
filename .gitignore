@@ -8,6 +8,7 @@
 *.orig
 *.pc
 .*.swp
+.swp
 .deps
 .libs
 stamp-*
@@ -67,6 +68,8 @@ src/librygel-server/rygel-server.h
 src/librygel-server/rygel-server-1.0.vapi
 src/librygel-renderer/rygel-renderer.h
 src/librygel-renderer/rygel-renderer-1.0.vapi
+src/media-engines/gstreamer/rygel-media-engine-gst.h
+src/media-engines/gstreamer/rygel-media-engine-gst.vapi
 src/ui/rygel-preferences
 !src/rygel/cstuff.c
 tests/rygel-http-byte-seek-test
@@ -86,3 +89,5 @@ tests/rygel-playbin-renderer-test
 tests/rygel-user-config-test
 doc/rygel.1
 doc/rygel.conf.5
+examples/standalone-renderer
+examples/standalone-server
