@@ -138,7 +138,9 @@ namespace Rygel.MediaExport.ItemFactory {
 
         item.width = (int) video_info.get_width ();
         item.height = (int) video_info.get_height ();
-        item.color_depth = (int) video_info.get_depth ();
+
+        var color_depth = (int) video_info.get_depth ();
+        item.color_depth = (color_depth == 0) ? -1 : color_depth;
 
         return item;
     }
@@ -152,7 +154,9 @@ namespace Rygel.MediaExport.ItemFactory {
 
         item.width = (int) video_info.get_width ();
         item.height = (int) video_info.get_height ();
-        item.color_depth = (int) video_info.get_depth ();
+
+        var color_depth = (int) video_info.get_depth ();
+        item.color_depth = (color_depth == 0) ? -1 : color_depth;
 
         return item;
     }
