@@ -12,9 +12,7 @@ librygel_renderer_1_0_la_SOURCES = \
 	$(LIBRYGEL_RENDERER_VAPI_SOURCE_FILES) \
 	$(LIBRYGEL_RENDERER_NONVAPI_SOURCE_FILES)
 
-librygel_renderer_1_0_la_CFLAGS = \
-	$(AM_CFLAGS) \
-	$(LIBGSTREAMER_CFLAGS)
+AM_CFLAGS += -DG_LOG_DOMAIN=\"Rygel\"
 
 librygel_renderer_1_0_la_VALAFLAGS = \
 	-H rygel-renderer.h --library=rygel-renderer-1.0 \

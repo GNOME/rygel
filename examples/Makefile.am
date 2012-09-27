@@ -3,6 +3,8 @@ include ../common.am
 AM_CFLAGS += \
 	-I$(top_builddir)/src/librygel-renderer \
 	-I$(top_srcdir)/src/librygel-renderer \
+	-I$(top_builddir)/src/librygel-renderer-gst \
+	-I$(top_srcdir)/src/librygel-renderer-gst \
 	-I$(top_builddir)/src/librygel-server \
 	-I$(top_srcdir)/src/librygel-server \
 	-I$(top_builddir)/src/rygel \
@@ -13,6 +15,7 @@ noinst_PROGRAMS = standalone-renderer standalone-server
 standalone_renderer_SOURCES = standalone-renderer.c
 standalone_renderer_LDADD = \
 	$(top_builddir)/src/librygel-renderer/librygel-renderer-1.0.la \
+	$(top_builddir)/src/librygel-renderer-gst/librygel-renderer-gst-1.0.la \
 	$(LIBGSTREAMER_LIBS) \
 	$(RYGEL_COMMON_LIBS)
 

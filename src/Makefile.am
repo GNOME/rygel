@@ -1,4 +1,7 @@
-SUBDIRS = librygel-core librygel-renderer librygel-server rygel media-engines plugins
+SUBDIRS = librygel-core librygel-renderer librygel-server librygel-renderer-gst
+
+SUBDIRS += rygel media-engines plugins
+
 if BUILD_UI
 SUBDIRS += ui
 endif

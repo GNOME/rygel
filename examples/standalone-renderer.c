@@ -36,7 +36,7 @@
  * to tell it which media file to show.
  */
 
-#include "rygel-renderer.h"
+#include "rygel-renderer-gst.h"
 #include "rygel-core.h"
 
 int main(int argc, char *argv[])

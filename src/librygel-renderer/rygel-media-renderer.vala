@@ -19,34 +19,40 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-internal class Plugin : Rygel.MediaServerPlugin {
-    public Plugin (Rygel.MediaContainer root_container) {
-        base (root_container, _("LibRygelServer"));
+internal class Plugin : Rygel.MediaRendererPlugin {
+    private Rygel.MediaPlayer player;
+
+    public Plugin (Rygel.MediaPlayer root_container) {
+        base ("LibRygelRenderer", _("LibRygelRenderer"));
+    }
+
+    public override Rygel.MediaPlayer? get_player () {
+        return this.player;
     }
 }
 
 /**
- * This class may be used to implement in-process UPnP-AV media servers.
+ * This class may be used to implement in-process UPnP-AV media renderers.
  *
  * Call rygel_media_device_add_interface() on the RygelMediaServer to allow it
  * to serve media via that network interface.
  *
- * See the standalone-server.c example.
+ * See the standalone-renderer.c example.
  */
-public class Rygel.MediaServer : MediaDevice {
+public class Rygel.MediaRenderer : MediaDevice {
 
     /**
-     * Create a MediaServer to serve the media in the RygelMediaContainer.
+     * Create a MediaRenderer to serve the media in the RygelMediaContainer.
      * For instance, you might use a RygelSimpleContainer. Alternatively,
      * you might use your own RygelMediaContainer implementation.
      *
      * Assuming that the RygelMediaContainer is correctly implemented,
      * the RygelMediaServer will respond appropriately to changes in the
-     * RygelMediaContainer. 
+     * RygelMediaContainer.
      */
-    public MediaServer (string title, MediaContainer root_container) {
+    public MediaRenderer (string title, MediaPlayer player) {
         base ();
-        this.plugin = new global::Plugin (root_container);
+        this.plugin = new global::Plugin (player);
         this.plugin.title = title;
     }
 }

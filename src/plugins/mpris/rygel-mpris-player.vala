@@ -103,7 +103,7 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
             int64 dur = 0;
 
             if (val != null) {
-                dur = (int64) val * 1000;
+                dur = (int64) val;
             }
 
             return dur;
@@ -112,7 +112,7 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
 
     public int64 position {
         get {
-            return this.actual_player.position * 1000;
+            return this.actual_player.position;
         }
     }
 
@@ -124,11 +124,11 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
         actual_player.g_properties_changed.connect (this.on_properties_changed);
     }
 
-    public bool seek (Gst.ClockTime time) {
+    public bool seek (int64 time) {
         var ret = false;
 
         try {
-            this.actual_player.seek ((int64) (time / 1000));
+            this.actual_player.seek (time);
             ret = true;
         } catch (Error error) {}
 

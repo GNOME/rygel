@@ -1,16 +1,14 @@
 LIBRYGEL_RENDERER_VAPI_SOURCE_FILES = \
-	rygel-playbin-player.vala \
-	rygel-playbin-plugin.vala \
 	rygel-media-renderer-plugin.vala \
 	rygel-media-player.vala \
-	rygel-playbin-renderer.vala
+	rygel-media-renderer.vala
 
 LIBRYGEL_RENDERER_NONVAPI_SOURCE_FILES = \
 	rygel-av-transport.vala \
 	rygel-rendering-control.vala \
 	rygel-sink-connection-manager.vala \
+	rygel-time-utils.vala \
 	rygel-changelog.vala \
-	rygel-gst-utils.vala \
 	rygel-volume.vala
 
-LIBRYGEL_RENDERER_VALAFLAGS_PKG = --pkg gstreamer-0.10
+LIBRYGEL_RENDERER_VALAFLAGS_PKG =

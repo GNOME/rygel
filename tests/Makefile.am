@@ -104,23 +104,27 @@ rygel_playbin_renderer_test_SOURCES = rygel-playbin-renderer-test.vala
 
 rygel_playbin_renderer_test_VALAFLAGS = \
 	$(AM_VALAFLAGS) \
+	--pkg rygel-renderer-gst-1.0 \
 	--pkg rygel-renderer-1.0 \
 	--pkg rygel-core-1.0 \
 	--vapidir $(top_builddir)/src/librygel-renderer \
+	--vapidir $(top_builddir)/src/librygel-renderer-gst \
 	--vapidir $(top_builddir)/src/librygel-core
 
 rygel_playbin_renderer_test_LDADD = \
-	$(LDADD) \
 	$(top_builddir)/src/librygel-renderer/librygel-renderer-1.0.la \
-	$(top_builddir)/src/librygel-core/librygel-core-1.0.la
+	$(top_builddir)/src/librygel-renderer-gst/librygel-renderer-gst-1.0.la \
+	$(top_builddir)/src/librygel-core/librygel-core-1.0.la \
+	$(LDADD)
 
 rygel_playbin_renderer_test_CFLAGS = \
 	$(AM_CFLAGS) \
 	-I$(top_builddir)/src/librygel-renderer \
 	-I$(top_srcdir)/src/librygel-renderer \
+	-I$(top_builddir)/src/librygel-renderer-gst \
+	-I$(top_srcdir)/src/librygel-renderer-gst \
 	-I$(top_builddir)/src/librygel-core \
 	-I$(top_srcdir)/src/librygel-core
-
 
 rygel_user_config_test_SOURCES = rygel-configuration.vala \
 				 rygel-user-config.vala \

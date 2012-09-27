@@ -22,8 +22,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Gst;
-
 /**
  * Interface for mapping AVTransport:2 methods to the specific implementation.
  *
@@ -33,23 +31,27 @@ public interface Rygel.MediaPlayer : GLib.Object {
     public abstract string playback_state { owned get; set; }
     public abstract string? uri { owned get; set; }
     public abstract double volume { get; set; }
+
+    /// Duration of the current media in microseconds
     public abstract int64 duration { get; }
     public abstract string? metadata { owned get; set; }
     public abstract string? mime_type { owned get; set; }
     public abstract string? content_features { owned get; set; }
     public string duration_as_str {
         owned get {
-            return GstUtils.time_to_string ((ClockTime) this.duration);
-        }
-    }
-    public abstract int64 position { get; }
-    public string position_as_str {
-        owned get {
-            return GstUtils.time_to_string ((ClockTime) this.position);
+            return TimeUtils.time_to_string (duration);
         }
     }
 
-    public abstract bool seek (ClockTime time);
+    /// Position in the current media in microseconds
+    public abstract int64 position { get; }
+    public string position_as_str {
+        owned get {
+            return TimeUtils.time_to_string (position);
+        }
+    }
+
+    public abstract bool seek (int64 time);
     public abstract string[] get_protocols ();
     public abstract string[] get_mime_types ();
 }
