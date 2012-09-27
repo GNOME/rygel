@@ -37,6 +37,7 @@
  */
 
 #include "rygel-renderer-gst.h"
+#include "rygel-renderer-gst.h"
 #include "rygel-core.h"
 
 int main(int argc, char *argv[])

@@ -58,38 +58,69 @@ VALAFLAGS="--target-glib=2.32 $VALAFLAGS"
 PKG_CHECK_MODULES(LIBGSSDP, gssdp-1.0 >= $GSSDP_REQUIRED)
 PKG_CHECK_MODULES(LIBGUPNP, gupnp-1.0 >= $GUPNP_REQUIRED)
 PKG_CHECK_MODULES(LIBGUPNP_AV, gupnp-av-1.0 >= $GUPNP_AV_REQUIRED)
-PKG_CHECK_MODULES(LIBGUPNP_DLNA, gupnp-dlna-1.0 >= $GUPNP_DLNA_REQUIRED)
-PKG_CHECK_MODULES(LIBGSTREAMER, gstreamer-0.10 >= $GSTREAMER_REQUIRED)
-PKG_CHECK_MODULES(GSTREAMER_BASE, gstreamer-base-0.10 >= $GSTREAMER_REQUIRED)
-PKG_CHECK_MODULES(GST_PBU, gstreamer-pbutils-0.10 >= $GSTPBU_REQUIRED)
 PKG_CHECK_MODULES(LIBGIO, gio-2.0 >= $GIO_REQUIRED)
 PKG_CHECK_MODULES(GEE, gee-1.0 >= $GEE_REQUIRED)
 PKG_CHECK_MODULES(UUID, uuid >= $UUID_REQUIRED)
 PKG_CHECK_MODULES(LIBSOUP, libsoup-2.4 >= $LIBSOUP_REQUIRED)
 
+dnl Media engine to use
+AC_ARG_WITH([media_engine],
+            AS_HELP_STRING(
+                [--with-media-engine=@<:@gstreamer|none@:>@],
+                [Media Engine to use]),
+            [with_media_engine="$withval"],
+            [with_media_engine="gstreamer"])
+
+AS_IF([test "x$with_media_engine" = "xgstreamer"],
+      [
+        PKG_CHECK_MODULES(LIBGUPNP_DLNA, gupnp-dlna-1.0 >= $GUPNP_DLNA_REQUIRED)
+        PKG_CHECK_MODULES(LIBGSTREAMER, gstreamer-0.10 >= $GSTREAMER_REQUIRED)
+        PKG_CHECK_MODULES(GSTREAMER_BASE, gstreamer-base-0.10 >= $GSTREAMER_REQUIRED)
+        PKG_CHECK_MODULES(GST_PBU, gstreamer-pbutils-0.10 >= $GSTPBU_REQUIRED)
+        RYGEL_ADD_STAMP([src/librygel-renderer-gst/librygel_renderer_gst_1_0_la_vala.stamp])
+        enable_gstreamer="yes"
+      ],
+      [enable_gstreamer="no"])
+AM_CONDITIONAL([HAVE_GSTREAMER],[test "x$enable_gstreamer" = "xyes"])
+
 dnl Add plugins
-RYGEL_ADD_PLUGIN([test],[Test],[no])
-RYGEL_ADD_PLUGIN([tracker],[Tracker],[yes])
 RYGEL_ADD_PLUGIN([external],[MediaServer2 DBus consumer],[yes])
 RYGEL_ADD_PLUGIN([mpris],[MPRIS2 DBus consumer],[yes])
-RYGEL_ADD_PLUGIN([playbin],[GStreamer playbin],[yes])
 RYGEL_ADD_PLUGIN([mediathek],[ZDF Mediathek],[no])
-RYGEL_ADD_PLUGIN([media-export],[MediaExport],[yes])
-RYGEL_ADD_PLUGIN([gst-launch],[GStreamer launchline],[no])
+RYGEL_ADD_PLUGIN([tracker],[Tracker],[yes])
+
+AS_IF([test "x$with_media_engine" = "xgstreamer"],
+      [
+        RYGEL_ADD_PLUGIN([test],[Test],[no])
+        RYGEL_ADD_PLUGIN([playbin],[GStreamer playbin],[yes])
+        RYGEL_ADD_PLUGIN([media-export],[MediaExport],[yes])
+        RYGEL_ADD_PLUGIN([gst-launch],[GStreamer launchline],[no])
+      ],
+      [
+        RYGEL_DISABLE_PLUGIN([test])
+        RYGEL_DISABLE_PLUGIN([playbin])
+        RYGEL_DISABLE_PLUGIN([media-export])
+        RYGEL_DISABLE_PLUGIN([gst-launch])
+      ])
 
 dnl Explicitly add stamp files for targets that are not plugins
+RYGEL_ADD_STAMP([src/librygel-core/librygel_core_1_0_la_vala.stamp])
+RYGEL_ADD_STAMP([src/librygel-server/librygel_server_1_0_la_vala.stamp])
+RYGEL_ADD_STAMP([src/librygel-renderer/librygel_renderer_1_0_la_vala.stamp])
 RYGEL_ADD_STAMP([src/rygel/rygel_vala.stamp])
 RYGEL_ADD_STAMP([src/ui/rygel_preferences_vala.stamp])
 
 RYGEL_CHECK_VALA([$VALA_REQUIRED],
                  [gupnp-1.0
                   gupnp-av-1.0
-                  gupnp-dlna-1.0
-                  gstreamer-0.10
-                  gstreamer-pbutils-0.10
                   gio-2.0
                   gee-1.0
                   posix])
+
+AS_IF([test "x$with_media_engine" = "xgstreamer"],
+      [
+        RYGEL_CHECK_PACKAGES([gupnp-dlna-1.0 gstreamer-0.10 gstreamer-pbutils-0.10])
+      ])
 
 dnl Debugging
 AC_ARG_ENABLE(debug,
@@ -280,6 +311,7 @@ echo "
         VALAFLAGS:              ${VALAFLAGS}
         uninstalled:            ${enable_uninstalled}
         preferences ui:         ${HAVE_GTK}
+        Media Engine:           ${with_media_engine}
     Plugins:
         test:                   ${enable_test_plugin}
         tracker:                ${enable_tracker_plugin}

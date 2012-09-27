@@ -73,6 +73,17 @@ AC_DEFUN([RYGEL_ADD_PLUGIN],
         [$3])
 ])
 
+AC_DEFUN([_RYGEL_DISABLE_PLUGIN_INTERNAL],
+[
+    AM_CONDITIONAL(m4_toupper(build_$1_plugin), false)
+    enable_$1_plugin="n/a"
+])
+
+AC_DEFUN([RYGEL_DISABLE_PLUGIN],
+[
+    _RYGEL_DISABLE_PLUGIN_INTERNAL(m4_translit([$1],[-],[_]))
+])
+
 AC_DEFUN([RYGEL_CHECK_VALA],
 [
     AC_ARG_ENABLE([vala],

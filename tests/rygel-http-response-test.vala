@@ -49,8 +49,6 @@ public class Rygel.HTTPResponseTest : GLib.Object {
     private Error error;
 
     public static int main (string[] args) {
-        Gst.init (ref args);
-
         try {
             var test = new HTTPResponseTest.complete ();
             test.run ();

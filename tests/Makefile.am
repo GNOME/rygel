@@ -26,7 +26,7 @@ LDADD = $(LIBGUPNP_LIBS) \
 	$(LIBGUPNP_DLNA_LIBS) \
 	$(COVERAGE_LIBS)
 
-AM_VALAFLAGS = --disable-warnings --thread \
+AM_VALAFLAGS = --disable-warnings \
 	       --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
                --pkg gconf-2.0 --pkg gstreamer-0.10 --pkg gstreamer-base-0.10 \
                --pkg gio-2.0 --pkg gee-1.0 --pkg gstreamer-pbutils-0.10 \
@@ -42,10 +42,8 @@ check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-http-post-test \
 		 rygel-searchable-container-test \
 		 rygel-item-creator-test \
-		 rygel-playbin-renderer-test \
 		 rygel-user-config-test \
-		 rygel-regression \
-		 rygel-environment-test
+		 rygel-regression
 
 TESTS = $(check_PROGRAMS)
 
@@ -99,6 +97,44 @@ rygel_item_creator_test_SOURCES = rygel-item-creator-test.vala \
 				  rygel-search-expression.vala \
 				  rygel-media-engine.vala
 
+rygel_user_config_test_SOURCES = rygel-configuration.vala \
+				 rygel-user-config.vala \
+				 rygel-user-config-test.vala
+
+rygel_user_config_test_VALAFLAGS = \
+	$(AM_VALAFLAGS) \
+	--pkg rygel-build-config
+
+rygel_user_config_test_CFLAGS = \
+	$(AM_CFLAGS) \
+	-DSYS_CONFIG_DIR='"$(sysconfigdir)"'
+
+rygel_regression_SOURCES = \
+	rygel-regression.vala
+
+rygel_regression_VALAFLAGS = \
+	$(AM_VALAFLAGS) \
+	--pkg rygel-server-1.0 \
+	--pkg rygel-core-1.0 \
+	--vapidir $(top_builddir)/src/librygel-server \
+	--vapidir $(top_builddir)/src/librygel-core
+
+rygel_regression_CFLAGS = \
+	$(AM_CFLAGS) \
+	-I$(top_builddir)/src/librygel-server \
+	-I$(top_srcdir)/src/librygel-server \
+	-I$(top_builddir)/src/librygel-core \
+	-I$(top_srcdir)/src/librygel-core
+
+rygel_regression_LDADD = \
+	$(LDADD) \
+	$(top_builddir)/src/librygel-server/librygel-server-1.0.la \
+	$(top_builddir)/src/librygel-core/librygel-core-1.0.la
+
+if HAVE_GSTREAMER
+check_PROGRAMS += \
+	rygel-playbin-renderer-test \
+	rygel-environment-test
 
 rygel_playbin_renderer_test_SOURCES = rygel-playbin-renderer-test.vala
 
@@ -126,45 +162,11 @@ rygel_playbin_renderer_test_CFLAGS = \
 	-I$(top_builddir)/src/librygel-core \
 	-I$(top_srcdir)/src/librygel-core
 
-rygel_user_config_test_SOURCES = rygel-configuration.vala \
-				 rygel-user-config.vala \
-				 rygel-user-config-test.vala
-
-rygel_user_config_test_VALAFLAGS = \
-	$(AM_VALAFLAGS) \
-	--pkg rygel-build-config
-
-rygel_user_config_test_CFLAGS = \
-	$(AM_CFLAGS) \
-	-DSYS_CONFIG_DIR='"$(sysconfigdir)"'
-
-
-rygel_regression_SOURCES = \
-	rygel-regression.vala
-
-rygel_regression_VALAFLAGS = \
-	$(AM_VALAFLAGS) \
-	--pkg rygel-server-1.0 \
-	--pkg rygel-core-1.0 \
-	--vapidir $(top_builddir)/src/librygel-server \
-	--vapidir $(top_builddir)/src/librygel-core
-
-rygel_regression_CFLAGS = \
-	$(AM_CFLAGS) \
-	-I$(top_builddir)/src/librygel-server \
-	-I$(top_srcdir)/src/librygel-server \
-	-I$(top_builddir)/src/librygel-core \
-	-I$(top_srcdir)/src/librygel-core
-
-rygel_regression_LDADD = \
-	$(LDADD) \
-	$(top_builddir)/src/librygel-server/librygel-server-1.0.la \
-	$(top_builddir)/src/librygel-core/librygel-core-1.0.la
-
 rygel_environment_test_SOURCES = rygel-environment-test.vala
 rygel_environment_test_CFLAGS = $(AM_CFLAGS)
 rygel_environment_test_LDADD = $(LDADD)
 rygel_environment_test_VALAFLAGS = $(AM_VALAFLAGS) --pkg gstreamer-0.10
+endif
 
 if ALWAYS_TEST
 all-local: check

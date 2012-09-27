@@ -27,7 +27,6 @@
 
 using Gee;
 using GUPnP;
-using Gst;
 using Tracker;
 
 /**

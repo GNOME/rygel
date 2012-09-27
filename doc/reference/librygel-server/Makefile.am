@@ -16,19 +16,18 @@ VALA_SOURCE_FILES_WITH_PATHS = $(addprefix $(top_srcdir)/src/librygel-server/, $
 # TODO: The need for rygel-build-config here reminds us that we shouldn't need that in librygel-server either.
 # TODO: Why is gstreamer-pbutils-0.10 needed here, but not needed in librygel-server/Makefile.am?
 VALADOC_FLAGS = --force \
-		--vapidir $(top_srcdir)/src/librygel-core \
-		--pkg rygel-core-1.0 \
-		--vapidir $(top_srcdir)/src/librygel-server \
-		$(RYGEL_COMMON_VALAFLAGS_PKG) \
-		$(LIBRYGEL_SERVER_VALAFLAGS_PKG) \
-	        --pkg gstreamer-pbutils-0.10 \
-	        --target-glib=2.32 \
-	        --vapidir=$(rygeldir) \
-	        --pkg rygel-build-config \
-		-b $(top_srcdir)/src/librygel-server \
-		--package-name librygel-server \
-		--package-version 1.0 \
-		$(VALA_SOURCE_FILES_WITH_PATHS)
+	--vapidir $(top_srcdir)/src/librygel-core \
+	--pkg rygel-core-1.0 \
+	--vapidir $(top_srcdir)/src/librygel-server \
+	$(RYGEL_COMMON_VALAFLAGS_PKG) \
+	$(LIBRYGEL_SERVER_VALAFLAGS_PKG) \
+	--target-glib=2.32 \
+	--vapidir=$(rygeldir) \
+	--pkg rygel-build-config \
+	-b $(top_srcdir)/src/librygel-server \
+	--package-name librygel-server \
+	--package-version 1.0 \
+	$(VALA_SOURCE_FILES_WITH_PATHS)
 
 valadoc: $(VALA_SOURCE_FILES_WITH_PATHS)
 	$(AM_V_GEN)$(VALADOC) \

@@ -13,7 +13,10 @@ librygel_test_la_SOURCES = \
 	rygel-test-plugin.vala \
 	$(top_srcdir)/src/media-engines/gstreamer/rygel-media-engine-gst.vapi
 
-librygel_test_la_VALAFLAGS = $(RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS)
+librygel_test_la_VALAFLAGS = \
+	--pkg gstreamer-0.10 \
+	$(RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS)
+
 librygel_test_la_LIBADD = \
 	$(LIBGSTREAMER_LIBS) \
 	$(RYGEL_COMMON_SERVER_LIBS)
