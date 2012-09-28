@@ -1,9 +1,8 @@
-include ../../../common.am
+include $(top_srcdir)/common.am
 
 plugin_LTLIBRARIES = librygel-tracker.la
 
 AM_CFLAGS += -DG_LOG_DOMAIN='"Rygel-Tracker"' \
-    $(LIBGUPNP_DLNA_CFLAGS) \
     $(TRACKER_SPARQL_CFLAGS)
 
 librygel_tracker_la_SOURCES = \
@@ -40,10 +39,11 @@ librygel_tracker_la_SOURCES = \
 	rygel-tracker-plugin-factory.vala \
 	rygel-tracker-interfaces.vala
 
-librygel_tracker_la_VALAFLAGS = --pkg posix \
-	--pkg gupnp-dlna-1.0 \
+librygel_tracker_la_VALAFLAGS = \
+	--pkg posix \
 	--pkg tracker-sparql-0.14 \
 	$(RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS)
-librygel_tracker_la_LIBADD = $(RYGEL_COMMON_SERVER_LIBS) $(LIBGUPNP_DLNA_LIBS) \
+librygel_tracker_la_LIBADD = \
+	$(RYGEL_COMMON_SERVER_LIBS) \
 	$(TRACKER_SPARQL_LIBS)
 librygel_tracker_la_LDFLAGS = $(RYGEL_PLUGIN_LINKER_FLAGS)
