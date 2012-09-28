@@ -54,8 +54,6 @@ public abstract class Rygel.Tracker.ItemFactory {
 
     public ArrayList<string> properties;
 
-    private DLNADiscoverer discoverer;
-
     public ItemFactory (string  category,
                         string  category_iri,
                         string  upnp_class,
@@ -68,10 +66,6 @@ public abstract class Rygel.Tracker.ItemFactory {
         message ("Using %s as upload directory for %s",
                  upload_dir == null ? "none" : upload_dir,
                  upnp_class);
-
-        // FIXME: In order to work around bug#647575, we take mime-type from
-        //        gupnp-dlna rather than Tracker.
-        this.discoverer = new DLNADiscoverer ((ClockTime) SECOND, true, true);
 
         this.properties = new ArrayList<string> ();
 
@@ -131,17 +125,11 @@ public abstract class Rygel.Tracker.ItemFactory {
             item.date = metadata.get_string (Metadata.DATE);
         }
 
-        var profile = null as DLNAProfile;
         if (metadata.is_bound (Metadata.DLNA_PROFILE)) {
             item.dlna_profile = metadata.get_string (Metadata.DLNA_PROFILE);
-            profile = this.discoverer.get_profile (item.dlna_profile);
         }
 
-        if (profile != null) {
-            item.mime_type = profile.mime;
-        } else {
-            item.mime_type = metadata.get_string (Metadata.MIME);
-        }
+        item.mime_type = metadata.get_string (Metadata.MIME);
 
         item.add_uri (uri);
     }
