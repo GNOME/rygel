@@ -267,9 +267,29 @@ public class Rygel.EngineLoader {
     }
 }
 
+public static void log_func (string? domain,
+                             LogLevelFlags flags,
+                             string message) {
+
+    // Ignore critical of gee 0.6 and recent glib
+    if (message.has_prefix ("Read-only property 'read-only-view' on class")) {
+        Log.default_handler (domain, flags, message);
+
+        return;
+    }
+
+    if (LogLevelFlags.LEVEL_CRITICAL in flags ||
+        LogLevelFlags.LEVEL_ERROR in flags ||
+        LogLevelFlags.FLAG_FATAL in flags) {
+        print ("======> FAILED: %s: %s\n", domain ?? "", message);
+        assert_not_reached ();
+    }
+}
+
 public class Rygel.HTTPItemCreatorTest : GLib.Object {
 
     public static int main (string[] args) {
+        Log.set_default_handler (log_func);
         var test = new HTTPItemCreatorTest ();
         test.test_parse_args ();
         test.test_didl_parsing ();
