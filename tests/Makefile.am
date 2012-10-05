@@ -43,9 +43,12 @@ check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-searchable-container-test \
 		 rygel-item-creator-test \
 		 rygel-user-config-test \
-		 rygel-regression
+		 rygel-regression \
+		 rygel-media-engine-test
 
 TESTS = $(check_PROGRAMS)
+
+EXTRA_DIST = $(srcdir)/data/test-data.dat
 
 rygel_http_item_uri_test_SOURCES = rygel-http-item-uri-test.vala \
                                    rygel-http-item-uri.vala
@@ -127,6 +130,31 @@ rygel_regression_CFLAGS = \
 	-I$(top_srcdir)/src/librygel-core
 
 rygel_regression_LDADD = \
+	$(LDADD) \
+	$(top_builddir)/src/librygel-server/librygel-server-1.0.la \
+	$(top_builddir)/src/librygel-core/librygel-core-1.0.la
+
+rygel_media_engine_test_SOURCES = \
+	rygel-media-engine-test.vala
+
+rygel_media_engine_test_VALAFLAGS = \
+	$(AM_VALAFLAGS) \
+	--pkg rygel-server-1.0 \
+	--pkg rygel-core-1.0 \
+	--vapidir $(top_builddir)/src/librygel-server \
+	--vapidir $(top_builddir)/src/librygel-core
+
+rygel_media_engine_test_CFLAGS = \
+	$(AM_CFLAGS) \
+	-DTEST_DATA_FOLDER='"$(abs_srcdir)/data"' \
+	-DTEST_ENGINE_PATH='"$(abs_top_builddir)/src/media-engines"' \
+	-DBUILT_ENGINES='"@BUILT_ENGINES@"' \
+	-I$(top_builddir)/src/librygel-server \
+	-I$(top_srcdir)/src/librygel-server \
+	-I$(top_builddir)/src/librygel-core \
+	-I$(top_srcdir)/src/librygel-core
+
+rygel_media_engine_test_LDADD = \
 	$(LDADD) \
 	$(top_builddir)/src/librygel-server/librygel-server-1.0.la \
 	$(top_builddir)/src/librygel-core/librygel-core-1.0.la
