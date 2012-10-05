@@ -64,6 +64,8 @@ PKG_CHECK_MODULES(UUID, uuid >= $UUID_REQUIRED)
 PKG_CHECK_MODULES(LIBSOUP, libsoup-2.4 >= $LIBSOUP_REQUIRED)
 
 dnl Media engine to use
+BUILT_ENGINES="librygel-media-engine-simple"
+
 AC_ARG_WITH([media_engine],
             AS_HELP_STRING(
                 [--with-media-engine=@<:@gstreamer|none@:>@],
@@ -79,9 +81,11 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
         PKG_CHECK_MODULES(GST_PBU, gstreamer-pbutils-0.10 >= $GSTPBU_REQUIRED)
         RYGEL_ADD_STAMP([src/librygel-renderer-gst/librygel_renderer_gst_1_0_la_vala.stamp])
         enable_gstreamer="yes"
+        BUILT_ENGINES="$BUILT_ENGINES;librygel-media-engine-gst"
       ],
       [enable_gstreamer="no"])
 AM_CONDITIONAL([HAVE_GSTREAMER],[test "x$enable_gstreamer" = "xyes"])
+AC_SUBST([BUILT_ENGINES])
 
 dnl Add plugins
 RYGEL_ADD_PLUGIN([external],[MediaServer2 DBus consumer],[yes])
@@ -95,6 +99,7 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
         RYGEL_ADD_PLUGIN([playbin],[GStreamer playbin],[yes])
         RYGEL_ADD_PLUGIN([media-export],[MediaExport],[yes])
         RYGEL_ADD_PLUGIN([gst-launch],[GStreamer launchline],[no])
+        RYGEL_ADD_STAMP([src/media-engines/gstreamer/librygel_media_engine_gst_la_vala.stamp])
       ],
       [
         RYGEL_DISABLE_PLUGIN([test])
@@ -109,6 +114,7 @@ RYGEL_ADD_STAMP([src/librygel-server/librygel_server_1_0_la_vala.stamp])
 RYGEL_ADD_STAMP([src/librygel-renderer/librygel_renderer_1_0_la_vala.stamp])
 RYGEL_ADD_STAMP([src/rygel/rygel_vala.stamp])
 RYGEL_ADD_STAMP([src/ui/rygel_preferences_vala.stamp])
+RYGEL_ADD_STAMP([src/media-engines/simple/librygel_media_engine_simple_la_vala.stamp])
 
 RYGEL_CHECK_VALA([$VALA_REQUIRED],
                  [gupnp-1.0
@@ -271,6 +277,7 @@ src/rygel/Makefile
 src/ui/Makefile
 src/media-engines/Makefile
 src/media-engines/gstreamer/Makefile
+src/media-engines/simple/Makefile
 src/plugins/Makefile
 data/Makefile
 data/xml/Makefile
