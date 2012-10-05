@@ -117,8 +117,8 @@ rygel_regression_SOURCES = \
 
 rygel_regression_VALAFLAGS = \
 	$(AM_VALAFLAGS) \
-	--pkg rygel-server-1.0 \
-	--pkg rygel-core-1.0 \
+	--pkg rygel-server-2.0 \
+	--pkg rygel-core-2.0 \
 	--vapidir $(top_builddir)/src/librygel-server \
 	--vapidir $(top_builddir)/src/librygel-core
 
@@ -131,16 +131,16 @@ rygel_regression_CFLAGS = \
 
 rygel_regression_LDADD = \
 	$(LDADD) \
-	$(top_builddir)/src/librygel-server/librygel-server-1.0.la \
-	$(top_builddir)/src/librygel-core/librygel-core-1.0.la
+	$(top_builddir)/src/librygel-server/librygel-server-2.0.la \
+	$(top_builddir)/src/librygel-core/librygel-core-2.0.la
 
 rygel_media_engine_test_SOURCES = \
 	rygel-media-engine-test.vala
 
 rygel_media_engine_test_VALAFLAGS = \
 	$(AM_VALAFLAGS) \
-	--pkg rygel-server-1.0 \
-	--pkg rygel-core-1.0 \
+	--pkg rygel-server-2.0 \
+	--pkg rygel-core-2.0 \
 	--vapidir $(top_builddir)/src/librygel-server \
 	--vapidir $(top_builddir)/src/librygel-core
 
@@ -156,8 +156,8 @@ rygel_media_engine_test_CFLAGS = \
 
 rygel_media_engine_test_LDADD = \
 	$(LDADD) \
-	$(top_builddir)/src/librygel-server/librygel-server-1.0.la \
-	$(top_builddir)/src/librygel-core/librygel-core-1.0.la
+	$(top_builddir)/src/librygel-server/librygel-server-2.0.la \
+	$(top_builddir)/src/librygel-core/librygel-core-2.0.la
 
 if HAVE_GSTREAMER
 check_PROGRAMS += \
@@ -168,17 +168,17 @@ rygel_playbin_renderer_test_SOURCES = rygel-playbin-renderer-test.vala
 
 rygel_playbin_renderer_test_VALAFLAGS = \
 	$(AM_VALAFLAGS) \
-	--pkg rygel-renderer-gst-1.0 \
-	--pkg rygel-renderer-1.0 \
-	--pkg rygel-core-1.0 \
+	--pkg rygel-renderer-gst-2.0 \
+	--pkg rygel-renderer-2.0 \
+	--pkg rygel-core-2.0 \
 	--vapidir $(top_builddir)/src/librygel-renderer \
 	--vapidir $(top_builddir)/src/librygel-renderer-gst \
 	--vapidir $(top_builddir)/src/librygel-core
 
 rygel_playbin_renderer_test_LDADD = \
-	$(top_builddir)/src/librygel-renderer/librygel-renderer-1.0.la \
-	$(top_builddir)/src/librygel-renderer-gst/librygel-renderer-gst-1.0.la \
-	$(top_builddir)/src/librygel-core/librygel-core-1.0.la \
+	$(top_builddir)/src/librygel-renderer/librygel-renderer-2.0.la \
+	$(top_builddir)/src/librygel-renderer-gst/librygel-renderer-gst-2.0.la \
+	$(top_builddir)/src/librygel-core/librygel-core-2.0.la \
 	$(LDADD)
 
 rygel_playbin_renderer_test_CFLAGS = \

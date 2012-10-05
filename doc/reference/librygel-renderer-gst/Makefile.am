@@ -17,7 +17,7 @@ VALA_SOURCE_FILES_WITH_PATHS = $(addprefix $(top_srcdir)/src/librygel-renderer-g
 # TODO: Why is gstreamer-pbutils-0.10 needed here, but not needed in librygel-renderer-gst/Makefile.am?
 VALADOC_FLAGS = --force \
 		--vapidir $(top_srcdir)/src/librygel-core \
-		--pkg rygel-core-1.0 \
+		--pkg rygel-core-2.0 \
 		--vapidir $(top_srcdir)/src/librygel-renderer-gst \
 		$(RYGEL_COMMON_VALAFLAGS_PKG) \
 		$(LIBRYGEL_RENDERER_VALAFLAGS_PKG) \
@@ -27,7 +27,7 @@ VALADOC_FLAGS = --force \
 	        --pkg rygel-build-config \
 		-b $(top_srcdir)/src/librygel-renderer-gst \
 		--package-name librygel-renderer-gst \
-		--package-version 1.0 \
+		--package-version 2.0 \
 		$(VALA_SOURCE_FILES_WITH_PATHS)
 
 valadoc: $(VALA_SOURCE_FILES_WITH_PATHS)
@@ -39,8 +39,8 @@ gtkdoc: $(VALA_SOURCE_FILES_WITH_PATHS)
 	@rm -rf gtkdoc
 	$(AM_V_GEN)$(VALADOC) \
 		-X $(top_srcdir)/src/librygel-renderer-gst/rygel-renderer-gst.h \
-		-X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-1.0.so \
-		-X -l -X $(top_builddir)/src/librygel-renderer-gst/.libs/librygel-renderer-gst-1.0.so \
+		-X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-2.0.so \
+		-X -l -X $(top_builddir)/src/librygel-renderer-gst/.libs/librygel-renderer-gst-2.0.so \
 		-o gtkdoc \
 		--doclet gtkdoc \
 		$(VALADOC_FLAGS)

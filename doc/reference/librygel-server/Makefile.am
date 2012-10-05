@@ -17,7 +17,7 @@ VALA_SOURCE_FILES_WITH_PATHS = $(addprefix $(top_srcdir)/src/librygel-server/, $
 # TODO: Why is gstreamer-pbutils-0.10 needed here, but not needed in librygel-server/Makefile.am?
 VALADOC_FLAGS = --force \
 	--vapidir $(top_srcdir)/src/librygel-core \
-	--pkg rygel-core-1.0 \
+	--pkg rygel-core-2.0 \
 	--vapidir $(top_srcdir)/src/librygel-server \
 	$(RYGEL_COMMON_VALAFLAGS_PKG) \
 	$(LIBRYGEL_SERVER_VALAFLAGS_PKG) \
@@ -26,7 +26,7 @@ VALADOC_FLAGS = --force \
 	--pkg rygel-build-config \
 	-b $(top_srcdir)/src/librygel-server \
 	--package-name librygel-server \
-	--package-version 1.0 \
+	--package-version 2.0 \
 	$(VALA_SOURCE_FILES_WITH_PATHS)
 
 valadoc: $(VALA_SOURCE_FILES_WITH_PATHS)
@@ -38,8 +38,8 @@ gtkdoc: $(VALA_SOURCE_FILES_WITH_PATHS)
 	@rm -rf gtkdoc
 	$(AM_V_GEN)$(VALADOC) \
 		-X $(top_srcdir)/src/librygel-server/rygel-server.h \
-		-X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-1.0.so \
-		-X -l -X $(top_builddir)/src/librygel-server/.libs/librygel-server-1.0.so \
+		-X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-2.0.so \
+		-X -l -X $(top_builddir)/src/librygel-server/.libs/librygel-server-2.0.so \
 		-o gtkdoc \
 		--doclet gtkdoc \
 		$(VALADOC_FLAGS)

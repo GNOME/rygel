@@ -20,7 +20,7 @@ VALADOC_FLAGS = --force \
 	--pkg rygel-build-config \
 	-b $(top_srcdir)/src/librygel-core \
 	--package-name librygel-core \
-	--package-version 1.0 \
+	--package-version 2.0 \
 	$(VALA_SOURCE_FILES_WITH_PATHS)
 
 valadoc: $(VALA_SOURCE_FILES_WITH_PATHS)
@@ -32,7 +32,7 @@ gtkdoc: $(VALA_SOURCE_FILES_WITH_PATHS)
 	@rm -rf gtkdoc
 	$(AM_V_GEN)$(VALADOC) \
 		-X $(top_srcdir)/src/librygel-core/rygel-core.h \
-		-X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-1.0.so \
+		-X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-2.0.so \
 		-o gtkdoc \
 		--doclet gtkdoc \
 		$(VALADOC_FLAGS)

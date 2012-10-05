@@ -296,10 +296,10 @@ doc/reference/librygel-renderer/Makefile
 doc/reference/librygel-server/Makefile
 doc/reference/librygel-renderer-gst/Makefile
 po/Makefile.in
-rygel-core-1.0.pc
-rygel-renderer-1.0.pc
-rygel-server-1.0.pc
-rygel-renderer-gst-1.0.pc
+rygel-core-2.0.pc
+rygel-renderer-2.0.pc
+rygel-server-2.0.pc
+rygel-renderer-gst-2.0.pc
 tests/Makefile
 examples/Makefile
 ])

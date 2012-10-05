@@ -14,8 +14,8 @@ else
 shareddir = $(datadir)/rygel
 sysconfigdir = $(sysconfdir)
 desktopdir = $(datadir)/applications
-plugindir = $(libdir)/rygel-1.0/plugins
-enginedir = $(libdir)/rygel-1.0/engines
+plugindir = $(libdir)/rygel-2.0/plugins
+enginedir = $(libdir)/rygel-2.0/engines
 icondir = $(datadir)/icons/hicolor/32x32/apps
 presetdir = $(shareddir)/presets
 endif
@@ -54,28 +54,28 @@ RYGEL_BASE_LIBS = \
 
 RYGEL_COMMON_LIBS = \
 	$(RYGEL_BASE_LIBS) \
-	$(top_builddir)/src/librygel-core/librygel-core-1.0.la
+	$(top_builddir)/src/librygel-core/librygel-core-2.0.la
 
 RYGEL_COMMON_SERVER_LIBS = \
-	$(top_builddir)/src/librygel-server/librygel-server-1.0.la \
+	$(top_builddir)/src/librygel-server/librygel-server-2.0.la \
 	$(RYGEL_COMMON_LIBS)
 
 RYGEL_COMMON_RENDERER_LIBS = \
-	$(top_builddir)/src/librygel-renderer/librygel-renderer-1.0.la \
+	$(top_builddir)/src/librygel-renderer/librygel-renderer-2.0.la \
 	$(RYGEL_COMMON_LIBS)
 
 # Note: the -g needs to be at the end of VALAFLAGS to not break make dist
 RYGEL_COMMON_PLUGIN_VALAFLAGS = \
-	--pkg rygel-core-1.0 \
+	--pkg rygel-core-2.0 \
 	$(RYGEL_COMMON_VALAFLAGS)
 
 RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS = \
-	--pkg rygel-server-1.0 \
+	--pkg rygel-server-2.0 \
 	--vapidir=$(top_builddir)/src/librygel-server \
 	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
 
 RYGEL_COMMON_RENDERER_PLUGIN_VALAFLAGS = \
-	--pkg rygel-renderer-1.0 \
+	--pkg rygel-renderer-2.0 \
 	--vapidir=$(top_builddir)/src/librygel-renderer \
 	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
 

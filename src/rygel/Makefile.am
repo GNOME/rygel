@@ -17,8 +17,8 @@ rygel_SOURCES = \
 	rygel-cmdline-config.vala \
 	rygel-environment-config.vala \
 	rygel-user-config.vala \
-	$(top_builddir)/src/librygel-core/rygel-core-1.0.vapi \
-	$(top_builddir)/src/librygel-server/rygel-server-1.0.vapi
+	$(top_builddir)/src/librygel-core/rygel-core-2.0.vapi \
+	$(top_builddir)/src/librygel-server/rygel-server-2.0.vapi
 
 rygel_VALAFLAGS = \
 	--pkg posix \
@@ -26,8 +26,8 @@ rygel_VALAFLAGS = \
 	$(RYGEL_COMMON_VALAFLAGS)
 
 rygel_LDADD = \
-	$(top_builddir)/src/librygel-core/librygel-core-1.0.la \
-	$(top_builddir)/src/librygel-server/librygel-server-1.0.la \
+	$(top_builddir)/src/librygel-core/librygel-core-2.0.la \
+	$(top_builddir)/src/librygel-server/librygel-server-2.0.la \
 	$(RYGEL_BASE_LIBS)
 
 rygel_LDFLAGS = -export-dynamic
