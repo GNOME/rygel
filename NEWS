@@ -1,3 +1,32 @@
+0.17.0
+======
+
+A new unstable release for Rygel
+
+Changes compared to 0.16.0:
+
+- Implement notification on configuration changes.
+- Fix compatibility issues with newer Reciva firmwares.
+- Add missing header, vapi and deps files.
+- Make it possible to compile and run Rygel without GStreamer. Please note
+  that the functionality is reduced when run without GStreamer. Serveral
+  plug-ins are disabled and no transcoding is possible.
+- API version is bumped to 2.0.
+- .so version is bumped to 1.
+
+Examples:
+ - Fix standalone-server example to not return 404 all the time.
+
+Changes in dependencies:
+ - Tracker plug-in does not depend on GUPnP-DLNA anymore.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=685183
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  Krzesimir Nowak <krnowak@openismus.com>
+
 0.15.2
 ======
 
