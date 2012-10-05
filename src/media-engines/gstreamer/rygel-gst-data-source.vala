@@ -22,6 +22,10 @@
 
 using Gst;
 
+internal errordomain Rygel.GstDataSourceError {
+    NOT_COMPATIBLE
+}
+
 internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
     internal dynamic Element src;
     private Pipeline pipeline;
@@ -29,8 +33,13 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
     private GstSink sink;
     private uint bus_watch_id;
 
-    public GstDataSource (string uri) {
+    public GstDataSource (string uri) throws Error {
         this.src = GstUtils.create_source_for_uri (uri);
+        if (this.src == null) {
+            var msg = _("Could not create GstElement for URI %s");
+
+            throw new GstDataSourceError.NOT_COMPATIBLE (msg, uri);
+        }
     }
 
     ~GstDataSource () {

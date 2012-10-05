@@ -101,8 +101,12 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         return this.transcoders;
     }
 
-    public override DataSource create_data_source (string uri) {
-        return new GstDataSource (uri);
+    public override DataSource? create_data_source (string uri) {
+        try {
+            return new GstDataSource (uri);
+        } catch (Error error) {
+            return null;
+        }
     }
 
     public DataSource create_data_source_from_element (Element element) {

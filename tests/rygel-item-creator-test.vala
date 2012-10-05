@@ -254,7 +254,7 @@ public class Rygel.TestMediaEngine : Rygel.MediaEngine {
         return null;
     }
 
-    public override DataSource create_data_source (string uri) {
+    public override DataSource? create_data_source (string uri) {
         return null;
     }
 }

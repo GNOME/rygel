@@ -33,7 +33,11 @@ internal class Rygel.SimpleMediaEngine : MediaEngine {
         return null;
     }
 
-    public override DataSource create_data_source (string uri) {
+    public override DataSource? create_data_source (string uri) {
+        if (!uri.has_prefix ("file://")) {
+            return null;
+        }
+
         return new SimpleDataSource (uri);
     }
 }

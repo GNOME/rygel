@@ -98,5 +98,5 @@ public abstract class Rygel.MediaEngine : GLib.Object {
      * @param uri to create the data source for.
      * @return A data source representing the uri
      */
-    public abstract DataSource create_data_source (string uri);
+    public abstract DataSource? create_data_source (string uri);
 }
