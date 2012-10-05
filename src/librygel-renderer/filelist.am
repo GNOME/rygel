@@ -13,4 +13,4 @@ LIBRYGEL_RENDERER_NONVAPI_SOURCE_FILES = \
 	rygel-gst-utils.vala \
 	rygel-volume.vala
 
-LIBRYGEL_RENDERER_VALAFLAGS_PKG =
+LIBRYGEL_RENDERER_VALAFLAGS_PKG = --pkg gstreamer-0.10
