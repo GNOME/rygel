@@ -18,6 +18,9 @@ librygel_renderer_1_0_la_VALAFLAGS = \
 librygel_renderer_1_0_la_LIBADD = $(RYGEL_COMMON_LIBS)
 librygel_renderer_1_0_la_LDFLAGS = -version-info $(LIBRYGEL_RENDERER_VERSION)
 
+vapidir = $(VAPIDIR)
+vapi_DATA = rygel-renderer-1.0.vapi rygel-renderer-1.0.deps
+
 rygel-renderer.h rygel-renderer-1.0.vapi: librygel_renderer_1_0_la_vala.stamp
 
-EXTRA_DIST = rygel-renderer.h rygel-renderer-1.0.vapi
+EXTRA_DIST = rygel-renderer.h rygel-renderer-1.0.vapi rygel-renderer-1.0.deps
