@@ -79,7 +79,6 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
         PKG_CHECK_MODULES(LIBGSTREAMER, gstreamer-0.10 >= $GSTREAMER_REQUIRED)
         PKG_CHECK_MODULES(GSTREAMER_BASE, gstreamer-base-0.10 >= $GSTREAMER_REQUIRED)
         PKG_CHECK_MODULES(GST_PBU, gstreamer-pbutils-0.10 >= $GSTPBU_REQUIRED)
-        RYGEL_ADD_STAMP([src/librygel-renderer-gst/librygel_renderer_gst_1_0_la_vala.stamp])
         enable_gstreamer="yes"
         BUILT_ENGINES="$BUILT_ENGINES;librygel-media-engine-gst"
       ],
@@ -100,6 +99,7 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
         RYGEL_ADD_PLUGIN([media-export],[MediaExport],[yes])
         RYGEL_ADD_PLUGIN([gst-launch],[GStreamer launchline],[no])
         RYGEL_ADD_STAMP([src/media-engines/gstreamer/librygel_media_engine_gst_la_vala.stamp])
+        RYGEL_ADD_STAMP([src/librygel-renderer-gst/librygel_renderer_gst_2_0_la_vala.stamp])
       ],
       [
         RYGEL_DISABLE_PLUGIN([test])
@@ -109,9 +109,9 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
       ])
 
 dnl Explicitly add stamp files for targets that are not plugins
-RYGEL_ADD_STAMP([src/librygel-core/librygel_core_1_0_la_vala.stamp])
-RYGEL_ADD_STAMP([src/librygel-server/librygel_server_1_0_la_vala.stamp])
-RYGEL_ADD_STAMP([src/librygel-renderer/librygel_renderer_1_0_la_vala.stamp])
+RYGEL_ADD_STAMP([src/librygel-core/librygel_core_2_0_la_vala.stamp])
+RYGEL_ADD_STAMP([src/librygel-server/librygel_server_2_0_la_vala.stamp])
+RYGEL_ADD_STAMP([src/librygel-renderer/librygel_renderer_2_0_la_vala.stamp])
 RYGEL_ADD_STAMP([src/rygel/rygel_vala.stamp])
 RYGEL_ADD_STAMP([src/ui/rygel_preferences_vala.stamp])
 RYGEL_ADD_STAMP([src/media-engines/simple/librygel_media_engine_simple_la_vala.stamp])
