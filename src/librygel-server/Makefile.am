@@ -24,6 +24,9 @@ librygel_server_1_0_la_LIBADD = $(RYGEL_COMMON_LIBS) \
 	$(GST_PBU_LIBS)
 librygel_server_1_0_la_LDFLAGS = -version-info $(LIBRYGEL_SERVER_VERSION)
 
+vapidir = $(VAPIDIR)
+vapi_DATA = rygel-server-1.0.vapi rygel-server-1.0.deps
+
 rygel-server.h rygel-server-1.0.vapi: librygel_server_1_0_la_vala.stamp
 
-EXTRA_DIST = rygel-server.h rygel-server-1.0.vapi
+EXTRA_DIST = rygel-server.h rygel-server-1.0.vapi rygel-server-1.0.deps

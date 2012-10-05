@@ -49,9 +49,8 @@ rygel-core-1.0.vapi rygel-core.h: librygel_core_1_0_la_vala.stamp
 MAINTAINERCLEANFILES += $(BUILT_SOURCES)
 
 EXTRA_DIST = \
-	rygel-core-1.0.vapi \
 	rygel-build-config.vapi \
-	uuid.vapi \
 	$(VAPI_FILES) \
 	$(DEPS_FILES) \
+	uuid.vapi \
 	$(BUILT_SOURCES)
