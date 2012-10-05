@@ -109,7 +109,12 @@ int main (int argc, char *argv[])
         g_free (id);
 
         if (item != NULL) {
+            RygelMediaObject *object;
+
             RYGEL_MEDIA_ITEM (item)->mime_type = g_strdup (content_type);
+
+            object = RYGEL_MEDIA_OBJECT (item);
+            gee_collection_add (GEE_COLLECTION (object->uris), uri);
             rygel_simple_container_add_child_item (root_container, item);
         }
 
