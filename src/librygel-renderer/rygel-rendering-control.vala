@@ -134,8 +134,8 @@ internal class Rygel.RenderingControl : Service {
         return true;
     }
 
-    private void list_presets_cb (Service             service,
-                                  owned ServiceAction action) {
+    private void list_presets_cb (Service       service,
+                                  ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -147,8 +147,8 @@ internal class Rygel.RenderingControl : Service {
         action.return ();
     }
 
-    private void select_preset_cb (Service             service,
-                                   owned ServiceAction action) {
+    private void select_preset_cb (Service       service,
+                                   ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -179,8 +179,8 @@ internal class Rygel.RenderingControl : Service {
         return true;
     }
 
-    private void get_mute_cb (Service             service,
-                              owned ServiceAction action) {
+    private void get_mute_cb (Service       service,
+                              ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -194,8 +194,8 @@ internal class Rygel.RenderingControl : Service {
         action.return ();
     }
 
-    private void set_mute_cb (Service             service,
-                              owned ServiceAction action) {
+    private void set_mute_cb (Service       service,
+                              ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -221,8 +221,8 @@ internal class Rygel.RenderingControl : Service {
         action.return ();
     }
 
-    private void get_volume_cb (Service             service,
-                                owned ServiceAction action) {
+    private void get_volume_cb (Service       service,
+                                ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -236,8 +236,8 @@ internal class Rygel.RenderingControl : Service {
         action.return ();
     }
 
-    private void set_volume_cb (Service             service,
-                                owned ServiceAction action) {
+    private void set_volume_cb (Service       service,
+                                ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }

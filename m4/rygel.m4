@@ -113,8 +113,6 @@ AC_DEFUN([RYGEL_CHECK_VALA],
             AS_IF([test x$VALAC = "x"],
                 [AC_MSG_ERROR([Cannot find the "valac" compiler in your PATH])],
                 [
-                    PKG_CHECK_MODULES(GUPNP_VALA, gupnp-vala-1.0 >= $GUPNP_VALA_REQUIRED)
-
                     VALA_CHECK_PACKAGES([$2])
                 ])
            ],

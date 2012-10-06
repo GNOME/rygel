@@ -226,8 +226,8 @@ internal class Rygel.AVTransport : Service {
         return true;
     }
 
-    private void set_av_transport_uri_cb (Service             service,
-                                          owned ServiceAction action) {
+    private void set_av_transport_uri_cb (Service       service,
+                                          ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -293,8 +293,8 @@ internal class Rygel.AVTransport : Service {
         }
     }
 
-    private void get_media_info_cb (Service             service,
-                                    owned ServiceAction action) {
+    private void get_media_info_cb (Service       service,
+                                    ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -330,8 +330,8 @@ internal class Rygel.AVTransport : Service {
         action.return ();
     }
 
-    private void get_media_info_ex_cb (Service             service,
-                                       owned ServiceAction action) {
+    private void get_media_info_ex_cb (Service       service,
+                                       ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -371,8 +371,8 @@ internal class Rygel.AVTransport : Service {
     }
 
 
-    private void get_transport_info_cb (Service             service,
-                                        owned ServiceAction action) {
+    private void get_transport_info_cb (Service       service,
+                                        ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -390,8 +390,8 @@ internal class Rygel.AVTransport : Service {
         action.return ();
     }
 
-    private void get_position_info_cb (Service             service,
-                                       owned ServiceAction action) {
+    private void get_position_info_cb (Service       service,
+                                       ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -424,8 +424,8 @@ internal class Rygel.AVTransport : Service {
         action.return ();
     }
 
-    private void get_device_capabilities_cb (Service             service,
-                                             owned ServiceAction action) {
+    private void get_device_capabilities_cb (Service       service,
+                                             ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -443,8 +443,8 @@ internal class Rygel.AVTransport : Service {
         action.return ();
     }
 
-    private void get_transport_settings_cb (Service             service,
-                                            owned ServiceAction action) {
+    private void get_transport_settings_cb (Service       service,
+                                            ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -459,7 +459,7 @@ internal class Rygel.AVTransport : Service {
         action.return ();
     }
 
-    private void stop_cb (Service service, owned ServiceAction action) {
+    private void stop_cb (Service service, ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -469,7 +469,7 @@ internal class Rygel.AVTransport : Service {
         action.return ();
     }
 
-    private void play_cb (Service service, owned ServiceAction action) {
+    private void play_cb (Service service, ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -488,7 +488,7 @@ internal class Rygel.AVTransport : Service {
         action.return ();
     }
 
-    private void pause_cb (Service service, owned ServiceAction action) {
+    private void pause_cb (Service service, ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -504,7 +504,7 @@ internal class Rygel.AVTransport : Service {
         action.return ();
     }
 
-    private void seek_cb (Service service, owned ServiceAction action) {
+    private void seek_cb (Service service, ServiceAction action) {
         if (!this.check_instance_id (action)) {
             return;
         }
@@ -538,11 +538,11 @@ internal class Rygel.AVTransport : Service {
         }
     }
 
-    private void next_cb (Service service, owned ServiceAction action) {
+    private void next_cb (Service service, ServiceAction action) {
         action.return_error (701, _("Transition not available"));
     }
 
-    private void previous_cb (Service service, owned ServiceAction action) {
+    private void previous_cb (Service service, ServiceAction action) {
         action.return_error (701, _("Transition not available"));
     }
 

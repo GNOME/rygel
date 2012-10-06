@@ -53,8 +53,8 @@ internal class Rygel.MediaReceiverRegistrar: Service {
     }
 
     /* IsAuthorized and IsValided action implementations (fake) */
-    private void is_authorized_cb (Service             registrar,
-                                   owned ServiceAction action) {
+    private void is_authorized_cb (Service       registrar,
+                                   ServiceAction action) {
         if (action.get_argument_count () != 1) {
             action.return_error (402, _("Invalid argument"));
 

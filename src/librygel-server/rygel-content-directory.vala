@@ -138,40 +138,40 @@ internal class Rygel.ContentDirectory: Service {
     }
 
     /* Browse action implementation */
-    private void browse_cb (Service             content_dir,
-                            owned ServiceAction action) {
+    private void browse_cb (Service       content_dir,
+                            ServiceAction action) {
         Browse browse = new Browse (this, action);
 
         browse.run.begin ();
     }
 
     /* Search action implementation */
-    private void search_cb (Service             content_dir,
-                            owned ServiceAction action) {
+    private void search_cb (Service       content_dir,
+                            ServiceAction action) {
         var search = new Search (this, action);
 
         search.run.begin ();
     }
 
     /* CreateObject action implementation */
-    private void create_object_cb (Service             content_dir,
-                                   owned ServiceAction action) {
+    private void create_object_cb (Service       content_dir,
+                                   ServiceAction action) {
         var creator = new ItemCreator (this, action);
 
         creator.run.begin ();
     }
 
     /* DestroyObject action implementation */
-    private void destroy_object_cb (Service             content_dir,
-                                    owned ServiceAction action) {
+    private void destroy_object_cb (Service       content_dir,
+                                    ServiceAction action) {
         var destroyer = new ItemDestroyer (this, action);
 
         destroyer.run.begin ();
     }
 
     /* ImportResource action implementation */
-    private void import_resource_cb (Service             content_dir,
-                                     owned ServiceAction action) {
+    private void import_resource_cb (Service       content_dir,
+                                     ServiceAction action) {
         var import = new ImportResource (this, action);
 
         import.completed.connect (this.on_import_completed);
@@ -193,8 +193,8 @@ internal class Rygel.ContentDirectory: Service {
     }
 
     /* GetTransferProgress action implementation */
-    private void get_transfer_progress_cb (Service             content_dir,
-                                           owned ServiceAction action) {
+    private void get_transfer_progress_cb (Service       content_dir,
+                                           ServiceAction action) {
         if (action.get_argument_count () != 1) {
             action.return_error (402, _("Invalid argument"));
 
@@ -220,8 +220,8 @@ internal class Rygel.ContentDirectory: Service {
     }
 
     /* StopTransferResource action implementation */
-    private void stop_transfer_resource_cb (Service             content_dir,
-                                            owned ServiceAction action) {
+    private void stop_transfer_resource_cb (Service       content_dir,
+                                            ServiceAction action) {
         if (action.get_argument_count () != 1) {
             action.return_error (402, _("Invalid argument"));
 
@@ -239,8 +239,8 @@ internal class Rygel.ContentDirectory: Service {
     }
 
     /* GetSystemUpdateID action implementation */
-    private void get_system_update_id_cb (Service             content_dir,
-                                          owned ServiceAction action) {
+    private void get_system_update_id_cb (Service       content_dir,
+                                          ServiceAction action) {
         if (action.get_argument_count () != 0) {
             action.return_error (402, _("Invalid argument"));
 
@@ -274,8 +274,8 @@ internal class Rygel.ContentDirectory: Service {
     }
 
     /* action GetSearchCapabilities implementation */
-    private void get_search_capabilities_cb (Service             content_dir,
-                                             owned ServiceAction action) {
+    private void get_search_capabilities_cb (Service       content_dir,
+                                             ServiceAction action) {
         if (action.get_argument_count () != 0) {
             action.return_error (402, _("Invalid argument"));
 
@@ -298,8 +298,8 @@ internal class Rygel.ContentDirectory: Service {
     }
 
     /* action GetSortCapabilities implementation */
-    private void get_sort_capabilities_cb (Service             content_dir,
-                                           owned ServiceAction action) {
+    private void get_sort_capabilities_cb (Service       content_dir,
+                                           ServiceAction action) {
 
         if (action.get_argument_count () != 0) {
             action.return_error (402, _("Invalid argument"));
@@ -323,8 +323,8 @@ internal class Rygel.ContentDirectory: Service {
     }
 
     /* action GetFeatureList implementation */
-    private void get_feature_list_cb (Service             content_dir,
-                                      owned ServiceAction action) {
+    private void get_feature_list_cb (Service       content_dir,
+                                      ServiceAction action) {
 
         if (action.get_argument_count () != 0) {
             action.return_error (402, _("Invalid argument"));

@@ -84,7 +84,7 @@ public class Rygel.ConnectionManager : Service {
     }
 
     private void get_protocol_info_cb (Service             cm,
-                                       owned ServiceAction action) {
+                                       ServiceAction action) {
         if (action.get_argument_count () != 0) {
             action.return_error (402, _("Invalid argument"));
 
@@ -98,7 +98,7 @@ public class Rygel.ConnectionManager : Service {
     }
 
     private void get_current_connection_ids_cb (Service             cm,
-                                                owned ServiceAction action) {
+                                                ServiceAction action) {
         if (action.get_argument_count () != 0) {
             action.return_error (402, _("Invalid argument"));
 
@@ -111,7 +111,7 @@ public class Rygel.ConnectionManager : Service {
     }
 
     private void get_current_connection_info_cb (Service             cm,
-                                                 owned ServiceAction action) {
+                                                 ServiceAction action) {
         string connection_id;
 
         action.get ("ConnectionID", typeof (string), out connection_id);

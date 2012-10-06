@@ -37,7 +37,7 @@ public class Rygel.NetworkPrefSection : PreferencesSection {
         this.iface_entry = (ComboBoxText) builder.get_object (IFACE_ENTRY);
         assert (this.iface_entry != null);
 
-        this.context_manager = new ContextManager (null, 0);
+        this.context_manager = ContextManager.create (0);
 
         try {
             this.iface_entry.append_text (config.get_interface ());
