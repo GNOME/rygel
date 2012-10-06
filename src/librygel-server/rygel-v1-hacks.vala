@@ -74,6 +74,8 @@ internal class Rygel.V1Hacks : ClientHacks {
 
         if (agents.length > 0) {
             agent_pattern = string.joinv ("|", agents);
+        } else {
+            agent_pattern = "";
         }
 
         debug ("V1 downgrade will be applied for devices matching %s",
@@ -105,8 +107,10 @@ internal class Rygel.V1Hacks : ClientHacks {
         description_file.save (this.description_path);
 
         var server_path = "/" + device.get_relative_location ();
-        device.context.host_path_for_agent (this.description_path,
-                                            server_path,
-                                            this.agent_regex);
+        if (this.agent_regex.get_pattern () != "") {
+            device.context.host_path_for_agent (this.description_path,
+                                                server_path,
+                                                this.agent_regex);
+        }
     }
 }
