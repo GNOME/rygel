@@ -43,8 +43,13 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
     }
 
     ~GstDataSource () {
-        this.sink.cancellable.cancel ();
-        this.pipeline.set_state (State.NULL);
+        if (this.sink != null) {
+            this.sink.cancellable.cancel ();
+        }
+
+        if (this.pipeline != null) {
+            this.pipeline.set_state (State.NULL);
+        }
     }
 
     public GstDataSource.from_element (Element element) {
