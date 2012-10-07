@@ -17,5 +17,5 @@ librygel_external_la_SOURCES = \
 	rygel-external-variant-util.vala
 
 librygel_external_la_VALAFLAGS = $(RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS)
-librygel_external_la_LIBADD = $(RYGEL_COMMON_SERVER_LIBS)
+librygel_external_la_LIBADD = $(RYGEL_COMMON_SERVER_LIBS) $(LIBGIO_LIBS)
 librygel_external_la_LDFLAGS = $(RYGEL_PLUGIN_LINKER_FLAGS)
