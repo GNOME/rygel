@@ -27,7 +27,7 @@ using Xml;
  * Represents a device description document and offers methods for easy
  * manipulation of those.
  */
-public class DescriptionFile : Object {
+public class Rygel.DescriptionFile : Object {
     /// XML doc wrapper representing the description document
     private XMLDoc doc;
 
