@@ -20,6 +20,9 @@ librygel_server_1_0_la_VALAFLAGS = \
 	$(LIBRYGEL_SERVER_VALAFLAGS_PKG) \
 	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
 librygel_server_1_0_la_LIBADD = $(RYGEL_COMMON_LIBS) \
+	$(LIBGIO_LIBS) \
+	$(LIBSOUP_LIBS) \
+	$(LIBGSSDP_LIBS) \
 	$(LIBGUPNP_DLNA_LIBS) \
 	$(GST_PBU_LIBS)
 librygel_server_1_0_la_LDFLAGS = -version-info $(LIBRYGEL_SERVER_VERSION)
