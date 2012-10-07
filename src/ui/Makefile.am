@@ -20,6 +20,7 @@ rygel_preferences_VALAFLAGS = \
 
 rygel_preferences_LDADD = \
 	$(RYGEL_COMMON_LIBS) \
+	$(LIBGSSDP_LIBS) \
 	$(GTK_LIBS)
 rygel_preferences_LDFLAGS = -export-dynamic
 
