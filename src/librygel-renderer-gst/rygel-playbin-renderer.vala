@@ -48,8 +48,7 @@ internal class Rygel.Playbin.WrappingPlugin : Rygel.MediaRendererPlugin {
  *
  * Likewise, the playbin can be modified externally using UPnP.
  *
- * You can retrieve the GstPlayBin2 by calling rygel_playbin_player_get_playbin()
- * on the default player - see rygel_playbin_player_get_default().
+ * You can retrieve the GstPlayBin2 by calling rygel_playbin_renderer_get_playbin().
  * You should then set the "video-sink" and "audio-sink" properties of the
  * playbin.
  *
