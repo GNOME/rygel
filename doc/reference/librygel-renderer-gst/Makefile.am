@@ -5,8 +5,8 @@ include $(top_srcdir)/src/librygel-renderer-gst/filelist.am
 
 # Note that LIBRYGEL_RENDERER_NONVAPI_SOURCE_FILES all (should) use the internal keyword
 # so they are not shown as part of the public API.
-VALA_SOURCE_FILES = $(LIBRYGEL_RENDERER_VAPI_SOURCE_FILES) \
-	$(LIBRYGEL_RENDERER_NONVAPI_SOURCE_FILES)
+VALA_SOURCE_FILES = $(LIBRYGEL_RENDERER_GST_VAPI_SOURCE_FILES) \
+	$(LIBRYGEL_RENDERER_GST_NONVAPI_SOURCE_FILES)
 
 VALA_SOURCE_FILES_WITH_PATHS = $(addprefix $(top_srcdir)/src/librygel-renderer-gst/, $(VALA_SOURCE_FILES))
 
@@ -17,8 +17,9 @@ VALA_SOURCE_FILES_WITH_PATHS = $(addprefix $(top_srcdir)/src/librygel-renderer-g
 # TODO: Why is gstreamer-pbutils-0.10 needed here, but not needed in librygel-renderer-gst/Makefile.am?
 VALADOC_FLAGS = --force \
 		--vapidir $(top_srcdir)/src/librygel-core \
-		--pkg rygel-core-2.0 \
+		--pkg rygel-core-2.0 --pkg rygel-renderer-2.0 \
 		--vapidir $(top_srcdir)/src/librygel-renderer-gst \
+		--vapidir $(top_srcdir)/src/librygel-renderer \
 		$(RYGEL_COMMON_VALAFLAGS_PKG) \
 		$(LIBRYGEL_RENDERER_VALAFLAGS_PKG) \
 	        --pkg gstreamer-pbutils-0.10 \
