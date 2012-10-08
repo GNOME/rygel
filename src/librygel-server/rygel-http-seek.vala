@@ -37,11 +37,9 @@ public enum Rygel.HTTPSeekType {
  * HTTPSeek is an abstract representation of a ranged HTTP request.
  *
  * It can be one of:
- *  - The classic Range request (seek_type == HTTPSeekType.BYTE), with start,
- * stop in bytes.
- *  - The DLNA-Specific "TimeSeekRange.dlna.org" request (seek_type == HTTPSeekType.TIME),
- *   with start and stop in microseconds.
  *
+ *  - The classic Range request (seek_type == HTTPSeekType.BYTE), with start and stop in bytes.
+ *  - The DLNA-Specific "TimeSeekRange.dlna.org" request (seek_type == HTTPSeekType.TIME) with start and stop in microseconds.
  */
 public abstract class Rygel.HTTPSeek : GLib.Object {
 
