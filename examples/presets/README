@@ -1,0 +1,4 @@
+This directory contains encoding presets that don't really fit into default
+mostly because they're too high on CPU.
+
+avenc_mpeg2video: High quality but CPU intense MPEG2 encoding profile

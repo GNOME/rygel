@@ -1,0 +1,13 @@
+[_presets_]
+version=1.0
+element-name=avenc_mpeg2video
+
+[stream high quality]
+bitrate=2560000
+pass=0
+mb-decision=rd
+me-cmp=satd
+me-sub-cmp=satd
+flags=0x40
+max-bframes=2
+qmax=12
