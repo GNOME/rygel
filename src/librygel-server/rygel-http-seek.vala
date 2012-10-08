@@ -33,15 +33,53 @@ public enum Rygel.HTTPSeekType {
     TIME
 }
 
+/**
+ * HTTPSeek is an abstract representation of a ranged HTTP request.
+ *
+ * It can be one of:
+ *  - The classic Range request (seek_type == HTTPSeekType.BYTE), with start,
+ * stop in bytes.
+ *  - The DLNA-Specific "TimeSeekRange.dlna.org" request (seek_type == HTTPSeekType.TIME),
+ *   with start and stop in microseconds.
+ *
+ */
 public abstract class Rygel.HTTPSeek : GLib.Object {
+
+    /**
+     * Identifies whether this is a class Range request or a DLNA-specific
+     * "TimeSeekRange.dlna.org" request.
+     */
     public HTTPSeekType seek_type { get; protected set; }
     public Soup.Message msg { get; private set; }
 
-    // These are either number of bytes or microseconds
+    /**
+     * The start of the range as a number of bytes (classic) or as microseconds 
+     * (DLNA-specific). See seek_type.
+     */
     public int64 start { get; private set; }
+
+    /**
+     * The end of the range as a number of bytes (classic) or as microseconds 
+     * (DLNA-specific). See seek_type.
+     */
     public int64 stop { get; private set; }
+
+    /**
+     * Either 1 byte (classic) or as 1000 G_TIME_SPAN_MILLISECOND microseconds 
+     * (DLNA-specific). See seek_type.
+     */
     public int64 step { get; private set; }
+
+    /**
+     * The length of the range as a number of bytes (classic) or as microseconds 
+     * (DLNA-specific). See seek_type.
+     */
     public int64 length { get; private set; }
+
+    /**
+     * The length of the media file as a number of bytes (classic) or as microseconds 
+     * (DLNA-specific). See seek_type.
+     */
     public int64 total_length { get; private set; }
 
     public HTTPSeek (Soup.Message msg,
