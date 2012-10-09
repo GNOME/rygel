@@ -10,9 +10,6 @@ VALA_SOURCE_FILES = $(LIBRYGEL_RENDERER_VAPI_SOURCE_FILES) \
 
 VALA_SOURCE_FILES_WITH_PATHS = $(addprefix $(top_srcdir)/src/librygel-renderer/, $(VALA_SOURCE_FILES))
 
-#debug:
-#	echo $(VALA_SOURCE_FILES_WITH_PATHS);
-
 # TODO: The need for rygel-build-config here reminds us that we shouldn't need that in librygel-renderer either.
 # TODO: Why is gstreamer-pbutils-0.10 needed here, but not needed in librygel-renderer/Makefile.am?
 VALADOC_FLAGS = --force \
@@ -29,34 +26,11 @@ VALADOC_FLAGS = --force \
 	--package-version 2.0 \
 	$(VALA_SOURCE_FILES_WITH_PATHS)
 
-valadoc: $(VALA_SOURCE_FILES_WITH_PATHS)
-	$(AM_V_GEN)$(VALADOC) \
-		-o valadoc \
-		$(VALADOC_FLAGS)
-
-gtkdoc: $(VALA_SOURCE_FILES_WITH_PATHS)
-	@rm -rf gtkdoc
-	$(AM_V_GEN)$(VALADOC) \
-		-X $(top_srcdir)/src/librygel-renderer/rygel-renderer.h \
-		-X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-2.0.so \
-		-X -l -X $(top_builddir)/src/librygel-renderer/.libs/librygel-renderer-2.0.so \
-		-o gtkdoc \
-		--doclet gtkdoc \
-		$(VALADOC_FLAGS)
-
-clean-local:
-	rm -rf valadoc gtkdoc
-
-uninstall-hook:
-	rm -rf $(DESTDIR)$(datadir)/gtk-doc/html/librygel-renderer
-
-# The chmod corrects the directory permissions so that distcheck can remove the installed files.
-install-data-hook: gtkdoc
-	cp -d -R $(srcdir)/gtkdoc/html $(DESTDIR)$(datadir)/gtk-doc/html/librygel-renderer
-	chmod -R u+w $(DESTDIR)$(datadir)/gtk-doc/html/librygel-renderer
-
-all: valadoc gtkdoc
-
-EXTRA_DIST = gtkdoc valadoc
-
+RYGEL_DOCBUILD_MODULE = rygel-renderer
+RYGEL_DOCBUILD_EXTRA_GTKDOC_OPTIONS = -X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-2.0.so
 endif
+
+include $(top_srcdir)/doc/reference/doc-build.am
+
+
+

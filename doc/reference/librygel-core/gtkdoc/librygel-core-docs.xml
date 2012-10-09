@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+  <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+<book id="index">
+  <bookinfo>
+    <title>librygel-core Reference Manual</title>
+    <releaseinfo>
+      for librygel-core 2.0.
+      The latest version of this documentation can be found on-line at
+      <ulink role="online-location" url="http://developer.gnome.org/librygel-core/index.html">http://developer.gnome.org/librygel-core/</ulink>.
+    </releaseinfo>
+  </bookinfo>
+
+  <chapter>
+    <title>librygel-core API Reference</title>
+        <xi:include href="xml/rygel-connection-manager.xml"/>
+    <xi:include href="xml/rygel-configuration.xml"/>
+    <xi:include href="xml/rygel-log-handler.xml"/>
+    <xi:include href="xml/rygel-resource-info.xml"/>
+    <xi:include href="xml/rygel-dbus-interface.xml"/>
+    <xi:include href="xml/rygel-description-file.xml"/>
+    <xi:include href="xml/rygel-plugin-loader.xml"/>
+    <xi:include href="xml/rygel-icon-info.xml"/>
+    <xi:include href="xml/rygel-free-desktop-interfaces.xml"/>
+    <xi:include href="xml/rygel-recursive-module-loader.xml"/>
+    <xi:include href="xml/rygel-root-device.xml"/>
+    <xi:include href="xml/rygel-plugin.xml"/>
+    <xi:include href="xml/rygel-media-device.xml"/>
+    <xi:include href="xml/rygel-base-configuration.xml"/>
+    <xi:include href="xml/rygel-root-device-factory.xml"/>
+    <xi:include href="xml/rygel-meta-config.xml"/>
+    <xi:include href="xml/rygel-xml-utils.xml"/>
+    <xi:include href="xml/rygel-state-machine.xml"/>
+
+  </chapter>
+  
+<chapter>
+<title>librygel-core D-Bus API Reference</title>
+<xi:include href="xml/org-gnome-Rygel1.xml"/>
+<xi:include href="xml/org-freedesktop-DBus.xml"/>
+<xi:include href="xml/org-freedesktop-DBus-Properties.xml"/>
+</chapter>
+<chapter id="object-tree">
+    <title>Object Hierarchy</title>
+     <xi:include href="xml/tree_index.sgml"/>
+  </chapter>
+  <index id="api-index-full">
+    <title>API Index</title>
+    <xi:include href="xml/api-index-full.xml"><xi:fallback /></xi:include>
+  </index>
+  <index id="deprecated-api-index" role="deprecated">
+    <title>Index of deprecated API</title>
+    <xi:include href="xml/api-index-deprecated.xml"><xi:fallback /></xi:include>
+  </index>
+
+  <xi:include href="xml/annotation-glossary.xml"><xi:fallback /></xi:include>
+</book>

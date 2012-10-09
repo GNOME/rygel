@@ -29,34 +29,10 @@ VALADOC_FLAGS = --force \
 	--package-version 2.0 \
 	$(VALA_SOURCE_FILES_WITH_PATHS)
 
-valadoc: $(VALA_SOURCE_FILES_WITH_PATHS)
-	$(AM_V_GEN)$(VALADOC) \
-		-o valadoc \
-		$(VALADOC_FLAGS)
 
-gtkdoc: $(VALA_SOURCE_FILES_WITH_PATHS)
-	@rm -rf gtkdoc
-	$(AM_V_GEN)$(VALADOC) \
-		-X $(top_srcdir)/src/librygel-server/rygel-server.h \
-		-X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-2.0.so \
-		-X -l -X $(top_builddir)/src/librygel-server/.libs/librygel-server-2.0.so \
-		-o gtkdoc \
-		--doclet gtkdoc \
-		$(VALADOC_FLAGS)
-
-clean-local:
-	rm -rf valadoc gtkdoc
-
-uninstall-hook:
-	rm -rf $(DESTDIR)$(datadir)/gtk-doc/html/librygel-server
-
-# The chmod corrects the directory permissions so that distcheck can remove the installed files.
-install-data-hook: gtkdoc
-	cp -d -R $(srcdir)/gtkdoc/html $(DESTDIR)$(datadir)/gtk-doc/html/librygel-server
-	chmod -R u+w $(DESTDIR)$(datadir)/gtk-doc/html/librygel-server
-
-all: valadoc gtkdoc
-
-EXTRA_DIST = gtkdoc valadoc
-
+RYGEL_DOCBUILD_MODULE = rygel-server
+RYGEL_DOCBUILD_EXTRA_GTKDOC_OPTIONS = -X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-2.0.so
 endif
+
+include $(top_srcdir)/doc/reference/doc-build.am
+
