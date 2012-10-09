@@ -116,7 +116,7 @@ public abstract class Rygel.Tracker.MetadataContainer : Rygel.SimpleContainer {
             return;
         }
 
-        this.updated (container, ObjectEventType.ADDED, false);
+//        this.updated (container, ObjectEventType.ADDED, false);
         this.update_in_progress = false;
     }
 

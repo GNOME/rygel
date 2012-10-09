@@ -5,7 +5,7 @@
 <minor>0</minor>
 </specVersion>
 <device>
-<deviceType>urn:schemas-upnp-org:device:MediaServer:2</deviceType>
+<deviceType>urn:schemas-upnp-org:device:MediaServer:3</deviceType>
 <UDN></UDN>
 <friendlyName></friendlyName>
 <manufacturer>Rygel Developers.</manufacturer>

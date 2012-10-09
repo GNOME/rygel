@@ -225,7 +225,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
             }
 
             if (parent != null) {
-                parent.updated ();
+                //parent.updated ();
             }
         } catch (Error error) {
             warning (_("Error removing object from database: %s"),

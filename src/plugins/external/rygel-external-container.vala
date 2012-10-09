@@ -62,7 +62,7 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                                          path,
                                          DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
 
-        this.update_container.begin (this, ObjectEventType.ADD, false, true);
+//        this.update_container.begin (this, ObjectEventType.ADD, false, true);
         if (parent != null) {
             parent.add_weak_pointer (&this.parent);
         }
@@ -286,7 +286,7 @@ public class Rygel.External.Container : Rygel.MediaContainer,
         return media_objects;
     }
 
-    private async void refresh_child_containers () throws GLib.Error {
+/*    private async void refresh_child_containers () throws GLib.Error {
         string[] filter = {};
 
         foreach (var object_prop in MediaObjectProxy.PROPERTIES) {
@@ -316,9 +316,9 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                                            this);
             this.containers.add (container);
         }
-    }
+    } */
 
-    private async void update_container (MediaObject object,
+   /* private async void update_container (MediaObject object,
                                          ObjectEventType event_type,
                                          bool sub_tree_update,
                                          bool connect_signal = false) {
@@ -358,16 +358,16 @@ public class Rygel.External.Container : Rygel.MediaContainer,
         this.updated (object, event_type, sub_tree_update);
 
         if (connect_signal) {
-            this.actual_container.updated.connect (this.on_updated);
+            //this.actual_container.updated.connect (this.on_updated);
         }
     }
-
-    private void on_updated (MediaContainerProxy actual_container,
+*/
+/*    private void on_updated (MediaContainerProxy actual_container,
                              MediaObject object,
-                             ObjectUpdateEvent event_type,
+                             ObjectEventType event_type,
                              bool sub_tree_update) {
         this.update_container.begin (object, event_type, sub_tree_update);
-    }
+    } */
 
     private MediaContainer find_container_by_id (string id) {
         MediaContainer target = null;

@@ -119,7 +119,7 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
         }
 
         xpath_free_object (xpath_object);
-        this.updated ();
+        //this.updated ();
 
         return this.child_count > 0;
     }

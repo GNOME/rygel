@@ -48,7 +48,7 @@ internal errordomain Rygel.ContentDirectoryError {
 internal class Rygel.ContentDirectory: Service {
     public const string UPNP_ID = "urn:upnp-org:serviceId:ContentDirectory";
     public const string UPNP_TYPE =
-                    "urn:schemas-upnp-org:service:ContentDirectory:2";
+                    "urn:schemas-upnp-org:service:ContentDirectory:3";
     public const string UPNP_TYPE_V1 =
                     "urn:schemas-upnp-org:service:ContentDirectory:1";
     public const string DESCRIPTION_PATH = "xml/ContentDirectory.xml";
@@ -87,6 +87,8 @@ internal class Rygel.ContentDirectory: Service {
         this.root_container.container_updated.connect (on_container_updated);
         this.root_container.sub_tree_updates_finished.connect
                                         (on_sub_tree_updates_finished);
+
+        this.last_change = new LastChange ();
 
         this.feature_list =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
