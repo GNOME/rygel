@@ -32,8 +32,8 @@ public class Rygel.MPRIS.Plugin : Rygel.MediaRendererPlugin {
 
     public PlayerProxy actual_player;
 
-    public string[] mime_types;
-    public string[] protocols;
+    public string[]? mime_types;
+    public string[]? protocols;
 
     public Plugin (string      service_name,
                    PlayerProxy actual_player) {
@@ -54,7 +54,11 @@ public class Rygel.MPRIS.Plugin : Rygel.MediaRendererPlugin {
         return new MPRIS.Player (this);
     }
 
-    private string[] schemes_to_protocols (string[] schemes) {
+    private string[]? schemes_to_protocols (string[] schemes) {
+        if (schemes == null) {
+            return null;
+        }
+
         var protocols = new string[schemes.length];
 
         for (var i = 0; i < schemes.length; i++) {
