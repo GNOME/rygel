@@ -3,10 +3,10 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: rygel-renderer-gst-1.0
+Name: rygel-renderer-gst-2.0
 Description: GNOME (Mobile) UPnP/DLNA Media Renderer library
 Version: @VERSION@
-Libs: -L${libdir} -lrygel-renderer-gst-1.0
-Cflags: -I${includedir}/rygel-1.0
-Requires: gupnp-av-1.0 gee-1.0 gstreamer-0.10 rygel-core-1.0
+Libs: -L${libdir} -lrygel-renderer-gst-2.0
+Cflags: -I${includedir}/rygel-2.0
+Requires: gupnp-av-1.0 gee-1.0 gstreamer-0.10 rygel-core-2.0
 Requires.Private: uuid gmodule-2.0
