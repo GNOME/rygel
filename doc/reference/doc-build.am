@@ -40,8 +40,10 @@ clean-local:
 	rm -f gtkdoc/lib$(RYGEL_DOCBUILD_MODULE)*.txt
 	rm -f gtkdoc/lib$(RYGEL_DOCBUILD_MODULE).prerequisites
 
+RYGEL_GTKDOC_INSTALL_DIR = $(DESTDIR)$(datadir)/gtk-doc/html/lib$(RYGEL_DOCBUILD_MODULE)
+
 uninstall-hook:
-	rm -rf $(DESTDIR)$(datadir)/gtk-doc/html/lib$(RYGEL_DOCBUILD_MODULE)
+	rm -rf $(INSTALL_DIR)
 
 all: valadoc-gen gtkdoc-gen
 
@@ -49,9 +51,9 @@ endif
 
 # The chmod corrects the directory permissions so that distcheck can remove the installed files.
 install-data-hook: gtkdoc/html/index.html
-	$(MKDIR_P) $(DESTDIR)$(datadir)/gtk-doc/html/lib$(RYGEL_DOCBUILD_MODULE)
-	cp -d -R $(srcdir)/gtkdoc/html $(DESTDIR)$(datadir)/gtk-doc/html/lib$(RYGEL_DOCBUILD_MODULE)
-	chmod -R u+w $(DESTDIR)$(datadir)/gtk-doc/html/lib$(RYGEL_DOCBUILD_MODULE)
+	$(MKDIR_P) $(RYGEL_GTKDOC_INSTALL_DIR)
+	cp -d -R $(srcdir)/gtkdoc/html $(RYGEL_GTKDOC_INSTALL_DIR)
+	chmod -R u+w $(RYGEL_GTKDOC_INSTALL_DIR)
 
 
 EXTRA_DIST = $(RYGEL_GTKDOC_DOCS_XML) gtkdoc/html valadoc
