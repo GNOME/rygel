@@ -11,7 +11,12 @@ valadoc-gen: $(VALA_SOURCE_FILES_WITH_PATHS)
 		-o valadoc \
 		$(VALADOC_FLAGS)
 
-gtkdoc-gen: $(VALA_SOURCE_FILES_WITH_PATHS) gtkdoc/lib$(RYGEL_DOCBUILD_MODULE)-docs.xml
+# Avoid regeneration of the html if none of its dependencies have changed:
+gtkdoc/html/index.html: gtkdoc-gen
+
+RYGEL_GTKDOC_DOCS_XML = $(top_srcdir)/doc/reference/lib$(RYGEL_DOCBUILD_MODULE)/gtkdoc/lib$(RYGEL_DOCBUILD_MODULE)-docs.xml
+
+gtkdoc-gen: $(VALA_SOURCE_FILES_WITH_PATHS) $(RYGEL_GTKDOC_DOCS_XML)
 	@rm -rf gtkdoc/html
 	$(AM_V_GEN)$(VALADOC) \
 		-X $(top_srcdir)/src/lib$(RYGEL_DOCBUILD_MODULE)/$(RYGEL_DOCBUILD_MODULE).h \
@@ -38,14 +43,16 @@ clean-local:
 uninstall-hook:
 	rm -rf $(DESTDIR)$(datadir)/gtk-doc/html/lib$(RYGEL_DOCBUILD_MODULE)
 
+all: valadoc-gen gtkdoc-gen
+
+endif
+
 # The chmod corrects the directory permissions so that distcheck can remove the installed files.
-install-data-hook: gtkdoc-gen
+install-data-hook: gtkdoc/html/index.html
 	$(MKDIR_P) $(DESTDIR)$(datadir)/gtk-doc/html/lib$(RYGEL_DOCBUILD_MODULE)
 	cp -d -R $(srcdir)/gtkdoc/html $(DESTDIR)$(datadir)/gtk-doc/html/lib$(RYGEL_DOCBUILD_MODULE)
 	chmod -R u+w $(DESTDIR)$(datadir)/gtk-doc/html/lib$(RYGEL_DOCBUILD_MODULE)
 
-all: valadoc-gen gtkdoc-gen
 
-EXTRA_DIST = gtkdoc/lib$(RYGEL_DOCBUILD_MODULE)-docs.xml gtkdoc/html valadoc
+EXTRA_DIST = $(RYGEL_GTKDOC_DOCS_XML) gtkdoc/html valadoc
 
-endif

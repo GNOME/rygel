@@ -247,9 +247,11 @@ AC_PATH_PROG([XSLTPROC], [xsltproc])
 AM_CONDITIONAL([HAVE_XSLTPROC], [test x"$XSLTPROC" != x])
 
 dnl Use valadoc for API documentation:
+dnl This is on by default when using autogen.sh 
+dnl (so it is not on by default when building from a tarball with configure.)
 AC_ARG_ENABLE(valadoc,
   AS_HELP_STRING([--enable-valadoc[=@<:@no/auto/yes@:>@]], [Enable valadoc support]),,
-    [enable_valadoc=auto])
+    [enable_valadoc=no])
 
 found_valadoc=no
 AS_IF([test "x$enable_valadoc" != "xno"], [

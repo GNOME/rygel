@@ -6,8 +6,7 @@ pkgconfigdir = $(libdir)/pkgconfig
 EXTRA_DIST = rygel-core-2.0.pc.in rygel-renderer-2.0.pc.in \
              rygel-server-2.0.pc.in .version
 
-DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc \
-                            --enable-valadoc
+DISTCHECK_CONFIGURE_FLAGS =
 
 # Extra clean files so that maintainer-clean removes *everything*
 MAINTAINERCLEANFILES = aclocal.m4 compile config.guess config.sub configure depcomp install-sh ltmain.sh Makefile.in missing config.h.in
