@@ -35,6 +35,8 @@ public class Rygel.Tracker.Plugin : Rygel.MediaServerPlugin {
         }
 
         base (root, Plugin.NAME);
+
+        this.capabilities |= PluginCapabilities.UPLOAD;
     }
 }
 

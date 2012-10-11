@@ -106,5 +106,6 @@ public class Rygel.MediaExport.Plugin : Rygel.MediaServerPlugin {
 
     public Plugin () throws Error {
         base (RootContainer.get_instance (), NAME);
+        this.capabilities |= PluginCapabilities.UPLOAD;
     }
 }

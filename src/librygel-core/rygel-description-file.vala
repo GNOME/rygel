@@ -120,6 +120,59 @@ public class Rygel.DescriptionFile : Object {
     }
 
     /**
+     * Set the DLNA caps of this root device and while taking the
+     * capabilities of the plugin into account.
+     *
+     * @param capabilities RygelPluginCapabilities flags
+     */
+    public void set_dlna_caps (PluginCapabilities capabilities) {
+        var flags = new string[0];
+        var content = "";
+
+        if ((PluginCapabilities.UPLOAD & capabilities) != 0) {
+            // This means "Supports upload to AnyContainer_DLNA.ORG", but we
+            // also use it as "supports upload". AnyContainer upload is
+            // handled by Rygel transparently.
+            var allow_upload = true;
+            var allow_delete = false;
+
+            try {
+                var config = MetaConfig.get_default ();
+                allow_upload = config.get_allow_upload ();
+                allow_delete = config.get_allow_deletion ();
+            } catch (GLib.Error error) { }
+
+            if (allow_upload) {
+                if (PluginCapabilities.IMAGE_UPLOAD in capabilities) {
+                    flags += "image-upload";
+                }
+
+                if (PluginCapabilities.VIDEO_UPLOAD in capabilities) {
+                    flags += "av-upload";
+                }
+
+                if (PluginCapabilities.AUDIO_UPLOAD in capabilities) {
+                    flags += "audio-upload";
+                }
+            }
+
+            if (allow_delete) {
+                flags += "create-item-with-OCM-destroy-item";
+            }
+
+        }
+
+        // Set the flags we found; otherwise remove whatever is in the
+        // template.
+        if (flags.length > 0) {
+            content = string.joinv (",", flags);
+        }
+
+        this.set_device_element ("X_DLNACAP", content);
+    }
+
+
+    /**
      * Change the type of a service.
      *
      * Usually used to modify the service version, e.g. old_type =
