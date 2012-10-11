@@ -282,6 +282,8 @@ src/media-engines/simple/Makefile
 src/plugins/Makefile
 data/Makefile
 data/xml/Makefile
+data/xml/MediaServer3.xml.in
+data/xml/MediaRenderer2.xml.in
 data/icons/Makefile
 data/icons/32x32/Makefile
 data/icons/48x48/Makefile
