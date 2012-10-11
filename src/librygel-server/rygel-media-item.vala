@@ -188,6 +188,13 @@ public abstract class Rygel.MediaItem : MediaObject {
         }
     }
 
+    internal override void apply_didl_lite (DIDLLiteObject didl_object) {
+        base.apply_didl_lite (didl_object);
+
+        this.date = didl_object.date;
+        this.description = didl_object.description;
+    }
+
     internal override DIDLLiteObject serialize (DIDLLiteWriter writer,
                                                 HTTPServer     http_server)
                                                 throws Error {

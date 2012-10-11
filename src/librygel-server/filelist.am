@@ -49,6 +49,7 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-import-resource.vala \
 	rygel-item-creator.vala \
 	rygel-item-destroyer.vala \
+	rygel-item-updater.vala \
 	rygel-item-removal-queue.vala \
 	rygel-last-change-entry.vala \
 	rygel-last-change-obj-add.vala \
