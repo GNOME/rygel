@@ -25,6 +25,11 @@
          <dataType>string</dataType>
       </stateVariable>
 
+      <stateVariable sendEvents="no">
+          <name>ServiceResetToken</name>
+          <dataType>string</dataType>
+      </stateVariable>
+
       <stateVariable sendEvents="yes">
           <name>LastChange</name>
           <dataType>string</dataType>
@@ -153,6 +158,19 @@
                <relatedStateVariable>SystemUpdateID</relatedStateVariable>
             </argument>
          </argumentList>
+      </action>
+
+      <action>
+          <name>GetServiceResetToken</name>
+          <argumentList>
+              <argument>
+                  <name>ResetToken</name>
+                  <direction>out</direction>
+                  <relatedStateVariable>
+                      ServiceResetToken
+                  </relatedStateVariable>
+              </argument>
+          </argumentList>
       </action>
 
       <action>
