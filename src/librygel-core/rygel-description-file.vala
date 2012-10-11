@@ -237,8 +237,8 @@ public class Rygel.DescriptionFile : Object {
                                          "root",
                                          "device",
                                          element);
-        assert (xml_element != null);
-
-        xml_element->set_content (new_value);
+        if (element != null) {
+            xml_element->set_content (new_value);
+        }
     }
 }
