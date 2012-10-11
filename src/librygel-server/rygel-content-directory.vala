@@ -74,6 +74,8 @@ internal class Rygel.ContentDirectory: Service {
 
     private LastChange last_change;
 
+    private string service_reset_token;
+
     public override void constructed () {
         this.cancellable = new Cancellable ();
 
@@ -99,6 +101,8 @@ internal class Rygel.ContentDirectory: Service {
             "xsi:schemaLocation=\"urn:schemas-upnp-org:av:avs" +
             "http://www.upnp.org/schemas/av/avs-v1-20060531.xsd\">" +
             "</Features>";
+
+        this.service_reset_token = UUID.get ();
 
         this.action_invoked["Browse"].connect (this.browse_cb);
         this.action_invoked["Search"].connect (this.search_cb);
@@ -139,6 +143,12 @@ internal class Rygel.ContentDirectory: Service {
 
         /* Connect LastChange related signals */
         this.query_variable["LastChange"].connect (this.query_last_change);
+
+        /* Connect ServiceResetToken related signals */
+        this.query_variable["ServiceResetToken"].connect
+                                        (this.query_service_reset_token);
+        this.action_invoked["GetServiceResetToken"].connect
+                                        (this.get_service_reset_token_cb);
 
         this.http_server.run.begin ();
     }
@@ -539,5 +549,19 @@ internal class Rygel.ContentDirectory: Service {
         }
 
         this.last_change.add_event (entry);
+    }
+
+    /* ServiceResetToken */
+    private void get_service_reset_token_cb (Service       content_dir,
+                                             ServiceAction action) {
+        action.set ("ResetToken", typeof (string), this.service_reset_token);
+        action.return ();
+    }
+
+    private void query_service_reset_token (Service        content_dir,
+                                            string         variable,
+                                            ref GLib.Value value) {
+        value.init (typeof (string));
+        value.set_string (this.service_reset_token);
     }
 }
