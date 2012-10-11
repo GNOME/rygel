@@ -20,8 +20,9 @@
  */
 
 internal class Plugin : Rygel.MediaServerPlugin {
-    public Plugin (Rygel.MediaContainer root_container) {
-        base (root_container, _("LibRygelServer"));
+    public Plugin (Rygel.MediaContainer root_container,
+                   Rygel.PluginCapabilities capabilities) {
+        base (root_container, _("LibRygelServer"), null, capabilities);
     }
 }
 
@@ -45,9 +46,12 @@ public class Rygel.MediaServer : MediaDevice {
      * the RygelMediaServer will respond appropriately to changes in the
      * RygelMediaContainer. 
      */
-    public MediaServer (string title, MediaContainer root_container) {
+    public MediaServer (string title,
+                        MediaContainer root_container,
+                        PluginCapabilities capabilities =
+                                        PluginCapabilities.NONE) {
         base ();
-        this.plugin = new global::Plugin (root_container);
+        this.plugin = new global::Plugin (root_container, capabilities);
         this.plugin.title = title;
     }
 }

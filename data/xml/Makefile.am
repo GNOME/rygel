@@ -1,6 +1,7 @@
 xml_in_files = MediaServer3.xml.in \
                MediaRenderer2.xml.in \
                ContentDirectory.xml.in \
+               ContentDirectory-NoTrack.xml.in \
                ConnectionManager.xml.in \
                AVTransport2.xml.in \
                RenderingControl2.xml.in \

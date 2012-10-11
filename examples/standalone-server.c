@@ -132,7 +132,9 @@ int main (int argc, char *argv[])
         info = g_file_enumerator_next_file (enumerator, NULL, NULL);
     }
 
-    server = rygel_media_server_new ("LibRygel sample server", root_container);
+    server = rygel_media_server_new ("LibRygel sample server",
+                                     root_container,
+                                     RYGEL_PLUGIN_CAPABILITIES_NONE);
     rygel_media_device_add_interface (RYGEL_MEDIA_DEVICE (server), "eth0");
     rygel_media_device_add_interface (RYGEL_MEDIA_DEVICE (server), "wlan0");
 

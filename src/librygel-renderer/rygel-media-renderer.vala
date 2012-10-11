@@ -22,8 +22,9 @@
 internal class Plugin : Rygel.MediaRendererPlugin {
     private Rygel.MediaPlayer player;
 
-    public Plugin (Rygel.MediaPlayer root_container) {
-        base ("LibRygelRenderer", _("LibRygelRenderer"));
+    public Plugin (Rygel.MediaPlayer root_container,
+                   Rygel.PluginCapabilities capabilities) {
+        base ("LibRygelRenderer", _("LibRygelRenderer"), null, capabilities);
     }
 
     public override Rygel.MediaPlayer? get_player () {
@@ -44,9 +45,12 @@ public class Rygel.MediaRenderer : MediaDevice {
     /**
      * Create a RygelMediaRenderer to render content via a RygelMediaPlayer.
      */
-    public MediaRenderer (string title, MediaPlayer player) {
+    public MediaRenderer (string title,
+                          MediaPlayer player,
+                          PluginCapabilities capabilities =
+                                        PluginCapabilities.NONE) {
         base ();
-        this.plugin = new global::Plugin (player);
+        this.plugin = new global::Plugin (player, capabilities);
         this.plugin.title = title;
     }
 }
