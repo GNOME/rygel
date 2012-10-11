@@ -31,12 +31,18 @@ using Gee;
  */
 internal errordomain Rygel.ContentDirectoryError {
     NO_SUCH_OBJECT = 701,
+    INVALID_CURRENT_TAG_VALUE = 702,
+    INVALID_NEW_TAG_VALUE = 703,
+    REQUIRED_TAG = 704,
+    READ_ONLY_TAG = 705,
+    PARAMETER_MISMATCH = 706,
     INVALID_SORT_CRITERIA = 709,
     RESTRICTED_OBJECT = 711,
     BAD_METADATA = 712,
     RESTRICTED_PARENT = 713,
     NO_SUCH_DESTINATION_RESOURCE = 718,
     CANT_PROCESS = 720,
+    OUTDATED_OBJECT_METADATA = 728,
     INVALID_ARGS = 402
 }
 
@@ -116,6 +122,7 @@ internal class Rygel.ContentDirectory: Service {
         this.action_invoked["Search"].connect (this.search_cb);
         this.action_invoked["CreateObject"].connect (this.create_object_cb);
         this.action_invoked["DestroyObject"].connect (this.destroy_object_cb);
+        this.action_invoked["UpdateObject"].connect (this.update_object_cb);
         this.action_invoked["ImportResource"].connect (this.import_resource_cb);
         this.action_invoked["GetTransferProgress"].connect (
                                         this.get_transfer_progress_cb);
@@ -196,6 +203,14 @@ internal class Rygel.ContentDirectory: Service {
         var destroyer = new ItemDestroyer (this, action);
 
         destroyer.run.begin ();
+    }
+
+    /* UpdateObject action implementation */
+    private void update_object_cb (Service       content_dir,
+                                   ServiceAction action) {
+        var updater = new ItemUpdater (this, action);
+
+        updater.run.begin ();
     }
 
     /* ImportResource action implementation */
