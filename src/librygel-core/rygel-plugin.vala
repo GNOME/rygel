@@ -25,6 +25,33 @@ using Gee;
 using GUPnP;
 
 /**
+ * RygelPluginCapabilities is a set of flags that represent various
+ * capabilities of plugins.
+ */
+[Flags]
+public enum Rygel.PluginCapabilities {
+    NONE = 0,
+    /* Server caps */
+
+    /// Server plugin supports upload of images
+    IMAGE_UPLOAD,
+
+    /// Server plugin supports upload of video files
+    VIDEO_UPLOAD,
+
+    /// Server plugin supports upload of audio files
+    AUDIO_UPLOAD,
+
+    /// Server supports upload of all kind of items
+    UPLOAD = IMAGE_UPLOAD | VIDEO_UPLOAD | AUDIO_UPLOAD,
+
+    /// Server supports tracking changes
+    TRACK_CHANGES
+
+    /* Renderer caps */
+}
+
+/**
  * This represents a Rygel plugin.
  *
  * Plugin libraries should provide an object of this
@@ -64,6 +91,8 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
     private static const int ICON_SMALL_WIDTH = 48;
     private static const int ICON_SMALL_HEIGHT = 48;
 
+    public PluginCapabilities capabilities { get; protected set; }
+
     public string name;
     public string title;
     public string description;
@@ -95,11 +124,13 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
     public Plugin (string  desc_path,
                    string  name,
                    string? title,
-                   string? description = null) {
+                   string? description = null,
+                   PluginCapabilities capabilities = PluginCapabilities.NONE) {
         this.desc_path = desc_path;
         this.name = name;
         this.title = title;
         this.description = description;
+        this.capabilities = capabilities;
 
         this.active = true;
 

@@ -43,18 +43,26 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
      */
     public MediaServerPlugin (MediaContainer root_container,
                               string         name,
-                              string?        description = null) {
+                              string?        description = null,
+                              PluginCapabilities capabilities =
+                                        PluginCapabilities.NONE) {
         base (MEDIA_SERVER_DESC_PATH,
               name,
               root_container.title,
-              description);
+              description,
+              capabilities);
 
         this.root_container = root_container;
+        var path = ContentDirectory.DESCRIPTION_PATH_NO_TRACK;
 
         // MediaServer implementations must implement ContentDirectory service
+        if (PluginCapabilities.TRACK_CHANGES in this.capabilities) {
+            path = ContentDirectory.DESCRIPTION_PATH;
+        }
+
         var info = new ResourceInfo (ContentDirectory.UPNP_ID,
                                      ContentDirectory.UPNP_TYPE,
-                                     ContentDirectory.DESCRIPTION_PATH,
+                                     path,
                                      typeof (ContentDirectory));
         this.add_resource (info);
 

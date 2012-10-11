@@ -52,6 +52,8 @@ internal class Rygel.ContentDirectory: Service {
     public const string UPNP_TYPE_V1 =
                     "urn:schemas-upnp-org:service:ContentDirectory:1";
     public const string DESCRIPTION_PATH = "xml/ContentDirectory.xml";
+    public const string DESCRIPTION_PATH_NO_TRACK =
+                    "xml/ContentDirectory-NoTrack.xml";
 
     protected string feature_list;
 

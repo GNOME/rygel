@@ -44,8 +44,10 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
      */
     public MediaRendererPlugin (string  name,
                                 string? title,
-                                string? description = null) {
-        base (MEDIA_RENDERER_DESC_PATH, name, title, description);
+                                string? description = null,
+                                PluginCapabilities capabilities =
+                                        PluginCapabilities.NONE) {
+        base (MEDIA_RENDERER_DESC_PATH, name, title, description, capabilities);
 
         var resource = new ResourceInfo (ConnectionManager.UPNP_ID,
                                          ConnectionManager.UPNP_TYPE,

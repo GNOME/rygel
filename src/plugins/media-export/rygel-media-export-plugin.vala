@@ -105,6 +105,9 @@ public class Rygel.MediaExport.Plugin : Rygel.MediaServerPlugin {
     public const string NAME = "MediaExport";
 
     public Plugin () throws Error {
-        base (RootContainer.get_instance (), NAME);
+        base (RootContainer.get_instance (),
+              NAME,
+              null,
+              PluginCapabilities.UPLOAD);
     }
 }
