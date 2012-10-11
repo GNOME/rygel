@@ -1,3 +1,47 @@
+0.16.1
+======
+
+A new stable release for Rygel!
+
+Changes compared to 0.16.0:
+
+- Fix the installation and distribution of vapi and header files.
+- Add .deps files.
+- Add missing pkg-config files.
+- Force downgrade for devices with Reciva firmware.
+- Fix a crash if force-downgrade-for option is empty.
+- Fix linking with unstable GUPnP stack.
+- Fix MPEG2 transcoding with older mpegtsmux element.
+
+MPRIS:
+ - Don't crash on faulty MPRIS2 implementations missing mandatory properties.
+
+External:
+ - Actually use "audio.music" as documented in the MediaServer2 spec.
+
+MediaExport:
+ - Ignore invalid color depth 0.
+
+Examples:
+ - Fix the server example to actuall work and not return 404 for every file.
+ - Fix the service description in Debian init file.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=685183
+ - https://bugzilla.gnome.org/show_bug.cgi?id=684868
+ - https://bugzilla.gnome.org/show_bug.cgi?id=683934
+ - https://bugzilla.gnome.org/show_bug.cgi?id=674738
+ - https://bugzilla.gnome.org/show_bug.cgi?id=685196
+ - https://bugzilla.gnome.org/show_bug.cgi?id=685478
+
+Changes in dependencies:
+ - Drop GUPnP-DLNA dependency for Tracker plug-in.
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  Andreas Henriksson <andreas@fatal.se>
+  Mark Ryan <mark.d.ryan@intel.com>
+
 0.16.0
 ======
 
