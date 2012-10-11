@@ -1,4 +1,4 @@
-xml_in_files = MediaServer2.xml.in \
+xml_in_files = MediaServer3.xml.in \
                MediaRenderer2.xml.in \
                ContentDirectory.xml.in \
                ConnectionManager.xml.in \
@@ -14,7 +14,7 @@ xml_DATA = $(xml_in_files:.xml.in=.xml)
 
 xmldir = $(datadir)/rygel/xml
 
-EXTRA_DIST = $(xml_in_files)
+EXTRA_DIST = $(xml_in_files) MediaServer3.xml.in.in MediaRenderer2.xml.in.in
 CLEANFILES = $(xml_DATA)
 
-MAINTAINERCLEANFILES = Makefile.in
+MAINTAINERCLEANFILES = Makefile.in MediaServer3.xml.in MediaRenderer2.xml.in

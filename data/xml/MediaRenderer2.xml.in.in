@@ -8,10 +8,10 @@
     <deviceType>urn:schemas-upnp-org:device:MediaRenderer:2</deviceType>
     <friendlyName></friendlyName>
     <manufacturer>Rygel Developers</manufacturer>
-    <manufacturerURL>http://live.gnome.org/Rygel</manufacturerURL>
+    <manufacturerURL>@PACKAGE_URL@</manufacturerURL>
     <modelName>Rygel</modelName>
-    <modelNumber>0.1</modelNumber>
-    <modelURL>http://live.gnome.org/Rygel</modelURL>
+    <modelNumber>@VERSION@</modelNumber>
+    <modelURL>@PACKAGE_URL@</modelURL>
     <UDN></UDN>
     <serviceList>
     </serviceList>
