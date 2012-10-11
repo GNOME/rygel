@@ -8,8 +8,8 @@ data/rygel.desktop.in.in
 data/xml/AVTransport2.xml.in
 data/xml/ConnectionManager.xml.in
 data/xml/ContentDirectory.xml.in
-data/xml/MediaRenderer2.xml.in
-data/xml/MediaServer2.xml.in
+data/xml/MediaRenderer2.xml.in.in
+data/xml/MediaServer3.xml.in.in
 data/xml/RenderingControl2.xml.in
 src/plugins/external/rygel-external-container.vala
 src/plugins/external/rygel-external-icon-factory.vala
