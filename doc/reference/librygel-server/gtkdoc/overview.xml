@@ -20,8 +20,10 @@ The <link linkend="RygelMediaServer">RygelMediaServer</link>.
 This example program shows how to fill a container with media items and then instantiate a server to serve 
 them.
 </para>
+
+<!-- Do not indent the xi:include node. That puts spaces at the start of the code. -->
 <programlisting role="C">
-  <xi:include  href="../../../../examples/standalone-server.c"
+<xi:include  href="../../../../examples/standalone-server.c"
     parse="text"
     xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </programlisting>
