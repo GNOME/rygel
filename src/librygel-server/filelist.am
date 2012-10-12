@@ -32,7 +32,7 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-client-hacks.vala \
 	rygel-content-directory.vala \
 	rygel-dbus-thumbnailer.vala \
-    rygel-engine-loader.vala \
+	rygel-engine-loader.vala \
 	rygel-http-byte-seek.vala \
 	rygel-http-get-handler.vala \
 	rygel-http-get.vala \

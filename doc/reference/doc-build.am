@@ -1,10 +1,22 @@
 # Other Makefile.am files should set:
 # VALA_SOURCE_FILES, VALA_SOURCE_FILES_WITH_PATHS, 
-# VALADOC_FLAGS, RYGEL_DOCBUILD_MODULE
+# RYGEL_DOCBUILD_VALADOC_FLAGS, RYGEL_DOCBUILD_MODULE
 # and RYGEL_DOCBUILD_EXTRA_GTKDOC_OPTIONS
 # and the include this .am file.
 
 if ENABLE_VALADOC
+
+VALADOC_FLAGS = --force \
+		--vapidir $(top_srcdir)/src/lib$(RYGEL_DOCBUILD_MODULE) \
+		$(RYGEL_DOCBUILD_VALADOC_FLAGS) \
+		--target-glib=2.32 \
+		--vapidir=$(rygeldir) \
+		--pkg rygel-build-config \
+		-b $(top_srcdir)/src/lib$(RYGEL_DOCBUILD_MODULE) \
+		--package-name lib$(RYGEL_DOCBUILD_MODULE) \
+		--package-version 2.0 \
+		$(VALA_SOURCE_FILES_WITH_PATHS)
+
 
 valadoc-gen: $(VALA_SOURCE_FILES_WITH_PATHS)
 	$(AM_V_GEN)$(VALADOC) \
@@ -20,11 +32,21 @@ gtkdoc-gen: $(VALA_SOURCE_FILES_WITH_PATHS) $(RYGEL_GTKDOC_DOCS_XML)
 	@rm -rf gtkdoc/html
 	$(AM_V_GEN)$(VALADOC) \
 		-X $(top_srcdir)/src/lib$(RYGEL_DOCBUILD_MODULE)/$(RYGEL_DOCBUILD_MODULE).h \
+		$(RYGEL_DOCBUILD_EXTRA_GTKDOC_OPTIONS) \
 		-X -l -X $(top_builddir)/src/lib$(RYGEL_DOCBUILD_MODULE)/.libs/lib$(RYGEL_DOCBUILD_MODULE)-2.0.so \
 		-o gtkdoc \
 		--doclet gtkdoc \
 		$(VALADOC_FLAGS)
 
+debugecho:
+	echo $(AM_V_GEN)$(VALADOC) \
+		-X $(top_srcdir)/src/lib$(RYGEL_DOCBUILD_MODULE)/$(RYGEL_DOCBUILD_MODULE).h \
+		$(RYGEL_DOCBUILD_EXTRA_GTKDOC_OPTIONS) \
+		-X -l -X $(top_builddir)/src/lib$(RYGEL_DOCBUILD_MODULE)/.libs/lib$(RYGEL_DOCBUILD_MODULE)-2.0.so \
+		-o gtkdoc \
+		--doclet gtkdoc \
+		$(VALADOC_FLAGS)
+		
 clean-local:
 	rm -rf valadoc gtkdoc/html
 	rm -f gtkdoc/html.stamp

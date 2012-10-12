@@ -14,20 +14,11 @@ VALA_SOURCE_FILES_WITH_PATHS = $(addprefix $(top_srcdir)/src/librygel-server/, $
 #	echo $(VALA_SOURCE_FILES_WITH_PATHS);
 
 # TODO: The need for rygel-build-config here reminds us that we shouldn't need that in librygel-server either.
-# TODO: Why is gstreamer-pbutils-0.10 needed here, but not needed in librygel-server/Makefile.am?
-VALADOC_FLAGS = --force \
-	--vapidir $(top_srcdir)/src/librygel-core \
-	--pkg rygel-core-2.0 \
-	--vapidir $(top_srcdir)/src/librygel-server \
-	$(RYGEL_COMMON_VALAFLAGS_PKG) \
-	$(LIBRYGEL_SERVER_VALAFLAGS_PKG) \
-	--target-glib=2.32 \
-	--vapidir=$(rygeldir) \
-	--pkg rygel-build-config \
-	-b $(top_srcdir)/src/librygel-server \
-	--package-name librygel-server \
-	--package-version 2.0 \
-	$(VALA_SOURCE_FILES_WITH_PATHS)
+RYGEL_DOCBUILD_VALADOC_FLAGS = \
+		--vapidir $(top_srcdir)/src/librygel-core \
+		--pkg rygel-core-2.0 \
+		$(RYGEL_COMMON_VALAFLAGS_PKG) \
+		$(LIBRYGEL_SERVER_VALAFLAGS_PKG)
 
 
 RYGEL_DOCBUILD_MODULE = rygel-server
