@@ -11,11 +11,7 @@ librygel-core is part of the <ulink url="http://rygel-project.org/">Rygel</ulink
 </para>
 
 <para>
-This library allows in-process use of much of the DLNA and UPnP knowledge coded in Rygel.
-It is used by the <ulink url="http://rygel-project.org/">Rygel</ulink> server, 
-<ulink url="http://developer.gnome.org/librygel-renderer/unstable/">librygel-renderer</ulink>.
-It is also used by <ulink url="https://live.gnome.org/Rygel/Korva">Korva</ulink>, which is in
-turn used by the <ulink href="http://jensge.org/helium-a-m-dmc-for-your-n9/">Helium</ulink> UPnP control point.
+librygel-core is a collection of classes useful to Rygel's <ulink url="http://developer.gnome.org/librygel-server/unstable/">server</ulink> and <ulink url="http://developer.gnome.org/librygel-renderer/unstable/">renderer</ulink> implementation libraries and useful to plugin implementors.
 </para>
 
 <para>
