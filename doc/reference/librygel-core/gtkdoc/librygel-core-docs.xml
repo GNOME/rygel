@@ -14,9 +14,16 @@
     </releaseinfo>
   </bookinfo>
 
+  <!-- This is hand written: -->
+  <preface>
+    <title>Overview</title>
+    <xi:include href="overview.xml"/>
+  </preface>
+
+  <!-- These are generated: -->
   <chapter>
     <title>librygel-core API Reference</title>
-        <xi:include href="xml/rygel-connection-manager.xml"/>
+    <xi:include href="xml/rygel-connection-manager.xml"/>
     <xi:include href="xml/rygel-configuration.xml"/>
     <xi:include href="xml/rygel-log-handler.xml"/>
     <xi:include href="xml/rygel-resource-info.xml"/>

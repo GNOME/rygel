@@ -21,7 +21,7 @@
  */
 
 /*
- * Demo application for librygel-renderer.
+ * Demo application for librygel-renderer-gst.
  *
  * Creates a simple stand-alone UPnP renderer that renders any visual content
  * in ASCII-art using GStreamer's cacasink element.

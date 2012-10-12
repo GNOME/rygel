@@ -14,13 +14,20 @@
     </releaseinfo>
   </bookinfo>
 
+  <!-- This is hand written: -->
+  <preface>
+    <title>Overview</title>
+    <xi:include href="overview.xml"/>
+  </preface>
+
+    <!-- These are generated: -->
   <chapter>
     <title>librygel-renderer-gst API Reference</title>
     <xi:include href="xml/rygel-playbin-renderer.xml"/>
     <xi:include href="xml/rygel-playbin-player.xml"/>
     <xi:include href="xml/rygel-playbin-plugin.xml"/>
-
   </chapter>
+
   <chapter id="object-tree">
     <title>Object Hierarchy</title>
      <xi:include href="xml/tree_index.sgml"/>

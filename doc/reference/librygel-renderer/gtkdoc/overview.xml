@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+
+<section id="overview">
+
+<para>
+librygel-renderer is part of the <ulink url="http://rygel-project.org/">Rygel</ulink> project.
+</para>
+
+<para>
+This library may be used to create UPnP or DLNA Renderers.
+For instance, librygel-renderer-gst uses librygel-renderer with GStreamer 
+to implement its RygelPlaybinRenderer renderer.
+</para>
+
+<para>
+librygel-renderer-gst is licensed under the GNU Lesser General Public License (LGPL).
+</para>
+
+</section>
