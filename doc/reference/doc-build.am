@@ -37,15 +37,6 @@ gtkdoc-gen: $(VALA_SOURCE_FILES_WITH_PATHS) $(RYGEL_GTKDOC_DOCS_XML)
 		-o gtkdoc \
 		--doclet gtkdoc \
 		$(VALADOC_FLAGS)
-
-debugecho:
-	echo $(AM_V_GEN)$(VALADOC) \
-		-X $(top_srcdir)/src/lib$(RYGEL_DOCBUILD_MODULE)/$(RYGEL_DOCBUILD_MODULE).h \
-		$(RYGEL_DOCBUILD_EXTRA_GTKDOC_OPTIONS) \
-		-X -l -X $(top_builddir)/src/lib$(RYGEL_DOCBUILD_MODULE)/.libs/lib$(RYGEL_DOCBUILD_MODULE)-2.0.so \
-		-o gtkdoc \
-		--doclet gtkdoc \
-		$(VALADOC_FLAGS)
 		
 clean-local:
 	rm -rf valadoc gtkdoc/html
