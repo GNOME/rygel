@@ -66,5 +66,4 @@ LIBRYGEL_SERVER_VALAFLAGS_PKG = \
 	--pkg gstreamer-0.10 \
 	--pkg gstreamer-base-0.10 \
 	--pkg gstreamer-pbutils-0.10 \
-	--pkg gupnp-dlna-1.0 \
 	--pkg uuid
