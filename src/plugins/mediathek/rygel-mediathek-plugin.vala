@@ -46,5 +46,6 @@ public class Rygel.Mediathek.Plugin : Rygel.MediaServerPlugin {
 
     public Plugin () {
         base (RootContainer.get_instance (), Plugin.NAME);
+        this.capabilities |= PluginCapabilities.TRACK_CHANGES;
     }
 }

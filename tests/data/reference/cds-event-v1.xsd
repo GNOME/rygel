@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:schemas-upnp-org:av:cds-event"
+  xmlns:cds-event="urn:schemas-upnp-org:av:cds-event"
+  xmlns:av="urn:schemas-upnp-org:av:av"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  version="1-20080930">
+  <xsd:annotation>
+    <xsd:documentation xml:lang="en">
+		For UPnP A/V ContentDirectory Service events
+	</xsd:documentation>
+  </xsd:annotation>
+  <xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2005/08/xml.xsd" />
+  <xsd:import namespace="urn:schemas-upnp-org:av:av" schemaLocation="http://www.upnp.org/schemas/av/av.xsd" />
+  <!--===========================================================
+		'Event' is the root element of a CDSevent document.
+	============================================================-->
+  <xsd:element name="StateEvent">
+    <xsd:complexType>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="objAdd">
+          <xsd:complexType>
+            <xsd:attribute name="objID" type="av:_id.type" use="required" />
+            <xsd:attribute name="updateID" type="av:stateUpdateID.type" use="required" />
+            <xsd:attribute name="stUpdate" type="xsd:boolean" use="required" />
+            <xsd:attribute name="objParentID" type="av:_id.type" use="required" />
+            <xsd:attribute name="objClass" type="av:_classNameBase.type" use="required" />
+            <xsd:attributeGroup ref="cds-event:event.extensions.attributes" />
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="objMod">
+          <xsd:complexType>
+            <xsd:attribute name="objID" type="av:_id.type" use="required" />
+            <xsd:attribute name="updateID" type="av:stateUpdateID.type" use="required" />
+            <xsd:attribute name="stUpdate" type="xsd:boolean" use="required" />
+            <xsd:attributeGroup ref="cds-event:event.extensions.attributes" />
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="objDel">
+          <xsd:complexType>
+            <xsd:attribute name="objID" type="av:_id.type" use="required" />
+            <xsd:attribute name="updateID" type="av:stateUpdateID.type" use="required" />
+            <xsd:attribute name="stUpdate" type="xsd:boolean" use="required" />
+            <xsd:attributeGroup ref="cds-event:event.extensions.attributes" />
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="stDone">
+          <xsd:complexType>
+            <xsd:attribute name="objID" type="av:_id.type" use="required" />
+            <xsd:attribute name="updateID" type="av:stateUpdateID.type" use="required" />
+            <xsd:attributeGroup ref="cds-event:event.extensions.attributes" />
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:group ref="cds-event:events.vx.group" />
+      </xsd:choice>
+    </xsd:complexType>
+  </xsd:element>
+  <!--========================================================================================
+
+  Extension Component Datatypes
+
+  ========================================================================================-->
+  <xsd:attributeGroup name="event.extensions.attributes">
+    <xsd:attributeGroup ref="av:extensions.attributes.any" />
+  </xsd:attributeGroup>
+
+  <xsd:group name="events.vx.group">
+    <xsd:choice>
+      <xsd:any namespace="##other" />
+    </xsd:choice>
+  </xsd:group>
+</xsd:schema>

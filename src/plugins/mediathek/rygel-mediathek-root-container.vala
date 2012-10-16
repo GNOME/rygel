@@ -72,7 +72,9 @@ public class Rygel.Mediathek.RootContainer : Rygel.SimpleContainer {
         }
 
         foreach (int id in feeds) {
-            this.add_child_container (new RssContainer (this, id));
+            var container = new RssContainer (this, id);
+            this.add_child_container (container);
+            this.updated (container,ObjectEventType.ADDED, false);
         }
 
         Timeout.add_seconds (update_interval, () => {

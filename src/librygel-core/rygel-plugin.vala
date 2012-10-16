@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *

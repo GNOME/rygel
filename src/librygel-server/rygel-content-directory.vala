@@ -397,7 +397,7 @@ internal class Rygel.ContentDirectory: Service {
                                        ObjectEventType event_type,
                                        bool sub_tree_update) {
         this.add_last_change_entry (object, event_type, sub_tree_update);
-        this.system_update_id++;
+        //this.system_update_id++;
         updated_container.update_id = this.system_update_id++;
 
         if (this.clear_updated_containers) {
@@ -430,6 +430,10 @@ internal class Rygel.ContentDirectory: Service {
         this.notify ("ContainerUpdateIDs", typeof (string), update_ids);
         this.notify ("SystemUpdateID", typeof (uint32), this.system_update_id);
         this.notify ("LastChange", typeof (string), this.last_change.get_log ());
+
+        debug ("%llu Running update_notify: %s",
+               get_real_time (),
+               this.last_change.get_log ());
 
         this.clear_updated_containers = true;
         this.update_notify_id = 0;
@@ -520,7 +524,7 @@ internal class Rygel.ContentDirectory: Service {
     {
         LastChangeEntry entry;
 
-        this.system_update_id++;
+        //this.system_update_id++;
         switch (event_type) {
         case ObjectEventType.ADDED:
             entry = new LastChangeObjAdd (object.id,

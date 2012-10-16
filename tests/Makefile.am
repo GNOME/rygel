@@ -34,6 +34,7 @@ AM_VALAFLAGS = --disable-warnings \
                --pkg uuid --vapidir=$(top_srcdir)/src/librygel-core -g \
 	       $(COVERAGE_VALAFLAGS)
 
+noinst_PROGRAMS = rygel-last-change-test
 check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-http-response-test \
 		 rygel-http-byte-seek-test \
@@ -159,6 +160,11 @@ rygel_media_engine_test_LDADD = \
 	$(LDADD) \
 	$(top_builddir)/src/librygel-server/librygel-server-2.0.la \
 	$(top_builddir)/src/librygel-core/librygel-core-2.0.la
+
+rygel_last_change_test_SOURCES = rygel-last-change-test.vala
+rygel_last_change_test_CFLAGS = $(AM_CFLAGS) \
+	-DTEST_DATA_FOLDER='"$(abs_srcdir)/data"'
+rygel_last_change_test_VALAFLAGS = --pkg gupnp-1.0 --pkg libxml-2.0
 
 if HAVE_GSTREAMER
 check_PROGRAMS += \

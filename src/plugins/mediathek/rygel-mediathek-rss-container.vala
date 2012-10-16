@@ -39,7 +39,9 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
         this.content_id = id;
         this.feed_uri = uri_template.printf (id);
         this.sort_criteria = "-dc:date,+dc:title";
-        this.update.begin ();
+        Timeout.add_seconds (40, () => { this.update.begin (); return false;
+                });
+        // this.update.begin ();
     }
 
     public async void update () {
@@ -103,20 +105,28 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
             return false;
         }
 
-        this.children.clear ();
         this.child_count = 0;
+        this.updated (this, ObjectEventType.MODIFIED, true);
+        foreach (var child in this.children) {
+            this.updated (child, ObjectEventType.DELETED, true);
+        }
+
+        this.children.clear ();
+
         for (int i = 0; i < xpath_object->nodesetval->length (); i++) {
             var node = xpath_object->nodesetval->item (i);
             try {
                 var item = yield factory.create (this, node);
                 if (item != null) {
                     this.add_child_item (item);
+                    this.updated (item, ObjectEventType.ADDED, true);
                 }
             } catch (VideoItemError error) {
                 debug ("Could not create video item: %s, skipping",
                        error.message);
             }
         }
+        this.sub_tree_updates_finished (this);
 
         xpath_free_object (xpath_object);
         //this.updated ();
