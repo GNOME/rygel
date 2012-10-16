@@ -4,14 +4,11 @@
 <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
 ]>
 
-<section id="overview">
+<section id="implementing-media-engines">
 
 <para>
-librygel-server is part of the <ulink url="http://rygel-project.org/">Rygel</ulink> project.
-</para>
-
-<para>
-librygel-server is licensed under the GNU Lesser General Public License (LGPL).
+This library may be used to create Rygel media engines by 
+implementing the <link linkend="RygelMediaEngine">RygelMediaEngine</link> class.
 </para>
 
 </section>
