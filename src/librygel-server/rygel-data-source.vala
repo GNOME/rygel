@@ -26,14 +26,16 @@ public errordomain Rygel.DataSourceError {
 }
 
 /**
- * Interface for all data streams from a media engine. The data source is
- * responsible for providing the streamable byte-stream via its data_available
- * signal. End-of-stream is signalled through the done signal, while errors
- * are signalled by using the error signal.
+ * Interface for all data streams provided by a #RygelMediaEngine.
  *
- * # The only required URI scheme is file:/""/
- * # A DataSource should be able to stream any kind of binary data, regardless
- * of the format
+ * The data source is responsible for providing the streamable byte-stream
+ * via its data_available signal. End-of-stream is signalled by the 
+ * done signal, while errors are signalled by the error signal.
+ *
+ * Implementations should fulfil at least these requirements:
+ *
+ *  # It should support at least the file:/''''/ URI scheme.
+ *  # It should be able to stream any kind of binary data, regardless of the format.
  */
 public interface Rygel.DataSource : GLib.Object {
     /**
