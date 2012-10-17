@@ -29,6 +29,46 @@ extern const string TEST_DATA_FOLDER;
 static const string TARGET =
     "urn:schemas-upnp-org:service:ContentDirectory:3";
 
+public enum Testcase {
+    ADD_OBJECT,
+    CHANGE_OBJECT,
+    REMOVE_OBJECT,
+}
+
+public class TestContainer : Rygel.MediaContainer {
+    public TestContainer (string id,
+                          Rygel.MediaContainer? parent,
+                          string title,
+                          int child_count) {
+        base (id, parent, title, child_count);
+    }
+
+    public async override  Rygel.MediaObjects? get_children (uint offset,
+                                                             uint max_count,
+                                                             string sort_criteria,
+                                                             Cancellable? cancellable)
+                                                   throws GLib.Error {
+        return null;
+    }
+
+    public async override Rygel.MediaObject? find_object (string id,
+                                                          Cancellable? cancellable)
+                                                          throws GLib.Error {
+        return null;
+    }
+}
+
+public class TestItem : Rygel.MediaItem {
+    public TestItem (string id,
+                     Rygel.MediaContainer parent,
+                     string title,
+                     string upnp_class) {
+        base (id, parent, title, upnp_class);
+    }
+
+    public override bool streamable () { return false; }
+}
+
 public class LastChangeTest : Object {
     private MainLoop loop;
     private ControlPoint cp;
@@ -37,6 +77,8 @@ public class LastChangeTest : Object {
     private string lastchange_xsd_file;
     private SchemaValidCtxt *valid_ctxt;
     private Schema *schema;
+
+    Testcase test;
 
     ~LastChangeTest () {
         delete this.valid_ctxt;
@@ -49,13 +91,27 @@ public class LastChangeTest : Object {
         var doc = Parser.read_memory (content, content.length);
         assert (doc != null);
         assert (this.valid_ctxt->validate_doc (doc) == 0);
-        debug (content);
+
+        // Check if the entries are in order of the update id
+        int64 updateId = -1;
+        var child = doc->children->children;
+        while (child != null) {
+            if (child->type == ElementType.ELEMENT_NODE) {
+                var id = child->get_prop ("updateID");
+                assert (id != null);
+                assert (int64.parse (id) > updateId);
+                updateId = int64.parse (id);
+            }
+            child = child->next;
+        }
+
+        switch (this.test) {
+        }
     }
 
     private void on_sp_available (ServiceProxy p) {
         this.proxy = p;
         Source.remove (this.timeout);
-        debug ("====> Got proxy: %llu", get_real_time ());
         try {
             // Check if the service offers the LastChange state variable
             var last_change = false;

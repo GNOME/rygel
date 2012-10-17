@@ -163,8 +163,22 @@ rygel_media_engine_test_LDADD = \
 
 rygel_last_change_test_SOURCES = rygel-last-change-test.vala
 rygel_last_change_test_CFLAGS = $(AM_CFLAGS) \
+	-I$(top_builddir)/src/librygel-server \
+	-I$(top_srcdir)/src/librygel-server \
+	-I$(top_builddir)/src/librygel-core \
+	-I$(top_srcdir)/src/librygel-core \
 	-DTEST_DATA_FOLDER='"$(abs_srcdir)/data"'
-rygel_last_change_test_VALAFLAGS = --pkg gupnp-1.0 --pkg libxml-2.0
+rygel_last_change_test_VALAFLAGS = \
+	--pkg rygel-server-2.0 \
+	--pkg rygel-core-2.0 \
+	--vapidir $(top_builddir)/src/librygel-server \
+	--vapidir $(top_builddir)/src/librygel-core
+
+rygel_last_change_test_LDADD = \
+	$(LDADD) \
+	$(top_builddir)/src/librygel-server/librygel-server-2.0.la \
+	$(top_builddir)/src/librygel-core/librygel-core-2.0.la
+
 
 if HAVE_GSTREAMER
 check_PROGRAMS += \
