@@ -31,7 +31,8 @@ internal class Plugin : Rygel.MediaServerPlugin {
  * Call rygel_media_device_add_interface() on the RygelMediaServer to allow it
  * to serve media via that network interface.
  *
- * See the example code in the <link linkend="overview">overview</link>.
+ * See the example code in the 
+ * <link linkend="implementing-servers">Implementing Servers</link> section.
  */
 public class Rygel.MediaServer : MediaDevice {
 

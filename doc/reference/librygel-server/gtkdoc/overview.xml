@@ -11,7 +11,57 @@ librygel-server is part of the <ulink url="http://rygel-project.org/">Rygel</uli
 </para>
 
 <para>
+This library may be used to:
+  <itemizedlist>
+    <listitem><link linkend="implementing-servers">Create UPnP or DLNA servers</link>, such as the Rygel server.</listitem>
+    <listitem><link linkend="implementing-server-plugins">Create Rygel Server plugins</link></listitem>
+    <listitem><link linkend="implementing-media-engines">Create Rygel Media Engines</link></listitem>
+  </itemizedlist>
+</para>
+
+<para>
 librygel-server is licensed under the GNU Lesser General Public License (LGPL).
 </para>
+
+<sect1>
+<title>Basic Usage</title>
+<para>
+Include the header:
+</para>
+<para>
+<programlisting>
+#include &lt;rygel-server.h&gt;
+</programlisting>
+</para>
+
+<para>
+If your source file is program.c, you can compile it with:
+</para>
+<para>
+<command>
+gcc program.cc -o program `pkg-config --cflags --libs ryhttp://git.gnome.org/browse/rygel/commit/doc/reference/librygel-server/gtkdoc/overview.xml?id=b5748f34b25c5fc260d4f21969e2fb2cb8b5a1c2gel-server-2.0`
+</command>
+</para>
+
+<para>
+Alternatively, if using autoconf, use the following in configure.ac:
+</para>
+<para>
+<programlisting>
+PKG_CHECK_MODULES([DEPS], [rygel-server-2.0])
+</programlisting>
+</para>
+
+<para>
+Then use the generated DEPS_CFLAGS and DEPS_LIBS variables in the project Makefile.am files. For example:
+</para>
+<para>http://git.gnome.org/browse/rygel/commit/doc/reference/librygel-server/gtkdoc/overview.xml?id=b5748f34b25c5fc260d4f21969e2fb2cb8b5a1c2
+<programlisting>
+program_CPPFLAGS = $(DEPS_CFLAGS)
+program_LDADD = $(DEPS_LIBS)
+</programlisting>
+</para>
+
+</sect1>
 
 </section>

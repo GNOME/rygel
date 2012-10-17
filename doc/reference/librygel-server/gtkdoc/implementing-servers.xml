@@ -7,8 +7,7 @@
 <section id="implementing-servers">
 
 <para>
-This library may be used to create UPnP or DLNA servers via its
-The <link linkend="RygelMediaServer">RygelMediaServer</link>.
+This library may be used to create UPnP or DLNA servers via its <link linkend="RygelMediaServer">RygelMediaServer</link> class.
 </para>
 
 <!-- TODO: Find a way to mention this C example code in the RygelMediaServer valadoc comments instead. -->

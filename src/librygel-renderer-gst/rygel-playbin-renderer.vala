@@ -56,7 +56,7 @@ internal class Rygel.Playbin.WrappingPlugin : Rygel.MediaRendererPlugin {
  * to be controlled by a control point and to retrieve data streams via that
  * network interface.
  *
- * See the example code in the <link linkend="overview">overview</link>.
+ * See the <link linkend="example">example</link>.
  */
 public class Rygel.Playbin.Renderer : Rygel.MediaDevice {
     /**

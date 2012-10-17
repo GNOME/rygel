@@ -24,8 +24,8 @@
 
 /**
  * This is the base class for every Rygel implementation of a UPnP media
- * server. It should be used either for a real plug-in for the rygel process or used
- * in-process via the librygel-server API (see the standalone-server.c example).
+ * server. It should be used either for a real plug-in for the Rygel process or used
+ * in-process via the librygel-server API.
  */
 public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
     private static const string MEDIA_SERVER_DESC_PATH =

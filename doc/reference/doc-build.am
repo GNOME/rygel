@@ -28,7 +28,7 @@ gtkdoc/html/index.html: gtkdoc-gen
 
 RYGEL_GTKDOC_DOCS_XML = \
 	$(top_srcdir)/doc/reference/lib$(RYGEL_DOCBUILD_MODULE)/gtkdoc/lib$(RYGEL_DOCBUILD_MODULE)-docs.xml \
-	$(top_srcdir)/doc/reference/lib$(RYGEL_DOCBUILD_MODULE)/gtkdoc/overview.xml
+	$(top_srcdir)/doc/reference/lib$(RYGEL_DOCBUILD_MODULE)/gtkdoc/overview.xml $(RYGEL_GTKDOC_DOCS_XML_EXTRA)
 
 gtkdoc-gen: $(VALA_SOURCE_FILES_WITH_PATHS) $(RYGEL_GTKDOC_DOCS_XML)
 	@rm -rf gtkdoc/html

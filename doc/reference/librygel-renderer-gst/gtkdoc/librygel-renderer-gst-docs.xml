@@ -20,6 +20,11 @@
     <xi:include href="overview.xml"/>
   </preface>
 
+  <chapter>
+    <title>Example</title>
+    <xi:include href="example.xml"/>
+  </chapter>
+
     <!-- These are generated: -->
   <chapter>
     <title>librygel-renderer-gst API Reference</title>

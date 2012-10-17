@@ -27,6 +27,8 @@ RYGEL_DOCBUILD_VALADOC_FLAGS = \
 RYGEL_DOCBUILD_MODULE = rygel-renderer-gst
 RYGEL_DOCBUILD_EXTRA_GTKDOC_OPTIONS = -X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-2.0.so \
                                       -X -l -X $(top_builddir)/src/librygel-renderer/.libs/librygel-renderer-2.0.so
+RYGEL_GTKDOC_DOCS_XML_EXTRA = $(top_srcdir)/doc/reference/lib$(RYGEL_DOCBUILD_MODULE)/gtkdoc/example.xml
+
 endif
 
 include $(top_srcdir)/doc/reference/doc-build.am

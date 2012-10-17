@@ -13,24 +13,54 @@ librygel-renderer-gst is part of the <ulink url="http://rygel-project.org/">Ryge
 <para>
 This library may be used to create UPnP or DLNA Renderers using GStreamer.
 The <link linkend="RygelPlaybinRenderer">RygelPlaybinRenderer</link> may
-wrap an existing GStreamer playbin or create its own.
+wrap an existing GStreamer playbin or create its own. See the 
+<link linkend="example">example</link>.
 </para>
-
-<!-- TODO: Find a way to mention this C example code in the RygelPlaybinRenderer valadoc comments instead. -->
-<para>
-This example program shows how to instantiate the renderer then configure its GStreamer playbin element
-and connect it to a network interface.
-</para>
-
-<!-- Do not indent the xi:include node. That puts spaces at the start of the code. -->
-<programlisting role="C">
-<xi:include  href="../../../../examples/standalone-renderer.c"
-    parse="text"
-    xmlns:xi="http://www.w3.org/2001/XInclude"/>
-</programlisting>
 
 <para>
 librygel-renderer-gst is licensed under the GNU Lesser General Public License (LGPL).
 </para>
+
+
+<sect1 id="basic-usage">
+<title>Basic Usage</title>
+<para>
+Include the header:
+</para>
+<para>
+<programlisting>
+#include &lt;rygel-renderer-gst.h&gt;
+</programlisting>
+</para>
+
+<para>
+If your source file is program.c, you can compile it with:
+</para>
+<para>
+<command>
+gcc program.cc -o program `pkg-config --cflags --libs rygel-renderer-gst-2.0`
+</command>
+</para>
+
+<para>
+Alternatively, if using autoconf, use the following in configure.ac:
+</para>
+<para>
+<programlisting>
+PKG_CHECK_MODULES([DEPS], [rygel-renderer-gst-2.0])
+</programlisting>
+</para>
+
+<para>
+Then use the generated DEPS_CFLAGS and DEPS_LIBS variables in the project Makefile.am files. For example:
+</para>
+<para>
+<programlisting>
+program_CPPFLAGS = $(DEPS_CFLAGS)
+program_LDADD = $(DEPS_LIBS)
+</programlisting>
+</para>
+
+</sect1>
 
 </section>

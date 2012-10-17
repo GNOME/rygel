@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+
+<section id="example">
+
+<!-- TODO: Find a way to mention this C example code in the RygelPlaybinRenderer valadoc comments instead. -->
+<para>
+This example program shows how to instantiate the renderer then configure its GStreamer playbin element
+and connect it to a network interface.
+</para>
+
+<!-- Do not indent the xi:include node. That puts spaces at the start of the code. -->
+<programlisting role="C">
+<xi:include  href="../../../../examples/standalone-renderer.c"
+    parse="text"
+    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</programlisting>
+
+</section>

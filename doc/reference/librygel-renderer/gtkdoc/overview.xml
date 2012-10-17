@@ -17,7 +17,49 @@ to implement its RygelPlaybinRenderer renderer.
 </para>
 
 <para>
-librygel-renderer-gst is licensed under the GNU Lesser General Public License (LGPL).
+librygel-renderer is licensed under the GNU Lesser General Public License (LGPL).
 </para>
+
+
+<sect1>
+<title>Basic Usage</title>
+<para>
+Include the header:
+</para>
+<para>
+<programlisting>
+#include &lt;rygel-renderer.h&gt;
+</programlisting>
+</para>
+
+<para>
+If your source file is program.c, you can compile it with:
+</para>
+<para>
+<command>
+gcc program.cc -o program `pkg-config --cflags --libs rygel-renderer-2.0`
+</command>
+</para>
+
+<para>
+Alternatively, if using autoconf, use the following in configure.ac:
+</para>
+<para>
+<programlisting>
+PKG_CHECK_MODULES([DEPS], [rygel-renderer-2.0])
+</programlisting>
+</para>
+
+<para>
+Then use the generated DEPS_CFLAGS and DEPS_LIBS variables in the project Makefile.am files. For example:
+</para>
+<para>
+<programlisting>
+program_CPPFLAGS = $(DEPS_CFLAGS)
+program_LDADD = $(DEPS_LIBS)
+</programlisting>
+</para>
+
+</sect1>
 
 </section>
