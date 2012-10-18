@@ -177,9 +177,9 @@ public abstract class Rygel.MediaContainer : MediaObject {
      * for this container, if items under it are removed or added, if
      * there are metadata changes to items under it, etc.
      */
-    public void updated (MediaObject object,
-                         ObjectEventType event_type,
-                         bool sub_tree_update) {
+    public void updated (MediaObject object = this,
+                         ObjectEventType event_type = ObjectEventType.MODIFIED,
+                         bool sub_tree_update = false) {
         // Emit the signal that will start the bump-up process for this event.
         this.container_updated (this, object, event_type, sub_tree_update);
     }

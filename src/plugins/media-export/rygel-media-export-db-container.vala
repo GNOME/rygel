@@ -32,12 +32,11 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
 
         this.media_db = media_db;
         this.search_classes = new ArrayList<string> ();
-        this.container_updated.connect (on_db_container_updated);
-        this.on_db_container_updated (this, this);
+        this.container_updated.connect ( () => { this.count_children (); });
+        this.count_children;
     }
 
-    private void on_db_container_updated (MediaContainer container,
-                                          MediaContainer container_updated) {
+    private void count_children () {
         try {
             this.child_count = this.media_db.get_child_count (this.id);
         } catch (DatabaseError error) {
