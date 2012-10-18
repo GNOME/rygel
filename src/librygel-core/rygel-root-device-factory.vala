@@ -33,8 +33,11 @@ public errordomain RootDeviceFactoryError {
 }
 
 /**
- * Factory for RootDevice objects. Give it a plugin and it will create a
- * Root device for that.
+ * This is a factory to create #RygelRootDevice objects for
+ * a given UPnP context.
+ *
+ * Call rygel_root_device_factory_create() with a plugin
+ * to create a root device for the plugin.
  */
 public class Rygel.RootDeviceFactory {
     public GUPnP.Context context;

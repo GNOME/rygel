@@ -23,9 +23,11 @@
  */
 
 /**
- * Interface for mapping AVTransport:2 methods to the specific implementation.
+ * This interface maps UPnP AVTransport:2 methods to the plugin's specific implementation.
  *
- * This class is useful only when implementing Rygel plugins.
+ * This interface is useful only when implementing Rygel plugins.
+ * Instance of this interface are retrieved from 
+ * rygel_media_renderer_plugin_get_player().
  */
 public interface Rygel.MediaPlayer : GLib.Object {
     public abstract string playback_state { owned get; set; }

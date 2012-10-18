@@ -25,8 +25,14 @@ using Gee;
 using GUPnP;
 
 /**
- * Represents a Rygel plugin. Plugins are supposed to provide an object of this
- * class or a subclass.
+ * This represents a Rygel plugin.
+ *
+ * Plugin libraries should provide an object of this
+ * class or a subclass in their module_init() function.
+ *
+ * It is generally convenient to derive from 
+ * #RygelMediaRendererPlugin from librygel-renderer,
+ * or from #RygelMediaServerPlugin from librygel-server.
  */
 public class Rygel.Plugin : GUPnP.ResourceFactory {
     private static const string PNG_EXT = "png";

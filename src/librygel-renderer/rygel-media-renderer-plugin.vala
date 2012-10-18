@@ -23,9 +23,12 @@
  */
 
 /**
- * Base class for every Rygel UPnP renderer plugin.
+ * This is the base class for every Rygel UPnP renderer plugin.
  *
- * This class is useful only when implementing Rygel plugins.
+ * This class is useful when implementing Rygel renderer plugins.
+ *
+ * Renderer plugins should also implement their own #RygelMediaPlayer
+ * and return an instance of it from their get_player() implementation.
  */
 public class Rygel.MediaRendererPlugin : Rygel.Plugin {
     private static const string MEDIA_RENDERER_DESC_PATH =

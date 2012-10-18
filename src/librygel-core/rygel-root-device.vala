@@ -27,7 +27,15 @@ using GUPnP;
 using Gee;
 
 /**
- * Represents a Root device.
+ * This represents a UPnP root device.
+ *
+ * Each Rygel plugin corresponds to one UPnP root device, so
+ * each #RygelPlugin corresponds to one #RygelRootDevice.
+ *
+ * Rygel creates the #RygelRootDevice by calling
+ * rygel_root_device_factory_create() with the plugin,
+ * having first instantiated the #RygelRootDeviceFactory
+ * for a #GUPnPContext.
  */
 public class Rygel.RootDevice: GUPnP.RootDevice {
     public ArrayList<ServiceInfo> services { get; internal set; }   /* Services we implement */
