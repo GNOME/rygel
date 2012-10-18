@@ -45,7 +45,7 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
                                                    true,
                                                    false);
         foreach (var profile in discoverer.list_profiles ()) {
-            var p = new DLNAProfile (profile.mime, profile.name);
+            var p = new DLNAProfile (profile.name, profile.mime);
             this.dlna_profiles.prepend (p);
         }
 
