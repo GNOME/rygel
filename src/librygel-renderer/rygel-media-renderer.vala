@@ -34,21 +34,15 @@ internal class Plugin : Rygel.MediaRendererPlugin {
 /**
  * This class may be used to implement in-process UPnP-AV media renderers.
  *
- * Call rygel_media_device_add_interface() on the RygelMediaServer to allow it
- * to serve media via that network interface.
+ * Call rygel_media_device_add_interface() on the RygelMediaRenderer to allow it
+ * to render media from that network interface.
  *
  * See the standalone-renderer.c example.
  */
 public class Rygel.MediaRenderer : MediaDevice {
 
     /**
-     * Create a MediaRenderer to serve the media in the RygelMediaContainer.
-     * For instance, you might use a RygelSimpleContainer. Alternatively,
-     * you might use your own RygelMediaContainer implementation.
-     *
-     * Assuming that the RygelMediaContainer is correctly implemented,
-     * the RygelMediaServer will respond appropriately to changes in the
-     * RygelMediaContainer.
+     * Create a RygelMediaRenderer to render content via a RygelMediaPlayer.
      */
     public MediaRenderer (string title, MediaPlayer player) {
         base ();
