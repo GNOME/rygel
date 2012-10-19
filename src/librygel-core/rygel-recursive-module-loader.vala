@@ -32,6 +32,7 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
     private static const string LOADER_ATTRIBUTES =
                             FileAttribute.STANDARD_NAME + "," +
                             FileAttribute.STANDARD_TYPE + "," +
+                            FileAttribute.STANDARD_IS_HIDDEN + "," +
                             FileAttribute.STANDARD_CONTENT_TYPE;
     private delegate void FolderHandler (File folder);
 
@@ -166,11 +167,10 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
                                    FileInfo      info,
                                    FolderHandler handler) {
             var file = folder.get_child (info.get_name ());
-            FileType file_type = info.get_file_type ();
             string content_type = info.get_content_type ();
             string mime = ContentType.get_mime_type (content_type);
 
-            if (file_type == FileType.DIRECTORY) {
+            if (this.is_folder_eligible (info)) {
                 handler (file);
             } else if (mime == "application/x-sharedlib") {
                 // Seems like we found a module
@@ -181,6 +181,12 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
 
     }
 
+    private bool is_folder_eligible (FileInfo file_info) {
+        return file_info.get_file_type () == FileType.DIRECTORY &&
+               (file_info.get_name () == ".libs" ||
+                !file_info.get_is_hidden ());
+    }
+
     /**
      * Check if a File is a folder.
      *
@@ -188,19 +194,18 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
      * @return true, if file is folder, false otherwise.
      */
     private bool is_folder (File file) {
-        FileInfo file_info;
-
         try {
-            file_info = file.query_info (FileAttribute.STANDARD_TYPE,
-                                         FileQueryInfoFlags.NONE,
-                                         null);
+            var file_info = file.query_info (FileAttribute.STANDARD_TYPE + "," +
+                                             FileAttribute.STANDARD_IS_HIDDEN,
+                                             FileQueryInfoFlags.NONE,
+                                             null);
+
+            return this.is_folder_eligible (file_info);
         } catch (Error error) {
             critical (_("Failed to query content type for '%s'"),
                       file.get_path ());
 
             return false;
         }
-
-        return file_info.get_file_type () == FileType.DIRECTORY;
     }
 }
