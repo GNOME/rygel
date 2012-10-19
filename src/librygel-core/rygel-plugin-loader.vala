@@ -100,6 +100,7 @@ public class Rygel.PluginLoader : Object {
 
         string attributes = FileAttribute.STANDARD_NAME + "," +
                             FileAttribute.STANDARD_TYPE + "," +
+                            FileAttribute.STANDARD_IS_HIDDEN + "," +
                             FileAttribute.STANDARD_CONTENT_TYPE;
 
         GLib.List<FileInfo> infos;
@@ -129,7 +130,9 @@ public class Rygel.PluginLoader : Object {
             string content_type = info.get_content_type ();
             string mime = ContentType.get_mime_type (content_type);
 
-            if (file_type == FileType.DIRECTORY) {
+            if (file_type == FileType.DIRECTORY &&
+                (info.get_name () == ".libs" ||
+                 !info.get_is_hidden ())) {
                 // Recurse into directories
                 this.load_modules_from_dir.begin (file);
             } else if (mime == "application/x-sharedlib") {
