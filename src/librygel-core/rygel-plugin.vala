@@ -75,6 +75,20 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
 
     public ArrayList<IconInfo> default_icons;
 
+    /*
+     * TODO: Document the format of the template file, such as which tags/attributes
+     * should be present, which should be present but empty, and which
+     * tags should not be present.
+     */
+
+    /** 
+     * Create an instance of the plugin.
+     *
+     * @param desc_path The path of a template file for an XML description of the UPnP service.
+     * @param name The non-human-readable name for the plugin and its service, used in UPnP messages and in the Rygel configuration file.
+     * @param title An optional human-readable name (friendlyName) of the UPnP service provided by the plugin. If the title is empty then the name will be used.
+     * @param description An optional human-readable description (modelDescription) of the UPnP service provided by the plugin.
+     */
     public Plugin (string  desc_path,
                    string  name,
                    string? title,

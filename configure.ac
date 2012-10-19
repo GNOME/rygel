@@ -106,6 +106,12 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
         RYGEL_DISABLE_PLUGIN([media-export])
         RYGEL_DISABLE_PLUGIN([gst-launch])
       ])
+ 
+dnl Example plugins:     
+AC_ARG_ENABLE([example-plugins],
+              AS_HELP_STRING([--enable-example-plugins],[enable example plugins]),,
+              enable_example_plugins=no)
+AM_CONDITIONAL([BUILD_EXAMPLE_PLUGINS], [test "x$[]enable_example_plugins" = "xyes"])
 
 dnl Explicitly add stamp files for targets that are not plugins
 RYGEL_ADD_STAMP([src/librygel-core/librygel_core_2_0_la_vala.stamp])
@@ -303,6 +309,8 @@ rygel-server-2.0.pc
 rygel-renderer-gst-2.0.pc
 tests/Makefile
 examples/Makefile
+examples/server-plugins/Makefile
+examples/server-plugins/vala/Makefile
 ])
 AC_OUTPUT
 
@@ -321,6 +329,7 @@ echo "
         preferences ui:         ${HAVE_GTK}
         Media Engine:           ${with_media_engine}
     Plugins:
+        examples:               ${enable_example_plugins}
         test:                   ${enable_test_plugin}
         tracker:                ${enable_tracker_plugin}
         mediathek:              ${enable_mediathek_plugin}

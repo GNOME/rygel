@@ -1,3 +1,13 @@
+# Avoid using the example plugins dirs at all
+# if they are not enabled, to avoid
+# installing them.
+if BUILD_EXAMPLE_PLUGINS
+EXAMPLE_PLUGINS = server-plugins
+endif
+
+SUBDIRS = $(EXAMPLE_PLUGINS)
+
+
 include ../common.am
 
 AM_CFLAGS += \

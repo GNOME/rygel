@@ -33,6 +33,14 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
 
     public MediaContainer root_container;
 
+    /**
+     * Create an instance of the plugin.
+     * The plugin's service will have the same title as its root container.
+     *
+     * @param root_container The container that should be served by this plugin's service.
+     * @param name The non-human-readable name for the plugin and its service, used in UPnP messages and in the Rygel configuration file.
+     * @param description An optional human-readable description (modelDescription) of the UPnP service provided by the plugin.
+     */
     public MediaServerPlugin (MediaContainer root_container,
                               string         name,
                               string?        description = null) {
