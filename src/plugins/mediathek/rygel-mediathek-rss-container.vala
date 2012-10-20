@@ -24,7 +24,8 @@ using Gee;
 using Soup;
 using Xml;
 
-public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
+public class Rygel.Mediathek.RssContainer : Rygel.TrackableContainer,
+                                            Rygel.SimpleContainer {
     private const string uri_template = "http://www.zdf.de/ZDFmediathek/" +
                                         "content/%u?view=rss";
     private uint content_id;
@@ -103,14 +104,14 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
             return false;
         }
 
-        this.children.clear ();
+        yield this.clear ();
         this.child_count = 0;
         for (int i = 0; i < xpath_object->nodesetval->length (); i++) {
             var node = xpath_object->nodesetval->item (i);
             try {
                 var item = yield factory.create (this, node);
                 if (item != null) {
-                    this.add_child_item (item);
+                    yield this.add_child_tracked (item);
                 }
             } catch (VideoItemError error) {
                 debug ("Could not create video item: %s, skipping",
@@ -119,7 +120,6 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
         }
 
         xpath_free_object (xpath_object);
-        this.updated ();
 
         return this.child_count > 0;
     }
@@ -134,5 +134,9 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
         }
 
         return message;
+    }
+
+    public async void add_child (MediaObject object) {
+        this.add_child_item (object as MediaItem);
     }
 }

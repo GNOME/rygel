@@ -400,7 +400,13 @@ internal class Rygel.ContentDirectory: Service {
                                        bool sub_tree_update) {
         this.add_last_change_entry (object, event_type, sub_tree_update);
         this.system_update_id++;
-        updated_container.update_id = this.system_update_id++;
+
+        if (event_type == ObjectEventType.ADDED ||
+            event_type == ObjectEventType.DELETED) {
+            updated_container.update_id = this.system_update_id;
+        } else {
+            object.object_update_id = this.system_update_id;
+        }
 
         if (this.clear_updated_containers) {
             this.updated_containers.clear ();

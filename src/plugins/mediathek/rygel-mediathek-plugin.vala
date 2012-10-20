@@ -45,6 +45,9 @@ public class Rygel.Mediathek.Plugin : Rygel.MediaServerPlugin {
     public const string NAME = "ZDFMediathek";
 
     public Plugin () {
-        base (RootContainer.get_instance (), Plugin.NAME);
+        base (RootContainer.get_instance (),
+              Plugin.NAME,
+              null,
+              PluginCapabilities.TRACK_CHANGES);
     }
 }
