@@ -23,7 +23,8 @@
 using Gee;
 using Soup;
 
-public class Rygel.Mediathek.RootContainer : Rygel.SimpleContainer {
+public class Rygel.Mediathek.RootContainer : Rygel.TrackableContainer,
+                                             Rygel.SimpleContainer {
     private SessionAsync session;
     private static RootContainer instance;
     private static int DEFAULT_UPDATE_INTERVAL = 1800;
