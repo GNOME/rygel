@@ -24,16 +24,16 @@ using Gee;
 // Helper class for building ContentDirectory LastChange messages
 internal class Rygel.LastChange : Object {
     private const string HEADER =
-        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-        "<StateEvent\n" +
-        " xmlns=\"urn:schemas-upnp-org:av:cds-event\"\n" +
-        " xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"\n" +
-        " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" +
-        " xsi:schemaLocation=\"\n" +
-        "   urn:schemas-upnp-org:av:cds-event\n" +
-        "   http://www.upnp.org/schemas/av/cds-events.xsd\">\n";
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+        "<StateEvent " +
+         "xmlns=\"urn:schemas-upnp-org:av:cds-event\" " +
+         "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" " +
+         "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
+         "xsi:schemaLocation=\"" +
+            "urn:schemas-upnp-org:av:cds-event" +
+            "http://www.upnp.org/schemas/av/cds-events.xsd\">";
 
-    private const string FOOTER = "</StateEvent>\n";
+    private const string FOOTER = "</StateEvent>";
 
     private LinkedList<LastChangeEntry> entries;
     private StringBuilder str;

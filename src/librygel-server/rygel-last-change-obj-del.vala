@@ -36,7 +36,7 @@ internal class Rygel.LastChangeObjDel : Rygel.LastChangeEntry {
         var str = new StringBuilder ();
         var st_update = (this.sub_tree_update ? "1" : "0");
 
-        str.append ("   stUpdate=\"" + st_update + "\"");
+        str.append ("stUpdate=\"" + st_update + "\"");
 
         return str.str;
     }

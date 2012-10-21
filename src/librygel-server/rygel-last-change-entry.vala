@@ -39,14 +39,14 @@ internal abstract class Rygel.LastChangeEntry : Object {
         var str = new StringBuilder ();
         var info = this.additional_info ();
 
-        str.append ("  <" + this.tag + "\n" +
-                    "   objID=\"" + this.id + "\"\n" +
-                    "   updateID=\"" + this.update_id.to_string () + "\"");
+        str.append ("<" + this.tag + " " +
+                    "objID=\"" + this.id + "\" " +
+                    "updateID=\"" + this.update_id.to_string () + "\"");
 
         if (info.length > 0) {
-            str.append ("\n" + info);
+            str.append (" " + info);
         }
-        str.append ("/>\n");
+        str.append ("/>");
 
         return str.str;
     }

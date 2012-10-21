@@ -42,9 +42,9 @@ internal class Rygel.LastChangeObjAdd : Rygel.LastChangeEntry {
         var str = new StringBuilder ();
         var st_update = (this.sub_tree_update ? "1" : "0");
 
-        str.append ("   stUpdate=\"" + st_update + "\"\n" +
-                    "   objParentID=\"" + this.parent_id + "\"\n" +
-                    "   objClass=\"" + this.upnp_class + "\"");
+        str.append ("stUpdate=\"" + st_update + "\" " +
+                    "objParentID=\"" + this.parent_id + "\" " +
+                    "objClass=\"" + this.upnp_class + "\"");
 
         return str.str;
     }
