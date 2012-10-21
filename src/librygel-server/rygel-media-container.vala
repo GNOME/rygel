@@ -88,6 +88,10 @@ public abstract class Rygel.MediaContainer : MediaObject {
     public uint32 update_id;
     public int64 storage_used;
 
+    // This is a uint32 in UPnP. SystemUpdateID should reach uint32.MAX way
+    // before this variable and cause a SystemResetProcedure.
+    public int64 total_deleted_child_count;
+
     public string sort_criteria { set; get; default = DEFAULT_SORT_CRITERIA; }
 
     internal override OCMFlags ocm_flags {
@@ -131,6 +135,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.child_count = child_count;
         this.update_id = 0;
         this.storage_used = -1;
+        this.total_deleted_child_count = 0;
         this.upnp_class = STORAGE_FOLDER;
 
         this.container_updated.connect (on_container_updated);
@@ -200,8 +205,12 @@ public abstract class Rygel.MediaContainer : MediaObject {
         didl_container.upnp_class = this.upnp_class;
         didl_container.searchable = this is SearchableContainer;
         didl_container.storage_used = this.storage_used;
-        didl_container.container_update_id = this.update_id;
-        didl_container.update_id = this.object_update_id;
+        if (this is TrackableContainer) {
+            didl_container.container_update_id = this.update_id;
+            didl_container.update_id = this.object_update_id;
+            didl_container.total_deleted_child_count =
+                                        (uint) this.total_deleted_child_count;
+        }
 
         if (this.parent == null && (this is SearchableContainer)) {
             (this as SearchableContainer).serialize_search_parameters
