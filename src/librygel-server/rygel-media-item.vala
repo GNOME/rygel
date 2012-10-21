@@ -157,6 +157,13 @@ public abstract class Rygel.MediaItem : MediaObject {
             res.import_uri = import_uri;
         }
 
+        if (this is TrackableItem) {
+            // This is attribute is mandatory for track changes
+            // implementation. We don't really support updating the resources
+            // so we just set it to 0.
+            res.update_count = 0;
+        }
+
         res.size64 = this.size;
 
         /* Protocol info */
@@ -214,6 +221,10 @@ public abstract class Rygel.MediaItem : MediaObject {
 
         if (this.description != null) {
             didl_item.description = this.description;
+        }
+
+        if (this is TrackableItem) {
+            didl_item.update_id = this.object_update_id;
         }
 
         /* We list proxy/transcoding resources first instead of original URIs

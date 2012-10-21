@@ -19,6 +19,7 @@ LIBRYGEL_SERVER_VAPI_SOURCE_FILES = \
 	rygel-search-expression.vala \
 	rygel-searchable-container.vala \
 	rygel-trackable-container.vala \
+	rygel-trackable-item.vala \
 	rygel-transcode-manager.vala \
 	rygel-transcoder.vala \
 	rygel-visual-item.vala \

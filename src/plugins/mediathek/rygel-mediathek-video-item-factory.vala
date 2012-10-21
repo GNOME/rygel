@@ -25,6 +25,13 @@ internal errordomain Rygel.Mediathek.VideoItemError {
     NETWORK_ERROR
 }
 
+internal class Rygel.Mediathek.VideoItem : Rygel.TrackableItem,
+                                           Rygel.VideoItem {
+    public VideoItem (string id, MediaContainer parent, string title) {
+        base (id, parent, title);
+    }
+}
+
 internal class Rygel.Mediathek.VideoItemFactory : Object {
     private static VideoItemFactory instance;
     private PlaylistParser playlist_parser;
