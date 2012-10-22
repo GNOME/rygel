@@ -158,6 +158,33 @@ public abstract class Rygel.MediaObject : GLib.Object {
                                                 HTTPServer     http_server)
                                                 throws Error;
 
+    internal virtual void apply_didl_lite (DIDLLiteObject didl_object) {
+        this.title = didl_object.title;
+    }
+
+    internal DIDLLiteFragmentResult apply_fragments
+                                        (LinkedList<string> current_fragments,
+                                         LinkedList<string> new_fragments,
+                                         HTTPServer         http_server) {
+        var result = DIDLLiteFragmentResult.UNKNOWN_ERROR;
+
+        try {
+            var writer = new DIDLLiteWriter (null);
+            var didl_object = this.serialize (writer, http_server);
+
+            result = didl_object.apply_fragments (current_fragments.to_array (),
+                                                  current_fragments.size,
+                                                  new_fragments.to_array (),
+                                                  new_fragments.size);
+            if (result == DIDLLiteFragmentResult.OK) {
+                this.apply_didl_lite (didl_object);
+            }
+
+        } catch (Error e) {}
+
+        return result;
+    }
+
     internal virtual int compare_by_property (MediaObject media_object,
                                               string      property) {
         switch (property) {

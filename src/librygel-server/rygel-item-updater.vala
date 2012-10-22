@@ -57,20 +57,12 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
                 throw new ContentDirectoryError.NO_SUCH_OBJECT
                                         (_("No such object"));
             }
-            // I have no idea what to throw here.
-            // For now I just treat it as empty strings.
-            if (this.current_tag_value == null) {
-                this.current_tag_value = "";
-            }
-            if (this.new_tag_value == null) {
-                this.new_tag_value = "";
-            }
 
             yield this.update_object ();
 
             this.action.return ();
 
-            debug (_("Successfully destroyed object '%s'"), this.object_id);
+            debug (_("Successfully updated object '%s'"), this.object_id);
         } catch (Error error) {
             if (error is ContentDirectoryError) {
                 this.action.return_error (error.code, error.message);
@@ -86,16 +78,16 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
         this.completed ();
     }
 
-    private static LinkedList<string> csv_split (string tag_values) {
+    private static LinkedList<string> csv_split (string? tag_values) {
         var list = new LinkedList<string> ();
-        /*
         var escape = false;
         var token_start = 0;
         var token_length = 0;
-        */
+        var len = (tag_values != null ? tag_values.length : 0);
 
-        /* TODO: Find out how to iterate over chars in string.
-        foreach (var c in tag_values) {
+        for (int iter = 0; iter < len; ++iter) {
+            var c = tag_values[iter];
+
             if (escape) {
                 escape = false;
             } else {
@@ -113,7 +105,6 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
             }
             ++token_length;
         }
-        */
 
         return list;
     }
@@ -123,16 +114,37 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
         var current_list = csv_split (this.current_tag_value);
         var new_list = csv_split (this.new_tag_value);
 
-        if (current_list.size != new_list.size) {
+
+        switch (media_object.apply_fragments (current_list,
+                                              new_list,
+                                              this.content_dir.http_server)) {
+        case DIDLLiteFragmentResult.OK:
+            break;
+
+        case DIDLLiteFragmentResult.CURRENT_BAD_XML:
+        case DIDLLiteFragmentResult.CURRENT_INVALID:
+            throw new ContentDirectoryError.INVALID_CURRENT_TAG_VALUE
+                                        ("Bad current tag value.");
+
+        case DIDLLiteFragmentResult.NEW_BAD_XML:
+        case DIDLLiteFragmentResult.NEW_INVALID:
+            throw new ContentDirectoryError.INVALID_NEW_TAG_VALUE
+                                        ("Bad current tag value.");
+
+        case DIDLLiteFragmentResult.REQUIRED_TAG:
+            throw new ContentDirectoryError.REQUIRED_TAG
+                                        ("Tried to delete required tag.");
+
+        case DIDLLiteFragmentResult.READONLY_TAG:
+            throw new ContentDirectoryError.READ_ONLY_TAG
+                                        ("Tried to change read-only property.");
+
+        case DIDLLiteFragmentResult.MISMATCH:
             throw new ContentDirectoryError.PARAMETER_MISMATCH
-                (_("CurrentTagValue should have the same number of elements as " +
-                   "NewTagValue (%s vs %s)."),
-                 current_list.size,
-                 new_list.size);
-        }
-        /* Just to avoid some unused warning. */
-        if (media_object == null) {
-            return;
+                                        ("Parameter count mismatch.");
+
+        default:
+            throw new ContentDirectoryError.NO_SUCH_OBJECT ("Unknown error.");
         }
     }
 
