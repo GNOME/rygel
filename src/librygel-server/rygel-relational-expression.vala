@@ -31,8 +31,7 @@ public class Rygel.RelationalExpression :
              Rygel.SearchExpression<SearchCriteriaOp,string,string> {
     internal const string CAPS = "@id,@parentID,@refID,upnp:class," +
                                  "dc:title,upnp:artist,upnp:album," +
-                                 "dc:creator,upnp:createClass,@childCount," +
-                                 "upnp:objectUpdateID,upnp:containerUpdateID";
+                                 "dc:creator,upnp:createClass,@childCount";
 
     public override bool satisfied_by (MediaObject media_object) {
         switch (this.operand1) {
@@ -46,6 +45,33 @@ public class Rygel.RelationalExpression :
             return this.compare_string (media_object.upnp_class);
         case "dc:title":
             return this.compare_string (media_object.title);
+        case "upnp:objectUpdateID":
+            if (this.op == SearchCriteriaOp.EXISTS) {
+                if (this.operand2 == "true") {
+                    return media_object is TrackableContainer ||
+                           media_object is TrackableItem;
+                } else {
+                    return !(media_object is TrackableContainer ||
+                             media_object is TrackableItem);
+                }
+            } else {
+                return this.compare_uint (media_object.object_update_id);
+            }
+        case "upnp:containerUpdateID":
+            if (!(media_object is MediaContainer)) {
+                return false;
+            }
+
+            if (this.op == SearchCriteriaOp.EXISTS) {
+                if (this.operand2 == "true") {
+                    return media_object is TrackableContainer;
+                } else {
+                    return !(media_object is TrackableContainer);
+                }
+            } else {
+                var container = media_object as MediaContainer;
+                return this.compare_uint (container.update_id);
+            }
         case "upnp:createClass":
             if (!(media_object is WritableContainer)) {
                 return false;
@@ -78,12 +104,6 @@ public class Rygel.RelationalExpression :
 
             var container = media_object as MediaContainer;
             return this.compare_int (container.child_count);
-            /*
-        case "upnp:objectUpdateID":
-            return this.compare_int ();
-        case "upnp:containerUpdateID":
-            return this.compare_int ();
-            */
         default:
             return false;
         }
@@ -138,6 +158,27 @@ public class Rygel.RelationalExpression :
 
     public bool compare_int (int integer) {
         var operand2 = int.parse (this.operand2);
+
+        switch (this.op) {
+        case SearchCriteriaOp.EQ:
+            return integer == operand2;
+        case SearchCriteriaOp.NEQ:
+            return integer != operand2;
+        case SearchCriteriaOp.LESS:
+            return integer < operand2;
+        case SearchCriteriaOp.LEQ:
+            return integer <= operand2;
+        case SearchCriteriaOp.GREATER:
+            return integer > operand2;
+        case SearchCriteriaOp.GEQ:
+            return integer >= operand2;
+        default:
+            return false;
+        }
+    }
+
+    public bool compare_uint (uint integer) {
+        var operand2 = uint64.parse (this.operand2);
 
         switch (this.op) {
         case SearchCriteriaOp.EQ:

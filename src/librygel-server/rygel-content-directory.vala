@@ -76,6 +76,8 @@ internal class Rygel.ContentDirectory: Service {
 
     private string service_reset_token;
 
+    private string search_caps;
+
     public override void constructed () {
         this.cancellable = new Cancellable ();
 
@@ -93,6 +95,12 @@ internal class Rygel.ContentDirectory: Service {
                                         (on_sub_tree_updates_finished);
 
         this.last_change = new LastChange ();
+
+        this.search_caps = RelationalExpression.CAPS;
+
+        if (PluginCapabilities.TRACK_CHANGES in plugin.capabilities) {
+            this.search_caps += ",upnp:objectUpdateID,upnp:containerUpdateID";
+        }
 
         this.feature_list =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
