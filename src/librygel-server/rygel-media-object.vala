@@ -172,10 +172,10 @@ public abstract class Rygel.MediaObject : GLib.Object {
             var writer = new DIDLLiteWriter (null);
             var didl_object = this.serialize (writer, http_server);
 
-            result = didl_object.apply_fragments (current_fragments.to_array (),
-                                                  current_fragments.size,
-                                                  new_fragments.to_array (),
-                                                  new_fragments.size);
+            result = didl_object.apply_fragments
+                                        (current_fragments.to_array (),
+                                         new_fragments.to_array ());
+
             if (result == DIDLLiteFragmentResult.OK) {
                 this.apply_didl_lite (didl_object);
             }
