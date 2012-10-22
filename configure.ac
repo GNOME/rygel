@@ -93,7 +93,6 @@ RYGEL_ADD_PLUGIN([tracker],[Tracker],[yes])
 
 AS_IF([test "x$with_media_engine" = "xgstreamer"],
       [
-        RYGEL_ADD_PLUGIN([test],[Test],[no])
         RYGEL_ADD_PLUGIN([playbin],[GStreamer playbin],[yes])
         RYGEL_ADD_PLUGIN([media-export],[MediaExport],[yes])
         RYGEL_ADD_PLUGIN([gst-launch],[GStreamer launchline],[no])
@@ -101,7 +100,6 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
         RYGEL_ADD_STAMP([src/librygel-renderer-gst/librygel_renderer_gst_2_0_la_vala.stamp])
       ],
       [
-        RYGEL_DISABLE_PLUGIN([test])
         RYGEL_DISABLE_PLUGIN([playbin])
         RYGEL_DISABLE_PLUGIN([media-export])
         RYGEL_DISABLE_PLUGIN([gst-launch])
