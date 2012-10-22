@@ -125,6 +125,8 @@ internal class Rygel.AVTransport : Service {
                                         (this.get_device_capabilities_cb);
         action_invoked["GetTransportSettings"].connect
                                         (this.get_transport_settings_cb);
+        action_invoked["GetCurrentTransportActions"].connect
+                                        (this.get_transport_actions_cb);
         action_invoked["Stop"].connect (this.stop_cb);
         action_invoked["Play"].connect (this.play_cb);
         action_invoked["Pause"].connect (this.pause_cb);
@@ -159,6 +161,8 @@ internal class Rygel.AVTransport : Service {
         ChangeLog log = new ChangeLog (null, LAST_CHANGE_NS);
 
         log.log ("TransportState",               this.player.playback_state);
+        log.log ("CurrentTransportActions",
+                 this.controller.current_transport_actions);
         log.log ("TransportStatus",              this.status);
         log.log ("PlaybackStorageMedium",        "NOT_IMPLEMENTED");
         log.log ("RecordStorageMedium",          "NOT_IMPLEMENTED");
@@ -408,6 +412,19 @@ internal class Rygel.AVTransport : Service {
         action.return ();
     }
 
+    private void get_transport_actions_cb (Service       service,
+                                           ServiceAction action) {
+        if (!this.check_instance_id (action)) {
+            return;
+        }
+
+        action.set ("Actions",
+                        typeof (string),
+                        this.controller.current_transport_actions);
+
+        action.return ();
+    }
+
     private void get_position_info_cb (Service       service,
                                        ServiceAction action) {
         if (!this.check_instance_id (action)) {
@@ -590,6 +607,8 @@ internal class Rygel.AVTransport : Service {
     private void notify_state_cb (Object player, ParamSpec p) {
         var state = this.player.playback_state;
         this.changelog.log ("TransportState", state);
+        this.changelog.log ("CurrentTransportActions",
+                            this.controller.current_transport_actions);
     }
 
     private void notify_n_tracks_cb (Object player, ParamSpec p) {

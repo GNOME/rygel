@@ -75,6 +75,22 @@ internal class Rygel.PlayerController : Object {
         default = "";
     }
 
+    public string current_transport_actions {
+        owned get {
+            switch (this._playback_state) {
+                case "PLAYING":
+                case "TRANSITIONING":
+                    return "Stop,Seek,X_DLNA_SeekTime,Pause";
+                case "STOPPED":
+                case "PAUSED_PLAYBACK":
+                    return "Play,Seek,X_DLNA_SeekTime";
+                default:
+                    return "";
+            }
+        }
+    }
+
+    // Private members
     private MediaCollection collection;
     private List<DIDLLiteItem> collection_items;
     private uint timeout_id;

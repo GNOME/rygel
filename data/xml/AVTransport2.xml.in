@@ -39,6 +39,11 @@
       </stateVariable>
 
       <stateVariable sendEvents="no">
+         <name>CurrentTransportActions</name>
+         <dataType>string</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
          <name>PlaybackStorageMedium</name>
          <dataType>string</dataType>
          <allowedValueList>
@@ -484,6 +489,22 @@
                <relatedStateVariable>TransportPlaySpeed</relatedStateVariable>
             </argument>
          </argumentList>
+      </action>
+
+      <action>
+         <name>GetCurrentTransportActions</name>
+         <argumentList>
+            <argument>
+               <name>InstanceID</name>
+               <direction>in</direction>
+               <relatedStateVariable>A_ARG_TYPE_InstanceID</relatedStateVariable>
+            </argument>
+            <argument>
+               <name>Actions</name>
+               <direction>out</direction>
+               <relatedStateVariable>CurrentTransportActions</relatedStateVariable>
+            </argument>
+          </argumentList>
       </action>
 
       <action>
