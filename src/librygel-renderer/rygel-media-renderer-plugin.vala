@@ -39,7 +39,7 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
      * Create an instance of the plugin.
      *
      * @param name The non-human-readable name for the plugin and its renderer, used in UPnP messages and in the Rygel configuration file.
-     * @param title An optional human-readable name (friendlyName) of the UpnP renderer provided by the plugin. If the title is empty then the name will be used.
+     * @param title An optional human-readable name (friendlyName) of the UPnP renderer provided by the plugin. If the title is empty then the name will be used.
      * @param description An optional human-readable description (modelDescription) of the UPnP renderer provided by the plugin.
      */
     public MediaRendererPlugin (string  name,

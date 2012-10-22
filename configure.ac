@@ -307,6 +307,8 @@ rygel-server-2.0.pc
 rygel-renderer-gst-2.0.pc
 tests/Makefile
 examples/Makefile
+examples/renderer-plugins/Makefile
+examples/renderer-plugins/vala/Makefile
 examples/server-plugins/Makefile
 examples/server-plugins/vala/Makefile
 ])
