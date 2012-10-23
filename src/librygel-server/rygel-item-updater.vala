@@ -45,13 +45,15 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
 
     public async void run () {
         try {
-            this.action.get ("ObjectID", typeof (string), out this.object_id);
-            this.action.get ("CurrentTagValue",
-                             typeof (string),
-                             out this.current_tag_value);
-            this.action.get ("NewTagValue",
-                             typeof (string),
-                             out this.new_tag_value);
+            this.action.get ("ObjectID",
+                                 typeof (string),
+                                 out this.object_id,
+                             "CurrentTagValue",
+                                 typeof (string),
+                                 out this.current_tag_value,
+                             "NewTagValue",
+                                 typeof (string),
+                                 out this.new_tag_value);
             if (this.object_id == null) {
                 // Sorry we can't do anything without the ID
                 throw new ContentDirectoryError.NO_SUCH_OBJECT
@@ -94,12 +96,13 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
                 switch (c) {
                 case '\\':
                     escape = true;
-                    break;
 
+                    break;
                 case ',':
                     list.add (tag_values.substring (token_start, token_length));
                     token_start += token_length + 1;
                     token_length = 0;
+
                     break;
                 }
             }
@@ -121,29 +124,23 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
         switch (result) {
         case DIDLLiteFragmentResult.OK:
             break;
-
         case DIDLLiteFragmentResult.CURRENT_BAD_XML:
         case DIDLLiteFragmentResult.CURRENT_INVALID:
             throw new ContentDirectoryError.INVALID_CURRENT_TAG_VALUE
                                         ("Bad current tag value.");
-
         case DIDLLiteFragmentResult.NEW_BAD_XML:
         case DIDLLiteFragmentResult.NEW_INVALID:
             throw new ContentDirectoryError.INVALID_NEW_TAG_VALUE
                                         ("Bad current tag value.");
-
         case DIDLLiteFragmentResult.REQUIRED_TAG:
             throw new ContentDirectoryError.REQUIRED_TAG
                                         ("Tried to delete required tag.");
-
         case DIDLLiteFragmentResult.READONLY_TAG:
             throw new ContentDirectoryError.READ_ONLY_TAG
                                         ("Tried to change read-only property.");
-
         case DIDLLiteFragmentResult.MISMATCH:
             throw new ContentDirectoryError.PARAMETER_MISMATCH
                                         ("Parameter count mismatch.");
-
         default:
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("Unknown error.");
         }
@@ -151,7 +148,8 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
 
     private async MediaObject fetch_object () throws Error {
         var media_object = yield this.content_dir.root_container.find_object
-                                        (this.object_id, this.cancellable);
+                                        (this.object_id,
+                                         this.cancellable);
 
         if (media_object == null) {
             throw new ContentDirectoryError.NO_SUCH_OBJECT

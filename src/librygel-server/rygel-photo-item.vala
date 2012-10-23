@@ -58,15 +58,17 @@ public class Rygel.PhotoItem : ImageItem {
         }
     }
 
-    private string get_first (GLib.List<GUPnP.DIDLLiteContributor>? contributors) {
+    private string get_first (List<DIDLLiteContributor>? contributors) {
         if (contributors != null) {
             return contributors.data.name;
         }
+
         return "";
     }
 
     internal override void apply_didl_lite (DIDLLiteObject didl_object) {
         base.apply_didl_lite (didl_object);
+
         this.creator = get_first (didl_object.get_creators ());
     }
 
