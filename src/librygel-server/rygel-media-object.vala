@@ -162,7 +162,7 @@ public abstract class Rygel.MediaObject : GLib.Object {
         this.title = didl_object.title;
     }
 
-    internal DIDLLiteFragmentResult apply_fragments
+    internal async DIDLLiteFragmentResult apply_fragments
                                         (LinkedList<string> current_fragments,
                                          LinkedList<string> new_fragments,
                                          HTTPServer         http_server) {
@@ -178,6 +178,9 @@ public abstract class Rygel.MediaObject : GLib.Object {
 
             if (result == DIDLLiteFragmentResult.OK) {
                 this.apply_didl_lite (didl_object);
+                if (this is UpdatableObject) {
+                    yield (this as UpdatableObject).commit ();
+                }
             }
 
         } catch (Error e) {}
