@@ -34,7 +34,11 @@ public class Rygel.Tracker.Plugin : Rygel.MediaServerPlugin {
             root = new RootContainer (_("@REALNAME@'s media"));
         }
 
-        base (root, Plugin.NAME, null, PluginCapabilities.UPLOAD);
+        base (root,
+              Plugin.NAME,
+              null,
+              PluginCapabilities.UPLOAD |
+              PluginCapabilities.TRACK_CHANGES);
     }
 }
 
