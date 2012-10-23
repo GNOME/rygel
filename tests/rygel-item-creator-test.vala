@@ -114,6 +114,7 @@ public class Rygel.MediaObject : GLib.Object {
     public string title;
     public GUPnP.OCMFlags ocm_flags;
     public Gee.ArrayList<string> uris;
+    public uint object_update_id;
 
     public void add_uri (string uri) {
         this.uris.add (uri);
@@ -186,6 +187,7 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
     public Gee.ArrayList<string> create_classes = new Gee.ArrayList<string> ();
     public int child_count;
     public string sort_criteria = "+dc:title";
+    public uint update_id;
 
     // mockable elements
     public MediaObject found_object = null;

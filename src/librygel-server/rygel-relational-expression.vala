@@ -34,6 +34,7 @@ public class Rygel.RelationalExpression :
                                  "dc:creator,upnp:createClass,@childCount";
 
     public override bool satisfied_by (MediaObject media_object) {
+        debug ("Checking satisfied_by on %s", media_object.title);
         switch (this.operand1) {
         case "@id":
             return this.compare_string (media_object.id);

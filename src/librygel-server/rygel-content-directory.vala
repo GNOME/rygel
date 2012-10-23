@@ -580,6 +580,7 @@ internal class Rygel.ContentDirectory: Service {
                                              ServiceAction action) {
         action.set ("ResetToken", typeof (string), this.service_reset_token);
         action.return ();
+        this.service_reset.begin ();
     }
 
     private void query_service_reset_token (Service        content_dir,
