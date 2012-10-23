@@ -31,7 +31,7 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
     private static const string MEDIA_SERVER_DESC_PATH =
                                 BuildConfig.DATA_DIR + "/xml/MediaServer2.xml";
 
-    public MediaContainer root_container;
+    public MediaContainer root_container { get; private set; }
 
     /**
      * Create an instance of the plugin.

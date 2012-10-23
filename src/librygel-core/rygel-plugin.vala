@@ -64,19 +64,19 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
     private static const int ICON_SMALL_WIDTH = 48;
     private static const int ICON_SMALL_HEIGHT = 48;
 
-    public string name;
-    public string title;
-    public string description;
+    public string name { get; private set; }
+    public string title { get; set; }
+    public string description { get; private set; }
 
     // Path to description document
-    public string desc_path;
+    public string desc_path { get; private set; }
 
     public bool active { get; set; }
 
-    public ArrayList<ResourceInfo> resource_infos;
-    public ArrayList<IconInfo> icon_infos;
+    public ArrayList<ResourceInfo> resource_infos { get; private set; }
+    public ArrayList<IconInfo> icon_infos { get; private set; }
 
-    public ArrayList<IconInfo> default_icons;
+    public ArrayList<IconInfo> default_icons { get; private set; }
 
     /*
      * TODO: Document the format of the template file, such as which tags/attributes
