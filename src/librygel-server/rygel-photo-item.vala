@@ -58,7 +58,7 @@ public class Rygel.PhotoItem : ImageItem {
         }
     }
 
-    private string get_first (List<DIDLLiteContributor>? contributors) {
+    private string get_first (GLib.List<DIDLLiteContributor>? contributors) {
         if (contributors != null) {
             return contributors.data.name;
         }
