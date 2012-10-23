@@ -113,11 +113,12 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
         var media_object = yield this.fetch_object ();
         var current_list = csv_split (this.current_tag_value);
         var new_list = csv_split (this.new_tag_value);
+        var result = yield media_object.apply_fragments
+                                        (current_list,
+                                         new_list,
+                                         this.content_dir.http_server);
 
-
-        switch (media_object.apply_fragments (current_list,
-                                              new_list,
-                                              this.content_dir.http_server)) {
+        switch (result) {
         case DIDLLiteFragmentResult.OK:
             break;
 

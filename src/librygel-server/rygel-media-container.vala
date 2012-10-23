@@ -121,6 +121,10 @@ public abstract class Rygel.MediaContainer : MediaObject {
                 flags |= OCMFlags.DESTROYABLE;
             }
 
+            if (this is UpdatableObject) {
+                flags |= OCMFlags.CHANGE_METADATA;
+            }
+
             return flags;
         }
     }
