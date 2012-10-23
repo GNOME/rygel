@@ -29,10 +29,10 @@ internal class Rygel.MediaExport.WritableDbContainer : DBContainer,
         base (media_db, id, title);
 
         this.create_classes = new ArrayList<string> ();
-        this.create_classes.add (ImageItem.UPNP_CLASS);
-        this.create_classes.add (PhotoItem.UPNP_CLASS);
-        this.create_classes.add (VideoItem.UPNP_CLASS);
-        this.create_classes.add (AudioItem.UPNP_CLASS);
+        this.create_classes.add (Rygel.ImageItem.UPNP_CLASS);
+        this.create_classes.add (Rygel.PhotoItem.UPNP_CLASS);
+        this.create_classes.add (Rygel.VideoItem.UPNP_CLASS);
+        this.create_classes.add (Rygel.AudioItem.UPNP_CLASS);
         this.create_classes.add (Rygel.MusicItem.UPNP_CLASS);
     }
 
