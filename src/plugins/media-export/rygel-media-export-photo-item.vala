@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2012 Jens Georg <mail@jensge.org>.
+ * Copyright (C) 2012 Intel Corporation.
  *
- * Author: Jens Georg <mail@jensge.org>
+ * Author: Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -20,18 +20,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-/**
- * Own MusicItem class to provide disc number inside music item for sorting
- * and metadata extraction.
- */
-internal class Rygel.MediaExport.MusicItem : Rygel.MusicItem,
+internal class Rygel.MediaExport.PhotoItem : Rygel.PhotoItem,
                                              Rygel.UpdatableObject {
-    public int disc;
-
-    public MusicItem (string         id,
+    public PhotoItem (string         id,
                       MediaContainer parent,
                       string         title,
-                      string         upnp_class = Rygel.MusicItem.UPNP_CLASS) {
+                      string         upnp_class = Rygel.PhotoItem.UPNP_CLASS) {
         base (id, parent, title, upnp_class);
     }
 

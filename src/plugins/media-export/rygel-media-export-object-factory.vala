@@ -77,12 +77,12 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
                                        string         upnp_class) {
         switch (upnp_class) {
             case Rygel.MusicItem.UPNP_CLASS:
-            case AudioItem.UPNP_CLASS:
+            case Rygel.AudioItem.UPNP_CLASS:
                 return new MusicItem (id, parent, title);
-            case VideoItem.UPNP_CLASS:
+            case Rygel.VideoItem.UPNP_CLASS:
                 return new VideoItem (id, parent, title);
-            case PhotoItem.UPNP_CLASS:
-            case ImageItem.UPNP_CLASS:
+            case Rygel.PhotoItem.UPNP_CLASS:
+            case Rygel.ImageItem.UPNP_CLASS:
                 return new PhotoItem (id, parent, title);
             default:
                 assert_not_reached ();

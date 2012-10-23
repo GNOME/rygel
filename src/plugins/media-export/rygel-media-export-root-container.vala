@@ -423,9 +423,9 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
                                                    Rygel.MusicItem.UPNP_CLASS,
                                                    virtual_folders_music);
             this.add_virtual_containers_for_class (_("Pictures"),
-                                                   PhotoItem.UPNP_CLASS);
+                                                   Rygel.PhotoItem.UPNP_CLASS);
             this.add_virtual_containers_for_class (_("Videos"),
-                                                   VideoItem.UPNP_CLASS);
+                                                   Rygel.VideoItem.UPNP_CLASS);
         } catch (Error error) {};
     }
 
