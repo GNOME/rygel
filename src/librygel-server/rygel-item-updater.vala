@@ -109,6 +109,11 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
             ++token_length;
         }
 
+        // Single tag value only
+        if (len > 0 && list.is_empty) {
+            list.add (tag_values);
+        }
+
         return list;
     }
 
