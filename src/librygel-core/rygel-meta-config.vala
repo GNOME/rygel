@@ -30,7 +30,7 @@ using Gee;
 /**
  * Manages all the configuration sources for Rygel.
  *
- * Abstracts Rygel and it's plugins from Configuration implementations. It keeps
+ * Abstracts Rygel and its plugins from Configuration implementations. It keeps
  * all real configuration sources in a list and returns the value provided by
  * the first one. If none of them provides the value, it emits an error.
  */

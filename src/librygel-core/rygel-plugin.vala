@@ -33,6 +33,9 @@ using GUPnP;
  * It is generally convenient to derive from 
  * #RygelMediaRendererPlugin from librygel-renderer,
  * or from #RygelMediaServerPlugin from librygel-server.
+ *
+ * Plugins may change their behaviour based on their
+ * configuration. See rygel_meta_config_get_default().
  */
 public class Rygel.Plugin : GUPnP.ResourceFactory {
     private static const string PNG_EXT = "png";
