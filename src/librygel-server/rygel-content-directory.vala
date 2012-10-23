@@ -408,6 +408,16 @@ internal class Rygel.ContentDirectory: Service {
                                        bool sub_tree_update) {
         this.add_last_change_entry (object, event_type, sub_tree_update);
         this.system_update_id++;
+        var plugin = this.root_device.resource_factory as MediaServerPlugin;
+
+        if (this.system_update_id == 0 &&
+            PluginCapabilities.TRACK_CHANGES in plugin.capabilities) {
+            // Overflow, need to initiate Service Reset Procedure.
+            // See ContentDirectory:3 spec, 2.3.7.1
+            this.service_reset.begin ();
+
+            return;
+        }
 
         if (event_type == ObjectEventType.ADDED ||
             event_type == ObjectEventType.DELETED) {
@@ -577,5 +587,53 @@ internal class Rygel.ContentDirectory: Service {
                                             ref GLib.Value value) {
         value.init (typeof (string));
         value.set_string (this.service_reset_token);
+    }
+
+    private async void service_reset () {
+        debug ("SystemUpdateID overflow, initiating service reset procedure");
+
+        var plugin = this.root_device.resource_factory as MediaServerPlugin;
+        plugin.active = false;
+        this.service_reset_token = UUID.get ();
+        var expression = new RelationalExpression ();
+        expression.operand1 = "upnp:objectUpdateID";
+        expression.operand2 = "true";
+        expression.op = SearchCriteriaOp.EXISTS;
+
+        try {
+            var root = this.root_container as SearchableContainer;
+            if (root == null) {
+                // TODO:
+                return;
+            }
+
+            uint32 matches = 0;
+            var objects = yield root.search (expression,
+                                             0,
+                                             0,
+                                             out matches,
+                                             "",
+                                             null);
+            if (objects.size > 0) {
+                uint32 count = 1;
+                foreach (var object in objects) {
+                    object.object_update_id = count++;
+
+                    if (object is TrackableContainer) {
+                        var container = object as MediaContainer;
+                        container.update_id = container.object_update_id;
+                        container.total_deleted_child_count = 0;
+                    }
+                }
+
+                // SystemUpdateID needs to be the highest object_update_id
+                this.system_update_id = count - 1;
+                debug ("New SystemUpdateID is %u", this.system_update_id);
+            }
+
+            debug ("Service reset procedure done, device coming up again");
+            plugin.active = true;
+            debug ("New service reset token is %s", this.service_reset_token);
+        } catch (Error error) { warning ("Failed to search for objects..."); };
     }
 }
