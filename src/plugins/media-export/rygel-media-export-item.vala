@@ -196,9 +196,19 @@ namespace Rygel.MediaExport.ItemFactory {
                     }
                 }
             }
-            dlna_info.info.get_tags ().get_string (TAG_ARTIST, out item.artist);
-            dlna_info.info.get_tags ().get_string (TAG_ALBUM, out item.album);
-            dlna_info.info.get_tags ().get_string (TAG_GENRE, out item.genre);
+
+            string artist;
+            dlna_info.info.get_tags ().get_string (TAG_ARTIST, out artist);
+            item.artist = artist;
+
+            string album;
+            dlna_info.info.get_tags ().get_string (TAG_ALBUM, out album);
+            item.album = album;
+
+            string genre;
+            dlna_info.info.get_tags ().get_string (TAG_GENRE, out genre);
+            item.genre = genre;
+
             uint tmp;
             dlna_info.info.get_tags ().get_uint (TAG_ALBUM_VOLUME_NUMBER,
                                                  out tmp);

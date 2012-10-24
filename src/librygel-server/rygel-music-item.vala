@@ -32,12 +32,12 @@ using GUPnP;
 public class Rygel.MusicItem : AudioItem {
     public new const string UPNP_CLASS = "object.item.audioItem.musicTrack";
 
-    public string artist;
-    public string album;
-    public string genre;
-    public int track_number = -1;
+    public string artist { get; set; }
+    public string album { get; set; }
+    public string genre { get; set; }
+    public int track_number { get; set; default = -1; }
 
-    public Thumbnail album_art;
+    public Thumbnail album_art { get; set; }
 
     public MusicItem (string         id,
                       MediaContainer parent,

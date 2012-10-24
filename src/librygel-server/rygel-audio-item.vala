@@ -30,12 +30,12 @@ using GUPnP;
 public class Rygel.AudioItem : MediaItem {
     public new const string UPNP_CLASS = "object.item.audioItem";
 
-    public long duration = -1;  // Duration in seconds
-    public int bitrate = -1;    // Bytes/second
+    public long duration { get; set; default = -1; }  // Duration in seconds
+    public int bitrate { get; set; default = -1; }    // Bytes/second
 
-    public int sample_freq = -1;
-    public int bits_per_sample = -1;
-    public int channels = -1;
+    public int sample_freq { get; set; default = -1; }
+    public int bits_per_sample { get; set; default = -1; }
+    public int channels { get; set; default = -1; }
 
     public AudioItem (string         id,
                       MediaContainer parent,

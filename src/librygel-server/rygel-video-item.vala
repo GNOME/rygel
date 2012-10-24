@@ -33,7 +33,7 @@ using Gee;
 public class Rygel.VideoItem : AudioItem, VisualItem {
     public new const string UPNP_CLASS = "object.item.videoItem";
 
-    public string author;
+    public string author { get; set; }
 
     //TODO: This property documentation is not used.
     //See valadoc bug: https://bugzilla.gnome.org/show_bug.cgi?id=684367

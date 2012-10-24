@@ -33,7 +33,7 @@ using Gee;
 public class Rygel.PhotoItem : ImageItem {
     public new const string UPNP_CLASS = "object.item.imageItem.photo";
 
-    public string creator;
+    public string creator { get; set; }
 
     public PhotoItem (string         id,
                       MediaContainer parent,
