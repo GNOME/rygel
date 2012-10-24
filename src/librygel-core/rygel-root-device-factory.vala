@@ -40,7 +40,7 @@ public errordomain RootDeviceFactoryError {
  * to create a root device for the plugin.
  */
 public class Rygel.RootDeviceFactory {
-    public GUPnP.Context context;
+    public GUPnP.Context context {get; private set;}
 
     private Configuration config;
 
