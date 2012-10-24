@@ -309,11 +309,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
         if (item != null) {
             item.parent_ref = this.containers.peek_head ();
-            try {
-                this.cache.save_item (item);
-            } catch (Error error) {
-                // Ignore it for now
-            }
+            (item as UpdatableObject).commit.begin ();
         }
 
         this.files.poll ();
