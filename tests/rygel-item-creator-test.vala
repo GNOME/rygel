@@ -121,6 +121,12 @@ public class Rygel.MediaObject : GLib.Object {
     }
 }
 
+public interface Rygel.TrackableContainer : Rygel.MediaContainer {
+}
+
+public interface Rygel.TrackableItem : Rygel.MediaItem {
+}
+
 public class Rygel.MediaItem : Rygel.MediaObject {
     public string dlna_profile;
     public string mime_type;
