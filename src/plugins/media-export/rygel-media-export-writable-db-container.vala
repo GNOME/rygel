@@ -21,7 +21,7 @@
  */
 using Gee;
 
-internal class Rygel.MediaExport.WritableDbContainer : DBContainer,
+internal class Rygel.MediaExport.WritableDbContainer : TrackableDBContainer,
                                                     Rygel.WritableContainer {
     public ArrayList<string> create_classes { get; set; }
 
@@ -45,11 +45,15 @@ internal class Rygel.MediaExport.WritableDbContainer : DBContainer,
             item.modified = int64.MAX;
         }
         item.id = MediaCache.get_id (file);
-        this.media_db.save_item (item);
+        this.add_child_tracked.begin (item);
     }
 
     public async void remove_item (string id, Cancellable? cancellable)
                                    throws Error {
-        this.media_db.remove_by_id (id);
+        var container = new NullContainer ();
+        container.parent = this;
+        container.id = id;
+
+        this.remove_child_tracked.begin (container);
     }
 }

@@ -15,6 +15,7 @@ librygel_media_export_la_SOURCES = \
 	rygel-media-export-database-cursor.vala \
 	rygel-media-export-sqlite-wrapper.vala \
 	rygel-media-export-db-container.vala \
+	rygel-media-export-trackable-db-container.vala \
 	rygel-media-export-sql-factory.vala \
 	rygel-media-export-media-cache.vala \
 	rygel-media-export-sql-operator.vala \

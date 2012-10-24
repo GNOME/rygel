@@ -40,7 +40,7 @@ const Rygel.MediaExport.FolderDefinition[] virtual_folders_music = {
 /**
  * Represents the root container.
  */
-public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
+public class Rygel.MediaExport.RootContainer : TrackableDBContainer {
     private DBusService    service;
     private Harvester      harvester;
     private Cancellable    cancellable;
@@ -366,14 +366,13 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
             this.media_db.save_container (this);
         } catch (Error error) { } // do nothing
 
-        try {
-            this.filesystem_container = new DBContainer
-                                        (media_db,
-                                         FILESYSTEM_FOLDER_ID,
-                                         _(FILESYSTEM_FOLDER_NAME));
-            this.filesystem_container.parent = this;
-            this.media_db.save_container (this.filesystem_container);
-        } catch (Error error) { }
+        this.filesystem_container = new TrackableDBContainer
+                                    (media_db,
+                                     FILESYSTEM_FOLDER_ID,
+                                     _(FILESYSTEM_FOLDER_NAME));
+        this.filesystem_container.parent = this;
+        //this.media_db.save_container (this.filesystem_container);
+        this.add_child_tracked.begin (this.filesystem_container);
 
         ArrayList<string> ids;
         try {
@@ -395,21 +394,20 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
 
         foreach (var id in ids) {
             debug ("ID %s no longer in config; deleting...", id);
-            try {
-                this.media_db.remove_by_id (id);
-            } catch (DatabaseError error) {
-                warning (_("Failed to remove entry: %s"), error.message);
-            }
+            var container = new NullContainer ();
+            container.parent = this;
+            container.id = id;
+            this.remove_child_tracked.begin (container);
         }
 
-        this.updated ();
+        //this.updated ();
     }
 
     private void on_initial_harvesting_done () {
         this.harvester.disconnect (this.harvester_signal_id);
         this.media_db.debug_statistics ();
         this.add_default_virtual_folders ();
-        this.updated ();
+        //this.updated ();
 
         this.filesystem_container.container_updated.connect( () => {
             this.add_default_virtual_folders ();
@@ -478,7 +476,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         if (this.media_db.get_child_count (container.id) == 0) {
             this.media_db.remove_by_id (container.id);
         } else {
-            container.updated ();
+            this.updated (container, ObjectEventType.ADDED);
         }
     }
 }
