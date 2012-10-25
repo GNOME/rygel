@@ -139,4 +139,5 @@ public class Rygel.Example.Player : GLib.Object, Rygel.MediaPlayer {
     public string[] get_mime_types () {
         return MIME_TYPES;
     }
+}
 
