@@ -33,10 +33,10 @@ internal errordomain MediaArtStoreError {
  */
 public class Rygel.MediaArtStore : GLib.Object {
     private const string PLACEHOLDER_HASH = "7215ee9c7d9dc229d2921a40e899ec5f";
-    private const string invalid_chars = "()[]<>{}_!@#$^&*+=|\\/\"'?~";
-    private const string convert_chars = "\t";
-    private const string block_pattern = "%s[^%s]*%s";
-    private const string[] blocks = { "()", "{}", "[]", "<>" };
+    private const string INVALID_CHARS = "()[]<>{}_!@#$^&*+=|\\/\"'?~";
+    private const string CONVERT_CHARS = "\t";
+    private const string BLOCK_PATTERN = "%s[^%s]*%s";
+    private const string[] BLOCKS = { "()", "{}", "[]", "<>" };
     private static MediaArtStore media_art_store;
     private static bool first_time = true;
     private Regex char_remove_regex;
@@ -133,15 +133,15 @@ public class Rygel.MediaArtStore : GLib.Object {
 
         this.directory = dir;
         try {
-            var regex_string = Regex.escape_string (invalid_chars);
+            var regex_string = Regex.escape_string (INVALID_CHARS);
             char_remove_regex = new Regex ("[%s]".printf (regex_string));
-            regex_string = Regex.escape_string (convert_chars);
+            regex_string = Regex.escape_string (CONVERT_CHARS);
             char_convert_regex = new Regex ("[%s]".printf (regex_string));
             space_compress_regex = new Regex ("\\s+");
             block_regexes = new Regex[0];
 
-            foreach (var block in blocks) {
-                var block_re = block_pattern.printf (
+            foreach (var block in BLOCKS) {
+                var block_re = BLOCK_PATTERN.printf (
                                   Regex.escape_string ("%C".printf (block[0])),
                                   Regex.escape_string ("%C".printf (block[1])),
                                   Regex.escape_string ("%C".printf (block[1])));

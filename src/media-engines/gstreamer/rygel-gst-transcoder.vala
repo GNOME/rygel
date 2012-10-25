@@ -144,7 +144,7 @@ internal abstract class Rygel.GstTranscoder : Rygel.Transcoder {
         return;
     }
 
-    private const string description = "Encoder and decoder are not " +
+    private const string DESCRIPTION = "Encoder and decoder are not " +
                                        "compatible";
 
     private void on_no_more_pads (Element decodebin) {
@@ -155,7 +155,7 @@ internal abstract class Rygel.GstTranscoder : Rygel.Transcoder {
             var error = new IOError.FAILED ("Could not link");
             var message = new Message.error (bin,
                                              error,
-                                             description);
+                                             DESCRIPTION);
 
 
             var bus = bin.get_bus ();

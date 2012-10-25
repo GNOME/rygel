@@ -26,12 +26,12 @@ internal struct Rygel.MediaExport.FolderDefinition {
     string definition;
 }
 
-const Rygel.MediaExport.FolderDefinition[] virtual_folders_default = {
+const Rygel.MediaExport.FolderDefinition[] VIRTUAL_FOLDERS_DEFAULT = {
     { N_("Year"), "dc:date,?" },
     { N_("All"),  "" }
 };
 
-const Rygel.MediaExport.FolderDefinition[] virtual_folders_music = {
+const Rygel.MediaExport.FolderDefinition[] VIRTUAL_FOLDERS_MUSIC = {
     { N_("Artist"), "upnp:artist,?,upnp:album,?" },
     { N_("Album"),  "upnp:album,?" },
     { N_("Genre"),  "dc:genre,?" }
@@ -421,7 +421,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         try {
             this.add_virtual_containers_for_class (_("Music"),
                                                    Rygel.MusicItem.UPNP_CLASS,
-                                                   virtual_folders_music);
+                                                   VIRTUAL_FOLDERS_MUSIC);
             this.add_virtual_containers_for_class (_("Pictures"),
                                                    PhotoItem.UPNP_CLASS);
             this.add_virtual_containers_for_class (_("Videos"),
@@ -465,7 +465,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.MediaExport.DBContainer {
         container.id = "virtual-parent:" + item_class;
         this.media_db.save_container (container);
 
-        foreach (var definition in virtual_folders_default) {
+        foreach (var definition in VIRTUAL_FOLDERS_DEFAULT) {
             this.add_folder_definition (container, item_class, definition);
         }
 

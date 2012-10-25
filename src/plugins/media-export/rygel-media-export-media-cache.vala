@@ -448,7 +448,7 @@ public class Rygel.MediaExport.MediaCache : Object {
     private void open_db (string name) throws Error {
         this.db = new Database (name);
         int old_version = -1;
-        int current_version = int.parse (SQLFactory.schema_version);
+        int current_version = int.parse (SQLFactory.SCHEMA_VERSION);
 
         try {
             var upgrader = new MediaCacheUpgrader (this.db, this.sql);
@@ -475,7 +475,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                                 "sqlite_master WHERE rowid=1");
                 if (rows == 0) {
                     debug ("Empty database, creating new schema version %s",
-                            SQLFactory.schema_version);
+                            SQLFactory.SCHEMA_VERSION);
                     if (!create_schema ()) {
                         this.db = null;
 

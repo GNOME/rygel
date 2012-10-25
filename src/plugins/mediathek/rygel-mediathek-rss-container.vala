@@ -25,7 +25,7 @@ using Soup;
 using Xml;
 
 public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
-    private const string uri_template = "http://www.zdf.de/ZDFmediathek/" +
+    private const string URI_TEMPLATE = "http://www.zdf.de/ZDFmediathek/" +
                                         "content/%u?view=rss";
     private uint content_id;
     private Soup.Date last_modified = null;
@@ -37,7 +37,7 @@ public class Rygel.Mediathek.RssContainer : Rygel.SimpleContainer {
               "ZDF Mediathek RSS feed %u".printf (id));
 
         this.content_id = id;
-        this.feed_uri = uri_template.printf (id);
+        this.feed_uri = URI_TEMPLATE.printf (id);
         this.sort_criteria = "-dc:date,+dc:title";
         this.update.begin ();
     }

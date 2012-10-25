@@ -161,7 +161,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
         "WHERE _column IS NOT NULL %s ORDER BY _column COLLATE CASEFOLD " +
     "LIMIT ?,?";
 
-    internal const string schema_version = "11";
+    internal const string SCHEMA_VERSION = "11";
     internal const string CREATE_META_DATA_TABLE_STRING =
     "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
                             "mime_type TEXT NOT NULL, " +
@@ -197,7 +197,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                           "uri TEXT, " +
                           "flags TEXT);" +
     "INSERT INTO schema_info (version) VALUES ('" +
-    SQLFactory.schema_version + "'); ";
+    SQLFactory.SCHEMA_VERSION + "'); ";
 
     private const string CREATE_CLOSURE_TABLE =
     "CREATE TABLE closure (ancestor TEXT, descendant TEXT, depth INTEGER)";

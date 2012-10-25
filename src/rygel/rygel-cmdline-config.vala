@@ -66,7 +66,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static CmdlineConfig config;
 
     // Command-line options
-	const OptionEntry[] options = {
+	const OptionEntry[] OPTIONS = {
         { "version", 0, 0, OptionArg.NONE, ref version,
           "Display version number", null },
         { "network-interface", 'n', 0, OptionArg.STRING, ref iface,
@@ -119,7 +119,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         var opt_context = new OptionContext (parameter_string);
         opt_context.set_help_enabled (true);
         opt_context.set_ignore_unknown_options (true);
-        opt_context.add_main_entries (options, null);
+        opt_context.add_main_entries (OPTIONS, null);
 
         try {
             opt_context.parse (ref args);

@@ -77,7 +77,7 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
 
     private Scanner scanner;
 
-    private const SearchCriteriaToken[] tokens = {
+    private const SearchCriteriaToken[] TOKENS = {
         { "=",              SearchCriteriaSymbol.EQ },
         { "!=",             SearchCriteriaSymbol.NEQ },
         { "<",              SearchCriteriaSymbol.LESS },
@@ -111,7 +111,7 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
                                                CharacterSet.LATINC;
         scanner.config.symbol_2_token        = true;
 
-        foreach (var token in tokens) {
+        foreach (var token in TOKENS) {
             scanner.scope_add_symbol (0,
                                       token.str_symbol,
                                       ((int) token.symbol).to_pointer ());
