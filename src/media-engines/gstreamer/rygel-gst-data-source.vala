@@ -215,6 +215,11 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
     }
 
     private bool perform_seek () {
+        if (this.seek != null &&
+            this.seek.length >= this.seek.total_length) {
+            return true;
+        }
+
         var stop_type = Gst.SeekType.NONE;
         Format format;
         var flags = SeekFlags.FLUSH;
