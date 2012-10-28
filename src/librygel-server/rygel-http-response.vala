@@ -271,6 +271,13 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
     }
 
     private bool perform_seek () {
+        // Just ignore full-range seeks
+        if (this.seek != null &&
+            this.seek.length >= this.seek.total_length) {
+            debug ("Seek is full-range seek, ignoring");
+            return true;
+        }
+
         var stop_type = Gst.SeekType.NONE;
         Format format;
 
