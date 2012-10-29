@@ -23,7 +23,8 @@
 using Gee;
 using Soup;
 
-public class Rygel.Mediathek.RootContainer : Rygel.SimpleContainer {
+public class Rygel.Mediathek.RootContainer : Rygel.TrackableContainer,
+                                             Rygel.SimpleContainer {
     private SessionAsync session;
     private static RootContainer instance;
     private static int DEFAULT_UPDATE_INTERVAL = 1800;
@@ -31,7 +32,7 @@ public class Rygel.Mediathek.RootContainer : Rygel.SimpleContainer {
     public static RootContainer get_instance () {
         if (RootContainer.instance == null) {
             RootContainer.instance = new RootContainer ();
-            RootContainer.instance.init ();
+            RootContainer.instance.init.begin ();
         }
 
         return instance;
@@ -46,7 +47,7 @@ public class Rygel.Mediathek.RootContainer : Rygel.SimpleContainer {
         this.session = new Soup.SessionAsync ();
     }
 
-    private void init () {
+    private async void init () {
         Gee.ArrayList<int> feeds = null;
         int update_interval = DEFAULT_UPDATE_INTERVAL;
 
@@ -72,7 +73,7 @@ public class Rygel.Mediathek.RootContainer : Rygel.SimpleContainer {
         }
 
         foreach (int id in feeds) {
-            this.add_child_container (new RssContainer (this, id));
+            yield this.add_child_tracked (new RssContainer (this, id));
         }
 
         Timeout.add_seconds (update_interval, () => {
@@ -84,5 +85,9 @@ public class Rygel.Mediathek.RootContainer : Rygel.SimpleContainer {
 
             return true;
         });
+    }
+
+    public async void add_child (MediaObject object) {
+        this.add_child_container (object as MediaContainer);
     }
 }
