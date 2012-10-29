@@ -1,7 +1,6 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
 [encoding: UTF-8]
-
 [type: gettext/glade]data/rygel-preferences.ui
 data/rygel-preferences.desktop.in.in
 data/rygel.desktop.in.in
@@ -104,6 +103,7 @@ src/librygel-server/rygel-image-item.vala
 src/librygel-server/rygel-import-resource.vala
 src/librygel-server/rygel-item-creator.vala
 src/librygel-server/rygel-item-destroyer.vala
+src/librygel-server/rygel-item-updater.vala
 src/librygel-server/rygel-logical-expression.vala
 src/librygel-server/rygel-media-container.vala
 src/librygel-server/rygel-media-engine.vala
@@ -111,6 +111,7 @@ src/librygel-server/rygel-media-item.vala
 src/librygel-server/rygel-media-object.vala
 src/librygel-server/rygel-media-query-action.vala
 src/librygel-server/rygel-media-receiver-registrar.vala
+src/librygel-server/rygel-media-server.vala
 src/librygel-server/rygel-music-item.vala
 src/librygel-server/rygel-photo-item.vala
 src/librygel-server/rygel-relational-expression.vala

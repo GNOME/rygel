@@ -69,6 +69,7 @@ src/librygel-server/rygel-import-resource.c
 src/librygel-server/rygel-item-creator.c
 src/librygel-server/rygel-item-destroyer.c
 src/librygel-server/rygel-item-removal-queue.c
+src/librygel-server/rygel-item-updater.c
 src/librygel-server/rygel-logical-expression.c
 src/librygel-server/rygel-media-art-store.c
 src/librygel-server/rygel-media-container.c
