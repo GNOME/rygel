@@ -1,3 +1,79 @@
+0.17.1
+======
+
+A new unstable release for Rygel
+
+Changes compared to 0.17.0:
+
+- Many documentation updates.
+- Fix random failure of HTTPGetTest.
+- Clean-up linking, trying to fix over- and underlinking.
+- Adapt to new GUPnP vapi.
+- Fix crash if force-downgrade-for is empty.
+- Fix a namespace issue in the public API.
+- Fix the pkg-config files after API and bump.
+- Only create a seek when the client requests seeking.
+- Don't search for modules in hidden folders, except .libs to support
+  --enable-uninstalled.
+- Drop the "test" plugin.
+- Switch some of the public members in API to GObject properties.
+- Some style fixes.
+- Change Device version to MediaServer:3.
+- Change Service version to ContentDirectory:3.
+- Implement "Track Changes" feature of ContentDirectory:3.
+- Add an API for plugins to show capabilities such as upload or change
+  tracking.
+- Implement UpdateObject in ContentDirectory:3.
+
+Media-Engine GStreamer:
+ - Fix a crash in transcoding.
+ - Fix a mix-up in DLNA profiles causing upload to fail.
+ - Ignore full-range seeks, fixing a transcoding issue with certain versions
+   of mpegtsmux.
+
+MediaExport:
+ - Don't expose a colorDepth of 0.
+ - Allow updating of objects via UPnP call "UpdateObject".
+
+Renderer-Gst:
+ - Add convenience method to access GstPlaybin of renderer plug-in.
+
+Examples:
+ - Fix service description in SysV init script.
+ - Add an example server plugin.
+ - Add an example renderer plugin.
+
+External:
+ - Support "audio.music" as documented in the spec.
+
+MPRIS:
+ - Fix a crash when a peer does not implement mandatory properties.
+
+Playbin:
+ - Add mime-types for AAC audio.
+
+Changes in dependencies:
+ - GUPnP >= 0.19.0 for new VAPI.
+ - GUPnP-AV >= 0.11.2 for XML fragment support.
+ - GUPNP-DLNA is optional only when building the GStreamer media engine.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=680496
+ - https://bugzilla.gnome.org/show_bug.cgi?id=684868
+ - https://bugzilla.gnome.org/show_bug.cgi?id=683934
+ - https://bugzilla.gnome.org/show_bug.cgi?id=674738
+ - https://bugzilla.gnome.org/show_bug.cgi?id=674738
+ - https://bugzilla.gnome.org/show_bug.cgi?id=686018
+ - https://bugzilla.gnome.org/show_bug.cgi?id=679023
+ - https://bugzilla.gnome.org/show_bug.cgi?id=676024
+
+All contributors to this release:
+  Murray Cumming <murrayc@openismus.com>
+  Jens Georg <jensg@openismus.com>
+  Krzesimir Nowak <krnowak@openismus.com>
+  Andreas Henriksson <andreas@fatal.se>
+  Mark Ryan <mark.d.ryan@intel.com>
+
 0.17.0
 ======
 
