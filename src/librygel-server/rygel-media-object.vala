@@ -42,6 +42,7 @@ public abstract class Rygel.MediaObject : GLib.Object {
     public string ref_id;
     public string upnp_class;
     public uint64 modified;
+    public uint object_update_id;
     public Gee.ArrayList<string> uris;
 
     // You can keep both a unowned and owned ref to parent of this MediaObject.
