@@ -39,11 +39,6 @@ src/plugins/mpris/rygel-mpris-player.vala
 src/plugins/mpris/rygel-mpris-plugin.vala
 src/plugins/mpris/rygel-mpris-plugin-factory.vala
 src/plugins/mpris/rygel-mpris-interfaces.vala
-src/plugins/test/rygel-test-audio-item.vala
-src/plugins/test/rygel-test-video-item.vala
-src/plugins/test/rygel-test-plugin.vala
-src/plugins/test/rygel-test-root-container.vala
-src/plugins/test/rygel-test-video-item.vala
 src/plugins/tracker/rygel-tracker-category-all-container.vala
 src/plugins/tracker/rygel-tracker-category-container.vala
 src/plugins/tracker/rygel-tracker-insertion-query.vala

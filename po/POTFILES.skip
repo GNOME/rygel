@@ -174,10 +174,6 @@ src/plugins/mpris/rygel-mpris-player.c
 src/plugins/mpris/rygel-mpris-plugin.c
 src/plugins/mpris/rygel-mpris-plugin-factory.c
 src/plugins/playbin/rygel-module.c
-src/plugins/test/rygel-test-audio-item.c
-src/plugins/test/rygel-test-plugin.c
-src/plugins/test/rygel-test-root-container.c
-src/plugins/test/rygel-test-video-item.c
 src/plugins/tracker/rygel-tracker-albums.c
 src/plugins/tracker/rygel-tracker-artists.c
 src/plugins/tracker/rygel-tracker-category-all-container.c
