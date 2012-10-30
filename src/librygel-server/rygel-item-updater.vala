@@ -27,6 +27,8 @@ using Gee;
  * UpdateObject action implementation.
  */
 internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
+    private static Regex escape_regex;
+
     private string object_id;
     private string current_tag_value;
     private string new_tag_value;
@@ -35,6 +37,14 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
     private ServiceAction action;
 
     public Cancellable cancellable { get; set; }
+
+    static construct {
+        try {
+            escape_regex = new Regex ("\\\\(.)");
+        } catch (GLib.RegexError error) {
+            assert_not_reached ();
+        }
+    }
 
     public ItemUpdater (ContentDirectory    content_dir,
                         owned ServiceAction action) {
@@ -80,15 +90,29 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
         this.completed ();
     }
 
+    private static string unescape (string value) {
+        try {
+            return ItemUpdater.escape_regex.replace (value, -1, 0, "\\1");
+        } catch (GLib.RegexError error) {
+            return value;
+        }
+    }
+
     private static LinkedList<string> csv_split (string? tag_values) {
         var list = new LinkedList<string> ();
+
+        if (tag_values == null) {
+            return list;
+        }
+
         var escape = false;
         var token_start = 0;
         var token_length = 0;
-        var len = (tag_values != null ? tag_values.length : 0);
+        var len = tag_values.length;
 
         for (int iter = 0; iter < len; ++iter) {
             var c = tag_values[iter];
+            var increase = true;
 
             if (escape) {
                 escape = false;
@@ -99,20 +123,23 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
 
                     break;
                 case ',':
-                    list.add (tag_values.substring (token_start, token_length));
+                    var value = tag_values.substring (token_start,
+                                                      token_length);
+
+                    list.add (ItemUpdater.unescape (value));
                     token_start += token_length + 1;
                     token_length = 0;
+                    increase = false;
 
                     break;
                 }
             }
-            ++token_length;
+            if (increase) {
+                ++token_length;
+            }
         }
 
-        // Single tag value only
-        if (len > 0 && list.is_empty) {
-            list.add (tag_values);
-        }
+        list.add (ItemUpdater.unescape (tag_values.substring (token_start)));
 
         return list;
     }
