@@ -46,7 +46,7 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
     protected HTTPServer http_server;
     protected uint32 system_update_id;
     protected ServiceAction action;
-    protected DIDLLiteWriter didl_writer;
+    protected Serializer serializer;
     protected ClientHacks hacks;
     protected string object_id_arg;
 
@@ -58,7 +58,7 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
         this.cancellable = content_dir.cancellable;
         this.action = (owned) action;
 
-        this.didl_writer = new DIDLLiteWriter (null);
+        this.serializer = new Serializer (SerializerType.GENERIC_DIDL);
 
         try {
             this.hacks = ClientHacks.create (this.action.get_message ());
@@ -80,7 +80,7 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
             }
 
 
-            results.serialize (this.didl_writer,
+            results.serialize (this.serializer,
                                this.http_server,
                                this.hacks);
 
@@ -189,10 +189,10 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
 
     private void conclude () {
         // Apply the filter from the client
-        this.didl_writer.filter (this.filter);
+        this.serializer.filter (this.filter);
 
         /* Retrieve generated string */
-        string didl = this.didl_writer.get_string ();
+        string didl = this.serializer.get_string ();
 
         if (this.update_id == uint32.MAX) {
             this.update_id = this.system_update_id;

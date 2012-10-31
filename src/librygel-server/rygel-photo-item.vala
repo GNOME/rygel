@@ -72,10 +72,10 @@ public class Rygel.PhotoItem : ImageItem {
         this.creator = get_first (didl_object.get_creators ());
     }
 
-    internal override DIDLLiteObject serialize (DIDLLiteWriter writer,
-                                                HTTPServer     http_server)
+    internal override DIDLLiteObject? serialize (Serializer serializer,
+                                                HTTPServer  http_server)
                                                 throws Error {
-        var didl_item = base.serialize (writer, http_server);
+        var didl_item = base.serialize (serializer, http_server);
 
         if (this.creator != null && this.creator != "") {
             var contributor = didl_item.add_creator ();

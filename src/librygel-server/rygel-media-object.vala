@@ -158,9 +158,9 @@ public abstract class Rygel.MediaObject : GLib.Object {
         return writables;
     }
 
-    internal abstract DIDLLiteObject serialize (DIDLLiteWriter writer,
-                                                HTTPServer     http_server)
-                                                throws Error;
+    internal abstract DIDLLiteObject? serialize (Serializer serializer,
+                                                 HTTPServer http_server)
+                                                 throws Error;
 
     internal virtual void apply_didl_lite (DIDLLiteObject didl_object) {
         this.title = didl_object.title;
@@ -173,7 +173,7 @@ public abstract class Rygel.MediaObject : GLib.Object {
         var result = DIDLLiteFragmentResult.UNKNOWN_ERROR;
 
         try {
-            var writer = new DIDLLiteWriter (null);
+            var writer = new Serializer (SerializerType.GENERIC_DIDL);
             var didl_object = this.serialize (writer, http_server);
 
             result = didl_object.apply_fragments

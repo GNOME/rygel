@@ -100,7 +100,8 @@ rygel_item_creator_test_SOURCES = rygel-item-creator-test.vala \
 				  rygel-state-machine_item-creator.vala \
 				  rygel-relational-expression.vala \
 				  rygel-search-expression.vala \
-				  rygel-media-engine.vala
+				  rygel-media-engine.vala \
+				  rygel-serializer_item-creator.vala
 
 rygel_user_config_test_SOURCES = rygel-configuration.vala \
 				 rygel-user-config.vala \

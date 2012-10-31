@@ -41,7 +41,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
 
     private ContentDirectory content_dir;
     private ServiceAction action;
-    private DIDLLiteWriter didl_writer;
+    private Serializer serializer;
     private DIDLLiteParser didl_parser;
     private Regex title_regex;
 
@@ -52,7 +52,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         this.content_dir = content_dir;
         this.cancellable = content_dir.cancellable;
         this.action = (owned) action;
-        this.didl_writer = new DIDLLiteWriter (null);
+        this.serializer = new Serializer (SerializerType.GENERIC_DIDL);
         this.didl_parser = new DIDLLiteParser ();
         try {
             var pattern = "[" + Regex.escape_string (INVALID_CHARS) + "]";
@@ -90,7 +90,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
 
             yield this.wait_for_item (container);
 
-            this.item.serialize (didl_writer, this.content_dir.http_server);
+            this.item.serialize (serializer, this.content_dir.http_server);
 
             // Conclude the successful action
             this.conclude ();
@@ -293,7 +293,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
 
     private void conclude () {
         /* Retrieve generated string */
-        string didl = this.didl_writer.get_string ();
+        string didl = this.serializer.get_string ();
 
         /* Set action return arguments */
         this.action.set ("ObjectID", typeof (string), this.item.id,

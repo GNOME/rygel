@@ -63,6 +63,7 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-panasonic-hacks.vala \
 	rygel-search-criteria-parser.vala \
 	rygel-search.vala \
+	rygel-serializer.vala \
 	rygel-source-connection-manager.vala \
 	rygel-subtitle-manager.vala \
 	rygel-thumbnailer.vala \
