@@ -54,15 +54,15 @@ public class Rygel.MediaObjects : ArrayList<MediaObject> {
         });
     }
 
-    internal void serialize (DIDLLiteWriter didl_writer,
-                             HTTPServer     http_server,
-                             ClientHacks?   hacks) throws Error {
+    internal void serialize (Serializer   serializer,
+                             HTTPServer   http_server,
+                             ClientHacks? hacks) throws Error {
         foreach (var result in this) {
             if (result is MediaItem && hacks != null) {
                 hacks.apply (result as MediaItem);
             }
 
-            result.serialize (didl_writer, http_server);
+            result.serialize (serializer, http_server);
         }
     }
 

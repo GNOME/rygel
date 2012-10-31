@@ -202,10 +202,10 @@ public abstract class Rygel.MediaItem : MediaObject {
         this.description = didl_object.description;
     }
 
-    internal override DIDLLiteObject serialize (DIDLLiteWriter writer,
-                                                HTTPServer     http_server)
-                                                throws Error {
-        var didl_item = writer.add_item ();
+    internal override DIDLLiteObject? serialize (Serializer serializer,
+                                                 HTTPServer http_server)
+                                                 throws Error {
+        var didl_item = serializer.add_item ();
 
         didl_item.id = this.id;
 

@@ -140,7 +140,7 @@ public class Rygel.MediaItem : Rygel.MediaObject {
         this.title = title;
     }
 
-    public void serialize (GUPnP.DIDLLiteWriter writer, HTTPServer server) {
+    internal void serialize (Rygel.Serializer serializer, HTTPServer server) {
     }
 }
 

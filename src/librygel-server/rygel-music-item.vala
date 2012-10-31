@@ -113,10 +113,10 @@ public class Rygel.MusicItem : AudioItem {
         //this.album_art.uri = didl_object.album_art
     }
 
-    internal override DIDLLiteObject serialize (DIDLLiteWriter writer,
-                                                HTTPServer     http_server)
-                                                throws Error {
-        var didl_item = base.serialize (writer, http_server);
+    internal override DIDLLiteObject? serialize (Serializer serializer,
+                                                 HTTPServer http_server)
+                                                 throws Error {
+        var didl_item = base.serialize (serializer, http_server);
 
         if (this.artist != null && this.artist != "") {
             var contributor = didl_item.add_artist ();

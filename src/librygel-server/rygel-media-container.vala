@@ -193,10 +193,14 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.container_updated (this, object, event_type, sub_tree_update);
     }
 
-    internal override DIDLLiteObject serialize (DIDLLiteWriter writer,
-                                                HTTPServer     http_server)
-                                                throws Error {
-        var didl_container = writer.add_container ();
+    internal override DIDLLiteObject? serialize (Serializer serializer,
+                                                 HTTPServer http_server)
+                                                 throws Error {
+        var didl_container = serializer.add_container ();
+        if (didl_container == null) {
+            return null;
+        }
+
         if (this.parent != null) {
             didl_container.parent_id = this.parent.id;
         } else {
