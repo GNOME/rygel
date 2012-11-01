@@ -42,7 +42,7 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
                                                  request.thumbnail.mime_type);
         } else {
             request.msg.response_headers.append ("Content-Type",
-                                                 request.item.mime_type);
+                                                 (request.object as MediaItem).mime_type);
         }
 
         if (request.seek != null) {
@@ -83,7 +83,7 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
         if (request.thumbnail != null) {
             return request.thumbnail.add_resource (didl_item, protocol);
         } else {
-            return request.item.add_resource (didl_item, null, protocol);
+            return (request.object as MediaItem).add_resource (didl_item, null, protocol);
         }
     }
 
@@ -96,7 +96,7 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
         } else if (request.thumbnail != null) {
             src = engine.create_data_source (request.thumbnail.uri);
         } else {
-            src = request.item.create_stream_source
+            src = (request.object as MediaItem).create_stream_source
                                         (request.http_server.context.host_ip);
         }
 
@@ -116,6 +116,6 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
             return request.thumbnail.size;
         }
 
-        return request.item.size;
+        return (request.object as MediaItem).size;
     }
 }

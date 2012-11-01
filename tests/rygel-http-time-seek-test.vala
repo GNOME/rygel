@@ -27,9 +27,14 @@ private errordomain Rygel.TestError {
 
 private class Rygel.HTTPTranscodeHandler : GLib.Object {}
 
-private abstract class Rygel.MediaItem : GLib.Object {
+public class Rygel.MediaObject : GLib.Object {
     public int64 size = -1;
+}
 
+public class Rygel.MediaContainer : MediaObject {
+}
+
+private abstract class Rygel.MediaItem : MediaObject {
     public bool is_live_stream () {
         return true;
     }
@@ -46,7 +51,7 @@ private class Rygel.HTTPGet : GLib.Object {
     public const string ITEM_URI = "http://DoesntMatterWhatThisIs";
 
     public Soup.Message msg;
-    public MediaItem item;
+    public MediaObject object;
     public Thumbnail thumbnail;
     public Subtitle subtitle;
 
@@ -54,7 +59,7 @@ private class Rygel.HTTPGet : GLib.Object {
 
     public HTTPGet (Thumbnail? thumbnail, Subtitle? subtitle) {
         this.msg = new Soup.Message ("HTTP", ITEM_URI);
-        this.item = new AudioItem ();
+        this.object = new AudioItem ();
         this.handler = new HTTPTranscodeHandler ();
         this.thumbnail = thumbnail;
         this.subtitle = subtitle;
@@ -164,7 +169,7 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
     private void test_no_seek (Thumbnail? thumbnail,
                                Subtitle?  subtitle) throws HTTPSeekError {
         var request = new HTTPGet (thumbnail, subtitle);
-        var audio_item = request.item as AudioItem;
+        var audio_item = request.object as AudioItem;
         this.test_seek (request,
                         0,
                         audio_item.duration * TimeSpan.SECOND - TimeSpan.MILLISECOND);
@@ -187,7 +192,7 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
             break;
         }
 
-        var audio_item = request.item as AudioItem;
+        var audio_item = request.object as AudioItem;
         this.test_seek (request,
                         128 * TimeSpan.SECOND,
                         audio_item.duration * TimeSpan.SECOND - TimeSpan.MILLISECOND);
@@ -264,7 +269,7 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
         assert (seek.stop == stop);
         assert (seek.length == seek.stop + TimeSpan.MILLISECOND - seek.start);
 
-        var audio_item = request.item as AudioItem;
+        var audio_item = request.object as AudioItem;
         assert (seek.total_length == audio_item.duration * TimeSpan.SECOND);
 
         var header = request.msg.response_headers.get_one

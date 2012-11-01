@@ -34,7 +34,7 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
         } else if (request.subtitle != null) {
             total_length = request.subtitle.size;
         } else {
-            total_length = request.item.size;
+            total_length = (request.object as MediaItem).size;
         }
         var stop = total_length - 1;
 
@@ -61,7 +61,7 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
     }
 
     public static bool needed (HTTPGet request) {
-        return (request.item.size > 0 &&
+        return !(request.object is MediaContainer) && ((request.object as MediaItem).size > 0 &&
                 request.handler is HTTPIdentityHandler) ||
                (request.thumbnail != null &&
                 request.thumbnail.size > 0) ||

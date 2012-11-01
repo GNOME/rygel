@@ -27,8 +27,11 @@ private errordomain Rygel.TestError {
 
 private class Rygel.HTTPIdentityHandler : GLib.Object {}
 
-private class Rygel.MediaItem : GLib.Object {
+public class Rygel.MediaObject : GLib.Object {
     public int64 size = 2048;
+}
+
+private class Rygel.MediaItem : MediaObject {
 }
 
 private class Rygel.Thumbnail : GLib.Object {
@@ -39,11 +42,14 @@ private class Rygel.Subtitle : GLib.Object {
     public int64 size = 512;
 }
 
+public class Rygel.MediaContainer : MediaObject {
+}
+
 private class Rygel.HTTPGet : GLib.Object {
     public const string ITEM_URI = "http://DoesntMatterWhatThisIs";
 
     public Soup.Message msg;
-    public MediaItem item;
+    public MediaObject object;
     public Thumbnail thumbnail;
     public Subtitle subtitle;
 
@@ -51,7 +57,7 @@ private class Rygel.HTTPGet : GLib.Object {
 
     public HTTPGet (Thumbnail? thumbnail, Subtitle? subtitle) {
         this.msg = new Soup.Message ("HTTP", ITEM_URI);
-        this.item = new MediaItem ();
+        this.object = new MediaItem ();
         this.handler = new HTTPIdentityHandler ();
         this.thumbnail = thumbnail;
         this.subtitle = subtitle;
@@ -155,7 +161,7 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
         } else if (request.subtitle != null) {
             size = request.subtitle.size;
         } else {
-            size = request.item.size;
+            size = request.object.size;
         }
 
         this.test_seek (request, 0, size - 1);
@@ -172,7 +178,7 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
         } else if (request.subtitle != null) {
             size = request.subtitle.size;
         } else {
-            size = request.item.size;
+            size = request.object.size;
         }
 
         this.test_seek (request, 128, size - 1);
@@ -214,7 +220,7 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
         } else if (request.subtitle != null) {
             assert (seek.total_length == request.subtitle.size);
         } else {
-            assert (seek.total_length == request.item.size);
+            assert (seek.total_length == request.object.size);
         }
 
         if (request.msg.request_headers.get_one ("Range") != null) {

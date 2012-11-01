@@ -42,9 +42,9 @@ internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     public Cancellable cancellable { get; set; }
 
     protected HTTPItemURI uri;
-    public MediaItem item;
+    public MediaObject object;
 
-    protected ClientHacks hack;
+    internal ClientHacks hack;
 
     public HTTPRequest (HTTPServer   http_server,
                         Soup.Server  server,
@@ -84,13 +84,16 @@ internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         var media_object = yield this.root_container.find_object
                                         (this.uri.item_id, null);
 
-        if (media_object == null || !(media_object is MediaItem)) {
+        if (media_object == null ||
+            !((media_object is MediaContainer &&
+               this.uri.playlist_format != null) ||
+              (media_object is MediaItem && this.uri.playlist_format == null))) {
             throw new HTTPRequestError.NOT_FOUND
                                         (_("Requested item '%s' not found"),
                                          this.uri.item_id);
         }
 
-        this.item = (MediaItem) media_object;
+        this.object = media_object;
     }
 
     protected void handle_error (Error error) {

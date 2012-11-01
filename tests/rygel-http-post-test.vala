@@ -339,7 +339,6 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
 
     public signal void container_updated (MediaContainer container);
 
-    public string id = "TesContainer";
     public MediaItem item;
     private bool vanish;
     private bool error;
@@ -352,6 +351,7 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
         this.item = new MediaItem (ITEM_ID, this);
         this.vanish = false;
         this.error = false;
+        this.id = "TesContainer";
 
         this.monitor = this.file.monitor_file (FileMonitorFlags.NONE);
         this.monitor.changed.connect (this.on_file_changed);
@@ -414,9 +414,6 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
 public class Rygel.MediaItem : Rygel.MediaObject {
     public const string URI = "file:///tmp/rygel-upload-test.wav";
 
-    public weak MediaContainer parent;
-
-    public string id;
     public long size = 1024;
     public long duration = 1024;
     public ArrayList<string> uris = new ArrayList<string> ();
@@ -502,6 +499,8 @@ public class Rygel.ItemRemovalQueue: GLib.Object {
 }
 
 public class Rygel.MediaObject : GLib.Object {
+    public string id;
+    public unowned MediaContainer parent;
     public string mime_type = "";
 }
 

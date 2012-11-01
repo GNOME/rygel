@@ -82,23 +82,28 @@ internal class Rygel.HTTPGet : HTTPRequest {
     protected override async void find_item () throws Error {
         yield base.find_item ();
 
-        if (unlikely (this.item.place_holder)) {
+        // No need to do anything here, will be done in PlaylistHandler
+        if (this.object is MediaContainer) {
+            return;
+        }
+
+        if (unlikely ((this.object as MediaItem).place_holder)) {
             throw new HTTPRequestError.NOT_FOUND ("Item '%s' is empty",
-                                                  this.item.id);
+                                                  this.object.id);
         }
 
         if (this.hack != null) {
-            this.hack.apply (item);
+            this.hack.apply (this.object as MediaItem);
         }
 
         if (this.uri.thumbnail_index >= 0) {
-            if (this.item is MusicItem) {
-                var music = this.item as MusicItem;
+            if (this.object is MusicItem) {
+                var music = this.object as MusicItem;
                 this.thumbnail = music.album_art;
 
                 return;
-            } else if (this.item is VisualItem) {
-                var visual = this.item as VisualItem;
+            } else if (this.object is VisualItem) {
+                var visual = this.object as VisualItem;
                 if (this.uri.thumbnail_index < visual.thumbnails.size) {
                     this.thumbnail = visual.thumbnails.get
                                             (this.uri.thumbnail_index);
@@ -109,11 +114,11 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
             throw new HTTPRequestError.NOT_FOUND
                                         ("No Thumbnail available for item '%s",
-                                         this.item.id);
+                                         this.object.id);
         }
 
-        if (this.uri.subtitle_index >= 0 && this.item is VideoItem) {
-            var video = this.item as VideoItem;
+        if (this.uri.subtitle_index >= 0 && this.object is VideoItem) {
+            var video = this.object as VideoItem;
 
             if (this.uri.subtitle_index < video.subtitles.size) {
                 this.subtitle = video.subtitles.get (this.uri.subtitle_index);
@@ -123,7 +128,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
             throw new HTTPRequestError.NOT_FOUND
                                         ("No subtitles available for item '%s",
-                                         this.item.id);
+                                         this.object.id);
         }
     }
 
@@ -200,15 +205,15 @@ internal class Rygel.HTTPGet : HTTPRequest {
         switch (mode) {
         case "Streaming":
             correct = this.handler is HTTPTranscodeHandler ||
-                      (this.item.streamable () &&
+                      ((this.object as MediaItem).streamable () &&
                        this.subtitle == null &&
                        this.thumbnail == null);
 
             break;
         case "Interactive":
             correct = this.handler is HTTPIdentityHandler &&
-                      ((!this.item.is_live_stream () &&
-                       !this.item.streamable ()) ||
+                      ((!(this.object as MediaItem).is_live_stream () &&
+                       !(this.object as MediaItem).streamable ()) ||
                        (this.subtitle != null ||
                         this.thumbnail != null));
 
@@ -219,7 +224,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
             throw new HTTPRequestError.UNACCEPTABLE
                                         ("%s mode not supported for '%s'",
                                          mode,
-                                         this.item.id);
+                                         this.object.id);
         }
     }
 }
