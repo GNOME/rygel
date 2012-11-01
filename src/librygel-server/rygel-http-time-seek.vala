@@ -28,7 +28,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
         string range;
         string[] range_tokens;
         int64 start = 0;
-        int64 duration = (request.item as AudioItem).duration * TimeSpan.SECOND;
+        int64 duration = (request.object as AudioItem).duration * TimeSpan.SECOND;
         int64 stop = duration - TimeSpan.MILLISECOND;
         int64 parsed_value = 0;
         bool parsing_start = true;
@@ -90,12 +90,12 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
     }
 
     public static bool needed (HTTPGet request) {
-        return request.item is AudioItem &&
-               (request.item as AudioItem).duration > 0 &&
+        return request.object is AudioItem &&
+               (request.object as AudioItem).duration > 0 &&
                (request.handler is HTTPTranscodeHandler ||
                 (request.thumbnail == null &&
                  request.subtitle == null &&
-                 request.item.is_live_stream ()));
+                 (request.object as MediaItem).is_live_stream ()));
     }
 
     public static bool requested (HTTPGet request) {

@@ -217,7 +217,7 @@ public class Rygel.HTTPGetTest : GLib.Object {
 
             yield request.run ();
 
-            assert ((request as HTTPGet).item != null);
+            assert ((request as HTTPGet).object != null);
 
             debug ("status.code: %d", (int) msg.status_code);
             assert (msg.status_code == this.current_request.expected_code);

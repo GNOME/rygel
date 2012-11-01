@@ -46,29 +46,31 @@ internal class Rygel.HTTPPost : HTTPRequest {
 
     protected override async void handle () throws Error {
         var queue = ItemRemovalQueue.get_default ();
-        queue.dequeue (this.item);
+        queue.dequeue (this.object as MediaItem);
 
         try {
             yield this.handle_real ();
         } catch (Error error) {
-            yield queue.remove_now (this.item, this.cancellable);
+            yield queue.remove_now (this.object as MediaItem,
+                                    this.cancellable);
 
             throw error;
         }
     }
 
     private async void handle_real () throws Error {
-        if (!this.item.place_holder) {
+        if (!(this.object as MediaItem).place_holder) {
             var msg = _("Pushing data to non-empty item '%s' not allowed");
 
-            throw new ContentDirectoryError.INVALID_ARGS (msg, this.item.id);
+            throw new ContentDirectoryError.INVALID_ARGS (msg, this.object.id);
         }
 
-        this.file = yield this.item.get_writable (this.cancellable);
+        this.file = yield (this.object as MediaItem).get_writable
+                                        (this.cancellable);
         if (this.file == null) {
             throw new HTTPRequestError.BAD_REQUEST
                                         (_("No writable URI for %s available"),
-                                         this.item.id);
+                                         this.object.id);
         }
 
         this.dotfile = this.file.get_parent ().get_child
@@ -173,8 +175,8 @@ internal class Rygel.HTTPPost : HTTPRequest {
 
         debug ("Waiting for update signal from container '%s' after pushing" +
                " content to its child item '%s'..",
-               this.item.parent.id,
-               this.item.id);
+               this.object.parent.id,
+               this.object.id);
 
         try {
             this.dotfile.move (this.file,
@@ -193,7 +195,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
             return;
         }
 
-        yield wait_for_item (this.item.parent, this.item.id, 5);
+        yield wait_for_item (this.object.parent, this.object.id, 5);
 
         this.server.unpause_message (this.msg);
         this.end (KnownStatusCode.OK);
@@ -217,7 +219,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
 
     private async void remove_item () {
         var queue = ItemRemovalQueue.get_default ();
-        yield queue.remove_now (this.item, null);
+        yield queue.remove_now (this.object as MediaItem, null);
     }
 
     private void disconnect_message_signals () {
