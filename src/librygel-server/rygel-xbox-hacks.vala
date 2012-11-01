@@ -55,7 +55,12 @@ internal class Rygel.XBoxHacks : ClientHacks {
             return;
         }
 
-        uri.set_path (uri.get_path () + "/th/0");
+        var path = uri.get_path ();
+        var particles = path.split ("/")[0:4];
+        particles += "th";
+        particles += "0";
+
+        uri.set_path (string.joinv("/", particles));
     }
 
     public void apply_on_device (RootDevice device,
