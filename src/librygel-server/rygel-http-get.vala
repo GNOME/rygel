@@ -66,6 +66,10 @@ internal class Rygel.HTTPGet : HTTPRequest {
                                                      this.cancellable);
         }
 
+        if (uri.playlist_format != null) {
+            this.handler = new HTTPPlaylistHandler (this.cancellable);
+        }
+
         if (this.handler == null) {
             this.handler = new HTTPIdentityHandler (this.cancellable);
         }

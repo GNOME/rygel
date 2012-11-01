@@ -371,6 +371,10 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
     public HTTPIdentityHandler (Cancellable cancellable) {}
 }
 
+internal class Rygel.HTTPPlaylistHandler : Rygel.HTTPGetHandler {
+    public HTTPPlaylistHandler (Cancellable cancellable) {}
+}
+
 public abstract class Rygel.MediaItem : Rygel.MediaObject {
     public long size = 1024;
     public ArrayList<Subtitle> subtitles = new ArrayList<Subtitle> ();
