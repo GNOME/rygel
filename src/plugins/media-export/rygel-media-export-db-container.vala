@@ -33,7 +33,7 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
         this.media_db = media_db;
         this.search_classes = new ArrayList<string> ();
         this.container_updated.connect ( () => { this.count_children (); });
-        this.count_children;
+        this.count_children ();
     }
 
     private void count_children () {
