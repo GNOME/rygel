@@ -65,7 +65,7 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
             return;
         }
 
-        var uri = this.create_uri_for_item (item, -1, -1, null);
+        var uri = this.create_uri_for_item (item, -1, -1, null, null);
 
         item.add_resource (didl_item, uri, this.get_protocol (), uri);
     }
@@ -100,12 +100,14 @@ internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     internal override string create_uri_for_item (MediaItem item,
                                                   int       thumbnail_index,
                                                   int       subtitle_index,
-                                                  string?   transcode_target) {
+                                                  string?   transcode_target,
+                                                  string?   playlist_target) {
         var uri = new HTTPItemURI (item,
                                    this,
                                    thumbnail_index,
                                    subtitle_index,
-                                   transcode_target);
+                                   transcode_target,
+                                   playlist_target);
 
         return uri.to_string ();
     }

@@ -109,6 +109,13 @@ internal class Rygel.HTTPPlaylistHandler : Rygel.HTTPGetHandler {
         this.cancellable = cancellable;
     }
 
+    public override void add_response_headers (HTTPGet request)
+                                               throws HTTPRequestError {
+        request.msg.response_headers.append ("Content-Type", "text/xml");
+
+        base.add_response_headers (request);
+    }
+
     public override HTTPResponse render_body (HTTPGet request)
                                               throws HTTPRequestError {
         try {
@@ -123,8 +130,16 @@ internal class Rygel.HTTPPlaylistHandler : Rygel.HTTPGetHandler {
         }
     }
 
-    protected override DIDLLiteResource add_resource (DIDLLiteItem didl_item,
-                                                      HTTPGet      request) {
-        return null as DIDLLiteResource;
+    protected override DIDLLiteResource add_resource
+                                        (DIDLLiteObject didl_object,
+                                         HTTPGet        request) {
+        var protocol = request.http_server.get_protocol ();
+        debug ("=> Protocol of this http server is: %s", protocol);
+
+        try {
+            return request.object.add_resource (didl_object, null, protocol);
+        } catch (Error error) {
+            return null as DIDLLiteResource;
+        }
     }
 }

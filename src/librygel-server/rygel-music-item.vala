@@ -158,6 +158,7 @@ public class Rygel.MusicItem : AudioItem {
             didl_item.album_art = server.create_uri_for_item (this,
                                                               0,
                                                               -1,
+                                                              null,
                                                               null);
         }
     }

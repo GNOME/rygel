@@ -237,7 +237,46 @@ public abstract class Rygel.MediaContainer : MediaObject {
             didl_container.restricted = true;
         }
 
+        var uri = new HTTPItemURI (this,
+                                   http_server,
+                                   -1,
+                                   -1,
+                                   null,
+                                   "DIDL_S");
+        uri.extension = "xml";
+
+        this.add_resource (didl_container,
+                           uri.to_string (),
+                           http_server.get_protocol ());
+
         return didl_container;
+    }
+
+    internal override DIDLLiteResource add_resource
+                                        (DIDLLiteObject didl_object,
+                                         string?        uri,
+                                         string         protocol,
+                                         string?        import_uri = null)
+                                         throws Error {
+        var res = base.add_resource (didl_object,
+                                     uri,
+                                     protocol,
+                                     import_uri);
+
+        if (uri != null) {
+            res.uri = uri;
+        }
+
+        var protocol_info = new ProtocolInfo ();
+        protocol_info.mime_type = "text/xml";
+        protocol_info.dlna_profile = "DIDL_S";
+        protocol_info.protocol = protocol;
+        protocol_info.dlna_flags = DLNAFlags.DLNA_V15 |
+                                   DLNAFlags.CONNECTION_STALL |
+                                   DLNAFlags.BACKGROUND_TRANSFER_MODE;
+        res.protocol_info = protocol_info;
+
+        return res;
     }
 
     /**

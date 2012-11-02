@@ -75,15 +75,17 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
                     size > 0;
     }
 
-    protected override DIDLLiteResource add_resource (DIDLLiteItem didl_item,
-                                                      HTTPGet      request)
-                                                      throws Error {
+    protected override DIDLLiteResource add_resource
+                                        (DIDLLiteObject didl_object,
+                                         HTTPGet      request)
+                                        throws Error {
         var protocol = request.http_server.get_protocol ();
 
         if (request.thumbnail != null) {
-            return request.thumbnail.add_resource (didl_item, protocol);
+            return request.thumbnail.add_resource (didl_object as DIDLLiteItem,
+                                                   protocol);
         } else {
-            return (request.object as MediaItem).add_resource (didl_item, null, protocol);
+            return request.object.add_resource (didl_object, null, protocol);
         }
     }
 

@@ -72,8 +72,11 @@ private class Rygel.HTTPServer : GLib.Object {
     }
 }
 
-private class Rygel.MediaItem : GLib.Object {
+private class Rygel.MediaObject : GLib.Object {
     public string id;
+}
+
+private class Rygel.MediaItem : Rygel.MediaObject {
     public ArrayList<string> uris = new ArrayList<string> ();
     public string mime_type;
 }

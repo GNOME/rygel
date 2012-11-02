@@ -44,7 +44,8 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
     public abstract string create_uri_for_item (MediaItem  item,
                                                 int        thumbnail_index,
                                                 int        subtitle_index,
-                                                string?    transcode_target);
+                                                string?    transcode_target,
+                                                string?    playlist_target);
 
     public void add_resources (DIDLLiteItem didl_item, MediaItem item)
                                throws Error {

@@ -63,7 +63,9 @@ public interface Rygel.VisualItem : MediaItem {
             try {
                 var thumb = thumbnailer.get_thumbnail (uri, this.mime_type);
                 this.thumbnails.add (thumb);
-            } catch (Error err) {}
+            } catch (Error err) {
+                debug ("Failed to get thumbnail: %s", err.message);
+            }
         }
     }
 
@@ -96,6 +98,7 @@ public interface Rygel.VisualItem : MediaItem {
                 thumbnail.uri = server.create_uri_for_item (this,
                                                             index,
                                                             -1,
+                                                            null,
                                                             null);
                 thumbnail.add_resource (didl_item, server.get_protocol ());
 
