@@ -69,6 +69,7 @@ public class Rygel.LogHandler : GLib.Object {
                      err.message);
         }
 
+        var do_debug = false;
         foreach (var pair in log_levels.split (",")) {
             var tokens = pair.split (":");
             if (tokens.length < 1) {
@@ -86,9 +87,15 @@ public class Rygel.LogHandler : GLib.Object {
                 level = (LogLevel) int.parse (tokens[1]);
             }
 
+            do_debug |= (level == LogLevel.DEBUG);
+
             var flags = this.log_level_to_flags (level);
 
             this.log_level_hash[domain] = flags;
+        }
+
+        if (do_debug) {
+            Environment.set_variable ("G_MESSAGES_DEBUG", "all", false);
         }
 
         Log.set_default_handler (this.log_func);
