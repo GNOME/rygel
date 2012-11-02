@@ -109,12 +109,12 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
     }
 
     internal override DIDLLiteResource add_resource
-                                        (DIDLLiteItem didl_item,
-                                         string?      uri,
-                                         string       protocol,
-                                         string?      import_uri = null)
+                                        (DIDLLiteObject didl_object,
+                                         string?        uri,
+                                         string         protocol,
+                                         string?        import_uri = null)
                                          throws Error {
-        var res = base.add_resource (didl_item, uri, protocol, import_uri);
+        var res = base.add_resource (didl_object, uri, protocol, import_uri);
 
         this.add_visual_props (res);
 
@@ -180,6 +180,7 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
                 subtitle.uri = server.create_uri_for_item (this,
                                                            -1,
                                                            index,
+                                                           null,
                                                            null);
                 subtitle.add_didl_node (didl_item);
 

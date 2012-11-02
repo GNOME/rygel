@@ -47,68 +47,71 @@ internal class Rygel.HTTPItemURI : Object {
 
     public static HashMap<string, string> mime_to_ext;
 
-    public HTTPItemURI (MediaItem  item,
+    public HTTPItemURI (MediaObject object,
                         HTTPServer http_server,
                         int        thumbnail_index = -1,
                         int        subtitle_index = -1,
                         string?    transcode_target = null,
                         string?    playlist_format = null) {
-        this.item_id = item.id;
+        this.item_id = object.id;
         this.thumbnail_index = thumbnail_index;
         this.subtitle_index = subtitle_index;
         this.transcode_target = transcode_target;
         this.http_server = http_server;
-        this.playlist_format = null;
+        this.playlist_format = playlist_format;
         this.extension = "";
 
-        if (thumbnail_index > -1) {
-            if (item is VisualItem) {
-                var thumbnails = (item as VisualItem).thumbnails;
+        if (object is MediaItem) {
+            var item = object as MediaItem;
+            if (thumbnail_index > -1) {
+                if (item is VisualItem) {
+                    var thumbnails = (item as VisualItem).thumbnails;
 
-                if (thumbnails.size > thumbnail_index) {
-                    this.extension = thumbnails[thumbnail_index].file_extension;
+                    if (thumbnails.size > thumbnail_index) {
+                        this.extension = thumbnails[thumbnail_index].file_extension;
+                    }
+                } else if (item is MusicItem) {
+                    var album_art = (item as MusicItem).album_art;
+
+                    if (album_art != null) {
+                        this.extension = album_art.file_extension;
+                    }
                 }
-            } else if (item is MusicItem) {
-                var album_art = (item as MusicItem).album_art;
+            } else if (subtitle_index > -1) {
+                if (item is VideoItem) {
+                    var subtitles = (item as VideoItem).subtitles;
 
-                if (album_art != null) {
-                    this.extension = album_art.file_extension;
+                    if (subtitles.size > subtitle_index) {
+                        this.extension = subtitles[subtitle_index].caption_type;
+                    }
                 }
-            }
-        } else if (subtitle_index > -1) {
-            if (item is VideoItem) {
-                var subtitles = (item as VideoItem).subtitles;
+            } else if (transcode_target != null) {
+                try {
+                    var tc = this.http_server.get_transcoder (transcode_target);
 
-                if (subtitles.size > subtitle_index) {
-                    this.extension = subtitles[subtitle_index].caption_type;
-                }
-            }
-        } else if (transcode_target != null) {
-            try {
-                var tc = this.http_server.get_transcoder (transcode_target);
-
-                this.extension = tc.extension;
-            } catch (Error error) {}
-        }
-
-        if (this.extension == "") {
-            string uri_extension = "";
-
-            foreach (string uri_string in item.uris) {
-                string basename = Path.get_basename (uri_string);
-                int dot_index = basename.last_index_of(".");
-
-                if (dot_index > -1) {
-                    uri_extension = basename.substring (dot_index + 1);
-
-                    break;
-                }
+                    this.extension = tc.extension;
+                } catch (Error error) {}
             }
 
-            if (uri_extension == "") {
-                this.extension = this.ext_from_mime_type (item.mime_type);
-            } else {
-                this.extension = uri_extension;
+            if (this.extension == "") {
+                string uri_extension = "";
+
+                foreach (string uri_string in item.uris) {
+                    string basename = Path.get_basename (uri_string);
+                    int dot_index = basename.last_index_of(".");
+
+                    if (dot_index > -1) {
+                        uri_extension = basename.substring (dot_index + 1);
+
+                        break;
+                    }
+                }
+
+                if (uri_extension == "") {
+                    this.extension = this.ext_from_mime_type (item.mime_type);
+                } else {
+                    this.extension = uri_extension;
+                }
             }
         }
     }

@@ -67,10 +67,11 @@ internal class Rygel.HTTPTranscodeHandler : HTTPGetHandler {
         }
     }
 
-    protected override DIDLLiteResource add_resource (DIDLLiteItem didl_item,
-                                                      HTTPGet      request)
-                                                      throws Error {
-        return this.transcoder.add_resource (didl_item,
+    protected override DIDLLiteResource add_resource
+                                        (DIDLLiteObject didl_object,
+                                         HTTPGet      request)
+                                        throws Error {
+        return this.transcoder.add_resource (didl_object as DIDLLiteItem,
                                              request.object as MediaItem,
                                              request.http_server);
     }

@@ -216,6 +216,17 @@ public abstract class Rygel.MediaObject : GLib.Object {
         }
     }
 
+    internal virtual DIDLLiteResource add_resource
+                                        (DIDLLiteObject object,
+                                         string?        uri,
+                                         string         protocol,
+                                         string?        import_uri = null)
+                                         throws Error {
+        var res = object.add_resource ();
+
+        return res;
+    }
+
     protected int compare_int_props (int prop1, int prop2) {
         return (prop1 - prop2).clamp (-1, 1);
     }
