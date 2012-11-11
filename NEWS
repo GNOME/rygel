@@ -1,3 +1,32 @@
+0.16.2
+======
+
+A new maintenance release for Rygel!
+
+Changes compared to 0.16.0:
+
+- Skip modules in hidden directories to fix issues with certain distribution's
+  debug symbols.
+- Ignore seek requests that request everything. Should fix issues with
+  transcoding.
+- Fix thumbnails for transcoded videos on XBox 360. Also fixes "No transcoder
+  available for WMVHIGH_FULL.wmv" messages.
+- Add missing Content-Length header.
+
+Playbin:
+ - Add AAC mime types as supported.
+ - Only report duration if it's really known.
+ - Add missing buffering and lost clock handling.
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  os_ <syriatalks@hotmail.com>
+  Kjartan Maraas <kmaraas@gnome.org>
+
+Added/updated translations
+ - ar, courtesy of os_
+ - nb, courtesy of Kjartan Maraas
+
 0.16.1
 ======
 
