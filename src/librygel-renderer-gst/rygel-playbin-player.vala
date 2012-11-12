@@ -82,6 +82,10 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     private static Player player;
     bool duration_hint;
 
+    private bool is_live;
+    private bool foreign;
+    private bool buffering;
+
     public dynamic Element playbin { get; private set; }
 
     private string _playback_state = "NO_MEDIA_PRESENT";
@@ -118,7 +122,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                     if (state != State.PLAYING ||
                         pending != State.VOID_PENDING) {
                         this._playback_state = "TRANSITIONING";
-                        this.playbin.set_state (State.PLAYING);
+                        this.is_live = this.playbin.set_state (State.PLAYING)
+                                        == StateChangeReturn.NO_PREROLL;
                     } else {
                         this._playback_state = value;
                     }
@@ -145,18 +150,18 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
             if (value != "") {
                 switch (this._playback_state) {
                     case "NO_MEDIA_PRESENT":
-                        this.playbin.set_state (State.READY);
                         this._playback_state = "STOPPED";
                         this.notify_property ("playback-state");
                         break;
                     case "STOPPED":
-                        this.playbin.set_state (State.READY);
                         break;
                     case "PAUSED_PLAYBACK":
-                        this.playbin.set_state (State.PAUSED);
+                        this.is_live = this.playbin.set_state (State.PAUSED)
+                                        == StateChangeReturn.NO_PREROLL;
                         break;
                     case "PLAYING":
-                        this.playbin.set_state (State.PLAYING);
+                        this.is_live = this.playbin.set_state (State.PLAYING)
+                                        == StateChangeReturn.NO_PREROLL;
                         break;
                     default:
                         break;
@@ -258,6 +263,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
     private Player () {
         this.playbin = ElementFactory.make ("playbin2", null);
+        this.foreign = false;
         this.setup_playbin ();
     }
 
@@ -267,6 +273,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         return_if_fail (playbin.get_type ().name() == "GstPlayBin2");
 
         this.playbin = playbin;
+        this.foreign = true;
         this.setup_playbin ();
     }
 
@@ -338,9 +345,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                     }
                 }
 
-                debug ("%d %d %d", old_state, new_state, pending);
-
-                if (pending == State.VOID_PENDING) {
+                if (pending == State.VOID_PENDING && !this.buffering) {
                     switch (new_state) {
                         case State.PAUSED:
                             this.playback_state = "PAUSED_PLAYBACK";
@@ -355,6 +360,33 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                             break;
                     }
                 }
+
+                if (old_state == State.PAUSED && new_state == State.PLAYING) {
+                    this.buffering = false;
+                    this.playback_state = "PLAYING";
+                }
+            }
+            break;
+        case MessageType.BUFFERING:
+            // Assume the original application takes care of this.
+            if (!(this.is_live || this.foreign)) {
+                int percent;
+
+                message.parse_buffering (out percent);
+
+                if (percent < 100) {
+                    this.buffering = true;
+                    this.playbin.set_state (State.PAUSED);
+                } else {
+                    this.playbin.set_state (State.PLAYING);
+                }
+            }
+            break;
+        case MessageType.CLOCK_LOST:
+            // Assume the original application takes care of this.
+            if (!this.foreign) {
+                this.playbin.set_state (State.PAUSED);
+                this.playbin.set_state (State.PLAYING);
             }
             break;
         case MessageType.EOS:
@@ -423,6 +455,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         this.duration_hint = false;
         // Needed to get "Stop" events from the playbin.
         // We can do this because we have a bus watch
+        this.is_live = false;
+
         this.playbin.auto_flush_bus = false;
         assert (this.playbin != null);
 
