@@ -164,7 +164,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
             this.msg.set_status (Soup.KnownStatusCode.OK);
         }
 
-        if (this.seek != null && this.seek is HTTPByteSeek) {
+        if (this.handler is HTTPIdentityHandler) {
             this.msg.response_headers.set_encoding (Soup.Encoding.CONTENT_LENGTH);
         } else {
             this.msg.response_headers.set_encoding (Soup.Encoding.EOF);
