@@ -80,6 +80,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                         "video/x-xvid",
                                         "video/x-ms-wmv" };
     private static Player player;
+    bool duration_hint;
 
     public dynamic Element playbin { get; private set; }
 
@@ -309,6 +310,9 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     private void bus_handler (Gst.Bus bus,
                               Message message) {
         switch (message.type) {
+        case MessageType.DURATION:
+            this.duration_hint = true;
+        break;
         case MessageType.STATE_CHANGED:
             if (message.src == this.playbin) {
                 State old_state, new_state, pending;
@@ -317,14 +321,18 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                              out new_state,
                                              out pending);
                 if (old_state == State.READY && new_state == State.PAUSED) {
-                    this.notify_property ("duration");
+                    if (this.duration_hint) {
+                        this.notify_property ("duration");
+                        this.duration_hint = false;
+                    }
+
                     if (this.uri_update_hint) {
                         this.uri_update_hint = false;
                         string uri = this.playbin.uri;
                         if (this._uri != uri) {
                             // uri changed externally
                             this._uri = this.playbin.uri;
-                            this.notify_property("uri");
+                            this.notify_property ("uri");
                             this.metadata = this.generate_basic_didl ();
                         }
                     }
@@ -412,6 +420,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     }
 
     private void setup_playbin () {
+        this.duration_hint = false;
         // Needed to get "Stop" events from the playbin.
         // We can do this because we have a bus watch
         this.playbin.auto_flush_bus = false;
