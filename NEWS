@@ -1,9 +1,22 @@
+0.16.3
+======
+
+A new emergency maintenance release for Rygel!
+
+Changes compared to 0.16.2:
+
+- Really fix the Content-Length: header handling and fix a regression
+  introduced in the previous release on the first try fixing that.
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+
 0.16.2
 ======
 
 A new maintenance release for Rygel!
 
-Changes compared to 0.16.0:
+Changes compared to 0.16.1:
 
 - Skip modules in hidden directories to fix issues with certain distribution's
   debug symbols.
