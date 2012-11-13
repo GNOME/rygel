@@ -122,6 +122,9 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                     if (state != State.PLAYING ||
                         pending != State.VOID_PENDING) {
                         this._playback_state = "TRANSITIONING";
+                        // This needs a check if GStreamer and DLNA agree on
+                        // the "liveness" of the source (s0/sn increase in
+                        // protocol info)
                         this.is_live = this.playbin.set_state (State.PLAYING)
                                         == StateChangeReturn.NO_PREROLL;
                     } else {
@@ -160,6 +163,9 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                         == StateChangeReturn.NO_PREROLL;
                         break;
                     case "PLAYING":
+                        // This needs a check if GStreamer and DLNA agree on
+                        // the "liveness" of the source (s0/sn increase in
+                        // protocol info)
                         this.is_live = this.playbin.set_state (State.PLAYING)
                                         == StateChangeReturn.NO_PREROLL;
                         break;
