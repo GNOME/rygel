@@ -360,6 +360,8 @@ internal abstract class Rygel.HTTPGetHandler {
     }
 
     public void add_response_headers (HTTPGet get_request) {}
+
+    public bool knows_size (HTTPGet request) { return false; }
 }
 
 internal class Rygel.HTTPTranscodeHandler : Rygel.HTTPGetHandler {

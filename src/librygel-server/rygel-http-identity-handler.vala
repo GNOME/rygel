@@ -47,9 +47,10 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
         if (request.seek != null) {
             request.seek.add_response_headers ();
         } else {
-            if (request.item.size > 0) {
-                request.msg.response_headers.set_content_length
-                                        (request.item.size);
+            var size = this.get_size (request);
+
+            if (size > 0) {
+                request.msg.response_headers.set_content_length (size);
             }
         }
 
@@ -64,6 +65,13 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
         } catch (Error err) {
             throw new HTTPRequestError.NOT_FOUND (err.message);
         }
+    }
+
+    public override bool knows_size (HTTPGet request) {
+        var size = this.get_size (request);
+
+        return (request.seek != null && request.seek is HTTPByteSeek) ||
+                    size > 0;
     }
 
     protected override DIDLLiteResource add_resource (DIDLLiteItem didl_item,
@@ -99,5 +107,17 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
         }
 
         return new HTTPResponse (request, this, src);
+    }
+
+    private int64 get_size (HTTPGet request) {
+        if (request.subtitle != null) {
+            return request.subtitle.size;
+        }
+
+        if (request.thumbnail != null) {
+            return request.thumbnail.size;
+        }
+
+        return request.item.size;
     }
 }
