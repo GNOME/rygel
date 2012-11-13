@@ -78,6 +78,10 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
         request.msg.response_headers.append ("Connection", "close");
     }
 
+    public virtual bool knows_size (HTTPGet request) {
+        return false;
+    }
+
     // Create an HTTPResponse object that will render the body.
     public abstract HTTPResponse render_body (HTTPGet request)
                                               throws HTTPRequestError;
@@ -85,4 +89,5 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
     protected abstract DIDLLiteResource add_resource (DIDLLiteItem didl_item,
                                                       HTTPGet      request)
                                                       throws Error;
+
 }
