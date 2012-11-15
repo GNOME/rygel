@@ -23,8 +23,8 @@
  * In this example, we just derive from the SimpleContainer,
  * but a real-world server plugin might need something more sophisticated.
  */
-public class Rygel.Example.RootContainer : Rygel.SimpleContainer {
-    public RootContainer (string title) {
+public class Rygel.Example.RootContainerVala : Rygel.SimpleContainer {
+    public RootContainerVala (string title) {
         base.root (title);
 
         /*

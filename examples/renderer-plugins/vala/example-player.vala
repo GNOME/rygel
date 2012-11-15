@@ -65,6 +65,14 @@ public class Rygel.Example.Player : GLib.Object, Rygel.MediaPlayer {
 
         set {
             this._uri = value;
+
+            /*
+             * To see this debug output, to see that 
+             * the renderer has received the URI,
+             * you would need to run rygel like so:
+             * $ export G_MESSAGES_DEBUG=all
+             * rygel -g 5
+             */
             debug ("URI set to %s.", value);
         }
     }

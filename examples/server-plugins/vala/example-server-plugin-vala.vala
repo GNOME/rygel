@@ -22,14 +22,14 @@ using Rygel;
 using GUPnP;
 
 public void module_init (PluginLoader loader) {
-    if (loader.plugin_disabled (Rygel.Example.ServerPlugin.NAME)) {
-        message ("Plugin '%s' disabled by user, ignoring..",
-                 Rygel.Example.ServerPlugin.NAME);
+    if (loader.plugin_disabled (Rygel.Example.ServerPluginVala.NAME)) {
+        message ("Plugin '%s' disabled by user. Ignoring.",
+                 Rygel.Example.ServerPluginVala.NAME);
 
         return;
     }
 
-    var plugin = new Rygel.Example.ServerPlugin ();
+    var plugin = new Rygel.Example.ServerPluginVala ();
     loader.add_plugin (plugin);
 }
 
@@ -43,7 +43,7 @@ public void module_init (PluginLoader loader) {
  * [ExampleServerPluginVala]
  * enabled=false
  */
-public class Rygel.Example.ServerPlugin : Rygel.MediaServerPlugin {
+public class Rygel.Example.ServerPluginVala : Rygel.MediaServerPlugin {
     /*
      * The non-human-readable name for the service:
      * Note that this should currently not contain spaces.
@@ -57,12 +57,12 @@ public class Rygel.Example.ServerPlugin : Rygel.MediaServerPlugin {
     /* Optional human-readable description for the service: */
     public const string DESCRIPTION = "An example Rygel server plugin implemented in vala.";
 
-    public ServerPlugin () {
+    public ServerPluginVala () {
     
         /*
          * Use our derived container:
          */
-        var root_container = new RootContainer (TITLE);
+        var root_container = new RootContainerVala (TITLE);
 
         base (root_container, NAME, DESCRIPTION);
     }
