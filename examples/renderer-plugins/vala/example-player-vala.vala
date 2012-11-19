@@ -29,18 +29,18 @@ using GUPnP;
  *
  * RygelPlaybinPlayer, from librygel-renderer-gst, is a more complete example.
  */
-public class Rygel.Example.Player : GLib.Object, Rygel.MediaPlayer {
+public class Rygel.Example.PlayerVala : GLib.Object, Rygel.MediaPlayer {
     private const string[] PROTOCOLS = { "http-get" };
     private const string[] MIME_TYPES = {"image/jpeg",
                                          "image/png" };
-    private static Player player;
+    private static PlayerVala player;
 
-    private Player () {
+    private PlayerVala () {
     }
 
-    public static Player get_default () {
+    public static PlayerVala get_default () {
         if (player == null) {
-            player = new Player ();
+            player = new PlayerVala ();
         }
 
         return player;

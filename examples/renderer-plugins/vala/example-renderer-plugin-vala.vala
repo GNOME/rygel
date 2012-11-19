@@ -22,14 +22,14 @@ using Rygel;
 using GUPnP;
 
 public void module_init (PluginLoader loader) {
-    if (loader.plugin_disabled (Rygel.Example.RendererPlugin.NAME)) {
+    if (loader.plugin_disabled (Rygel.Example.RendererPluginVala.NAME)) {
         message ("Plugin '%s' disabled by user, ignoring..",
-                 Rygel.Example.RendererPlugin.NAME);
+                 Rygel.Example.RendererPluginVala.NAME);
 
         return;
     }
 
-    var plugin = new Rygel.Example.RendererPlugin ();
+    var plugin = new Rygel.Example.RendererPluginVala ();
     loader.add_plugin (plugin);
 }
 
@@ -41,7 +41,7 @@ public void module_init (PluginLoader loader) {
  * [ExampleRendererPluginVala]
  * enabled=false
  */
-public class Rygel.Example.RendererPlugin : Rygel.MediaRendererPlugin {
+public class Rygel.Example.RendererPluginVala : Rygel.MediaRendererPlugin {
     /*
      * The non-human-readable name for the service:
      * Note that this should currently not contain spaces.
@@ -55,11 +55,11 @@ public class Rygel.Example.RendererPlugin : Rygel.MediaRendererPlugin {
     /* Optional human-readable description for the service: */
     public const string DESCRIPTION = "An example Rygel renderer plugin implemented in vala.";
 
-    public RendererPlugin () {
+    public RendererPluginVala () {
         base (NAME, TITLE, DESCRIPTION);
     }
 
     public override MediaPlayer? get_player () {
-        return Example.Player.get_default ();
+        return Example.PlayerVala.get_default ();
     }
 }
