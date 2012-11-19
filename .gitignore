@@ -3,7 +3,6 @@
 *.lo
 *.la
 *.a
-*.c
 .exrc
 *.orig
 *.pc
