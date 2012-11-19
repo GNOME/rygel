@@ -35,6 +35,9 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
                                 BuildConfig.DATA_DIR +
                                 "/xml/MediaRenderer2.xml";
 
+    private string sink_protocol_info;
+    private PlayerController controller;
+
     /**
      * Create an instance of the plugin.
      *
@@ -66,9 +69,47 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
                                      RenderingControl.DESCRIPTION_PATH,
                                      typeof (RenderingControl));
         this.add_resource (resource);
+
+        this.controller = new PlayerController (this.get_player (),
+                                                this.get_protocol_info ());
     }
 
     public virtual MediaPlayer? get_player () {
         return null;
+    }
+
+    internal PlayerController get_controller () {
+        return this.controller;
+    }
+
+    public string get_protocol_info () {
+        var player = this.get_player ();
+        if (player == null) {
+            return "";
+        }
+
+        if (this.sink_protocol_info == null) {
+            this.sink_protocol_info = "";
+            var protocols = player.get_protocols ();
+
+            this.sink_protocol_info += "http-get:*:text/xml:DLNA.ORG_PN=DIDL_S,";
+
+            var mime_types = player.get_mime_types ();
+            foreach (var protocol in protocols) {
+                if (protocols[0] != protocol) {
+                    this.sink_protocol_info += ",";
+                }
+
+                foreach (var mime_type in mime_types) {
+                    if (mime_types[0] != mime_type) {
+                        this.sink_protocol_info += ",";
+                    }
+
+                    this.sink_protocol_info += protocol + ":*:" + mime_type + ":*";
+                }
+            }
+        }
+
+        return this.sink_protocol_info;
     }
 }

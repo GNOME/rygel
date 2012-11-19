@@ -132,6 +132,9 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                         this._playback_state = value;
                     }
                 break;
+                case "EOS":
+                    this._playback_state = value;
+                break;
                 default:
                 break;
             }
@@ -163,6 +166,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                         this.is_live = this.playbin.set_state (State.PAUSED)
                                         == StateChangeReturn.NO_PREROLL;
                         break;
+                    case "EOS":
                     case "PLAYING":
                         // This needs a check if GStreamer and DLNA agree on
                         // the "liveness" of the source (s0/sn increase in
@@ -397,7 +401,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         case MessageType.EOS:
             if (!this.is_rendering_image ()) {
                 debug ("EOS");
-                this.playback_state = "STOPPED";
+                this.playback_state = "EOS";
             } else {
                 debug ("Content is image, ignoring EOS");
             }

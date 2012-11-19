@@ -35,51 +35,21 @@ internal class Rygel.AVTransport : Service {
                     "urn:schemas-upnp-org:metadata-1-0/AVT/";
 
     private Session session;
+    private string protocol_info;
 
-    // The setters below update the LastChange message
-    private uint _n_tracks = 0;
-    public uint n_tracks {
-        get {
-            return this._n_tracks;
-        }
+    public string track_metadata {
+        owned get { return this.player.metadata ?? ""; }
 
         set {
-            this._n_tracks = value;
-
-            this.changelog.log ("NumberOfTracks", this._n_tracks.to_string ());
-        }
-    }
-
-    private uint _track = 0;
-    public uint track {
-        get {
-            return this._track;
-        }
-
-        set {
-            this._track = value;
-
-            this.changelog.log ("CurrentTrack", this._track.to_string ());
-        }
-    }
-
-    private string _metadata = "";
-    public string metadata {
-        owned get {
-            if (this._metadata != null) {
-                return Markup.escape_text (this._metadata);
+            if (value.has_prefix ("&lt;")) {
+                this.player.metadata = this.unescape (value);
             } else {
-                return "";
+                this.player.metadata = value;
             }
         }
-
-        set {
-            this._metadata = value;
-            this.player.metadata = value;
-        }
     }
 
-    public string uri {
+    public string track_uri {
         owned get {
             if (this.player.uri != null) {
                 return Markup.escape_text (this.player.uri);
@@ -134,10 +104,14 @@ internal class Rygel.AVTransport : Service {
 
     private ChangeLog changelog;
     private MediaPlayer player;
+    private PlayerController controller;
 
     public override void constructed () {
+        var plugin = this.root_device.resource_factory as MediaRendererPlugin;
+
         this.changelog = new ChangeLog (this, LAST_CHANGE_NS);
         this.player = this.get_player ();
+        this.controller = plugin.get_controller ();
 
         query_variable["LastChange"].connect (this.query_last_change_cb);
 
@@ -158,12 +132,18 @@ internal class Rygel.AVTransport : Service {
         action_invoked["Next"].connect (this.next_cb);
         action_invoked["Previous"].connect (this.previous_cb);
 
-        this.player.notify["playback-state"].connect (this.notify_state_cb);
+        this.controller.notify["playback-state"].connect (this.notify_state_cb);
+        this.controller.notify["n-tracks"].connect (this.notify_n_tracks_cb);
+        this.controller.notify["track"].connect (this.notify_track_cb);
+        this.controller.notify["uri"].connect (this.notify_uri_cb);
+        this.controller.notify["metadata"].connect (this.notify_meta_data_cb);
+
         this.player.notify["duration"].connect (this.notify_duration_cb);
-        this.player.notify["uri"].connect (this.notify_uri_cb);
-        this.player.notify["metadata"].connect (this.notify_meta_data_cb);
+        this.player.notify["uri"].connect (this.notify_track_uri_cb);
+        this.player.notify["metadata"].connect (this.notify_track_meta_data_cb);
 
         this.session = new SessionAsync ();
+        this.protocol_info = plugin.get_protocol_info ();
     }
 
     private MediaPlayer get_player () {
@@ -189,14 +169,16 @@ internal class Rygel.AVTransport : Service {
         log.log ("RecordMediumWriteStatus",      "NOT_IMPLEMENTED");
         log.log ("CurrentRecordQualityMode",     "NOT_IMPLEMENTED");
         log.log ("PossibleRecordQualityMode",    "NOT_IMPLEMENTED");
-        log.log ("NumberOfTracks",               this.n_tracks.to_string ());
-        log.log ("CurrentTrack",                 this.track.to_string ());
+        log.log ("NumberOfTracks",               this.controller.n_tracks.to_string ());
+        log.log ("CurrentTrack",                 this.controller.track.to_string ());
         log.log ("CurrentTrackDuration",         this.player.duration_as_str);
         log.log ("CurrentMediaDuration",         this.player.duration_as_str);
-        log.log ("CurrentTrackMetaData",         this.metadata);
-        log.log ("AVTransportURIMetaData",       this.metadata);
-        log.log ("CurrentTrackURI",              this.uri);
-        log.log ("AVTransportURI",               this.uri);
+        log.log ("CurrentTrackMetaData",
+                 Markup.escape_text (this.track_metadata));
+        log.log ("AVTransportURIMetaData",
+                 Markup.escape_text (this.controller.metadata));
+        log.log ("CurrentTrackURI",              this.track_uri);
+        log.log ("AVTransportURI",               this.controller.uri);
         log.log ("NextAVTransportURI",           "NOT_IMPLEMENTED");
         log.log ("NextAVTransportURIMetaData",   "NOT_IMPLEMENTED");
 
@@ -241,6 +223,8 @@ internal class Rygel.AVTransport : Service {
                         typeof (string),
                         out _metadata);
 
+        // remove current playlist handler
+        this.controller.set_playlist (null);
         if (_uri.has_prefix ("http://") || _uri.has_prefix ("https://")) {
             var message = new Message ("HEAD", _uri);
             message.request_headers.append ("getContentFeatures.dlna.org",
@@ -256,40 +240,53 @@ internal class Rygel.AVTransport : Service {
                     return;
                 } else {
                     var mime = msg.response_headers.get_one ("Content-Type");
+                    var features = msg.response_headers.get_one
+                                        ("contentFeatures.dlna.org");
+
                     if (mime != null &&
-                        !(mime in this.player.get_mime_types ())) {
+                        !(mime in this.player.get_mime_types () || mime ==
+                            "text/xml")) {
                         action.return_error (714, _("Illegal MIME-type"));
 
                         return;
                     }
-                    this.player.mime_type = mime;
-                    var features = msg.response_headers.get_one
-                                        ("contentFeatures.dlna.org");
 
-                    if (features != null) {
-                        this.player.content_features = features;
+                    this.controller.metadata = _metadata;
+                    this.controller.uri = _uri;
+
+                    if (mime == "text/xml" &&
+                        features.has_prefix ("DLNA.ORG_PN=DIDL_S")) {
+                        // Delay returning the action until we got some
+                        this.handle_playlist.begin (action);
                     } else {
-                        this.player.content_features = "*";
+                        // some other track
+                        this.player.mime_type = mime;
+                        if (features != null) {
+                            this.player.content_features = features;
+                        } else {
+                            this.player.content_features = "*";
+                        }
+
+                        // Track == Media
+                        this.track_metadata = _metadata;
+                        this.track_uri = _uri;
+                        this.controller.n_tracks = 1;
+                        this.controller.track = 1;
+
+                        action.return ();
                     }
-
-                    this.metadata = _metadata;
-                    this.uri = _uri;
-                    this.n_tracks = 1;
-                    this.track = 1;
-
-                    action.return ();
                 }
             });
             this.session.queue_message (message, null);
         } else {
-            this.metadata = _metadata;
-            this.uri = _uri;
+            this.controller.metadata = _metadata;
+            this.controller.uri = _uri;
             if (_uri == "") {
-                this.n_tracks = 0;
-                this.track = 0;
+                this.controller.n_tracks = 0;
+                this.controller.track = 0;
             } else {
-                this.n_tracks = 1;
-                this.track = 1;
+                this.controller.n_tracks = 1;
+                this.controller.track = 1;
             }
 
             action.return ();
@@ -302,18 +299,27 @@ internal class Rygel.AVTransport : Service {
             return;
         }
 
+        string media_duration;
+        if (this.controller.n_tracks > 1) {
+            // We don't know the size of the playlist. Might need change if we
+            // support playlists whose size we know in advance
+            media_duration = "0:00:00";
+        } else {
+            media_duration = this.player.duration_as_str;
+        }
+
         action.set ("NrTracks",
                         typeof (uint),
-                        this.n_tracks,
+                        this.controller.n_tracks,
                     "MediaDuration",
                         typeof (string),
-                        this.player.duration_as_str,
+                        media_duration,
                     "CurrentURI",
                         typeof (string),
-                        this.uri,
+                        this.controller.uri,
                     "CurrentURIMetaData",
                         typeof (string),
-                        this.metadata,
+                        this.controller.metadata,
                     "NextURI",
                         typeof (string),
                         "NOT_IMPLEMENTED",
@@ -339,21 +345,30 @@ internal class Rygel.AVTransport : Service {
             return;
         }
 
+        string media_duration;
+        if (this.controller.n_tracks > 1) {
+            // We don't know the size of the playlist. Might need change if we
+            // support playlists whose size we know in advance
+            media_duration = "0:00:00";
+        } else {
+            media_duration = this.player.duration_as_str;
+        }
+
         action.set ("CurrentType",
                         typeof (string),
                         "NO_MEDIA",
                     "NrTracks",
                         typeof (uint),
-                        this.n_tracks,
+                        this.controller.n_tracks,
                     "MediaDuration",
                         typeof (string),
-                        this.player.duration_as_str,
+                        media_duration,
                     "CurrentURI",
                         typeof (string),
-                        this.uri,
+                        this.controller.uri,
                     "CurrentURIMetaData",
                         typeof (string),
-                        this.metadata,
+                        this.controller.metadata,
                     "NextURI",
                         typeof (string),
                         "NOT_IMPLEMENTED",
@@ -401,16 +416,16 @@ internal class Rygel.AVTransport : Service {
 
         action.set ("Track",
                         typeof (uint),
-                        this.track,
+                        this.controller.track,
                     "TrackDuration",
                         typeof (string),
                         this.player.duration_as_str,
                     "TrackMetaData",
                         typeof (string),
-                        this.metadata,
+                        this.track_metadata,
                     "TrackURI",
                         typeof (string),
-                        this.uri,
+                        this.track_uri,
                     "RelTime",
                         typeof (string),
                         this.player.position_as_str,
@@ -534,6 +549,21 @@ internal class Rygel.AVTransport : Service {
             action.return ();
 
             return;
+        case "TRACK_NR":
+            debug ("Setting track to %s.", target);
+            var track = int.parse (target);
+
+            if (track < 1 || track > this.controller.n_tracks) {
+                action.return_error (711, _("Illegal seek target"));
+
+                return;
+            }
+
+            this.controller.track = track;
+
+            action.return();
+
+            break;
         default:
             action.return_error (710, _("Seek mode not supported"));
 
@@ -542,31 +572,96 @@ internal class Rygel.AVTransport : Service {
     }
 
     private void next_cb (Service service, ServiceAction action) {
-        action.return_error (701, _("Transition not available"));
+        if (this.controller.next ()) {
+            action.return ();
+        } else {
+            action.return_error (711, _("Illegal seek target"));
+        }
     }
 
     private void previous_cb (Service service, ServiceAction action) {
-        action.return_error (701, _("Transition not available"));
+        if (this.controller.previous ()) {
+            action.return ();
+        } else {
+            action.return_error (711, _("Illegal seek target"));
+        }
     }
 
     private void notify_state_cb (Object player, ParamSpec p) {
-        this.changelog.log ("TransportState", this.player.playback_state);
+        var state = this.player.playback_state;
+        this.changelog.log ("TransportState", state);
     }
 
-    private void notify_duration_cb (Object player, ParamSpec p) {
+    private void notify_n_tracks_cb (Object player, ParamSpec p) {
+        this.changelog.log ("NumberOfTracks",
+                            this.controller.n_tracks.to_string ());
+    }
+
+    private void notify_track_cb (Object player, ParamSpec p) {
+        this.changelog.log ("CurrentTrack",
+                            this.controller.track.to_string ());
+    }
+
+   private void notify_duration_cb (Object player, ParamSpec p) {
         this.changelog.log ("CurrentTrackDuration",
                             this.player.duration_as_str);
         this.changelog.log ("CurrentMediaDuration",
                             this.player.duration_as_str);
     }
 
+    private void notify_track_uri_cb (Object player, ParamSpec p) {
+        this.changelog.log ("CurrentTrackURI", this.track_uri);
+    }
+
     private void notify_uri_cb (Object player, ParamSpec p) {
-        this.changelog.log ("CurrentTrackURI", this.uri);
-        this.changelog.log ("AVTransportURI", this.uri);
+        this.changelog.log ("AVTransportURI", this.controller.uri);
+    }
+
+    private void notify_track_meta_data_cb (Object player, ParamSpec p) {
+        this.changelog.log ("CurrentTrackMetaData",
+                            Markup.escape_text (this.track_metadata));
     }
 
     private void notify_meta_data_cb (Object player, ParamSpec p) {
-        this._metadata = this.player.metadata;
-        this.changelog.log ("CurrentTrackMetadata", this.metadata);
+        this.changelog.log ("AVTransportURIMetaData",
+                            Markup.escape_text (this.controller.metadata));
+    }
+
+    private async void handle_playlist (ServiceAction action) {
+        var message = new Message ("GET", this.controller.uri);
+        this.session.queue_message (message, () => {
+            handle_playlist.callback ();
+        });
+        yield;
+
+        if (message.status_code != 200) {
+            action.return_error (716, _("Resource not found"));
+
+            return;
+        }
+
+        unowned string xml_string = (string) message.response_body.data;
+
+        var collection = new MediaCollection.from_string (xml_string);
+        if (collection.get_items ().length () == 0) {
+            // FIXME: Return a more sensible error here.
+            action.return_error (716, _("Resource not found"));
+
+            return;
+        }
+
+        this.controller.set_playlist (collection);
+
+        action.return ();
+    }
+
+    private string unescape (string input) {
+        var result = input.replace ("&quot;", "\"");
+        result = result.replace ("&lt;", "<");
+        result = result.replace ("&gt;", ">");
+        result = result.replace ("&apos;", "'");
+        result = result.replace ("&amp;", "&");
+
+        return result;
     }
 }

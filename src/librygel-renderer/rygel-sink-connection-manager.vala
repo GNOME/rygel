@@ -24,8 +24,6 @@
 using GUPnP;
 
 internal class Rygel.SinkConnectionManager : Rygel.ConnectionManager {
-    private MediaPlayer player;
-
     public override void constructed () {
         base.constructed ();
 
@@ -34,22 +32,6 @@ internal class Rygel.SinkConnectionManager : Rygel.ConnectionManager {
         this.direction = "Input";
 
         var plugin = this.root_device.resource_factory as MediaRendererPlugin;
-        this.player = plugin.get_player ();
-        var protocols = this.player.get_protocols ();
-
-        foreach (var protocol in protocols) {
-            if (protocols[0] != protocol) {
-                this.sink_protocol_info += ",";
-            }
-            var mime_types = this.player.get_mime_types ();
-
-            foreach (var mime_type in mime_types) {
-                if (mime_types[0] != mime_type) {
-                    this.sink_protocol_info += ",";
-                }
-
-                this.sink_protocol_info += protocol + ":*:" + mime_type + ":*";
-            }
-        }
+        this.sink_protocol_info = plugin.get_protocol_info ();
     }
 }

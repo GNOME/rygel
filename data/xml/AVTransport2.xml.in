@@ -281,6 +281,7 @@
          <allowedValueList>
             <allowedValue>ABS_TIME</allowedValue>
             <allowedValue>REL_TIME</allowedValue>
+            <allowedValue>TRACK_NR</allowedValue>
          </allowedValueList>
       </stateVariable>
 
