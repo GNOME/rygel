@@ -120,11 +120,13 @@ int main (int argc, char *argv[])
 
         if (item != NULL) {
             RygelMediaObject *object;
+            GeeArrayList* uris;
 
-            RYGEL_MEDIA_ITEM (item)->mime_type = g_strdup (content_type);
+            rygel_media_item_set_mime_type (RYGEL_MEDIA_ITEM (item), content_type);
 
             object = RYGEL_MEDIA_OBJECT (item);
             gee_collection_add (GEE_COLLECTION (object->uris), uri);
+
             rygel_simple_container_add_child_item (root_container, item);
         }
 

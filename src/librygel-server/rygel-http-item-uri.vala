@@ -26,12 +26,12 @@
 using Gee;
 
 internal class Rygel.HTTPItemURI : Object {
-    public string item_id;
-    public int thumbnail_index;
-    public int subtitle_index;
-    public string? transcode_target;
-    public unowned HTTPServer http_server;
-    private string real_extension;
+    public string item_id { get; set; }
+    public int thumbnail_index { get; set; default = -1; }
+    public int subtitle_index { get; set; default = -1; }
+    public string? transcode_target { get; set; default = null; }
+    public unowned HTTPServer http_server { get; set; }
+    private string real_extension { get; set; }
     public string extension {
         owned get {
             if (this.real_extension != "") {

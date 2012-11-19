@@ -35,11 +35,11 @@ private errordomain Rygel.MediaItemError {
  * These objects correspond to items in the UPnP ContentDirectory's DIDL-Lite XML.
  */
 public abstract class Rygel.MediaItem : MediaObject {
-    public string date;
+    public string date { get; set; }
 
     // Resource info
-    public string mime_type;
-    public string dlna_profile;
+    public string mime_type { get; set; }
+    public string dlna_profile { get; set; }
 
     // Size in bytes
     private int64 _size = -1;

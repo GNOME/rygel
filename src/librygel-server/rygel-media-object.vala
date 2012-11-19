@@ -38,22 +38,26 @@ public abstract class Rygel.MediaObject : GLib.Object {
     private static Regex user_name_regex;
     private static Regex host_name_regex;
 
-    public string id;
-    public string ref_id;
-    public string upnp_class;
-    public uint64 modified;
-    public uint object_update_id;
+    public string id { get; set; }
+    public string ref_id { get; set; }
+    public string upnp_class { get; set; }
+    public uint64 modified { get; set; }
+    public uint object_update_id { get; set; }
+
+    //TODO: { get; private set; } or, even better,
+    // add virtual set_uri in Object and make add_uri() in Item into set_uri()
+    // and make the uri property single-value.
     public Gee.ArrayList<string> uris;
 
     // You can keep both a unowned and owned ref to parent of this MediaObject.
     // In most cases, one will only need to keep an unowned ref to avoid cyclic
-    // references since usually parent container will keep refs to child items.
-    // However in some cases, one only wants the parent to exist as long as the
-    // child exists and it is in those cases, you will want to use 'parent_ref'.
+    // references since usually the parent container will keep refs to child items.
+    // However, in some cases, one only wants the parent to exist as long as the
+    // child exists and it is in those cases that you will want to use 'parent_ref'.
     //
     // You must set 'parent' if you set 'parent_ref' but the opposite is not
     // mandatory.
-    public unowned MediaContainer parent;
+    public unowned MediaContainer parent; // TODO: Turn this into a property?
     private MediaContainer _parent_ref;
     public MediaContainer parent_ref {
         get {
