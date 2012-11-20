@@ -51,7 +51,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.VideoTranscoder {
         "video/mpeg,mpegversion=2,systemstream=false";
 
     private const string RESTRICTION_TEMPLATE =
-        "framerate=(fraction)%d/1,width=%d,height=%d";
+        "video/x-raw,format=I420,framerate=(fraction)%d/1,width=%d,height=%d";
 
     private MP2TSProfile profile;
 
