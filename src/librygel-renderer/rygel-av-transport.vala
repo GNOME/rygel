@@ -275,6 +275,7 @@ internal class Rygel.AVTransport : Service {
                     this.metadata = _metadata;
                     this.uri = _uri;
                     this.n_tracks = 1;
+                    this.track = 1;
 
                     action.return ();
                 }
@@ -285,8 +286,10 @@ internal class Rygel.AVTransport : Service {
             this.uri = _uri;
             if (_uri == "") {
                 this.n_tracks = 0;
+                this.track = 0;
             } else {
                 this.n_tracks = 1;
+                this.track = 1;
             }
 
             action.return ();
