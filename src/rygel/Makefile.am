@@ -22,7 +22,6 @@ rygel_SOURCES = \
 
 rygel_VALAFLAGS = \
 	--pkg posix \
-	--pkg gstreamer-0.10 \
 	$(RYGEL_COMMON_VALAFLAGS)
 
 rygel_LDADD = \

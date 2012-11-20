@@ -73,7 +73,5 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-data-sink.vala
 
 LIBRYGEL_SERVER_VALAFLAGS_PKG = \
-	--pkg gstreamer-0.10 \
-	--pkg gstreamer-base-0.10 \
-	--pkg gstreamer-pbutils-0.10 \
+	--pkg gmodule-2.0 \
 	--pkg uuid
