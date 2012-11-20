@@ -251,14 +251,14 @@ internal class Rygel.AVTransport : Service {
                              _uri,
                              msg.reason_phrase);
 
-                    action.return_error (716, "Resource not found");
+                    action.return_error (716, _("Resource not found"));
 
                     return;
                 } else {
                     var mime = msg.response_headers.get_one ("Content-Type");
                     if (mime != null &&
                         !(mime in this.player.get_mime_types ())) {
-                        action.return_error (714, "Illegal MIME-type");
+                        action.return_error (714, _("Illegal MIME-type"));
 
                         return;
                     }
