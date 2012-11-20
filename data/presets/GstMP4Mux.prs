@@ -1,5 +1,5 @@
 [_presets_]
-version=0.10
+version=1.0
 element-name=GstMP4Mux
 
 [Rygel DLNA preset]

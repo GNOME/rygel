@@ -42,9 +42,10 @@ librygel_media_export_la_SOURCES = \
 	rygel-media-export-collate.c
 
 librygel_media_export_la_VALAFLAGS = \
-	--pkg gupnp-dlna-1.0 \
-	--pkg gstreamer-tag-0.10 \
-	--pkg gstreamer-app-0.10 \
+	--enable-experimental \
+	--pkg gupnp-dlna-1.1 \
+	--pkg gstreamer-tag-1.0 \
+	--pkg gstreamer-app-1.0 \
 	--pkg sqlite3 \
 	$(RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS)
 

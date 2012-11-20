@@ -1,6 +1,6 @@
 [_presets_]
-version=0.10
-element-name=ffenc_mpeg2video
+version=1.0
+element-name=avenc_mpeg2video
 
 [Rygel DLNA preset]
 bitrate=1500000

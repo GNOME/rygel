@@ -35,13 +35,12 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
     private GLib.List<Transcoder> transcoders = null;
 
     public GstMediaEngine () {
-        // Work-around vapi bug, fixed for GStreamer 1.0
         unowned string[] args = null;
 
         Gst.init (ref args);
         gst_preset_set_app_dir (PRESET_DIR);
 
-        var discoverer = new GUPnP.DLNADiscoverer ((ClockTime) SECOND,
+        var discoverer = new GUPnPDLNA.Discoverer ((ClockTime) SECOND,
                                                    true,
                                                    false);
         foreach (var profile in discoverer.list_profiles ()) {

@@ -22,11 +22,11 @@ desktop_in_files = rygel.desktop.in rygel-preferences.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-preset_DATA = $(srcdir)/presets/ffenc_aac.prs \
-	$(srcdir)/presets/ffenc_mp2.prs \
-	$(srcdir)/presets/ffenc_mpeg2video.prs \
-	$(srcdir)/presets/ffenc_wmav1.prs \
-	$(srcdir)/presets/ffenc_wmv1.prs \
+preset_DATA = $(srcdir)/presets/avenc_aac.prs \
+	$(srcdir)/presets/avenc_mp2.prs \
+	$(srcdir)/presets/avenc_mpeg2video.prs \
+	$(srcdir)/presets/avenc_wmav1.prs \
+	$(srcdir)/presets/avenc_wmv1.prs \
 	$(srcdir)/presets/GstFaac.prs \
 	$(srcdir)/presets/GstLameMP3Enc.prs \
 	$(srcdir)/presets/GstMP4Mux.prs \

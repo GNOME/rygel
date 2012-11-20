@@ -243,10 +243,9 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
     public int64 duration {
         get {
-            var format = Format.TIME;
             int64 dur;
 
-            if (this.playbin.query_duration (ref format, out dur)) {
+            if (this.playbin.query_duration (Format.TIME, out dur)) {
                 return dur / Gst.USECOND;
             } else {
                 return 0;
@@ -256,10 +255,9 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
     public int64 position {
         get {
-            var format = Format.TIME;
             int64 pos;
 
-            if (this.playbin.query_position (ref format, out pos)) {
+            if (this.playbin.query_position (Format.TIME, out pos)) {
                 return pos / Gst.USECOND;
             } else {
                 return 0;
@@ -268,7 +266,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     }
 
     private Player () {
-        this.playbin = ElementFactory.make ("playbin2", null);
+        this.playbin = ElementFactory.make ("playbin", null);
         this.foreign = false;
         this.setup_playbin ();
     }
@@ -276,7 +274,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     public Player.wrap (Gst.Element playbin) {
 
         return_if_fail (playbin != null);
-        return_if_fail (playbin.get_type ().name() == "GstPlayBin2");
+        return_if_fail (playbin.get_type ().name() == "GstPlayBin");
 
         this.playbin = playbin;
         this.foreign = true;
@@ -323,7 +321,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     private void bus_handler (Gst.Bus bus,
                               Message message) {
         switch (message.type) {
-        case MessageType.DURATION:
+        case MessageType.DURATION_CHANGED:
             this.duration_hint = true;
         break;
         case MessageType.STATE_CHANGED:
@@ -341,8 +339,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
                     if (this.uri_update_hint) {
                         this.uri_update_hint = false;
-                        string uri = this.playbin.uri;
-                        if (this._uri != uri) {
+                        string uri = this.playbin.current_uri;
+                        if (this._uri != uri && uri != "") {
                             // uri changed externally
                             this._uri = this.playbin.uri;
                             this.notify_property ("uri");
@@ -426,7 +424,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
             this.transfer_mode != null) {
             debug ("Setting transfer mode to %s", this.transfer_mode);
 
-            var structure = new Structure.empty ("Extra Headers");
+            var structure = new Structure.empty ("HTTPHeaders");
             structure.set_value ("transferMode.dlna.org", this.transfer_mode);
 
             source.extra_headers = structure;

@@ -1,6 +1,6 @@
 [_presets_]
-version=0.10
-element-name=ffenc_wmav1
+version=1.0
+element-name=avenc_wmav1
 
 [Rygel DLNA preset]
 bitrate=64000

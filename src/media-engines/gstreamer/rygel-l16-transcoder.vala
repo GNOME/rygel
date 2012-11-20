@@ -40,13 +40,9 @@ internal class Rygel.L16Transcoder : Rygel.AudioTranscoder {
                         ";rate=" + L16Transcoder.FREQUENCY.to_string () +
                         ";channels=" + L16Transcoder.CHANNELS.to_string ();
 
-        var caps_str = "audio/x-raw-int" +
+        var caps_str = "audio/x-raw,format=S16BE" +
                        ",channels=" + CHANNELS.to_string () +
-                       ",rate=" +  FREQUENCY.to_string () +
-                       ",width=" + WIDTH.to_string () +
-                       ",depth=" + DEPTH.to_string () +
-                       ",signed=" + SIGNED.to_string () +
-                       ",endianness=" + ENDIANNESS.to_string();
+                       ",rate=" +  FREQUENCY.to_string ();
 
         base (mime_type,
               "LPCM",

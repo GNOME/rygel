@@ -22,9 +22,10 @@ librygel_media_engine_gst_la_SOURCES = \
 	rygel-wmv-transcoder.vala
 
 librygel_media_engine_gst_la_VALAFLAGS = \
-	--pkg gstreamer-base-0.10 \
-	--pkg gstreamer-pbutils-0.10 \
-	--pkg gupnp-dlna-1.0 \
+	--enable-experimental \
+	--pkg gstreamer-base-1.0 \
+	--pkg gstreamer-pbutils-1.0 \
+	--pkg gupnp-dlna-1.1 \
 	--library rygel-media-engine-gst \
 	--use-header \
 	--header=rygel-media-engine-gst.h \

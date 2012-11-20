@@ -24,8 +24,9 @@
  */
 
 using Gst;
+using Gst.Base;
 
-internal class Rygel.GstSink : BaseSink {
+internal class Rygel.GstSink : Sink {
     public const string NAME = "http-gst-sink";
     public const string PAD_NAME = "sink";
     // High and low threshold for number of buffered chunks
@@ -127,11 +128,16 @@ internal class Rygel.GstSink : BaseSink {
             return false;
         }
 
-        var to_send = int64.min (buffer.size, left);
+        var bufsize = buffer.get_size ();
+        var to_send = int64.min (bufsize, left);
+        MapInfo info;
 
-        this.source.data_available (buffer.data[0:to_send]);
+        buffer.map (out info, MapFlags.READ);
+
+        this.source.data_available (info.data[0:to_send]);
         this.chunks_buffered++;
         this.bytes_sent += to_send;
+        buffer.unmap (info);
 
         return false;
     }

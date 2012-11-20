@@ -29,14 +29,15 @@ LT_INIT([dlopen disable-static])
 
 dnl Required versions of library packages
 GLIB_REQUIRED=2.31.13
+LIBXML_REQUIRED=2.7
 VALA_REQUIRED=0.16.1
 VALADOC_REQUIRED=0.2
 GSSDP_REQUIRED=0.13.0
 GUPNP_REQUIRED=0.19.0
 GUPNP_AV_REQUIRED=0.11.2
-GUPNP_DLNA_REQUIRED=0.5.0
-GSTREAMER_REQUIRED=0.10.36
-GSTPBU_REQUIRED=0.10.35
+GUPNP_DLNA_REQUIRED=0.7.0
+GSTREAMER_REQUIRED=1.0
+GSTPBU_REQUIRED=1.0
 GIO_REQUIRED=2.26
 GEE_REQUIRED=0.8.0
 UUID_REQUIRED=1.41.3
@@ -44,8 +45,8 @@ LIBSOUP_REQUIRED=2.34.0
 GTK_REQUIRED=2.90.3
 
 dnl Additional requirements for media-export plugin
-GSTREAMER_TAG_REQUIRED=0.10.28
-GSTREAMER_APP_REQUIRED=0.10.28
+GSTREAMER_TAG_REQUIRED=1.0
+GSTREAMER_APP_REQUIRED=1.0
 LIBSQLITE3_REQUIRED=3.5
 
 dnl Additional requirements for tracker plugin
@@ -61,6 +62,7 @@ PKG_CHECK_MODULES(LIBGIO, gio-2.0 >= $GIO_REQUIRED)
 PKG_CHECK_MODULES(GEE, gee-0.8 >= $GEE_REQUIRED)
 PKG_CHECK_MODULES(UUID, uuid >= $UUID_REQUIRED)
 PKG_CHECK_MODULES(LIBSOUP, libsoup-2.4 >= $LIBSOUP_REQUIRED)
+PKG_CHECK_MODULES(LIBXML, libxml-2.0 >= $LIBXML_REQUIRED)
 
 dnl Media engine to use
 BUILT_ENGINES="librygel-media-engine-simple"
@@ -74,10 +76,10 @@ AC_ARG_WITH([media_engine],
 
 AS_IF([test "x$with_media_engine" = "xgstreamer"],
       [
-        PKG_CHECK_MODULES(LIBGUPNP_DLNA, gupnp-dlna-1.0 >= $GUPNP_DLNA_REQUIRED)
-        PKG_CHECK_MODULES(LIBGSTREAMER, gstreamer-0.10 >= $GSTREAMER_REQUIRED)
-        PKG_CHECK_MODULES(GSTREAMER_BASE, gstreamer-base-0.10 >= $GSTREAMER_REQUIRED)
-        PKG_CHECK_MODULES(GST_PBU, gstreamer-pbutils-0.10 >= $GSTPBU_REQUIRED)
+        PKG_CHECK_MODULES(LIBGUPNP_DLNA, gupnp-dlna-1.1 >= $GUPNP_DLNA_REQUIRED)
+        PKG_CHECK_MODULES(LIBGSTREAMER, gstreamer-1.0 >= $GSTREAMER_REQUIRED)
+        PKG_CHECK_MODULES(GSTREAMER_BASE, gstreamer-base-1.0 >= $GSTREAMER_REQUIRED)
+        PKG_CHECK_MODULES(GST_PBU, gstreamer-pbutils-1.0 >= $GSTPBU_REQUIRED)
         enable_gstreamer="yes"
         BUILT_ENGINES="$BUILT_ENGINES;librygel-media-engine-gst"
       ],
@@ -128,7 +130,8 @@ RYGEL_CHECK_VALA([$VALA_REQUIRED],
 
 AS_IF([test "x$with_media_engine" = "xgstreamer"],
       [
-        RYGEL_CHECK_PACKAGES([gupnp-dlna-1.0 gstreamer-0.10 gstreamer-pbutils-0.10])
+        RYGEL_CHECK_PACKAGES([gupnp-dlna-1.1 gstreamer-1.0
+                              gstreamer-pbutils-1.0])
       ])
 
 dnl Debugging
@@ -210,9 +213,9 @@ dnl Check additional requirements for MediaExport plugins
 if test "x$enable_media_export_plugin" = "xyes";
 then
     PKG_CHECK_MODULES(LIBSQLITE3, sqlite3 >= $LIBSQLITE3_REQUIRED)
-    PKG_CHECK_MODULES(GSTREAMER_TAG, gstreamer-tag-0.10 >= $GSTREAMER_TAG_REQUIRED);
-    PKG_CHECK_MODULES(GSTREAMER_APP, gstreamer-app-0.10 >= $GSTREAMER_APP_REQUIRED);
-    RYGEL_CHECK_PACKAGES([sqlite3 gstreamer-tag-0.10 gstreamer-app-0.10])
+    PKG_CHECK_MODULES(GSTREAMER_TAG, gstreamer-tag-1.0 >= $GSTREAMER_TAG_REQUIRED);
+    PKG_CHECK_MODULES(GSTREAMER_APP, gstreamer-app-1.0 >= $GSTREAMER_APP_REQUIRED);
+    RYGEL_CHECK_PACKAGES([sqlite3 gstreamer-tag-1.0 gstreamer-app-1.0])
     AC_CHECK_HEADER([unistr.h],
                     AC_CHECK_LIB([unistring],
                                  [u8_strcoll],

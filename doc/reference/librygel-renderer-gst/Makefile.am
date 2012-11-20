@@ -20,7 +20,7 @@ RYGEL_DOCBUILD_VALADOC_FLAGS = \
 		--pkg rygel-core-2.0 \
 		--vapidir $(top_srcdir)/src/librygel-renderer \
 		--pkg rygel-renderer-2.0 \
-	        --pkg gstreamer-pbutils-0.10 \
+	        --pkg gstreamer-pbutils-1.0 \
 		$(RYGEL_COMMON_VALAFLAGS_PKG) \
 		$(LIBRYGEL_RENDERER_GST_VALAFLAGS_PKG)
 

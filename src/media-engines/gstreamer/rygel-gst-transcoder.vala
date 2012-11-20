@@ -24,6 +24,7 @@
  */
 
 using Gst;
+using Gst.PbUtils;
 using GUPnP;
 
 /**
@@ -35,7 +36,7 @@ internal abstract class Rygel.GstTranscoder : Rygel.Transcoder {
                            protected set;
                            default =  DEFAULT_ENCODING_PRESET; }
 
-    private const string DECODE_BIN = "decodebin2";
+    private const string DECODE_BIN = "decodebin";
     private const string ENCODE_BIN = "encodebin";
     private const string DEFAULT_ENCODING_PRESET = "Rygel DLNA preset";
 
@@ -121,7 +122,7 @@ internal abstract class Rygel.GstTranscoder : Rygel.Transcoder {
         sinkpad = this.encoder.get_compatible_pad (new_pad, null);
 
         if (sinkpad == null) {
-            var caps = new_pad.get_caps_reffed ();
+            var caps = new_pad.query_caps (null);
             Signal.emit_by_name (this.encoder, "request-pad", caps, out sinkpad);
         }
 

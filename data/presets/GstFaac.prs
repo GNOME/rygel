@@ -1,9 +1,12 @@
 [_presets_]
-version=0.10
+version=1.0
 element-name=GstFaac
 
 [Rygel DLNA preset]
 bitrate=64000
 
 [Rygel AAC_ADTS_320 preset]
+bitrate=256000
+
+[Rygel AVC_MP4_BL_CIF15_AAC_520 preset]
 bitrate=256000

@@ -23,6 +23,7 @@
 
 using GUPnP;
 using Gst;
+using Gst.PbUtils;
 
 /**
  * Represents MediaExport item.
@@ -55,15 +56,17 @@ namespace Rygel.MediaExport.ItemFactory {
     public static MediaItem? create_from_info
                                         (MediaContainer        parent,
                                          File                  file,
-                                         GUPnP.DLNAInformation dlna_info,
+                                         GUPnPDLNA.Information dlna_info,
                                          FileInfo              file_info) {
         MediaItem item;
         string id = MediaCache.get_id (file);
         GLib.List<DiscovererAudioInfo> audio_streams;
         GLib.List<DiscovererVideoInfo> video_streams;
 
-        audio_streams = dlna_info.info.get_audio_streams ();
-        video_streams = dlna_info.info.get_video_streams ();
+        audio_streams = (GLib.List<DiscovererAudioInfo>)
+                                        dlna_info.info.get_audio_streams ();
+        video_streams = (GLib.List<DiscovererVideoInfo>)
+                                        dlna_info.info.get_video_streams ();
 
         if (audio_streams == null && video_streams == null) {
             debug ("%s had neither audio nor video/picture " +
@@ -106,9 +109,9 @@ namespace Rygel.MediaExport.ItemFactory {
         }
     }
 
-    private static void fill_audio_item (AudioItem            item,
-                                         DLNAInformation      dlna_info,
-                                         DiscovererAudioInfo? audio_info) {
+    private static void fill_audio_item (AudioItem             item,
+                                         GUPnPDLNA.Information dlna_info,
+                                         DiscovererAudioInfo?  audio_info) {
         if (dlna_info.info.get_duration () > 0) {
             item.duration = (long) (dlna_info.info.get_duration () / Gst.SECOND);
         } else {
@@ -118,7 +121,7 @@ namespace Rygel.MediaExport.ItemFactory {
         if (audio_info != null) {
             if (audio_info.get_tags () != null) {
                 uint tmp;
-                audio_info.get_tags ().get_uint (TAG_BITRATE, out tmp);
+                audio_info.get_tags ().get_uint (Tags.BITRATE, out tmp);
                 item.bitrate = (int) tmp / 8;
             }
             item.channels = (int) audio_info.get_channels ();
@@ -127,12 +130,12 @@ namespace Rygel.MediaExport.ItemFactory {
     }
 
 
-    private static MediaItem fill_video_item (VideoItem            item,
-                                              File                 file,
-                                              DLNAInformation      dlna_info,
-                                              DiscovererVideoInfo  video_info,
-                                              DiscovererAudioInfo? audio_info,
-                                              FileInfo             file_info) {
+    private static MediaItem fill_video_item (VideoItem             item,
+                                              File                  file,
+                                              GUPnPDLNA.Information dlna_info,
+                                              DiscovererVideoInfo   video_info,
+                                              DiscovererAudioInfo?  audio_info,
+                                              FileInfo              file_info) {
         fill_audio_item (item as AudioItem, dlna_info, audio_info);
         fill_media_item (item, file, dlna_info, file_info);
 
@@ -145,11 +148,11 @@ namespace Rygel.MediaExport.ItemFactory {
         return item;
     }
 
-    private static MediaItem fill_photo_item (PhotoItem           item,
-                                              File                file,
-                                              DLNAInformation     dlna_info,
-                                              DiscovererVideoInfo video_info,
-                                              FileInfo            file_info) {
+    private static MediaItem fill_photo_item (PhotoItem             item,
+                                              File                  file,
+                                              GUPnPDLNA.Information dlna_info,
+                                              DiscovererVideoInfo   video_info,
+                                              FileInfo              file_info) {
         fill_media_item (item, file, dlna_info, file_info);
 
         item.width = (int) video_info.get_width ();
@@ -161,74 +164,77 @@ namespace Rygel.MediaExport.ItemFactory {
         return item;
     }
 
-    private static MediaItem fill_music_item (MusicItem            item,
-                                              File                 file,
-                                              DLNAInformation      dlna_info,
-                                              DiscovererAudioInfo? audio_info,
-                                              FileInfo             file_info) {
+    private static MediaItem fill_music_item (MusicItem             item,
+                                              File                  file,
+                                              GUPnPDLNA.Information dlna_info,
+                                              DiscovererAudioInfo?  audio_info,
+                                              FileInfo              file_info) {
         fill_audio_item (item as AudioItem, dlna_info, audio_info);
         fill_media_item (item, file, dlna_info, file_info);
 
-        if (audio_info != null) {
-            if (audio_info.get_tags () != null) {
-                unowned Gst.Buffer buffer;
-                audio_info.get_tags ().get_buffer (TAG_IMAGE, out buffer);
-                if (buffer != null) {
-                    var structure = buffer.caps.get_structure (0);
-                    int image_type;
-                    structure.get_enum ("image-type",
-                            typeof (Gst.TagImageType),
-                            out image_type);
-                    switch (image_type) {
-                        case TagImageType.UNDEFINED:
-                        case TagImageType.FRONT_COVER:
-                            var store = MediaArtStore.get_default ();
-                            var thumb = store.get_media_art_file ("album",
-                                    item,
-                                    true);
-                            try {
-                                var writer = new JPEGWriter ();
-                                writer.write (buffer, thumb);
-                            } catch (Error error) {}
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
+        if (audio_info == null) {
+            return item;
+        }
+        string artist;
+        dlna_info.info.get_tags ().get_string (Tags.ARTIST, out artist);
+        item.artist = artist;
 
-            string artist;
-            dlna_info.info.get_tags ().get_string (TAG_ARTIST, out artist);
-            item.artist = artist;
+        string album;
+        dlna_info.info.get_tags ().get_string (Tags.ALBUM, out album);
+        item.album = album;
 
-            string album;
-            dlna_info.info.get_tags ().get_string (TAG_ALBUM, out album);
-            item.album = album;
+        string genre;
+        dlna_info.info.get_tags ().get_string (Tags.GENRE, out genre);
+        item.genre = genre;
 
-            string genre;
-            dlna_info.info.get_tags ().get_string (TAG_GENRE, out genre);
-            item.genre = genre;
+        uint tmp;
+        dlna_info.info.get_tags ().get_uint (Tags.ALBUM_VOLUME_NUMBER,
+                                             out tmp);
+        item.disc = (int) tmp;
 
-            uint tmp;
-            dlna_info.info.get_tags ().get_uint (TAG_ALBUM_VOLUME_NUMBER,
-                                                 out tmp);
-            item.disc = (int) tmp;
+        dlna_info.info.get_tags() .get_uint (Tags.TRACK_NUMBER, out tmp);
+        item.track_number = (int) tmp;
 
-            dlna_info.info.get_tags() .get_uint (TAG_TRACK_NUMBER, out tmp);
-            item.track_number = (int) tmp;
+        if (audio_info.get_tags () == null) {
+            return item;
         }
 
+/*        Sample sample;
+        audio_info.get_tags ().get_sample (Tags.IMAGE, out sample);
+        if (sample == null) {
+            return item;
+        }
+        var structure = sample.get_caps ().get_structure (0);
+
+        int image_type;
+        structure.get_enum ("image-type",
+                            typeof (Gst.Tag.ImageType),
+                            out image_type);
+        switch (image_type) {
+            case Tag.ImageType.UNDEFINED:
+            case Tag.ImageType.FRONT_COVER:
+                var store = MediaArtStore.get_default ();
+                var thumb = store.get_media_art_file ("album", item, true);
+                try {
+                    var writer = new JPEGWriter ();
+                    writer.write (sample.get_buffer (), thumb);
+                } catch (Error error) {}
+                break;
+            default:
+                break;
+        } */
+
         return item;
     }
 
-    private static void fill_media_item (MediaItem       item,
-                                         File            file,
-                                         DLNAInformation dlna_info,
-                                         FileInfo        file_info) {
+    private static void fill_media_item (MediaItem             item,
+                                         File                  file,
+                                         GUPnPDLNA.Information dlna_info,
+                                         FileInfo              file_info) {
         string title = null;
 
         if (dlna_info.info.get_tags () == null ||
-            !dlna_info.info.get_tags ().get_string (TAG_TITLE, out title)) {
+            !dlna_info.info.get_tags ().get_string (Tags.TITLE, out title)) {
             title = file_info.get_display_name ();
         }
 
@@ -236,7 +242,8 @@ namespace Rygel.MediaExport.ItemFactory {
 
         if (dlna_info.info.get_tags () != null) {
             GLib.Date? date;
-            if (dlna_info.info.get_tags ().get_date (TAG_DATE, out date)) {
+            if (dlna_info.info.get_tags ().get_date (Tags.DATE, out date) &&
+                date.valid ()) {
                 char[] datestr = new char[30];
                 date.strftime (datestr, "%F");
                 item.date = (string) datestr;

@@ -30,15 +30,15 @@ using Gst;
  */
 internal class Rygel.MediaExport.JPEGWriter : GLib.Object {
     private Bin bin;
-    private AppSrc appsrc;
+    private App.Src appsrc;
     private MainLoop loop;
     private dynamic Element sink;
 
     public JPEGWriter () throws Error {
-        this.bin = Gst.parse_launch ("appsrc name=src ! decodebin2 ! " +
-                                     "ffmpegcolorspace ! " +
+        this.bin = Gst.parse_launch ("appsrc name=src ! decodebin ! " +
+                                     "autovideoconvert ! " +
                                      "jpegenc ! giosink name=sink") as Bin;
-        this.appsrc = bin.get_by_name ("src") as AppSrc;
+        this.appsrc = bin.get_by_name ("src") as App.Src;
         this.sink = bin.get_by_name ("sink");
         var bus = bin.get_bus ();
         bus.add_signal_watch ();
@@ -55,12 +55,13 @@ internal class Rygel.MediaExport.JPEGWriter : GLib.Object {
      *
      * FIXME This uses a nested main-loop to block which is ugly.
      */
-    public void write (Gst.Buffer buffer, File file) {
+/*    public void write (Gst.Buffer buffer, File file) {
         this.sink.file = file;
-        this.appsrc.push_buffer (buffer);
+        var new_buffer = Gst.buffer_copy (buffer);
+        this.appsrc.push_buffer (new_buffer);
         this.appsrc.end_of_stream ();
         this.bin.set_state (State.PLAYING);
         this.loop.run ();
         this.bin.set_state (State.NULL);
-    }
+    } */
 }

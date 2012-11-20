@@ -17,6 +17,7 @@ AM_CFLAGS += -DG_LOG_DOMAIN=\"Rygel\" \
 
 librygel_renderer_gst_2_0_la_VALAFLAGS = \
 	-H rygel-renderer-gst.h --library=rygel-renderer-gst-2.0 \
+	--enable-experimental \
 	$(LIBRYGEL_RENDERER_GST_VALAFLAGS_PKG) \
 	$(RYGEL_COMMON_RENDERER_PLUGIN_VALAFLAGS)
 librygel_renderer_gst_2_0_la_LIBADD = \

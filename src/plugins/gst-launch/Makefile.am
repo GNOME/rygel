@@ -15,7 +15,8 @@ librygel_gst_launch_la_SOURCES = \
 	$(top_srcdir)/src/media-engines/gstreamer/rygel-media-engine-gst.vapi
 
 librygel_gst_launch_la_VALAFLAGS = \
-	--pkg gstreamer-0.10 \
+	--enable-experimental \
+	--pkg gstreamer-1.0 \
 	$(RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS)
 librygel_gst_launch_la_LIBADD = \
 	$(LIBGSTREAMER_LIBS) \

@@ -282,7 +282,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
     }
 
     private void on_extracted_cb (File                   file,
-                                  GUPnP.DLNAInformation? dlna,
+                                  GUPnPDLNA.Information? dlna,
                                   FileInfo               file_info) {
         if (this.cancellable.is_cancelled ()) {
             this.completed ();

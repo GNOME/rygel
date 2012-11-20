@@ -108,11 +108,11 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
 
         // Bus handler
         var bus = this.pipeline.get_bus ();
-        this.bus_watch_id = bus.add_watch (this.bus_handler);
+        this.bus_watch_id = bus.add_watch (Priority.DEFAULT, this.bus_handler);
     }
 
     private void src_pad_added (Element src, Pad src_pad) {
-        var caps = src_pad.get_caps_reffed ();
+        var caps = src_pad.query_caps (null);
 
         var sink = this.pipeline.get_by_name (GstSink.NAME);
         Pad sink_pad;

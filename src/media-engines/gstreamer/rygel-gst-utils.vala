@@ -22,6 +22,7 @@
  */
 
 using Gst;
+using Gst.PbUtils;
 
 internal errordomain Rygel.GstError {
     MISSING_PLUGIN,
@@ -43,11 +44,8 @@ internal abstract class Rygel.GstUtils {
     }
 
     public static Element? create_source_for_uri (string uri) {
-        dynamic Element src = Element.make_from_uri (URIType.SRC, uri, null);
-        if (src != null) {
-            if (src.is_floating ()) {
-                src.ref_sink ();
-            }
+        try {
+            dynamic Element src = Element.make_from_uri (URIType.SRC, uri, null);
 
             if (src.get_class ().find_property ("blocksize") != null) {
                 // The default is usually 4KiB which is not really big enough
@@ -60,9 +58,11 @@ internal abstract class Rygel.GstUtils {
                 // transmitting
                 src.tcp_timeout = (int64) 60000000;
             }
-        }
 
-        return src;
+            return src;
+        } catch (Error error) {
+            return null;
+        }
     }
 
     public static void dump_encoding_profile (EncodingProfile profile,
@@ -89,7 +89,7 @@ internal abstract class Rygel.GstUtils {
         }
 
         var features = ElementFactory.list_get_elements
-                                        (ELEMENT_FACTORY_TYPE_DEPAYLOADER,
+                                        (ElementFactoryType.DEPAYLOADER,
                                          Rank.NONE);
         features = ElementFactory.list_filter (features,
                                                caps,

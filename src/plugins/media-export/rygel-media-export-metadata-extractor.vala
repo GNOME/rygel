@@ -24,6 +24,7 @@
 
 
 using Gst;
+using Gst.PbUtils;
 using Gee;
 using GUPnP;
 
@@ -35,7 +36,7 @@ using GUPnP;
 public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     /* Signals */
     public signal void extraction_done (File                   file,
-                                        GUPnP.DLNAInformation? dlna,
+                                        GUPnPDLNA.Information? dlna,
                                         FileInfo               file_info);
 
     /**
@@ -43,7 +44,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
      */
     public signal void error (File file, Error err);
 
-    private GUPnP.DLNADiscoverer discoverer;
+    private GUPnPDLNA.Discoverer discoverer;
     /**
      * We export a GLib.File-based API but GstDiscoverer works with URIs, so
      * we store uri->GLib.File mappings in this hashmap, so that we can get
@@ -76,7 +77,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             string uri = file.get_uri ();
             this.file_hash.set (uri, file);
             var gst_timeout = (ClockTime) (this.timeout * Gst.SECOND);
-            this.discoverer = new GUPnP.DLNADiscoverer (gst_timeout,
+            this.discoverer = new GUPnPDLNA.Discoverer (gst_timeout,
                                                         true,
                                                         true);
             this.discoverer.done.connect (on_done);
@@ -87,7 +88,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         }
     }
 
-    private void on_done (GUPnP.DLNAInformation dlna,
+    private void on_done (GUPnPDLNA.Information dlna,
                           GLib.Error            err) {
         this.discoverer.done.disconnect (on_done);
         this.discoverer = null;
@@ -101,13 +102,13 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
         this.file_hash.unset (dlna.info.get_uri ());
 
-        if ((dlna.info.get_result () & Gst.DiscovererResult.TIMEOUT) != 0) {
+        if ((dlna.info.get_result () & DiscovererResult.TIMEOUT) != 0) {
             debug ("Extraction timed out on %s", file.get_uri ());
 
             // set dlna to null to extract basic file information
             dlna = null;
         } else if ((dlna.info.get_result () &
-                    Gst.DiscovererResult.ERROR) != 0) {
+                    DiscovererResult.ERROR) != 0) {
             this.error (file, err);
 
             return;
@@ -116,8 +117,9 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         this.extract_basic_information (file, dlna);
     }
 
-    private void extract_basic_information (File file,
-                                            DLNAInformation? dlna = null) {
+    private void extract_basic_information
+                                        (File file,
+                                         GUPnPDLNA.Information? dlna = null) {
         try {
             FileInfo file_info;
 

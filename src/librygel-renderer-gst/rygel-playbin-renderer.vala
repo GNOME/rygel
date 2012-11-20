@@ -29,7 +29,7 @@ internal class Rygel.Playbin.WrappingPlugin : Rygel.MediaRendererPlugin {
         base ("LibRygel-Renderer", _("LibRygel Renderer"));
 
         return_val_if_fail (playbin != null, null);
-        return_val_if_fail (playbin.get_type ().name() == "GstPlayBin2", null);
+        return_val_if_fail (playbin.get_type ().name() == "GstPlayBin", null);
 
         this.player = new Player.wrap (playbin);
     }
@@ -84,7 +84,7 @@ public class Rygel.Playbin.Renderer : Rygel.MediaDevice {
         base ();
 
         return_val_if_fail (pipeline != null, null);
-        return_val_if_fail (pipeline.get_type ().name() == "GstPlayBin2", null);
+        return_val_if_fail (pipeline.get_type ().name() == "GstPlayBin", null);
 
         this.plugin = new WrappingPlugin (pipeline);
         this.prepare_upnp (title);
