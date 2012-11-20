@@ -41,8 +41,8 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
         }
 
         this.cancellable = cancellable;
-        this.monitors = new HashMap<File, FileMonitor> (File.hash,
-                                                        (EqualFunc) File.equal);
+        this.monitors = new HashMap<File, FileMonitor> ((HashDataFunc<File>) File.hash,
+                                                        (EqualDataFunc<File>) File.equal);
         if (cancellable != null) {
             cancellable.cancelled.connect (this.cancel);
         }

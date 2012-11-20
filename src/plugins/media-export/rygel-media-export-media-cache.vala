@@ -348,7 +348,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     public ArrayList<string> get_child_ids (string container_id)
                                             throws DatabaseError {
-        ArrayList<string> children = new ArrayList<string> (str_equal);
+        ArrayList<string> children = new ArrayList<string> ();
         GLib.Value[] values = { container_id  };
 
         var cursor = this.exec_cursor (SQLString.CHILD_IDS, values);

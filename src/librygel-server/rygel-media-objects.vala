@@ -46,7 +46,7 @@ public class Rygel.MediaObjects : ArrayList<MediaObject> {
             return;
         }
 
-        this.sort_with_data ((a, b) => {
+        this.sort ((a, b) => {
             var object_a = a as MediaObject;
             var object_b = b as MediaObject;
 

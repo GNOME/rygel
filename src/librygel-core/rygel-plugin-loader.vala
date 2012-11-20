@@ -52,7 +52,7 @@ public class Rygel.PluginLoader : RecursiveModuleLoader {
 
         base (path);
 
-        this.plugin_hash = new HashMap<string,Plugin> (str_hash, str_equal);
+        this.plugin_hash = new HashMap<string,Plugin> ();
         this.loaded_modules = new HashSet<string> ();
     }
 

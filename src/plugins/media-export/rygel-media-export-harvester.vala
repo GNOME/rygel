@@ -43,7 +43,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
     public Harvester (Cancellable     cancellable,
                       ArrayList<File> locations) {
         this.cancellable = cancellable;
-        this.locations = new ArrayList<File> ((EqualFunc) File.equal);
+        this.locations = new ArrayList<File> ((EqualDataFunc<File>) File.equal);
         foreach (var file in locations) {
             if (file.query_exists ()) {
                 this.locations.add (file);
@@ -55,10 +55,12 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         this.monitor = new RecursiveFileMonitor (cancellable);
         this.monitor.changed.connect (this.on_file_changed);
 
-        this.tasks = new HashMap<File, HarvestingTask> (File.hash,
-                                                        (EqualFunc) File.equal);
-        this.extraction_grace_timers = new HashMap<File, uint> (File.hash,
-                                                                (EqualFunc)File.equal);
+        this.tasks = new HashMap<File, HarvestingTask>
+                                        ((HashDataFunc<File>) File.hash,
+                                         (EqualDataFunc<File>) File.equal);
+        this.extraction_grace_timers = new HashMap<File, uint>
+                                        ((HashDataFunc<File>) File.hash,
+                                         (EqualDataFunc<File>) File.equal);
     }
 
     /**

@@ -27,11 +27,11 @@ using Gee;
  */
 public class Rygel.Tracker.QueryTriplets : ArrayList<QueryTriplet> {
     public QueryTriplets () {
-        base ((EqualFunc) QueryTriplet.equal_func);
+        base ((EqualDataFunc<QueryTriplet>) QueryTriplet.equal_func);
     }
 
     public QueryTriplets.clone (QueryTriplets triplets) {
-        base ((EqualFunc) QueryTriplet.equal_func);
+        base ((EqualDataFunc<QueryTriplet>) QueryTriplet.equal_func);
 
         foreach (var triplet in triplets) {
             this.add (new QueryTriplet.clone (triplet));

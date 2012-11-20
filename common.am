@@ -78,7 +78,7 @@ RYGEL_COMMON_RENDERER_PLUGIN_VALAFLAGS = \
 	--vapidir=$(top_builddir)/src/librygel-renderer \
 	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
 
-RYGEL_COMMON_VALAFLAGS_PKG = --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gee-1.0
+RYGEL_COMMON_VALAFLAGS_PKG = --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gee-0.8
 
 RYGEL_COMMON_VALAFLAGS = \
 	--pkg rygel-build-config \

@@ -30,7 +30,7 @@ LDADD = $(LIBGUPNP_LIBS) \
 AM_VALAFLAGS = --disable-warnings \
 	       --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg dbus-glib-1 \
                --pkg gconf-2.0 --pkg gstreamer-0.10 --pkg gstreamer-base-0.10 \
-               --pkg gio-2.0 --pkg gee-1.0 --pkg gstreamer-pbutils-0.10 \
+               --pkg gio-2.0 --pkg gee-0.8 --pkg gstreamer-pbutils-0.10 \
                --pkg uuid --vapidir=$(top_srcdir)/src/librygel-core -g \
 	       $(COVERAGE_VALAFLAGS)
 
