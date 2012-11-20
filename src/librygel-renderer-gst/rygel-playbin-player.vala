@@ -50,6 +50,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                         "audio/x-flac+ogg",
                                         "audio/flac",
                                         "audio/mp4",
+                                        "audio/3gpp",
                                         "audio/vnd.dlna.adts",
                                         "audio/x-mod",
                                         "audio/x-wav",
