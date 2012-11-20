@@ -31,7 +31,8 @@ internal class Rygel.HTTPItemURI : Object {
     public int subtitle_index { get; set; default = -1; }
     public string? transcode_target { get; set; default = null; }
     public unowned HTTPServer http_server { get; set; }
-    private string real_extension { get; set; }
+
+    private string real_extension;
     public string extension {
         owned get {
             if (this.real_extension != "") {
