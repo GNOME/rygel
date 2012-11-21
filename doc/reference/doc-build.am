@@ -55,9 +55,6 @@ clean-local:
 	rm -f gtkdoc/lib$(RYGEL_DOCBUILD_MODULE)*.txt
 	rm -f gtkdoc/lib$(RYGEL_DOCBUILD_MODULE).prerequisites
 
-uninstall-hook:
-	rm -rf $(INSTALL_DIR)
-
 all: valadoc-gen gtkdoc-gen
 
 endif
@@ -70,6 +67,8 @@ install-data-hook: gtkdoc/html/index.html
 	cp -d -R $(srcdir)/gtkdoc/html $(RYGEL_GTKDOC_INSTALL_DIR)
 	chmod -R u+w $(RYGEL_GTKDOC_INSTALL_DIR)
 
+uninstall-hook:
+	rm -rf $(RYGEL_GTKDOC_INSTALL_DIR)
 
 EXTRA_DIST = $(RYGEL_GTKDOC_DOCS_XML) gtkdoc/html valadoc
 
