@@ -155,6 +155,11 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
 
             var mime_types = player.get_mime_types ();
 
+            mime_types += "audio/mpegurl";
+            mime_types += "audio/x-mpegurl";
+            mime_types += "video/mpegurl";
+            mime_types += "video/x-mpegurl";
+
             foreach (var protocol in protocols) {
                 if (protocols[0] != protocol ||
                     this.sink_protocol_info != "") {

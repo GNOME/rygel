@@ -696,14 +696,58 @@ internal class Rygel.AVTransport : Service {
             return;
         }
 
-        unowned string xml_string = (string) message.response_body.data;
+        var content_type = message.response_headers.get_content_type (null);
 
-        var collection = new MediaCollection.from_string (xml_string);
-        if (collection.get_items ().length () == 0) {
-            // FIXME: Return a more sensible error here.
-            action.return_error (716, _("Resource not found"));
+        MediaCollection collection = null;
+        if (content_type.has_suffix ("mpegurl")) {
+            collection = new MediaCollection ();
+            var m_stream = new MemoryInputStream.from_data
+                                        (message.response_body.data, null);
+            var stream = new DataInputStream (m_stream);
 
-            return;
+            size_t length;
+            debug ("Trying to parse m3u playlist");
+            try {
+                var line = stream.read_line (out length);
+                while (line != null) {
+
+                    // Swallow comments
+                    while (line != null && line.has_prefix ("#")) {
+                        line = stream.read_line (out length);
+                    }
+
+                    // No more lines after comments
+                    if (line == null) {
+                        break;
+                    }
+
+                    debug ("Adding uri with %s", line);
+                    var item = collection.add_item ();
+                    item.upnp_class = "object.item.audioItem";
+
+                    var resource = item.add_resource ();
+                    var pi = new ProtocolInfo.from_string ("*:*:*:*");
+                    resource.set_protocol_info (pi);
+                    resource.uri = line.strip ();
+
+                    line = stream.read_line (out length);
+                }
+            } catch (Error error) {
+                warning (_("Problem parsing playlist: %s"), error.message);
+                // FIXME: Return a more sensible error here.
+                action.return_error (716, _("Resource not found"));
+
+                return;
+            }
+        } else {
+            unowned string xml_string = (string) message.response_body.data;
+            collection = new MediaCollection.from_string (xml_string);
+            if (collection.get_items ().length () == 0) {
+                // FIXME: Return a more sensible error here.
+                action.return_error (716, _("Resource not found"));
+
+                return;
+            }
         }
 
         switch (action.get_name ()) {
@@ -721,8 +765,10 @@ internal class Rygel.AVTransport : Service {
     }
 
     private bool is_playlist (string? mime, string? features) {
-        return mime == "text/xml" && features != null &&
-               features.has_prefix ("DLNA.ORG_PN=DIDL_S");
+        return (mime != null && mime == "text/xml" &&
+                features != null &&
+                features.has_prefix ("DLNA.ORG_PN=DIDL_S")) ||
+                mime.has_suffix ("mpegurl");
     }
 
     bool head_faked;
