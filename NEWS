@@ -1,3 +1,40 @@
+0.17.2
+======
+
+A new unstable release for Rygel
+
+Changes compared to 0.17.1:
+
+- Fix , unescaping and CSV parsing in UpdateObject call.
+- Fix thumbnails for XBox 360.
+- Look for the proper device description XML.
+- Fix regression that caused missing Content-Length headers.
+- More GObject API changes.
+- Fix pkg-config files to not include GStreamer dependency.
+- Port to libgee-0.8 API
+- Remove unneccessary GStreamer dependencies.
+
+MediaExport:
+ - Fix regression introduced in 0.17.2 causing empty containers.
+
+Playbin:
+ - Only report duration of a file if it's really known.
+
+Examples:
+ - C version of the server plug-in.
+
+Media-Engine GStreamer:
+ - Port to GStreamer 1.0 API.
+
+Known issues:
+ - Transcoding to WMV is not working properly, streams are audio-only.
+ - Media art extraction is disabled as it caused crashes/lock-ups.
+
+Changes in dependencies:
+ - GUPnP-DLNA 0.7.0 for GStreamer 1.0 support.
+ - Necessary versions of GStreamer libs have been bumped to 1.0.
+ - Vala version 0.18 for included GStreamer vapis.
+
 0.17.1
 ======
 
