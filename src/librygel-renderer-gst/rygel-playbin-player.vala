@@ -81,7 +81,6 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                         "video/x-xvid",
                                         "video/x-ms-wmv" };
     private static Player player;
-    bool duration_hint;
 
     private bool is_live;
     private bool foreign;
@@ -327,7 +326,9 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                               Message message) {
         switch (message.type) {
         case MessageType.DURATION_CHANGED:
-            this.duration_hint = true;
+            if (this.playbin.query_duration (Format.TIME, null)) {
+                this.notify_property ("duration");
+            }
         break;
         case MessageType.STATE_CHANGED:
             if (message.src == this.playbin) {
@@ -337,11 +338,6 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                              out new_state,
                                              out pending);
                 if (old_state == State.READY && new_state == State.PAUSED) {
-                    if (this.duration_hint) {
-                        this.notify_property ("duration");
-                        this.duration_hint = false;
-                    }
-
                     if (this.uri_update_hint) {
                         this.uri_update_hint = false;
                         string uri = this.playbin.current_uri;
@@ -461,7 +457,6 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     }
 
     private void setup_playbin () {
-        this.duration_hint = false;
         // Needed to get "Stop" events from the playbin.
         // We can do this because we have a bus watch
         this.is_live = false;
