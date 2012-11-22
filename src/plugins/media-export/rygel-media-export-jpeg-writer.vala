@@ -55,13 +55,13 @@ internal class Rygel.MediaExport.JPEGWriter : GLib.Object {
      *
      * FIXME This uses a nested main-loop to block which is ugly.
      */
-/*    public void write (Gst.Buffer buffer, File file) {
+    public void write (Gst.Buffer buffer, File file) {
+        Gst.FlowReturn flow;
         this.sink.file = file;
-        var new_buffer = Gst.buffer_copy (buffer);
-        this.appsrc.push_buffer (new_buffer);
+        Signal.emit_by_name (appsrc, "push-buffer", buffer, out flow);
         this.appsrc.end_of_stream ();
         this.bin.set_state (State.PLAYING);
         this.loop.run ();
         this.bin.set_state (State.NULL);
-    } */
+    }
 }

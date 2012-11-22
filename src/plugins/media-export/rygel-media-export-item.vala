@@ -199,7 +199,7 @@ namespace Rygel.MediaExport.ItemFactory {
             return item;
         }
 
-/*        Sample sample;
+        Sample sample;
         audio_info.get_tags ().get_sample (Tags.IMAGE, out sample);
         if (sample == null) {
             return item;
@@ -222,7 +222,7 @@ namespace Rygel.MediaExport.ItemFactory {
                 break;
             default:
                 break;
-        } */
+        }
 
         return item;
     }
