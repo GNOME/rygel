@@ -90,7 +90,6 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
     private void on_done (GUPnPDLNA.Information dlna,
                           GLib.Error            err) {
-        this.discoverer.done.disconnect (on_done);
         this.discoverer = null;
         var file = this.file_hash.get (dlna.info.get_uri ());
         if (file == null) {
