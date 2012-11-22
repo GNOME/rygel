@@ -30,6 +30,7 @@ internal class Rygel.HTTPItemURI : Object {
     public int thumbnail_index { get; set; default = -1; }
     public int subtitle_index { get; set; default = -1; }
     public string? transcode_target { get; set; default = null; }
+    public string? playlist_format { get; set; default = null; }
     public unowned HTTPServer http_server { get; set; }
 
     private string real_extension;
@@ -51,12 +52,14 @@ internal class Rygel.HTTPItemURI : Object {
                         HTTPServer http_server,
                         int        thumbnail_index = -1,
                         int        subtitle_index = -1,
-                        string?    transcode_target = null) {
+                        string?    transcode_target = null,
+                        string?    playlist_format = null) {
         this.item_id = item.id;
         this.thumbnail_index = thumbnail_index;
         this.subtitle_index = subtitle_index;
         this.transcode_target = transcode_target;
         this.http_server = http_server;
+        this.playlist_format = null;
         this.extension = "";
 
         if (thumbnail_index > -1) {
@@ -158,6 +161,10 @@ internal class Rygel.HTTPItemURI : Object {
                     this.subtitle_index = int.parse (parts[i + 1]);
 
                     break;
+                case "pl":
+                    this.playlist_format = Soup.URI.decode (parts[i + 1]);
+
+                    break;
                 default:
                     break;
             }
@@ -185,8 +192,12 @@ internal class Rygel.HTTPItemURI : Object {
             path += "/th/" + this.thumbnail_index.to_string ();
         } else if (this.subtitle_index >= 0) {
             path += "/sub/" + this.subtitle_index.to_string ();
+        } else if (this.playlist_format != null) {
+            path += "/pl/" + Uri.escape_string
+                                        (this.playlist_format, "", true);
         }
         path += this.extension;
+
         return this.create_uri_for_path (path);
     }
 
@@ -221,6 +232,7 @@ internal class Rygel.HTTPItemURI : Object {
 
             // texts
             mime_to_ext.set ("text/srt", "srt");
+            mime_to_ext.set ("text/xml", "xml");
 
             // applications? (can be either video or audio?);
             mime_to_ext.set ("application/ogg", "ogg");
