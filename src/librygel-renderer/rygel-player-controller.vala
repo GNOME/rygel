@@ -51,7 +51,17 @@ internal class Rygel.PlayerController : Object {
     public string protocol_info { construct; private get; }
 
     /* public properties */
-    public string playback_state { get; set; default = "NO_MEDIA_PRESENT"; }
+    [CCode (notify = false)]
+    public string playback_state {
+        get { return this._playback_state; }
+        set {
+            if (this._playback_state != value) {
+                this._playback_state = value;
+                this.notify_property ("playback-state");
+            }
+        }
+        default = "NO_MEDIA_PRESENT";
+    }
     public uint n_tracks { get; set; default = 0; }
     public uint track {
         get { return this._track; }
@@ -74,6 +84,7 @@ internal class Rygel.PlayerController : Object {
     // Private property variables
     private string _metadata;
     private uint _track;
+    private string _playback_state;
 
     public PlayerController (MediaPlayer player, string protocol_info) {
         Object (player : player, protocol_info : protocol_info);
