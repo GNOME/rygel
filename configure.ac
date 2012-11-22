@@ -314,6 +314,7 @@ tests/Makefile
 examples/Makefile
 examples/renderer-plugins/Makefile
 examples/renderer-plugins/vala/Makefile
+examples/renderer-plugins/C/Makefile
 examples/server-plugins/Makefile
 examples/server-plugins/vala/Makefile
 examples/server-plugins/C/Makefile

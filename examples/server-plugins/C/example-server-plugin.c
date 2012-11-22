@@ -28,7 +28,7 @@ enum  {
 };
 
 #define RYGEL_EXAMPLE_SERVER_PLUGIN_TITLE "Example Server Plugin C"
-#define RYGEL_EXAMPLE_SERVER_PLUGIN_DESCRIPTION "An example Rygel server plugin implemented in vala."
+#define RYGEL_EXAMPLE_SERVER_PLUGIN_DESCRIPTION "An example Rygel server plugin implemented in C."
 
 G_DEFINE_TYPE (RygelExampleServerPlugin, rygel_example_server_plugin, RYGEL_TYPE_MEDIA_SERVER_PLUGIN)
 
@@ -39,7 +39,7 @@ module_init (RygelPluginLoader* loader) {
   g_return_if_fail (loader != NULL);
 
   if (rygel_plugin_loader_plugin_disabled (loader, RYGEL_EXAMPLE_SERVER_PLUGIN_NAME)) {
-    g_message ("example-server-plugin.vala:26: Plugin '%s' disabled by user. Ignoring.",
+    g_message ("Plugin '%s' disabled by user. Ignoring.",
       RYGEL_EXAMPLE_SERVER_PLUGIN_NAME);
     return;
   }

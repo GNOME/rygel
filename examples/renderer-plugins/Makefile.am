@@ -1,2 +1,2 @@
-SUBDIRS = vala
+SUBDIRS = vala C
 
