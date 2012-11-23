@@ -38,7 +38,8 @@ internal class Plugin : Rygel.MediaRendererPlugin {
  * Call rygel_media_device_add_interface() on the RygelMediaRenderer to allow it
  * to render media from that network interface.
  *
- * See the standalone-renderer.c example.
+ * See the
+ * <link linkend="implementing-renderers">Implementing Renderers</link> section.
  */
 public class Rygel.MediaRenderer : MediaDevice {
 
