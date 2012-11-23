@@ -4,7 +4,7 @@
 <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
 ]>
 
-<section id="example">
+<section id="implementing-renderers-gst">
 
 <!-- TODO: Find a way to mention this C example code in the RygelPlaybinRenderer valadoc comments instead. -->
 <para>

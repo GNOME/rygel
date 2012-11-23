@@ -21,8 +21,8 @@
   </preface>
 
   <chapter>
-    <title>Example</title>
-    <xi:include href="example.xml"/>
+    <title>Implementing GStreamer-based Renderers</title>
+    <xi:include href="implementing-renderers-gst.xml"/>
   </chapter>
 
     <!-- These are generated: -->
