@@ -20,6 +20,11 @@
     <xi:include href="overview.xml"/>
   </preface>
 
+  <chapter>
+    <title>Implementing Rygel Renderer Plugins</title>
+    <xi:include href="implementing-renderer-plugins.xml"/>
+  </chapter>
+
   <!-- These are generated: -->
   <chapter>
     <title>librygel-renderer API Reference</title>

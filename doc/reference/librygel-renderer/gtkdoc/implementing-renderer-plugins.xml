@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+<!ENTITY url_git_browse_base_src "http://git.gnome.org/browse/rygel/tree/src/">
+<!ENTITY url_refdocs_librygel_renderer_gst "developer.gnome.org/librygel-renderer-gst/unstable/">
+]>
+
+<section id="implementing-renderer-plugins">
+
+<para>
+This library may be used to create Rygel renderer plugins by 
+implementing the <link linkend="RygelMediaRendererPlugin">RygelMediaRendererPlugin</link> class.
+</para>
+
+<!-- TODO: Find a way to mention this C example code in the RygelMediaRendererPlugin valadoc comments instead. -->
+<para>
+This example source code shows how to implement a Rygel Renderer plugin.</para>
+
+<para>This example implements a <link linkend="RygelMediaPlayer">RygelMediaPlayer</link> that simply prints the
+addresses of any URIs provided to it by a UPnP/DLNA controller. A real Rygel renderer plugin's player
+would render the actual media content to some device. See, for instance, the
+<ulink url="&url_refdocs_librygel_renderer_gst;RygelPlaybinPlayer.html">RygelPlaybinPlayer</ulink> from the
+librygel-renderer-gst library.
+</para>
+
+<!-- Do not indent the xi:include node. That puts spaces at the start of the code. -->
+<programlisting role="C">
+<xi:include  href="../../../../examples/renderer-plugins/C/example-renderer-plugin.h"
+    parse="text"
+    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</programlisting>
+<programlisting role="C">
+<xi:include  href="../../../../examples/renderer-plugins/C/example-renderer-plugin.c"
+    parse="text"
+    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</programlisting>
+<programlisting role="C">
+<xi:include  href="../../../../examples/renderer-plugins/C/example-player.h"
+    parse="text"
+    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</programlisting>
+<programlisting role="C">
+<xi:include  href="../../../../examples/renderer-plugins/C/example-player.c"
+    parse="text"
+    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</programlisting>
+
+</section>
+
