@@ -47,9 +47,5 @@ such as a file system or database. See, for instance, the
     xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </programlisting>
 
-<para>
-librygel-server is licensed under the GNU Lesser General Public License (LGPL).
-</para>
-
 </section>
 
