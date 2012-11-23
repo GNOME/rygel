@@ -41,7 +41,7 @@ internal class Rygel.Playbin.WrappingPlugin : Rygel.MediaRendererPlugin {
 }
 
 /**
- * A UPnP renderer that uses a GStreamer Playbin2 element.
+ * An in-process UPnP renderer that uses a GStreamer Playbin2 element.
  *
  * Using GstPlayBin2 as a model, it reflects any changes done externally, such as
  * changing the currently played URI, volume, pause/play etc., to UPnP.
