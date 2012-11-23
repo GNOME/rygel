@@ -2,6 +2,7 @@
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
                "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
 <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+<!ENTITY url_git_browse_base_src "http://git.gnome.org/browse/rygel/tree/src/">
 ]>
 
 <section id="implementing-server-plugins">
@@ -11,4 +12,44 @@ This library may be used to create Rygel server plugins by
 implementing the <link linkend="RygelMediaServerPlugin">RygelMediaServerPlugin</link> class.
 </para>
 
+<!-- TODO: Find a way to mention this C example code in the RygelMediaServer valadoc comments instead. -->
+<para>
+This example source code shows how to implement a Rygel Server plugin.</para>
+
+<para>This example implements a root <link linkend="RygelMediaContainer">RygelMediaContainer</link> by
+deriving from <link linkend="RygelSimpleContainer">RygelSimpleContainer</link> and adding some
+hard-coded items. A real Rygel server plugin's root container, or its child items, would typically
+populate themselves dynamically. For instance, they might add and remove items based on some source
+such as a file system or database. See, for instance, the 
+<ulink url="&url_git_browse_base_src;plugins/tracker">Rygel Tracker Plugin</ulink> or the
+<ulink url="&url_git_browse_base_src;plugins/media-export">Rygel MediaExport Plugin</ulink>.
+</para>
+
+<!-- Do not indent the xi:include node. That puts spaces at the start of the code. -->
+<programlisting role="C">
+<xi:include  href="../../../../examples/server-plugins/C/example-server-plugin.h"
+    parse="text"
+    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</programlisting>
+<programlisting role="C">
+<xi:include  href="../../../../examples/server-plugins/C/example-server-plugin.c"
+    parse="text"
+    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</programlisting>
+<programlisting role="C">
+<xi:include  href="../../../../examples/server-plugins/C/example-root-container.h"
+    parse="text"
+    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</programlisting>
+<programlisting role="C">
+<xi:include  href="../../../../examples/server-plugins/C/example-root-container.c"
+    parse="text"
+    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</programlisting>
+
+<para>
+librygel-server is licensed under the GNU Lesser General Public License (LGPL).
+</para>
+
 </section>
+
