@@ -183,6 +183,15 @@ public class Rygel.PhotoItem : Rygel.MediaItem {
         base (id, parent, title);
     }
 }
+
+public class Rygel.PlaylistItem : Rygel.MediaItem {
+    public const string UPNP_CLASS = "object.item.playlistItem";
+
+    public PlaylistItem (string id, MediaContainer parent, string title) {
+        base (id, parent, title);
+    }
+}
+
 public class Rygel.ContentDirectory : GLib.Object {
     public Cancellable cancellable;
     public MediaContainer root_container;

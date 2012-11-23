@@ -447,6 +447,8 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             return new AudioItem (id, parent, title);
         case MusicItem.UPNP_CLASS:
             return new MusicItem (id, parent, title);
+        case PlaylistItem.UPNP_CLASS:
+            return new PlaylistItem (id, parent, title);
         default:
             throw new ContentDirectoryError.BAD_METADATA
                                         ("Creation of item of class '%s' " +

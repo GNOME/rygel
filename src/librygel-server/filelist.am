@@ -28,7 +28,8 @@ LIBRYGEL_SERVER_VAPI_SOURCE_FILES = \
 	rygel-media-engine.vala \
 	rygel-http-seek.vala \
 	rygel-data-source.vala \
-	rygel-updatable-object.vala
+	rygel-updatable-object.vala \
+	rygel-playlist-item.vala
 
 LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-browse.vala \
