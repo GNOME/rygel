@@ -187,7 +187,9 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             if (info.get_content_type ().has_prefix ("image/") ||
                 info.get_content_type ().has_prefix ("video/") ||
                 info.get_content_type ().has_prefix ("audio/") ||
-                info.get_content_type () == "application/ogg") {
+                info.get_content_type () == "application/ogg" ||
+                info.get_content_type () == "application/xml" ||
+                info.get_content_type () == "text/xml") {
                 return this.push_if_changed_or_unknown (file, info);
             }
 

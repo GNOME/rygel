@@ -84,6 +84,8 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
             case Rygel.PhotoItem.UPNP_CLASS:
             case Rygel.ImageItem.UPNP_CLASS:
                 return new PhotoItem (id, parent, title);
+            case Rygel.PlaylistItem.UPNP_CLASS:
+                return new PlaylistItem (id, parent, title);
             default:
                 assert_not_reached ();
         }

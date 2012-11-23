@@ -34,6 +34,7 @@ internal class Rygel.MediaExport.WritableDbContainer : DBContainer,
         this.create_classes.add (Rygel.VideoItem.UPNP_CLASS);
         this.create_classes.add (Rygel.AudioItem.UPNP_CLASS);
         this.create_classes.add (Rygel.MusicItem.UPNP_CLASS);
+        this.create_classes.add (Rygel.PlaylistItem.UPNP_CLASS);
     }
 
     public async void add_item (Rygel.MediaItem item, Cancellable? cancellable)

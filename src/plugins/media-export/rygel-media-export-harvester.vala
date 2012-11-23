@@ -156,7 +156,9 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                 info.get_content_type ().has_prefix ("image/") ||
                 info.get_content_type ().has_prefix ("video/") ||
                 info.get_content_type ().has_prefix ("audio/") ||
-                info.get_content_type () == "application/ogg") {
+                info.get_content_type () == "application/ogg" ||
+                info.get_content_type () == "application/xml" ||
+                info.get_content_type () == "text/xml") {
                 string id;
                 try {
                     MediaContainer parent_container = null;
