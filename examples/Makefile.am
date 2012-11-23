@@ -31,9 +31,9 @@ AM_CFLAGS += \
 	-I$(top_srcdir)/src/librygel-renderer \
 	$(LIBGSTREAMER_CFLAGS)
 
-noinst_PROGRAMS += standalone-renderer
-standalone_renderer_SOURCES = standalone-renderer.c
-standalone_renderer_LDADD = \
+noinst_PROGRAMS += standalone-renderer-gst
+standalone_renderer_gst_SOURCES = standalone-renderer-gst.c
+standalone_renderer_gst_LDADD = \
 	$(top_builddir)/src/librygel-renderer/librygel-renderer-2.0.la \
 	$(top_builddir)/src/librygel-renderer-gst/librygel-renderer-gst-2.0.la \
 	$(LIBGSTREAMER_LIBS) \
