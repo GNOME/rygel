@@ -29,9 +29,9 @@ using Gst.PbUtils;
  * Represents MediaExport item.
  */
 namespace Rygel.MediaExport.ItemFactory {
-    public static MediaItem create_simple (MediaContainer parent,
-                                           File           file,
-                                           FileInfo       info) {
+    public static MediaItem? create_simple (MediaContainer parent,
+                                            File           file,
+                                            FileInfo       info) {
         var title = info.get_display_name ();
         MediaItem item;
         var mime = ContentType.get_mime_type (info.get_content_type ());
@@ -42,11 +42,13 @@ namespace Rygel.MediaExport.ItemFactory {
             item = new PhotoItem (MediaCache.get_id (file), parent, title);
         } else if (mime.has_prefix ("audio/") || mime == "application/ogg") {
             item = new MusicItem (MediaCache.get_id (file), parent, title);
-        } else { // application/xml
+        } else { // application/xml or text/xml
+            item = ItemFactory.create_playlist_item (file, parent, title);
+            if (item == null) {
+                return null;
+            }
             // DLNA requires that DIDL_S playlist have text/xml MIME type.
             mime = "text/xml";
-            debug ("Creating playlist item: %s.", title);
-            item = new PlaylistItem (MediaCache.get_id (file), parent, title);
         }
 
         item.mime_type = mime;
@@ -56,6 +58,44 @@ namespace Rygel.MediaExport.ItemFactory {
         item.add_uri (file.get_uri ());
 
         return item;
+    }
+
+    private static MediaItem? create_playlist_item (File file,
+                                                    MediaContainer parent,
+                                                    string fallback_title) {
+        try {
+            uint8[] contents;
+
+            if (!file.load_contents (null, out contents, null)) {
+                return null;
+            }
+
+            var didl_s = new MediaCollection.from_string ((string) contents);
+            var author = didl_s.author;
+            var title = didl_s.title;
+
+            if (author == null &&
+                title == null &&
+                didl_s.get_items () == null) {
+                return null;
+            }
+
+            if (title == null) {
+                title = fallback_title;
+            }
+
+            var item = new PlaylistItem (MediaCache.get_id (file),
+                                         parent,
+                                         title);
+
+            if (author != null) {
+                item.creator = author;
+            }
+
+            return item;
+        } catch (Error e) {
+            return null;
+        }
     }
 
     public static MediaItem? create_from_info
