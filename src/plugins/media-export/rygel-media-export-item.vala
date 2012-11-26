@@ -40,7 +40,7 @@ namespace Rygel.MediaExport.ItemFactory {
             item = new VideoItem (MediaCache.get_id (file), parent, title);
         } else if (mime.has_prefix ("image/")) {
             item = new PhotoItem (MediaCache.get_id (file), parent, title);
-        } else if (mime.has_prefix ("audio/")) {
+        } else if (mime.has_prefix ("audio/") || mime == "application/ogg") {
             item = new MusicItem (MediaCache.get_id (file), parent, title);
         } else { // application/xml
             // DLNA requires that DIDL_S playlist have text/xml MIME type.
