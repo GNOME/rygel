@@ -47,6 +47,7 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
             var p = new DLNAProfile (profile.name, profile.mime);
             this.dlna_profiles.prepend (p);
         }
+        this.dlna_profiles.prepend (new DLNAProfile ("DIDL_S", "text/xml"));
 
         this.dlna_profiles.reverse ();
 
