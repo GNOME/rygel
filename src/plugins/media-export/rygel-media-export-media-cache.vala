@@ -551,6 +551,12 @@ public class Rygel.MediaExport.MediaCache : Object {
             }
         }
 
+        if (item is PlaylistItem) {
+            var playlist_item = item as PlaylistItem;
+
+            values[5] = playlist_item.creator;
+        }
+
         this.db.exec (this.sql.make (SQLString.SAVE_METADATA), values);
     }
 
