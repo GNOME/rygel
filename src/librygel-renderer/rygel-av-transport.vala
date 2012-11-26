@@ -248,8 +248,8 @@ internal class Rygel.AVTransport : Service {
                                         ("contentFeatures.dlna.org");
 
                     if (mime != null &&
-                        !(mime in this.player.get_mime_types () || mime ==
-                            "text/xml")) {
+                        !(mime in this.player.get_mime_types () ||
+                          this.is_playlist (mime, features))) {
                         action.return_error (714, _("Illegal MIME-type"));
 
                         return;
@@ -258,8 +258,7 @@ internal class Rygel.AVTransport : Service {
                     this.controller.metadata = _metadata;
                     this.controller.uri = _uri;
 
-                    if (mime == "text/xml" &&
-                        features.has_prefix ("DLNA.ORG_PN=DIDL_S")) {
+                    if (this.is_playlist (mime, features)) {
                         // Delay returning the action until we got some
                         this.handle_playlist.begin (action);
                     } else {
@@ -682,5 +681,10 @@ internal class Rygel.AVTransport : Service {
         result = result.replace ("&amp;", "&");
 
         return result;
+    }
+
+    private bool is_playlist (string mime, string features) {
+        return mime == "text/xml" &&
+               features.has_prefix ("DLNA.ORG_PN=DIDL_S");
     }
 }
