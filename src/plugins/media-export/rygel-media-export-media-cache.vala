@@ -174,6 +174,11 @@ public class Rygel.MediaExport.MediaCache : Object {
         var cursor = this.exec_cursor (SQLString.EXISTS, values);
         var statement = cursor.next ();
         timestamp = statement->column_int64 (1);
+
+        // Placeholder item
+        if (timestamp == int64.MAX) {
+            timestamp = 0;
+        }
         size = statement->column_int64 (2);
 
         return statement->column_int (0) == 1;
