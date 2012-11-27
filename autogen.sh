@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 
 # Copyright (C) 2010 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
 # Copyright (C) 2011 Jens Georg <mail@jensge.org>.
