@@ -337,7 +337,6 @@ echo "
         Media Engine:           ${with_media_engine}
     Plugins:
         examples:               ${enable_example_plugins}
-        test:                   ${enable_test_plugin}
         tracker:                ${enable_tracker_plugin}
         mediathek:              ${enable_mediathek_plugin}
         media-export            ${enable_media_export_plugin}
