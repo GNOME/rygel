@@ -57,6 +57,7 @@ src/librygel-server/rygel-http-get.c
 src/librygel-server/rygel-http-get-handler.c
 src/librygel-server/rygel-http-identity-handler.c
 src/librygel-server/rygel-http-item-uri.c
+src/librygel-server/rygel-http-playlist-handler.c
 src/librygel-server/rygel-http-post.c
 src/librygel-server/rygel-http-request.c
 src/librygel-server/rygel-http-response.c
