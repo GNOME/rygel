@@ -1,3 +1,50 @@
+0.17.3
+======
+
+A new unstable release for Rygel
+
+Changes compared to 0.17.2:
+
+- Really bump Vala requirement as announced in previous version.
+- Remove obsolete --enable-test-plugin configure option.
+- Don't run tests by default.
+
+Server:
+ - Add serialisation of containers to DIDL_S playlist format.
+ - Generate thumbnails for native files only.
+ - Add support for playlist items.
+ - Support DIDL_S DLNA profile.
+
+Doc:
+ - Update "Implementing server plugins" docs.
+ - Add "Implementing renderer" docs.
+ - Some general improvements.
+
+Tracker:
+ - Fix building against recent tracker releases.
+
+Renderer:
+ - Mark some strings for translation.
+ - Add PresetNameList to initial notify.
+ - Set correct track numbers.
+ - Support DIDL_S playlists.
+ - Some state notification fixes.
+ - Add GetCurrentTransportActions UPnP call.
+
+Playbin:
+ - Add 3GPP mime-type.
+ - Properly query duration using DURATION_CHANGED message and really check if
+   the pipeline knows its TIME and not just its size.
+
+Examples:
+ - C version of the example renderer.
+
+Media-Export:
+ - Reenable media art extraction.
+ - Fix a critical on harvesting.
+ - Fix an upload issue with the method to mark an item as a place-holder.
+ - Support playlist items.
+
 0.17.2
 ======
 
