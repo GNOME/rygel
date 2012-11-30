@@ -41,7 +41,7 @@ librygel_tracker_la_SOURCES = \
 
 librygel_tracker_la_VALAFLAGS = \
 	--pkg posix \
-	--pkg tracker-sparql-0.14 \
+	--pkg tracker-sparql-@TRACKER_API_VERSION@ \
 	$(RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS)
 librygel_tracker_la_LIBADD = \
 	$(RYGEL_COMMON_SERVER_LIBS) \

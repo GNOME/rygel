@@ -231,10 +231,29 @@ fi
 
 AS_IF([test "x$enable_tracker_plugin" = "xyes"],
   [
+    tracker_api_version="0.14"
     PKG_CHECK_MODULES(TRACKER_SPARQL,
-                      tracker-sparql-0.14 >= $TRACKER_SPARQL_REQUIRED_MIN)
+                      tracker-sparql-0.19 >= $TRACKER_SPARQL_REQUIRED_MIN,
+                      [tracker_api_version="0.14"],
+                      [tracker_api_version=""])
+    AS_IF([test "x$[]tracker_api_version" = "x"],
+          [
+            PKG_CHECK_MODULES(TRACKER_SPARQL,
+                              tracker-sparql-0.15 >=  $TRACKER_SPARQL_REQUIRED_MIN,
+                              [tracker_api_version="0.15"],
+                              [tracker_api_version=""])
+          ])
+    AS_IF([test "x$[]tracker_api_version" = "x"],
+          [
+            PKG_CHECK_MODULES(TRACKER_SPARQL,
+                              tracker-sparql-0.16 >=  $TRACKER_SPARQL_REQUIRED_MIN,
+                              [tracker_api_version="0.16"],
+                              [])
+          ])
     AS_IF([test "x$enable_vala" = "xyes"],
-          [VALA_CHECK_PACKAGES([tracker-sparql-0.14])])
+          [VALA_CHECK_PACKAGES([tracker-sparql-$tracker_api_version])])
+    TRACKER_API_VERSION=$tracker_api_version
+    AC_SUBST(TRACKER_API_VERSION)
   ])
 
 dnl Gettext
@@ -338,6 +357,7 @@ echo "
     Plugins:
         examples:               ${enable_example_plugins}
         tracker:                ${enable_tracker_plugin}
+            version:            ${tracker_api_version}
         mediathek:              ${enable_mediathek_plugin}
         media-export            ${enable_media_export_plugin}
         external:               ${enable_external_plugin}
