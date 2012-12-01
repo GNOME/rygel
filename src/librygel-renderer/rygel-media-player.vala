@@ -54,6 +54,9 @@ public interface Rygel.MediaPlayer : GLib.Object {
     /// The mime-type of the currently-playing media
     public abstract string? mime_type { owned get; set; }
 
+    /// The current media supports time-based seeking
+    public abstract bool can_seek { get; }
+
     /**
      * The contents of the contentFeatures.dlna.org HTTP header,
      * containing the 4th field of the protocol info for the current

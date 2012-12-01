@@ -25,6 +25,7 @@ enum  {
   RYGEL_EXAMPLE_PLAYER_PLAYBACK_STATE,
   RYGEL_EXAMPLE_PLAYER_URI,
   RYGEL_EXAMPLE_PLAYER_MIME_TYPE,
+  RYGEL_EXAMPLE_PLAYER_CAN_SEEK,
   RYGEL_EXAMPLE_PLAYER_METADATA,
   RYGEL_EXAMPLE_PLAYER_CONTENT_FEATURES,
   RYGEL_EXAMPLE_PLAYER_VOLUME,
@@ -190,6 +191,14 @@ rygel_example_player_class_init (RygelExamplePlayerClass *klass) {
       "metadata",
       NULL,
       G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
+
+  g_object_class_install_property (gobject_class,
+    RYGEL_EXAMPLE_PLAYER_CAN_SEEK,
+    g_param_spec_boolean ("can-seek",
+      "can-seek",
+      "can-seek",
+      FALSE,
+      G_PARAM_STATIC_STRINGS | G_PARAM_READABLE));
 
   g_object_class_install_property (gobject_class,
     RYGEL_EXAMPLE_PLAYER_CONTENT_FEATURES,
@@ -433,6 +442,9 @@ _rygel_example_player_get_property (GObject *object, guint property_id, GValue *
       break;
     case RYGEL_EXAMPLE_PLAYER_POSITION:
       g_value_set_int64 (value, rygel_media_player_get_position (base));
+      break;
+    case RYGEL_EXAMPLE_PLAYER_CAN_SEEK:
+      g_value_set_boolean (value, FALSE);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);

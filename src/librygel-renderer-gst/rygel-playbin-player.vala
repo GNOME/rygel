@@ -206,6 +206,13 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    public bool can_seek {
+        get {
+            return this.transfer_mode != TRANSFER_MODE_INTERACTIVE &&
+                   ! this.mime_type.has_prefix ("image/");
+        }
+    }
+
     private string _content_features = "";
     private ProtocolInfo protocol_info;
     public string? content_features {

@@ -77,16 +77,28 @@ internal class Rygel.PlayerController : Object {
 
     public string current_transport_actions {
         owned get {
+            string actions = null;
             switch (this._playback_state) {
                 case "PLAYING":
                 case "TRANSITIONING":
-                    return "Stop,Seek,X_DLNA_SeekTime,Pause";
+                    actions = "Stop,Seek,Pause";
+                    break;
                 case "STOPPED":
                 case "PAUSED_PLAYBACK":
-                    return "Play,Seek,X_DLNA_SeekTime";
+                    actions = "Play,Seek";
+                    break;
                 default:
-                    return "";
+                    break;
             }
+            if (actions != null && this.player.can_seek) {
+                actions += ",X_DLNA_SeekTime";
+            }
+
+            if (actions == null) {
+                return "";
+            }
+
+            return actions;
         }
     }
 

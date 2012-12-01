@@ -99,6 +99,8 @@ public class Rygel.Example.PlayerVala : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    public bool can_seek { get { return false; } }
+
     private string _content_features = "";
     public string? content_features {
         owned get {
