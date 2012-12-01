@@ -45,6 +45,21 @@ Media-Export:
  - Fix an upload issue with the method to mark an item as a place-holder.
  - Support playlist items.
 
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  Murray Cumming <murrayc@murrayc.com>
+  Krzesimir Nowak <krnowak@openismus.com>
+  Mark Ryan <mark.d.ryan@intel.com>
+
+Bugs fixed in this release
+  - https://bugzilla.gnome.org/show_bug.cgi?id=686638
+
+Known issues:
+ - Transcoding to WMV is not working properly, streams are audio-only.
+
+Changes in dependencies
+  - Vala 0.18
+
 0.17.2
 ======
 
