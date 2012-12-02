@@ -172,7 +172,7 @@ internal class Rygel.AVTransport : Service {
         log.log ("TransportPlaySpeed",           this.speed);
         log.log ("RecordMediumWriteStatus",      "NOT_IMPLEMENTED");
         log.log ("CurrentRecordQualityMode",     "NOT_IMPLEMENTED");
-        log.log ("PossibleRecordQualityMode",    "NOT_IMPLEMENTED");
+        log.log ("PossibleRecordQualityModes",   "NOT_IMPLEMENTED");
         log.log ("NumberOfTracks",               this.controller.n_tracks.to_string ());
         log.log ("CurrentTrack",                 this.controller.track.to_string ());
         log.log ("CurrentTrackDuration",         this.player.duration_as_str);
