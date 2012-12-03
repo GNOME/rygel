@@ -143,7 +143,7 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
             warning ("Failed to map file: %s", error.message);
         }
 
-        // signalize we're done streaming
+        // Signal that we're done streaming
         Idle.add ( () => { this.done (); return false; });
 
         return null;
