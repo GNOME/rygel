@@ -92,6 +92,8 @@ namespace Rygel.MediaExport.ItemFactory {
                 item.creator = author;
             }
 
+            item.dlna_profile = "DIDL_S";
+
             return item;
         } catch (Error e) {
             return null;
