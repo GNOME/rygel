@@ -238,6 +238,10 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
     }
 
     private void on_changes_done (File file) throws Error {
+        if (file.get_basename ().has_prefix (".")) {
+            return;
+        }
+
         if (this.extraction_grace_timers.has_key (file)) {
             Source.remove (this.extraction_grace_timers[file]);
         } else {
