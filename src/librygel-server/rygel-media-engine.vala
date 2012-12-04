@@ -20,29 +20,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-/**
- * Data class representing a DLNA profile.
- * It contains the name and the corresponding DLNA mime type.
- *
- * Note: The mime type can deviate from mime types typically used elsewhere.
- */
-public class Rygel.DLNAProfile {
-    public string mime;
-    public string name;
-
-    public DLNAProfile (string name, string mime) {
-        this.mime = mime;
-        this.name = name;
-    }
-
-    /**
-     * Compare two DLNA profiles by name
-     */
-    public static int compare_by_name (DLNAProfile a, DLNAProfile b) {
-        return a.name.ascii_casecmp (b.name);
-    }
-}
-
 public errordomain Rygel.MediaEngineError {
     NOT_FOUND
 }

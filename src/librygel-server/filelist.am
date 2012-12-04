@@ -1,6 +1,7 @@
 
 LIBRYGEL_SERVER_VAPI_SOURCE_FILES = \
 	rygel-audio-item.vala \
+	rygel-dlna-profile.vala \
 	rygel-image-item.vala \
 	rygel-logical-expression.vala \
 	rygel-media-art-store.vala \
