@@ -49,16 +49,22 @@ public errordomain Rygel.MediaEngineError {
 
 /**
  * This is the base class for media engines that contain knowledge about 
- * streaming and transcoding capabilites of the media library in use.
+ * the streaming and (optionally) the transcoding and seeking capabilites
+ * of the media library in use.
  *
- * See, for instance, Rygel's "gstreamer" and "simple" media engines.
+ * See, for instance, Rygel's built-in "gstreamer" and "simple" media engines,
+ * or the external rygel-gst-0-10-media-engine module.
+ *
  * The actual media engine used by Rygel at runtime is specified
- * by the media-engine configuration key/
+ * by the media-engine configuration key.
  * For instance, in rygel.conf:
  * media-engine=librygel-media-engine-gst.so
  *
  * Media engines should also derive their own Rygel.DataSource,
  * returning an instance of it from create_data_source().
+ **
+ * See the
+ * <link linkend="implementing-media-engines">Implementing Media Engines</link> section.
  */
 public abstract class Rygel.MediaEngine : GLib.Object {
     private static MediaEngine instance;
