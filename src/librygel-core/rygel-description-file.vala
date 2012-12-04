@@ -162,6 +162,10 @@ public class Rygel.DescriptionFile : Object {
 
         }
 
+        if (PluginCapabilities.TRACK_CHANGES in capabilities) {
+            flags += "content-synchronization";
+        }
+
         // Set the flags we found; otherwise remove whatever is in the
         // template.
         if (flags.length > 0) {
