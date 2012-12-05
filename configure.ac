@@ -83,6 +83,7 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
         PKG_CHECK_MODULES(LIBGSTREAMER, gstreamer-1.0 >= $GSTREAMER_REQUIRED)
         PKG_CHECK_MODULES(GSTREAMER_BASE, gstreamer-base-1.0 >= $GSTREAMER_REQUIRED)
         PKG_CHECK_MODULES(GST_PBU, gstreamer-pbutils-1.0 >= $GSTPBU_REQUIRED)
+        PKG_CHECK_MODULES(GST_VIDEO, gstreamer-video-1.0 >= $GSTREAMER_REQUIRED)
         enable_gstreamer="yes"
         BUILT_ENGINES="$BUILT_ENGINES;librygel-media-engine-gst"
       ],

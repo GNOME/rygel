@@ -38,6 +38,19 @@ standalone_renderer_gst_LDADD = \
 	$(top_builddir)/src/librygel-renderer-gst/librygel-renderer-gst-2.0.la \
 	$(LIBGSTREAMER_LIBS) \
 	$(RYGEL_COMMON_LIBS)
+
+if BUILD_UI
+noinst_PROGRAMS += fullscreen-renderer
+fullscreen_renderer_SOURCES = fullscreen-renderer.c
+fullscreen_renderer_CFLAGS = $(AM_CFLAGS) $(GTK_CFLAGS)
+fullscreen_renderer_LDADD = \
+	$(top_builddir)/src/librygel-renderer/librygel-renderer-2.0.la \
+	$(top_builddir)/src/librygel-renderer-gst/librygel-renderer-gst-2.0.la \
+	$(LIBGSTREAMER_LIBS) \
+	$(RYGEL_COMMON_LIBS) \
+	$(GTK_LIBS) \
+	$(GST_VIDEO_LIBS)
+endif
 endif
 
 EXTRA_DIST = service/wrap-dbus \
