@@ -22,9 +22,10 @@
 internal class Plugin : Rygel.MediaRendererPlugin {
     private Rygel.MediaPlayer player;
 
-    public Plugin (Rygel.MediaPlayer root_container,
+    public Plugin (Rygel.MediaPlayer player,
                    Rygel.PluginCapabilities capabilities) {
         base ("LibRygelRenderer", _("LibRygelRenderer"), null, capabilities);
+        this.player = player;
     }
 
     public override Rygel.MediaPlayer? get_player () {
