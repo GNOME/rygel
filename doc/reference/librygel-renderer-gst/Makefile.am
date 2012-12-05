@@ -14,7 +14,6 @@ VALA_SOURCE_FILES_WITH_PATHS = $(addprefix $(top_srcdir)/src/librygel-renderer-g
 #	echo $(VALA_SOURCE_FILES_WITH_PATHS);
 
 # TODO: The need for rygel-build-config here reminds us that we shouldn't need that in librygel-renderer-gst either.
-# TODO: Why is gstreamer-pbutils-0.10 needed here, but not needed in librygel-renderer-gst/Makefile.am?
 RYGEL_DOCBUILD_VALADOC_FLAGS = \
 		--vapidir $(top_srcdir)/src/librygel-core \
 		--pkg rygel-core-2.0 \

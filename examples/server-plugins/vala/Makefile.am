@@ -12,11 +12,9 @@ librygel_example_server_plugin_vala_la_SOURCES = \
 	example-root-container-vala.vala
 
 librygel_example_server_plugin_vala_la_VALAFLAGS = \
-	--pkg gstreamer-0.10 \
 	$(RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS)
 
 librygel_example_server_plugin_vala_la_LIBADD = \
-	$(LIBGSTREAMER_LIBS) \
 	$(RYGEL_COMMON_SERVER_LIBS)
 	
 librygel_example_server_plugin_vala_la_LDFLAGS = \

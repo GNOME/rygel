@@ -28,6 +28,7 @@ LT_PREREQ([2.2.6])
 LT_INIT([dlopen disable-static])
 
 dnl Required versions of library packages
+dnl Not all of these are actually used, depending on the configure options.
 GLIB_REQUIRED=2.31.13
 LIBXML_REQUIRED=2.7
 VALA_REQUIRED=0.18.0
@@ -67,9 +68,11 @@ PKG_CHECK_MODULES(LIBXML, libxml-2.0 >= $LIBXML_REQUIRED)
 dnl Media engine to use
 BUILT_ENGINES="librygel-media-engine-simple"
 
+dnl Disabling the gstreamer media_engine also disables
+dnl anything else that uses gstreamer.
 AC_ARG_WITH([media_engine],
             AS_HELP_STRING(
-                [--with-media-engine=@<:@gstreamer|none@:>@],
+                [--with-media-engine=@<:@gstreamer|simple@:>@],
                 [Media Engine to use]),
             [with_media_engine="$withval"],
             [with_media_engine="gstreamer"])
