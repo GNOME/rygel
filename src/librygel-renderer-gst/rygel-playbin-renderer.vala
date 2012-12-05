@@ -68,9 +68,14 @@ public class Rygel.Playbin.Renderer : Rygel.MediaDevice {
      * @param title Friendly name of the new UPnP renderer on the network.
      */
     public Renderer (string title) {
-        base ();
+        Object (title: title);
+    }
+
+    public override void constructed () {
+        base.constructed ();
+
         this.plugin = new Plugin ();
-        this.prepare_upnp (title);
+        this.prepare_upnp (this.title);
     }
 
     /**

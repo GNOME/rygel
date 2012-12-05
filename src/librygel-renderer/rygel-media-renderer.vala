@@ -43,6 +43,7 @@ internal class Plugin : Rygel.MediaRendererPlugin {
  * <link linkend="implementing-renderers">Implementing Renderers</link> section.
  */
 public class Rygel.MediaRenderer : MediaDevice {
+    public unowned MediaPlayer player { construct; private get; }
 
     /**
      * Create a RygelMediaRenderer to render content via a RygelMediaPlayer.
@@ -51,8 +52,15 @@ public class Rygel.MediaRenderer : MediaDevice {
                           MediaPlayer player,
                           PluginCapabilities capabilities =
                                         PluginCapabilities.NONE) {
-        base ();
-        this.plugin = new global::Plugin (player, capabilities);
-        this.plugin.title = title;
+        Object (title: title,
+                player: player,
+                capabilities: capabilities);
+    }
+
+    public override void constructed () {
+        base.constructed ();
+
+        this.plugin = new global::Plugin (this.player, this.capabilities);
+        this.plugin.title = this.title;
     }
 }

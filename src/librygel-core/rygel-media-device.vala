@@ -41,8 +41,10 @@ public abstract class Rygel.MediaDevice : Object {
     private ContextManager manager;
 
     protected Rygel.Plugin plugin { get; protected set; }
+    public string title { construct; protected get; }
+    public PluginCapabilities capabilities { construct; protected get; }
 
-    public MediaDevice () {
+    public override void constructed () {
         this.manager = ContextManager.create (0);
         this.manager.context_available.connect (this.on_context_available);
         this.manager.context_unavailable.connect (this.on_context_unavailable);
