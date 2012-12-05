@@ -52,6 +52,9 @@ TESTS = $(check_PROGRAMS)
 
 EXTRA_DIST = $(srcdir)/data/test-data.dat
 
+# Note that the non-test sources here are symlinked from their
+# various source directories.
+# TODO: Mention their relative paths instead, to make this clearer?
 rygel_http_item_uri_test_SOURCES = rygel-http-item-uri-test.vala \
                                    rygel-http-item-uri.vala
 
@@ -96,6 +99,7 @@ rygel_searchable_container_test_SOURCES = \
 rygel_item_creator_test_SOURCES = rygel-item-creator-test.vala \
 				  rygel-item-creator.vala \
 				  rygel-data-source.vala \
+				  rygel-dlna-profile.vala \
 				  rygel-http-seek_item-creator.vala \
 				  rygel-state-machine_item-creator.vala \
 				  rygel-relational-expression.vala \

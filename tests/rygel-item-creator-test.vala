@@ -263,7 +263,7 @@ public class Rygel.Transcoder {
 }
 
 public class Rygel.TestMediaEngine : Rygel.MediaEngine {
-    public override unowned GLib.List<Rygel.DLNAProfile> get_dlna_profiles () {
+    public override unowned GLib.List<DLNAProfile> get_dlna_profiles () {
         return null;
     }
 
