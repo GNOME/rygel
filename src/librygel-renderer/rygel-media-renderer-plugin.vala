@@ -70,8 +70,6 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
                                      typeof (RenderingControl));
         this.add_resource (resource);
 
-        this.controller = new PlayerController (this.get_player (),
-                                                this.get_protocol_info ());
     }
 
     public virtual MediaPlayer? get_player () {
@@ -79,6 +77,11 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
     }
 
     internal PlayerController get_controller () {
+        if (this.controller == null) {
+            this.controller = new PlayerController (this.get_player (),
+                                                    this.get_protocol_info ());
+        }
+
         return this.controller;
     }
 
