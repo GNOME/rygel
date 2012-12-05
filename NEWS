@@ -1,3 +1,28 @@
+0.17.4
+======
+
+A new unstable release for Rygel
+
+Changes compared to 0.17.3:
+
+- Various documentation fixes.
+- Fix .pc file to point to correct version of libgee.
+- Hopefully final fix for building with --disable-valadoc.
+- Change --with-media-engine=none to =simple.
+
+MediaExport:
+ - Add DLNA profile for playlists.
+ - Ignore files starting with ".".
+ - Handle text/plain to accomodate issues with shared-mime-info and missing
+   file extensions.
+
+All contributors to this release:
+  Murray Cumming <murrayc@murrayc.com>
+  Jens Georg <jensg@openismus.com>
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=689517
+
 0.17.3
 ======
 
