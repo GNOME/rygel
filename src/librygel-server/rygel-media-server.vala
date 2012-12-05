@@ -59,8 +59,10 @@ public class Rygel.MediaServer : MediaDevice {
     public override void constructed () {
         base.constructed ();
 
-        this.plugin = new global::Plugin (this.root_container,
-                                          this.capabilities);
+        if (this.plugin == null) {
+            this.plugin = new global::Plugin (this.root_container,
+                                              this.capabilities);
+        }
         this.plugin.title = this.title;
     }
 }

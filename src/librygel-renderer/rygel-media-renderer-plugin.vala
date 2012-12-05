@@ -69,7 +69,6 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
                                      RenderingControl.DESCRIPTION_PATH,
                                      typeof (RenderingControl));
         this.add_resource (resource);
-
     }
 
     public virtual MediaPlayer? get_player () {

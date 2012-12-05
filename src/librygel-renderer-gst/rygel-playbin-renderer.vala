@@ -22,24 +22,6 @@
 using Gee;
 using GUPnP;
 
-internal class Rygel.Playbin.WrappingPlugin : Rygel.MediaRendererPlugin {
-    private MediaPlayer player;
-
-    public WrappingPlugin (Gst.Element playbin) {
-        base ("LibRygel-Renderer", _("LibRygel Renderer"));
-
-        return_val_if_fail (playbin != null, null);
-        return_val_if_fail (playbin.get_type ().name() == "GstPlayBin", null);
-
-        this.player = new Player.wrap (playbin);
-    }
-
-
-    public override MediaPlayer? get_player () {
-        return this.player;
-    }
-}
-
 /**
  * An in-process UPnP renderer that uses a GStreamer Playbin2 element.
  *
@@ -58,7 +40,7 @@ internal class Rygel.Playbin.WrappingPlugin : Rygel.MediaRendererPlugin {
  *
  * See the <link linkend="implementing-renderers-gst">Implementing GStreamer-based Renderers</link> section.
  */
-public class Rygel.Playbin.Renderer : Rygel.MediaDevice {
+public class Rygel.Playbin.Renderer : Rygel.MediaRenderer {
     /**
      * Create a new instance of Renderer.
      *
@@ -68,14 +50,8 @@ public class Rygel.Playbin.Renderer : Rygel.MediaDevice {
      * @param title Friendly name of the new UPnP renderer on the network.
      */
     public Renderer (string title) {
-        Object (title: title);
-    }
-
-    public override void constructed () {
-        base.constructed ();
-
-        this.plugin = new Plugin ();
-        this.prepare_upnp (this.title);
+        Object (title: title,
+                player: Player.get_default ());
     }
 
     /**
@@ -86,13 +62,11 @@ public class Rygel.Playbin.Renderer : Rygel.MediaDevice {
      * @param title Friendly name of the new UPnP renderer on the network.
      */
     public Renderer.wrap (Gst.Element pipeline, string title) {
-        base ();
-
         return_val_if_fail (pipeline != null, null);
         return_val_if_fail (pipeline.get_type ().name() == "GstPlayBin", null);
 
-        this.plugin = new WrappingPlugin (pipeline);
-        this.prepare_upnp (title);
+        Object (title: title,
+                player: new Player.wrap (pipeline));
     }
 
     /**
@@ -103,12 +77,5 @@ public class Rygel.Playbin.Renderer : Rygel.MediaDevice {
         return_val_if_fail (player != null, null);
 
         return player.playbin;
-    }
-
-    private void prepare_upnp (string title) {
-        this.plugin.title = title;
-
-        // Always listen on localhost
-        this.add_interface ("lo");
     }
 }

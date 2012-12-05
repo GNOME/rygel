@@ -40,9 +40,13 @@ public abstract class Rygel.MediaDevice : Object {
     private HashMap<string, DeviceContext> devices;
     private ContextManager manager;
 
-    protected Rygel.Plugin plugin { get; protected set; }
+    public Rygel.Plugin plugin { construct set; protected get; }
     public string title { construct; protected get; }
-    public PluginCapabilities capabilities { construct; protected get; }
+    public PluginCapabilities capabilities {
+        construct;
+        protected get;
+        default = PluginCapabilities.NONE;
+    }
 
     public override void constructed () {
         this.manager = ContextManager.create (0);
