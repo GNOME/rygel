@@ -239,7 +239,7 @@ public class Rygel.HTTPClient : GLib.Object, StateMachine {
 
         if (active) {
             this.cancellable = new Cancellable ();
-            this.cancellable.cancelled += this.on_cancelled;
+            this.cancellable.cancelled.connect (this.on_cancelled);
         }
     }
 
