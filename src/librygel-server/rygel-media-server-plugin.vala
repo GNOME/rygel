@@ -31,7 +31,7 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
     private static const string MEDIA_SERVER_DESC_PATH =
                                 BuildConfig.DATA_DIR + "/xml/MediaServer3.xml";
 
-    public MediaContainer root_container { get; private set; }
+    public MediaContainer root_container { get; construct; }
 
     /**
      * Create an instance of the plugin.
@@ -46,13 +46,17 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
                               string?        description = null,
                               PluginCapabilities capabilities =
                                         PluginCapabilities.NONE) {
-        base (MEDIA_SERVER_DESC_PATH,
-              name,
-              root_container.title,
-              description,
-              capabilities);
+        Object (desc_path : MEDIA_SERVER_DESC_PATH,
+                name : name,
+                title : root_container.title,
+                description : description,
+                capabilities : capabilities,
+                root_container : root_container);
+    }
 
-        this.root_container = root_container;
+    public override void constructed () {
+        base.constructed ();
+
         var path = ContentDirectory.DESCRIPTION_PATH_NO_TRACK;
 
         // MediaServer implementations must implement ContentDirectory service

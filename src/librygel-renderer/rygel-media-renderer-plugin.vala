@@ -50,7 +50,15 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
                                 string? description = null,
                                 PluginCapabilities capabilities =
                                         PluginCapabilities.NONE) {
-        base (MEDIA_RENDERER_DESC_PATH, name, title, description, capabilities);
+        Object (desc_path : MEDIA_RENDERER_DESC_PATH,
+                name : name,
+                title : title,
+                description : description,
+                capabilities : capabilities);
+    }
+
+    public override void constructed () {
+        base.constructed ();
 
         var resource = new ResourceInfo (ConnectionManager.UPNP_ID,
                                          ConnectionManager.UPNP_TYPE,
