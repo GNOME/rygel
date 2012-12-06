@@ -365,8 +365,6 @@ public class Rygel.DataSourceTest : Object {
 
         var timeout_id = Timeout.add_seconds (5, () => {
             assert_not_reached ();
-
-            return false;
         });
 
         source.thaw ();
@@ -465,8 +463,6 @@ public class Rygel.DataSourceTest : Object {
     }
 
     public static int main (string[] args) {
-        string[] engines;
-
         var configs = new Gee.ArrayList<DataSourceTestConfig> ();
 
         if (args.length > 1) {

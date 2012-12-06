@@ -151,7 +151,6 @@ public class MediaObjects : Gee.ArrayList<MediaObject> {
 
 int main ()
 {
-    var loop = new MainLoop ();
     var c = new TestContainer ();
     c.loop = new MainLoop ();
     c.test_search_no_limit.begin ();

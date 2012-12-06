@@ -354,6 +354,7 @@ public class Rygel.UserConfigTest : GLib.Object {
         try {
             var config = new UserConfig.with_paths (LOCAL_CONFIG,
                                                     SYSTEM_CONFIG);
+            assert (config != null);
         } catch (Error e) {
             failed = true;
         }
