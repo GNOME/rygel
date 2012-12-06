@@ -332,7 +332,7 @@ internal class Rygel.ContentDirectory: Service {
         }
 
         /* Set action return arguments */
-        action.set ("SearchCaps", typeof (string), RelationalExpression.CAPS);
+        action.set ("SearchCaps", typeof (string), this.search_caps);
 
         action.return ();
     }
@@ -343,7 +343,7 @@ internal class Rygel.ContentDirectory: Service {
                                             ref GLib.Value value) {
         /* Set action return arguments */
         value.init (typeof (string));
-        value.set_string (RelationalExpression.CAPS);
+        value.set_string (this.search_caps);
     }
 
     /* action GetSortCapabilities implementation */
