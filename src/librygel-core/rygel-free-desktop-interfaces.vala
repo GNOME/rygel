@@ -26,24 +26,12 @@ namespace FreeDesktop {
     public const string DBUS_OBJECT_PATH = "/org/freedesktop/DBus";
 }
 
-public enum FreeDesktop.DBusRequestNameReply {
-    PRIMARY_OWNER = 1,
-    IN_QUEUE,
-    EXISTS,
-    ALREADY_OWNER
-}
-
 [DBus (name = "org.freedesktop.DBus")]
 public interface FreeDesktop.DBusObject: Object {
     public abstract signal void name_owner_changed (string name,
                                                     string old_owner,
                                                     string new_owner);
 
-    // FIXME: These methods should be async
-    public abstract uint32 request_name (string name, uint32 flags)
-                                         throws DBusError;
-    public abstract uint32 start_service_by_name (string name, uint32 flags)
-                                                  throws DBusError;
     public abstract async string[] list_names () throws DBusError;
     public abstract async string[] list_activatable_names () throws DBusError;
 }
