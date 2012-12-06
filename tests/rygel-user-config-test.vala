@@ -440,7 +440,7 @@ public class Rygel.UserConfigTest : GLib.Object {
 
             if (entries.remove (entry)) {
                 if (entries.size == 0) {
-                    changes.remove (section);
+                    changes.unset (section);
                 }
                 this.data_check ();
             } else {
@@ -470,7 +470,7 @@ public class Rygel.UserConfigTest : GLib.Object {
 
             if (keys.remove (key)) {
                 if (keys.size == 0) {
-                    changes.remove (section);
+                    changes.unset (section);
                 }
                 this.data_check ();
             } else {
