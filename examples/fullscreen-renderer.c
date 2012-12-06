@@ -109,6 +109,7 @@ int main (int argc, char *argv[])
     GError *error = NULL;
     GMainLoop *loop;
     MainData data;
+    GdkCursor *cursor;
 
     gtk_init (&argc, &argv);
     gst_init (&argc, &argv);
@@ -137,6 +138,9 @@ int main (int argc, char *argv[])
                       &data);
     gtk_window_fullscreen (data.window);
     gtk_widget_show_all (data.window);
+    cursor = gdk_cursor_new_for_display (gtk_widget_get_display (data.video),
+                                         GDK_BLANK_CURSOR);
+    gdk_window_set_cursor (gtk_widget_get_window (data.video), cursor);
 
     if (argc >= 2) {
         rygel_media_device_add_interface (RYGEL_MEDIA_DEVICE (renderer), argv[1]);
