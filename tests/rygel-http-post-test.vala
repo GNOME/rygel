@@ -353,7 +353,12 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
         this.error = false;
         this.id = "TesContainer";
 
-        this.monitor = this.file.monitor_file (FileMonitorFlags.NONE);
+        try {
+            this.monitor = this.file.monitor_file (FileMonitorFlags.NONE);
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
+
         this.monitor.changed.connect (this.on_file_changed);
     }
 
