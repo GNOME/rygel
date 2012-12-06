@@ -240,5 +240,12 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
 
         assert (request.msg.response_headers.get_content_length () ==
                 seek.length);
+
+        /* TODO: This is just here to avoid a warning about
+         * requested() not being used.
+         * How should this really be tested?
+         * Sometimes the result here is true, and sometimes it is false.
+         */
+        /* bool result = */ HTTPByteSeek.requested(request);
     }
 }

@@ -103,23 +103,45 @@ public class TestContainer : MediaContainer, Rygel.SearchableContainer {
         uint total_matches;
 
         // check corners
-        var result = yield search (null, 0, 4, out total_matches, "", null);
-        assert (total_matches == 0);
-        assert (result.size == 4);
+        try {
+            var result = yield search (null, 0, 4, out total_matches, "", null);
+            assert (total_matches == 0);
+            assert (result.size == 4);
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
 
-        result = yield search (null, 10, 4, out total_matches, "", null);
-        assert (total_matches == 0);
-        assert (result.size == 0);
+        try
+        {
+            var result = yield search (null, 10, 4, out total_matches, "", null);
+            assert (total_matches == 0);
+            assert (result.size == 0);
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
 
         for (int i = 1; i < 10; ++i) {
-            result = yield search (null, i, 3, out total_matches, "", null);
-            assert (total_matches == 0);
-            assert (result.size == int.min (10 - i, 3));
+            try {
+                var result = yield search (null, i, 3, out total_matches, "", null);
+                assert (total_matches == 0);
+                assert (result.size == int.min (10 - i, 3));
+            } catch (GLib.Error error) {
+                assert_not_reached ();
+            }
         }
 
         this.loop.quit ();
     }
 
+    /* TODO: This is just here to avoid a warning about
+     * serialize_search_parameters() not being used.
+     * How should this really be tested?
+     */
+    public void test_serialization() {
+         var writer = new GUPnP.DIDLLiteWriter(null);
+         var didl_container = writer.add_container();
+         serialize_search_parameters(didl_container);
+    }
 
     public async MediaObjects? search (SearchExpression? expression,
                                        uint              offset,
