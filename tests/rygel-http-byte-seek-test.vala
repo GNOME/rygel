@@ -111,8 +111,10 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
             var test = new HTTPByteSeekTest ();
 
             test.run ();
+	/* TODO: Nothing throws this exception. Should it?
         } catch (TestError.SKIP error) {
             return 77;
+        */
         } catch (Error error) {
             critical ("%s", error.message);
 
@@ -147,8 +149,13 @@ private class Rygel.HTTPByteSeekTest : GLib.Object {
     }
 
     private HTTPByteSeekTest () {
-        this.range_regex = new Regex ("bytes +[0-9]+-[0-9]+/[0-9]+",
-                                      RegexCompileFlags.CASELESS);
+        try {
+            this.range_regex = new Regex ("bytes +[0-9]+-[0-9]+/[0-9]+",
+                                          RegexCompileFlags.CASELESS);
+        } catch (RegexError error) {
+            // This means that it is not a regular expression
+            assert_not_reached ();
+        }
     }
 
     private void test_no_seek (Thumbnail? thumbnail,

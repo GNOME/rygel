@@ -150,8 +150,12 @@ public class Rygel.UserConfigTest : GLib.Object {
         }
 
         public override void perform (string config) {
-            this.test.set_config (config,
+            try {
+                this.test.set_config (config,
                                   this.settings);
+            } catch (GLib.Error error) {
+                assert_not_reached ();
+            }
         }
     }
 
@@ -375,9 +379,19 @@ public class Rygel.UserConfigTest : GLib.Object {
 
     private void test_loading () {
         var remover = new ConfigRemover (this);
+        assert (remover != null);
 
-        this.set_config (LOCAL_CONFIG);
-        this.set_config (SYSTEM_CONFIG);
+	try {
+            this.set_config (LOCAL_CONFIG);
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
+
+        try {
+            this.set_config (SYSTEM_CONFIG);
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
         this.try_load (false);
         this.remove_config (LOCAL_CONFIG);
         this.try_load (false);
@@ -636,13 +650,31 @@ public class Rygel.UserConfigTest : GLib.Object {
 
     private void test_watching () {
         var remover = new ConfigRemover (this);
+        assert (remover != null);
         var full_settings = new Settings.default ();
+        assert (full_settings != null);
 
-        this.set_config (LOCAL_CONFIG,
-                         full_settings);
-        this.set_config (SYSTEM_CONFIG,
-                         full_settings);
-        this.config = new UserConfig.with_paths (LOCAL_CONFIG, SYSTEM_CONFIG);
+        try {  
+            this.set_config (LOCAL_CONFIG,
+                             full_settings);
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
+
+        try {
+            this.set_config (SYSTEM_CONFIG,
+                             full_settings);
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
+
+        try {
+            this.config = new UserConfig.with_paths (LOCAL_CONFIG, SYSTEM_CONFIG);
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
+
+        assert (this.config != null);
         this.config.configuration_changed.connect
                                         (this.on_configuration_changed);
         this.config.section_changed.connect (this.on_section_changed);

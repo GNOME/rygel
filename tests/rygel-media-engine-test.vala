@@ -77,7 +77,13 @@ internal class Rygel.DataSourceTestConfig : Rygel.BaseConfiguration {
 internal class Rygel.ByteSeek : Rygel.HTTPSeek {
     public ByteSeek (int64 first, int64 last, int64 length) {
         var msg = new Soup.Message ("GET", "http://example.com/");
-        base (msg, first, last, 1, length);
+
+        try {
+            base (msg, first, last, 1, length);
+        } catch (HTTPSeekError error) {
+            assert_not_reached ();
+        }
+
         this.seek_type = HTTPSeekType.BYTE;
     }
 
@@ -166,7 +172,17 @@ public class Rygel.DataSourceTest : Object {
         source.done.connect ( (data) => {
             loop.quit ();
         });
-        Idle.add ( () => { source.start (null); return false; });
+
+        
+        Idle.add ( () => {
+            try {
+                source.start (null);
+                return false;
+            } catch (GLib.Error error) {
+                assert_not_reached ();
+            }
+        });
+
         loop.run ();
         assert (received_bytes == this.test_data_mapped.get_length ());
         source.stop ();
@@ -281,10 +297,29 @@ public class Rygel.DataSourceTest : Object {
         source.done.connect ( (data) => {
             loop.quit ();
         });
-        Idle.add ( () => { source.start (null); return false; });
+
+        Idle.add ( () => {
+            try {
+                source.start (null);
+                return false;
+            } catch (GLib.Error error) {
+                assert_not_reached ();
+            }
+        });
+
+
         loop.run ();
         pool.clear ();
-        Idle.add ( () => { source.start (null); return false; });
+
+        Idle.add ( () => {
+            try {
+                source.start (null);
+                return false;
+            } catch (GLib.Error error) {
+                assert_not_reached ();
+            }
+        });
+
         loop.run ();
         Memory.cmp (this.test_data_mapped.get_contents (),
                     pool.flatten (),
@@ -305,7 +340,13 @@ public class Rygel.DataSourceTest : Object {
         var available_id = source.data_available.connect ( () => {
             assert_not_reached ();
         });
-        source.start (null);
+
+        try {
+            source.start (null);
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
+
         source.freeze ();
         source.freeze ();
         var loop = new MainLoop (null, false);
@@ -343,7 +384,12 @@ public class Rygel.DataSourceTest : Object {
         // Sources should support file:// urls
         assert (source != null);
 
-        source.start (null);
+        try {
+            source.start (null);
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
+
         source.freeze ();
         var loop = new MainLoop (null, false);
         source.done.connect ( () => {
@@ -370,13 +416,23 @@ public class Rygel.DataSourceTest : Object {
                                         (this.test_data_file.get_uri ());
         assert (source2 != null);
 
-        source1.start (null);
+        try {
+            source1.start (null);
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
 
         var seek = new ByteSeek (0,
                                  (this.test_data_mapped.get_length () / 2),
                                  this.test_data_mapped.get_length ());
+        assert (seek != null);
 
-        source2.start (seek);
+        try {
+            source2.start (null);
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
+
         var loop = new MainLoop (null, false);
         var quit = false;
         source1.done.connect ( () => {
