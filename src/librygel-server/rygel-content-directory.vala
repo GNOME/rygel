@@ -116,7 +116,12 @@ internal class Rygel.ContentDirectory: Service {
             "http://www.upnp.org/schemas/av/avs-v1-20060531.xsd\">" +
             "</Features>";
 
-        this.service_reset_token = UUID.get ();
+        if (this.root_container is TrackableContainer) {
+            var trackable = this.root_container as TrackableContainer;
+            this.service_reset_token = trackable.get_service_reset_token ();
+        } else {
+            this.service_reset_token = UUID.get ();
+        }
 
         this.action_invoked["Browse"].connect (this.browse_cb);
         this.action_invoked["Search"].connect (this.search_cb);
@@ -609,6 +614,11 @@ internal class Rygel.ContentDirectory: Service {
         var plugin = this.root_device.resource_factory as MediaServerPlugin;
         plugin.active = false;
         this.service_reset_token = UUID.get ();
+        if (this.root_container is TrackableContainer) {
+            var trackable = this.root_container as TrackableContainer;
+            trackable.set_service_reset_token (this.service_reset_token);
+        }
+
         var expression = new RelationalExpression ();
         expression.operand1 = "upnp:objectUpdateID";
         expression.operand2 = "true";

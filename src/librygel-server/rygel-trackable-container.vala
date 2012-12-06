@@ -64,6 +64,28 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
         this.updated ();
     }
 
+    /**
+     * Used to query the (persisted) service reset token from the plug-in.
+     *
+     * If a plugin implements PLUGIN_CAPABILITIES_TRACK_CHANGES, it should
+     * persist the ServiceResetToken. To do this override this virtual
+     * function in the root container implementation and provide the persisted
+     * version.
+     */
+    public virtual string get_service_reset_token () {
+        return UUID.get ();
+    }
+
+    /**
+     * Set a new service reset token.
+     *
+     * If the service reset procedure has to be performed, the content
+     * directory service will set the new service reset token.
+     *
+     * @param token the new service reset token.
+     */
+    public virtual void set_service_reset_token (string token) {}
+
     private void thaw_events () {
         // Forward events.
     }
