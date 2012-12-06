@@ -108,6 +108,7 @@ public class Rygel.MediaExport.Plugin : Rygel.MediaServerPlugin {
         base (RootContainer.get_instance (),
               NAME,
               null,
-              PluginCapabilities.UPLOAD);
+              PluginCapabilities.UPLOAD |
+              PluginCapabilities.TRACK_CHANGES);
     }
 }
