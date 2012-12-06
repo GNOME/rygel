@@ -147,7 +147,7 @@ public class Rygel.MediaItem : Rygel.MediaObject {
 }
 
 public class Rygel.MusicItem : Rygel.AudioItem {
-    public const string UPNP_CLASS = "object.item.audioItem.musicTrack";
+    public new const string UPNP_CLASS = "object.item.audioItem.musicTrack";
 
     public MusicItem (string id, MediaContainer parent, string title) {
         base (id, parent, title);
@@ -164,7 +164,7 @@ public class Rygel.AudioItem : Rygel.MediaItem {
     }
 }
 public class Rygel.ImageItem : Rygel.MediaItem {
-    public const string UPNP_CLASS = "object.item.imageItem";
+    public new const string UPNP_CLASS = "object.item.imageItem";
     public ImageItem (string id, MediaContainer parent, string title) {
         base (id, parent, title);
     }
@@ -210,7 +210,8 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
     public MediaObject found_object = null;
 
     public async MediaObject? find_object (string       id,
-                                           Cancellable? cancellable = null) {
+                                           Cancellable? cancellable = null)
+                                           throws Error {
         Idle.add (() => { find_object.callback (); return false; });
         yield;
 
@@ -246,6 +247,7 @@ public class Rygel.SearchableContainer : Rygel.MediaContainer {
                                       out int          total_matches,
                                       string           soer_criteria,
                                       Cancellable?     cancellable = null) {
+        total_matches = 0;
         Idle.add (() => { search.callback (); return false; });
         yield;
 
@@ -265,8 +267,10 @@ public class Rygel.Transcoder {
 }
 
 public class Rygel.TestMediaEngine : Rygel.MediaEngine {
+    private GLib.List<DLNAProfile> dlna_profiles = new GLib.List<DLNAProfile>();
+
     public override unowned GLib.List<DLNAProfile> get_dlna_profiles () {
-        return null;
+        return dlna_profiles;
     }
 
     public override unowned GLib.List<Transcoder>? get_transcoders () {

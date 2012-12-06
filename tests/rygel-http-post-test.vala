@@ -254,7 +254,7 @@ public class Rygel.HTTPServer : GLib.Object {
 
     public string uri {
         owned get {
-			var item = new MediaItem (this.root_container.ITEM_ID, this.root_container);
+			var item = new MediaItem (MediaContainer.ITEM_ID, this.root_container);
 			var item_uri = new HTTPItemURI (item, this);
             return item_uri.to_string ();
         }
