@@ -48,6 +48,7 @@ librygel_media_export_la_VALAFLAGS = \
 	--pkg gstreamer-tag-1.0 \
 	--pkg gstreamer-app-1.0 \
 	--pkg sqlite3 \
+	--pkg uuid \
 	$(RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS)
 
 librygel_media_export_la_LIBADD = \

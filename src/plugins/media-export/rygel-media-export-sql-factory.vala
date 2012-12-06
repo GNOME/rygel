@@ -69,6 +69,7 @@ internal enum Rygel.MediaExport.SQLString {
     SCHEMA,
     EXISTS_CACHE,
     STATISTICS,
+    RESET_TOKEN
 }
 
 internal class Rygel.MediaExport.SQLFactory : Object {
@@ -161,7 +162,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
         "WHERE _column IS NOT NULL %s ORDER BY _column COLLATE CASEFOLD " +
     "LIMIT ?,?";
 
-    internal const string SCHEMA_VERSION = "11";
+    internal const string SCHEMA_VERSION = "12";
     internal const string CREATE_META_DATA_TABLE_STRING =
     "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
                             "mime_type TEXT NOT NULL, " +
@@ -186,7 +187,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                                     "ON DELETE CASCADE);";
 
     private const string SCHEMA_STRING =
-    "CREATE TABLE schema_info (version TEXT NOT NULL); " +
+    "CREATE TABLE schema_info (version TEXT NOT NULL, " +
+                              "reset_token TEXT); " +
     CREATE_META_DATA_TABLE_STRING +
     "CREATE TABLE object (parent TEXT CONSTRAINT parent_fk_id " +
                                 "REFERENCES Object(upnp_id), " +
@@ -254,6 +256,9 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     private const string STATISTICS_STRING =
     "SELECT class, count(1) FROM meta_data GROUP BY class";
 
+    private const string RESET_TOKEN_STRING =
+    "SELECT reset_token FROM schema_info";
+
     public unowned string make (SQLString query) {
         switch (query) {
             case SQLString.SAVE_METADATA:
@@ -298,6 +303,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                 return CREATE_CLOSURE_TABLE;
             case SQLString.STATISTICS:
                 return STATISTICS_STRING;
+            case SQLString.RESET_TOKEN:
+                return RESET_TOKEN_STRING;
             default:
                 assert_not_reached ();
         }

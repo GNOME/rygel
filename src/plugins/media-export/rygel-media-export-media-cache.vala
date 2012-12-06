@@ -430,6 +430,29 @@ public class Rygel.MediaExport.MediaCache : Object {
         return uris;
     }
 
+    public string get_reset_token () {
+        try {
+            var cursor = this.exec_cursor (SQLString.RESET_TOKEN);
+            var statement = cursor.next ();
+
+            return statement->column_text (0);
+        } catch (DatabaseError error) {
+            warning ("Failed to get reset token");
+
+            return UUID.get ();
+        }
+    }
+
+    public void save_reset_token (string token) {
+        try {
+            GLib.Value[] args = { token };
+
+            this.db.exec ("UPDATE schema_info SET reset_token = ?", args);
+        } catch (DatabaseError error) {
+            warning ("Failed to persist ServiceResetToken: %s", error.message);
+        }
+    }
+
     // Private functions
     private void get_exists_cache () throws DatabaseError {
         this.exists_cache = new HashMap<string, ExistsCacheEntry?> ();
@@ -602,6 +625,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             db.exec (this.sql.make (SQLString.TRIGGER_CLOSURE));
             db.commit ();
             db.analyze ();
+            this.save_reset_token (UUID.get ());
 
             return true;
         } catch (Error err) {

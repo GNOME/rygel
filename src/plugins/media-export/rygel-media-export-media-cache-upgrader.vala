@@ -110,6 +110,9 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                     case 10:
                         update_v10_v11 ();
                         break;
+                    case 11:
+                        update_v11_v12 ();
+                        break;
                     default:
                         warning ("Cannot upgrade");
                         database = null;
@@ -356,6 +359,24 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                                 "SELECT object_fk FROM Meta_Data WHERE " +
                                 "  class LIKE 'object.item.audioItem.%')");
             this.database.exec ("UPDATE schema_info SET version = '11'");
+            database.commit ();
+            database.exec ("VACUUM");
+            database.analyze ();
+        } catch (DatabaseError error) {
+            database.rollback ();
+            warning ("Database upgrade failed: %s", error.message);
+            database = null;
+        }
+    }
+
+    private void update_v11_v12 () {
+        try {
+            this.database.begin ();
+            this.database.exec ("ALTER TABLE schema_info " +
+                                "ADD COLUMN reset_token TEXT");
+            this.database.exec ("UPDATE schema_info SET reset_token = '" +
+                                UUID.get () + "'");
+            this.database.exec ("UPDATE schema_info SET version = '12'");
             database.commit ();
             database.exec ("VACUUM");
             database.analyze ();
