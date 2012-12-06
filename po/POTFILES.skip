@@ -33,7 +33,6 @@ src/librygel-core/rygel-root-device-factory.c
 src/librygel-core/rygel-state-machine.c
 src/librygel-core/rygel-xml-utils.c
 src/librygel-renderer-gst/rygel-playbin-player.c
-src/librygel-renderer-gst/rygel-playbin-plugin.c
 src/librygel-renderer-gst/rygel-playbin-renderer.c
 src/librygel-renderer/rygel-av-transport.c
 src/librygel-renderer/rygel-changelog.c
@@ -175,7 +174,8 @@ src/plugins/mpris/rygel-mpris-interfaces.c
 src/plugins/mpris/rygel-mpris-player.c
 src/plugins/mpris/rygel-mpris-plugin.c
 src/plugins/mpris/rygel-mpris-plugin-factory.c
-src/plugins/playbin/rygel-module.c
+src/plugins/playbin/rygel-playbin-module.c
+src/plugins/playbin/rygel-playbin-plugin.c
 src/plugins/tracker/rygel-tracker-albums.c
 src/plugins/tracker/rygel-tracker-artists.c
 src/plugins/tracker/rygel-tracker-category-all-container.c

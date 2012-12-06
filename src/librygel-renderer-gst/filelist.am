@@ -1,6 +1,5 @@
 LIBRYGEL_RENDERER_GST_VAPI_SOURCE_FILES = \
 	rygel-playbin-player.vala \
-	rygel-playbin-plugin.vala \
 	rygel-playbin-renderer.vala
 
 LIBRYGEL_RENDERER_GST_NONVAPI_SOURCE_FILES = 

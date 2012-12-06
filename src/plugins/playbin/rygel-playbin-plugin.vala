@@ -28,12 +28,7 @@
 using Rygel;
 using Gee;
 
-/**
- * Implementation of RygelMediaRendererPlugin for GStreamer.
- *
- * This class is useful only when implementing Rygel plugins.
- */
-public class Rygel.Playbin.Plugin : Rygel.MediaRendererPlugin {
+internal class Rygel.Playbin.Plugin : Rygel.MediaRendererPlugin {
     public const string NAME = "Playbin";
 
     public Plugin () {

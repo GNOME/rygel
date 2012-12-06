@@ -6,7 +6,7 @@ AM_CFLAGS += -DG_LOG_DOMAIN='"Playbin"' \
 	-I$(top_srcdir)/src/librygel-renderer-gst \
 	$(LIBGSTREAMER_CFLAGS)
 
-librygel_playbin_la_SOURCES = rygel-module.vala
+librygel_playbin_la_SOURCES = rygel-playbin-module.vala rygel-playbin-plugin.vala
 librygel_playbin_la_VALAFLAGS = \
 	--pkg rygel-renderer-gst-2.0 \
 	--vapidir $(top_srcdir)/src/librygel-renderer-gst \

@@ -38,6 +38,7 @@ src/plugins/mpris/rygel-mpris-player.vala
 src/plugins/mpris/rygel-mpris-plugin.vala
 src/plugins/mpris/rygel-mpris-plugin-factory.vala
 src/plugins/mpris/rygel-mpris-interfaces.vala
+src/plugins/playbin/rygel-playbin-plugin.vala
 src/plugins/tracker/rygel-tracker-category-all-container.vala
 src/plugins/tracker/rygel-tracker-category-container.vala
 src/plugins/tracker/rygel-tracker-insertion-query.vala
@@ -77,7 +78,6 @@ src/librygel-core/rygel-resource-info.vala
 src/librygel-core/rygel-root-device-factory.vala
 src/librygel-core/rygel-root-device.vala
 src/librygel-core/rygel-state-machine.vala
-src/librygel-renderer-gst/rygel-playbin-plugin.vala
 src/librygel-renderer-gst/rygel-playbin-renderer.vala
 src/librygel-renderer/rygel-av-transport.vala
 src/librygel-renderer/rygel-changelog.vala
