@@ -379,8 +379,6 @@ internal class Rygel.HTTPPlaylistHandler : Rygel.HTTPGetHandler {
 
 public abstract class Rygel.MediaItem : Rygel.MediaObject {
     public long size = 1024;
-    public ArrayList<Subtitle> subtitles = new ArrayList<Subtitle> ();
-    public ArrayList<Thumbnail> thumbnails = new ArrayList<Thumbnail> ();
     public ArrayList<string> uris = new ArrayList<string> ();
 
     public bool place_holder = false;
@@ -442,7 +440,7 @@ private class Rygel.VideoItem : AudioItem, VisualItem {
         protected set {}
     }
 
-    public ArrayList<Subtitle> subtitles;
+    public ArrayList<Subtitle> subtitles = new ArrayList<Subtitle> ();
 }
 
 private class Rygel.MusicItem : AudioItem {
