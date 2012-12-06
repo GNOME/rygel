@@ -38,6 +38,7 @@
 
 #include <gst/video/videooverlay.h>
 #include <gdk/gdkx.h>
+#include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
 #include "rygel-renderer-gst.h"
@@ -65,6 +66,24 @@ static void on_realize (GtkWidget *widget, gpointer user_data)
                                          window_handle);
 }
 
+static void on_key_released (GtkWidget *widget,
+                             GdkEvent *event,
+                             gpointer user_data)
+{
+    GdkEventKey *key_event = (GdkEventKey *) event;
+
+    switch (key_event->keyval) {
+        case GDK_KEY_Escape:
+        case GDK_KEY_q:
+        case GDK_KEY_Q:
+            gtk_main_quit ();
+
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
 int main (int argc, char *argv[])
 {
     RygelPlaybinRenderer *renderer;
@@ -85,6 +104,14 @@ int main (int argc, char *argv[])
     gtk_widget_set_double_buffered (data.video, FALSE);
     gtk_container_add (GTK_CONTAINER (data.window), data.video);
     g_signal_connect (data.video, "realize", G_CALLBACK (on_realize), &data);
+    gtk_widget_add_events (data.video,
+                           GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK);
+    gtk_widget_set_can_focus (data.video, TRUE);
+    gtk_widget_grab_focus (data.video);
+    g_signal_connect (data.video,
+                      "key-release-event",
+                      G_CALLBACK (on_key_released),
+                      &data);
     gtk_window_fullscreen (data.window);
     gtk_widget_show_all (data.window);
 
@@ -95,6 +122,8 @@ int main (int argc, char *argv[])
     }
 
     gtk_main ();
+    gtk_widget_hide (data.window);
+    g_object_unref (renderer);
 
     return 0;
 }
