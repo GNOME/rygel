@@ -377,7 +377,12 @@ internal class Rygel.TestDataSource : Rygel.DataSource, Object {
         }
 
         this.frozen = false;
-        this.start (null);
+
+        try {
+            this.start (null);
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
     }
 
     public void stop () {
