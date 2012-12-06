@@ -21,6 +21,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+/* This is not used.
 [CCode (cname = "uuid_generate", cheader_filename = "uuid/uuid.h")]
 internal extern static void uuid_generate ([CCode (array_length = false)]
                                            uchar[] uuid);
@@ -29,6 +30,7 @@ internal extern static void uuid_unparse ([CCode (array_length = false)]
                                           uchar[] uuid,
                                           [CCode (array_length = false)]
                                           uchar[] output);
+*/
 
 public const string DIDL_ITEM = """<?xml version="1.0" encoding="UTF-8"?>
 <DIDL-Lite
@@ -311,6 +313,12 @@ public class Rygel.HTTPItemCreatorTest : GLib.Object {
         test.test_parse_args ();
         test.test_didl_parsing ();
         test.test_fetch_container ();
+
+        /* This is just here to avoid warnings about unused methods: */
+        var serializer = new Serializer (SerializerType.GENERIC_DIDL);
+        serializer.add_item ();
+        serializer.add_container ();
+        serializer.filter ("something");
 
         return 0;
     }

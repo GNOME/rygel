@@ -94,6 +94,11 @@ public class Rygel.HTTPGetTest : GLib.Object {
             return -1;
         }
 
+        /* Avoid some warnings about unused methods: */
+        var item = new VideoItem();
+        assert (!item.is_live_stream());
+        assert (!item.streamable());
+
         return 0;
     }
 

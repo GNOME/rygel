@@ -43,6 +43,12 @@ private class Rygel.AlbumArtSpecTest : GLib.Object {
     public void run() {
         this.test_full_spec ();
         //this.test_simple_spec ();
+
+        /* This is just here to avoid a warning about an unused method: */
+        var thumbnail = new Thumbnail();
+        var didl_writer = new GUPnP.DIDLLiteWriter (null);
+        var didl_item = didl_writer.add_item ();
+        thumbnail.add_resource(didl_item, "http");
     }
 
     public void test_full_spec () {
