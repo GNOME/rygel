@@ -39,16 +39,25 @@ public errordomain RootDeviceFactoryError {
  * Call rygel_root_device_factory_create() with a plugin
  * to create a root device for the plugin.
  */
-public class Rygel.RootDeviceFactory {
-    public GUPnP.Context context {get; private set;}
+public class Rygel.RootDeviceFactory : Object,
+                                       Initable {
+    public GUPnP.Context context {get; construct;}
 
     private Configuration config;
 
     private string desc_dir;
 
     public RootDeviceFactory (GUPnP.Context context) throws GLib.Error {
+        Object (context : context);
+        init ();
+    }
+
+    public bool init (Cancellable? cancellable = null) throws GLib.Error {
+        if (this.config != null) {
+            return true;
+        }
+
         this.config = MetaConfig.get_default ();
-        this.context = context;
 
         /* We store the modified descriptions in the user's config dir */
         var config_dir = Environment.get_user_config_dir ();
@@ -56,6 +65,8 @@ public class Rygel.RootDeviceFactory {
         this.desc_dir = Path.build_filename (config_dir,
                                              Environment.get_application_name ());
         this.ensure_dir_exists (this.desc_dir);
+
+        return true;
     }
 
     public RootDevice create (Plugin plugin) throws GLib.Error {
