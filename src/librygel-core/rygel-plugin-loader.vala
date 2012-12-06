@@ -52,14 +52,15 @@ public class Rygel.PluginLoader : RecursiveModuleLoader {
     public signal void plugin_available (Plugin plugin);
 
     public PluginLoader () {
-        var path = BuildConfig.PLUGIN_DIR;
-        try {
-            var config = MetaConfig.get_default ();
-            path = config.get_plugin_path ();
-        } catch (Error error) { }
+        Object (base_path: get_config_path ());
+    }
 
-        base (path);
+    public override void constructed () {
+        base.constructed ();
 
+        if (this.base_path == null) {
+            this.base_path = get_config_path ();
+        }
         this.plugin_hash = new HashMap<string,Plugin> ();
         this.loaded_modules = new HashSet<string> ();
     }
@@ -136,5 +137,15 @@ public class Rygel.PluginLoader : RecursiveModuleLoader {
         debug ("Loaded module source: '%s'", module.name());
 
         return true;
+    }
+
+    private static string get_config_path () {
+        var path = BuildConfig.PLUGIN_DIR;
+        try {
+            var config = MetaConfig.get_default ();
+            path = config.get_plugin_path ();
+        } catch (Error error) { }
+
+        return path;
     }
 }

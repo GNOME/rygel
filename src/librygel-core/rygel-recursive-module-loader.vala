@@ -36,8 +36,9 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
                             FileAttribute.STANDARD_CONTENT_TYPE;
     private delegate void FolderHandler (File folder);
 
-    private string base_path;
     private bool done;
+
+    public string base_path { construct set; get; }
 
     /**
      * Create a recursive module loader for a given path.
@@ -48,7 +49,10 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
      * @param path base path of the loader.
      */
     public RecursiveModuleLoader (string path) {
-        this.base_path = path;
+        Object (base_path : path);
+    }
+
+    public override void constructed () {
         this.done = false;
     }
 
