@@ -346,19 +346,19 @@ public class Rygel.HTTPItemCreatorTest : GLib.Object {
 
         var action = new ServiceAction (null, "");
         var creator = new ItemCreator (content_directory, action);
-        creator.run ();
+        creator.run.begin ();
         assert (action.error_code == no_such_object.code);
 
         // check elements containing a comment
         action = new ServiceAction ("0", "<!-- This is an XML comment -->");
         creator = new ItemCreator (content_directory, action);
-        creator.run ();
+        creator.run.begin ();
         assert (action.error_code == bad_metadata.code);
 
         // check null elements
         action = new ServiceAction ("0", null);
         creator = new ItemCreator (content_directory, action);
-        creator.run ();
+        creator.run.begin ();
         assert (action.error_code == bad_metadata.code);
     }
 
@@ -369,7 +369,7 @@ public class Rygel.HTTPItemCreatorTest : GLib.Object {
         var action = new ServiceAction ("0", xml);
         var content_directory = new ContentDirectory ();
         var creator = new ItemCreator (content_directory, action);
-        creator.run ();
+        creator.run.begin ();
         assert (action.error_code == expected_code);
     }
 
@@ -387,7 +387,7 @@ public class Rygel.HTTPItemCreatorTest : GLib.Object {
         // test no DIDL
         var action = new ServiceAction ("0", "");
         var creator = new ItemCreator (content_directory, action);
-        creator.run ();
+        creator.run.begin ();
         assert (action.error_code == bad_metadata.code);
         assert (action.error_message == "Bad metadata");
 
