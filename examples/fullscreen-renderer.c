@@ -66,6 +66,25 @@ static void on_realize (GtkWidget *widget, gpointer user_data)
                                          window_handle);
 }
 
+static gboolean on_draw (GtkWidget *widget, cairo_t *cr, gpointer user_data)
+{
+    MainData *data = (MainData *) user_data;
+    GstState state;
+
+    gst_element_get_state (data->playbin, &state, NULL, GST_CLOCK_TIME_NONE);
+
+    if (state < GST_STATE_PAUSED) {
+        gint width, height;
+
+        width = gtk_widget_get_allocated_width (widget);
+        height = gtk_widget_get_allocated_height (widget);
+
+        cairo_set_source_rgb (cr, 0, 0, 0);
+        cairo_rectangle (cr, 0, 0, width, height);
+        cairo_fill (cr);
+    }
+}
+
 static void on_key_released (GtkWidget *widget,
                              GdkEvent *event,
                              gpointer user_data)
@@ -108,6 +127,10 @@ int main (int argc, char *argv[])
                            GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK);
     gtk_widget_set_can_focus (data.video, TRUE);
     gtk_widget_grab_focus (data.video);
+    g_signal_connect (data.video,
+                      "draw",
+                      G_CALLBACK (on_draw),
+                      &data);
     g_signal_connect (data.video,
                       "key-release-event",
                       G_CALLBACK (on_key_released),
