@@ -66,6 +66,8 @@ internal class Rygel.MediaExport.DatabaseCursor : SqliteWrapper {
                 statement.bind_int64 (i, (int64) current_value.get_uint64 ());
             } else if (current_value.holds (typeof (long))) {
                 statement.bind_int64 (i, current_value.get_long ());
+            } else if (current_value.holds (typeof (uint))) {
+                statement.bind_int64 (i, current_value.get_uint ());
             } else if (current_value.holds (typeof (string))) {
                 statement.bind_text (i, current_value.get_string ());
             } else if (current_value.holds (typeof (void *))) {

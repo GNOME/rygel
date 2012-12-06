@@ -40,8 +40,7 @@ const Rygel.MediaExport.FolderDefinition[] VIRTUAL_FOLDERS_MUSIC = {
 /**
  * Represents the root container.
  */
-public class Rygel.MediaExport.RootContainer : Rygel.TrackableContainer,
-                                               Rygel.MediaExport.DBContainer {
+public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
     private DBusService    service;
     private Harvester      harvester;
     private Cancellable    cancellable;
@@ -191,14 +190,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.TrackableContainer,
         }
     }
 
-    // TrackableContainer overrides
-    public string get_service_reset_token () {
-        return this.media_db.get_reset_token ();
-    }
-
-    public void set_service_reset_token (string token) {
-        this.media_db.save_reset_token (token);
-    }
+    // Private methods
 
     private ArrayList<File> get_shared_uris () {
         ArrayList<string> uris;
@@ -375,7 +367,7 @@ public class Rygel.MediaExport.RootContainer : Rygel.TrackableContainer,
         } catch (Error error) { } // do nothing
 
         try {
-            this.filesystem_container = new DBContainer
+            this.filesystem_container = new TrackableDbContainer
                                         (media_db,
                                          FILESYSTEM_FOLDER_ID,
                                          _(FILESYSTEM_FOLDER_NAME));
@@ -490,15 +482,5 @@ public class Rygel.MediaExport.RootContainer : Rygel.TrackableContainer,
         } else {
             container.updated ();
         }
-    }
-
-    public async void add_child (MediaObject object) {
-        // TODO: Implement
-        assert_not_reached ();
-    }
-
-    public async void remove_child (MediaObject object) {
-        // TODO: Implement
-        assert_not_reached ();
     }
 }

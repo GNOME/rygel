@@ -44,7 +44,10 @@ internal enum Rygel.MediaExport.DetailColumn {
     URI,
     DLNA_PROFILE,
     GENRE,
-    DISC
+    DISC,
+    OBJECT_UPDATE_ID,
+    DELETED_CHILD_COUNT,
+    CONTAINER_UPDATE_ID
 }
 
 internal enum Rygel.MediaExport.SQLString {
@@ -82,8 +85,10 @@ internal class Rygel.MediaExport.SQLFactory : Object {
          "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     private const string INSERT_OBJECT_STRING =
-    "INSERT OR REPLACE INTO Object (upnp_id, title, type_fk, parent, timestamp, uri) " +
-        "VALUES (?,?,?,?,?,?)";
+    "INSERT OR REPLACE INTO Object " +
+        "(upnp_id, title, type_fk, parent, timestamp, uri, " +
+        " object_update_id, deleted_child_count, container_update_id) " +
+        "VALUES (?,?,?,?,?,?,?,?,?)";
 
     private const string DELETE_BY_ID_STRING =
     "DELETE FROM Object WHERE upnp_id IN " +
@@ -94,7 +99,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "m.height, m.class, m.author, m.album, m.date, m.bitrate, " +
     "m.sample_freq, m.bits_per_sample, m.channels, m.track, " +
     "m.color_depth, m.duration, o.upnp_id, o.parent, o.timestamp, " +
-    "o.uri, m.dlna_profile, m.genre, m.disc ";
+    "o.uri, m.dlna_profile, m.genre, m.disc, o.object_update_id, " +
+    "o.deleted_child_count, o.container_update_id ";
 
     private const string GET_OBJECT_WITH_PATH =
     "SELECT DISTINCT " + ALL_DETAILS_STRING +
@@ -197,7 +203,10 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                           "title TEXT NOT NULL, " +
                           "timestamp INTEGER NOT NULL, " +
                           "uri TEXT, " +
-                          "flags TEXT);" +
+                          "flags TEXT, " +
+                          "object_update_id INTEGER, " +
+                          "deleted_child_count INTEGER, " +
+                          "container_update_id INTEGER);" +
     "INSERT INTO schema_info (version) VALUES ('" +
     SQLFactory.SCHEMA_VERSION + "'); ";
 

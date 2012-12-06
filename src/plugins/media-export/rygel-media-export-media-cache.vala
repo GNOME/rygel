@@ -583,27 +583,36 @@ public class Rygel.MediaExport.MediaCache : Object {
         this.db.exec (this.sql.make (SQLString.SAVE_METADATA), values);
     }
 
-    private void create_object (MediaObject item) throws Error {
+    private void create_object (MediaObject object) throws Error {
         int type = ObjectType.CONTAINER;
         GLib.Value parent;
 
-        if (item is MediaItem) {
+        if (object is MediaItem) {
             type = ObjectType.ITEM;
         }
 
-        if (item.parent == null) {
+        if (object.parent == null) {
             parent = Database.@null ();
         } else {
-            parent = item.parent.id;
+            parent = object.parent.id;
         }
 
-        GLib.Value[] values = { item.id,
-                                item.title,
+        GLib.Value[] values = { object.id,
+                                object.title,
                                 type,
                                 parent,
-                                item.modified,
-                                item.uris.size == 0 ? null : item.uris[0]
+                                object.modified,
+                                object.uris.size == 0 ? null : object.uris[0],
+                                object.object_update_id,
+                                -1,
+                                -1
                               };
+        if (object is MediaContainer) {
+            var container = object as MediaContainer;
+            values[7] = container.total_deleted_child_count;
+            values[8] = container.update_id;
+        }
+
         this.db.exec (this.sql.make (SQLString.INSERT), values);
     }
 
@@ -652,6 +661,10 @@ public class Rygel.MediaExport.MediaCache : Object {
                 if (uri != null) {
                     container.uris.add (uri);
                 }
+                container.total_deleted_child_count = (uint32) statement.column_int64
+                                        (DetailColumn.DELETED_CHILD_COUNT);
+                container.update_id = (uint) statement.column_int64
+                                        (DetailColumn.CONTAINER_UPDATE_ID);
                 break;
             case 1:
                 // this is an item
@@ -678,6 +691,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                 object.modified = 0;
                 (object as MediaItem).place_holder = true;
             }
+            object.object_update_id = (uint) statement.column_int64
+                                        (DetailColumn.OBJECT_UPDATE_ID);
         }
 
         return object;

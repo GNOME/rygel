@@ -1,4 +1,4 @@
-include ../../../common.am
+include $(top_srcdir)/common.am
 
 plugin_LTLIBRARIES = librygel-media-export.la
 
@@ -40,6 +40,7 @@ librygel_media_export_la_SOURCES = \
 	rygel-media-export-video-item.vala \
 	rygel-media-export-photo-item.vala \
 	rygel-media-export-playlist-item.vala \
+	rygel-media-export-trackable-db-container.vala \
 	rygel-media-export-collate.c
 
 librygel_media_export_la_VALAFLAGS = \
