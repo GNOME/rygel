@@ -20,76 +20,71 @@ EXTRA_DIST = $(srcdir)/data/test-data.dat
 # Define the most commonly-used flags,
 # to avoid repetition:
 test_valaflags = \
-	--pkg gee-0.8
-	$(RYGEL_DEBUG_VALAFLAGS) \
-	$(COVERAGE_VALAFLAGS)
+	$(TEST_DEPS_VALAFLAGS) \
+	$(RYGEL_COMMON_VALAFLAGS)
 test_cflags = \
-	$(GEE_CFLAGS)
+	$(TEST_DEPS_CFLAGS) \
+	$(RYGEL_COMMON_DEFINES_CFLAGS)
 test_libs = \
-	$(LIBGIO_LIBS) \
-	$(GEE_LIBS) \
+	$(TEST_DEPS_LIBS) \
 	$(COVERAGE_LIBS)
 
 # This is for tests that link to librygel-server,
 # instead of compiling its source files directly:
 test_server_valaflags = \
 	$(test_valaflags) \
-	--vapidir $(top_builddir)/src/librygel-core \
-	--pkg rygel-core-2.0 \
-	--vapidir $(top_builddir)/src/librygel-server \
-	--pkg rygel-server-2.0
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_VALAFLAGS)
 test_server_cflags = \
 	$(test_cflags) \
-	-I$(top_builddir)/src/librygel-server \
-	-I$(top_srcdir)/src/librygel-server \
-	-I$(top_builddir)/src/librygel-core \
-	-I$(top_srcdir)/src/librygel-core \
-	$(LIBGUPNP_AV_CFLAGS)
+	$(LIBRYGEL_SERVER_DEPS_CFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_CFLAGS)
 test_server_libs = \
 	$(test_libs) \
-	$(top_builddir)/src/librygel-server/librygel-server-2.0.la \
-	$(top_builddir)/src/librygel-core/librygel-core-2.0.la \
-	$(LIBGUPNP_AV_LIBS)
+	$(LIBRYGEL_SERVER_DEPS_LIBS) \
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
 	
 # Note that the non-test sources here are symlinked from their
 # various source directories.
 # TODO: Mention their relative paths instead, to make this clearer?
 rygel_http_item_uri_test_SOURCES = rygel-http-item-uri-test.vala \
                                    rygel-http-item-uri.vala
-rygel_http_item_uri_test_VALAFLAGS = $(test_valaflags) \
-	--pkg gupnp-1.0
-rygel_http_item_uri_test_LDADD = $(test_libs) \
-	$(LIBSOUP_LIBS) \
-	$(LIBGSSDP_LIBS) \
-	$(LIBGUPNP_LIBS)
+rygel_http_item_uri_test_VALAFLAGS = \
+	$(test_valaflags)
+rygel_http_item_uri_test_CFLAGS =  \
+	$(test_cflags)
+rygel_http_item_uri_test_LDADD = \
+	$(test_libs)
 
 rygel_http_response_test_SOURCES = rygel-http-response-test.vala \
 				   rygel-http-response.vala \
 				   rygel-state-machine_http-response.vala \
 				   rygel-data-source_http-response.vala \
 				   rygel-data-sink_http-response.vala
-rygel_http_response_test_VALAFLAGS = $(test_valaflags) \
-	--pkg gupnp-1.0
-rygel_http_response_test_LDADD = $(test_libs) \
-	$(LIBSOUP_LIBS) \
-	$(LIBGSSDP_LIBS) \
-	$(LIBGUPNP_LIBS)
+rygel_http_response_test_VALAFLAGS = \
+	$(test_valaflags)
+rygel_http_response_test_CFLAGS =  \
+	$(test_cflags)
+rygel_http_response_test_LDADD = \
+	$(test_libs)
 
 rygel_http_byte_seek_test_SOURCES = rygel-http-byte-seek-test.vala \
 				    rygel-http-byte-seek.vala \
 				    rygel-http-seek.vala
-rygel_http_byte_seek_test_VALAFLAGS = $(test_valaflags) \
-	--pkg libsoup-2.4
-rygel_http_byte_seek_test_LDADD = $(test_libs) \
-	$(LIBSOUP_LIBS)
+rygel_http_byte_seek_test_VALAFLAGS = \
+	$(test_valaflags)
+rygel_http_byte_seek_test_CFLAGS =  \
+	$(test_cflags)
+rygel_http_byte_seek_test_LDADD = $(test_libs)
 
 rygel_http_time_seek_test_SOURCES = rygel-http-time-seek-test.vala \
 				    rygel-http-time-seek.vala \
 				    rygel-http-seek_time-seek.vala
-rygel_http_time_seek_test_VALAFLAGS = $(test_valaflags) \
-	--pkg libsoup-2.4
-rygel_http_time_seek_test_LDADD = $(test_libs) \
-	$(LIBSOUP_LIBS)
+rygel_http_time_seek_test_VALAFLAGS = \
+	$(test_valaflags)
+rygel_http_time_seek_test_CFLAGS =  \
+	$(test_cflags)
+rygel_http_time_seek_test_LDADD = \
+	$(test_libs)
 
 rygel_http_get_test_SOURCES = rygel-http-get-test.vala \
 			      rygel-http-get.vala \
@@ -99,12 +94,12 @@ rygel_http_get_test_SOURCES = rygel-http-get-test.vala \
 			      rygel-http-time-seek_http-get.vala \
 			      rygel-http-byte-seek_http-get.vala \
 			      rygel-http-seek_http-get.vala
-rygel_http_get_test_VALAFLAGS = $(test_valaflags) \
-	--pkg gupnp-av-1.0
-rygel_http_get_test_LDADD = $(test_libs) \
-	$(LIBSOUP_LIBS) \
-	$(LIBGSSDP_LIBS) \
-	$(LIBGUPNP_LIBS)
+rygel_http_get_test_VALAFLAGS = \
+	$(test_valaflags)
+rygel_http_get_test_CFLAGS =  \
+	$(test_cflags)
+rygel_http_get_test_LDADD = \
+	$(test_libs)
 
 rygel_http_post_test_SOURCES = rygel-http-post-test.vala \
 			       rygel-http-post.vala \
@@ -113,10 +108,10 @@ rygel_http_post_test_SOURCES = rygel-http-post-test.vala \
 			       rygel-state-machine_http-post.vala
 rygel_http_post_test_VALAFLAGS = $(test_valaflags) \
 	--pkg gupnp-av-1.0
-rygel_http_post_test_LDADD = $(test_libs) \
-	$(LIBSOUP_LIBS) \
-	$(LIBGSSDP_LIBS) \
-	$(LIBGUPNP_LIBS)
+rygel_http_post_test_CFLAGS =  \
+	$(test_cflags)
+rygel_http_post_test_LDADD = \
+	$(test_libs)
 
 rygel_album_art_spec_test_SOURCES = rygel-album-art-spec-test.vala \
 			       rygel-media-art-store.vala \
@@ -124,8 +119,10 @@ rygel_album_art_spec_test_SOURCES = rygel-album-art-spec-test.vala \
 				   rygel-icon-info.vala
 rygel_album_art_spec_test_VALAFLAGS = $(test_valaflags) \
 	--pkg gupnp-av-1.0
-rygel_album_art_spec_test_LDADD = $(test_libs) \
-	$(LIBGUPNP_AV_LIBS)
+rygel_album_art_spec_test_CFLAGS =  \
+	$(test_cflags)
+rygel_album_art_spec_test_LDADD = \
+	$(test_libs)
 
 rygel_searchable_container_test_SOURCES = \
 	rygel-searchable-container.vala \
@@ -133,8 +130,10 @@ rygel_searchable_container_test_SOURCES = \
 rygel_searchable_container_test_VALAFLAGS = \
 	$(test_valaflags) \
 	--pkg gupnp-av-1.0
-rygel_searchable_container_test_LDADD = $(test_libs) \
-	$(LIBGUPNP_AV_LIBS)
+rygel_searchable_container_test_CFLAGS =  \
+	$(test_cflags)
+rygel_searchable_container_test_LDADD = \
+	$(test_libs)
 
 rygel_item_creator_test_SOURCES = rygel-item-creator-test.vala \
 				  rygel-item-creator.vala \
@@ -146,34 +145,29 @@ rygel_item_creator_test_SOURCES = rygel-item-creator-test.vala \
 				  rygel-search-expression.vala \
 				  rygel-media-engine.vala \
 				  rygel-serializer_item-creator.vala
-rygel_item_creator_test_VALAFLAGS = $(test_valaflags) \
-	--pkg gupnp-av-1.0 \
-	--vapidir $(top_srcdir)/src/librygel-core \
+rygel_item_creator_test_VALAFLAGS = \
+	$(test_valaflags) \
 	--pkg uuid
-rygel_item_creator_test_LDADD = $(test_libs) \
-	$(LIBXML_LIBS) \
-	$(LIBSOUP_LIBS) \
-	$(LIBGUPNP_AV_LIBS)
+rygel_item_creator_test_CFLAGS =  \
+	$(test_cflags)
+rygel_item_creator_test_LDADD = \
+	$(test_libs)
 
 rygel_user_config_test_SOURCES = rygel-configuration.vala \
 				 rygel-user-config.vala \
 				 rygel-user-config-test.vala
 rygel_user_config_test_VALAFLAGS = \
-	$(test_valaflags) \
-	--vapidir $(top_builddir)/src/librygel-core \
-	--pkg rygel-build-config \
-	--pkg gio-2.0
-rygel_user_config_test_LDADD = \
-	$(test_libs)
+	$(test_valaflags)
 rygel_user_config_test_CFLAGS =  \
 	$(test_cflags) \
 	-DSYS_CONFIG_DIR='"$(sysconfigdir)"'
+rygel_user_config_test_LDADD = \
+	$(test_libs)
 
 rygel_regression_SOURCES = \
 	rygel-regression.vala
 rygel_regression_VALAFLAGS = \
-	$(test_server_valaflags) \
-	--pkg gio-2.0
+	$(test_server_valaflags)
 rygel_regression_CFLAGS = \
 	$(test_server_cflags)
 rygel_regression_LDADD = \
@@ -182,61 +176,48 @@ rygel_regression_LDADD = \
 rygel_media_engine_test_SOURCES = \
 	rygel-media-engine-test.vala
 rygel_media_engine_test_VALAFLAGS = \
-	$(test_server_valaflags)\
-        --pkg gmodule-2.0
+	$(test_server_valaflags)
 rygel_media_engine_test_CFLAGS = \
+	$(test_server_cflags) \
 	-DTEST_DATA_FOLDER='"$(abs_srcdir)/data"' \
 	-DTEST_ENGINE_PATH='"$(abs_top_builddir)/src/media-engines"' \
-	-DBUILT_ENGINES='"@BUILT_ENGINES@"' \
-	$(test_server_cflags)
+	-DBUILT_ENGINES='"@BUILT_ENGINES@"'
 rygel_media_engine_test_LDADD = \
-	$(test_server_libs) \
-	$(LIBSOUP_LIBS)
+	$(test_server_libs)
 
 if HAVE_GSTREAMER
 check_PROGRAMS += \
 	rygel-playbin-renderer-test \
 	rygel-environment-test
 
-librygel_renderer_gst_valaflags = \
-	$(LIBRYGEL_RENDERER_GST_VALAFLAGS_PKG) \
-	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
+test_librygel_renderer_gst_valaflags = \
+	$(RYGEL_COMMON_LIBRYGEL_RENDERER_GST_VALAFLAGS) \
+	$(RYGEL_COMMON_VALAFLAGS)
+test_librygel_renderer_gst_cflags = \
+	$(test_cflags) \
+	$(LIBRYGEL_RENDERER_GST_DEPS_CFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_RENDERER_GST_CFLAGS)
+test_librygel_renderer_gst_libs = \
+	$(test_libs) \
+	$(LIBRYGEL_RENDERER_GST_DEPS_LIBS) \
+	$(RYGEL_COMMON_LIBRYGEL_RENDERER_GST_LIBS)
 	
 rygel_playbin_renderer_test_SOURCES = rygel-playbin-renderer-test.vala
 rygel_playbin_renderer_test_VALAFLAGS = \
-	--pkg rygel-renderer-gst-2.0 \
-	--vapidir $(top_srcdir)/src/librygel-renderer-gst \
-	$(RYGEL_COMMON_RENDERER_PLUGIN_VALAFLAGS)
+	$(test_librygel_renderer_gst_valaflags)
 rygel_playbin_renderer_test_CFLAGS = \
-	$(GEE_CFLAGS) \
-	$(LIBGSTREAMER_CFLAGS) \
-	$(LIBGUPNP_CFLAGS) \
-	-I$(top_builddir)/src/librygel-renderer \
-	-I$(top_srcdir)/src/librygel-renderer \
-	-I$(top_builddir)/src/librygel-renderer-gst \
-	-I$(top_srcdir)/src/librygel-renderer-gst \
-	-I$(top_builddir)/src/librygel-core \
-	-I$(top_srcdir)/src/librygel-core
+	$(test_librygel_renderer_gst_cflags)
 rygel_playbin_renderer_test_LDADD = \
-	$(test_libs) \
-	$(LIBGSTREAMER_LIBS) \
-	$(LIBGUPNP_LIBS) \
-	$(top_builddir)/src/librygel-renderer/librygel-renderer-2.0.la \
-	$(top_builddir)/src/librygel-renderer-gst/librygel-renderer-gst-2.0.la \
-	$(top_builddir)/src/librygel-core/librygel-core-2.0.la
+	$(test_librygel_renderer_gst_libs)
 
 rygel_environment_test_SOURCES = rygel-environment-test.vala
-rygel_environment_test_CFLAGS =  \
-	$(GEE_CFLAGS) \
-	$(LIBGSTREAMER_CFLAGS)
-rygel_environment_test_LDADD = \
-	$(test_libs) \
-	$(LIBGSTREAMER_LIBS) \
-	$(LIBGUPNP_LIBS)
 rygel_environment_test_VALAFLAGS = \
-	--pkg rygel-renderer-gst-2.0 \
-	--vapidir $(top_srcdir)/src/librygel-renderer-gst \
-	$(RYGEL_COMMON_RENDERER_PLUGIN_VALAFLAGS)
+	$(test_librygel_renderer_gst_valaflags)
+rygel_environment_test_CFLAGS = \
+	$(test_librygel_renderer_gst_cflags)
+rygel_environment_test_LDADD = \
+	$(test_librygel_renderer_gst_libs)
+
 endif
 
 if ALWAYS_TEST

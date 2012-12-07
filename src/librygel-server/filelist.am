@@ -75,7 +75,3 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-xbmc-hacks.vala \
 	rygel-xbox-hacks.vala \
 	rygel-data-sink.vala
-
-LIBRYGEL_SERVER_VALAFLAGS_PKG = \
-	--pkg gmodule-2.0 \
-	--pkg uuid

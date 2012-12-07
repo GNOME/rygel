@@ -8,25 +8,28 @@ lib_LTLIBRARIES = librygel-server-2.0.la
 
 LIBRYGEL_SERVER_VERSION=1:0:0
 
-AM_CFLAGS += -DG_LOG_DOMAIN=\"Rygel\"
-
 librygel_server_2_0_la_SOURCES = \
 	$(LIBRYGEL_SERVER_VAPI_SOURCE_FILES) \
 	$(LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES)
 
 librygel_server_2_0_la_VALAFLAGS = \
 	-H rygel-server.h --library=rygel-server-2.0 \
-	$(LIBRYGEL_SERVER_VALAFLAGS_PKG) \
-	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
+	$(LIBRYGEL_SERVER_DEPS_VALAFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_CORE_VALAFLAGS) \
+	$(RYGEL_COMMON_VALAFLAGS)
 
+librygel_server_2_0_la_CFLAGS = \
+	$(LIBRYGEL_SERVER_DEPS_CFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_CORE_CFLAGS) \
+	-DENGINE_DIR='"$(enginedir)"' \
+	-DG_LOG_DOMAIN=\"Rygel\"
 librygel_server_2_0_la_LIBADD = \
-	$(RYGEL_COMMON_LIBS) \
-	$(UUID_LIBS) \
-	$(LIBGIO_LIBS) \
-	$(LIBSOUP_LIBS) \
-	$(LIBGSSDP_LIBS)
+	$(LIBRYGEL_SERVER_DEPS_LIBS) \
+	$(RYGEL_COMMON_LIBRYGEL_CORE_LIBS)
 
-librygel_server_2_0_la_LDFLAGS = -version-info $(LIBRYGEL_SERVER_VERSION)
+librygel_server_2_0_la_LDFLAGS = \
+	$(RYGEL_DATA_DIR_DEFINES) \
+	-version-info $(LIBRYGEL_SERVER_VERSION)
 
 vapidir = $(VAPIDIR)
 vapi_DATA = rygel-server-2.0.vapi rygel-server-2.0.deps

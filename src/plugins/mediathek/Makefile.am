@@ -2,8 +2,6 @@ include ../../../common.am
 
 plugin_LTLIBRARIES = librygel-mediathek.la
 
-AM_CFLAGS += -DG_LOG_DOMAIN='"Mediathek"'
-
 librygel_mediathek_la_SOURCES = \
 	rygel-mediathek-asx-playlist-parser.vala \
 	rygel-mediathek-mov-playlist-parser.vala \
@@ -14,6 +12,16 @@ librygel_mediathek_la_SOURCES = \
 	rygel-mediathek-rss-container.vala \
 	rygel-mediathek-soup-utils.vala
 
-librygel_mediathek_la_VALAFLAGS = $(RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS)
-librygel_mediathek_la_LIBADD = $(RYGEL_COMMON_SERVER_LIBS) $(LIBGIO_LIBS) $(LIBSOUP_LIBS)
-librygel_mediathek_la_LDFLAGS = $(RYGEL_PLUGIN_LINKER_FLAGS)
+librygel_mediathek_la_VALAFLAGS = \
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_VALAFLAGS) \
+	$(RYGEL_COMMON_VALAFLAGS)
+librygel_mediathek_la_CFLAGS = \
+	$(RYGEL_PLUGIN_MEDIATHEK_DEPS_CFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_CFLAGS) \
+	$(RYGEL_COMMON_DEFINES_CFLAGS) \
+	-DG_LOG_DOMAIN='"Mediathek"'
+librygel_mediathek_la_LIBADD = \
+	$(RYGEL_PLUGIN_MEDIATHEK_DEPS_LIBS) \
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
+librygel_mediathek_la_LDFLAGS = \
+	$(RYGEL_PLUGIN_LINKER_FLAGS)

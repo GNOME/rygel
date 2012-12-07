@@ -23,70 +23,87 @@ endif
 smallicondir = $(shareddir)/icons/48x48
 bigicondir = $(shareddir)/icons/120x120
 
-rygeldir = $(top_srcdir)/src/rygel
 librygelcoredir = $(top_srcdir)/src/librygel-core
 librygelserverdir = $(top_srcdir)/src/librygel-server
 librygelrendererdir = $(top_srcdir)/src/librygel-renderer
 
 MAINTAINERCLEANFILES = Makefile.in
 
-AM_CFLAGS = \
-	$(LIBGUPNP_CFLAGS) \
-	$(LIBGUPNP_AV_CFLAGS) \
-	$(GEE_CFLAGS) \
-	$(UUID_CFLAGS) \
-	$(COVERAGE_CFLAGS) \
-	-I$(rygeldir) \
-	-I$(librygelcoredir) \
-	-I$(librygelserverdir) \
-	-I$(librygelrendererdir) \
-	-DDATA_DIR='"$(shareddir)"' -DSYS_CONFIG_DIR='"$(sysconfigdir)"'\
-	-DPLUGIN_DIR='"$(plugindir)"' -DDESKTOP_DIR='"$(desktopdir)"'\
-	-DPRESET_DIR='"$(presetdir)"' -DENGINE_DIR='"$(enginedir)"' \
+RYGEL_COMMON_DEFINES_CFLAGS = \
+	-DDATA_DIR='"$(shareddir)"' \
 	-include config.h
 
-RYGEL_BASE_LIBS = \
-	$(LIBGUPNP_LIBS) \
-	$(GEE_LIBS) \
-	$(COVERAGE_LIBS)
 
-RYGEL_COMMON_LIBS = \
-	$(RYGEL_BASE_LIBS) \
-	$(LIBGUPNP_AV_LIBS) \
+RYGEL_COMMON_LIBRYGEL_CORE_VALAFLAGS = \
+	--vapidir=$(librygelcoredir) \
+	--pkg rygel-core-2.0 \
+	--pkg uuid
+
+RYGEL_COMMON_LIBRYGEL_CORE_CFLAGS = \
+	$(RYGEL_COMMON_DEFINES_CFLAGS) \
+	-I$(top_builddir)/src/librygel-core \
+	-I$(top_srcdir)/src/librygel-core
+
+RYGEL_COMMON_LIBRYGEL_CORE_LIBS = \
 	$(top_builddir)/src/librygel-core/librygel-core-2.0.la
 
-RYGEL_COMMON_SERVER_LIBS = \
-	$(top_builddir)/src/librygel-server/librygel-server-2.0.la \
-	$(RYGEL_COMMON_LIBS)
 
-RYGEL_COMMON_RENDERER_LIBS = \
-	$(top_builddir)/src/librygel-renderer/librygel-renderer-2.0.la \
-	$(RYGEL_COMMON_LIBS)
-
-# Note: the -g needs to be at the end of VALAFLAGS to not break make dist
-RYGEL_COMMON_PLUGIN_VALAFLAGS = \
-	--pkg rygel-core-2.0 \
-	$(RYGEL_COMMON_VALAFLAGS)
-
-RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS = \
-	--pkg rygel-server-2.0 \
-	--vapidir=$(top_builddir)/src/librygel-server \
-	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
-
-RYGEL_COMMON_RENDERER_PLUGIN_VALAFLAGS = \
-	--pkg rygel-renderer-2.0 \
+RYGEL_COMMON_LIBRYGEL_RENDERER_VALAFLAGS = \
 	--vapidir=$(top_builddir)/src/librygel-renderer \
-	$(RYGEL_COMMON_PLUGIN_VALAFLAGS)
+	--pkg rygel-renderer-2.0 \
+	$(RYGEL_COMMON_LIBRYGEL_CORE_VALAFLAGS)
 
-RYGEL_COMMON_VALAFLAGS_PKG = --pkg gupnp-1.0 --pkg gupnp-av-1.0 --pkg gee-0.8
+RYGEL_COMMON_LIBRYGEL_RENDERER_CFLAGS = \
+	$(RYGEL_COMMON_LIBRYGEL_CORE_CFLAGS) \
+	-I$(top_builddir)/src/librygel-renderer \
+	-I$(top_srcdir)/src/librygel-renderer
 
-RYGEL_COMMON_VALAFLAGS = \
-	--pkg rygel-build-config \
-	--vapidir=$(rygeldir) \
+RYGEL_COMMON_LIBRYGEL_RENDERER_LIBS = \
+	$(RYGEL_COMMON_LIBRYGEL_CORE_LIBS) \
+	$(top_builddir)/src/librygel-renderer/librygel-renderer-2.0.la
+
+
+RYGEL_COMMON_LIBRYGEL_RENDERER_GST_VALAFLAGS = \
+	--vapidir=$(top_builddir)/src/librygel-renderer-gst \
+	--pkg rygel-renderer-gst-2.0 \
+	$(RYGEL_COMMON_LIBRYGEL_RENDERER_VALAFLAGS)
+
+RYGEL_COMMON_LIBRYGEL_RENDERER_GST_CFLAGS = \
+	$(RYGEL_COMMON_LIBRYGEL_RENDERER_CFLAGS) \
+	-I$(top_builddir)/src/librygel-renderer-gst \
+	-I$(top_srcdir)/src/librygel-renderer-gst
+
+RYGEL_COMMON_LIBRYGEL_RENDERER_GST_LIBS = \
+	$(RYGEL_COMMON_LIBRYGEL_RENDERER_LIBS) \
+	$(top_builddir)/src/librygel-renderer-gst/librygel-renderer-gst-2.0.la
+
+
+RYGEL_COMMON_LIBRYGEL_SERVER_VALAFLAGS = \
+	--vapidir=$(top_builddir)/src/librygel-server \
+	--pkg rygel-server-2.0 \
+	$(RYGEL_COMMON_LIBRYGEL_CORE_VALAFLAGS)
+
+RYGEL_COMMON_LIBRYGEL_SERVER_CFLAGS = \
+	$(RYGEL_COMMON_LIBRYGEL_CORE_CFLAGS) \
+	-I$(top_builddir)/src/librygel-server \
+	-I$(top_srcdir)/src/librygel-server
+
+RYGEL_COMMON_LIBRYGEL_SERVER_LIBS = \
+	$(RYGEL_COMMON_LIBRYGEL_CORE_LIBS) \
+	$(top_builddir)/src/librygel-server/librygel-server-2.0.la
+
+RYGEL_COMMON_BUILD_CONFIG_VALAFLAGS = \
 	--vapidir=$(librygelcoredir) \
+	--pkg rygel-build-config
+
+# Note: This must always be the last one in *_VALAFLAGS,
+# because the -g needs to be at the end of VALAFLAGS to not break make dist.
+RYGEL_COMMON_VALAFLAGS = \
+	$(RYGEL_COMMON_BUILD_CONFIG_VALAFLAGS)
 	$(RYGEL_COMMON_VALAFLAGS_PKG) \
 	$(RYGEL_DEBUG_VALAFLAGS) \
 	$(COVERAGE_VALAFLAGS)
+
 
 RYGEL_PLUGIN_LINKER_FLAGS = -shared -fPIC -module -avoid-version
 

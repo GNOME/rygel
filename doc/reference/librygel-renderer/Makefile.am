@@ -12,10 +12,9 @@ VALA_SOURCE_FILES_WITH_PATHS = $(addprefix $(top_srcdir)/src/librygel-renderer/,
 
 # TODO: The need for rygel-build-config here reminds us that we shouldn't need that in librygel-renderer either.
 RYGEL_DOCBUILD_VALADOC_FLAGS = \
-	--vapidir $(top_srcdir)/src/librygel-core \
-	--pkg rygel-core-2.0 \
-	$(RYGEL_COMMON_VALAFLAGS_PKG) \
-	$(LIBRYGEL_RENDERER_VALAFLAGS_PKG)
+	$(LIBRYGEL_RENDERER_DEPS_VALAFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_CORE_VALAFLAGS) \
+	$(RYGEL_COMMON_BUILD_CONFIG_VALAFLAGS)
 
 RYGEL_DOCBUILD_MODULE = rygel-renderer
 RYGEL_DOCBUILD_EXTRA_GTKDOC_OPTIONS = -X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-2.0.so

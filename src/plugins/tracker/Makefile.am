@@ -2,9 +2,6 @@ include $(top_srcdir)/common.am
 
 plugin_LTLIBRARIES = librygel-tracker.la
 
-AM_CFLAGS += -DG_LOG_DOMAIN='"Rygel-Tracker"' \
-    $(TRACKER_SPARQL_CFLAGS)
-
 librygel_tracker_la_SOURCES = \
 	rygel-tracker-root-container.vala \
 	rygel-tracker-category-container.vala \
@@ -41,9 +38,17 @@ librygel_tracker_la_SOURCES = \
 
 librygel_tracker_la_VALAFLAGS = \
 	--pkg posix \
-	--pkg tracker-sparql-@TRACKER_API_VERSION@ \
-	$(RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS)
+	$(RYGEL_PLUGIN_TRACKER_DEPS_VALAFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_VALAFLAGS) \
+	$(RYGEL_COMMON_VALAFLAGS)
+librygel_tracker_la_CFLAGS = \
+	$(RYGEL_PLUGIN_TRACKER_DEPS_CFLAGS) \
+	$(TRACKER_SPARQL_CFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_CFLAGS) \
+	-DG_LOG_DOMAIN='"Rygel-Tracker"'
 librygel_tracker_la_LIBADD = \
-	$(RYGEL_COMMON_SERVER_LIBS) \
-	$(TRACKER_SPARQL_LIBS)
-librygel_tracker_la_LDFLAGS = $(RYGEL_PLUGIN_LINKER_FLAGS)
+	$(RYGEL_PLUGIN_TRACKER_DEPS_LIBS) \
+	$(TRACKER_SPARQL_LIBS) \
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
+librygel_tracker_la_LDFLAGS = \
+	$(RYGEL_PLUGIN_LINKER_FLAGS)

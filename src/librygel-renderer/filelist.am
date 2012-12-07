@@ -11,5 +11,3 @@ LIBRYGEL_RENDERER_NONVAPI_SOURCE_FILES = \
 	rygel-time-utils.vala \
 	rygel-changelog.vala \
 	rygel-volume.vala
-
-LIBRYGEL_RENDERER_VALAFLAGS_PKG =

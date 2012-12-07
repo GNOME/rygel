@@ -1,12 +1,6 @@
 include ../../common.am
 include $(srcdir)/filelist.am
 
-AM_CFLAGS += \
-	$(LIBGSTREAMER_CFLAGS) \
-	-DSMALL_ICON_DIR='"$(smallicondir)"' \
-	-DBIG_ICON_DIR='"$(bigicondir)"' -include config.h \
-	-DLOCALEDIR=\""$(datadir)/locale"\" -DG_LOG_DOMAIN='"Rygel"'
-
 librygelincdir = $(includedir)/rygel-2.0
 
 librygelinc_HEADERS = rygel-core.h
@@ -19,17 +13,27 @@ librygel_core_2_0_la_SOURCES = \
 
 librygel_core_2_0_la_VALAFLAGS = \
 	-H rygel-core.h -C --library=rygel-core-2.0 \
-	$(LIBRYGEL_CORE_VALAFLAGS_PKG) \
+	--vapidir=$(srcdir) \
+	--pkg uuid \
+	$(LIBRYGEL_CORE_DEPS_VALAFLAGS) \
 	$(RYGEL_COMMON_VALAFLAGS)
 
+librygel_core_2_0_la_CFLAGS = \
+	$(RYGEL_COMMON_DEFINES_CFLAGS) \
+	$(LIBRYGEL_CORE_DEPS_CFLAGS) \
+	-DPLUGIN_DIR='"$(plugindir)"' \
+	-DSMALL_ICON_DIR='"$(smallicondir)"' \
+	-DBIG_ICON_DIR='"$(bigicondir)"' \
+	-include config.h \
+	-DG_LOG_DOMAIN='"Rygel"'
+
 librygel_core_2_0_la_LIBADD = \
-	$(RYGEL_BASE_LIBS) \
-	$(UUID_LIBS) \
-	$(LIBGSSDP_LIBS) \
-	$(LIBGIO_LIBS)
+	$(LIBRYGEL_CORE_DEPS_LIBS)
 
 RYGEL_CORE_VERSION=1:0:0
-librygel_core_2_0_la_LDFLAGS = -version-info $(RYGEL_CORE_VERSION)
+librygel_core_2_0_la_LDFLAGS = \
+	$(RYGEL_DATA_DIR_DEFINES) \
+	-version-info $(RYGEL_CORE_VERSION)
 
 BUILT_SOURCES = \
 	rygel-core-2.0.vapi \

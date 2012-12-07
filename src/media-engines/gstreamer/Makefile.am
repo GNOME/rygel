@@ -2,9 +2,6 @@ include $(top_srcdir)/common.am
 
 engine_LTLIBRARIES = librygel-media-engine-gst.la
 
-AM_CFLAGS += -DG_LOG_DOMAIN='"MediaEngine-GStreamer"' \
-	$(GST_PBU_CFLAGS) \
-	$(LIBGUPNP_DLNA_CFLAGS)
 
 librygel_media_engine_gst_la_SOURCES = \
 	rygel-aac-transcoder.vala \
@@ -23,22 +20,28 @@ librygel_media_engine_gst_la_SOURCES = \
 
 librygel_media_engine_gst_la_VALAFLAGS = \
 	--enable-experimental \
-	--pkg gstreamer-base-1.0 \
-	--pkg gstreamer-pbutils-1.0 \
-	--pkg gupnp-dlna-1.1 \
+	$(RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_VALAFLAGS) \
 	--library rygel-media-engine-gst \
 	--use-header \
 	--header=rygel-media-engine-gst.h \
-	$(RYGEL_COMMON_SERVER_PLUGIN_VALAFLAGS)
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_VALAFLAGS) \
+	$(RYGEL_COMMON_VALAFLAGS)
 
 rygel-media-engine-gst.h rygel-media-engine-gstreamer.vapi: librygel_media_engine_gst_la_vala.stamp
 
-librygel_media_engine_gst_la_LIBADD = \
-	$(GST_PBU_LIBS) \
-	$(LIBGUPNP_DLNA_LIBS) \
-	$(RYGEL_COMMON_SERVER_LIBS)
+librygel_media_engine_gst_la_CFLAGS = \
+	$(RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_CFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_CFLAGS) \
+	-DG_LOG_DOMAIN='"MediaEngine-GStreamer"' \
+	-DPRESET_DIR='"$(presetdir)"'
 
-librygel_media_engine_gst_la_LDFLAGS = $(RYGEL_PLUGIN_LINKER_FLAGS)
+librygel_media_engine_gst_la_LIBADD = \
+	$(RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_LIBS) \
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
+
+librygel_media_engine_gst_la_LDFLAGS = \
+	$(RYGEL_PLUGIN_LINKER_FLAGS)
+
 
 EXTRA_DIST = \
 	rygel-media-engine-gst.vapi \

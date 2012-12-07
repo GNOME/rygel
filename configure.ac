@@ -53,17 +53,35 @@ LIBSQLITE3_REQUIRED=3.5
 dnl Additional requirements for tracker plugin
 TRACKER_SPARQL_REQUIRED_MIN=0.14.0
 
-PKG_CHECK_MODULES(LIBGLIB, glib-2.0 >= $GLIB_REQUIRED)
 VALAFLAGS="--target-glib=2.32 $VALAFLAGS"
 
-PKG_CHECK_MODULES(LIBGSSDP, gssdp-1.0 >= $GSSDP_REQUIRED)
-PKG_CHECK_MODULES(LIBGUPNP, gupnp-1.0 >= $GUPNP_REQUIRED)
-PKG_CHECK_MODULES(LIBGUPNP_AV, gupnp-av-1.0 >= $GUPNP_AV_REQUIRED)
-PKG_CHECK_MODULES(LIBGIO, gio-2.0 >= $GIO_REQUIRED)
-PKG_CHECK_MODULES(GEE, gee-0.8 >= $GEE_REQUIRED)
-PKG_CHECK_MODULES(UUID, uuid >= $UUID_REQUIRED)
-PKG_CHECK_MODULES(LIBSOUP, libsoup-2.4 >= $LIBSOUP_REQUIRED)
-PKG_CHECK_MODULES(LIBXML, libxml-2.0 >= $LIBXML_REQUIRED)
+RYGEL_BASE_MODULES='gupnp-1.0 >= $GUPNP_REQUIRED gee-0.8 >= $GEE_REQUIRED'
+PKG_CHECK_MODULES([LIBRYGEL_CORE_DEPS], [$RYGEL_BASE_MODULES uuid >= $UUID_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED gio-2.0 >= $GIO_REQUIRED])
+RYGEL_BASE_MODULES_VALAFLAGS='--pkg gupnp-1.0 --pkg gee-0.8'
+LIBRYGEL_CORE_DEPS_VALAFLAGS="$RYGEL_BASE_MODULES_VALAFLAGS --pkg gssdp-1.0 --pkg gio-2.0 --pkg gmodule-2.0"
+AC_SUBST([LIBRYGEL_CORE_DEPS_VALAFLAGS])
+
+RYGEL_COMMON_MODULES="$RYGEL_BASE_MODULES gupnp-av-1.0 >= $GUPNP_AV_REQUIRED"
+PKG_CHECK_MODULES([LIBRYGEL_SERVER_DEPS], [$RYGEL_COMMON_MODULES uuid >= $UUID_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED gio-2.0 >= $GIO_REQUIRED libsoup-2.4 >= $LIBSOUP_REQUIRED])
+RYGEL_COMMON_MODULES_VALAFLAGS="$RYGEL_BASE_MODULES_VALAFLAGS --pkg gupnp-av-1.0"
+LIBRYGEL_SERVER_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gssdp-1.0 --pkg gio-2.0 --pkg libsoup-2.4 --pkg gmodule-2.0"
+AC_SUBST([LIBRYGEL_SERVER_DEPS_VALAFLAGS])
+
+PKG_CHECK_MODULES([LIBRYGEL_RENDERER_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED libsoup-2.4 >= $LIBSOUP_REQUIRED])
+LIBRYGEL_RENDERER_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gio-2.0 --pkg libsoup-2.4"
+AC_SUBST([LIBRYGEL_RENDERER_DEPS_VALAFLAGS])
+
+PKG_CHECK_MODULES([RYGEL_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED])
+
+# Not all tests use all of these dependencies,
+# but having one set of dependencies keeps things simple.
+PKG_CHECK_MODULES([TEST_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED libsoup-2.4 >= $LIBSOUP_REQUIRED libxml-2.0 >= $LIBXML_REQUIRED])
+TEST_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gio-2.0 --pkg gssdp-1.0 --pkg libsoup-2.4 --pkg libxml-2.0 --pkg gmodule-2.0"
+AC_SUBST([TEST_DEPS_VALAFLAGS])
+
+PKG_CHECK_MODULES([EXAMPLE_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED])
+
+
 
 dnl Media engine to use
 BUILT_ENGINES="librygel-media-engine-simple"
@@ -79,13 +97,16 @@ AC_ARG_WITH([media_engine],
 
 AS_IF([test "x$with_media_engine" = "xgstreamer"],
       [
-        PKG_CHECK_MODULES(LIBGUPNP_DLNA, gupnp-dlna-1.1 >= $GUPNP_DLNA_REQUIRED)
-        PKG_CHECK_MODULES(LIBGSTREAMER, gstreamer-1.0 >= $GSTREAMER_REQUIRED)
-        PKG_CHECK_MODULES(GSTREAMER_BASE, gstreamer-base-1.0 >= $GSTREAMER_REQUIRED)
-        PKG_CHECK_MODULES(GST_PBU, gstreamer-pbutils-1.0 >= $GSTPBU_REQUIRED)
-        PKG_CHECK_MODULES(GST_VIDEO, gstreamer-video-1.0 >= $GSTREAMER_REQUIRED)
         enable_gstreamer="yes"
         BUILT_ENGINES="$BUILT_ENGINES;librygel-media-engine-gst"
+
+        PKG_CHECK_MODULES([RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS], [$RYGEL_COMMON_MODULES gstreamer-pbutils-1.0 >= $GSTPBU_REQUIRED gupnp-dlna-1.1 >= $GUPNP_DLNA_REQUIRED])
+        RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gstreamer-base-1.0 --pkg gstreamer-pbutils-1.0 --pkg gupnp-dlna-1.1"
+        AC_SUBST([RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_VALAFLAGS])
+
+        PKG_CHECK_MODULES([LIBRYGEL_RENDERER_GST_DEPS], [$RYGEL_COMMON_MODULES gstreamer-1.0 >= $GSTREAMER_REQUIRED])
+        LIBRYGEL_RENDERER_GST_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gstreamer-1.0"
+        AC_SUBST([LIBRYGEL_RENDERER_GST_DEPS_VALAFLAGS])
       ],
       [enable_gstreamer="no"])
 AM_CONDITIONAL([HAVE_GSTREAMER],[test "x$enable_gstreamer" = "xyes"])
@@ -93,15 +114,47 @@ AC_SUBST([BUILT_ENGINES])
 
 dnl Add plugins
 RYGEL_ADD_PLUGIN([external],[MediaServer2 DBus consumer],[yes])
+AS_IF([test "x$enable_external_plugin" = "xyes"],
+  [
+    PKG_CHECK_MODULES([RYGEL_PLUGIN_EXTERNAL_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED])
+  ])
+
 RYGEL_ADD_PLUGIN([mpris],[MPRIS2 DBus consumer],[yes])
+AS_IF([test "x$enable_mpris_plugin" = "xyes"],
+  [
+    PKG_CHECK_MODULES([RYGEL_PLUGIN_MPRIS_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED])
+  ])
+
 RYGEL_ADD_PLUGIN([mediathek],[ZDF Mediathek],[no])
-RYGEL_ADD_PLUGIN([tracker],[Tracker],[yes])
+AS_IF([test "x$enable_mediathek_plugin" = "xyes"],
+  [
+    PKG_CHECK_MODULES([RYGEL_PLUGIN_MEDIATHEK_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED libsoup-2.4 >= $LIBSOUP_REQUIRED])
+  ])
 
 AS_IF([test "x$with_media_engine" = "xgstreamer"],
       [
         RYGEL_ADD_PLUGIN([playbin],[GStreamer playbin],[yes])
+        AS_IF([test "x$enable_playbin_plugin" = "xyes"],
+          [
+            PKG_CHECK_MODULES([RYGEL_PLUGIN_PLAYBIN_DEPS], [$RYGEL_COMMON_MODULES gstreamer-1.0 >= $GSTREAMER_TAG_REQUIRED])
+          ])
+
         RYGEL_ADD_PLUGIN([media-export],[MediaExport],[yes])
+        AS_IF([test "x$enable_media_export_plugin" = "xyes"],
+          [
+            PKG_CHECK_MODULES([RYGEL_PLUGIN_MEDIA_EXPORT_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED gupnp-dlna-1.1 >= $GUPNP_DLNA_REQUIRED gstreamer-tag-1.0 >= $GSTREAMER_TAG_REQUIRED gstreamer-app-1.0 >= $GSTREAMER_TAG_REQUIRED sqlite3 >= $LIBSQLITE3_REQUIRED])
+            RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gupnp-dlna-1.1 --pkg gstreamer-tag-1.0 --pkg gstreamer-app-1.0 --pkg sqlite3"
+            AC_SUBST([RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS])
+          ])
+
         RYGEL_ADD_PLUGIN([gst-launch],[GStreamer launchline],[no])
+        AS_IF([test "x$enable_gst_launch_plugin" = "xyes"],
+          [
+            PKG_CHECK_MODULES([RYGEL_PLUGIN_GST_LAUNCH_DEPS], [$RYGEL_COMMON_MODULES gstreamer-1.0 >= $GSTREAMER_REQUIRED])
+            RYGEL_PLUGIN_GST_LAUNCH_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gstreamer-1.0"
+            AC_SUBST([RYGEL_PLUGIN_GST_LAUNCH_DEPS_VALAFLAGS])
+          ])
+
         RYGEL_ADD_STAMP([src/media-engines/gstreamer/librygel_media_engine_gst_la_vala.stamp])
         RYGEL_ADD_STAMP([src/librygel-renderer-gst/librygel_renderer_gst_2_0_la_vala.stamp])
       ],
@@ -124,13 +177,6 @@ RYGEL_ADD_STAMP([src/librygel-renderer/librygel_renderer_2_0_la_vala.stamp])
 RYGEL_ADD_STAMP([src/rygel/rygel_vala.stamp])
 RYGEL_ADD_STAMP([src/ui/rygel_preferences_vala.stamp])
 RYGEL_ADD_STAMP([src/media-engines/simple/librygel_media_engine_simple_la_vala.stamp])
-
-RYGEL_CHECK_VALA([$VALA_REQUIRED],
-                 [gupnp-1.0
-                  gupnp-av-1.0
-                  gio-2.0
-                  gee-0.8
-                  posix])
 
 AS_IF([test "x$with_media_engine" = "xgstreamer"],
       [
@@ -176,14 +222,19 @@ AC_ARG_WITH( ui,
 HAVE_GTK=no
 if test x$try_ui = xyes ; then
     dnl check for gtk
-    PKG_CHECK_MODULES(GTK, gtk+-3.0 >= $GTK_REQUIRED,
+    PKG_CHECK_MODULES([RYGEL_UI_DEPS], [$RYGEL_BASE_MODULES gtk+-3.0 >= $GTK_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED gee-0.8 >= $GEE_REQUIRED],
       [
         RYGEL_CHECK_PACKAGES([gtk+-3.0], [HAVE_GTK=yes])
       ],
       [
-        AC_MSG_WARN([gtk $GTK_REQUIRED or greater not found.])
+        AC_MSG_WARN([UI dependencies not found.])
         AC_MSG_WARN([UI applications will not be built.])
       ])
+
+    RYGEL_UI_DEPS_VALAFLAGS="$RYGEL_BASE_MODULES_VALAFLAGS --pkg gtk+-3.0 --pkg gssdp-1.0 --pkg gee-0.8"
+    AC_SUBST([RYGEL_UI_DEPS_VALAFLAGS])
+
+    PKG_CHECK_MODULES([EXAMPLE_UI_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED gstreamer-video-1.0 >= $GSTREAMER_REQUIRED gtk+-3.0 >= $GTK_REQUIRED])
 else
     AC_MSG_NOTICE([UI applications disabled.])
 fi
@@ -216,9 +267,6 @@ AS_IF([test "x$enable_coverage" != "xno"],
 dnl Check additional requirements for MediaExport plugins
 if test "x$enable_media_export_plugin" = "xyes";
 then
-    PKG_CHECK_MODULES(LIBSQLITE3, sqlite3 >= $LIBSQLITE3_REQUIRED)
-    PKG_CHECK_MODULES(GSTREAMER_TAG, gstreamer-tag-1.0 >= $GSTREAMER_TAG_REQUIRED);
-    PKG_CHECK_MODULES(GSTREAMER_APP, gstreamer-app-1.0 >= $GSTREAMER_APP_REQUIRED);
     RYGEL_CHECK_PACKAGES([sqlite3 gstreamer-tag-1.0 gstreamer-app-1.0])
     AC_CHECK_HEADER([unistr.h],
                     AC_CHECK_LIB([unistring],
@@ -233,8 +281,12 @@ then
     fi
 fi
 
+
+RYGEL_ADD_PLUGIN([tracker],[Tracker],[yes])
 AS_IF([test "x$enable_tracker_plugin" = "xyes"],
   [
+    PKG_CHECK_MODULES([RYGEL_PLUGIN_TRACKER_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED])
+
     tracker_api_version="0.14"
     PKG_CHECK_MODULES(TRACKER_SPARQL,
                       tracker-sparql-0.14 >= $TRACKER_SPARQL_REQUIRED_MIN,
@@ -256,9 +308,18 @@ AS_IF([test "x$enable_tracker_plugin" = "xyes"],
           ])
     AS_IF([test "x$enable_vala" = "xyes"],
           [VALA_CHECK_PACKAGES([tracker-sparql-$tracker_api_version])])
-    TRACKER_API_VERSION=$tracker_api_version
-    AC_SUBST(TRACKER_API_VERSION)
+
+    RYGEL_PLUGIN_TRACKER_DEPS_VALAFLAGS="--pkg tracker-sparql-$tracker_api_version"
+    AC_SUBST([RYGEL_PLUGIN_TRACKER_DEPS_VALAFLAGS])
   ])
+
+# This should be called only after all RYGEL_CHECK_VALA() and RYGEL_ADD_PLUGIN() calls:
+RYGEL_CHECK_VALA([$VALA_REQUIRED],
+                 [gupnp-1.0
+                  gupnp-av-1.0
+                  gio-2.0
+                  gee-0.8
+                  posix])
 
 dnl Gettext
 GETTEXT_PACKAGE=rygel

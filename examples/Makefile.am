@@ -10,46 +10,41 @@ SUBDIRS = $(EXAMPLE_PLUGINS)
 
 include ../common.am
 
-AM_CFLAGS += \
-	-I$(top_builddir)/src/librygel-server \
-	-I$(top_srcdir)/src/librygel-server \
-	-I$(top_builddir)/src/rygel \
-	-I$(top_srcdir)/src/rygel
 
+#TODO: Remove the src/rygel from here?
 noinst_PROGRAMS = standalone-server
 standalone_server_SOURCES = standalone-server.c
+standalone_server_CFLAGS = \
+	$(EXAMPLE_DEPS_CFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_CFLAGS)
 standalone_server_LDADD = \
-	$(top_builddir)/src/librygel-server/librygel-server-2.0.la \
-	$(LIBGIO_LIBS) \
-	$(RYGEL_COMMON_LIBS)
+	$(EXAMPLE_DEPS_LIBS) \
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
 
 if HAVE_GSTREAMER
-AM_CFLAGS += \
-	-I$(top_builddir)/src/librygel-renderer-gst \
-	-I$(top_srcdir)/src/librygel-renderer-gst \
-	-I$(top_builddir)/src/librygel-renderer \
-	-I$(top_srcdir)/src/librygel-renderer \
-	$(LIBGSTREAMER_CFLAGS)
 
 noinst_PROGRAMS += standalone-renderer-gst
 standalone_renderer_gst_SOURCES = standalone-renderer-gst.c
+standalone_renderer_gst_CFLAGS = \
+	$(EXAMPLE_DEPS_CFLAGS) \
+	$(LIBRYGEL_RENDERER_GST_DEPS_CFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_RENDERER_GST_CFLAGS)
 standalone_renderer_gst_LDADD = \
-	$(top_builddir)/src/librygel-renderer/librygel-renderer-2.0.la \
-	$(top_builddir)/src/librygel-renderer-gst/librygel-renderer-gst-2.0.la \
-	$(LIBGSTREAMER_LIBS) \
-	$(RYGEL_COMMON_LIBS)
+	$(EXAMPLE_DEPS_LIBS) \
+	$(LIBRYGEL_RENDERER_GST_DEPS_LIBS) \
+	$(RYGEL_COMMON_LIBRYGEL_RENDERER_GST_LIBS)
 
 if BUILD_UI
 noinst_PROGRAMS += fullscreen-renderer
 fullscreen_renderer_SOURCES = fullscreen-renderer.c
-fullscreen_renderer_CFLAGS = $(AM_CFLAGS) $(GTK_CFLAGS)
+fullscreen_renderer_CFLAGS = \
+	$(EXAMPLE_UI_DEPS_CFLAGS) \
+	$(LIBRYGEL_RENDERER_GST_DEPS_CFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_RENDERER_GST_CFLAGS)
 fullscreen_renderer_LDADD = \
-	$(top_builddir)/src/librygel-renderer/librygel-renderer-2.0.la \
-	$(top_builddir)/src/librygel-renderer-gst/librygel-renderer-gst-2.0.la \
-	$(LIBGSTREAMER_LIBS) \
-	$(RYGEL_COMMON_LIBS) \
-	$(GTK_LIBS) \
-	$(GST_VIDEO_LIBS)
+	$(EXAMPLE_UI_DEPS_LIBS) \
+	$(LIBRYGEL_RENDERER_GST_DEPS_LIBS) \
+	$(RYGEL_COMMON_LIBRYGEL_RENDERER_GST_LIBS)
 endif
 endif
 
