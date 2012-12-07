@@ -28,7 +28,7 @@ test_cflags = \
 test_libs = \
 	$(LIBGIO_LIBS) \
 	$(GEE_LIBS) \
-        $(COVERAGE_LIBS)
+	$(COVERAGE_LIBS)
 
 # This is for tests that link to librygel-server,
 # instead of compiling its source files directly:
@@ -59,7 +59,9 @@ rygel_http_item_uri_test_SOURCES = rygel-http-item-uri-test.vala \
 rygel_http_item_uri_test_VALAFLAGS = $(test_valaflags) \
 	--pkg gupnp-1.0
 rygel_http_item_uri_test_LDADD = $(test_libs) \
-	$(LIBGUPNP_AV_LIBS)
+	$(LIBSOUP_LIBS) \
+	$(LIBGSSDP_LIBS) \
+	$(LIBGUPNP_LIBS)
 
 rygel_http_response_test_SOURCES = rygel-http-response-test.vala \
 				   rygel-http-response.vala \
@@ -69,6 +71,8 @@ rygel_http_response_test_SOURCES = rygel-http-response-test.vala \
 rygel_http_response_test_VALAFLAGS = $(test_valaflags) \
 	--pkg gupnp-1.0
 rygel_http_response_test_LDADD = $(test_libs) \
+	$(LIBSOUP_LIBS) \
+	$(LIBGSSDP_LIBS) \
 	$(LIBGUPNP_LIBS)
 
 rygel_http_byte_seek_test_SOURCES = rygel-http-byte-seek-test.vala \
@@ -98,7 +102,9 @@ rygel_http_get_test_SOURCES = rygel-http-get-test.vala \
 rygel_http_get_test_VALAFLAGS = $(test_valaflags) \
 	--pkg gupnp-av-1.0
 rygel_http_get_test_LDADD = $(test_libs) \
-	$(LIBGUPNP_AV_LIBS)
+	$(LIBSOUP_LIBS) \
+	$(LIBGSSDP_LIBS) \
+	$(LIBGUPNP_LIBS)
 
 rygel_http_post_test_SOURCES = rygel-http-post-test.vala \
 			       rygel-http-post.vala \
@@ -108,7 +114,9 @@ rygel_http_post_test_SOURCES = rygel-http-post-test.vala \
 rygel_http_post_test_VALAFLAGS = $(test_valaflags) \
 	--pkg gupnp-av-1.0
 rygel_http_post_test_LDADD = $(test_libs) \
-	$(LIBGUPNP_AV_LIBS)
+	$(LIBSOUP_LIBS) \
+	$(LIBGSSDP_LIBS) \
+	$(LIBGUPNP_LIBS)
 
 rygel_album_art_spec_test_SOURCES = rygel-album-art-spec-test.vala \
 			       rygel-media-art-store.vala \
@@ -143,6 +151,8 @@ rygel_item_creator_test_VALAFLAGS = $(test_valaflags) \
 	--vapidir $(top_srcdir)/src/librygel-core \
 	--pkg uuid
 rygel_item_creator_test_LDADD = $(test_libs) \
+	$(LIBXML_LIBS) \
+	$(LIBSOUP_LIBS) \
 	$(LIBGUPNP_AV_LIBS)
 
 rygel_user_config_test_SOURCES = rygel-configuration.vala \
@@ -180,7 +190,8 @@ rygel_media_engine_test_CFLAGS = \
 	-DBUILT_ENGINES='"@BUILT_ENGINES@"' \
 	$(test_server_cflags)
 rygel_media_engine_test_LDADD = \
-	$(test_server_libs)
+	$(test_server_libs) \
+	$(LIBSOUP_LIBS)
 
 if HAVE_GSTREAMER
 check_PROGRAMS += \
