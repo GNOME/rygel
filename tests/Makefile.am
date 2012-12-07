@@ -199,7 +199,7 @@ rygel_playbin_renderer_test_VALAFLAGS = \
 rygel_playbin_renderer_test_CFLAGS = \
 	$(GEE_CFLAGS) \
 	$(LIBGSTREAMER_CFLAGS) \
-	$(LIBGUPNP_CFLAGS) \ 
+	$(LIBGUPNP_CFLAGS) \
 	-I$(top_builddir)/src/librygel-renderer \
 	-I$(top_srcdir)/src/librygel-renderer \
 	-I$(top_builddir)/src/librygel-renderer-gst \
@@ -209,7 +209,7 @@ rygel_playbin_renderer_test_CFLAGS = \
 rygel_playbin_renderer_test_LDADD = \
 	$(test_libs) \
 	$(LIBGSTREAMER_LIBS) \
-	$(LIBGUPNP_LIBS) \ 
+	$(LIBGUPNP_LIBS) \
 	$(top_builddir)/src/librygel-renderer/librygel-renderer-2.0.la \
 	$(top_builddir)/src/librygel-renderer-gst/librygel-renderer-gst-2.0.la \
 	$(top_builddir)/src/librygel-core/librygel-core-2.0.la
