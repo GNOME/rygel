@@ -71,8 +71,12 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
                         this.transcoders.prepend (new MP3Transcoder ());
                         break;
                     case "mp2ts":
-                        this.transcoders.prepend (new MP2TSTranscoder(MP2TSProfile.SD));
-                        this.transcoders.prepend (new MP2TSTranscoder(MP2TSProfile.HD));
+                        this.transcoders.prepend (new MP2TSTranscoder
+                                        (MP2TSProfile.SD_EU));
+                        this.transcoders.prepend (new MP2TSTranscoder
+                                        (MP2TSProfile.SD_NA));
+                        this.transcoders.prepend (new MP2TSTranscoder
+                                        (MP2TSProfile.HD_NA));
                         break;
                     case "wmv":
                         this.transcoders.prepend (new WMVTranscoder ());
