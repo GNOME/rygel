@@ -31,6 +31,16 @@ internal class Rygel.MediaExport.DummyContainer : TrackableDbContainer {
         } catch (Error error) { }
 
         base (cache, MediaCache.get_id (file), file.get_basename ());
+
+        uint32 object_update_id, container_update_id, total_deleted_child_count;
+        this.media_db.get_track_properties (this.id,
+                                            out object_update_id,
+                                            out container_update_id,
+                                            out total_deleted_child_count);
+        this.object_update_id = object_update_id;
+        this.update_id = container_update_id;
+        this.total_deleted_child_count = total_deleted_child_count;
+
         this.parent_ref = parent;
         this.file = file;
         this.uris.add (file.get_uri ());

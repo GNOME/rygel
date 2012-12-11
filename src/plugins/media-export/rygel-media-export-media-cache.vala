@@ -163,6 +163,33 @@ public class Rygel.MediaExport.MediaCache : Object {
         return 0;
     }
 
+    public void get_track_properties (string id,
+                                      out uint32 object_update_id,
+                                      out uint32 container_update_id,
+                                      out uint32 total_deleted_child_count) {
+        GLib.Value[] values = { id };
+
+        object_update_id = 0;
+        container_update_id = 0;
+        total_deleted_child_count = 0;
+
+        try {
+            var cursor = this.db.exec_cursor ("SELECT object_update_id, " +
+                                              "container_update_id, " +
+                                              "deleted_child_count " +
+                                              "FROM Object WHERE upnp_id = ?",
+                                              values);
+            var statement = cursor.next ();
+            object_update_id = (uint32) statement->column_int64 (0);
+            container_update_id = (uint32) statement->column_int64 (1);
+            total_deleted_child_count = (uint32) statement->column_int64 (2);
+
+            return;
+        } catch (Error error) {
+            warning ("Failed to get update ids: %s", error.message);
+        }
+
+    }
 
     public bool exists (File      file,
                         out int64 timestamp,
