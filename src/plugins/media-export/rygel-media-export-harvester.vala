@@ -216,7 +216,10 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
 
             while (object != null) {
                 parent = object.parent;
-                cache.remove_object (object);
+                if (parent is TrackableContainer) {
+                    var container = parent as TrackableContainer;
+                    container.remove_child_tracked.begin (object);
+                }
                 if (parent == null) {
                     break;
                 }
