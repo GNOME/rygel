@@ -140,6 +140,24 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    private string[] _allowed_playback_speeds = {"1"};
+    public string[] allowed_playback_speeds {
+        owned get {
+            return this._allowed_playback_speeds;
+        }
+    }
+
+    private string _playback_speed = "1";
+    public string playback_speed {
+        owned get {
+            return this._playback_speed;
+        }
+
+        set {
+            this._playback_speed = value;
+        }
+    }
+
     private string transfer_mode = null;
 
     private bool uri_update_hint = false;

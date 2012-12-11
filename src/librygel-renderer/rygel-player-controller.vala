@@ -92,6 +92,18 @@ internal class Rygel.PlayerController : Object {
             }
             if (actions != null && this.player.can_seek) {
                 actions += ",X_DLNA_SeekTime";
+
+                string play_speeds = "";
+                foreach (var speed in this.player.allowed_playback_speeds) {
+                    if (speed != "1") {
+                        if (play_speeds == "") {
+                            play_speeds = ",X_DLNA_PS=" + speed;
+                        } else {
+                            play_speeds += "\\," + speed;
+                        }
+                    }
+                }
+                actions += play_speeds;
             }
 
             if (actions == null) {

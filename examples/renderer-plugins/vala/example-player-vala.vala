@@ -57,6 +57,24 @@ public class Rygel.Example.PlayerVala : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    private string[] _allowed_playback_speeds = {"1/2","1","2"};
+    public string[] allowed_playback_speeds {
+        owned get {
+            return this._allowed_playback_speeds;
+        }
+    }
+
+    private string _playback_speed = "1";
+    public string playback_speed {
+        owned get {
+            return this._playback_speed;
+        }
+
+        set {
+            this._playback_speed = value;
+        }
+    }
+
     private string _uri = "";
     public string? uri {
         owned get {

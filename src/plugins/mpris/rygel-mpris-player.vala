@@ -65,6 +65,39 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    private string[] _allowed_playback_speeds = {"1"};
+    public string[] allowed_playback_speeds {
+        owned get {
+            return this._allowed_playback_speeds;
+        }
+    }
+
+    public string playback_speed {
+        owned get {
+            return this.double_to_rational (this.actual_player.rate);
+        }
+
+        set {
+            this.actual_player.rate = this.rational_to_double (value);
+        }
+    }
+
+    public double minimum_rate {
+        get {
+            return this.rational_to_double (_allowed_playback_speeds[0]);
+        }
+    }
+
+    public double maximum_rate {
+        get {
+            int i = _allowed_playback_speeds.length;
+
+            assert (i > 0);
+
+            return this.rational_to_double (_allowed_playback_speeds[i-1]);
+        }
+    }
+
     public string? uri {
         owned get {
             var val = this.actual_player.metadata.lookup ("xesam:url");
@@ -156,6 +189,34 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
         default:
             assert_not_reached ();
         }
+    }
+
+    private double rational_to_double (string r)
+    {
+         string[] rational;
+
+         rational = r.split("/", 2);
+
+         assert (rational[0] != "0");
+
+         if (rational[1] != null) {
+             assert (rational[1] != "0");
+         } else {
+             return double.parse (rational[0]);
+         }
+
+         return double.parse (rational[0]) / double.parse (rational[1]);
+    }
+
+    private string double_to_rational (double d)
+    {
+         foreach (var r in _allowed_playback_speeds) {
+             if (Math.fabs (rational_to_double (r) - d) < 0.1) {
+                 return r;
+             }
+         }
+
+         return "";
     }
 
     private void on_properties_changed (DBusProxy actual_player,

@@ -36,6 +36,10 @@ public interface Rygel.MPRIS.MediaPlayer.PlayerProxy : DBusProxy,
     public const string IFACE = "org.mpris.MediaPlayer2.Player";
 
     public abstract string playback_status { owned get; }
+    public abstract double rate { get; set; }
+    public abstract double minimum_rate { get; }
+    public abstract double maximum_rate { get; }
+
     public abstract double volume { get; set; }
     public abstract int64 position { get; }
     public abstract HashTable<string,Variant> metadata { owned get; }

@@ -35,6 +35,12 @@ public interface Rygel.MediaPlayer : GLib.Object {
     /// The state as a UPnP playback state string such as PAUSED_PLAYBACK, "STOPPED" or "PLAYING"
     public abstract string playback_state { owned get; set; }
 
+    /// The allowed playback speeds as UPnP playback speeds such as "-4","-2","-1","-1/2","1/2","1","2","4"
+    public abstract string[] allowed_playback_speeds { owned get; }
+
+    /// The current media playback speed as UPnP playback speed
+    public abstract string playback_speed { owned get; set; }
+
     /// The URI of the current media.
     public abstract string? uri { owned get; set; }
 

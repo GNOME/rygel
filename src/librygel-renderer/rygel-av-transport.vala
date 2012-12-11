@@ -76,16 +76,15 @@ internal class Rygel.AVTransport : Service {
         }
     }
 
-    private string _speed = "1";
     public string speed {
-        get {
-            return this._speed;
+        owned get {
+            return this.player.playback_speed;
         }
 
         set {
-            this._speed = value;
+            this.player.playback_speed = value;
 
-            this.changelog.log ("TransportPlaySpeed", this._speed);
+            this.changelog.log ("TransportPlaySpeed", this.player.playback_speed);
         }
     }
 
@@ -169,7 +168,7 @@ internal class Rygel.AVTransport : Service {
         log.log ("PossiblePlaybackStorageMedia", "NOT_IMPLEMENTED");
         log.log ("PossibleRecordStorageMedia",   "NOT_IMPLEMENTED");
         log.log ("CurrentPlayMode",              this.mode);
-        log.log ("TransportPlaySpeed",           this.speed);
+        log.log ("TransportPlaySpeed",           this.player.playback_speed);
         log.log ("RecordMediumWriteStatus",      "NOT_IMPLEMENTED");
         log.log ("CurrentRecordQualityMode",     "NOT_IMPLEMENTED");
         log.log ("PossibleRecordQualityModes",   "NOT_IMPLEMENTED");
@@ -406,7 +405,7 @@ internal class Rygel.AVTransport : Service {
                         this.status,
                     "CurrentSpeed",
                         typeof (string),
-                        this.speed);
+                        this.player.playback_speed);
 
         action.return ();
     }
@@ -511,13 +510,14 @@ internal class Rygel.AVTransport : Service {
         string speed;
 
         action.get ("Speed", typeof (string), out speed);
-        if (speed != "1") {
+        if (!(speed in this.player.allowed_playback_speeds)) {
             action.return_error (717, _("Play speed not supported"));
 
             return;
         }
 
         this.player.playback_state = "PLAYING";
+        this.player.playback_speed = speed;
 
         action.return ();
     }
