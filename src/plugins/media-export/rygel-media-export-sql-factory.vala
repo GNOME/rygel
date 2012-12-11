@@ -72,7 +72,8 @@ internal enum Rygel.MediaExport.SQLString {
     SCHEMA,
     EXISTS_CACHE,
     STATISTICS,
-    RESET_TOKEN
+    RESET_TOKEN,
+    MAX_UPDATE_ID
 }
 
 internal class Rygel.MediaExport.SQLFactory : Object {
@@ -268,6 +269,9 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     private const string RESET_TOKEN_STRING =
     "SELECT reset_token FROM schema_info";
 
+    private const string MAX_UPDATE_ID_STRING =
+    "SELECT MAX(MAX(object_update_id), MAX(container_update_id)) FROM Object";
+
     public unowned string make (SQLString query) {
         switch (query) {
             case SQLString.SAVE_METADATA:
@@ -314,6 +318,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                 return STATISTICS_STRING;
             case SQLString.RESET_TOKEN:
                 return RESET_TOKEN_STRING;
+            case SQLString.MAX_UPDATE_ID:
+                return MAX_UPDATE_ID_STRING;
             default:
                 assert_not_reached ();
         }

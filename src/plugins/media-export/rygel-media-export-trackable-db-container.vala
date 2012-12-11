@@ -57,4 +57,9 @@ public class Rygel.MediaExport.TrackableDbContainer : TrackableContainer,
     public virtual void set_service_reset_token (string token) {
         this.media_db.save_reset_token (token);
     }
+
+    public virtual uint32 get_system_update_id () {
+        var id = this.media_db.get_update_id ();
+        return id;
+    }
 }

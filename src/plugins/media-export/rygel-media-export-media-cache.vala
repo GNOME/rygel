@@ -155,6 +155,14 @@ public class Rygel.MediaExport.MediaCache : Object {
         return this.query_value (SQLString.CHILD_COUNT, values);
     }
 
+    public uint32 get_update_id () {
+        try {
+            return this.query_value (SQLString.MAX_UPDATE_ID);
+        } catch (Error error) { }
+
+        return 0;
+    }
+
 
     public bool exists (File      file,
                         out int64 timestamp,
