@@ -21,13 +21,23 @@
 using GLib;
 using Gee;
 
+internal class FileQueueEntry {
+    public File file;
+    public bool known;
+
+    public FileQueueEntry (File file, bool known) {
+        this.file = file;
+        this.known = known;
+    }
+}
+
 public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                                                 GLib.Object {
     public File origin;
     private MetadataExtractor extractor;
     private MediaCache cache;
     private GLib.Queue<MediaContainer> containers;
-    private Gee.Queue<File> files;
+    private Gee.Queue<FileQueueEntry> files;
     private RecursiveFileMonitor monitor;
     private string flag;
     private MediaContainer parent;
@@ -63,7 +73,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         this.extractor.extraction_done.connect (on_extracted_cb);
         this.extractor.error.connect (on_extractor_error_cb);
 
-        this.files = new LinkedList<File> ();
+        this.files = new LinkedList<FileQueueEntry> ();
         this.containers = new GLib.Queue<MediaContainer> ();
         this.monitor = monitor;
         this.flag = flag;
@@ -143,12 +153,12 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
                 if (mtime > timestamp ||
                     info.get_size () != size) {
-                    this.files.offer (file);
+                    this.files.offer (new FileQueueEntry (file, true));
 
                     return true;
                 }
             } else {
-                this.files.offer (file);
+                this.files.offer (new FileQueueEntry (file, false));
 
                 return true;
             }
@@ -264,8 +274,8 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
         if (this.files.size > 0) {
             debug ("Scheduling file %s for meta-data extraction…",
-                   this.files.peek ().get_uri ());
-            this.extractor.extract (this.files.peek ());
+                   this.files.peek ().file.get_uri ());
+            this.extractor.extract (this.files.peek ().file);
         } else if (this.containers.get_length () > 0) {
             this.enumerate_directory.begin ();
         } else {
@@ -292,7 +302,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         }
 
         var entry = this.files.peek ();
-        if (entry == null || file != entry) {
+        if (entry == null || file != entry.file) {
             // this event may be triggered by another instance
             // just ignore it
            return;
@@ -312,10 +322,11 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
         if (item != null) {
             item.parent_ref = this.containers.peek_head ();
-            try {
-                this.cache.save_item (item);
-            } catch (Error error) {
-                // Ignore it for now
+            if (entry.known) {
+                (item as UpdatableObject).commit.begin ();
+            } else {
+                var container = item.parent as TrackableContainer;
+                container.add_child_tracked.begin (item);
             }
         }
 
@@ -325,7 +336,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
     private void on_extractor_error_cb (File file, Error error) {
         var entry = this.files.peek ();
-        if (entry == null || file != entry) {
+        if (entry == null || file != entry.file) {
             // this event may be triggered by another instance
             // just ignore it
             return;
