@@ -49,6 +49,7 @@ internal class Rygel.LastChange : Object {
 
     public void add_event (LastChangeEntry entry) {
         if (this.clear_on_add) {
+            this.clear_on_add = false;
             this.entries.clear ();
         }
         this.entries.add (entry);
