@@ -287,6 +287,9 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                 } catch (Error error) {};
             }
             parent.updated (parent);
+            try {
+                this.cache.save_container (parent);
+            } catch (Error error) { }
 
             this.completed ();
         }
@@ -322,11 +325,18 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
         if (item != null) {
             item.parent_ref = this.containers.peek_head ();
+            // This is only necessary to generate the poper <objAdd LastChange
+            // entry
             if (entry.known) {
                 (item as UpdatableObject).commit.begin ();
             } else {
                 var container = item.parent as TrackableContainer;
-                container.add_child_tracked.begin (item);
+                container.add_child_tracked.begin (item, () => {
+                    // save again to make sure we persist the update count
+                    try {
+                        cache.save_item (item);
+                    } catch (Error error) { }
+                }) ;
             }
         }
 
@@ -368,8 +378,14 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                 if (cache.get_child_count (container.id) > 0) {
                     var head = this.containers.peek_head ();
                     head.updated (head);
+                    cache.save_container (head);
                 } else {
-                    cache.remove_by_id (container.id);
+                    var parent = container.parent as TrackableContainer;
+                    parent.remove_child_tracked.begin (container, () => {
+                        try {
+                            MediaCache.get_default ().save_container (parent);
+                        } catch (Error error) { }
+                    });
                 }
             } catch (Error error) { }
             this.containers.pop_head ();

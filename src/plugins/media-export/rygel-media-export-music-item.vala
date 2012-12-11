@@ -25,7 +25,8 @@
  * and metadata extraction.
  */
 internal class Rygel.MediaExport.MusicItem : Rygel.MusicItem,
-                                             Rygel.UpdatableObject {
+                                             Rygel.UpdatableObject,
+                                             Rygel.TrackableItem {
     public int disc;
 
     public MusicItem (string         id,
@@ -36,6 +37,7 @@ internal class Rygel.MediaExport.MusicItem : Rygel.MusicItem,
     }
 
     public async void commit () throws Error {
+        this.changed ();
         var cache = MediaCache.get_default ();
         cache.save_item (this);
     }

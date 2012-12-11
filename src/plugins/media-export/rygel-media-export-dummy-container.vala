@@ -19,14 +19,18 @@
  */
 using Gee;
 
-internal class Rygel.MediaExport.DummyContainer : NullContainer {
+internal class Rygel.MediaExport.DummyContainer : TrackableDbContainer {
     public File file;
     public Gee.List<string> children;
 
     public DummyContainer (File           file,
                            MediaContainer parent) {
-        this.id = MediaCache.get_id (file);
-        this.title = file.get_basename ();
+        MediaCache cache = null;
+        try {
+            cache = MediaCache.get_default ();
+        } catch (Error error) { }
+
+        base (cache, MediaCache.get_id (file), file.get_basename ());
         this.parent_ref = parent;
         this.file = file;
         this.uris.add (file.get_uri ());

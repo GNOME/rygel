@@ -21,6 +21,7 @@
  */
 
 internal class Rygel.MediaExport.VideoItem : Rygel.VideoItem,
+                                             Rygel.TrackableItem,
                                              Rygel.UpdatableObject {
     public VideoItem (string         id,
                       MediaContainer parent,
@@ -30,6 +31,7 @@ internal class Rygel.MediaExport.VideoItem : Rygel.VideoItem,
     }
 
     public async void commit () throws Error {
+        this.changed ();
         var cache = MediaCache.get_default ();
         cache.save_item (this);
     }

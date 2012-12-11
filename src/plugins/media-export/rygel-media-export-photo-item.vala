@@ -21,7 +21,8 @@
  */
 
 internal class Rygel.MediaExport.PhotoItem : Rygel.PhotoItem,
-                                             Rygel.UpdatableObject {
+                                             Rygel.UpdatableObject,
+                                             Rygel.TrackableItem {
     public PhotoItem (string         id,
                       MediaContainer parent,
                       string         title,
@@ -30,8 +31,8 @@ internal class Rygel.MediaExport.PhotoItem : Rygel.PhotoItem,
     }
 
     public async void commit () throws Error {
+        this.changed ();
         var cache = MediaCache.get_default ();
         cache.save_item (this);
     }
-
 }
