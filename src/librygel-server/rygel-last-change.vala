@@ -30,7 +30,7 @@ internal class Rygel.LastChange : Object {
          "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" " +
          "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
          "xsi:schemaLocation=\"" +
-            "urn:schemas-upnp-org:av:cds-event" +
+            "urn:schemas-upnp-org:av:cds-event " +
             "http://www.upnp.org/schemas/av/cds-events.xsd\">";
 
     private const string FOOTER = "</StateEvent>";
