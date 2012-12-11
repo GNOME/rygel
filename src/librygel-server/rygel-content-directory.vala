@@ -96,6 +96,15 @@ internal class Rygel.ContentDirectory: Service {
         this.active_imports = new ArrayList<ImportResource> ();
         this.finished_imports = new ArrayList<ImportResource> ();
 
+        if (this.root_container is TrackableContainer) {
+            var trackable = this.root_container as TrackableContainer;
+            this.service_reset_token = trackable.get_service_reset_token ();
+            this.system_update_id = trackable.get_system_update_id ();
+        } else {
+            this.service_reset_token = UUID.get ();
+            this.system_update_id = 0;
+        }
+
         this.root_container.container_updated.connect (on_container_updated);
         this.root_container.sub_tree_updates_finished.connect
                                         (on_sub_tree_updates_finished);
@@ -115,15 +124,6 @@ internal class Rygel.ContentDirectory: Service {
             "xsi:schemaLocation=\"urn:schemas-upnp-org:av:avs" +
             "http://www.upnp.org/schemas/av/avs-v1-20060531.xsd\">" +
             "</Features>";
-
-        if (this.root_container is TrackableContainer) {
-            var trackable = this.root_container as TrackableContainer;
-            this.service_reset_token = trackable.get_service_reset_token ();
-            this.system_update_id = trackable.get_system_update_id ();
-        } else {
-            this.service_reset_token = UUID.get ();
-            this.system_update_id = 0;
-        }
 
         this.action_invoked["Browse"].connect (this.browse_cb);
         this.action_invoked["Search"].connect (this.search_cb);

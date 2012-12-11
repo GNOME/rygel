@@ -352,7 +352,28 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         var db = MediaCache.get_default ();
 
         base (db, "0", _("@REALNAME@'s media"));
+    }
 
+    private bool initialized = false;
+
+    public override uint32 get_system_update_id () {
+        var id = base.get_system_update_id ();
+        Idle.add (() => {
+            try {
+                this.init ();
+            } catch (Error error) { }
+
+            return false;
+        });
+
+        return id;
+    }
+
+    private void init () throws Error {
+        if (this.initialized)
+            return;
+
+        this.initialized = true;
         this.cancellable = new Cancellable ();
 
         try {
@@ -403,6 +424,9 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         }
 
         this.updated ();
+        try {
+            this.media_db.save_container (this);
+        } catch (Error error) { }
     }
 
     private void on_initial_harvesting_done () {
@@ -410,10 +434,16 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         this.media_db.debug_statistics ();
         this.add_default_virtual_folders ();
         this.updated ();
+        try {
+            this.media_db.save_container (this);
+        } catch (Error error) { }
 
         this.filesystem_container.container_updated.connect( () => {
             this.add_default_virtual_folders ();
             this.updated ();
+            try {
+                this.media_db.save_container (this);
+            } catch (Error error) { }
         });
     }
 
