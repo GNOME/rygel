@@ -319,4 +319,3 @@ namespace Rygel.MediaExport.ItemFactory {
         item.add_uri (file.get_uri ());
     }
 }
-

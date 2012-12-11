@@ -32,7 +32,7 @@ librygel_media_export_la_SOURCES = \
 	rygel-media-export-recursive-file-monitor.vala \
 	rygel-media-export-harvester.vala \
 	rygel-media-export-harvesting-task.vala \
-	rygel-media-export-item.vala \
+	rygel-media-export-item-factory.vala \
 	rygel-media-export-jpeg-writer.vala \
 	rygel-media-export-object-factory.vala \
 	rygel-media-export-writable-db-container.vala \
