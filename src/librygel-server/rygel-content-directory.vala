@@ -119,8 +119,10 @@ internal class Rygel.ContentDirectory: Service {
         if (this.root_container is TrackableContainer) {
             var trackable = this.root_container as TrackableContainer;
             this.service_reset_token = trackable.get_service_reset_token ();
+            this.system_update_id = trackable.get_system_update_id ();
         } else {
             this.service_reset_token = UUID.get ();
+            this.system_update_id = 0;
         }
 
         this.action_invoked["Browse"].connect (this.browse_cb);

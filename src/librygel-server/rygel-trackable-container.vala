@@ -86,6 +86,15 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
      */
     public virtual void set_service_reset_token (string token) {}
 
+    /**
+     * Query the current system update id.
+     * This should be overriden by the root container of the back-end
+     * implementation.
+     *
+     * @return: the current SystemUpdateID as persisted by the back-end.
+     */
+    public virtual uint32 get_system_update_id () { return 0; }
+
     private void thaw_events () {
         // Forward events.
     }
