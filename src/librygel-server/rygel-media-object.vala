@@ -49,7 +49,7 @@ public abstract class Rygel.MediaObject : GLib.Object {
     // and make the uri property single-value.
     public Gee.ArrayList<string> uris;
 
-    // You can keep both a unowned and owned ref to parent of this MediaObject.
+    // You can keep both an unowned and owned ref to parent of this MediaObject.
     // In most cases, one will only need to keep an unowned ref to avoid cyclic
     // references since usually the parent container will keep refs to child items.
     // However, in some cases, one only wants the parent to exist as long as the

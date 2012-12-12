@@ -117,7 +117,7 @@ internal class Rygel.MediaExport.DatabaseCursor : SqliteWrapper {
     // convenience functions for "foreach"
 
     /**
-     * Return a iterator to the cursor to use with foreach
+     * Return an iterator to the cursor to use with foreach
      *
      * @return an iterator wrapping the cursor
      */

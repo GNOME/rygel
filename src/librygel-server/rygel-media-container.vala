@@ -88,7 +88,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
     public uint32 update_id;
     public int64 storage_used;
 
-    // This is a uint32 in UPnP. SystemUpdateID should reach uint32.MAX way
+    // This is an uint32 in UPnP. SystemUpdateID should reach uint32.MAX way
     // before this variable and cause a SystemResetProcedure.
     public int64 total_deleted_child_count;
 

@@ -263,7 +263,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
      * search for a container if the caller supplied the "DLNA.ORG_AnyContainer"
      * id.
      *
-     * @return a instance of WritableContainer matching the criteria
+     * @return an instance of WritableContainer matching the criteria
      * @throws ContentDirectoryError for various problems
      */
     private async WritableContainer fetch_container () throws Error {
