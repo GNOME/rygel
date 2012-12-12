@@ -91,7 +91,7 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
      * This should be overriden by the root container of the back-end
      * implementation.
      *
-     * @return: the current SystemUpdateID as persisted by the back-end.
+     * @return the current SystemUpdateID as persisted by the back-end.
      */
     public virtual uint32 get_system_update_id () { return 0; }
 
