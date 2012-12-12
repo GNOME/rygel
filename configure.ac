@@ -225,16 +225,20 @@ if test x$try_ui = xyes ; then
     PKG_CHECK_MODULES([RYGEL_UI_DEPS], [$RYGEL_BASE_MODULES gtk+-3.0 >= $GTK_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED gee-0.8 >= $GEE_REQUIRED],
       [
         RYGEL_CHECK_PACKAGES([gtk+-3.0], [HAVE_GTK=yes])
+        RYGEL_UI_DEPS_VALAFLAGS="$RYGEL_BASE_MODULES_VALAFLAGS --pkg gtk+-3.0 --pkg gssdp-1.0 --pkg gee-0.8"
+        AC_SUBST([RYGEL_UI_DEPS_VALAFLAGS])
+
+        PKG_CHECK_MODULES([EXAMPLE_UI_DEPS],
+                          [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED
+                           gssdp-1.0 >= $GSSDP_REQUIRED
+                           gstreamer-video-1.0 >= $GSTREAMER_REQUIRED
+                           gtk+-3.0 >= $GTK_REQUIRED])
       ],
       [
         AC_MSG_WARN([UI dependencies not found.])
         AC_MSG_WARN([UI applications will not be built.])
       ])
 
-    RYGEL_UI_DEPS_VALAFLAGS="$RYGEL_BASE_MODULES_VALAFLAGS --pkg gtk+-3.0 --pkg gssdp-1.0 --pkg gee-0.8"
-    AC_SUBST([RYGEL_UI_DEPS_VALAFLAGS])
-
-    PKG_CHECK_MODULES([EXAMPLE_UI_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED gstreamer-video-1.0 >= $GSTREAMER_REQUIRED gtk+-3.0 >= $GTK_REQUIRED])
 else
     AC_MSG_NOTICE([UI applications disabled.])
 fi
