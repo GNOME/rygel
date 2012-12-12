@@ -4,7 +4,7 @@ plugin_LTLIBRARIES = librygel-example-renderer-plugin-c.la
 
 librygel_example_renderer_plugin_c_la_SOURCES = \
 	example-renderer-plugin.h \
-	example-renderer-plugin.h \
+	example-renderer-plugin.c \
 	example-player.h \
 	example-player.c
 

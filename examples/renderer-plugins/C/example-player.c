@@ -86,6 +86,9 @@ rygel_example_player_real_get_duration (RygelMediaPlayer *base);
 static gint64
 rygel_example_player_real_get_position (RygelMediaPlayer *base);
 
+static gboolean
+rygel_example_player_real_get_can_seek (RygelMediaPlayer *base);
+
 static void
 _rygel_example_player_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 
@@ -115,17 +118,8 @@ static const gchar* RYGEL_EXAMPLE_PLAYER_PROTOCOLS[] = {"http-get", NULL};
 static const gchar* RYGEL_EXAMPLE_PLAYER_MIME_TYPES[] = {"image/jpeg", "image/png", NULL};
 
 RygelExamplePlayer*
-rygel_example_player_construct (GType object_type) {
-  RygelExamplePlayer *self;
-
- 
-  return self;
-}
-
-
-RygelExamplePlayer*
 rygel_example_player_new (void) {
-  return rygel_example_player_construct (RYGEL_EXAMPLE_TYPE_PLAYER);
+    return g_object_new (RYGEL_EXAMPLE_TYPE_PLAYER, NULL);
 }
 
 
@@ -148,6 +142,7 @@ rygel_example_player_rygel_media_player_interface_init (RygelMediaPlayerIface *i
   iface->set_volume = rygel_example_player_real_set_volume;
   iface->get_duration = rygel_example_player_real_get_duration;
   iface->get_position = rygel_example_player_real_get_position;
+  iface->get_can_seek = rygel_example_player_real_get_can_seek;
 }
 
 static void
@@ -241,7 +236,9 @@ rygel_example_player_class_init (RygelExamplePlayerClass *klass) {
 
 static void
 rygel_example_player_init (RygelExamplePlayer *self) {
-  self->priv = RYGEL_EXAMPLE_PLAYER_GET_PRIVATE (self);
+  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
+                                            RYGEL_EXAMPLE_TYPE_PLAYER,
+                                            RygelExamplePlayerPrivate);
 
   self->priv->_playback_state = g_strdup ("NO_MEDIA_PRESENT");
   self->priv->_uri = NULL;
@@ -414,6 +411,12 @@ rygel_example_player_real_get_position (RygelMediaPlayer *base) {
   return self->priv->_position;
 }
 
+static gboolean
+rygel_example_player_real_get_can_seek (RygelMediaPlayer *base) {
+    return FALSE;
+}
+
+
 static void
 _rygel_example_player_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec) {
   RygelMediaPlayer *base = RYGEL_MEDIA_PLAYER (object);
@@ -444,7 +447,7 @@ _rygel_example_player_get_property (GObject *object, guint property_id, GValue *
       g_value_set_int64 (value, rygel_media_player_get_position (base));
       break;
     case RYGEL_EXAMPLE_PLAYER_CAN_SEEK:
-      g_value_set_boolean (value, FALSE);
+      g_value_set_boolean (value, rygel_media_player_get_can_seek (base));
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
