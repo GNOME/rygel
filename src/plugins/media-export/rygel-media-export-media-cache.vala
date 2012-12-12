@@ -876,6 +876,12 @@ public class Rygel.MediaExport.MediaCache : Object {
             case "rygel:originalVolumeNumber":
                 column = "m.disc";
                 break;
+            case "upnp:objectUpdateID":
+                column = "o.object_update_id";
+                break;
+            case "upnp:containerUpdateID":
+                column = "o.container_update_id";
+                break;
             default:
                 var message = "Unsupported column %s".printf (operand);
 
