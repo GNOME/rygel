@@ -30,7 +30,9 @@ enum  {
   RYGEL_EXAMPLE_PLAYER_CONTENT_FEATURES,
   RYGEL_EXAMPLE_PLAYER_VOLUME,
   RYGEL_EXAMPLE_PLAYER_DURATION,
-  RYGEL_EXAMPLE_PLAYER_POSITION
+  RYGEL_EXAMPLE_PLAYER_POSITION,
+  RYGEL_EXAMPLE_PLAYER_PLAYBACK_SPEED,
+  RYGEL_EXAMPLE_PLAYER_ALLOWED_PLAYBACK_SPEEDS
 };
 
 static void rygel_example_player_rygel_media_player_interface_init (RygelMediaPlayerIface  *iface);
@@ -89,6 +91,15 @@ rygel_example_player_real_get_position (RygelMediaPlayer *base);
 static gboolean
 rygel_example_player_real_get_can_seek (RygelMediaPlayer *base);
 
+static gchar **
+rygel_example_player_real_get_allowed_playback_speeds (RygelMediaPlayer *base, int *length);
+
+static void
+rygel_example_player_real_set_playback_speed (RygelMediaPlayer *base, const char *speed);
+
+static gchar *
+rygel_example_player_real_get_playback_speed (RygelMediaPlayer *base);
+
 static void
 _rygel_example_player_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 
@@ -112,6 +123,7 @@ struct _RygelExamplePlayerPrivate {
   gdouble _volume;
   gint64 _duration;
   gint64 _position;
+  gchar *playback_speed;
 };
 
 static const gchar* RYGEL_EXAMPLE_PLAYER_PROTOCOLS[] = {"http-get", NULL};
@@ -143,6 +155,9 @@ rygel_example_player_rygel_media_player_interface_init (RygelMediaPlayerIface *i
   iface->get_duration = rygel_example_player_real_get_duration;
   iface->get_position = rygel_example_player_real_get_position;
   iface->get_can_seek = rygel_example_player_real_get_can_seek;
+  iface->get_allowed_playback_speeds = rygel_example_player_real_get_allowed_playback_speeds;
+  iface->get_playback_speed = rygel_example_player_real_get_playback_speed;
+  iface->set_playback_speed = rygel_example_player_real_set_playback_speed;
 }
 
 static void
@@ -232,6 +247,22 @@ rygel_example_player_class_init (RygelExamplePlayerClass *klass) {
       G_MAXINT64,
       0,
       G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE));
+
+  g_object_class_install_property (gobject_class,
+    RYGEL_EXAMPLE_PLAYER_PLAYBACK_SPEED,
+    g_param_spec_string ("playback-speed",
+      "playback-speed",
+      "playback-speed",
+      "1",
+      G_PARAM_STATIC_STRINGS | G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+    RYGEL_EXAMPLE_PLAYER_ALLOWED_PLAYBACK_SPEEDS,
+    g_param_spec_boxed ("allowed-playback-speeds",
+      "allowed-playback-speeds",
+      "allowed-playback-speeds",
+      G_TYPE_STRV,
+      G_PARAM_STATIC_STRINGS | G_PARAM_READABLE));
 }
 
 static void
@@ -248,6 +279,7 @@ rygel_example_player_init (RygelExamplePlayer *self) {
   self->priv->_volume = 0;
   self->priv->_duration = 0;
   self->priv->_position = 0;
+  self->priv->playback_speed = g_strdup ("1");
 }
 
 
@@ -416,6 +448,38 @@ rygel_example_player_real_get_can_seek (RygelMediaPlayer *base) {
     return FALSE;
 }
 
+static gchar **
+rygel_example_player_real_get_allowed_playback_speeds (RygelMediaPlayer *base, int *length)
+{
+    if (length != NULL) {
+        *length = 6;
+    }
+
+    return g_strsplit ("-1,-1/2,1/2,1,2,4", ",", -1);
+}
+
+static void
+rygel_example_player_real_set_playback_speed (RygelMediaPlayer *base,
+                                              const char *speed)
+{
+  RygelExamplePlayer *self = RYGEL_EXAMPLE_PLAYER (base);
+
+  if (self->priv->playback_speed != NULL) {
+    g_free (self->priv->playback_speed);
+  }
+
+  self->priv->playback_speed = g_strdup (speed);
+
+  g_object_notify (G_OBJECT (self), "playback-speed");
+}
+
+static gchar *
+rygel_example_player_real_get_playback_speed (RygelMediaPlayer *base)
+{
+  RygelExamplePlayer *self = RYGEL_EXAMPLE_PLAYER (base);
+
+  return g_strdup (self->priv->playback_speed);
+}
 
 static void
 _rygel_example_player_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec) {
@@ -449,6 +513,16 @@ _rygel_example_player_get_property (GObject *object, guint property_id, GValue *
     case RYGEL_EXAMPLE_PLAYER_CAN_SEEK:
       g_value_set_boolean (value, rygel_media_player_get_can_seek (base));
       break;
+    case RYGEL_EXAMPLE_PLAYER_PLAYBACK_SPEED:
+      g_value_take_string (value, rygel_media_player_get_playback_speed (base));
+      break;
+    case RYGEL_EXAMPLE_PLAYER_ALLOWED_PLAYBACK_SPEEDS:
+      {
+        int length;
+
+        g_value_take_boxed (value, rygel_media_player_get_allowed_playback_speeds (base, &length));
+      }
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
@@ -478,6 +552,9 @@ _rygel_example_player_set_property (GObject *object, guint property_id, const GV
       break;
     case RYGEL_EXAMPLE_PLAYER_VOLUME:
       rygel_media_player_set_volume (base, g_value_get_double (value));
+      break;
+    case RYGEL_EXAMPLE_PLAYER_PLAYBACK_SPEED:
+      rygel_media_player_set_playback_speed (base, g_value_get_string (value));
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
