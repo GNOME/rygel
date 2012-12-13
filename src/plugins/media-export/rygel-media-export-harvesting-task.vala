@@ -194,13 +194,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         } else {
             // Check if the file needs to be harvested at all either because
             // it is denied by filter or it hasn't updated
-            if (info.get_content_type ().has_prefix ("image/") ||
-                info.get_content_type ().has_prefix ("video/") ||
-                info.get_content_type ().has_prefix ("audio/") ||
-                info.get_content_type () == "application/ogg" ||
-                info.get_content_type () == "application/xml" ||
-                info.get_content_type () == "text/xml" ||
-                info.get_content_type () == "text/plain") {
+            if (Harvester.is_eligible (info)) {
                 return this.push_if_changed_or_unknown (file, info);
             }
 

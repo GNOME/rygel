@@ -64,6 +64,22 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
     }
 
     /**
+     * Check if a FileInfo is considered for extraction
+     *
+     * @param info a FileInfo
+     * @return true if file should be extracted, false otherwise
+     */
+    public static bool is_eligible (FileInfo info) {
+        return info.get_content_type ().has_prefix ("image/") ||
+               info.get_content_type ().has_prefix ("video/") ||
+               info.get_content_type ().has_prefix ("audio/") ||
+               info.get_content_type () == "application/ogg" ||
+               info.get_content_type () == "application/xml" ||
+               info.get_content_type () == "text/xml" ||
+               info.get_content_type () == "text/plain";
+    }
+
+    /**
      * Put a file on queue for meta-data extraction
      *
      * @param file the file to investigate
@@ -153,13 +169,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                                         FileQueryInfoFlags.NONE,
                                         this.cancellable);
             if (info.get_file_type () == FileType.DIRECTORY ||
-                info.get_content_type ().has_prefix ("image/") ||
-                info.get_content_type ().has_prefix ("video/") ||
-                info.get_content_type ().has_prefix ("audio/") ||
-                info.get_content_type () == "application/ogg" ||
-                info.get_content_type () == "application/xml" ||
-                info.get_content_type () == "text/xml" ||
-                info.get_content_type () == "text/plain") {
+                Harvester.is_eligible (info)) {
                 string id;
                 try {
                     MediaContainer parent_container = null;
