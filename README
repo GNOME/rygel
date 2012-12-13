@@ -54,7 +54,6 @@ Requirements
       * libuuid
       * libsoup
       * vala (not if building from release tarballs)
-      * gupnp-vala (not if building from release tarballs)
     * Preferences UI:
       * gtk+
     * MediaExport:
