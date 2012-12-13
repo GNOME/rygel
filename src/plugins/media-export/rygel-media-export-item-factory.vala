@@ -70,6 +70,16 @@ namespace Rygel.MediaExport.ItemFactory {
                 return null;
             }
 
+            /* Do some heuristic check if this file looks like XML */
+            var i = 0;
+            while (((char) contents[i]).isspace () && i < contents.length) {
+                i++;
+            }
+
+            if (contents[i] != '<') {
+                return null;
+            }
+
             var didl_s = new MediaCollection.from_string ((string) contents);
             var author = didl_s.author;
             var title = didl_s.title;
