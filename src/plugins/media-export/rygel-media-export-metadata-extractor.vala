@@ -72,8 +72,8 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         }
     }
 
-    public void extract (File file) {
-        if (this.extract_metadata) {
+    public void extract (File file, string content_type) {
+        if (this.extract_metadata && !content_type.has_prefix ("text/")) {
             string uri = file.get_uri ();
             this.file_hash.set (uri, file);
             var gst_timeout = (ClockTime) (this.timeout * Gst.SECOND);

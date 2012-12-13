@@ -24,10 +24,12 @@ using Gee;
 internal class FileQueueEntry {
     public File file;
     public bool known;
+    public string content_type;
 
-    public FileQueueEntry (File file, bool known) {
+    public FileQueueEntry (File file, bool known, string content_type) {
         this.file = file;
         this.known = known;
+        this.content_type = content_type;
     }
 }
 
@@ -153,12 +155,18 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
                 if (mtime > timestamp ||
                     info.get_size () != size) {
-                    this.files.offer (new FileQueueEntry (file, true));
+                    var entry = new FileQueueEntry (file,
+                                                    true,
+                                                    info.get_content_type ());
+                    this.files.offer (entry);
 
                     return true;
                 }
             } else {
-                this.files.offer (new FileQueueEntry (file, false));
+                var entry = new FileQueueEntry (file,
+                                                true,
+                                                info.get_content_type ());
+                this.files.offer (entry);
 
                 return true;
             }
@@ -269,7 +277,8 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         if (this.files.size > 0) {
             debug ("Scheduling file %s for meta-data extraction…",
                    this.files.peek ().file.get_uri ());
-            this.extractor.extract (this.files.peek ().file);
+            this.extractor.extract (this.files.peek ().file,
+                                    this.files.peek ().content_type);
         } else if (this.containers.get_length () > 0) {
             this.enumerate_directory.begin ();
         } else {
