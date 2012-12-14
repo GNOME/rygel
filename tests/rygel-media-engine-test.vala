@@ -333,6 +333,20 @@ public class Rygel.DataSourceTest : Object {
     // data again
     private void test_multiple_freeze () {
         debug ("test_multiple_freeze");
+
+        try {
+            if (MetaConfig.get_default ().get_media_engine () ==
+                                            "librygel-media-engine-gst.so") {
+                message ("Skipping double-freeze test for gst engine.");
+
+                return;
+            }
+        } catch (Error error) {
+            // Config should be set and valid here. If not, something is quite
+            // wrong in the test.
+            assert_not_reached ();
+        }
+
         var source = MediaEngine.get_default ().create_data_source
                                         (this.test_data_file.get_uri ());
         // Sources should support file:// urls
