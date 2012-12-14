@@ -1,3 +1,75 @@
+0.17.5
+======
+
+A new unstable release for Rygel
+
+Changes compared to 0.17.4:
+
+- Correctly announce "content-synchronization" DLNA capability if supported.
+- Move some public classes to GObject-style construction.
+- Drop some obsolete code.
+- Large refactoring and clean-up of the build setup.
+
+Renderer:
+ - Fix issue with internal plug-in in librygel-renderer.
+ - Delay creation of the PlayerController. This fixes a critical in the
+   wrapping GStreamer renderer.
+ - Fix an issue with X_DLNA_SeekTime being always available, even for images.
+ - Fix a typo in the initial state variable notify.
+ - Add renderer-side PlaySpeed support.
+
+Server:
+ - Fix issue with ServiceResetToken being regenerated at each start.
+ - Fix issue with missing search capabilities when the plug-in supports change
+   tracking.
+ - Fix schema location in generated LastChange XML.
+ - Fix issue where only the most recent LastChange event was added to the
+   LastChange XML.
+ - Fix an issue with default parameter set to "this" being ambigous.
+ - Get the SystemUpdateID from the back-end when it supports change tracking.
+
+GStreamer renderer:
+ - Base RygelPlaybinRenderer on RygelMediaRenderer instead of directly
+   extending RygelMediaDevice.
+ - Move the plugin class back into the Playbin plugin.
+
+Examples:
+ - Add a fullscreen renderer.
+ - Fix C renderer plugin example to actually work.
+
+Tests:
+ - Massive overall improvements to drop deprecated Vala constructs, unused and
+   unreachable code to make it possible to compile them with strict valac.
+ - Disable one test for GStreamer media engine.
+
+MediaExport:
+ - Implement tracking of changes.
+ - Persist ServiceResetToken.
+ - Persist systemUpdateID, containerUpdateID and totalDeletedChildCount.
+ - Some file renaming to match coding style.
+ - Don't try to parse each and every text file.
+ - Don't run gst-discoverer on text files.
+
+Docs:
+ - Various updates.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=689603
+ - https://bugzilla.gnome.org/show_bug.cgi?id=689134
+ - https://bugzilla.gnome.org/show_bug.cgi?id=689135
+ - https://bugzilla.gnome.org/show_bug.cgi?id=689960
+ - https://bugzilla.gnome.org/show_bug.cgi?id=690056
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  Murray Cumming <murrayc@murrayc.com>
+  Regis Merlino <regis.merlino@intel.com>
+  Dr.T.Vasudevan <drtvasudevan@gmail.com>
+  Christophe Guiraud <christophe.guiraud@intel.com>
+
+Added/updated translations
+ - ta, courtesy of Dr.T.Vasudevan
+
 0.17.4
 ======
 
