@@ -39,6 +39,7 @@ src/librygel-renderer/rygel-changelog.c
 src/librygel-renderer/rygel-media-player.c
 src/librygel-renderer/rygel-media-renderer.c
 src/librygel-renderer/rygel-media-renderer-plugin.c
+src/librygel-renderer/rygel-player-controller.c
 src/librygel-renderer/rygel-rendering-control.c
 src/librygel-renderer/rygel-sink-connection-manager.c
 src/librygel-renderer/rygel-time-utils.c
@@ -50,6 +51,7 @@ src/librygel-server/rygel-content-directory.c
 src/librygel-server/rygel-data-sink.c
 src/librygel-server/rygel-data-source.c
 src/librygel-server/rygel-dbus-thumbnailer.c
+src/librygel-server/rygel-dlna-profile.c
 src/librygel-server/rygel-engine-loader.c
 src/librygel-server/rygel-http-byte-seek.c
 src/librygel-server/rygel-http-get.c
@@ -70,6 +72,12 @@ src/librygel-server/rygel-item-creator.c
 src/librygel-server/rygel-item-destroyer.c
 src/librygel-server/rygel-item-removal-queue.c
 src/librygel-server/rygel-item-updater.c
+src/librygel-server/rygel-last-change.c
+src/librygel-server/rygel-last-change-entry.c
+src/librygel-server/rygel-last-change-obj-add.c
+src/librygel-server/rygel-last-change-obj-del.c
+src/librygel-server/rygel-last-change-obj-mod.c
+src/librygel-server/rygel-last-change-st-done.c
 src/librygel-server/rygel-logical-expression.c
 src/librygel-server/rygel-media-art-store.c
 src/librygel-server/rygel-media-container.c
@@ -84,19 +92,24 @@ src/librygel-server/rygel-media-server-plugin.c
 src/librygel-server/rygel-music-item.c
 src/librygel-server/rygel-panasonic-hacks.c
 src/librygel-server/rygel-photo-item.c
+src/librygel-server/rygel-playlist-item.c
 src/librygel-server/rygel-relational-expression.c
 src/librygel-server/rygel-searchable-container.c
 src/librygel-server/rygel-search.c
 src/librygel-server/rygel-search-criteria-parser.c
 src/librygel-server/rygel-search-expression.c
+src/librygel-server/rygel-serializer.c
 src/librygel-server/rygel-simple-container.c
 src/librygel-server/rygel-source-connection-manager.c
 src/librygel-server/rygel-subtitle.c
 src/librygel-server/rygel-subtitle-manager.c
 src/librygel-server/rygel-thumbnail.c
 src/librygel-server/rygel-thumbnailer.c
+src/librygel-server/rygel-trackable-container.c
+src/librygel-server/rygel-trackable-item.c
 src/librygel-server/rygel-transcode-manager.c
 src/librygel-server/rygel-transcoder.c
+src/librygel-server/rygel-updatable-object.c
 src/librygel-server/rygel-v1-hacks.c
 src/librygel-server/rygel-video-item.c
 src/librygel-server/rygel-visual-item.c
@@ -142,7 +155,7 @@ src/plugins/media-export/rygel-media-export-dbus-service.c
 src/plugins/media-export/rygel-media-export-dummy-container.c
 src/plugins/media-export/rygel-media-export-harvester.c
 src/plugins/media-export/rygel-media-export-harvesting-task.c
-src/plugins/media-export/rygel-media-export-item.c
+src/plugins/media-export/rygel-media-export-item-factory.c
 src/plugins/media-export/rygel-media-export-jpeg-writer.c
 src/plugins/media-export/rygel-media-export-leaf-query-container.c
 src/plugins/media-export/rygel-media-export-media-cache.c
@@ -152,6 +165,8 @@ src/plugins/media-export/rygel-media-export-music-item.c
 src/plugins/media-export/rygel-media-export-node-query-container.c
 src/plugins/media-export/rygel-media-export-null-container.c
 src/plugins/media-export/rygel-media-export-object-factory.c
+src/plugins/media-export/rygel-media-export-photo-item.c
+src/plugins/media-export/rygel-media-export-playlist-item.c
 src/plugins/media-export/rygel-media-export-plugin.c
 src/plugins/media-export/rygel-media-export-query-container.c
 src/plugins/media-export/rygel-media-export-query-container-factory.c
@@ -161,6 +176,8 @@ src/plugins/media-export/rygel-media-export-sql-factory.c
 src/plugins/media-export/rygel-media-export-sql-function.c
 src/plugins/media-export/rygel-media-export-sqlite-wrapper.c
 src/plugins/media-export/rygel-media-export-sql-operator.c
+src/plugins/media-export/rygel-media-export-trackable-db-container.c
+src/plugins/media-export/rygel-media-export-video-item.c
 src/plugins/media-export/rygel-media-export-writable-db-container.c
 src/plugins/mediathek/rygel-mediathek-asx-playlist-parser.c
 src/plugins/mediathek/rygel-mediathek-mov-playlist-parser.c
@@ -224,6 +241,7 @@ tests/rygel-configuration.c
 tests/rygel-data-sink_http-response.c
 tests/rygel-data-source.c
 tests/rygel-data-source_http-response.c
+tests/rygel-dlna-profile.c
 tests/rygel-environment-test.c
 tests/rygel-http-byte-seek.c
 tests/rygel-http-byte-seek_http-get.c
@@ -259,6 +277,7 @@ tests/rygel-relational-expression.c
 tests/rygel-searchable-container.c
 tests/rygel-searchable-container-test.c
 tests/rygel-search-expression.c
+tests/rygel-serializer_item-creator.c
 tests/rygel-state-machine_http-get.c
 tests/rygel-state-machine_http-post.c
 tests/rygel-state-machine_http-response.c
