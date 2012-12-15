@@ -31,7 +31,7 @@ using Gee;
  */
 internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
     private static string RYGEL_PREFIX = "RYGEL";
-    private static string TITLE_KEY = RYGEL_PREFIX + "_TITLE";
+    private static string TITLE_KEY = "TITLE";
     private static string DISABLE_PREFIX = RYGEL_PREFIX + "_DISABLE";
     private static string ENABLED_KEY = "ENABLED";
     private static string INTERFACE_ENV = RYGEL_PREFIX + "_IFACE";
@@ -113,14 +113,14 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
     }
 
     public string get_title (string section) throws GLib.Error {
-        return this.get_string (RYGEL_PREFIX + "_" + section, TITLE_KEY);
+        return this.get_string (section, TITLE_KEY);
     }
 
     public string get_string (string section,
                               string key) throws GLib.Error {
         return this.get_string_variable (RYGEL_PREFIX + "_" +
                                          section.up () + "_"  +
-                                         key.up ());
+                                         key.up ().replace ("-", "_"));
     }
 
     public Gee.ArrayList<string> get_string_list (string section,
@@ -141,7 +141,8 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
                         int    max)
                         throws GLib.Error {
         return this.get_int_variable (RYGEL_PREFIX + "_" +
-                                      section.up () + "_"  + key,
+                                      section.up () + "_"  +
+                                      key.up ().replace ("-","_"),
                                       min,
                                       max);
     }
@@ -163,7 +164,7 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
                           throws GLib.Error {
         return this.get_bool_variable (RYGEL_PREFIX + "_" +
                                        section.up () + "_"  +
-                                       key);
+                                       key.up ().replace ("-","_"));
     }
 
     private string get_string_variable (string variable) throws GLib.Error {
