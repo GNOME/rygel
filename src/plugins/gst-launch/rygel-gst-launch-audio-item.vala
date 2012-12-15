@@ -25,8 +25,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Gst;
-
 /**
  * Audio item that serves data from a gst-launch commandline.
  */
@@ -45,15 +43,6 @@ public class Rygel.GstLaunch.AudioItem : Rygel.AudioItem, Item {
     }
 
     public override DataSource? create_stream_source (string? host_ip) {
-        var engine = MediaEngine.get_default ();
-        var gst_engine = engine as GstMediaEngine;
-        if (gst_engine == null) {
-            warning ("The current media engine is not based on GStreamer.");
-
-            return null;
-        }
-
-        return gst_engine.create_data_source_from_element
-                                        (this.create_source ());
+        return this.create_source ();
     }
 }

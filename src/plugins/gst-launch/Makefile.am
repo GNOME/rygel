@@ -7,8 +7,7 @@ librygel_gst_launch_la_SOURCES = \
 	rygel-gst-launch-root-container.vala \
 	rygel-gst-launch-item.vala \
 	rygel-gst-launch-audio-item.vala \
-	rygel-gst-launch-video-item.vala \
-	$(top_srcdir)/src/media-engines/gstreamer/rygel-media-engine-gst.vapi
+	rygel-gst-launch-video-item.vala
 
 librygel_gst_launch_la_VALAFLAGS = \
 	--enable-experimental \
@@ -18,7 +17,6 @@ librygel_gst_launch_la_VALAFLAGS = \
 librygel_gst_launch_la_CFLAGS = \
 	$(RYGEL_PLUGIN_GST_LAUNCH_DEPS_CFLAGS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_CFLAGS) \
-	-I$(top_srcdir)/src/media-engines/gstreamer \
 	-DG_LOG_DOMAIN='"GstLaunch"'
 librygel_gst_launch_la_LIBADD = \
 	$(RYGEL_PLUGIN_GST_LAUNCH_DEPS_LIBS) \

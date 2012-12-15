@@ -23,22 +23,16 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Gst;
-
 /**
  * Item that serves data from a gst-launch commandline.
  */
 public interface Rygel.GstLaunch.Item : Rygel.MediaItem {
     public abstract string launch_line { get; protected set; }
 
-    protected Element? create_source () {
-        try {
-          return Gst.parse_bin_from_description (this.launch_line, true);
-        } catch (Error err) {
-          warning ("parse launchline failed: %s", err.message);
+    protected DataSource? create_source () {
+        var engine = MediaEngine.get_default ();
 
-          return null;
-        }
+        return engine.create_data_source ("gst-launch://" + this.launch_line);
     }
 }
 

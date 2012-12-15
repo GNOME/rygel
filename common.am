@@ -105,7 +105,7 @@ RYGEL_COMMON_VALAFLAGS = \
 	$(COVERAGE_VALAFLAGS)
 
 
-RYGEL_PLUGIN_LINKER_FLAGS = -shared -fPIC -module -avoid-version
+RYGEL_PLUGIN_LINKER_FLAGS = -shared -fPIC -module -avoid-version -Wl,-z,defs
 
 vala-clean:
 	rm -f `find . -name "*.stamp"`

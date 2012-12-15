@@ -165,8 +165,8 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
         RYGEL_ADD_PLUGIN([gst-launch],[GStreamer launchline],[no])
         AS_IF([test "x$enable_gst_launch_plugin" = "xyes"],
           [
-            PKG_CHECK_MODULES([RYGEL_PLUGIN_GST_LAUNCH_DEPS], [$RYGEL_COMMON_MODULES gstreamer-1.0 >= $GSTREAMER_REQUIRED])
-            RYGEL_PLUGIN_GST_LAUNCH_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gstreamer-1.0"
+            PKG_CHECK_MODULES([RYGEL_PLUGIN_GST_LAUNCH_DEPS], [$RYGEL_COMMON_MODULES])
+            RYGEL_PLUGIN_GST_LAUNCH_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS"
             AC_SUBST([RYGEL_PLUGIN_GST_LAUNCH_DEPS_VALAFLAGS])
           ])
 

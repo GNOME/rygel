@@ -45,7 +45,15 @@ internal abstract class Rygel.GstUtils {
 
     public static Element? create_source_for_uri (string uri) {
         try {
-            dynamic Element src = Element.make_from_uri (URIType.SRC, uri, null);
+            dynamic Element src;
+
+            if (uri.has_prefix ("gst-launch://")) {
+                var description = uri.replace ("gst-launch://", "");
+
+                src = Gst.parse_bin_from_description (description, true);
+            } else {
+                src = Element.make_from_uri (URIType.SRC, uri, null);
+            }
 
             if (src.get_class ().find_property ("blocksize") != null) {
                 // The default is usually 4KiB which is not really big enough

@@ -20,11 +20,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Rygel;
-using GUPnP;
-using Gee;
-using Gst;
-
 /**
  * Represents the root container for GstLaunch content hierarchy.
  */
