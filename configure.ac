@@ -100,7 +100,11 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
         enable_gstreamer="yes"
         BUILT_ENGINES="$BUILT_ENGINES;librygel-media-engine-gst"
 
-        PKG_CHECK_MODULES([RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS], [$RYGEL_COMMON_MODULES gstreamer-pbutils-1.0 >= $GSTPBU_REQUIRED gupnp-dlna-1.1 >= $GUPNP_DLNA_REQUIRED])
+        PKG_CHECK_MODULES([RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS],
+                          [$RYGEL_COMMON_MODULES
+                           gstreamer-pbutils-1.0 >= $GSTPBU_REQUIRED
+                           gupnp-dlna-1.1 >= $GUPNP_DLNA_REQUIRED
+                           gio-2.0 >= GIO_REQUIRED])
         RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gstreamer-base-1.0 --pkg gstreamer-pbutils-1.0 --pkg gupnp-dlna-1.1"
         AC_SUBST([RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_VALAFLAGS])
 
@@ -128,7 +132,11 @@ AS_IF([test "x$enable_mpris_plugin" = "xyes"],
 RYGEL_ADD_PLUGIN([mediathek],[ZDF Mediathek],[no])
 AS_IF([test "x$enable_mediathek_plugin" = "xyes"],
   [
-    PKG_CHECK_MODULES([RYGEL_PLUGIN_MEDIATHEK_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED libsoup-2.4 >= $LIBSOUP_REQUIRED])
+    PKG_CHECK_MODULES([RYGEL_PLUGIN_MEDIATHEK_DEPS],
+                      [$RYGEL_COMMON_MODULES
+                       gio-2.0 >= $GIO_REQUIRED
+                       libsoup-2.4 >= $LIBSOUP_REQUIRED
+                       libxml-2.0 >= $LIBXML_REQUIRED])
   ])
 
 AS_IF([test "x$with_media_engine" = "xgstreamer"],
@@ -142,7 +150,14 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
         RYGEL_ADD_PLUGIN([media-export],[MediaExport],[yes])
         AS_IF([test "x$enable_media_export_plugin" = "xyes"],
           [
-            PKG_CHECK_MODULES([RYGEL_PLUGIN_MEDIA_EXPORT_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED gupnp-dlna-1.1 >= $GUPNP_DLNA_REQUIRED gstreamer-tag-1.0 >= $GSTREAMER_TAG_REQUIRED gstreamer-app-1.0 >= $GSTREAMER_TAG_REQUIRED sqlite3 >= $LIBSQLITE3_REQUIRED])
+            PKG_CHECK_MODULES([RYGEL_PLUGIN_MEDIA_EXPORT_DEPS],
+                              [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED
+                               gupnp-dlna-1.1 >= $GUPNP_DLNA_REQUIRED
+                               gstreamer-tag-1.0 >= $GSTREAMER_TAG_REQUIRED
+                               gstreamer-app-1.0 >= $GSTREAMER_TAG_REQUIRED
+                               gstreamer-pbutils-1.0 >= $GSTPBU_REQUIRED
+                               sqlite3 >= $LIBSQLITE3_REQUIRED
+                               uuid])
             RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gupnp-dlna-1.1 --pkg gstreamer-tag-1.0 --pkg gstreamer-app-1.0 --pkg sqlite3"
             AC_SUBST([RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS])
           ])
