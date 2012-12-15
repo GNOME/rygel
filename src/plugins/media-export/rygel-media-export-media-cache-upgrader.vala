@@ -377,6 +377,31 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             this.database.exec ("UPDATE schema_info SET reset_token = '" +
                                 UUID.get () + "'");
             this.database.exec ("UPDATE schema_info SET version = '12'");
+            this.database.exec ("ALTER TABLE object " +
+                                "ADD COLUMN object_update_id INTEGER");
+            this.database.exec ("ALTER TABLE object " +
+                                "ADD COLUMN deleted_child_count INTEGER");
+            this.database.exec ("ALTER TABLE object " +
+                                "ADD COLUMN container_update_id INTEGER");
+            var ids = new ArrayList<string> ();
+            var cursor = this.database.exec_cursor
+                                        ("SELECT upnp_id FROM object");
+            foreach (var statement in cursor) {
+                ids.add (statement.column_text (0));
+            }
+
+            uint32 count = 1;
+            foreach (var id in ids) {
+                GLib.Value[] args = { count, count, id };
+                count++;
+                this.database.exec ("UPDATE object SET " +
+                                    "container_update_id = ?, " +
+                                    "object_update_id = ?, " +
+                                    "deleted_child_count = 0 " +
+                                    "WHERE upnp_id = ?",
+                                    args);
+            }
+
             database.commit ();
             database.exec ("VACUUM");
             database.analyze ();
