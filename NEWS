@@ -1,3 +1,18 @@
+0.17.5.1
+========
+
+A paperbag release for Rygel
+
+Changes compared to 0.17.5:
+
+- Fix underlinking of some plug-ins.
+
+MediaExport:
+ - Fix database upgrade from schema version 11 to 12
+
+All contributors to this release:
+   Jens Georg <mail@jensge.org>
+
 0.17.5
 ======
 
