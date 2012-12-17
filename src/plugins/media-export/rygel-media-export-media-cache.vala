@@ -921,9 +921,16 @@ public class Rygel.MediaExport.MediaCache : Object {
             case SearchCriteriaOp.LEQ:
             case SearchCriteriaOp.GREATER:
             case SearchCriteriaOp.GEQ:
-                v = exp.operand2;
-                operator = new SqlOperator.from_search_criteria_op
-                                        (exp.op, column, collate);
+                if (column == "m.class" &&
+                    exp.op == SearchCriteriaOp.EQ &&
+                    exp.operand2 == "object.container") {
+                    operator = new SqlOperator ("=", "o.type_fk");
+                    v = (int) ObjectType.CONTAINER;
+                } else {
+                    v = exp.operand2;
+                    operator = new SqlOperator.from_search_criteria_op
+                                            (exp.op, column, collate);
+                }
                 break;
             case SearchCriteriaOp.CONTAINS:
                 operator = new SqlFunction ("contains", column);
@@ -934,8 +941,14 @@ public class Rygel.MediaExport.MediaCache : Object {
                 v = exp.operand2;
                 break;
             case SearchCriteriaOp.DERIVED_FROM:
-                operator = new SqlOperator ("LIKE", column);
-                v = "%s%%".printf (exp.operand2);
+                if (column == "m.class" &&
+                    exp.operand2.has_prefix("object.container")) {
+                    operator = new SqlOperator ("=", "o.type_fk");
+                    v = (int) ObjectType.CONTAINER;
+                } else {
+                    operator = new SqlOperator ("LIKE", column);
+                    v = "%s%%".printf (exp.operand2);
+                }
                 break;
             default:
                 warning ("Unsupported op %d", exp.op);
