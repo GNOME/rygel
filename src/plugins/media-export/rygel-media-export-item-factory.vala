@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2008 Nokia Corporation.
+ * Copyright (C) 2012 Intel Corporation.
  *
  * Author: Zeeshan Ali <zeenix@gmail.com>
+ *         Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -110,20 +112,20 @@ namespace Rygel.MediaExport.ItemFactory {
         }
     }
 
-    public static MediaItem? create_from_info
-                                        (MediaContainer        parent,
-                                         File                  file,
-                                         GUPnPDLNA.Information dlna_info,
-                                         FileInfo              file_info) {
+    public static MediaItem? create_from_info (MediaContainer     parent,
+                                               File               file,
+                                               DiscovererInfo     info,
+                                               GUPnPDLNA.Profile? profile,
+                                               FileInfo           file_info) {
         MediaItem item;
         string id = MediaCache.get_id (file);
         GLib.List<DiscovererAudioInfo> audio_streams;
         GLib.List<DiscovererVideoInfo> video_streams;
 
         audio_streams = (GLib.List<DiscovererAudioInfo>)
-                                        dlna_info.info.get_audio_streams ();
+                                        info.get_audio_streams ();
         video_streams = (GLib.List<DiscovererVideoInfo>)
-                                        dlna_info.info.get_video_streams ();
+                                        info.get_video_streams ();
 
         if (audio_streams == null && video_streams == null) {
             debug ("%s had neither audio nor video/picture " +
@@ -137,7 +139,8 @@ namespace Rygel.MediaExport.ItemFactory {
             item = new PhotoItem (id, parent, "");
             return fill_photo_item (item as PhotoItem,
                                     file,
-                                    dlna_info,
+                                    info,
+                                    profile,
                                     video_streams.data,
                                     file_info);
         } else if (video_streams != null) {
@@ -150,7 +153,8 @@ namespace Rygel.MediaExport.ItemFactory {
 
             return fill_video_item (item as VideoItem,
                                     file,
-                                    dlna_info,
+                                    info,
+                                    profile,
                                     video_streams.data,
                                     audio_info,
                                     file_info);
@@ -158,7 +162,8 @@ namespace Rygel.MediaExport.ItemFactory {
             item = new MusicItem (id, parent, "");
             return fill_music_item (item as MusicItem,
                                     file,
-                                    dlna_info,
+                                    info,
+                                    profile,
                                     audio_streams.data,
                                     file_info);
         } else {
@@ -166,11 +171,11 @@ namespace Rygel.MediaExport.ItemFactory {
         }
     }
 
-    private static void fill_audio_item (AudioItem             item,
-                                         GUPnPDLNA.Information dlna_info,
-                                         DiscovererAudioInfo?  audio_info) {
-        if (dlna_info.info.get_duration () > 0) {
-            item.duration = (long) (dlna_info.info.get_duration () / Gst.SECOND);
+    private static void fill_audio_item (AudioItem            item,
+                                         DiscovererInfo       info,
+                                         DiscovererAudioInfo? audio_info) {
+        if (info.get_duration () > 0) {
+            item.duration = (long) (info.get_duration () / Gst.SECOND);
         } else {
             item.duration = -1;
         }
@@ -187,14 +192,15 @@ namespace Rygel.MediaExport.ItemFactory {
     }
 
 
-    private static MediaItem fill_video_item (VideoItem             item,
-                                              File                  file,
-                                              GUPnPDLNA.Information dlna_info,
-                                              DiscovererVideoInfo   video_info,
-                                              DiscovererAudioInfo?  audio_info,
-                                              FileInfo              file_info) {
-        fill_audio_item (item as AudioItem, dlna_info, audio_info);
-        fill_media_item (item, file, dlna_info, file_info);
+    private static MediaItem fill_video_item (VideoItem            item,
+                                              File                 file,
+                                              DiscovererInfo       info,
+                                              GUPnPDLNA.Profile?   profile,
+                                              DiscovererVideoInfo  video_info,
+                                              DiscovererAudioInfo? audio_info,
+                                              FileInfo             file_info) {
+        fill_audio_item (item as AudioItem, info, audio_info);
+        fill_media_item (item, file, info, profile, file_info);
 
         item.width = (int) video_info.get_width ();
         item.height = (int) video_info.get_height ();
@@ -205,12 +211,13 @@ namespace Rygel.MediaExport.ItemFactory {
         return item;
     }
 
-    private static MediaItem fill_photo_item (PhotoItem             item,
-                                              File                  file,
-                                              GUPnPDLNA.Information dlna_info,
-                                              DiscovererVideoInfo   video_info,
-                                              FileInfo              file_info) {
-        fill_media_item (item, file, dlna_info, file_info);
+    private static MediaItem fill_photo_item (PhotoItem           item,
+                                              File                file,
+                                              DiscovererInfo      info,
+                                              GUPnPDLNA.Profile?  profile,
+                                              DiscovererVideoInfo video_info,
+                                              FileInfo            file_info) {
+        fill_media_item (item, file, info, profile, file_info);
 
         item.width = (int) video_info.get_width ();
         item.height = (int) video_info.get_height ();
@@ -221,35 +228,35 @@ namespace Rygel.MediaExport.ItemFactory {
         return item;
     }
 
-    private static MediaItem fill_music_item (MusicItem             item,
-                                              File                  file,
-                                              GUPnPDLNA.Information dlna_info,
-                                              DiscovererAudioInfo?  audio_info,
-                                              FileInfo              file_info) {
-        fill_audio_item (item as AudioItem, dlna_info, audio_info);
-        fill_media_item (item, file, dlna_info, file_info);
+    private static MediaItem fill_music_item (MusicItem            item,
+                                              File                 file,
+                                              DiscovererInfo       info,
+                                              GUPnPDLNA.Profile?   profile,
+                                              DiscovererAudioInfo? audio_info,
+                                              FileInfo             file_info) {
+        fill_audio_item (item as AudioItem, info, audio_info);
+        fill_media_item (item, file, info, profile, file_info);
 
         if (audio_info == null) {
             return item;
         }
         string artist;
-        dlna_info.info.get_tags ().get_string (Tags.ARTIST, out artist);
+        info.get_tags ().get_string (Tags.ARTIST, out artist);
         item.artist = artist;
 
         string album;
-        dlna_info.info.get_tags ().get_string (Tags.ALBUM, out album);
+        info.get_tags ().get_string (Tags.ALBUM, out album);
         item.album = album;
 
         string genre;
-        dlna_info.info.get_tags ().get_string (Tags.GENRE, out genre);
+        info.get_tags ().get_string (Tags.GENRE, out genre);
         item.genre = genre;
 
         uint tmp;
-        dlna_info.info.get_tags ().get_uint (Tags.ALBUM_VOLUME_NUMBER,
-                                             out tmp);
+        info.get_tags ().get_uint (Tags.ALBUM_VOLUME_NUMBER, out tmp);
         item.disc = (int) tmp;
 
-        dlna_info.info.get_tags() .get_uint (Tags.TRACK_NUMBER, out tmp);
+        info.get_tags() .get_uint (Tags.TRACK_NUMBER, out tmp);
         item.track_number = (int) tmp;
 
         if (audio_info.get_tags () == null) {
@@ -284,22 +291,23 @@ namespace Rygel.MediaExport.ItemFactory {
         return item;
     }
 
-    private static void fill_media_item (MediaItem             item,
-                                         File                  file,
-                                         GUPnPDLNA.Information dlna_info,
-                                         FileInfo              file_info) {
+    private static void fill_media_item (MediaItem          item,
+                                         File               file,
+                                         DiscovererInfo     info,
+                                         GUPnPDLNA.Profile? profile,
+                                         FileInfo           file_info) {
         string title = null;
 
-        if (dlna_info.info.get_tags () == null ||
-            !dlna_info.info.get_tags ().get_string (Tags.TITLE, out title)) {
+        if (info.get_tags () == null ||
+            !info.get_tags ().get_string (Tags.TITLE, out title)) {
             title = file_info.get_display_name ();
         }
 
         item.title = title;
 
-        if (dlna_info.info.get_tags () != null) {
+        if (info.get_tags () != null) {
             GLib.Date? date;
-            if (dlna_info.info.get_tags ().get_date (Tags.DATE, out date) &&
+            if (info.get_tags ().get_date (Tags.DATE, out date) &&
                 date.valid ()) {
                 char[] datestr = new char[30];
                 date.strftime (datestr, "%F");
@@ -318,9 +326,9 @@ namespace Rygel.MediaExport.ItemFactory {
 
         item.size = (int64) file_info.get_size ();
         item.modified = (int64) mtime;
-        if (dlna_info.name != null) {
-            item.dlna_profile = dlna_info.name;
-            item.mime_type = dlna_info.mime;
+        if (profile != null && profile.name != null) {
+            item.dlna_profile = profile.name;
+            item.mime_type = profile.mime;
         } else {
             item.mime_type = ContentType.get_mime_type
                                         (file_info.get_content_type ());

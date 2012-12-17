@@ -27,6 +27,7 @@ using Gst;
 using Gst.PbUtils;
 using Gee;
 using GUPnP;
+using GUPnPDLNA;
 
 /**
  * Metadata extractor based on Gstreamer. Just set the URI of the media on the
@@ -35,23 +36,26 @@ using GUPnP;
  */
 public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     /* Signals */
-    public signal void extraction_done (File                   file,
-                                        GUPnPDLNA.Information? dlna,
-                                        FileInfo               file_info);
+    public signal void extraction_done (File               file,
+                                        DiscovererInfo?    info,
+                                        GUPnPDLNA.Profile? profile,
+                                        FileInfo           file_info);
 
     /**
      * Signalize that an error occured during metadata extraction
      */
     public signal void error (File file, Error err);
 
-    private GUPnPDLNA.Discoverer discoverer;
+    private Discoverer discoverer;
+    private ProfileGuesser guesser;
+
     /**
      * We export a GLib.File-based API but GstDiscoverer works with URIs, so
      * we store uri->GLib.File mappings in this hashmap, so that we can get
      * the GLib.File back from the URI in on_discovered().
      */
     private HashMap<string, File> file_hash;
-    private uint64 timeout = 10; /* seconds */
+    private uint timeout = 10; /* seconds */
 
     private bool extract_metadata;
 
@@ -66,50 +70,58 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     public void extract (File file, string content_type) {
         if (this.extract_metadata && !content_type.has_prefix ("text/")) {
             string uri = file.get_uri ();
-            this.file_hash.set (uri, file);
             var gst_timeout = (ClockTime) (this.timeout * Gst.SECOND);
-            this.discoverer = new GUPnPDLNA.Discoverer (gst_timeout,
-                                                        true,
-                                                        true);
-            this.discoverer.done.connect (on_done);
-            this.discoverer.start ();
-            this.discoverer.discover_uri (uri);
+            try {
+                this.discoverer = new Discoverer (gst_timeout);
+                this.file_hash.set (uri, file);
+                this.discoverer.discovered.connect (on_done);
+                this.discoverer.start ();
+                this.discoverer.discover_uri_async (uri);
+                this.guesser = new GUPnPDLNA.ProfileGuesser (true, true);
+            } catch (Error error) {
+                this.on_done (null, error);
+            }
         } else {
-            this.extract_basic_information (file);
+            this.extract_basic_information (file, null, null);
         }
     }
 
-    private void on_done (GUPnPDLNA.Information dlna,
-                          GLib.Error            err) {
+    private void on_done (DiscovererInfo? info, GLib.Error err) {
         this.discoverer = null;
-        var file = this.file_hash.get (dlna.info.get_uri ());
+        var file = this.file_hash.get (info.get_uri ());
         if (file == null) {
             warning ("File %s already handled, ignoring event",
-                     dlna.info.get_uri ());
+                     info.get_uri ());
 
             return;
         }
 
-        this.file_hash.unset (dlna.info.get_uri ());
+        this.file_hash.unset (info.get_uri ());
 
-        if ((dlna.info.get_result () & DiscovererResult.TIMEOUT) != 0) {
+        if ((info.get_result () & DiscovererResult.TIMEOUT) != 0) {
             debug ("Extraction timed out on %s", file.get_uri ());
 
             // set dlna to null to extract basic file information
-            dlna = null;
-        } else if ((dlna.info.get_result () &
+            info = null;
+            this.extract_basic_information (file, info, null);
+
+            return;
+        } else if ((info.get_result () &
                     DiscovererResult.ERROR) != 0) {
             this.error (file, err);
 
             return;
         }
 
-        this.extract_basic_information (file, dlna);
+        var dlna_info = GUPnPDLNAGst.utils_information_from_discoverer_info (info);
+        var dlna = this.guesser.guess_profile_from_info (dlna_info);
+        this.extract_basic_information (file, info, dlna);
     }
 
     private void extract_basic_information
-                                        (File file,
-                                         GUPnPDLNA.Information? dlna = null) {
+                                        (File               file,
+                                         DiscovererInfo?    info,
+                                         GUPnPDLNA.Profile? dlna) {
         try {
             FileInfo file_info;
 
@@ -133,6 +145,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             }
 
             this.extraction_done (file,
+                                  info,
                                   dlna,
                                   file_info);
         } catch (Error error) {
@@ -143,7 +156,6 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         }
 
     }
-
     private void on_config_changed (Configuration config,
                                     string section,
                                     string key) {

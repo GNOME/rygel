@@ -44,9 +44,7 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
          * to add to the list of DLNA profiles supported by
          * this media engine, for get_dlna_profiles():
          */
-        var discoverer = new GUPnPDLNA.Discoverer ((ClockTime) SECOND,
-                                                   true,
-                                                   false);
+        var discoverer = new GUPnPDLNA.ProfileGuesser (true, false);
         foreach (var profile in discoverer.list_profiles ()) {
             var p = new DLNAProfile (profile.name, profile.mime);
 

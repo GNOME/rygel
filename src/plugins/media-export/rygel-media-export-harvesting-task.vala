@@ -20,6 +20,7 @@
 
 using GLib;
 using Gee;
+using Gst.PbUtils;
 
 internal class FileQueueEntry {
     public File file;
@@ -296,9 +297,10 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         return false;
     }
 
-    private void on_extracted_cb (File                   file,
-                                  GUPnPDLNA.Information? dlna,
-                                  FileInfo               file_info) {
+    private void on_extracted_cb (File               file,
+                                  DiscovererInfo?    dlna,
+                                  GUPnPDLNA.Profile? profile,
+                                  FileInfo           file_info) {
         if (this.cancellable.is_cancelled ()) {
             this.completed ();
         }
@@ -319,6 +321,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             item = ItemFactory.create_from_info (this.containers.peek_head (),
                                                  file,
                                                  dlna,
+                                                 profile,
                                                  file_info);
         }
 

@@ -36,7 +36,7 @@ VALADOC_REQUIRED=0.2
 GSSDP_REQUIRED=0.13.0
 GUPNP_REQUIRED=0.19.0
 GUPNP_AV_REQUIRED=0.11.4
-GUPNP_DLNA_REQUIRED=0.7.0
+GUPNP_DLNA_REQUIRED=0.9.4
 GSTREAMER_REQUIRED=1.0
 GSTPBU_REQUIRED=1.0
 GIO_REQUIRED=2.26
@@ -103,9 +103,10 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
         PKG_CHECK_MODULES([RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS],
                           [$RYGEL_COMMON_MODULES
                            gstreamer-pbutils-1.0 >= $GSTPBU_REQUIRED
-                           gupnp-dlna-1.1 >= $GUPNP_DLNA_REQUIRED
+                           gstreamer-app-1.0 >= $GSTREAMER_APP_REQUIRED
+                           gupnp-dlna-2.0 >= $GUPNP_DLNA_REQUIRED
                            gio-2.0 >= GIO_REQUIRED])
-        RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gstreamer-base-1.0 --pkg gstreamer-pbutils-1.0 --pkg gupnp-dlna-1.1"
+        RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gstreamer-base-1.0 --pkg gstreamer-pbutils-1.0 --pkg gupnp-dlna-2.0"
         AC_SUBST([RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_VALAFLAGS])
 
         PKG_CHECK_MODULES([LIBRYGEL_RENDERER_GST_DEPS], [$RYGEL_COMMON_MODULES gstreamer-1.0 >= $GSTREAMER_REQUIRED])
@@ -152,13 +153,14 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
           [
             PKG_CHECK_MODULES([RYGEL_PLUGIN_MEDIA_EXPORT_DEPS],
                               [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED
-                               gupnp-dlna-1.1 >= $GUPNP_DLNA_REQUIRED
+                               gupnp-dlna-2.0 >= $GUPNP_DLNA_REQUIRED
+                               gupnp-dlna-gst-2.0 >= $GUPNP_DLNA_REQUIRED
+                               gstreamer-app-1.0 >= $GSTREAMER_APP_REQUIRED
                                gstreamer-tag-1.0 >= $GSTREAMER_TAG_REQUIRED
-                               gstreamer-app-1.0 >= $GSTREAMER_TAG_REQUIRED
                                gstreamer-pbutils-1.0 >= $GSTPBU_REQUIRED
                                sqlite3 >= $LIBSQLITE3_REQUIRED
                                uuid])
-            RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gupnp-dlna-1.1 --pkg gstreamer-tag-1.0 --pkg gstreamer-app-1.0 --pkg sqlite3"
+            RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gupnp-dlna-2.0 --pkg gupnp-dlna-gst-2.0 --pkg gstreamer-tag-1.0 --pkg gstreamer-app-1.0 --pkg gstreamer-pbutils-1.0 --pkg sqlite3"
             AC_SUBST([RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS])
           ])
 
