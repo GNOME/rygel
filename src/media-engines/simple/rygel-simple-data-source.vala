@@ -20,6 +20,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+/**
+ * A simple data source for use with the simple media engine (RygelSimpleMediaEngine).
+ *
+ * This does not support time-base seeking with 
+ * rygel_data_source_start() because it does not
+ * use any multimedia framework. Therefore, calling start() with
+ * RYGEL_HTTP_SEEK_TYPE_TIME will fail with a 
+ * RYGEL_DATA_SOURCE_ERROR_SEEK_FAILED GError code,
+ */
 internal class Rygel.SimpleDataSource : DataSource, Object {
     private string uri;
     private Thread<void*> thread;

@@ -20,6 +20,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+/**
+ * The simple media engine does not use GStreamer or any other
+ * multimedia framework. Therefore its capabilities are limited.
+ *
+ * It does not support transcoding - get_transcoders() returns null.
+ * Also, its RygelSimpleDataSource does not support time-base seeking.
+ */
 internal class Rygel.SimpleMediaEngine : MediaEngine {
     private List<DLNAProfile> profiles = new List<DLNAProfile> ();
 

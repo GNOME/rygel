@@ -9,6 +9,26 @@
 <para>
 This library may be used to create Rygel media engines by 
 implementing the <link linkend="RygelMediaEngine">RygelMediaEngine</link> class.
+Rygel media engines contain knowledge about the streaming and (optionally) the 
+transcoding and seeking capabilites of the media library in use.</para>
+
+<para>The actual media engine used by Rygel at runtime is specified
+by the media-engine configuration key. For instance, in <literal>rygel.conf</literal>:
+<code>media-engine=librygel-media-engine-gst.so</code>
 </para>
+
+<para>Media engines should derive their own <link linkend="RygelDataSource">RygelDataSource</link>,
+returning an instance of it from create_data_source().</para>
+
+<para>Rygel itself provides two media engines:
+</para>
+<para>
+<orderedlist>
+<listitem><para><ulink url="http://git.gnome.org/browse/rygel/tree/src/media-engines/gstreamer">gstreamer</ulink>: A media engine that uses GStreamer for transcoding and seeking.</para></listitem>
+<listitem><para><ulink url="http://git.gnome.org/browse/rygel/tree/src/media-engines/simple">simple</ulink>: A media engine that uses no multimedia framework, and therefore offers no transcoding or time-based seeking.</para></listitem>
+</orderedlist>
+</para>
+
+<para>In addition, the external <ulink url="http://git.gnome.org/browse/rygel-gst-0-10-media-engine">rygel-gst-0-10-media-engine</ulink> project provides a Rygel media engine that uses an older GStreamer version.</para>
 
 </section>

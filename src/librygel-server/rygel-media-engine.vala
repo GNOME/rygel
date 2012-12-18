@@ -37,9 +37,9 @@ public errordomain Rygel.MediaEngineError {
  * For instance, in rygel.conf:
  * media-engine=librygel-media-engine-gst.so
  *
- * Media engines should also derive their own Rygel.DataSource,
+ * Media engines should also derive their own RygelDataSource,
  * returning an instance of it from create_data_source().
- **
+ *
  * See the
  * <link linkend="implementing-media-engines">Implementing Media Engines</link> section.
  */
