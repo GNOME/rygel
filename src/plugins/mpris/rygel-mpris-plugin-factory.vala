@@ -39,8 +39,8 @@ public void module_init (PluginLoader loader) {
     try {
         plugin_factory = new MPRIS.PluginFactory (loader);
     } catch (IOError error) {
-        critical ("Failed to fetch list of MPRIS services: %s\n",
-                  error.message);
+        message (_("Module '%s' could not connect to D-Bus session bus. "+
+                   "Ignoring…", MPRIS.Plugin.MODULE_NAME));
     }
 }
 
