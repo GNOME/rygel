@@ -24,8 +24,6 @@ rygel_CFLAGS = \
 rygel_LDADD = \
 	$(RYGEL_DEPS_LIBS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
-rygel_LDFLAGS = \
-	-export-dynamic
 
 vapidir = $(VAPIDIR)
 vapi_DATA = $(VAPI_FILES) $(DEPS_FILES)
