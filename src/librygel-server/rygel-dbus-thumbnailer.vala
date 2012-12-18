@@ -48,8 +48,7 @@ internal class Rygel.DbusThumbnailer : GLib.Object {
 
     public signal void ready (bool available);
 
-    public DbusThumbnailer (string flavor = "normal") throws GLib.IOError,
-                                                             GLib.DBusError {
+    public DbusThumbnailer (string flavor = "normal") throws GLib.Error {
         this.uris = new ArrayList<string> ();
         this.mimes = new ArrayList<string> ();
         this.timeout_id = 0;
