@@ -24,6 +24,10 @@
 using Gst;
 using GUPnP;
 
+public errordomain Rygel.GstTranscoderError {
+    CANT_TRANSCODE
+}
+
 /**
  * The base Transcoder class. Each implementation derives from it and must
  * implement get_distance and get_encoding_profile methods.
@@ -76,6 +80,13 @@ internal abstract class Rygel.Transcoder : GLib.Object {
                                                 ENCODE_BIN);
 
         encoder.profile = this.get_encoding_profile ();
+        if (encoder.profile == null) {
+            var message = _("Could not create a transcoder configuration. " +
+                            "Your GStramer installation might be missing a plug-in");
+
+            throw new GstTranscoderError.CANT_TRANSCODE (message);
+        }
+
         debug ("%s using the following encoding profile:",
                this.get_class ().get_type ().name ());
         GstUtils.dump_encoding_profile (encoder.profile);
