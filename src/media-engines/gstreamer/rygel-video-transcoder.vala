@@ -43,7 +43,6 @@ internal class Rygel.VideoTranscoder : Rygel.AudioTranscoder {
 
         base.with_class (content_type,
                          dlna_profile,
-                         VideoItem.UPNP_CLASS,
                          audio_bitrate,
                          container_caps,
                          audio_codec_caps,

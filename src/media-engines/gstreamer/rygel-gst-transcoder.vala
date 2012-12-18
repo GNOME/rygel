@@ -47,7 +47,6 @@ internal abstract class Rygel.GstTranscoder : Rygel.Transcoder {
 
     public GstTranscoder (string mime_type,
                           string dlna_profile,
-                          string upnp_class,
                           string extension) {
         this.mime_type = mime_type;
         this.dlna_profile = dlna_profile;
