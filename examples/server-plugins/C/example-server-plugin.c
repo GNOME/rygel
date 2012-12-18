@@ -50,7 +50,7 @@ module_init (RygelPluginLoader* loader) {
 }
 
 
-RygelExampleServerPlugin*
+static RygelExampleServerPlugin*
 rygel_example_server_plugin_construct (GType object_type) {
   RygelExampleServerPlugin *self;
   RygelExampleRootContainer *root_container;

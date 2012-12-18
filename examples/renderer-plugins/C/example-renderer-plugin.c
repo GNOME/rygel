@@ -52,7 +52,7 @@ module_init (RygelPluginLoader* loader) {
 }
 
 
-RygelExampleRendererPlugin*
+static RygelExampleRendererPlugin*
 rygel_example_renderer_plugin_construct (GType object_type) {
   RygelExampleRendererPlugin *self;
 
