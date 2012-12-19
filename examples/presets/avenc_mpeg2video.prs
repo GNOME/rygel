@@ -2,7 +2,7 @@
 version=1.0
 element-name=avenc_mpeg2video
 
-[stream high quality]
+[Rygel DLNA preset]
 bitrate=2560000
 pass=0
 mb-decision=rd
