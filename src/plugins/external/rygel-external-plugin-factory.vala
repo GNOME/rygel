@@ -40,7 +40,7 @@ public void module_init (PluginLoader loader) {
         plugin_factory = new External.PluginFactory (loader);
     } catch (Error error) {
         message (_("Module '%s' could not connect to D-Bus session bus. "+
-                   "Ignoring…", External.Plugin.MODULE_NAME));
+                   "Ignoring…"), External.Plugin.MODULE_NAME);
     }
 }
 
