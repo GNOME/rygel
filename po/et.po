@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: rygel MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-21 07:38+0000\n"
-"PO-Revision-Date: 2012-09-23 14:04+0300\n"
+"POT-Creation-Date: 2012-12-19 13:29+0000\n"
+"PO-Revision-Date: 2012-12-19 16:37+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "Language: et\n"
@@ -68,6 +68,10 @@ msgstr "Rygel"
 
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA teenused"
+
+#, c-format
+msgid "Module '%s' could not connect to D-Bus session bus. "
+msgstr "Moodul '%s' ei suutnud ühenduda D-Bus seansisiiniga."
 
 #, c-format
 msgid "Failed to roll back transaction: %s"
@@ -154,6 +158,12 @@ msgstr "Pildid"
 msgid "Videos"
 msgstr "Videod"
 
+msgid "Playlists"
+msgstr "Esitusloendid"
+
+msgid "GStreamer Player"
+msgstr "GStreamer esitaja"
+
 #, c-format
 msgid "Failed to create a Tracker connection: %s"
 msgstr "Tõrge ühenduse loomisel Trackeriga: %s"
@@ -188,8 +198,8 @@ msgstr "Esitajad"
 msgid "Titles"
 msgstr "Pealkirjad"
 
-msgid "No value available"
-msgstr "Väärtus pole saadaval"
+msgid "Not implemented"
+msgstr "Pole veel teostatud"
 
 msgid "Invalid argument"
 msgstr "Sobimatu argument"
@@ -201,13 +211,16 @@ msgstr "Ühenduse viide pole sobiv"
 msgid "Failed to get log level from configuration: %s"
 msgstr "Seadistusest logimise taseme hankimine nurjus: %s"
 
-#, c-format
-msgid "Failed to load user configuration: %s"
-msgstr "Kasutaja seadistuse laadimine nurjus: %s"
+msgid "No value available"
+msgstr "Väärtus pole saadaval"
 
 #, c-format
 msgid "No value set for '%s/enabled'"
 msgstr "'%s/enabled' jaoks ei ole väärtust määratud"
+
+#, c-format
+msgid "No value set for '%s/title'"
+msgstr "'%s/title' jaoks ei ole väärtust määratud"
 
 #, c-format
 msgid "No value available for '%s/%s'"
@@ -216,10 +229,6 @@ msgstr "'%s/%s' jaoks ei ole väärtuseid saadaval"
 #, c-format
 msgid "New plugin '%s' available"
 msgstr "Saadaval on uus plugin '%s'"
-
-#, c-format
-msgid "Error listing contents of folder '%s': %s"
-msgstr "Viga kausta '%s' sisu nimekirja loomisel: %s"
 
 #, c-format
 msgid "A module named %s is already loaded"
@@ -234,19 +243,22 @@ msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Sisenemispunkti funktsiooni '%s' ei leitud failist '%s': %s"
 
 #, c-format
+msgid "Error listing contents of folder '%s': %s"
+msgstr "Viga kausta '%s' sisu nimekirja loomisel: %s"
+
+#, c-format
 msgid "XML node '%s' not found."
 msgstr "XML sõlme '%s' ei leitud."
 
-#, c-format
-msgid "No value available for '%s'"
-msgstr "'%s' jaoks pole väärtust saadaval"
-
-#, c-format
-msgid "Value of '%s' out of range"
-msgstr "'%s' väärtus on väljaspool vahemikku"
-
 msgid "Invalid InstanceID"
 msgstr "Sobimatu instantsi-ID"
+
+#. FIXME: Return a more sensible error here.
+msgid "Resource not found"
+msgstr "Allikat ei leitud"
+
+msgid "Illegal MIME-type"
+msgstr "Vigane MIME-tüüp"
 
 msgid "Play speed not supported"
 msgstr "Esituse kiiruse muutmine pole toetatud"
@@ -257,8 +269,11 @@ msgstr "Üleminek pole saadaval"
 msgid "Seek mode not supported"
 msgstr "Kerimine pole toetatud"
 
-msgid "GStreamer Player"
-msgstr "GStreamer esitaja"
+msgid "Illegal seek target"
+msgstr "Vigane kerimise sihtkoht"
+
+msgid "LibRygelRenderer"
+msgstr "LibRygelRenderer"
 
 msgid "Invalid Name"
 msgstr "Vigane nimi"
@@ -281,10 +296,6 @@ msgstr "'%s' lehitsemine nurjus: %s\n"
 
 msgid "No such file transfer"
 msgstr "Sellist failiedastust pole"
-
-#, c-format
-msgid "Required element %s missing"
-msgstr "Puudub vajalik element %s"
 
 #. Range header was present but invalid
 #, c-format
@@ -320,26 +331,6 @@ msgstr "Tõrge dotfile %s liigutamisel: %s"
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "Küsitud kirjet '%s' ei leitud"
-
-#, c-format
-msgid "Failed to link %s to %s"
-msgstr "Elemendi %s ja konveieri %s ühendamine nurjus"
-
-#, c-format
-msgid "Failed to link pad %s to %s"
-msgstr "%s ja %s ühendamine nurjus"
-
-#, c-format
-msgid "Error from pipeline %s: %s"
-msgstr "Viga konveierilt %s: %s"
-
-#, c-format
-msgid "Warning from pipeline %s: %s"
-msgstr "Hoiatus konveierilt %s: %s"
-
-#, c-format
-msgid "Failed to seek to offset %lld"
-msgstr "Kerimine kohale %lld nurjus"
 
 #, c-format
 msgid "Out Of Range Start '%ld'"
@@ -395,6 +386,28 @@ msgid "Object removal from %s not allowed"
 msgstr "Objekti eemaldamine asukohast %s pole lubatud"
 
 #, c-format
+msgid "Successfully updated object '%s'"
+msgstr "Objekt '%s' on edukalt uuendatud"
+
+#, c-format
+msgid "Failed to update object '%s': %s"
+msgstr "Objekti '%s' uuendamine nurjus: %s"
+
+#, c-format
+msgid "Metadata modification of object %s not allowed"
+msgstr "Objekti %s metaandmete muutmine pole lubatud"
+
+#, c-format
+msgid "Metadata modification of object %s being a child "
+msgstr "Objekti %s metaandmete muutmine, mis on laps"
+
+msgid "No media engine found."
+msgstr "Meediamootorit ei leitud."
+
+msgid "MediaEngine.init was not called. Cannot continue."
+msgstr "MediaEngine.init pole veel veel kutsutud. Pole võimalik jätkata."
+
+#, c-format
 msgid "Bad URI: %s"
 msgstr "Vigane URI: %s"
 
@@ -405,6 +418,9 @@ msgstr "URI %s protokolli uurimine nurjus. Eeldatakse '%s'"
 
 msgid "Invalid range"
 msgstr "Vigane vahemik"
+
+msgid "LibRygelServer"
+msgstr "LibRygelServer"
 
 # FIXME tuleks ikkagi üle kontrollida, kuidas see päris elus välja näeb
 #, c-format
@@ -418,6 +434,9 @@ msgstr "Subtiitreid pole saadaval"
 msgid "No thumbnailer available: %s"
 msgstr "Pisipiltide loojat pole saadaval: %s"
 
+msgid "Thubmnailing not supported"
+msgstr "Pisipiltide loomine pole toetatud"
+
 msgid "No thumbnail available"
 msgstr "Pisipilte pole saadaval"
 
@@ -427,6 +446,43 @@ msgstr "Ühtegi D-Bus pisipiltide loojat pole saadaval"
 #, c-format
 msgid "No transcoder available for target format '%s'"
 msgstr "Sihtvormingu '%s' jaoks ei leitud ümberkodeerijat"
+
+#, c-format
+msgid "Could not create GstElement for URI %s"
+msgstr "GstElementi pole võimalik URI %s jaoks luua"
+
+msgid "Failed to create pipeline"
+msgstr "Toru loomine nurjus"
+
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr "Elemendi %s ja konveieri %s ühendamine nurjus"
+
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr "%s ja %s ühendamine nurjus"
+
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr "Viga konveierilt %s: %s"
+
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr "Hoiatus konveierilt %s: %s"
+
+#, c-format
+msgid "Failed to seek to offsets %lld:%lld"
+msgstr "Kerimine kohale %lld:%lld nurjus"
+
+msgid "Failed to seek"
+msgstr "Kerimine nurjus"
+
+#, c-format
+msgid "Required element %s missing"
+msgstr "Puudub vajalik element %s"
+
+msgid "Time-based seek not supported"
+msgstr "Aja järgi kerimine pole toetatud"
 
 #, c-format
 msgid "No plugins found in %d second; giving up.."
@@ -441,6 +497,18 @@ msgstr "Juurseadme factory loomine nurjus: %s"
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "%s jaoks juurseadme loomine nurjus. Põhjus: %s"
+
+#, c-format
+msgid "Failed to load user configuration: %s"
+msgstr "Kasutaja seadistuse laadimine nurjus: %s"
+
+#, c-format
+msgid "No value available for '%s'"
+msgstr "'%s' jaoks pole väärtust saadaval"
+
+#, c-format
+msgid "Value of '%s' out of range"
+msgstr "'%s' väärtus on väljaspool vahemikku"
 
 #, c-format
 msgid "Failed to create preferences dialog: %s"
