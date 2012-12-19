@@ -59,17 +59,8 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         this.file_hash = new HashMap<string, File> ();
 
         var config = MetaConfig.get_default ();
-        try {
-            this.extract_metadata = config.get_bool ("MediaExport",
-                                                     "extract-metadata");
-        } catch (Error error) {
-            this.extract_metadata = true;
-        }
-
-
-        if (this.extract_metadata) {
-
-        }
+        config.setting_changed.connect (this.on_config_changed);
+        this.on_config_changed (config, Plugin.NAME, "extract-metadata");
     }
 
     public void extract (File file, string content_type) {
@@ -153,4 +144,18 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
     }
 
+    private void on_config_changed (Configuration config,
+                                    string section,
+                                    string key) {
+        if (section != Plugin.NAME || key != "extract-metadata") {
+            return;
+        }
+
+        try {
+            this.extract_metadata = config.get_bool (Plugin.NAME,
+                                                     "extract-metadata");
+        } catch (Error error) {
+            this.extract_metadata = true;
+        }
+    }
 }
