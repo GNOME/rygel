@@ -28,13 +28,9 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
 
     public RecursiveFileMonitor (Cancellable? cancellable) {
         this.monitor_changes = true;
-        try {
-            var config = MetaConfig.get_default ();
-            this.monitor_changes = config.get_bool ("MediaExport",
-                                                    "monitor-changes");
-        } catch (Error error) {
-            this.monitor_changes = true;
-        }
+        var config = MetaConfig.get_default ();
+        config.setting_changed.connect (this.on_config_changed);
+        this.on_config_changed (config, Plugin.NAME, "monitor-changes");
 
         if (!this.monitor_changes) {
             message (_("Will not monitor file changes"));
@@ -51,7 +47,9 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
     public void on_monitor_changed (File             file,
                                     File?            other_file,
                                     FileMonitorEvent event_type) {
-        this.changed (file, other_file, event_type);
+        if (this.monitor_changes) {
+            this.changed (file, other_file, event_type);
+        }
 
         switch (event_type) {
             case FileMonitorEvent.CREATED:
@@ -76,8 +74,7 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
     }
 
     public async void add (File file) {
-        if (!this.monitor_changes ||
-             this.monitors.has_key (file)) {
+        if (this.monitors.has_key (file)) {
             return;
         }
 
@@ -110,4 +107,17 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
     public signal void changed (File             file,
                                 File?            other_file,
                                 FileMonitorEvent event_type);
+
+    private void on_config_changed (Configuration config,
+                                    string section,
+                                    string key) {
+        if (section != Plugin.NAME || key != "monitor-changes") {
+            return;
+        }
+
+        try {
+            this.monitor_changes = config.get_bool (Plugin.NAME,
+                                                    "monitor-changes");
+        } catch (Error error) { }
+    }
 }
