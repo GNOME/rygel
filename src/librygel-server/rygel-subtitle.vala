@@ -45,6 +45,19 @@ public class Rygel.Subtitle {
         Xml.Node *root_node = item_node->doc->get_root_element ();
 
         weak Xml.Ns sec_ns = root_node->new_ns ("http://www.sec.co.kr/", "sec");
+        // sec_ns apparently already existed. Search for the namespace node
+        if (sec_ns == null) {
+            weak Xml.Ns it = root_node->ns_def;
+            while (it != null) {
+                if (it.prefix == "sec") {
+                    sec_ns = it;
+
+                    break;
+                }
+                it = it.next;
+            }
+        }
+
         Xml.Node *sec_node = item_node->new_child (sec_ns,
                                                    "CaptionInfoEx",
                                                    this.uri);

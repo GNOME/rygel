@@ -22,6 +22,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+using Gee;
+
 internal errordomain SubtitleManagerError {
     NO_SUBTITLE
 }
@@ -40,36 +42,49 @@ internal class Rygel.SubtitleManager : GLib.Object {
         return manager;
     }
 
-    public Subtitle get_subtitle (string uri) throws Error {
+    public ArrayList<Subtitle> get_subtitles (string uri) throws Error {
         var video_file = File.new_for_uri (uri);
 
         var directory = video_file.get_parent ();
-        var filename = video_file.get_basename ();
-        var ext_index = filename.last_index_of_char ('.');
+        var basename = video_file.get_basename ();
+        var ext_index = basename.last_index_of_char ('.');
         if (ext_index >= 0) {
-            filename = filename[0:ext_index];
+            basename = basename[0:ext_index];
         }
+
         // FIXME: foreach ".eng.srt", ".ger.srt", ".srt"...
         // FIXME: case insensitive?
-        filename += ".srt";
+        string[] exts = { "srt", "smi" };
 
-        var srt_file = directory.get_child (filename);
+        var subtitles = new ArrayList<Subtitle> ();
+        foreach (string ext in exts) {
+            string filename = basename + "." + ext;
 
-        var info = srt_file.query_info (FileAttribute.ACCESS_CAN_READ + "," +
-                                        FileAttribute.STANDARD_SIZE,
-                                        FileQueryInfoFlags.NONE,
-                                        null);
+            var subtitle_file = directory.get_child (filename);
 
-        if (!info.get_attribute_boolean (FileAttribute.ACCESS_CAN_READ)) {
+            try {
+                var info = subtitle_file.query_info (FileAttribute.ACCESS_CAN_READ + "," +
+                                                     FileAttribute.STANDARD_SIZE + "," +
+                                                     FileAttribute.STANDARD_CONTENT_TYPE,
+                                                     FileQueryInfoFlags.NONE,
+                                                     null);
+
+                if (info.get_attribute_boolean (FileAttribute.ACCESS_CAN_READ)) {
+                    string content_type = info.get_attribute_string (FileAttribute.STANDARD_CONTENT_TYPE);
+                    var subtitle = new Subtitle (content_type, ext);
+                    subtitle.uri = subtitle_file.get_uri ();
+                    subtitle.size = (int64) info.get_attribute_uint64
+                                                    (FileAttribute.STANDARD_SIZE);
+                    subtitles.add(subtitle);
+                }
+            } catch (Error err) { }
+        }
+
+        if (subtitles.size == 0) {
             throw new SubtitleManagerError.NO_SUBTITLE
                                         (_("No subtitle available"));
         }
 
-        var subtitle = new Subtitle ();
-        subtitle.uri = srt_file.get_uri ();
-        subtitle.size = (int64) info.get_attribute_uint64
-                                        (FileAttribute.STANDARD_SIZE);
-
-        return subtitle;
+        return subtitles;
     }
 }

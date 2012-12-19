@@ -93,8 +93,8 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
 
         if (subtitle_manager != null) {
             try {
-                var subtitle = subtitle_manager.get_subtitle (uri);
-                this.subtitles.add (subtitle);
+                var subtitles = subtitle_manager.get_subtitles (uri);
+                this.subtitles.add_all (subtitles);
             } catch (Error err) {}
         }
     }
