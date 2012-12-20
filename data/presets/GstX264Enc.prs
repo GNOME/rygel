@@ -4,4 +4,4 @@ element-name=GstX264Enc
 
 [Rygel AVC_MP4_BL_CIF15_AAC_520 preset]
 preset=1
-bitrate=1200
+bitrate=384
