@@ -9,4 +9,4 @@ bitrate=64000
 bitrate=256000
 
 [Rygel AVC_MP4_BL_CIF15_AAC_520 preset]
-bitrate=256000
+bitrate=128000
