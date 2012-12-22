@@ -1,3 +1,49 @@
+0.16.4
+======
+
+A maintenance release for Rygel!
+
+Changes compared to 0.16.3:
+
+- Use correct bitrates for AVC_MP4_BL_CIF15_AAC_520.
+- Don't try to generate thumbnails for non-native files.
+
+Playbin:
+ - Add "PresetNameList" to initial LastChange notify.
+ - Add 3GPP to supported formats.
+ - Set proper track number on playback.
+ - Fix a typo "PossibleRecordQualityMode" -> "PossibleRecordQualityModes".
+ - Fix configuration via environment variables.
+ - Print a proper warning on missing GStreamer elements for transcoding
+   instead of showing a critical.
+ - Prevent a critical when a no DBus thumbnailing daemon could be found.
+
+MediaExport:
+ - Fix an issue with uploaded files not being harvested and only having an
+   res@importUri.
+ - Don't bother to react on changes for hidden files as they're ignored in
+   meta-data extraction anyway.
+ - Add an "All" container below each artist's virtual container.
+
+MPRIS:
+ - Be less scary if there's no DBus session bus available.
+
+External:
+ - Be less scary if there's no DBus session bus available.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=676136
+ - https://bugzilla.gnome.org/show_bug.cgi?id=679262
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  Gheyret Kenji <gheyret@gmail.com>
+  Dr.T.Vasudevan <drtvasudevan@gmail.com>
+
+Added/updated translations
+ - ta, courtesy of Dr.T.Vasudevan
+ - ug, courtesy of Gheyret Kenji
+
 0.16.3
 ======
 
