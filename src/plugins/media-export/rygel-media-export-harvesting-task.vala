@@ -164,7 +164,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                 }
             } else {
                 var entry = new FileQueueEntry (file,
-                                                true,
+                                                false,
                                                 info.get_content_type ());
                 this.files.offer (entry);
 
