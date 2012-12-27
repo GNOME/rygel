@@ -429,7 +429,9 @@ internal class Rygel.ContentDirectory: Service {
                                        ObjectEventType event_type,
                                        bool sub_tree_update) {
         this.system_update_id++;
-        this.add_last_change_entry (object, event_type, sub_tree_update);
+        if (updated_container is TrackableContainer) {
+            this.add_last_change_entry (object, event_type, sub_tree_update);
+        }
         var plugin = this.root_device.resource_factory as MediaServerPlugin;
 
         if (this.system_update_id == 0 &&
