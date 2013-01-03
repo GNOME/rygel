@@ -62,57 +62,59 @@ internal class Rygel.HTTPItemURI : Object {
         this.playlist_format = playlist_format;
         this.extension = "";
 
-        if (object is MediaItem) {
-            var item = object as MediaItem;
-            if (thumbnail_index > -1) {
-                if (item is VisualItem) {
-                    var thumbnails = (item as VisualItem).thumbnails;
+        if (!(object is MediaItem)) {
+            return;
+        }
 
-                    if (thumbnails.size > thumbnail_index) {
-                        this.extension = thumbnails[thumbnail_index].file_extension;
-                    }
-                } else if (item is MusicItem) {
-                    var album_art = (item as MusicItem).album_art;
+        var item = object as MediaItem;
+        if (thumbnail_index > -1) {
+            if (item is VisualItem) {
+                var thumbnails = (item as VisualItem).thumbnails;
 
-                    if (album_art != null) {
-                        this.extension = album_art.file_extension;
-                    }
+                if (thumbnails.size > thumbnail_index) {
+                    this.extension = thumbnails[thumbnail_index].file_extension;
                 }
-            } else if (subtitle_index > -1) {
-                if (item is VideoItem) {
-                    var subtitles = (item as VideoItem).subtitles;
+            } else if (item is MusicItem) {
+                var album_art = (item as MusicItem).album_art;
 
-                    if (subtitles.size > subtitle_index) {
-                        this.extension = subtitles[subtitle_index].caption_type;
-                    }
+                if (album_art != null) {
+                    this.extension = album_art.file_extension;
                 }
-            } else if (transcode_target != null) {
-                try {
-                    var tc = this.http_server.get_transcoder (transcode_target);
+            }
+        } else if (subtitle_index > -1) {
+            if (item is VideoItem) {
+                var subtitles = (item as VideoItem).subtitles;
 
-                    this.extension = tc.extension;
-                } catch (Error error) {}
+                if (subtitles.size > subtitle_index) {
+                    this.extension = subtitles[subtitle_index].caption_type;
+                }
+            }
+        } else if (transcode_target != null) {
+            try {
+                var tc = this.http_server.get_transcoder (transcode_target);
+
+                this.extension = tc.extension;
+            } catch (Error error) {}
+        }
+
+        if (this.extension == "") {
+            string uri_extension = "";
+
+            foreach (string uri_string in item.uris) {
+                string basename = Path.get_basename (uri_string);
+                int dot_index = basename.last_index_of(".");
+
+                if (dot_index > -1) {
+                    uri_extension = basename.substring (dot_index + 1);
+
+                    break;
+                }
             }
 
-            if (this.extension == "") {
-                string uri_extension = "";
-
-                foreach (string uri_string in item.uris) {
-                    string basename = Path.get_basename (uri_string);
-                    int dot_index = basename.last_index_of(".");
-
-                    if (dot_index > -1) {
-                        uri_extension = basename.substring (dot_index + 1);
-
-                        break;
-                    }
-                }
-
-                if (uri_extension == "") {
-                    this.extension = this.ext_from_mime_type (item.mime_type);
-                } else {
-                    this.extension = uri_extension;
-                }
+            if (uri_extension == "") {
+                this.extension = this.ext_from_mime_type (item.mime_type);
+            } else {
+                this.extension = uri_extension;
             }
         }
     }
