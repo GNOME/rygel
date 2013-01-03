@@ -97,18 +97,10 @@ public class Rygel.MusicItem : AudioItem {
         }
     }
 
-    private string get_first (GLib.List<DIDLLiteContributor>? contributors) {
-        if (contributors != null) {
-            return contributors.data.name;
-        }
-
-        return "";
-    }
-
     internal override void apply_didl_lite (DIDLLiteObject didl_object) {
         base.apply_didl_lite (didl_object);
 
-        this.artist = get_first (didl_object.get_artists ());
+        this.artist = this.get_first (didl_object.get_artists ());
         this.track_number = didl_object.track_number;
         this.album = didl_object.album;
         this.genre = didl_object.genre;
@@ -165,4 +157,13 @@ public class Rygel.MusicItem : AudioItem {
                                                               null);
         }
     }
+
+    private string get_first (GLib.List<DIDLLiteContributor>? contributors) {
+        if (contributors != null) {
+            return contributors.data.name;
+        }
+
+        return "";
+    }
+
 }
