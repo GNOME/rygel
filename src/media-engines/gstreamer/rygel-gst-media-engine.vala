@@ -57,7 +57,7 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         var config = MetaConfig.get_default ();
         try {
             transcoding = config.get_transcoding ();
-            transcoder_list = config.get_string_list ("MediaEngine",
+            transcoder_list = config.get_string_list ("GstMediaEngine",
                                                       "transcoders");
         } catch (Error err) {}
 
