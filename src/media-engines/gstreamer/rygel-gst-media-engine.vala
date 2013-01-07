@@ -40,11 +40,19 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         Gst.init (ref args);
         gst_preset_set_app_dir (PRESET_DIR);
 
+        /* Get the possible DLNA profiles
+         * to add to the list of DLNA profiles supported by
+         * this media engine, for get_dlna_profiles():
+         */
         var discoverer = new GUPnPDLNA.Discoverer ((ClockTime) SECOND,
                                                    true,
                                                    false);
         foreach (var profile in discoverer.list_profiles ()) {
             var p = new DLNAProfile (profile.name, profile.mime);
+
+            /* TODO: Check that we (via GStreamer) really support this profile
+             * instead of just claiming to support everything.
+             */
             this.dlna_profiles.prepend (p);
         }
         this.dlna_profiles.prepend (new DLNAProfile ("DIDL_S", "text/xml"));

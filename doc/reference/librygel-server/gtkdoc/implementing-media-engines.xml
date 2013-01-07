@@ -17,8 +17,10 @@ by the media-engine configuration key. For instance, in <literal>rygel.conf</lit
 <code>media-engine=librygel-media-engine-gst.so</code>
 </para>
 
-<para>Media engines should derive their own <link linkend="RygelDataSource">RygelDataSource</link>,
-returning an instance of it from create_data_source().</para>
+<para>A media engines should derive its own <link linkend="RygelDataSource">RygelDataSource</link>,
+returning an instance of it from its create_data_source() implementation.</para>
+
+<para>Optionally, a derived RygelMediaEngine may implement the get_dlna_profiles() and get_transcoders() virtual functions.</para>
 
 <para>Rygel itself provides two media engines:
 </para>
@@ -29,6 +31,6 @@ returning an instance of it from create_data_source().</para>
 </orderedlist>
 </para>
 
-<para>In addition, the external <ulink url="http://git.gnome.org/browse/rygel-gst-0-10-media-engine">rygel-gst-0-10-media-engine</ulink> project provides a Rygel media engine that uses an older GStreamer version.</para>
+<para>In addition, the external <ulink url="http://git.gnome.org/browse/rygel-gst-0-10-media-engine">rygel-gst-0-10-media-engine</ulink> project provides a Rygel media engine that uses an older GStreamer version and is an example of an external Rygel media-engine implemented in C.</para>
 
 </section>
