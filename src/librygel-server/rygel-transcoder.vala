@@ -27,7 +27,11 @@ using GUPnP;
 
 /**
  * The base Transcoder class. Each implementation derives from it and must
- * implement get_distance.
+ * implement create_source() and get_distance().
+ *
+ * Transcoders are obtained from rygel_media_engine_get_transcoders() and 
+ * are only expected to support the derived #RygelDataSource types provided
+ * by the same media engine.
  */
 public abstract class Rygel.Transcoder : GLib.Object {
     public string mime_type { get; protected set; }
@@ -36,6 +40,11 @@ public abstract class Rygel.Transcoder : GLib.Object {
 
     /**
      * Creates a transcoding source.
+     *
+     * The provided original #RygelDataSource will have been implemented by the
+     * same media engine that provided the #RygelTranscoder,
+     * allowing the #RygelTranscoder to access specific resources of the
+     * underlying multimedia backend used by the media engine.
      *
      * @param src the media item to create the transcoding source for
      * @param src the original (non-transcoding) source
@@ -80,13 +89,24 @@ public abstract class Rygel.Transcoder : GLib.Object {
         return res;
     }
 
+    /**
+     * Returns whether this trancoder can handle the specified DLNA profile.
+     * This is determined by the #RygelTranscodeManager, which checks
+     * the suitability of each #RygelTranscoder by calling
+     * rygel_transcoder_get_distance() with each #RygelMediaItem,
+     * choosing one DLNA profile for each transcoder to handle.
+     *
+     * @param target A DLNA profile name as obtained from rygel_media_item_get_dlna_profile().
+     *
+     * @return True if the transcoder can handle the specified DLNA profile.
+     */
     public bool can_handle (string target) {
         return target == this.dlna_profile;
     }
 
     /**
-     * Gets the numeric value that gives an gives an estimate of how hard
-     * would it be to trancode @item to target profile of this transcoder.
+     * Gets a numeric value that gives an gives an estimate of how hard
+     * it would be for this transcoder to trancode @item to the target profile of this transcoder.
      *
      * @param item the media item to calculate the distance for
      *
