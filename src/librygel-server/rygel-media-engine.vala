@@ -59,7 +59,7 @@ public abstract class Rygel.MediaEngine : GLib.Object {
     /**
      * Get the singleton instance of the currently used media engine.
      *
-     * @return An instance of a concrete #MediaEngine implementation.
+     * @return An instance of a concrete #RygelMediaEngine implementation.
      */
     public static MediaEngine get_default () {
         if (instance == null) {
@@ -73,14 +73,14 @@ public abstract class Rygel.MediaEngine : GLib.Object {
      * Get a list of the DLNA profiles that are supported by this media
      * engine.
      *
-     * @return A list of #DLNAProfile<!-- -->s
+     * @return A list of #RygelDLNAProfile<!-- -->s
      */
     public abstract unowned List<DLNAProfile> get_dlna_profiles ();
 
     /**
-     * Get a list of the Transcoders that are supported by this media engine.
+     * Get a list of the transcoders that are provided by this media engine.
      *
-     * @return A list of #Transcoder<!-- -->s or null if not supported.
+     * @return A list of #RygelTranscoder<!-- -->s or null if not supported.
      */
     public abstract unowned List<Transcoder>? get_transcoders ();
 
