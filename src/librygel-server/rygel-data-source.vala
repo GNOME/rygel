@@ -36,6 +36,17 @@ public errordomain Rygel.DataSourceError {
  *
  *  # It should support at least the file:/''''/ URI scheme.
  *  # It should be able to stream any kind of binary data, regardless of the format.
+ *
+ * RygelDataSource instances are provided by
+ * rygel_media_engine_create_data_source() which will return a derived #RygelDataSource
+ * that uses a specific IO backend and/or multimedia backend to stream the
+ * multimedia data at the URI.
+ *
+ * The derived RygelDataSource may provide additional API for use by
+ * the derived media engine. For instance, rygel_media_engine_get_transcoders()
+ * may return derived #RygelTranscoder instances, and these may use that
+ * additional API in their create_source() implementations, for instance
+ * to access resources or data structures of the specific multimedia backend.
  */
 public interface Rygel.DataSource : GLib.Object {
     /**
