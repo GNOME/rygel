@@ -62,6 +62,11 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         var transcoding = true;
         var transcoder_list = new ArrayList<string> ();
 
+        /* Allow some transcoders to be disabled by the Rygel Server configuration.
+         * For instance, some DLNA Renderers might incorrectly prefer inferior transcoded formats,
+         * sometimes even preferring transcoded formats over the original data,
+         * so this forces them to use other formats.
+         */
         var config = MetaConfig.get_default ();
         try {
             transcoding = config.get_transcoding ();
