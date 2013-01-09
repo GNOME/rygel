@@ -6,14 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-06-21 19:02+0000\n"
-"PO-Revision-Date: 2012-07-16 23:17+0300\n"
+"POT-Creation-Date: 2012-12-18 22:02+0000\n"
+"PO-Revision-Date: 2013-01-09 23:16+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: lt\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Virtaal 0.6.1\n"
 
@@ -75,17 +75,20 @@ msgstr "Rygel"
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA paslaugos"
 
-#: ../src/plugins/playbin/rygel-playbin-plugin.vala:45
-msgid "GStreamer Player"
-msgstr "GStreamer grotuvas"
+#: ../src/plugins/external/rygel-external-plugin-factory.vala:42
+#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:42
+#, c-format
+#| msgid "Failed to connect to session bus: %s"
+msgid "Module '%s' could not connect to D-Bus session bus. "
+msgstr "Moduliui „%s“ nepavyko prisijungti prie D-Bus seanso magistralės."
 
 #: ../src/plugins/media-export/rygel-media-export-database.vala:210
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Nepavyko grąžinti operacijos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:137
-#: ../src/rygel/rygel-plugin-loader.vala:194
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:135
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:205
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Nepavyko užklausti „%s“ turinio tipo"
@@ -100,27 +103,26 @@ msgstr "Nepavyko pridėti elemento, turinčio ID %s: %s"
 msgid "Failed to attach to D-Bus session bus: %s"
 msgstr "Nepavyko prisijungti prie D-Bus seanso magistralės: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:78
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:94
 msgid "No metadata extractor available. Will not crawl."
 msgstr "Neprieinamas joks metaduomenų skaitytuvas. Nebus skaitoma."
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:121
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:136
 #, c-format
 msgid "'%s' harvested"
 msgstr "„%s“ gauta"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:211
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:199
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Klaida gaunant objektą „%s“ iš duomenų bazės: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:217
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:207
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "Failed to access media cache: %s"
 msgstr "Nepavyko prieiti podėlio: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:256
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:254
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Klaida šalinant objektą iš duomenų bazės: %s"
@@ -135,7 +137,7 @@ msgid "Failed to get file info for %s"
 msgstr "Nepavyko gauti %s failo informacijos"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:30
-#: ../src/plugins/tracker/rygel-tracker-years.vala:35
+#: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Metai"
 
@@ -152,12 +154,11 @@ msgid "Album"
 msgstr "Albumas"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:37
-#: ../src/plugins/tracker/rygel-tracker-genre.vala:33
+#: ../src/plugins/tracker/rygel-tracker-genre.vala:31
 msgid "Genre"
 msgstr "Žanras"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:53
-#| msgid "Select folders"
 msgid "Files & Folders"
 msgstr "Failai ir aplankai"
 
@@ -166,372 +167,552 @@ msgstr "Failai ir aplankai"
 msgid "Failed to remove URI: %s"
 msgstr "Nepavyko pašalinti URI: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:348
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:354
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@ medija"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:355
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:382
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Nepavyko sukurti MediaExport D-Bus paslaugos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:395
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:422
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Nepavyko pašalinti įrašo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:416
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:452
 msgid "Music"
 msgstr "Muzika"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:419
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:455
 msgid "Pictures"
 msgstr "Nuotraukos"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:421
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:457
 msgid "Videos"
 msgstr "Vaizdo įrašai"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:56
-#, c-format
-#| msgid "Failed to start D-Bus service: %s"
-msgid "Failed to create D-Bus proxies: %s"
-msgstr "Nepavyko sukurti D-Bus tarpininkų: %s"
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:459
+msgid "Playlists"
+msgstr "Grojaraščiai"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:64
+#: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
+msgid "GStreamer Player"
+msgstr "GStreamer grotuvas"
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
+#, c-format
+#| msgid "Failed to create preferences dialog: %s"
+msgid "Failed to create a Tracker connection: %s"
+msgstr "Nepavyko sukurti Tracker ryšio: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:62
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "Nepavyko sudaryti aplanko „%s“ URI: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:62
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:109
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:77
 #, c-format
-msgid "Failed to connect to session bus: %s"
-msgstr "Nepavyko prisijungti prie seanso magistralės: %s"
+msgid "Could not subscribe to tracker signals: %s"
+msgstr "Nepavyko prisiregistruoti prie tracker signalų: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:118
-#, c-format
-msgid "Error getting all values for '%s': %s"
-msgstr "Klaida siekiant gauti visas „%s“ reikšmes: %s"
-
-#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:41
+#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:42
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "Nepavyko paleisti Tracker tarnybos: %s. Įskiepis išjungtas."
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:221
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:104
+#, c-format
+#| msgid "Failed to roll back transaction: %s"
+msgid "Failed to get Tracker connection: %s"
+msgstr "Nepavyko gauti Tracker ryšio: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr "Klaida skaičiuojant kategorijos „%s“ elementus: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-albums.vala:35
+#: ../src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
 msgstr "Albumai"
 
-#: ../src/plugins/tracker/rygel-tracker-artists.vala:35
+#: ../src/plugins/tracker/rygel-tracker-artists.vala:31
 msgid "Artists"
 msgstr "Atlikėjai"
 
 #: ../src/plugins/tracker/rygel-tracker-titles.vala:58
-#| msgid "T_itle"
 msgid "Titles"
 msgstr "Pavadinimai"
 
-#: ../src/rygel/rygel-media-query-action.vala:118
-#: ../src/rygel/rygel-media-query-action.vala:181
-#: ../src/rygel/rygel-item-creator.vala:127
-#: ../src/rygel/rygel-item-creator.vala:279
-#: ../src/rygel/rygel-item-destroyer.vala:53
-#: ../src/rygel/rygel-item-destroyer.vala:100
-msgid "No such object"
-msgstr "Nėra tokio objekto"
+#: ../src/librygel-core/rygel-base-configuration.vala:30
+#: ../src/librygel-core/rygel-base-configuration.vala:34
+#: ../src/librygel-core/rygel-base-configuration.vala:38
+#: ../src/librygel-core/rygel-base-configuration.vala:42
+#: ../src/librygel-core/rygel-base-configuration.vala:46
+#: ../src/librygel-core/rygel-base-configuration.vala:50
+#: ../src/librygel-core/rygel-base-configuration.vala:54
+#: ../src/librygel-core/rygel-base-configuration.vala:58
+#: ../src/librygel-core/rygel-base-configuration.vala:62
+#: ../src/librygel-core/rygel-base-configuration.vala:66
+#: ../src/librygel-core/rygel-base-configuration.vala:70
+#: ../src/librygel-core/rygel-base-configuration.vala:74
+#: ../src/librygel-core/rygel-base-configuration.vala:78
+#: ../src/librygel-core/rygel-base-configuration.vala:82
+#: ../src/librygel-core/rygel-base-configuration.vala:86
+#: ../src/librygel-core/rygel-base-configuration.vala:92
+#: ../src/librygel-core/rygel-base-configuration.vala:98
+#: ../src/librygel-core/rygel-base-configuration.vala:106
+#: ../src/librygel-core/rygel-base-configuration.vala:112
+#: ../src/librygel-core/rygel-base-configuration.vala:118
+msgid "Not implemented"
+msgstr "Nerealizuota"
 
-#: ../src/rygel/rygel-media-query-action.vala:123
-#| msgid "Invalid Name"
-msgid "Invalid range"
-msgstr "Netinkami rėžiai"
+#: ../src/librygel-core/rygel-connection-manager.vala:89
+#: ../src/librygel-core/rygel-connection-manager.vala:103
+#: ../src/librygel-core/rygel-connection-manager.vala:125
+#: ../src/librygel-renderer/rygel-av-transport.vala:200
+#: ../src/librygel-renderer/rygel-rendering-control.vala:126
+#: ../src/librygel-server/rygel-content-directory.vala:250
+#: ../src/librygel-server/rygel-content-directory.vala:277
+#: ../src/librygel-server/rygel-content-directory.vala:296
+#: ../src/librygel-server/rygel-content-directory.vala:331
+#: ../src/librygel-server/rygel-content-directory.vala:356
+#: ../src/librygel-server/rygel-content-directory.vala:381
+#: ../src/librygel-server/rygel-media-receiver-registrar.vala:59
+msgid "Invalid argument"
+msgstr "Netinkamas argumentas"
 
-#: ../src/rygel/rygel-browse.vala:63
+#: ../src/librygel-core/rygel-connection-manager.vala:119
+msgid "Invalid connection reference"
+msgstr "Netinkama ryšio nuoroda"
+
+#: ../src/librygel-core/rygel-log-handler.vala:68
+#, c-format
+msgid "Failed to get log level from configuration: %s"
+msgstr "Nepavyko iš nustatymų sužinoti žurnalo vedimo lygmens: %s"
+
+#: ../src/librygel-core/rygel-meta-config.vala:89
+#: ../src/librygel-core/rygel-meta-config.vala:108
+#: ../src/librygel-core/rygel-meta-config.vala:127
+#: ../src/librygel-core/rygel-meta-config.vala:146
+#: ../src/librygel-core/rygel-meta-config.vala:165
+#: ../src/librygel-core/rygel-meta-config.vala:184
+#: ../src/librygel-core/rygel-meta-config.vala:203
+#: ../src/rygel/rygel-cmdline-config.vala:141
+#: ../src/rygel/rygel-cmdline-config.vala:149
+#: ../src/rygel/rygel-cmdline-config.vala:157
+#: ../src/rygel/rygel-cmdline-config.vala:165
+#: ../src/rygel/rygel-cmdline-config.vala:173
+#: ../src/rygel/rygel-cmdline-config.vala:181
+#: ../src/rygel/rygel-cmdline-config.vala:189
+#: ../src/rygel/rygel-cmdline-config.vala:228
+#: ../src/rygel/rygel-cmdline-config.vala:247
+#: ../src/rygel/rygel-cmdline-config.vala:253
+#: ../src/rygel/rygel-cmdline-config.vala:260
+#: ../src/rygel/rygel-cmdline-config.vala:264
+#: ../src/rygel/rygel-cmdline-config.vala:268
+#: ../src/rygel/rygel-cmdline-config.vala:291
+#: ../src/rygel/rygel-cmdline-config.vala:317
+#: ../src/rygel/rygel-cmdline-config.vala:346
+#: ../src/rygel/rygel-cmdline-config.vala:372
+#: ../src/rygel/rygel-cmdline-config.vala:397
+#: ../src/rygel/rygel-environment-config.vala:100
+#: ../src/rygel/rygel-environment-config.vala:104
+#: ../src/rygel/rygel-environment-config.vala:108
+msgid "No value available"
+msgstr "Neprieinama jokia reikšmė"
+
+#: ../src/librygel-core/rygel-meta-config.vala:324
+#, c-format
+msgid "No value set for '%s/enabled'"
+msgstr "„%s/enabled“ nenustatyta jokia reikšmė"
+
+#: ../src/librygel-core/rygel-meta-config.vala:343
+#, c-format
+#| msgid "No value set for '%s/enabled'"
+msgid "No value set for '%s/title'"
+msgstr "„%s/title“ nenustatyta jokia reikšmė"
+
+#: ../src/librygel-core/rygel-meta-config.vala:363
+#: ../src/librygel-core/rygel-meta-config.vala:385
+#: ../src/librygel-core/rygel-meta-config.vala:411
+#: ../src/librygel-core/rygel-meta-config.vala:433
+#: ../src/librygel-core/rygel-meta-config.vala:457
+#, c-format
+msgid "No value available for '%s/%s'"
+msgstr "„%s/%s“ neprieinama jokia reikšmė"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:77
+#, c-format
+msgid "New plugin '%s' available"
+msgstr "Prieinamas naujas įskiepis „%s“"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:92
+#, c-format
+msgid "A module named %s is already loaded"
+msgstr "Modulis %s jau įkeltas"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:101
+#, c-format
+msgid "Failed to load module from path '%s': %s"
+msgstr "Nepavyko iš „%s“ įkelti modulio: %s"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:111
+#, c-format
+msgid "Failed to find entry point function '%s' in '%s': %s"
+msgstr "Nepavyko rasti įėjimo taško funkcijos „%s“ vietoje „%s“: %s"
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:137
+#, c-format
+msgid "Error listing contents of folder '%s': %s"
+msgstr "Klaida rodant aplanko „%s“ turinį: %s"
+
+#: ../src/librygel-core/rygel-root-device-factory.vala:102
+#: ../src/librygel-core/rygel-root-device-factory.vala:135
+#: ../src/librygel-core/rygel-root-device-factory.vala:157
+#: ../src/librygel-core/rygel-root-device-factory.vala:188
+#, c-format
+msgid "XML node '%s' not found."
+msgstr "XML mazgas „%s“ nerastas."
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:206
+#: ../src/librygel-renderer/rygel-rendering-control.vala:132
+msgid "Invalid InstanceID"
+msgstr "Netinkamas InstanceID"
+
+#. FIXME: Return a more sensible error here.
+#: ../src/librygel-renderer/rygel-av-transport.vala:241
+#: ../src/librygel-renderer/rygel-av-transport.vala:656
+#: ../src/librygel-renderer/rygel-av-transport.vala:666
+msgid "Resource not found"
+msgstr "Resursas nerastas"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:252
+msgid "Illegal MIME-type"
+msgstr "Neteisingas MIME-tipas"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:514
+msgid "Play speed not supported"
+msgstr "Nepalaikoma grojimo sparta"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:531
+msgid "Transition not available"
+msgstr "Perėjimas neprieinamas"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:560
+#: ../src/librygel-renderer/rygel-av-transport.vala:584
+msgid "Seek mode not supported"
+msgstr "Nepalaikoma paieškos veiksena"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:573
+#: ../src/librygel-renderer/rygel-av-transport.vala:594
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
+msgid "Illegal seek target"
+msgstr "Neteisingas paieškos tikslas"
+
+#: ../src/librygel-renderer/rygel-media-renderer.vala:27
+msgid "LibRygelRenderer"
+msgstr "LibRygelRenderer"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:163
+msgid "Invalid Name"
+msgstr "Netinkamas vardas"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:177
+msgid "Invalid Channel"
+msgstr "Netinkamas kanalas"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:213
+#: ../src/librygel-renderer/rygel-rendering-control.vala:255
+#: ../src/librygel-renderer/rygel-rendering-control.vala:264
+msgid "Action Failed"
+msgstr "Veiksmas nepavyko"
+
+#: ../src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
 msgstr "Netinkami argumentai"
 
-#: ../src/rygel/rygel-browse.vala:94
+#: ../src/librygel-server/rygel-browse.vala:94
 msgid "Cannot browse children on item"
 msgstr "Negalima naršyti elemento vaikų"
 
-#: ../src/rygel/rygel-browse.vala:121
+#: ../src/librygel-server/rygel-browse.vala:130
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "Nepavyko naršyti „%s“: %s\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:156
-#: ../src/rygel/rygel-cmdline-config.vala:164
-#: ../src/rygel/rygel-cmdline-config.vala:172
-#: ../src/rygel/rygel-cmdline-config.vala:180
-#: ../src/rygel/rygel-cmdline-config.vala:188
-#: ../src/rygel/rygel-cmdline-config.vala:196
-#: ../src/rygel/rygel-cmdline-config.vala:204
-#: ../src/rygel/rygel-cmdline-config.vala:212
-#: ../src/rygel/rygel-cmdline-config.vala:220
-#: ../src/rygel/rygel-cmdline-config.vala:228
-#: ../src/rygel/rygel-cmdline-config.vala:236
-#: ../src/rygel/rygel-cmdline-config.vala:244
-#: ../src/rygel/rygel-cmdline-config.vala:252
-#: ../src/rygel/rygel-cmdline-config.vala:278
-#: ../src/rygel/rygel-cmdline-config.vala:297
-#: ../src/rygel/rygel-cmdline-config.vala:303
-#: ../src/rygel/rygel-cmdline-config.vala:310
-#: ../src/rygel/rygel-cmdline-config.vala:314
-#: ../src/rygel/rygel-cmdline-config.vala:318
-#: ../src/rygel/rygel-cmdline-config.vala:341
-#: ../src/rygel/rygel-cmdline-config.vala:367
-#: ../src/rygel/rygel-cmdline-config.vala:396
-#: ../src/rygel/rygel-cmdline-config.vala:422
-#: ../src/rygel/rygel-cmdline-config.vala:447
-#: ../src/rygel/rygel-meta-config.vala:83
-#: ../src/rygel/rygel-meta-config.vala:102
-#: ../src/rygel/rygel-meta-config.vala:121
-#: ../src/rygel/rygel-meta-config.vala:140
-#: ../src/rygel/rygel-meta-config.vala:159
-#: ../src/rygel/rygel-meta-config.vala:178
-#: ../src/rygel/rygel-meta-config.vala:197
-#: ../src/rygel/rygel-meta-config.vala:216
-#: ../src/rygel/rygel-meta-config.vala:235
-#: ../src/rygel/rygel-meta-config.vala:254
-#: ../src/rygel/rygel-meta-config.vala:273
-#: ../src/rygel/rygel-meta-config.vala:292
-#: ../src/rygel/rygel-meta-config.vala:311
-msgid "No value available"
-msgstr "Neprieinama jokia reikšmė"
-
-#: ../src/rygel/rygel-connection-manager.vala:89
-#: ../src/rygel/rygel-connection-manager.vala:103
-#: ../src/rygel/rygel-connection-manager.vala:125
-#: ../src/rygel/rygel-content-directory.vala:198
-#: ../src/rygel/rygel-content-directory.vala:225
-#: ../src/rygel/rygel-content-directory.vala:244
-#: ../src/rygel/rygel-content-directory.vala:279
-#: ../src/rygel/rygel-content-directory.vala:304
-#: ../src/rygel/rygel-content-directory.vala:329
-#: ../src/rygel/rygel-media-receiver-registrar.vala:59
-#| msgid "Invalid Arguments"
-msgid "Invalid argument"
-msgstr "Netinkamas argumentas"
-
-#: ../src/rygel/rygel-connection-manager.vala:119
-msgid "Invalid connection reference"
-msgstr "Netinkama ryšio nuoroda"
-
-#: ../src/rygel/rygel-content-directory.vala:217
-#: ../src/rygel/rygel-content-directory.vala:236
+#: ../src/librygel-server/rygel-content-directory.vala:269
+#: ../src/librygel-server/rygel-content-directory.vala:288
 msgid "No such file transfer"
 msgstr "Nėra tokio failo siuntimo"
 
-#: ../src/rygel/rygel-av-transport.vala:215
-#: ../src/rygel/rygel-rendering-control.vala:123
-#| msgid "Invalid Arguments"
-msgid "Invalid Args"
-msgstr "Netinkami argumentai"
-
-#: ../src/rygel/rygel-av-transport.vala:221
-#: ../src/rygel/rygel-rendering-control.vala:129
-msgid "Invalid InstanceID"
-msgstr "Netinkamas InstanceID"
-
-#: ../src/rygel/rygel-av-transport.vala:481
-msgid "Play speed not supported"
-msgstr "Nepalaikoma grojimo sparta"
-
-#: ../src/rygel/rygel-av-transport.vala:497
-#: ../src/rygel/rygel-av-transport.vala:542
-#: ../src/rygel/rygel-av-transport.vala:546
-msgid "Transition not available"
-msgstr "Perėjimas neprieinamas"
-
-#: ../src/rygel/rygel-av-transport.vala:526
-msgid "Seek failed"
-msgstr "Perslinkimas nepavyko"
-
-#: ../src/rygel/rygel-av-transport.vala:535
-msgid "Seek mode not supported"
-msgstr "Nepalaikoma paieškos veiksena"
-
-#: ../src/rygel/rygel-rendering-control.vala:160
-msgid "Invalid Name"
-msgstr "Netinkamas vardas"
-
-#: ../src/rygel/rygel-rendering-control.vala:174
-#| msgid "Invalid Name"
-msgid "Invalid Channel"
-msgstr "Netinkamas kanalas"
-
-#: ../src/rygel/rygel-rendering-control.vala:210
-#: ../src/rygel/rygel-rendering-control.vala:252
-#| msgid "Action Failed"
-msgid "ActionFailed"
-msgstr "Veiksmas nepavyko"
-
-#: ../src/rygel/rygel-rendering-control.vala:261
-msgid "Action Failed"
-msgstr "Veiksmas nepavyko"
-
-#: ../src/rygel/rygel-gst-utils.vala:38
-#, c-format
-msgid "Required element %s missing"
-msgstr "Nėra reikalingo elemento %s"
-
 #. Range header was present but invalid
-#: ../src/rygel/rygel-http-byte-seek.vala:47
-#: ../src/rygel/rygel-http-byte-seek.vala:52
-#: ../src/rygel/rygel-http-time-seek.vala:49
-#: ../src/rygel/rygel-http-time-seek.vala:61
-#: ../src/rygel/rygel-http-time-seek.vala:68
-#: ../src/rygel/rygel-http-time-seek.vala:83
+#: ../src/librygel-server/rygel-http-byte-seek.vala:49
+#: ../src/librygel-server/rygel-http-byte-seek.vala:54
+#: ../src/librygel-server/rygel-http-time-seek.vala:49
+#: ../src/librygel-server/rygel-http-time-seek.vala:61
+#: ../src/librygel-server/rygel-http-time-seek.vala:68
+#: ../src/librygel-server/rygel-http-time-seek.vala:83
 #, c-format
 msgid "Invalid Range '%s'"
 msgstr "Netinkamas rėžis „%s“"
 
-#: ../src/rygel/rygel-http-get.vala:59
+#: ../src/librygel-server/rygel-http-get.vala:59
 msgid "Invalid Request"
 msgstr "Netinkama užklausa"
 
-#: ../src/rygel/rygel-http-identity-handler.vala:89
-#: ../src/rygel/rygel-http-transcode-handler.vala:57
+#: ../src/librygel-server/rygel-http-identity-handler.vala:106
+#: ../src/librygel-server/rygel-http-transcode-handler.vala:58
 msgid "Not found"
 msgstr "Nerasta"
 
-#: ../src/rygel/rygel-http-item-uri.vala:127
+#: ../src/librygel-server/rygel-http-item-uri.vala:134
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Netinkamas URI „%s“"
 
-#: ../src/rygel/rygel-http-item-uri.vala:166
+#: ../src/librygel-server/rygel-http-item-uri.vala:177
 msgid "Not Found"
 msgstr "Nerasta"
 
-#: ../src/rygel/rygel-http-post.vala:62
-#: ../src/rygel/rygel-import-resource.vala:191
+#: ../src/librygel-server/rygel-http-post.vala:63
+#: ../src/librygel-server/rygel-import-resource.vala:191
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Duomenų nusiuntimas į netuščia elementą „%s“ neleidžiamas"
 
-#: ../src/rygel/rygel-http-post.vala:70
+#: ../src/librygel-server/rygel-http-post.vala:72
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "Neprieinamas rašomas %s URI"
 
 #. translators: Dotfile is the filename with prefix "."
-#: ../src/rygel/rygel-http-post.vala:185
+#: ../src/librygel-server/rygel-http-post.vala:187
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "Failed to move dotfile %s: %s"
 msgstr "Nepavyko perkelti failo %s: %s"
 
-#: ../src/rygel/rygel-http-request.vala:89
+#: ../src/librygel-server/rygel-http-request.vala:92
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "Pageidaujamas elementas „%s“ nerastas"
 
-#: ../src/rygel/rygel-http-response.vala:156
-#: ../src/rygel/rygel-http-response.vala:177
-#, c-format
-msgid "Failed to link %s to %s"
-msgstr "Nepavyko susieti %s su %s"
-
-#: ../src/rygel/rygel-http-response.vala:192
-#, c-format
-msgid "Failed to link pad %s to %s"
-msgstr "Nepavyko susieti pagrindo %s su %s"
-
-#: ../src/rygel/rygel-http-response.vala:235
-#, c-format
-msgid "Error from pipeline %s: %s"
-msgstr "Klaida konvejeryje %s: %s"
-
-#: ../src/rygel/rygel-http-response.vala:242
-#, c-format
-msgid "Warning from pipeline %s: %s"
-msgstr "Įspėjimas konvejeryje %s: %s"
-
-#: ../src/rygel/rygel-http-response.vala:285
-#, c-format
-msgid "Failed to seek to offset %lld"
-msgstr "Nepavyko rasti poslinkio %lld"
-
-#: ../src/rygel/rygel-http-seek.vala:51
+#: ../src/librygel-server/rygel-http-seek.vala:95
 #, c-format
 msgid "Out Of Range Start '%ld'"
 msgstr "Už ribų pradėti „%ld“"
 
-#: ../src/rygel/rygel-http-seek.vala:55
+#: ../src/librygel-server/rygel-http-seek.vala:99
 #, c-format
 msgid "Out Of Range Stop '%ld'"
 msgstr "Už ribų sustoti „%ld“"
 
-#: ../src/rygel/rygel-import-resource.vala:124
+#: ../src/librygel-server/rygel-import-resource.vala:124
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Nepavyko gauti originalaus „%s“ URI: %s"
 
-#: ../src/rygel/rygel-import-resource.vala:188
+#: ../src/librygel-server/rygel-import-resource.vala:188
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URI „%s“ netinkamas turinio importavimui"
 
-#: ../src/rygel/rygel-item-creator.vala:118
+#: ../src/librygel-server/rygel-item-creator.vala:119
 msgid "'Elements' argument missing."
 msgstr "Trūksta „Elements“ argumento."
 
-#: ../src/rygel/rygel-item-creator.vala:121
+#: ../src/librygel-server/rygel-item-creator.vala:122
 msgid "Comments not allowed in XML"
 msgstr "XML faile komentarai neleidžiami"
 
-#: ../src/rygel/rygel-item-creator.vala:149
+#: ../src/librygel-server/rygel-item-creator.vala:128
+#: ../src/librygel-server/rygel-item-creator.vala:281
+#: ../src/librygel-server/rygel-item-destroyer.vala:53
+#: ../src/librygel-server/rygel-item-destroyer.vala:100
+#: ../src/librygel-server/rygel-item-updater.vala:70
+#: ../src/librygel-server/rygel-item-updater.vala:188
+#: ../src/librygel-server/rygel-media-query-action.vala:115
+#: ../src/librygel-server/rygel-media-query-action.vala:182
+msgid "No such object"
+msgstr "Nėra tokio objekto"
+
+#: ../src/librygel-server/rygel-item-creator.vala:150
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "DIDL-Lite nėra kliento elementų: „%s“"
 
-#: ../src/rygel/rygel-item-creator.vala:283
-#: ../src/rygel/rygel-item-creator.vala:518
+#: ../src/librygel-server/rygel-item-creator.vala:285
+#: ../src/librygel-server/rygel-item-creator.vala:528
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Negalima %s kurti objektų"
 
-#: ../src/rygel/rygel-item-creator.vala:311
+#: ../src/librygel-server/rygel-item-creator.vala:313
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Nepavyko „%s“ sukurti elemento: %s"
 
-#: ../src/rygel/rygel-item-destroyer.vala:60
+#: ../src/librygel-server/rygel-item-destroyer.vala:60
 #, c-format
 msgid "Successfully destroyed object '%s'"
 msgstr "Sėkmingai sunaikintas objektas „%s“"
 
-#: ../src/rygel/rygel-item-destroyer.vala:68
+#: ../src/librygel-server/rygel-item-destroyer.vala:68
 #, c-format
-#| msgid "Failed to browse '%s': %s\n"
 msgid "Failed to destroy object '%s': %s"
 msgstr "Nepavyko sunaikinti objekto „%s“: %s"
 
-#: ../src/rygel/rygel-item-destroyer.vala:103
+#: ../src/librygel-server/rygel-item-destroyer.vala:103
 #, c-format
-#| msgid "Object creation in %s not allowed"
 msgid "Removal of object %s not allowed"
 msgstr "Objekto %s pašalinimas neleidžiamas"
 
-#: ../src/rygel/rygel-item-destroyer.vala:106
+#: ../src/librygel-server/rygel-item-destroyer.vala:106
 #, c-format
-#| msgid "Object creation in %s not allowed"
 msgid "Object removal from %s not allowed"
 msgstr "Objekto pašalinimas iš %s neleidžiamas"
 
-#: ../src/rygel/rygel-log-handler.vala:68
+#: ../src/librygel-server/rygel-item-updater.vala:77
 #, c-format
-msgid "Failed to get log level from configuration: %s"
-msgstr "Nepavyko iš nustatymų sužinoti žurnalo vedimo lygmens: %s"
+#| msgid "Successfully destroyed object '%s'"
+msgid "Successfully updated object '%s'"
+msgstr "Sėkmingai atnaujintas objektas „%s“"
 
-#: ../src/rygel/rygel-main.vala:103
+#: ../src/librygel-server/rygel-item-updater.vala:85
+#, c-format
+#| msgid "Failed to destroy object '%s': %s"
+msgid "Failed to update object '%s': %s"
+msgstr "Nepavyko atnaujinti objekto „%s“: %s"
+
+#: ../src/librygel-server/rygel-item-updater.vala:190
+#, c-format
+#| msgid "Removal of object %s not allowed"
+msgid "Metadata modification of object %s not allowed"
+msgstr "Metaduomenų pakeitimas objektui %s neleidžiamas"
+
+#: ../src/librygel-server/rygel-item-updater.vala:195
+#, c-format
+msgid "Metadata modification of object %s being a child "
+msgstr "Metaduomenų pakeitimas vaikiniam objektui %s"
+
+#: ../src/librygel-server/rygel-media-engine.vala:55
+msgid "No media engine found."
+msgstr "Nerastas medijos variklis."
+
+#: ../src/librygel-server/rygel-media-engine.vala:66
+msgid "MediaEngine.init was not called. Cannot continue."
+msgstr "MediaEngine.init nebuvo iškviestas. Negalima tęsti."
+
+#: ../src/librygel-server/rygel-media-item.vala:307
+#, c-format
+msgid "Bad URI: %s"
+msgstr "Netinkamas URI: %s"
+
+#. Assume the protocol to be the scheme of the URI
+#: ../src/librygel-server/rygel-media-item.vala:319
+#, c-format
+msgid "Failed to probe protocol for URI %s. Assuming '%s'"
+msgstr "Nepavyko nustatyti URI %s protokolo. Manoma, tai – „%s“"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:120
+msgid "Invalid range"
+msgstr "Netinkami rėžiai"
+
+#: ../src/librygel-server/rygel-media-server.vala:25
+msgid "LibRygelServer"
+msgstr "LibRygelServer"
+
+#: ../src/librygel-server/rygel-search.vala:93
+#, c-format
+msgid "Failed to search in '%s': %s"
+msgstr "Nepavyko rasti „%s“: %s"
+
+#: ../src/librygel-server/rygel-subtitle-manager.vala:65
+msgid "No subtitle available"
+msgstr "Neprieinami subtitrai"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:61
+#, c-format
+msgid "No thumbnailer available: %s"
+msgstr "Neprieinama miniatiūrų kūrimo programa: %s"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:74
+#| msgid "Seek mode not supported"
+msgid "Thubmnailing not supported"
+msgstr "Miniatiūros nepalaikomos"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:88
+#: ../src/librygel-server/rygel-thumbnailer.vala:97
+#: ../src/librygel-server/rygel-thumbnailer.vala:102
+#: ../src/librygel-server/rygel-thumbnailer.vala:113
+msgid "No thumbnail available"
+msgstr "Neprieinamos miniatiūros"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:132
+#| msgid "No thumbnail available"
+msgid "No D-Bus thumbnailer available"
+msgstr "Nėra D-Bus miniatiūrų kūrėjo"
+
+#: ../src/librygel-server/rygel-transcode-manager.vala:79
+#, c-format
+msgid "No transcoder available for target format '%s'"
+msgstr "Nėra tiksliniam formatui „%s“ reikiamos perkodavimo programos"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:39
+#, c-format
+msgid "Could not create GstElement for URI %s"
+msgstr "Nepavyko sukurti GstElement URI %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:92
+#| msgid "Failed to create item under '%s': %s"
+msgid "Failed to create pipeline"
+msgstr "Nepavyko sukurti konvejerio"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr "Nepavyko susieti %s su %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:138
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr "Nepavyko susieti pagrindo %s su %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:193
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr "Klaida konvejeryje %s: %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:200
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr "Įspėjimas konvejeryje %s: %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:251
+#, c-format
+#| msgid "Failed to seek to offset %lld"
+msgid "Failed to seek to offsets %lld:%lld"
+msgstr "Nepavyko rasti poslinkių %lld:%lld"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:255
+#| msgid "Failed to seek to offset %lld"
+msgid "Failed to seek"
+msgstr "Nepavyko ieškoti"
+
+#: ../src/media-engines/gstreamer/rygel-gst-utils.vala:39
+#, c-format
+msgid "Required element %s missing"
+msgstr "Nėra reikalingo elemento %s"
+
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:56
+#| msgid "Play speed not supported"
+msgid "Time-based seek not supported"
+msgstr "Laiko paieška nepalaikoma"
+
+#: ../src/rygel/rygel-main.vala:101
 #, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
@@ -539,133 +720,49 @@ msgstr[0] "Per %d sekundę nerasta jokių įskiepių. Pasiduodama…"
 msgstr[1] "Per %d sekundes nerasta jokių įskiepių. Pasiduodama…"
 msgstr[2] "Per %d sekundžių nerasta jokių įskiepių. Pasiduodama…"
 
-#: ../src/rygel/rygel-main.vala:164
+#: ../src/rygel/rygel-main.vala:162
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Nepavyko sukurti šakninio įrenginio gamyklos: %s"
 
-#: ../src/rygel/rygel-main.vala:222
+#: ../src/rygel/rygel-main.vala:220
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Nepavyko %s sukurti RootDevice. Priežastis: %s"
 
-#: ../src/rygel/rygel-media-item.vala:273
-#, c-format
-msgid "Bad URI: %s"
-msgstr "Netinkamas URI: %s"
-
-#. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:285
-#, c-format
-msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr "Nepavyko nustatyti URI %s protokolo. Manoma, tai – „%s“"
-
-#: ../src/rygel/rygel-meta-config.vala:65
+#: ../src/rygel/rygel-main.vala:257
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Nepavyko įkelti naudotojo nustatymų: %s"
 
-#: ../src/rygel/rygel-meta-config.vala:394
-#: ../src/rygel/rygel-meta-config.vala:413
-#, c-format
-msgid "No value set for '%s/enabled'"
-msgstr "„%s/enabled“ nenustatyta jokia reikšmė"
-
-#: ../src/rygel/rygel-meta-config.vala:433
-#: ../src/rygel/rygel-meta-config.vala:455
-#: ../src/rygel/rygel-meta-config.vala:481
-#: ../src/rygel/rygel-meta-config.vala:503
-#: ../src/rygel/rygel-meta-config.vala:527
-#, c-format
-msgid "No value available for '%s/%s'"
-msgstr "„%s/%s“ neprieinama jokia reikšmė"
-
-#: ../src/rygel/rygel-plugin-loader.vala:85
-#, c-format
-msgid "New plugin '%s' available"
-msgstr "Prieinamas naujas įskiepis „%s“"
-
-#: ../src/rygel/rygel-plugin-loader.vala:119
-#, c-format
-msgid "Error listing contents of folder '%s': %s"
-msgstr "Klaida rodant aplanko „%s“ turinį: %s"
-
-#: ../src/rygel/rygel-plugin-loader.vala:147
-#, c-format
-msgid "A module named %s is already loaded"
-msgstr "Modulis %s jau įkeltas"
-
-#: ../src/rygel/rygel-plugin-loader.vala:156
-#, c-format
-msgid "Failed to load module from path '%s': %s"
-msgstr "Nepavyko iš „%s“ įkelti modulio: %s"
-
-#: ../src/rygel/rygel-plugin-loader.vala:166
-#, c-format
-msgid "Failed to find entry point function '%s' in '%s': %s"
-msgstr "Nepavyko rasti įėjimo taško funkcijos „%s“ vietoje „%s“: %s"
-
-#: ../src/rygel/rygel-root-device-factory.vala:110
-#: ../src/rygel/rygel-root-device-factory.vala:144
-#: ../src/rygel/rygel-root-device-factory.vala:166
-#: ../src/rygel/rygel-root-device-factory.vala:221
-#, c-format
-msgid "XML node '%s' not found."
-msgstr "XML mazgas „%s“ nerastas."
-
-#: ../src/rygel/rygel-search.vala:89
-#, c-format
-msgid "Failed to search in '%s': %s"
-msgstr "Nepavyko rasti „%s“: %s"
-
-#: ../src/rygel/rygel-subtitle-manager.vala:65
-msgid "No subtitle available"
-msgstr "Neprieinami subtitrai"
-
-#: ../src/rygel/rygel-thumbnailer.vala:58
-msgid "Failed to find thumbnails folder."
-msgstr "Nepavyko rasti miniatiūrų aplanko."
-
-#: ../src/rygel/rygel-thumbnailer.vala:90
-#, c-format
-msgid "No thumbnailer available: %s"
-msgstr "Neprieinama miniatiūrų kūrimo programa: %s"
-
-#: ../src/rygel/rygel-thumbnailer.vala:119
-msgid "No thumbnail available"
-msgstr "Neprieinamos miniatiūros"
-
-#: ../src/rygel/rygel-transcode-manager.vala:130
-#, c-format
-msgid "No transcoder available for target format '%s'"
-msgstr "Nėra tiksliniam formatui „%s“ reikiamos perkodavimo programos"
-
-#: ../src/rygel/rygel-user-config.vala:198
+#: ../src/rygel/rygel-user-config.vala:292
+#: ../src/ui/rygel-user-config.vala:292
 #, c-format
 msgid "No value available for '%s'"
 msgstr "„%s“ neprieinama jokia reikšmė"
 
-#: ../src/rygel/rygel-user-config.vala:248
+#: ../src/rygel/rygel-user-config.vala:363
+#: ../src/ui/rygel-user-config.vala:363
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "„%s“ reikšmė viršija ribas"
 
-#: ../src/ui/rygel-preferences-dialog.vala:91
+#: ../src/ui/rygel-preferences-dialog.vala:94
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Nepavyko sukurti nustatymų dialogo: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:122
+#: ../src/ui/rygel-writable-user-config.vala:108
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr "Nepavyko įrašyti nustatymų į failą „%s“: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:210
+#: ../src/ui/rygel-writable-user-config.vala:196
 #, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "Nepavyko paleisti Rygel tarnybos: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:212
+#: ../src/ui/rygel-writable-user-config.vala:198
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Nepavyko sustabdyti Rygel tarnybos: %s"
