@@ -289,10 +289,6 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                                             this.flag);
                 } catch (Error error) {};
             }
-            parent.updated (parent);
-            try {
-                this.cache.save_container (parent);
-            } catch (Error error) { }
 
             this.completed ();
         }
@@ -378,11 +374,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             var container = this.containers.peek_head ();
             try {
                 var cache = MediaCache.get_default ();
-                if (cache.get_child_count (container.id) > 0) {
-                    var head = this.containers.peek_head ();
-                    head.updated (head);
-                    cache.save_container (head);
-                } else {
+                if (cache.get_child_count (container.id) == 0) {
                     var parent = container.parent as TrackableContainer;
                     parent.remove_child_tracked.begin (container, () => {
                         try {

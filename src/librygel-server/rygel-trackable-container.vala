@@ -61,6 +61,9 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
 
         this.updated (object, ObjectEventType.DELETED);
         this.total_deleted_child_count++;
+
+        // FIXME: Check if modification of child_count should lead to
+        // LastChange event.
         this.updated ();
     }
 
