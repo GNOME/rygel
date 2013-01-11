@@ -27,12 +27,20 @@ using GUPnP;
 using Gee;
 
 /**
- * Responsible for plugin loading. Probes for shared library files in a specific
- * directry and tries to grab a function with a specific name and signature,
- * calls it. The loaded module can then add plugins to Rygel by calling the
- * add_plugin method. NOTE: The module SHOULD make sure that plugin is not
- * disabled by user using plugin_disabled method before creating the plugin
- * instance and resources related to that instance.
+ * This class is responsible for plugin loading.
+ *
+ * It probes for shared library files in a specific directory, tries to 
+ * find a module_init() function with this signature:
+ * ``void module_init (RygelPluginLoader* loader);``
+ * 
+ * It then calls that function, passing a pointer to itself. The loaded
+ * module can then add plugins to Rygel by calling the
+ * rygel_plugin_loader_add_plugin() function.
+ *
+ * NOTE: The module SHOULD make sure that the plugin has not been
+ * disabled by the user, by using the 
+ * rygel_plugin_loader_plugin_disabled() function before creating the plugin
+ * instance, and before creating any resources related to that instance.
  */
 public class Rygel.PluginLoader : RecursiveModuleLoader {
     private delegate void ModuleInitFunc (PluginLoader loader);
@@ -57,7 +65,7 @@ public class Rygel.PluginLoader : RecursiveModuleLoader {
     }
 
     /**
-     * Checks if a plugin is disabled by user
+     * Checks if a plugin is disabled by the user
      *
      * @param name the name of plugin to check for.
      *
