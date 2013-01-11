@@ -1,3 +1,77 @@
+0.17.6
+======
+
+A new unstable release for Rygel
+
+Changes compared to 0.17.5.1:
+
+- Fix parsing of configuration from environment variables.
+- Remove an ugly hack using leaking symbols in GStreamer media engines.
+- Documentation updates.
+- Example code updates.
+- Silence uncaught error from Thumbnailer when there's no DBus session bus.
+- Add a SD_NA MPEG2 transcoding profile for north american SD-only
+  televisions.
+- Fix bitrates for the AVC_MP4_BL_CIF15_AAC_520 DLNA profile.
+
+GStreamer Renderer:
+ - Fix pc file install and dependencies.
+
+GStreamer Media Engine:
+ - Clean-ups.
+ - Print a proper warning if the transcoding profile is empty instead of
+   showing a critical.
+
+MediaExport:
+ - Add "All" container below each artist.
+ - Make some settings changeable at runtime: "extract-metadata" and
+   "monitor-changes" can now be changed and they will be picked up without the
+   need to restart or kill -HUP rygel.
+ - Fix missing objAdd event in change tracking.
+ - Suppress objMod events from containers that are not tracked.
+ - Remove some triple update events for one update.
+
+MPRIS:
+ - Show a less scary message when no DBus session bus is available.
+
+External:
+ - Show a less scary message when no DBus session bus is available.
+
+Examples:
+ - Various updates and enhancements.
+ - Update fullscreen rendenderer to be closable by keyboard and hide the mouse
+   cursor.
+ - Add a high-quality MPEG2 transcoding preset.
+
+Docs:
+ - Many improvements.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=676136
+ - https://bugzilla.gnome.org/show_bug.cgi?id=679262
+ - https://bugzilla.gnome.org/show_bug.cgi?id=686676
+
+Bugs addresses in this release, but not fixed completely:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=690772
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  Murray Cumming <murrayc@murrayc.com>
+  Yaron Shahrabani <sh.yaron@gmail.com>
+  Piotr Drąg <piotrdrag@gmail.com>
+  Mattias Põldaru <mahfiaz@gmail.com>
+  Kjartan Maraas <kmaraas@gnome.org>
+  Fran Diéguez <fran.dieguez@mabishu.com>
+  Aurimas Černius <aurisc4@gmail.com>
+
+Added/updated translations
+ - et, courtesy of Mattias Põldaru
+ - gl, courtesy of Fran Dieguez
+ - he, courtesy of Yaron Shahrabani
+ - lt, courtesy of Aurimas Černius
+ - nb, courtesy of Kjartan Maraas
+ - pl, courtesy of Piotr Drąg
+
 0.17.5.1
 ========
 
