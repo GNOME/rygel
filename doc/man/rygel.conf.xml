@@ -260,8 +260,8 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
     </variablelist>
   </refsect1>
   <refsect1>
-    <title>Media Engine settings</title>
-    <para>The settings in this <code>[MediaEngine]</code> section  are specific to the media engine used. This document lists the options available for the <ulink url="http://gstreamer.freedesktop.org">GStreamer</ulink> media engine.</para>
+    <title>GStreamer Media Engine settings</title>
+    <para>The settings in the <code>[GstMediaEngine]</code> section are specific to the Gstreamer media engine, which is the default media engine. See the media-engine setting. These following options are available for the <ulink url="http://gstreamer.freedesktop.org">GStreamer</ulink> media engine.</para>
     <variablelist>
       <varlistentry>
         <term>
