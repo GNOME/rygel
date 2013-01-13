@@ -1,3 +1,4 @@
+RYGEL_DOCBUILD_MODULE = rygel-core
 if ENABLE_VALADOC
 
 include $(top_srcdir)/common.am
@@ -16,7 +17,6 @@ RYGEL_DOCBUILD_VALADOC_FLAGS = \
 	--pkg uuid
 
 
-RYGEL_DOCBUILD_MODULE = rygel-core
 RYGEL_DOCBUILD_EXTRA_GTKDOC_OPTIONS =
 endif
 
