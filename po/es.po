@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-18 22:02+0000\n"
-"PO-Revision-Date: 2013-01-15 13:03+0100\n"
+"POT-Creation-Date: 2013-01-15 13:36+0000\n"
+"PO-Revision-Date: 2013-01-15 16:27+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -84,10 +84,13 @@ msgstr "Rygel"
 msgid "UPnP/DLNA Services"
 msgstr "Servicios UPnP/DLNA"
 
+#: ../data/rygel.desktop.in.in.h:3
+msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
+msgstr "servidor;medios;renderizado;compartir;sonido;vídeo;imágenes;fotos;"
+
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:42
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:42
 #, c-format
-#| msgid "Failed to connect to session bus: %s"
 msgid "Module '%s' could not connect to D-Bus session bus. "
 msgstr "El módulo «%s» no se pudo conectar a una sesión del bus de D-Bus. "
 
@@ -96,7 +99,7 @@ msgstr "El módulo «%s» no se pudo conectar a una sesión del bus de D-Bus. 
 msgid "Failed to roll back transaction: %s"
 msgstr "Falló al deshacer la transacción: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:135
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:126
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:205
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -131,16 +134,16 @@ msgstr "Error al obtener el objeto «%s» de la base de datos: %s"
 msgid "Failed to access media cache: %s"
 msgstr "Falló al acceder a la caché multimedia: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:254
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:249
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Error al quitar el objeto de la base de datos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:40
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
 msgid "Will not monitor file changes"
 msgstr "No se monitorizarán cambios en archivos"
 
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:95
 #, c-format
 msgid "Failed to get file info for %s"
 msgstr "Falló al obtener el archivo de información para %s"
@@ -338,7 +341,6 @@ msgstr "No existe un valor establecido para «%s/activado»"
 
 #: ../src/librygel-core/rygel-meta-config.vala:343
 #, c-format
-#| msgid "No value set for '%s/enabled'"
 msgid "No value set for '%s/title'"
 msgstr "No se ha establecido un valor para «%s/título»"
 
@@ -351,22 +353,22 @@ msgstr "No se ha establecido un valor para «%s/título»"
 msgid "No value available for '%s/%s'"
 msgstr "No existe un valor disponible para «%s/%s»"
 
-#: ../src/librygel-core/rygel-plugin-loader.vala:77
+#: ../src/librygel-core/rygel-plugin-loader.vala:85
 #, c-format
 msgid "New plugin '%s' available"
 msgstr "Existe un nuevo complemento «%s» disponible"
 
-#: ../src/librygel-core/rygel-plugin-loader.vala:92
+#: ../src/librygel-core/rygel-plugin-loader.vala:100
 #, c-format
 msgid "A module named %s is already loaded"
 msgstr "Ya se ha cargado un módulo llamado %s"
 
-#: ../src/librygel-core/rygel-plugin-loader.vala:101
+#: ../src/librygel-core/rygel-plugin-loader.vala:109
 #, c-format
 msgid "Failed to load module from path '%s': %s"
 msgstr "Falló al cargar el módulo desde la ruta «%s»: %s"
 
-#: ../src/librygel-core/rygel-plugin-loader.vala:111
+#: ../src/librygel-core/rygel-plugin-loader.vala:119
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Falló al encontrar la función del punto de entrada «%s» en «%s»: %s"
@@ -583,19 +585,16 @@ msgstr "No se permite quitar objetos de %s"
 
 #: ../src/librygel-server/rygel-item-updater.vala:77
 #, c-format
-#| msgid "Successfully destroyed object '%s'"
 msgid "Successfully updated object '%s'"
 msgstr "Objeto «%s» actualizado correctamente"
 
 #: ../src/librygel-server/rygel-item-updater.vala:85
 #, c-format
-#| msgid "Failed to destroy object '%s': %s"
 msgid "Failed to update object '%s': %s"
 msgstr "Falló al actualizar el objeto «%s»: %s"
 
 #: ../src/librygel-server/rygel-item-updater.vala:190
 #, c-format
-#| msgid "Removal of object %s not allowed"
 msgid "Metadata modification of object %s not allowed"
 msgstr "No se permite modificar los metadatos del objeto %s"
 
@@ -646,7 +645,6 @@ msgid "No thumbnailer available: %s"
 msgstr "No hay ningún generador de miniaturas disponible: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-#| msgid "Seek mode not supported"
 msgid "Thubmnailing not supported"
 msgstr "No se soportan las miniaturas"
 
@@ -672,7 +670,6 @@ msgid "Could not create GstElement for URI %s"
 msgstr "No se pudo crear el GstElement para el URI %s"
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:92
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to create pipeline"
 msgstr "Falló al crear la tubería"
 
@@ -699,12 +696,10 @@ msgstr "Advertencia de la tubería %s: %s"
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:251
 #, c-format
-#| msgid "Failed to seek to offset %lld"
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Falló al buscar hasta los desplazamientos %lld:%lld"
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:255
-#| msgid "Failed to parse doc"
 msgid "Failed to seek"
 msgstr "Falló al buscar"
 
@@ -714,7 +709,6 @@ msgid "Required element %s missing"
 msgstr "Falta el elemento requerido %s"
 
 #: ../src/media-engines/simple/rygel-simple-data-source.vala:56
-#| msgid "Play speed not supported"
 msgid "Time-based seek not supported"
 msgstr "Búsqueda basada en el tiempo no soportada"
 
