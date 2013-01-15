@@ -64,13 +64,13 @@ public class Rygel.External.Container : Rygel.MediaContainer,
 
         this.update_container.begin (true);
         if (parent != null) {
-            parent.add_weak_pointer (&this.parent);
+            parent.add_weak_pointer (&this.parent_ptr);
         }
     }
 
     ~Container() {
         if (this.parent != null) {
-            this.parent.remove_weak_pointer (&this.parent);
+            this.parent.remove_weak_pointer (&this.parent_ptr);
         }
     }
 

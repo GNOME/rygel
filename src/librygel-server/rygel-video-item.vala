@@ -67,7 +67,14 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
                       MediaContainer parent,
                       string         title,
                       string         upnp_class = VideoItem.UPNP_CLASS) {
-        base (id, parent, title, upnp_class);
+        Object (id : id,
+                parent : parent,
+                title : title,
+                upnp_class : upnp_class);
+    }
+
+    public override void constructed () {
+        base.constructed ();
 
         this.thumbnails = new ArrayList<Thumbnail> ();
         this.subtitles = new ArrayList<Subtitle> ();

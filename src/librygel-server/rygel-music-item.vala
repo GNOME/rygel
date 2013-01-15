@@ -43,7 +43,10 @@ public class Rygel.MusicItem : AudioItem {
                       MediaContainer parent,
                       string         title,
                       string         upnp_class = MusicItem.UPNP_CLASS) {
-        base (id, parent, title, upnp_class);
+        Object (id : id,
+                parent : parent,
+                title : title,
+                upnp_class : upnp_class);
     }
 
     public void lookup_album_art () {
@@ -136,7 +139,7 @@ public class Rygel.MusicItem : AudioItem {
         }
 
         if (didl_item.album_art != null) {
-            didl_item.album_art = this.address_regex.replace_literal
+            didl_item.album_art = MediaItem.address_regex.replace_literal
                                         (didl_item.album_art,
                                          -1,
                                          0,

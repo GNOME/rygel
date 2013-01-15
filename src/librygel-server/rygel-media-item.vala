@@ -89,19 +89,21 @@ public abstract class Rygel.MediaItem : MediaObject {
         }
     }
 
-    protected Regex address_regex;
+    protected static Regex address_regex;
 
     public MediaItem (string         id,
                       MediaContainer parent,
                       string         title,
                       string         upnp_class) {
-        this.id = id;
-        this.parent = parent;
-        this.title = title;
-        this.upnp_class = upnp_class;
+        Object (id : id,
+                parent : parent,
+                title : title,
+                upnp_class : upnp_class);
+    }
 
+    static construct {
         try {
-            this.address_regex = new Regex (Regex.escape_string ("@ADDRESS@"));
+            address_regex = new Regex (Regex.escape_string ("@ADDRESS@"));
         } catch (GLib.RegexError err) {
             assert_not_reached ();
         }
@@ -117,7 +119,7 @@ public abstract class Rygel.MediaItem : MediaObject {
         string translated_uri = this.uris.get (0);
         if (host_ip != null) {
             try {
-                translated_uri = this.address_regex.replace_literal
+                translated_uri = MediaItem.address_regex.replace_literal
                     (this.uris.get (0), -1, 0, host_ip);
             } catch (Error error) {
                 assert_not_reached ();
@@ -260,7 +262,10 @@ public abstract class Rygel.MediaItem : MediaObject {
             this.add_resources (didl_item, internal_allowed);
 
             foreach (var res in didl_item.get_resources ()) {
-                res.uri = this.address_regex.replace_literal (res.uri, -1, 0, host_ip);
+                res.uri = MediaItem.address_regex.replace_literal (res.uri,
+                                                                   -1,
+                                                                   0,
+                                                                   host_ip);
             }
         }
 

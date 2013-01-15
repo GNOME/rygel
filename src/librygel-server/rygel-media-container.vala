@@ -89,7 +89,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
      */
     public signal void sub_tree_updates_finished (MediaObject sub_tree_root);
 
-    public int child_count;
+    public int child_count { get; set construct; }
     public uint32 update_id;
     public int64 storage_used;
 
@@ -146,17 +146,10 @@ public abstract class Rygel.MediaContainer : MediaObject {
                            MediaContainer? parent,
                            string          title,
                            int             child_count) {
-        this.id = id;
-        this.parent = parent;
-        this.title = title;
-        this.child_count = child_count;
-        this.update_id = 0;
-        this.storage_used = -1;
-        this.total_deleted_child_count = 0;
-        this.upnp_class = STORAGE_FOLDER;
-
-        this.container_updated.connect (on_container_updated);
-        this.sub_tree_updates_finished.connect (on_sub_tree_updates_finished);
+        Object (id : id,
+                parent : parent,
+                title : title,
+                child_count : child_count);
     }
 
     /**
@@ -168,7 +161,22 @@ public abstract class Rygel.MediaContainer : MediaObject {
      */
     public MediaContainer.root (string title,
                                 int    child_count) {
-        this ("0", null, title, child_count);
+        Object (id : "0",
+                parent : null,
+                title : title,
+                child_count : child_count);
+    }
+
+    public override void constructed () {
+        base.constructed ();
+
+        this.update_id = 0;
+        this.storage_used = -1;
+        this.total_deleted_child_count = 0;
+        this.upnp_class = STORAGE_FOLDER;
+
+        this.container_updated.connect (on_container_updated);
+        this.sub_tree_updates_finished.connect (on_sub_tree_updates_finished);
     }
 
     /**

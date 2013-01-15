@@ -38,9 +38,9 @@ public abstract class Rygel.MediaObject : GLib.Object {
     private static Regex user_name_regex;
     private static Regex host_name_regex;
 
-    public string id { get; set; }
+    public string id { get; set construct; }
     public string ref_id { get; set; }
-    public string upnp_class { get; set; }
+    public string upnp_class { get; construct set; }
     public uint64 modified { get; set; }
     public uint object_update_id { get; set; }
 
@@ -57,7 +57,18 @@ public abstract class Rygel.MediaObject : GLib.Object {
     //
     // You must set 'parent' if you set 'parent_ref' but the opposite is not
     // mandatory.
-    public unowned MediaContainer parent; // TODO: Turn this into a property?
+    public unowned MediaContainer parent {
+        get {
+            return this.parent_ptr;
+        }
+
+        set construct {
+            this.parent_ptr = value;
+        }
+    }
+    // This one is needed only because external plugin needs to access
+    // the address of the parent to add weak pointer.
+    public unowned MediaContainer parent_ptr;
     private MediaContainer _parent_ref;
     public MediaContainer parent_ref {
         get {
@@ -91,7 +102,7 @@ public abstract class Rygel.MediaObject : GLib.Object {
             return _title;
         }
 
-        set {
+        set construct {
             try {
                 this._title = real_name_regex.replace_literal
                                         (value,
@@ -132,7 +143,9 @@ public abstract class Rygel.MediaObject : GLib.Object {
         }
     }
 
-    construct {
+    public override void constructed () {
+        base.constructed ();
+
         uris = new ArrayList<string> ();
     }
 

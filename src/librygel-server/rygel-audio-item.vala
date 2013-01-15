@@ -41,7 +41,10 @@ public class Rygel.AudioItem : MediaItem {
                       MediaContainer parent,
                       string         title,
                       string         upnp_class = AudioItem.UPNP_CLASS) {
-        base (id, parent, title, upnp_class);
+        Object (id : id,
+                parent : parent,
+                title : title,
+                upnp_class : upnp_class);
     }
 
     public override bool streamable () {

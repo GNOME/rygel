@@ -39,7 +39,10 @@ public class Rygel.PhotoItem : ImageItem {
                       MediaContainer parent,
                       string         title,
                       string         upnp_class = PhotoItem.UPNP_CLASS) {
-        base (id, parent, title, upnp_class);
+        Object (id : id,
+                parent : parent,
+                title : title,
+                upnp_class : upnp_class);
     }
 
     internal override int compare_by_property (MediaObject media_object,
