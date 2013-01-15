@@ -75,7 +75,7 @@ PKG_CHECK_MODULES([RYGEL_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED 
 
 # Not all tests use all of these dependencies,
 # but having one set of dependencies keeps things simple.
-PKG_CHECK_MODULES([TEST_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED libsoup-2.4 >= $LIBSOUP_REQUIRED libxml-2.0 >= $LIBXML_REQUIRED])
+PKG_CHECK_MODULES([TEST_DEPS], [$RYGEL_COMMON_MODULES uuid >= $UUID_REQUIRED gio-2.0 >= $GIO_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED libsoup-2.4 >= $LIBSOUP_REQUIRED libxml-2.0 >= $LIBXML_REQUIRED])
 TEST_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gio-2.0 --pkg gssdp-1.0 --pkg libsoup-2.4 --pkg libxml-2.0 --pkg gmodule-2.0"
 AC_SUBST([TEST_DEPS_VALAFLAGS])
 
