@@ -42,12 +42,19 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
      *
      * @param id The ID of the item. This should be unique in the server.
      * @param parent The parent of the container.
-     * @param title The title of the container. 
+     * @param title The title of the container.
      */
     public SimpleContainer (string          id,
                             MediaContainer? parent,
                             string          title) {
-        base (id, parent, title, 0);
+        Object (id : id,
+                parent : parent,
+                title : title,
+                child_count : 0);
+    }
+
+    public override void constructed () {
+        base.constructed ();
 
         this.children = new MediaObjects ();
         this.empty_children = new MediaObjects ();
@@ -60,7 +67,10 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
      * @param title The title of the container.
      */
     public SimpleContainer.root (string title) {
-        this ("0", null, title);
+        Object (id : "0",
+                parent : null,
+                title : title,
+                child_count : 0);
     }
 
     /**
