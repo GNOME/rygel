@@ -131,6 +131,8 @@ internal class Rygel.PlayerController : Object {
     }
 
     public override void constructed () {
+        base.constructed ();
+
         this.player.notify["playback-state"].connect (this.notify_state_cb);
 
         this.config = MetaConfig.get_default ();

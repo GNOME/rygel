@@ -78,6 +78,8 @@ internal class Rygel.RenderingControl : Service {
     private MediaPlayer player;
 
     public override void constructed () {
+        base.constructed ();
+
         this.changelog = new ChangeLog (this, LAST_CHANGE_NS);
         this.player = this.get_player ();
 

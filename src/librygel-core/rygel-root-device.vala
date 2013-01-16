@@ -53,6 +53,8 @@ public class Rygel.RootDevice: GUPnP.RootDevice {
     }
 
     public override void constructed () {
+        base.constructed ();
+
         this.services = new ArrayList<ServiceInfo> ();
         var plugin = this.resource_factory as Plugin;
 

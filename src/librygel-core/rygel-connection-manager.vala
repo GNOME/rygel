@@ -43,6 +43,8 @@ public class Rygel.ConnectionManager : Service {
     protected string direction;
 
     public override void constructed () {
+        base.constructed ();
+
         this.sink_protocol_info   = "";
         this.source_protocol_info = "";
         this.connection_ids       = "0";

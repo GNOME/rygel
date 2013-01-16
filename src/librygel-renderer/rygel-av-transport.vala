@@ -106,6 +106,7 @@ internal class Rygel.AVTransport : Service {
     private PlayerController controller;
 
     public override void constructed () {
+        base.constructed ();
         var plugin = this.root_device.resource_factory as MediaRendererPlugin;
 
         this.changelog = new ChangeLog (this, LAST_CHANGE_NS);

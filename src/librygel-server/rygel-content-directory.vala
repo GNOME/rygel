@@ -85,6 +85,8 @@ internal class Rygel.ContentDirectory: Service {
     private string search_caps;
 
     public override void constructed () {
+        base.constructed ();
+
         this.cancellable = new Cancellable ();
 
         var plugin = this.root_device.resource_factory as MediaServerPlugin;

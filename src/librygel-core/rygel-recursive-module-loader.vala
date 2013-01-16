@@ -53,6 +53,7 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
     }
 
     public override void constructed () {
+        base.constructed ();
         this.done = false;
     }
 

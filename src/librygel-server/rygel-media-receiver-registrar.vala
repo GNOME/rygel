@@ -39,6 +39,8 @@ internal class Rygel.MediaReceiverRegistrar: Service {
                     "xml/X_MS_MediaReceiverRegistrar1.xml";
 
     public override void constructed () {
+        base.constructed ();
+
         this.action_invoked["IsAuthorized"].connect (this.is_authorized_cb);
         this.action_invoked["IsValidated"].connect (this.is_authorized_cb);
 
