@@ -5,12 +5,24 @@
 <!ENTITY url_git_browse_base_src "http://git.gnome.org/browse/rygel/tree/src/">
 ]>
 
-<section id="implementing-server-plugins">
+<chapter id="implementing-server-plugins">
+<title>Implementing Rygel Server Plugins</title>
+
+<section id="implementing-server-plugins-overview">
+<title>Implementing Server Plugins: Overview</title>
 
 <para>
 This library may be used to create Rygel server plugins by 
-implementing the <link linkend="RygelMediaServerPlugin">RygelMediaServerPlugin</link> class.
+implementing the <link linkend="RygelMediaServerPlugin">RygelMediaServerPlugin</link> class.</para>
+
+<para>The <link linkend="RygelMediaServerPlugin">RygelMediaServerPlugin</link> reference documentation 
+and these examples explain how to implement these plugins.
 </para>
+
+</section>
+
+<section id="implementing-server-plugins-simple-example">
+<title>Implementing Server Plugins: Simple Example</title>
 
 <!-- TODO: Find a way to mention this C example code in the RygelMediaServer valadoc comments instead. -->
 <para>
@@ -22,7 +34,8 @@ hard-coded items. A real Rygel server plugin's root container, or its child item
 populate themselves dynamically. For instance, they might add and remove items based on some source
 such as a file system or database. See, for instance, the 
 <ulink url="&url_git_browse_base_src;plugins/tracker">Rygel Tracker Plugin</ulink> or the
-<ulink url="&url_git_browse_base_src;plugins/media-export">Rygel MediaExport Plugin</ulink>.
+<ulink url="&url_git_browse_base_src;plugins/media-export">Rygel MediaExport Plugin</ulink> plugins,
+implemented in Vala.
 </para>
 
 <!-- Do not indent the xi:include node. That puts spaces at the start of the code. -->
@@ -49,3 +62,11 @@ such as a file system or database. See, for instance, the
 
 </section>
 
+<section id="implementing-server-plugins-full-example">
+<title>Implementing Server Plugins: Full Example</title>
+
+<para>In addition, the external <ulink url="http://git.gnome.org/browse/rygel-gst-0-10-plugins">rygel-gst-0-10-plugins</ulink> project provides a Rygel Server plugin that uses an older GStreamer version and is an example of an external Rygel Server plugin implemented in C. Its <ulink url="http://git.gnome.org/browse/rygel-gst-0-10-plugins">media-export</ulink> plugin </para>
+
+</section>
+
+</chapter>

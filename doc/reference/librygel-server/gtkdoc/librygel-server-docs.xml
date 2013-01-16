@@ -20,20 +20,9 @@
     <xi:include href="overview.xml"/>
   </preface>
 
-  <chapter>
-    <title>Implementing Servers</title>
-    <xi:include href="implementing-servers.xml"/>
-  </chapter>
-
-  <chapter>
-    <title>Implementing Rygel Server Plugins</title>
-    <xi:include href="implementing-server-plugins.xml"/>
-  </chapter>
-
-  <chapter>
-    <title>Implementing Rygel Media Engines</title>
-    <xi:include href="implementing-media-engines.xml"/>
-  </chapter>
+  <xi:include href="implementing-servers.xml"/>
+  <xi:include href="implementing-server-plugins.xml"/>
+  <xi:include href="implementing-media-engines.xml"/>
 
   <!-- These are generated: -->
   <chapter>

@@ -4,7 +4,11 @@
 <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
 ]>
 
-<section id="implementing-media-engines">
+<chapter id="implementing-media-engines">
+<title>Implementing Rygel Media Engines</title>
+
+<section id="implementing-media-engines-overview">
+<title>Implementing Media Engines: Overview</title>
 
 <para>
 This library may be used to create Rygel media engines by 
@@ -31,6 +35,14 @@ returning an instance of it from its create_data_source() implementation.</para>
 </orderedlist>
 </para>
 
+</section>
+
+
+<section id="implementing-server-plugins-full-example">
+<title>Implementing Media Engines: Full Example</title>
+
 <para>In addition, the external <ulink url="http://git.gnome.org/browse/rygel-gst-0-10-media-engine">rygel-gst-0-10-media-engine</ulink> project provides a Rygel media engine that uses an older GStreamer version and is an example of an external Rygel media-engine implemented in C.</para>
 
 </section>
+
+</chapter>

@@ -4,11 +4,24 @@
 <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
 ]>
 
-<section id="implementing-servers">
+<chapter id="implementing-servers">
+<title>Implementing Servers</title>
+
+<section id="implementing-servers-overview">
+<title>Implementing Servers: Overview</title>
 
 <para>
 This library may be used to create UPnP or DLNA servers via its <link linkend="RygelMediaServer">RygelMediaServer</link> class.
 </para>
+
+<para>The <link linkend="RygelMediaServer">RygelMediaServer</link> reference documentation 
+and this example explains how to implement a server.
+</para>
+
+</section>
+
+<section id="implementing-servers-simple-example">
+<title>Implementing Servers: Simple Example</title>
 
 <!-- TODO: Find a way to mention this C example code in the RygelMediaServer valadoc comments instead. -->
 <para>
@@ -24,3 +37,5 @@ them.
 </programlisting>
 
 </section>
+
+</chapter>
