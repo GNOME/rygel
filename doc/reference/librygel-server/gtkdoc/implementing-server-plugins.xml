@@ -65,7 +65,7 @@ implemented in Vala.
 <section id="implementing-server-plugins-full-example">
 <title>Implementing Server Plugins: Full Example</title>
 
-<para>In addition, the external <ulink url="http://git.gnome.org/browse/rygel-gst-0-10-plugins">rygel-gst-0-10-plugins</ulink> project provides a Rygel Server plugin that uses an older GStreamer version and is an example of an external Rygel Server plugin implemented in C. Its <ulink url="http://git.gnome.org/browse/rygel-gst-0-10-plugins">media-export</ulink> plugin exposes the contents of a directory via UPnP.</para>
+<para>In addition, the external <ulink url="http://git.gnome.org/browse/rygel-gst-0-10-plugins">rygel-gst-0-10-plugins</ulink> project provides a Rygel Server plugin that uses an older GStreamer version and is an example of an external Rygel Server plugin implemented in C. Its <ulink url="http://git.gnome.org/browse/rygel-gst-0-10-plugins/tree/src/media-export">media-export</ulink> plugin exposes the contents of a directory via UPnP.</para>
 
 <para>The <function>module_init</function> function first checks that the plugin has not been disabled and then creates an instance of its <classname>RygelMediaExportPlugin</classname>, which it adds to the provided <classname>RygelPluginLoader</classname> instance.</para>
 
