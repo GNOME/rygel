@@ -52,10 +52,15 @@ internal abstract class Rygel.GstTranscoder : Rygel.Transcoder {
     public GstTranscoder (string mime_type,
                           string dlna_profile,
                           string extension) {
-        this.mime_type = mime_type;
-        this.dlna_profile = dlna_profile;
+        GLib.Object (mime_type : mime_type,
+                     dlna_profile : dlna_profile,
+                     extension : extension);
+    }
+
+    public override void constructed () {
+        base.constructed ();
+
         this.link_failed = true;
-        this.extension = extension;
     }
 
     /**

@@ -29,14 +29,14 @@ using GUPnP;
  * The base Transcoder class. Each implementation derives from it and must
  * implement create_source() and get_distance().
  *
- * Transcoders are obtained from rygel_media_engine_get_transcoders() and 
+ * Transcoders are obtained from rygel_media_engine_get_transcoders() and
  * are only expected to support the derived #RygelDataSource types provided
  * by the same media engine.
  */
 public abstract class Rygel.Transcoder : GLib.Object {
-    public string mime_type { get; protected set; }
-    public string dlna_profile { get; protected set; }
-    public string extension { get; protected set; }
+    public string mime_type { get; construct; }
+    public string dlna_profile { get; construct; }
+    public string extension { get; construct; }
 
     /**
      * Creates a transcoding source.
