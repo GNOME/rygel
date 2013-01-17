@@ -39,6 +39,10 @@ internal class Rygel.MediaExport.LeafQueryContainer : QueryContainer {
                                           sort_criteria,
                                           cancellable);
         foreach (var child in children) {
+            var container_id = QueryContainer.ITEM_PREFIX +
+                               this.id.replace (QueryContainer.PREFIX, "");
+            child.ref_id = child.id;
+            child.id = container_id + ":" + child.ref_id;
             child.parent = this;
         }
 
