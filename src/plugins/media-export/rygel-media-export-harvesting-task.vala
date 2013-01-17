@@ -324,7 +324,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
         if (item != null) {
             item.parent_ref = this.containers.peek_head ();
-            // This is only necessary to generate the poper <objAdd LastChange
+            // This is only necessary to generate the proper <objAdd LastChange
             // entry
             if (entry.known) {
                 (item as UpdatableObject).commit.begin ();

@@ -27,7 +27,8 @@ public class Rygel.MediaExport.TrackableDbContainer : TrackableContainer,
         base (id, title);
     }
 
-    public async void add_child (MediaObject object) {
+    // TrackableContainer virtual function implementations:
+    protected async void add_child (MediaObject object) {
         try {
             if (object is MediaItem) {
                 this.media_db.save_item (object as MediaItem);
@@ -41,7 +42,7 @@ public class Rygel.MediaExport.TrackableDbContainer : TrackableContainer,
         }
     }
 
-    public async void remove_child (MediaObject object) {
+    protected async void remove_child (MediaObject object) {
         try {
             this.media_db.remove_object (object);
         } catch (Error error) {
