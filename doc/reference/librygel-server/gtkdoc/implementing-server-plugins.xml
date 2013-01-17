@@ -82,7 +82,8 @@ implemented in Vala.
 
 <para>The <classname>RygelMediaExportPlugin</classname> class, derived from <link linkend="RygelMediaServerPlugin">RygelMediaServerPlugin</link>, simply instantiates its <classname>RygelMediaExportRootContainer</classname> class, derived from <link linkend="RygelMediaContainer">RygelMediaContainer</link>, providing it to the base class as the root container.</para>
 
-<para>TODO: Describe the <classname>RygelMediaExportRootContainer</classname> class.</para>
+<para>The <classname>RygelMediaExportRootContainer</classname> creates an instance of its RygelMediaExportMediaCache, which uses SQLite to maintain a cache of the media files that it finds on the file system.</para>
+<!-- TODO: Simplify the class hierarchy in the example. -->
 
 </section>
 
