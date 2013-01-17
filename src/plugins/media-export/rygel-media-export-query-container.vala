@@ -29,11 +29,10 @@ internal abstract class Rygel.MediaExport.QueryContainer : DBContainer {
     protected SearchExpression expression;
 
     // constructors
-    public QueryContainer (MediaCache       cache,
-                           SearchExpression expression,
+    public QueryContainer (SearchExpression expression,
                            string           id,
                            string           name) {
-        base (cache, id, name);
+        base (id, name);
 
         this.expression = expression;
 

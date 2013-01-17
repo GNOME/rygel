@@ -23,8 +23,8 @@ using Gee;
 
 public class Rygel.MediaExport.TrackableDbContainer : TrackableContainer,
                                                       DBContainer {
-    public TrackableDbContainer (MediaCache cache, string id, string title) {
-        base (cache, id, title);
+    public TrackableDbContainer (string id, string title) {
+        base (id, title);
     }
 
     public async void add_child (MediaObject object) {

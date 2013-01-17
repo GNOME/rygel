@@ -25,8 +25,8 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
                                                        Rygel.WritableContainer {
     public ArrayList<string> create_classes { get; set; }
 
-    public WritableDbContainer (MediaCache media_db, string id, string title) {
-        base (media_db, id, title);
+    public WritableDbContainer (string id, string title) {
+        base (id, title);
 
         this.create_classes = new ArrayList<string> ();
         this.create_classes.add (Rygel.ImageItem.UPNP_CLASS);

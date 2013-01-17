@@ -56,10 +56,10 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
         }
 
         if (uri == null) {
-            return new TrackableDbContainer (media_db, id, title);
+            return new TrackableDbContainer (id, title);
         }
 
-        return new WritableDbContainer (media_db, id, title);
+        return new WritableDbContainer (id, title);
     }
 
     /**

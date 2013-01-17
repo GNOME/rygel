@@ -19,11 +19,10 @@
  */
 
 internal class Rygel.MediaExport.LeafQueryContainer : QueryContainer {
-    public LeafQueryContainer (MediaCache       cache,
-                               SearchExpression expression,
+    public LeafQueryContainer (SearchExpression expression,
                                string           id,
                                string           name) {
-        base (cache, expression, id, name);
+        base (expression, id, name);
     }
 
     public override async MediaObjects? get_children

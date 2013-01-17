@@ -313,9 +313,13 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
      * Create a new root container.
      */
     private RootContainer () throws Error {
-        var db = MediaCache.get_default ();
 
-        base (db, "0", _("@REALNAME@'s media"));
+        /**
+         * The MediaCache contains metadata details of all files
+         * found by the Harvester, which uses the same 
+         * MediaCache from get_default().
+         */
+        base ("0", _("@REALNAME@'s media"));
     }
 
     private bool initialized = false;
@@ -346,8 +350,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
         try {
             this.filesystem_container = new TrackableDbContainer
-                                        (media_db,
-                                         FILESYSTEM_FOLDER_ID,
+                                        (FILESYSTEM_FOLDER_ID,
                                          _(FILESYSTEM_FOLDER_NAME));
             this.filesystem_container.parent = this;
             this.media_db.save_container (this.filesystem_container);

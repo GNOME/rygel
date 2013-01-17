@@ -45,7 +45,7 @@ internal struct Rygel.MediaExport.ExistsCacheEntry {
 /**
  * Persistent storage of media objects
  *
- *  MediaExportDB is a sqlite3 backed persistent storage of media objects
+ * MediaExportDB is a sqlite3 backed persistent storage of media objects.
  */
 public class Rygel.MediaExport.MediaCache : Object {
     // Private members

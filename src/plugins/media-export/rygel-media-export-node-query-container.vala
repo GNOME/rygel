@@ -22,13 +22,12 @@ internal class Rygel.MediaExport.NodeQueryContainer : QueryContainer {
     private string template;
     private string attribute;
 
-    public NodeQueryContainer (MediaCache       cache,
-                               SearchExpression expression,
+    public NodeQueryContainer (SearchExpression expression,
                                string           id,
                                string           name,
                                string           template,
                                string           attribute) {
-        base (cache, expression, id, name);
+        base (expression, id, name);
 
         this.template = template;
         this.attribute = attribute;

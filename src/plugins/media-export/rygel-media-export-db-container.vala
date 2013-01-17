@@ -27,10 +27,13 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
     protected MediaCache media_db;
     public ArrayList<string> search_classes { get; set; }
 
-    public DBContainer (MediaCache media_db, string id, string title) {
+    public DBContainer (string id, string title) {
         base (id, null, title, 0);
 
-        this.media_db = media_db;
+        try {
+            this.media_db = MediaCache.get_default ();
+        } catch (Error error) { }
+
         this.search_classes = new ArrayList<string> ();
         this.container_updated.connect ( () => { this.count_children (); });
         this.count_children ();

@@ -129,13 +129,11 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
                                                  ref title);
 
         if (pattern == null || pattern == "") {
-            container =  new LeafQueryContainer (cache,
-                                                 expression,
+            container =  new LeafQueryContainer (expression,
                                                  id,
                                                  title);
         } else {
-            container = new NodeQueryContainer (cache,
-                                                expression,
+            container = new NodeQueryContainer (expression,
                                                 id,
                                                 title,
                                                 pattern,
