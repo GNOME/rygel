@@ -41,7 +41,6 @@ const Rygel.MediaExport.FolderDefinition[] VIRTUAL_FOLDERS_MUSIC = {
  * Represents the root container.
  */
 public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
-    private DBusService    service;
     private Harvester      harvester;
     private Cancellable    cancellable;
     private MediaContainer filesystem_container;
@@ -82,37 +81,6 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
     public void shutdown () {
         this.cancellable.cancel ();
-    }
-
-    // DBus utility methods
-
-    public void add_uri (string uri) {
-        var file = File.new_for_commandline_arg (uri);
-        this.harvester.schedule (file,
-                                 this.filesystem_container,
-                                 "DBUS");
-    }
-
-    public void remove_uri (string uri) {
-        var file = File.new_for_commandline_arg (uri);
-        var id = MediaCache.get_id (file);
-
-        this.harvester.cancel (file);
-        try {
-            this.media_db.remove_by_id (id);
-        } catch (Error error) {
-            warning (_("Failed to remove URI: %s"), error.message);
-        }
-    }
-
-    public string[] get_dynamic_uris () {
-        try {
-            var uris = this.media_db.get_flagged_uris ("DBUS");
-
-            return uris.to_array ();
-        } catch (Error error) { }
-
-        return new string[0];
     }
 
     // MediaContainer overrides
@@ -203,10 +171,6 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         } catch (Error error) {
             uris = new ArrayList<string> ();
         }
-
-        try {
-            uris.add_all (this.media_db.get_flagged_uris ("DBUS"));
-        } catch (Error error) {}
 
         actual_uris = new ArrayList<File> ();
 
@@ -375,13 +339,6 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
         this.initialized = true;
         this.cancellable = new Cancellable ();
-
-        try {
-            this.service = new DBusService (this);
-        } catch (Error err) {
-            warning (_("Failed to create MediaExport D-Bus service: %s"),
-                     err.message);
-        }
 
         try {
             this.media_db.save_container (this);

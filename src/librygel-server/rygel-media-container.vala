@@ -40,6 +40,9 @@ public enum Rygel.ObjectEventType {
  *
  * A derived class should provide a working implementation of get_children
  * and should emit the container_updated signal.
+ *
+ * When used as a root container, you may wish to use the variables, such as
+ * REALNAME, in in the title. See the title property of the #RygelMediaObject.
  */
 public abstract class Rygel.MediaContainer : MediaObject {
     public const string UPNP_CLASS = "object.container";

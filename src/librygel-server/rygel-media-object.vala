@@ -71,6 +71,16 @@ public abstract class Rygel.MediaObject : GLib.Object {
     }
 
     private string _title;
+
+    /**
+     * The human-readable title of this container or item.
+     * These variables will be substituted:
+     *
+     * - @REALNAME@< ill be subsituted by the user's real name.
+     * - @USERNAME@ will be substituted by the users's login ID.
+     * - @HOSTNAME@ will be substituted by the name of the machine.
+     * - @ADDRESS@ will be substited by the 
+     */
     public string title {
         get {
             return _title;
