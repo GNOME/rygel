@@ -132,6 +132,14 @@ public abstract class Rygel.MediaContainer : MediaObject {
         }
     }
 
+    /**
+     * Create a media container with the specified details.
+     *
+     * @param id See the id property of the #RygelMediaObject class.
+     * @param parent The parent container, if any.
+     * @param title See the title property of the #RygelMediaObject class.
+     * @param child_count
+     */
     public MediaContainer (string          id,
                            MediaContainer? parent,
                            string          title,
@@ -149,6 +157,13 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.sub_tree_updates_finished.connect (on_sub_tree_updates_finished);
     }
 
+    /**
+     * Create a root media container with the specified details,
+     * with no parent container, and with an appropriate ID.
+     *
+     * @param title See the title property of the #RygelMediaObject.
+     * @param child_count
+     */
     public MediaContainer.root (string title,
                                 int    child_count) {
         this ("0", null, title, child_count);
