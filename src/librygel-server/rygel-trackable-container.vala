@@ -18,6 +18,18 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+/**
+ * The base class for containers that provide automatic change tracking.
+ *
+ * Derived classes should implement the add_child() and remove_child()
+ * virtual functions to keep track of child items and child containers.
+ *
+ * Rygel server plugins (See #RygelMediaServer) may then call
+ * rygel_trackable_container_add_child_tracked() and
+ * rygel_trackable_container_remove_child_tracked() to add and remove
+ * items, which will then cause the #RygelContainer::container_updated signal
+ * to be emitted.
+ */
 public interface Rygel.TrackableContainer : Rygel.MediaContainer {
     public async void clear () {
         try {
@@ -33,8 +45,20 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
         }
     }
 
+    /**
+     * Derived classes should implement this, keeping track
+     * of the child item or child container.
+     * See the remove_child() virtual function.
+     */
     public abstract async void add_child (MediaObject object);
 
+    /**
+     * Add a child object, emitting the #RygelContainer::container_updated signal
+     * with the object.
+     * @see rygel_trackable_object_remove_child_tracked()
+     *
+     * @param object The child item or child container to be added.
+     */
     public async void add_child_tracked (MediaObject object) {
         yield this.add_child (object);
 
@@ -48,8 +72,20 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
         }
     }
 
+    /**
+     * Derived classes should implement this, removing the
+     * child item or child container from its set of objects.
+     * See the add_child() virtual function.
+     */
     public abstract async void remove_child (MediaObject object);
 
+    /**
+     * Add a child object, emitting the #RygelContainer::container_updated signal
+     * with the object.
+     * @see rygel_trackable_object_add_child_tracked()
+     *
+     * @param object The child item or child container to be added.
+     */
     public async void remove_child_tracked (MediaObject object) {
         // We need to descend into this to get the proper events
         if (object is TrackableContainer) {
@@ -90,7 +126,7 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
     public virtual void set_service_reset_token (string token) {}
 
     /**
-     * Query the current system update id.
+     * Query the current system update ID.
      * This should be overriden by the root container of the back-end
      * implementation.
      *
