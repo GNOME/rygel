@@ -50,7 +50,7 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
      * of the child item or child container.
      * See the remove_child() virtual function.
      */
-    public abstract async void add_child (MediaObject object);
+    protected abstract async void add_child (MediaObject object);
 
     /**
      * Add a child object, emitting the #RygelContainer::container_updated signal
@@ -77,7 +77,7 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
      * child item or child container from its set of objects.
      * See the add_child() virtual function.
      */
-    public abstract async void remove_child (MediaObject object);
+    protected abstract async void remove_child (MediaObject object);
 
     /**
      * Add a child object, emitting the #RygelContainer::container_updated signal
