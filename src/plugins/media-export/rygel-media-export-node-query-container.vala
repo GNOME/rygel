@@ -53,8 +53,7 @@ internal class Rygel.MediaExport.NodeQueryContainer : QueryContainer {
 
         if (this.add_all_container ()) {
             var id = this.template.replace (",upnp:album,%s","");
-            var container = factory.create_from_description (this.media_db,
-                                                             id,
+            var container = factory.create_from_description (id,
                                                              _("All"));
             container.parent = this;
             children.add (container);
@@ -72,8 +71,7 @@ internal class Rygel.MediaExport.NodeQueryContainer : QueryContainer {
             // template contains URL escaped text. This means it might
             // contain '%' chars which will makes sprintf crash
             new_id = this.template.replace ("%s", new_id);
-            var container = factory.create_from_description (this.media_db,
-                                                             new_id,
+            var container = factory.create_from_description (new_id,
                                                              meta_data);
             container.parent = this;
             children.add (container);

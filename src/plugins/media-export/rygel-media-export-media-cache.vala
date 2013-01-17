@@ -689,7 +689,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         switch (statement.column_int (DetailColumn.TYPE)) {
             case 0:
                 // this is a container
-                object = factory.get_container (this, object_id, title, 0, uri);
+                object = factory.get_container (object_id, title, 0, uri);
 
                 var container = object as MediaContainer;
                 if (uri != null) {
@@ -704,8 +704,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                 // this is an item
                 unowned string upnp_class = statement.column_text
                                         (DetailColumn.CLASS);
-                object = factory.get_item (this,
-                                           parent,
+                object = factory.get_item (parent,
                                            object_id,
                                            title,
                                            upnp_class);

@@ -80,22 +80,20 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
      *
      * Create a QueryContainer directly from MD5 hashed id.
      *
-     * @param cache An instance of the meta-data cache
      * @param id    The hashed id of the container
      * @param name  An the title of the container. If not supplied, it will
      *              be derived from the plain-text description of the
      *              container
      * @return A new instance of QueryContainer or null if id does not exist
      */
-    public QueryContainer? create_from_id (MediaCache cache,
-                                          string     id,
+    public QueryContainer? create_from_id (string     id,
                                           string     name = "") {
         var definition = this.get_virtual_container_definition (id);
         if (definition == null) {
             return null;
         }
 
-        return this.create_from_description (cache, definition, name);
+        return this.create_from_description (definition, name);
     }
 
     /**
@@ -103,15 +101,13 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
      *
      * Create a QueryContainer from a plain-text description string.
      *
-     * @param cache      An instance of the meta-data cache
      * @param definition Plain-text defintion of the query-container
      * @param name       The title of the container. If not supplied, it
      *                   will be derived from the plain-text description of
      *                   the container
      * @return A new instance of QueryContainer
      */
-    public QueryContainer create_from_description (MediaCache cache,
-                                                   string     definition,
+    public QueryContainer create_from_description (string     definition,
                                                    string     name = "") {
         var title = name;
         string attribute = null;

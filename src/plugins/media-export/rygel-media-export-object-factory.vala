@@ -28,8 +28,7 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
      * @param title title of the container
      * @param child_count number of children in the container
      */
-    public virtual DBContainer get_container (MediaCache media_db,
-                                              string     id,
+    public virtual DBContainer get_container (string     id,
                                               string     title,
                                               uint       child_count,
                                               string?    uri) {
@@ -52,7 +51,7 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
 
         if (id.has_prefix (QueryContainer.PREFIX)) {
             var factory = QueryContainerFactory.get_default ();
-            return factory.create_from_id (media_db, id, title);
+            return factory.create_from_id (id, title);
         }
 
         if (uri == null) {
@@ -70,8 +69,7 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
      * @param title title of the item
      * @param upnp_class upnp_class of the item
      */
-    public virtual MediaItem get_item (MediaCache     media_db,
-                                       MediaContainer parent,
+    public virtual MediaItem get_item (MediaContainer parent,
                                        string         id,
                                        string         title,
                                        string         upnp_class) {
