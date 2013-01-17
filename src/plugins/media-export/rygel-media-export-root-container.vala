@@ -63,7 +63,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
                 RootContainer.instance = new RootContainer ();
             } catch (Error error) {
                 // cache error for further calls and create Null container
-                RootContainer.instance = new NullContainer ();
+                RootContainer.instance = new NullContainer.root ();
                 RootContainer.creation_error = error;
             }
         } else {
@@ -451,10 +451,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
                                          string              item_class,
                                          FolderDefinition[]? definitions = null)
                                          throws Error {
-        var container = new NullContainer ();
-        container.parent = this;
-        container.title = parent;
-        container.id = "virtual-parent:" + item_class;
+        var container = new NullContainer ("virtual-parent:" + item_class, this, parent);
         this.media_db.save_container (container);
 
         foreach (var definition in VIRTUAL_FOLDERS_DEFAULT) {

@@ -26,8 +26,14 @@ using Gee;
  * created
  */
 internal class Rygel.NullContainer : MediaContainer {
-    public NullContainer () {
-        base.root ("MediaExport", 0);
+    public NullContainer (string          id,
+                          MediaContainer? parent,
+                          string          title) {
+        base(id, parent, title, 0);
+    }
+
+    public NullContainer.root () {
+        base.root("MediaExport", 0);
     }
 
     public override async MediaObjects? get_children (

@@ -355,8 +355,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             unowned string parent_id = statement.column_text (DetailColumn.PARENT);
 
             if (parent == null || parent_id != parent.id) {
-                parent = new NullContainer ();
-                parent.id = parent_id;
+                parent = new NullContainer (parent_id, null, "MediaExport");
             }
 
             if (parent != null) {
