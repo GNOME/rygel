@@ -72,14 +72,19 @@ public abstract class Rygel.MediaObject : GLib.Object {
 
     private string _title;
 
+    /* Note that the @@ in the doc comment here is a way of escaping @ in valadoc,
+     * so the real syntax is, for instance, @REALNAME@, which is what appears in
+     * the generated HTML.
+     */
+
     /**
      * The human-readable title of this container or item.
      * These variables will be substituted:
      *
-     * - @REALNAME@< ill be subsituted by the user's real name.
-     * - @USERNAME@ will be substituted by the users's login ID.
-     * - @HOSTNAME@ will be substituted by the name of the machine.
-     * - @ADDRESS@ will be substited by the 
+     *  - @@REALNAME@ will be substituted by the user's real name.
+     *  - @@USERNAME@ will be substituted by the users's login ID.
+     *  - @@HOSTNAME@ will be substituted by the name of the machine.
+     *  - @@ADDRESS@ will be substituted by the IP address of network interface used for the UpNP communication.
      */
     public string title {
         get {
