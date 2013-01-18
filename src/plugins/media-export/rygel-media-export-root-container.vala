@@ -100,7 +100,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
         if (id.has_prefix (QueryContainer.PREFIX)) {
             var factory = QueryContainerFactory.get_default ();
-            var container = factory.create_from_id (id);
+            var container = factory.create_from_hashed_id (id);
             if (container != null) {
                 container.parent = this;
             }
@@ -124,7 +124,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
             var factory = QueryContainerFactory.get_default ();
             var container_id = QueryContainer.PREFIX + parts[0];
-            var container = factory.create_from_id (container_id);
+            var container = factory.create_from_hashed_id (container_id);
             if (container == null) {
                 return null;
             }
@@ -266,7 +266,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
             var factory = QueryContainerFactory.get_default ();
 
-            return factory.create_from_description (id);
+            return factory.create_from_description_id (id);
         }
 
         return null;
@@ -334,7 +334,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
                                           escaped_detail,
                                           last_argument);
 
-        container = factory.create_from_description (new_id);
+        container = factory.create_from_description_id (new_id);
 
         return true;
     }
@@ -493,7 +493,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         }
 
         var factory = QueryContainerFactory.get_default ();
-        var query_container = factory.create_from_description
+        var query_container = factory.create_from_description_id
                                         (id,
                                          _(definition.title));
 

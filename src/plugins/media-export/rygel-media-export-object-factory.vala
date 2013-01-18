@@ -51,7 +51,7 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
 
         if (id.has_prefix (QueryContainer.PREFIX)) {
             var factory = QueryContainerFactory.get_default ();
-            return factory.create_from_id (id, title);
+            return factory.create_from_hashed_id (id, title);
         }
 
         if (uri == null) {

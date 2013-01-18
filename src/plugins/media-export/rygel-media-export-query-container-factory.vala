@@ -86,14 +86,14 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
      *              container
      * @return A new instance of QueryContainer or null if id does not exist
      */
-    public QueryContainer? create_from_id (string     id,
-                                          string     name = "") {
-        var definition = this.get_virtual_container_definition (id);
-        if (definition == null) {
+    public QueryContainer? create_from_hashed_id (string id,
+                                                  string name = "") {
+        var definition_id = this.get_virtual_container_definition (id);
+        if (definition_id == null) {
             return null;
         }
 
-        return this.create_from_description (definition, name);
+        return this.create_from_description_id (definition_id, name);
     }
 
     /**
@@ -107,18 +107,18 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
      *                   the container
      * @return A new instance of QueryContainer
      */
-    public QueryContainer create_from_description (string     definition,
-                                                   string     name = "") {
+    public QueryContainer create_from_description_id (string definition_id,
+                                                      string name = "") {
         var title = name;
         string attribute = null;
         string pattern = null;
         string upnp_class = null;
-        var id = definition;
         QueryContainer container;
 
+        var id = definition_id;
         this.register_id (ref id);
 
-        var expression = this.parse_description (definition,
+        var expression = this.parse_description (id,
                                                  out pattern,
                                                  out attribute,
                                                  out upnp_class,
