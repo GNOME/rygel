@@ -126,9 +126,19 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
     public virtual void set_service_reset_token (string token) {}
 
     /**
-     * Query the current system update ID.
+     * Query the current system update ID,
+     * used for the UPnP GetSystemUpdateID implementation.
+     *
      * This should be overriden by the root container of the back-end
-     * implementation.
+     * implementation. This will only be called once, at service startup, 
+     * to discover the cached system Update ID, if any, that was known
+     * when the service last shut down.
+     *
+     * Derived classes may need to delay part of their initialization
+     * until this function has been called, doing that initialization in
+     * the function override. That can prevent other parts of their 
+     * implementation from changing the cached System Update ID before
+     * it has been provided.
      *
      * @return the current SystemUpdateID as persisted by the back-end.
      */
