@@ -35,6 +35,7 @@ public void module_init (PluginLoader loader) {
         return;
     }
 
+    // Instantiate the plugin object:
     MediaExport.Plugin plugin;
 
     try {
@@ -47,6 +48,8 @@ public void module_init (PluginLoader loader) {
         return;
     }
 
+    // Check what other plugins are loaded,
+    // and check when other plugins are loaded later:
     Idle.add (() => {
        foreach (var loaded_plugin in loader.list_plugins ()) {
             on_plugin_available (loaded_plugin, plugin);
@@ -63,9 +66,13 @@ public void module_init (PluginLoader loader) {
 }
 
 public void on_plugin_available (Plugin plugin, Plugin our_plugin) {
+    // Do not allow this plugin and the tracker plugin to both be
+    // active at the same time,
+    // because they serve the same purpose.
     if (plugin.name == TRACKER_PLUGIN) {
         if (our_plugin.active && !plugin.active) {
-            // Tracker plugin might be activated later
+            // The Tracker plugin might be activated later,
+            // so shut this plugin down if that happens.
             plugin.notify["active"].connect (() => {
                 if (plugin.active) {
                     shutdown_media_export ();
@@ -74,8 +81,12 @@ public void on_plugin_available (Plugin plugin, Plugin our_plugin) {
             });
         } else if (our_plugin.active == plugin.active) {
             if (plugin.active) {
+                // The Tracker plugin is already active,
+                // so shut this plugin down immediately.
                 shutdown_media_export ();
             } else {
+                // Log that we are starting this plugin
+                // because the Tracker plugin is not active instead.
                 message ("Plugin '%s' inactivate, activating '%s' plugin",
                          TRACKER_PLUGIN,
                          MediaExport.Plugin.NAME);
@@ -104,7 +115,12 @@ private void shutdown_media_export () {
 public class Rygel.MediaExport.Plugin : Rygel.MediaServerPlugin {
     public const string NAME = "MediaExport";
 
+    /**
+     * Instantiate the plugin.
+     */
     public Plugin () throws Error {
+        // Call the base constructor,
+        // passing the instance of our root container.
         base (RootContainer.get_instance (),
               NAME,
               null,

@@ -156,6 +156,7 @@ public class Rygel.MediaExport.MediaCache : Object {
     }
 
     public uint32 get_update_id () {
+        // Return the highest object ID in the database so far.
         try {
             return this.query_value (SQLString.MAX_UPDATE_ID);
         } catch (Error error) { }

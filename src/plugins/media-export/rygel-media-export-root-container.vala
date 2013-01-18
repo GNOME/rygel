@@ -26,6 +26,7 @@ internal struct Rygel.MediaExport.FolderDefinition {
     string definition;
 }
 
+// Titles and definitions of some virtual folders.
 const Rygel.MediaExport.FolderDefinition[] VIRTUAL_FOLDERS_DEFAULT = {
     { N_("Year"), "dc:date,?" },
     { N_("All"),  "" }
@@ -57,12 +58,15 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
                                                    Rygel.MusicItem.UPNP_CLASS +
                                                    ",";
 
+    /**
+     * Get the single instance of the root container.
+     */
     public static MediaContainer get_instance () throws Error {
         if (RootContainer.instance == null) {
             try {
                 RootContainer.instance = new RootContainer ();
             } catch (Error error) {
-                // cache error for further calls and create Null container
+                // Cache the error for further calls and create a Null container.
                 RootContainer.instance = new NullContainer.root ();
                 RootContainer.creation_error = error;
             }
@@ -341,19 +345,22 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
      * Create a new root container.
      */
     private RootContainer () throws Error {
-
-        /**
-         * The MediaCache contains metadata details of all files
-         * found by the Harvester, which uses the same 
-         * MediaCache from get_default().
-         */
         base ("0", _("@REALNAME@'s media"));
     }
 
     private bool initialized = false;
 
     public override uint32 get_system_update_id () {
+        // Call the base class implementation.
         var id = base.get_system_update_id ();
+
+        // Now we may initialize our container.
+        // We waited until now to avoid changing
+        // the cached System Update ID before we 
+        // have provided it.
+        //
+        // We do this via an idle handler to avoid
+        // delaying Rygel's startup.
         Idle.add (() => {
             try {
                 this.init ();
@@ -366,16 +373,20 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
     }
 
     private void init () throws Error {
+        // This should only be called once.
         if (this.initialized)
             return;
 
         this.initialized = true;
         this.cancellable = new Cancellable ();
 
+        // Tell the cache about this root container.
         try {
             this.media_db.save_container (this);
         } catch (Error error) { } // do nothing
 
+        // Create a child container to serve the
+        // filesystem hierarchy, and tell the cache about it.
         try {
             this.filesystem_container = new TrackableDbContainer
                                         (FILESYSTEM_FOLDER_ID,
@@ -384,6 +395,8 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
             this.media_db.save_container (this.filesystem_container);
         } catch (Error error) { }
 
+        // Get the top-level media items or containers known 
+        // to the cache from the last service run:
         ArrayList<string> ids;
         try {
             ids = media_db.get_child_ids (FILESYSTEM_FOLDER_ID);
@@ -391,19 +404,29 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
             ids = new ArrayList<string> ();
         }
 
+        // Instantiate the harvester to asynchronously discover
+        // media on the filesystem, providing our desired URIs to
+        // scan, and react when it has finished its initial scan.
+        // It adds all files it finds to the same media cache
+        // singleton instance that this class uses.
         this.harvester = new Harvester (this.cancellable,
                                         this.get_shared_uris ());
         this.harvester_signal_id = this.harvester.done.connect
                                         (on_initial_harvesting_done);
 
+        // For each location that we want the harvester to scan,
+        // remove it from the cache and request a rescan.
         foreach (var file in this.harvester.locations) {
             ids.remove (MediaCache.get_id (file));
             this.harvester.schedule (file,
                                      this.filesystem_container);
         }
 
+        // Warn about any top-level locations that were known to 
+        // the cache (see above) but which we no longer care about,
+        // and remote it from the cache.
         foreach (var id in ids) {
-            debug ("ID %s no longer in config; deleting...", id);
+            debug ("ID %s is no longer in the configuration. Deleting...", id);
             try {
                 this.media_db.remove_by_id (id);
             } catch (DatabaseError error) {
@@ -411,16 +434,25 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
             }
         }
 
+        // Signal that the container has been updated with new/changed content.
         this.updated ();
+
         try {
             this.media_db.save_container (this);
         } catch (Error error) { }
     }
 
     private void on_initial_harvesting_done () {
+        // Disconnect the signal handler.
         this.harvester.disconnect (this.harvester_signal_id);
+
+        // Some debug output:
         this.media_db.debug_statistics ();
+
+        // Now that the filesystem scanning is done,
+        // also add the virtual folders:
         this.add_default_virtual_folders ();
+
         this.updated ();
         try {
             this.media_db.save_container (this);

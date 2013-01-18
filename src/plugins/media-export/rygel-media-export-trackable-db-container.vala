@@ -60,6 +60,9 @@ public class Rygel.MediaExport.TrackableDbContainer : TrackableContainer,
     }
 
     public virtual uint32 get_system_update_id () {
+        // Get the last-known System Update ID,
+        // from any previous run of this service,
+        // based on the max ID found in the cache database.
         var id = this.media_db.get_update_id ();
         return id;
     }
