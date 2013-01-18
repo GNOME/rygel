@@ -118,7 +118,7 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
         var id = definition_id;
         this.register_id (ref id);
 
-        var expression = this.parse_description (id,
+        var expression = this.parse_description (definition_id,
                                                  out pattern,
                                                  out attribute,
                                                  out upnp_class,
