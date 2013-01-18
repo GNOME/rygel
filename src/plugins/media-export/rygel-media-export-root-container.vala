@@ -124,8 +124,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
             var factory = QueryContainerFactory.get_default ();
             var container_id = QueryContainer.PREFIX + parts[0];
-            var container = factory.create_from_id (this.media_db,
-                                                    container_id);
+            var container = factory.create_from_id (container_id);
             if (container == null) {
                 return null;
             }
