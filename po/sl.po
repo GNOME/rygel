@@ -7,19 +7,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-27 21:25+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-01-14 12:24+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
-"Language: \n"
+"Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
-"X-Poedit-Language: Slovenian\n"
-"X-Poedit-Country: SLOVENIA\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -32,7 +33,9 @@ msgstr "Souporaba preko _DLNA"
 
 #: ../data/rygel-preferences.ui.h:3
 msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
-msgstr "Omogoči izmenjavo in souporabo predstavnih vsebin z DLNA, kot so slike, video posnetki in glasba."
+msgstr ""
+"Omogoči izmenjavo in souporabo predstavnih vsebin z DLNA, kot so slike, "
+"video posnetki in glasba."
 
 #: ../data/rygel-preferences.ui.h:4
 msgid "Add a directory to the list of shared directories"
@@ -56,8 +59,12 @@ msgid "_Network:"
 msgstr "_Omrežje:"
 
 #: ../data/rygel-preferences.ui.h:10
-msgid "Select the network interface that DLNA media will be shared on, or share media on all interfaces"
-msgstr "Izbor vmesnika omrežja na katerem bodo predstavne datoteke DLNA s souporabi ali pa uporabite vse vmesnike."
+msgid ""
+"Select the network interface that DLNA media will be shared on, or share "
+"media on all interfaces"
+msgstr ""
+"Izbor vmesnika omrežja na katerem bodo predstavne datoteke DLNA s souporabi "
+"ali pa uporabite vse vmesnike."
 
 #: ../data/rygel-preferences.ui.h:11
 msgid "Any"
@@ -85,7 +92,7 @@ msgid "Failed to roll back transaction: %s"
 msgstr "Povrnitev prenosa je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:134
-#: ../src/librygel-core/rygel-plugin-loader.vala:194
+#: ../src/librygel-core/rygel-plugin-loader.vala:197
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Poizvedba  o vrsti vsebine za '%s' je spodletela"
@@ -100,26 +107,26 @@ msgstr "Dodajanje predmeta z ID %s je spodletelo: %s"
 msgid "Failed to attach to D-Bus session bus: %s"
 msgstr "Pripenjanje vodila seje k DBus je spodletelo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:78
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:76
 msgid "No metadata extractor available. Will not crawl."
 msgstr "Na voljo ni ustreznega razširjevalnika. Podatki ne bodo zbrani."
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:121
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:118
 #, c-format
 msgid "'%s' harvested"
 msgstr "'%s' zbrano"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:211
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:184
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Napaka med pridobivanjem predmeta '%s' iz podatkovne zbirke: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:217
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:192
 #, c-format
 msgid "Failed to access media cache: %s"
 msgstr "Napaka med dostopom do predpomnilnika predstavnosti: %s."
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:256
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:231
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Napaka med odstranjevanjem predmeta iz podatkovne zbirke: %s"
@@ -164,30 +171,30 @@ msgstr "Datoteke in mape"
 msgid "Failed to remove URI: %s"
 msgstr "Odstranjevanje naslova URI je spodletelo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:348
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:354
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "Uporabnika @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:355
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:361
 #, c-format
 msgid "Failed to create MediaExport D-Bus service: %s"
 msgstr "Ustvarjanje DBus storitve izvoza večpredstavnosti je spodletelo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:395
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:401
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Odstranitev vnosa je spodletela: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:416
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:422
 msgid "Music"
 msgstr "Glasba"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:419
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:425
 msgid "Pictures"
 msgstr "Slike"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:421
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:427
 msgid "Videos"
 msgstr "Video"
 
@@ -216,7 +223,7 @@ msgstr "Začenjanje storitve Tracker je spodletelo: %s. Vstavek je onemogočen."
 msgid "Failed to get Tracker connection: %s"
 msgstr "Pridobivanje povezave je spodletelo: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:223
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr "Napaka med pridobivanjem števila predmetov pod kategorijo '%s': %s"
@@ -276,6 +283,8 @@ msgstr "Na voljo ni nobene vrednosti"
 #: ../src/librygel-core/rygel-connection-manager.vala:89
 #: ../src/librygel-core/rygel-connection-manager.vala:103
 #: ../src/librygel-core/rygel-connection-manager.vala:125
+#: ../src/librygel-renderer/rygel-av-transport.vala:215
+#: ../src/librygel-renderer/rygel-rendering-control.vala:126
 #: ../src/librygel-server/rygel-content-directory.vala:198
 #: ../src/librygel-server/rygel-content-directory.vala:225
 #: ../src/librygel-server/rygel-content-directory.vala:244
@@ -320,22 +329,22 @@ msgstr "Ni vrednosti na voljo za '%s/%s'"
 msgid "New plugin '%s' available"
 msgstr "Nov vstavek '%s' je na voljo"
 
-#: ../src/librygel-core/rygel-plugin-loader.vala:119
+#: ../src/librygel-core/rygel-plugin-loader.vala:120
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Napaka med izpisovanjem vsebine mape '%s': %s"
 
-#: ../src/librygel-core/rygel-plugin-loader.vala:147
+#: ../src/librygel-core/rygel-plugin-loader.vala:150
 #, c-format
 msgid "A module named %s is already loaded"
 msgstr "Modul z imenom %s je že naložen."
 
-#: ../src/librygel-core/rygel-plugin-loader.vala:156
+#: ../src/librygel-core/rygel-plugin-loader.vala:159
 #, c-format
 msgid "Failed to load module from path '%s': %s"
 msgstr "Nalaganje modula iz poti '%s' je spodletelo: %s"
 
-#: ../src/librygel-core/rygel-plugin-loader.vala:166
+#: ../src/librygel-core/rygel-plugin-loader.vala:169
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Iskanje funkcije vstopne točke '%s' v '%s' je spodletelo: %s"
@@ -358,52 +367,41 @@ msgstr "Za '%s' ni na voljo nobene vrednosti"
 msgid "Value of '%s' out of range"
 msgstr "Vrednost '%s' je izven obsega"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:215
-#: ../src/librygel-renderer/rygel-rendering-control.vala:123
-msgid "Invalid Args"
-msgstr "Neveljavni argumenti"
-
 #: ../src/librygel-renderer/rygel-av-transport.vala:221
-#: ../src/librygel-renderer/rygel-rendering-control.vala:129
+#: ../src/librygel-renderer/rygel-rendering-control.vala:132
 msgid "Invalid InstanceID"
 msgstr "Neveljaven InstanceID"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:481
+#: ../src/librygel-renderer/rygel-av-transport.vala:484
 msgid "Play speed not supported"
 msgstr "Hitrost predvajanja ni podprta"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:497
-#: ../src/librygel-renderer/rygel-av-transport.vala:542
-#: ../src/librygel-renderer/rygel-av-transport.vala:546
+#: ../src/librygel-renderer/rygel-av-transport.vala:500
+#: ../src/librygel-renderer/rygel-av-transport.vala:545
+#: ../src/librygel-renderer/rygel-av-transport.vala:549
 msgid "Transition not available"
 msgstr "Prehod ni na voljo"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:526
-msgid "Seek failed"
-msgstr "Iskanje je spodletelo"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:535
+#: ../src/librygel-renderer/rygel-av-transport.vala:529
+#: ../src/librygel-renderer/rygel-av-transport.vala:538
 msgid "Seek mode not supported"
 msgstr "Način iskanja ni podprt"
 
-#: ../src/librygel-renderer/rygel-playbin-plugin.vala:34
+#: ../src/librygel-renderer/rygel-playbin-plugin.vala:40
 msgid "GStreamer Player"
 msgstr "Predvajalnik GStreamer"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:160
+#: ../src/librygel-renderer/rygel-rendering-control.vala:163
 msgid "Invalid Name"
 msgstr "Neveljavno ime"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:174
+#: ../src/librygel-renderer/rygel-rendering-control.vala:177
 msgid "Invalid Channel"
 msgstr "Neveljaven kanal"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:210
-#: ../src/librygel-renderer/rygel-rendering-control.vala:252
-msgid "ActionFailed"
-msgstr "Dejanje je spodletelo"
-
-#: ../src/librygel-renderer/rygel-rendering-control.vala:261
+#: ../src/librygel-renderer/rygel-rendering-control.vala:213
+#: ../src/librygel-renderer/rygel-rendering-control.vala:255
+#: ../src/librygel-renderer/rygel-rendering-control.vala:264
 msgid "Action Failed"
 msgstr "Dejanje je spodletelo"
 
@@ -415,7 +413,7 @@ msgstr "Neveljavni argumenti"
 msgid "Cannot browse children on item"
 msgstr "Ni mogoče brskati podrejenih predmetov"
 
-#: ../src/librygel-server/rygel-browse.vala:125
+#: ../src/librygel-server/rygel-browse.vala:130
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "Brskanje '%s' je spodletelo: %s\n"
@@ -445,7 +443,7 @@ msgstr "Neveljaven obseg '%s'"
 msgid "Invalid Request"
 msgstr "Neveljavna zahteva"
 
-#: ../src/librygel-server/rygel-http-identity-handler.vala:89
+#: ../src/librygel-server/rygel-http-identity-handler.vala:102
 #: ../src/librygel-server/rygel-http-transcode-handler.vala:57
 msgid "Not found"
 msgstr "Ni najden"
@@ -492,17 +490,17 @@ msgstr "Povezovanje %s z %s je spodletelo"
 msgid "Failed to link pad %s to %s"
 msgstr "Napaka med povezovanjem %s z %s"
 
-#: ../src/librygel-server/rygel-http-response.vala:235
+#: ../src/librygel-server/rygel-http-response.vala:245
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Napaka iz cevovoda %s: %s"
 
-#: ../src/librygel-server/rygel-http-response.vala:242
+#: ../src/librygel-server/rygel-http-response.vala:252
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Opozorilo iz cevovoda %s: %s"
 
-#: ../src/librygel-server/rygel-http-response.vala:285
+#: ../src/librygel-server/rygel-http-response.vala:302
 #, c-format
 msgid "Failed to seek to offset %lld"
 msgstr "Iskanje na odmik %lld je spodletelo"
@@ -536,11 +534,11 @@ msgid "Comments not allowed in XML"
 msgstr "Opombe v XML niso dovoljene"
 
 #: ../src/librygel-server/rygel-item-creator.vala:127
-#: ../src/librygel-server/rygel-item-creator.vala:279
+#: ../src/librygel-server/rygel-item-creator.vala:280
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 #: ../src/librygel-server/rygel-item-destroyer.vala:100
-#: ../src/librygel-server/rygel-media-query-action.vala:118
-#: ../src/librygel-server/rygel-media-query-action.vala:181
+#: ../src/librygel-server/rygel-media-query-action.vala:115
+#: ../src/librygel-server/rygel-media-query-action.vala:182
 msgid "No such object"
 msgstr "Ni takšnega predmeta"
 
@@ -549,13 +547,13 @@ msgstr "Ni takšnega predmeta"
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Ni predmetov v DIDL-Lite od odjemalca: %s"
 
-#: ../src/librygel-server/rygel-item-creator.vala:283
-#: ../src/librygel-server/rygel-item-creator.vala:518
+#: ../src/librygel-server/rygel-item-creator.vala:284
+#: ../src/librygel-server/rygel-item-creator.vala:525
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Ustvarjanje predmeta v %s ni dovoljeno"
 
-#: ../src/librygel-server/rygel-item-creator.vala:311
+#: ../src/librygel-server/rygel-item-creator.vala:312
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Ustvarjanje predmeta pod '%s' je spodletelo: %s"
@@ -580,22 +578,22 @@ msgstr "Odstranjevanje predmeta %s ni dovoljeno"
 msgid "Object removal from %s not allowed"
 msgstr "Odstranjevanje predmeta iz %s ni dovoljeno"
 
-#: ../src/librygel-server/rygel-media-item.vala:273
+#: ../src/librygel-server/rygel-media-item.vala:282
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Slab naslov URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-item.vala:285
+#: ../src/librygel-server/rygel-media-item.vala:294
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Neuspešno preiskovanje protokola za naslov URI %s. Uporabljeno bo '%s'"
 
-#: ../src/librygel-server/rygel-media-query-action.vala:123
+#: ../src/librygel-server/rygel-media-query-action.vala:120
 msgid "Invalid range"
 msgstr "Neveljaven obseg"
 
-#: ../src/librygel-server/rygel-search.vala:89
+#: ../src/librygel-server/rygel-search.vala:93
 #, c-format
 msgid "Failed to search in '%s': %s"
 msgstr "Iskanje v '%s' je spodletelo: %s"
@@ -609,13 +607,19 @@ msgstr "Ni podnapisov na voljo"
 msgid "No thumbnailer available: %s"
 msgstr "Ustvarjalnik sličic ni na voljo: %s"
 
-#: ../src/librygel-server/rygel-thumbnailer.vala:82
-#: ../src/librygel-server/rygel-thumbnailer.vala:91
-#: ../src/librygel-server/rygel-thumbnailer.vala:102
+#: ../src/librygel-server/rygel-thumbnailer.vala:73
+#| msgid "Seek mode not supported"
+msgid "Thubmnailing not supported"
+msgstr "Ustvarjanje sličic ni podprto"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:87
+#: ../src/librygel-server/rygel-thumbnailer.vala:96
+#: ../src/librygel-server/rygel-thumbnailer.vala:101
+#: ../src/librygel-server/rygel-thumbnailer.vala:112
 msgid "No thumbnail available"
 msgstr "Sličice niso na voljo"
 
-#: ../src/librygel-server/rygel-thumbnailer.vala:121
+#: ../src/librygel-server/rygel-thumbnailer.vala:131
 msgid "No D-Bus thumbnailer available"
 msgstr "Ustvarjalnik sličic vodila D-Bus ni na voljo."
 
@@ -624,14 +628,23 @@ msgstr "Ustvarjalnik sličic vodila D-Bus ni na voljo."
 msgid "No transcoder available for target format '%s'"
 msgstr "Za ciljno obliko '%s' ni na voljo ustreznega prekodirnika"
 
+#: ../src/librygel-server/rygel-transcoder.vala:84
+#| msgid "Failed to create a Tracker connection: %s"
+msgid "Could not create a transcoder configuration. "
+msgstr "Ni mogoče ustvariti nastavitev transkodirnika."
+
 #: ../src/rygel/rygel-main.vala:105
 #, c-format
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
-msgstr[0] "V %d sekundah ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
-msgstr[1] "V %d sekundi ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
-msgstr[2] "V %d sekundah ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
-msgstr[3] "V %d sekundah ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
+msgstr[0] ""
+"V %d sekundah ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
+msgstr[1] ""
+"V %d sekundi ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
+msgstr[2] ""
+"V %d sekundah ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
+msgstr[3] ""
+"V %d sekundah ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
 
 #: ../src/rygel/rygel-main.vala:166
 #, c-format
@@ -662,6 +675,15 @@ msgstr "Začenjanje storitve Rygel je spodletelo: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Zaustavljanje storitve Rygel je spodletelo: %s"
+
+#~ msgid "Invalid Args"
+#~ msgstr "Neveljavni argumenti"
+
+#~ msgid "Seek failed"
+#~ msgstr "Iskanje je spodletelo"
+
+#~ msgid "ActionFailed"
+#~ msgstr "Dejanje je spodletelo"
 
 #~ msgid "Failed to create D-Bus proxies: %s"
 #~ msgstr "Ustvarjanje posredniškega D-Bus vodila je spodletelo: %s"
@@ -962,7 +984,6 @@ msgstr "Zaustavljanje storitve Rygel je spodletelo: %s"
 #~ msgstr "Pridobljen je bil prazen seznam oznak za datoteko %s"
 
 #~ msgid "We have %u child."
-
 #~ msgid_plural "We have %u children."
 #~ msgstr[0] "Obstaja še %u podrejenih predmetov."
 #~ msgstr[1] "Obstaja še %u podrejen predmet."
