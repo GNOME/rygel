@@ -4,15 +4,16 @@
 # Gheyret Kenji<gheyret@yahoo.com>,2010.
 # Sahran <sahran.ug@gmail.com>, 2010.
 # Zeper <zeper@msn.com>, 2010.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&component=general\n"
-"POT-Creation-Date: 2011-03-08 16:40+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-01-17 13:23+0000\n"
+"PO-Revision-Date: 2011-11-09 16:10+0900\n"
 "Last-Translator: Gheyret Kenji<gheyret@yahoo.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,18 +25,48 @@ msgid "Rygel Preferences"
 msgstr "Rygel تەڭشەكلىرى"
 
 #: ../data/rygel-preferences.ui.h:2
-msgid "Select folders"
-msgstr "قىسقۇچ تاللاش"
-
-#. Network Interface
-#: ../data/rygel-preferences.ui.h:4
-#| msgid "Network Options"
-msgid "_Network"
-msgstr "تور(_N)"
-
-#: ../data/rygel-preferences.ui.h:5
 msgid "_Share media through DLNA"
 msgstr "DLNA ئارقىلىق ۋاسىتىلەرنى ھەمبەھىرلە(_S)"
+
+#: ../data/rygel-preferences.ui.h:3
+msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
+msgstr "ۋاسىتىلەرنى (سۈرەتلەر، سىنلار، مۇزىكىلار) DLNA ئارقىلىق ھەمبەھىرلەشنى ئىناۋەتلىك قىلىدۇ"
+
+#: ../data/rygel-preferences.ui.h:4
+msgid "Add a directory to the list of shared directories"
+msgstr "ھەمبەھىرلەنگەن مۇندەرىجە تىزىمىغا بىر مۇندەرىجە قوشىدۇ"
+
+#: ../data/rygel-preferences.ui.h:5
+msgid "Add shared directory"
+msgstr "ھەمبەھىرلەنگەن مۇندەرىجىگە قوش"
+
+#: ../data/rygel-preferences.ui.h:6
+msgid "Remove a directory from the list of shared directories"
+msgstr "ھەمبەھىرلەنگەن مۇندەرىجە تىزىمىدىن بىر مۇندەرىجىنى چىقىرىۋېتىدۇ"
+
+#: ../data/rygel-preferences.ui.h:7
+msgid "Remove shared directory"
+msgstr "ھەمبەھىرلەنگەن مۇندەرىجىنى چىقىرىۋەت"
+
+#. Network Interface
+#: ../data/rygel-preferences.ui.h:9
+#| msgid "_Network"
+msgid "_Network:"
+msgstr "تور(_N):"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid ""
+"Select the network interface that DLNA media will be shared on, or share "
+"media on all interfaces"
+msgstr ""
+
+#: ../data/rygel-preferences.ui.h:11
+msgid "Any"
+msgstr "خالىغان"
+
+#: ../data/rygel-preferences.ui.h:12
+msgid "Select folders"
+msgstr "قىسقۇچ تاللاش"
 
 #: ../data/rygel-preferences.desktop.in.in.h:2
 msgid "UPnP/DLNA Preferences"
@@ -49,72 +80,69 @@ msgstr "Rygel"
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA مۇلازىمەتلىرى"
 
-#: ../src/plugins/playbin/rygel-playbin-plugin.vala:45
-msgid "GStreamer Player"
-msgstr "GStreamer قويغۇ"
+#: ../data/rygel.desktop.in.in.h:3
+msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
+msgstr "mediaserver;mediarenderer;share;audio;video;pictures;ۋاسىتە مۇلازىمېتىرى؛ۋاسىتە سىزغۇچ؛ھەمبەھىر؛ئۈن؛سىن؛سۈرەت؛"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:94
+#: ../src/plugins/external/rygel-external-plugin-factory.vala:42
+#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:42
 #, c-format
-msgid "Failed to open database: %d (%s)"
-msgstr "سانداننى ئېچىش مەغلۇپ بولدى: %d (%s)"
+#| msgid "Failed to connect to session bus: %s"
+msgid "Module '%s' could not connect to D-Bus session bus. "
+msgstr ""
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:207
+#: ../src/plugins/media-export/rygel-media-export-database.vala:210
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "transaction دىن يېنىۋېلىش مەغلۇپ بولدى: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:267
-#, c-format
-msgid "Unsupported type %s"
-msgstr "تىپ %s نى قوللىمايدۇ(ئىشلەتكىلى بولمايدۇ)"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:134
-#: ../src/rygel/rygel-plugin-loader.vala:186
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:126
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:205
 #, c-format
 msgid "Failed to query content type for '%s'"
-msgstr "'%s' نىڭ تىپىنى سۈرۈشتۈرۈش مەغلۇپ بولدى"
+msgstr "‹%s› نىڭ تىپىنى سۈرۈشتۈرۈش مەغلۇپ بولدى"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:86
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:112
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "ID سى %s بولغان تۈرنى قوشۇش مەغلۇپ بولدى: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:122
-#, c-format
-msgid "Object %s is not an item"
-msgstr "نەڭ %s تۈر ئەمەس"
-
-#: ../src/plugins/media-export/rygel-media-export-dbus-service.vala:38
-#, c-format
-msgid "Failed to attach to D-Bus session bus: %s"
-msgstr "D-Bus سىستېما باش لىنىيىسىگە قوشۇلۇش مەغلۇپ بولدى: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:58
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:94
 msgid "No metadata extractor available. Will not crawl."
 msgstr ""
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:101
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:136
 #, c-format
 msgid "'%s' harvested"
-msgstr "'%s' نىڭغا ئېرىشتى"
+msgstr "‹%s› نىڭغا ئېرىشتى"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:166
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:199
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
-msgstr "سانداندىن نەڭ '%s' ئى ئېلىشتا خاتالىق كۆرۈلدى: %s"
+msgstr "سانداندىن نەڭ ‹%s› ئى ئېلىشتا خاتالىق كۆرۈلدى: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:201
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:207
+#, c-format
+#| msgid "Failed to remove entry: %s"
+msgid "Failed to access media cache: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:249
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "سانداندىن نەڭنى ئۆچۈرۈۋاتقاندا خاتالىق كۆرۈلدى: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:77
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
+msgid "Will not monitor file changes"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:95
 #, c-format
 msgid "Failed to get file info for %s"
 msgstr "%s نىڭ ھۆججەت ئۇچۇرىنى ئېلىش مەغلۇپ بولدى"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:30
-#: ../src/plugins/tracker/rygel-tracker-years.vala:35
+#: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "يىل"
 
@@ -131,78 +159,87 @@ msgid "Album"
 msgstr "ئالبوم"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:37
-#: ../src/plugins/tracker/rygel-tracker-genre.vala:33
+#: ../src/plugins/tracker/rygel-tracker-genre.vala:31
 msgid "Genre"
-msgstr "تىپ"
+msgstr "ئېقىم"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:98
-#, c-format
-msgid "Failed to remove URI: %s"
-msgstr "URI نى چىقىرىۋېتىش مەغلۇپ بولدى: %s"
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:52
+#| msgid "Select folders"
+msgid "Files & Folders"
+msgstr "ھۆججەت ۋە قىسقۇچىلار"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:336
+#. *
+#. * The MediaCache contains metadata details of all files
+#. * found by the Harvester, which uses the same
+#. * MediaCache from get_default().
+#.
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:322
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@'s ۋاسىتە"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
-#, c-format
-msgid "Failed to create MediaExport D-Bus service: %s"
-msgstr "MediaExport D-Bus مۇلازىمىتى قۇرۇش مەغلۇپ بولدى: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:381
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:382
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "مەزمۇننى چىقىرىۋېتىش مەغلۇپ بولدى: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:397
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:412
 msgid "Music"
-msgstr "نەغمە"
+msgstr "مۇزىكا"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:400
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:415
 msgid "Pictures"
-msgstr "رەسىملەر"
+msgstr "سۈرەتلەر"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:402
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:417
 msgid "Videos"
 msgstr "سىنلار"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:56
-#, c-format
-msgid "Failed to create D-Bus proxies: %s"
-msgstr "D-Bus ۋاكالەتچىلىرى قۇرۇش مەغلۇپ بولدى: %s"
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:419
+msgid "Playlists"
+msgstr "قويۇش تىزىمى"
 
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:64
+#: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
+msgid "GStreamer Player"
+msgstr "GStreamer قويغۇ"
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
+#, c-format
+#| msgid "Failed to create preferences dialog: %s"
+msgid "Failed to create a Tracker connection: %s"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:62
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
-msgstr "ھۆججەتنىڭ '%s' نىڭ URI نى ئىشلەش مەغلۇپ بولدى: %s"
+msgstr "ھۆججەتنىڭ ‹%s› نىڭ URI نى ئىشلەش مەغلۇپ بولدى: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:61
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:93
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:77
 #, c-format
-msgid "Failed to connect to session bus: %s"
-msgstr "ئەڭگىمە باش لىنىيىسىگە باغلىنىش مەغلۇپ بولدى: %s"
+msgid "Could not subscribe to tracker signals: %s"
+msgstr ""
 
-#: ../src/plugins/tracker/rygel-tracker-metadata-values.vala:112
-#, c-format
-msgid "Error getting all values for '%s': %s"
-msgstr "'%s' نىڭ بارلىق قىممىتىنى ئېلىۋاتقاندا خاتالىق كۆرۈلدى: %s"
-
-#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:41
+#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:42
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "Tracker مۇلازىمىتىنى باشلاش مەغلۇپ بولدى: %s. قىستۇرما چەكلەنگەن."
 
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:203
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:104
+#, c-format
+#| msgid "Failed to roll back transaction: %s"
+msgid "Failed to get Tracker connection: %s"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category '%s': %s"
-msgstr "كاتېگورىيە '%s' نىڭ ئاستىدىكى تۈرلەرنىڭ سانىنى ئېلىۋاتقاندا خاتالىق كۆرۈلدى: %s"
+msgstr "كاتېگورىيە ‹%s› نىڭ ئاستىدىكى تۈرلەرنىڭ سانىنى ئېلىۋاتقاندا خاتالىق كۆرۈلدى: %s"
 
-#: ../src/plugins/tracker/rygel-tracker-albums.vala:35
+#: ../src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
-msgstr "پلاستىنكا توپلىمى"
+msgstr "ئالبوملار"
 
-#: ../src/plugins/tracker/rygel-tracker-artists.vala:35
+#: ../src/plugins/tracker/rygel-tracker-artists.vala:31
 msgid "Artists"
 msgstr "سەنئەتكار"
 
@@ -210,418 +247,585 @@ msgstr "سەنئەتكار"
 msgid "Titles"
 msgstr "ماۋزۇلار"
 
-#: ../src/rygel/rygel-media-query-action.vala:117
-#: ../src/rygel/rygel-media-query-action.vala:141
-#: ../src/rygel/rygel-browse.vala:94 ../src/rygel/rygel-item-creator.vala:154
-#: ../src/rygel/rygel-item-creator.vala:189
-#: ../src/rygel/rygel-item-destroyer.vala:53
-#: ../src/rygel/rygel-item-destroyer.vala:99
-msgid "No such object"
-msgstr "بۇنداق نەڭ يوق"
+#: ../src/librygel-core/rygel-base-configuration.vala:30
+#: ../src/librygel-core/rygel-base-configuration.vala:34
+#: ../src/librygel-core/rygel-base-configuration.vala:38
+#: ../src/librygel-core/rygel-base-configuration.vala:42
+#: ../src/librygel-core/rygel-base-configuration.vala:46
+#: ../src/librygel-core/rygel-base-configuration.vala:50
+#: ../src/librygel-core/rygel-base-configuration.vala:54
+#: ../src/librygel-core/rygel-base-configuration.vala:58
+#: ../src/librygel-core/rygel-base-configuration.vala:62
+#: ../src/librygel-core/rygel-base-configuration.vala:66
+#: ../src/librygel-core/rygel-base-configuration.vala:70
+#: ../src/librygel-core/rygel-base-configuration.vala:74
+#: ../src/librygel-core/rygel-base-configuration.vala:78
+#: ../src/librygel-core/rygel-base-configuration.vala:82
+#: ../src/librygel-core/rygel-base-configuration.vala:86
+#: ../src/librygel-core/rygel-base-configuration.vala:92
+#: ../src/librygel-core/rygel-base-configuration.vala:98
+#: ../src/librygel-core/rygel-base-configuration.vala:106
+#: ../src/librygel-core/rygel-base-configuration.vala:112
+#: ../src/librygel-core/rygel-base-configuration.vala:118
+msgid "Not implemented"
+msgstr "ئەمەلىيلەشتۈرۈلمىگەن"
 
-#: ../src/rygel/rygel-browse.vala:63
-msgid "Invalid Arguments"
-msgstr "پارامېتىرلار خاتا"
+#: ../src/librygel-core/rygel-connection-manager.vala:89
+#: ../src/librygel-core/rygel-connection-manager.vala:103
+#: ../src/librygel-core/rygel-connection-manager.vala:125
+#: ../src/librygel-renderer/rygel-av-transport.vala:200
+#: ../src/librygel-renderer/rygel-rendering-control.vala:126
+#: ../src/librygel-server/rygel-content-directory.vala:250
+#: ../src/librygel-server/rygel-content-directory.vala:277
+#: ../src/librygel-server/rygel-content-directory.vala:296
+#: ../src/librygel-server/rygel-content-directory.vala:331
+#: ../src/librygel-server/rygel-content-directory.vala:356
+#: ../src/librygel-server/rygel-content-directory.vala:381
+#: ../src/librygel-server/rygel-media-receiver-registrar.vala:59
+#| msgid "Invalid Arguments"
+msgid "Invalid argument"
+msgstr "ئىناۋەتسىز ئارگۇمېنت"
 
-#: ../src/rygel/rygel-browse.vala:121
-#, c-format
-msgid "Failed to browse '%s': %s\n"
-msgstr "'%s' نى كۆرۈش مەغلۇپ بولدى: %s\n"
-
-#: ../src/rygel/rygel-cmdline-config.vala:137
-#: ../src/rygel/rygel-cmdline-config.vala:145
-#: ../src/rygel/rygel-cmdline-config.vala:153
-#: ../src/rygel/rygel-cmdline-config.vala:161
-#: ../src/rygel/rygel-cmdline-config.vala:169
-#: ../src/rygel/rygel-cmdline-config.vala:177
-#: ../src/rygel/rygel-cmdline-config.vala:185
-#: ../src/rygel/rygel-cmdline-config.vala:193
-#: ../src/rygel/rygel-cmdline-config.vala:201
-#: ../src/rygel/rygel-cmdline-config.vala:209
-#: ../src/rygel/rygel-cmdline-config.vala:217
-#: ../src/rygel/rygel-cmdline-config.vala:243
-#: ../src/rygel/rygel-cmdline-config.vala:262
-#: ../src/rygel/rygel-cmdline-config.vala:286
-#: ../src/rygel/rygel-cmdline-config.vala:312
-#: ../src/rygel/rygel-cmdline-config.vala:341
-#: ../src/rygel/rygel-cmdline-config.vala:367
-#: ../src/rygel/rygel-cmdline-config.vala:392
-#: ../src/rygel/rygel-meta-config.vala:74
-#: ../src/rygel/rygel-meta-config.vala:93
-#: ../src/rygel/rygel-meta-config.vala:112
-#: ../src/rygel/rygel-meta-config.vala:131
-#: ../src/rygel/rygel-meta-config.vala:150
-#: ../src/rygel/rygel-meta-config.vala:169
-#: ../src/rygel/rygel-meta-config.vala:188
-#: ../src/rygel/rygel-meta-config.vala:207
-#: ../src/rygel/rygel-meta-config.vala:226
-#: ../src/rygel/rygel-meta-config.vala:245
-#: ../src/rygel/rygel-meta-config.vala:264
-msgid "No value available"
-msgstr "قىممىتى يوق"
-
-#: ../src/rygel/rygel-connection-manager.vala:107
+#: ../src/librygel-core/rygel-connection-manager.vala:119
 msgid "Invalid connection reference"
 msgstr "ئىناۋەتسىز باغلىنىش reference ئى"
 
-#: ../src/rygel/rygel-content-directory.vala:207
-#: ../src/rygel/rygel-content-directory.vala:220
-msgid "No such file transfer"
-msgstr "بۇنداق ھۆججەت يوللاش يوق"
-
-#: ../src/rygel/rygel-av-transport.vala:205
-#: ../src/rygel/rygel-rendering-control.vala:121
-msgid "Invalid InstanceID"
-msgstr "InstanceID ئىناۋەتسىز"
-
-#: ../src/rygel/rygel-av-transport.vala:378
-msgid "Play speed not supported"
-msgstr "قويۇش تېزلىكىنى قوللىمايدۇ"
-
-#: ../src/rygel/rygel-av-transport.vala:417
-#: ../src/rygel/rygel-av-transport.vala:426
-msgid "Seek mode not supported"
-msgstr "ئىزدەش ھالىتىنى قوللىمايدۇ"
-
-#: ../src/rygel/rygel-av-transport.vala:433
-#: ../src/rygel/rygel-av-transport.vala:437
-msgid "Transition not available"
-msgstr "Transition يوق"
-
-#: ../src/rygel/rygel-rendering-control.vala:152
-msgid "Invalid Name"
-msgstr "ئىناۋەتسىز ئات"
-
-#: ../src/rygel/rygel-rendering-control.vala:166
-#: ../src/rygel/rygel-rendering-control.vala:237
-msgid "Action Failed"
-msgstr "مەشغۇلات مەغلۇپ بولدى"
-
-#: ../src/rygel/rygel-gst-utils.vala:38
-#, c-format
-msgid "Required element %s missing"
-msgstr "زۆرۈر ئېلېمېنت %s يوقالغان"
-
-#: ../src/rygel/rygel-http-byte-seek.vala:43
-#: ../src/rygel/rygel-http-byte-seek.vala:49
-#: ../src/rygel/rygel-http-byte-seek.vala:58
-#: ../src/rygel/rygel-http-byte-seek.vala:68
-#: ../src/rygel/rygel-http-byte-seek.vala:71
-#: ../src/rygel/rygel-http-time-seek.vala:50
-#: ../src/rygel/rygel-http-time-seek.vala:59
-#: ../src/rygel/rygel-http-time-seek.vala:69
-#: ../src/rygel/rygel-http-time-seek.vala:72
-#, c-format
-msgid "Invalid Range '%s'"
-msgstr "دائىرە '%s' ئىناۋەتسىز"
-
-#: ../src/rygel/rygel-http-get.vala:59
-msgid "Invalid Request"
-msgstr "ئىناۋەتسىز ئىلتىماس"
-
-#: ../src/rygel/rygel-http-identity-handler.vala:97
-#: ../src/rygel/rygel-http-transcode-handler.vala:56
-msgid "Not found"
-msgstr "تېپىلمىدى"
-
-#: ../src/rygel/rygel-http-identity-handler.vala:109
-#, c-format
-msgid "Item '%s' didn't provide a URI"
-msgstr "تۈر '%s' بىرەر URI نى تەمىنلىمەيدۇ"
-
-#: ../src/rygel/rygel-http-item-uri.vala:58
-#, c-format
-msgid "Invalid URI '%s'"
-msgstr "URI '%s' ئىناۋەتسىز"
-
-#: ../src/rygel/rygel-http-item-uri.vala:89
-msgid "Not Found"
-msgstr "تېپىلمىدى"
-
-#: ../src/rygel/rygel-http-post.vala:61
-#: ../src/rygel/rygel-import-resource.vala:169
-#, c-format
-msgid "Pushing data to non-empty item '%s' not allowed"
-msgstr "قۇرۇق بولمىغان تۈر '%s' گە سانلىق-مەلۇماتلارنى كىرگۈزۈشكە يول قويۇلمايدۇ"
-
-#: ../src/rygel/rygel-http-post.vala:69
-#, c-format
-msgid "No writable URI for %s available"
-msgstr "%s نىڭ يازغىلى بولمايدىغان URI سى بار"
-
-#: ../src/rygel/rygel-http-request.vala:82
-#, c-format
-msgid "Requested item '%s' not found"
-msgstr "ئىلتىماس قىلىنغان تۈر '%s' تېپىلمىدى"
-
-#: ../src/rygel/rygel-import-resource.vala:109
-#, c-format
-msgid "Failed to get original URI for '%s': %s"
-msgstr "'%s' نىڭ ئەسلى URI سىنى ئېلىش مەغلۇپ بولدى: %s"
-
-#: ../src/rygel/rygel-import-resource.vala:166
-#, c-format
-msgid "URI '%s' invalid for importing contents to"
-msgstr "مەزمۇنلارنى ئىمپورت قىلىدىغان URI '%s' ئىناۋەتسىز"
-
-#: ../src/rygel/rygel-item-creator.vala:67
-#, c-format
-msgid "No items in DIDL-Lite from client: '%s'"
-msgstr "خېرىدار(client)دىن كەلگەن DIDL-Lite نىڭ ئىچىدە بىر نەرسە(تۈر) يوق: '%s'"
-
-#: ../src/rygel/rygel-item-creator.vala:145
-msgid "'Elements' argument missing."
-msgstr "ئېلېمېنتنىڭ پارامېتىرى يوقالغان."
-
-#: ../src/rygel/rygel-item-creator.vala:148
-msgid "Comments not allowed in XML"
-msgstr "XML نىڭ ئىچىگە ئىزاھات يېزىشقا يول قويۇلمايدۇ"
-
-#: ../src/rygel/rygel-item-creator.vala:193
-#: ../src/rygel/rygel-item-creator.vala:282
-#, c-format
-msgid "Object creation in %s not allowed"
-msgstr "%s نىڭ ئىچىدە نەڭ قۇرۇشقا بولمايدۇ"
-
-#: ../src/rygel/rygel-item-creator.vala:219
-#, c-format
-msgid "Failed to create item under '%s': %s"
-msgstr "'%s' نىڭ ئاستىدا تۈر قۇرۇش مەغلۇپ بولدى: %s"
-
-#: ../src/rygel/rygel-item-destroyer.vala:60
-#, c-format
-msgid "Successfully destroyed object '%s'"
-msgstr "نەڭ '%s' مۇۋەپپەقىيەتلىك  بۇزۇلدى"
-
-#: ../src/rygel/rygel-item-destroyer.vala:68
-#, c-format
-msgid "Failed to destroy object '%s': %s"
-msgstr "نەڭ '%s' نى بۇزۇش مەغلۇپ بولدى: %s"
-
-#: ../src/rygel/rygel-item-destroyer.vala:102
-#, c-format
-msgid "Removal of object %s not allowed"
-msgstr "نەڭ %s نى چىقىرىۋېتىشكە بولمايدۇ"
-
-#: ../src/rygel/rygel-item-destroyer.vala:105
-#, c-format
-msgid "Object removal from %s not allowed"
-msgstr "%s نىڭدىن نەڭلەرنى چىقىرىۋېتىشكە بولمايدۇ"
-
-#: ../src/rygel/rygel-l16-transcoder-bin.vala:66
-#: ../src/rygel/rygel-http-gst-response.vala:143
-#: ../src/rygel/rygel-mp2ts-transcoder-bin.vala:102
-#: ../src/rygel/rygel-mp3-transcoder-bin.vala:69
-#: ../src/rygel/rygel-wma-transcoder-bin.vala:58
-#: ../src/rygel/rygel-wmv-transcoder-bin.vala:100
-#, c-format
-msgid "Failed to link pad %s to %s"
-msgstr "pad %s نىڭ %s غا ئۇلانما قىلىنىشى مەغلۇپ بولدى"
-
-#. 'fakesink' should not be translated
-#: ../src/rygel/rygel-http-gst-response.vala:91
-msgid "Plugin 'fakesink' missing"
-msgstr "'fakesink' قىستۇرمىسى يوق"
-
-#: ../src/rygel/rygel-http-gst-response.vala:108
-#: ../src/rygel/rygel-http-gst-response.vala:130
-#, c-format
-msgid "Failed to link %s to %s"
-msgstr "%s نى %s غا ئۇلانما قىلىش مەغلۇپ بولدى"
-
-#: ../src/rygel/rygel-http-gst-response.vala:216
-#, c-format
-msgid "Error from pipeline %s: %s"
-msgstr "تۇرۇبا %s دىن كەلگەن خاتالىق: %s"
-
-#: ../src/rygel/rygel-http-gst-response.vala:223
-#, c-format
-msgid "Warning from pipeline %s: %s"
-msgstr "تۇرۇبا %s دىن كەلگەن ئاگاھلاندۇرۇش: %s"
-
-#: ../src/rygel/rygel-http-gst-response.vala:256
-#, c-format
-msgid "Failed to seek to offset %lld"
-msgstr "offset %lld غىچە ئىزدەش مەغلۇپ  بولدى"
-
-#: ../src/rygel/rygel-log-handler.vala:68
+#: ../src/librygel-core/rygel-log-handler.vala:68
 #, c-format
 msgid "Failed to get log level from configuration: %s"
 msgstr "سەپلىمە ھۆججەتتىن خاتىرە دەرىجىسىنى ئېلىش مەغلۇپ بولدى: %s"
 
-#: ../src/rygel/rygel-main.vala:81
-#, c-format
-msgid "No plugins found in %d second; giving up.."
-msgid_plural "No plugins found in %d seconds; giving up.."
-msgstr[0] "%d سېكۇنت ئىچىدە قىستۇرما تاپالمىدى؛ بولدى قىلىدۇ..."
+#: ../src/librygel-core/rygel-meta-config.vala:89
+#: ../src/librygel-core/rygel-meta-config.vala:108
+#: ../src/librygel-core/rygel-meta-config.vala:127
+#: ../src/librygel-core/rygel-meta-config.vala:146
+#: ../src/librygel-core/rygel-meta-config.vala:165
+#: ../src/librygel-core/rygel-meta-config.vala:184
+#: ../src/librygel-core/rygel-meta-config.vala:203
+#: ../src/rygel/rygel-cmdline-config.vala:141
+#: ../src/rygel/rygel-cmdline-config.vala:149
+#: ../src/rygel/rygel-cmdline-config.vala:157
+#: ../src/rygel/rygel-cmdline-config.vala:165
+#: ../src/rygel/rygel-cmdline-config.vala:173
+#: ../src/rygel/rygel-cmdline-config.vala:181
+#: ../src/rygel/rygel-cmdline-config.vala:189
+#: ../src/rygel/rygel-cmdline-config.vala:228
+#: ../src/rygel/rygel-cmdline-config.vala:247
+#: ../src/rygel/rygel-cmdline-config.vala:253
+#: ../src/rygel/rygel-cmdline-config.vala:260
+#: ../src/rygel/rygel-cmdline-config.vala:264
+#: ../src/rygel/rygel-cmdline-config.vala:268
+#: ../src/rygel/rygel-cmdline-config.vala:291
+#: ../src/rygel/rygel-cmdline-config.vala:317
+#: ../src/rygel/rygel-cmdline-config.vala:346
+#: ../src/rygel/rygel-cmdline-config.vala:372
+#: ../src/rygel/rygel-cmdline-config.vala:397
+#: ../src/rygel/rygel-environment-config.vala:100
+#: ../src/rygel/rygel-environment-config.vala:104
+#: ../src/rygel/rygel-environment-config.vala:108
+msgid "No value available"
+msgstr "قىممىتى يوق"
 
-#: ../src/rygel/rygel-main.vala:145
+#: ../src/librygel-core/rygel-meta-config.vala:324
 #, c-format
-msgid "Failed to create root device factory: %s"
-msgstr "غول ئۈسكىنە زاۋۇتىنى قۇرۇش مەغلۇپ بولدى: %s"
+msgid "No value set for '%s/enabled'"
+msgstr "‹%s/ئىناۋەتلىك› نىڭ قىممىتى يوق"
 
-#: ../src/rygel/rygel-main.vala:203
+#: ../src/librygel-core/rygel-meta-config.vala:343
 #, c-format
-msgid "Failed to create RootDevice for %s. Reason: %s"
-msgstr "%s نىڭ RootDevice نى قۇرۇش مەغلۇپ بولدى. سەۋەبى: %s"
+#| msgid "No value set for '%s/enabled'"
+msgid "No value set for '%s/title'"
+msgstr ""
 
-#: ../src/rygel/rygel-main.vala:239
+#: ../src/librygel-core/rygel-meta-config.vala:363
+#: ../src/librygel-core/rygel-meta-config.vala:385
+#: ../src/librygel-core/rygel-meta-config.vala:411
+#: ../src/librygel-core/rygel-meta-config.vala:433
+#: ../src/librygel-core/rygel-meta-config.vala:457
 #, c-format
-msgid "Failed to start D-Bus service: %s"
-msgstr "D-Bus مۇلازىمىتىنى باشلاش مەغلۇپ بولدى: %s"
+msgid "No value available for '%s/%s'"
+msgstr "'%s/%s' نىڭ قىممىتى يوق"
 
-#: ../src/rygel/rygel-media-item.vala:272
+#: ../src/librygel-core/rygel-plugin-loader.vala:85
+#, c-format
+msgid "New plugin '%s' available"
+msgstr "يېڭى قىستۇرما ‹%s› بار"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:100
+#, c-format
+msgid "A module named %s is already loaded"
+msgstr ""
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:109
+#, c-format
+msgid "Failed to load module from path '%s': %s"
+msgstr "يول ‹%s› دىن بۆلەكنى ئوقۇش مەغلۇپ بولدى: %s"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:119
+#, c-format
+msgid "Failed to find entry point function '%s' in '%s': %s"
+msgstr "كىرىش نۇقتا فۇنكسىيىسى ‹%s› نى ‹%s› نىڭ ئىچىدىن تاپالمىدى: %s"
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:137
+#, c-format
+msgid "Error listing contents of folder '%s': %s"
+msgstr "قىسقۇچ ‹%s› دىكى مەزمۇنلارنى كۆرسىتىۋاتقاندا خاتالىق كۆرۈلدى: %s"
+
+#: ../src/librygel-core/rygel-root-device-factory.vala:102
+#: ../src/librygel-core/rygel-root-device-factory.vala:135
+#: ../src/librygel-core/rygel-root-device-factory.vala:157
+#: ../src/librygel-core/rygel-root-device-factory.vala:188
+#, c-format
+msgid "XML node '%s' not found."
+msgstr "XML تۈگۈنى ‹%s› نى تاپالمىدى."
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:206
+#: ../src/librygel-renderer/rygel-rendering-control.vala:132
+msgid "Invalid InstanceID"
+msgstr "InstanceID ئىناۋەتسىز"
+
+#. FIXME: Return a more sensible error here.
+#: ../src/librygel-renderer/rygel-av-transport.vala:241
+#: ../src/librygel-renderer/rygel-av-transport.vala:656
+#: ../src/librygel-renderer/rygel-av-transport.vala:666
+msgid "Resource not found"
+msgstr ""
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:252
+msgid "Illegal MIME-type"
+msgstr ""
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:514
+msgid "Play speed not supported"
+msgstr "قويۇش تېزلىكىنى قوللىمايدۇ"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:531
+msgid "Transition not available"
+msgstr "Transition يوق"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:560
+#: ../src/librygel-renderer/rygel-av-transport.vala:584
+msgid "Seek mode not supported"
+msgstr "ئىزدەش ھالىتىنى قوللىمايدۇ"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:573
+#: ../src/librygel-renderer/rygel-av-transport.vala:594
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
+msgid "Illegal seek target"
+msgstr ""
+
+#: ../src/librygel-renderer/rygel-media-renderer.vala:27
+msgid "LibRygelRenderer"
+msgstr ""
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:163
+msgid "Invalid Name"
+msgstr "ئىناۋەتسىز ئات"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:177
+#| msgid "Invalid Name"
+msgid "Invalid Channel"
+msgstr ""
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:213
+#: ../src/librygel-renderer/rygel-rendering-control.vala:255
+#: ../src/librygel-renderer/rygel-rendering-control.vala:264
+msgid "Action Failed"
+msgstr "مەشغۇلات مەغلۇپ بولدى"
+
+#: ../src/librygel-server/rygel-browse.vala:63
+msgid "Invalid Arguments"
+msgstr "پارامېتىرلار خاتا"
+
+#: ../src/librygel-server/rygel-browse.vala:94
+msgid "Cannot browse children on item"
+msgstr ""
+
+#: ../src/librygel-server/rygel-browse.vala:130
+#, c-format
+msgid "Failed to browse '%s': %s\n"
+msgstr "‹%s› نى كۆرۈش مەغلۇپ بولدى: %s\n"
+
+#: ../src/librygel-server/rygel-content-directory.vala:269
+#: ../src/librygel-server/rygel-content-directory.vala:288
+msgid "No such file transfer"
+msgstr "بۇنداق ھۆججەت يوللاش يوق"
+
+#. Range header was present but invalid
+#: ../src/librygel-server/rygel-http-byte-seek.vala:49
+#: ../src/librygel-server/rygel-http-byte-seek.vala:54
+#: ../src/librygel-server/rygel-http-time-seek.vala:49
+#: ../src/librygel-server/rygel-http-time-seek.vala:61
+#: ../src/librygel-server/rygel-http-time-seek.vala:68
+#: ../src/librygel-server/rygel-http-time-seek.vala:83
+#, c-format
+msgid "Invalid Range '%s'"
+msgstr "دائىرە ‹%s› ئىناۋەتسىز"
+
+#: ../src/librygel-server/rygel-http-get.vala:59
+msgid "Invalid Request"
+msgstr "ئىناۋەتسىز ئىلتىماس"
+
+#: ../src/librygel-server/rygel-http-identity-handler.vala:106
+#: ../src/librygel-server/rygel-http-transcode-handler.vala:58
+msgid "Not found"
+msgstr "تېپىلمىدى"
+
+#: ../src/librygel-server/rygel-http-item-uri.vala:134
+#, c-format
+msgid "Invalid URI '%s'"
+msgstr "URI ‹%s› ئىناۋەتسىز"
+
+#: ../src/librygel-server/rygel-http-item-uri.vala:177
+msgid "Not Found"
+msgstr "تېپىلمىدى"
+
+#: ../src/librygel-server/rygel-http-post.vala:63
+#: ../src/librygel-server/rygel-import-resource.vala:191
+#, c-format
+msgid "Pushing data to non-empty item '%s' not allowed"
+msgstr "قۇرۇق بولمىغان تۈر ‹%s› گە سانلىق-مەلۇماتلارنى كىرگۈزۈشكە يول قويۇلمايدۇ"
+
+#: ../src/librygel-server/rygel-http-post.vala:72
+#, c-format
+msgid "No writable URI for %s available"
+msgstr "%s نىڭ يازغىلى بولمايدىغان URI سى بار"
+
+#. translators: Dotfile is the filename with prefix "."
+#: ../src/librygel-server/rygel-http-post.vala:187
+#, c-format
+#| msgid "Failed to remove entry: %s"
+msgid "Failed to move dotfile %s: %s"
+msgstr ""
+
+#: ../src/librygel-server/rygel-http-request.vala:92
+#, c-format
+msgid "Requested item '%s' not found"
+msgstr "ئىلتىماس قىلىنغان تۈر ‹%s› تېپىلمىدى"
+
+#: ../src/librygel-server/rygel-http-seek.vala:95
+#, c-format
+msgid "Out Of Range Start '%ld'"
+msgstr ""
+
+#: ../src/librygel-server/rygel-http-seek.vala:99
+#, c-format
+msgid "Out Of Range Stop '%ld'"
+msgstr ""
+
+#: ../src/librygel-server/rygel-import-resource.vala:124
+#, c-format
+msgid "Failed to get original URI for '%s': %s"
+msgstr "‹%s› نىڭ ئەسلى URI سىنى ئېلىش مەغلۇپ بولدى: %s"
+
+#: ../src/librygel-server/rygel-import-resource.vala:188
+#, c-format
+msgid "URI '%s' invalid for importing contents to"
+msgstr "مەزمۇنلارنى ئىمپورت قىلىدىغان URI ‹%s› ئىناۋەتسىز"
+
+#: ../src/librygel-server/rygel-item-creator.vala:119
+msgid "'Elements' argument missing."
+msgstr "ئېلېمېنتنىڭ پارامېتىرى يوقالغان."
+
+#: ../src/librygel-server/rygel-item-creator.vala:122
+msgid "Comments not allowed in XML"
+msgstr "XML نىڭ ئىچىگە ئىزاھات يېزىشقا يول قويۇلمايدۇ"
+
+#: ../src/librygel-server/rygel-item-creator.vala:128
+#: ../src/librygel-server/rygel-item-creator.vala:281
+#: ../src/librygel-server/rygel-item-destroyer.vala:53
+#: ../src/librygel-server/rygel-item-destroyer.vala:100
+#: ../src/librygel-server/rygel-item-updater.vala:70
+#: ../src/librygel-server/rygel-item-updater.vala:188
+#: ../src/librygel-server/rygel-media-query-action.vala:115
+#: ../src/librygel-server/rygel-media-query-action.vala:182
+msgid "No such object"
+msgstr "بۇنداق نەڭ يوق"
+
+#: ../src/librygel-server/rygel-item-creator.vala:150
+#, c-format
+msgid "No items in DIDL-Lite from client: '%s'"
+msgstr "خېرىدار(client)دىن كەلگەن DIDL-Lite نىڭ ئىچىدە بىر نەرسە(تۈر) يوق: ‹%s›"
+
+#: ../src/librygel-server/rygel-item-creator.vala:285
+#: ../src/librygel-server/rygel-item-creator.vala:528
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr "%s نىڭ ئىچىدە نەڭ قۇرۇشقا بولمايدۇ"
+
+#: ../src/librygel-server/rygel-item-creator.vala:313
+#, c-format
+msgid "Failed to create item under '%s': %s"
+msgstr "‹%s› نىڭ ئاستىدا تۈر قۇرۇش مەغلۇپ بولدى: %s"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:60
+#, c-format
+msgid "Successfully destroyed object '%s'"
+msgstr "نەڭ ‹%s› مۇۋەپپەقىيەتلىك  بۇزۇلدى"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:68
+#, c-format
+msgid "Failed to destroy object '%s': %s"
+msgstr "نەڭ ‹%s› نى بۇزۇش مەغلۇپ بولدى: %s"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:103
+#, c-format
+msgid "Removal of object %s not allowed"
+msgstr "نەڭ %s نى چىقىرىۋېتىشكە بولمايدۇ"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:106
+#, c-format
+msgid "Object removal from %s not allowed"
+msgstr "%s نىڭدىن نەڭلەرنى چىقىرىۋېتىشكە بولمايدۇ"
+
+#: ../src/librygel-server/rygel-item-updater.vala:77
+#, c-format
+#| msgid "Successfully destroyed object '%s'"
+msgid "Successfully updated object '%s'"
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-updater.vala:85
+#, c-format
+#| msgid "Failed to destroy object '%s': %s"
+msgid "Failed to update object '%s': %s"
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-updater.vala:190
+#, c-format
+#| msgid "Removal of object %s not allowed"
+msgid "Metadata modification of object %s not allowed"
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-updater.vala:195
+#, c-format
+msgid "Metadata modification of object %s being a child "
+msgstr ""
+
+#: ../src/librygel-server/rygel-media-engine.vala:55
+msgid "No media engine found."
+msgstr ""
+
+#: ../src/librygel-server/rygel-media-engine.vala:66
+msgid "MediaEngine.init was not called. Cannot continue."
+msgstr ""
+
+#: ../src/librygel-server/rygel-media-item.vala:307
 #, c-format
 msgid "Bad URI: %s"
 msgstr "خاتا URI:  %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/rygel/rygel-media-item.vala:284
+#: ../src/librygel-server/rygel-media-item.vala:319
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr "URI %s نىڭ كېلىشىمىنى ئېنىقلاش مەغلۇپ بولدى. '%s' دەپ پەرەز قىلدى"
+msgstr "URI %s نىڭ كېلىشىمىنى ئېنىقلاش مەغلۇپ بولدى. ‹%s› دەپ پەرەز قىلدى"
 
-#: ../src/rygel/rygel-meta-config.vala:57
-#, c-format
-msgid "Failed to load user configuration: %s"
-msgstr "ئىشلەتكۈچى سەپلىمىسىنى ئوقۇش مەغلۇپ بولدى: %s"
+#: ../src/librygel-server/rygel-media-query-action.vala:120
+#| msgid "Invalid Name"
+msgid "Invalid range"
+msgstr "ئىناۋەتسىز دائىرە"
 
-#: ../src/rygel/rygel-meta-config.vala:303
-#: ../src/rygel/rygel-meta-config.vala:322
-#, c-format
-msgid "No value set for '%s/enabled'"
-msgstr "'%s/ئىناۋەتلىك' نىڭ قىممىتى يوق"
+#: ../src/librygel-server/rygel-media-server.vala:25
+msgid "LibRygelServer"
+msgstr ""
 
-#: ../src/rygel/rygel-meta-config.vala:342
-#: ../src/rygel/rygel-meta-config.vala:364
-#: ../src/rygel/rygel-meta-config.vala:390
-#: ../src/rygel/rygel-meta-config.vala:412
-#: ../src/rygel/rygel-meta-config.vala:436
-#, c-format
-msgid "No value available for '%s/%s'"
-msgstr "'%s/%s' نىڭ قىممىتى يوق"
-
-#: ../src/rygel/rygel-plugin-loader.vala:83
-#, c-format
-msgid "New plugin '%s' available"
-msgstr "يېڭى قىستۇرما «%s» بار"
-
-#: ../src/rygel/rygel-plugin-loader.vala:117
-#, c-format
-msgid "Error listing contents of folder '%s': %s"
-msgstr "قىسقۇچ '%s' دىكى مەزمۇنلارنى كۆرسىتىۋاتقاندا خاتالىق كۆرۈلدى: %s"
-
-#: ../src/rygel/rygel-plugin-loader.vala:149
-#, c-format
-msgid "Failed to load module from path '%s': %s"
-msgstr "يول '%s' دىن بۆلەكنى ئوقۇش مەغلۇپ بولدى: %s"
-
-#: ../src/rygel/rygel-plugin-loader.vala:159
-#, c-format
-msgid "Failed to find entry point function '%s' in '%s': %s"
-msgstr "كىرىش نۇقتا فۇنكسىيىسى '%s' نى '%s' نىڭ ئىچىدىن تاپالمىدى: %s"
-
-#: ../src/rygel/rygel-root-device-factory.vala:106
-#: ../src/rygel/rygel-root-device-factory.vala:139
-#: ../src/rygel/rygel-root-device-factory.vala:161
-#: ../src/rygel/rygel-root-device-factory.vala:192
-#, c-format
-msgid "XML node '%s' not found."
-msgstr "XML تۈگۈنى '%s' نى تاپالمىدى."
-
-#: ../src/rygel/rygel-root-device-factory.vala:294
-#: ../src/rygel/rygel-root-device-factory.vala:304
-#, c-format
-msgid "Failed to write modified description to %s"
-msgstr "ئۆزگەرتىلگەن چۈشەندۈرۈشنى %s غا يېزىش مەغلۇپ بولدى"
-
-#: ../src/rygel/rygel-search.vala:89
+#: ../src/librygel-server/rygel-search.vala:93
 #, c-format
 msgid "Failed to search in '%s': %s"
-msgstr "'%s' دىن ئىزدەش مەغلۇپ بولدى: %s"
+msgstr "‹%s› دىن ئىزدەش مەغلۇپ بولدى: %s"
 
-#: ../src/rygel/rygel-http-seekable-response.vala:59
-#, c-format
-msgid "Failed to read from URI: %s: %s"
-msgstr "URI دىن ئوقۇش مەغلۇپ بولدى: %s: %s"
-
-#. Failed to seek to media segment (defined by first and last
-#. byte positions).
-#: ../src/rygel/rygel-http-seekable-response.vala:78
-#, c-format
-msgid "Failed to seek to %s-%s on URI %s: %s"
-msgstr "URI دىن %s-%s نى ئىزدەش مەغلۇپ بولدى. URI %s: %s"
-
-#: ../src/rygel/rygel-http-seekable-response.vala:97
-#, c-format
-msgid "Failed to read contents from URI: %s: %s"
-msgstr "URI دىن مەزمۇنلارنى ئوقۇش مەغلۇپ بولدى: %s: %s"
-
-#: ../src/rygel/rygel-http-seekable-response.vala:143
-#, c-format
-msgid "Failed to close stream to URI %s: %s"
-msgstr "URI %s كە مېڭىۋاتقان ئېقىنلارنى تاقاش مەغلۇپ بولدى: %s"
-
-#: ../src/rygel/rygel-subtitle-manager.vala:65
+#: ../src/librygel-server/rygel-subtitle-manager.vala:65
 msgid "No subtitle available"
 msgstr "فىلىم خېتى يوق"
 
-#: ../src/rygel/rygel-thumbnailer.vala:56
-msgid "Failed to find thumbnails folder."
-msgstr "بارماق سۈرەت(thumbnails) قىسقۇچىنى تېپىش مەغلۇپ بولدى."
-
-#: ../src/rygel/rygel-thumbnailer.vala:82
+#: ../src/librygel-server/rygel-thumbnailer.vala:61
 #, c-format
 msgid "No thumbnailer available: %s"
 msgstr "بارماق سۈرەت ياسىغۇچ(thumbnailer) يوق: %s"
 
-#: ../src/rygel/rygel-thumbnailer.vala:106
+#: ../src/librygel-server/rygel-thumbnailer.vala:74
+#| msgid "Seek mode not supported"
+msgid "Thubmnailing not supported"
+msgstr ""
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:88
+#: ../src/librygel-server/rygel-thumbnailer.vala:97
+#: ../src/librygel-server/rygel-thumbnailer.vala:102
+#: ../src/librygel-server/rygel-thumbnailer.vala:113
 msgid "No thumbnail available"
 msgstr "بارماق سۈرەت(thumbnail) يوق"
 
-#: ../src/rygel/rygel-transcode-manager.vala:118
+#: ../src/librygel-server/rygel-thumbnailer.vala:132
+#| msgid "No thumbnail available"
+msgid "No D-Bus thumbnailer available"
+msgstr ""
+
+#: ../src/librygel-server/rygel-transcode-manager.vala:79
 #, c-format
 msgid "No transcoder available for target format '%s'"
-msgstr "نىشان فورمات '%s' ئۈچۈن transcoder يوق"
+msgstr "نىشان فورمات ‹%s› ئۈچۈن transcoder يوق"
 
-#: ../src/rygel/rygel-user-config.vala:169
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:39
+#, c-format
+msgid "Could not create GstElement for URI %s"
+msgstr ""
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:92
+#| msgid "Failed to create item under '%s': %s"
+msgid "Failed to create pipeline"
+msgstr ""
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr "%s نى %s غا ئۇلانما قىلىش مەغلۇپ بولدى"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:138
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr "pad %s نىڭ %s غا ئۇلانما قىلىنىشى مەغلۇپ بولدى"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:193
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr "تۇرۇبا %s دىن كەلگەن خاتالىق: %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:200
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr "تۇرۇبا %s دىن كەلگەن ئاگاھلاندۇرۇش: %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:251
+#, c-format
+#| msgid "Failed to seek to offset %lld"
+msgid "Failed to seek to offsets %lld:%lld"
+msgstr ""
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:255
+#| msgid "Failed to seek to offset %lld"
+msgid "Failed to seek"
+msgstr ""
+
+#: ../src/media-engines/gstreamer/rygel-gst-utils.vala:39
+#, c-format
+msgid "Required element %s missing"
+msgstr "زۆرۈر ئېلېمېنت %s يوقالغان"
+
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:56
+#| msgid "Play speed not supported"
+msgid "Time-based seek not supported"
+msgstr ""
+
+#: ../src/rygel/rygel-main.vala:101
+#, c-format
+msgid "No plugins found in %d second; giving up.."
+msgid_plural "No plugins found in %d seconds; giving up.."
+msgstr[0] "%d سېكۇنت ئىچىدە قىستۇرما تاپالمىدى؛ بولدى قىلىدۇ..."
+
+#: ../src/rygel/rygel-main.vala:162
+#, c-format
+msgid "Failed to create root device factory: %s"
+msgstr "غول ئۈسكۈنە زاۋۇتىنى قۇرۇش مەغلۇپ بولدى: %s"
+
+#: ../src/rygel/rygel-main.vala:220
+#, c-format
+msgid "Failed to create RootDevice for %s. Reason: %s"
+msgstr "%s نىڭ RootDevice نى قۇرۇش مەغلۇپ بولدى. سەۋەبى: %s"
+
+#: ../src/rygel/rygel-main.vala:257
+#, c-format
+msgid "Failed to load user configuration: %s"
+msgstr "ئىشلەتكۈچى سەپلىمىسىنى ئوقۇش مەغلۇپ بولدى: %s"
+
+#: ../src/rygel/rygel-user-config.vala:292
+#: ../src/ui/rygel-user-config.vala:292
 #, c-format
 msgid "No value available for '%s'"
-msgstr "'%s' نىڭ قىممىتى يوق"
+msgstr "‹%s› نىڭ قىممىتى يوق"
 
-#: ../src/rygel/rygel-user-config.vala:219
+#: ../src/rygel/rygel-user-config.vala:363
+#: ../src/ui/rygel-user-config.vala:363
 #, c-format
 msgid "Value of '%s' out of range"
-msgstr "'%s' دېگەن قىممەت چەكتىن چىقىپ كەتكەن"
+msgstr "‹%s› دېگەن قىممەت چەكتىن چىقىپ كەتكەن"
 
-#: ../src/rygel/rygel-xbox-hacks.vala:42
-msgid "Not Applicable"
-msgstr "ماس كەلمەيدۇ"
-
-#: ../src/rygel/rygel-xbox-hacks.vala:178
-#, c-format
-msgid "Failed to write modified description to %s."
-msgstr "ئۆزگەرتىلگەن چۈشەندۈرۈشنى %s غا يېزىش مەغلۇپ بولدى."
-
-#: ../src/ui/rygel-preferences-dialog.vala:89
+#: ../src/ui/rygel-preferences-dialog.vala:94
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "تەڭشەك سۆزلەشكۈسى قۇرۇش مەغلۇپ بولدى: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:102
+#: ../src/ui/rygel-writable-user-config.vala:108
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
-msgstr "سەپلىمە سانلىق-مەلۇماتلىرىنى ھۆججەت '%s' غا ساقلاش مەغلۇپ بولدى: %s"
+msgstr "سەپلىمە سانلىق-مەلۇماتلىرىنى ھۆججەت ‹%s› غا ساقلاش مەغلۇپ بولدى: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:193
+#: ../src/ui/rygel-writable-user-config.vala:196
 #, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "Rygel مۇلازىمىتىنى باشلاش مەغلۇپ بولدى: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:195
+#: ../src/ui/rygel-writable-user-config.vala:198
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Rygel مۇلازىمىتىنى توختىتىش مەغلۇپ بولدى: %s"
+
+#~ msgid "Failed to open database: %d (%s)"
+#~ msgstr "سانداننى ئېچىش مەغلۇپ بولدى: %d (%s)"
+
+#~ msgid "Unsupported type %s"
+#~ msgstr "تىپ %s نى قوللىمايدۇ(ئىشلەتكىلى بولمايدۇ)"
+
+#~ msgid "Object %s is not an item"
+#~ msgstr "نەڭ %s تۈر ئەمەس"
+
+#~ msgid "Failed to attach to D-Bus session bus: %s"
+#~ msgstr "D-Bus سىستېما باش لىنىيىسىگە قوشۇلۇش مەغلۇپ بولدى: %s"
+
+#~ msgid "Failed to remove URI: %s"
+#~ msgstr "URI نى چىقىرىۋېتىش مەغلۇپ بولدى: %s"
+
+#~ msgid "Failed to create MediaExport D-Bus service: %s"
+#~ msgstr "MediaExport D-Bus مۇلازىمىتى قۇرۇش مەغلۇپ بولدى: %s"
+
+#~ msgid "Failed to create D-Bus proxies: %s"
+#~ msgstr "D-Bus ۋاكالەتچىلىرى قۇرۇش مەغلۇپ بولدى: %s"
+
+#~ msgid "Error getting all values for '%s': %s"
+#~ msgstr "'%s' نىڭ بارلىق قىممىتىنى ئېلىۋاتقاندا خاتالىق كۆرۈلدى: %s"
+
+#~ msgid "Item '%s' didn't provide a URI"
+#~ msgstr "تۈر '%s' بىرەر URI نى تەمىنلىمەيدۇ"
+
+#~ msgid "Plugin 'fakesink' missing"
+#~ msgstr "'fakesink' قىستۇرمىسى يوق"
+
+#~ msgid "Failed to start D-Bus service: %s"
+#~ msgstr "D-Bus مۇلازىمىتىنى باشلاش مەغلۇپ بولدى: %s"
+
+#~ msgid "Failed to write modified description to %s"
+#~ msgstr "ئۆزگەرتىلگەن چۈشەندۈرۈشنى %s غا يېزىش مەغلۇپ بولدى"
+
+#~ msgid "Failed to read from URI: %s: %s"
+#~ msgstr "URI دىن ئوقۇش مەغلۇپ بولدى: %s: %s"
+
+#~ msgid "Failed to seek to %s-%s on URI %s: %s"
+#~ msgstr "URI دىن %s-%s نى ئىزدەش مەغلۇپ بولدى. URI %s: %s"
+
+#~ msgid "Failed to read contents from URI: %s: %s"
+#~ msgstr "URI دىن مەزمۇنلارنى ئوقۇش مەغلۇپ بولدى: %s: %s"
+
+#~ msgid "Failed to close stream to URI %s: %s"
+#~ msgstr "URI %s كە مېڭىۋاتقان ئېقىنلارنى تاقاش مەغلۇپ بولدى: %s"
+
+#~ msgid "Failed to find thumbnails folder."
+#~ msgstr "بارماق سۈرەت(thumbnails) قىسقۇچىنى تېپىش مەغلۇپ بولدى."
+
+#~ msgid "Not Applicable"
+#~ msgstr "ماس كەلمەيدۇ"
+
+#~ msgid "Failed to write modified description to %s."
+#~ msgstr "ئۆزگەرتىلگەن چۈشەندۈرۈشنى %s غا يېزىش مەغلۇپ بولدى."
 
 #~ msgid "General"
 #~ msgstr "ئادەتتىكى"
@@ -649,7 +853,7 @@ msgstr "Rygel مۇلازىمىتىنى توختىتىش مەغلۇپ بولدى:
 
 #~ msgid ""
 #~ "Write %u for username, %n for real name of the user and %h for host name"
-#~ msgstr "ئىشلەتكۈچى ئاتى %u، ھېقىقى ئاتى %n، ماشىنا ئاتى %h قىلىپ يېزىلىدۇ"
+#~ msgstr "ئىشلەتكۈچى ئاتى %u، ھەقىقىي ئاتى %n، ماشىنا ئاتى %h قىلىپ يېزىلىدۇ"
 
 #~ msgid "_Enable UPnP/DLNA"
 #~ msgstr "UPnP/DLNA نى قوزغات(_E)"
