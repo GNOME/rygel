@@ -54,6 +54,10 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
             return factory.create_from_hashed_id (id, title);
         }
 
+        if (id.has_prefix ("virtual-parent:")) {
+            return new DBContainer (id, title);
+        }
+
         if (uri == null) {
             return new TrackableDbContainer (id, title);
         }
