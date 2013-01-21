@@ -63,15 +63,16 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
     /**
      * The container_updated signal is emitted if a child container under the
-     * tree of this container has been updated. object is set to
-     * the MediaObject being the source of container update. Note that
-     * it may be even set to container itself.
+     * tree of this container has been updated. The object parameter is set to
+     * the MediaObject that is the source of the container update. Note that
+     * it may even be set to the container itself.
+     *
+     * @see rygel_media_container_updated().
      *
      * @param container The child container that has been updated.
-     * @param object the object that got changed.
-     * @param event_type describes what actually happened to object.
-     * @param sub_tree_update whether the modification is part of
-     * sub-tree update.
+     * @param object The object that has changed. This may be the container itself, or a child item.
+     * @param event_type This describes what actually happened to the object.
+     * @param sub_tree_update Whether the modification is part of a sub-tree update. See the #RygelMediaContainer::sub_tree_updates_finished signal.
      */
     public signal void container_updated (MediaContainer container,
                                           MediaObject object,
@@ -79,8 +80,9 @@ public abstract class Rygel.MediaContainer : MediaObject {
                                           bool sub_tree_update);
 
     /**
-     * sub_tree_updates_finished signal is emitted when all of
-     * sub-tree operations are finished.
+     * The sub_tree_updates_finished signal is emitted when all of
+     * the sub-tree operations are finished.
+     * See the #RygelMediaContainer::container_updated signal.
      *
      * @param sub_tree_root - root of a sub-tree where all operations
      * were performed.
@@ -203,6 +205,19 @@ public abstract class Rygel.MediaContainer : MediaObject {
      * For instance, this should be called if there are metadata changes
      * for this container, if items under it are removed or added, if
      * there are metadata changes to items under it, etc.
+     *
+     * If sub_tree_update is true then the caller should later emit the 
+     * sub_tree_updates_finished signal on the root container of the sub-tree
+     * that was updated.
+     *
+     * It will eventually result in the server emitting a UPnP LastChange event,
+     * though that may be for a batch of these calls.
+     *
+     * See the #RygelMediaContainer::container_updated signal.
+     *
+     * @param object The object that has changed, or null to mean the container itself.
+     * @param event_type This describes what actually happened to the object.
+     * @param sub_tree_update Whether the modification is part of a sub-tree update.
      */
     public void updated (MediaObject? object = null,
                          ObjectEventType event_type = ObjectEventType.MODIFIED,
@@ -301,12 +316,12 @@ public abstract class Rygel.MediaContainer : MediaObject {
     }
 
     /**
-     * handler for container_updated signal on this container. We only forward
+     * The handler for the container_updated signal on this container. We only forward
      * it to the parent, hoping someone will get it from the root container
      * and act upon it.
      *
-     * @param container the container that emitted the signal
-     * @param updated_container the container that just got updated
+     * @param container The container that emitted the signal
+     * @param updated_container The container that just got updated
      */
     private void on_container_updated (MediaContainer container,
                                        MediaContainer updated_container,
