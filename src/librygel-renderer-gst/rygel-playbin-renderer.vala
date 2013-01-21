@@ -23,14 +23,14 @@ using Gee;
 using GUPnP;
 
 /**
- * An in-process UPnP renderer that uses a GStreamer Playbin2 element.
+ * An in-process UPnP renderer that uses a GStreamer Playbin element.
  *
- * Using GstPlayBin2 as a model, it reflects any changes done externally, such as
+ * Using GstPlayBin as a model, it reflects any changes done externally, such as
  * changing the currently played URI, volume, pause/play etc., to UPnP.
  *
  * Likewise, the playbin can be modified externally using UPnP.
  *
- * You can retrieve the GstPlayBin2 by calling rygel_playbin_renderer_get_playbin().
+ * You can retrieve the GstPlayBin by calling rygel_playbin_renderer_get_playbin().
  * You should then set the "video-sink" and "audio-sink" properties of the
  * playbin.
  *
@@ -44,8 +44,8 @@ public class Rygel.Playbin.Renderer : Rygel.MediaRenderer {
     /**
      * Create a new instance of Renderer.
      *
-     * Renderer will instantiate its own instance of GstPlayBin2.
-     * The GstPlayBin2 can be accessed by using rygel_playbin_player_get_playbin().
+     * Renderer will instantiate its own instance of GstPlayBin.
+     * The GstPlayBin can be accessed by using rygel_playbin_player_get_playbin().
      *
      * @param title Friendly name of the new UPnP renderer on the network.
      */
@@ -55,10 +55,10 @@ public class Rygel.Playbin.Renderer : Rygel.MediaRenderer {
     }
 
     /**
-     * Create a new instance of Renderer, wrapping an existing GstPlayBin2
+     * Create a new instance of Renderer, wrapping an existing GstPlayBin
      * instance.
      *
-     * @param pipeline Instance of GstPlayBin2 to wrap.
+     * @param pipeline Instance of GstPlayBin to wrap.
      * @param title Friendly name of the new UPnP renderer on the network.
      */
     public Renderer.wrap (Gst.Element pipeline, string title) {
@@ -70,7 +70,7 @@ public class Rygel.Playbin.Renderer : Rygel.MediaRenderer {
     }
 
     /**
-     * Get the GstPlaybin2 used by this Renderer.
+     * Get the GstPlayBin used by this Renderer.
      */
     public Gst.Element? get_playbin () {
         var player = Rygel.Playbin.Player.get_default ();
