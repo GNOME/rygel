@@ -46,7 +46,7 @@
 
 struct _MainData {
     GtkWindow *window;
-    GtkWindow *video;
+    GtkWidget *video;
     GstElement *playbin;
 };
 typedef struct _MainData MainData;
@@ -85,7 +85,7 @@ static gboolean on_draw (GtkWidget *widget, cairo_t *cr, gpointer user_data)
     }
 }
 
-static void on_key_released (GtkWidget *widget,
+static gboolean on_key_released (GtkWidget *widget,
                              GdkEvent *event,
                              gpointer user_data)
 {
@@ -119,7 +119,7 @@ int main (int argc, char *argv[])
     renderer = rygel_playbin_renderer_new ("LibRygel renderer demo");
     data.playbin = rygel_playbin_renderer_get_playbin (renderer);
 
-    data.window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+    data.window = GTK_WINDOW (gtk_window_new (GTK_WINDOW_TOPLEVEL));
     data.video = gtk_drawing_area_new ();
     gtk_widget_set_double_buffered (data.video, FALSE);
     gtk_container_add (GTK_CONTAINER (data.window), data.video);
@@ -137,7 +137,7 @@ int main (int argc, char *argv[])
                       G_CALLBACK (on_key_released),
                       &data);
     gtk_window_fullscreen (data.window);
-    gtk_widget_show_all (data.window);
+    gtk_widget_show_all (GTK_WIDGET (data.window));
     cursor = gdk_cursor_new_for_display (gtk_widget_get_display (data.video),
                                          GDK_BLANK_CURSOR);
     gdk_window_set_cursor (gtk_widget_get_window (data.video), cursor);
@@ -149,7 +149,7 @@ int main (int argc, char *argv[])
     }
 
     gtk_main ();
-    gtk_widget_hide (data.window);
+    gtk_widget_hide (GTK_WIDGET (data.window));
     g_object_unref (renderer);
 
     return 0;
