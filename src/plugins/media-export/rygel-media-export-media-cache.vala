@@ -90,6 +90,10 @@ public class Rygel.MediaExport.MediaCache : Object {
         this.remove_by_id (object.id);
     }
 
+    /**
+     * Add the container to the cache, in a database transcation,
+     * rolling back the transaction if necessary.
+     */
     public void save_container (MediaContainer container) throws Error {
         try {
             db.begin ();
@@ -102,6 +106,9 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
     }
 
+    /**
+     * Add the item to the cache.
+     */
     public void save_item (Rygel.MediaItem item) throws Error {
         try {
             db.begin ();
@@ -118,6 +125,12 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
     }
 
+    /**
+     * Create a new container or item instance based on the ID.
+     *
+     * The Rygel server discards the object when the browse request is finished,
+     * after serializing the result.
+     */
     public MediaObject? get_object (string object_id) throws DatabaseError {
         GLib.Value[] values = { object_id };
         MediaObject parent = null;
@@ -427,6 +440,9 @@ public class Rygel.MediaExport.MediaCache : Object {
         return data;
     }
 
+    /**
+     * TODO
+     */
     public Gee.List<string> get_object_attribute_by_search_expression
                                         (string            attribute,
                                          SearchExpression? expression,
@@ -622,6 +638,9 @@ public class Rygel.MediaExport.MediaCache : Object {
         this.db.exec (this.sql.make (SQLString.SAVE_METADATA), values);
     }
 
+    /**
+     * Add the container or item to the cache.
+     */    
     private void create_object (MediaObject object) throws Error {
         int type = ObjectType.CONTAINER;
         GLib.Value parent;
@@ -684,6 +703,15 @@ public class Rygel.MediaExport.MediaCache : Object {
         return false;
    }
 
+    /**
+     * Create a new container or item based on a SQL result.
+     *
+     * The Rygel server discards the object when the browse request is finished,
+     * after serializing the result.
+     *
+     * @param parent The object's parent container.
+     * @param statement a SQLite result indicating the container's details.
+     */
     private MediaObject? get_object_from_statement (MediaContainer? parent,
                                                     Statement       statement) {
         MediaObject object = null;

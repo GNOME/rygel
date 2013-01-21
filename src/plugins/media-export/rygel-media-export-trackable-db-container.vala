@@ -21,6 +21,9 @@
  */
 using Gee;
 
+/**
+ * A DB container that is trackable.
+ */
 public class Rygel.MediaExport.TrackableDbContainer : TrackableContainer,
                                                       DBContainer {
     public TrackableDbContainer (string id, string title) {

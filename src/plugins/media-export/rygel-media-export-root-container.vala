@@ -26,12 +26,15 @@ internal struct Rygel.MediaExport.FolderDefinition {
     string definition;
 }
 
-// Titles and definitions of some virtual folders.
+// Titles and definitions of some virtual folders,
+// for use with QueryContainer.
 const Rygel.MediaExport.FolderDefinition[] VIRTUAL_FOLDERS_DEFAULT = {
     { N_("Year"), "dc:date,?" },
     { N_("All"),  "" }
 };
 
+// Titles and definitions of virtual folders for Music,
+// for use with QueryContainer.
 const Rygel.MediaExport.FolderDefinition[] VIRTUAL_FOLDERS_MUSIC = {
     { N_("Artist"), "upnp:artist,?,upnp:album,?" },
     { N_("Album"),  "upnp:album,?" },
@@ -438,7 +441,6 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
     // Signal that the container has been updated with new/changed content.
     private void root_updated () {
-
         // Emit the "container-updated" signal
         this.updated ();
 
@@ -471,6 +473,10 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         });
     }
 
+    /** Add the default virtual folders,
+     * for Music, Pictures, etc,
+     * saving them in the cache.
+     */
     private void add_default_virtual_folders () {
         try {
             this.add_virtual_containers_for_class (_("Music"),
@@ -488,12 +494,15 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
     /**
      * Add a QueryContainer to the provided container,
      * for the specified UpNP class,
-     * with the specified definition.
+     * with the specified definition,
+     * saving it in the cache.
      */
     private void add_folder_definition (MediaContainer   container,
                                         string           item_class,
                                         FolderDefinition definition)
                                         throws Error {
+
+        // Create a container ID that contains the virtual folder definition.
         var id = "%supnp:class,%s,%s".printf (QueryContainer.PREFIX,
                                                item_class,
                                                definition.definition);
@@ -501,11 +510,20 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
             id = id.slice (0,-1);
         }
 
+        // Create a QueryContainer based on the definition in the ID.
         var factory = QueryContainerFactory.get_default ();
         var query_container = factory.create_from_description_id
                                         (id,
                                          _(definition.title));
 
+        // The QueryContainer's constructor has already run some
+        // SQL to count the number of items.
+        // We remove the container if it has no children.
+        //
+        // Note that all the virtual folders are re-added anyway
+        // when the filesystem changes, so there is no need for
+        // the container to exist in case the query would have
+        // a non-zero result later.
         if (query_container.child_count > 0) {
             query_container.parent = container;
             this.media_db.save_container (query_container);
@@ -514,24 +532,39 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         }
     }
 
+    /**
+     * Add a parent container with child containers for the definitions,
+     * saving them in the cache.
+     */
     private void add_virtual_containers_for_class
                                         (string              parent,
                                          string              item_class,
                                          FolderDefinition[]? definitions = null)
                                          throws Error {
+        // Create a container for this virtual folder.
+        // We use a NullContainer just because our MediaCache API takes 
+        // objects and, after saving the details in the database,
+        // it discards the actual container object anyway.
+        // 
+        // This ID prefix is checked later in ObjectFactory.get_container(),
+        // which returns a regular DBContainer instead.
         var container = new NullContainer ("virtual-parent:" + item_class, this, parent);
         this.media_db.save_container (container);
 
+        // Add a child QueryContainer for each of the default definitions.
         foreach (var definition in VIRTUAL_FOLDERS_DEFAULT) {
             this.add_folder_definition (container, item_class, definition);
         }
 
+        // Add a child QueryContainer for each of the additional specified definitions.
         if (definitions != null) {
             foreach (var definition in definitions) {
                 this.add_folder_definition (container, item_class, definition);
             }
         }
 
+        // If no child QueryContainers were added, remove
+        // the provided parent container.
         if (this.media_db.get_child_count (container.id) == 0) {
             this.media_db.remove_by_id (container.id);
         } else {

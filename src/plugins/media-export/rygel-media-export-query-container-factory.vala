@@ -20,6 +20,9 @@
 using Gee;
 using GUPnP;
 
+/**
+ * A helper class to create QueryContainer instances based on IDs.
+ */
 internal class Rygel.MediaExport.QueryContainerFactory : Object {
     // private static members
     private static QueryContainerFactory instance;
@@ -124,6 +127,8 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
                                                  out upnp_class,
                                                  ref title);
 
+	// Create a node or leaf container,
+        // depending on whether the definition specifies a pattern.
         if (pattern == null || pattern == "") {
             container =  new LeafQueryContainer (expression,
                                                  id,

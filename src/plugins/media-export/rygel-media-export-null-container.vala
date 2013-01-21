@@ -22,8 +22,9 @@ using Rygel;
 using Gee;
 
 /**
- * This is an empty container used to satisfy rygel if no mediadb could be
- * created
+ * This is an empty container used to satisfy Rygel if no mediadb could be
+ * created, or for light-weight hierarchies where the intermediate levels
+ * are not used.
  */
 internal class Rygel.NullContainer : MediaContainer {
     public NullContainer (string          id,

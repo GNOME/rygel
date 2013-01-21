@@ -21,6 +21,13 @@
  */
 using Gee;
 
+/**
+ * A DB container that is both Trackable and Writable.
+ *
+ * Clients can upload items to this container, causing
+ * the items to be saved to the filesystem to be
+ * served again subsequently.
+ */
 internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
                                                        Rygel.WritableContainer {
     public ArrayList<string> create_classes { get; set; }

@@ -20,9 +20,14 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+/**
+ * A helper class to create container and item
+ * instances based on media-export object IDs,
+ * sometimes delegating to the QueryContainerFactory.
+ */
 internal class Rygel.MediaExport.ObjectFactory : Object {
     /**
-     * Return a new instance of DBContainer
+     * Return a new instance of DBContainer.
      *
      * @param media_db instance of MediaDB
      * @param title title of the container
@@ -54,6 +59,9 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
             return factory.create_from_hashed_id (id, title);
         }
 
+        // Return a suitable container for the top-level virtual folders.
+        // This corresponds to the short-lived NullContainers that 
+        // we used to save these in the database.
         if (id.has_prefix ("virtual-parent:")) {
             return new DBContainer (id, title);
         }
@@ -62,6 +70,11 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
             return new TrackableDbContainer (id, title);
         }
 
+        // Return a writable container for anything with a URI,
+        // such as child folders of the file system,
+        // to allow uploads.
+        // See https://bugzilla.gnome.org/show_bug.cgi?id=676379 to 
+        // give more control over this.
         return new WritableDbContainer (id, title);
     }
 
