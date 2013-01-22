@@ -24,10 +24,13 @@ using Gee;
 /**
  * A DB container that is trackable.
  */
-public class Rygel.MediaExport.TrackableDbContainer : TrackableContainer,
-                                                      DBContainer {
+public class Rygel.MediaExport.TrackableDbContainer : DBContainer,
+                                                      TrackableContainer {
     public TrackableDbContainer (string id, string title) {
-        base (id, title);
+        Object (id : id,
+                title : title,
+                parent : null,
+                child_count : 0);
     }
 
     // TrackableContainer virtual function implementations:

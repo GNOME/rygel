@@ -28,24 +28,33 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
     public ArrayList<string> search_classes { get; set; }
 
     public DBContainer (string id, string title) {
-        base (id, null, title, 0);
+        Object (id : id,
+                parent : null,
+                title : title,
+                child_count : 0);
+    }
+
+    public override void constructed () {
+        base.constructed ();
 
         try {
             this.media_db = MediaCache.get_default ();
         } catch (Error error) { }
 
         this.search_classes = new ArrayList<string> ();
-        this.container_updated.connect ( () => { this.count_children (); });
-        this.count_children ();
+        this.container_updated.connect ( () => {
+                this.child_count = this.count_children ();
+            });
+        this.child_count = this.count_children ();
     }
 
-    private void count_children () {
+    public virtual int count_children () {
         try {
-            this.child_count = this.media_db.get_child_count (this.id);
+            return this.media_db.get_child_count (this.id);
         } catch (DatabaseError error) {
             debug ("Could not get child count from database: %s",
                    error.message);
-            this.child_count = 0;
+            return 0;
         }
     }
 

@@ -346,8 +346,11 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
     /**
      * Create a new root container.
      */
-    private RootContainer () throws Error {
-        base ("0", _("@REALNAME@'s media"));
+    private RootContainer () {
+        Object (id : "id",
+                title : _("@REALNAME@'s media"),
+                parent : null,
+                child_count : 0);
     }
 
     private bool initialized = false;

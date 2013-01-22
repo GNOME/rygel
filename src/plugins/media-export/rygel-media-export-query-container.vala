@@ -26,22 +26,18 @@ internal abstract class Rygel.MediaExport.QueryContainer : DBContainer {
     public static const string PREFIX = "virtual-container:";
     public static const string ITEM_PREFIX = "virtual-id:";
 
-    // protected members
-    protected SearchExpression expression;
+    // public members
+    public SearchExpression expression { get; construct set; }
 
     // constructors
     public QueryContainer (SearchExpression expression,
                            string           id,
                            string           name) {
-        base (id, name);
-
-        this.expression = expression;
-
-        try {
-            this.child_count = this.count_children ();
-        } catch (Error error) {
-            this.child_count = 0;
-        }
+        Object (id : id,
+                parent : null,
+                title : name,
+                child_count : 0,
+                expression : expression);
     }
 
     // public methods
@@ -85,6 +81,4 @@ internal abstract class Rygel.MediaExport.QueryContainer : DBContainer {
 
         return children;
     }
-
-    protected abstract int count_children () throws Error;
 }

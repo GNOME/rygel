@@ -30,11 +30,17 @@ internal class Rygel.NullContainer : MediaContainer {
     public NullContainer (string          id,
                           MediaContainer? parent,
                           string          title) {
-        base(id, parent, title, 0);
+        Object (id : id,
+                title : title,
+                parent : parent,
+                child_count : 0);
     }
 
     public NullContainer.root () {
-        base.root("MediaExport", 0);
+        Object (id : "0",
+                parent : null,
+                title : "MediaExport",
+                child_count : 0);
     }
 
     public override async MediaObjects? get_children (
