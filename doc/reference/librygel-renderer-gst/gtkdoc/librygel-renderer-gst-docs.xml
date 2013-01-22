@@ -20,10 +20,7 @@
     <xi:include href="overview.xml"/>
   </preface>
 
-  <chapter>
-    <title>Implementing GStreamer-based Renderers</title>
-    <xi:include href="implementing-renderers-gst.xml"/>
-  </chapter>
+  <xi:include href="implementing-renderers-gst.xml"/>
 
     <!-- These are generated: -->
   <chapter>
