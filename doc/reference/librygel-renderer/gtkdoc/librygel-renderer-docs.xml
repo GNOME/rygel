@@ -20,15 +20,8 @@
     <xi:include href="overview.xml"/>
   </preface>
 
-  <chapter>
-    <title>Implementing Renderers</title>
-    <xi:include href="implementing-renderers.xml"/>
-  </chapter>
-
-  <chapter>
-    <title>Implementing Rygel Renderer Plugins</title>
-    <xi:include href="implementing-renderer-plugins.xml"/>
-  </chapter>
+  <xi:include href="implementing-renderers.xml"/>
+  <xi:include href="implementing-renderer-plugins.xml"/>
 
   <!-- These are generated: -->
   <chapter>

@@ -5,7 +5,11 @@
 <!ENTITY url_refdocs_librygel_renderer_gst "http:/developer.gnome.org/librygel-renderer-gst/unstable/">
 ]>
 
-<section id="implementing-renderers-gst">
+<chapter id="implementing-renderers">
+<title>Implementing Renderers</title>
+
+<section id="implementing-renderers-overview">
+<title>Implementing Renderers: Overview</title>
 
 
 <para>
@@ -17,6 +21,13 @@ See the derived
 class, from librygel-renderer-gst, to see how this can be done with GStreamer.
 </para>
 
+</section>
+
+<!-- TODO: Add a non-GST standalone-renderer example. Maybe use the same code as the example renderer plugin.
+<section id="implementing-server-plugins-simple-example">
+<title>Implementing Server Plugins: Simple Example</title>
+-->
+
 <!-- TODO: Find a way to mention this C example code in the RygelPlaybinRenderer valadoc comments instead. -->
 <!--
 <para>
@@ -27,12 +38,27 @@ and connect it to a network interface.
 
 
 <!-- Do not indent the xi:include node. That puts spaces at the start of the code. -->
-<!-- TODO: Add a non-GST standalone-renderer example. Maybe use the same code as the example renderer plugin.
+<!--
 <programlisting role="C">
 <xi:include  href="../../../../examples/standalone-renderer.c"
     parse="text"
     xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </programlisting>
--->
 
 </section>
+-->
+
+<section id="implementing-server-plugins-full-example">
+<title>Implementing Renderers: Full Example</title>
+
+<para>The external <ulink url="http://git.gnome.org/browse/rygel-gst-0-10-fullscreen-renderer">rygel-gst-0-10-fullscreen-renderer</ulink> project provides a Rygel Renderer executable that uses an older GStreamer version and is an example of an external Rygel Renderer implemented in C. It plays content via UPnP.</para>
+
+<para>The <classname>RygelPlaybinPlayer</classname> class implements the <link linkend="RygelMediaPlayer">RygelMediaPlayer</link> interface, providing implementations for its virtual functions. For instance, see the <literal>rygel_playbin_player_real_set_uri()</literal> function, which delegates to the member <classname>GstPlaybin</classname> <classname>GstElement</classname>. The base class responds appropriately to UPnP messages, calling these virtual functions to request the specific behaviour.</para>
+
+<para>The <classname>RygelPlaybinRenderer</classname> class, derived from <link linkend="RygelMediaRenderer">RygelMediaRenderer</link>, provides the singleton instance of that player to its base class and has a <function>rygel_playbin_renderer_get_playbin()</function> function for convenience.</para>
+
+<para>Our <function>main()</function> instantiates our derived renderer and calls <function>rygel_playbin_renderer_get_playbin()</function> to get its GStreamer playbin element. We then use <function>gst_x_overlay_set_window_handle()</function> in our <literal>GtkWidget:realize</literal> signal handler. We connect the renderer to a network interface via <function>rygel_media_device_add_interface</function>, allowing the renderer to respond to UPnP messages.</para>
+
+</section>
+
+</chapter>

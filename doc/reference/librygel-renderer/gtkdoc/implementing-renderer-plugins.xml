@@ -6,12 +6,26 @@
 <!ENTITY url_refdocs_librygel_renderer_gst "http:/developer.gnome.org/librygel-renderer-gst/unstable/">
 ]>
 
-<section id="implementing-renderer-plugins">
+<chapter id="implementing-renderer-plugins">
+<title>Implementing Rygel Renderer Plugins</title>
+
+<section id="implementing-renderer-plugins-overview">
+<title>Implementing Renderer Plugins: Overview</title>
+
 
 <para>
 This library may be used to create Rygel renderer plugins by 
 implementing the <link linkend="RygelMediaRendererPlugin">RygelMediaRendererPlugin</link> class.
 </para>
+
+<para>The <link linkend="RygelMediaRendererPlugin">RygelMediaRendererPlugin</link> reference documentation 
+and this example explain how to implement these plugins.
+</para>
+
+</section>
+
+<section id="implementing-renderer-plugins-simple-example">
+<title>Implementing Renderer Plugins: Simple Example</title>
 
 <!-- TODO: Find a way to mention this C example code in the RygelMediaRendererPlugin valadoc comments instead. -->
 <para>
@@ -47,4 +61,6 @@ librygel-renderer-gst library, used in the <ulink url="&url_git_browse_base_src;
 </programlisting>
 
 </section>
+
+</chapter>
 
