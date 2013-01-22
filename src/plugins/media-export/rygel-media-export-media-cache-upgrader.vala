@@ -84,42 +84,44 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
         debug ("Older schema detected. Upgrading...");
         int current_version = int.parse (SQLFactory.SCHEMA_VERSION);
         while (old_version < current_version) {
-            if (this.database != null) {
-                switch (old_version) {
-                    case 3:
-                        update_v3_v4 ();
-                        break;
-                    case 4:
-                        update_v4_v5 ();
-                        break;
-                    case 5:
-                        update_v5_v6 ();
-                        break;
-                    case 6:
-                        update_v6_v7 ();
-                        break;
-                    case 7:
-                        update_v7_v8 ();
-                        break;
-                    case 8:
-                        update_v8_v9 ();
-                        break;
-                    case 9:
-                        update_v9_v10 ();
-                        break;
-                    case 10:
-                        update_v10_v11 ();
-                        break;
-                    case 11:
-                        update_v11_v12 ();
-                        break;
-                    default:
-                        warning ("Cannot upgrade");
-                        database = null;
-                        break;
-                }
-                old_version++;
+            if (this.database == null) {
+                break;
             }
+
+            switch (old_version) {
+                case 3:
+                    update_v3_v4 ();
+                    break;
+                case 4:
+                    update_v4_v5 ();
+                    break;
+                case 5:
+                    update_v5_v6 ();
+                    break;
+                case 6:
+                    update_v6_v7 ();
+                    break;
+                case 7:
+                    update_v7_v8 ();
+                    break;
+                case 8:
+                    update_v8_v9 ();
+                    break;
+                case 9:
+                    update_v9_v10 ();
+                    break;
+                case 10:
+                    update_v10_v11 ();
+                    break;
+                case 11:
+                    update_v11_v12 ();
+                    break;
+                default:
+                    warning ("Cannot upgrade");
+                    database = null;
+                    break;
+            }
+            old_version++;
         }
     }
 
