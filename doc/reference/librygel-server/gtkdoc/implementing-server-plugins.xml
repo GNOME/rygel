@@ -69,17 +69,6 @@ implemented in Vala.
 
 <para>The <function>module_init</function> function first checks that the plugin has not been disabled and then creates an instance of its <classname>RygelMediaExportPlugin</classname>, which it adds to the provided <classname>RygelPluginLoader</classname> instance.</para>
 
-
-<para>This example implements a root  by
-deriving from <link linkend="RygelSimpleContainer">RygelSimpleContainer</link> and adding some
-hard-coded items. A real Rygel server plugin's root container, or its child items, would typically
-populate themselves dynamically. For instance, they might add and remove items based on some source
-such as a file system or database. See, for instance, the 
-<ulink url="&url_git_browse_base_src;plugins/tracker">Rygel Tracker Plugin</ulink> or the
-<ulink url="&url_git_browse_base_src;plugins/media-export">Rygel MediaExport Plugin</ulink> plugins,
-implemented in Vala.
-</para>
-
 <para>The <classname>RygelMediaExportPlugin</classname> class, derived from <link linkend="RygelMediaServerPlugin">RygelMediaServerPlugin</link>, simply instantiates its <classname>RygelMediaExportRootContainer</classname> class, derived from <link linkend="RygelMediaContainer">RygelMediaContainer</link>, providing it to the base class as the root container.</para>
 
 <para>The <classname>RygelMediaExportRootContainer</classname> creates an instance of a RygelMediaExportMediaCache class and a RygelMediaExportHarvester class. The harvester finds files on the filesystem, and stores them in the media cache, which uses SQLite to keep trak of them.</para>
