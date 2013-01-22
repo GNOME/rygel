@@ -38,20 +38,11 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
                                               uint       child_count,
                                               string?    uri) {
         if (id == "0") {
-            try {
-                return RootContainer.get_instance () as DBContainer;
-            } catch (Error error) {
-                // Must not fail - plugin is disabled if this fails
-                assert_not_reached ();
-            }
+            return RootContainer.get_instance () as DBContainer;
         } else if (id == RootContainer.FILESYSTEM_FOLDER_ID) {
-            try {
-                var root_container = RootContainer.get_instance ()
-                                        as RootContainer;
+            var root_container = RootContainer.get_instance () as RootContainer;
 
-                return root_container.get_filesystem_container ()
-                                        as DBContainer;
-            } catch (Error error) { assert_not_reached (); }
+            return root_container.get_filesystem_container () as DBContainer;
         }
 
         if (id.has_prefix (QueryContainer.PREFIX)) {
@@ -60,7 +51,7 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
         }
 
         // Return a suitable container for the top-level virtual folders.
-        // This corresponds to the short-lived NullContainers that 
+        // This corresponds to the short-lived NullContainers that
         // we used to save these in the database.
         if (id.has_prefix ("virtual-parent:")) {
             return new DBContainer (id, title);
@@ -73,7 +64,7 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
         // Return a writable container for anything with a URI,
         // such as child folders of the file system,
         // to allow uploads.
-        // See https://bugzilla.gnome.org/show_bug.cgi?id=676379 to 
+        // See https://bugzilla.gnome.org/show_bug.cgi?id=676379 to
         // give more control over this.
         return new WritableDbContainer (id, title);
     }

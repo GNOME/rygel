@@ -51,7 +51,6 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
     private ulong          harvester_signal_id;
 
     private static MediaContainer instance = null;
-    private static Error          creation_error = null;
 
     internal const string FILESYSTEM_FOLDER_NAME = N_("Files & Folders");
     internal const string FILESYSTEM_FOLDER_ID   = "Filesystem";
@@ -64,19 +63,9 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
     /**
      * Get the single instance of the root container.
      */
-    public static MediaContainer get_instance () throws Error {
+    public static MediaContainer get_instance () {
         if (RootContainer.instance == null) {
-            try {
                 RootContainer.instance = new RootContainer ();
-            } catch (Error error) {
-                // Cache the error for further calls and create a Null container.
-                RootContainer.instance = new NullContainer.root ();
-                RootContainer.creation_error = error;
-            }
-        } else {
-            if (creation_error != null) {
-                throw creation_error;
-            }
         }
 
         return RootContainer.instance;

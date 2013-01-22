@@ -36,17 +36,7 @@ public void module_init (PluginLoader loader) {
     }
 
     // Instantiate the plugin object:
-    MediaExport.Plugin plugin;
-
-    try {
-        plugin = new MediaExport.Plugin ();
-    } catch (Error error) {
-        warning ("Failed to initialize plugin '%s': %s. Ignoring..",
-                 MediaExport.Plugin.NAME,
-                 error.message);
-
-        return;
-    }
+    var plugin = new MediaExport.Plugin ();
 
     // Check what other plugins are loaded,
     // and check when other plugins are loaded later:
@@ -118,7 +108,7 @@ public class Rygel.MediaExport.Plugin : Rygel.MediaServerPlugin {
     /**
      * Instantiate the plugin.
      */
-    public Plugin () throws Error {
+    public Plugin () {
         // Call the base constructor,
         // passing the instance of our root container.
         base (RootContainer.get_instance (),
