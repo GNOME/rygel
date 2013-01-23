@@ -14,7 +14,8 @@ LIBRYGEL_CORE_VAPI_SOURCE_FILES = \
 	rygel-configuration.vala \
 	rygel-base-configuration.vala \
 	rygel-free-desktop-interfaces.vala \
-	rygel-state-machine.vala
+	rygel-state-machine.vala \
+	rygel-v1-hacks.vala
 
 LIBRYGEL_CORE_NONVAPI_SOURCE_FILES = \
 	rygel-icon-info.vala \

@@ -70,7 +70,6 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-source-connection-manager.vala \
 	rygel-subtitle-manager.vala \
 	rygel-thumbnailer.vala \
-	rygel-v1-hacks.vala \
 	rygel-wmp-hacks.vala \
 	rygel-xbmc-hacks.vala \
 	rygel-xbox-hacks.vala \

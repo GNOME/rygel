@@ -30,6 +30,8 @@ internal class Rygel.AVTransport : Service {
     public const string UPNP_ID = "urn:upnp-org:serviceId:AVTransport";
     public const string UPNP_TYPE =
                     "urn:schemas-upnp-org:service:AVTransport:2";
+    public const string UPNP_TYPE_V1 =
+                    "urn:schemas-upnp-org:service:AVTransport:1";
     public const string DESCRIPTION_PATH = "xml/AVTransport2.xml";
     public const string LAST_CHANGE_NS =
                     "urn:schemas-upnp-org:metadata-1-0/AVT/";

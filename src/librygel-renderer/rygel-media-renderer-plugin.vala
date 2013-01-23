@@ -34,6 +34,7 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
     private static const string MEDIA_RENDERER_DESC_PATH =
                                 BuildConfig.DATA_DIR +
                                 "/xml/MediaRenderer2.xml";
+    private static const string DMR = "urn:schemas-upnp-org:device:MediaRenderer";
 
     private string sink_protocol_info;
     private PlayerController controller;
@@ -91,6 +92,16 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
 
         return this.controller;
     }
+
+    public override void apply_hacks (RootDevice device,
+                                      string     description_path)
+                                      throws Error {
+        var v1_hacks = new V1Hacks (DMR,
+                                    AVTransport.UPNP_TYPE,
+                                    AVTransport.UPNP_TYPE_V1);
+        v1_hacks.apply_on_device (device, description_path);
+    }
+
 
     public string get_protocol_info () {
         var player = this.get_player ();

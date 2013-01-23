@@ -30,7 +30,7 @@ using GUPnP;
  * ContentDirectory:1 because they ignore that higher versions are
  * required to be backwards-compatible.
  */
-internal class Rygel.V1Hacks : ClientHacks {
+public class Rygel.V1Hacks : Object {
     private const string[] AGENTS = { "Allegro-Software-WebClient",
                                       "SEC HHP",
                                       "SEC_HHP",
@@ -39,13 +39,26 @@ internal class Rygel.V1Hacks : ClientHacks {
                                       "Reciva",
                                       "FDSSDP" };
 
-    private const string DMS = "urn:schemas-upnp-org:device:MediaServer";
-    private const string DMS_V1 = DMS + ":1";
+    private string _device_type;
+    public string device_type {
+        construct set {
+            this._device_type = value;
+            this.device_type_v1 = value + ":1";
+        }
+        get { return this._device_type; }
+    }
+    private string device_type_v1;
+
+    public string service_type { construct; get; }
+    public string service_type_v1 { construct; get; }
+
     private const string MATCHING_PATTERN = ".*%s.*";
 
     private static string agent_pattern;
 
     public string description_path;
+
+    private Regex agent_regex;
 
     /**
      * Read the user-agent snippets from the config file and generate the
@@ -55,7 +68,7 @@ internal class Rygel.V1Hacks : ClientHacks {
      *          user-agents.
      */
     private static string generate_agent_pattern () {
-        if (likely (agent_pattern != null)) {
+        if (agent_pattern != null) {
             return agent_pattern;
         }
 
@@ -85,13 +98,25 @@ internal class Rygel.V1Hacks : ClientHacks {
         return agent_pattern;
     }
 
-    public V1Hacks () throws ClientHacksError {
-        base (generate_agent_pattern (), null);
+    public V1Hacks (string device_type,
+                    string service_type,
+                    string service_type_v1) {
+        Object (device_type : device_type,
+                service_type : service_type,
+                service_type_v1 : service_type_v1);
+    }
+
+    public override void constructed () {
+        base.constructed ();
+
+        try {
+            this.agent_regex = new Regex (generate_agent_pattern ());
+        } catch (Error error) { assert_not_reached (); }
     }
 
     public void apply_on_device (RootDevice device,
                                  string?    template_path) throws Error {
-        if (!device.get_device_type ().has_prefix (DMS)) {
+        if (!device.get_device_type ().has_prefix (device_type)) {
             return;
         }
 
@@ -100,9 +125,8 @@ internal class Rygel.V1Hacks : ClientHacks {
         }
 
         var description_file = new DescriptionFile (template_path);
-        description_file.set_device_type (DMS_V1);
-        description_file.modify_service_type (ContentDirectory.UPNP_TYPE,
-                                              ContentDirectory.UPNP_TYPE_V1);
+        description_file.set_device_type (device_type_v1);
+        description_file.modify_service_type (service_type, service_type_v1);
 
         this.description_path = template_path.replace (".xml", "-v1.xml");
         description_file.save (this.description_path);
