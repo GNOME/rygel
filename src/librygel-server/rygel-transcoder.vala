@@ -54,6 +54,21 @@ public abstract class Rygel.Transcoder : GLib.Object {
     public abstract DataSource create_source (MediaItem  item,
                                               DataSource src) throws Error;
 
+    //TODO: It would be simpler for this to take a DIDLLiteResource to be filled,
+    //rather than taking a didl_item, requiring the call of the base class, and then
+    //returning the DIDLLiteResource.
+    /**
+     * Derived classes should implement this function to fill a GUPnPDIDLLiteResource,
+     * representing the transcoded content, with parameters specific to the transcoder,
+     * such as bitrate or resolution. The GUPnPDIDLLiteResource should be instantiated
+     * by calling this base class implementation, passing the provided didl_item, item
+     * and manager parameters.
+     *
+     * @param didl_item The DIDLLite item for which to create the resource, by calling the base class implementation.
+     * @param item The media item for which to create the DIDLiteResource, by calling the base class implementation.
+     * @param manager The transcoder manager to pass to the base class implemenetation.
+     * @return The new resource.
+     */
     public virtual DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
                                                    MediaItem        item,
                                                    TranscodeManager manager)
