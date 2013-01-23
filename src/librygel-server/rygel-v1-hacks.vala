@@ -36,7 +36,8 @@ internal class Rygel.V1Hacks : ClientHacks {
                                       "SEC_HHP",
                                       "Mediabolic-IMHTTP/1.",
                                       "TwoPlayer",
-                                      "Reciva" };
+                                      "Reciva",
+                                      "FDSSDP" };
 
     private const string DMS = "urn:schemas-upnp-org:device:MediaServer";
     private const string DMS_V1 = DMS + ":1";
