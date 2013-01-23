@@ -43,6 +43,16 @@ returning an instance of it from its create_data_source() implementation.</para>
 
 <para>In addition, the external <ulink url="http://git.gnome.org/browse/rygel-gst-0-10-media-engine">rygel-gst-0-10-media-engine</ulink> project provides a Rygel media engine that uses an older GStreamer version and is an example of an external Rygel media-engine implemented in C.</para>
 
+<para>The media engine plugin provides a <function>module_get_instance()</function> function, called by Rygel, which returns an instance of our derived <link linkend="RygelDataSource">RygelDataSource</link> class.</para>
+
+<para>This <classname>RygelGstMediaEngine</classname> class implements the virtual functions from its <link linkend="RygelMediaEngine">RygelMediaEngine</link> base class, such as <function>get_dlna_profiles()</function>, <function>get_transcoders()</function> to report what DLNA profiles this media engine supports and what transcoding capabilities it offers.</para>
+
+<para>It also implements the <function>create_data_source()</function> virtual function, returning an instance of our <classname>RygelGstDataSource</classname> class, which implements the <link linkend="RygelDataSource">RygelDataSource</link> interface. This implements the virtual functions of the  <link linkend="RygelDataSource">RygelDataSource</link> interface, such as <function>start()</function>, <function>freeze()</function>, <function>thaw()</function>, and <function>stop()</function> by setting the state of its GStreamer <classname>GstPipeline</classname>.</para>
+
+<para>The list of transcoders returned by the <classname>RygelGstMediaEngine</classname> <function>get_transcoders()</function> implementation provides instances of every transcoder provided by our media engine. These classes derive from <link linkend="RygelTranscoder">RygelTranscoder</link>, implementing its <function>create_source()</function> virtual function, returning an instance of our <classname>RygelGstDataSource</classname> class which uses a GStreamer <classname>GstBin</classname> that uses a GStreamer decoder and encoder to transcode the original data into the desired format. These derived <link linkend="RygelTranscoder">RygelTranscoder</link> objects also have appropriate values for the <literal>mime-type</literal>, <literal>dlna-profile</literal>, and <literal>extension</literal> properties, allowing Rygel to decide which transcoder to use.</para>
+
+<para>The derived <link linkend="RygelTranscoder">RygelTranscoder</link> classes also implement the <function>add_resource</function> virtual function, to set transcoder-specific details on a <classname>GUPnPDIDLLiteResource</classname> that is first instantiated by calling the <function>add_resource</function> implementation in the base class. For instance, by calling <function>gupnp_didl_lite_resource_set_bitrate()</function>.</para> <!-- TODO: Upate this text if we improve add_resource() as per the TODO in the code. -->
+
 </section>
 
 </chapter>
