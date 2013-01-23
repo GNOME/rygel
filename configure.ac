@@ -197,7 +197,7 @@ RYGEL_ADD_STAMP([src/media-engines/simple/librygel_media_engine_simple_la_vala.s
 
 AS_IF([test "x$with_media_engine" = "xgstreamer"],
       [
-        RYGEL_CHECK_PACKAGES([gupnp-dlna-1.1 gstreamer-1.0
+        RYGEL_CHECK_PACKAGES([gupnp-dlna-2.0 gstreamer-1.0
                               gstreamer-pbutils-1.0])
       ])
 
