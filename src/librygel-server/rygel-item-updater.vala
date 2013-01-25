@@ -192,8 +192,7 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
             throw new ContentDirectoryError.RESTRICTED_OBJECT (msg,
                                                                media_object.id);
         } else if (media_object.parent.restricted) {
-            var msg = _("Metadata modification of object %s being a child " +
-                        "of restricted object %s not allowed");
+            var msg = _("Metadata modification of object %s being a child of restricted object %s not allowed");
 
             throw new ContentDirectoryError.RESTRICTED_PARENT
                                         (msg,
