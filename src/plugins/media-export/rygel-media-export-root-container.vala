@@ -223,7 +223,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
                 // protect against special directories expanding to $HOME
                 file = File.new_for_commandline_arg (actual_uri);
-                if (file == home_dir) {
+                if (file.equal (home_dir)) {
                     continue;
                 }
             }
