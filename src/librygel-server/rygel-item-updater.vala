@@ -159,20 +159,20 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
         case DIDLLiteFragmentResult.CURRENT_BAD_XML:
         case DIDLLiteFragmentResult.CURRENT_INVALID:
             throw new ContentDirectoryError.INVALID_CURRENT_TAG_VALUE
-                                        ("Bad current tag value.");
+                                        _("Bad current tag value.");
         case DIDLLiteFragmentResult.NEW_BAD_XML:
         case DIDLLiteFragmentResult.NEW_INVALID:
             throw new ContentDirectoryError.INVALID_NEW_TAG_VALUE
-                                        ("Bad current tag value.");
+                                        _("Bad new tag value.");
         case DIDLLiteFragmentResult.REQUIRED_TAG:
             throw new ContentDirectoryError.REQUIRED_TAG
-                                        ("Tried to delete required tag.");
+                                        _("Tried to delete required tag.");
         case DIDLLiteFragmentResult.READONLY_TAG:
             throw new ContentDirectoryError.READ_ONLY_TAG
-                                        ("Tried to change read-only property.");
+                                        _("Tried to change read-only property.");
         case DIDLLiteFragmentResult.MISMATCH:
             throw new ContentDirectoryError.PARAMETER_MISMATCH
-                                        ("Parameter count mismatch.");
+                                        _("Parameter count mismatch.");
         default:
             throw new ContentDirectoryError.NO_SUCH_OBJECT ("Unknown error.");
         }
