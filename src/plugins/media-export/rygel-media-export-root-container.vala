@@ -208,7 +208,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
         foreach (var uri in uris) {
             var file = File.new_for_commandline_arg (uri);
-            if (likely (file != home_dir)) {
+            if (likely (!file.equal (home_dir))) {
                 var actual_uri = uri;
 
                 if (likely (pictures_dir != null)) {
