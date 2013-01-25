@@ -66,13 +66,13 @@ all: valadoc-gen gtkdoc-gen
 # The chmod corrects the directory permissions so that distcheck can remove the installed files.
 install-data-hook: gtkdoc/html/index.html
 	$(MKDIR_P) $(RYGEL_GTKDOC_INSTALL_DIR)
-	cp -d -R $(srcdir)/gtkdoc/html $(RYGEL_GTKDOC_INSTALL_DIR)
+	cp -d -R $(srcdir)/gtkdoc/html/* $(RYGEL_GTKDOC_INSTALL_DIR)
 	chmod -R u+w $(RYGEL_GTKDOC_INSTALL_DIR)
 
 else
 install-data-hook:
 	test -d $(srcdir)/gtkdoc/html && $(MKDIR_P) $(RYGEL_GTKDOC_INSTALL_DIR); true
-	test -d $(srcdir)/gtkdoc/html && cp -d -R $(srcdir)/gtkdoc/html $(RYGEL_GTKDOC_INSTALL_DIR); true
+	test -d $(srcdir)/gtkdoc/html && cp -d -R $(srcdir)/gtkdoc/html/* $(RYGEL_GTKDOC_INSTALL_DIR); true
 	test -d $(srcdir)/gtkdoc/html && chmod -R u+w $(RYGEL_GTKDOC_INSTALL_DIR); true
 
 endif
