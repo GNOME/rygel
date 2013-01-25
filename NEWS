@@ -1,3 +1,76 @@
+0.17.7
+======
+
+A new unstable release for Rygel
+
+Changes compared to 0.17.6:
+
+- Add keywords to .desktop file.
+- Documentation updates.
+- Fix documentation installation when building from tarball.
+- Convert all public classes to use GObject-style construction.
+- Add hack for Windows 7 system SSDP to show up in network neighbourhood as
+  media device and not as a generic UPnP device.
+- Support .smi subtitles.
+- Also apply device downgrade hacks to the media renderer.
+- Fix an issue with translation strings being splitted.
+
+MediaExport:
+ - Drop unused DBus service. Same result will be achievable via manipulating
+   the settings in the next release.
+ - Some internal refactoring.
+ - Correctly use @refID on items in the virtual folders.
+ - Use proper container class for virtual folders.
+ - Don't loop endlessly when database upgrade fails.
+ - Port to new GUPnP-DLNA API.
+ - Fix an issue when the XDG_ variables are not properly defined.
+
+GStreamer Renderer:
+ - Fix LPCM mime type to be case-insensitive.
+
+GStreamer Media Engine:
+ - Port to new GUPnP-DLNA API.
+
+Changes in dependencies:
+ - GUPnP-DLNA >= 0.9.4.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=690770
+ - https://bugzilla.gnome.org/show_bug.cgi?id=690360
+ - https://github.com/01org/media-service-upnp/issues/117
+ - https://bugzilla.gnome.org/show_bug.cgi?id=690533
+ - https://bugzilla.gnome.org/show_bug.cgi?id=675186
+ - https://bugzilla.gnome.org/show_bug.cgi?id=692189
+ - https://bugzilla.gnome.org/show_bug.cgi?id=691595
+
+All contributors to this release:
+  Murray Cumming <murrayc@murrayc.com>
+  Jens Georg <jensg@openismus.com>
+  Krzesimir Nowak <krnowak@openismus.com>
+  Daniel Mustieles <daniel.mustieles@gmail.com>
+  Мирослав Николић <miroslavnikolic@rocketmail.com>
+  Regis Merlino <regis.merlino@intel.com>
+  Milo Casagrande <milo@ubuntu.com>
+  Kjartan Maraas <kmaraas@gnome.org>
+  Javier Jardón <javier.jardon@codethink.co.uk>
+  Gheyret Kenji <gheyret@gmail.com>
+  Dušan Kazik <prescott66@gmail.com>
+  Dominique Leuenberger <dimstar@opensuse.org>
+  Choe Hwanjin <choe.hwanjin@gmail.com>
+  Alexander Shopov <ash@kambanaria.org>
+  Akom Chotiphantawanon <knight2000@gmail.com>
+
+Added/updated translations
+ - bg, courtesy of Alexander Shopov
+ - es, courtesy of Daniel Mustieles
+ - it, courtesy of Milo Casagrande
+ - nb, courtesy of Kjartan Maraas
+ - sk, courtesy of Dušan Kazik
+ - sr, courtesy of Мирослав Николић
+ - sr@latin, courtesy of Miroslav Nikolić
+ - th, courtesy of Akom Chotiphantawanon
+ - ug, courtesy of Gheyret Kenji
+
 0.17.6
 ======
 
