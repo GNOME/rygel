@@ -82,7 +82,7 @@ msgstr "UPnP/DLNA مۇلازىمەتلىرى"
 
 #: ../data/rygel.desktop.in.in.h:3
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
-msgstr "mediaserver;mediarenderer;share;audio;video;pictures;ۋاسىتە مۇلازىمېتىرى؛ۋاسىتە سىزغۇچ؛ھەمبەھىر؛ئۈن؛سىن؛سۈرەت؛"
+msgstr "mediaserver;mediarenderer;share;audio;video;pictures;ۋاسىتە مۇلازىمېتىرى؛ۋاسىتە سىزغۇچ؛ھەمبەھىر؛ئۈن؛سىن؛سۈرەت؛;"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:42
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:42
