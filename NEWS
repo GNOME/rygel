@@ -13,7 +13,7 @@ Changes compared to 0.17.6:
   media device and not as a generic UPnP device.
 - Support .smi subtitles.
 - Also apply device downgrade hacks to the media renderer.
-- Fix an issue with translation strings being splitted.
+- Fix an issue with translation strings being split.
 
 MediaExport:
  - Drop unused DBus service. Same result will be achievable via manipulating
