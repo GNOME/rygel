@@ -15,7 +15,7 @@
   </bookinfo>
 
   <!-- This is hand written: -->
-  <preface>
+  <preface id="overview">
     <title>Overview</title>
     <xi:include href="overview.xml"/>
   </preface>
@@ -24,21 +24,23 @@
   <xi:include href="implementing-renderer-plugins.xml"/>
 
   <!-- These are generated: -->
-  <chapter>
+  <chapter id="api-main-list">
     <title>librygel-renderer API Reference</title>
     <xi:include href="xml/rygel-media-renderer-plugin.xml"/>
     <xi:include href="xml/rygel-media-renderer.xml"/>
     <xi:include href="xml/rygel-media-player.xml"/>
-
   </chapter>
+
   <chapter id="object-tree">
     <title>Object Hierarchy</title>
      <xi:include href="xml/tree_index.sgml"/>
   </chapter>
+
   <index id="api-index-full">
     <title>API Index</title>
     <xi:include href="xml/api-index-full.xml"><xi:fallback /></xi:include>
   </index>
+
   <index id="deprecated-api-index" role="deprecated">
     <title>Index of deprecated API</title>
     <xi:include href="xml/api-index-deprecated.xml"><xi:fallback /></xi:include>
