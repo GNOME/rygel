@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009,2010 Jens Georg <mail@jensge.org>.
+ * Copyright (C) 2009-2013 Jens Georg <mail@jensge.org>.
  *
  * This file is part of Rygel.
  *
@@ -49,6 +49,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
     private Cancellable    cancellable;
     private DBContainer    filesystem_container;
     private ulong          harvester_signal_id;
+    private ulong          filesystem_signal_id;
 
     private static RootContainer instance = null;
 
@@ -137,7 +138,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
                                                 string            sort_criteria,
                                                 Cancellable?      cancellable)
                                                 throws GLib.Error {
-         if (expression == null) {
+        if (expression == null) {
             return yield base.search (expression,
                                       offset,
                                       max_count,
@@ -199,7 +200,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
             uris = new ArrayList<string> ();
         }
 
-        actual_uris = new ArrayList<File> ();
+        actual_uris = new ArrayList<File> ((EqualDataFunc<File>) File.equal);
 
         var home_dir = File.new_for_path (Environment.get_home_dir ());
         unowned string pictures_dir = Environment.get_user_special_dir
@@ -438,6 +439,10 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         if (!ids.is_empty) {
             this.root_updated ();
         }
+
+        // Subscribe to configuration changes
+        MetaConfig.get_default ().setting_changed.connect
+                                        (this.on_setting_changed);
     }
 
     // Signal that the container has been updated with new/changed content.
@@ -452,9 +457,72 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         } catch (Error error) { }
     }
 
+    private void on_setting_changed (string section, string key) {
+        if (section != "MediaExport" || key != "uris") {
+            return;
+        }
+
+        var uris = this.get_shared_uris ();
+        // Calculate added uris
+        var new_uris = new ArrayList<File>
+                                    ((EqualDataFunc<File>) File.equal);
+        new_uris.add_all (uris);
+        new_uris.remove_all (harvester.locations);
+
+        // Calculate removed uris
+        var old_uris = new ArrayList<File>
+                                    ((EqualDataFunc<File>) File.equal);
+        old_uris.add_all (this.harvester.locations);
+        old_uris.remove_all (uris);
+
+        foreach (var file in old_uris) {
+            // Make sure we're not trying to harvest the removed URI.
+            this.harvester.cancel (file);
+            try {
+                this.media_db.remove_by_id (MediaCache.get_id (file));
+            } catch (DatabaseError error) {
+                warning (_("Failed to remove entry: %s"), error.message);
+            }
+        }
+
+        this.harvester.locations.remove_all (old_uris);
+
+        if (!new_uris.is_empty) {
+            this.filesystem_container.disconnect (this.filesystem_signal_id);
+            this.filesystem_signal_id = 0;
+            this.harvester_signal_id = this.harvester.done.connect
+                                            (on_initial_harvesting_done);
+        }
+
+        foreach (var file in new_uris) {
+            if (file.query_exists ()) {
+                this.harvester.locations.add (file);
+                this.harvester.schedule (file, this.filesystem_container);
+            }
+        }
+    }
+
+    private void handle_virtual_folder_change () {
+        var virtual_folders = true;
+        var config = MetaConfig.get_default ();
+        try {
+            virtual_folders = config.get_bool (Plugin.NAME, "virtual-folders");
+        } catch (Error error) { }
+
+        if (virtual_folders) {
+            this.add_default_virtual_folders ();
+
+            return;
+        } else {
+            this.media_db.drop_virtual_folders ();
+        }
+        this.root_updated ();
+    }
+
     private void on_initial_harvesting_done () {
         // Disconnect the signal handler.
         this.harvester.disconnect (this.harvester_signal_id);
+        this.harvester_signal_id = 0;
 
         // Some debug output:
         this.media_db.debug_statistics ();
@@ -468,10 +536,12 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
         // When the filesystem container changes,
         // re-add the virtual folders, to update them.
-        this.filesystem_container.container_updated.connect( () => {
-            this.add_default_virtual_folders ();
-            this.root_updated ();
-        });
+        this.filesystem_signal_id =
+            this.filesystem_container.container_updated.connect ( () => {
+                this.add_default_virtual_folders ();
+                this.root_updated ();
+            });
+
     }
 
     /** Add the default virtual folders,
