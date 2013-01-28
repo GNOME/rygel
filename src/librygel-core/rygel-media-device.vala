@@ -34,6 +34,13 @@ internal class Rygel.DeviceContext {
     }
 }
 
+/**
+ * This is a base class for implementations of UPnP devices,
+ * such as RygelMediaServer and RygelMediaRenderer.
+ *
+ * Use rygel_media_device_add_interface() to allow this
+ * device to respond to UPnP messages on a network interface.
+ */
 public abstract class Rygel.MediaDevice : Object {
     private ArrayList<string> interfaces;
     private HashMap<string, Context> contexts;
@@ -63,7 +70,7 @@ public abstract class Rygel.MediaDevice : Object {
      * Add a network interface the device should listen on.
      *
      * If the network interface is not already up, it will be used as soon as
-     * it's ready, otherwise it's used right away.
+     * it's ready. Otherwise it's used right away.
      *
      * @param iface Name of the network interface, e.g. eth0
      */
