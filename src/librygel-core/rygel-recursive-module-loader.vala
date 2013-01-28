@@ -21,7 +21,7 @@
  */
 
 /**
- * Recursivly walk a folder looking for shared libraries.
+ * Recursively walk a folder looking for shared libraries.
  *
  * The folder can either be walked synchronously or asynchronously.
  * Implementing classes need to implement the abstract method
