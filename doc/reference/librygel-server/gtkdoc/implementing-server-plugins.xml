@@ -78,9 +78,9 @@ content, though that is not particularly efficient.</para>
 
 <para><classname>RygelMediaExportRootContainer</classname> then delegates its <classname>RygelMediaContainer</classname> virtual function implementations to this media cache, which in turn uses the <classname>RygelMediaExportObjectFactory</classname> to instantiate new containers for each request based on their ID. For instance, it returns a <classname>RygelMediaExportDBContainer</classname> if the requested ID indicates a virtual container, using the definition in the rest of the ID to build a suitable SQL query.</para>
 
-<para>The root container derives from <classname>TrackableDbContainer</classname>, which in turn implements the <link linkend="RygelTrackableContainer">RygelTrackableContainer</link> interface, to implement the change tracking profile of the UPnP ContentDirectory:3 specification. Therefore, whenever the root container, or its child items, have changed, we call the <function>rygel_trackable_container_updated()</function>.</para>
+<para>The root container derives from <classname>TrackableDbContainer</classname>, which in turn implements the <link linkend="RygelTrackableContainer">RygelTrackableContainer</link> interface, to implement the change tracking profile of the UPnP ContentDirectory:3 specification. Therefore, whenever the root container, or its child items, have changed, we call the <function>rygel_trackable_container_updated()</function> function.</para>
 
-<para>Any filesystem folders are implemented as UPnP containers via the <classname>WritableDbContainer</classname> class, which implements the <link linkend="RygelWritableContainer">RygelWritableContainer</link> interface to allow new files to be uploaded to the filesystem via UPnP.</para>
+<para>Any filesystem folders are implemented as UPnP containers via the <classname>RygelMediaExportWritableDbContainer</classname> class, which implements the <link linkend="RygelWritableContainer">RygelWritableContainer</link> interface to allow new files to be uploaded to the filesystem via UPnP.</para>
 
 <!-- TODO: Simplify the class hierarchy in the example. -->
 
