@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-25 17:09+0100\n"
-"PO-Revision-Date: 2013-01-25 17:16+0100\n"
+"POT-Creation-Date: 2013-01-28 21:46+0100\n"
+"PO-Revision-Date: 2013-01-28 21:46+0100\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -531,7 +531,7 @@ msgstr "Commenti non consentiti nell'XML"
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 #: ../src/librygel-server/rygel-item-destroyer.vala:100
 #: ../src/librygel-server/rygel-item-updater.vala:70
-#: ../src/librygel-server/rygel-item-updater.vala:188
+#: ../src/librygel-server/rygel-item-updater.vala:189
 #: ../src/librygel-server/rygel-media-query-action.vala:115
 #: ../src/librygel-server/rygel-media-query-action.vala:182
 msgid "No such object"
@@ -603,12 +603,16 @@ msgstr "Tentata la modifica di una proprietà in sola-lettura."
 msgid "Parameter count mismatch."
 msgstr "Conteggio parametri non corretto."
 
-#: ../src/librygel-server/rygel-item-updater.vala:190
+#: ../src/librygel-server/rygel-item-updater.vala:178
+msgid "Unknown error."
+msgstr "Errore sconosciuto."
+
+#: ../src/librygel-server/rygel-item-updater.vala:191
 #, c-format
 msgid "Metadata modification of object %s not allowed"
 msgstr "Modifica dei meta-dati dell'oggetto %s non consentita"
 
-#: ../src/librygel-server/rygel-item-updater.vala:195
+#: ../src/librygel-server/rygel-item-updater.vala:196
 #, c-format
 msgid ""
 "Metadata modification of object %s being a child of restricted object %s not "
