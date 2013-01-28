@@ -368,8 +368,9 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
     private void init () throws Error {
         // This should only be called once.
-        if (this.initialized)
+        if (this.initialized) {
             return;
+        }
 
         this.initialized = true;
         this.cancellable = new Cancellable ();
@@ -428,7 +429,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
             }
         }
 
-        root_updated ();
+        this.root_updated ();
     }
 
     // Signal that the container has been updated with new/changed content.
@@ -455,13 +456,13 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         this.add_default_virtual_folders ();
 
         // Signal that the container has changed:
-        root_updated ();
+        this.root_updated ();
 
         // When the filesystem container changes,
         // re-add the virtual folders, to update them.
         this.filesystem_container.container_updated.connect( () => {
             this.add_default_virtual_folders ();
-            root_updated ();
+            this.root_updated ();
         });
     }
 
