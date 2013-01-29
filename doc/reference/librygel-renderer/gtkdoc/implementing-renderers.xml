@@ -48,10 +48,10 @@ and connect it to a network interface.
 </section>
 -->
 
-<section id="implementing-server-plugins-full-example">
+<section id="implementing-renderers-full-example">
 <title>Implementing Renderers: Full Example</title>
 
-<para>The external <ulink url="http://git.gnome.org/browse/rygel-gst-0-10-fullscreen-renderer">rygel-gst-0-10-fullscreen-renderer</ulink> project provides a Rygel Renderer executable that uses an older GStreamer version and is an example of an external Rygel Renderer implemented in C. It plays content via UPnP.</para>
+<para>The external <ulink url="http://git.gnome.org/browse/rygel-gst-0-10-fullscreen-renderer">rygel-gst-0-10-fullscreen-renderer</ulink> project provides a Rygel Renderer executable that uses an older GStreamer version and is an example of an external Rygel Renderer implemented in C, based on the implementation code in <ulink url="http://developer.gnome.org/librygel-renderer-gst/unstable/">librygel-renderer-gst</ulink>. It plays content via UPnP.</para>
 
 <para>The <classname>RygelPlaybinPlayer</classname> class implements the <link linkend="RygelMediaPlayer">RygelMediaPlayer</link> interface, providing implementations for its virtual functions. For instance, see the <literal>rygel_playbin_player_real_set_uri()</literal> function, which delegates to the member <classname>GstPlaybin</classname> <classname>GstElement</classname>. The base class responds appropriately to UPnP messages, calling these virtual functions to request the specific behaviour.</para>
 
