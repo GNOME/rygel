@@ -40,7 +40,16 @@ public class Rygel.Thumbnail : Rygel.IconInfo {
                                                      string       protocol) {
         var res = didl_item.add_resource ();
 
-        res.uri = this.uri;
+        /* We check for NULL because 
+         * gupnp_didl_lite_resource_set_uri(),
+         * used by the generated code,
+         * complains, with a critical warning, if the URI is NULL.
+         * It's already the default.
+         */
+        if (this.uri != null) {
+            res.uri = this.uri;
+        }
+
         res.size64 = this.size;
 
         res.width = this.width;
