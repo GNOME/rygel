@@ -45,6 +45,8 @@ public enum Rygel.ObjectEventType {
  * REALNAME, in in the title. See the title property of the #RygelMediaObject.
  */
 public abstract class Rygel.MediaContainer : MediaObject {
+    // Magic ID used by DLNA to denote any container that can create the item
+    public const string ANY = "DLNA.ORG_AnyContainer";
     public const string UPNP_CLASS = "object.container";
     public const string STORAGE_FOLDER = UPNP_CLASS + ".storageFolder";
     public const string MUSIC_ALBUM = UPNP_CLASS + ".album.musicAlbum";

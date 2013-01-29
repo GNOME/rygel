@@ -204,6 +204,7 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
     public Gee.ArrayList<string> create_classes = new Gee.ArrayList<string> ();
     public int child_count;
     public string sort_criteria = "+dc:title";
+    public static const string ANY = "DLNA.ORG_AnyContainer";
     public uint update_id;
 
     // mockable elements

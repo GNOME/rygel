@@ -72,12 +72,12 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             /* Verify the create class. Note that we always assume
              * createClass@includeDerived to be false.
              *
-             * DLNA_ORG.AnyContainer is a special case. We are allowed to
+             * DLNA.ORG_AnyContainer is a special case. We are allowed to
              * modify the UPnP class to something we support and
              * fetch_container took care of this already.
              */
             if (!container.can_create (this.didl_item.upnp_class) &&
-                this.container_id != "DLNA_ORG.AnyContainer") {
+                this.container_id != MediaContainer.ANY) {
                 throw new ContentDirectoryError.BAD_METADATA
                                         ("Creating of objects with class %s " +
                                          "is not supported in %s",
@@ -95,7 +95,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             // Conclude the successful action
             this.conclude ();
 
-            if (this.container_id == "DLNA.ORG_AnyContainer" &&
+            if (this.container_id == MediaContainer.ANY &&
                 this.item.place_holder) {
                 var queue = ItemRemovalQueue.get_default ();
 
@@ -269,7 +269,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
     private async WritableContainer fetch_container () throws Error {
         MediaObject media_object = null;
 
-        if (this.container_id == "DLNA.ORG_AnyContainer") {
+        if (this.container_id == MediaContainer.ANY) {
             media_object = yield this.find_any_container ();
         } else {
             media_object = yield this.content_dir.root_container.find_object
