@@ -180,15 +180,18 @@ namespace Rygel.MediaExport.ItemFactory {
             item.duration = -1;
         }
 
-        if (audio_info != null) {
-            if (audio_info.get_tags () != null) {
-                uint tmp;
-                audio_info.get_tags ().get_uint (Tags.BITRATE, out tmp);
-                item.bitrate = (int) tmp / 8;
-            }
-            item.channels = (int) audio_info.get_channels ();
-            item.sample_freq = (int) audio_info.get_sample_rate ();
+        if (audio_info == null)
+            return;
+  
+        var tags = audio_info.get_tags ();
+        if (tags != null) {
+          uint tmp;
+          tags.get_uint (Tags.BITRATE, out tmp);
+          item.bitrate = (int) tmp / 8;
         }
+        
+        item.channels = (int) audio_info.get_channels ();
+        item.sample_freq = (int) audio_info.get_sample_rate ();
     }
 
 
@@ -240,31 +243,33 @@ namespace Rygel.MediaExport.ItemFactory {
         if (audio_info == null) {
             return item;
         }
+        
+        var tags = audio_info.get_tags ();
+        if (tags == null) {
+            return item;
+        }
+        
         string artist;
-        info.get_tags ().get_string (Tags.ARTIST, out artist);
+        tags.get_string (Tags.ARTIST, out artist);
         item.artist = artist;
 
         string album;
-        info.get_tags ().get_string (Tags.ALBUM, out album);
+        tags.get_string (Tags.ALBUM, out album);
         item.album = album;
 
         string genre;
-        info.get_tags ().get_string (Tags.GENRE, out genre);
+        tags.get_string (Tags.GENRE, out genre);
         item.genre = genre;
 
         uint tmp;
-        info.get_tags ().get_uint (Tags.ALBUM_VOLUME_NUMBER, out tmp);
+        tags.get_uint (Tags.ALBUM_VOLUME_NUMBER, out tmp);
         item.disc = (int) tmp;
 
-        info.get_tags() .get_uint (Tags.TRACK_NUMBER, out tmp);
+        tags.get_uint (Tags.TRACK_NUMBER, out tmp);
         item.track_number = (int) tmp;
 
-        if (audio_info.get_tags () == null) {
-            return item;
-        }
-
         Sample sample;
-        audio_info.get_tags ().get_sample (Tags.IMAGE, out sample);
+        tags.get_sample (Tags.IMAGE, out sample);
         if (sample == null) {
             return item;
         }
@@ -298,22 +303,21 @@ namespace Rygel.MediaExport.ItemFactory {
                                          FileInfo           file_info) {
         string title = null;
 
-        if (info.get_tags () == null ||
-            !info.get_tags ().get_string (Tags.TITLE, out title)) {
+        var tags = info.get_tags ();
+        if (tags == null ||
+            !tags.get_string (Tags.TITLE, out title)) {
             title = file_info.get_display_name ();
-        }
 
-        item.title = title;
-
-        if (info.get_tags () != null) {
             GLib.Date? date;
-            if (info.get_tags ().get_date (Tags.DATE, out date) &&
+            if (tags.get_date (Tags.DATE, out date) &&
                 date.valid ()) {
                 char[] datestr = new char[30];
                 date.strftime (datestr, "%F");
                 item.date = (string) datestr;
             }
         }
+        
+        item.title = title;
 
         // use mtime if no time tag was available
         var mtime = file_info.get_attribute_uint64
