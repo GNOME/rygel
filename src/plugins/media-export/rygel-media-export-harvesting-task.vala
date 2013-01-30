@@ -306,7 +306,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         }
 
         var entry = this.files.peek ();
-        if (entry == null || file != entry.file) {
+        if (entry == null || !file.equal (entry.file)) {
             // this event may be triggered by another instance
             // just ignore it
            return;
@@ -348,7 +348,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
     private void on_extractor_error_cb (File file, Error error) {
         var entry = this.files.peek ();
-        if (entry == null || file != entry.file) {
+        if (entry == null || !file.equal (entry.file)) {
             // this event may be triggered by another instance
             // just ignore it
             return;
