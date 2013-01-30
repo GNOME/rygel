@@ -105,7 +105,7 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
                            gstreamer-pbutils-1.0 >= $GSTPBU_REQUIRED
                            gstreamer-app-1.0 >= $GSTREAMER_APP_REQUIRED
                            gupnp-dlna-2.0 >= $GUPNP_DLNA_REQUIRED
-                           gio-2.0 >= GIO_REQUIRED])
+                           gio-2.0 >= $GIO_REQUIRED])
         RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gstreamer-base-1.0 --pkg gstreamer-pbutils-1.0 --pkg gupnp-dlna-2.0"
         AC_SUBST([RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_VALAFLAGS])
 
