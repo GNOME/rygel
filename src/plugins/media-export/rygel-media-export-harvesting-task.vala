@@ -53,7 +53,8 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                                         FileAttribute.STANDARD_TYPE + "," +
                                         FileAttribute.TIME_MODIFIED + "," +
                                         FileAttribute.STANDARD_CONTENT_TYPE + "," +
-                                        FileAttribute.STANDARD_SIZE;
+                                        FileAttribute.STANDARD_SIZE + "," +
+                                        FileAttribute.STANDARD_IS_HIDDEN;
 
     public HarvestingTask (MetadataExtractor    extractor,
                            RecursiveFileMonitor monitor,
@@ -181,7 +182,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
     private bool process_file (File           file,
                                FileInfo       info,
                                MediaContainer parent) {
-        if (info.get_name ()[0] == '.') {
+        if (info.get_is_hidden ()) {
             return false;
         }
 
