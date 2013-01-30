@@ -275,12 +275,12 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             return false;
         }
 
-        if (this.files.size > 0) {
+        if (!this.files.is_empty) {
             debug ("Scheduling file %s for meta-data extraction…",
                    this.files.peek ().file.get_uri ());
             this.extractor.extract (this.files.peek ().file,
                                     this.files.peek ().content_type);
-        } else if (this.containers.get_length () > 0) {
+        } else if (!this.containers.is_empty ()) {
             this.enumerate_directory.begin ();
         } else {
             // nothing to do
@@ -372,8 +372,8 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
      * Reschedule the iteration and extraction
      */
     private void do_update () {
-        if (this.files.size == 0 &&
-            this.containers.get_length () != 0) {
+        if (this.files.is_empty &&
+            !this.containers.is_empty ()) {
             var container = this.containers.peek_head ();
             try {
                 var cache = MediaCache.get_default ();
