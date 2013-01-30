@@ -118,44 +118,39 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         this.extract_basic_information (file, info, dlna);
     }
 
-    private void extract_basic_information
-                                        (File               file,
-                                         DiscovererInfo?    info,
-                                         GUPnPDLNA.Profile? dlna) {
-        try {
-            FileInfo file_info;
+    private void extract_basic_information (File               file,
+                                            DiscovererInfo?    info,
+                                            GUPnPDLNA.Profile? dlna) {
+        FileInfo file_info;
 
-            try {
-                file_info = file.query_info
-                                        (FileAttribute.STANDARD_CONTENT_TYPE
+        try {
+            file_info = file.query_info (FileAttribute.STANDARD_CONTENT_TYPE
                                          + "," +
                                          FileAttribute.STANDARD_SIZE + "," +
                                          FileAttribute.TIME_MODIFIED + "," +
                                          FileAttribute.STANDARD_DISPLAY_NAME,
                                          FileQueryInfoFlags.NONE,
                                          null);
-            } catch (Error error) {
-                warning (_("Failed to query content type for '%s'"),
-                        file.get_uri ());
-
-                // signal error to parent
-                this.error (file, error);
-
-                throw error;
-            }
-
-            this.extraction_done (file,
-                                  info,
-                                  dlna,
-                                  file_info);
         } catch (Error error) {
+            var uri = file.get_uri ();
+
+            warning (_("Failed to query content type for '%s'"),
+                     uri);
             debug ("Failed to extract basic metadata from %s: %s",
-                   file.get_uri (),
+                   uri,
                    error.message);
+
+            // signal error to parent
             this.error (file, error);
+            return;
         }
 
+        this.extraction_done (file,
+                              info,
+                              dlna,
+                              file_info);
     }
+
     private void on_config_changed (Configuration config,
                                     string section,
                                     string key) {
