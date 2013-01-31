@@ -686,8 +686,8 @@ internal class Rygel.AVTransport : Service {
         return result;
     }
 
-    private bool is_playlist (string mime, string features) {
-        return mime == "text/xml" &&
+    private bool is_playlist (string mime, string? features) {
+        return mime == "text/xml" && features != null &&
                features.has_prefix ("DLNA.ORG_PN=DIDL_S");
     }
 }
