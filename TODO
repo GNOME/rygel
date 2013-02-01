@@ -1,19 +1,11 @@
   * MediaExport
-    * persist update count for containers
     * Fix coding-style/indentation everywhere.
-    * '''Fix coding-style everywhere'''
     * Filesystem-based cover art (Implement feeding-part of MediaArtStorageSpec)
       * Preliminary patch exists, though ugly
     * React to configuration changes
     * Add configurable filter on "Genre" to decide between Audio and Music for
     * UPnP class
     * check if g_file_enumerator_container can simplify harvester
-    * D-Bus API
-      * Add 'title' param to AddURI?
-        * Patch needs cleaning
-      * Removing URI
-        * causes assertion failure followed by a crash if done during its
-          harvested at rygel-media-export-root-container.vala:393
     * Find a way to handle images properly
       * Will be done automagically by
       * https://bugzilla.gnome.org/show_bug.cgi?id=626531
@@ -30,10 +22,6 @@
      → How to handle devices that query a lot of byte ranges in parallel (LG
      blueray player e.g.)
 
-  * Tracker
-   * Once we can depend on a certain tracker version use dlna mime from
-     tracker.
-
   * Assign priorities to gstreamer threads
     (See gstreamer/tests/examples/streams/stream-status.c)
 
@@ -49,7 +37,6 @@
     * Remove relavent code from UI code.
 
   * Transcoding:
-    * Make use of encodebin when it's ready (update README/wiki afterwards).
     * Use h264 instead of mpeg2 video?
 
   * UI:
@@ -70,7 +57,6 @@
     * Complete search implementation.
       * Deal with number search expressions.
       * Deal with logical expressions too.
-    * Move dbus path constants to relavent interfaces.
 
   * Document plugin API.
 
@@ -92,7 +78,6 @@
       * config file not available
 
   * MediaProviderSpec/External
-    * incrementally browse containers at startup.
     * Fix search: complete prop translation.
     * search: What about multvalued props?
     * Make use of "*" filter.
@@ -103,8 +88,6 @@
     * use icons for media objects.
 
   * AVTransport
-    * Handle Next/Prev
-    * Handle GetMediaInfo_Ext
     * Actually handle all advertized actions/variables.
 
   * Playbin
@@ -139,11 +122,9 @@
       * EPG item
 
   * Tracker:
-    * Port to libtracker-sparql.
     * Set the pixel-aspect-ratio props.
     * MetadataValues:
       * Document delegate functions.
-    * Rid of choping tails.
     * Do something about total_count param of search (using COUNT?)
     * Missing metadata:
       * Video: resolution info, author, framerate, bitrate etc.
@@ -184,10 +165,6 @@
   * mark the plugins using %h option.
 
   * listen to hostname changes and re-create plugins that use %h magic.
-
-  * Port to Gio.Variant and GDBus.
-    * Asynchronous DBusService/Interface.shutdown.
-    * Remove FreeDesktop.Properties ?
 
 === Wishes ===
 
