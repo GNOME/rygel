@@ -660,7 +660,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                 type,
                                 parent,
                                 object.modified,
-                                object.uris.size == 0 ? null : object.uris[0],
+                                object.uris.is_empty ? null : object.uris[0],
                                 object.object_update_id,
                                 -1,
                                 -1
