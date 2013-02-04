@@ -245,7 +245,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                 max_count };
 
         var sql = this.sql.make (SQLString.GET_CHILDREN);
-        var sort_order = this.translate_sort_criteria (sort_criteria);
+        var sort_order = MediaCache.translate_sort_criteria (sort_criteria);
         var cursor = this.db.exec_cursor (sql.printf (sort_order), values);
 
         foreach (var statement in cursor) {
@@ -266,7 +266,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                          out uint          total_matches)
                                          throws Error {
         var args = new GLib.ValueArray (0);
-        var filter = this.translate_search_expression (expression, args);
+        var filter = MediaCache.translate_search_expression (expression, args);
 
         if (expression != null) {
             debug ("Original search: %s", expression.to_string ());
@@ -291,7 +291,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                          string?           container_id)
                                          throws Error {
         var args = new GLib.ValueArray (0);
-        var filter = this.translate_search_expression (expression, args);
+        var filter = MediaCache.translate_search_expression (expression, args);
 
         if (expression != null) {
             debug ("Original search: %s", expression.to_string ());
@@ -362,7 +362,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             sql = this.sql.make (SQLString.GET_OBJECTS_BY_FILTER);
         }
 
-        var sort_order = this.translate_sort_criteria (sort_criteria);
+        var sort_order = MediaCache.translate_sort_criteria (sort_criteria);
         var cursor = this.db.exec_cursor (sql.printf (filter, sort_order),
                                           args.values);
         foreach (var statement in cursor) {
@@ -450,13 +450,13 @@ public class Rygel.MediaExport.MediaCache : Object {
                                          uint              max_count)
                                          throws Error {
         var args = new ValueArray (0);
-        var filter = this.translate_search_expression (expression,
-                                                       args,
-                                                       "AND");
+        var filter = MediaCache.translate_search_expression (expression,
+                                                             args,
+                                                             "AND");
 
         debug ("Parsed filter: %s", filter);
 
-        var column = this.map_operand_to_column (attribute);
+        var column = MediaCache.map_operand_to_column (attribute);
         var max_objects = modify_limit (max_count);
 
         return this.get_meta_data_column_by_filter (column,
@@ -805,7 +805,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
     }
 
-    private string translate_search_expression
+    private static string translate_search_expression
                                         (SearchExpression? expression,
                                          ValueArray        args,
                                          string            prefix = "WHERE")
@@ -814,35 +814,39 @@ public class Rygel.MediaExport.MediaCache : Object {
             return "";
         }
 
-        var filter = this.search_expression_to_sql (expression, args);
+        var filter = MediaCache.search_expression_to_sql (expression, args);
 
         return " %s %s".printf (prefix, filter);
     }
 
-    private string? search_expression_to_sql (SearchExpression? expression,
-                                             GLib.ValueArray   args)
-                                             throws Error {
+    private static string? search_expression_to_sql
+                                        (SearchExpression? expression,
+                                         GLib.ValueArray   args)
+                                         throws Error {
         if (expression == null) {
             return "";
         }
 
         if (expression is LogicalExpression) {
-            return this.logical_expression_to_sql
+            return MediaCache.logical_expression_to_sql
                                         (expression as LogicalExpression, args);
         } else {
-            return this.relational_expression_to_sql
+            return MediaCache.relational_expression_to_sql
                                         (expression as RelationalExpression,
                                          args);
         }
     }
 
-    private string? logical_expression_to_sql (LogicalExpression? expression,
-                                               GLib.ValueArray    args)
-                                               throws Error {
-        string left_sql_string = search_expression_to_sql (expression.operand1,
-                                                           args);
-        string right_sql_string = search_expression_to_sql (expression.operand2,
-                                                            args);
+    private static string? logical_expression_to_sql
+                                        (LogicalExpression? expression,
+                                         GLib.ValueArray    args)
+                                         throws Error {
+        string left_sql_string = MediaCache.search_expression_to_sql
+                                        (expression.operand1,
+                                         args);
+        string right_sql_string = MediaCache.search_expression_to_sql
+                                        (expression.operand2,
+                                         args);
         string operator_sql_string = "OR";
 
         if (expression.op == LogicalOperator.AND) {
@@ -854,9 +858,9 @@ public class Rygel.MediaExport.MediaCache : Object {
                                     right_sql_string);
     }
 
-    private string? map_operand_to_column (string     operand,
-                                           out string? collate = null)
-                                           throws Error {
+    private static string? map_operand_to_column (string     operand,
+                                                  out string? collate = null)
+                                                  throws Error {
         string column = null;
         bool use_collation = false;
 
@@ -928,13 +932,15 @@ public class Rygel.MediaExport.MediaCache : Object {
         return column;
     }
 
-    private string? relational_expression_to_sql (RelationalExpression? exp,
-                                                  GLib.ValueArray       args)
-                                                  throws Error {
+    private static string? relational_expression_to_sql
+                                        (RelationalExpression? exp,
+                                         GLib.ValueArray       args)
+                                         throws Error {
         GLib.Value? v = null;
         string collate = null;
 
-        string column = map_operand_to_column (exp.operand1, out collate);
+        string column = MediaCache.map_operand_to_column (exp.operand1,
+                                                          out collate);
         SqlOperator operator;
 
         switch (exp.op) {
@@ -1006,14 +1012,15 @@ public class Rygel.MediaExport.MediaCache : Object {
         return this.db.query_value (this.sql.make (id), values);
     }
 
-    private string translate_sort_criteria (string sort_criteria) {
+    private static string translate_sort_criteria (string sort_criteria) {
         string? collate;
         var builder = new StringBuilder("ORDER BY ");
         var fields = sort_criteria.split (",");
         foreach (var field in fields) {
             try {
-                var column = this.map_operand_to_column (field[1:field.length],
-                                                         out collate);
+                var column = MediaCache.map_operand_to_column
+                                        (field[1:field.length],
+                                         out collate);
                 if (field != fields[0]) {
                     builder.append (",");
                 }
