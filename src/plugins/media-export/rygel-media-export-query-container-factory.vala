@@ -121,13 +121,14 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
         var id = definition_id;
         this.register_id (ref id);
 
-        var expression = this.parse_description (definition_id,
-                                                 out pattern,
-                                                 out attribute,
-                                                 out upnp_class,
-                                                 ref title);
+        var expression = QueryContainerFactory.parse_description
+                                        (definition_id,
+                                         out pattern,
+                                         out attribute,
+                                         out upnp_class,
+                                         ref title);
 
-	// Create a node or leaf container,
+        // Create a node or leaf container,
         // depending on whether the definition specifies a pattern.
         if (pattern == null || pattern == "") {
             container =  new LeafQueryContainer (expression,
@@ -159,7 +160,7 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
      * @return A matching UPnP class for the attribute or null if it can't be
      *         mapped.
      */
-    private string? map_upnp_class (string attribute) {
+    private static string? map_upnp_class (string attribute) {
         switch (attribute) {
             case "upnp:album":
                 return MediaContainer.MUSIC_ALBUM;
@@ -188,11 +189,11 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
      * @return A SearchExpression corresponding to the non-variable part of
      *         the description.
      */
-    private SearchExpression parse_description (string     description,
-                                                out string pattern,
-                                                out string attribute,
-                                                out string upnp_class,
-                                                ref string name) {
+    private static SearchExpression parse_description (string     description,
+                                                       out string pattern,
+                                                       out string attribute,
+                                                       out string upnp_class,
+                                                       ref string name) {
         var args = description.split (",");
         var expression = null as SearchExpression;
         pattern = null;
@@ -207,13 +208,14 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
             attribute = Uri.unescape_string (attribute);
 
             if (args[i + 1] != "?") {
-                this.update_search_expression (ref expression,
-                                               args[i],
-                                               args[i + 1]);
+                QueryContainerFactory.update_search_expression (ref expression,
+                                                                args[i],
+                                                                args[i + 1]);
 
                 // We're on the end of the list, map UPnP class
                 if (i + 2 == args.length) {
-                    upnp_class = this.map_upnp_class (attribute);
+                    upnp_class = QueryContainerFactory.map_upnp_class
+                                        (attribute);
                 }
             } else {
                 args[i + 1] = "%s";
@@ -221,7 +223,8 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
 
                 // This container has the previouss attribute's content, so
                 // use that to map the UPnP class.
-                upnp_class = this.map_upnp_class (previous_attribute);
+                upnp_class = QueryContainerFactory.map_upnp_class
+                                        (previous_attribute);
 
                 if (name == "" && i > 0) {
                     name = Uri.unescape_string (args[i - 1]);
@@ -245,9 +248,10 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
      * @param key        Key of the key/value condition
      * @param value      Value of the key/value condition
      */
-    private void update_search_expression (ref SearchExpression? expression,
-                                           string                key,
-                                           string                @value) {
+    private static void update_search_expression
+                                        (ref SearchExpression? expression,
+                                         string                key,
+                                         string                @value) {
         var subexpression = new RelationalExpression ();
         var clean_key = key.replace (QueryContainer.PREFIX, "");
         subexpression.operand1 = Uri.unescape_string (clean_key);
