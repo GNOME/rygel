@@ -837,9 +837,9 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
     }
 
-    private static string? logical_expression_to_sql
-                                        (LogicalExpression? expression,
-                                         GLib.ValueArray    args)
+    private static string logical_expression_to_sql
+                                        (LogicalExpression expression,
+                                         GLib.ValueArray   args)
                                          throws Error {
         string left_sql_string = MediaCache.search_expression_to_sql
                                         (expression.operand1,
@@ -933,8 +933,8 @@ public class Rygel.MediaExport.MediaCache : Object {
     }
 
     private static string? relational_expression_to_sql
-                                        (RelationalExpression? exp,
-                                         GLib.ValueArray       args)
+                                        (RelationalExpression exp,
+                                         GLib.ValueArray      args)
                                          throws Error {
         GLib.Value? v = null;
         string collate = null;
