@@ -847,7 +847,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         string right_sql_string = MediaCache.search_expression_to_sql
                                         (expression.operand2,
                                          args);
-        string operator_sql_string = "OR";
+        unowned string operator_sql_string = "OR";
 
         if (expression.op == LogicalOperator.AND) {
             operator_sql_string = "AND";
@@ -1016,7 +1016,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         string? collate;
         var builder = new StringBuilder("ORDER BY ");
         var fields = sort_criteria.split (",");
-        foreach (var field in fields) {
+        foreach (unowned string field in fields) {
             try {
                 var column = MediaCache.map_operand_to_column
                                         (field[1:field.length],
