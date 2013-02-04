@@ -1029,7 +1029,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                        collate,
                                        field[0] == '-' ? "DESC" : "ASC");
             } catch (Error error) {
-                warning ("Skipping nsupported field: %s", field);
+                warning ("Skipping unsupported field: %s", field);
             }
         }
 
