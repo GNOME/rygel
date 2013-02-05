@@ -510,7 +510,7 @@ internal class Rygel.ContentDirectory: Service {
         this.finished_imports.add (import);
         this.active_imports.remove (import);
 
-        // signalize end of transfer
+        // signal the end of transfer
         this.notify ("TransferIDs",
                         typeof (string),
                         this.create_transfer_ids ());

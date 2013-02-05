@@ -218,7 +218,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         this.cancel (file);
         try {
             // the full object is fetched instead of simply calling
-            // exists because we need the parent to signalize the
+            // exists because we need the parent to signal the
             // change
             var id = MediaCache.get_id (file);
             var object = cache.get_object (id);

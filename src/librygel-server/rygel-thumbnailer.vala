@@ -88,7 +88,7 @@ internal class Rygel.Thumbnailer : GLib.Object {
                                         (_("No thumbnail available"));
         }
 
-        // Send a request to create thumbnail if it does not exist, signalize
+        // Send a request to create thumbnail if it does not exist, signal
         // that there's no thumbnail available now.
         if (this.thumbler != null && path == null) {
             this.thumbler.queue_thumbnail_task (uri, mime_type);
