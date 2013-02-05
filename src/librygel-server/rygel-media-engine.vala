@@ -74,7 +74,7 @@ public abstract class Rygel.MediaEngine : GLib.Object {
      * engine when calling rygel_media_engine_create_data_source().
      *
      * Other DLNA profiles may be supported as transcoding targets -
-     * see rygel_media_engine_get_transcoders().
+     * @see rygel_media_engine_get_transcoders().
      *
      * @return A list of #RygelDLNAProfile<!-- -->s
      */
