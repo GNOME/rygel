@@ -28,6 +28,14 @@ public errordomain Rygel.DataSourceError {
 /**
  * Interface for all data streams provided by a #RygelMediaEngine.
  *
+ * When Rygel receives a HTTP request to stream a given file, it creates a
+ * RygelDataSource object for this new file and instructs the RygelDataSource
+ * to begin streaming. The RygelDataSource object will duly pass this request
+ * on to the underlying media framework, which will in turn pass streamed bytes
+ * back to the RygelDataSource object. The RygelDataSource passes these bytes
+ * to Rygel which adds them to the response it sends to the original HTTP
+ * request received from the client.
+ *
  * The data source is responsible for providing the streamable byte-stream
  * via its data_available signal. End-of-stream is signalled by the 
  * done signal, while errors are signalled by the error signal.
