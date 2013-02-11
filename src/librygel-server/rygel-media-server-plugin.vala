@@ -26,6 +26,12 @@
  * This is the base class for every Rygel implementation of a UPnP media
  * server. It should be used either for a real plug-in for the Rygel process or used
  * in-process via the librygel-server API.
+ *
+ * The plugin instance should have a #RygelMediaContainer instance as its
+ * root container, which may be provided to the constructor.
+ *
+ * See the
+ * <link linkend="implementing-server-plugins">Implementing Server Plugins</link> section.
  */
 public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
     private static const string DMS = "urn:schemas-upnp-org:device:MediaServer";
@@ -95,6 +101,7 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
         }
     }
 
+    // TODO: Document this, or make it unnecessary.
     public override void apply_hacks (RootDevice device,
                                      string     description_path)
                                      throws Error {

@@ -43,6 +43,21 @@ public enum Rygel.ObjectEventType {
  *
  * When used as a root container, you may wish to use the variables, such as
  * REALNAME, in in the title. See the title property of the #RygelMediaObject.
+ *
+ * If the container should support UPnP search operations then you also implement
+ * the #RygelSearchableContainer interface.
+ *
+ * If the container should be writable, meaning that it allows adding, removal and
+ * editing of items then you should also implement the #RygelWritableContainer
+ * interface.
+ *
+ * If the container should support the change tracking profile of the UPnP
+ * ContentDirectory:3 specification then you should also implement the 
+ * #RygelTrackableContainer interface.
+ *
+ * The #RygelSimpleContainer class contains a simple memory-based container
+ * implementation, but most real-world uses will require custom container
+ * implementations.
  */
 public abstract class Rygel.MediaContainer : MediaObject {
     // Magic ID used by DLNA to denote any container that can create the item
