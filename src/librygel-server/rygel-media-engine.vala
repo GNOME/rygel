@@ -37,8 +37,20 @@ public errordomain Rygel.MediaEngineError {
  * For instance, in rygel.conf:
  * media-engine=librygel-media-engine-gst.so
  *
- * Media engines should also derive their own RygelDataSource,
+ * Media engines should also derive their own #RygelDataSource,
  * returning an instance of it from create_data_source().
+ *
+ * If this media engine supports transcoding then it will typically
+ * implement a set of transcoding classes, typically with one 
+ * base class and a number of sub-classes - one for each transcoding
+ * format you want to support. These should be returned by the
+ * get_transcoders() virtual function. The base transcoder class could
+ * provide a generic way to create a #RygelDataSource capable of
+ * providing Rygel with a transcoded version of a file using the
+ * underlying media framework. The sub-classes could contain the
+ * various media-framework-specific parameters required to 
+ * transcode to a given format and implement a heuristic that
+ * can be used to order an item's transcoded resources.
  *
  * See the
  * <link linkend="implementing-media-engines">Implementing Media Engines</link> section.
