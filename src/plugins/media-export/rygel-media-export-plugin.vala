@@ -101,8 +101,7 @@ private void shutdown_media_export () {
         var config = MetaConfig.get_default ();
         var enabled = config.get_bool ("MediaExport", "enabled");
         if (enabled) {
-            var root = Rygel.MediaExport.RootContainer.get_instance ()
-                                        as Rygel.MediaExport.RootContainer;
+            var root = Rygel.MediaExport.RootContainer.get_instance ();
 
             root.shutdown ();
         }

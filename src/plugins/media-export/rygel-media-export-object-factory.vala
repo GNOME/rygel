@@ -38,11 +38,11 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
                                               uint       child_count,
                                               string?    uri) {
         if (id == "0") {
-            return RootContainer.get_instance () as DBContainer;
+            return RootContainer.get_instance ();
         } else if (id == RootContainer.FILESYSTEM_FOLDER_ID) {
-            var root_container = RootContainer.get_instance () as RootContainer;
+            var root_container = RootContainer.get_instance ();
 
-            return root_container.get_filesystem_container () as DBContainer;
+            return root_container.get_filesystem_container ();
         }
 
         if (id.has_prefix (QueryContainer.PREFIX)) {

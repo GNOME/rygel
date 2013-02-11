@@ -47,10 +47,10 @@ const Rygel.MediaExport.FolderDefinition[] VIRTUAL_FOLDERS_MUSIC = {
 public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
     private Harvester      harvester;
     private Cancellable    cancellable;
-    private MediaContainer filesystem_container;
+    private DBContainer    filesystem_container;
     private ulong          harvester_signal_id;
 
-    private static MediaContainer instance = null;
+    private static RootContainer instance = null;
 
     internal const string FILESYSTEM_FOLDER_NAME = N_("Files & Folders");
     internal const string FILESYSTEM_FOLDER_ID   = "Filesystem";
@@ -70,11 +70,11 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
     /**
      * Get the single instance of the root container.
      */
-    public static MediaContainer get_instance () {
+    public static RootContainer get_instance () {
         return RootContainer.instance;
     }
 
-    public MediaContainer get_filesystem_container () {
+    public DBContainer get_filesystem_container () {
         return this.filesystem_container;
     }
 
