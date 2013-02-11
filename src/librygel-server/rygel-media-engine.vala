@@ -27,7 +27,9 @@ public errordomain Rygel.MediaEngineError {
 /**
  * This is the base class for media engines that contain knowledge about 
  * the streaming and (optionally) the transcoding and seeking capabilites
- * of the media library in use.
+ * of the media library in use. Derived classes also instantiate any
+ * transcoding objects supported by the media engine and specify the list
+ * of media formats the engine is capable of playing.
  *
  * See, for instance, Rygel's built-in "gstreamer" and "simple" media engines,
  * or the external rygel-gst-0-10-media-engine module.
@@ -87,6 +89,10 @@ public abstract class Rygel.MediaEngine : GLib.Object {
      *
      * Other DLNA profiles may be supported as transcoding targets -
      * @see rygel_media_engine_get_transcoders().
+     *
+     * This information is needed to implement DLNA's
+     * ConnectionManager.GetProtocolInfo call and to determine whether Rygel
+     * can accept an uploaded file.
      *
      * @return A list of #RygelDLNAProfile<!-- -->s
      */
