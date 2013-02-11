@@ -64,15 +64,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         this.extractor = extractor;
         this.origin = file;
         this.parent = parent;
-
-        try {
-            this.cache = MediaCache.get_default ();
-        } catch (Error error) {
-            // This should not happen. As the harvesting tasks are created
-            // long after the first call to get_default which - if fails -
-            // will make the whole root-container creation fail
-            assert_not_reached ();
-        }
+        this.cache = MediaCache.get_default ();
 
         this.extractor.extraction_done.connect (on_extracted_cb);
         this.extractor.error.connect (on_extractor_error_cb);
@@ -376,13 +368,13 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         if (this.files.is_empty &&
             !this.containers.is_empty ()) {
             var container = this.containers.peek_head ();
+            var cache = MediaCache.get_default ();
             try {
-                var cache = MediaCache.get_default ();
                 if (cache.get_child_count (container.id) == 0) {
                     var parent = container.parent as TrackableContainer;
                     parent.remove_child_tracked.begin (container, () => {
                         try {
-                            MediaCache.get_default ().save_container (parent);
+                            cache.save_container (parent);
                         } catch (Error error) { }
                     });
                 }

@@ -37,10 +37,7 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
     public override void constructed () {
         base.constructed ();
 
-        try {
-            this.media_db = MediaCache.get_default ();
-        } catch (Error error) { }
-
+        this.media_db = MediaCache.get_default ();
         this.search_classes = new ArrayList<string> ();
         this.container_updated.connect ( () => {
                 this.child_count = this.count_children ();

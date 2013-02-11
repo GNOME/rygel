@@ -25,10 +25,7 @@ internal class Rygel.MediaExport.DummyContainer : TrackableDbContainer {
 
     public DummyContainer (File           file,
                            MediaContainer parent) {
-        MediaCache cache = null;
-        try {
-            cache = MediaCache.get_default ();
-        } catch (Error error) { }
+        var cache = MediaCache.get_default ();
 
         base (MediaCache.get_id (file), file.get_basename ());
 
@@ -45,7 +42,7 @@ internal class Rygel.MediaExport.DummyContainer : TrackableDbContainer {
         this.file = file;
         this.uris.add (file.get_uri ());
         try {
-            this.children = MediaCache.get_default ().get_child_ids (this.id);
+            this.children = cache.get_child_ids (this.id);
             this.child_count = this.children.size;
         } catch (Error error) {
             this.children = new ArrayList<string> ();

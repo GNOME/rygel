@@ -35,24 +35,31 @@ public void module_init (PluginLoader loader) {
         return;
     }
 
-    // Instantiate the plugin object:
-    var plugin = new MediaExport.Plugin ();
+    try {
+        // Instantiate the plugin object (it may fail if loading
+        // database did not succeed):
+        var plugin = new MediaExport.Plugin ();
 
-    // Check what other plugins are loaded,
-    // and check when other plugins are loaded later:
-    Idle.add (() => {
-       foreach (var loaded_plugin in loader.list_plugins ()) {
-            on_plugin_available (loaded_plugin, plugin);
-       }
+        // Check what other plugins are loaded,
+        // and check when other plugins are loaded later:
+        Idle.add (() => {
+           foreach (var loaded_plugin in loader.list_plugins ()) {
+                on_plugin_available (loaded_plugin, plugin);
+           }
 
-       loader.plugin_available.connect ((new_plugin) => {
-           on_plugin_available (new_plugin, plugin);
-       });
+           loader.plugin_available.connect ((new_plugin) => {
+               on_plugin_available (new_plugin, plugin);
+           });
 
-       return false;
-    });
+           return false;
+        });
 
-    loader.add_plugin (plugin);
+        loader.add_plugin (plugin);
+    } catch (Error error) {
+        warning ("Failed to load %s: %s",
+                 MediaExport.Plugin.NAME,
+                 error.message);
+    }
 }
 
 public void on_plugin_available (Plugin plugin, Plugin our_plugin) {
@@ -108,7 +115,10 @@ public class Rygel.MediaExport.Plugin : Rygel.MediaServerPlugin {
     /**
      * Instantiate the plugin.
      */
-    public Plugin () {
+    public Plugin () throws Error {
+        // Ensure that root container could be created and thus
+        // database could be opened:
+        RootContainer.ensure_exists ();
         // Call the base constructor,
         // passing the instance of our root container.
         base (RootContainer.get_instance (),

@@ -71,12 +71,14 @@ public class Rygel.MediaExport.MediaCache : Object {
                                             file.get_uri ());
     }
 
-    public static MediaCache get_default () throws Error {
-        if (instance == null) {
-            instance = new MediaCache ();
+    public static void ensure_exists () throws Error {
+        if (MediaCache.instance == null) {
+            MediaCache.instance = new MediaCache ();
         }
+    }
 
-        return instance;
+    public static MediaCache get_default () {
+        return MediaCache.instance;
     }
 
     // Public functions

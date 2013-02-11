@@ -60,14 +60,17 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
                                                    Rygel.MusicItem.UPNP_CLASS +
                                                    ",";
 
+    public static void ensure_exists () throws Error {
+        if (RootContainer.instance == null) {
+            MediaCache.ensure_exists ();
+            RootContainer.instance = new RootContainer ();
+        }
+    }
+
     /**
      * Get the single instance of the root container.
      */
     public static MediaContainer get_instance () {
-        if (RootContainer.instance == null) {
-                RootContainer.instance = new RootContainer ();
-        }
-
         return RootContainer.instance;
     }
 

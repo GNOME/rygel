@@ -204,11 +204,13 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                 debug ("%s is not eligible for extraction", file.get_uri ());
             }
         } catch (Error error) {
-            warning (_("Failed to access media cache: %s"), error.message);
+            warning (_("Failed to query info of a file %s: %s"),
+                     file.get_uri (),
+                     error.message);
         }
     }
 
-    private void on_file_removed (File file) throws Error {
+    private void on_file_removed (File file) {
         var cache = MediaCache.get_default ();
         if (this.extraction_grace_timers.has_key (file)) {
             Source.remove (this.extraction_grace_timers[file]);
