@@ -47,8 +47,8 @@ public enum Rygel.ObjectEventType {
  * If the container should support UPnP search operations then you also implement
  * the #RygelSearchableContainer interface.
  *
- * If the container should be writable, meaning that it allows adding, removal and
- * editing of items then you should also implement the #RygelWritableContainer
+ * If the container should be writable, meaning that it allows adding (via upload),
+ * removal and editing of items then you should also implement the #RygelWritableContainer
  * interface.
  *
  * If the container should support the change tracking profile of the UPnP

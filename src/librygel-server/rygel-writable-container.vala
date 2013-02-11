@@ -28,8 +28,8 @@ using Gee;
 
 /**
  * This interface should be implemented by 'writable' containers - ones that allow
- * adding, removal and editing of items directly under them. Currently, only
- * addition and removal is supported.
+ * adding (via upload), removal and editing of items directly under them.
+ * Currently, only addition and removal are supported.
  *
  * In addition to implementing this interface, a writable container must also:
  *
