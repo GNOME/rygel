@@ -308,15 +308,14 @@ namespace Rygel.MediaExport.ItemFactory {
             !tags.get_string (Tags.TITLE, out title)) {
             title = file_info.get_display_name ();
 
-            GLib.Date? date;
-            if (tags.get_date (Tags.DATE, out date) &&
-                date.valid ()) {
-                char[] datestr = new char[30];
-                date.strftime (datestr, "%F");
-                item.date = (string) datestr;
-            }
         }
-        
+
+        // This assumes the datetime is valid; checking some demuxers this
+        Gst.DateTime? dt = null;
+        if (tags != null && tags.get_date_time (Tags.DATE_TIME, out dt)) {
+            item.date = dt.to_iso8601_string ();
+        }
+
         item.title = title;
 
         // use mtime if no time tag was available
