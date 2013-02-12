@@ -379,6 +379,13 @@ AS_IF([test "x$enable_valadoc" != "xno"], [
 
 AM_CONDITIONAL(ENABLE_VALADOC, test x$found_valadoc = xyes)
 
+AC_SUBST([RYGEL_PLUGIN_LINKER_FLAGS],
+         ["-shared -fPIC -module -avoid-version -Wl,-z,defs"])
+AC_SUBST([RYGEL_PLUGIN_DIR],
+         [${libdir}/rygel-2.0/plugins])
+AC_SUBST([RYGEL_MEDIA_ENGINE_DIR],
+         [${libdir}/rygel-2.0/engines])
+
 AC_CONFIG_FILES([
 Makefile
 src/Makefile

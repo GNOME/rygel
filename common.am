@@ -14,8 +14,8 @@ else
 shareddir = $(datadir)/rygel
 sysconfigdir = $(sysconfdir)
 desktopdir = $(datadir)/applications
-plugindir = $(libdir)/rygel-2.0/plugins
-enginedir = $(libdir)/rygel-2.0/engines
+plugindir = @RYGEL_PLUGIN_DIR@
+enginedir = @RYGEL_MEDIA_ENGINE_DIR@
 icondir = $(datadir)/icons/hicolor/32x32/apps
 presetdir = $(shareddir)/presets
 endif
@@ -104,8 +104,6 @@ RYGEL_COMMON_VALAFLAGS = \
 	$(RYGEL_DEBUG_VALAFLAGS) \
 	$(COVERAGE_VALAFLAGS)
 
-
-RYGEL_PLUGIN_LINKER_FLAGS = -shared -fPIC -module -avoid-version -Wl,-z,defs
 
 vala-clean:
 	rm -f `find . -name "*.stamp"`

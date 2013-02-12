@@ -3,6 +3,9 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
+plugindir=@RYGEL_PLUGIN_DIR@
+plugin_ldflags=@RYGEL_PLUGIN_LINKER_FLAGS@
+
 Name: rygel-core-2.0
 Description: GNOME (Mobile) UPnP/DLNA Media Server
 Version: @VERSION@

@@ -3,6 +3,8 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
+enginedir=@RYGEL_MEDIA_ENGINE_DIR@
+
 Name: rygel-server-2.0
 Description: GNOME (Mobile) UPnP/DLNA Media server library
 Version: @VERSION@
