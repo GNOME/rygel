@@ -510,6 +510,15 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
     }
 
+    public void drop_virtual_folders () {
+        try {
+            this.db.exec ("DELETE FROM object WHERE " +
+                          "upnp_id LIKE 'virtual-parent:%'");
+        } catch (DatabaseError error) {
+            warning ("Failed to drop virtual folders: %s", error.message);
+        }
+    }
+
     // Private functions
     private void get_exists_cache () throws DatabaseError {
         this.exists_cache = new HashMap<string, ExistsCacheEntry?> ();

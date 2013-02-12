@@ -458,10 +458,18 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
     }
 
     private void on_setting_changed (string section, string key) {
-        if (section != "MediaExport" || key != "uris") {
+        if (section != Plugin.NAME) {
             return;
         }
 
+        if (key == "uris") {
+            this.handle_uri_config_change ();
+        } else if (key == "virtual-folders") {
+            this.handle_virtual_folder_change ();
+        }
+    }
+
+    private void handle_uri_config_change () {
         var uris = this.get_shared_uris ();
         // Calculate added uris
         var new_uris = new ArrayList<File>
@@ -549,6 +557,16 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
      * saving them in the cache.
      */
     private void add_default_virtual_folders () {
+        var virtual_folders = true;
+        var config = MetaConfig.get_default ();
+        try {
+            virtual_folders = config.get_bool (Plugin.NAME, "virtual-folders");
+        } catch (Error error) { }
+
+        if (!virtual_folders) {
+            return;
+        }
+
         try {
             this.add_virtual_containers_for_class (_("Music"),
                                                    Rygel.MusicItem.UPNP_CLASS,

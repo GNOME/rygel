@@ -357,6 +357,14 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <para>Set to <userinput>false</userinput> if you don&apos;t want to have new files picked up automatically by &dhpackage;.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <option>virtual-folders</option>
+        </term>
+        <listitem>
+          <para>Set to <userinput>false</userinput> if you don&apos;t need the virtual folder hierarchy.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsect1>
   <refsect1>
