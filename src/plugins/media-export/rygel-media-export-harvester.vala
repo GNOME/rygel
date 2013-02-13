@@ -182,15 +182,15 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
 
                         if (parent_container == null) {
                             current = parent;
-                        }
+                            if (current in this.locations) {
+                                debug ("Reached the top - parent is filesystem container");
+                                // We have reached the top
+                                parent_container = cache.get_object
+                                            (RootContainer.FILESYSTEM_FOLDER_ID)
+                                            as MediaContainer;
 
-                        if (current in this.locations) {
-                            // We have reached the top
-                            parent_container = cache.get_object
-                                        (RootContainer.FILESYSTEM_FOLDER_ID)
-                                        as MediaContainer;
-
-                            break;
+                                break;
+                            }
                         }
                     } while (parent_container == null);
 
