@@ -25,6 +25,9 @@
  */
 internal class Rygel.AACTranscoder : Rygel.AudioTranscoder {
     private const int BITRATE = 256;
+    // FIXME: This basically forces GstFaac. The proper way would be
+    // stream-format=raw and have aacparse transform the stream to ADTS which
+    // isn't possible with encodebin
     private const string CODEC = "audio/mpeg,mpegversion=4," +
                                  "stream-format=adts,rate=44100,base-profile=lc";
 
