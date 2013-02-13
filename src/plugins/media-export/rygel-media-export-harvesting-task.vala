@@ -326,12 +326,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                 (item as UpdatableObject).commit.begin ();
             } else {
                 var container = item.parent as TrackableContainer;
-                container.add_child_tracked.begin (item, () => {
-                    // save again to make sure we persist the update count
-                    try {
-                        cache.save_item (item);
-                    } catch (Error error) { }
-                }) ;
+                container.add_child_tracked.begin (item) ;
             }
         }
 
@@ -372,11 +367,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             try {
                 if (cache.get_child_count (container.id) == 0) {
                     var parent = container.parent as TrackableContainer;
-                    parent.remove_child_tracked.begin (container, () => {
-                        try {
-                            cache.save_container (parent);
-                        } catch (Error error) { }
-                    });
+                    parent.remove_child_tracked.begin (container);
                 }
             } catch (Error error) { }
             this.containers.pop_head ();

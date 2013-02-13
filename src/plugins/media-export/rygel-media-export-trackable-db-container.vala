@@ -33,6 +33,38 @@ public class Rygel.MediaExport.TrackableDbContainer : DBContainer,
                 child_count : 0);
     }
 
+    public override void constructed () {
+        base.constructed ();
+
+        this.child_added.connect (on_child_added);
+        this.child_removed.connect (on_child_removed);
+    }
+
+    private void on_child_added (MediaObject object) {
+        try {
+            var cache = this.media_db;
+
+            if (object is MediaItem) {
+                cache.save_item (object as MediaItem);
+            } else if (object is MediaContainer) {
+                 cache.save_container (object as MediaContainer);
+            } else {
+                assert_not_reached ();
+            }
+            cache.save_container (this);
+        } catch (Error error) {
+            warning ("Failed to save object: %s", error.message);
+        }
+    }
+
+    private void on_child_removed (MediaObject object) {
+        try {
+            this.media_db.save_container (this);
+        } catch (Error error) {
+            warning ("Failed to save object: %s", error.message);
+        }
+    }
+
     // TrackableContainer virtual function implementations:
     protected async void add_child (MediaObject object) {
         try {

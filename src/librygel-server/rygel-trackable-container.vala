@@ -51,6 +51,8 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
      * See the remove_child() virtual function.
      */
     protected abstract async void add_child (MediaObject object);
+    protected signal void child_added (MediaObject object);
+    protected signal void child_removed (MediaObject object);
 
     /**
      * Add a child object, emitting the #RygelContainer::container_updated signal
@@ -70,6 +72,7 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
             // Release the events that might have accumulated
             trackable.thaw_events ();
         }
+        this.child_added (object);
     }
 
     /**
@@ -101,6 +104,7 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
         // FIXME: Check if modification of child_count should lead to
         // LastChange event.
         this.updated ();
+        this.child_removed (object);
     }
 
     /**
