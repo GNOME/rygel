@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-25 18:47+0000\n"
-"PO-Revision-Date: 2013-01-28 11:12+0100\n"
+"POT-Creation-Date: 2013-02-11 15:39+0000\n"
+"PO-Revision-Date: 2013-02-14 14:42+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -99,13 +99,13 @@ msgstr "El módulo «%s» no se pudo conectar a una sesión del bus de D-Bus. 
 msgid "Failed to roll back transaction: %s"
 msgstr "Falló al deshacer la transacción: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:137
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:210
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Falló al consultar el tipo de contenido para «%s»"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:119
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:121
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Falló al añadir el elemento con ID %s: %s"
@@ -126,10 +126,11 @@ msgstr "Error al obtener el objeto «%s» de la base de datos: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:207
 #, c-format
-msgid "Failed to access media cache: %s"
-msgstr "Falló al acceder a la caché multimedia: %s"
+#| msgid "Failed to move dotfile %s: %s"
+msgid "Failed to query info of a file %s: %s"
+msgstr "Falló al obtener información sobre un archivo %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:249
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:251
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Error al quitar el objeto de la base de datos: %s"
@@ -169,29 +170,29 @@ msgstr "Género"
 msgid "Files & Folders"
 msgstr "Archivos y carpetas"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:340
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:343
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "Multimedia de @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:427
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:431
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Falló al quitar la entrada: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:474
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:478
 msgid "Music"
 msgstr "Música"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:477
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:481
 msgid "Pictures"
 msgstr "Imágenes"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:479
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:483
 msgid "Videos"
 msgstr "Vídeos"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:481
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:485
 msgid "Playlists"
 msgstr "Listas de reproducción"
 
@@ -609,7 +610,6 @@ msgstr "No se permite modificar los metadatos del objeto %s"
 
 #: ../src/librygel-server/rygel-item-updater.vala:196
 #, c-format
-#| msgid "Metadata modification of object %s being a child "
 msgid ""
 "Metadata modification of object %s being a child of restricted object %s not "
 "allowed"
@@ -617,11 +617,11 @@ msgstr ""
 "Modificación de los metadatos de un objeto %s siendo un hijo de un objeto "
 "restringido %s no permitida"
 
-#: ../src/librygel-server/rygel-media-engine.vala:55
+#: ../src/librygel-server/rygel-media-engine.vala:69
 msgid "No media engine found."
 msgstr "No se ha encontrado un motor de medios."
 
-#: ../src/librygel-server/rygel-media-engine.vala:66
+#: ../src/librygel-server/rygel-media-engine.vala:80
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "No se ha llamado a MediaEngine.init. No se puede continuar."
 
@@ -779,6 +779,9 @@ msgstr "Falló al iniciar el servicio Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Falló al parar el servicio Rygel: %s"
+
+#~ msgid "Failed to access media cache: %s"
+#~ msgstr "Falló al acceder a la caché multimedia: %s"
 
 #~ msgid "Failed to attach to D-Bus session bus: %s"
 #~ msgstr "Falló al adjuntarse al bus de sesión D-Bus: %su"
