@@ -426,13 +426,18 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         foreach (var id in ids) {
             debug ("ID %s is no longer in the configuration. Deleting...", id);
             try {
+                // FIXME: I think this needs to emit objDel events...
                 this.media_db.remove_by_id (id);
             } catch (DatabaseError error) {
                 warning (_("Failed to remove entry: %s"), error.message);
             }
         }
 
-        this.root_updated ();
+        // We have removed some uris so we notify that the root container has
+        // changed
+        if (!ids.is_empty) {
+            this.root_updated ();
+        }
     }
 
     // Signal that the container has been updated with new/changed content.
