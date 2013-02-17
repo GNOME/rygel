@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-02 22:50+0100\n"
-"PO-Revision-Date: 2013-02-02 22:51+0100\n"
+"POT-Creation-Date: 2013-02-17 20:56+0100\n"
+"PO-Revision-Date: 2013-02-17 20:57+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -97,7 +97,7 @@ msgstr ""
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:42
 #, c-format
 msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "Moduł \"%s\" nie może połączyć się z magistralą sesji D-Bus."
+msgstr "Moduł \"%s\" nie może połączyć się z magistralą sesji D-Bus. "
 
 #: ../src/plugins/media-export/rygel-media-export-database.vala:210
 #, c-format
@@ -110,7 +110,7 @@ msgstr "Przywrócenie transakcji się nie powiodło: %s"
 msgid "Failed to query content type for '%s'"
 msgstr "Odpytanie typu zawartości dla \"%s\" się nie powiodło"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:119
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:121
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Dodanie elementu z identyfikatorem %s się nie powiodło: %s"
@@ -132,11 +132,10 @@ msgstr "Błąd podczas pobierania obiektu \"%s\" z bazy danych: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:207
 #, c-format
-msgid "Failed to access media cache: %s"
-msgstr ""
-"Uzyskanie dostępu do pamięci podręcznej multimediów się nie powiodło: %s"
+msgid "Failed to query info of a file %s: %s"
+msgstr "Odpytanie informacji o pliku %s się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:249
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:247
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Błąd podczas usuwania obiektu z bazy danych: %s"
@@ -176,29 +175,29 @@ msgstr "Gatunek"
 msgid "Files & Folders"
 msgstr "Pliki i katalogi"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:340
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:343
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "Multimedia użytkownika @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:428
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:431
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Usunięcie wpisu się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:475
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:478
 msgid "Music"
 msgstr "Muzyka"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:478
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:481
 msgid "Pictures"
 msgstr "Obrazy"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:480
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:483
 msgid "Videos"
 msgstr "Wideo"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:482
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:485
 msgid "Playlists"
 msgstr "Listy odtwarzania"
 
@@ -543,7 +542,7 @@ msgstr "Nie ma takiego obiektu"
 #: ../src/librygel-server/rygel-item-creator.vala:150
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
-msgstr "Brak elementów w w DIDL-Lite od klienta: \"%s\""
+msgstr "Brak elementów w DIDL-Lite od klienta: \"%s\""
 
 #: ../src/librygel-server/rygel-item-creator.vala:285
 #: ../src/librygel-server/rygel-item-creator.vala:528
@@ -624,11 +623,11 @@ msgstr ""
 "Modyfikacja metadanych obiektu %s będącego elementem potomnym zastrzeżonego "
 "obiektu %s nie jest dozwolona"
 
-#: ../src/librygel-server/rygel-media-engine.vala:55
+#: ../src/librygel-server/rygel-media-engine.vala:69
 msgid "No media engine found."
 msgstr "Nie odnaleziono mechanizmu multimediów."
 
-#: ../src/librygel-server/rygel-media-engine.vala:66
+#: ../src/librygel-server/rygel-media-engine.vala:80
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "Nie wywołano MediaEngine.init. Nie można kontynuować."
 
