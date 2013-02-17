@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-27 18:07+0100\n"
-"PO-Revision-Date: 2013-01-27 18:09+0200\n"
+"POT-Creation-Date: 2013-02-17 13:33+0100\n"
+"PO-Revision-Date: 2013-02-17 13:33+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -100,13 +100,13 @@ msgstr "O módulo «%s» non puido conectarse ao bus de sesión D-Bus."
 msgid "Failed to roll back transaction: %s"
 msgstr "Produciuse un erro ao desfacer a transacción: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:137
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:210
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Produciuse un erro ao consultar o tipo de contido para «%s»"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:119
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:121
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Produciuse un erro ao engadir o elemento con ID %s: %s"
@@ -127,10 +127,10 @@ msgstr "Produciuse un erro ao obter o obxecto «%s» desde a base de datos: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:207
 #, c-format
-msgid "Failed to access media cache: %s"
-msgstr "Produciuse un erro ao acceder á caché multimedia: %s"
+msgid "Failed to query info of a file %s: %s"
+msgstr "Produciuse un fallo ao consultar a información do ficheiro %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:249
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:247
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Produciuse un erro ao retirar o obxecto da base de datos: %s"
@@ -170,29 +170,29 @@ msgstr "Xénero"
 msgid "Files & Folders"
 msgstr "Ficheiros e cartafoles"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:340
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:343
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "Multimedia de @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:427
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:431
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Produciuse un erro ao retirar a entrada: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:474
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:478
 msgid "Music"
 msgstr "Música"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:477
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:481
 msgid "Pictures"
 msgstr "Imaxes"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:479
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:483
 msgid "Videos"
 msgstr "Vídeos"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:481
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:485
 msgid "Playlists"
 msgstr "Listas de reprodución"
 
@@ -621,11 +621,11 @@ msgstr ""
 "Modificación dos metadatos do obxecto %s sendo un fillo dun obxecto "
 "restrinxido %s non está permitido"
 
-#: ../src/librygel-server/rygel-media-engine.vala:55
+#: ../src/librygel-server/rygel-media-engine.vala:69
 msgid "No media engine found."
 msgstr "Non se atopou un motor multimedia."
 
-#: ../src/librygel-server/rygel-media-engine.vala:66
+#: ../src/librygel-server/rygel-media-engine.vala:80
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init non foi chamado. Non se pode continuar."
 
@@ -784,6 +784,9 @@ msgstr "Produciuse un erro ao iniciar o servizo Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Produciuse un erro ao deter o servizo Rygel: %s"
+
+#~ msgid "Failed to access media cache: %s"
+#~ msgstr "Produciuse un erro ao acceder á caché multimedia: %s"
 
 #~ msgid "Failed to attach to D-Bus session bus: %s"
 #~ msgstr "Produciuse un erro ao anexarse ao bus de sesión D-Bus: %s"
