@@ -70,23 +70,27 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     public void extract (File file, string content_type) {
         if (this.extract_metadata && !content_type.has_prefix ("text/")) {
             string uri = file.get_uri ();
-            var gst_timeout = (ClockTime) (this.timeout * Gst.SECOND);
             try {
+                var gst_timeout = (ClockTime) (this.timeout * Gst.SECOND);
+
                 this.discoverer = new Discoverer (gst_timeout);
-                this.file_hash.set (uri, file);
-                this.discoverer.discovered.connect (on_done);
-                this.discoverer.start ();
-                this.discoverer.discover_uri_async (uri);
-                this.guesser = new GUPnPDLNA.ProfileGuesser (true, true);
             } catch (Error error) {
-                this.on_done (null, error);
+                debug ("Failed to create a discoverer. Doing basic extraction.");
+                this.extract_basic_information (file, null, null);
+
+                return;
             }
+            this.file_hash.set (uri, file);
+            this.discoverer.discovered.connect (on_done);
+            this.discoverer.start ();
+            this.discoverer.discover_uri_async (uri);
+            this.guesser = new GUPnPDLNA.ProfileGuesser (true, true);
         } else {
             this.extract_basic_information (file, null, null);
         }
     }
 
-    private void on_done (DiscovererInfo? info, GLib.Error err) {
+    private void on_done (DiscovererInfo info, GLib.Error err) {
         this.discoverer = null;
         var file = this.file_hash.get (info.get_uri ());
         if (file == null) {
@@ -100,10 +104,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
         if ((info.get_result () & DiscovererResult.TIMEOUT) != 0) {
             debug ("Extraction timed out on %s", file.get_uri ());
-
-            // set dlna to null to extract basic file information
-            info = null;
-            this.extract_basic_information (file, info, null);
+            this.extract_basic_information (file, null, null);
 
             return;
         } else if ((info.get_result () &
