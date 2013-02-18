@@ -2,14 +2,14 @@
 # Copyright (C) 2010 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
 # Милош Поповић <gpopac@gmail.com>, 2010.
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011, 2012, 2013.
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011—2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&"
 "keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-25 18:47+0000\n"
-"PO-Revision-Date: 2013-01-30 10:39+0200\n"
+"POT-Creation-Date: 2013-02-17 18:54+0000\n"
+"PO-Revision-Date: 2013-02-18 11:11+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -98,13 +98,13 @@ msgstr "Модул „%s“ не може да се повеже на сабир
 msgid "Failed to roll back transaction: %s"
 msgstr "Нисам успео да вратим стање преноса: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:137
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:210
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Нисам успео да закажем овај садржај на „%s“"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:119
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:121
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Нисам успео да додам ставку са ИБ-ом %s: %s"
@@ -125,10 +125,11 @@ msgstr "Нисам успео да преузмем „%s“ из базе по�
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:207
 #, c-format
-msgid "Failed to access media cache: %s"
-msgstr "Нисам успео да приступим остави медија: %s"
+#| msgid "Failed to move dotfile %s: %s"
+msgid "Failed to query info of a file %s: %s"
+msgstr "Нисам успео да пропитам податке о датотеци „%s“: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:249
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:247
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Нисам успео да уклоним објекат из базе података: %s"
@@ -168,29 +169,29 @@ msgstr "Жанр"
 msgid "Files & Folders"
 msgstr "Датотеке и фасцикле"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:340
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:343
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "Медија корисника „@REALNAME@“"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:427
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:431
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Нисам успео да уклоним унос: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:474
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:478
 msgid "Music"
 msgstr "Музика"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:477
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:481
 msgid "Pictures"
 msgstr "Слике"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:479
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:483
 msgid "Videos"
 msgstr "Снимци"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:481
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:485
 msgid "Playlists"
 msgstr "Спискови нумера"
 
@@ -608,7 +609,6 @@ msgstr "Мењање метаподатака објекта „%s“ није �
 
 #: ../src/librygel-server/rygel-item-updater.vala:196
 #, c-format
-#| msgid "Metadata modification of object %s being a child "
 msgid ""
 "Metadata modification of object %s being a child of restricted object %s not "
 "allowed"
@@ -616,11 +616,11 @@ msgstr ""
 "Измена метаподатака предмета „%s“ који је произашао из ограниченог предмета "
 "„%s“ није допуштено"
 
-#: ../src/librygel-server/rygel-media-engine.vala:55
+#: ../src/librygel-server/rygel-media-engine.vala:69
 msgid "No media engine found."
 msgstr "Нисам пронашао медијски погон."
 
-#: ../src/librygel-server/rygel-media-engine.vala:66
+#: ../src/librygel-server/rygel-media-engine.vala:80
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "„MediaEngine.init“ није позван. Не могу да наставим."
 
