@@ -164,6 +164,14 @@ public class Rygel.DescriptionFile : Object {
 
         if (PluginCapabilities.TRACK_CHANGES in capabilities) {
             flags += "content-synchronization";
+            flags += "create-child-container";
+        }
+
+        // Might be that the plugin only supports create-child-container but
+        // not change tracking, so we need to add this capability separately
+        if (PluginCapabilities.CREATE_CONTAINERS in capabilities &&
+            !(PluginCapabilities.TRACK_CHANGES in capabilities)) {
+            flags += "create-child-container";
         }
 
         // Set the flags we found; otherwise remove whatever is in the

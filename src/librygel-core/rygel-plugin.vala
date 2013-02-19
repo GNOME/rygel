@@ -46,7 +46,10 @@ public enum Rygel.PluginCapabilities {
     UPLOAD = IMAGE_UPLOAD | VIDEO_UPLOAD | AUDIO_UPLOAD,
 
     /// Server supports tracking changes
-    TRACK_CHANGES
+    TRACK_CHANGES,
+
+    /// Server supports container creation
+    CREATE_CONTAINERS
 
     /* Renderer caps */
 }
