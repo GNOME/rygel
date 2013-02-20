@@ -139,10 +139,8 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
             return;
         }
 
-        var queue = ItemRemovalQueue.get_default ();
+        var queue = ObjectRemovalQueue.get_default ();
         queue.dequeue (this.item);
-
-
 
         try {
             var source_file = File.new_for_uri (this.item.uris[0]);

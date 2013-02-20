@@ -99,27 +99,45 @@ public class Rygel.ServiceAction : GLib.Object {
 public class Rygel.HTTPServer : GLib.Object {
 }
 
-public class Rygel.ItemRemovalQueue : GLib.Object {
-    public static ItemRemovalQueue get_default () {
-        return new ItemRemovalQueue ();
+public class Rygel.ObjectRemovalQueue : GLib.Object {
+    public static ObjectRemovalQueue get_default () {
+        return new ObjectRemovalQueue ();
     }
 
-    public void queue (MediaItem item, Cancellable? cancellable) {
+    public void queue (MediaObject object, Cancellable? cancellable) {
     }
 }
 
 public class Rygel.MediaObject : GLib.Object {
-    public string id;
+    public string id {get; set; }
     public string ref_id;
-    public unowned MediaContainer parent;
+    public unowned MediaContainer parent { get; set; }
     public string upnp_class;
-    public string title;
+    public string title { get; set; }
     public GUPnP.OCMFlags ocm_flags;
     public Gee.ArrayList<string> uris;
     public uint object_update_id;
 
     public void add_uri (string uri) {
         this.uris.add (uri);
+    }
+
+    internal void serialize (Rygel.Serializer serializer, HTTPServer server) {
+    }
+
+    public virtual async MediaObjects? get_children
+                                            (uint         offset,
+                                             uint         max_count,
+                                             string       sort_criteria,
+                                             Cancellable? cancellable)
+                                            throws Error {
+        return null;
+    }
+
+    public virtual async MediaObject? find_object (string       id,
+                                                   Cancellable? cancellable)
+                                                   throws Error {
+        return null;
     }
 }
 
@@ -142,8 +160,6 @@ public class Rygel.MediaItem : Rygel.MediaObject {
         this.title = title;
     }
 
-    internal void serialize (Rygel.Serializer serializer, HTTPServer server) {
-    }
 }
 
 public class Rygel.MusicItem : Rygel.AudioItem {
@@ -202,15 +218,19 @@ public class Rygel.ContentDirectory : GLib.Object {
 
 public class Rygel.MediaContainer : Rygel.MediaObject {
     public Gee.ArrayList<string> create_classes = new Gee.ArrayList<string> ();
-    public int child_count;
+    public int child_count { get; set; }
     public string sort_criteria = "+dc:title";
     public static const string ANY = "DLNA.ORG_AnyContainer";
+    public static const string STORAGE_FOLDER =
+        "object.container.storageFolder";
+    public static const string PLAYLIST =
+        "object.container.playlistContainer";
     public uint update_id;
 
     // mockable elements
     public MediaObject found_object = null;
 
-    public async MediaObject? find_object (string       id,
+    public override async MediaObject? find_object (string       id,
                                            Cancellable? cancellable = null)
                                            throws Error {
         Idle.add (() => { find_object.callback (); return false; });
@@ -237,6 +257,9 @@ public class Rygel.WritableContainer : Rygel.MediaContainer {
     public async void add_item (MediaItem    item,
                                 Cancellable? cancellable = null) {
     }
+
+    public async void add_container (MediaContainer container, Cancellable?
+            cancellable = null) { }
 }
 
 public class Rygel.SearchableContainer : Rygel.MediaContainer {
@@ -310,11 +333,11 @@ public static void log_func (string? domain,
     }
 }
 
-public class Rygel.HTTPItemCreatorTest : GLib.Object {
+public class Rygel.HTTPObjectCreatorTest : GLib.Object {
 
     public static int main (string[] args) {
         Log.set_default_handler (log_func);
-        var test = new HTTPItemCreatorTest ();
+        var test = new HTTPObjectCreatorTest ();
         test.test_parse_args ();
         test.test_didl_parsing ();
         test.test_fetch_container ();
@@ -334,7 +357,7 @@ public class Rygel.HTTPItemCreatorTest : GLib.Object {
     Error bad_metadata;
     Error invalid_args;
 
-    public HTTPItemCreatorTest () {
+    public HTTPObjectCreatorTest () {
         this.no_such_object = new ContentDirectoryError.NO_SUCH_OBJECT("");
         this.restricted_parent = new ContentDirectoryError.RESTRICTED_PARENT("");
         this.bad_metadata = new ContentDirectoryError.BAD_METADATA("");
@@ -346,19 +369,19 @@ public class Rygel.HTTPItemCreatorTest : GLib.Object {
         var content_directory = new ContentDirectory ();
 
         var action = new ServiceAction (null, "");
-        var creator = new ItemCreator (content_directory, action);
+        var creator = new ObjectCreator (content_directory, action);
         creator.run.begin ();
         assert (action.error_code == no_such_object.code);
 
         // check elements containing a comment
         action = new ServiceAction ("0", "<!-- This is an XML comment -->");
-        creator = new ItemCreator (content_directory, action);
+        creator = new ObjectCreator (content_directory, action);
         creator.run.begin ();
         assert (action.error_code == bad_metadata.code);
 
         // check null elements
         action = new ServiceAction ("0", null);
-        creator = new ItemCreator (content_directory, action);
+        creator = new ObjectCreator (content_directory, action);
         creator.run.begin ();
         assert (action.error_code == bad_metadata.code);
     }
@@ -369,7 +392,7 @@ public class Rygel.HTTPItemCreatorTest : GLib.Object {
         doc->dump_memory_enc (out xml);
         var action = new ServiceAction ("0", xml);
         var content_directory = new ContentDirectory ();
-        var creator = new ItemCreator (content_directory, action);
+        var creator = new ObjectCreator (content_directory, action);
         creator.run.begin ();
         assert (action.error_code == expected_code);
     }
@@ -387,7 +410,7 @@ public class Rygel.HTTPItemCreatorTest : GLib.Object {
 
         // test no DIDL
         var action = new ServiceAction ("0", "");
-        var creator = new ItemCreator (content_directory, action);
+        var creator = new ObjectCreator (content_directory, action);
         creator.run.begin ();
         assert (action.error_code == bad_metadata.code);
         assert (action.error_message == "Bad metadata");
@@ -426,13 +449,10 @@ public class Rygel.HTTPItemCreatorTest : GLib.Object {
         didl_node->add_child (tmp);
         this.test_didl_parsing_step (xml, bad_metadata.code);
 
-        // test missing, empty or non-item upnp class
+        // test missing or empty upnp class
         tmp->unlink ();
         tmp = item_node->copy (1);
         var class_node = tmp->children->next;
-        class_node->set_content ("object.container");
-        didl_node->add_child (tmp);
-        this.test_didl_parsing_step (xml, bad_metadata.code);
 
         class_node->set_content ("");
         this.test_didl_parsing_step (xml, bad_metadata.code);
@@ -441,7 +461,7 @@ public class Rygel.HTTPItemCreatorTest : GLib.Object {
         this.test_didl_parsing_step (xml, bad_metadata.code);
     }
 
-    private void test_fetch_container_run (ItemCreator creator) {
+    private void test_fetch_container_run (ObjectCreator creator) {
         var main_loop = new MainLoop (null, false);
         creator.run.begin ( () => { main_loop.quit (); });
         main_loop.run ();
@@ -453,7 +473,7 @@ public class Rygel.HTTPItemCreatorTest : GLib.Object {
         var root_container = new SearchableContainer ();
         content_directory.root_container = root_container;
         var action = new ServiceAction ("0", DIDL_ITEM);
-        var creator = new ItemCreator (content_directory, action);
+        var creator = new ObjectCreator (content_directory, action);
         this.test_fetch_container_run (creator);
         assert (action.error_code == no_such_object.code);
 

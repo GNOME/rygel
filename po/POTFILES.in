@@ -100,7 +100,7 @@ src/librygel-server/rygel-http-time-seek.vala
 src/librygel-server/rygel-http-transcode-handler.vala
 src/librygel-server/rygel-image-item.vala
 src/librygel-server/rygel-import-resource.vala
-src/librygel-server/rygel-item-creator.vala
+src/librygel-server/rygel-object-creator.vala
 src/librygel-server/rygel-item-destroyer.vala
 src/librygel-server/rygel-item-updater.vala
 src/librygel-server/rygel-logical-expression.vala

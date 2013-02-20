@@ -90,6 +90,11 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         item.parent = this;
     }
 
+    public async void add_container (MediaContainer container,
+                                     Cancellable? cancellable) throws Error {
+        throw new WriteableContainerError.NOT_IMPLEMENTED ("Not supported");
+    }
+
     public async void remove_item (string id, Cancellable? cancellable)
                                    throws Error {
         string parent_id;
@@ -97,6 +102,11 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         var urn = this.get_item_info (id, out parent_id);
 
         yield this.remove_entry_from_store (urn);
+    }
+
+    public async void remove_container (string id, Cancellable? cancellable)
+                                        throws Error {
+        throw new WriteableContainerError.NOT_IMPLEMENTED ("Not supported");
     }
 
     public async MediaObjects? search (SearchExpression? expression,

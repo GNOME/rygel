@@ -8,7 +8,7 @@ check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-album-art-spec-test \
 		 rygel-http-post-test \
 		 rygel-searchable-container-test \
-		 rygel-item-creator-test \
+		 rygel-object-creator-test \
 		 rygel-user-config-test \
 		 rygel-regression \
 		 rygel-media-engine-test
@@ -135,22 +135,22 @@ rygel_searchable_container_test_CFLAGS =  \
 rygel_searchable_container_test_LDADD = \
 	$(test_libs)
 
-rygel_item_creator_test_SOURCES = rygel-item-creator-test.vala \
-				  rygel-item-creator.vala \
+rygel_object_creator_test_SOURCES = rygel-object-creator-test.vala \
+				  rygel-object-creator.vala \
 				  rygel-data-source.vala \
 				  rygel-dlna-profile.vala \
-				  rygel-http-seek_item-creator.vala \
-				  rygel-state-machine_item-creator.vala \
+				  rygel-http-seek_object-creator.vala \
+				  rygel-state-machine_object-creator.vala \
 				  rygel-relational-expression.vala \
 				  rygel-search-expression.vala \
 				  rygel-media-engine.vala \
-				  rygel-serializer_item-creator.vala
-rygel_item_creator_test_VALAFLAGS = \
+				  rygel-serializer_object-creator.vala
+rygel_object_creator_test_VALAFLAGS = \
 	$(test_valaflags) \
 	--pkg uuid
-rygel_item_creator_test_CFLAGS =  \
+rygel_object_creator_test_CFLAGS =  \
 	$(test_cflags)
-rygel_item_creator_test_LDADD = \
+rygel_object_creator_test_LDADD = \
 	$(test_libs)
 
 rygel_user_config_test_SOURCES = rygel-configuration.vala \

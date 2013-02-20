@@ -67,6 +67,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
     public const string MUSIC_ALBUM = UPNP_CLASS + ".album.musicAlbum";
     public const string MUSIC_ARTIST = UPNP_CLASS + ".person.musicArtist";
     public const string MUSIC_GENRE = UPNP_CLASS + ".genre.musicGenre";
+    public const string PLAYLIST = UPNP_CLASS + ".playlistContainer";
 
     private const string DEFAULT_SORT_CRITERIA = "+upnp:class,+dc:title";
     public const string ALBUM_SORT_CRITERIA = "+upnp:class," +

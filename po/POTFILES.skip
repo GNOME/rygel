@@ -68,9 +68,9 @@ src/librygel-server/rygel-http-time-seek.c
 src/librygel-server/rygel-http-transcode-handler.c
 src/librygel-server/rygel-image-item.c
 src/librygel-server/rygel-import-resource.c
-src/librygel-server/rygel-item-creator.c
+src/librygel-server/rygel-object-creator.c
 src/librygel-server/rygel-item-destroyer.c
-src/librygel-server/rygel-item-removal-queue.c
+src/librygel-server/rygel-object-removal-queue.c
 src/librygel-server/rygel-item-updater.c
 src/librygel-server/rygel-last-change.c
 src/librygel-server/rygel-last-change-entry.c

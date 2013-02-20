@@ -51,10 +51,10 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-http-time-seek.vala \
 	rygel-http-transcode-handler.vala \
 	rygel-import-resource.vala \
-	rygel-item-creator.vala \
+	rygel-object-creator.vala \
 	rygel-item-destroyer.vala \
 	rygel-item-updater.vala \
-	rygel-item-removal-queue.vala \
+	rygel-object-removal-queue.vala \
 	rygel-last-change-entry.vala \
 	rygel-last-change-obj-add.vala \
 	rygel-last-change-obj-del.vala \

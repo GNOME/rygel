@@ -43,12 +43,17 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
         base.constructed ();
 
         this.create_classes = new ArrayList<string> ();
+
+        // Items
         this.create_classes.add (Rygel.ImageItem.UPNP_CLASS);
         this.create_classes.add (Rygel.PhotoItem.UPNP_CLASS);
         this.create_classes.add (Rygel.VideoItem.UPNP_CLASS);
         this.create_classes.add (Rygel.AudioItem.UPNP_CLASS);
         this.create_classes.add (Rygel.MusicItem.UPNP_CLASS);
         this.create_classes.add (Rygel.PlaylistItem.UPNP_CLASS);
+
+        // Containers
+        this.create_classes.add (Rygel.MediaContainer.STORAGE_FOLDER);
     }
 
     public async void add_item (Rygel.MediaItem item, Cancellable? cancellable)
@@ -63,10 +68,36 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
         yield this.add_child_tracked (item);
     }
 
+    public async void add_container (MediaContainer container,
+                                     Cancellable?   cancellable) 
+                                     throws Error {
+        container.parent = this;
+        switch (container.upnp_class) {
+        case MediaContainer.STORAGE_FOLDER:
+            var file = File.new_for_uri (container.uris[0]);
+            if (file.is_native ()) {
+                file.make_directory_with_parents (cancellable);
+            }
+            break;
+        default:
+            throw new WriteableContainerError.NOT_IMPLEMENTED
+                                        ("upnp:class %s not supported",
+                                         container.upnp_class);
+        }
+
+        yield this.add_child_tracked (container);
+    }
+
     public async void remove_item (string id, Cancellable? cancellable)
                                    throws Error {
         var object = this.media_db.get_object (id);
 
         yield this.remove_child_tracked (object);
     }
+
+    public async void remove_container (string id, Cancellable? cancellable)
+                                        throws Error {
+        throw new WriteableContainerError.NOT_IMPLEMENTED ("Not supported");
+    }
+
 }

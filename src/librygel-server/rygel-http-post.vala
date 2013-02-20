@@ -45,14 +45,13 @@ internal class Rygel.HTTPPost : HTTPRequest {
     }
 
     protected override async void handle () throws Error {
-        var queue = ItemRemovalQueue.get_default ();
-        queue.dequeue (this.object as MediaItem);
+        var queue = ObjectRemovalQueue.get_default ();
+        queue.dequeue (this.object);
 
         try {
             yield this.handle_real ();
         } catch (Error error) {
-            yield queue.remove_now (this.object as MediaItem,
-                                    this.cancellable);
+            yield queue.remove_now (this.object, this.cancellable);
 
             throw error;
         }
@@ -218,7 +217,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
     }
 
     private async void remove_item () {
-        var queue = ItemRemovalQueue.get_default ();
+        var queue = ObjectRemovalQueue.get_default ();
         yield queue.remove_now (this.object as MediaItem, null);
     }
 

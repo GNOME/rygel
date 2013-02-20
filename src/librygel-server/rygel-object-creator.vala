@@ -25,9 +25,69 @@
 using GUPnP;
 
 /**
+ * Dummy implementation of Rygel.MediaContainer to pass on to
+ * Rygel.WritableContianer for creation.
+ */
+private class Rygel.BaseMediaContainer : MediaContainer {
+    /**
+     * Create a media container with the specified details.
+     *
+     * @param id See the id property of the #RygelMediaObject class.
+     * @param parent The parent container, if any.
+     * @param title See the title property of the #RygelMediaObject class.
+     * @param child_count The initially-known number of child items.
+     */
+    public BaseMediaContainer (string          id,
+                               MediaContainer? parent,
+                               string          title,
+                               int             child_count) {
+        Object (id : id,
+                parent : parent,
+                title : title,
+                child_count : child_count);
+    }
+
+    /**
+     * Fetches the list of media objects directly under this container.
+     *
+     * @param offset zero-based index of the first item to return
+     * @param max_count maximum number of objects to return
+     * @param sort_criteria sorting order of objects to return
+     * @param cancellable optional cancellable for this operation
+     *
+     * @return A list of media objects.
+     */
+    public override async MediaObjects? get_children
+                                            (uint         offset,
+                                             uint         max_count,
+                                             string       sort_criteria,
+                                             Cancellable? cancellable)
+                                            throws Error {
+        return null;
+    }
+
+    /**
+     * Recursively searches this container for a media object with the given ID.
+     *
+     * @param id ID of the media object to search for
+     * @param cancellable optional cancellable for this operation
+     *
+     * @return the found media object.
+     */
+    public override async MediaObject? find_object (string       id,
+                                                    Cancellable? cancellable)
+                                                    throws Error {
+        return null;
+    }
+
+}
+
+
+
+/**
  * CreateObject action implementation.
  */
-internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
+internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
     private static PatternSpec comment_pattern = new PatternSpec ("*<!--*-->*");
 
     private const string INVALID_CHARS = "/?<>\\:*|\"";
@@ -36,8 +96,8 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
     private string container_id;
     private string elements;
 
-    private DIDLLiteItem didl_item;
-    private MediaItem item;
+    private DIDLLiteObject didl_object;
+    private MediaObject object;
 
     private ContentDirectory content_dir;
     private ServiceAction action;
@@ -47,8 +107,8 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
 
     public Cancellable cancellable { get; set; }
 
-    public ItemCreator (ContentDirectory    content_dir,
-                        owned ServiceAction action) {
+    public ObjectCreator (ContentDirectory    content_dir,
+                          owned ServiceAction action) {
         this.content_dir = content_dir;
         this.cancellable = content_dir.cancellable;
         this.action = (owned) action;
@@ -76,30 +136,38 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
              * modify the UPnP class to something we support and
              * fetch_container took care of this already.
              */
-            if (!container.can_create (this.didl_item.upnp_class) &&
+            if (!container.can_create (this.didl_object.upnp_class) &&
                 this.container_id != MediaContainer.ANY) {
                 throw new ContentDirectoryError.BAD_METADATA
                                         ("Creating of objects with class %s " +
                                          "is not supported in %s",
-                                         this.didl_item.upnp_class,
+                                         this.didl_object.upnp_class,
                                          container.id);
             }
 
-            yield this.create_item_from_didl (container);
-            yield container.add_item (this.item, this.cancellable);
+            yield this.create_object_from_didl (container);
+            if (this.object is MediaItem) {
+                yield container.add_item (this.object as MediaItem,
+                                          this.cancellable);
+            } else {
+                yield container.add_container (this.object as MediaContainer,
+                                               this.cancellable);
+            }
 
-            yield this.wait_for_item (container);
+            yield this.wait_for_object (container);
 
-            this.item.serialize (serializer, this.content_dir.http_server);
+            this.object.serialize (serializer, this.content_dir.http_server);
 
             // Conclude the successful action
             this.conclude ();
 
             if (this.container_id == MediaContainer.ANY &&
-                this.item.place_holder) {
-                var queue = ItemRemovalQueue.get_default ();
+                ((this.object is MediaContainer) ||
+                (this.object is MediaItem && (this.object as
+                                              MediaItem).place_holder))) {
+                var queue = ObjectRemovalQueue.get_default ();
 
-                queue.queue (this.item, this.cancellable);
+                queue.queue (this.object, this.cancellable);
             }
         } catch (Error err) {
             this.handle_error (err);
@@ -136,8 +204,10 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
      * according to UPnP and DLNA guidelines.
      */
     private void parse_didl () throws Error {
-        this.didl_parser.item_available.connect ((didl_item) => {
-            this.didl_item = didl_item;
+        // FIXME: This will take the last object in the DIDL-Lite, maybe we
+        // should limit it to one somehow.
+        this.didl_parser.object_available.connect ((didl_object) => {
+            this.didl_object = didl_object;
         });
 
         try {
@@ -146,27 +216,28 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             throw new ContentDirectoryError.BAD_METADATA ("Bad metadata");
         }
 
-        if (this.didl_item == null) {
+        if (this.didl_object == null) {
+            // FIXME: Change to object after string freeze
             var message = _("No items in DIDL-Lite from client: '%s'");
 
             throw new ContentDirectoryError.BAD_METADATA
                                         (message, this.elements);
         }
 
-        if (didl_item.id == null || didl_item.id != "") {
+        if (didl_object.id == null || didl_object.id != "") {
             throw new ContentDirectoryError.BAD_METADATA
                                         ("@id must be set to \"\" in " +
                                          "CreateItem");
         }
 
-        if (didl_item.title == null) {
+        if (didl_object.title == null) {
             throw new ContentDirectoryError.BAD_METADATA
                                     ("dc:title must be set in " +
                                      "CreateItem");
         }
 
         // FIXME: Is this check really necessary? 7.3.118.4 passes without it.
-        if ((didl_item.dlna_managed &
+        if ((didl_object.dlna_managed &
             (OCMFlags.UPLOAD |
              OCMFlags.CREATE_CONTAINER |
              OCMFlags.UPLOAD_DESTROYABLE)) != 0) {
@@ -175,14 +246,14 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                          "were found in 'dlnaManaged'");
         }
 
-        if (didl_item.upnp_class == null ||
-            didl_item.upnp_class == "" ||
-            !didl_item.upnp_class.has_prefix ("object.item")) {
+        if (didl_object.upnp_class == null ||
+            didl_object.upnp_class == "" ||
+            !didl_object.upnp_class.has_prefix ("object")) {
             throw new ContentDirectoryError.BAD_METADATA
                                         ("Invalid upnp:class given ");
         }
 
-        if (didl_item.restricted) {
+        if (didl_object.restricted) {
             throw new ContentDirectoryError.INVALID_ARGS
                                         ("Cannot create restricted item");
         }
@@ -222,13 +293,13 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             return null;
         }
 
-        var upnp_class = this.didl_item.upnp_class;
+        var upnp_class = this.didl_object.upnp_class;
 
         var expression = new RelationalExpression ();
         expression.op = SearchCriteriaOp.DERIVED_FROM;
         expression.operand1 = "upnp:createClass";
 
-        while (upnp_class != "object.item") {
+        while (upnp_class != "object") {
             expression.operand2 = upnp_class;
 
             uint total_matches;
@@ -239,7 +310,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                                       root_container.sort_criteria,
                                                       this.cancellable);
             if (result.size > 0) {
-                this.didl_item.upnp_class = upnp_class;
+                this.didl_object.upnp_class = upnp_class;
 
                 return result[0];
             } else {
@@ -247,10 +318,11 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             }
         }
 
-        if (upnp_class == "object.item") {
+        if (upnp_class == "object") {
+            // FIXME: Mark translatable.
             throw new ContentDirectoryError.BAD_METADATA
                                     ("'%s' UPnP class unsupported",
-                                     this.didl_item.upnp_class);
+                                     this.didl_object.upnp_class);
         }
 
         return null;
@@ -296,7 +368,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
         string didl = this.serializer.get_string ();
 
         /* Set action return arguments */
-        this.action.set ("ObjectID", typeof (string), this.item.id,
+        this.action.set ("ObjectID", typeof (string), this.object.id,
                          "Result", typeof (string), didl);
 
         this.action.return ();
@@ -318,9 +390,15 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
     }
 
     private string get_generic_mime_type () {
-        if (this.item is ImageItem) {
+        if (!(this.object is MediaItem)) {
+            return "";
+        }
+
+        var item = this.object as MediaItem;
+
+        if (item is ImageItem) {
             return "image";
-        } else if (this.item is VideoItem) {
+        } else if (item is VideoItem) {
             return "video";
         } else {
             return "audio";
@@ -328,23 +406,49 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
     }
 
     /**
-     * Transfer information passed by caller to a MediaItem.
+     * Transfer information passed by caller to a MediaObject.
      *
-     * WritableContainer works on MediaItem so we transfer the supplied data to
-     * one. Additionally some checks are performed (e.g. whether the DLNA
+     * WritableContainer works on MediaObject so we transfer the supplied data
+     * to one. Additionally some checks are performed (e.g. whether the DLNA
      * profile is supported or not) or sanitize the supplied title for use as
      * part of the on-disk filename.
      *
-     * This function fills ItemCreator.item.
+     * This function fills ObjectCreator.object.
      */
-    private async void create_item_from_didl (WritableContainer container)
-                                                   throws Error {
-        this.item = this.create_item (this.didl_item.id,
-                                      container,
-                                      this.didl_item.title,
-                                      this.didl_item.upnp_class);
+    private async void create_object_from_didl (WritableContainer container)
+                                                throws Error {
+        this.object = this.create_object (this.didl_object.id,
+                                          container,
+                                          this.didl_object.title,
+                                          this.didl_object.upnp_class);
 
-        var resources = this.didl_item.get_resources ();
+        if (this.object is MediaItem) {
+            this.extract_item_parameters ();
+        }
+
+        // extract_item_parameters could not find an uri
+        if (this.object.uris.size == 0) {
+            var uri = yield this.create_uri (container, this.object.title);
+            this.object.uris.add (uri);
+            if (this.object is MediaItem) {
+                (this.object as MediaItem).place_holder = true;
+            }
+        } else {
+            if (this.object is MediaItem) {
+                var file = File.new_for_uri (this.object.uris[0]);
+                (this.object as MediaItem).place_holder = !file.is_native ();
+            }
+        }
+
+        this.object.id = this.object.uris[0];
+
+        this.parse_and_verify_didl_date ();
+    }
+
+    private void extract_item_parameters () throws Error {
+        var item = this.object as MediaItem;
+
+        var resources = this.didl_object.get_resources ();
         if (resources != null && resources.length () > 0) {
             var resource = resources.nth (0).data;
             var info = resource.protocol_info;
@@ -352,90 +456,86 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             if (info != null) {
                 if (info.dlna_profile != null) {
                     if (!this.is_profile_valid (info.dlna_profile)) {
+                        // FIXME: Missing translation
                         throw new ContentDirectoryError.BAD_METADATA
                                     ("'%s' DLNA profile unsupported",
                                      info.dlna_profile);
                     }
 
-                    this.item.dlna_profile = info.dlna_profile;
+                    item.dlna_profile = info.dlna_profile;
                 }
 
                 if (info.mime_type != null) {
-                    this.item.mime_type = info.mime_type;
+                    item.mime_type = info.mime_type;
                 }
             }
 
-            string sanitized_uri;
+            string sanitized_uri = null;
             if (this.is_valid_uri (resource.uri, out sanitized_uri)) {
-                this.item.add_uri (sanitized_uri);
+                item.add_uri (sanitized_uri);
             }
 
             if (resource.size >= 0) {
-                this.item.size = resource.size;
+                item.size = resource.size;
             }
         }
 
-        if (this.item.mime_type == null) {
-            this.item.mime_type = this.get_generic_mime_type ();
+        if (item.mime_type == null) {
+            item.mime_type = this.get_generic_mime_type ();
         }
 
-        if (this.item.size < 0) {
-            this.item.size = 0;
+        if (item.size < 0) {
+            item.size = 0;
         }
-
-        if (this.item.uris.size == 0) {
-            var uri = yield this.create_uri (container, this.item.title);
-            this.item.uris.add (uri);
-            this.item.place_holder = true;
-        } else {
-            var file = File.new_for_uri (this.item.uris[0]);
-            this.item.place_holder = !file.is_native ();
-        }
-
-        this.item.id = this.item.uris[0];
-
-        this.parse_and_verify_didl_date ();
     }
 
     private void parse_and_verify_didl_date () throws Error {
-        if (this.didl_item.date == null) {
+        if (!(this.didl_object is DIDLLiteItem)) {
             return;
         }
 
-        var parsed_date = new Soup.Date.from_string (this.didl_item.date);
+        var didl_item = this.didl_object as DIDLLiteItem;
+        if (didl_item.date == null) {
+            return;
+        }
+
+        var parsed_date = new Soup.Date.from_string (didl_item.date);
         if (parsed_date != null) {
-            this.item.date = parsed_date.to_string (Soup.DateFormat.ISO8601);
+            (this.object as MediaItem).date = parsed_date.to_string
+                                            (Soup.DateFormat.ISO8601);
 
             return;
         }
 
         int year = 0, month = 0, day = 0;
 
-        if (this.didl_item.date.scanf ("%4d-%02d-%02d",
-                                       out year,
-                                       out month,
-                                       out day) != 3) {
+        if (didl_item.date.scanf ("%4d-%02d-%02d",
+                                  out year,
+                                  out month,
+                                  out day) != 3) {
             throw new ContentDirectoryError.BAD_METADATA
                                     ("Invalid date format: %s",
-                                     this.didl_item.date);
+                                     didl_item.date);
         }
 
         var date = GLib.Date ();
         date.set_dmy ((DateDay) day, (DateMonth) month, (DateYear) year);
 
         if (!date.valid ()) {
+            // FIXME: Add translation.
             throw new ContentDirectoryError.BAD_METADATA
                                     ("Invalid date: %s",
-                                     this.didl_item.date);
+                                     didl_item.date);
         }
 
-        this.item.date = this.didl_item.date + "T00:00:00";
+        (this.object as MediaItem).date = didl_item.date + "T00:00:00";
     }
 
-    private MediaItem create_item (string            id,
-                                   WritableContainer parent,
-                                   string            title,
-                                   string            upnp_class) throws Error {
+    private MediaObject create_object (string            id,
+                                       WritableContainer parent,
+                                       string            title,
+                                       string            upnp_class)
+                                       throws Error {
         switch (upnp_class) {
         case ImageItem.UPNP_CLASS:
             return new ImageItem (id, parent, title);
@@ -449,6 +549,12 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
             return new MusicItem (id, parent, title);
         case PlaylistItem.UPNP_CLASS:
             return new PlaylistItem (id, parent, title);
+        case MediaContainer.STORAGE_FOLDER:
+            return new BaseMediaContainer (id, parent, title, 0);
+        case MediaContainer.PLAYLIST:
+            var container = new BaseMediaContainer (id, parent, title, 0);
+            container.upnp_class = upnp_class;
+            return container;
         default:
             throw new ContentDirectoryError.BAD_METADATA
                                         ("Creation of item of class '%s' " +
@@ -501,13 +607,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                                                     "_",
                                                     RegexMatchFlags.NOTEMPTY);
 
-        var udn = new uchar[50];
-        var id = new uchar[16];
-
-        UUID.generate (id);
-        UUID.unparse (id, udn);
-
-        return (string) udn + "-" + mangled;
+        return UUID.get () + "-" + mangled;
     }
 
     /**
@@ -535,37 +635,36 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
     }
 
     /**
-     * Wait for the new item
+     * Wait for the new object
      *
-     * When creating an item in the back-end via WritableContainer.add_item
-     * there might be a delay between the creation and the back-end having the
-     * newly created item available. This function waits for the item to become
-     * available by hooking into the container_updated signal. The maximum time
-     * to wait is 5 seconds.
+     * When creating an object in the back-end via WritableContainer.add_item
+     * or WritableContainer.add_container there might be a delay between the
+     * creation and the back-end having the newly created item available. This
+     * function waits for the item to become available by hooking into the
+     * container_updated signal. The maximum time to wait is 5 seconds.
      *
      * @param container to watch
      */
-    private async void wait_for_item (WritableContainer container) {
-        debug ("Waiting for new item to appear under container '%s'..",
+    private async void wait_for_object (WritableContainer container) {
+        debug ("Waiting for new object to appear under container '%s'..",
                container.id);
 
-        MediaItem item = null;
+        MediaObject object = null;
 
-        while (item == null) {
+        while (object == null) {
             try {
-                item = (yield container.find_object (this.item.id,
-                                                     this.cancellable))
-                       as MediaItem;
+                object = yield container.find_object (this.object.id,
+                                                      this.cancellable);
             } catch (Error error) {
                 warning ("Error from container '%s' on trying to find newly " +
-                         "added child item '%s' in it",
+                         "added child object '%s' in it",
                          container.id,
-                         this.item.id);
+                         this.object.id);
             }
 
-            if (item == null) {
+            if (object == null) {
                 var id = container.container_updated.connect ((container) => {
-                    this.wait_for_item.callback ();
+                    this.wait_for_object.callback ();
                 });
 
                 uint timeout = 0;
@@ -573,7 +672,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                     debug ("Timeout on waiting for 'updated' signal on '%s'.",
                            container.id);
                     timeout = 0;
-                    this.wait_for_item.callback ();
+                    this.wait_for_object.callback ();
 
                     return false;
                 });
@@ -589,7 +688,7 @@ internal class Rygel.ItemCreator: GLib.Object, Rygel.StateMachine {
                 }
             }
         }
-        debug ("Finished waiting for new item to appear under container '%s'",
+        debug ("Finished waiting for new object to appear under container '%s'",
                container.id);
     }
 

@@ -203,7 +203,7 @@ internal class Rygel.ContentDirectory: Service {
     /* CreateObject action implementation */
     private void create_object_cb (Service       content_dir,
                                    ServiceAction action) {
-        var creator = new ItemCreator (this, action);
+        var creator = new ObjectCreator (this, action);
 
         creator.run.begin ();
     }
