@@ -31,6 +31,49 @@ GStreamer Renderer:
  - Support flash videos as announced by grl-ms2 and its youtube plug-in.
  - Honor http_proxy environment variable and desktop proxy settings.
 
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=692362
+ - https://bugzilla.gnome.org/show_bug.cgi?id=693577
+ - https://bugzilla.gnome.org/show_bug.cgi?id=692696
+
+Bugs fixed in this release:
+  Krzesimir Nowak <krnowak@openismus.com>
+  Murray Cumming <murrayc@murrayc.com>
+  Jens Georg <jensg@openismus.com>
+  Murray Cumming <murrayc@openismus.com>
+  Мирослав Николић <miroslavnikolic@rocketmail.com>
+  Piotr Drąg <piotrdrag@gmail.com>
+  Jens Georg <mail@jensge.org>
+  Fran Diéguez <fran.dieguez@mabishu.com>
+  Daniel Mustieles <daniel.mustieles@gmail.com>
+  Anish A <aneesh.nl@gmail.com>
+  Yaron Shahrabani <sh.yaron@gmail.com>
+  Nathaniel McCallum <nathaniel@themccallums.org>
+  Milo Casagrande <milo@ubuntu.com>
+  Matej Urbančič <mateju@svn.gnome.org>
+  Marek Černocký <marek@manet.cz>
+  Kjartan Maraas <kmaraas@gnome.org>
+  Gheyret Kenji <gheyret@gmail.com>
+  Christian Kirbach <Christian.Kirbach@googlemail.com>
+  Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - de, courtesy of Christian Kirbach
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Fran Dieguez
+ - he, courtesy of Yaron Shahrabani
+ - it, courtesy of Milo Casagrande
+ - ml, courtesy of Razee Marikar
+ - nb, courtesy of Kjartan Maraas
+ - pl, courtesy of Piotr Drąg
+ - sl, courtesy of Matej Urbančič
+ - sr, courtesy of Мирослав Николић
+ - sr@latin, courtesy of Miroslav Nikolić
+ - ug, courtesy of Gheyret Kenji
+ - zh_HK, courtesy of Chao-Hsiung Liao
+ - zh_TW, courtesy of Chao-Hsiung Liao
+
 0.17.7
 ======
 
