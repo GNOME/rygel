@@ -1,3 +1,36 @@
+0.17.8
+======
+
+A new unstable release for Rygel
+
+Changes compared to 0.17.7:
+
+- Various documentation fixes.
+- Fix an issue with using DLNA.ORG_AnyContainer on upload.
+- Linker fixes.
+- Some minor nullable fixes.
+- Modify .pc files to include useful information for external media engines
+  and plug-ins.
+- Hide rygel-preferences in GNOME environment since it's handled by system
+  settings.
+
+MediaExport:
+ - Various clean-ups.
+ - Fix comparing GFiles properly.
+ - Properly check for hidden files instead of using .has_prefix (".").
+ - Don't emit multiple extraction errors.
+ - Fix some unnecessary sting copying.
+ - Fix plug-in start-up on on database error.
+ - Fix harvesting of dates from media files.
+ - More LastChange event emitting fixes.
+ - React if configuration of uris changes.
+ - Add an option to disable the virtual container hierarchy.
+ - Also extract basic file information if no GstDiscoverer can be created.
+
+GStreamer Renderer:
+ - Support flash videos as announced by grl-ms2 and its youtube plug-in.
+ - Honor http_proxy environment variable and desktop proxy settings.
+
 0.17.7
 ======
 
