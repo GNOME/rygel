@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-11 15:39+0000\n"
-"PO-Revision-Date: 2013-02-13 20:35+0900\n"
+"POT-Creation-Date: 2013-02-17 18:54+0000\n"
+"PO-Revision-Date: 2013-02-22 21:51+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: \n"
@@ -121,11 +121,10 @@ msgstr "سانداندىن نەڭ ‹%s› ئى ئېلىشتا خاتالىق ك
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:207
 #, c-format
-#| msgid "Failed to search in '%s': %s"
 msgid "Failed to query info of a file %s: %s"
-msgstr ""
+msgstr "ھۆججەت %s نىڭ ئۇچۇرىنى سوراش مەغلۇپ بولدى: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:251
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:247
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "سانداندىن نەڭنى ئۆچۈرۈۋاتقاندا خاتالىق كۆرۈلدى: %s"
@@ -567,32 +566,32 @@ msgstr "%s نىڭدىن نەڭلەرنى چىقىرىۋېتىشكە بولماي
 #: ../src/librygel-server/rygel-item-updater.vala:77
 #, c-format
 msgid "Successfully updated object '%s'"
-msgstr ""
+msgstr "نەڭ ‹%s› نى يېڭىلاش مۇۋەپپەقىيەتلىك بولدى"
 
 #: ../src/librygel-server/rygel-item-updater.vala:85
 #, c-format
 msgid "Failed to update object '%s': %s"
-msgstr ""
+msgstr "نەڭ ‹%s› نى يېڭىلاش مەغلۇپ بولدى: %s"
 
 #: ../src/librygel-server/rygel-item-updater.vala:162
 msgid "Bad current tag value."
-msgstr ""
+msgstr "نۆۋەتتىكى خەتكۈش(tag) قىممىتى بۇزۇق."
 
 #: ../src/librygel-server/rygel-item-updater.vala:166
 msgid "Bad new tag value."
-msgstr ""
+msgstr "يېڭى خەتكۈش(tag) قىممىتى بۇزۇق."
 
 #: ../src/librygel-server/rygel-item-updater.vala:169
 msgid "Tried to delete required tag."
-msgstr ""
+msgstr "ئىلتىماس قىلىنغان خەتكۈش(tag) نى ئۆچۈرمەكچى."
 
 #: ../src/librygel-server/rygel-item-updater.vala:172
 msgid "Tried to change read-only property."
-msgstr ""
+msgstr "پەقەت ئوقۇش خاسلىقىنى ئۆزگەرتمەكچى."
 
 #: ../src/librygel-server/rygel-item-updater.vala:175
 msgid "Parameter count mismatch."
-msgstr ""
+msgstr "پارامېتىر سانى ماسلاشمىدى."
 
 #: ../src/librygel-server/rygel-item-updater.vala:178
 msgid "Unknown error."
@@ -612,11 +611,11 @@ msgstr ""
 
 #: ../src/librygel-server/rygel-media-engine.vala:69
 msgid "No media engine found."
-msgstr ""
+msgstr "ۋاسىتە ماتورى تېپىلمىدى."
 
 #: ../src/librygel-server/rygel-media-engine.vala:80
 msgid "MediaEngine.init was not called. Cannot continue."
-msgstr ""
+msgstr "MediaEngine.init چاقىرىلماپتۇ. داۋاملاشتۇرغىلى بولمايدۇ."
 
 #: ../src/librygel-server/rygel-media-item.vala:312
 #, c-format
@@ -653,7 +652,7 @@ msgstr "بارماق سۈرەت ياسىغۇچ(thumbnailer) يوق: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
 msgid "Thubmnailing not supported"
-msgstr ""
+msgstr "كىچىك سۈرەت ياساشنى قوللىمايدۇ"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
@@ -664,7 +663,7 @@ msgstr "بارماق سۈرەت(thumbnail) يوق"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
-msgstr ""
+msgstr "D-Bus بارماق سۈرەت ياسىغۇچ يوق"
 
 #: ../src/librygel-server/rygel-transcode-manager.vala:79
 #, c-format
@@ -678,7 +677,7 @@ msgstr ""
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:92
 msgid "Failed to create pipeline"
-msgstr ""
+msgstr "نەيچە قۇرۇش مەغلۇپ بولدى"
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
@@ -704,11 +703,11 @@ msgstr "تۇرۇبا %s دىن كەلگەن ئاگاھلاندۇرۇش: %s"
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:251
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
-msgstr ""
+msgstr "ئېغىش %lld:%lld غىچە ئىزدەش مەغلۇپ  بولدى: "
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:255
 msgid "Failed to seek"
-msgstr ""
+msgstr " ئىزدەش مەغلۇپ بولدى"
 
 #: ../src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
@@ -717,7 +716,7 @@ msgstr "زۆرۈر ئېلېمېنت %s يوقالغان"
 
 #: ../src/media-engines/simple/rygel-simple-data-source.vala:56
 msgid "Time-based seek not supported"
-msgstr ""
+msgstr "ۋاقىتنى ئاساس قىلغان  ئىزدەشنى قوللىمايدۇ"
 
 #: ../src/rygel/rygel-main.vala:101
 #, c-format
