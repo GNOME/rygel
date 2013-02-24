@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-17 18:54+0000\n"
-"PO-Revision-Date: 2013-02-22 21:51+0900\n"
+"POT-Creation-Date: 2013-02-22 12:58+0000\n"
+"PO-Revision-Date: 2013-02-24 11:47+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: \n"
@@ -94,7 +94,7 @@ msgstr "بۆلەك ‹%s› ھازىر D-Bus ئەڭگىمە باش لىنىيى�
 msgid "Failed to roll back transaction: %s"
 msgstr "transaction دىن يېنىۋېلىش مەغلۇپ بولدى: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:137
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:210
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -107,7 +107,7 @@ msgstr "ID سى %s بولغان تۈرنى قوشۇش مەغلۇپ بولدى: %
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:94
 msgid "No metadata extractor available. Will not crawl."
-msgstr ""
+msgstr "مېتا سانلىق-مەلۇماتىنى يايغۇچ يوق. ئۆمىلىمەيدۇ."
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:136
 #, c-format
@@ -160,33 +160,34 @@ msgstr "ئالبوم"
 msgid "Genre"
 msgstr "ئېقىم"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:55
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:56
 msgid "Files & Folders"
 msgstr "ھۆججەت ۋە قىسقۇچىلار"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:343
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@'s ۋاسىتە"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:431
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:433
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:492
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "مەزمۇننى چىقىرىۋېتىش مەغلۇپ بولدى: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:478
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:571
 msgid "Music"
 msgstr "مۇزىكا"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:481
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:574
 msgid "Pictures"
 msgstr "سۈرەتلەر"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:483
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:576
 msgid "Videos"
 msgstr "سىنلار"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:485
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:578
 msgid "Playlists"
 msgstr "قويۇش تىزىمى"
 
@@ -262,7 +263,7 @@ msgstr "ئەمەلىيلەشتۈرۈلمىگەن"
 #: ../src/librygel-core/rygel-connection-manager.vala:91
 #: ../src/librygel-core/rygel-connection-manager.vala:105
 #: ../src/librygel-core/rygel-connection-manager.vala:127
-#: ../src/librygel-renderer/rygel-av-transport.vala:203
+#: ../src/librygel-renderer/rygel-av-transport.vala:214
 #: ../src/librygel-renderer/rygel-rendering-control.vala:128
 #: ../src/librygel-server/rygel-content-directory.vala:252
 #: ../src/librygel-server/rygel-content-directory.vala:279
@@ -366,38 +367,38 @@ msgstr "قىسقۇچ ‹%s› دىكى مەزمۇنلارنى كۆرسىتىۋا
 msgid "XML node '%s' not found."
 msgstr "XML تۈگۈنى ‹%s› نى تاپالمىدى."
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:209
+#: ../src/librygel-renderer/rygel-av-transport.vala:220
 #: ../src/librygel-renderer/rygel-rendering-control.vala:134
 msgid "Invalid InstanceID"
 msgstr "InstanceID ئىناۋەتسىز"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:244
-#: ../src/librygel-renderer/rygel-av-transport.vala:659
-#: ../src/librygel-renderer/rygel-av-transport.vala:669
+#: ../src/librygel-renderer/rygel-av-transport.vala:255
+#: ../src/librygel-renderer/rygel-av-transport.vala:670
+#: ../src/librygel-renderer/rygel-av-transport.vala:680
 msgid "Resource not found"
 msgstr "مەنبە تېپىلمىدى"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:255
+#: ../src/librygel-renderer/rygel-av-transport.vala:266
 msgid "Illegal MIME-type"
 msgstr "خاتا MIME-تىپ"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:517
+#: ../src/librygel-renderer/rygel-av-transport.vala:528
 msgid "Play speed not supported"
 msgstr "قويۇش تېزلىكىنى قوللىمايدۇ"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:534
+#: ../src/librygel-renderer/rygel-av-transport.vala:545
 msgid "Transition not available"
 msgstr "Transition يوق"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:563
-#: ../src/librygel-renderer/rygel-av-transport.vala:587
+#: ../src/librygel-renderer/rygel-av-transport.vala:574
+#: ../src/librygel-renderer/rygel-av-transport.vala:598
 msgid "Seek mode not supported"
 msgstr "ئىزدەش ھالىتىنى قوللىمايدۇ"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:576
-#: ../src/librygel-renderer/rygel-av-transport.vala:597
-#: ../src/librygel-renderer/rygel-av-transport.vala:605
+#: ../src/librygel-renderer/rygel-av-transport.vala:587
+#: ../src/librygel-renderer/rygel-av-transport.vala:608
+#: ../src/librygel-renderer/rygel-av-transport.vala:616
 msgid "Illegal seek target"
 msgstr "خاتا ئىزدەش نىشانى"
 
@@ -425,7 +426,7 @@ msgstr "پارامېتىرلار خاتا"
 
 #: ../src/librygel-server/rygel-browse.vala:94
 msgid "Cannot browse children on item"
-msgstr ""
+msgstr "تۈرنىڭ بالا تۈرلىرىنى كۆرسەتكىلى بولمىدى"
 
 #: ../src/librygel-server/rygel-browse.vala:130
 #, c-format
@@ -600,14 +601,14 @@ msgstr "نامەلۇم خاتالىق."
 #: ../src/librygel-server/rygel-item-updater.vala:191
 #, c-format
 msgid "Metadata modification of object %s not allowed"
-msgstr ""
+msgstr "نەڭ %s  نىڭ مېتا سانلىق-مەلۇماتىنى ئۆزگەرتىشكە بولمايدۇ"
 
 #: ../src/librygel-server/rygel-item-updater.vala:196
 #, c-format
 msgid ""
 "Metadata modification of object %s being a child of restricted object %s not "
 "allowed"
-msgstr ""
+msgstr "نەڭ %s  (بۇ چەكلەنگەن نەڭ %s نىڭ بالىسى) نىڭ مېتا سانلىق-مەلۇماتىنى ئۆزگەرتىشكە بولمايدۇ"
 
 #: ../src/librygel-server/rygel-media-engine.vala:69
 msgid "No media engine found."
@@ -673,7 +674,7 @@ msgstr "نىشان فورمات ‹%s› ئۈچۈن transcoder يوق"
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:39
 #, c-format
 msgid "Could not create GstElement for URI %s"
-msgstr ""
+msgstr "بۇ URI %s نىڭ  GstElement نى قۇرغىلى بولمىدى"
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:92
 msgid "Failed to create pipeline"
