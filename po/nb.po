@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel 3.7.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-29 19:06+0100\n"
-"PO-Revision-Date: 2013-01-29 19:07+0100\n"
+"POT-Creation-Date: 2013-02-25 17:42+0100\n"
+"PO-Revision-Date: 2013-02-25 17:44+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -102,7 +102,7 @@ msgstr "Klarte ikke å rulle tilbake transaksjon: %s"
 msgid "Failed to query content type for '%s'"
 msgstr "Klarte ikke å spørre etter innholdstype for «%s»"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:119
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:121
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Klarte ikke å legge til oppføring med ID %s: %s"
@@ -123,10 +123,10 @@ msgstr "Feil under henting av objekt «%s» fra database: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:207
 #, c-format
-msgid "Failed to access media cache: %s"
-msgstr "Klarte ikke å aksessere mediebuffer: %s"
+msgid "Failed to query info of a file %s: %s"
+msgstr "Klarte ikke å spørre etter informasjon om en fil %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:249
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:247
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Feil under fjerning av objekt fra database: %s"
@@ -162,33 +162,34 @@ msgstr "Album"
 msgid "Genre"
 msgstr "Sjanger"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:55
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:56
 msgid "Files & Folders"
 msgstr "Filer og mapper"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:340
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@ sine medier"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:428
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:433
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:492
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Klarte ikke å fjerne oppføring: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:475
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:571
 msgid "Music"
 msgstr "Musikk"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:478
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:574
 msgid "Pictures"
 msgstr "Bilder"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:480
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:576
 msgid "Videos"
 msgstr "Videoer"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:482
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:578
 msgid "Playlists"
 msgstr "Spillelister"
 
@@ -264,7 +265,7 @@ msgstr "Ikke implementert"
 #: ../src/librygel-core/rygel-connection-manager.vala:91
 #: ../src/librygel-core/rygel-connection-manager.vala:105
 #: ../src/librygel-core/rygel-connection-manager.vala:127
-#: ../src/librygel-renderer/rygel-av-transport.vala:203
+#: ../src/librygel-renderer/rygel-av-transport.vala:214
 #: ../src/librygel-renderer/rygel-rendering-control.vala:128
 #: ../src/librygel-server/rygel-content-directory.vala:252
 #: ../src/librygel-server/rygel-content-directory.vala:279
@@ -368,38 +369,38 @@ msgstr "Feil under listing av innhold i mappe «%s»: %s"
 msgid "XML node '%s' not found."
 msgstr "XML-node «%s» ikke funnet."
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:209
+#: ../src/librygel-renderer/rygel-av-transport.vala:220
 #: ../src/librygel-renderer/rygel-rendering-control.vala:134
 msgid "Invalid InstanceID"
 msgstr "Ugyldig InstanceID"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:244
-#: ../src/librygel-renderer/rygel-av-transport.vala:659
-#: ../src/librygel-renderer/rygel-av-transport.vala:669
+#: ../src/librygel-renderer/rygel-av-transport.vala:255
+#: ../src/librygel-renderer/rygel-av-transport.vala:670
+#: ../src/librygel-renderer/rygel-av-transport.vala:680
 msgid "Resource not found"
 msgstr "Ressurs ikke funnet"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:255
+#: ../src/librygel-renderer/rygel-av-transport.vala:266
 msgid "Illegal MIME-type"
 msgstr "Ulovlog MIME-type"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:517
+#: ../src/librygel-renderer/rygel-av-transport.vala:528
 msgid "Play speed not supported"
 msgstr "Avspillingshastighet ikke støttet"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:534
+#: ../src/librygel-renderer/rygel-av-transport.vala:545
 msgid "Transition not available"
 msgstr "Overgang er ikke tilgjengelig"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:563
-#: ../src/librygel-renderer/rygel-av-transport.vala:587
+#: ../src/librygel-renderer/rygel-av-transport.vala:574
+#: ../src/librygel-renderer/rygel-av-transport.vala:598
 msgid "Seek mode not supported"
 msgstr "Søkemodus er ikke støttet"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:576
-#: ../src/librygel-renderer/rygel-av-transport.vala:597
-#: ../src/librygel-renderer/rygel-av-transport.vala:605
+#: ../src/librygel-renderer/rygel-av-transport.vala:587
+#: ../src/librygel-renderer/rygel-av-transport.vala:608
+#: ../src/librygel-renderer/rygel-av-transport.vala:616
 msgid "Illegal seek target"
 msgstr "Ulovlig søkemål"
 
@@ -585,11 +586,11 @@ msgstr "Ugyldig ny verdi for tagg."
 
 #: ../src/librygel-server/rygel-item-updater.vala:169
 msgid "Tried to delete required tag."
-msgstr ""
+msgstr "Prøvde å slette tagg som kreves."
 
 #: ../src/librygel-server/rygel-item-updater.vala:172
 msgid "Tried to change read-only property."
-msgstr ""
+msgstr "Prøvde å endre skrivebeskyttet egenskap."
 
 #: ../src/librygel-server/rygel-item-updater.vala:175
 msgid "Parameter count mismatch."
@@ -609,13 +610,15 @@ msgstr "Endring av metadata for objekt %s er ikke tillatt"
 msgid ""
 "Metadata modification of object %s being a child of restricted object %s not "
 "allowed"
-msgstr "Metadataendring for objekt %s som er et barn av begrenset objekt %s er ikke tillatt"
+msgstr ""
+"Metadataendring for objekt %s som er et barn av begrenset objekt %s er ikke "
+"tillatt"
 
-#: ../src/librygel-server/rygel-media-engine.vala:55
+#: ../src/librygel-server/rygel-media-engine.vala:69
 msgid "No media engine found."
 msgstr "Ingen mediemotor funnet."
 
-#: ../src/librygel-server/rygel-media-engine.vala:66
+#: ../src/librygel-server/rygel-media-engine.vala:80
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init ble ikke kalt. Kan ikke fortsette."
 
