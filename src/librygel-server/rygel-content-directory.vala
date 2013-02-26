@@ -416,6 +416,85 @@ internal class Rygel.ContentDirectory: Service {
         return update_ids;
     }
 
+    private bool handle_system_update () {
+        var plugin = this.root_device.resource_factory as MediaServerPlugin;
+
+        // We can increment this uint32 variable unconditionally
+        // because unsigned overflow (as compared to signed overflow)
+        // is well defined.
+        this.system_update_id++;
+        if (this.system_update_id == 0 &&
+            PluginCapabilities.TRACK_CHANGES in plugin.capabilities) {
+            // Overflow, need to initiate Service Reset Procedure.
+            // See ContentDirectory:3 spec, 2.3.7.1
+            this.service_reset.begin ();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private void handle_last_change (MediaContainer updated_container,
+                                     MediaObject object,
+                                     ObjectEventType event_type,
+                                     bool sub_tree_update) {
+        if (updated_container is TrackableContainer) {
+            this.add_last_change_entry (object, event_type, sub_tree_update);
+        }
+    }
+
+    private bool set_update_ids (MediaContainer updated_container,
+                                 MediaObject object,
+                                 ObjectEventType event_type) {
+        bool container_changed = false;
+
+        if (event_type == ObjectEventType.ADDED ||
+            event_type == ObjectEventType.DELETED ||
+            (event_type == ObjectEventType.MODIFIED &&
+             object is MediaItem)) {
+            updated_container.update_id = this.system_update_id;
+            container_changed = true;
+        }
+
+        object.object_update_id = this.system_update_id;
+        // Whenever container experiences object update it also
+        // experiences a container update
+        if (object is MediaContainer) {
+            (object as MediaContainer).update_id = this.system_update_id;
+        }
+
+        return container_changed;
+    }
+
+    private void handle_container_update_ids (MediaContainer? updated_container,
+                                              MediaObject object) {
+        var updated = updated_container != null;
+        var is_container = object is MediaContainer;
+
+        if (!updated && !is_container) {
+            return;
+        }
+
+        if (this.clear_updated_containers) {
+            this.updated_containers.clear ();
+            this.clear_updated_containers = false;
+        }
+
+        // UPnP specs dicate we make sure only last update be evented
+        if (updated) {
+            this.updated_containers.remove (updated_container);
+            this.updated_containers.add (updated_container);
+        }
+
+        if (is_container) {
+            MediaContainer container = object as MediaContainer;
+
+            this.updated_containers.remove (container);
+            this.updated_containers.add (container);
+        }
+    }
+
     /**
      * handler for container_updated signal on root_container. We don't
      * immediately send the notification for changes but schedule the
@@ -432,37 +511,17 @@ internal class Rygel.ContentDirectory: Service {
                                        MediaObject object,
                                        ObjectEventType event_type,
                                        bool sub_tree_update) {
-        this.system_update_id++;
-        if (updated_container is TrackableContainer) {
-            this.add_last_change_entry (object, event_type, sub_tree_update);
-        }
-        var plugin = this.root_device.resource_factory as MediaServerPlugin;
-
-        if (this.system_update_id == 0 &&
-            PluginCapabilities.TRACK_CHANGES in plugin.capabilities) {
-            // Overflow, need to initiate Service Reset Procedure.
-            // See ContentDirectory:3 spec, 2.3.7.1
-            this.service_reset.begin ();
-
+        if (handle_system_update ()) {
             return;
         }
+        handle_last_change (updated_container,
+                            object,
+                            event_type,
+                            sub_tree_update);
 
-        if (event_type == ObjectEventType.ADDED ||
-            event_type == ObjectEventType.DELETED) {
-            updated_container.update_id = this.system_update_id;
-            object.object_update_id = this.system_update_id;
-        } else {
-            object.object_update_id = this.system_update_id;
-        }
-
-        if (this.clear_updated_containers) {
-            this.updated_containers.clear ();
-            this.clear_updated_containers = false;
-        }
-
-        // UPnP specs dicate we make sure only last update be evented
-        this.updated_containers.remove (updated_container);
-        this.updated_containers.add (updated_container);
+        var changed = set_update_ids (updated_container, object, event_type);
+        handle_container_update_ids (changed ? updated_container : null,
+                                     object);
 
         this.ensure_timeout ();
     }
