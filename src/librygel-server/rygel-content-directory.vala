@@ -94,7 +94,9 @@ internal class Rygel.ContentDirectory: Service {
         this.root_container = plugin.root_container;
         this.http_server = new HTTPServer (this, plugin.name);
 
-        this.updated_containers =  new ArrayList<MediaContainer> ();
+        this.updated_containers = new ArrayList<MediaContainer> ((a, b) => {
+                return a.id == b.id;
+            });
         this.active_imports = new ArrayList<ImportResource> ();
         this.finished_imports = new ArrayList<ImportResource> ();
 
