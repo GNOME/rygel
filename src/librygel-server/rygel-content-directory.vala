@@ -132,6 +132,8 @@ internal class Rygel.ContentDirectory: Service {
         this.action_invoked["Browse"].connect (this.browse_cb);
         this.action_invoked["Search"].connect (this.search_cb);
         this.action_invoked["CreateObject"].connect (this.create_object_cb);
+        this.action_invoked["CreateReference"].connect
+                                        (this.create_reference_cb);
         this.action_invoked["DestroyObject"].connect (this.destroy_object_cb);
         this.action_invoked["UpdateObject"].connect (this.update_object_cb);
         this.action_invoked["ImportResource"].connect (this.import_resource_cb);
@@ -204,6 +206,14 @@ internal class Rygel.ContentDirectory: Service {
     private void create_object_cb (Service       content_dir,
                                    ServiceAction action) {
         var creator = new ObjectCreator (this, action);
+
+        creator.run.begin ();
+    }
+
+    /* CreateReference action implementation */
+    private void create_reference_cb (Service       content_dir,
+                                      ServiceAction action) {
+        var creator = new ReferenceCreator (this, action);
 
         creator.run.begin ();
     }

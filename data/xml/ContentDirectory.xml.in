@@ -367,6 +367,28 @@
       </action>
 
       <action>
+         <name>CreateReference</name>
+         <argumentList>
+            <argument>
+               <name>ContainerID</name>
+               <direction>in</direction>
+               <relatedStateVariable>A_ARG_TYPE_ObjectID</relatedStateVariable>
+            </argument>
+            <argument>
+               <name>ObjectID</name>
+               <direction>in</direction>
+               <relatedStateVariable>A_ARG_TYPE_ObjectID</relatedStateVariable>
+            </argument>
+            <argument>
+               <name>NewID</name>
+               <direction>out</direction>
+               <relatedStateVariable>A_ARG_TYPE_ObjectID</relatedStateVariable>
+            </argument>
+         </argumentList>
+      </action>
+
+
+      <action>
          <name>ImportResource</name>
          <argumentList>
             <argument>

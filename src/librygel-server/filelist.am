@@ -52,6 +52,7 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-http-transcode-handler.vala \
 	rygel-import-resource.vala \
 	rygel-object-creator.vala \
+	rygel-reference-creator.vala \
 	rygel-item-destroyer.vala \
 	rygel-item-updater.vala \
 	rygel-object-removal-queue.vala \

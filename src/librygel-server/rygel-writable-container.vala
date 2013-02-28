@@ -95,6 +95,20 @@ public interface Rygel.WritableContainer : MediaContainer {
     public async abstract void add_container (MediaContainer container,
                                               Cancellable?   cancellable)
                                               throws Error;
+
+    /**
+     * Add a reference to an object.
+     * @param object The source object to add a reference to.
+     * @param cancellable optional cancellable for this operation
+     * @return the id of the newly created reference
+     **/
+    public async virtual string add_reference (MediaObject    object,
+                                               Cancellable? cancellable)
+                                               throws Error {
+        throw new WriteableContainerError.NOT_IMPLEMENTED
+                                        ("Cannot create references here");
+    }
+
     /**
      * Remove an item directly under this container that has the ID @id.
      *
