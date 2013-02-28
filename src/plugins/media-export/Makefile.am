@@ -28,6 +28,8 @@ librygel_media_export_la_SOURCES = \
 	rygel-media-export-jpeg-writer.vala \
 	rygel-media-export-object-factory.vala \
 	rygel-media-export-writable-db-container.vala \
+	rygel-media-export-playlist-root-container.vala \
+	rygel-media-export-playlist-container.vala \
 	rygel-media-export-music-item.vala \
 	rygel-media-export-video-item.vala \
 	rygel-media-export-photo-item.vala \

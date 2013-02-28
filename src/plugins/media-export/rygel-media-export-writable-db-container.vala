@@ -56,8 +56,13 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
         this.create_classes.add (Rygel.MediaContainer.STORAGE_FOLDER);
     }
 
-    public async void add_item (Rygel.MediaItem item, Cancellable? cancellable)
-                                throws Error {
+    public virtual async void add_item (Rygel.MediaItem item,
+                                        Cancellable? cancellable)
+                                        throws Error {
+        if (item.id == null && item.ref_id != null) {
+            warning ("=> CreateReference not supported");
+            throw new WritableContainerError.NOT_IMPLEMENTED ("Not supported");
+        }
         item.parent = this;
         var file = File.new_for_uri (item.uris[0]);
         // TODO: Mark as place-holder. Make this proper some time.
@@ -69,9 +74,9 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
         this.media_db.make_object_guarded (item);
     }
 
-    public async void add_container (MediaContainer container,
-                                     Cancellable?   cancellable)
-                                     throws Error {
+    public virtual async void add_container (MediaContainer container,
+                                             Cancellable?   cancellable)
+                                             throws Error {
         container.parent = this;
         switch (container.upnp_class) {
         case MediaContainer.STORAGE_FOLDER:
@@ -91,15 +96,16 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
         this.media_db.make_object_guarded (container);
     }
 
-    public async void remove_item (string id, Cancellable? cancellable)
-                                   throws Error {
+    public virtual async void remove_item (string id, Cancellable? cancellable)
+                                           throws Error {
         var object = this.media_db.get_object (id);
 
         yield this.remove_child_tracked (object);
     }
 
-    public async void remove_container (string id, Cancellable? cancellable)
-                                        throws Error {
+    public virtual async void remove_container (string id,
+                                                Cancellable? cancellable)
+                                                throws Error {
         throw new WritableContainerError.NOT_IMPLEMENTED ("Not supported");
     }
 

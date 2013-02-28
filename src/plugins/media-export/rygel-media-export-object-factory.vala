@@ -50,6 +50,10 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
             return factory.create_from_hashed_id (id, title);
         }
 
+        if (id.has_prefix ("virtual-parent:" + Rygel.PlaylistItem.UPNP_CLASS)) {
+            return new PlaylistRootContainer (id, title);
+        }
+
         // Return a suitable container for the top-level virtual folders.
         // This corresponds to the short-lived NullContainers that
         // we used to save these in the database.
@@ -59,6 +63,10 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
 
         if (uri == null) {
             return new TrackableDbContainer (id, title);
+        }
+
+        if (id.has_prefix ("playlist:")) {
+            return new PlaylistContainer (id, title);
         }
 
         // Return a writable container for anything with a URI,

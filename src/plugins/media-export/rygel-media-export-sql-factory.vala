@@ -47,7 +47,8 @@ internal enum Rygel.MediaExport.DetailColumn {
     DISC,
     OBJECT_UPDATE_ID,
     DELETED_CHILD_COUNT,
-    CONTAINER_UPDATE_ID
+    CONTAINER_UPDATE_ID,
+    REFERENCE_ID
 }
 
 internal enum Rygel.MediaExport.SQLString {
@@ -76,7 +77,8 @@ internal enum Rygel.MediaExport.SQLString {
     MAX_UPDATE_ID,
     MAKE_GUARDED,
     IS_GUARDED,
-    UPDATE_GUARDED_OBJECT
+    UPDATE_GUARDED_OBJECT,
+    TRIGGER_REFERENCE
 }
 
 internal class Rygel.MediaExport.SQLFactory : Object {
@@ -93,8 +95,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "INSERT OR REPLACE INTO Object " +
         "(upnp_id, title, type_fk, parent, timestamp, uri, " +
          "object_update_id, deleted_child_count, container_update_id, " +
-         "is_guarded) VALUES " +
-        "(?,?,?,?,?,?,?,?,?,?)";
+         "is_guarded, reference_id) VALUES " +
+        "(?,?,?,?,?,?,?,?,?,?,?)";
 
     private const string UPDATE_GUARDED_OBJECT_STRING =
     "UPDATE Object SET " +
@@ -117,7 +119,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "m.sample_freq, m.bits_per_sample, m.channels, m.track, " +
     "m.color_depth, m.duration, o.upnp_id, o.parent, o.timestamp, " +
     "o.uri, m.dlna_profile, m.genre, m.disc, o.object_update_id, " +
-    "o.deleted_child_count, o.container_update_id ";
+    "o.deleted_child_count, o.container_update_id, o.reference_id ";
 
     private const string GET_OBJECT_WITH_PATH =
     "SELECT DISTINCT " + ALL_DETAILS_STRING +
@@ -185,7 +187,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
         "WHERE _column IS NOT NULL %s ORDER BY _column COLLATE CASEFOLD " +
     "LIMIT ?,?";
 
-    internal const string SCHEMA_VERSION = "13";
+    internal const string SCHEMA_VERSION = "14";
     internal const string CREATE_META_DATA_TABLE_STRING =
     "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
                             "mime_type TEXT NOT NULL, " +
@@ -223,7 +225,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                           "object_update_id INTEGER, " +
                           "deleted_child_count INTEGER, " +
                           "container_update_id INTEGER, " +
-                          "is_guarded INTEGER);" +
+                          "is_guarded INTEGER, " +
+                          "reference_id TEXT DEFAULT NULL);" +
     "INSERT INTO schema_info (version) VALUES ('" +
     SQLFactory.SCHEMA_VERSION + "'); ";
 
@@ -257,6 +260,13 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "BEFORE DELETE ON Object " +
     "FOR EACH ROW BEGIN " +
         "DELETE FROM meta_data WHERE meta_data.object_fk = OLD.upnp_id; "+
+    "END;";
+
+    private const string DELETE_REFERENCE_TRIGGER_STRING =
+    "CREATE TRIGGER trgr_delete_references " +
+    "BEFORE DELETE ON Object " +
+    "FOR EACH ROW BEGIN " +
+        "DELETE FROM Object WHERE OLD.upnp_id = Object.reference_id; " +
     "END;";
 
     private const string CREATE_INDICES_STRING =
@@ -348,6 +358,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                 return IS_GUARDED_STRING;
             case SQLString.UPDATE_GUARDED_OBJECT:
                 return UPDATE_GUARDED_OBJECT_STRING;
+            case SQLString.TRIGGER_REFERENCE:
+                return DELETE_REFERENCE_TRIGGER_STRING;
             default:
                 assert_not_reached ();
         }

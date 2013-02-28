@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2009,2010 Jens Georg <mail@jensge.org>.
+ * Copyright (C) 2013 Intel Corporation.
  *
  * Author: Jens Georg <mail@jensge.org>
  *
@@ -726,7 +727,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                                 object.object_update_id,
                                 -1,
                                 -1,
-                                is_guarded ? 1 : 0
+                                is_guarded ? 1 : 0,
+                                object.ref_id ?? null
                               };
         if (object is MediaContainer) {
             var container = object as MediaContainer;
@@ -767,6 +769,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             db.exec (this.sql.make (SQLString.TABLE_CLOSURE));
             db.exec (this.sql.make (SQLString.INDEX_COMMON));
             db.exec (this.sql.make (SQLString.TRIGGER_CLOSURE));
+            db.exec (this.sql.make (SQLString.TRIGGER_REFERENCE));
             db.commit ();
             db.analyze ();
             this.save_reset_token (UUID.get ());
@@ -836,6 +839,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             }
             object.object_update_id = (uint) statement.column_int64
                                         (DetailColumn.OBJECT_UPDATE_ID);
+            object.ref_id = statement.column_text (DetailColumn.REFERENCE_ID);
         }
 
         return object;
@@ -949,7 +953,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                 column = "m.duration";
                 break;
             case "@refID":
-                column = "NULL";
+                column = "o.reference_id";
                 break;
             case "@id":
                 column = "o.upnp_id";

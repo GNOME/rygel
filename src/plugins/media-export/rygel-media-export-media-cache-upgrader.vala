@@ -119,6 +119,9 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                 case 12:
                     update_v12_v13 ();
                     break;
+                case 13:
+                    this.update_v13_v14 ();
+                    break;
                 default:
                     warning ("Cannot upgrade");
                     database = null;
@@ -470,6 +473,25 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             this.database.exec (this.sql.make (SQLString.TRIGGER_CLOSURE));
             this.database.exec (this.sql.make (SQLString.INDEX_COMMON));
 
+            this.database.commit ();
+            this.database.exec ("VACUUM");
+            this.database.analyze ();
+        } catch (DatabaseError error) {
+            this.database.rollback ();
+            warning ("Database upgrade failed: %s", error.message);
+            this.database = null;
+        }
+    }
+
+    private void update_v13_v14 () {
+        try {
+            this.database.begin ();
+
+            this.database.exec ("ALTER TABLE Object ADD COLUMN reference_id " +
+                                "DEFAULT NULL");
+            this.database.exec (this.sql.make (SQLString.TRIGGER_REFERENCE));
+
+            this.database.exec ("UPDATE schema_info SET version = '14'");
             this.database.commit ();
             this.database.exec ("VACUUM");
             this.database.analyze ();
