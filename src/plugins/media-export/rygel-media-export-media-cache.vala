@@ -111,11 +111,12 @@ public class Rygel.MediaExport.MediaCache : Object {
     /**
      * Add the item to the cache.
      */
-    public void save_item (Rygel.MediaItem item) throws Error {
+    public void save_item (Rygel.MediaItem item,
+                           bool override_guarded = false) throws Error {
         try {
             db.begin ();
             save_metadata (item);
-            create_object (item);
+            create_object (item, override_guarded);
             db.commit ();
         } catch (DatabaseError error) {
             warning (_("Failed to add item with ID %s: %s"),
@@ -519,7 +520,39 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
     }
 
+    public void make_object_guarded (MediaObject object,
+                                     bool guarded = true) {
+        var guarded_val = guarded ? 1 : 0;
+
+        try {
+            GLib.Value[] values = { guarded_val,
+                                    object.id };
+
+            this.db.exec (this.sql.make (SQLString.MAKE_GUARDED), values);
+        } catch (DatabaseError error) {
+            warning ("Failed to mark item %s as guarded (%d): %s",
+                     object.id,
+                     guarded_val,
+                     error.message);
+        }
+    }
+
     // Private functions
+    private bool is_object_guarded (string id) {
+        try {
+            GLib.Value[] id_value = { id };
+
+            return this.query_value (SQLString.IS_GUARDED,
+                                     id_value) == 1;
+        } catch (DatabaseError error) {
+            warning ("Failed to get whether item %s is guarded: %s",
+                     id,
+                     error.message);
+
+            return false;
+        }
+    }
+
     private void get_exists_cache () throws DatabaseError {
         this.exists_cache = new HashMap<string, ExistsCacheEntry?> ();
         var cursor = this.exec_cursor (SQLString.EXISTS_CACHE);
@@ -649,10 +682,40 @@ public class Rygel.MediaExport.MediaCache : Object {
         this.db.exec (this.sql.make (SQLString.SAVE_METADATA), values);
     }
 
-    /**
-     * Add the container or item to the cache.
-     */    
-    private void create_object (MediaObject object) throws Error {
+    private void update_guarded_object (MediaObject object) throws Error {
+        int type = ObjectType.CONTAINER;
+        GLib.Value parent;
+
+        if (object is MediaItem) {
+            type = ObjectType.ITEM;
+        }
+
+        if (object.parent == null) {
+            parent = Database.@null ();
+        } else {
+            parent = object.parent.id;
+        }
+
+        GLib.Value[] values = { object.id,
+                                type,
+                                parent,
+                                object.modified,
+                                object.uris.is_empty ? null : object.uris[0],
+                                object.object_update_id,
+                                -1,
+                                -1
+                              };
+        if (object is MediaContainer) {
+            var container = object as MediaContainer;
+            values[7] = container.total_deleted_child_count;
+            values[8] = container.update_id;
+        }
+
+        this.db.exec (this.sql.make (SQLString.UPDATE_GUARDED_OBJECT), values);
+    }
+
+    private void create_normal_object (MediaObject object,
+                                       bool is_guarded) throws Error {
         int type = ObjectType.CONTAINER;
         GLib.Value parent;
 
@@ -674,7 +737,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                                 object.uris.is_empty ? null : object.uris[0],
                                 object.object_update_id,
                                 -1,
-                                -1
+                                -1,
+                                is_guarded ? 1 : 0
                               };
         if (object is MediaContainer) {
             var container = object as MediaContainer;
@@ -683,6 +747,20 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
 
         this.db.exec (this.sql.make (SQLString.INSERT), values);
+    }
+
+    /**
+     * Add the container or item to the cache.
+     */
+    private void create_object (MediaObject object,
+                                bool override_guarded = false) throws Error {
+        var is_guarded = this.is_object_guarded (object.id);
+
+        if (!override_guarded && is_guarded) {
+            update_guarded_object (object);
+        } else {
+            create_normal_object (object, (is_guarded || override_guarded));
+        }
     }
 
     /**

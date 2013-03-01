@@ -26,6 +26,7 @@
  */
 internal class Rygel.MediaExport.MusicItem : Rygel.MusicItem,
                                              Rygel.UpdatableObject,
+                                             Rygel.MediaExport.UpdatableObject,
                                              Rygel.TrackableItem {
     public int disc;
 
@@ -37,9 +38,13 @@ internal class Rygel.MediaExport.MusicItem : Rygel.MusicItem,
     }
 
     public async void commit () throws Error {
+        yield this.commit_custom (true);
+    }
+
+    public async void commit_custom (bool override_guarded) throws Error {
         this.changed ();
         var cache = MediaCache.get_default ();
-        cache.save_item (this);
+        cache.save_item (this, override_guarded);
     }
 
 }

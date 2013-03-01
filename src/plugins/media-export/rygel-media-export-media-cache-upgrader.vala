@@ -116,6 +116,9 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                 case 11:
                     update_v11_v12 ();
                     break;
+                case 12:
+                    update_v12_v13 ();
+                    break;
                 default:
                     warning ("Cannot upgrade");
                     database = null;
@@ -403,6 +406,26 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                                     "WHERE upnp_id = ?",
                                     args);
             }
+
+            database.commit ();
+            database.exec ("VACUUM");
+            database.analyze ();
+        } catch (DatabaseError error) {
+            database.rollback ();
+            warning ("Database upgrade failed: %s", error.message);
+            database = null;
+        }
+    }
+
+    private void update_v12_v13 () {
+        try {
+            this.database.begin ();
+            this.database.exec ("ALTER TABLE object " +
+                                "ADD COLUMN is_guarded INTEGER");
+            /* This intentionally sets all rows in is_guarded column
+             * to zero.
+             */
+            this.database.exec ("UPDATE object SET is_guarded = 0");
 
             database.commit ();
             database.exec ("VACUUM");

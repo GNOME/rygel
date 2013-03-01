@@ -323,7 +323,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             // This is only necessary to generate the proper <objAdd LastChange
             // entry
             if (entry.known) {
-                (item as UpdatableObject).commit.begin ();
+                (item as UpdatableObject).non_overriding_commit.begin ();
             } else {
                 var container = item.parent as TrackableContainer;
                 container.add_child_tracked.begin (item) ;

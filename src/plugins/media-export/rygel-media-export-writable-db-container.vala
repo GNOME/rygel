@@ -66,10 +66,11 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
         }
         item.id = MediaCache.get_id (file);
         yield this.add_child_tracked (item);
+        this.media_db.make_object_guarded (item);
     }
 
     public async void add_container (MediaContainer container,
-                                     Cancellable?   cancellable) 
+                                     Cancellable?   cancellable)
                                      throws Error {
         container.parent = this;
         switch (container.upnp_class) {
