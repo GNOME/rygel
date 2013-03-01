@@ -215,7 +215,6 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                           "title TEXT NOT NULL, " +
                           "timestamp INTEGER NOT NULL, " +
                           "uri TEXT, " +
-                          "flags TEXT, " +
                           "object_update_id INTEGER, " +
                           "deleted_child_count INTEGER, " +
                           "container_update_id INTEGER, " +

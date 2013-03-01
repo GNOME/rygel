@@ -42,7 +42,6 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
     private GLib.Queue<MediaContainer> containers;
     private Gee.Queue<FileQueueEntry> files;
     private RecursiveFileMonitor monitor;
-    private string flag;
     private MediaContainer parent;
     private const int BATCH_SIZE = 256;
 
@@ -58,8 +57,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
     public HarvestingTask (RecursiveFileMonitor monitor,
                            File                 file,
-                           MediaContainer       parent,
-                           string?              flag = null) {
+                           MediaContainer       parent) {
         this.extractor = new MetadataExtractor ();
         this.origin = file;
         this.parent = parent;
@@ -71,7 +69,6 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         this.files = new LinkedList<FileQueueEntry> ();
         this.containers = new GLib.Queue<MediaContainer> ();
         this.monitor = monitor;
-        this.flag = flag;
     }
 
     public void cancel () {
@@ -276,13 +273,6 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             this.enumerate_directory.begin ();
         } else {
             // nothing to do
-            if (this.flag != null) {
-                try {
-                    this.cache.flag_object (this.origin,
-                                            this.flag);
-                } catch (Error error) {};
-            }
-
             this.completed ();
         }
 

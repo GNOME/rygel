@@ -469,25 +469,6 @@ public class Rygel.MediaExport.MediaCache : Object {
                                                     max_objects);
     }
 
-    public void flag_object (File file, string flag) throws Error {
-        GLib.Value[] args = { flag, file.get_uri () };
-        this.db.exec ("UPDATE Object SET flags = ? WHERE uri = ?", args);
-    }
-
-    public Gee.List<string> get_flagged_uris (string flag) throws Error {
-        var uris = new ArrayList<string> ();
-        const string query = "SELECT uri FROM object WHERE flags = ?";
-
-        GLib.Value[] args = { flag };
-
-        var cursor = this.db.exec_cursor (query, args);
-        foreach (var statement in cursor) {
-            uris.add (statement.column_text (0));
-        }
-
-        return uris;
-    }
-
     public string get_reset_token () {
         try {
             var cursor = this.exec_cursor (SQLString.RESET_TOKEN);

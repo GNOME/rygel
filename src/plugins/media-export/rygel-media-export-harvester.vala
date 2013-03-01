@@ -81,11 +81,9 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
      *
      * @param file the file to investigate
      * @param parent container of the filer to be harvested
-     * @param flag optional flag for the container to set in the database
      */
     public void schedule (File           file,
-                          MediaContainer parent,
-                          string?        flag = null) {
+                          MediaContainer parent) {
         this.extraction_grace_timers.unset (file);
 
         // Cancel a probably running harvester
@@ -93,8 +91,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
 
         var task = new HarvestingTask (this.monitor,
                                        file,
-                                       parent,
-                                       flag);
+                                       parent);
         task.cancellable = this.cancellable;
         task.completed.connect (this.on_file_harvested);
         this.tasks[file] = task;

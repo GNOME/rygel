@@ -420,6 +420,45 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
     private void update_v12_v13 () {
         try {
             this.database.begin ();
+            this.database.exec ("CREATE TEMPORARY TABLE object_backup(parent TEXT CONSTRAINT parent_fk_id " +
+                                "REFERENCES Object(upnp_id), " +
+                                "upnp_id TEXT PRIMARY KEY, " +
+                                "type_fk INTEGER, " +
+                                "title TEXT NOT NULL, " +
+                                "timestamp INTEGER NOT NULL, " +
+                                "uri TEXT, " +
+                                "object_update_id INTEGER, " +
+                                "deleted_child_count INTEGER, " +
+                                "container_update_id INTEGER)");
+            this.database.exec ("INSERT INTO object_backup SELECT " +
+                                "parent, upnp_id, type_fk, title, " +
+                                "timestamp, uri, object_update_id, " +
+                                "deleted_child_count, container_update_id " +
+                                "FROM object");
+            this.database.exec ("DROP TRIGGER IF EXISTS trgr_update_closure");
+            this.database.exec ("DROP TRIGGER IF EXISTS trgr_delete_closure");
+            this.database.exec ("DROP TRIGGER IF EXISTS trgr_delete_metadata");
+            this.database.exec ("DROP INDEX IF EXISTS idx_parent");
+            this.database.exec ("DROP INDEX IF EXISTS idx_object_upnp_id");
+            this.database.exec ("DROP INDEX IF EXISTS idx_uri");
+            this.database.exec ("DROP TABLE object");
+            this.database.exec ("CREATE TABLE object " +
+                                "(parent TEXT CONSTRAINT parent_fk_id " +
+                                "REFERENCES Object(upnp_id), " +
+                                "upnp_id TEXT PRIMARY KEY, " +
+                                "type_fk INTEGER, " +
+                                "title TEXT NOT NULL, " +
+                                "timestamp INTEGER NOT NULL, " +
+                                "uri TEXT, " +
+                                "object_update_id INTEGER, " +
+                                "deleted_child_count INTEGER, " +
+                                "container_update_id INTEGER)");
+            this.database.exec ("INSERT INTO object SELECT parent, " +
+                                "upnp_id, type_fk, title, timestamp, " +
+                                "uri, object_update_id, " +
+                                "deleted_child_count, container_update_id " +
+                                "FROM object_backup");
+            this.database.exec ("DROP TABLE object_backup");
             this.database.exec ("ALTER TABLE object " +
                                 "ADD COLUMN is_guarded INTEGER");
             /* This intentionally sets all rows in is_guarded column
@@ -427,14 +466,17 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
              */
             this.database.exec ("UPDATE object SET is_guarded = 0");
             this.database.exec ("UPDATE schema_info SET version = '13'");
+            this.database.exec (this.sql.make (SQLString.TRIGGER_COMMON));
+            this.database.exec (this.sql.make (SQLString.TRIGGER_CLOSURE));
+            this.database.exec (this.sql.make (SQLString.INDEX_COMMON));
 
-            database.commit ();
-            database.exec ("VACUUM");
-            database.analyze ();
+            this.database.commit ();
+            this.database.exec ("VACUUM");
+            this.database.analyze ();
         } catch (DatabaseError error) {
-            database.rollback ();
+            this.database.rollback ();
             warning ("Database upgrade failed: %s", error.message);
-            database = null;
+            this.database = null;
         }
     }
 }
