@@ -39,7 +39,8 @@ public class Rygel.V1Hacks : Object {
                                       "TwoPlayer",
                                       "Reciva",
                                       "FDSSDP",
-                                      "Portable SDK for UPnP devices"};
+                                      "Portable SDK for UPnP devices",
+                                      "Darwin"};
 
     private string _device_type;
     public string device_type {
