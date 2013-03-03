@@ -30,6 +30,7 @@ using GUPnP;
  * ContentDirectory:1 because they ignore that higher versions are
  * required to be backwards-compatible.
  */
+// FIXME: internal
 public class Rygel.V1Hacks : Object {
     private const string[] AGENTS = { "Allegro-Software-WebClient",
                                       "SEC HHP",
@@ -49,16 +50,17 @@ public class Rygel.V1Hacks : Object {
     }
     private string device_type_v1;
 
-    public string service_type { construct; get; }
-    public string service_type_v1 { construct; get; }
+    public string[] service_types { construct; get; }
 
     private const string MATCHING_PATTERN = ".*%s.*";
+    private const string SERVICE_TYPE_PATTERN = ":[0-9]+$";
 
     private static string agent_pattern;
 
     public string description_path;
 
     private Regex agent_regex;
+    private Regex service_type_regex;
 
     /**
      * Read the user-agent snippets from the config file and generate the
@@ -99,11 +101,9 @@ public class Rygel.V1Hacks : Object {
     }
 
     public V1Hacks (string device_type,
-                    string service_type,
-                    string service_type_v1) {
+                    string[] service_types) {
         Object (device_type : device_type,
-                service_type : service_type,
-                service_type_v1 : service_type_v1);
+                service_types : service_types);
     }
 
     public override void constructed () {
@@ -111,6 +111,7 @@ public class Rygel.V1Hacks : Object {
 
         try {
             this.agent_regex = new Regex (generate_agent_pattern ());
+            this.service_type_regex = new Regex (SERVICE_TYPE_PATTERN);
         } catch (Error error) { assert_not_reached (); }
     }
 
@@ -126,7 +127,13 @@ public class Rygel.V1Hacks : Object {
 
         var description_file = new DescriptionFile (template_path);
         description_file.set_device_type (device_type_v1);
-        description_file.modify_service_type (service_type, service_type_v1);
+
+        foreach (var service_type in service_types) {
+            var service_type_v1 = this.service_type_regex.replace_literal
+                                        (service_type, -1, 0, ":1");
+            message (" %s => %s", service_type, service_type_v1);
+            description_file.modify_service_type (service_type, service_type_v1);
+        }
 
         this.description_path = template_path.replace (".xml", "-v1.xml");
         description_file.save (this.description_path);

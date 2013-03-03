@@ -96,9 +96,10 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
     public override void apply_hacks (RootDevice device,
                                       string     description_path)
                                       throws Error {
-        var v1_hacks = new V1Hacks (DMR,
-                                    AVTransport.UPNP_TYPE,
-                                    AVTransport.UPNP_TYPE_V1);
+        string[] services = { AVTransport.UPNP_TYPE,
+                              RenderingControl.UPNP_TYPE,
+                              ConnectionManager.UPNP_TYPE };
+        var v1_hacks = new V1Hacks (DMR, services);
         v1_hacks.apply_on_device (device, description_path);
     }
 
