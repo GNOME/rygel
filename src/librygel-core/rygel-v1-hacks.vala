@@ -38,7 +38,8 @@ public class Rygel.V1Hacks : Object {
                                       "Mediabolic-IMHTTP/1.",
                                       "TwoPlayer",
                                       "Reciva",
-                                      "FDSSDP" };
+                                      "FDSSDP",
+                                      "Portable SDK for UPnP devices"};
 
     private string _device_type;
     public string device_type {
