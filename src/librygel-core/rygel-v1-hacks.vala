@@ -133,7 +133,6 @@ public class Rygel.V1Hacks : Object {
         foreach (var service_type in service_types) {
             var service_type_v1 = this.service_type_regex.replace_literal
                                         (service_type, -1, 0, ":1");
-            message (" %s => %s", service_type, service_type_v1);
             description_file.modify_service_type (service_type, service_type_v1);
         }
 
