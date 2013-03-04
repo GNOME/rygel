@@ -56,12 +56,11 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                                         FileAttribute.STANDARD_SIZE + "," +
                                         FileAttribute.STANDARD_IS_HIDDEN;
 
-    public HarvestingTask (MetadataExtractor    extractor,
-                           RecursiveFileMonitor monitor,
+    public HarvestingTask (RecursiveFileMonitor monitor,
                            File                 file,
                            MediaContainer       parent,
                            string?              flag = null) {
-        this.extractor = extractor;
+        this.extractor = new MetadataExtractor ();
         this.origin = file;
         this.parent = parent;
         this.cache = MediaCache.get_default ();
@@ -298,13 +297,6 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             this.completed ();
         }
 
-        var entry = this.files.peek ();
-        if (entry == null || !file.equal (entry.file)) {
-            // this event may be triggered by another instance
-            // just ignore it
-           return;
-        }
-
         MediaItem item;
         if (dlna == null) {
             item = ItemFactory.create_simple (this.containers.peek_head (),
@@ -322,7 +314,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             item.parent_ref = this.containers.peek_head ();
             // This is only necessary to generate the proper <objAdd LastChange
             // entry
-            if (entry.known) {
+            if (this.files.peek ().known) {
                 (item as UpdatableObject).non_overriding_commit.begin ();
             } else {
                 var container = item.parent as TrackableContainer;
@@ -335,13 +327,6 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
     }
 
     private void on_extractor_error_cb (File file, Error error) {
-        var entry = this.files.peek ();
-        if (entry == null || !file.equal (entry.file)) {
-            // this event may be triggered by another instance
-            // just ignore it
-            return;
-        }
-
         // error is only emitted if even the basic information extraction
         // failed; there's not much to do here, just print the information and
         // go to the next file

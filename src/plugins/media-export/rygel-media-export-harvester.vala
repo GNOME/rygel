@@ -28,7 +28,6 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
 
     private HashMap<File, HarvestingTask> tasks;
     private HashMap<File, uint> extraction_grace_timers;
-    private MetadataExtractor extractor;
     private RecursiveFileMonitor monitor;
     private Cancellable cancellable;
 
@@ -49,8 +48,6 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                 this.locations.add (file);
             }
         }
-
-        this.extractor = new MetadataExtractor ();
 
         this.monitor = new RecursiveFileMonitor (cancellable);
         this.monitor.changed.connect (this.on_file_changed);
@@ -90,17 +87,11 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                           MediaContainer parent,
                           string?        flag = null) {
         this.extraction_grace_timers.unset (file);
-        if (this.extractor == null) {
-            warning (_("No metadata extractor available. Will not crawl."));
-
-            return;
-        }
 
         // Cancel a probably running harvester
         this.cancel (file);
 
-        var task = new HarvestingTask (new MetadataExtractor (),
-                                       this.monitor,
+        var task = new HarvestingTask (this.monitor,
                                        file,
                                        parent,
                                        flag);
