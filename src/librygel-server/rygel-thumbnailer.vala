@@ -29,7 +29,7 @@ internal errordomain ThumbnailerError {
 }
 
 /**
- * Provides thumbnails for images and vidoes.
+ * Provides thumbnails for images and videos.
  */
 internal class Rygel.Thumbnailer : GLib.Object {
     private static Thumbnailer thumbnailer; // Our singleton object

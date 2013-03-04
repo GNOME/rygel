@@ -29,7 +29,7 @@ internal errordomain SubtitleManagerError {
 }
 
 /**
- * Provides subtitles for vidoes.
+ * Provides subtitles for videos.
  */
 internal class Rygel.SubtitleManager : GLib.Object {
     private static SubtitleManager manager; // Our singleton object
