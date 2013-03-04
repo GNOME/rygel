@@ -426,6 +426,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
              * to zero.
              */
             this.database.exec ("UPDATE object SET is_guarded = 0");
+            this.database.exec ("UPDATE schema_info SET version = '13'");
 
             database.commit ();
             database.exec ("VACUUM");
