@@ -1,3 +1,61 @@
+0.17.9
+======
+
+A new unstable release for Rygel.
+
+Changes compared to 0.17.8:
+
+- Fixed NEWS file from last release, adding missing translation credits and
+  bugs.
+- Fix ContainerUpdateIDs variable.
+- Add DLNA "create-child-container" capabilities.
+- Add possibility to create containers in addition to items.
+- Always downgrade each service to V1 for device quirks.
+- Downgrade to V1 for libupnp-based devices.
+- Downgrade to V1 for iOS clients using system libraries for HTTP.
+- Some spelling fixes.
+- Implement CreateReference UPnP call.
+
+MediaExport:
+ - Allow to create containers.
+ - Use title set by CreateObject or UpdateObject instead of the one detected
+   from meta-data extraction.
+ - Some code clean-up.
+ - Drop unused database column.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=694019
+ - https://bugzilla.gnome.org/show_bug.cgi?id=694155
+ - https://bugzilla.gnome.org/show_bug.cgi?id=683926
+ - https://bugzilla.gnome.org/show_bug.cgi?id=694270
+ - https://bugzilla.gnome.org/show_bug.cgi?id=694179
+ - https://bugzilla.gnome.org/show_bug.cgi?id=694926
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  Krzesimir Nowak <krnowak@openismus.com>
+  Gheyret Kenji <gheyret@gmail.com>
+  Yaron Shahrabani <sh.yaron@gmail.com>
+  Stas Solovey <whats_up@tut.by>
+  Matej Urbančič <mateju@svn.gnome.org>
+  Kjartan Maraas <kmaraas@gnome.org>
+  Dimitris Spingos <dmtrs32@gmail.com>
+  Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+  Aurimas Černius <aurisc4@gmail.com>
+  A S Alam <aalam@users.sf.net>
+
+Added/updated translations
+ - el, courtesy of Dimitris Spingos (Δημήτρης Σπίγγος)
+ - he, courtesy of Yaron Shahrabani
+ - lt, courtesy of Aurimas Černius
+ - nb, courtesy of Kjartan Maraas
+ - pa, courtesy of A S Alam
+ - ru, courtesy of Yuri Myasoedov
+ - sl, courtesy of Matej Urbančič
+ - ug, courtesy of Gheyret Kenji
+ - zh_HK, courtesy of Chao-Hsiung Liao
+ - zh_TW, courtesy of Chao-Hsiung Liao
+
 0.17.8
 ======
 
