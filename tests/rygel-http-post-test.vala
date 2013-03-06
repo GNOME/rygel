@@ -487,16 +487,16 @@ internal class Rygel.HTTPResponse : Rygel.StateMachine, GLib.Object {
     }
 }
 
-public class Rygel.ItemRemovalQueue: GLib.Object {
-    public static ItemRemovalQueue get_default () {
-       return new ItemRemovalQueue ();
+public class Rygel.ObjectRemovalQueue: GLib.Object {
+    public static ObjectRemovalQueue get_default () {
+       return new ObjectRemovalQueue ();
     }
 
-    public bool dequeue (MediaItem item) {
+    public bool dequeue (MediaObject item) {
         return true;
     }
 
-    public async void remove_now (MediaItem item, Cancellable? cancellable) {
+    public async void remove_now (MediaObject item, Cancellable? cancellable) {
         Idle.add (remove_now.callback);
 
         yield;
