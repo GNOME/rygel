@@ -26,7 +26,7 @@
 
 using Gee;
 
-public errordomain WriteableContainerError {
+public errordomain Rygel.WritableContainerError {
     NOT_IMPLEMENTED
 }
 
@@ -105,7 +105,7 @@ public interface Rygel.WritableContainer : MediaContainer {
     public async virtual string add_reference (MediaObject    object,
                                                Cancellable? cancellable)
                                                throws Error {
-        throw new WriteableContainerError.NOT_IMPLEMENTED
+        throw new WritableContainerError.NOT_IMPLEMENTED
                                         ("Cannot create references here");
     }
 

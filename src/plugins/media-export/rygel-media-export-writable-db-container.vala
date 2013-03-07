@@ -81,7 +81,7 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
             }
             break;
         default:
-            throw new WriteableContainerError.NOT_IMPLEMENTED
+            throw new WritableContainerError.NOT_IMPLEMENTED
                                         ("upnp:class %s not supported",
                                          container.upnp_class);
         }
@@ -98,7 +98,7 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
 
     public async void remove_container (string id, Cancellable? cancellable)
                                         throws Error {
-        throw new WriteableContainerError.NOT_IMPLEMENTED ("Not supported");
+        throw new WritableContainerError.NOT_IMPLEMENTED ("Not supported");
     }
 
 }

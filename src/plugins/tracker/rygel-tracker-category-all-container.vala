@@ -92,7 +92,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
 
     public async void add_container (MediaContainer container,
                                      Cancellable? cancellable) throws Error {
-        throw new WriteableContainerError.NOT_IMPLEMENTED ("Not supported");
+        throw new WritableContainerError.NOT_IMPLEMENTED ("Not supported");
     }
 
     public async void remove_item (string id, Cancellable? cancellable)
@@ -106,7 +106,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
 
     public async void remove_container (string id, Cancellable? cancellable)
                                         throws Error {
-        throw new WriteableContainerError.NOT_IMPLEMENTED ("Not supported");
+        throw new WritableContainerError.NOT_IMPLEMENTED ("Not supported");
     }
 
     public async MediaObjects? search (SearchExpression? expression,
