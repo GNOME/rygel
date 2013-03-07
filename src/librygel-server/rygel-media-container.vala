@@ -132,7 +132,9 @@ public abstract class Rygel.MediaContainer : MediaObject {
             } catch (Error error) {}
 
             if (allow_upload) {
-                flags |= OCMFlags.UPLOAD | OCMFlags.UPLOAD_DESTROYABLE;
+                flags |= OCMFlags.UPLOAD |
+                         OCMFlags.UPLOAD_DESTROYABLE |
+                         OCMFlags.CREATE_CONTAINER;
             }
 
             var allow_deletion = true;
