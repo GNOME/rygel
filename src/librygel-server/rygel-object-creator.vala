@@ -237,10 +237,12 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
         }
 
         // FIXME: Is this check really necessary? 7.3.118.4 passes without it.
-        if ((didl_object.dlna_managed &
-            (OCMFlags.UPLOAD |
-             OCMFlags.CREATE_CONTAINER |
-             OCMFlags.UPLOAD_DESTROYABLE)) != 0) {
+        // These flags must not be set on items.
+        if (didl_object is DIDLLiteItem &&
+            ((didl_object.dlna_managed &
+             (OCMFlags.UPLOAD |
+              OCMFlags.CREATE_CONTAINER |
+              OCMFlags.UPLOAD_DESTROYABLE)) != 0)) {
             throw new ContentDirectoryError.BAD_METADATA
                                         ("Flags that must not be set " +
                                          "were found in 'dlnaManaged'");
