@@ -284,11 +284,13 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
     public double volume {
         get {
-            return this.playbin.volume;
+            return (this.playbin as Audio.StreamVolume).get_volume
+                                        (Audio.StreamVolumeFormat.CUBIC);
         }
 
         set {
-            this.playbin.volume = value;
+            (this.playbin as Audio.StreamVolume).set_volume
+                                        (Audio.StreamVolumeFormat.CUBIC, value);
             debug ("volume set to %f.", value);
         }
     }
