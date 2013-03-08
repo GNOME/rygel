@@ -247,6 +247,21 @@ internal class Rygel.AVTransport : Service {
             message.request_headers.append ("getContentFeatures.dlna.org",
                                             "1");
             message.finished.connect ((msg) => {
+                // Server does not support HEAD request
+                if (msg.status_code == KnownStatusCode.BAD_REQUEST) {
+                    action.return ();
+
+                    // FIXME: no chance to check for playlists.
+                    this.controller.metadata = _metadata;
+                    this.controller.uri = _uri;
+                    this.controller.n_tracks = 1;
+                    this.controller.track = 1;
+                    this.track_metadata = _metadata;
+                    this.track_uri = _uri;
+
+                    return;
+                }
+
                 if (msg.status_code != KnownStatusCode.OK) {
                     warning ("Failed to access %s: %s",
                              _uri,
