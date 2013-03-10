@@ -75,6 +75,11 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
             return new SamsungTVHacks (message);
         } catch (Error error) { }
 
+        try {
+            return new SeekHacks (message);
+        } catch (Error error) { }
+
+
         return new XBMCHacks (message);
     }
 
@@ -84,6 +89,8 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
     public virtual void apply (MediaItem item) {}
 
     public virtual void filter_sort_criteria (ref string sort_criteria) {}
+
+    public virtual bool force_seek () { return false; }
 
     public virtual async MediaObjects? search
                                         (SearchableContainer container,

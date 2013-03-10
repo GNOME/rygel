@@ -90,12 +90,19 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
     }
 
     public static bool needed (HTTPGet request) {
-        return request.object is AudioItem &&
+        bool force_seek = false;
+
+        try {
+            var hack = ClientHacks.create (request.msg);
+            force_seek = hack.force_seek ();
+        } catch (Error error) { }
+
+        return force_seek || (request.object is AudioItem &&
                (request.object as AudioItem).duration > 0 &&
                (request.handler is HTTPTranscodeHandler ||
                 (request.thumbnail == null &&
                  request.subtitle == null &&
-                 (request.object as MediaItem).is_live_stream ()));
+                 (request.object as MediaItem).is_live_stream ())));
     }
 
     public static bool requested (HTTPGet request) {
