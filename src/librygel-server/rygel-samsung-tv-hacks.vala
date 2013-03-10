@@ -33,4 +33,8 @@ internal class Rygel.SamsungTVHacks : ClientHacks {
             item.mime_type = "video/x-mkv";
         }
     }
+
+    public override bool force_seek () {
+        return true;
+    }
 }

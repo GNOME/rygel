@@ -66,6 +66,7 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-media-receiver-registrar.vala \
 	rygel-panasonic-hacks.vala \
 	rygel-samsung-tv-hacks.vala \
+	rygel-seek-hacks.vala \
 	rygel-search-criteria-parser.vala \
 	rygel-search.vala \
 	rygel-serializer.vala \

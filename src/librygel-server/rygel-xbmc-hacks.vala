@@ -39,4 +39,8 @@ internal class Rygel.XBMCHacks : ClientHacks {
             item.mime_type = "audio/aac";
         }
     }
+
+    public override bool force_seek () {
+        return true;
+    }
 }
