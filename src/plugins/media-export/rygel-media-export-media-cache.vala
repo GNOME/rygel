@@ -519,6 +519,21 @@ public class Rygel.MediaExport.MediaCache : Object {
     }
 
     // Private functions
+    private bool is_object_guarded (string id) {
+        try {
+            GLib.Value[] id_value = { id };
+
+            return this.query_value (SQLString.IS_GUARDED,
+                                     id_value) == 1;
+        } catch (DatabaseError error) {
+            warning ("Failed to get whether item %s is guarded: %s",
+                     id,
+                     error.message);
+
+            return false;
+        }
+    }
+
     private void get_exists_cache () throws DatabaseError {
         this.exists_cache = new HashMap<string, ExistsCacheEntry?> ();
         var cursor = this.exec_cursor (SQLString.EXISTS_CACHE);
@@ -648,6 +663,38 @@ public class Rygel.MediaExport.MediaCache : Object {
         this.db.exec (this.sql.make (SQLString.SAVE_METADATA), values);
     }
 
+    private void update_guarded_object (MediaObject object) throws Error {
+        int type = ObjectType.CONTAINER;
+        GLib.Value parent;
+
+        if (object is MediaItem) {
+            type = ObjectType.ITEM;
+        }
+
+        if (object.parent == null) {
+            parent = Database.@null ();
+        } else {
+            parent = object.parent.id;
+        }
+
+        GLib.Value[] values = { type,
+                                parent,
+                                object.modified,
+                                object.uris.is_empty ? null : object.uris[0],
+                                object.object_update_id,
+                                -1,
+                                -1,
+                                object.id
+                              };
+        if (object is MediaContainer) {
+            var container = object as MediaContainer;
+            values[6] = container.total_deleted_child_count;
+            values[7] = container.update_id;
+        }
+
+        this.db.exec (this.sql.make (SQLString.UPDATE_GUARDED_OBJECT), values);
+    }
+
     private void create_normal_object (MediaObject object,
                                        bool is_guarded) throws Error {
         int type = ObjectType.CONTAINER;
@@ -688,7 +735,13 @@ public class Rygel.MediaExport.MediaCache : Object {
      */
     private void create_object (MediaObject object,
                                 bool override_guarded = false) throws Error {
-        this.create_normal_object (object, false);
+        var is_guarded = this.is_object_guarded (object.id);
+
+        if (!override_guarded && is_guarded) {
+            update_guarded_object (object);
+        } else {
+            create_normal_object (object, (is_guarded || override_guarded));
+        }
     }
 
     /**
