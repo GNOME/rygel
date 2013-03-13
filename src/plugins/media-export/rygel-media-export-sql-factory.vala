@@ -97,10 +97,15 @@ internal class Rygel.MediaExport.SQLFactory : Object {
         "(?,?,?,?,?,?,?,?,?,?)";
 
     private const string UPDATE_GUARDED_OBJECT_STRING =
-    "REPLACE INTO Object " +
-        "(upnp_id, type_fk, parent, timestamp, uri, " +
-         "object_update_id, deleted_child_count, container_update_id) " +
-        "VALUES (?,?,?,?,?,?,?,?)";
+    "UPDATE Object SET " +
+        "type_fk = ?, " +
+        "parent = ?, " +
+        "timestamp = ?, " +
+        "uri = ?, " +
+        "object_update_id = ?, " +
+        "deleted_child_count = ?, " +
+        "container_update_id = ? " +
+        "where upnp_id = ?";
 
     private const string DELETE_BY_ID_STRING =
     "DELETE FROM Object WHERE upnp_id IN " +
