@@ -38,6 +38,9 @@ librygel_media_export_la_SOURCES = \
 
 librygel_media_export_la_VALAFLAGS = \
 	--enable-experimental \
+	--internal-vapi rygel-media-export.vapi \
+	--internal-header rygel-media-export-internal.h \
+	--header rygel-media-export.h \
 	$(RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_VALAFLAGS) \
 	$(RYGEL_COMMON_VALAFLAGS)

@@ -220,6 +220,33 @@ rygel_environment_test_LDADD = \
 
 endif
 
+if BUILD_MEDIA_EXPORT_PLUGIN
+check_PROGRAMS += plugins/media-export/regression
+
+plugins_media_export_regression_SOURCES = \
+	$(top_srcdir)/src/librygel-core/rygel-core-2.0.vapi \
+	$(top_srcdir)/src/librygel-server/rygel-server-2.0.vapi \
+	$(top_srcdir)/src/plugins/media-export/rygel-media-export.vapi \
+	plugins/media-export/regression.vala
+plugins_media_export_regression_CFLAGS = \
+	$(test_cflags) \
+	$(COLLATION_CFLAGS) \
+	$(RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_CFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_CFLAGS) \
+	-I$(top_srcdir)/src/plugins/media-export
+plugins_media_export_regression_LDADD = \
+	$(test_libs) \
+	$(COLLATION_LIBS) \
+	$(RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_LIBS) \
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS) \
+	$(top_builddir)/src/plugins/media-export/librygel-media-export.la
+plugins_media_export_regression_VALAFLAGS = \
+	$(test_valaflags) \
+	--enable-experimental \
+	$(RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS)
+endif
+
+
 if ALWAYS_TEST
 all-local: check
 endif
