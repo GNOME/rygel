@@ -91,11 +91,13 @@ internal class Rygel.MediaExport.DatabaseCursor : SqliteWrapper {
      *
      * @return true if more rows left, false otherwise
      */
-    public bool has_next () {
+    public bool has_next () throws DatabaseError {
         if (this.dirty) {
             this.current_state = this.statement.step ();
             this.dirty = false;
         }
+
+        this.throw_if_code_is_error (this.current_state);
 
         return this.current_state == Sqlite.ROW || this.current_state == -1;
     }
@@ -134,7 +136,7 @@ internal class Rygel.MediaExport.DatabaseCursor : SqliteWrapper {
             this.cursor = cursor;
         }
 
-        public bool next () {
+        public bool next () throws DatabaseError {
             return this.cursor.has_next ();
         }
 
