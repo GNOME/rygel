@@ -275,9 +275,8 @@ internal class Rygel.AVTransport : Service {
                     var features = msg.response_headers.get_one
                                         ("contentFeatures.dlna.org");
 
-                    if (mime != null &&
-                        !(mime in this.player.get_mime_types () ||
-                          this.is_playlist (mime, features))) {
+                    if (!this.is_valid_mime_type (mime) &&
+                        !this.is_playlist (mime, features)) {
                         action.return_error (714, _("Illegal MIME-type"));
 
                         return;
@@ -322,6 +321,16 @@ internal class Rygel.AVTransport : Service {
 
             action.return ();
         }
+    }
+
+    private bool is_valid_mime_type (string? mime) {
+        if (mime == null) {
+            return false;
+        }
+
+        var normalized = mime.down ().replace (" ", "");
+
+        return normalized in this.player.get_mime_types ();
     }
 
     private void get_media_info_cb (Service       service,
