@@ -101,5 +101,6 @@ public interface Rygel.MediaPlayer : GLib.Object {
     public abstract string[] get_protocols ();
 
     /// Return the MIME types supported by this renderer.
+    /// The mime types in this list should be all lowercase.
     public abstract string[] get_mime_types ();
 }
