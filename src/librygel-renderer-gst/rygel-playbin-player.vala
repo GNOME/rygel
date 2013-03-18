@@ -436,13 +436,14 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
             break;
         case MessageType.ERROR:
             Error error;
-            string error_message;
+            string debug_message;
 
-            message.parse_error (out error, out error_message);
+            message.parse_error (out error, out debug_message);
 
-            warning ("Error from GStreamer element %s: %s",
+            warning ("Error from GStreamer element %s: %s (%s)",
                      this.playbin.name,
-                     error_message);
+                     error.message,
+                     debug_message);
             warning ("Going to STOPPED state");
 
             this.playback_state = "STOPPED";
