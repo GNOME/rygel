@@ -1,3 +1,59 @@
+0.17.10
+=======
+
+A new unstable release for Rygel.
+
+- Fix preferences desktop file.
+- Fix a typo and namespace for errordomain.
+- Add hacks for Samsung TVs to generate proper mime-type for Matroska files.
+- Fix variable expansion in configure scripts.
+
+MediaExport:
+ - Revert change for static titles (bgo#683926)
+
+GStreamer renderer:
+ - Show a proper error message on plabybin errors.
+
+All bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=691654
+ - https://bugzilla.gnome.org/show_bug.cgi?id=690877
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  Enrico Nicoletto <liverig@gmail.com>
+  Ville-Pekka Vainio <vpvainio@iki.fi>
+  Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+  Nilamdyuti Goswami <ngoswami@redhat.com>
+  Milo Casagrande <milo@ubuntu.com>
+  Mattias Põldaru <mahfiaz@gmail.com>
+  Martin Srebotnjak <miles@filmsi.net>
+  Joe Hansen <joedalton2@yahoo.dk>
+  Joan Duran <jodufi@gmail.com>
+  Jasper Lievisse Adriaanse <jasper@humppa.nl>
+  Duarte Loreto <happyguy_pt@hotmail.com>
+  Dr.T.Vasudevan <drtvasudevan@gmail.com>
+  Choe Hwanjin <choe.hwanjin@gmail.com>
+  Changwoo Ryu <cwryu@debian.org>
+  Carles Ferrando <carles.ferrando@gmail.com>
+  Balázs Úr <urbalazs@src.gnome.org>
+
+Added/updated translations
+ - as, courtesy of Nilamdyuti Goswami
+ - ca, courtesy of Joan Duran
+ - ca@valencia, courtesy of Joan Duran
+ - da, courtesy of Joe Hansen
+ - et, courtesy of Mattias Põldaru
+ - fi, courtesy of Jiri Grönroos
+ - hu, courtesy of Balázs Úr
+ - it, courtesy of Milo Casagrande
+ - ko, courtesy of Changwoo Ryu
+ - lv, courtesy of Rūdolfs Mazurs
+ - pt_BR, courtesy of Enrico Nicoletto
+ - pt, courtesy of Duarte Loreto
+ - sl, courtesy of Matej Urbančič
+ - ta, courtesy of Dr.T.Vasudevan
+
+
 0.17.9
 ======
 
