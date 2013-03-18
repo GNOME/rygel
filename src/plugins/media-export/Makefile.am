@@ -48,7 +48,6 @@ librygel_media_export_la_CFLAGS = \
 	-DG_LOG_DOMAIN='"MediaExport"'
 librygel_media_export_la_LIBADD = \
 	$(RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_LIBS) \
-	$(COLLATION_LIBS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
 
 librygel_media_export_la_LDFLAGS = \

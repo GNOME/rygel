@@ -295,10 +295,7 @@ then
                                  [have_unistring=yes],[have_unistring=no]))
     if test "x$have_unistring" = "xyes"; then
         AC_DEFINE([HAVE_UNISTRING],[1],[Use libunistring for collation])
-        COLLATION_CFLAGS=
-        COLLATION_LIBS=-lunistring
-        AC_SUBST([COLLATION_CFLAGS])
-        AC_SUBST([COLLATION_LIBS])
+        RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_LIBS="$RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_LIBS -lunistring"
     fi
 fi
 
