@@ -93,16 +93,22 @@ public interface Rygel.DataSource : GLib.Object {
 
     /**
      * Emitted when the source has produced some data.
+     *
+     * This signal has to be emitted in the main thread.
      */
     public signal void data_available (uint8[] data);
 
     /**
      * Emitted when the source does not have data anymore.
+     *
+     * This signal has to be emitted in the main thread.
      */
     public signal void done ();
 
     /**
      * Emitted when the source encounters a problem during data generation.
+     *
+     * This signal has to be emitted in the main thread.
      */
     public signal void error (Error error);
 }
