@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2013-03-18 13:17+0000\n"
-"PO-Revision-Date: 2013-03-24 15:40+0000\n"
+"PO-Revision-Date: 2013-03-24 16:04+0000\n"
 "Last-Translator: chandankumar <chandankumar.093047@gmail.com>\n"
 "Language-Team: Hindi <kde-i18n-doc@kde.org>\n"
 "Language: hi\n"
@@ -498,7 +498,7 @@ msgstr "प्रारंभ की श्रेणी '%ld' से बाह�
 #: ../src/librygel-server/rygel-http-seek.vala:99
 #, c-format
 msgid "Out Of Range Stop '%ld'"
-msgstr "समाप्ति की श्रेणी 'ld' से बाहर"
+msgstr "समाप्ति की श्रेणी '%ld' से बाहर"
 
 #: ../src/librygel-server/rygel-import-resource.vala:124
 #, c-format
@@ -611,7 +611,8 @@ msgid ""
 "Metadata modification of object %s being a child of restricted object %s not "
 "allowed"
 msgstr ""
-"वस्तुओं के मेटाडाटा संशोधन प्रतिबंधित वस्तु %s की अनुमति नहीं है के एक बच्चे "
+"वस्तुओं %s के मेटाडाटा संशोधन प्रतिबंधित वस्तु %s की अनुमति नहीं है के एक "
+"बच्चे "
 "की जा रही है"
 
 #: ../src/librygel-server/rygel-media-engine.vala:69
@@ -778,4 +779,5 @@ msgstr "Rygel सेवा शुरू करने में विफल: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Rygel सेवा को रोकने में विफल: %s"
+
 
