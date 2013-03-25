@@ -107,7 +107,7 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
         var headers = message.request_headers;
 
         var agent = headers.get_one ("User-Agent");
-        if (agent == null) {
+        if (agent == null && client_agent_cache != null) {
             var address = message.get_address ();
             agent = client_agent_cache.get (address.get_physical ());
         }
