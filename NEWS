@@ -1,3 +1,26 @@
+0.18.0
+======
+
+A new stable release of Rygel!
+
+Changes compared to 0.17.10:
+
+- Clarify the thread context of RygelDataSource's signals.
+- Fix a critical message during upload.
+
+All contributors to this release:
+  Mario Blättermann <mariobl@gnome.org>
+  Jens Georg <jensg@openismus.com>
+  Chandan Kumar <Chandankumar.093047@gmail.com>
+  Alexandre Franke <alexandre.franke@gmail.com>
+  Akom Chotiphantawanon <knight2000@gmail.com>
+
+Added/updated translations
+ - de, courtesy of Mario Blättermann
+ - fr, courtesy of Alain Lojewski
+ - hi, courtesy of chandankumar
+ - th, courtesy of Akom Chotiphantawanon
+
 0.17.10
 =======
 
