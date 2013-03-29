@@ -100,7 +100,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         { "disable-upnp", 'P', 0, OptionArg.NONE, ref no_upnp,
           "Disable UPnP (streaming-only)", null },
         { "config", 'c', 0, OptionArg.FILENAME, ref config_file,
-          "Use configuration file instead of user configuration", null },
+          "Use configuration file instead of user configuration", "FILE" },
         { null }
 	};
 
