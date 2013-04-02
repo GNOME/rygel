@@ -238,7 +238,7 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         } catch (Error error) {
             /// TRANSLATORS: First %s is the file's path, second is the error
             //  message
-            warning _("Failed to load user configuration from file '%s': %s",
+            warning (_("Failed to load user configuration from file '%s': %s"),
                    local_path,
                    error.message);
             this.key_file = new KeyFile ();
