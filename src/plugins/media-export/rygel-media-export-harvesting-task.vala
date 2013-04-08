@@ -337,14 +337,6 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
     private void do_update () {
         if (this.files.is_empty &&
             !this.containers.is_empty ()) {
-            var container = this.containers.peek_head ();
-            var cache = MediaCache.get_default ();
-            try {
-                if (cache.get_child_count (container.id) == 0) {
-                    var parent = container.parent as TrackableContainer;
-                    parent.remove_child_tracked.begin (container);
-                }
-            } catch (Error error) { }
             this.containers.pop_head ();
         }
 

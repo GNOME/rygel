@@ -158,31 +158,11 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                                         this.cancellable);
             if (info.get_file_type () == FileType.DIRECTORY ||
                 Harvester.is_eligible (info)) {
-                string id;
+                var id = MediaCache.get_id (file.get_parent ());
                 try {
-                    MediaContainer parent_container = null;
-                    var current = file;
-                    do {
-                        var parent = current.get_parent ();
-                        id = MediaCache.get_id (parent);
-                        parent_container = cache.get_object (id)
+                    var parent_container = cache.get_object (id)
                                         as MediaContainer;
-
-                        if (parent_container == null) {
-                            current = parent;
-                            if (current in this.locations) {
-                                debug ("Reached the top - parent is filesystem container");
-                                // We have reached the top
-                                parent_container = cache.get_object
-                                            (RootContainer.FILESYSTEM_FOLDER_ID)
-                                            as MediaContainer;
-
-                                break;
-                            }
-                        }
-                    } while (parent_container == null);
-
-                    this.schedule (current, parent_container);
+                    this.schedule (file, parent_container);
                 } catch (DatabaseError error) {
                     warning (_("Error fetching object '%s' from database: %s"),
                             id,
@@ -214,22 +194,12 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
             var object = cache.get_object (id);
             var parent = null as MediaContainer;
 
-            while (object != null) {
+            if (object != null) {
                 parent = object.parent;
                 if (parent is TrackableContainer) {
                     var container = parent as TrackableContainer;
                     container.remove_child_tracked.begin (object);
                 }
-                if (parent == null) {
-                    break;
-                }
-
-                parent.child_count--;
-                if (parent.child_count != 0) {
-                    break;
-                }
-
-                object = parent;
             }
         } catch (Error error) {
             warning (_("Error removing object from database: %s"),
