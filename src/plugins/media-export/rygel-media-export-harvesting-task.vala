@@ -180,12 +180,13 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
             var container = new DummyContainer (file, parent);
             this.containers.push_tail (container);
-            try {
-                this.cache.save_container (container);
-            } catch (Error err) {
-                warning (_("Failed to update database: %s"), err.message);
 
-                return false;
+            // Only add new containers. There's not much about a container so
+            // we skip the updated signal
+            var dummy_parent = parent as DummyContainer;
+            if (dummy_parent != null &&
+                dummy_parent.children.contains (MediaCache.get_id (file))) {
+                dummy_parent.add_child_tracked.begin (container);
             }
 
             return true;
@@ -210,8 +211,8 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         foreach (var info in list) {
             var file = container.file.get_child (info.get_name ());
 
-            container.seen (file);
             this.process_file (file, info, container);
+            container.seen (file);
         }
 
         return true;
