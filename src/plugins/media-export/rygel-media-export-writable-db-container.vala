@@ -88,6 +88,7 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
         }
 
         yield this.add_child_tracked (container);
+        this.media_db.make_object_guarded (container);
     }
 
     public async void remove_item (string id, Cancellable? cancellable)
