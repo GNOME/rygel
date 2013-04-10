@@ -184,9 +184,9 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             // Only add new containers. There's not much about a container so
             // we skip the updated signal
             var dummy_parent = parent as DummyContainer;
-            if (dummy_parent != null &&
-                dummy_parent.children.contains (MediaCache.get_id (file))) {
-                dummy_parent.add_child_tracked.begin (container);
+            if (dummy_parent == null ||
+                !dummy_parent.children.contains (MediaCache.get_id (file))) {
+                (parent as TrackableContainer).add_child_tracked.begin (container);
             }
 
             return true;
