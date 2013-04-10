@@ -76,6 +76,7 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
         switch (container.upnp_class) {
         case MediaContainer.STORAGE_FOLDER:
             var file = File.new_for_uri (container.uris[0]);
+            container.id = MediaCache.get_id (file);
             if (file.is_native ()) {
                 file.make_directory_with_parents (cancellable);
             }
