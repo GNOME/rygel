@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-03-04 14:16+0000\n"
-"PO-Revision-Date: 2013-03-17 15:45+0100\n"
+"POT-Creation-Date: 2013-04-02 08:51+0000\n"
+"PO-Revision-Date: 2013-04-10 23:45+0200\n"
 "Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -89,7 +89,6 @@ msgstr "média-kiszolgáló;média-renderelő;megosztás;hang;videó;képek;"
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:42
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:42
 #, c-format
-#| msgid "Failed to connect to session bus: %s"
 msgid "Module '%s' could not connect to D-Bus session bus. "
 msgstr "A(z) „%s” modul nem csatlakoztatható a D-Bus munkamenetbuszhoz. "
 
@@ -109,23 +108,22 @@ msgstr "A tartalomtípus lekérése meghiúsult ehhez: „%s”"
 msgid "Failed to add item with ID %s: %s"
 msgstr "A(z) %s azonosítójú elem hozzáadása meghiúsult: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:127
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:124
 #, c-format
 msgid "'%s' harvested"
 msgstr "„%s” begyűjtve"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:190
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:187
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Hiba az objektum („%s”) lekérésekor az adatbázisból: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:198
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:195
 #, c-format
-#| msgid "Failed to move dotfile %s: %s"
 msgid "Failed to query info of a file %s: %s"
 msgstr "A fájl (%s) információinak lekérdezése meghiúsult: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:238
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:235
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Hiba az objektum eltávolításakor az adatbázisból: %s"
@@ -324,7 +322,6 @@ msgstr "Nincs beállítva érték a következőhöz: „%s/enabled”"
 
 #: ../src/librygel-core/rygel-meta-config.vala:343
 #, c-format
-#| msgid "No value set for '%s/enabled'"
 msgid "No value set for '%s/title'"
 msgstr "Nincs beállítva érték a következőhöz: „%s/title”"
 
@@ -570,13 +567,11 @@ msgstr "Az objektumok eltávolítása nem engedélyezett innen: %s"
 
 #: ../src/librygel-server/rygel-item-updater.vala:77
 #, c-format
-#| msgid "Successfully destroyed object '%s'"
 msgid "Successfully updated object '%s'"
 msgstr "Az objektum sikeresen frissítve: „%s”"
 
 #: ../src/librygel-server/rygel-item-updater.vala:85
 #, c-format
-#| msgid "Failed to destroy object '%s': %s"
 msgid "Failed to update object '%s': %s"
 msgstr "„%s” objektum frissítése sikertelen: %s"
 
@@ -606,7 +601,6 @@ msgstr "Ismeretlen hiba."
 
 #: ../src/librygel-server/rygel-item-updater.vala:191
 #, c-format
-#| msgid "Removal of object %s not allowed"
 msgid "Metadata modification of object %s not allowed"
 msgstr "A(z) %s objektum mataadat módosítása nem engedélyezett"
 
@@ -662,7 +656,6 @@ msgid "No thumbnailer available: %s"
 msgstr "Nem érhető el bélyegképkészítő: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-#| msgid "Seek mode not supported"
 msgid "Thubmnailing not supported"
 msgstr "A bélyegképkészítés nem támogatott"
 
@@ -688,7 +681,6 @@ msgid "Could not create GstElement for URI %s"
 msgstr "Nem hozható létre GstElement a(z) %s URI-hoz"
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:92
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to create pipeline"
 msgstr "Nem sikerült adatcsatornát létrehozni"
 
@@ -715,12 +707,10 @@ msgstr "Figyelmeztetés a(z) %s adatcsatornától: %s"
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:251
 #, c-format
-#| msgid "Failed to seek to offset %lld"
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Nem sikerült a tekerés a(z) %lld:%lld eltolásra"
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:255
-#| msgid "Failed to seek to offset %lld"
 msgid "Failed to seek"
 msgstr "Nem sikerült a tekerés"
 
@@ -730,7 +720,6 @@ msgid "Required element %s missing"
 msgstr "A szükséges %s elem hiányzik"
 
 #: ../src/media-engines/simple/rygel-simple-data-source.vala:56
-#| msgid "Play speed not supported"
 msgid "Time-based seek not supported"
 msgstr "Az idő-alapú tekerés nem támogatott"
 
@@ -756,14 +745,23 @@ msgstr "%s gyökéreszközének létrehozása meghiúsult. Ok: %s"
 msgid "Failed to load user configuration: %s"
 msgstr "A felhasználói konfiguráció betöltése meghiúsult: %s"
 
-#: ../src/rygel/rygel-user-config.vala:292
-#: ../src/ui/rygel-user-config.vala:292
+#. / TRANSLATORS: First %s is the file's path, second is the error
+#. message
+#: ../src/rygel/rygel-user-config.vala:241
+#: ../src/ui/rygel-user-config.vala:241
+#, c-format
+#| msgid "Failed to load user configuration: %s"
+msgid "Failed to load user configuration from file '%s': %s"
+msgstr "A felhasználói konfiguráció betöltése meghiúsult a(z) „%s” fájlból: %s"
+
+#: ../src/rygel/rygel-user-config.vala:294
+#: ../src/ui/rygel-user-config.vala:294
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Nem érhető el érték ehhez: „%s”"
 
-#: ../src/rygel/rygel-user-config.vala:363
-#: ../src/ui/rygel-user-config.vala:363
+#: ../src/rygel/rygel-user-config.vala:365
+#: ../src/ui/rygel-user-config.vala:365
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "A(z) „%s” értéke kívül esik a tartományon"
