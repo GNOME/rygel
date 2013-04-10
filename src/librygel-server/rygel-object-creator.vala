@@ -162,9 +162,8 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
             this.conclude ();
 
             if (this.container_id == MediaContainer.ANY &&
-                ((this.object is MediaContainer) ||
                 (this.object is MediaItem && (this.object as
-                                              MediaItem).place_holder))) {
+                                              MediaItem).place_holder)) {
                 var queue = ObjectRemovalQueue.get_default ();
 
                 queue.queue (this.object, this.cancellable);
