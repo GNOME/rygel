@@ -653,8 +653,10 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         }
 
         // If no child QueryContainers were added, remove
-        // the provided parent container.
-        if (this.media_db.get_child_count (container.id) == 0) {
+        // the provided parent container. Unless it's the Playlist container.
+        if (this.media_db.get_child_count (container.id) == 0 &&
+            !container.id.has_prefix ("virtual-parent:" +
+                                      Rygel.PlaylistItem.UPNP_CLASS)) {
             this.media_db.remove_by_id (container.id);
         } else {
             container.updated ();
