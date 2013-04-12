@@ -265,6 +265,13 @@ public abstract class Rygel.MediaObject : GLib.Object {
 
     private async bool check_writable (File file, Cancellable? cancellable)
                                        throws Error {
+        // Special URI scheme to indicate that this is a writable container
+        // but doesn't have any real filesystem backing
+        if (WritableContainer.WRITABLE_SCHEME.has_prefix
+                                        (file.get_uri_scheme())) {
+            return true;
+        }
+
         if (!file.is_native ()) {
             return false;
         }

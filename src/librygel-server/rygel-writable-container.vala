@@ -41,6 +41,8 @@ public errordomain Rygel.WritableContainerError {
  *  # Monitor not only its own URI but also that of its child items, though the latter is implied in the former if you use GIO for monitoring.
  */
 public interface Rygel.WritableContainer : MediaContainer {
+    public static const string WRITABLE_SCHEME = "rygel-writable://";
+
     //TODO: The valadoc gtk-doc doclet doesn't use the property's documentation
     //on getters and setters:
     //https://bugzilla.gnome.org/show_bug.cgi?id=684193
