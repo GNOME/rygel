@@ -423,7 +423,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
         // Warn about any top-level locations that were known to 
         // the cache (see above) but which we no longer care about,
-        // and remote it from the cache.
+        // and remove it from the cache.
         foreach (var id in ids) {
             debug ("ID %s is no longer in the configuration. Deleting...", id);
             try {
@@ -582,7 +582,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
     /**
      * Add a QueryContainer to the provided container,
-     * for the specified UpNP class,
+     * for the specified UPnP class,
      * with the specified definition,
      * saving it in the cache.
      */
