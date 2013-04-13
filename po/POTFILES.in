@@ -113,6 +113,7 @@ src/librygel-server/rygel-media-receiver-registrar.vala
 src/librygel-server/rygel-media-server.vala
 src/librygel-server/rygel-music-item.vala
 src/librygel-server/rygel-photo-item.vala
+src/librygel-server/rygel-reference-creator.vala
 src/librygel-server/rygel-relational-expression.vala
 src/librygel-server/rygel-search-criteria-parser.vala
 src/librygel-server/rygel-search-expression.vala
