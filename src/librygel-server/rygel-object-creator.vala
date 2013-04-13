@@ -216,23 +216,20 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
         }
 
         if (this.didl_object == null) {
-            // FIXME: Change to object after string freeze
-            var message = _("No items in DIDL-Lite from client: '%s'");
+            var message = _("No objects in DIDL-Lite from client: '%s'");
 
             throw new ContentDirectoryError.BAD_METADATA
                                         (message, this.elements);
         }
 
         if (didl_object.id == null || didl_object.id != "") {
-            throw new ContentDirectoryError.BAD_METADATA
-                                        ("@id must be set to \"\" in " +
-                                         "CreateItem");
+            var msg = _("@id must be set to \"\" in CreateObject call");
+            throw new ContentDirectoryError.BAD_METADATA (msg);
         }
 
         if (didl_object.title == null) {
-            throw new ContentDirectoryError.BAD_METADATA
-                                    ("dc:title must be set in " +
-                                     "CreateItem");
+            var msg = _("dc:title must not be empty in CreateObject call");
+            throw new ContentDirectoryError.BAD_METADATA (msg);
         }
 
         // FIXME: Is this check really necessary? 7.3.118.4 passes without it.
@@ -242,21 +239,20 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
              (OCMFlags.UPLOAD |
               OCMFlags.CREATE_CONTAINER |
               OCMFlags.UPLOAD_DESTROYABLE)) != 0)) {
-            throw new ContentDirectoryError.BAD_METADATA
-                                        ("Flags that must not be set " +
-                                         "were found in 'dlnaManaged'");
+            var msg =  _("Flags that must not be set were found in 'dlnaManaged'");
+            throw new ContentDirectoryError.BAD_METADATA (msg);
         }
 
         if (didl_object.upnp_class == null ||
             didl_object.upnp_class == "" ||
             !didl_object.upnp_class.has_prefix ("object")) {
             throw new ContentDirectoryError.BAD_METADATA
-                                        ("Invalid upnp:class given ");
+                                        (_("Invalid upnp:class given in CreateObject"));
         }
 
         if (didl_object.restricted) {
             throw new ContentDirectoryError.INVALID_ARGS
-                                        ("Cannot create restricted item");
+                                        (_("Cannot create restricted item"));
         }
     }
 
@@ -320,9 +316,8 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
         }
 
         if (upnp_class == "object") {
-            // FIXME: Mark translatable.
             throw new ContentDirectoryError.BAD_METADATA
-                                    ("'%s' UPnP class unsupported",
+                                    (_("UPnP class '%s' not supported"),
                                      this.didl_object.upnp_class);
         }
 
@@ -457,9 +452,9 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
             if (info != null) {
                 if (info.dlna_profile != null) {
                     if (!this.is_profile_valid (info.dlna_profile)) {
-                        // FIXME: Missing translation
+                        var msg = _("DLNA profile '%s' not supported");
                         throw new ContentDirectoryError.BAD_METADATA
-                                    ("'%s' DLNA profile unsupported",
+                                    (msg,
                                      info.dlna_profile);
                     }
 
@@ -515,7 +510,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
                                   out month,
                                   out day) != 3) {
             throw new ContentDirectoryError.BAD_METADATA
-                                    ("Invalid date format: %s",
+                                    (_("Invalid date format: %s"),
                                      didl_item.date);
         }
 
@@ -523,9 +518,8 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
         date.set_dmy ((DateDay) day, (DateMonth) month, (DateYear) year);
 
         if (!date.valid ()) {
-            // FIXME: Add translation.
             throw new ContentDirectoryError.BAD_METADATA
-                                    ("Invalid date: %s",
+                                    (_("Invalid date: %s"),
                                      didl_item.date);
         }
 
@@ -557,10 +551,8 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
             container.upnp_class = upnp_class;
             return container;
         default:
-            throw new ContentDirectoryError.BAD_METADATA
-                                        ("Creation of item of class '%s' " +
-                                         "not supported.",
-                                         upnp_class);
+            var msg = _("Cannot create object of class '%s': Not supported");
+            throw new ContentDirectoryError.BAD_METADATA (msg, upnp_class);
         }
     }
 
@@ -647,7 +639,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
      * @param container to watch
      */
     private async void wait_for_object (WritableContainer container) {
-        debug ("Waiting for new object to appear under container '%s'..",
+        debug ("Waiting for new object to appear under container '%s'…",
                container.id);
 
         MediaObject object = null;
@@ -657,10 +649,8 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
                 object = yield container.find_object (this.object.id,
                                                       this.cancellable);
             } catch (Error error) {
-                warning ("Error from container '%s' on trying to find newly " +
-                         "added child object '%s' in it",
-                         container.id,
-                         this.object.id);
+                var msg = _("Error from container '%s' on trying to find the newly added child object '%s' in it: %s");
+                warning (msg, container.id, this.object.id, error.message);
             }
 
             if (object == null) {

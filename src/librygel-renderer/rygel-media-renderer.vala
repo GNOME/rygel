@@ -24,7 +24,7 @@ internal class Plugin : Rygel.MediaRendererPlugin {
 
     public Plugin (Rygel.MediaPlayer        player,
                    Rygel.PluginCapabilities capabilities) {
-        base ("LibRygelRenderer", _("LibRygelRenderer"), null, capabilities);
+        base ("LibRygelRenderer", "LibRygelRenderer", null, capabilities);
         this.player = player;
     }
 

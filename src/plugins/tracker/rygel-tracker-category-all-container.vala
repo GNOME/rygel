@@ -74,7 +74,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
                                          DBusSignalFlags.NONE,
                                          this.on_graph_updated);
         } catch (Error error) {
-            critical (_("Could not subscribe to tracker signals: %s"),
+            critical (_("Could not subscribe to Tracker signals: %s"),
                       error.message);
         }
 
@@ -92,7 +92,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
 
     public async void add_container (MediaContainer container,
                                      Cancellable? cancellable) throws Error {
-        throw new WritableContainerError.NOT_IMPLEMENTED ("Not supported");
+        throw new WritableContainerError.NOT_IMPLEMENTED (_("Not supported"));
     }
 
     public async void remove_item (string id, Cancellable? cancellable)

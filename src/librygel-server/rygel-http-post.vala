@@ -173,7 +173,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
         this.server.pause_message (this.msg);
 
         debug ("Waiting for update signal from container '%s' after pushing" +
-               " content to its child item '%s'..",
+               " content to its child item '%s'…",
                this.object.parent.id,
                this.object.id);
 

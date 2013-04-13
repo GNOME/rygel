@@ -46,15 +46,13 @@ internal class Rygel.ReferenceCreator : GLib.Object, Rygel.StateMachine {
                          "ObjectID",
                              typeof (string), out this.object_id);
         if (this.container_id == null) {
-            // FIXME: Add translation
             throw new ContentDirectoryError.INVALID_ARGS
-                                        (("'ContainerID' agument missing."));
+                                        (_("'ContainerID' agument missing."));
         }
 
         if (this.object_id == null) {
-            // FIXME: Add translation
             throw new ContentDirectoryError.INVALID_ARGS
-                                        (("'ObjectID' argument missing."));
+                                        (_("'ObjectID' argument missing."));
         }
     }
 

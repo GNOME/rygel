@@ -22,7 +22,7 @@
 internal class Plugin : Rygel.MediaServerPlugin {
     public Plugin (Rygel.MediaContainer root_container,
                    Rygel.PluginCapabilities capabilities) {
-        base (root_container, _("LibRygelServer"), null, capabilities);
+        base (root_container, "LibRygelServer", null, capabilities);
     }
 }
 
