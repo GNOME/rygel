@@ -1,3 +1,52 @@
+0.18.1
+======
+
+A bugfix release for Rygel!
+
+Changes compared to 0.18.0:
+
+Rygel:
+- Clarify commandline argument help.
+
+Server:
+- Fix the check for OCM flags on object creation.
+- Set proper OCM flags in containers.
+- Containers don't need to be added to object removal queue.
+- Make it possible to delete a container via DestroyObject.
+- Accept invalid seek requests on non-seekable entities.
+
+Renderer:
+ - Improve mime-type comparing to be a bit more forgiving on the format.
+ - Continue rendering even if peer does not support HTTP HEAD.
+
+GStreamer media engine:
+ - Drop some format restrictions GStreamer should be able to figure out itself.
+
+MediaExport:
+ - Prefer object titles given through CreateObject call to those got from
+   meta-data extraction
+ - Fix an issue where SQLite errors were accidentally dropped.
+ - Fix child count for containers that only contain other containers.
+ - Set the correct id when creating a container.
+
+All bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=694814
+ - https://bugzilla.gnome.org/show_bug.cgi?id=694155
+ - https://bugzilla.gnome.org/show_bug.cgi?id=683926
+ - https://bugzilla.gnome.org/show_bug.cgi?id=694815
+ - https://bugzilla.gnome.org/show_bug.cgi?id=674736
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  Inaki Larranaga Murgoitio <dooteo@zundan.com>
+  Bruce Cowan <bruce@bcowan.me.uk>
+  Andika Triwidada <andika@gmail.com>
+
+Added/updated translations
+ - en_GB, courtesy of Bruce Cowan
+ - eu, courtesy of Iñaki Larrañaga Murgoitio
+ - id, courtesy of Andika Triwidada
+
 0.18.0
 ======
 
