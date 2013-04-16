@@ -45,6 +45,16 @@ private class Rygel.Subtitle : GLib.Object {
 public class Rygel.MediaContainer : MediaObject {
 }
 
+public class Rygel.ClientHacks : GLib.Object {
+    public static ClientHacks create (Soup.Message msg) throws Error {
+        return new ClientHacks ();
+    }
+
+    public bool force_seek () {
+        return false;
+    }
+}
+
 private class Rygel.HTTPGet : GLib.Object {
     public const string ITEM_URI = "http://DoesntMatterWhatThisIs";
 

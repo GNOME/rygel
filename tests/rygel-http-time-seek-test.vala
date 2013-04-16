@@ -44,6 +44,16 @@ private class Rygel.AudioItem : MediaItem {
     public int64 duration = 2048;
 }
 
+public class Rygel.ClientHacks : GLib.Object {
+    public static ClientHacks create (Soup.Message msg) throws Error {
+        return new ClientHacks ();
+    }
+
+    public bool force_seek () {
+        return false;
+    }
+}
+
 private class Rygel.Thumbnail : GLib.Object {}
 private class Rygel.Subtitle : GLib.Object {}
 

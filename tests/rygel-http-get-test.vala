@@ -45,6 +45,10 @@ public class Rygel.ClientHacks {
 
     public void apply (MediaItem? item) {
     }
+
+    public bool force_seek () {
+        return false;
+    }
 }
 
 public class Rygel.TestRequestFactory {
