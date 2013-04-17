@@ -204,6 +204,7 @@ public class Rygel.DescriptionFile : Object {
         assert (!xpath_object->nodesetval->is_empty ());
 
         xpath_object->nodesetval->item (0)->set_content (new_type);
+        delete xpath_object;
     }
 
     /**
