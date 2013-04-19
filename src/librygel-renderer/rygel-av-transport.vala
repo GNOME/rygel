@@ -248,7 +248,8 @@ internal class Rygel.AVTransport : Service {
                                             "1");
             message.finished.connect ((msg) => {
                 // Server does not support HEAD request
-                if (msg.status_code == KnownStatusCode.BAD_REQUEST) {
+                if (msg.status_code == KnownStatusCode.BAD_REQUEST ||
+                    msg.status_code == KnownStatusCode.MALFORMED) {
                     action.return ();
 
                     // FIXME: no chance to check for playlists.
