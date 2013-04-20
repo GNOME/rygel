@@ -41,12 +41,12 @@ public class Rygel.DescriptionFile : Object {
     /**
      * Constructor to load a description file from disk
      *
-     * @param template the path to the description file.
+     * @param template_file the path to the description file.
      * @throws GUPnP.XMLError.PARSE if there was an error reading or parsing
      * the file.
      */
-    public DescriptionFile (string template) throws GLib.Error {
-        this.doc = new XMLDoc.from_path (template);
+    public DescriptionFile (string template_file) throws GLib.Error {
+        this.doc = new XMLDoc.from_path (template_file);
     }
 
     /**
