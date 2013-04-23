@@ -9,11 +9,11 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="990.37067"
-   height="1017.6357"
+   width="1488.189"
+   height="2104.7244"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="rygel-architecture.svg">
   <defs
      id="defs4" />
@@ -24,14 +24,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.25"
-     inkscape:cx="484.23899"
-     inkscape:cy="952.84329"
+     inkscape:zoom="1"
+     inkscape:cx="531.69506"
+     inkscape:cy="1193.9895"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="743"
+     inkscape:window-width="1920"
+     inkscape:window-height="1145"
      inkscape:window-x="0"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
@@ -41,7 +41,31 @@
      fit-margin-bottom="0"
      borderlayer="false"
      showborder="true"
-     inkscape:showpageshadow="true" />
+     inkscape:showpageshadow="true"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     width="744.09px">
+    <sodipodi:guide
+       orientation="1,0"
+       position="-165,918"
+       id="guide3152" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="224,654"
+       id="guide3154" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="390,67"
+       id="guide3946" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="757,585"
+       id="guide3948" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="802.91975,1012.5769"
+       id="guide3957" />
+  </sodipodi:namedview>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -58,226 +82,21 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-40.517547,-12.897085)">
+     transform="translate(-40.517547,1074.1919)">
     <text
        xml:space="preserve"
        style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-       x="102.02541"
-       y="53.321316"
+       x="134.48018"
+       y="-993.24957"
        id="text3961"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3963"
-         x="102.02541"
-         y="53.321316" /></text>
-    <g
-       id="g4122"
-       inkscape:export-filename="path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="8.0812759"
-         y="14.935518"
-         x="41.017548"
-         height="45.456863"
-         width="153.54318"
-         id="rect3953"
-         style="fill:#fce94f;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text3969"
-         y="41.533951"
-         x="49.818184"
-         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           y="41.533951"
-           x="49.818184"
-           id="tspan3971"
-           sodipodi:role="line">Rygel executable</tspan></text>
-    </g>
-    <g
-       id="g4062"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="7.7444854"
-         y="14.91468"
-         x="210.70914"
-         height="45.498539"
-         width="153.24637"
-         id="rect3951"
-         style="fill:#ad7fa8;fill-opacity:1;stroke:#000000;stroke-width:1.11471796;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text3975"
-         y="42.448952"
-         x="286.63519"
-         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           id="tspan3979"
-           y="42.448952"
-           x="286.63519"
-           sodipodi:role="line">Media Player</tspan></text>
-    </g>
-    <g
-       id="g4067"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="8.4486904"
-         y="14.95825"
-         x="380.25229"
-         height="45.4114"
-         width="153.24637"
-         id="rect3949"
-         style="fill:#ad7fa8;fill-opacity:1;stroke:#000000;stroke-width:1.16429603;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text3975-0"
-         y="42.448952"
-         x="456.17834"
-         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           id="tspan3979-7"
-           y="42.448952"
-           x="456.17834"
-           sodipodi:role="line">Media Player</tspan></text>
-    </g>
-    <g
-       id="g4042"
-       transform="translate(48.973034,-17.142857)"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="10.934366"
-         y="360.58414"
-         x="224.37508"
-         height="45.103951"
-         width="215.93021"
-         id="rect3939"
-         style="fill:#fce94f;fill-opacity:1;stroke:#000000;stroke-width:1.29674876;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text3969-0"
-         y="387.6131"
-         x="229.43381"
-         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           style="font-size:22px"
-           y="387.6131"
-           x="229.43381"
-           id="tspan3971-5"
-           sodipodi:role="line">librygel-renderer-gst</tspan></text>
-    </g>
-    <g
-       id="g4047"
-       transform="translate(9.6691518,0)"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="11.992874"
-         y="452.06845"
-         x="31.622843"
-         height="44.972969"
-         width="215.55641"
-         id="rect3935"
-         style="fill:#fce94f;fill-opacity:1;stroke:#000000;stroke-width:1.54889393;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text4025"
-         y="479.03192"
-         x="67.997124"
-         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           y="479.03192"
-           x="67.997124"
-           id="tspan4027"
-           sodipodi:role="line">librygel-server</tspan></text>
-    </g>
-    <g
-       id="g4037"
-       transform="translate(29.79619,5.7220459e-6)"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="9.5321636"
-         y="451.9162"
-         x="243.44658"
-         height="45.277462"
-         width="216.173"
-         id="rect3937"
-         style="fill:#fce94f;fill-opacity:1;stroke:#000000;stroke-width:1.08606577;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text4029"
-         y="479.03192"
-         x="268.57056"
-         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           y="479.03192"
-           x="268.57056"
-           id="tspan4031"
-           sodipodi:role="line">librygel-renderer</tspan></text>
-    </g>
-    <g
-       id="g4052"
-       transform="translate(-55.85235,0)"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="10.326732"
-         y="762.58722"
-         x="96.87709"
-         height="45.179142"
-         width="216.36777"
-         id="rect3929"
-         style="fill:#fce94f;fill-opacity:1;stroke:#000000;stroke-width:1.01438642;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text4033"
-         y="789.65381"
-         x="143.42505"
-         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           y="789.65381"
-           x="143.42505"
-           id="tspan4035"
-           sodipodi:role="line">librygel-core</tspan></text>
-    </g>
-    <g
-       id="g4076"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="8.0812759"
-         y="14.935518"
-         x="549.85553"
-         height="45.456863"
-         width="153.1263"
-         id="rect3947"
-         style="fill:#ad7fa8;fill-opacity:1;stroke:#000000;stroke-width:1.19025362;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text4072"
-         y="42.49295"
-         x="562.85712"
-         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           y="42.49295"
-           x="562.85712"
-           id="tspan4074"
-           sodipodi:role="line">Simple device</tspan></text>
-    </g>
+         x="134.48018"
+         y="-993.24957" /></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 57.142857,60.432544 0,391.639756"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 91.597623,-985.99664 0,506.35629"
        id="path4127"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc"
@@ -285,8 +104,8 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1, 1;stroke-dashoffset:0"
-       d="m 312.85714,60.933611 0,282.221059"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 390.3119,-988.46782 0,377.88209"
        id="path4129"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc"
@@ -294,8 +113,8 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 381.31321,388.46879 0,63.33226"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 421.76797,-605.67466 0,117.47732"
        id="path4131"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc"
@@ -303,118 +122,16 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 82.857143,498.07647 0,264.28571"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 113.39061,-450.41574 0,354.432724"
        id="path4133"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
-    <g
-       id="g4147"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="11.992874"
-         y="892.495"
-         x="41.14286"
-         height="44.972969"
-         width="216.11908"
-         id="rect3115-9"
-         style="fill:#729fcf;fill-opacity:1;stroke:#000000;stroke-width:1.25062382;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text4135"
-         y="922.56049"
-         x="112.56759"
-         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           y="922.56049"
-           x="112.56759"
-           id="tspan4137"
-           sodipodi:role="line">GUPnP</tspan></text>
-    </g>
-    <g
-       id="g4152"
-       transform="translate(-34,-4)"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="11.992874"
-         y="826.83508"
-         x="212.15883"
-         height="44.972969"
-         width="216.11908"
-         id="rect3115-1"
-         style="fill:#729fcf;fill-opacity:1;stroke:#000000;stroke-width:1.25062382;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text4139"
-         y="856.52655"
-         x="262.26334"
-         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           y="856.52655"
-           x="262.26334"
-           id="tspan4141"
-           sodipodi:role="line">GUPnP A/V</tspan></text>
-    </g>
-    <g
-       id="g4157"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="11.265811"
-         y="892.44995"
-         x="300.12991"
-         height="45.062935"
-         width="214.93329"
-         id="rect3931"
-         style="fill:#729fcf;fill-opacity:1;stroke:#000000;stroke-width:1.76700521;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text4143"
-         y="922.56042"
-         x="336.76138"
-         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           y="922.56042"
-           x="336.76138"
-           id="tspan4145"
-           sodipodi:role="line">GUPnP-DLNA</tspan></text>
-    </g>
-    <g
-       id="g4166"
-       transform="translate(68,-11)"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="11.992874"
-         y="995.93457"
-         x="364.9949"
-         height="44.972969"
-         width="216.11908"
-         id="rect3115"
-         style="fill:#8ae234;fill-opacity:1;stroke:#000000;stroke-width:1.25062382;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text4162"
-         y="1025.989"
-         x="418.99957"
-         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           y="1025.989"
-           x="418.99957"
-           id="tspan4164"
-           sodipodi:role="line">GStreamer</tspan></text>
-    </g>
     <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 381.32927,498.36218 0,287.32303"
+       style="fill:none;stroke:#000000;stroke-width:1.09587693px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 429.73609,-450.10328 0,345.16964"
        id="path4173"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc"
@@ -422,42 +139,8 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 257,785.17679 124.60341,0"
-       id="path4175"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <g
-       id="g4199"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="8.0812378"
-         y="571.91565"
-         x="121.23414"
-         height="88.893005"
-         width="215.53172"
-         id="rect3941-8"
-         style="fill:#c4a000;fill-opacity:1;stroke:#000000;stroke-width:1.28111887;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text4195"
-         y="621.09216"
-         x="158.89923"
-         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           y="621.09216"
-           x="158.89923"
-           id="tspan4197"
-           sodipodi:role="line">Media Engines</tspan></text>
-    </g>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 178,762.36218 0,-101"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 192.94093,-96.110106 0,-165.196574"
        id="path4204"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
@@ -465,15 +148,15 @@
        inkscape:export-ydpi="90" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 175,570.36218 0,-74"
+       d="m 189.45476,-378.20874 0,-74"
        id="path4206"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 85,808.36218 0,84"
+       style="fill:none;stroke:#000000;stroke-width:1.11671793px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 115.45476,-62.085166 0,104.75292"
        id="path4208"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
@@ -481,39 +164,23 @@
        inkscape:export-ydpi="90" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 219,868.36218 0,24"
+       d="m 251.45476,5.791254 0,24"
        id="path4210"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1, 1;stroke-dashoffset:0"
-       d="m 228,496.36218 0,62 183,0 0,285 -16,0"
-       id="path4212"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1, 1;stroke-dashoffset:0"
-       d="m 410.84431,557.83449 0,-61"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 479.29907,-26.560647 0,-433.351553"
        id="path4214"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 337,614.36218 271,0 0,369"
-       id="path4216"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 462,937.36218 0,47"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 534.45476,77.33825 0,85.9061"
        id="path4218"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
@@ -521,103 +188,7 @@
        inkscape:export-ydpi="90" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 337,633.36218 132,0 0,261"
-       id="path4220"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <g
-       id="g4231"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="8.0812378"
-         y="222.017"
-         x="108.08624"
-         height="88.893005"
-         width="131.31999"
-         id="rect3941"
-         style="fill:#c4a000;fill-opacity:1;stroke:#000000;stroke-width:0.99999827;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text4225"
-         y="257.50949"
-         x="173.39526"
-         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           y="257.50949"
-           x="173.39526"
-           id="tspan4227"
-           sodipodi:role="line">Server</tspan><tspan
-           id="tspan4229"
-           y="285.00949"
-           x="173.39526"
-           sodipodi:role="line">Plugins</tspan></text>
-    </g>
-    <g
-       id="g4261"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="9.9895744"
-         y="222.16238"
-         x="416.34842"
-         height="88.65686"
-         width="131.19067"
-         id="rect3943"
-         style="fill:#c4a000;fill-opacity:1;stroke:#000000;stroke-width:1.18152416;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text4237"
-         y="257.5368"
-         x="481.62045"
-         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           y="257.5368"
-           x="481.62045"
-           id="tspan4239"
-           sodipodi:role="line">MPRIS</tspan><tspan
-           id="tspan4241"
-           y="285.0368"
-           x="481.62045"
-           sodipodi:role="line">Plugin</tspan></text>
-    </g>
-    <g
-       id="g4249"
-       transform="translate(74.953319,6.5606047)"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         ry="9.7195492"
-         y="215.55238"
-         x="509.22894"
-         height="88.690277"
-         width="131.09567"
-         id="rect3945"
-         style="fill:#c4a000;fill-opacity:1;stroke:#000000;stroke-width:1.21347511;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text4243"
-         y="250.87752"
-         x="574.0379"
-         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-         xml:space="preserve"><tspan
-           y="250.87752"
-           x="574.0379"
-           id="tspan4245"
-           sodipodi:role="line">Playbin</tspan><tspan
-           id="tspan4247"
-           y="278.3775"
-           x="574.0379"
-           sodipodi:role="line">Plugin</tspan></text>
-    </g>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 136.97669,60.012656 0,161.788304"
+       d="m 145.43145,-986.55825 0,161.78829"
        id="path4255"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc"
@@ -625,8 +196,8 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 173.74624,310.76573 0,140.94319"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 189.52912,-735.45734 0,246.24749"
        id="path4257"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc"
@@ -634,8 +205,8 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1, 3;stroke-dashoffset:0"
-       d="m 481.94376,59.95459 0,162.26429"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 550.39852,-986.61632 0,162.26428"
        id="path4259"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc"
@@ -643,8 +214,8 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1, 3;stroke-dashoffset:0"
-       d="m 649.7301,60.082437 0,161.967533"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 746.18486,-986.48847 0,161.96752"
        id="path4269"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc"
@@ -652,8 +223,8 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 168,60.362183 0,129.999997 439,0 0,31"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 200.50082,-986.16267 0,129.92561 523.90788,0 0,30.98226"
        id="path4271"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
@@ -661,64 +232,20 @@
        inkscape:export-ydpi="90" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 514.39232,190.52849 0,31.71642"
+       d="m 584.84708,-856.04243 0,31.71642"
        id="path4273"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 489.84559,475.36305 15.02865,0 1.01295,-164.57624"
-       id="path4275"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccc"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1, 1;stroke-dashoffset:0"
-       d="m 489,364.36218 159,0 0,-54"
-       id="path4277"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 459.61941,495.16204 0,62.2254 80.61017,0 0,425.67828"
-       id="path4317"
-       inkscape:connector-curvature="0"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"
-       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png" />
-    <rect
-       style="fill:#729fcf;fill-opacity:1;stroke:#000000;stroke-width:1.25062382;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       id="rect3115-9-5"
-       width="216.11908"
-       height="44.972969"
-       x="41.14286"
-       y="966.23608"
-       ry="11.992874" />
-    <text
-       xml:space="preserve"
-       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
-       x="112.56759"
-       y="996.30157"
-       id="text4135-8"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4137-7"
-         x="112.56759"
-         y="996.30157">GSSDP</tspan></text>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1.0549984px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 151.32085,965.85833 0,-28.3329"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 183.77561,163.89325 0,-85.5447"
        id="path3336"
        inkscape:connector-curvature="0" />
     <g
        id="g4505"
-       transform="translate(-18,43)">
+       transform="translate(101.33344,-1001.6247)">
       <g
          id="g4487">
         <rect
@@ -835,6 +362,587 @@
            x="783"
            id="tspan3700"
            sodipodi:role="line">Legend</tspan></text>
+    </g>
+    <rect
+       style="fill:#fce94f;fill-opacity:1;stroke:#000000;stroke-width:1.1762352;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3953"
+       width="153.49751"
+       height="62.909618"
+       x="73.570778"
+       y="-1031.5229"
+       ry="11.18401" />
+    <text
+       xml:space="preserve"
+       style="font-size:21px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+       x="88.636902"
+       y="-997.44391"
+       id="text3969"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3971"
+         x="88.636902"
+         y="-997.44391">Rygel Server</tspan></text>
+    <g
+       id="g3199"
+       transform="translate(105.80293,-1046.5709)">
+      <rect
+         ry="10.717911"
+         y="15.019135"
+         x="210.75713"
+         height="62.967297"
+         width="153.20078"
+         id="rect3951"
+         style="fill:#ad7fa8;fill-opacity:1;stroke:#000000;stroke-width:1.31117058;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3975"
+         y="39.16901"
+         x="223.94533"
+         style="font-size:21px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+         xml:space="preserve"><tspan
+           id="tspan3979"
+           y="39.16901"
+           x="223.94533"
+           sodipodi:role="line">3rd-party</tspan><tspan
+           y="65.419006"
+           x="223.94533"
+           sodipodi:role="line"
+           id="tspan3099">Media Players</tspan></text>
+    </g>
+    <g
+       id="g3205"
+       transform="translate(122.13666,-1046.5709)">
+      <rect
+         ry="11.69249"
+         y="15.079434"
+         x="380.24985"
+         height="62.846699"
+         width="153.20078"
+         id="rect3949"
+         style="fill:#ad7fa8;fill-opacity:1;stroke:#000000;stroke-width:1.36948597;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3975-0"
+         y="39.16901"
+         x="392.19559"
+         style="font-size:21px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+         xml:space="preserve"><tspan
+           id="tspan3979-7"
+           y="39.16901"
+           x="392.19559"
+           sodipodi:role="line">3rd-party</tspan><tspan
+           y="65.419006"
+           x="392.19559"
+           sodipodi:role="line"
+           id="tspan3101">Media Players</tspan></text>
+    </g>
+    <g
+       id="g3211"
+       transform="translate(138.45475,-1046.5709)">
+      <rect
+         ry="11.18401"
+         y="15.047976"
+         x="549.80261"
+         height="62.909618"
+         width="153.08075"
+         id="rect3947"
+         style="fill:#ad7fa8;fill-opacity:1;stroke:#000000;stroke-width:1.40001822;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4072"
+         y="39.12701"
+         x="562.85712"
+         style="font-size:21px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+         xml:space="preserve"><tspan
+           y="39.12701"
+           x="562.85712"
+           id="tspan4074"
+           sodipodi:role="line">Simple Media</tspan><tspan
+           y="65.377014"
+           x="562.85712"
+           sodipodi:role="line"
+           id="tspan3103">Devices</tspan></text>
+    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3186"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       transform="translate(72.972309,-1033.6738)"><flowRegion
+         id="flowRegion3188"><rect
+           id="rect3190"
+           width="183.14066"
+           height="91.923882"
+           x="-21.920311"
+           y="-14.033114" /></flowRegion><flowPara
+         id="flowPara3192" /></flowRoot>    <g
+       id="g3447"
+       transform="translate(30.0908,-1050.1064)">
+      <g
+         id="g3221">
+        <rect
+           style="fill:#c4a000;fill-opacity:1;stroke:#000000;stroke-width:1.5020864;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect3941"
+           width="173.24431"
+           height="152.03053"
+           x="86.701256"
+           y="225.79285"
+           ry="13.821052" />
+        <text
+           xml:space="preserve"
+           style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+           x="98.95845"
+           y="252.55971"
+           id="text4225"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan4227"
+             x="98.95845"
+             y="252.55971">Rygel</tspan><tspan
+             id="tspan3105"
+             sodipodi:role="line"
+             x="98.95845"
+             y="280.05969">Server</tspan><tspan
+             id="tspan3111"
+             sodipodi:role="line"
+             x="98.95845"
+             y="307.55969">Plugins:</tspan><tspan
+             id="tspan3115"
+             sodipodi:role="line"
+             x="98.95845"
+             y="335.05969">  media-export,</tspan><tspan
+             sodipodi:role="line"
+             x="98.95845"
+             y="362.55969"
+             id="tspan3182">  tracker, etc</tspan><tspan
+             id="tspan3119"
+             sodipodi:role="line"
+             x="98.95845"
+             y="390.05969" /><tspan
+             id="tspan3107"
+             sodipodi:role="line"
+             x="98.95845"
+             y="417.55969" /><tspan
+             id="tspan3109"
+             sodipodi:role="line"
+             x="98.95845"
+             y="445.05969" /></text>
+      </g>
+    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3263"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+       transform="translate(90.76773,-1048.3562)"><flowRegion
+         id="flowRegion3265"><rect
+           id="rect3267"
+           width="95.501053"
+           height="99.438599"
+           x="473.76154"
+           y="94.861328"
+           style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Cantarell;-inkscape-font-specification:Cantarell" /></flowRegion><flowPara
+         id="flowPara3273">(Via D-Bus, with Rygel running when using the MPRIS plugin.)</flowPara><flowPara
+         id="flowPara3271" /></flowRoot>    <flowRoot
+       transform="translate(291.16176,-1051.8709)"
+       xml:space="preserve"
+       id="flowRoot3263-4"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"><flowRegion
+         id="flowRegion3265-6"><rect
+           id="rect3267-9"
+           width="90.509674"
+           height="98.287842"
+           x="473.76154"
+           y="94.861328"
+           style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Cantarell;-inkscape-font-specification:Cantarell" /></flowRegion><flowPara
+         id="flowPara3273-5">(By just running Rygel when using the playbin plugin.)</flowPara><flowPara
+         id="flowPara3271-8" /></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:1.38700569px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 575.54999,-709.27434 0,224.40131"
+       id="path4255-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#c4a000;fill-opacity:1;stroke:#000000;stroke-width:1.4239465;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3943"
+       width="133.06956"
+       height="126.95175"
+       x="502.41373"
+       y="-824.35266"
+       ry="14.304523" />
+    <text
+       xml:space="preserve"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+       x="517.70312"
+       y="-797.16583"
+       id="text4237"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4239"
+         x="517.70312"
+         y="-797.16583">Rygel</tspan><tspan
+         id="tspan3121"
+         sodipodi:role="line"
+         x="517.70312"
+         y="-769.66583">Renderer</tspan><tspan
+         id="tspan3123"
+         sodipodi:role="line"
+         x="517.70312"
+         y="-742.16583">Plugins:</tspan><tspan
+         sodipodi:role="line"
+         x="517.70312"
+         y="-714.66583"
+         id="tspan4241">  mpris</tspan></text>
+    <g
+       id="g3147"
+       transform="translate(26.0908,-1050.1064)">
+      <rect
+         ry="9.4783058"
+         y="553.57965"
+         x="290.48462"
+         height="45.021633"
+         width="331.88269"
+         id="rect3937"
+         style="fill:#fce94f;fill-opacity:1;stroke:#000000;stroke-width:1.34189117;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4029"
+         y="580.56744"
+         x="315.48071"
+         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+         xml:space="preserve"><tspan
+           y="580.56744"
+           x="315.48071"
+           id="tspan4031"
+           sodipodi:role="line">librygel-renderer</tspan></text>
+    </g>
+    <flowRoot
+       transform="translate(-227.01587,-300.78773)"
+       xml:space="preserve"
+       id="flowRoot3263-4-1"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"><flowRegion
+         id="flowRegion3265-6-7"><rect
+           id="rect3267-9-4"
+           width="90.509674"
+           height="98.287842"
+           x="473.76154"
+           y="94.861328"
+           style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Cantarell;-inkscape-font-specification:Cantarell" /></flowRegion><flowPara
+         id="flowPara3389">(When using the gstreamer media engine.)</flowPara><flowPara
+         id="flowPara3271-8-7" /></flowRoot>    <flowRoot
+       transform="translate(77.164047,-0.287746)"
+       xml:space="preserve"
+       id="flowRoot3263-4-1-6"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"><flowRegion
+         id="flowRegion3265-6-7-8"><rect
+           id="rect3267-9-4-3"
+           width="90.509674"
+           height="98.287842"
+           x="473.76154"
+           y="94.861328"
+           style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Cantarell;-inkscape-font-specification:Cantarell" /></flowRegion><flowPara
+         id="flowPara3423">(Optional dependency.)</flowPara><flowPara
+         id="flowPara3271-8-7-8" /></flowRoot>    <g
+       id="g3326"
+       transform="translate(26.0908,-874.10645)">
+      <rect
+         ry="11.992874"
+         y="1021.7717"
+         x="47.506828"
+         height="44.972969"
+         width="216.11908"
+         id="rect3115-9-5"
+         style="fill:#729fcf;fill-opacity:1;stroke:#000000;stroke-width:1.25062382;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4135-8"
+         y="1051.837"
+         x="118.93156"
+         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+         xml:space="preserve"><tspan
+           y="1051.837"
+           x="118.93156"
+           id="tspan4137-7"
+           sodipodi:role="line">GSSDP</tspan></text>
+    </g>
+    <rect
+       style="fill:#fce94f;fill-opacity:1;stroke:#000000;stroke-width:1.34299958;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3929"
+       width="382.03915"
+       height="44.850529"
+       x="73.643806"
+       y="-107.8194"
+       ry="10.251619" />
+    <text
+       xml:space="preserve"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+       x="120.02746"
+       y="-80.917114"
+       id="text4033"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4035"
+         x="120.02746"
+         y="-80.917114">librygel-core</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 466.5728,-575.60926 0,47.76595 300.07115,0 0,690.30516"
+       id="path4212-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 273.9629,-253.71912 0,27.20011 433.2909,0 0,393.09076"
+       id="path4212-6-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 232.32407,-256.35789 0,115.71921 362.56855,0 0,191.849234"
+       id="path4212-6-4-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cccc" />
+    <g
+       id="g4294"
+       transform="translate(48.0908,-1016.1064)">
+      <g
+         transform="translate(108.36396,155.53553)"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
+         id="g4157">
+        <rect
+           style="fill:#729fcf;fill-opacity:1;stroke:#000000;stroke-width:1.76700521;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect3931"
+           width="214.93329"
+           height="45.062935"
+           x="300.12991"
+           y="892.44995"
+           ry="11.265811" />
+        <text
+           xml:space="preserve"
+           style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+           x="336.76138"
+           y="922.56042"
+           id="text4143"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan4145"
+             x="336.76138"
+             y="922.56042">GUPnP-DLNA</tspan></text>
+      </g>
+    </g>
+    <rect
+       style="fill:#8ae234;fill-opacity:1;stroke:#000000;stroke-width:1.62457752;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3115"
+       width="367.74512"
+       height="44.599018"
+       x="456.51346"
+       y="147.85229"
+       ry="11.893152" />
+    <text
+       xml:space="preserve"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+       x="472.33115"
+       y="177.71973"
+       id="text4162"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4164"
+         x="472.33115"
+         y="177.71973">GStreamer</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 467.06121,-611.52658 0,-48.60438 307.09432,0 0,-50.48983"
+       id="path4212-6-47"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cccc" />
+    <rect
+       style="fill:#c4a000;fill-opacity:1;stroke:#000000;stroke-width:1.4660387;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3945"
+       width="134.0251"
+       height="126.62149"
+       x="688.29041"
+       y="-824.3316"
+       ry="13.876422" />
+    <text
+       xml:space="preserve"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+       x="703.46521"
+       y="-797.26459"
+       id="text4243"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4245"
+         x="703.46521"
+         y="-797.26459">Rygel</tspan><tspan
+         id="tspan3129"
+         sodipodi:role="line"
+         x="703.46521"
+         y="-769.76459">Renderer</tspan><tspan
+         id="tspan3131"
+         sodipodi:role="line"
+         x="703.46521"
+         y="-742.26459">Plugins:</tspan><tspan
+         sodipodi:role="line"
+         x="703.46521"
+         y="-714.76459"
+         id="tspan4247">  playbin</tspan></text>
+    <rect
+       style="fill:#fce94f;fill-opacity:1;stroke:#000000;stroke-width:1.36567426;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3939"
+       width="239.86128"
+       height="45.035027"
+       x="316.58731"
+       y="-615.03271"
+       ry="10.917657" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+       x="333.61157"
+       y="-588.03827"
+       id="text3969-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3971-5"
+         x="333.61157"
+         y="-588.03827"
+         style="font-size:22px">librygel-renderer-gst</tspan></text>
+    <g
+       id="g3460"
+       transform="translate(26.0908,-1050.1064)">
+      <g
+         transform="translate(-14,46)"
+         id="g3255">
+        <rect
+           style="fill:#c4a000;fill-opacity:1;stroke:#000000;stroke-width:1.39254832;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect3941-8"
+           width="174.4081"
+           height="129.79378"
+           x="127.65381"
+           y="627.5069"
+           ry="11.799516" />
+        <text
+           xml:space="preserve"
+           style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+           x="141.92868"
+           y="658.24286"
+           id="text4195"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan4197"
+             x="141.92868"
+             y="658.24286">Rygel</tspan><tspan
+             id="tspan3137"
+             sodipodi:role="line"
+             x="141.92868"
+             y="685.74286">Media Engines:</tspan><tspan
+             id="tspan3139"
+             sodipodi:role="line"
+             x="141.92868"
+             y="713.24286">  gstreamer,</tspan><tspan
+             id="tspan3141"
+             sodipodi:role="line"
+             x="141.92868"
+             y="740.74286">  etc</tspan></text>
+      </g>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 246.34215,-464.83982 0,45.50266 268.5324,0 0,391.029514"
+       id="path4212-6-4-4-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cccc" />
+    <g
+       id="g4345"
+       transform="matrix(1.0760002,0,0,1,12.058521,-1050.1064)">
+      <rect
+         ry="11.933191"
+         y="1010.4825"
+         x="184.6347"
+         height="44.749161"
+         width="301.89526"
+         id="rect3115-1"
+         style="fill:#729fcf;fill-opacity:1;stroke:#000000;stroke-width:1.47443283;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4139"
+         y="1040.062"
+         x="234.6273"
+         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+         xml:space="preserve"><tspan
+           y="1040.062"
+           x="234.6273"
+           id="tspan4141"
+           sodipodi:role="line">GUPnP A/V</tspan></text>
+    </g>
+    <g
+       id="g4147"
+       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="translate(32.454761,-860.57092)">
+      <rect
+         ry="11.992874"
+         y="892.495"
+         x="41.14286"
+         height="44.972969"
+         width="216.11908"
+         id="rect3115-9"
+         style="fill:#729fcf;fill-opacity:1;stroke:#000000;stroke-width:1.25062382;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4135"
+         y="922.56049"
+         x="112.56759"
+         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+         xml:space="preserve"><tspan
+           y="922.56049"
+           x="112.56759"
+           id="tspan4137"
+           sodipodi:role="line">GUPnP</tspan></text>
+    </g>
+    <g
+       id="g4047"
+       transform="translate(42.123913,-948.57092)"
+       inkscape:export-filename="/home/jens/.gvfs/SFTP for jgeorg on webstreams.de/home/jgeorg/web/modules/wordpress/path4317.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         ry="11.992874"
+         y="452.06845"
+         x="31.622843"
+         height="44.972969"
+         width="215.55641"
+         id="rect3935"
+         style="fill:#fce94f;fill-opacity:1;stroke:#000000;stroke-width:1.54889393;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4025"
+         y="479.03192"
+         x="67.997124"
+         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Cantarell;-inkscape-font-specification:Cantarell"
+         xml:space="preserve"><tspan
+           y="479.03192"
+           x="67.997124"
+           id="tspan4027"
+           sodipodi:role="line">librygel-server</tspan></text>
     </g>
   </g>
 </svg>
