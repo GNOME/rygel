@@ -1,6 +1,7 @@
 include ../../../common.am
 
 plugin_LTLIBRARIES = librygel-external.la
+plugin_DATA = external.plugin
 
 librygel_external_la_SOURCES = \
 	rygel-external-container.vala \
@@ -26,3 +27,5 @@ librygel_external_la_LIBADD = \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
 librygel_external_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
+
+EXTRA_DIST=external.plugin.in

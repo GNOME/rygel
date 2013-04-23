@@ -1,6 +1,7 @@
 include $(top_srcdir)/common.am
 
 plugin_LTLIBRARIES = librygel-tracker.la
+plugin_DATA = tracker.plugin
 
 librygel_tracker_la_SOURCES = \
 	rygel-tracker-root-container.vala \
@@ -52,3 +53,5 @@ librygel_tracker_la_LIBADD = \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
 librygel_tracker_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
+
+EXTRA_DIST = tracker.plugin.in

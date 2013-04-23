@@ -29,13 +29,6 @@ using FreeDesktop;
 private External.PluginFactory plugin_factory;
 
 public void module_init (PluginLoader loader) {
-    if (loader.plugin_disabled (External.Plugin.MODULE_NAME)) {
-        message ("Module '%s' disabled by user. Ignoring…",
-                 External.Plugin.MODULE_NAME);
-
-        return;
-    }
-
     try {
         plugin_factory = new External.PluginFactory (loader);
     } catch (Error error) {

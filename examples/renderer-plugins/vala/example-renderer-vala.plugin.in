@@ -1,0 +1,7 @@
+[Plugin]
+Version = @VERSION@
+Module = example-renderer-plugin-vala
+Name = ExampleRendererPluginVala
+License = LGPL
+Description = Example of implementing a renderer plug-in in Vala
+Copyright = Copyright © Intel Corporation

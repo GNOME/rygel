@@ -98,6 +98,10 @@ internal class Rygel.EngineLoader : RecursiveModuleLoader {
         return false;
     }
 
+    protected override bool load_module_from_info (PluginInformation info) {
+        return load_module_from_file (File.new_for_path (info.module_path));
+    }
+
     private static string get_config () {
         var path = BuildConfig.ENGINE_DIR;
         var config = MetaConfig.get_default ();

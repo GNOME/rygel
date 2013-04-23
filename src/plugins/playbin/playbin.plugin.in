@@ -1,0 +1,7 @@
+[Plugin]
+Version = @VERSION@
+Module = playbin
+Name = Playbin
+License = LGPL
+Description = A DLNA renderer based on GStreamer's playbin element
+Copyright = Copyright © Rygel maintainers

@@ -1,6 +1,7 @@
 include $(top_srcdir)/common.am
 
 plugin_LTLIBRARIES = librygel-example-renderer-plugin-vala.la
+plugin_DATA = example-renderer-vala.plugin
 
 librygel_example_renderer_plugin_vala_la_SOURCES = \
 	example-renderer-plugin-vala.vala \
@@ -20,3 +21,5 @@ librygel_example_renderer_plugin_vala_la_LIBADD = \
 	
 librygel_example_renderer_plugin_vala_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
+
+EXTRA_DIST = example-renderer-vala.plugin.in

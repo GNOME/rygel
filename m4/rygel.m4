@@ -57,6 +57,7 @@ AC_DEFUN([_RYGEL_ADD_PLUGIN_INTERNAL],
     AC_CONFIG_FILES([src/plugins/$1/Makefile])
     AM_CONDITIONAL(m4_toupper(build_$2_plugin), test "x$[]enable_$2_plugin" = "xyes")
     RYGEL_ADD_STAMP([src/plugins/$1/librygel_$2_la_vala.stamp])
+    AC_CONFIG_FILES([src/plugins/$1/$1.plugin])
 ])
 
 # _RYGEL_ADD_PLUGIN_INTERNAL(NAME-OF-PLUGIN,

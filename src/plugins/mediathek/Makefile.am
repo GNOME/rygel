@@ -1,6 +1,7 @@
 include ../../../common.am
 
 plugin_LTLIBRARIES = librygel-mediathek.la
+plugin_DATA = mediathek.plugin
 
 librygel_mediathek_la_SOURCES = \
 	rygel-mediathek-asx-playlist-parser.vala \
@@ -25,3 +26,5 @@ librygel_mediathek_la_LIBADD = \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
 librygel_mediathek_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
+
+EXTRA_DIST = mediathek.plugin.in

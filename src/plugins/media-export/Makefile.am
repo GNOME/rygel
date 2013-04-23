@@ -1,6 +1,7 @@
 include $(top_srcdir)/common.am
 
 plugin_LTLIBRARIES = librygel-media-export.la
+plugin_DATA = media-export.plugin
 
 librygel_media_export_la_SOURCES = \
 	rygel-media-export-plugin.vala \
@@ -58,3 +59,4 @@ librygel_media_export_la_LIBADD = \
 librygel_media_export_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
 
+EXTRA_DIST = media-export.plugin.in

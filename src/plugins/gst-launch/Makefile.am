@@ -1,6 +1,7 @@
 include $(top_srcdir)/common.am
 
 plugin_LTLIBRARIES = librygel-gst-launch.la
+plugin_DATA = gst-launch.plugin
 
 librygel_gst_launch_la_SOURCES = \
 	rygel-gst-launch-plugin.vala \
@@ -23,3 +24,5 @@ librygel_gst_launch_la_LIBADD = \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
 librygel_gst_launch_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
+
+EXTRA_DIST = gst-launch.plugin.in

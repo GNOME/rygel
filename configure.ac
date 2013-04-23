@@ -394,7 +394,9 @@ src/rygel/Makefile
 src/ui/Makefile
 src/media-engines/Makefile
 src/media-engines/gstreamer/Makefile
+src/media-engines/gstreamer/media-engine-gst.plugin
 src/media-engines/simple/Makefile
+src/media-engines/simple/media-engine-simple.plugin
 src/plugins/Makefile
 data/Makefile
 data/xml/Makefile
@@ -423,10 +425,14 @@ tests/Makefile
 examples/Makefile
 examples/renderer-plugins/Makefile
 examples/renderer-plugins/vala/Makefile
+examples/renderer-plugins/vala/example-renderer-vala.plugin
 examples/renderer-plugins/C/Makefile
+examples/renderer-plugins/C/example-renderer-c.plugin
 examples/server-plugins/Makefile
 examples/server-plugins/vala/Makefile
+examples/server-plugins/vala/example-server-vala.plugin
 examples/server-plugins/C/Makefile
+examples/server-plugins/C/example-server-c.plugin
 ])
 AC_OUTPUT
 

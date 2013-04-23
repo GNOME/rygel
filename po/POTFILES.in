@@ -70,6 +70,7 @@ src/librygel-core/rygel-connection-manager.vala
 src/librygel-core/rygel-icon-info.vala
 src/librygel-core/rygel-log-handler.vala
 src/librygel-core/rygel-meta-config.vala
+src/librygel-core/rygel-plugin-information.vala
 src/librygel-core/rygel-plugin-loader.vala
 src/librygel-core/rygel-plugin.vala
 src/librygel-core/rygel-recursive-module-loader.vala

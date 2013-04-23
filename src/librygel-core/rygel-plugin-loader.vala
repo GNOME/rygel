@@ -32,15 +32,10 @@ using Gee;
  * It probes for shared library files in a specific directory, tries to 
  * find a module_init() function with this signature:
  * ``void module_init (RygelPluginLoader* loader);``
- * 
+ *
  * It then calls that function, passing a pointer to itself. The loaded
  * module can then add plugins to Rygel by calling the
  * rygel_plugin_loader_add_plugin() function.
- *
- * NOTE: The module SHOULD make sure that the plugin has not been
- * disabled by the user, by using the 
- * rygel_plugin_loader_plugin_disabled() function before creating the plugin
- * instance, and before creating any resources related to that instance.
  */
 public class Rygel.PluginLoader : RecursiveModuleLoader {
     private delegate void ModuleInitFunc (PluginLoader loader);
@@ -137,6 +132,19 @@ public class Rygel.PluginLoader : RecursiveModuleLoader {
         debug ("Loaded module source: '%s'", module.name());
 
         return true;
+    }
+
+    protected override bool load_module_from_info (PluginInformation info) {
+        if (this.plugin_disabled (info.name)) {
+            debug ("Module '%s' disabled by user. Ignoring…",
+                   info.name);
+
+            return true;
+        }
+
+        var module_file = File.new_for_path (info.module_path);
+
+        return this.load_module_from_file (module_file);
     }
 
     private static string get_config_path () {

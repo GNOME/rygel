@@ -1,0 +1,7 @@
+[Plugin]
+Version = @VERSION@
+Module = example-renderer-plugin-c
+Name = ExampleRendererPluginC
+License = LGPL
+Description = Example of implementing a renderer plug-in in C
+Copyright = Copyright © Intel Corporation

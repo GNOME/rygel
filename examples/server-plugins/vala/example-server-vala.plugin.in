@@ -1,0 +1,7 @@
+[Plugin]
+Version = @VERSION@
+Module = example-server-plugin-vala
+Name = ExampleServerPluginVala
+License = LGPL
+Description = Example of implementing a server plug-in in Vala
+Copyright = Copyright © Intel Corporation

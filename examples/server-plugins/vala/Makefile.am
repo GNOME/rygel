@@ -1,6 +1,7 @@
 include $(top_srcdir)/common.am
 
 plugin_LTLIBRARIES = librygel-example-server-plugin-vala.la
+plugin_DATA = example-server-vala.plugin
 
 # Note that we must have these Vala prefixes on the
 # class names (and therefore on the file names)
@@ -24,3 +25,5 @@ librygel_example_server_plugin_vala_la_LIBADD = \
 	
 librygel_example_server_plugin_vala_la_LDFLAGS = \
   $(RYGEL_PLUGIN_LINKER_FLAGS)
+
+EXTRA_DIST = example-server-vala.plugin.in

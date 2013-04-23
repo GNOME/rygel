@@ -24,13 +24,6 @@ using Rygel;
 using Gee;
 
 public void module_init (PluginLoader loader) {
-    if (loader.plugin_disabled (GstLaunch.Plugin.NAME)) {
-        message ("Plugin '%s' disabled by user, ignoring..",
-                 GstLaunch.Plugin.NAME);
-
-        return;
-    }
-
     var plugin = new GstLaunch.Plugin ();
 
     loader.add_plugin (plugin);

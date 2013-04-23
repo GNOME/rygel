@@ -1,6 +1,7 @@
 include $(top_srcdir)/common.am
 
 plugin_LTLIBRARIES = librygel-example-renderer-plugin-c.la
+plugin_DATA = example-renderer-c.plugin
 
 librygel_example_renderer_plugin_c_la_SOURCES = \
 	example-renderer-plugin.h \
@@ -21,3 +22,4 @@ librygel_example_renderer_plugin_c_la_LIBADD = \
 librygel_example_renderer_plugin_c_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
 
+EXTRA_DIST = example-renderer-c.plugin.in

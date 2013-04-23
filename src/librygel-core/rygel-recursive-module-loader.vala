@@ -114,6 +114,8 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
      */
     protected abstract bool load_module_from_file (File file);
 
+    protected abstract bool load_module_from_info (PluginInformation info);
+
     /**
      * Process children of a folder.
      *
@@ -172,15 +174,19 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
                                    FileInfo      info,
                                    FolderHandler handler) {
             var file = folder.get_child (info.get_name ());
-            string content_type = info.get_content_type ();
-            string mime = ContentType.get_mime_type (content_type);
 
             if (this.is_folder_eligible (info)) {
                 handler (file);
-            } else if (mime == "application/x-sharedlib") {
-                // Seems like we found a module
-                if (!this.load_module_from_file (file)) {
-                    this.done = true;
+            } else if (info.get_name ().has_suffix (".plugin")) {
+                try {
+                    var plugin_info = PluginInformation.new_from_file (file);
+
+                    if (!this.load_module_from_info (plugin_info)) {
+                        this.done = true;
+                    }
+                } catch (Error error) {
+                    warning (_("Could not load plugin: %s"),
+                             error.message);
                 }
             }
 

@@ -1,0 +1,7 @@
+[Plugin]
+Version = @VERSION@
+Module = mediathek
+Name = ZDFMediathek
+License = LGPL
+Description = Share videos from ZDF online services
+Copyright = Copyright © Rygel maintainers

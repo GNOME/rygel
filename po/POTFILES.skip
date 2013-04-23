@@ -26,6 +26,7 @@ src/librygel-core/rygel-media-device.c
 src/librygel-core/rygel-meta-config.c
 src/librygel-core/rygel-plugin.c
 src/librygel-core/rygel-plugin-loader.c
+src/librygel-core/rygel-plugin-information.c
 src/librygel-core/rygel-recursive-module-loader.c
 src/librygel-core/rygel-resource-info.c
 src/librygel-core/rygel-root-device.c

@@ -1,0 +1,7 @@
+[Plugin]
+Version = @VERSION@
+Module = gst-launch
+Name = GstLaunch
+License = LGPL
+Description = Share GStreamer gst-launch compatible pipelines
+Copyright = Copyright © Rygel maintainers

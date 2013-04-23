@@ -1,0 +1,7 @@
+[Plugin]
+Version = @VERSION@
+Module = example-server-plugin-c
+Name = ExampleServerPluginC
+License = LGPL
+Description = Example of implementing a server plug-in in C
+Copyright = Copyright © Intel Corporation

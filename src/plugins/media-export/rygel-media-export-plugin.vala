@@ -28,13 +28,6 @@ private const string TRACKER_PLUGIN = "Tracker";
  *
  */
 public void module_init (PluginLoader loader) {
-    if (loader.plugin_disabled (MediaExport.Plugin.NAME)) {
-        message ("Plugin '%s' disabled by user, ignoring..",
-                 MediaExport.Plugin.NAME);
-
-        return;
-    }
-
     try {
         // Instantiate the plugin object (it may fail if loading
         // database did not succeed):

@@ -19,4 +19,5 @@ LIBRYGEL_CORE_VAPI_SOURCE_FILES = \
 
 LIBRYGEL_CORE_NONVAPI_SOURCE_FILES = \
 	rygel-icon-info.vala \
-	rygel-xml-utils.vala
+	rygel-xml-utils.vala \
+	rygel-plugin-information.vala

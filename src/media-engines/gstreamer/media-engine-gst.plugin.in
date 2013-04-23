@@ -1,0 +1,7 @@
+[Plugin]
+Version = @VERSION@
+Module = media-engine-gst
+Name = media-engine-gst
+License = LGPL
+Description = Streaming and transcoding engine using GStreamer
+Copyright = Copyright © Rygel maintainers

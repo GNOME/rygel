@@ -1,6 +1,7 @@
 include ../../../common.am
 
 plugin_LTLIBRARIES = librygel-mpris.la
+plugin_DATA = mpris.plugin
 
 librygel_mpris_la_SOURCES = \
 	rygel-mpris-player.vala \
@@ -20,3 +21,5 @@ librygel_mpris_la_LIBADD = \
 	$(RYGEL_COMMON_LIBRYGEL_RENDERER_LIBS)
 librygel_mpris_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
+
+EXTRA_DIST = mpris.plugin.in

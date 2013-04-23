@@ -1,0 +1,7 @@
+[Plugin]
+Version = @VERSION@
+Module = media-export
+Name = MediaExport
+License = LGPL
+Description = SQLite-based locate file sharing
+Copyright = Copyright © Rygel maintainers

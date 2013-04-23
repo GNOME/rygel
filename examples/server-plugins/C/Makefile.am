@@ -1,6 +1,7 @@
 include $(top_srcdir)/common.am
 
 plugin_LTLIBRARIES = librygel-example-server-plugin-c.la
+plugin_DATA = example-server-c.plugin
 
 librygel_example_server_plugin_c_la_SOURCES = \
 	example-server-plugin.h \
@@ -20,3 +21,5 @@ librygel_example_server_plugin_c_la_LIBADD = \
 	
 librygel_example_server_plugin_c_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
+
+EXTRA_DIST = example-server-c.plugin.in

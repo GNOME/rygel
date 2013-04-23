@@ -1,0 +1,7 @@
+[Plugin]
+Version = @VERSION@
+Module = external
+Name = External
+License = LGPL
+Description = Implementation of the MediaServer2 DBus specification
+Copyright = Copyright © Rygel maintainers

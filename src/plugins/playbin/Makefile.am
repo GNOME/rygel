@@ -1,6 +1,7 @@
 include ../../../common.am
 
 plugin_LTLIBRARIES = librygel-playbin.la
+plugin_DATA = playbin.plugin
 
 librygel_playbin_la_SOURCES = rygel-playbin-module.vala rygel-playbin-plugin.vala
 librygel_playbin_la_VALAFLAGS = \
@@ -17,3 +18,5 @@ librygel_playbin_la_LIBADD = \
 	$(RYGEL_COMMON_LIBRYGEL_RENDERER_GST_LIBS)
 librygel_playbin_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
+
+EXTRA_DIST = playbin.plugin.in
