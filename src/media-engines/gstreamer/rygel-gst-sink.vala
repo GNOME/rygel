@@ -132,7 +132,9 @@ internal class Rygel.GstSink : Sink {
 
         buffer.map (out info, MapFlags.READ);
 
-        this.source.data_available (info.data[0:to_send]);
+        unowned uint8[] tmp = info.data[0:to_send];
+
+        this.source.data_available (tmp);
         this.bytes_sent += to_send;
         buffer.unmap (info);
 
