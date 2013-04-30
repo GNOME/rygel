@@ -3,6 +3,7 @@
 *.lo
 *.la
 *.a
+*.plugin
 .exrc
 *.orig
 *.pc
@@ -118,3 +119,6 @@ doc/reference/*/valadoc/
 examples/fullscreen-renderer
 examples/standalone-renderer-gst
 examples/standalone-server
+src/plugins/media-export/rygel-media-export-internal.h
+src/plugins/media-export/rygel-media-export.h
+src/plugins/media-export/rygel-media-export.vapi
