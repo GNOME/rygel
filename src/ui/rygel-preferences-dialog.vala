@@ -67,6 +67,7 @@ public class Rygel.PreferencesDialog : GLib.Object {
 
     public void run () {
         this.dialog.run ();
+        this.dialog.hide ();
 
         this.config.set_upnp_enabled (this.upnp_check.active);
         foreach (var section in this.sections) {
