@@ -34,7 +34,7 @@ public class Rygel.PreferencesDialog : GLib.Object {
     private WritableUserConfig config;
     private Builder builder;
     private Dialog dialog;
-    private CheckButton upnp_check;
+    private Switch upnp_check;
     private ArrayList<PreferencesSection> sections;
 
     public PreferencesDialog () throws Error {
@@ -49,7 +49,7 @@ public class Rygel.PreferencesDialog : GLib.Object {
 
         this.dialog = (Dialog) this.builder.get_object (DIALOG);
         assert (this.dialog != null);
-        this.upnp_check = (CheckButton) builder.get_object (UPNP_CHECKBUTTON);
+        this.upnp_check = (Switch) builder.get_object (UPNP_CHECKBUTTON);
         assert (this.upnp_check != null);
 
         this.dialog.set_icon_from_file (ICON);
@@ -61,8 +61,10 @@ public class Rygel.PreferencesDialog : GLib.Object {
         this.sections.add (new MediaPrefSection (this.builder, this.config));
 
         // All sections must be disabled if sharing is disabled
-        this.on_upnp_check_button_toggled (this.upnp_check);
-        this.upnp_check.toggled.connect (this.on_upnp_check_button_toggled);
+        this.on_upnp_switch_toggled ();
+        this.upnp_check.notify["active"].connect ( () => {
+            this.on_upnp_switch_toggled ();
+        });
     }
 
     public void run () {
@@ -97,9 +99,9 @@ public class Rygel.PreferencesDialog : GLib.Object {
         return 0;
     }
 
-    private void on_upnp_check_button_toggled (ToggleButton upnp_check) {
+    private void on_upnp_switch_toggled () {
         foreach (var section in this.sections) {
-            section.set_sensitivity (upnp_check.active);
+            section.set_sensitivity (this.upnp_check.active);
         }
     }
 }

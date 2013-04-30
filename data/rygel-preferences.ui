@@ -6,9 +6,6 @@
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
-  <object class="GtkSizeGroup" id="general-labels-sizegroup">
-    <property name="mode">both</property>
-  </object>
   <object class="GtkListStore" id="iface-liststore">
     <columns>
       <!-- column-name interface -->
@@ -37,28 +34,6 @@
             <property name="can_focus">False</property>
             <property name="row_spacing">12</property>
             <property name="column_spacing">12</property>
-            <child>
-              <object class="GtkCheckButton" id="upnp-checkbutton">
-                <property name="label" translatable="yes">_Share media through DLNA</property>
-                <property name="use_action_appearance">False</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">False</property>
-                <property name="has_tooltip">True</property>
-                <property name="tooltip_markup" translatable="yes">Enable sharing of media, such as photos, videos and music, with DLNA</property>
-                <property name="tooltip_text" translatable="yes">Enable sharing of media, such as photos, videos and music, with DLNA</property>
-                <property name="use_action_appearance">False</property>
-                <property name="use_underline">True</property>
-                <property name="xalign">0</property>
-                <property name="draw_indicator">True</property>
-              </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">0</property>
-                <property name="width">2</property>
-                <property name="height">1</property>
-              </packing>
-            </child>
             <child>
               <object class="GtkGrid" id="grid2">
                 <property name="visible">True</property>
@@ -102,11 +77,9 @@
                     <property name="icon_size">1</property>
                     <child>
                       <object class="GtkToolButton" id="add-button">
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Add a directory to the list of shared directories</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="label" translatable="yes">Add shared directory</property>
                         <property name="icon_name">list-add-symbolic</property>
                       </object>
@@ -120,7 +93,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Remove a directory from the list of shared directories</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="label" translatable="yes">Remove shared directory</property>
                         <property name="icon_name">list-remove-symbolic</property>
                       </object>
@@ -183,6 +155,48 @@
                 <property name="height">1</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkGrid" id="grid3">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkSwitch" id="upnp-checkbutton">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">0</property>
+                    <property name="width">1</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_left">12</property>
+                    <property name="hexpand">True</property>
+                    <property name="xalign">0</property>
+                    <property name="label" translatable="yes">_Share media through DLNA</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">upnp-checkbutton</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                    <property name="width">1</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+                <property name="width">2</property>
+                <property name="height">1</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -198,14 +212,12 @@
             <child>
               <object class="GtkButton" id="button3">
                 <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="has_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="has_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -228,7 +240,6 @@
       <action-widget response="-7">button3</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkSizeGroup" id="plugin-labels-sizegroup"/>
   <object class="GtkFileChooserDialog" id="uris-dialog">
     <property name="can_focus">False</property>
     <property name="can_default">True</property>
@@ -256,12 +267,10 @@
             <child>
               <object class="GtkButton" id="button4">
                 <property name="label">gtk-cancel</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -273,13 +282,11 @@
             <child>
               <object class="GtkButton" id="button5">
                 <property name="label">gtk-open</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="has_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -306,6 +313,10 @@
       <action-widget response="-5">button5</action-widget>
     </action-widgets>
   </object>
+  <object class="GtkSizeGroup" id="general-labels-sizegroup">
+    <property name="mode">both</property>
+  </object>
+  <object class="GtkSizeGroup" id="plugin-labels-sizegroup"/>
   <object class="GtkListStore" id="uris-liststore">
     <columns>
       <!-- column-name path -->
