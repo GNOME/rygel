@@ -176,10 +176,15 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
             var dest = this.get_autostart_file ();
 
             if (enable) {
+                var loop = new MainLoop (null, false);
                 // Creating the proxy starts the service
                 Bus.watch_name (BusType.SESSION,
                                 DBusInterface.SERVICE_NAME,
-                                BusNameWatcherFlags.AUTO_START);
+                                BusNameWatcherFlags.AUTO_START,
+                                () => { loop.quit (); },
+                                () => { loop.quit (); });
+
+                loop.run ();
 
                 // Then symlink the desktop file to user's autostart dir
                 var source_path = Path.build_filename (BuildConfig.DESKTOP_DIR,
