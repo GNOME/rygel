@@ -329,64 +329,6 @@ public class Rygel.DataSourceTest : Object {
         source = null;
     }
 
-    // Check that calling freeze multiple times only needs one thaw to get the
-    // data again
-    private void test_multiple_freeze () {
-        debug ("test_multiple_freeze");
-
-        try {
-            if (MetaConfig.get_default ().get_media_engine () ==
-                                            "librygel-media-engine-gst.so") {
-                message ("Skipping double-freeze test for gst engine.");
-
-                return;
-            }
-        } catch (Error error) {
-            // Config should be set and valid here. If not, something is quite
-            // wrong in the test.
-            assert_not_reached ();
-        }
-
-        var source = MediaEngine.get_default ().create_data_source
-                                        (this.test_data_file.get_uri ());
-        // Sources should support file:// urls
-        assert (source != null);
-        var available_id = source.data_available.connect ( () => {
-            assert_not_reached ();
-        });
-
-        try {
-            source.start (null);
-        } catch (GLib.Error error) {
-            assert_not_reached ();
-        }
-
-        source.freeze ();
-        source.freeze ();
-        var loop = new MainLoop (null, false);
-
-        Timeout.add_seconds (5, () => {
-            loop.quit ();
-
-            return false;
-        });
-
-        loop.run ();
-        source.disconnect (available_id);
-        source.data_available.connect ( () => {
-            loop.quit ();
-        });
-
-        var timeout_id = Timeout.add_seconds (5, () => {
-            assert_not_reached ();
-        });
-
-        source.thaw ();
-        loop.run ();
-        Source.remove (timeout_id);
-        source.stop ();
-    }
-
     // Check that it is possible to call stop() when the source is frozen and
     // still get a done() signal
     private void test_freeze_stop () {
@@ -469,7 +411,6 @@ public class Rygel.DataSourceTest : Object {
         this.test_simple_streaming ();
         this.test_byte_range_request ();
         this.test_stop_start ();
-        this.test_multiple_freeze ();
         this.test_freeze_stop ();
         this.test_parallel_streaming ();
 
