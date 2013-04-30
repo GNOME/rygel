@@ -32,7 +32,7 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
     private const string RYGEL_PATH = "/org/gnome/Rygel1";
     private const string RYGEL_INTERFACE = "org.gnome.Rygel1";
 
-    private string user_config;
+    private File user_config;
 
     public WritableUserConfig () throws Error {
         var path = Path.build_filename (Environment.get_user_config_dir (),
@@ -40,14 +40,27 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
 
         base (path);
 
-        this.user_config = path;
+        this.user_config = File.new_for_path (path);
+
+        // Copy contents of system config file into user config file
+        if (!this.user_config.query_exists ()) {
+            try {
+                this.key_file.load_from_data (this.sys_key_file.to_data (),
+                                              -1,
+                                              KeyFileFlags.KEEP_COMMENTS |
+                                              KeyFileFlags.KEEP_TRANSLATIONS);
+            } catch (Error error) {
+                // must not happen as we parsed sys_key_file successfully
+                // already
+                assert_not_reached ();
+            }
+        }
     }
 
     public bool is_upnp_enabled () {
         try {
-            var file = File.new_for_path (this.user_config);
             var autostart_file = this.get_autostart_file ();
-            if (file.query_exists () && autostart_file.query_exists ()) {
+            if (this.user_config.query_exists () && autostart_file.query_exists ()) {
                 return this.get_upnp_enabled ();
             }
 
