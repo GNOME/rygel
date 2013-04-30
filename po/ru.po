@@ -1,18 +1,18 @@
 # Russian translation for rygel.
 # Copyright (C) 2011 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
-# Stas Solovey <whats_up@tut.by>, 2013.
 # Yuri Myasoedov <omerta13@yandex.ru>, 2011, 2012, 2013.
+# Stas Solovey <whats_up@tut.by>, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-03-01 14:51+0000\n"
-"PO-Revision-Date: 2013-03-03 23:42+0400\n"
-"Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
-"Language-Team: русский <gnome-cyr@gnome.org>\n"
+"POT-Creation-Date: 2013-04-06 16:48+0000\n"
+"PO-Revision-Date: 2013-04-21 20:55+0300\n"
+"Last-Translator: Stas Solovey <whats_up@tut.by>\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,7 +61,7 @@ msgid ""
 "Select the network interface that DLNA media will be shared on, or share "
 "media on all interfaces"
 msgstr ""
-"Выберите сетевой интерфейс, используемый для предоставление общего доступа к "
+"Выберите сетевой интерфейс, используемый для предоставления общего доступа к "
 "мультимедиа, или предоставьте доступ для всех интерфейсов"
 
 #: ../data/rygel-preferences.ui.h:11
@@ -110,26 +110,22 @@ msgstr "Не удалось выполнить запрос о типе соде
 msgid "Failed to add item with ID %s: %s"
 msgstr "Не удалось добавить элемент с ID %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:94
-msgid "No metadata extractor available. Will not crawl."
-msgstr "Нет доступного компонента для извлечения метаданных. Не проверяем."
-
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:136
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:124
 #, c-format
 msgid "'%s' harvested"
 msgstr "«%s» обработан"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:199
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:187
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Ошибка получения объекта «%s» из базы данных: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:207
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:195
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "Не удалось запросить информацию о файле %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:247
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:235
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Ошибка удаления объекта из базы данных: %s"
@@ -270,12 +266,12 @@ msgstr "Не реализовано"
 #: ../src/librygel-core/rygel-connection-manager.vala:127
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
 #: ../src/librygel-renderer/rygel-rendering-control.vala:128
-#: ../src/librygel-server/rygel-content-directory.vala:254
-#: ../src/librygel-server/rygel-content-directory.vala:281
-#: ../src/librygel-server/rygel-content-directory.vala:300
-#: ../src/librygel-server/rygel-content-directory.vala:335
-#: ../src/librygel-server/rygel-content-directory.vala:360
-#: ../src/librygel-server/rygel-content-directory.vala:385
+#: ../src/librygel-server/rygel-content-directory.vala:264
+#: ../src/librygel-server/rygel-content-directory.vala:291
+#: ../src/librygel-server/rygel-content-directory.vala:310
+#: ../src/librygel-server/rygel-content-directory.vala:345
+#: ../src/librygel-server/rygel-content-directory.vala:370
+#: ../src/librygel-server/rygel-content-directory.vala:395
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Неверный аргумент"
@@ -438,8 +434,8 @@ msgstr "Не удалось прочитать дочерние элементы
 msgid "Failed to browse '%s': %s\n"
 msgstr "Не удалось выполнить обзор «%s»: %s\n"
 
-#: ../src/librygel-server/rygel-content-directory.vala:273
-#: ../src/librygel-server/rygel-content-directory.vala:292
+#: ../src/librygel-server/rygel-content-directory.vala:283
+#: ../src/librygel-server/rygel-content-directory.vala:302
 msgid "No such file transfer"
 msgstr "Нет такой передачи файлов"
 
@@ -781,3 +777,6 @@ msgstr "Не удалось запустить службу Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Не удалось остановить службу Rygel: %s"
+
+#~ msgid "No metadata extractor available. Will not crawl."
+#~ msgstr "Нет доступного компонента для извлечения метаданных. Не проверяем."
