@@ -46,7 +46,8 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
     public bool is_upnp_enabled () {
         try {
             var file = File.new_for_path (this.user_config);
-            if (file.query_exists ()) {
+            var autostart_file = this.get_autostart_file ();
+            if (file.query_exists () && autostart_file.query_exists ()) {
                 return this.get_upnp_enabled ();
             }
 
@@ -145,15 +146,21 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
         this.key_file.set_boolean (section, key, value);
     }
 
+    private File get_autostart_file () throws Error {
+        var config_dir = Environment.get_user_config_dir ();
+        this.ensure_dir_exists (config_dir);
+        var dest_dir = Path.build_filename (config_dir, "autostart");
+        this.ensure_dir_exists (dest_dir);
+
+        var dest_path = Path.build_filename (dest_dir, "rygel.desktop");
+        var dest = File.new_for_path (dest_path);
+
+        return dest;
+    }
+
     private void enable_upnp (bool enable) {
         try {
-            var config_dir = Environment.get_user_config_dir ();
-            this.ensure_dir_exists (config_dir);
-            var dest_dir = Path.build_filename (config_dir, "autostart");
-            this.ensure_dir_exists (dest_dir);
-
-            var dest_path = Path.build_filename (dest_dir, "rygel.desktop");
-            var dest = File.new_for_path (dest_path);
+            var dest = this.get_autostart_file ();
 
             if (enable) {
                 // Creating the proxy starts the service
