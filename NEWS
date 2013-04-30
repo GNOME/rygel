@@ -1,3 +1,129 @@
+0.19.1
+======
+
+A new unstable series for Rygel.
+
+Changes compared to 0.18.1:
+
+- Some build simplifications.
+- Fix translation comments.
+- Update the architecture diagram.
+- Stop blindly loading every dynamic library we can find in the plug-in
+  folder.
+
+Rygel:
+ - Show a warning if the user configuration could not be found.
+
+Core:
+ - Fix a memory leak in Rygel.DescriptionFile.
+ - Rename a variable called "template" to avoid issues when using Rygel from
+   C++.
+
+Server:
+ - Don't add DIDL_S <res> nodes on childless containers.
+
+Renderer:
+ - Treat MALFORMED requests as BAD_REQUESTS.
+
+MediaExport:
+ - Add infrastructure for testing the plug-in.
+ - Add two regression tests for bgo#689326.
+ - Unbreak synchronization use-cases.
+ - Support server-side playlists.
+
+Tracker:
+ - Make it possible to upload to DLNA.ORG_AnyContainer even if there's nothing
+   of that type of media shared yet.
+
+GStreamer media engine:
+ - Some clean-up.
+ - Work around a vala bug causing issues on non-Intel architectures.
+
+Preferences:
+ - Only set "enable" checkmark if the user's config file and the autostart file
+   exist and enable-upnp is set in the configuration.
+ - Fix issue with newly created user configuration being mostly empty on first
+   start.
+ - Use a GtkSwitch for enabling/disabling sharing.
+ - Fix starting Rygel after enabling it in the dialog.
+
+Changes in dependencies:
+ - Require GTK+ 3.0 instead of 2.90.x (optional)
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=660885
+ - https://bugzilla.gnome.org/show_bug.cgi?id=695593
+ - https://bugzilla.gnome.org/show_bug.cgi?id=698260
+ - https://bugzilla.gnome.org/show_bug.cgi?id=698572
+ - http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=703281
+ - https://bugs.launchpad.net/ubuntu/+source/rygel/+bug/827030
+ - https://bugzilla.gnome.org/show_bug.cgi?id=697793
+ - https://bugzilla.gnome.org/show_bug.cgi?id=697949
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  Piotr Drąg <piotrdrag@gmail.com>
+  Enrico Nicoletto <liverig@gmail.com>
+  Chandan Kumar <Chandankumar.093047@gmail.com>
+  Balázs Úr <urbalazs@src.gnome.org>
+  Ville-Pekka Vainio <vpvainio@iki.fi>
+  Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+  os_ <syriatalks@hotmail.com>
+  Nirbheek Chauhan <nirbheek.chauhan@collabora.co.uk>
+  Nilamdyuti Goswami <ngoswami@redhat.com>
+  Murray Cumming <murrayc@murrayc.com>
+  Milo Casagrande <milo@ubuntu.com>
+  Mattias Põldaru <mahfiaz@gmail.com>
+  Martin Srebotnjak <miles@filmsi.net>
+  Mario Blättermann <mariobl@gnome.org>
+  Marek Černocký <marek@manet.cz>
+  Marcin Kazmierczak <marcin.kazmierczak@live.com>
+  Joe Hansen <joedalton2@yahoo.dk>
+  Joan Duran <jodufi@gmail.com>
+  Jens Georg <mail@jensge.org>
+  Jasper Lievisse Adriaanse <jasper@humppa.nl>
+  Inaki Larranaga Murgoitio <dooteo@zundan.com>
+  Fran Diéguez <fran.dieguez@mabishu.com>
+  Duarte Loreto <happyguy_pt@hotmail.com>
+  Dr.T.Vasudevan <drtvasudevan@gmail.com>
+  Dimitris Spingos <dmtrs32@gmail.com>
+  Daniel Mustieles <daniel.mustieles@gmail.com>
+  Choe Hwanjin <choe.hwanjin@gmail.com>
+  Changwoo Ryu <cwryu@debian.org>
+  Carles Ferrando <carles.ferrando@gmail.com>
+  Bruce Cowan <bruce@bcowan.me.uk>
+  Andika Triwidada <andika@gmail.com>
+  Alexandre Franke <alexandre.franke@gmail.com>
+  Akom Chotiphantawanon <knight2000@gmail.com>
+
+Added/updated translations
+ - ar, courtesy of os_
+ - as, courtesy of Nilamdyuti Goswami
+ - ca, courtesy of Joan Duran
+ - ca@valencia, courtesy of Joan Duran
+ - cs, courtesy of Marek Černocký
+ - da, courtesy of Joe Hansen
+ - de, courtesy of Mario Blättermann
+ - el, courtesy of Dimitris Spingos (Δημήτρης Σπίγγος)
+ - en_GB, courtesy of Bruce Cowan
+ - es, courtesy of Daniel Mustieles
+ - et, courtesy of Mattias Põldaru
+ - eu, courtesy of Iñaki Larrañaga Murgoitio
+ - fi, courtesy of Jiri Grönroos
+ - fr, courtesy of Alain Lojewski
+ - gl, courtesy of Fran Dieguez
+ - hi, courtesy of chandankumar
+ - hu, courtesy of Balázs Úr
+ - id, courtesy of Andika Triwidada
+ - it, courtesy of Milo Casagrande
+ - ko, courtesy of Changwoo Ryu
+ - lv, courtesy of Rūdolfs Mazurs
+ - pt_BR, courtesy of Enrico Nicoletto
+ - pt, courtesy of Duarte Loreto
+ - sl, courtesy of Matej Urbančič
+ - ta, courtesy of Dr.T.Vasudevan
+ - th, courtesy of Akom Chotiphantawanon
+
 0.17.9
 ======
 

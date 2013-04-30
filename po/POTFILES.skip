@@ -25,8 +25,8 @@ src/librygel-core/rygel-log-handler.c
 src/librygel-core/rygel-media-device.c
 src/librygel-core/rygel-meta-config.c
 src/librygel-core/rygel-plugin.c
-src/librygel-core/rygel-plugin-loader.c
 src/librygel-core/rygel-plugin-information.c
+src/librygel-core/rygel-plugin-loader.c
 src/librygel-core/rygel-recursive-module-loader.c
 src/librygel-core/rygel-resource-info.c
 src/librygel-core/rygel-root-device.c
@@ -97,10 +97,12 @@ src/librygel-server/rygel-photo-item.c
 src/librygel-server/rygel-playlist-item.c
 src/librygel-server/rygel-reference-creator.c
 src/librygel-server/rygel-relational-expression.c
+src/librygel-server/rygel-samsung-tv-hacks.c
 src/librygel-server/rygel-searchable-container.c
 src/librygel-server/rygel-search.c
 src/librygel-server/rygel-search-criteria-parser.c
 src/librygel-server/rygel-search-expression.c
+src/librygel-server/rygel-seek-hacks.c
 src/librygel-server/rygel-serializer.c
 src/librygel-server/rygel-simple-container.c
 src/librygel-server/rygel-source-connection-manager.c
@@ -167,7 +169,9 @@ src/plugins/media-export/rygel-media-export-node-query-container.c
 src/plugins/media-export/rygel-media-export-null-container.c
 src/plugins/media-export/rygel-media-export-object-factory.c
 src/plugins/media-export/rygel-media-export-photo-item.c
+src/plugins/media-export/rygel-media-export-playlist-container.c
 src/plugins/media-export/rygel-media-export-playlist-item.c
+src/plugins/media-export/rygel-media-export-playlist-root-container.c
 src/plugins/media-export/rygel-media-export-plugin.c
 src/plugins/media-export/rygel-media-export-query-container.c
 src/plugins/media-export/rygel-media-export-query-container-factory.c
@@ -238,6 +242,7 @@ src/ui/rygel-preferences-dialog.c
 src/ui/rygel-preferences-section.c
 src/ui/rygel-user-config.c
 src/ui/rygel-writable-user-config.c
+tests/plugins/media-export/regression.c
 tests/rygel-album-art-spec-test.c
 tests/rygel-configuration.c
 tests/rygel-data-sink_http-response.c
