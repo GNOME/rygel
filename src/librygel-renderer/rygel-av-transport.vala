@@ -247,17 +247,15 @@ internal class Rygel.AVTransport : Service {
             message.request_headers.append ("getContentFeatures.dlna.org",
                                             "1");
             message.finished.connect ((msg) => {
-                // Server does not support HEAD request
-                if (msg.status_code == KnownStatusCode.BAD_REQUEST) {
-                    action.return ();
+                if (msg.status_code != KnownStatusCode.OK &&
+                    msg.method == "HEAD") {
+                    debug ("Peer does not support HEAD, trying GET");
+                    msg.method = "GET";
+                    msg.got_headers.connect ((msg) => {
+                        this.session.cancel_message (msg, msg.status_code);
+                    });
 
-                    // FIXME: no chance to check for playlists.
-                    this.controller.metadata = _metadata;
-                    this.controller.uri = _uri;
-                    this.controller.n_tracks = 1;
-                    this.controller.track = 1;
-                    this.track_metadata = _metadata;
-                    this.track_uri = _uri;
+                    this.session.queue_message (msg, null);
 
                     return;
                 }
