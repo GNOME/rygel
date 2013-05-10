@@ -2,7 +2,6 @@
     * Fix coding-style/indentation everywhere.
     * Filesystem-based cover art (Implement feeding-part of MediaArtStorageSpec)
       * Preliminary patch exists, though ugly
-    * React to configuration changes
     * Add configurable filter on "Genre" to decide between Audio and Music for
     * UPnP class
     * check if g_file_enumerator_container can simplify harvester
@@ -13,8 +12,6 @@
   * Unify ImportResource and HTTPPost.
 
   * Check in HTTPSeek really needed?
-
-  * Use common.m4 in tests/Makefile.am (Probably not possible).
 
   * Cache response(s). If user fast forwards a stream, one request completes and
     a second will be issued with a new time offset.  It is important to keep the
@@ -87,9 +84,6 @@
   * mpris
     * use icons for media objects.
 
-  * AVTransport
-    * Actually handle all advertized actions/variables.
-
   * Playbin
     * configuration options to set gst playbin props?
 
@@ -98,8 +92,6 @@
   * Put common code in item and container into object (e.g upnp_class)
 
   * Totem plugin that implements MediaRenderer spec.
-
-  * plugins should keep version of rygel they were compiled against.
 
   * ScheduledRecording (ScheduledRecording spec, especially section 2.9.2.2.1)
     * Add MediaItem.ChannelID prop.
