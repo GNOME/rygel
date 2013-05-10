@@ -152,7 +152,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
         <listitem>
           <para>Comma-separated list of <replaceable>DOMAIN</replaceable>:<replaceable>LEVEL</replaceable> pairs, allowing to set the log level individually for each domain, where <replaceable>DOMAIN</replaceable> is eiher <userinput>&quot;*&quot;</userinput>, &quot;<userinput>rygel</userinput>&quot; or the name of a plugin. Allowed log levels are 1=critical, 2=error, 3=warning, 4=message/info,
             5=debug.
-          </para>
+          Note that on recent versions of GLib (&gt;= 2.36) it is required to set the environment variable <envar>G_MESSAGES_DEBUG</envar> to <userinput>all</userinput> to get any debug output.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
