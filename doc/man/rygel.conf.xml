@@ -124,7 +124,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>interface=<replaceable>INTERFACE</replaceable></option>
         </term>
         <listitem>
-          <para>Set the network-interface <application>&dhpackage;</application> listens on.</para>
+          <para>A list of  the network interfaces <application>&dhpackage;</application> listens on. May be an IP, an interface name or on Linux even the ESSID of a wireless network.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

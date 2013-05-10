@@ -75,7 +75,11 @@ public interface Rygel.Configuration : GLib.Object {
 
     public abstract bool get_upnp_enabled () throws GLib.Error;
 
+    [Deprecated (since="0.19.2", replacement="get_interfaces")]
     public abstract string get_interface () throws GLib.Error;
+
+    [CCode (array_length=false, array_null_terminated = true)]
+    public abstract string[] get_interfaces () throws GLib.Error;
 
     public abstract int get_port () throws GLib.Error;
 

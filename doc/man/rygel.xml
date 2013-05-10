@@ -151,7 +151,7 @@ handling.</para>
           <option>--network-interface=<replaceable>INTERFACE</replaceable></option>
         </term>
         <listitem>
-          <para>Set the network-interface rygel listens on.</para>
+          <para>Set the network interfaces rygel listens on. Can be used multiple times for to configure multiple interfaces. <userinput>INTERFACE</userinput> can be an IP, a device name or an ESSID (Linux only).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -333,7 +333,7 @@ handling.</para>
           <envar>RYGEL_IFACE</envar>
         </term>
         <listitem>
-          <para>Set the network interface to bind to.</para>
+          <para>Set the network interfaces to bind to.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

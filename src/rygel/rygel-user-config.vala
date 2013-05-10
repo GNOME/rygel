@@ -153,6 +153,11 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         return this.get_bool (GENERAL_SECTION, UPNP_ENABLED_KEY);
     }
 
+    [CCode (array_length=false, array_null_terminated = true)]
+    public string[] get_interfaces () throws GLib.Error {
+        return this.get_string_list (GENERAL_SECTION, IFACE_KEY).to_array ();
+    }
+
     public string get_interface () throws GLib.Error {
         return this.get_string (GENERAL_SECTION, IFACE_KEY);
     }

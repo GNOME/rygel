@@ -64,6 +64,11 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
         return this.get_string_variable (INTERFACE_ENV);
     }
 
+    [CCode (array_length=false, array_null_terminated = true)]
+    public string[] get_interfaces () throws GLib.Error {
+        return this.get_string_variable (INTERFACE_ENV).split (",");
+    }
+
     public int get_port () throws GLib.Error {
         return this.get_int_variable (PORT_ENV, 0, int16.MAX);
     }

@@ -34,6 +34,11 @@ public class Rygel.BaseConfiguration : Rygel.Configuration, Object {
         throw new ConfigurationError.NO_VALUE_SET (_("Not implemented"));
     }
 
+    [CCode (array_length=false, array_null_terminated = true)]
+    public virtual string[] get_interfaces () throws GLib.Error {
+        throw new ConfigurationError.NO_VALUE_SET (_("Not implemented"));
+    }
+
     public virtual int get_port () throws GLib.Error {
         throw new ConfigurationError.NO_VALUE_SET (_("Not implemented"));
     }

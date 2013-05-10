@@ -111,6 +111,26 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         return val;
     }
 
+    [CCode (array_length=false, array_null_terminated = true)]
+    public string[] get_interfaces () throws GLib.Error {
+        string[] val = null;
+        bool unavailable = true;
+
+        foreach (var config in MetaConfig.configs) {
+            try {
+                val = config.get_interfaces ();
+                unavailable = false;
+                break;
+            } catch (GLib.Error error) {}
+        }
+
+        if (unavailable) {
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
+        }
+
+        return val;
+    }
+
     public int get_port () throws GLib.Error {
         int val = 0;
         bool unavailable = true;
@@ -471,7 +491,7 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
                 break;
 
             case ConfigurationEntry.INTERFACE:
-                config.get_interface ();
+                config.get_interfaces ();
                 break;
 
             case ConfigurationEntry.PORT:

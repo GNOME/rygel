@@ -136,7 +136,7 @@ internal class Rygel.Main : Object {
 
     private void on_context_available (GUPnP.ContextManager manager,
                                        GUPnP.Context        context) {
-        string iface = null;
+        string[] ifaces = null;
 
         debug ("New network %s (%s) context available. IP: %s",
                context.network,
@@ -144,12 +144,12 @@ internal class Rygel.Main : Object {
                context.host_ip);
 
         try {
-            iface = this.config.get_interface ();
+            ifaces = this.config.get_interfaces ();
         } catch (GLib.Error err) {}
 
-        if (iface == null ||
-            iface == context.interface ||
-            iface == context.network) {
+        if (ifaces == null ||
+            context.interface in ifaces||
+            context.network in ifaces) {
             try {
                 var factory = new RootDeviceFactory (context);
                 this.factories.add (factory);

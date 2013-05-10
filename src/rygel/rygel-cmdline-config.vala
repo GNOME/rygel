@@ -34,7 +34,9 @@ public errordomain Rygel.CmdlineConfigError {
  * Manages configuration from Commandline arguments.
  */
 public class Rygel.CmdlineConfig : GLib.Object, Configuration {
-    private static string iface;
+    [CCode (array_length = false, array_null_terminated = true)]
+    [NoArrayLength]
+    private static string[] ifaces;
     private static int port;
 
     private static bool no_upnp;
@@ -66,10 +68,10 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static CmdlineConfig config;
 
     // Command-line options
-	const OptionEntry[] OPTIONS = {
+    const OptionEntry[] OPTIONS = {
         { "version", 0, 0, OptionArg.NONE, ref version,
           "Display version number", null },
-        { "network-interface", 'n', 0, OptionArg.STRING, ref iface,
+        { "network-interface", 'n', 0, OptionArg.STRING_ARRAY, ref ifaces,
           "Network Interface", "INTERFACE" },
         { "port", 'p', 0, OptionArg.INT, ref port,
           "Port", "PORT" },
@@ -102,7 +104,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         { "config", 'c', 0, OptionArg.FILENAME, ref config_file,
           "Use configuration file instead of user configuration", "FILE" },
         { null }
-	};
+    };
 
     public static CmdlineConfig get_default () {
         if (config == null) {
@@ -145,11 +147,20 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     }
 
     public string get_interface () throws GLib.Error {
-        if (iface == null) {
+        if (ifaces == null) {
             throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
 
-        return iface;
+        return ifaces[0];
+    }
+
+    [CCode (array_length=false, array_null_terminated = true)]
+    public string[] get_interfaces () throws GLib.Error {
+        if (ifaces == null) {
+            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
+        }
+
+        return ifaces;
     }
 
     public int get_port () throws GLib.Error {
