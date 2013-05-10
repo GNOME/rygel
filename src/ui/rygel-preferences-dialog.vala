@@ -42,10 +42,6 @@ public class Rygel.PreferencesDialog : GLib.Object {
         this.builder = new Builder ();
 
         this.builder.add_from_file (UI_FILE);
-        var toolbar = builder.get_object ("toolbar1") as Widget;
-        var style_context = toolbar.get_style_context ();
-        style_context.set_junction_sides (JunctionSides.TOP);
-        style_context.add_class (STYLE_CLASS_INLINE_TOOLBAR);
 
         this.dialog = (Dialog) this.builder.get_object (DIALOG);
         assert (this.dialog != null);

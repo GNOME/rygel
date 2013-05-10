@@ -82,6 +82,9 @@
                     <property name="can_focus">False</property>
                     <property name="toolbar_style">icons</property>
                     <property name="icon_size">1</property>
+                    <style>
+                      <class name="inline-toolbar"/>
+                    </style>
                     <child>
                       <object class="GtkToolButton" id="add-button">
                         <property name="visible">True</property>
