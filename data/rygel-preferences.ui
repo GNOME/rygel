@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.0 -->
-  <object class="GtkAdjustment" id="adjustment1">
-    <property name="upper">65525</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-  </object>
   <object class="GtkListStore" id="iface-liststore">
     <columns>
       <!-- column-name interface -->
@@ -252,10 +247,6 @@
       <action-widget response="-7">button3</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkSizeGroup" id="general-labels-sizegroup">
-    <property name="mode">both</property>
-  </object>
-  <object class="GtkSizeGroup" id="plugin-labels-sizegroup"/>
   <object class="GtkFileChooserDialog" id="uris-dialog">
     <property name="can_focus">False</property>
     <property name="can_default">True</property>
