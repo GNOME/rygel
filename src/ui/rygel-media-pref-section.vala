@@ -57,12 +57,6 @@ public class Rygel.MediaPrefSection : PreferencesSection {
         this.dialog = (FileChooserDialog) builder.get_object (URIS_DIALOG);
         assert (this.dialog != null);
 
-        treeview.insert_column_with_attributes (-1,
-                                                "paths",
-                                                new CellRendererText (),
-                                                "text",
-                                                0,
-                                                null);
         this.widgets.add (this.treeview);
 
         try {

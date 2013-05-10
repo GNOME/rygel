@@ -59,6 +59,18 @@
                         <child internal-child="selection">
                           <object class="GtkTreeSelection" id="treeview-selection"/>
                         </child>
+                        <child>
+                          <object class="GtkTreeViewColumn" id="treeviewcolumn1">
+                            <property name="sizing">fixed</property>
+                            <property name="title" translatable="yes">column</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -240,6 +252,10 @@
       <action-widget response="-7">button3</action-widget>
     </action-widgets>
   </object>
+  <object class="GtkSizeGroup" id="general-labels-sizegroup">
+    <property name="mode">both</property>
+  </object>
+  <object class="GtkSizeGroup" id="plugin-labels-sizegroup"/>
   <object class="GtkFileChooserDialog" id="uris-dialog">
     <property name="can_focus">False</property>
     <property name="can_default">True</property>
@@ -313,10 +329,6 @@
       <action-widget response="-5">button5</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkSizeGroup" id="general-labels-sizegroup">
-    <property name="mode">both</property>
-  </object>
-  <object class="GtkSizeGroup" id="plugin-labels-sizegroup"/>
   <object class="GtkListStore" id="uris-liststore">
     <columns>
       <!-- column-name path -->
