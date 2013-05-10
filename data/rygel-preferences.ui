@@ -7,6 +7,12 @@
       <column type="gchararray"/>
     </columns>
   </object>
+  <object class="GtkListStore" id="networks-liststore">
+    <columns>
+      <!-- column-name network-name -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkDialog" id="preferences-dialog">
     <property name="width_request">480</property>
     <property name="height_request">240</property>
@@ -15,7 +21,7 @@
     <property name="vexpand">True</property>
     <property name="border_width">6</property>
     <property name="title" translatable="yes">Rygel Preferences</property>
-    <property name="default_height">400</property>
+    <property name="default_height">600</property>
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
@@ -128,44 +134,6 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="iface-label">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_left">12</property>
-                <property name="xalign">0</property>
-                <property name="label" translatable="yes" comments="Network Interface">_Network:</property>
-                <property name="use_underline">True</property>
-                <property name="mnemonic_widget">iface-entry</property>
-              </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">2</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkComboBoxText" id="iface-entry">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="has_tooltip">True</property>
-                <property name="tooltip_markup" translatable="yes">Select the network interface that DLNA media will be shared on, or share media on all interfaces</property>
-                <property name="tooltip_text" translatable="yes">Select the network interface that DLNA media will be shared on, or share media on all interfaces</property>
-                <property name="hexpand">True</property>
-                <property name="entry_text_column">0</property>
-                <property name="id_column">1</property>
-                <items>
-                  <item translatable="yes">Any</item>
-                </items>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">2</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkGrid" id="grid3">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -206,6 +174,133 @@
                 <property name="width">2</property>
                 <property name="height">1</property>
               </packing>
+            </child>
+            <child>
+              <object class="GtkGrid" id="grid4">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_left">12</property>
+                <child>
+                  <object class="GtkScrolledWindow" id="scrolledwindow2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="shadow_type">in</property>
+                    <child>
+                      <object class="GtkTreeView" id="networks-treeview">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="model">networks-liststore</property>
+                        <property name="headers_visible">False</property>
+                        <property name="headers_clickable">False</property>
+                        <property name="search_column">0</property>
+                        <property name="fixed_height_mode">True</property>
+                        <child internal-child="selection">
+                          <object class="GtkTreeSelection" id="networks-tree-selection"/>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn" id="treeviewcolumn2">
+                            <property name="sizing">fixed</property>
+                            <property name="title" translatable="yes">column</property>
+                            <child>
+                              <object class="GtkCellRendererCombo" id="cellrenderertext2">
+                                <property name="editable">True</property>
+                                <property name="model">iface-liststore</property>
+                                <property name="text_column">0</property>
+                              </object>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                    <property name="width">1</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkToolbar" id="toolbar2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="toolbar_style">icons</property>
+                    <property name="icon_size">1</property>
+                    <style>
+                      <class name="inline-toolbar"/>
+                    </style>
+                    <child>
+                      <object class="GtkToolButton" id="network-add-button">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="has_tooltip">True</property>
+                        <property name="tooltip_markup" translatable="yes">Add a directory to the list of shared directories</property>
+                        <property name="tooltip_text" translatable="yes">Add a directory to the list of shared directories</property>
+                        <property name="label" translatable="yes">Add shared directory</property>
+                        <property name="icon_name">list-add-symbolic</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkToolButton" id="network-remove-button">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="has_tooltip">True</property>
+                        <property name="tooltip_markup" translatable="yes">Remove a directory from the list of shared directories</property>
+                        <property name="tooltip_text" translatable="yes">Remove a directory from the list of shared directories</property>
+                        <property name="label" translatable="yes">Remove shared directory</property>
+                        <property name="icon_name">list-remove-symbolic</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">1</property>
+                    <property name="width">1</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
+                <property name="width">2</property>
+                <property name="height">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label2">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="xalign">0</property>
+                <property name="label" translatable="yes">Networks:</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
             </child>
           </object>
           <packing>
