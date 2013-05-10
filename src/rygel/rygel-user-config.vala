@@ -155,7 +155,14 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
 
     [CCode (array_length=false, array_null_terminated = true)]
     public string[] get_interfaces () throws GLib.Error {
-        return this.get_string_list (GENERAL_SECTION, IFACE_KEY).to_array ();
+        var interfaces = this.get_string_list (GENERAL_SECTION,
+                                               IFACE_KEY).to_array ();
+        // to_array () is not null-terminated
+        if (interfaces != null) {
+            interfaces += null;
+        }
+
+        return interfaces;
     }
 
     public string get_interface () throws GLib.Error {

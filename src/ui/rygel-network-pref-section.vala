@@ -40,9 +40,12 @@ public class Rygel.NetworkPrefSection : PreferencesSection {
         this.context_manager = ContextManager.create (0);
 
         try {
-            this.iface_entry.append_text (config.get_interfaces ()[0]);
-            // TODO: Set the current interface to be active.
-            this.iface_entry.set_active (0);
+            var interfaces = config.get_interfaces ();
+            if (interfaces != null) {
+                this.iface_entry.append_text (interfaces[0]);
+                // TODO: Set the current interface to be active.
+                this.iface_entry.set_active (0);
+            }
         } catch (GLib.Error err) {
             // No problem if we fail to read the config, the default values
             // will do just fine. Same goes for rest of the keys.
