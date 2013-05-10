@@ -1,4 +1,4 @@
-include ../../common.am
+include $(top_srcdir)/common.am
 include $(srcdir)/filelist.am
 
 librygelincdir = $(includedir)/rygel-2.0

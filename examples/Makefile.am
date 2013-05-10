@@ -8,7 +8,7 @@ endif
 SUBDIRS = $(EXAMPLE_PLUGINS)
 
 
-include ../common.am
+include $(top_srcdir)/common.am
 
 
 #TODO: Remove the src/rygel from here?

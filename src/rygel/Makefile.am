@@ -1,4 +1,4 @@
-include ../../common.am
+include $(top_srcdir)/common.am
 
 bin_PROGRAMS = rygel
 

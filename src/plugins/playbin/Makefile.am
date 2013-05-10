@@ -1,4 +1,4 @@
-include ../../../common.am
+include $(top_srcdir)/common.am
 
 plugin_LTLIBRARIES = librygel-playbin.la
 plugin_DATA = playbin.plugin

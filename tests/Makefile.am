@@ -1,4 +1,4 @@
-include ../common.am
+include $(top_srcdir)/common.am
 
 check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-http-response-test \

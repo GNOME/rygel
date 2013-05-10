@@ -1,4 +1,4 @@
-include ../../../common.am
+include $(top_srcdir)/common.am
 
 plugin_LTLIBRARIES = librygel-mpris.la
 plugin_DATA = mpris.plugin
