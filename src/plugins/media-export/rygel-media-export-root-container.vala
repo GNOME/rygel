@@ -427,8 +427,11 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         foreach (var id in ids) {
             debug ("ID %s is no longer in the configuration. Deleting...", id);
             try {
+                // Remove IDs only if it's a parent of the toplevel folder.
+                // Keep it otherwise.
+                this.media_db.remove_by_id_from_parent (id,
+                                                        FILESYSTEM_FOLDER_ID);
                 // FIXME: I think this needs to emit objDel events...
-                this.media_db.remove_by_id (id);
             } catch (DatabaseError error) {
                 warning (_("Failed to remove entry: %s"), error.message);
             }
