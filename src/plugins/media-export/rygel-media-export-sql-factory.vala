@@ -78,7 +78,8 @@ internal enum Rygel.MediaExport.SQLString {
     MAKE_GUARDED,
     IS_GUARDED,
     UPDATE_GUARDED_OBJECT,
-    TRIGGER_REFERENCE
+    TRIGGER_REFERENCE,
+    DELETE_BY_ID_FROM_PARENT
 }
 
 internal class Rygel.MediaExport.SQLFactory : Object {
@@ -304,6 +305,9 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     private const string IS_GUARDED_STRING =
     "SELECT is_guarded FROM Object WHERE Object.upnp_id = ?";
 
+    private const string DELETE_BY_ID_FROM_PARENT_STRING =
+    "DELETE FROM Object WHERE upnp_id = ? AND parent = ?";
+
     public unowned string make (SQLString query) {
         switch (query) {
             case SQLString.SAVE_METADATA:
@@ -360,6 +364,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                 return UPDATE_GUARDED_OBJECT_STRING;
             case SQLString.TRIGGER_REFERENCE:
                 return DELETE_REFERENCE_TRIGGER_STRING;
+            case SQLString.DELETE_BY_ID_FROM_PARENT:
+                return DELETE_BY_ID_FROM_PARENT_STRING;
             default:
                 assert_not_reached ();
         }

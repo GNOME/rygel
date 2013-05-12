@@ -95,6 +95,13 @@ public class Rygel.MediaExport.MediaCache : Object {
         this.db.exec (this.sql.make (SQLString.DELETE), values);
     }
 
+    public void remove_by_id_from_parent (string id, string parent_id)
+                                          throws DatabaseError {
+        GLib.Value[] values = { id, parent_id };
+        this.db.exec (this.sql.make (SQLString.DELETE_BY_ID_FROM_PARENT),
+                      values);
+    }
+
     public void remove_object (MediaObject object) throws DatabaseError,
                                                           MediaCacheError {
         this.remove_by_id (object.id);
