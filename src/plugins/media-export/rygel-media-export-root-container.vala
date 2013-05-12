@@ -414,11 +414,9 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
                                         (on_initial_harvesting_done);
 
         // For each location that we want the harvester to scan,
-        // remove it from the cache and request a rescan.
+        // remove it from the cache.
         foreach (var file in this.harvester.locations) {
             ids.remove (MediaCache.get_id (file));
-            this.harvester.schedule (file,
-                                     this.filesystem_container);
         }
 
         // Warn about any top-level locations that were known to 
@@ -427,15 +425,20 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         foreach (var id in ids) {
             debug ("ID %s is no longer in the configuration. Deleting...", id);
             try {
-                // Remove IDs only if it's a parent of the toplevel folder.
-                // Keep it otherwise.
-                this.media_db.remove_by_id_from_parent (id,
-                                                        FILESYSTEM_FOLDER_ID);
                 // FIXME: I think this needs to emit objDel events...
+                this.media_db.remove_by_id (id);
             } catch (DatabaseError error) {
                 warning (_("Failed to remove entry: %s"), error.message);
             }
         }
+
+        // Before we start (re-)scanning, create a cache with all mtimes. This
+        // is done here in case we removed ids from above so we make sure we
+        // re-visit everything.
+        this.media_db.rebuild_exists_cache ();
+
+        // Request a rescan of all top-level locations.
+        this.harvester.schedule_locations (this.filesystem_container);
 
         // We have removed some uris so we notify that the root container has
         // changed

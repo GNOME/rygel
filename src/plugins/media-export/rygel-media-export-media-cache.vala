@@ -70,7 +70,6 @@ public class Rygel.MediaExport.MediaCache : Object {
         this.sql = new SQLFactory ();
         this.open_db (db_name);
         this.factory = new ObjectFactory ();
-        this.get_exists_cache ();
     }
 
     // Public static functions
@@ -93,13 +92,6 @@ public class Rygel.MediaExport.MediaCache : Object {
     public void remove_by_id (string id) throws DatabaseError {
         GLib.Value[] values = { id };
         this.db.exec (this.sql.make (SQLString.DELETE), values);
-    }
-
-    public void remove_by_id_from_parent (string id, string parent_id)
-                                          throws DatabaseError {
-        GLib.Value[] values = { id, parent_id };
-        this.db.exec (this.sql.make (SQLString.DELETE_BY_ID_FROM_PARENT),
-                      values);
     }
 
     public void remove_object (MediaObject object) throws DatabaseError,
@@ -549,7 +541,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
     }
 
-    private void get_exists_cache () throws DatabaseError {
+    public void rebuild_exists_cache () throws DatabaseError {
         this.exists_cache = new HashMap<string, ExistsCacheEntry?> ();
         var cursor = this.exec_cursor (SQLString.EXISTS_CACHE);
         foreach (var statement in cursor) {
