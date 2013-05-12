@@ -77,6 +77,17 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
     }
 
     /**
+     * Schedule rescan of all top-level locations known to the harvester.
+     *
+     * @param parent top-level container of the files
+     */
+    public void schedule_locations (MediaContainer parent) {
+        foreach (var file in this.locations) {
+            this.schedule (file, parent);
+        }
+    }
+
+    /**
      * Put a file on queue for meta-data extraction
      *
      * @param file the file to investigate
