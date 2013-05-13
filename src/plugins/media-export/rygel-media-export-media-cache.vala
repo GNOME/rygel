@@ -939,7 +939,8 @@ public class Rygel.MediaExport.MediaCache : Object {
     }
 
     private static string? map_operand_to_column (string     operand,
-                                                  out string? collate = null)
+                                                  out string? collate = null,
+                                                  bool        for_sort = false)
                                                   throws Error {
         string column = null;
         bool use_collation = false;
@@ -973,7 +974,11 @@ public class Rygel.MediaExport.MediaCache : Object {
                 use_collation = true;
                 break;
             case "dc:date":
-                column = "strftime(\"%Y\", m.date)";
+                if (for_sort) {
+                    column = "m.date";
+                } else {
+                    column = "strftime(\"%Y\", m.date)";
+                }
                 break;
             case "upnp:album":
                 column = "m.album";
@@ -1100,7 +1105,8 @@ public class Rygel.MediaExport.MediaCache : Object {
             try {
                 var column = MediaCache.map_operand_to_column
                                         (field[1:field.length],
-                                         out collate);
+                                         out collate,
+                                         true);
                 if (field != fields[0]) {
                     builder.append (",");
                 }
