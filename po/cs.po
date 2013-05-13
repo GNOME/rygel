@@ -730,7 +730,7 @@ msgid "No thumbnailer available: %s"
 msgstr "Žádný generátor náhledů není k dispozici: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "Generování náhledů není podporováno"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

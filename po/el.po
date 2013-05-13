@@ -746,7 +746,7 @@ msgid "No thumbnailer available: %s"
 msgstr "Μη διαθέσιμη μικρογραφία: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "Δεν υποστηρίζονται οι μικρογραφίες"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

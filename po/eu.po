@@ -656,7 +656,7 @@ msgid "No thumbnailer available: %s"
 msgstr "Ez dago koadro txikitzailerik eskuragarri: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "Koadroak txikiagotzea ez dago onartuta"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

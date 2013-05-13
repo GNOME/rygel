@@ -658,7 +658,7 @@ msgid "No thumbnailer available: %s"
 msgstr "Nije dostupan sličičar: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "Pravljenje sličica nije podržano"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

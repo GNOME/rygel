@@ -656,7 +656,7 @@ msgid "No thumbnailer available: %s"
 msgstr "Nem érhető el bélyegképkészítő: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "A bélyegképkészítés nem támogatott"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

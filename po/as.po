@@ -663,7 +663,7 @@ msgstr "কোনো থাম্বনেইলাৰ উপলব্ধ না
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
 #| msgid "Seek mode not supported"
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "থাম্বনেইলিং সমৰ্থিত নহয়"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

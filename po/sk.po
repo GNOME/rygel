@@ -704,7 +704,7 @@ msgid "No thumbnailer available: %s"
 msgstr "Nie je dostupný žiadny nástroj na tvorbu miniatúr: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "Vytváranie miniatúr nie je podporované"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

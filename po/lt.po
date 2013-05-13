@@ -663,7 +663,7 @@ msgid "No thumbnailer available: %s"
 msgstr "Neprieinama miniatiūrų kūrimo programa: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "Miniatiūros nepalaikomos"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

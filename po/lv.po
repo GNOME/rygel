@@ -670,7 +670,7 @@ msgstr "Nav pieejams sīktēls: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
 #| msgid "Seek mode not supported"
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "Sīktēlu veidošana nav atbalstīta"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

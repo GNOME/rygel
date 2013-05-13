@@ -648,7 +648,7 @@ msgid "No thumbnailer available: %s"
 msgstr "ไม่มีเครื่องมือสร้างภาพย่อ: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "ไม่รองรับการทำภาพย่อ"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

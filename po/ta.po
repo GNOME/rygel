@@ -654,7 +654,7 @@ msgid "No thumbnailer available: %s"
 msgstr "சிறுபடங்கள் உருவாக்கி கிடைக்கவில்லை: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "சிறுசின்னத்துக்கு ஆதரவு இல்லை"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

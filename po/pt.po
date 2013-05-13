@@ -655,7 +655,7 @@ msgstr ""
 "Nenhuma aplicação de visualização de imagens de referência disponível: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "Imagens de referência não são suportadas"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

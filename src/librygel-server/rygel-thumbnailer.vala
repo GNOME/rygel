@@ -71,7 +71,7 @@ internal class Rygel.Thumbnailer : GLib.Object {
         var file = File.new_for_uri (uri);
         if (!file.is_native ()) {
             throw new ThumbnailerError.NO_THUMBNAIL
-                                        (_("Thubmnailing not supported"));
+                                        (_("Thumbnailing not supported"));
         }
 
         var info = file.query_info (FileAttribute.THUMBNAIL_PATH + "," +

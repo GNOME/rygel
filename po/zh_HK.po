@@ -653,7 +653,7 @@ msgid "No thumbnailer available: %s"
 msgstr "沒有可用的縮圖：%s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "不支援縮圖"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

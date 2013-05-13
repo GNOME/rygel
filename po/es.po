@@ -738,7 +738,7 @@ msgid "No thumbnailer available: %s"
 msgstr "No hay ningún generador de miniaturas disponible: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "No se soportan las miniaturas"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

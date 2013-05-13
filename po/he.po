@@ -649,7 +649,7 @@ msgid "No thumbnailer available: %s"
 msgstr "תכנית למזעור תמונות אינה זמינה: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "אין תמיכה במזעור תמונות"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

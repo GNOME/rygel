@@ -665,7 +665,7 @@ msgstr "തംബ്നെയില്‍ ലഭ്യമല്ല: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
 #, fuzzy
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "ഓടുന്ന വേഗത മാറ്റാന്‍ കഴിയുന്നതല്ല"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

@@ -662,7 +662,7 @@ msgid "No thumbnailer available: %s"
 msgstr "Ingen miniaturefunktion tilgængelig: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "Miniaturefunktion understøttes ikke"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

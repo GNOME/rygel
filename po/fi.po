@@ -656,7 +656,7 @@ msgstr ""
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
 #, fuzzy
 #| msgid "Seek mode not supported"
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "Kelaustila ei ole tuettu"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

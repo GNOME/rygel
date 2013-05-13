@@ -654,7 +654,7 @@ msgid "No thumbnailer available: %s"
 msgstr "Tidak tersedia pembuat miniatur: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "Pembuatan gambar mini tidak didukung"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

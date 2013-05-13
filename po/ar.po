@@ -730,7 +730,7 @@ msgstr ""
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
 #, fuzzy
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "وضع السعي غير مدعوم"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

@@ -653,7 +653,7 @@ msgid "No thumbnailer available: %s"
 msgstr "섬네일 만들기기 사용 불가: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "섬네일을 지원하지 않음"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

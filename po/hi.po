@@ -659,7 +659,7 @@ msgid "No thumbnailer available: %s"
 msgstr "थंबनेलर उपलब्ध नहीं : %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "थंबनेल समर्थित नहीं "
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

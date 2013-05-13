@@ -659,7 +659,7 @@ msgid "No thumbnailer available: %s"
 msgstr "No hi ha cap generador de miniatures disponible: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "No admet la miniaturització"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

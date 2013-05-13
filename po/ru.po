@@ -737,7 +737,7 @@ msgid "No thumbnailer available: %s"
 msgstr "Нет доступного компонента для создания миниатюр: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "Создание миниатюр не поддерживается"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

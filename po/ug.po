@@ -652,7 +652,7 @@ msgid "No thumbnailer available: %s"
 msgstr "بارماق سۈرەت ياسىغۇچ(thumbnailer) يوق: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "كىچىك سۈرەت ياساشنى قوللىمايدۇ"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

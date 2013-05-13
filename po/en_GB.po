@@ -653,8 +653,8 @@ msgid "No thumbnailer available: %s"
 msgstr "No thumbnailer available: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
-msgstr "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
+msgstr "Thumbnailing not supported"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97

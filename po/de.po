@@ -658,7 +658,7 @@ msgid "No thumbnailer available: %s"
 msgstr "Kein Vorschauprogramm verfügbar: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "Vorschaubilder werden nicht unterstützt"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

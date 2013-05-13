@@ -668,7 +668,7 @@ msgid "No thumbnailer available: %s"
 msgstr "Pas de créateur de vignettes disponible : %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "Création de miniatures non prise en charge"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

@@ -663,7 +663,7 @@ msgstr "ਕੋਈ ਥੰਮਨੇਲਰ ਉਪਲੱਬਧ ਨਹੀਂ: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
 #| msgid "Seek mode not supported"
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "ਥੰਮਨੇਲ ਕਰਨਾ ਸਹਾਇਕ ਨਹੀਂ"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88

@@ -447,7 +447,7 @@ msgstr "Subtiitreid pole saadaval"
 msgid "No thumbnailer available: %s"
 msgstr "Pisipiltide loojat pole saadaval: %s"
 
-msgid "Thubmnailing not supported"
+msgid "Thumbnailing not supported"
 msgstr "Pisipiltide loomine pole toetatud"
 
 msgid "No thumbnail available"
