@@ -1,3 +1,55 @@
+0.18.2
+======
+
+A bugfix release for Rygel!
+
+Changes compared to 0.18.1:
+
+Rygel:
+- Show a warning on missing user configuration.
+
+Core:
+- Fix a memory leak when modifying description files.
+- Rename a C++ reserved keyword.
+
+Server:
+- Only add a DIDL_S resource to a container if it's non-empty.
+
+Renderer:
+- Use a better work-around for peers not supporting HEAD requests.
+
+GStreamer media engine:
+- Remove dead code
+- Work-around a vala code-gen bug causing streaming to fail on non-Intel
+  architectures.
+- Drop a racy test.
+
+Preferences UI:
+- Fix logic of enable/disable to involve existence of the autostart file.
+- Fix half-empty user configuration on first start.
+- Fix starting Rygel after enabling it in the UI.
+
+MediaExport:
+- Fix bug where child folders disappeared until next start when adding their
+  parent folder to the configuration.
+
+All bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=698260
+ - http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=703281
+ - https://bugzilla.gnome.org/show_bug.cgi?id=698572
+ - https://bugzilla.gnome.org/show_bug.cgi?id=697793
+ - https://bugzilla.gnome.org/show_bug.cgi?id=648003
+
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  Stas Solovey <whats_up@tut.by>
+  Nirbheek Chauhan <nirbheek.chauhan@collabora.co.uk>
+  Murray Cumming <murrayc@murrayc.com>
+
+Added/updated translations
+ - ru, courtesy of Stas Solovey
+
 0.18.1
 ======
 
