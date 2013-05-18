@@ -40,9 +40,11 @@ public class Rygel.NetworkPrefSection : PreferencesSection {
         this.context_manager = ContextManager.create (0);
 
         try {
+            int num_items;
+
             this.iface_entry.append_text (config.get_interface ());
-            // TODO: Set the current interface to be active.
-            this.iface_entry.set_active (0);
+            num_items = this.count_items (this.iface_entry.model);
+            this.iface_entry.set_active (num_items - 1);
         } catch (GLib.Error err) {
             // No problem if we fail to read the config, the default values
             // will do just fine. Same goes for rest of the keys.
@@ -102,5 +104,18 @@ public class Rygel.NetworkPrefSection : PreferencesSection {
         }
 
         return more;
+    }
+
+    private int count_items (TreeModel model) {
+        TreeIter iter;
+        int count = 0;
+        var more = model.get_iter_first (out iter);
+
+        while (more) {
+            count++;
+            more = model.iter_next (ref iter);
+        }
+
+        return count;
     }
 }
