@@ -7,7 +7,8 @@ librygel_mpris_la_SOURCES = \
 	rygel-mpris-player.vala \
 	rygel-mpris-plugin.vala \
 	rygel-mpris-plugin-factory.vala \
-	rygel-mpris-interfaces.vala
+	rygel-mpris-interfaces.vala \
+	rygel-free-desktop-interfaces.vala
 
 librygel_mpris_la_VALAFLAGS = \
 	$(RYGEL_COMMON_LIBRYGEL_RENDERER_VALAFLAGS) \

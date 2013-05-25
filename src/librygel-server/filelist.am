@@ -38,6 +38,7 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-content-directory.vala \
 	rygel-dbus-thumbnailer.vala \
 	rygel-engine-loader.vala \
+	rygel-free-desktop-interfaces.vala \
 	rygel-http-byte-seek.vala \
 	rygel-http-get-handler.vala \
 	rygel-http-get.vala \

@@ -18,7 +18,6 @@ LIBRYGEL_CORE_VAPI_SOURCE_FILES = \
 	rygel-media-device.vala \
 	rygel-configuration.vala \
 	rygel-base-configuration.vala \
-	rygel-free-desktop-interfaces.vala \
 	rygel-state-machine.vala \
 	rygel-v1-hacks.vala
 

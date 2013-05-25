@@ -31,7 +31,6 @@
     <xi:include href="xml/rygel-description-file.xml"/>
     <xi:include href="xml/rygel-plugin-loader.xml"/>
     <xi:include href="xml/rygel-icon-info.xml"/>
-    <xi:include href="xml/rygel-free-desktop-interfaces.xml"/>
     <xi:include href="xml/rygel-recursive-module-loader.xml"/>
     <xi:include href="xml/rygel-root-device.xml"/>
     <xi:include href="xml/rygel-plugin.xml"/>
@@ -46,8 +45,6 @@
   <chapter id="api-main-list-dbus">
     <title>librygel-core D-Bus API Reference</title>
     <xi:include href="xml/org-gnome-Rygel1.xml"/>
-    <xi:include href="xml/org-freedesktop-DBus.xml"/>
-    <xi:include href="xml/org-freedesktop-DBus-Properties.xml"/>
   </chapter>
 
   <chapter id="object-tree">

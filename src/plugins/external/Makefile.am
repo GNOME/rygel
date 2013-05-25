@@ -13,7 +13,8 @@ librygel_external_la_SOURCES = \
 	rygel-external-interfaces.vala \
 	rygel-external-plugin-factory.vala \
 	rygel-external-icon-factory.vala \
-	rygel-external-variant-util.vala
+	rygel-external-variant-util.vala \
+	rygel-free-desktop-interfaces.vala
 
 librygel_external_la_VALAFLAGS = \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_VALAFLAGS) \
