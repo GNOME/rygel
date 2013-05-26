@@ -22,16 +22,8 @@
   * Assign priorities to gstreamer threads
     (See gstreamer/tests/examples/streams/stream-status.c)
 
-  * UI
-    * Make sure we restart rygel when configuration changes.
-    * Get interfaces directly from NM.
-    * Show available APs for Wifi interface.
-
   * rygel copies config file to user's home dir if not already there.
     * Copy code from UI.
-
-  * Start rygel as part of user session.
-    * Remove relavent code from UI code.
 
   * Transcoding:
     * Use h264 instead of mpeg2 video?
@@ -114,7 +106,6 @@
       * EPG item
 
   * Tracker:
-    * Set the pixel-aspect-ratio props.
     * MetadataValues:
       * Document delegate functions.
     * Do something about total_count param of search (using COUNT?)
