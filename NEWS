@@ -1,3 +1,61 @@
+0.19.2
+======
+
+A new unstable release for Rygel.
+
+Changes compared to 0.19.1:
+
+- Minor build fixes and clean-up.
+- Documentation updates and typos fixed.
+
+Core:
+ - Make the interface= configuration multi-valued.
+
+Rygel:
+ - Make the commandline options translatable.
+ - Show a message when we run in streaming-only mode.
+
+Server:
+ - Some coding style fixes.
+
+Renderer:
+ - Provide a proper fall-back to GET if peer does not support HEAD.
+
+Preferences:
+ - Don't lose the current network interface.
+
+MediaExport:
+ - Don't lose child containers when we add the parent container.
+ - Fix sorting by date.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=648003
+ - https://bugzilla.gnome.org/show_bug.cgi?id=694357
+ - https://bugzilla.gnome.org/show_bug.cgi?id=700570
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  Daniel Mustieles <daniel.mustieles@gmail.com>
+  Yuri Myasoedov <omerta13@yandex.ru>
+  Yaron Shahrabani <sh.yaron@gmail.com>
+  Mihai Moldovan <ionic@ionic.de>
+  Matej Urbančič <mateju@svn.gnome.org>
+  Kjartan Maraas <kmaraas@gnome.org>
+  Fran Diéguez <fran.dieguez@mabishu.com>
+  Dušan Kazik <prescott66@gmail.com>
+  Aurimas Černius <aurisc4@gmail.com>
+  Andreas Henriksson <andreas@fatal.se>
+
+Added/updated translations
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Fran Dieguez
+ - he, courtesy of Yaron Shahrabani
+ - lt, courtesy of Aurimas Černius
+ - nb, courtesy of Kjartan Maraas
+ - ru, courtesy of Yuri Myasoedov
+ - sk, courtesy of Dušan Kazik
+ - sl, courtesy of Matej Urbančič
+
 0.19.1
 ======
 
