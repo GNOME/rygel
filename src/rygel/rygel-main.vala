@@ -78,6 +78,12 @@ internal class Rygel.Main : Object {
     }
 
     private int run () {
+        try {
+            if (!this.config.get_upnp_enabled ()) {
+                message (_("Rygel is running in streaming-only mode."));
+            }
+        } catch (Error error) { }
+
         this.main_loop.run ();
 
         return this.exit_code;
