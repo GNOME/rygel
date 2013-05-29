@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-05-13 11:28+0000\n"
-"PO-Revision-Date: 2013-05-13 13:45+0200\n"
+"POT-Creation-Date: 2013-05-28 08:40+0000\n"
+"PO-Revision-Date: 2013-05-29 10:53+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -476,12 +476,12 @@ msgstr "Petición no válida"
 msgid "Not found"
 msgstr "No se encontró"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:134
+#: ../src/librygel-server/rygel-http-item-uri.vala:136
 #, c-format
 msgid "Invalid URI '%s'"
-msgstr "URI «%s» no válida"
+msgstr "URI «%s» no válido"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:177
+#: ../src/librygel-server/rygel-http-item-uri.vala:179
 msgid "Not Found"
 msgstr "No se encontró"
 
@@ -739,7 +739,6 @@ msgid "No thumbnailer available: %s"
 msgstr "No hay ningún generador de miniaturas disponible: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-#| msgid "Thubmnailing not supported"
 msgid "Thumbnailing not supported"
 msgstr "No se soportan las miniaturas"
 
@@ -807,24 +806,28 @@ msgstr "Falta el elemento requerido %s"
 msgid "Time-based seek not supported"
 msgstr "Búsqueda basada en el tiempo no soportada"
 
-#: ../src/rygel/rygel-main.vala:101
+#: ../src/rygel/rygel-main.vala:83
+msgid "Rygel is running in streaming-only mode."
+msgstr "Rygel se está ejecutando en modo de solo streaming."
+
+#: ../src/rygel/rygel-main.vala:107
 #, c-format
 msgid "No plugins found in %d second; giving up..."
 msgid_plural "No plugins found in %d seconds; giving up..."
 msgstr[0] "No se encontraron complementos en %d segundo, abortando…"
 msgstr[1] "No se encontraron complementos en %d segundos, abortando…"
 
-#: ../src/rygel/rygel-main.vala:162
+#: ../src/rygel/rygel-main.vala:168
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Falló al crear la fábrica del dispositivo raíz: %s"
 
-#: ../src/rygel/rygel-main.vala:220
+#: ../src/rygel/rygel-main.vala:226
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Falló al crear el DispositivoRaís para %s. Razón: %s."
 
-#: ../src/rygel/rygel-main.vala:257
+#: ../src/rygel/rygel-main.vala:263
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Falló al cargar la configuración del usuario: %s"
