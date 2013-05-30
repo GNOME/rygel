@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-16 10:44+0200\n"
-"PO-Revision-Date: 2013-05-16 10:46+0200\n"
+"POT-Creation-Date: 2013-05-31 00:58+0200\n"
+"PO-Revision-Date: 2013-05-31 00:59+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -482,12 +482,12 @@ msgstr "Solicitude non válida"
 msgid "Not found"
 msgstr "Non se atopou"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:134
+#: ../src/librygel-server/rygel-http-item-uri.vala:136
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "URI «%s» non válida"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:177
+#: ../src/librygel-server/rygel-http-item-uri.vala:179
 msgid "Not Found"
 msgstr "Non se atopou"
 
@@ -812,24 +812,28 @@ msgstr "Falta o elemento %s requirido"
 msgid "Time-based seek not supported"
 msgstr "Busca baseada no tempo non compatíbel"
 
-#: ../src/rygel/rygel-main.vala:101
+#: ../src/rygel/rygel-main.vala:83
+msgid "Rygel is running in streaming-only mode."
+msgstr "Rygel está executándose en modo de só streaming."
+
+#: ../src/rygel/rygel-main.vala:107
 #, c-format
 msgid "No plugins found in %d second; giving up..."
 msgid_plural "No plugins found in %d seconds; giving up..."
 msgstr[0] "Non foi posíbel atopar engadidos en %d segundo, abortando…"
 msgstr[1] "Non foi posíbel atopar engadidos en %d segundos, abortando…"
 
-#: ../src/rygel/rygel-main.vala:162
+#: ../src/rygel/rygel-main.vala:168
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Produciuse un erro ao crear a factoría de dispositivo raíz: %s"
 
-#: ../src/rygel/rygel-main.vala:220
+#: ../src/rygel/rygel-main.vala:226
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Produciuse un erro ao crear o RootDevice para %s. Razón: %s"
 
-#: ../src/rygel/rygel-main.vala:257
+#: ../src/rygel/rygel-main.vala:263
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Produciuse un erro ao cargar a configuración do usuario: %s"
