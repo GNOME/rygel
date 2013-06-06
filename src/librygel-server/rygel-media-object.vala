@@ -194,6 +194,29 @@ public abstract class Rygel.MediaObject : GLib.Object {
         this.title = didl_object.title;
     }
 
+    // Recursively drop attributes of a certain namespace from a node.
+    private void clean_node (Xml.Node* node, Xml.Ns *ns) {
+        var list = new ArrayList<string> ();
+        var attr = node->properties;
+        while (attr != null) {
+            if (attr->ns == ns) {
+                list.add (attr->name);
+            }
+
+            attr = attr->next;
+        }
+
+        foreach (var name in list) {
+            node->unset_ns_prop (ns, name);
+        }
+
+        var child = node->children;
+        while (child != null) {
+            this.clean_node (child, ns);
+            child = child->next;
+        }
+    }
+
     internal async DIDLLiteFragmentResult apply_fragments
                                         (LinkedList<string> current_fragments,
                                          LinkedList<string> new_fragments,
@@ -203,6 +226,11 @@ public abstract class Rygel.MediaObject : GLib.Object {
         try {
             var writer = new Serializer (SerializerType.GENERIC_DIDL);
             var didl_object = this.serialize (writer, http_server);
+
+            // Drop dlna:* attribute since it fails XSD validation
+            // in gupnp-av. bgo#701637
+            this.clean_node (didl_object.xml_node,
+                             didl_object.dlna_namespace);
 
             result = didl_object.apply_fragments
                                         (current_fragments.to_array (),
