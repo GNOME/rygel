@@ -51,7 +51,7 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
         }
 
         if (id.has_prefix ("virtual-parent:" + Rygel.PlaylistItem.UPNP_CLASS)) {
-            return new PlaylistRootContainer (id, title);
+            return new PlaylistRootContainer ();
         }
 
         // Return a suitable container for the top-level virtual folders.

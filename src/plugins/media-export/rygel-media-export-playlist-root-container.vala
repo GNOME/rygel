@@ -31,13 +31,15 @@ using Gee;
  */
 internal class Rygel.MediaExport.PlaylistRootContainer : Rygel.WritableContainer,
                                                          DBContainer {
+    internal static const string ID = "virtual-parent:" +
+                                      Rygel.PlaylistItem.UPNP_CLASS;
     internal static const string URI = WritableContainer.WRITABLE_SCHEME +
                                        "playlist-root";
     public ArrayList<string> create_classes { get; set; }
 
-    public PlaylistRootContainer (string id, string title) {
-        Object (id : id,
-                title : title,
+    public PlaylistRootContainer () {
+        Object (id : ID,
+                title : _("Playlists"),
                 parent : null,
                 child_count : 0);
     }

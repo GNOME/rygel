@@ -154,7 +154,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         if (expression is RelationalExpression) {
             var relational_expression = expression as RelationalExpression;
 
-            query_container = search_to_virtual_container
+            query_container = this.search_to_virtual_container
                                         (relational_expression);
             upnp_class = relational_expression.operand2;
         } else if (is_search_in_virtual_container (expression,
@@ -238,7 +238,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         return actual_uris;
     }
 
-    private QueryContainer? search_to_virtual_container (
+    private MediaContainer? search_to_virtual_container (
                                        RelationalExpression expression) {
         if (expression.operand1 == "upnp:class" &&
             expression.op == SearchCriteriaOp.EQ) {
@@ -256,6 +256,8 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
                     id += "dc:genre,?";
 
                     break;
+                case MediaContainer.PLAYLIST:
+                    return new PlaylistRootContainer ();
                 default:
                     return null;
             }
@@ -284,7 +286,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
     private bool is_search_in_virtual_container (SearchExpression   expression,
                                                  out MediaContainer container) {
         RelationalExpression virtual_expression = null;
-        QueryContainer query_container;
+        MediaContainer query_container;
 
         container = null;
 
