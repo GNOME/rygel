@@ -85,9 +85,8 @@ internal class Rygel.MediaExport.PlaylistContainer : DBContainer,
     public async void remove_item (string id,
                                    Cancellable?    cancellable)
                                    throws Error {
-        throw new WritableContainerError.NOT_IMPLEMENTED
-                                        (_("Can't remove items in %s"),
-                                         this.id);
+        this.media_db.remove_by_id (id);
+        this.updated ();
     }
 
     public async void add_container (Rygel.MediaContainer container,
