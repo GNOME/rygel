@@ -150,9 +150,8 @@ public class Rygel.MediaExport.MediaCache : Object {
 
         foreach (var statement in cursor) {
             var parent_container = parent as MediaContainer;
-            var object = this.get_object_from_statement
-                                        (parent_container,
-                                         statement);
+            var object = this.get_object_from_statement (parent_container,
+                                                         statement);
             object.parent_ref = parent_container;
             parent = object;
         }
