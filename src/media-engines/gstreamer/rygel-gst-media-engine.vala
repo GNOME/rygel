@@ -120,6 +120,10 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         try {
             return new GstDataSource (uri);
         } catch (Error error) {
+            warning (_("Failed to create GStreamer data source for %s: %s"),
+                     uri,
+                     error.message);
+
             return null;
         }
     }
