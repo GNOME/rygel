@@ -66,8 +66,8 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
                                  out this.new_tag_value);
             if (this.object_id == null) {
                 // Sorry we can't do anything without the ID
-                throw new ContentDirectoryError.NO_SUCH_OBJECT
-                                        (_("No such object"));
+                throw new ContentDirectoryError.INVALID_ARGS
+                                        (_("Object id missing"));
             }
 
             yield this.update_object ();

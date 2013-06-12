@@ -49,8 +49,8 @@ internal class Rygel.ItemDestroyer: GLib.Object, Rygel.StateMachine {
             this.action.get ("ObjectID", typeof (string), out this.object_id);
             if (this.object_id == null) {
                 // Sorry we can't do anything without the ID
-                throw new ContentDirectoryError.NO_SUCH_OBJECT
-                                        (_("No such object"));
+                throw new ContentDirectoryError.INVALID_ARGS
+                                        (_("ContainerID missing"));
             }
 
             yield this.remove_object ();
