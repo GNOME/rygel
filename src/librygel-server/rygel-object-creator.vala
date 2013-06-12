@@ -251,7 +251,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
         }
 
         if (didl_object.restricted) {
-            throw new ContentDirectoryError.INVALID_ARGS
+            throw new ContentDirectoryError.BAD_METADATA
                                         (_("Cannot create restricted item"));
         }
     }
@@ -345,8 +345,8 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
         }
 
         if (media_object == null || !(media_object is MediaContainer)) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT
-                                        (_("No such object"));
+            throw new ContentDirectoryError.NO_SUCH_CONTAINER
+                                        (_("No such container"));
         } else if (!(OCMFlags.UPLOAD in media_object.ocm_flags) ||
                    !(media_object is WritableContainer)) {
             throw new ContentDirectoryError.RESTRICTED_PARENT
