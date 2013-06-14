@@ -85,8 +85,7 @@ internal abstract class Rygel.GstTranscoder : Rygel.Transcoder {
 
         encoder.profile = this.get_encoding_profile ();
         if (encoder.profile == null) {
-            var message = _("Could not create a transcoder configuration. " +
-                            "Your GStramer installation might be missing a plug-in");
+            var message = _("Could not create a transcoder configuration. Your GStreamer installation might be missing a plug-in");
 
             throw new GstTranscoderError.CANT_TRANSCODE (message);
         }
