@@ -58,8 +58,8 @@ public class Rygel.MediaObjects : ArrayList<MediaObject> {
                              HTTPServer   http_server,
                              ClientHacks? hacks) throws Error {
         foreach (var result in this) {
-            if (result is MediaItem && hacks != null) {
-                hacks.apply (result as MediaItem);
+            if (hacks != null) {
+                hacks.apply (result);
             }
 
             result.serialize (serializer, http_server);

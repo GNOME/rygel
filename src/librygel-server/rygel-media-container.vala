@@ -201,7 +201,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.update_id = 0;
         this.storage_used = -1;
         this.total_deleted_child_count = 0;
-        this.upnp_class = STORAGE_FOLDER;
+        this.upnp_class = UPNP_CLASS;
         this.create_mode_enabled = false;
 
         this.container_updated.connect (on_container_updated);
@@ -285,7 +285,10 @@ public abstract class Rygel.MediaContainer : MediaObject {
         didl_container.child_count = this.child_count;
         didl_container.upnp_class = this.upnp_class;
         didl_container.searchable = this is SearchableContainer;
-        didl_container.storage_used = this.storage_used;
+        if (this.upnp_class == STORAGE_FOLDER) {
+            didl_container.storage_used = this.storage_used;
+        }
+
         if (this is TrackableContainer) {
             didl_container.container_update_id = this.update_id;
             didl_container.update_id = this.object_update_id;

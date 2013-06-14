@@ -544,6 +544,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
             return new MusicItem (id, parent, title);
         case PlaylistItem.UPNP_CLASS:
             return new PlaylistItem (id, parent, title);
+        case MediaContainer.UPNP_CLASS:
         case MediaContainer.STORAGE_FOLDER:
             return new BaseMediaContainer (id, parent, title, 0);
         case MediaContainer.PLAYLIST:

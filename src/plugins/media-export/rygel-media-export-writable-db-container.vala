@@ -53,7 +53,7 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
         this.create_classes.add (Rygel.PlaylistItem.UPNP_CLASS);
 
         // Containers
-        this.create_classes.add (Rygel.MediaContainer.STORAGE_FOLDER);
+        this.create_classes.add (Rygel.MediaContainer.UPNP_CLASS);
     }
 
     public virtual async void add_item (Rygel.MediaItem item,
@@ -80,6 +80,7 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
         container.parent = this;
         switch (container.upnp_class) {
         case MediaContainer.STORAGE_FOLDER:
+        case MediaContainer.UPNP_CLASS:
             var file = File.new_for_uri (container.uris[0]);
             container.id = MediaCache.get_id (file);
             if (file.is_native ()) {

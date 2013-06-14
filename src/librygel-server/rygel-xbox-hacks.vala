@@ -112,7 +112,17 @@ internal class Rygel.XBoxHacks : ClientHacks {
         }
     }
 
-    public override void apply (MediaItem item) {
+    public override void apply (MediaObject object) {
+        if (object is MediaContainer) {
+            if (object.upnp_class == MediaContainer.UPNP_CLASS) {
+                object.upnp_class = MediaContainer.STORAGE_FOLDER;
+            }
+
+            return;
+        }
+
+        var item = object as MediaItem;
+
         if (item.mime_type == "video/x-msvideo") {
             item.mime_type = "video/avi";
         } else if (item.mime_type == "video/mpeg") {

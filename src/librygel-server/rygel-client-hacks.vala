@@ -86,7 +86,7 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
     public virtual void translate_container_id (MediaQueryAction action,
                                                 ref string       container_id) {}
 
-    public virtual void apply (MediaItem item) {}
+    public virtual void apply (MediaObject object) {}
 
     public virtual void filter_sort_criteria (ref string sort_criteria) {}
 

@@ -95,7 +95,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
         }
 
         if (this.hack != null) {
-            this.hack.apply (this.object as MediaItem);
+            this.hack.apply (this.object);
         }
 
         if (this.uri.thumbnail_index >= 0) {
