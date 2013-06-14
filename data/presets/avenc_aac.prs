@@ -1,6 +1,6 @@
 [_presets_]
 version=1.0
-element-name=wvenc_aac
+element-name=avenc_aac
 
 [Rygel DLNA preset]
 bitrate=64000
