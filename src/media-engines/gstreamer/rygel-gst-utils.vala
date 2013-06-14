@@ -103,6 +103,9 @@ internal abstract class Rygel.GstUtils {
                                                caps,
                                                PadDirection.SINK,
                                                false);
+        if (features == null) {
+            return null;
+        }
 
         // If most "fitting" depayloader was rtpdepay skip it because it is
         // just some kind of proxy.
