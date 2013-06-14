@@ -54,6 +54,8 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     private static string config_file;
 
+    private static bool shutdown;
+
     [CCode (array_length = false, array_null_terminated = true)]
     [NoArrayLength]
     private static string[] disabled_plugins;
@@ -98,6 +100,8 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
           N_ ("Disable UPnP (streaming-only)"), null },
         { "config", 'c', 0, OptionArg.FILENAME, ref config_file,
           N_ ("Use configuration file instead of user configuration"), "FILE" },
+        { "shutdown", 's', 0, OptionArg.NONE, ref shutdown,
+          N_ ("Shutdown remote Rygel reference"), null },
         { null }
     };
 
@@ -129,6 +133,23 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         if (version) {
             stdout.printf ("%s\n", BuildConfig.PACKAGE_STRING);
 
+            throw new CmdlineConfigError.VERSION_ONLY ("");
+        }
+
+        if (shutdown) {
+            try {
+                print (_("Shutting down remote Rygel instance\n"));
+                DBusInterface rygel = Bus.get_proxy_sync
+                                        (BusType.SESSION,
+                                         DBusInterface.SERVICE_NAME,
+                                         DBusInterface.OBJECT_PATH,
+                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
+                rygel.shutdown ();
+            } catch (Error error) {
+                warning (_("Failed to shut-down other rygel instance: %s"),
+                         error.message);
+
+            }
             throw new CmdlineConfigError.VERSION_ONLY ("");
         }
     }
