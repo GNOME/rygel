@@ -29,10 +29,13 @@ internal class Rygel.PlaylistDatasource : Rygel.DataSource, Object {
     private uint8[] data;
     private HTTPServer server;
     private ClientHacks hacks;
+    private SerializerType playlist_type;
 
-    public PlaylistDatasource (MediaContainer container,
+    public PlaylistDatasource (SerializerType playlist_type,
+                               MediaContainer container,
                                HTTPServer     server,
                                ClientHacks?   hacks) {
+        this.playlist_type = playlist_type;
         this.container = container;
         this.server = server;
         this.hacks = hacks;
@@ -82,7 +85,7 @@ internal class Rygel.PlaylistDatasource : Rygel.DataSource, Object {
                                                               null);
 
             if (children != null) {
-                var serializer = new Serializer (SerializerType.DIDL_S);
+                var serializer = new Serializer (this.playlist_type);
                 children.serialize (serializer, this.server, this.hacks);
 
                 var xml = serializer.get_string ();
@@ -105,13 +108,38 @@ internal class Rygel.PlaylistDatasource : Rygel.DataSource, Object {
  * playlists (DIDL_S format as defined by DLNA) on-the-fly.
  */
 internal class Rygel.HTTPPlaylistHandler : Rygel.HTTPGetHandler {
-    public HTTPPlaylistHandler (Cancellable? cancellable) {
+    private SerializerType playlist_type;
+
+    public static bool is_supported (string playlist_format) {
+        return playlist_format == "DIDL_S" || playlist_format == "M3U";
+    }
+
+    public HTTPPlaylistHandler (string playlist_format,
+                                Cancellable? cancellable) {
+        if (playlist_format == "DIDL_S") {
+            this.playlist_type = SerializerType.DIDL_S;
+        } else if (playlist_format == "M3U") {
+            this.playlist_type = SerializerType.M3UEXT;
+        }
+
         this.cancellable = cancellable;
     }
 
     public override void add_response_headers (HTTPGet request)
                                                throws HTTPRequestError {
-        request.msg.response_headers.append ("Content-Type", "text/xml");
+        // TODO: Why do we use response_headers.append instead of set_content_type
+        switch (this.playlist_type) {
+            case SerializerType.DIDL_S:
+                request.msg.response_headers.append ("Content-Type",
+                                                     "text/xml");
+                break;
+            case SerializerType.M3UEXT:
+                request.msg.response_headers.append ("ContentType",
+                                                     "audio/x-mpegurl");
+                break;
+            default:
+                assert_not_reached ();
+        }
 
         base.add_response_headers (request);
     }
@@ -120,7 +148,8 @@ internal class Rygel.HTTPPlaylistHandler : Rygel.HTTPGetHandler {
                                               throws HTTPRequestError {
         try {
             var source = new PlaylistDatasource
-                                        (request.object as MediaContainer,
+                                        (this.playlist_type,
+                                         request.object as MediaContainer,
                                          request.http_server,
                                          request.hack);
 
@@ -134,7 +163,6 @@ internal class Rygel.HTTPPlaylistHandler : Rygel.HTTPGetHandler {
                                         (DIDLLiteObject didl_object,
                                          HTTPGet        request) {
         var protocol = request.http_server.get_protocol ();
-        debug ("=> Protocol of this http server is: %s", protocol);
 
         try {
             return request.object.add_resource (didl_object, null, protocol);

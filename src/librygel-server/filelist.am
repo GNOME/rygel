@@ -62,6 +62,7 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-last-change-obj-mod.vala \
 	rygel-last-change-st-done.vala \
 	rygel-last-change.vala \
+	rygel-m3u-playlist.vala \
 	rygel-media-query-action.vala \
 	rygel-media-receiver-registrar.vala \
 	rygel-panasonic-hacks.vala \
