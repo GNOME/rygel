@@ -206,18 +206,20 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
         switch (mode) {
         case "Streaming":
-            correct = this.handler is HTTPTranscodeHandler ||
+            correct = (!(this.handler is HTTPPlaylistHandler)) && (
+                      (this.handler is HTTPTranscodeHandler ||
                       ((this.object as MediaItem).streamable () &&
                        this.subtitle == null &&
-                       this.thumbnail == null);
+                       this.thumbnail == null)));
 
             break;
         case "Interactive":
-            correct = this.handler is HTTPIdentityHandler &&
+            correct = (this.handler is HTTPIdentityHandler &&
                       ((!(this.object as MediaItem).is_live_stream () &&
                        !(this.object as MediaItem).streamable ()) ||
                        (this.subtitle != null ||
-                        this.thumbnail != null));
+                        this.thumbnail != null))) ||
+                      this.handler is HTTPPlaylistHandler;
 
             break;
         }
