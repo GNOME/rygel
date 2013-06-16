@@ -338,7 +338,8 @@ public abstract class Rygel.MediaContainer : MediaObject {
             protocol_info.protocol = protocol;
             protocol_info.dlna_flags = DLNAFlags.DLNA_V15 |
                                        DLNAFlags.CONNECTION_STALL |
-                                       DLNAFlags.BACKGROUND_TRANSFER_MODE;
+                                       DLNAFlags.BACKGROUND_TRANSFER_MODE |
+                                       DLNAFlags.INTERACTIVE_TRANSFER_MODE;
             res.protocol_info = protocol_info;
 
             return res;
