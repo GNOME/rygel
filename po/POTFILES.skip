@@ -79,6 +79,7 @@ src/librygel-server/rygel-last-change-obj-del.c
 src/librygel-server/rygel-last-change-obj-mod.c
 src/librygel-server/rygel-last-change-st-done.c
 src/librygel-server/rygel-logical-expression.c
+src/librygel-server/rygel-m3u-playlist.c
 src/librygel-server/rygel-media-art-store.c
 src/librygel-server/rygel-media-container.c
 src/librygel-server/rygel-media-engine.c
@@ -273,6 +274,7 @@ tests/rygel-http-time-seek.c
 tests/rygel-http-time-seek_http-get.c
 tests/rygel-http-time-seek-test.c
 tests/rygel-icon-info.c
+tests/rygel-m3u-playlist_object-creator.c
 tests/rygel-media-art-store.c
 tests/rygel-media-engine.c
 tests/rygel-media-engine-test.c
