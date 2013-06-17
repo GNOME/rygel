@@ -144,7 +144,8 @@ rygel_object_creator_test_SOURCES = rygel-object-creator-test.vala \
 				  rygel-relational-expression.vala \
 				  rygel-search-expression.vala \
 				  rygel-media-engine.vala \
-				  rygel-serializer_object-creator.vala
+				  rygel-serializer_object-creator.vala \
+				  rygel-m3u-playlist_object-creator.vala
 rygel_object_creator_test_VALAFLAGS = \
 	$(test_valaflags) \
 	--pkg uuid
