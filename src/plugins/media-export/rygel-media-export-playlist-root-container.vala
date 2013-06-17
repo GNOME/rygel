@@ -19,6 +19,7 @@
  */
 
 using Gee;
+using GUPnP;
 
 /**
  * Special class for the toplevel virtual container which aggregates all
@@ -54,6 +55,17 @@ internal class Rygel.MediaExport.PlaylistRootContainer : Rygel.WritableContainer
         // Need to add an URI otherwise core doesn't mark the container as
         // writable
         this.uris.add (PlaylistRootContainer.URI);
+    }
+
+    public override OCMFlags ocm_flags {
+        get {
+            var flags = base.ocm_flags;
+
+            // This container does not allow upload
+            flags &= ~(OCMFlags.UPLOAD | OCMFlags.UPLOAD_DESTROYABLE);
+
+            return flags;
+        }
     }
 
     public async void add_item (Rygel.MediaItem item,

@@ -125,7 +125,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
     public string sort_criteria { set; get; default = DEFAULT_SORT_CRITERIA; }
 
-    internal override OCMFlags ocm_flags {
+    public override OCMFlags ocm_flags {
         get {
             if (!(this is WritableContainer) || this.uris.size == 0) {
                 return OCMFlags.NONE;

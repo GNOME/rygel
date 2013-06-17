@@ -63,7 +63,7 @@ public abstract class Rygel.MediaItem : MediaObject {
 
     public string description { get; set; default = null; }
 
-    internal override OCMFlags ocm_flags {
+    public override OCMFlags ocm_flags {
         get {
             var flags = OCMFlags.NONE;
 
