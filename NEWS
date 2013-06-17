@@ -1,3 +1,47 @@
+0.19.3
+======
+
+A new unstable release of Rygel.
+
+Changes compared to 0.19.2:
+
+Server:
+ - Add container serialisation to EXTM3U.
+ - Fix DLNA transfer modes for generated playlists.
+
+Rygel:
+ - Add -s,--shutdown options to shut down a running instance without using
+   d-feet or dbus-send.
+
+GStreamer media engine:
+ - Some string fixes.
+ - Fix a typo in the avenc_aac preset.
+ - Issue a proper warning when we fail to setup a data source.
+ - Don't crash if there's no RTP depayloader available.
+
+MediaExport:
+ - Make it possible to remove playlists.
+ - Expose the playlists for XBox 360.
+
+Preferences UI:
+ - Some glade file clean-ups.
+ - Move toolbar style from code to glade file.
+ - Support setting of multiple network interfaces as introduced in 0.19.2.
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  Piotr Drąg <piotrdrag@gmail.com>
+  Marek Černocký <marek@manet.cz>
+  Fran Diéguez <fran.dieguez@mabishu.com>
+  Daniel Mustieles <daniel.mustieles@gmail.com>
+  Aurimas Černius <aurisc4@gmail.com>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Fran Dieguez
+ - lt, courtesy of Aurimas Černius
+
 0.19.2
 ======
 
