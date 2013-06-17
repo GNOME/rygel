@@ -161,6 +161,7 @@ src/librygel-server/rygel-last-change-obj-mod.vala
 src/librygel-server/rygel-last-change-st-done.vala
 src/librygel-server/rygel-last-change.vala
 src/librygel-server/rygel-logical-expression.vala
+src/librygel-server/rygel-m3u-playlist.vala
 src/librygel-server/rygel-media-art-store.vala
 src/librygel-server/rygel-media-container.vala
 src/librygel-server/rygel-media-engine.vala
