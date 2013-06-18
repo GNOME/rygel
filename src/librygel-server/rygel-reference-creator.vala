@@ -75,7 +75,11 @@ internal class Rygel.ReferenceCreator : GLib.Object, Rygel.StateMachine {
             this.action.return ();
             this.completed ();
         } catch (Error error) {
-            this.action.return_error (error.code, error.message);
+            if (error is ContentDirectoryError) {
+                this.action.return_error (error.code, error.message);
+            } else {
+                this.action.return_error (402, error.message);
+            }
 
             warning (_("Failed to create object under '%s': %s"),
                      this.container_id,
@@ -105,7 +109,7 @@ internal class Rygel.ReferenceCreator : GLib.Object, Rygel.StateMachine {
                                                          this.cancellable);
 
         if (media_object == null || !(media_object is MediaContainer)) {
-            throw new ContentDirectoryError.NO_SUCH_OBJECT
+            throw new ContentDirectoryError.NO_SUCH_CONTAINER
                                         (_("No such object"));
         } else if (!(OCMFlags.UPLOAD in media_object.ocm_flags) ||
                    !(media_object is WritableContainer)) {
