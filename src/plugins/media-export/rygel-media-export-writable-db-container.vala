@@ -59,10 +59,6 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
     public virtual async void add_item (Rygel.MediaItem item,
                                         Cancellable? cancellable)
                                         throws Error {
-        if (item.id == null && item.ref_id != null) {
-            warning ("=> CreateReference not supported");
-            throw new WritableContainerError.NOT_IMPLEMENTED ("Not supported");
-        }
         item.parent = this;
         var file = File.new_for_uri (item.uris[0]);
         // TODO: Mark as place-holder. Make this proper some time.
@@ -72,6 +68,12 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
         item.id = MediaCache.get_id (file);
         yield this.add_child_tracked (item);
         this.media_db.make_object_guarded (item);
+    }
+
+    public virtual async string add_reference (MediaObject  object,
+                                               Cancellable? cancellable)
+                                               throws Error {
+        return MediaCache.get_default ().create_reference (object, this);
     }
 
     public virtual async void add_container (MediaContainer container,

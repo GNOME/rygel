@@ -525,6 +525,28 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
     }
 
+    public string create_reference (MediaObject object, MediaContainer parent)
+                                    throws Error {
+        if (object is MediaContainer) {
+            var msg = _("Cannot create references to containers");
+
+            throw new MediaCacheError.GENERAL_ERROR (msg);
+        }
+
+        object.parent = parent;
+
+        // If the original is already a ref_id, point to the original item as
+        // we should not daisy-chain reference items.
+        if (object.ref_id == null) {
+            object.ref_id = object.id;
+        }
+        object.id = UUID.get ();
+
+        this.save_item (object as MediaItem);
+
+        return object.id;
+    }
+
     // Private functions
     private bool is_object_guarded (string id) {
         try {
