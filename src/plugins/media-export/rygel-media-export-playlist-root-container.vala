@@ -49,7 +49,7 @@ internal class Rygel.MediaExport.PlaylistRootContainer : Rygel.WritableContainer
 
         // We don't support adding real folders here, just playlist container
         this.create_classes = new ArrayList<string> ();
-        this.create_classes.add (Rygel.MediaContainer.PLAYLIST);
+        this.create_classes.add (Rygel.MediaContainer.UPNP_CLASS);
 
         // Need to add an URI otherwise core doesn't mark the container as
         // writable
@@ -75,12 +75,15 @@ internal class Rygel.MediaExport.PlaylistRootContainer : Rygel.WritableContainer
     public async void add_container (Rygel.MediaContainer container,
                                      Cancellable?         cancellable)
                                      throws Error {
-        if (container.upnp_class != Rygel.MediaContainer.PLAYLIST) {
+        if (container.upnp_class != Rygel.MediaContainer.PLAYLIST &&
+            container.upnp_class != Rygel.MediaContainer.UPNP_CLASS) {
             throw new WritableContainerError.NOT_IMPLEMENTED
                                         (_("upnp:class not supported in %s"),
                                          this.id);
         }
+
         container.id = "playlist:" + UUID.get ();
+        container.upnp_class = Rygel.MediaContainer.PLAYLIST;
 
         this.media_db.save_container (container);
         this.media_db.make_object_guarded (container);
