@@ -37,6 +37,7 @@ internal errordomain Rygel.ContentDirectoryError {
     READ_ONLY_TAG = 705,
     PARAMETER_MISMATCH = 706,
     INVALID_SORT_CRITERIA = 709,
+    NO_SUCH_CONTAINER = 710,
     RESTRICTED_OBJECT = 711,
     BAD_METADATA = 712,
     RESTRICTED_PARENT = 713,
