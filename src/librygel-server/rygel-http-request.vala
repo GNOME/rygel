@@ -54,6 +54,11 @@ internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         this.root_container = http_server.root_container;
         this.server = server;
         this.msg = msg;
+        if (msg.get_http_version () == Soup.HTTPVersion.@1_0) {
+            msg.set_http_version (Soup.HTTPVersion.@1_1);
+            msg.response_headers.append ("Connection", "close");
+        }
+
         try {
             this.hack = ClientHacks.create (msg);
         } catch (Error error) { }
