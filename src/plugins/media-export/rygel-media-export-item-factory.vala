@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2008 Nokia Corporation.
- * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2012,2013 Intel Corporation.
  *
  * Author: Zeeshan Ali <zeenix@gmail.com>
  *         Jens Georg <jensg@openismus.com>
@@ -313,7 +313,17 @@ namespace Rygel.MediaExport.ItemFactory {
         // This assumes the datetime is valid; checking some demuxers this
         Gst.DateTime? dt = null;
         if (tags != null && tags.get_date_time (Tags.DATE_TIME, out dt)) {
-            item.date = dt.to_iso8601_string ();
+            // Make a minimal valid iso8601 date - bgo#702231
+            // This mostly happens with MP3 files which only have a year
+            if (!dt.has_day () || !dt.has_month ()) {
+                item.date = "%d-%02d-%02d".printf (dt.get_year (),
+                                                   dt.has_month () ?
+                                                       dt.get_month () : 1,
+                                                   dt.has_day () ?
+                                                       dt.get_day () : 1);
+            } else {
+                item.date = dt.to_iso8601_string ();
+            }
         }
 
         item.title = title;
@@ -325,6 +335,13 @@ namespace Rygel.MediaExport.ItemFactory {
         if (item.date == null) {
             TimeVal tv = { (long) mtime, 0 };
             item.date = tv.to_iso8601 ();
+        }
+
+        // If the date has a timezone offset, make sure it contains a
+        // colon bgo#702231, DLNA 7.3.21.1
+        if ("T" in item.date) {
+            var date = new Soup.Date.from_string (item.date);
+            item.date = date.to_string (Soup.DateFormat.ISO8601_FULL);
         }
 
         item.size = (int64) file_info.get_size ();
