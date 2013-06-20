@@ -691,6 +691,8 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
         }
         debug ("Finished waiting for new object to appear under container '%s'",
                container.id);
+
+        this.object = object;
     }
 
     /**
