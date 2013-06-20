@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel 3.9.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-20 14:13+0200\n"
-"PO-Revision-Date: 2013-05-20 14:18+0200\n"
+"POT-Creation-Date: 2013-06-20 10:49+0200\n"
+"PO-Revision-Date: 2013-06-20 10:52+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -25,43 +25,34 @@ msgid "Rygel Preferences"
 msgstr "Brukervalg for Rygel"
 
 #: ../data/rygel-preferences.ui.h:2
+msgid "column"
+msgstr "kolonne"
+
+#: ../data/rygel-preferences.ui.h:3
 msgid "Add a directory to the list of shared directories"
 msgstr "Legg til en mappe i listen med delte mapper"
 
-#: ../data/rygel-preferences.ui.h:3
+#: ../data/rygel-preferences.ui.h:4
 msgid "Add shared directory"
 msgstr "Legg til en delt mappe"
 
-#: ../data/rygel-preferences.ui.h:4
+#: ../data/rygel-preferences.ui.h:5
 msgid "Remove a directory from the list of shared directories"
 msgstr "Fjern en mappe fra listen med delte mapper"
 
-#: ../data/rygel-preferences.ui.h:5
+#: ../data/rygel-preferences.ui.h:6
 msgid "Remove shared directory"
 msgstr "Fjern en delt mappe"
 
-#. Network Interface
 #: ../data/rygel-preferences.ui.h:7
-msgid "_Network:"
-msgstr "_Nettverk:"
-
-#: ../data/rygel-preferences.ui.h:8
-msgid ""
-"Select the network interface that DLNA media will be shared on, or share "
-"media on all interfaces"
-msgstr ""
-"Velg nettverksgrensesnitt som DLNA-media vil bli delt på, eller del media på "
-"alle grensesnitt"
-
-#: ../data/rygel-preferences.ui.h:9
-msgid "Any"
-msgstr "Alle"
-
-#: ../data/rygel-preferences.ui.h:10
 msgid "_Share media through DLNA"
 msgstr "_Del medie via DLNA"
 
-#: ../data/rygel-preferences.ui.h:11
+#: ../data/rygel-preferences.ui.h:8
+msgid "Networks:"
+msgstr "Nettverk:"
+
+#: ../data/rygel-preferences.ui.h:9
 msgid "Select folders"
 msgstr "Velg mapper"
 
@@ -87,21 +78,21 @@ msgstr "mediatjener;mediavisning;del;lyd;video;bilder;"
 msgid "Module '%s' could not connect to D-Bus session bus. "
 msgstr "Modul «%s» klarte ikke å koble til D-Bus-sesjonsbussen. "
 
+#: ../src/plugins/external/rygel-external-variant-util.vala:29
+#: ../src/plugins/external/rygel-external-variant-util.vala:47
+#, c-format
+msgid "External provider %s did not provide mandatory "
+msgstr "Ekstern tilbyder %s oppga ikke obligatorisk "
+
+#: ../src/plugins/media-export/rygel-media-export-database-cursor.vala:81
+#, c-format
+msgid "Unsupported type %s"
+msgstr "Ikke støttet type %s"
+
 #: ../src/plugins/media-export/rygel-media-export-database.vala:217
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Klarte ikke å rulle tilbake transaksjon: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
-#, c-format
-msgid "Failed to query content type for '%s'"
-msgstr "Klarte ikke å spørre etter innholdstype for «%s»"
-
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:129
-#, c-format
-msgid "Failed to add item with ID %s: %s"
-msgstr "Klarte ikke å legge til oppføring med ID %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:135
 #, c-format
@@ -123,6 +114,73 @@ msgstr "Klarte ikke å spørre etter informasjon om en fil %s: %s"
 msgid "Error removing object from database: %s"
 msgstr "Feil under fjerning av objekt fra database: %s"
 
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:114
+#, c-format
+msgid "Failed to harvest file %s: %s"
+msgstr "Klarte ikke å høste fil %s: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:164
+#, c-format
+msgid "Failed to query database: %s"
+msgstr "Klarte ikke å spørre database: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
+#, c-format
+msgid "failed to enumerate folder: %s"
+msgstr "Klarte ikke å liste mappe: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
+#, c-format
+msgid "Failed to get children of container %s: %s"
+msgstr "Klarte ikke å hente barn av kontainer %s: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:129
+#, c-format
+msgid "Failed to add item with ID %s: %s"
+msgstr "Klarte ikke å legge til oppføring med ID %s: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
+#, c-format
+msgid "Failed to query content type for '%s'"
+msgstr "Klarte ikke å spørre etter innholdstype for «%s»"
+
+#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:53
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
+msgid "All"
+msgstr "Alle"
+
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:81
+#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:63
+#, c-format
+msgid "Can't create items in %s"
+msgstr "Kan ikke lage oppføringer i %s"
+
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:96
+#, c-format
+msgid "Can't add containers in %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:104
+#, c-format
+msgid "Can't remove containers in %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:42
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
+msgid "Playlists"
+msgstr "Spillelister"
+
+#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:71
+#, c-format
+msgid "Can't remove items in %s"
+msgstr "Kan ikke fjerne oppføringer i %s"
+
+#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:80
+#, c-format
+msgid "upnp:class not supported in %s"
+msgstr "upnp:class er ikke støttet i %s"
+
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
 msgid "Will not monitor file changes"
 msgstr "Vil ikke overvåke filendringer"
@@ -136,10 +194,6 @@ msgstr "Klarte ikke å hente filinformasjon for %s"
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "År"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
-msgid "All"
-msgstr "Alle"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
@@ -159,36 +213,40 @@ msgid "Files & Folders"
 msgstr "Filer og mapper"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:346
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@ sine medier"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:431
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:498
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:433
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:500
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Klarte ikke å fjerne oppføring: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:577
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:579
 msgid "Music"
 msgstr "Musikk"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:580
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:582
 msgid "Pictures"
 msgstr "Bilder"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:582
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:584
 msgid "Videos"
 msgstr "Videoer"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:584
-msgid "Playlists"
-msgstr "Spillelister"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
 msgstr "GStreamer avspiller"
+
+#: ../src/plugins/tracker/rygel-tracker-albums.vala:31
+msgid "Albums"
+msgstr "Album"
+
+#: ../src/plugins/tracker/rygel-tracker-artists.vala:31
+msgid "Artists"
+msgstr "Artister"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
@@ -209,6 +267,16 @@ msgstr "Kunne ikke abonnere på signaler fra Tracker: %s"
 msgid "Not supported"
 msgstr "Ikke støttet"
 
+#: ../src/plugins/tracker/rygel-tracker-metadata-container.vala:58
+#, fuzzy, c-format
+msgid "Failed to create Tracker connection: %s"
+msgstr "Klarte ikke å opprette en tilkobling til Tracker: %s"
+
+#: ../src/plugins/tracker/rygel-tracker-metadata-container.vala:110
+#, fuzzy, c-format
+msgid "Error getting all values for '%s': %s"
+msgstr "Feil under henting av antall oppføringer under kategori «%s»: %s"
+
 #: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:42
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
@@ -223,14 +291,6 @@ msgstr "Klarte ikke å hente tilkobling til Tracker: %s"
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr "Feil under henting av antall oppføringer under kategori «%s»: %s"
-
-#: ../src/plugins/tracker/rygel-tracker-albums.vala:31
-msgid "Albums"
-msgstr "Album"
-
-#: ../src/plugins/tracker/rygel-tracker-artists.vala:31
-msgid "Artists"
-msgstr "Artister"
 
 #: ../src/plugins/tracker/rygel-tracker-titles.vala:58
 msgid "Titles"
@@ -279,6 +339,11 @@ msgstr "Ugyldig argument"
 msgid "Invalid connection reference"
 msgstr "Ugyldig tilkoblingsreferanse"
 
+#: ../src/librygel-core/rygel-description-file.vala:223
+#, fuzzy, c-format
+msgid "Failed to write modified description to %s"
+msgstr "Klarte ikke å fjerne oppføring: %s"
+
 #: ../src/librygel-core/rygel-log-handler.vala:68
 #, c-format
 msgid "Failed to get log level from configuration: %s"
@@ -295,25 +360,25 @@ msgstr "Klarte ikke å hente loggnivå fra konfigurasjonen: %s"
 #: ../src/librygel-core/rygel-meta-config.vala:242
 #: ../src/librygel-core/rygel-meta-config.vala:261
 #: ../src/librygel-core/rygel-meta-config.vala:280
-#: ../src/rygel/rygel-cmdline-config.vala:138
-#: ../src/rygel/rygel-cmdline-config.vala:146
-#: ../src/rygel/rygel-cmdline-config.vala:155
-#: ../src/rygel/rygel-cmdline-config.vala:163
-#: ../src/rygel/rygel-cmdline-config.vala:171
-#: ../src/rygel/rygel-cmdline-config.vala:179
-#: ../src/rygel/rygel-cmdline-config.vala:187
-#: ../src/rygel/rygel-cmdline-config.vala:195
-#: ../src/rygel/rygel-cmdline-config.vala:234
-#: ../src/rygel/rygel-cmdline-config.vala:253
-#: ../src/rygel/rygel-cmdline-config.vala:259
-#: ../src/rygel/rygel-cmdline-config.vala:266
-#: ../src/rygel/rygel-cmdline-config.vala:270
+#: ../src/rygel/rygel-cmdline-config.vala:159
+#: ../src/rygel/rygel-cmdline-config.vala:167
+#: ../src/rygel/rygel-cmdline-config.vala:176
+#: ../src/rygel/rygel-cmdline-config.vala:184
+#: ../src/rygel/rygel-cmdline-config.vala:192
+#: ../src/rygel/rygel-cmdline-config.vala:200
+#: ../src/rygel/rygel-cmdline-config.vala:208
+#: ../src/rygel/rygel-cmdline-config.vala:216
+#: ../src/rygel/rygel-cmdline-config.vala:255
 #: ../src/rygel/rygel-cmdline-config.vala:274
-#: ../src/rygel/rygel-cmdline-config.vala:297
-#: ../src/rygel/rygel-cmdline-config.vala:323
-#: ../src/rygel/rygel-cmdline-config.vala:352
-#: ../src/rygel/rygel-cmdline-config.vala:378
-#: ../src/rygel/rygel-cmdline-config.vala:403
+#: ../src/rygel/rygel-cmdline-config.vala:280
+#: ../src/rygel/rygel-cmdline-config.vala:287
+#: ../src/rygel/rygel-cmdline-config.vala:291
+#: ../src/rygel/rygel-cmdline-config.vala:295
+#: ../src/rygel/rygel-cmdline-config.vala:318
+#: ../src/rygel/rygel-cmdline-config.vala:344
+#: ../src/rygel/rygel-cmdline-config.vala:373
+#: ../src/rygel/rygel-cmdline-config.vala:399
+#: ../src/rygel/rygel-cmdline-config.vala:424
 #: ../src/rygel/rygel-environment-config.vala:105
 #: ../src/rygel/rygel-environment-config.vala:109
 #: ../src/rygel/rygel-environment-config.vala:113
@@ -450,10 +515,18 @@ msgstr "Kan ikke bla gjennom underoppføringer på oppføringen"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Klarte ikke å vise «%s»: %s\n"
 
+#: ../src/librygel-server/rygel-client-hacks.vala:123
+msgid "Not Applicable"
+msgstr "Ikke relevant"
+
 #: ../src/librygel-server/rygel-content-directory.vala:283
 #: ../src/librygel-server/rygel-content-directory.vala:302
 msgid "No such file transfer"
 msgstr "Filoverføring finnes ikke"
+
+#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:115
+msgid "No D-Bus thumbnailer service available"
+msgstr "Ingen D-Bus miniatyrprogram tilgjengelig"
 
 #. Range header was present but invalid
 #: ../src/librygel-server/rygel-http-byte-seek.vala:49
@@ -475,14 +548,22 @@ msgstr "Ugyldig forespørsel"
 msgid "Not found"
 msgstr "Ikke funnet"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:134
+#: ../src/librygel-server/rygel-http-item-uri.vala:136
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Ugyldig URI «%s»"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:177
+#: ../src/librygel-server/rygel-http-item-uri.vala:179
 msgid "Not Found"
 msgstr "Ikke funnet"
+
+#: ../src/librygel-server/rygel-http-playlist-handler.vala:50
+msgid "Seeking not supported"
+msgstr "Søk er ikke støttet"
+
+#: ../src/librygel-server/rygel-http-playlist-handler.vala:97
+msgid "Failed to generate playlist"
+msgstr "Klarte ikke å lage spilleliste"
 
 #: ../src/librygel-server/rygel-http-post.vala:62
 #: ../src/librygel-server/rygel-import-resource.vala:189
@@ -526,95 +607,18 @@ msgstr "Klarte ikke å hente original URI for «%s»: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URI «%s» er ugyldig for import av data"
 
-#: ../src/librygel-server/rygel-object-creator.vala:186
-msgid "'Elements' argument missing."
-msgstr "«Elements»-argument mangler."
-
-#: ../src/librygel-server/rygel-object-creator.vala:189
-msgid "Comments not allowed in XML"
-msgstr "Kommentarer ikke tillatt i XML"
-
-#: ../src/librygel-server/rygel-object-creator.vala:195
-#: ../src/librygel-server/rygel-object-creator.vala:349
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 #: ../src/librygel-server/rygel-item-destroyer.vala:102
 #: ../src/librygel-server/rygel-item-updater.vala:70
 #: ../src/librygel-server/rygel-item-updater.vala:189
 #: ../src/librygel-server/rygel-media-query-action.vala:115
 #: ../src/librygel-server/rygel-media-query-action.vala:182
+#: ../src/librygel-server/rygel-object-creator.vala:195
+#: ../src/librygel-server/rygel-object-creator.vala:349
 #: ../src/librygel-server/rygel-reference-creator.vala:68
 #: ../src/librygel-server/rygel-reference-creator.vala:109
 msgid "No such object"
 msgstr "Objektet finnes ikke"
-
-#: ../src/librygel-server/rygel-object-creator.vala:219
-#, c-format
-msgid "No objects in DIDL-Lite from client: '%s'"
-msgstr "Ingen objekter i DIDL-Lite fra klient: «%s»"
-
-#: ../src/librygel-server/rygel-object-creator.vala:226
-msgid "@id must be set to \"\" in CreateObject call"
-msgstr "@id må settes til \"\" i kall til CreateObject"
-
-#: ../src/librygel-server/rygel-object-creator.vala:231
-msgid "dc:title must not be empty in CreateObject call"
-msgstr ""
-
-#: ../src/librygel-server/rygel-object-creator.vala:242
-msgid "Flags that must not be set were found in 'dlnaManaged'"
-msgstr ""
-
-#: ../src/librygel-server/rygel-object-creator.vala:250
-msgid "Invalid upnp:class given in CreateObject"
-msgstr ""
-
-#: ../src/librygel-server/rygel-object-creator.vala:255
-msgid "Cannot create restricted item"
-msgstr "Kan ikke lage begrenset oppføring"
-
-#: ../src/librygel-server/rygel-object-creator.vala:320
-#, c-format
-msgid "UPnP class '%s' not supported"
-msgstr "UPnP-klasse «%s» er ikke støttet"
-
-#: ../src/librygel-server/rygel-object-creator.vala:353
-#: ../src/librygel-server/rygel-object-creator.vala:621
-#: ../src/librygel-server/rygel-reference-creator.vala:113
-#, c-format
-msgid "Object creation in %s not allowed"
-msgstr "Oppretting av objekter i %s er ikke tillatt"
-
-#: ../src/librygel-server/rygel-object-creator.vala:381
-#, c-format
-msgid "Failed to create item under '%s': %s"
-msgstr "Klarte ikke å opprette oppføring under «%s»: %s"
-
-#: ../src/librygel-server/rygel-object-creator.vala:455
-#, c-format
-msgid "DLNA profile '%s' not supported"
-msgstr "DLNA-profil «%s» er ikke støttet"
-
-#: ../src/librygel-server/rygel-object-creator.vala:513
-#, c-format
-msgid "Invalid date format: %s"
-msgstr "Ugyldig datoformat: %s"
-
-#: ../src/librygel-server/rygel-object-creator.vala:522
-#, c-format
-msgid "Invalid date: %s"
-msgstr "Ugyldig dato: %s"
-
-#: ../src/librygel-server/rygel-object-creator.vala:554
-#, c-format
-msgid "Cannot create object of class '%s': Not supported"
-msgstr "KAn ikke lage objekt av klasse «%s»: Ikke støttet"
-
-#: ../src/librygel-server/rygel-object-creator.vala:652
-#, c-format
-msgid ""
-"Error from container '%s' on trying to find the newly added child object "
-"'%s' in it: %s"
-msgstr ""
 
 #: ../src/librygel-server/rygel-item-destroyer.vala:60
 #, c-format
@@ -684,6 +688,11 @@ msgstr ""
 "Metadataendring for objekt %s som er et barn av begrenset objekt %s er ikke "
 "tillatt"
 
+#: ../src/librygel-server/rygel-m3u-playlist.vala:67
+#: ../src/librygel-server/rygel-m3u-playlist.vala:70
+msgid "Unknown"
+msgstr "Ukjent"
+
 #: ../src/librygel-server/rygel-media-engine.vala:69
 msgid "No media engine found."
 msgstr "Ingen mediemotor funnet."
@@ -706,6 +715,83 @@ msgstr "Klarte ikke å finne protokoll for URI %s. Antar «%s»"
 #: ../src/librygel-server/rygel-media-query-action.vala:120
 msgid "Invalid range"
 msgstr "Ugyldig område"
+
+#: ../src/librygel-server/rygel-object-creator.vala:186
+msgid "'Elements' argument missing."
+msgstr "«Elements»-argument mangler."
+
+#: ../src/librygel-server/rygel-object-creator.vala:189
+msgid "Comments not allowed in XML"
+msgstr "Kommentarer ikke tillatt i XML"
+
+#: ../src/librygel-server/rygel-object-creator.vala:219
+#, c-format
+msgid "No objects in DIDL-Lite from client: '%s'"
+msgstr "Ingen objekter i DIDL-Lite fra klient: «%s»"
+
+#: ../src/librygel-server/rygel-object-creator.vala:226
+msgid "@id must be set to \"\" in CreateObject call"
+msgstr "@id må settes til \"\" i kall til CreateObject"
+
+#: ../src/librygel-server/rygel-object-creator.vala:231
+msgid "dc:title must not be empty in CreateObject call"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:242
+msgid "Flags that must not be set were found in 'dlnaManaged'"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:250
+msgid "Invalid upnp:class given in CreateObject"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:255
+msgid "Cannot create restricted item"
+msgstr "Kan ikke lage begrenset oppføring"
+
+#: ../src/librygel-server/rygel-object-creator.vala:320
+#, c-format
+msgid "UPnP class '%s' not supported"
+msgstr "UPnP-klasse «%s» er ikke støttet"
+
+#: ../src/librygel-server/rygel-object-creator.vala:353
+#: ../src/librygel-server/rygel-object-creator.vala:621
+#: ../src/librygel-server/rygel-reference-creator.vala:113
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr "Oppretting av objekter i %s er ikke tillatt"
+
+#: ../src/librygel-server/rygel-object-creator.vala:381
+#, c-format
+msgid "Failed to create item under '%s': %s"
+msgstr "Klarte ikke å opprette oppføring under «%s»: %s"
+
+#: ../src/librygel-server/rygel-object-creator.vala:455
+#, c-format
+msgid "DLNA profile '%s' not supported"
+msgstr "DLNA-profil «%s» er ikke støttet"
+
+#: ../src/librygel-server/rygel-object-creator.vala:513
+#, c-format
+msgid "Invalid date format: %s"
+msgstr "Ugyldig datoformat: %s"
+
+#: ../src/librygel-server/rygel-object-creator.vala:522
+#, c-format
+msgid "Invalid date: %s"
+msgstr "Ugyldig dato: %s"
+
+#: ../src/librygel-server/rygel-object-creator.vala:554
+#, c-format
+msgid "Cannot create object of class '%s': Not supported"
+msgstr "KAn ikke lage objekt av klasse «%s»: Ikke støttet"
+
+#: ../src/librygel-server/rygel-object-creator.vala:652
+#, c-format
+msgid ""
+"Error from container '%s' on trying to find the newly added child object "
+"'%s' in it: %s"
+msgstr ""
 
 #: ../src/librygel-server/rygel-reference-creator.vala:50
 msgid "'ContainerID' agument missing."
@@ -793,6 +879,17 @@ msgstr "Klarte ikke å søke til avstand %lld:%lld"
 msgid "Failed to seek"
 msgstr "Klarte ikke å søke"
 
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:123
+#, c-format
+msgid "Failed to create GStreamer data source for %s: %s"
+msgstr "Klarte ikke å lage GStreamer datakilde for %s: %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:88
+msgid ""
+"Could not create a transcoder configuration. Your GStreamer installation "
+"might be missing a plug-in"
+msgstr ""
+
 #: ../src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
 msgid "Required element %s missing"
@@ -802,75 +899,93 @@ msgstr "Obligatorisk element %s mangler"
 msgid "Time-based seek not supported"
 msgstr "Tidsbasert søk er ikke støttet"
 
-#: ../src/rygel/rygel-main.vala:101
+#: ../src/rygel/rygel-cmdline-config.vala:77
+msgid "Network Interfaces"
+msgstr "Nettverksgrensesnitt"
+
+#: ../src/rygel/rygel-cmdline-config.vala:81
+msgid "Disable transcoding"
+msgstr "Slå av transkoding"
+
+#: ../src/rygel/rygel-cmdline-config.vala:83
+msgid "Disallow upload"
+msgstr "Ikke tillat opplasting"
+
+#: ../src/rygel/rygel-cmdline-config.vala:85
+msgid "Disallow deletion"
+msgstr "Ikke tillat sletting"
+
+#: ../src/rygel/rygel-cmdline-config.vala:87
+msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:89
+msgid "Plugin Path"
+msgstr "Sti til tillegg"
+
+#: ../src/rygel/rygel-cmdline-config.vala:91
+msgid "Engine Path"
+msgstr "Sti til motor"
+
+#: ../src/rygel/rygel-cmdline-config.vala:94
+msgid "Disable plugin"
+msgstr "Slå av tillegg"
+
+#: ../src/rygel/rygel-cmdline-config.vala:96
+msgid "Set plugin titles"
+msgstr "Sett titler for tillegg"
+
+#: ../src/rygel/rygel-cmdline-config.vala:98
+msgid "Set plugin options"
+msgstr "Sett alternativer for tillegg"
+
+#: ../src/rygel/rygel-cmdline-config.vala:100
+msgid "Disable UPnP (streaming-only)"
+msgstr "Slå av UPnP (kun streaming)"
+
+#: ../src/rygel/rygel-cmdline-config.vala:102
+msgid "Use configuration file instead of user configuration"
+msgstr "Bruk konfigurasjonsfil i stedet for brukerkonfigurasjon"
+
+#: ../src/rygel/rygel-cmdline-config.vala:104
+#, fuzzy
+msgid "Shutdown remote Rygel reference"
+msgstr "Brukervalg for Rygel"
+
+#: ../src/rygel/rygel-cmdline-config.vala:141
+msgid "Shutting down remote Rygel instance\n"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:149
+#, fuzzy, c-format
+msgid "Failed to shut-down other rygel instance: %s"
+msgstr "Klarte ikke å stoppe Rygel-tjeneste: %s"
+
+#: ../src/rygel/rygel-main.vala:83
+msgid "Rygel is running in streaming-only mode."
+msgstr ""
+
+#: ../src/rygel/rygel-main.vala:107
 #, c-format
 msgid "No plugins found in %d second; giving up..."
 msgid_plural "No plugins found in %d seconds; giving up..."
 msgstr[0] "Ingen tillegg funnet etter %d sekund. Gir opp …"
 msgstr[1] "Ingen tillegg funnet etter %d sekunder. Gir opp …"
 
-#: ../src/rygel/rygel-main.vala:162
+#: ../src/rygel/rygel-main.vala:168
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Klarte ikke å opprette fabrikk for rotenhet: %s"
 
-#: ../src/rygel/rygel-main.vala:220
+#: ../src/rygel/rygel-main.vala:226
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Klarte ikke å opprette RootDevice for %s. Årsak: %s"
 
-#: ../src/rygel/rygel-main.vala:257
+#: ../src/rygel/rygel-main.vala:263
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Klarte ikke å laste brukerkonfigurasjon: %s"
-
-#: ../src/rygel/rygel-cmdline-config.vala:75
-msgid "Network Interfaces"
-msgstr "Nettverksgrensesnitt"
-
-#: ../src/rygel/rygel-cmdline-config.vala:79
-msgid "Disable transcoding"
-msgstr "Slå av transkoding"
-
-#: ../src/rygel/rygel-cmdline-config.vala:81
-msgid "Disallow upload"
-msgstr "Ikke tillat opplasting"
-
-#: ../src/rygel/rygel-cmdline-config.vala:83
-msgid "Disallow deletion"
-msgstr "Ikke tillat sletting"
-
-#: ../src/rygel/rygel-cmdline-config.vala:85
-msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
-msgstr ""
-
-#: ../src/rygel/rygel-cmdline-config.vala:87
-msgid "Plugin Path"
-msgstr "Sti til tillegg"
-
-#: ../src/rygel/rygel-cmdline-config.vala:89
-msgid "Engine Path"
-msgstr "Sti til motor"
-
-#: ../src/rygel/rygel-cmdline-config.vala:92
-msgid "Disable plugin"
-msgstr "Slå av tillegg"
-
-#: ../src/rygel/rygel-cmdline-config.vala:94
-msgid "Set plugin titles"
-msgstr "Sett titler for tillegg"
-
-#: ../src/rygel/rygel-cmdline-config.vala:96
-msgid "Set plugin options"
-msgstr "Sett alternativer for tillegg"
-
-#: ../src/rygel/rygel-cmdline-config.vala:98
-msgid "Disable UPnP (streaming-only)"
-msgstr "Slå av UPnP (kun streaming)"
-
-#: ../src/rygel/rygel-cmdline-config.vala:100
-msgid "Use configuration file instead of user configuration"
-msgstr "Bruk konfigurasjonsfil i stedet for brukerkonfigurasjon"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
 #: ../src/rygel/rygel-user-config.vala:252
@@ -891,7 +1006,7 @@ msgstr "Ingen verdi tilgjengelig for «%s»"
 msgid "Value of '%s' out of range"
 msgstr "Verdi for «%s» utenfor gyldig område"
 
-#: ../src/ui/rygel-preferences-dialog.vala:97
+#: ../src/ui/rygel-preferences-dialog.vala:93
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Klarte ikke å opprette brukervalgdialog: %s"
