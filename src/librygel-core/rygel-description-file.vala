@@ -127,7 +127,6 @@ public class Rygel.DescriptionFile : Object {
      */
     public void set_dlna_caps (PluginCapabilities capabilities) {
         var flags = new string[0];
-        var content = "";
 
         if ((PluginCapabilities.UPLOAD & capabilities) != 0) {
             // This means "Supports upload to AnyContainer_DLNA.ORG", but we
@@ -177,10 +176,11 @@ public class Rygel.DescriptionFile : Object {
         // Set the flags we found; otherwise remove whatever is in the
         // template.
         if (flags.length > 0) {
-            content = string.joinv (",", flags);
+            var content = string.joinv (",", flags);
+            this.set_device_element ("X_DLNACAP", content, "dlna");
+        } else {
+            this.remove_device_element ("X_DLNACAP");
         }
-
-        this.set_device_element ("X_DLNACAP", content);
     }
 
 
@@ -239,19 +239,56 @@ public class Rygel.DescriptionFile : Object {
     }
 
     /**
-     * Internal helper function to set an element to a new value.
+     * Internal helper function to set an element to a new value,
+     * creating it if needed.
      *
      * @param element below /root/device to be set.
      * @param new_vale is the new content of that element.
      */
-    private void set_device_element (string element, string new_value) {
+    private void set_device_element (string element,
+                                     string new_value,
+                                     string? ns = null) {
         var xml_element = Rygel.XMLUtils.get_element
                                         ((Xml.Node *) this.doc.doc,
                                          "root",
                                          "device",
                                          element);
-        if (element != null) {
+        if (xml_element == null) {
+            var device_element = Rygel.XMLUtils.get_element
+                                        ((Xml.Node *) this.doc.doc,
+                                         "root",
+                                         "device");
+            if (device_element == null) {
+                warning (_("XML node '%s' not found."), "/root/device");
+
+                return;
+            }
+
+            Xml.Ns *xml_ns = null;
+            if (ns != null) {
+                xml_ns = this.doc.doc.search_ns(device_element, ns);
+            }
+
+            device_element->new_child (xml_ns, element, new_value);
+        } else {
             xml_element->set_content (new_value);
+        }
+    }
+
+    /**
+     * Internal helper function to remove an element (if it exists).
+     *
+     * @param element below /root/device to be removed.
+     */
+    private void remove_device_element (string element) {
+        var xml_element = Rygel.XMLUtils.get_element
+                                        ((Xml.Node *) this.doc.doc,
+                                         "root",
+                                         "device",
+                                         element);
+        if (xml_element != null) {
+            xml_element->unlink ();
+            delete xml_element;
         }
     }
 }
