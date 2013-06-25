@@ -4,53 +4,6 @@
       <major>1</major>
       <minor>0</minor>
    </specVersion>
-   <serviceStateTable>
-      <stateVariable sendEvents="yes">
-         <name>LastChange</name>
-         <dataType>string</dataType>
-      </stateVariable>
-
-      <stateVariable sendEvents="no">
-         <name>PresetNameList</name>
-         <dataType>string</dataType>
-      </stateVariable>
-
-      <stateVariable sendEvents="no">
-         <name>Mute</name>
-         <dataType>boolean</dataType>
-      </stateVariable>
-
-      <stateVariable sendEvents="no">
-         <name>Volume</name>
-         <dataType>ui2</dataType>
-         <allowedValueRange>
-            <minimum>0</minimum>
-            <maximum>100</maximum>
-            <step>1</step>
-         </allowedValueRange>
-      </stateVariable>
-
-      <stateVariable sendEvents="no">
-         <name>A_ARG_TYPE_Channel</name>
-         <dataType>string</dataType>
-         <allowedValueList>
-            <allowedValue>Master</allowedValue>
-         </allowedValueList>
-      </stateVariable>
-
-      <stateVariable sendEvents="no">
-         <name>A_ARG_TYPE_InstanceID</name>
-         <dataType>ui4</dataType>
-      </stateVariable>
-
-      <stateVariable sendEvents="no">
-         <name>A_ARG_TYPE_PresetName</name>
-         <dataType>string</dataType>
-         <allowedValueList>
-            <allowedValue>FactoryDefaults</allowedValue>
-         </allowedValueList>
-      </stateVariable>
-   </serviceStateTable>
 
    <actionList>
       <action>
@@ -169,4 +122,52 @@
          </argumentList>
       </action>
    </actionList>
+
+   <serviceStateTable>
+      <stateVariable sendEvents="yes">
+         <name>LastChange</name>
+         <dataType>string</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>PresetNameList</name>
+         <dataType>string</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>Mute</name>
+         <dataType>boolean</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>Volume</name>
+         <dataType>ui2</dataType>
+         <allowedValueRange>
+            <minimum>0</minimum>
+            <maximum>100</maximum>
+            <step>1</step>
+         </allowedValueRange>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>A_ARG_TYPE_Channel</name>
+         <dataType>string</dataType>
+         <allowedValueList>
+            <allowedValue>Master</allowedValue>
+         </allowedValueList>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>A_ARG_TYPE_InstanceID</name>
+         <dataType>ui4</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>A_ARG_TYPE_PresetName</name>
+         <dataType>string</dataType>
+         <allowedValueList>
+            <allowedValue>FactoryDefaults</allowedValue>
+         </allowedValueList>
+      </stateVariable>
+   </serviceStateTable>
 </scpd>
