@@ -258,6 +258,15 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
             throw new ContentDirectoryError.BAD_METADATA
                                         ("Cannot create restricted item");
         }
+
+        // Handle DIDL_S items...
+        if (this.didl_object.upnp_class == "object.item") {
+            var resources = this.didl_object.get_resources ();
+            if (resources != null &&
+                resources.data.protocol_info.dlna_profile == "DIDL_S") {
+                this.didl_object.upnp_class = PlaylistItem.UPNP_CLASS;
+            }
+        }
     }
 
     /**
