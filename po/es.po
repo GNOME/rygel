@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-06-17 15:55+0000\n"
-"PO-Revision-Date: 2013-06-18 11:16+0200\n"
+"POT-Creation-Date: 2013-06-25 11:49+0000\n"
+"PO-Revision-Date: 2013-06-25 14:21+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -140,6 +140,11 @@ msgstr "Falló al obtener el hijo del contenedor %s: %s"
 msgid "Failed to add item with ID %s: %s"
 msgstr "Falló al añadir el elemento con ID %s: %s"
 
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:531
+#| msgid "Cannot create restricted item"
+msgid "Cannot create references to containers"
+msgstr "No se pueden crear las referencias a los contenedores"
+
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:216
 #, c-format
@@ -151,18 +156,18 @@ msgstr "Falló al consultar el tipo de contenido para «%s»"
 msgid "All"
 msgstr "Todo"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:81
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:57
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:63
 #, c-format
 msgid "Can't create items in %s"
 msgstr "No se pueden crear elementos en %s"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:96
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:78
 #, c-format
 msgid "Can't add containers in %s"
 msgstr "No se pueden añadir contenedores en %s"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:104
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:86
 #, c-format
 msgid "Can't remove containers in %s"
 msgstr "No se pueden quitar contenedores en %s"
@@ -177,7 +182,7 @@ msgstr "Listas de reproducción"
 msgid "Can't remove items in %s"
 msgstr "No se pueden quitar elementos en %s"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:80
+#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:81
 #, c-format
 msgid "upnp:class not supported in %s"
 msgstr "upnp: clase no soportada en %s"
@@ -326,12 +331,12 @@ msgstr "No implementado"
 #: ../src/librygel-core/rygel-connection-manager.vala:127
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
 #: ../src/librygel-renderer/rygel-rendering-control.vala:128
-#: ../src/librygel-server/rygel-content-directory.vala:264
-#: ../src/librygel-server/rygel-content-directory.vala:291
-#: ../src/librygel-server/rygel-content-directory.vala:310
-#: ../src/librygel-server/rygel-content-directory.vala:345
-#: ../src/librygel-server/rygel-content-directory.vala:370
-#: ../src/librygel-server/rygel-content-directory.vala:395
+#: ../src/librygel-server/rygel-content-directory.vala:265
+#: ../src/librygel-server/rygel-content-directory.vala:292
+#: ../src/librygel-server/rygel-content-directory.vala:311
+#: ../src/librygel-server/rygel-content-directory.vala:346
+#: ../src/librygel-server/rygel-content-directory.vala:371
+#: ../src/librygel-server/rygel-content-directory.vala:396
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Argumento no válido"
@@ -520,8 +525,8 @@ msgstr "Falló al examinar «%s»: %s\n"
 msgid "Not Applicable"
 msgstr "No es aplicable"
 
-#: ../src/librygel-server/rygel-content-directory.vala:283
-#: ../src/librygel-server/rygel-content-directory.vala:302
+#: ../src/librygel-server/rygel-content-directory.vala:284
+#: ../src/librygel-server/rygel-content-directory.vala:303
 msgid "No such file transfer"
 msgstr "No existe tal transferencia de archivo"
 
@@ -617,7 +622,7 @@ msgstr "El URI «%s» no es válido para importar contenido de él"
 #: ../src/librygel-server/rygel-object-creator.vala:195
 #: ../src/librygel-server/rygel-object-creator.vala:349
 #: ../src/librygel-server/rygel-reference-creator.vala:68
-#: ../src/librygel-server/rygel-reference-creator.vala:109
+#: ../src/librygel-server/rygel-reference-creator.vala:113
 msgid "No such object"
 msgstr "No existe el objeto"
 
@@ -691,7 +696,6 @@ msgstr ""
 
 #: ../src/librygel-server/rygel-m3u-playlist.vala:67
 #: ../src/librygel-server/rygel-m3u-playlist.vala:70
-#| msgid "Unknown error."
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -758,8 +762,8 @@ msgid "UPnP class '%s' not supported"
 msgstr "Clase UPnP «%s» no soportada"
 
 #: ../src/librygel-server/rygel-object-creator.vala:353
-#: ../src/librygel-server/rygel-object-creator.vala:621
-#: ../src/librygel-server/rygel-reference-creator.vala:113
+#: ../src/librygel-server/rygel-object-creator.vala:622
+#: ../src/librygel-server/rygel-reference-creator.vala:117
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "No se permite la creación de objetos en %s"
@@ -784,12 +788,12 @@ msgstr "Formato de fecha no válido: %s"
 msgid "Invalid date: %s"
 msgstr "Fecha no válida: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:554
+#: ../src/librygel-server/rygel-object-creator.vala:555
 #, c-format
 msgid "Cannot create object of class '%s': Not supported"
 msgstr "No se puede crear el objeto de clase «%s»: no está soportado"
 
-#: ../src/librygel-server/rygel-object-creator.vala:652
+#: ../src/librygel-server/rygel-object-creator.vala:653
 #, c-format
 msgid ""
 "Error from container '%s' on trying to find the newly added child object '%"
@@ -806,7 +810,7 @@ msgstr "Falta el argumento «ContainerID»."
 msgid "'ObjectID' argument missing."
 msgstr "Falta el argumento «ObjectID»."
 
-#: ../src/librygel-server/rygel-reference-creator.vala:80
+#: ../src/librygel-server/rygel-reference-creator.vala:84
 #, c-format
 msgid "Failed to create object under '%s': %s"
 msgstr "Falló al crear un elemento bajo «%s»: %s"
@@ -958,7 +962,6 @@ msgstr ""
 "Usar un archivo de configuración de lugar de la configuración del usuario"
 
 #: ../src/rygel/rygel-cmdline-config.vala:104
-#| msgid "Rygel Preferences"
 msgid "Shutdown remote Rygel reference"
 msgstr "Preferencias de apagado remoto de Rygel"
 
