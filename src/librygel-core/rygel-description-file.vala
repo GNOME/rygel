@@ -90,6 +90,17 @@ public class Rygel.DescriptionFile : Object {
     }
 
     /**
+     * Modify the model description.
+     *
+     * A longer user friendly description of the device.
+     *
+     * @param model_description is the new model description.
+     */
+    public void set_model_description (string model_description) {
+        this.set_device_element ("modelDescription", model_description);
+    }
+
+    /**
      * Modify the model name.
      *
      * Usually the name of the software implementing this device.
@@ -134,6 +145,34 @@ public class Rygel.DescriptionFile : Object {
                                                   "device",
                                                   "friendlyName");
         assert (element != null);
+
+        return element->get_content ();
+    }
+
+    /**
+     * Set the Unique Device Name of the device.
+     *
+     * Unique Device Name is the UUID of this particular device instance.
+     *
+     * @param udn is the Unique Device Name of the device.
+     */
+    public void set_udn (string udn) {
+        this.set_device_element ("UDN", udn);
+    }
+
+    /**
+     * Get the current UDN of the device.
+     *
+     * @return The currenly set UDN.
+     */
+    public string? get_udn () {
+        var element = Rygel.XMLUtils.get_element ((Xml.Node *) this.doc.doc,
+                                                  "root",
+                                                  "device",
+                                                  "UDN");
+        if (element == null) {
+            return null;
+        }
 
         return element->get_content ();
     }
@@ -202,6 +241,64 @@ public class Rygel.DescriptionFile : Object {
         }
     }
 
+    public void clear_service_list () {
+        this.remove_device_element ("serviceList");
+    }
+
+    public void add_service (string device_name, ResourceInfo resource_info) {
+        var list = Rygel.XMLUtils.get_element
+                                        ((Xml.Node *) this.doc.doc,
+                                         "root",
+                                         "device",
+                                         "serviceList");
+        if (list == null) {
+            list = this.set_device_element ("serviceList", null);
+        }
+
+        Xml.Node *service_node = list->new_child (null, "service");
+
+        service_node->new_child (null, "serviceType", resource_info.upnp_type);
+        service_node->new_child (null, "serviceId", resource_info.upnp_id);
+
+        /* Now the relative (to base URL) URLs*/
+        string url = "/" + resource_info.description_path;
+        service_node->new_child (null, "SCPDURL", url);
+
+        url = "/Control/" + device_name + "/" + resource_info.type.name ();
+        service_node->new_child (null, "controlURL", url);
+
+        url = "/Event/" + device_name + "/" + resource_info.type.name ();
+        service_node->new_child (null, "eventSubURL", url);
+    }
+
+    public void clear_icon_list () {
+        this.remove_device_element ("iconList");
+    }
+
+    public void add_icon (string   device_name,
+                          IconInfo icon_info,
+                          string   url) {
+        var list = Rygel.XMLUtils.get_element
+                                        ((Xml.Node *) this.doc.doc,
+                                         "root",
+                                         "device",
+                                         "iconList");
+        if (list == null) {
+            list = this.set_device_element ("iconList", null);
+        }
+
+        Xml.Node *icon_node = list->new_child (null, "icon");
+
+        string width = icon_info.width.to_string ();
+        string height = icon_info.height.to_string ();
+        string depth = icon_info.depth.to_string ();
+
+        icon_node->new_child (null, "mimetype", icon_info.mime_type);
+        icon_node->new_child (null, "width", width);
+        icon_node->new_child (null, "height", height);
+        icon_node->new_child (null, "depth", depth);
+        icon_node->new_child (null, "url", url);
+    }
 
     /**
      * Change the type of a service.
@@ -273,10 +370,12 @@ public class Rygel.DescriptionFile : Object {
      *
      * @param element below /root/device to be set.
      * @param new_value is the new content of that element.
+     *
+     * @returns the element that was modified (or created) or null
      */
-    private void set_device_element (string element,
-                                     string new_value,
-                                     string? ns = null) {
+    private Xml.Node* set_device_element (string element,
+                                          string? new_value,
+                                          string? ns = null) {
         var xml_element = Rygel.XMLUtils.get_element
                                         ((Xml.Node *) this.doc.doc,
                                          "root",
@@ -284,7 +383,7 @@ public class Rygel.DescriptionFile : Object {
                                          element);
         if (xml_element != null) {
             xml_element->set_content (new_value);
-            return;
+            return xml_element;
         }
 
         // Element not found: create it
@@ -312,7 +411,7 @@ public class Rygel.DescriptionFile : Object {
                                          "device",
                                          device_elements[index]);
                 if (sibling != null) {
-                    sibling->add_next_sibling (xml_element);
+                    xml_element = sibling->add_next_sibling (xml_element);
 
                     break;
                 }
@@ -322,10 +421,12 @@ public class Rygel.DescriptionFile : Object {
                 // Set as first child
                 sibling = device_element->first_element_child ();
                 if (sibling != null) {
-                    sibling->add_prev_sibling (xml_element);
+                    xml_element = sibling->add_prev_sibling (xml_element);
                 }
             }
         }
+
+        return xml_element;
     }
 
     /**
