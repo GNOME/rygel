@@ -28,6 +28,25 @@ using Xml;
  * manipulation of those.
  */
 public class Rygel.DescriptionFile : Object {
+    /// List of known device elements in the order specified by UDA 1.1
+    private string[] device_elements = {
+        "deviceType",
+        "friendlyName",
+        "manufacturer",
+        "manufacturerURL",
+        "modelDescription",
+        "modelName",
+        "modelNumber",
+        "modelURL",
+        "serialNumber",
+        "UDN",
+        "UPC",
+        "iconList",
+        "serviceList",
+        "deviceList",
+        "presentationURL",
+    };
+
     /// XML doc wrapper representing the description document
     private XMLDoc doc;
 
@@ -238,12 +257,22 @@ public class Rygel.DescriptionFile : Object {
         file.puts (mem.replace ("\n", ""));
     }
 
+    private int index_of_device_element (string element) {
+        for (var i = 0; i < this.device_elements.length; i++) {
+            if (this.device_elements[i] == element) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     /**
      * Internal helper function to set an element to a new value,
      * creating it if needed.
      *
      * @param element below /root/device to be set.
-     * @param new_vale is the new content of that element.
+     * @param new_value is the new content of that element.
      */
     private void set_device_element (string element,
                                      string new_value,
@@ -253,25 +282,49 @@ public class Rygel.DescriptionFile : Object {
                                          "root",
                                          "device",
                                          element);
-        if (xml_element == null) {
-            var device_element = Rygel.XMLUtils.get_element
+        if (xml_element != null) {
+            xml_element->set_content (new_value);
+            return;
+        }
+
+        // Element not found: create it
+        var device_element = Rygel.XMLUtils.get_element
+                                ((Xml.Node *) this.doc.doc,
+                                 "root",
+                                 "device");
+
+        Xml.Ns *xml_ns = null;
+        if (ns != null) {
+            xml_ns = this.doc.doc.search_ns(device_element, ns);
+        }
+
+        xml_element = device_element->new_child (xml_ns, element, new_value);
+
+        // Now move the element to correct location
+        var index = this.index_of_device_element (element);
+        if (index > -1) {
+            // try to find a previous sibling
+            Xml.Node* sibling = null;
+            for (index--; index > 0; index--) {
+                sibling = Rygel.XMLUtils.get_element
                                         ((Xml.Node *) this.doc.doc,
                                          "root",
-                                         "device");
-            if (device_element == null) {
-                warning (_("XML node '%s' not found."), "/root/device");
+                                         "device",
+                                         device_elements[index]);
+                if (sibling != null) {
+                    sibling->add_next_sibling (xml_element);
 
-                return;
+                    break;
+                }
             }
 
-            Xml.Ns *xml_ns = null;
-            if (ns != null) {
-                xml_ns = this.doc.doc.search_ns(device_element, ns);
+            if (sibling == null) {
+                // Set as first child
+                sibling = device_element->first_element_child ();
+                if (sibling != null) {
+                    sibling->add_prev_sibling (xml_element);
+                }
             }
-
-            device_element->new_child (xml_ns, element, new_value);
-        } else {
-            xml_element->set_content (new_value);
         }
     }
 
