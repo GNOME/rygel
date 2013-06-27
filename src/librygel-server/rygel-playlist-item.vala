@@ -30,8 +30,6 @@ using GUPnP;
 public class Rygel.PlaylistItem : MediaItem {
     public new const string UPNP_CLASS = "object.item.playlistItem";
 
-    public string creator { get; set; }
-
     public PlaylistItem (string         id,
                          MediaContainer parent,
                          string         title,
@@ -50,12 +48,6 @@ public class Rygel.PlaylistItem : MediaItem {
                                                  HTTPServer http_server)
                                                  throws Error {
         var didl_item = base.serialize (serializer, http_server);
-
-        if (this.creator != null && this.creator != "") {
-            var contributor = didl_item.add_creator ();
-
-            contributor.name = this.creator;
-        }
 
         return didl_item;
     }

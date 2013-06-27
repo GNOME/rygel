@@ -137,7 +137,7 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
         var item = media_object as VideoItem;
 
         switch (property) {
-        case "dc:author":
+        case "upnp:author":
             return this.compare_string_props (this.author, item.author);
         default:
             return base.compare_by_property (item, property);

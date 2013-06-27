@@ -28,6 +28,7 @@ internal enum Rygel.MediaExport.DetailColumn {
     WIDTH,
     HEIGHT,
     CLASS,
+    CREATOR,
     AUTHOR,
     ALBUM,
     DATE,
@@ -88,8 +89,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
          "author, album, date, bitrate, " +
          "sample_freq, bits_per_sample, channels, " +
          "track, color_depth, duration, object_fk, " +
-         "dlna_profile, genre, disc) VALUES " +
-         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         "dlna_profile, genre, disc, creator) VALUES " +
+         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     private const string INSERT_OBJECT_STRING =
     "INSERT OR REPLACE INTO Object " +
@@ -115,7 +116,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
 
     private const string ALL_DETAILS_STRING =
     "o.type_fk, o.title, m.size, m.mime_type, m.width, " +
-    "m.height, m.class, m.author, m.album, m.date, m.bitrate, " +
+    "m.height, m.class, m.creator, m.author, m.album, m.date, m.bitrate, " +
     "m.sample_freq, m.bits_per_sample, m.channels, m.track, " +
     "m.color_depth, m.duration, o.upnp_id, o.parent, o.timestamp, " +
     "o.uri, m.dlna_profile, m.genre, m.disc, o.object_update_id, " +
@@ -187,7 +188,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
         "WHERE _column IS NOT NULL %s ORDER BY _column COLLATE CASEFOLD " +
     "LIMIT ?,?";
 
-    internal const string SCHEMA_VERSION = "14";
+    internal const string SCHEMA_VERSION = "15";
     internal const string CREATE_META_DATA_TABLE_STRING =
     "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
                             "mime_type TEXT NOT NULL, " +
@@ -196,6 +197,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                             "width INTEGER, " +
                             "height INTEGER, " +
                             "class TEXT NOT NULL, " +
+                            "creator TEXT, " +
                             "author TEXT, " +
                             "album TEXT, " +
                             "genre TEXT, " +

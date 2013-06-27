@@ -37,6 +37,8 @@ private errordomain Rygel.MediaItemError {
 public abstract class Rygel.MediaItem : MediaObject {
     public string date { get; set; }
 
+    public string creator { get; set; }
+
     // Resource info
     public string mime_type { get; set; }
     public string dlna_profile { get; set; }
@@ -193,6 +195,8 @@ public abstract class Rygel.MediaItem : MediaObject {
         var item = media_object as MediaItem;
 
         switch (property) {
+        case "dc:creator":
+            return this.compare_string_props (this.creator, item.creator);
         case "dc:date":
             return this.compare_by_date (item);
         default:
@@ -203,6 +207,7 @@ public abstract class Rygel.MediaItem : MediaObject {
     internal override void apply_didl_lite (DIDLLiteObject didl_object) {
         base.apply_didl_lite (didl_object);
 
+        this.creator = didl_object.get_creator ();
         this.date = didl_object.date;
         this.description = didl_object.description;
     }
@@ -236,6 +241,11 @@ public abstract class Rygel.MediaItem : MediaObject {
 
         if (this.date != null) {
             didl_item.date = this.date;
+        }
+
+        if (this.creator != null && this.creator != "") {
+            var creator = didl_item.add_creator ();
+            creator.name = this.creator;
         }
 
         if (this.description != null) {

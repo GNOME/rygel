@@ -33,8 +33,6 @@ using Gee;
 public class Rygel.PhotoItem : ImageItem {
     public new const string UPNP_CLASS = "object.item.imageItem.photo";
 
-    public string creator { get; set; }
-
     public PhotoItem (string         id,
                       MediaContainer parent,
                       string         title,
@@ -54,8 +52,6 @@ public class Rygel.PhotoItem : ImageItem {
         var item = media_object as PhotoItem;
 
         switch (property) {
-        case "dc:creator":
-            return this.compare_string_props (this.creator, item.creator);
         default:
             return base.compare_by_property (item, property);
         }
@@ -79,11 +75,6 @@ public class Rygel.PhotoItem : ImageItem {
                                                 HTTPServer  http_server)
                                                 throws Error {
         var didl_item = base.serialize (serializer, http_server);
-
-        if (this.creator != null && this.creator != "") {
-            var contributor = didl_item.add_creator ();
-            contributor.name = this.creator;
-        }
 
         return didl_item;
     }
