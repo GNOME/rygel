@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-06-25 11:49+0000\n"
-"PO-Revision-Date: 2013-06-25 14:21+0200\n"
+"POT-Creation-Date: 2013-06-27 09:55+0000\n"
+"PO-Revision-Date: 2013-06-27 12:35+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -141,7 +141,6 @@ msgid "Failed to add item with ID %s: %s"
 msgstr "Falló al añadir el elemento con ID %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:531
-#| msgid "Cannot create restricted item"
 msgid "Cannot create references to containers"
 msgstr "No se pueden crear las referencias a los contenedores"
 
@@ -614,17 +613,9 @@ msgid "URI '%s' invalid for importing contents to"
 msgstr "El URI «%s» no es válido para importar contenido de él"
 
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
-#: ../src/librygel-server/rygel-item-destroyer.vala:102
-#: ../src/librygel-server/rygel-item-updater.vala:70
-#: ../src/librygel-server/rygel-item-updater.vala:189
-#: ../src/librygel-server/rygel-media-query-action.vala:115
-#: ../src/librygel-server/rygel-media-query-action.vala:182
-#: ../src/librygel-server/rygel-object-creator.vala:195
-#: ../src/librygel-server/rygel-object-creator.vala:349
-#: ../src/librygel-server/rygel-reference-creator.vala:68
-#: ../src/librygel-server/rygel-reference-creator.vala:113
-msgid "No such object"
-msgstr "No existe el objeto"
+#| msgid "'ContainerID' agument missing."
+msgid "ContainerID missing"
+msgstr "Falta el «ContainerID»"
 
 #: ../src/librygel-server/rygel-item-destroyer.vala:60
 #, c-format
@@ -636,6 +627,16 @@ msgstr "Objeto «%s» destruido correctamente"
 msgid "Failed to destroy object '%s': %s"
 msgstr "Falló al destruir el objeto «%s»: %s"
 
+#: ../src/librygel-server/rygel-item-destroyer.vala:102
+#: ../src/librygel-server/rygel-item-updater.vala:189
+#: ../src/librygel-server/rygel-media-query-action.vala:115
+#: ../src/librygel-server/rygel-media-query-action.vala:182
+#: ../src/librygel-server/rygel-object-creator.vala:195
+#: ../src/librygel-server/rygel-reference-creator.vala:68
+#: ../src/librygel-server/rygel-reference-creator.vala:113
+msgid "No such object"
+msgstr "No existe el objeto"
+
 #: ../src/librygel-server/rygel-item-destroyer.vala:105
 #, c-format
 msgid "Removal of object %s not allowed"
@@ -645,6 +646,11 @@ msgstr "No se permite quitar el objeto %s"
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "No se permite quitar objetos de %s"
+
+#: ../src/librygel-server/rygel-item-updater.vala:70
+#| msgid "'ObjectID' argument missing."
+msgid "Object id missing"
+msgstr "Falta el ID del objeto"
 
 #: ../src/librygel-server/rygel-item-updater.vala:77
 #, c-format
@@ -760,6 +766,10 @@ msgstr "No se puede crear un objeto restringido"
 #, c-format
 msgid "UPnP class '%s' not supported"
 msgstr "Clase UPnP «%s» no soportada"
+
+#: ../src/librygel-server/rygel-object-creator.vala:349
+msgid "No such container"
+msgstr "No existe tal contenedor"
 
 #: ../src/librygel-server/rygel-object-creator.vala:353
 #: ../src/librygel-server/rygel-object-creator.vala:622
@@ -1348,9 +1358,6 @@ msgstr "Falló al parar el servicio Rygel: %s"
 
 #~ msgid "Failed to parse query: %s"
 #~ msgstr "Falló al analizar la consulta: %s"
-
-#~ msgid "No such container"
-#~ msgstr "No existe tal contenedor"
 
 #~ msgid "Specified container does not exist."
 #~ msgstr "El contenedor especificado no existe."
