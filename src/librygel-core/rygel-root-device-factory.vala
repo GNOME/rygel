@@ -106,7 +106,7 @@ public class Rygel.RootDeviceFactory : Object,
         }
         var udn = file.get_udn ();
         if (udn == null || udn == "") {
-            file.set_udn (this.generate_random_udn ());
+            file.set_udn ("uuid:" + UUID.get());
         }
 
         file.save (desc_path);
@@ -213,16 +213,5 @@ public class Rygel.RootDeviceFactory : Object,
         if (!file.query_exists (null)) {
             file.make_directory (null);
         }
-    }
-
-    private string generate_random_udn () {
-        var udn = new uchar[50];
-        var id = new uchar[16];
-
-        /* Generate new UUID */
-        UUID.generate (id);
-        UUID.unparse (id, udn);
-
-        return "uuid:" + (string) udn;
     }
 }
