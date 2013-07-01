@@ -108,7 +108,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
     public signal void sub_tree_updates_finished (MediaObject sub_tree_root);
 
     public int child_count { get; set construct; }
-    protected int empty_child_count;
+    protected int empty_child_count { get; set; }
     public int all_child_count {
         get {
             return this.child_count + this.empty_child_count;
@@ -116,7 +116,8 @@ public abstract class Rygel.MediaContainer : MediaObject {
     }
     public uint32 update_id;
     public int64 storage_used;
-    public bool create_mode_enabled;
+
+    public bool create_mode_enabled { get; set; }
 
     // This is an uint32 in UPnP. SystemUpdateID should reach uint32.MAX way
     // before this variable and cause a SystemResetProcedure.
