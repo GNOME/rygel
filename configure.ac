@@ -31,7 +31,7 @@ dnl Required versions of library packages
 dnl Not all of these are actually used, depending on the configure options.
 GLIB_REQUIRED=2.31.13
 LIBXML_REQUIRED=2.7
-VALA_REQUIRED=0.18.0
+VALA_REQUIRED=0.20.0
 VALADOC_REQUIRED=0.2
 GSSDP_REQUIRED=0.13.0
 GUPNP_REQUIRED=0.19.0
