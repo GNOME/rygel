@@ -33,6 +33,7 @@ const string UPNP_CLASS_PHOTO = "object.item.imageItem.photo";
 const string UPNP_CLASS_MUSIC = "object.item.audioItem.musicTrack";
 const string UPNP_CLASS_VIDEO = "object.item.videoItem";
 const string UPNP_CLASS_PLAYLIST = "object.item.playlistItem";
+const string UPNP_CLASS_PLAYLIST_CONTAINER = "object.container.playlistContainer";
 
 const string STATUS_LINE_TEMPLATE = "RESULT|%s|%" + size_t.FORMAT + "|%s\n";
 const string ERROR_LINE_TEMPLATE = "ERROR|%s|%d|%s\n";
@@ -101,12 +102,18 @@ async void run () {
                     GLib.Memory.copy (last_uri.data,
                                       (void *) parts[0],
                                       parts[0].length);
-                    var is_text = parts[1].has_prefix ("text/") ||
-                                  parts[1].has_suffix ("xml");
-                    if (metadata && !is_text) {
-                        info = discoverer.discover_uri (parts[0]);
+                    if (metadata) {
+                        var is_text = parts[1].has_prefix ("text/") ||
+                                      parts[1].has_suffix ("xml");
+                        if (parts[1] == "application/x-cd-image") {
+                            var file = File.new_for_uri (parts[0]);
+                            var parser = new Rygel.DVDParser (file);
+                            yield parser.run ();
+                        } else if (!is_text) {
+                            info = discoverer.discover_uri (parts[0]);
 
-                        debug ("Finished discover on URI %s", parts[0]);
+                            debug ("Finished discover on URI %s", parts[0]);
+                        }
                     }
                     yield process_meta_data (parts[0], info);
                 } catch (Error error) {

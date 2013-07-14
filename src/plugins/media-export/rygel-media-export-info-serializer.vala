@@ -87,6 +87,8 @@ internal class Rygel.InfoSerializer : GLib.Object {
                 upnp_class = UPNP_CLASS_MUSIC;
             } else if (mime.has_suffix ("/xml")) { // application/xml or text/xml
                 upnp_class = UPNP_CLASS_PLAYLIST;
+            } else if (mime == "application/x-cd-image") {
+                upnp_class = UPNP_CLASS_PLAYLIST_CONTAINER;
             } else {
                 debug ("Unsupported content-type %s, skipping %s…",
                        mime,

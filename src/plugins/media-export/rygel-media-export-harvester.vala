@@ -74,8 +74,8 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
             info.get_content_type () == "application/ogg" ||
             info.get_content_type () == "application/xml" ||
             info.get_content_type () == "text/xml" ||
-            info.get_content_type () == "text/plain";
-
+            info.get_content_type () == "text/plain" ||
+            info.get_content_type () == "application/x-cd-image";
         var cache = MediaCache.get_default ();
         var is_blacklisted = cache.is_blacklisted (file);
 
