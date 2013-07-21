@@ -34,6 +34,7 @@ build-aux/install-sh
 build-aux/ltmain.sh
 build-aux/missing
 build-aux/mkinstalldirs
+build-aux/test-driver
 config.h
 config.h.in
 config.log
@@ -101,7 +102,9 @@ tests/rygel-environment-test
 tests/rygel-media-engine-test
 tests/plugins/media-export/regression
 doc/rygel.1
+doc/rygel.html
 doc/rygel.conf.5
+doc/rygel.conf.html
 doc/reference/*/gtkdoc/*.txt
 doc/reference/*/gtkdoc/html.stamp
 doc/reference/*/gtkdoc/sgml.stamp
@@ -109,6 +112,7 @@ doc/reference/*/gtkdoc/ccomments
 doc/reference/*/gtkdoc/xml
 doc/reference/*/gtkdoc/cscan
 doc/reference/*/gtkdoc/*.args
+doc/reference/*/gtkdoc/*.c
 doc/reference/*/gtkdoc/*.interfaces
 doc/reference/*/gtkdoc/*.hierarchy
 doc/reference/*/gtkdoc/*.signals
