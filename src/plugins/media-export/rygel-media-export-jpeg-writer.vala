@@ -47,6 +47,10 @@ internal class Rygel.MediaExport.JPEGWriter : GLib.Object {
         this.loop = new MainLoop (null, false);
     }
 
+    ~JPEGWriter () {
+        this.bin.get_bus ().remove_signal_watch ();
+    }
+
     /**
      * Write a Gst.Buffer as retrieved from the Gst.TagList to disk.
      *
