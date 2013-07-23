@@ -1,3 +1,44 @@
+0.18.3
+======
+
+A bugfix release for Rygel!
+
+Changes compared to 0.18.3:
+
+Server:
+- Fix DLNA transfer mode handling for generated DIDL_S playlists.
+- Fix time-seek on full-range seek requests.
+- Fix a rare issue with item creation returning the wrong meta-data.
+- Fix UpdateObject UPnP call to actually work.
+- Fix error codes for several of the UPnP calls.
+- Always add an entry to the user agent cache, even if the hack doesn't apply.
+
+GStreamer media engine:
+- Fix a typo in a preset file that might break transcoding.
+- Don't crash when a RTP depayloader cannot be found.
+
+MediaExport:
+- Fix sorting by date.
+- Don't leak file descriptors in the album art JPEG writer.
+
+Preferences UI:
+- Don't lose the interface setting.
+
+All bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=700570
+ - https://bugzilla.gnome.org/show_bug.cgi?id=694357
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702262
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702743
+ - https://bugzilla.gnome.org/show_bug.cgi?id=701637
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702083
+ - https://bugzilla.gnome.org/show_bug.cgi?id=703140
+ - https://bugzilla.gnome.org/show_bug.cgi?id=701948
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  Parthiban Balasubramanian <p.balasubramanian@cablelabs.com>
+  Andreas Henriksson <andreas@fatal.se>
+
 0.18.2
 ======
 
