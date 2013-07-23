@@ -21,6 +21,7 @@
  */
 
 using Rygel;
+using Gst;
 
 public void module_init (PluginLoader loader) {
     if (loader.plugin_disabled (Playbin.Plugin.NAME)) {
@@ -29,6 +30,10 @@ public void module_init (PluginLoader loader) {
 
         return;
     }
+
+    unowned string[] args = null;
+
+    Gst.init (ref args);
 
     var plugin = new Playbin.Plugin ();
 
