@@ -43,7 +43,7 @@ public class Rygel.ClientHacks {
         }
     }
 
-    public void apply (MediaItem? item) {
+    public void apply (MediaObject? item) {
     }
 
     public bool force_seek () {

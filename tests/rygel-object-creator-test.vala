@@ -221,6 +221,7 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
     public int child_count { get; set; }
     public string sort_criteria = "+dc:title";
     public static const string ANY = "DLNA.ORG_AnyContainer";
+    public static const string UPNP_CLASS = "object.container";
     public static const string STORAGE_FOLDER =
         "object.container.storageFolder";
     public static const string PLAYLIST =
@@ -282,6 +283,7 @@ public class Rygel.SearchableContainer : Rygel.MediaContainer {
 public errordomain Rygel.ContentDirectoryError {
     BAD_METADATA,
     NO_SUCH_OBJECT,
+    NO_SUCH_CONTAINER,
     INVALID_ARGS,
     RESTRICTED_PARENT,
     ERROR
@@ -353,12 +355,14 @@ public class Rygel.HTTPObjectCreatorTest : GLib.Object {
 
     // expected errors
     Error no_such_object;
+    Error no_such_container;
     Error restricted_parent;
     Error bad_metadata;
     Error invalid_args;
 
     public HTTPObjectCreatorTest () {
         this.no_such_object = new ContentDirectoryError.NO_SUCH_OBJECT("");
+        this.no_such_container = new ContentDirectoryError.NO_SUCH_CONTAINER("");
         this.restricted_parent = new ContentDirectoryError.RESTRICTED_PARENT("");
         this.bad_metadata = new ContentDirectoryError.BAD_METADATA("");
         this.invalid_args = new ContentDirectoryError.INVALID_ARGS("");
@@ -428,7 +432,7 @@ public class Rygel.HTTPObjectCreatorTest : GLib.Object {
 
         // test item node with restricted=1
         tmp->set_prop ("restricted", "1");
-        this.test_didl_parsing_step (xml, invalid_args.code);
+        this.test_didl_parsing_step (xml, bad_metadata.code);
 
         // test item node with invalid id
         tmp->unlink ();
@@ -475,13 +479,13 @@ public class Rygel.HTTPObjectCreatorTest : GLib.Object {
         var action = new ServiceAction ("0", DIDL_ITEM);
         var creator = new ObjectCreator (content_directory, action);
         this.test_fetch_container_run (creator);
-        assert (action.error_code == no_such_object.code);
+        assert (action.error_code == no_such_container.code);
 
         // check case when found object is not a container → Error 710
         // cf. ContentDirectory:2 spec, Table 2-22
         root_container.found_object = new MediaObject ();
         this.test_fetch_container_run (creator);
-        assert (action.error_code == no_such_object.code);
+        assert (action.error_code == no_such_container.code);
 
         // check case when found container does not have OCMUpload set
         root_container.found_object = new MediaContainer ();
@@ -505,7 +509,7 @@ public class Rygel.HTTPObjectCreatorTest : GLib.Object {
         content_directory.root_container = new MediaContainer ();
         action.id = "DLNA.ORG_AnyContainer";
         this.test_fetch_container_run (creator);
-        assert (action.error_code == no_such_object.code);
+        assert (action.error_code == no_such_container.code);
 
         // check DLNA.ORG_AnyContainer when no writable container is found
         content_directory.root_container = new SearchableContainer ();
