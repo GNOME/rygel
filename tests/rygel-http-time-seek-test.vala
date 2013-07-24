@@ -283,7 +283,7 @@ private class Rygel.HTTPTimeSeekTest : GLib.Object {
 
         assert (seek != null);
         assert (seek.start == start);
-        assert (seek.stop == stop);
+        assert (seek.stop == stop - 1);
         assert (seek.length == seek.stop + TimeSpan.MILLISECOND - seek.start);
 
         var audio_item = request.object as AudioItem;
