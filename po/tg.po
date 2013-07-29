@@ -1,0 +1,1029 @@
+# Tajik translation for rygel.
+# Copyright (C) 2013 rygel's COPYRIGHT HOLDER
+# This file is distributed under the same license as the rygel package.
+# Victor Ibragimov <victor.ibragimov@gmail.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: rygel master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-07-29 05:52+0000\n"
+"PO-Revision-Date: 2013-07-29 13:25-0000\n"
+"Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
+"Language-Team: Tajik <tg@li.org>\n"
+"Language: tg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: ../data/rygel-preferences.ui.h:1
+#: ../data/rygel-preferences.desktop.in.in.h:1
+msgid "Rygel Preferences"
+msgstr ""
+
+#: ../data/rygel-preferences.ui.h:2
+msgid "column"
+msgstr ""
+
+#: ../data/rygel-preferences.ui.h:3
+msgid "Add a directory to the list of shared directories"
+msgstr ""
+
+#: ../data/rygel-preferences.ui.h:4
+msgid "Add shared directory"
+msgstr ""
+
+#: ../data/rygel-preferences.ui.h:5
+msgid "Remove a directory from the list of shared directories"
+msgstr ""
+
+#: ../data/rygel-preferences.ui.h:6
+msgid "Remove shared directory"
+msgstr ""
+
+#: ../data/rygel-preferences.ui.h:7
+msgid "_Share media through DLNA"
+msgstr ""
+
+#: ../data/rygel-preferences.ui.h:8
+msgid "Networks:"
+msgstr ""
+
+#: ../data/rygel-preferences.ui.h:9
+msgid "Select folders"
+msgstr ""
+
+#: ../data/rygel-preferences.desktop.in.in.h:2
+msgid "UPnP/DLNA Preferences"
+msgstr ""
+
+#: ../data/rygel.desktop.in.in.h:1
+msgid "Rygel"
+msgstr ""
+
+#: ../data/rygel.desktop.in.in.h:2
+msgid "UPnP/DLNA Services"
+msgstr ""
+
+#: ../data/rygel.desktop.in.in.h:3
+msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
+msgstr ""
+
+#: ../src/plugins/external/rygel-external-plugin-factory.vala:35
+#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
+#, c-format
+msgid "Module '%s' could not connect to D-Bus session bus. "
+msgstr ""
+
+#: ../src/plugins/external/rygel-external-variant-util.vala:29
+#: ../src/plugins/external/rygel-external-variant-util.vala:47
+#, c-format
+msgid "External provider %s did not provide mandatory "
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-database-cursor.vala:81
+#, c-format
+msgid "Unsupported type %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-database.vala:217
+#, c-format
+msgid "Failed to roll back transaction: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:135
+#, c-format
+msgid "'%s' harvested"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:178
+#, c-format
+msgid "Error fetching object '%s' from database: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:186
+#, c-format
+msgid "Failed to query info of a file %s: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:216
+#, c-format
+msgid "Error removing object from database: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:114
+#, c-format
+msgid "Failed to harvest file %s: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:164
+#, c-format
+msgid "Failed to query database: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
+#, c-format
+msgid "failed to enumerate folder: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
+#, c-format
+msgid "Failed to get children of container %s: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:129
+#, c-format
+msgid "Failed to add item with ID %s: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:531
+msgid "Cannot create references to containers"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
+#, c-format
+msgid "Failed to query content type for '%s'"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:53
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
+msgid "All"
+msgstr "Ҳама"
+
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:57
+#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:63
+#, c-format
+msgid "Can't create items in %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:78
+#, c-format
+msgid "Can't add containers in %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:86
+#, c-format
+msgid "Can't remove containers in %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:42
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
+msgid "Playlists"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:71
+#, c-format
+msgid "Can't remove items in %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:81
+#, c-format
+msgid "upnp:class not supported in %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
+msgid "Will not monitor file changes"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:95
+#, c-format
+msgid "Failed to get file info for %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
+#: ../src/plugins/tracker/rygel-tracker-years.vala:33
+msgid "Year"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
+msgid "Artist"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:40
+msgid "Album"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:41
+#: ../src/plugins/tracker/rygel-tracker-genre.vala:31
+msgid "Genre"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:56
+msgid "Files & Folders"
+msgstr ""
+
+#. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:346
+#: ../src/plugins/tracker/rygel-tracker-plugin.vala:33
+msgid "@REALNAME@'s media"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:433
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:500
+#, c-format
+msgid "Failed to remove entry: %s"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:579
+msgid "Music"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:582
+msgid "Pictures"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:584
+msgid "Videos"
+msgstr ""
+
+#: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
+msgid "GStreamer Player"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-albums.vala:31
+msgid "Albums"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-artists.vala:31
+msgid "Artists"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
+#, c-format
+msgid "Failed to create a Tracker connection: %s"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:62
+#, c-format
+msgid "Failed to construct URI for folder '%s': %s"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:77
+#, c-format
+msgid "Could not subscribe to Tracker signals: %s"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:95
+msgid "Not supported"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-metadata-container.vala:58
+#, c-format
+msgid "Failed to create Tracker connection: %s"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-metadata-container.vala:110
+#, c-format
+msgid "Error getting all values for '%s': %s"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:42
+#, c-format
+msgid "Failed to start Tracker service: %s. Plugin disabled."
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:104
+#, c-format
+msgid "Failed to get Tracker connection: %s"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-search-container.vala:228
+#, c-format
+msgid "Error getting item count under category '%s': %s"
+msgstr ""
+
+#: ../src/plugins/tracker/rygel-tracker-titles.vala:58
+msgid "Titles"
+msgstr ""
+
+#: ../src/librygel-core/rygel-base-configuration.vala:30
+#: ../src/librygel-core/rygel-base-configuration.vala:34
+#: ../src/librygel-core/rygel-base-configuration.vala:39
+#: ../src/librygel-core/rygel-base-configuration.vala:43
+#: ../src/librygel-core/rygel-base-configuration.vala:47
+#: ../src/librygel-core/rygel-base-configuration.vala:51
+#: ../src/librygel-core/rygel-base-configuration.vala:55
+#: ../src/librygel-core/rygel-base-configuration.vala:59
+#: ../src/librygel-core/rygel-base-configuration.vala:63
+#: ../src/librygel-core/rygel-base-configuration.vala:67
+#: ../src/librygel-core/rygel-base-configuration.vala:71
+#: ../src/librygel-core/rygel-base-configuration.vala:75
+#: ../src/librygel-core/rygel-base-configuration.vala:79
+#: ../src/librygel-core/rygel-base-configuration.vala:83
+#: ../src/librygel-core/rygel-base-configuration.vala:87
+#: ../src/librygel-core/rygel-base-configuration.vala:91
+#: ../src/librygel-core/rygel-base-configuration.vala:97
+#: ../src/librygel-core/rygel-base-configuration.vala:103
+#: ../src/librygel-core/rygel-base-configuration.vala:111
+#: ../src/librygel-core/rygel-base-configuration.vala:117
+#: ../src/librygel-core/rygel-base-configuration.vala:123
+msgid "Not implemented"
+msgstr ""
+
+#: ../src/librygel-core/rygel-connection-manager.vala:91
+#: ../src/librygel-core/rygel-connection-manager.vala:105
+#: ../src/librygel-core/rygel-connection-manager.vala:127
+#: ../src/librygel-renderer/rygel-av-transport.vala:214
+#: ../src/librygel-renderer/rygel-rendering-control.vala:128
+#: ../src/librygel-server/rygel-content-directory.vala:265
+#: ../src/librygel-server/rygel-content-directory.vala:292
+#: ../src/librygel-server/rygel-content-directory.vala:311
+#: ../src/librygel-server/rygel-content-directory.vala:346
+#: ../src/librygel-server/rygel-content-directory.vala:371
+#: ../src/librygel-server/rygel-content-directory.vala:396
+#: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
+msgid "Invalid argument"
+msgstr ""
+
+#: ../src/librygel-core/rygel-connection-manager.vala:121
+msgid "Invalid connection reference"
+msgstr ""
+
+#: ../src/librygel-core/rygel-description-file.vala:339
+#, c-format
+msgid "Failed to write modified description to %s"
+msgstr ""
+
+#: ../src/librygel-core/rygel-log-handler.vala:68
+#, c-format
+msgid "Failed to get log level from configuration: %s"
+msgstr ""
+
+#: ../src/librygel-core/rygel-meta-config.vala:89
+#: ../src/librygel-core/rygel-meta-config.vala:108
+#: ../src/librygel-core/rygel-meta-config.vala:128
+#: ../src/librygel-core/rygel-meta-config.vala:147
+#: ../src/librygel-core/rygel-meta-config.vala:166
+#: ../src/librygel-core/rygel-meta-config.vala:185
+#: ../src/librygel-core/rygel-meta-config.vala:204
+#: ../src/librygel-core/rygel-meta-config.vala:223
+#: ../src/librygel-core/rygel-meta-config.vala:242
+#: ../src/librygel-core/rygel-meta-config.vala:261
+#: ../src/librygel-core/rygel-meta-config.vala:280
+#: ../src/rygel/rygel-cmdline-config.vala:159
+#: ../src/rygel/rygel-cmdline-config.vala:167
+#: ../src/rygel/rygel-cmdline-config.vala:176
+#: ../src/rygel/rygel-cmdline-config.vala:184
+#: ../src/rygel/rygel-cmdline-config.vala:192
+#: ../src/rygel/rygel-cmdline-config.vala:200
+#: ../src/rygel/rygel-cmdline-config.vala:208
+#: ../src/rygel/rygel-cmdline-config.vala:216
+#: ../src/rygel/rygel-cmdline-config.vala:255
+#: ../src/rygel/rygel-cmdline-config.vala:274
+#: ../src/rygel/rygel-cmdline-config.vala:280
+#: ../src/rygel/rygel-cmdline-config.vala:287
+#: ../src/rygel/rygel-cmdline-config.vala:291
+#: ../src/rygel/rygel-cmdline-config.vala:295
+#: ../src/rygel/rygel-cmdline-config.vala:318
+#: ../src/rygel/rygel-cmdline-config.vala:344
+#: ../src/rygel/rygel-cmdline-config.vala:373
+#: ../src/rygel/rygel-cmdline-config.vala:399
+#: ../src/rygel/rygel-cmdline-config.vala:424
+#: ../src/rygel/rygel-environment-config.vala:105
+#: ../src/rygel/rygel-environment-config.vala:109
+#: ../src/rygel/rygel-environment-config.vala:113
+msgid "No value available"
+msgstr ""
+
+#. translators: "enabled" is part of the config key and must not be translated
+#: ../src/librygel-core/rygel-meta-config.vala:344
+#, c-format
+msgid "No value set for '%s/enabled'"
+msgstr ""
+
+#. translators: "title" is part of the config key and must not be translated
+#: ../src/librygel-core/rygel-meta-config.vala:363
+#, c-format
+msgid "No value set for '%s/title'"
+msgstr ""
+
+#: ../src/librygel-core/rygel-meta-config.vala:383
+#: ../src/librygel-core/rygel-meta-config.vala:405
+#: ../src/librygel-core/rygel-meta-config.vala:431
+#: ../src/librygel-core/rygel-meta-config.vala:453
+#: ../src/librygel-core/rygel-meta-config.vala:477
+#, c-format
+msgid "No value available for '%s/%s'"
+msgstr ""
+
+#: ../src/librygel-core/rygel-plugin-information.vala:61
+msgid "[Plugin] group not found"
+msgstr ""
+
+#: ../src/librygel-core/rygel-plugin-information.vala:79
+#, c-format
+msgid "Plugin module %s does not exist"
+msgstr ""
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:81
+#, c-format
+msgid "New plugin '%s' available"
+msgstr ""
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:96
+#, c-format
+msgid "A module named %s is already loaded"
+msgstr ""
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:105
+#, c-format
+msgid "Failed to load module from path '%s': %s"
+msgstr ""
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:115
+#, c-format
+msgid "Failed to find entry point function '%s' in '%s': %s"
+msgstr ""
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:144
+#, c-format
+msgid "Error listing contents of folder '%s': %s"
+msgstr ""
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:188
+#, c-format
+msgid "Could not load plugin: %s"
+msgstr ""
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:220
+#: ../src/librygel-renderer/rygel-rendering-control.vala:134
+msgid "Invalid InstanceID"
+msgstr ""
+
+#. FIXME: Return a more sensible error here.
+#: ../src/librygel-renderer/rygel-av-transport.vala:271
+#: ../src/librygel-renderer/rygel-av-transport.vala:695
+#: ../src/librygel-renderer/rygel-av-transport.vala:705
+msgid "Resource not found"
+msgstr ""
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:281
+msgid "Illegal MIME-type"
+msgstr ""
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:553
+msgid "Play speed not supported"
+msgstr ""
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:570
+msgid "Transition not available"
+msgstr ""
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:599
+#: ../src/librygel-renderer/rygel-av-transport.vala:623
+msgid "Seek mode not supported"
+msgstr ""
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:612
+#: ../src/librygel-renderer/rygel-av-transport.vala:633
+#: ../src/librygel-renderer/rygel-av-transport.vala:641
+msgid "Illegal seek target"
+msgstr ""
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:165
+msgid "Invalid Name"
+msgstr ""
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:179
+msgid "Invalid Channel"
+msgstr ""
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:215
+#: ../src/librygel-renderer/rygel-rendering-control.vala:257
+#: ../src/librygel-renderer/rygel-rendering-control.vala:266
+msgid "Action Failed"
+msgstr ""
+
+#: ../src/librygel-server/rygel-browse.vala:63
+msgid "Invalid Arguments"
+msgstr ""
+
+#: ../src/librygel-server/rygel-browse.vala:94
+msgid "Cannot browse children on item"
+msgstr ""
+
+#: ../src/librygel-server/rygel-browse.vala:130
+#, c-format
+msgid "Failed to browse '%s': %s\n"
+msgstr ""
+
+#: ../src/librygel-server/rygel-client-hacks.vala:131
+msgid "Not Applicable"
+msgstr ""
+
+#: ../src/librygel-server/rygel-content-directory.vala:284
+#: ../src/librygel-server/rygel-content-directory.vala:303
+msgid "No such file transfer"
+msgstr ""
+
+#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:115
+msgid "No D-Bus thumbnailer service available"
+msgstr ""
+
+#. Range header was present but invalid
+#: ../src/librygel-server/rygel-http-byte-seek.vala:49
+#: ../src/librygel-server/rygel-http-byte-seek.vala:54
+#: ../src/librygel-server/rygel-http-time-seek.vala:49
+#: ../src/librygel-server/rygel-http-time-seek.vala:61
+#: ../src/librygel-server/rygel-http-time-seek.vala:68
+#: ../src/librygel-server/rygel-http-time-seek.vala:83
+#, c-format
+msgid "Invalid Range '%s'"
+msgstr ""
+
+#: ../src/librygel-server/rygel-http-get.vala:59
+msgid "Invalid Request"
+msgstr ""
+
+#: ../src/librygel-server/rygel-http-identity-handler.vala:106
+#: ../src/librygel-server/rygel-http-transcode-handler.vala:58
+msgid "Not found"
+msgstr ""
+
+#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#, c-format
+msgid "Invalid URI '%s'"
+msgstr ""
+
+#: ../src/librygel-server/rygel-http-item-uri.vala:179
+msgid "Not Found"
+msgstr ""
+
+#: ../src/librygel-server/rygel-http-playlist-handler.vala:50
+msgid "Seeking not supported"
+msgstr ""
+
+#: ../src/librygel-server/rygel-http-playlist-handler.vala:97
+msgid "Failed to generate playlist"
+msgstr ""
+
+#: ../src/librygel-server/rygel-http-post.vala:62
+#: ../src/librygel-server/rygel-import-resource.vala:189
+#, c-format
+msgid "Pushing data to non-empty item '%s' not allowed"
+msgstr ""
+
+#: ../src/librygel-server/rygel-http-post.vala:71
+#, c-format
+msgid "No writable URI for %s available"
+msgstr ""
+
+#. translators: Dotfile is the filename with prefix "."
+#: ../src/librygel-server/rygel-http-post.vala:186
+#, c-format
+msgid "Failed to move dotfile %s: %s"
+msgstr ""
+
+#: ../src/librygel-server/rygel-http-request.vala:92
+#, c-format
+msgid "Requested item '%s' not found"
+msgstr ""
+
+#: ../src/librygel-server/rygel-http-seek.vala:95
+#, c-format
+msgid "Out Of Range Start '%ld'"
+msgstr ""
+
+#: ../src/librygel-server/rygel-http-seek.vala:99
+#, c-format
+msgid "Out Of Range Stop '%ld'"
+msgstr ""
+
+#: ../src/librygel-server/rygel-import-resource.vala:124
+#, c-format
+msgid "Failed to get original URI for '%s': %s"
+msgstr ""
+
+#: ../src/librygel-server/rygel-import-resource.vala:186
+#, c-format
+msgid "URI '%s' invalid for importing contents to"
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:53
+msgid "ContainerID missing"
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:60
+#, c-format
+msgid "Successfully destroyed object '%s'"
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:68
+#, c-format
+msgid "Failed to destroy object '%s': %s"
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:102
+#: ../src/librygel-server/rygel-item-updater.vala:189
+#: ../src/librygel-server/rygel-media-query-action.vala:115
+#: ../src/librygel-server/rygel-media-query-action.vala:182
+#: ../src/librygel-server/rygel-object-creator.vala:195
+#: ../src/librygel-server/rygel-reference-creator.vala:68
+#: ../src/librygel-server/rygel-reference-creator.vala:113
+msgid "No such object"
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:105
+#, c-format
+msgid "Removal of object %s not allowed"
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:108
+#, c-format
+msgid "Object removal from %s not allowed"
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-updater.vala:70
+msgid "Object id missing"
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-updater.vala:77
+#, c-format
+msgid "Successfully updated object '%s'"
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-updater.vala:85
+#, c-format
+msgid "Failed to update object '%s': %s"
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-updater.vala:162
+msgid "Bad current tag value."
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-updater.vala:166
+msgid "Bad new tag value."
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-updater.vala:169
+msgid "Tried to delete required tag."
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-updater.vala:172
+msgid "Tried to change read-only property."
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-updater.vala:175
+msgid "Parameter count mismatch."
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-updater.vala:178
+msgid "Unknown error."
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-updater.vala:191
+#, c-format
+msgid "Metadata modification of object %s not allowed"
+msgstr ""
+
+#: ../src/librygel-server/rygel-item-updater.vala:196
+#, c-format
+msgid ""
+"Metadata modification of object %s being a child of restricted object %s not "
+"allowed"
+msgstr ""
+
+#: ../src/librygel-server/rygel-m3u-playlist.vala:67
+#: ../src/librygel-server/rygel-m3u-playlist.vala:70
+msgid "Unknown"
+msgstr ""
+
+#: ../src/librygel-server/rygel-media-engine.vala:69
+msgid "No media engine found."
+msgstr ""
+
+#: ../src/librygel-server/rygel-media-engine.vala:80
+msgid "MediaEngine.init was not called. Cannot continue."
+msgstr ""
+
+#: ../src/librygel-server/rygel-media-item.vala:322
+#, c-format
+msgid "Bad URI: %s"
+msgstr ""
+
+#. Assume the protocol to be the scheme of the URI
+#: ../src/librygel-server/rygel-media-item.vala:334
+#, c-format
+msgid "Failed to probe protocol for URI %s. Assuming '%s'"
+msgstr ""
+
+#: ../src/librygel-server/rygel-media-query-action.vala:120
+msgid "Invalid range"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:186
+msgid "'Elements' argument missing."
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:189
+msgid "Comments not allowed in XML"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:219
+#, c-format
+msgid "No objects in DIDL-Lite from client: '%s'"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:226
+msgid "@id must be set to \"\" in CreateObject call"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:231
+msgid "dc:title must not be empty in CreateObject call"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:242
+msgid "Flags that must not be set were found in 'dlnaManaged'"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:250
+msgid "Invalid upnp:class given in CreateObject"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:255
+msgid "Cannot create restricted item"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:320
+#, c-format
+msgid "UPnP class '%s' not supported"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:349
+msgid "No such container"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:353
+#: ../src/librygel-server/rygel-object-creator.vala:622
+#: ../src/librygel-server/rygel-reference-creator.vala:117
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:381
+#, c-format
+msgid "Failed to create item under '%s': %s"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:455
+#, c-format
+msgid "DLNA profile '%s' not supported"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:513
+#, c-format
+msgid "Invalid date format: %s"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:522
+#, c-format
+msgid "Invalid date: %s"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:555
+#, c-format
+msgid "Cannot create object of class '%s': Not supported"
+msgstr ""
+
+#: ../src/librygel-server/rygel-object-creator.vala:653
+#, c-format
+msgid ""
+"Error from container '%s' on trying to find the newly added child object "
+"'%s' in it: %s"
+msgstr ""
+
+#: ../src/librygel-server/rygel-reference-creator.vala:50
+msgid "'ContainerID' agument missing."
+msgstr ""
+
+#: ../src/librygel-server/rygel-reference-creator.vala:55
+msgid "'ObjectID' argument missing."
+msgstr ""
+
+#: ../src/librygel-server/rygel-reference-creator.vala:84
+#, c-format
+msgid "Failed to create object under '%s': %s"
+msgstr ""
+
+#: ../src/librygel-server/rygel-search.vala:93
+#, c-format
+msgid "Failed to search in '%s': %s"
+msgstr ""
+
+#: ../src/librygel-server/rygel-subtitle-manager.vala:85
+msgid "No subtitle available"
+msgstr ""
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:61
+#, c-format
+msgid "No thumbnailer available: %s"
+msgstr ""
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:74
+msgid "Thumbnailing not supported"
+msgstr ""
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:88
+#: ../src/librygel-server/rygel-thumbnailer.vala:97
+#: ../src/librygel-server/rygel-thumbnailer.vala:102
+#: ../src/librygel-server/rygel-thumbnailer.vala:113
+msgid "No thumbnail available"
+msgstr ""
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:132
+msgid "No D-Bus thumbnailer available"
+msgstr ""
+
+#: ../src/librygel-server/rygel-transcode-manager.vala:79
+#, c-format
+msgid "No transcoder available for target format '%s'"
+msgstr ""
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:39
+#, c-format
+msgid "Could not create GstElement for URI %s"
+msgstr ""
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:92
+msgid "Failed to create pipeline"
+msgstr ""
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr ""
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:138
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr ""
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:193
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr ""
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:200
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr ""
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:251
+#, c-format
+msgid "Failed to seek to offsets %lld:%lld"
+msgstr ""
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:255
+msgid "Failed to seek"
+msgstr ""
+
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:123
+#, c-format
+msgid "Failed to create GStreamer data source for %s: %s"
+msgstr ""
+
+#: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:88
+msgid ""
+"Could not create a transcoder configuration. Your GStreamer installation "
+"might be missing a plug-in"
+msgstr ""
+
+#: ../src/media-engines/gstreamer/rygel-gst-utils.vala:39
+#, c-format
+msgid "Required element %s missing"
+msgstr ""
+
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:56
+msgid "Time-based seek not supported"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:77
+msgid "Network Interfaces"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:81
+msgid "Disable transcoding"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:83
+msgid "Disallow upload"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:85
+msgid "Disallow deletion"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:87
+msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:89
+msgid "Plugin Path"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:91
+msgid "Engine Path"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:94
+msgid "Disable plugin"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:96
+msgid "Set plugin titles"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:98
+msgid "Set plugin options"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:100
+msgid "Disable UPnP (streaming-only)"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:102
+msgid "Use configuration file instead of user configuration"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:104
+msgid "Shutdown remote Rygel reference"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:141
+msgid "Shutting down remote Rygel instance\n"
+msgstr ""
+
+#: ../src/rygel/rygel-cmdline-config.vala:149
+#, c-format
+msgid "Failed to shut-down other rygel instance: %s"
+msgstr ""
+
+#: ../src/rygel/rygel-main.vala:83
+msgid "Rygel is running in streaming-only mode."
+msgstr ""
+
+#: ../src/rygel/rygel-main.vala:107
+#, c-format
+msgid "No plugins found in %d second; giving up..."
+msgid_plural "No plugins found in %d seconds; giving up..."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/rygel/rygel-main.vala:168
+#, c-format
+msgid "Failed to create root device factory: %s"
+msgstr ""
+
+#: ../src/rygel/rygel-main.vala:226
+#, c-format
+msgid "Failed to create RootDevice for %s. Reason: %s"
+msgstr ""
+
+#: ../src/rygel/rygel-main.vala:263
+#, c-format
+msgid "Failed to load user configuration: %s"
+msgstr ""
+
+#. TRANSLATORS: First %s is the file's path, second is the error message
+#: ../src/rygel/rygel-user-config.vala:252
+#: ../src/ui/rygel-user-config.vala:252
+#, c-format
+msgid "Failed to load user configuration from file '%s': %s"
+msgstr ""
+
+#: ../src/rygel/rygel-user-config.vala:305
+#: ../src/ui/rygel-user-config.vala:305
+#, c-format
+msgid "No value available for '%s'"
+msgstr ""
+
+#: ../src/rygel/rygel-user-config.vala:376
+#: ../src/ui/rygel-user-config.vala:376
+#, c-format
+msgid "Value of '%s' out of range"
+msgstr ""
+
+#: ../src/ui/rygel-preferences-dialog.vala:93
+#, c-format
+msgid "Failed to create preferences dialog: %s"
+msgstr ""
+
+#: ../src/ui/rygel-writable-user-config.vala:122
+#, c-format
+msgid "Failed to save configuration data to file '%s': %s"
+msgstr ""
+
+#: ../src/ui/rygel-writable-user-config.vala:221
+#, c-format
+msgid "Failed to start Rygel service: %s"
+msgstr ""
+
+#: ../src/ui/rygel-writable-user-config.vala:223
+#, c-format
+msgid "Failed to stop Rygel service: %s"
+msgstr ""
