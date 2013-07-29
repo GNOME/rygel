@@ -145,6 +145,12 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
                                          container.id);
             }
 
+            if (this.didl_object is DIDLLiteContainer &&
+                !this.validate_create_class (container)) {
+                throw new ContentDirectoryError.BAD_METADATA
+                                   (_("upnp:createClass value not supported"));
+            }
+
             yield this.create_object_from_didl (container);
             if (this.object is MediaItem) {
                 yield container.add_item (this.object as MediaItem,
@@ -391,6 +397,23 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
 
         this.action.return ();
         this.completed ();
+    }
+
+    private bool validate_create_class (WritableContainer container) {
+        var didl_cont = this.didl_object as DIDLLiteContainer;
+        var create_classes = didl_cont.get_create_classes ();
+
+        if (create_classes == null) {
+            return true;
+        }
+
+        foreach (var create_class in create_classes) {
+            if (!container.can_create (create_class)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void handle_error (Error error) {
