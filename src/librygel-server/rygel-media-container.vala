@@ -297,7 +297,8 @@ public abstract class Rygel.MediaContainer : MediaObject {
                                         (uint) this.total_deleted_child_count;
         }
 
-        if (this.parent == null && (this is SearchableContainer)) {
+        // If the container is searchable then it must add search class parameters.
+        if (this is SearchableContainer) {
             (this as SearchableContainer).serialize_search_parameters
                                         (didl_container);
         }

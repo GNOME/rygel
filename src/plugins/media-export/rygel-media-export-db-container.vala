@@ -39,6 +39,16 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
 
         this.media_db = MediaCache.get_default ();
         this.search_classes = new ArrayList<string> ();
+        // Items
+        this.search_classes.add (Rygel.ImageItem.UPNP_CLASS);
+        this.search_classes.add (Rygel.PhotoItem.UPNP_CLASS);
+        this.search_classes.add (Rygel.VideoItem.UPNP_CLASS);
+        this.search_classes.add (Rygel.AudioItem.UPNP_CLASS);
+        this.search_classes.add (Rygel.MusicItem.UPNP_CLASS);
+        this.search_classes.add (Rygel.PlaylistItem.UPNP_CLASS);
+
+        // Containers
+        this.search_classes.add (Rygel.MediaContainer.UPNP_CLASS);
         this.container_updated.connect ( () => {
                 this.child_count = this.count_children ();
             });
