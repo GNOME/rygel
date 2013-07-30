@@ -1,3 +1,101 @@
+0.19.4
+======
+
+A new unstable release of Rygel.
+
+Changes compared to 0.19.3:
+
+- Fix building with --enable-debug.
+- Fix device templates to have "correct" element order.
+- Add a target to generate the HTML versions of manpages; they are available
+  at http://rygel-project.org/doc/latest/rygel.html and
+  http://rygel-project.org/doc/latest/rygel.conf.html
+
+Core:
+ - Fix DescriptionFile.set_dlna_caps to properly create missing nodes.
+ - Keep order of elements when manipulating the device description in
+   DescriptionClass.
+ - Refactor code to only manipulate the device description from one place.
+
+Server:
+ - Fix seeking with full-range seeks on time-based seek requests.
+ - Fix a rare issue with item creation returning the wrong meta-data.
+ - Fix UpdateObject UPnP call to actually work.
+ - Use object.container by default and fall-back to
+   object.container.storageFolder for XBox 360.
+ - Fix error codes for serveral SOAP calls.
+ - Add support for dc:creator.
+ - Fix an accidental C ABI break.
+ - Always add a user agent to the agent cache even if it doesn't match the
+   current hack.
+ - Force HTTP 1.1 as recommended by DLNA.
+ - Fix upload of DIDL_S playlist items.
+ - Make it possible to override OCM flags in children of MediaObject.
+
+MediaExport:
+ - Use proper (full) iso8601 date format as required by DLNA.
+ - Use object.container by default and fall-back to
+   object.container.storageFolder for XBox 360.
+ - Use DLNA-compliant create-classes.
+ - Allow reference creation everywhere.
+ - Use dc:creator.
+ - Don't leak file descriptors in the JPEG writer.
+ - Set proper OCM flags on the playlist root container.
+ - Set proper <upnp:searchClass> on containers.
+
+Changes in dependencies:
+  Vala >= 0.20 is now required.
+
+All bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=701637
+ - https://bugzilla.gnome.org/show_bug.cgi?id=701948
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702083
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702231
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702254
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702255
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702256
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702258
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702262
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702451
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702555
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702743
+ - https://bugzilla.gnome.org/show_bug.cgi?id=703044
+ - https://bugzilla.gnome.org/show_bug.cgi?id=703140
+ - https://bugzilla.gnome.org/show_bug.cgi?id=703241
+ - https://bugzilla.gnome.org/show_bug.cgi?id=704066
+
+All contributors to this release:
+  Jens Georg <jensg@openismus.com>
+  Jussi Kukkonen <jussi.kukkonen@intel.com>
+  Daniel Mustieles <daniel.mustieles@gmail.com>
+  Parthiban Balasubramanian <p.balasubramanian@cablelabs.com>
+  Piotr Drąg <piotrdrag@gmail.com>
+  Kjartan Maraas <kmaraas@gnome.org>
+  Fran Diéguez <fran.dieguez@mabishu.com>
+  Victor Ibragimov <victor.ibragimov@gmail.com>
+  Marek Černocký <marek@manet.cz>
+  Enrico Nicoletto <liverig@gmail.com>
+  Edson Silva <edsonlead@gmail.com>
+  Dimitris Spingos <dmtrs32@gmail.com>
+  Christian Kirbach <christian.kirbach@gmail.com>
+  Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+  Benjamin Steinwender <b@stbe.at>
+  Andika Triwidada <andika@gmail.com>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - de, courtesy of Christian Kirbach
+ - el, courtesy of Dimitris Spingos (Δημήτρης Σπίγγος)
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Fran Dieguez
+ - id, courtesy of Andika Triwidada
+ - nb, courtesy of Kjartan Maraas
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Edson Silva
+ - tg, courtesy of Victor Ibragimov
+ - zh_HK, courtesy of Chao-Hsiung Liao
+ - zh_TW, courtesy of Chao-Hsiung Liao
+
 0.19.3
 ======
 
