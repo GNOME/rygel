@@ -47,28 +47,28 @@ internal class Rygel.MediaExport.NodeQueryContainer : QueryContainer {
         var children = new MediaObjects ();
         var factory = QueryContainerFactory.get_default ();
 
-        if (this.add_all_container ()) {
-            var id = this.template.replace (",upnp:album,%s","");
-            var container = factory.create_from_description_id (id,
-                                                                _("All"));
-            container.parent = this;
-            children.add (container);
-        }
-
         var data = this.media_db.get_object_attribute_by_search_expression
                                         (this.attribute,
                                          this.expression,
                                          // sort criteria
                                          offset,
-                                         max_count);
+                                         max_count,
+                                         this.add_all_container ());
 
         foreach (var meta_data in data) {
-            var new_id = Uri.escape_string (meta_data, "", true);
-            // template contains URL escaped text. This means it might
-            // contain '%' chars which will makes sprintf crash
-            new_id = this.template.replace ("%s", new_id);
-            var container = factory.create_from_description_id (new_id,
+            string id;
+            MediaContainer container;
+            if (meta_data == "all_place_holder") {
+                id = this.template.replace (",upnp:album,%s", "");
+                container = factory.create_from_description_id (id, _("All"));
+            } else {
+                id = Uri.escape_string (meta_data, "", true);
+                // template contains URL escaped text. This means it might
+                // contain '%' chars which will makes sprintf crash
+                id = this.template.replace ("%s", id);
+                container = factory.create_from_description_id (id,
                                                                 meta_data);
+            }
             container.parent = this;
             children.add (container);
         }
@@ -84,10 +84,8 @@ internal class Rygel.MediaExport.NodeQueryContainer : QueryContainer {
                                         (this.attribute,
                                          this.expression,
                                          0,
-                                         -1);
-            if (this.add_all_container ()) {
-                return data.size + 1;
-            }
+                                         -1,
+                                         this.add_all_container ());
 
             return data.size;
         } catch (Error error) {

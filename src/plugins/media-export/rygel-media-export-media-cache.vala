@@ -431,7 +431,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                                          string          filter,
                                          GLib.ValueArray args,
                                          long            offset,
-                                         long            max_count)
+                                         long            max_count,
+                                         bool            add_all_container)
                                          throws Error {
         GLib.Value v = offset;
         args.append (v);
@@ -440,7 +441,11 @@ public class Rygel.MediaExport.MediaCache : Object {
 
         var data = new ArrayList<string> ();
 
-        unowned string sql = this.sql.make (SQLString.GET_META_DATA_COLUMN);
+        var sql = this.sql.make (SQLString.GET_META_DATA_COLUMN);
+        if (add_all_container) {
+            sql = "SELECT 'all_place_holder' AS _column UNION " + sql;
+        }
+
         var cursor = this.db.exec_cursor (sql.printf (column, filter),
                                           args.values);
         foreach (var statement in cursor) {
@@ -457,7 +462,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                                         (string            attribute,
                                          SearchExpression? expression,
                                          long              offset,
-                                         uint              max_count)
+                                         uint              max_count,
+                                         bool              add_all_container)
                                          throws Error {
         var args = new ValueArray (0);
         var filter = MediaCache.translate_search_expression (expression,
@@ -473,7 +479,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                                                     filter,
                                                     args,
                                                     offset,
-                                                    max_objects);
+                                                    max_objects,
+                                                    add_all_container);
     }
 
     public string get_reset_token () {
