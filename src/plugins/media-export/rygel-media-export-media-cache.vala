@@ -431,6 +431,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                          string          filter,
                                          GLib.ValueArray args,
                                          long            offset,
+                                         string          sort_criteria,
                                          long            max_count,
                                          bool            add_all_container)
                                          throws Error {
@@ -441,12 +442,20 @@ public class Rygel.MediaExport.MediaCache : Object {
 
         var data = new ArrayList<string> ();
 
+        var sql_sort_order = MediaCache.translate_sort_criteria (sort_criteria);
+
+        // title here is actually the meta-data column, so if we had
+        // dc:title in the sort criteria, we need to change this
+        sql_sort_order = sql_sort_order.replace ("o.title", "_column");
+
         var sql = this.sql.make (SQLString.GET_META_DATA_COLUMN);
         if (add_all_container) {
             sql = "SELECT 'all_place_holder' AS _column UNION " + sql;
         }
 
-        var cursor = this.db.exec_cursor (sql.printf (column, filter),
+        var cursor = this.db.exec_cursor (sql.printf (column,
+                                                      filter,
+                                                      sql_sort_order),
                                           args.values);
         foreach (var statement in cursor) {
             data.add (statement.column_text (0));
@@ -461,6 +470,7 @@ public class Rygel.MediaExport.MediaCache : Object {
     public Gee.List<string> get_object_attribute_by_search_expression
                                         (string            attribute,
                                          SearchExpression? expression,
+                                         string            sort_criteria,
                                          long              offset,
                                          uint              max_count,
                                          bool              add_all_container)
@@ -479,6 +489,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                                     filter,
                                                     args,
                                                     offset,
+                                                    sort_criteria,
                                                     max_objects,
                                                     add_all_container);
     }

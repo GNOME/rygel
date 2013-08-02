@@ -50,7 +50,7 @@ internal class Rygel.MediaExport.NodeQueryContainer : QueryContainer {
         var data = this.media_db.get_object_attribute_by_search_expression
                                         (this.attribute,
                                          this.expression,
-                                         // sort criteria
+                                         sort_criteria,
                                          offset,
                                          max_count,
                                          this.add_all_container ());
@@ -83,6 +83,7 @@ internal class Rygel.MediaExport.NodeQueryContainer : QueryContainer {
             var data = this.media_db.get_object_attribute_by_search_expression
                                         (this.attribute,
                                          this.expression,
+                                         "+dc:title",
                                          0,
                                          -1,
                                          this.add_all_container ());
