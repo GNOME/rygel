@@ -93,6 +93,13 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
 
     protected virtual void parse_args () throws Error {
         int64 index, requested_count;
+
+        // Browse and Search action must have 6 mandatory arguments
+        if (action.get_argument_count () != 6) {
+            throw new ContentDirectoryError.INVALID_ARGS
+                                        (_("Invalid number of arguments"));
+        }
+
         this.action.get (this.object_id_arg,
                              typeof (string),
                              out this.object_id,
@@ -182,8 +189,13 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
             var media_object = yield this.root_container.find_object
                                         (this.object_id, this.cancellable);
             if (media_object == null) {
-                throw new ContentDirectoryError.NO_SUCH_OBJECT
-                                        (_("No such object"));
+                if (this.object_id_arg == "ObjectID"){
+                    throw new ContentDirectoryError.NO_SUCH_OBJECT
+                                            (_("No such object"));
+                }else{
+                    throw new ContentDirectoryError.NO_SUCH_CONTAINER
+                                            (_("No such container"));
+                }
             }
             debug ("object '%s' found.", this.object_id);
 
