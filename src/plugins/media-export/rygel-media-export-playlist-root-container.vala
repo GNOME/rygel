@@ -99,11 +99,13 @@ internal class Rygel.MediaExport.PlaylistRootContainer : Rygel.WritableContainer
 
         this.media_db.save_container (container);
         this.media_db.make_object_guarded (container);
+        this.updated ();
     }
 
     public async void remove_container (string id,
                                         Cancellable?    cancellable)
                                         throws Error {
         this.media_db.remove_by_id (id);
+        this.updated ();
     }
  }
