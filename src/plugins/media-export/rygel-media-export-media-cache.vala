@@ -439,10 +439,13 @@ public class Rygel.MediaExport.MediaCache : Object {
         args.append (v);
         v = max_count;
         args.append (v);
+        string extra_columns;
 
         var data = new ArrayList<string> ();
 
-        var sql_sort_order = MediaCache.translate_sort_criteria (sort_criteria);
+        var sql_sort_order = MediaCache.translate_sort_criteria
+                                        (sort_criteria,
+                                         out extra_columns);
 
         // title here is actually the meta-data column, so if we had
         // dc:title in the sort criteria, we need to change this
@@ -454,6 +457,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
 
         var cursor = this.db.exec_cursor (sql.printf (column,
+                                                      extra_columns,
                                                       filter,
                                                       sql_sort_order),
                                           args.values);
@@ -1139,9 +1143,12 @@ public class Rygel.MediaExport.MediaCache : Object {
         return this.db.query_value (this.sql.make (id), values);
     }
 
-    private static string translate_sort_criteria (string sort_criteria) {
+    private static string translate_sort_criteria
+                                        (string sort_criteria,
+                                         out string extra_columns = null) {
         string? collate;
         var builder = new StringBuilder("ORDER BY ");
+        var column_builder = new StringBuilder ();
         var fields = sort_criteria.split (",");
         foreach (unowned string field in fields) {
             try {
@@ -1152,14 +1159,18 @@ public class Rygel.MediaExport.MediaCache : Object {
                 if (field != fields[0]) {
                     builder.append (",");
                 }
+                column_builder.append (",");
                 builder.append_printf ("%s %s %s ",
                                        column,
                                        collate,
                                        field[0] == '-' ? "DESC" : "ASC");
+                column_builder.append (column);
             } catch (Error error) {
                 warning ("Skipping unsupported field: %s", field);
             }
         }
+
+        extra_columns = column_builder.str;
 
         return builder.str;
     }
