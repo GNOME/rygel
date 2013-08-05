@@ -80,7 +80,7 @@ public class Rygel.MediaExport.TrackableDbContainer : DBContainer,
         }
     }
 
-    protected async void remove_child (MediaObject object) {
+    protected virtual async void remove_child (MediaObject object) {
         try {
             this.media_db.remove_object (object);
         } catch (Error error) {

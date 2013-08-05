@@ -99,6 +99,18 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
         this.media_db.make_object_guarded (container);
     }
 
+    protected override async void remove_child (MediaObject object) {
+        yield base.remove_child (object);
+        var file = File.new_for_uri (object.uris[0]);
+        try {
+            yield file.delete_async ();
+        } catch (Error error) {
+            warning (_("Failed to remove file %s: %s"),
+                     file.get_path (),
+                     error.message);
+        }
+    }
+
     public virtual async void remove_item (string id, Cancellable? cancellable)
                                            throws Error {
         var object = this.media_db.get_object (id);
@@ -112,7 +124,7 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
     public virtual async void remove_container (string id,
                                                 Cancellable? cancellable)
                                                 throws Error {
-        throw new WritableContainerError.NOT_IMPLEMENTED ("Not supported");
+        yield this.remove_item (id, cancellable);
     }
 
 }
