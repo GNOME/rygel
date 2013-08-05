@@ -125,14 +125,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
                      this.destination_uri,
                      error.message);
 
-            int code;
-            if (error is ContentDirectoryError) {
-                code = error.code;
-            } else {
-                code = 719;
-            }
-
-            this.action.return_error (code, error.message);
+            this.action.return_error (error.code, error.message);
             this.status = TransferStatus.ERROR;
             this.completed ();
 
@@ -174,8 +167,14 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
     }
 
     private async MediaItem fetch_item () throws Error {
-        var uri = new HTTPItemURI.from_string (this.destination_uri,
+        HTTPItemURI uri;
+        try {
+            uri = new HTTPItemURI.from_string (this.destination_uri,
                                                this.http_server);
+        } catch (Error error) {
+            throw new ContentDirectoryError.NO_SUCH_DESTINATION_RESOURCE
+                                            (error.message);
+        }
         var media_object = yield this.root_container.find_object (uri.item_id,
                                                                   null);
         string msg = null;

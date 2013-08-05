@@ -111,8 +111,8 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
 
         if (this.object_id == null) {
             // Sorry we can't do anything without ObjectID
-            throw new ContentDirectoryError.NO_SUCH_OBJECT
-                                        (_("No such object"));
+            throw new ContentDirectoryError.INVALID_ARGS
+                                        (_("ObjectID argument missing"));
         }
 
         if (index < 0 || requested_count < 0) {

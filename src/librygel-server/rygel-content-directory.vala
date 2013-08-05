@@ -41,6 +41,7 @@ internal errordomain Rygel.ContentDirectoryError {
     RESTRICTED_OBJECT = 711,
     BAD_METADATA = 712,
     RESTRICTED_PARENT = 713,
+    NO_SUCH_FILE_TRANSFER = 717,
     NO_SUCH_DESTINATION_RESOURCE = 718,
     CANT_PROCESS = 720,
     OUTDATED_OBJECT_METADATA = 728,
@@ -267,8 +268,9 @@ internal class Rygel.ContentDirectory: Service {
             return;
         }
 
-        var import = find_import_for_action (action);
-        if (import != null) {
+        try {
+            var import = this.find_import_for_action (action);
+
             action.set ("TransferStatus",
                             typeof (string),
                             import.status_as_string,
@@ -280,8 +282,8 @@ internal class Rygel.ContentDirectory: Service {
                             import.bytes_total);
 
             action.return ();
-        } else {
-            action.return_error (717, _("No such file transfer"));
+        } catch (Error error) {
+            action.return_error (error.code, error.message);
         }
     }
 
@@ -294,13 +296,13 @@ internal class Rygel.ContentDirectory: Service {
             return;
         }
 
-        var import = find_import_for_action (action);
-        if (import != null) {
+        try {
+            var import = find_import_for_action (action);
             import.cancellable.cancel ();
 
             action.return ();
-        } else {
-            action.return_error (717, _("No such file transfer"));
+        } catch (Error error) {
+            action.return_error (error.code, error.message);
         }
     }
 
@@ -596,13 +598,24 @@ internal class Rygel.ContentDirectory: Service {
         });
     }
 
-    private ImportResource? find_import_for_action (ServiceAction action) {
+    private ImportResource? find_import_for_action (ServiceAction action)
+                                            throws ContentDirectoryError {
         ImportResource ret = null;
         uint32 transfer_id;
+        string transfer_id_string;
 
+        // TODO: Remove string hack once bgo#705516 is fixed
         action.get ("TransferID",
                         typeof (uint32),
-                        out transfer_id);
+                        out transfer_id,
+                    "TransferID",
+                        typeof (string),
+                        out transfer_id_string);
+        if (transfer_id == 0 &&
+            (transfer_id_string == null || transfer_id_string != "0")) {
+            throw new ContentDirectoryError.INVALID_ARGS
+                                        (_("Invalid argument"));
+        }
 
         foreach (var import in this.active_imports) {
             if (import.transfer_id == transfer_id) {
@@ -618,6 +631,11 @@ internal class Rygel.ContentDirectory: Service {
 
                 break;
             }
+        }
+
+        if (ret == null) {
+            throw new ContentDirectoryError.NO_SUCH_FILE_TRANSFER
+                                        (_("No such file transfer"));
         }
 
         return ret;

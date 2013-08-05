@@ -117,14 +117,15 @@ public class Rygel.ConnectionManager : Service {
         string connection_id;
 
         action.get ("ConnectionID", typeof (string), out connection_id);
-        if (connection_id == null || connection_id != "0") {
-            action.return_error (706, _("Invalid connection reference"));
+        if (connection_id == null || action.get_argument_count () != 1 ||
+            (connection_id != "0" && int.parse (connection_id) == 0)) {
+            action.return_error (402, _("Invalid argument"));
 
             return;
         }
 
-        if (action.get_argument_count () != 1) {
-            action.return_error (402, _("Invalid argument"));
+        if (connection_id != "0") {
+            action.return_error (706, _("Invalid connection reference"));
 
             return;
         }

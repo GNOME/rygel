@@ -197,8 +197,8 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
 
         if (this.container_id == null) {
             // Sorry we can't do anything without ContainerID
-            throw new ContentDirectoryError.NO_SUCH_OBJECT
-                                        (_("No such object"));
+            throw new ContentDirectoryError.INVALID_ARGS
+                                        (_("Missing ContainerID argument"));
         }
     }
 
