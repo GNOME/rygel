@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2012,2013 Intel Corporation.
  *
- * Author: Jens Georg <jensg@openismus.come
+ * Author: Jens Georg <jensg@openismus.com>
  *
  * Rygel is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
