@@ -102,8 +102,11 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
     public virtual async void remove_item (string id, Cancellable? cancellable)
                                            throws Error {
         var object = this.media_db.get_object (id);
-
-        yield this.remove_child_tracked (object);
+        if (object != null) {
+            yield this.remove_child_tracked (object);
+        } else {
+            warning (_("Could not find object %d in cache"), id);
+        }
     }
 
     public virtual async void remove_container (string id,
