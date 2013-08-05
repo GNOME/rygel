@@ -33,7 +33,11 @@
 public interface Rygel.TrackableContainer : Rygel.MediaContainer {
     public async void clear () {
         try {
-            var children = yield this.get_children (0, 0, "", null);
+            var children = yield this.get_children (0,
+                                                    -1,
+                                                    this.sort_criteria,
+                                                    null);
+
             if (children == null) {
                 return;
             }
@@ -42,6 +46,9 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
                 yield this.remove_child_tracked (child);
             }
         } catch (Error error) {
+            warning ("Failed to clear trackable container %s: %s",
+                     id,
+                     error.message);
         }
     }
 
