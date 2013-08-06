@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-03 14:24+0000\n"
-"PO-Revision-Date: 2013-08-03 19:56+0200\n"
+"POT-Creation-Date: 2013-08-06 13:17+0000\n"
+"PO-Revision-Date: 2013-08-06 21:02+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -143,7 +143,7 @@ msgstr "Selhalo získání potomků kontejneru %s: %s"
 msgid "Failed to add item with ID %s: %s"
 msgstr "Selhalo přidání položky s ID %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:531
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:553
 msgid "Cannot create references to containers"
 msgstr "Nelze vytvořit odkazy na kontejnery"
 
@@ -153,7 +153,7 @@ msgstr "Nelze vytvořit odkazy na kontejnery"
 msgid "Failed to query content type for '%s'"
 msgstr "Selhal dotaz na typ obsahu pro „%s“"
 
-#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:53
+#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
 msgid "All"
 msgstr "Vše"
@@ -244,6 +244,16 @@ msgstr "Obrázky"
 msgid "Videos"
 msgstr "Videa"
 
+#: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
+#, c-format
+msgid "Failed to remove file %s: %s"
+msgstr "Selhalo odstranění souboru %s: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:120
+#, c-format
+msgid "Could not find object %d in cache"
+msgstr "Nelze najít objekt %d v mezipaměti"
+
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
 msgstr "Přehrávač GStreamer"
@@ -330,20 +340,21 @@ msgstr "Není implementováno"
 
 #: ../src/librygel-core/rygel-connection-manager.vala:91
 #: ../src/librygel-core/rygel-connection-manager.vala:105
-#: ../src/librygel-core/rygel-connection-manager.vala:127
+#: ../src/librygel-core/rygel-connection-manager.vala:122
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
 #: ../src/librygel-renderer/rygel-rendering-control.vala:128
-#: ../src/librygel-server/rygel-content-directory.vala:265
-#: ../src/librygel-server/rygel-content-directory.vala:292
-#: ../src/librygel-server/rygel-content-directory.vala:311
-#: ../src/librygel-server/rygel-content-directory.vala:346
-#: ../src/librygel-server/rygel-content-directory.vala:371
-#: ../src/librygel-server/rygel-content-directory.vala:396
+#: ../src/librygel-server/rygel-content-directory.vala:266
+#: ../src/librygel-server/rygel-content-directory.vala:294
+#: ../src/librygel-server/rygel-content-directory.vala:313
+#: ../src/librygel-server/rygel-content-directory.vala:348
+#: ../src/librygel-server/rygel-content-directory.vala:373
+#: ../src/librygel-server/rygel-content-directory.vala:398
+#: ../src/librygel-server/rygel-content-directory.vala:617
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Neplatný argument"
 
-#: ../src/librygel-core/rygel-connection-manager.vala:121
+#: ../src/librygel-core/rygel-connection-manager.vala:128
 msgid "Invalid connection reference"
 msgstr "Neplatný odkaz na připojení"
 
@@ -519,8 +530,7 @@ msgstr "Selhalo procházení „%s“: %s\n"
 msgid "Not Applicable"
 msgstr "Nepoužitelné"
 
-#: ../src/librygel-server/rygel-content-directory.vala:284
-#: ../src/librygel-server/rygel-content-directory.vala:303
+#: ../src/librygel-server/rygel-content-directory.vala:638
 msgid "No such file transfer"
 msgstr "Žádný takový přenos souboru neexistuje"
 
@@ -566,7 +576,7 @@ msgid "Failed to generate playlist"
 msgstr "Selhalo vygenerování seznamu k přehrání"
 
 #: ../src/librygel-server/rygel-http-post.vala:62
-#: ../src/librygel-server/rygel-import-resource.vala:189
+#: ../src/librygel-server/rygel-import-resource.vala:188
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Vkládání dat do neprázdné položky „%s“ není dovoleno"
@@ -602,7 +612,7 @@ msgstr "Mimo rozsah konce „%ld“"
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Selhalo získání původní adresy URI pro „%s“: %s"
 
-#: ../src/librygel-server/rygel-import-resource.vala:186
+#: ../src/librygel-server/rygel-import-resource.vala:185
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Adresa URI „%s“ je neplatná pro import obsahu do ní"
@@ -621,22 +631,20 @@ msgstr "Objekt „%s“ úspěšně zničen"
 msgid "Failed to destroy object '%s': %s"
 msgstr "Selhalo zničení objektu „%s“: %s"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:102
+#: ../src/librygel-server/rygel-item-destroyer.vala:104
 #: ../src/librygel-server/rygel-item-updater.vala:189
-#: ../src/librygel-server/rygel-media-query-action.vala:115
-#: ../src/librygel-server/rygel-media-query-action.vala:182
-#: ../src/librygel-server/rygel-object-creator.vala:201
+#: ../src/librygel-server/rygel-media-query-action.vala:186
 #: ../src/librygel-server/rygel-reference-creator.vala:68
 #: ../src/librygel-server/rygel-reference-creator.vala:113
 msgid "No such object"
 msgstr "Žádný takový objekt neexistuje"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:105
+#: ../src/librygel-server/rygel-item-destroyer.vala:107
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "Odstranění objektu %s není dovoleno"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:108
+#: ../src/librygel-server/rygel-item-destroyer.vala:110
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "Odstranění objektu v %s není dovoleno"
@@ -718,9 +726,18 @@ msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr ""
 "Selhalo zjištění protokolu pro adresu URI %s. Bude se předpokládat „%s“"
 
+#: ../src/librygel-server/rygel-media-query-action.vala:115
+#| msgid "'ObjectID' argument missing."
+msgid "ObjectID argument missing"
+msgstr "Schází argument ObjectID"
+
 #: ../src/librygel-server/rygel-media-query-action.vala:120
 msgid "Invalid range"
 msgstr "Neplatný rozsah"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:124
+msgid "Missing filter"
+msgstr "Schází filtr"
 
 #: ../src/librygel-server/rygel-object-creator.vala:151
 msgid "upnp:createClass value not supported"
@@ -733,6 +750,11 @@ msgstr "Schází argument „Elements“."
 #: ../src/librygel-server/rygel-object-creator.vala:195
 msgid "Comments not allowed in XML"
 msgstr "V XML nejsou dovoleny komentáře"
+
+#: ../src/librygel-server/rygel-object-creator.vala:201
+#| msgid "'ContainerID' agument missing."
+msgid "Missing ContainerID argument"
+msgstr "Schází argument ContainerID"
 
 #: ../src/librygel-server/rygel-object-creator.vala:225
 #, c-format
@@ -759,53 +781,52 @@ msgstr "Neplatná třída upnp:class zadaná v CreateObject"
 msgid "Cannot create restricted item"
 msgstr "Nelze vytvořit omezenou položku"
 
-#: ../src/librygel-server/rygel-object-creator.vala:335
+#: ../src/librygel-server/rygel-object-creator.vala:378
 #, c-format
 msgid "UPnP class '%s' not supported"
 msgstr "Třída UPnP „%s“ není podporována"
 
-#: ../src/librygel-server/rygel-object-creator.vala:364
+#: ../src/librygel-server/rygel-object-creator.vala:407
 msgid "No such container"
 msgstr "Žádný takový kontejner neexistuje"
 
-#: ../src/librygel-server/rygel-object-creator.vala:369
-#| msgid "Object creation in %s not allowed"
+#: ../src/librygel-server/rygel-object-creator.vala:412
 msgid " %%% Object creation in %s not allowed"
 msgstr " %%% Vytváření objektů v %s není dovoleno"
 
-#: ../src/librygel-server/rygel-object-creator.vala:381
-#: ../src/librygel-server/rygel-object-creator.vala:667
+#: ../src/librygel-server/rygel-object-creator.vala:424
+#: ../src/librygel-server/rygel-object-creator.vala:710
 #: ../src/librygel-server/rygel-reference-creator.vala:117
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Vytváření objektů v %s není dovoleno"
 
-#: ../src/librygel-server/rygel-object-creator.vala:426
+#: ../src/librygel-server/rygel-object-creator.vala:469
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Selhalo vytvoření položky v „%s“: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:500
+#: ../src/librygel-server/rygel-object-creator.vala:543
 #, c-format
 msgid "DLNA profile '%s' not supported"
 msgstr "Profil DLNA „%s“ není podporován"
 
-#: ../src/librygel-server/rygel-object-creator.vala:558
+#: ../src/librygel-server/rygel-object-creator.vala:601
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "Neplatný formát data: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:567
+#: ../src/librygel-server/rygel-object-creator.vala:610
 #, c-format
 msgid "Invalid date: %s"
 msgstr "Neplatné datum: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:600
+#: ../src/librygel-server/rygel-object-creator.vala:643
 #, c-format
 msgid "Cannot create object of class '%s': Not supported"
 msgstr "Nelze vytvořit objekt třídy „%s“: Není podporováno"
 
-#: ../src/librygel-server/rygel-object-creator.vala:698
+#: ../src/librygel-server/rygel-object-creator.vala:741
 #, c-format
 msgid ""
 "Error from container '%s' on trying to find the newly added child object "
