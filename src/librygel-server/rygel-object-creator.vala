@@ -287,6 +287,44 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
         }
     }
 
+    private async SearchExpression build_create_class_expression
+                                        (SearchExpression expression) {
+        // Take create-classes into account
+        if (!(this.didl_object is DIDLLiteContainer)) {
+            return expression;
+        }
+
+        var didl_container = this.didl_object as DIDLLiteContainer;
+        var create_classes = didl_container.get_create_classes ();
+        if (create_classes == null) {
+            return expression;
+        }
+
+        var builder = new StringBuilder ("(");
+        foreach (var create_class in create_classes) {
+            builder.append_printf ("(upnp:createClass derivedfrom \"%s\") AND",
+                                   create_class);
+        }
+
+        // remove dangeling AND
+        builder.truncate (builder.len - 3);
+        builder.append (")");
+
+        try {
+            var parser = new SearchCriteriaParser (builder.str);
+            yield parser.run ();
+
+            var rel = new LogicalExpression ();
+            rel.operand1 = expression;
+            rel.op = LogicalOperator.AND;
+            rel.operand2 = parser.expression;
+
+            return rel;
+        } catch (Error error) {
+            assert_not_reached ();
+        }
+    }
+
     /**
      * Find a container that can create items matching the UPnP class of the
      * requested item.
@@ -311,11 +349,16 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
         expression.op = SearchCriteriaOp.DERIVED_FROM;
         expression.operand1 = "upnp:createClass";
 
+        // Add container's create classes to the search expression if there
+        // are some
+        var search_expression = yield this.build_create_class_expression
+                                        (expression);
+
         while (upnp_class != "object") {
             expression.operand2 = upnp_class;
 
             uint total_matches;
-            var result = yield root_container.search (expression,
+            var result = yield root_container.search (search_expression,
                                                       0,
                                                       1,
                                                       out total_matches,
