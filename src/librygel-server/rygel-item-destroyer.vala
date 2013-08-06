@@ -91,6 +91,8 @@ internal class Rygel.ItemDestroyer: GLib.Object, Rygel.StateMachine {
         } else {
             yield parent.remove_container (this.object_id, this.cancellable);
         }
+
+        ObjectRemovalQueue.get_default ().dequeue (media_object);
     }
 
     private async MediaObject fetch_object () throws Error {
