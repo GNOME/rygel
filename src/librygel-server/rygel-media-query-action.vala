@@ -120,6 +120,10 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
                                         (_("Invalid range"));
         }
 
+        if (this.filter == null) {
+            throw new ContentDirectoryError.INVALID_ARGS (_("Missing filter"));
+        }
+
         this.index = (uint) index;
         this.requested_count = (uint) requested_count;
 
