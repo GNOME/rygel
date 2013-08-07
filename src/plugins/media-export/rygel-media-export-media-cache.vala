@@ -442,6 +442,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         // title here is actually the meta-data column, so if we had
         // dc:title in the sort criteria, we need to change this
         sql_sort_order = sql_sort_order.replace ("o.title", "_column");
+        extra_columns  = extra_columns.replace (",o.title", "");
 
         var sql = this.sql.make (SQLString.GET_META_DATA_COLUMN);
         if (add_all_container) {
