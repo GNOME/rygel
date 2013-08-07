@@ -432,28 +432,37 @@ public class Rygel.MediaExport.MediaCache : Object {
         v = max_count;
         args.append (v);
         string extra_columns;
+        int column_count;
 
+        var builder = new StringBuilder ();
         var data = new ArrayList<string> ();
 
         var sql_sort_order = MediaCache.translate_sort_criteria
                                         (sort_criteria,
-                                         out extra_columns);
+                                         out extra_columns,
+                                         out column_count);
 
         // title here is actually the meta-data column, so if we had
         // dc:title in the sort criteria, we need to change this
         sql_sort_order = sql_sort_order.replace ("o.title", "_column");
-        extra_columns  = extra_columns.replace (",o.title", "");
+        extra_columns  = extra_columns.replace ("o.title", "1");
 
-        var sql = this.sql.make (SQLString.GET_META_DATA_COLUMN);
         if (add_all_container) {
-            sql = "SELECT 'all_place_holder' AS _column UNION " + sql;
+            builder.append ("SELECT 'all_place_holder' AS _column ");
+            for (var i = 0; i < column_count; i++) {
+                builder.append (", 1 ");
+            }
+            builder.append ("UNION ");
         }
 
-        var cursor = this.db.exec_cursor (sql.printf (column,
-                                                      extra_columns,
-                                                      filter,
-                                                      sql_sort_order),
-                                          args.values);
+
+        builder.append_printf (this.sql.make (SQLString.GET_META_DATA_COLUMN),
+                               column,
+                               extra_columns,
+                               filter,
+                               sql_sort_order);
+
+        var cursor = this.db.exec_cursor (builder.str, args.values);
         foreach (var statement in cursor) {
             data.add (statement.column_text (0));
         }
@@ -1111,11 +1120,13 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     private static string translate_sort_criteria
                                         (string sort_criteria,
-                                         out string extra_columns = null) {
+                                         out string extra_columns = null,
+                                         out int column_count = null) {
         string? collate;
         var builder = new StringBuilder("ORDER BY ");
         var column_builder = new StringBuilder ();
         var fields = sort_criteria.split (",");
+        column_count = fields.length;
         foreach (unowned string field in fields) {
             try {
                 var column = MediaCache.map_operand_to_column
