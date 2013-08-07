@@ -90,6 +90,8 @@ internal class Rygel.MediaExport.NodeQueryContainer : QueryContainer {
 
             return data.size;
         } catch (Error error) {
+            warning (_("Failed to get child count: %s"), error.message);
+
             return 0;
         }
     }
