@@ -23,16 +23,27 @@
 #include <glib.h>
 
 #ifdef HAVE_UNISTRING
-#include <unistr.h>
-gint rygel_media_export_utf8_collate_str (const char *a, const char *b)
-{
-    return u8_strcoll (a, b);
-}
-
-#else
-
-gint rygel_media_export_utf8_collate_str (const char *a, const char *b)
-{
-    return g_utf8_collate (a, b);
-}
+#   include <unistr.h>
 #endif
+
+gint rygel_media_export_utf8_collate_str (const char *a, gsize alen,
+                                          const char *b, gsize blen)
+{
+    char *a_str, *b_str;
+    gint result;
+
+    /* Make sure the passed strings are null terminated */
+    a_str = g_strndup (a, alen);
+    b_str = g_strndup (b, blen);
+
+#ifdef HAVE_UNISTRING
+    result = u8_strcoll (a_str, b_str);
+#else
+    return g_utf8_collate (a_str, b_str);
+#endif
+
+    g_free (a_str);
+    g_free (b_str);
+
+    return result;
+}
