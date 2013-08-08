@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: rygel 3.9.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-08 21:34+0200\n"
-"PO-Revision-Date: 2013-08-08 21:44+0200\n"
+"PO-Revision-Date: 2013-08-08 21:45+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -137,7 +137,7 @@ msgstr "Klarte ikke å hente barn av kontainer %s: %s"
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:61
 #, c-format
 msgid "Failed to get child count of query container: %s"
-msgstr "Klarte ikke å hente barn av kontainer for spørring %s: %s"
+msgstr "Klarte ikke å hente barn av kontainer for spørring: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:129
 #, c-format
