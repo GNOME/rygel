@@ -58,6 +58,9 @@ internal class Rygel.MediaExport.LeafQueryContainer : QueryContainer {
             return (int) this.media_db.get_object_count_by_search_expression
                                         (this.expression, null);
         } catch (Error error) {
+            warning (_("Failed to get child count of query container: %s"),
+                     error.message);
+
             return 0;
         }
     }
