@@ -19,6 +19,7 @@
  */
 
 using Gee;
+using GUPnP;
 
 internal class Rygel.MediaExport.PlaylistContainer : DBContainer,
                                                      Rygel.WritableContainer {
@@ -48,6 +49,18 @@ internal class Rygel.MediaExport.PlaylistContainer : DBContainer,
         // Need to add an URI otherwise core doesn't mark the container as
         // writable
         this.uris.add (PlaylistContainer.URI);
+    }
+
+    public override OCMFlags ocm_flags {
+        get {
+            var flags = base.ocm_flags;
+
+            // This container does not allow upload
+            flags &= ~(OCMFlags.UPLOAD | OCMFlags.UPLOAD_DESTROYABLE);
+            flags &= ~(OCMFlags.CREATE_CONTAINER);
+
+            return flags;
+        }
     }
 
     public async void add_item (Rygel.MediaItem item,
