@@ -7,11 +7,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: rygel master\n"
+"Project-Id-Version: rygel rygel-0.18\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-07-24 11:48+0000\n"
-"PO-Revision-Date: 2013-07-24 22:13+0200\n"
+"POT-Creation-Date: 2013-08-09 08:10+0000\n"
+"PO-Revision-Date: 2013-08-09 14:12+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -96,7 +96,7 @@ msgstr ""
 msgid "Module '%s' could not connect to D-Bus session bus. "
 msgstr "Modul „%s“ nelze připojit ke sběrnici sezení D-Bus. "
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:210
+#: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Selhalo vrácení transakce do předchozího stavu: %s"
@@ -521,10 +521,10 @@ msgid "Comments not allowed in XML"
 msgstr "V XML nejsou dovoleny komentáře"
 
 #: ../src/librygel-server/rygel-object-creator.vala:195
-#: ../src/librygel-server/rygel-item-destroyer.vala:102
+#: ../src/librygel-server/rygel-item-destroyer.vala:104
 #: ../src/librygel-server/rygel-item-updater.vala:189
 #: ../src/librygel-server/rygel-media-query-action.vala:115
-#: ../src/librygel-server/rygel-media-query-action.vala:182
+#: ../src/librygel-server/rygel-media-query-action.vala:186
 msgid "No such object"
 msgstr "Žádný takový objekt neexistuje"
 
@@ -534,17 +534,17 @@ msgstr "Žádný takový objekt neexistuje"
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Žádné položky v DIDL-Lite od klienta: „%s“"
 
-#: ../src/librygel-server/rygel-object-creator.vala:354
+#: ../src/librygel-server/rygel-object-creator.vala:363
 msgid "No such container"
 msgstr "Žádný takový kontejner neexistuje"
 
-#: ../src/librygel-server/rygel-object-creator.vala:358
-#: ../src/librygel-server/rygel-object-creator.vala:629
+#: ../src/librygel-server/rygel-object-creator.vala:367
+#: ../src/librygel-server/rygel-object-creator.vala:638
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Vytváření objektů v %s není dovoleno"
 
-#: ../src/librygel-server/rygel-object-creator.vala:386
+#: ../src/librygel-server/rygel-object-creator.vala:395
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Selhalo vytvoření položky v „%s“: %s"
@@ -563,12 +563,12 @@ msgstr "Objekt „%s“ úspěšně zničen"
 msgid "Failed to destroy object '%s': %s"
 msgstr "Selhalo zničení objektu „%s“: %s"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:105
+#: ../src/librygel-server/rygel-item-destroyer.vala:107
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "Odstranění objektu %s není dovoleno"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:108
+#: ../src/librygel-server/rygel-item-destroyer.vala:110
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "Odstranění objektu v %s není dovoleno"
@@ -648,6 +648,10 @@ msgstr ""
 #: ../src/librygel-server/rygel-media-query-action.vala:120
 msgid "Invalid range"
 msgstr "Neplatný rozsah"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:124
+msgid "Missing filter"
+msgstr "Chybí filtr"
 
 #: ../src/librygel-server/rygel-media-server.vala:25
 msgid "LibRygelServer"
