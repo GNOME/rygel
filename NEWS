@@ -1,9 +1,72 @@
-0.18.3
+0.18.4
 ======
 
 A bugfix release for Rygel!
 
 Changes compared to 0.18.3:
+
+- Some documentation fixes.
+
+Core:
+ - Use the correct depth value for PNG files (24 instead of 32).
+
+Server:
+ - Fix uploading of DIDL_S playlists.
+ - Fix a critical when a client created an object and removed it before
+   uploading its content.
+ - Fix a critical when the "Filter" argument of the Browse call is missing.
+
+GStreamer MediaEngine:
+ - Issue a warning if a source element cannot be created.
+
+MediaExport:
+ - Add missing <searchClass /> entries in DIDL.
+ - Fix the invalid browse response in "Artist" virtual containers.
+ - Use the sort criteria in virtual folders.
+ - Fix a critical/crash if a file was removed remotely that didn't exist
+   anymore.
+ - Add a message when counting children of virtual containers failed.
+ - Fix a memory corruption when doing string collation.
+ - Use fall-back search for @refID to capture everything in the virtual folders
+   as well.
+ - Use full iso8601 date format.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702228
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702231
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702253
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702254
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702256
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702633
+ - https://bugzilla.gnome.org/show_bug.cgi?id=704146
+ - https://bugzilla.gnome.org/show_bug.cgi?id=705084
+
+All contributors to this release:
+ - Jens Georg <jensg@openismus.com>
+ - Parthiban Balasubramanian <p.balasubramanian@cablelabs.com>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Marek Černocký <marek@manet.cz>
+ - Gil Forcada <gforcada@gnome.org>
+ - Fran Diéguez <fran.dieguez@mabishu.com>
+ - Enrico Nicoletto <liverig@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+
+Added/updated translations
+ - ca, courtesy of Joan Duran
+ - cs, courtesy of Marek Černocký
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Fran Dieguez
+ - lt, courtesy of Aurimas Černius
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Enrico Nicoletto
+
+0.18.3
+======
+
+A bugfix release for Rygel!
+
+Changes compared to 0.18.2:
 
 Server:
 - Fix DLNA transfer mode handling for generated DIDL_S playlists.
