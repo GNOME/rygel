@@ -145,6 +145,9 @@ internal class Rygel.ContentDirectory: Service {
         this.action_invoked["StopTransferResource"].connect (
                                         this.stop_transfer_resource_cb);
 
+        this.action_invoked["X_GetDLNAUploadProfiles"].connect
+                                        (this.get_dlna_upload_profiles_cb);
+
         this.query_variable["TransferIDs"].connect (this.query_transfer_ids);
 
         /* Connect SystemUpdateID related signals */
@@ -756,5 +759,45 @@ internal class Rygel.ContentDirectory: Service {
             plugin.active = true;
             debug ("New service reset token is %s", this.service_reset_token);
         } catch (Error error) { warning ("Failed to search for objects..."); };
+    }
+
+    /* X_GetDLNAUploadProfiles action implementation */
+    private void get_dlna_upload_profiles_cb (Service       content_dir,
+                                              ServiceAction action) {
+        string upload_profiles = null;
+
+        action.get ("UploadProfiles", typeof (string), out upload_profiles);
+
+        if (upload_profiles == null) {
+            action.return_error (402, _("Invalid argument"));
+
+            return;
+        }
+
+        unowned GLib.List<DLNAProfile> profiles = MediaEngine.get_default ().
+                                        get_dlna_profiles ();
+        var requested_profiles = upload_profiles.split (",");
+        var builder = new StringBuilder ();
+        foreach (var profile in profiles) {
+            // Skip forbidden profiles
+            if (profile.name.has_suffix ("_ICO") ||
+                profile.name.has_suffix ("_TN") ||
+                profile.name == "DIDL_S") {
+                continue;
+            }
+
+            if (requested_profiles.length == 0 ||
+                profile.name in requested_profiles) {
+                builder.append (profile.name);
+                builder.append (",");
+            }
+        }
+
+        if (builder.len > 0) {
+            builder.truncate (builder.len - 1);
+        }
+
+        action.set ("SupportedUploadProfiles", typeof (string), builder.str);
+        action.return ();
     }
 }

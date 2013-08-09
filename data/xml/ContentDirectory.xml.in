@@ -319,6 +319,22 @@
             </argument>
          </argumentList>
       </action>
+
+      <action>
+        <name>X_GetDLNAUploadProfiles</name>
+        <argumentList>
+          <argument>
+            <name>UploadProfiles</name>
+            <direction>in</direction>
+            <relatedStateVariable>X_A_ARG_Type_UploadProfiles</relatedStateVariable>
+          </argument>
+          <argument>
+            <name>SupportedUploadProfiles</name>
+            <direction>out</direction>
+            <relatedStateVariable>X_A_ARG_Type_SupportedUploadProfiles</relatedStateVariable>
+          </argument>
+        </argumentList>
+      </action>
    </actionList>
 
    <serviceStateTable>
@@ -445,6 +461,16 @@
       <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_TransferTotal</name>
          <dataType>string</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+        <name>X_A_ARG_Type_UploadProfiles</name>
+        <dataType>string</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+        <name>X_A_ARG_Type_SupportedUploadProfiles</name>
+        <dataType>string</dataType>
       </stateVariable>
    </serviceStateTable>
 </scpd>
