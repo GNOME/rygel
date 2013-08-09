@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-06 13:17+0000\n"
-"PO-Revision-Date: 2013-08-06 21:02+0200\n"
+"POT-Creation-Date: 2013-08-08 11:33+0000\n"
+"PO-Revision-Date: 2013-08-09 14:13+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -93,7 +93,7 @@ msgstr "Externí poskytovatel %s neposkytuje povinné údaje"
 msgid "Unsupported type %s"
 msgstr "Nepodporovaný typ %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:217
+#: ../src/plugins/media-export/rygel-media-export-database.vala:214
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Selhalo vrácení transakce do předchozího stavu: %s"
@@ -138,12 +138,18 @@ msgstr "Selhalo zjištění seznamu složek: %s"
 msgid "Failed to get children of container %s: %s"
 msgstr "Selhalo získání potomků kontejneru %s: %s"
 
+#: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:61
+#, c-format
+#| msgid "Failed to get children of container %s: %s"
+msgid "Failed to get child count of query container: %s"
+msgstr "Selhalo získání počtu potomků v kontejneru dotazu: %s"
+
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:129
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Selhalo přidání položky s ID %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:553
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:563
 msgid "Cannot create references to containers"
 msgstr "Nelze vytvořit odkazy na kontejnery"
 
@@ -157,6 +163,12 @@ msgstr "Selhal dotaz na typ obsahu pro „%s“"
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
 msgid "All"
 msgstr "Vše"
+
+#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:93
+#, c-format
+#| msgid "Failed to get children of container %s: %s"
+msgid "Failed to get child count: %s"
+msgstr "Selhalo získání počtu potomků: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:57
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
@@ -727,7 +739,6 @@ msgstr ""
 "Selhalo zjištění protokolu pro adresu URI %s. Bude se předpokládat „%s“"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:115
-#| msgid "'ObjectID' argument missing."
 msgid "ObjectID argument missing"
 msgstr "Schází argument ObjectID"
 
@@ -752,7 +763,6 @@ msgid "Comments not allowed in XML"
 msgstr "V XML nejsou dovoleny komentáře"
 
 #: ../src/librygel-server/rygel-object-creator.vala:201
-#| msgid "'ContainerID' agument missing."
 msgid "Missing ContainerID argument"
 msgstr "Schází argument ContainerID"
 
