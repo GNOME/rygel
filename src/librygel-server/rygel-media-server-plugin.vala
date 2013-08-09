@@ -40,6 +40,60 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
 
     public MediaContainer root_container { get; construct; }
 
+    private GLib.List<DLNAProfile> _upload_profiles;
+
+    /**
+     * The list of DLNA profiles the MediaServer in this plugin will accept
+     * files as upload.
+     *
+     * Can be a subset of :supported_profiles. If set to %NULL, it will be
+     * reset to :supported_profiles.
+     */
+    public unowned GLib.List<DLNAProfile> upload_profiles {
+        get {
+            if (_upload_profiles == null) {
+                return _supported_profiles;
+            }
+
+            return _upload_profiles;
+        }
+
+        construct set {
+            _upload_profiles = null;
+            foreach (var profile in value) {
+                _upload_profiles.append (profile);
+            }
+        }
+    }
+
+    private GLib.List<DLNAProfile> _supported_profiles;
+
+    /**
+     * The list of DLNA profiles the MediaServer in this plugin will be able
+     * to serve.
+     *
+     * If it does not accept all formats it can serve for uploading,
+     * :upload_profiles needs to be set to the supported subset.
+     *
+     * By default it will be the supported profiles of the #RygelMediaEngine.
+     */
+    public unowned GLib.List<DLNAProfile> supported_profiles {
+        get {
+            if (_supported_profiles == null) {
+                return MediaEngine.get_default ().get_dlna_profiles ();
+            }
+
+            return _supported_profiles;
+        }
+
+        construct set {
+            _supported_profiles = null;
+            foreach (var profile in value) {
+                _supported_profiles.append (profile);
+            }
+        }
+    }
+
     /**
      * Create an instance of the plugin.
      * The plugin's service will have the same title as its root container.

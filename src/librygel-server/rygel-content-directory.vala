@@ -774,8 +774,8 @@ internal class Rygel.ContentDirectory: Service {
             return;
         }
 
-        unowned GLib.List<DLNAProfile> profiles = MediaEngine.get_default ().
-                                        get_dlna_profiles ();
+        var plugin = this.root_device.resource_factory as MediaServerPlugin;
+        unowned GLib.List<DLNAProfile> profiles = plugin.upload_profiles;
         var requested_profiles = upload_profiles.split (",");
         var builder = new StringBuilder ();
         foreach (var profile in profiles) {

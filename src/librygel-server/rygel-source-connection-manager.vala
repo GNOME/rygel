@@ -51,8 +51,8 @@ internal class Rygel.SourceConnectionManager : Rygel.ConnectionManager {
         var server = this.get_http_server ();
         var protocol_infos = server.get_protocol_info ();
 
-        unowned GLib.List<DLNAProfile> profiles = MediaEngine.get_default ().
-                                                              get_dlna_profiles ();
+        var plugin = this.root_device.resource_factory as MediaServerPlugin;
+        unowned GLib.List<DLNAProfile> profiles = plugin.supported_profiles;
 
         var protocol = server.get_protocol ();
 
