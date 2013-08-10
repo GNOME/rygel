@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-07-26 09:28+0000\n"
-"PO-Revision-Date: 2013-07-27 14:43+0200\n"
+"POT-Creation-Date: 2013-08-10 15:04+0000\n"
+"PO-Revision-Date: 2013-08-10 22:35+0200\n"
 "Last-Translator: Joan Duran <jodufi@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca\n"
@@ -93,7 +93,7 @@ msgstr ""
 msgid "Module '%s' could not connect to D-Bus session bus. "
 msgstr "El mòdul «%s» no s'ha pogut connectar al D-Bus de sessió."
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:210
+#: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "No s'ha pogut desfer la transacció: %s"
@@ -522,10 +522,10 @@ msgid "Comments not allowed in XML"
 msgstr "No es permeten comentaris en l'XML"
 
 #: ../src/librygel-server/rygel-object-creator.vala:195
-#: ../src/librygel-server/rygel-item-destroyer.vala:102
+#: ../src/librygel-server/rygel-item-destroyer.vala:104
 #: ../src/librygel-server/rygel-item-updater.vala:189
 #: ../src/librygel-server/rygel-media-query-action.vala:115
-#: ../src/librygel-server/rygel-media-query-action.vala:182
+#: ../src/librygel-server/rygel-media-query-action.vala:186
 msgid "No such object"
 msgstr "No existeix l'objecte"
 
@@ -535,17 +535,17 @@ msgstr "No existeix l'objecte"
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "No hi ha elements en DIDL-Lite del client: «%s»"
 
-#: ../src/librygel-server/rygel-object-creator.vala:354
+#: ../src/librygel-server/rygel-object-creator.vala:363
 msgid "No such container"
 msgstr "No existeix el contenidor"
 
-#: ../src/librygel-server/rygel-object-creator.vala:358
-#: ../src/librygel-server/rygel-object-creator.vala:629
+#: ../src/librygel-server/rygel-object-creator.vala:367
+#: ../src/librygel-server/rygel-object-creator.vala:638
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "No es permet la creació d'objectes a %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:386
+#: ../src/librygel-server/rygel-object-creator.vala:395
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "No s'ha pogut crear l'element a «%s»: %s"
@@ -564,12 +564,12 @@ msgstr "S'ha destruït correctament l'objecte «%s»"
 msgid "Failed to destroy object '%s': %s"
 msgstr "No s'ha pogut destruir l'objecte «%s»: %s"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:105
+#: ../src/librygel-server/rygel-item-destroyer.vala:107
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "No es permet destruir l'objecte %s"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:108
+#: ../src/librygel-server/rygel-item-destroyer.vala:110
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "No es permet destruir l'objecte de %s"
@@ -648,6 +648,10 @@ msgstr "No s'ha pogut explorar el protocol per a l'URI %s. S'assumeix «%s»"
 #: ../src/librygel-server/rygel-media-query-action.vala:120
 msgid "Invalid range"
 msgstr "El rang no és vàlid"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:124
+msgid "Missing filter"
+msgstr "Manca un filtre"
 
 #: ../src/librygel-server/rygel-media-server.vala:25
 msgid "LibRygelServer"
