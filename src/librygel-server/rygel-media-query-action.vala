@@ -189,10 +189,10 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
             var media_object = yield this.root_container.find_object
                                         (this.object_id, this.cancellable);
             if (media_object == null) {
-                if (this.object_id_arg == "ObjectID"){
+                if (this.object_id_arg == "ObjectID") {
                     throw new ContentDirectoryError.NO_SUCH_OBJECT
                                             (_("No such object"));
-                }else{
+                } else {
                     throw new ContentDirectoryError.NO_SUCH_CONTAINER
                                             (_("No such container"));
                 }

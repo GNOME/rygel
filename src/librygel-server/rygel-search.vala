@@ -67,7 +67,7 @@ internal class Rygel.Search:  Rygel.MediaQueryAction {
 
         if (parser.err != null) {
             throw new ContentDirectoryError.INVALID_SEARCH_CRITERIA
-                                        ("Invalid search criteria given");
+                                        (_("Invalid search criteria given"));
         }
 
         var sort_criteria = this.sort_criteria ?? container.sort_criteria;
