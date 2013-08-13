@@ -121,7 +121,7 @@ internal abstract class Rygel.GstUtils {
     }
 
     private static bool need_rtp_depayloader (Caps caps) {
-        var structure = caps.get_structure (0);
+        unowned Structure structure = caps.get_structure (0);
 
         return structure.get_name () == "application/x-rtp";
     }
