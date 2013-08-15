@@ -19,18 +19,31 @@
  */
 
 namespace Rygel.External {
+    public static string MANDATORY_MISSING_MESSAGE =
+        N_("External provider %s did not provide mandatory property \"%s\"");
+
+    public static Variant? get_mandatory
+                                    (HashTable<string, Variant> props,
+                                     string                     key,
+                                     string                     service_name) {
+        var value = props.lookup (key);
+        if (value == null) {
+            warning (_(MANDATORY_MISSING_MESSAGE), service_name, key);
+
+            return null;
+        }
+
+        return value;
+    }
+
     public static string get_mandatory_string_value
                                     (HashTable<string, Variant> props,
                                      string                     key,
                                      string                     default,
                                      string                     service_name) {
-        var value = props.lookup (key);
-        if (value == null) {
-            warning (_("External provider %s did not provide mandatory " +
-                       "property \"%s\""),
-                     service_name,
-                     key);
+        var value = get_mandatory (props, key, service_name);
 
+        if (value == null) {
             return default;
         }
 
@@ -42,13 +55,9 @@ namespace Rygel.External {
                                      string                     key,
                                      string[]?                  default,
                                      string                     service_name) {
-        var value = props.lookup (key);
-        if (value == null) {
-            warning (_("External provider %s did not provide mandatory " +
-                       "property \"%s\""),
-                     service_name,
-                     key);
+        var value = get_mandatory (props, key, service_name);
 
+        if (value == null) {
             return default;
         }
 
