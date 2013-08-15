@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-13 10:56+0000\n"
-"PO-Revision-Date: 2013-08-14 19:18+0200\n"
+"POT-Creation-Date: 2013-08-15 10:30+0000\n"
+"PO-Revision-Date: 2013-08-15 18:08+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -82,11 +82,10 @@ msgstr ""
 msgid "Module '%s' could not connect to D-Bus session bus. "
 msgstr "Modul „%s“ nelze připojit ke sběrnici sezení D-Bus. "
 
-#: ../src/plugins/external/rygel-external-variant-util.vala:29
-#: ../src/plugins/external/rygel-external-variant-util.vala:47
+#: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
-msgid "External provider %s did not provide mandatory "
-msgstr "Externí poskytovatel %s neposkytuje povinné údaje"
+msgid "External provider %s did not provide mandatory property \"%s\""
+msgstr "Externí poskytovatel %s neposkytl povinnou vlastnost „%s“"
 
 #: ../src/plugins/media-export/rygel-media-export-database-cursor.vala:81
 #, c-format
