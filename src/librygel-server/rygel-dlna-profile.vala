@@ -42,3 +42,4 @@ public class Rygel.DLNAProfile {
         return a.name.ascii_casecmp (b.name);
     }
 }
+
