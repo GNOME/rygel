@@ -22,6 +22,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+using Rygel.Renderer;
+
 /**
  * This is the base class for every Rygel UPnP renderer plugin.
  *
@@ -38,6 +40,29 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
 
     private string sink_protocol_info;
     private PlayerController controller;
+
+    private GLib.List<DLNAProfile> _supported_profiles;
+
+    /// A list of DLNA profiles the MediaRenderer in this plug-in will accept
+    /// for rendering.
+    public unowned GLib.List<unowned DLNAProfile> supported_profiles {
+        get {
+            return _supported_profiles;
+        }
+
+        construct set {
+            _supported_profiles = null;
+            if (value != null) {
+                foreach (var profile in value) {
+                    _supported_profiles.prepend (profile);
+                }
+
+                _supported_profiles.prepend (new DLNAProfile ("DIDL_S",
+                                                              "text/xml"));
+                _supported_profiles.reverse ();
+            }
+        }
+    }
 
     /**
      * Create an instance of the plugin.
@@ -112,11 +137,26 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
 
         if (this.sink_protocol_info == null) {
             this.sink_protocol_info = "";
+
             var protocols = player.get_protocols ();
 
-            this.sink_protocol_info += "http-get:*:text/xml:DLNA.ORG_PN=DIDL_S,";
+            foreach (var protocol in protocols) {
+                if (protocols[0] != protocol) {
+                    this.sink_protocol_info += ",";
+                }
+
+                foreach (var profile in this.supported_profiles) {
+                    if (supported_profiles.data.name != profile.name) {
+                        this.sink_protocol_info += ",";
+                    }
+                    this.sink_protocol_info += protocol + ":*:" +
+                                               profile.mime +
+                                               ":DLNA.ORG_PN=" + profile.name;
+                }
+            }
 
             var mime_types = player.get_mime_types ();
+
             foreach (var protocol in protocols) {
                 if (protocols[0] != protocol) {
                     this.sink_protocol_info += ",";

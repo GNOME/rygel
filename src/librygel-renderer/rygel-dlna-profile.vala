@@ -1,12 +1,7 @@
 /*
- * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
- * Copyright (C) 2008 Nokia Corporation.
- * Copyright (C) 2012 Openismus GmbH.
  * Copyright (C) 2012 Intel Corporation.
  *
- * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
- *                               <zeeshan.ali@nokia.com>
- *         Jens Georg <jensg@openismus.com>
+ * Author: Jens Georg <jensg@openismus.com>
  *
  * This file is part of Rygel.
  *
@@ -25,22 +20,25 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using Rygel;
-using Gee;
+/**
+ * Data class representing a DLNA profile.
+ * It contains the name and the corresponding DLNA mime type.
+ *
+ * Note: The mime type can deviate from mime types typically used elsewhere.
+ */
+public class Rygel.Renderer.DLNAProfile {
+    public string mime;
+    public string name;
 
-internal class Rygel.Playbin.Plugin : Rygel.MediaRendererPlugin {
-    public const string NAME = "Playbin";
-
-    public Plugin () {
-        base (Plugin.NAME, _("GStreamer Player"));
+    public DLNAProfile (string name, string mime) {
+        this.mime = mime;
+        this.name = name;
     }
 
-    public override void constructed () {
-        base.constructed ();
-        this.supported_profiles = Player.get_default ().supported_profiles;
-    }
-
-    public override MediaPlayer? get_player () {
-        return Playbin.Player.get_default ();
+    /**
+     * Compare two DLNA profiles by name
+     */
+    public static int compare_by_name (DLNAProfile a, DLNAProfile b) {
+        return a.name.ascii_casecmp (b.name);
     }
 }

@@ -1,6 +1,7 @@
 LIBRYGEL_RENDERER_VAPI_SOURCE_FILES = \
 	rygel-media-renderer-plugin.vala \
 	rygel-media-player.vala \
+	rygel-dlna-profile.vala \
 	rygel-media-renderer.vala
 
 LIBRYGEL_RENDERER_NONVAPI_SOURCE_FILES = \
