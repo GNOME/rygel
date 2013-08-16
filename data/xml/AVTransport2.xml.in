@@ -661,31 +661,6 @@
          <name>A_ARG_TYPE_InstanceID</name>
          <dataType>ui4</dataType>
       </stateVariable>
-
-      <stateVariable sendEvents="no">
-         <name>A_ARG_TYPE_DeviceUDN</name>
-         <dataType>string</dataType>
-      </stateVariable>
-
-      <stateVariable sendEvents="no">
-         <name>A_ARG_TYPE_ServiceType</name>
-         <dataType>string</dataType>
-      </stateVariable>
-
-      <stateVariable sendEvents="no">
-         <name>A_ARG_TYPE_ServiceID</name>
-         <dataType>string</dataType>
-      </stateVariable>
-
-      <stateVariable sendEvents="no">
-         <name>A_ARG_TYPE_StateVariableValuePairs</name>
-         <dataType>string</dataType>
-      </stateVariable>
-
-      <stateVariable sendEvents="no">
-         <name>A_ARG_TYPE_StateVariableList</name>
-         <dataType>string</dataType>
-      </stateVariable>
    </serviceStateTable>
 </scpd>
 
