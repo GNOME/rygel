@@ -15,5 +15,6 @@
     <UDN></UDN>
     <serviceList>
     </serviceList>
+    <dlna:X_DLNADOC>DMR-1.50</dlna:X_DLNADOC>
   </device>
 </root>
