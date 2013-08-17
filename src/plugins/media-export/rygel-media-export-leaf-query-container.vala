@@ -36,12 +36,13 @@ internal class Rygel.MediaExport.LeafQueryContainer : QueryContainer {
                                          Cancellable? cancellable)
                                          throws GLib.Error {
         uint total_matches;
-        var children = yield this.search (null,
+        var children = this.media_db.get_objects_by_search_expression
+                                         (this.expression,
+                                          "0",
+                                          sort_criteria,
                                           offset,
                                           max_count,
-                                          out total_matches,
-                                          sort_criteria,
-                                          cancellable);
+                                          out total_matches);
         foreach (var child in children) {
             var container_id = QueryContainer.ITEM_PREFIX +
                                this.id.replace (QueryContainer.PREFIX, "");
