@@ -45,7 +45,8 @@ internal class Rygel.MediaExport.Database : SqliteWrapper {
     private static void utf8_contains (Sqlite.Context context,
                                        Sqlite.Value[] args)
                                        requires (args.length == 2) {
-        if (args[1].to_text() == null) {
+        if (args[0].to_text () == null ||
+            args[1].to_text () == null) {
            context.result_int (0);
 
            return;
