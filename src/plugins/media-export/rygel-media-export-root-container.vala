@@ -151,6 +151,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         MediaContainer query_container = null;
         string upnp_class = null;
 
+        // The rest of this is mainly to deal with the XBox 360's quirkyness
         if (expression is RelationalExpression) {
             var relational_expression = expression as RelationalExpression;
 

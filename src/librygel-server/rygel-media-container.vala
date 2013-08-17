@@ -75,13 +75,9 @@ public abstract class Rygel.MediaContainer : MediaObject {
                                               "+upnp:originalTrackNumber," +
                                               "+dc:title";
 
-    /* TODO: When we implement ContentDirectory v4, this will be emitted also
-     * when child _items_ are updated.
-     */
-
     /**
-     * The container_updated signal is emitted if a child container under the
-     * tree of this container has been updated. The object parameter is set to
+     * The container_updated signal is emitted if the subtree unter this
+     * container has been modified. The object parameter is set to
      * the MediaObject that is the source of the container update. Note that
      * it may even be set to the container itself.
      *
