@@ -153,14 +153,16 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
         // The rest of this is mainly to deal with the XBox 360's quirkyness
         if (expression is RelationalExpression) {
+            // map upnp:class = "object.container.<specificClass>" to the
+            // equivalent query container
             var relational_expression = expression as RelationalExpression;
 
             query_container = this.search_to_virtual_container
                                         (relational_expression);
             upnp_class = relational_expression.operand2;
-        } else if (is_search_in_virtual_container (expression,
+        } else if (this.is_search_in_virtual_container (expression,
                                                    out query_container)) {
-            // do nothing. query_container is filled then
+            // do nothing. query_container is set then
         }
 
         if (query_container != null) {
@@ -245,15 +247,15 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
             expression.op == SearchCriteriaOp.EQ) {
             string id = SEARCH_CONTAINER_PREFIX;
             switch (expression.operand2) {
-                case "object.container.album.musicAlbum":
+                case MediaContainer.MUSIC_ALBUM:
                     id += "upnp:album,?";
 
                     break;
-                case "object.container.person.musicArtist":
+                case MediaContainer.MUSIC_ARTIST:
                     id += "dc:creator,?,upnp:album,?";
 
                     break;
-                case "object.container.genre.musicGenre":
+                case MediaContainer.MUSIC_GENRE:
                     id += "dc:genre,?";
 
                     break;
@@ -307,9 +309,9 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         var left_expression = logical_expression.operand1 as RelationalExpression;
         var right_expression = logical_expression.operand2 as RelationalExpression;
 
-        query_container = search_to_virtual_container (left_expression);
+        query_container = this.search_to_virtual_container (left_expression);
         if (query_container == null) {
-            query_container = search_to_virtual_container (right_expression);
+            query_container = this.search_to_virtual_container (right_expression);
             if (query_container != null) {
                 virtual_expression = left_expression;
             } else {
