@@ -381,6 +381,10 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         this.initialized = true;
         this.cancellable = new Cancellable ();
 
+        // Remove old virtual folders in case virtual folders were disabled
+        // during restart or we don't have a particular class of items anymore
+        this.media_db.drop_virtual_folders ();
+
         // Tell the cache about this root container.
         try {
             this.media_db.save_container (this);
