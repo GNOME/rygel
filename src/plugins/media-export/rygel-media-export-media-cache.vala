@@ -106,7 +106,8 @@ public class Rygel.MediaExport.MediaCache : Object {
     public void save_container (MediaContainer container) throws Error {
         try {
             db.begin ();
-            create_object (container);
+            this.save_container_metadata (container);
+            this.create_object (container);
             db.commit ();
         } catch (DatabaseError error) {
             db.rollback ();
@@ -122,8 +123,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                            bool override_guarded = false) throws Error {
         try {
             db.begin ();
-            save_metadata (item);
-            create_object (item, override_guarded);
+            this.save_item_metadata (item);
+            this.create_object (item, override_guarded);
             db.commit ();
         } catch (DatabaseError error) {
             warning (_("Failed to add item with ID %s: %s"),
@@ -665,7 +666,34 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
     }
 
-    private void save_metadata (Rygel.MediaItem item) throws Error {
+    private void save_container_metadata (MediaContainer container) throws Error {
+        // Fill common properties
+        GLib.Value[] values = { 0,
+                                "inode/directory",
+                                -1,
+                                -1,
+                                container.upnp_class,
+                                Database.null (),
+                                Database.null (),
+                                Database.null (),
+                                -1,
+                                -1,
+                                -1,
+                                -1,
+                                -1,
+                                -1,
+                                -1,
+                                container.id,
+                                Database.null (),
+                                Database.null (),
+                                -1,
+                                Database.null ()};
+
+        this.db.exec (this.sql.make (SQLString.SAVE_METADATA), values);
+    }
+
+
+    private void save_item_metadata (Rygel.MediaItem item) throws Error {
         // Fill common properties
         GLib.Value[] values = { item.size,
                                 item.mime_type,
@@ -1097,16 +1125,9 @@ public class Rygel.MediaExport.MediaCache : Object {
             case SearchCriteriaOp.LEQ:
             case SearchCriteriaOp.GREATER:
             case SearchCriteriaOp.GEQ:
-                if (column == "m.class" &&
-                    exp.op == SearchCriteriaOp.EQ &&
-                    exp.operand2 == "object.container") {
-                    operator = new SqlOperator ("=", "o.type_fk");
-                    v = (int) ObjectType.CONTAINER;
-                } else {
-                    v = exp.operand2;
-                    operator = new SqlOperator.from_search_criteria_op
+                v = exp.operand2;
+                operator = new SqlOperator.from_search_criteria_op
                                             (exp.op, column, collate);
-                }
                 break;
             case SearchCriteriaOp.CONTAINS:
                 operator = new SqlFunction ("contains", column);
@@ -1117,14 +1138,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                 v = exp.operand2;
                 break;
             case SearchCriteriaOp.DERIVED_FROM:
-                if (column == "m.class" &&
-                    exp.operand2.has_prefix("object.container")) {
-                    operator = new SqlOperator ("=", "o.type_fk");
-                    v = (int) ObjectType.CONTAINER;
-                } else {
-                    operator = new SqlOperator ("LIKE", column);
-                    v = "%s%%".printf (exp.operand2);
-                }
+                operator = new SqlOperator ("LIKE", column);
+                v = "%s%%".printf (exp.operand2);
                 break;
             default:
                 warning ("Unsupported op %d", exp.op);

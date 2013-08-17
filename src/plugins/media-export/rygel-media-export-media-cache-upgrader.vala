@@ -123,7 +123,10 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                     this.update_v13_v14 ();
                     break;
                 case 14:
-                    this.update_v14_v15();
+                    this.update_v14_v15 ();
+                    break;
+                case 15:
+                    this.update_v15_v16 ();
                     break;
                 default:
                     warning ("Cannot upgrade");
@@ -511,6 +514,25 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             this.database.exec ("ALTER TABLE Meta_Data " +
                                 "   ADD COLUMN creator TEXT");
             this.database.exec ("UPDATE schema_info SET version = '15'");
+            database.commit ();
+            database.exec ("VACUUM");
+            database.analyze ();
+        } catch (DatabaseError error) {
+            database.rollback ();
+            warning ("Database upgrade failed: %s", error.message);
+            database = null;
+        }
+    }
+
+    private void update_v15_v16 () {
+        try {
+            this.database.begin ();
+            this.database.exec ("INSERT INTO meta_data (size, mime_type, " +
+                                "class, object_fk) SELECT 0, " +
+                                "'inode/directory', 'object.container', " +
+                                "o.upnp_id FROM object AS o WHERE " +
+                                "o.type_fk=0;");
+            this.database.exec ("UPDATE schema_info SET version = '16'");
             database.commit ();
             database.exec ("VACUUM");
             database.analyze ();
