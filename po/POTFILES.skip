@@ -38,6 +38,7 @@ src/librygel-renderer-gst/rygel-playbin-player.c
 src/librygel-renderer-gst/rygel-playbin-renderer.c
 src/librygel-renderer/rygel-av-transport.c
 src/librygel-renderer/rygel-changelog.c
+src/librygel-renderer/rygel-dlna-profile.c
 src/librygel-renderer/rygel-media-player.c
 src/librygel-renderer/rygel-media-renderer.c
 src/librygel-renderer/rygel-media-renderer-plugin.c

@@ -120,6 +120,7 @@ src/librygel-renderer-gst/rygel-playbin-player.vala
 src/librygel-renderer-gst/rygel-playbin-renderer.vala
 src/librygel-renderer/rygel-av-transport.vala
 src/librygel-renderer/rygel-changelog.vala
+src/librygel-renderer/rygel-dlna-profile.vala
 src/librygel-renderer/rygel-media-player.vala
 src/librygel-renderer/rygel-media-renderer-plugin.vala
 src/librygel-renderer/rygel-media-renderer.vala
