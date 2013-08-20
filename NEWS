@@ -1,3 +1,107 @@
+0.19.5
+======
+
+A new unstable release of Rygel.
+
+Changes compared to 0.19.4:
+
+Core:
+ - Use proper PNG depth value of 24 bit.
+ - Fix several error codes.
+
+Server:
+ - Validate <createClass> nodes during object creation.
+ - Fix recursive item removal and notification thereof.
+ - Fix several error codes.
+ - Remove manually removed items from the ItemRemovalQueue.
+ - Report missing "Filter" argument in browse call.
+ - Use searchClasses to find a compatible container in DLNA.ORG_AnyContainer
+   container creation scenario.
+ - Add X_GetDLNAUploadProfiles call.
+ - Move the knowledge about supported DLNA profiles from the MediaEngine to the
+   MediaServerPlugin.
+
+Renderer:
+ - Add possibility to define a set of supported DLNA profiles and not only mime
+   types to the renderer.
+ - Add missing <X_DLNADOC> node and content.
+ - Remove unused state variables.
+
+Playbin plugin:
+ - Make it work with simple engine.
+
+MediaExport plugin:
+ - Fix invalid browse response in "Artist" folder that broke compatibility with
+   certain Samsung TV sets.
+ - Actually use the sort criteria when browsing/searching in virtual folders.
+ - Fix a critical/crash on automatic item removal.
+ - Implement container removal.
+ - Emit containerUpdateID signals when a playlist container changes.
+ - Add several messages when database operations fail.
+ - Fix memory corruption in SQLite string collation functions.
+ - Use fall-back search when client searches for @refID to capture the virtual
+   container as well as manually created references.
+ - Use correct OCM flags for playlist containers.
+ - Remove hack for searching UPnP containers.
+ - Fix recursion in virtual containers on certain search requests.
+ - Fix a critical in the custom SQLite "CONTAINS" keyword implementation.
+
+External plugin:
+ - Fix an untranslatable message.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=699698
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702228
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702253
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702452
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702633
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702741
+ - https://bugzilla.gnome.org/show_bug.cgi?id=703135
+ - https://bugzilla.gnome.org/show_bug.cgi?id=704146
+ - https://bugzilla.gnome.org/show_bug.cgi?id=705084
+ - https://bugzilla.gnome.org/show_bug.cgi?id=705576
+ - https://bugzilla.gnome.org/show_bug.cgi?id=705587
+ - https://bugzilla.gnome.org/show_bug.cgi?id=705899
+ - https://bugzilla.gnome.org/show_bug.cgi?id=706058
+ - https://bugzilla.gnome.org/show_bug.cgi?id=706059
+ - https://bugzilla.gnome.org/show_bug.cgi?id=706142
+ - https://bugzilla.gnome.org/show_bug.cgi?id=706143
+ - https://bugzilla.gnome.org/show_bug.cgi?id=706182
+
+All contributors to this release:
+ - Jens Georg <jensg@openismus.com>
+ - Marek Černocký <marek@manet.cz>
+ - Parthiban Balasubramanian <p.balasubramanian@cablelabs.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - 甘露(Gan  Lu) <rhythm.gan@gmail.com>
+ - Yuri Myasoedov <omerta13@yandex.ru>
+ - Yaron Shahrabani <sh.yaron@gmail.com>
+ - Rafael Ferreira <rafael.f.f1@gmail.com>
+ - Fran Diéguez <fran.dieguez@mabishu.com>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Craig Pratt <craig@ecaspia.com>
+ - Christian Kirbach <christian.kirbach@gmail.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - de, courtesy of Christian Kirbach
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Fran Dieguez
+ - he, courtesy of Yaron Shahrabani
+ - lt, courtesy of Aurimas Černius
+ - nb, courtesy of Kjartan Maraas
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Rafael Ferreira
+ - ru, courtesy of Yuri Myasoedov
+ - sk, courtesy of Dušan Kazik
+ - zh_CN, courtesy of 甘露(Gan  Lu)
+ - zh_HK, courtesy of Chao-Hsiung Liao
+ - zh_TW, courtesy of Chao-Hsiung Liao
+
 0.19.4
 ======
 
