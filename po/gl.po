@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-02 13:05+0200\n"
-"PO-Revision-Date: 2013-08-02 13:07+0200\n"
+"POT-Creation-Date: 2013-08-21 01:14+0200\n"
+"PO-Revision-Date: 2013-08-21 01:19+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -81,18 +81,17 @@ msgstr ""
 msgid "Module '%s' could not connect to D-Bus session bus. "
 msgstr "O módulo «%s» non puido conectarse ao bus de sesión D-Bus."
 
-#: ../src/plugins/external/rygel-external-variant-util.vala:29
-#: ../src/plugins/external/rygel-external-variant-util.vala:47
+#: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
-msgid "External provider %s did not provide mandatory "
-msgstr "O fornecedor externo %s non forneceu o obrigatorio"
+msgid "External provider %s did not provide mandatory property \"%s\""
+msgstr "O fornecedor externo %s non forneceu a propiedade obrigatoria «%s»"
 
 #: ../src/plugins/media-export/rygel-media-export-database-cursor.vala:81
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Tipo %s non admitido"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:217
+#: ../src/plugins/media-export/rygel-media-export-database.vala:215
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Produciuse un erro ao desfacer a transacción: %s"
@@ -137,12 +136,18 @@ msgstr "Produciuse un fallo ao enumerar o cartafol: %s"
 msgid "Failed to get children of container %s: %s"
 msgstr "Produciuse un fallo ao obter o fillo do contedor %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:129
+#: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
+#, c-format
+msgid "Failed to get child count of query container: %s"
+msgstr ""
+"Produciuse un fallo ao obter a conta de fillos do contedor de consultas: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:130
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Produciuse un erro ao engadir o elemento con ID %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:531
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:564
 msgid "Cannot create references to containers"
 msgstr "Non é posíbel crear referencias a contedores"
 
@@ -152,23 +157,28 @@ msgstr "Non é posíbel crear referencias a contedores"
 msgid "Failed to query content type for '%s'"
 msgstr "Produciuse un erro ao consultar o tipo de contido para «%s»"
 
-#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:53
+#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
 msgid "All"
 msgstr "Todo"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:57
+#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:93
+#, c-format
+msgid "Failed to get child count: %s"
+msgstr "Produciuse un fallo ao obter a conta de fillos: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
 #, c-format
 msgid "Can't create items in %s"
 msgstr "Non é posíbel crear elementos en %s"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:78
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:91
 #, c-format
 msgid "Can't add containers in %s"
 msgstr "Non é posíbel engadir contedores en %s"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:86
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:99
 #, c-format
 msgid "Can't remove containers in %s"
 msgstr "Non é posíbel quitar contedores en %s"
@@ -242,6 +252,16 @@ msgstr "Imaxes"
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:584
 msgid "Videos"
 msgstr "Vídeos"
+
+#: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
+#, c-format
+msgid "Failed to remove file %s: %s"
+msgstr "Produciuse un erro ao eliminar o ficheiro %s: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:120
+#, c-format
+msgid "Could not find object %d in cache"
+msgstr "Non foi posíbel atopar o obxecto %d na caché"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
@@ -331,20 +351,22 @@ msgstr "Non implementado"
 
 #: ../src/librygel-core/rygel-connection-manager.vala:91
 #: ../src/librygel-core/rygel-connection-manager.vala:105
-#: ../src/librygel-core/rygel-connection-manager.vala:127
+#: ../src/librygel-core/rygel-connection-manager.vala:122
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
 #: ../src/librygel-renderer/rygel-rendering-control.vala:128
-#: ../src/librygel-server/rygel-content-directory.vala:265
-#: ../src/librygel-server/rygel-content-directory.vala:292
-#: ../src/librygel-server/rygel-content-directory.vala:311
-#: ../src/librygel-server/rygel-content-directory.vala:346
-#: ../src/librygel-server/rygel-content-directory.vala:371
-#: ../src/librygel-server/rygel-content-directory.vala:396
+#: ../src/librygel-server/rygel-content-directory.vala:270
+#: ../src/librygel-server/rygel-content-directory.vala:298
+#: ../src/librygel-server/rygel-content-directory.vala:317
+#: ../src/librygel-server/rygel-content-directory.vala:352
+#: ../src/librygel-server/rygel-content-directory.vala:377
+#: ../src/librygel-server/rygel-content-directory.vala:402
+#: ../src/librygel-server/rygel-content-directory.vala:621
+#: ../src/librygel-server/rygel-content-directory.vala:772
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Argumento non válido"
 
-#: ../src/librygel-core/rygel-connection-manager.vala:121
+#: ../src/librygel-core/rygel-connection-manager.vala:128
 msgid "Invalid connection reference"
 msgstr "Referencia de conexión non válida"
 
@@ -522,8 +544,7 @@ msgstr "Produciuse un erro ao explorar «%s»: %s\n"
 msgid "Not Applicable"
 msgstr "Non é aplicábel"
 
-#: ../src/librygel-server/rygel-content-directory.vala:284
-#: ../src/librygel-server/rygel-content-directory.vala:303
+#: ../src/librygel-server/rygel-content-directory.vala:642
 msgid "No such file transfer"
 msgstr "Non existe tal transferencia de ficheiro"
 
@@ -569,7 +590,7 @@ msgid "Failed to generate playlist"
 msgstr "Produciuse un fallo ao crear a lista de reprodución"
 
 #: ../src/librygel-server/rygel-http-post.vala:62
-#: ../src/librygel-server/rygel-import-resource.vala:189
+#: ../src/librygel-server/rygel-import-resource.vala:188
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Non se permite empurrar os datos ao elemento «%s» non baleiro"
@@ -605,7 +626,7 @@ msgstr "Fóra do rango de fin «%ld»"
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Produciuse un erro ao obter o URI orixinal para «%s»: %s"
 
-#: ../src/librygel-server/rygel-import-resource.vala:186
+#: ../src/librygel-server/rygel-import-resource.vala:185
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "O URI «%s» non é válido para importar contido a el"
@@ -624,22 +645,20 @@ msgstr "Obxecto «%s» destruído correctamente"
 msgid "Failed to destroy object '%s': %s"
 msgstr "Produciuse un erro ao destruír o obxecto «%s»: %s"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:102
+#: ../src/librygel-server/rygel-item-destroyer.vala:104
 #: ../src/librygel-server/rygel-item-updater.vala:189
-#: ../src/librygel-server/rygel-media-query-action.vala:115
-#: ../src/librygel-server/rygel-media-query-action.vala:182
-#: ../src/librygel-server/rygel-object-creator.vala:201
+#: ../src/librygel-server/rygel-media-query-action.vala:194
 #: ../src/librygel-server/rygel-reference-creator.vala:68
 #: ../src/librygel-server/rygel-reference-creator.vala:113
 msgid "No such object"
 msgstr "Non existe o obxecto"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:105
+#: ../src/librygel-server/rygel-item-destroyer.vala:107
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "Non se permite quitar o obxecto %s"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:108
+#: ../src/librygel-server/rygel-item-destroyer.vala:110
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "Non se permite quitar obxectos de %s"
@@ -720,9 +739,26 @@ msgstr "URI erróneo: %s"
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Produciuse un erro ao probar o protocolo para o URI %s. Asumindo «%s»"
 
-#: ../src/librygel-server/rygel-media-query-action.vala:120
+#: ../src/librygel-server/rygel-media-query-action.vala:100
+msgid "Invalid number of arguments"
+msgstr "Número de argumentos non válido"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:122
+msgid "ObjectID argument missing"
+msgstr "Falta o argumento ObjectID"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:127
 msgid "Invalid range"
 msgstr "Rango non válido"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:131
+msgid "Missing filter"
+msgstr "Falta o filtro"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:197
+#: ../src/librygel-server/rygel-object-creator.vala:407
+msgid "No such container"
+msgstr "Non existe tal contedor"
 
 #: ../src/librygel-server/rygel-object-creator.vala:151
 msgid "upnp:createClass value not supported"
@@ -735,6 +771,10 @@ msgstr "Falta o argumento «Elements»"
 #: ../src/librygel-server/rygel-object-creator.vala:195
 msgid "Comments not allowed in XML"
 msgstr "Non se permiten os comentarios no XML"
+
+#: ../src/librygel-server/rygel-object-creator.vala:201
+msgid "Missing ContainerID argument"
+msgstr "Falta o argumento ContainerID"
 
 #: ../src/librygel-server/rygel-object-creator.vala:225
 #, c-format
@@ -762,52 +802,48 @@ msgstr "upnp:class non válido fornecido en CreateObject"
 msgid "Cannot create restricted item"
 msgstr "Non é posíbel crear un elemento restrinxido"
 
-#: ../src/librygel-server/rygel-object-creator.vala:335
+#: ../src/librygel-server/rygel-object-creator.vala:378
 #, c-format
 msgid "UPnP class '%s' not supported"
 msgstr "Clase UPnp «%s» non admitida"
 
-#: ../src/librygel-server/rygel-object-creator.vala:364
-msgid "No such container"
-msgstr "Non existe tal contedor"
-
-#: ../src/librygel-server/rygel-object-creator.vala:369
+#: ../src/librygel-server/rygel-object-creator.vala:412
 msgid " %%% Object creation in %s not allowed"
 msgstr " %%% A creación do obxecto en %s non está permitida"
 
-#: ../src/librygel-server/rygel-object-creator.vala:381
-#: ../src/librygel-server/rygel-object-creator.vala:667
+#: ../src/librygel-server/rygel-object-creator.vala:424
+#: ../src/librygel-server/rygel-object-creator.vala:710
 #: ../src/librygel-server/rygel-reference-creator.vala:117
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "A creación do obxecto en %s non está permitida"
 
-#: ../src/librygel-server/rygel-object-creator.vala:426
+#: ../src/librygel-server/rygel-object-creator.vala:469
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Produciuse un erro ao crear o elemento baixo «%s»: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:500
+#: ../src/librygel-server/rygel-object-creator.vala:543
 #, c-format
 msgid "DLNA profile '%s' not supported"
 msgstr "Perfíl DLNA «%s» non admitido"
 
-#: ../src/librygel-server/rygel-object-creator.vala:558
+#: ../src/librygel-server/rygel-object-creator.vala:601
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "Formato de data non válido: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:567
+#: ../src/librygel-server/rygel-object-creator.vala:610
 #, c-format
 msgid "Invalid date: %s"
 msgstr "Data non válida: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:600
+#: ../src/librygel-server/rygel-object-creator.vala:643
 #, c-format
 msgid "Cannot create object of class '%s': Not supported"
 msgstr "Non é posíbel crear un obxecto da clase «%s»: non compatíbel"
 
-#: ../src/librygel-server/rygel-object-creator.vala:698
+#: ../src/librygel-server/rygel-object-creator.vala:741
 #, c-format
 msgid ""
 "Error from container '%s' on trying to find the newly added child object "
@@ -829,7 +865,11 @@ msgstr "Falta o argumento «ObjectID»."
 msgid "Failed to create object under '%s': %s"
 msgstr "Produciuse un erro ao crear o obxecto baixo «%s»: %s"
 
-#: ../src/librygel-server/rygel-search.vala:93
+#: ../src/librygel-server/rygel-search.vala:70
+msgid "Invalid search criteria given"
+msgstr "Criterio de busca fornecido non válido"
+
+#: ../src/librygel-server/rygel-search.vala:94
 #, c-format
 msgid "Failed to search in '%s': %s"
 msgstr "Produciuse un erro ao buscar en «%s»: %s"
