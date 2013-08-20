@@ -311,7 +311,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
         builder.append (")");
 
         try {
-            var parser = new SearchCriteriaParser (builder.str);
+            var parser = new Rygel.SearchCriteriaParser (builder.str);
             yield parser.run ();
 
             var rel = new LogicalExpression ();

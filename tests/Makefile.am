@@ -142,8 +142,9 @@ rygel_object_creator_test_SOURCES = rygel-object-creator-test.vala \
 				  rygel-http-seek_object-creator.vala \
 				  rygel-state-machine_object-creator.vala \
 				  rygel-relational-expression.vala \
+				  rygel-logical-expression.vala \
 				  rygel-search-expression.vala \
-				  rygel-media-engine.vala \
+				  rygel-search-criteria-parser.vala \
 				  rygel-serializer_object-creator.vala \
 				  rygel-m3u-playlist_object-creator.vala
 rygel_object_creator_test_VALAFLAGS = \

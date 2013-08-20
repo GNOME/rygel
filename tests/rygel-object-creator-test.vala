@@ -108,6 +108,11 @@ public class Rygel.ObjectRemovalQueue : GLib.Object {
     }
 }
 
+public class Rygel.MediaServerPlugin : GLib.Object {
+    public GLib.List<DLNAProfile> upload_profiles = new GLib.List<DLNAProfile>
+        ();
+}
+
 public class Rygel.MediaObject : GLib.Object {
     public string id {get; set; }
     public string ref_id;
@@ -210,10 +215,23 @@ public class Rygel.PlaylistItem : Rygel.MediaItem {
     }
 }
 
+public class Rygel.RootDevice : GLib.Object {
+    public MediaServerPlugin resource_factory;
+
+    public RootDevice () {
+        this.resource_factory = new MediaServerPlugin ();
+    }
+}
+
 public class Rygel.ContentDirectory : GLib.Object {
     public Cancellable cancellable;
     public MediaContainer root_container;
     public HTTPServer http_server;
+    public RootDevice root_device;
+
+    public ContentDirectory () {
+        this.root_device = new RootDevice ();
+    }
 }
 
 public class Rygel.MediaContainer : Rygel.MediaObject {
@@ -292,30 +310,6 @@ public errordomain Rygel.ContentDirectoryError {
 public class Rygel.Transcoder {
 }
 
-public class Rygel.TestMediaEngine : Rygel.MediaEngine {
-    private GLib.List<DLNAProfile> dlna_profiles = new GLib.List<DLNAProfile>();
-
-    public override unowned GLib.List<DLNAProfile> get_dlna_profiles () {
-        return dlna_profiles;
-    }
-
-    public override unowned GLib.List<Transcoder>? get_transcoders () {
-        return null;
-    }
-
-    public override DataSource? create_data_source (string uri) {
-        return null;
-    }
-}
-
-public class Rygel.EngineLoader {
-    public EngineLoader () { }
-
-    public MediaEngine load_engine () {
-        return new TestMediaEngine ();
-    }
-}
-
 public static void log_func (string? domain,
                              LogLevelFlags flags,
                              string message) {
@@ -375,7 +369,7 @@ public class Rygel.HTTPObjectCreatorTest : GLib.Object {
         var action = new ServiceAction (null, "");
         var creator = new ObjectCreator (content_directory, action);
         creator.run.begin ();
-        assert (action.error_code == no_such_object.code);
+        assert (action.error_code == invalid_args.code);
 
         // check elements containing a comment
         action = new ServiceAction ("0", "<!-- This is an XML comment -->");
