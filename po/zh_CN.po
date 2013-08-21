@@ -76,7 +76,7 @@ msgstr "UPnP/DLNA 服务"
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
 "mediaserver;mediarenderer;share;audio;video;pictures;媒体服务器;媒体渲染器;共"
-"享;音频;视频;图片"
+"享;音频;视频;图片;"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
