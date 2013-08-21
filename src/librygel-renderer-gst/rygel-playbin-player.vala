@@ -408,7 +408,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
         typefind = (this.playbin as Gst.Bin).get_by_name ("typefind");
         Caps caps = typefind.caps;
-        var structure = caps.get_structure (0);
+        unowned Structure structure = caps.get_structure (0);
 
         return structure.get_name () == "image/jpeg" ||
                structure.get_name () == "image/png";
