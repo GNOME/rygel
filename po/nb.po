@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel 3.9.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-08 21:34+0200\n"
-"PO-Revision-Date: 2013-08-08 21:45+0200\n"
+"POT-Creation-Date: 2013-08-22 15:47+0200\n"
+"PO-Revision-Date: 2013-08-22 15:49+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -78,18 +78,17 @@ msgstr "mediatjener;mediavisning;del;lyd;video;bilder;"
 msgid "Module '%s' could not connect to D-Bus session bus. "
 msgstr "Modul «%s» klarte ikke å koble til D-Bus-sesjonsbussen. "
 
-#: ../src/plugins/external/rygel-external-variant-util.vala:29
-#: ../src/plugins/external/rygel-external-variant-util.vala:47
+#: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
-msgid "External provider %s did not provide mandatory "
-msgstr "Ekstern tilbyder %s oppga ikke obligatorisk "
+msgid "External provider %s did not provide mandatory property \"%s\""
+msgstr "Ekstern tilbyder %s oppga ikke obligatorisk egenskap «%s»"
 
 #: ../src/plugins/media-export/rygel-media-export-database-cursor.vala:81
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Ikke støttet type %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:214
+#: ../src/plugins/media-export/rygel-media-export-database.vala:215
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Klarte ikke å rulle tilbake transaksjon: %s"
@@ -134,17 +133,17 @@ msgstr "Klarte ikke å liste mappe: %s"
 msgid "Failed to get children of container %s: %s"
 msgstr "Klarte ikke å hente barn av kontainer %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:61
+#: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
 msgid "Failed to get child count of query container: %s"
 msgstr "Klarte ikke å hente barn av kontainer for spørring: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:129
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:130
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Klarte ikke å legge til oppføring med ID %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:563
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:564
 msgid "Cannot create references to containers"
 msgstr "Kan ikke lage referanser til kontainere"
 
@@ -164,18 +163,18 @@ msgstr "Alle"
 msgid "Failed to get child count: %s"
 msgstr "Klarte ikke å hente antall barn: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:57
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
 #, c-format
 msgid "Can't create items in %s"
 msgstr "Kan ikke lage oppføringer i %s"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:78
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:91
 #, c-format
 msgid "Can't add containers in %s"
 msgstr "Kan ikke legge til kontainere i %s"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:86
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:99
 #, c-format
 msgid "Can't remove containers in %s"
 msgstr "Kan ikke fjerne kontainere i %s"
@@ -349,13 +348,14 @@ msgstr "Ikke implementert"
 #: ../src/librygel-core/rygel-connection-manager.vala:122
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
 #: ../src/librygel-renderer/rygel-rendering-control.vala:128
-#: ../src/librygel-server/rygel-content-directory.vala:266
-#: ../src/librygel-server/rygel-content-directory.vala:294
-#: ../src/librygel-server/rygel-content-directory.vala:313
-#: ../src/librygel-server/rygel-content-directory.vala:348
-#: ../src/librygel-server/rygel-content-directory.vala:373
-#: ../src/librygel-server/rygel-content-directory.vala:398
-#: ../src/librygel-server/rygel-content-directory.vala:617
+#: ../src/librygel-server/rygel-content-directory.vala:270
+#: ../src/librygel-server/rygel-content-directory.vala:298
+#: ../src/librygel-server/rygel-content-directory.vala:317
+#: ../src/librygel-server/rygel-content-directory.vala:352
+#: ../src/librygel-server/rygel-content-directory.vala:377
+#: ../src/librygel-server/rygel-content-directory.vala:402
+#: ../src/librygel-server/rygel-content-directory.vala:621
+#: ../src/librygel-server/rygel-content-directory.vala:772
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Ugyldig argument"
@@ -536,7 +536,7 @@ msgstr "Klarte ikke å vise «%s»: %s\n"
 msgid "Not Applicable"
 msgstr "Ikke relevant"
 
-#: ../src/librygel-server/rygel-content-directory.vala:638
+#: ../src/librygel-server/rygel-content-directory.vala:642
 msgid "No such file transfer"
 msgstr "Filoverføring finnes ikke"
 
@@ -639,7 +639,7 @@ msgstr "Klarte ikke å destruere objekt «%s»: %s"
 
 #: ../src/librygel-server/rygel-item-destroyer.vala:104
 #: ../src/librygel-server/rygel-item-updater.vala:189
-#: ../src/librygel-server/rygel-media-query-action.vala:186
+#: ../src/librygel-server/rygel-media-query-action.vala:194
 #: ../src/librygel-server/rygel-reference-creator.vala:68
 #: ../src/librygel-server/rygel-reference-creator.vala:113
 msgid "No such object"
@@ -731,17 +731,26 @@ msgstr "Ugyldig URI: %s"
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Klarte ikke å finne protokoll for URI %s. Antar «%s»"
 
-#: ../src/librygel-server/rygel-media-query-action.vala:115
+#: ../src/librygel-server/rygel-media-query-action.vala:100
+msgid "Invalid number of arguments"
+msgstr "Ugyldig antall argumenter"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "«ObjectID»-argument mangler"
 
-#: ../src/librygel-server/rygel-media-query-action.vala:120
+#: ../src/librygel-server/rygel-media-query-action.vala:127
 msgid "Invalid range"
 msgstr "Ugyldig område"
 
-#: ../src/librygel-server/rygel-media-query-action.vala:124
+#: ../src/librygel-server/rygel-media-query-action.vala:131
 msgid "Missing filter"
 msgstr "Mangler filter"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:197
+#: ../src/librygel-server/rygel-object-creator.vala:407
+msgid "No such container"
+msgstr "Kontainer finnes ikke"
 
 #: ../src/librygel-server/rygel-object-creator.vala:151
 msgid "upnp:createClass value not supported"
@@ -774,11 +783,11 @@ msgstr "dc:title må ikke være tom i et kall til CreateObject"
 
 #: ../src/librygel-server/rygel-object-creator.vala:248
 msgid "Flags that must not be set were found in 'dlnaManaged'"
-msgstr ""
+msgstr "Fant flagg som ikke skal settes i 'dlnaManaged'"
 
 #: ../src/librygel-server/rygel-object-creator.vala:256
 msgid "Invalid upnp:class given in CreateObject"
-msgstr ""
+msgstr "Ugyldig upnp:class oppgitt i CreateObject"
 
 #: ../src/librygel-server/rygel-object-creator.vala:261
 msgid "Cannot create restricted item"
@@ -788,10 +797,6 @@ msgstr "Kan ikke lage begrenset oppføring"
 #, c-format
 msgid "UPnP class '%s' not supported"
 msgstr "UPnP-klasse «%s» er ikke støttet"
-
-#: ../src/librygel-server/rygel-object-creator.vala:407
-msgid "No such container"
-msgstr "Kontainer finnes ikke"
 
 #: ../src/librygel-server/rygel-object-creator.vala:412
 msgid " %%% Object creation in %s not allowed"
@@ -834,7 +839,7 @@ msgstr "KAn ikke lage objekt av klasse «%s»: Ikke støttet"
 msgid ""
 "Error from container '%s' on trying to find the newly added child object "
 "'%s' in it: %s"
-msgstr ""
+msgstr "Feil i kontainer «%s» ved forsøk på å finne nylig tillagt underobjekt «%s» i den: %s"
 
 #: ../src/librygel-server/rygel-reference-creator.vala:50
 msgid "'ContainerID' agument missing."
@@ -849,7 +854,11 @@ msgstr "«ObjectID»-argument mangler."
 msgid "Failed to create object under '%s': %s"
 msgstr "Klarte ikke å lage objekt under «%s»: %s"
 
-#: ../src/librygel-server/rygel-search.vala:93
+#: ../src/librygel-server/rygel-search.vala:70
+msgid "Invalid search criteria given"
+msgstr "Ugyldige søkekriterier oppgitt"
+
+#: ../src/librygel-server/rygel-search.vala:94
 #, c-format
 msgid "Failed to search in '%s': %s"
 msgstr "Klarte ikke å søke i «%s»: %s"
