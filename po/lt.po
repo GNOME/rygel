@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-08 11:33+0000\n"
-"PO-Revision-Date: 2013-08-08 22:38+0300\n"
+"POT-Creation-Date: 2013-08-19 10:08+0000\n"
+"PO-Revision-Date: 2013-08-27 23:16+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -82,11 +82,11 @@ msgstr ""
 msgid "Module '%s' could not connect to D-Bus session bus. "
 msgstr "Moduliui „%s“ nepavyko prisijungti prie D-Bus seanso magistralės."
 
-#: ../src/plugins/external/rygel-external-variant-util.vala:29
-#: ../src/plugins/external/rygel-external-variant-util.vala:47
+#: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
-msgid "External provider %s did not provide mandatory "
-msgstr "Išorinis tiekėjas %s nepateikė būtinų dalykų"
+#| msgid "External provider %s did not provide mandatory "
+msgid "External provider %s did not provide mandatory property \"%s\""
+msgstr "Išorinis tiekėjas %s nepateikė būtinos savybės „%s“"
 
 #: ../src/plugins/media-export/rygel-media-export-database-cursor.vala:81
 #, c-format
@@ -140,7 +140,6 @@ msgstr "Nepavyko konteinerio %s vaikų: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:61
 #, c-format
-#| msgid "Failed to get children of container %s: %s"
 msgid "Failed to get child count of query container: %s"
 msgstr "Nepavyko gauti užklausos konteinerio vaikų skaičiaus: %s"
 
@@ -150,7 +149,6 @@ msgid "Failed to add item with ID %s: %s"
 msgstr "Nepavyko pridėti elemento, turinčio ID %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:563
-#| msgid "Cannot create restricted item"
 msgid "Cannot create references to containers"
 msgstr "Negalima sukurti nuorodų į konteinerius"
 
@@ -167,22 +165,21 @@ msgstr "Visi"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
-#| msgid "Failed to get children of container %s: %s"
 msgid "Failed to get child count: %s"
 msgstr "Nepavyko gauti vaikų skaičiaus: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:57
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
 #, c-format
 msgid "Can't create items in %s"
 msgstr "%s negalima sukurti elementų"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:78
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:91
 #, c-format
 msgid "Can't add containers in %s"
 msgstr "%s negalima pridėti konteinerių"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:86
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:99
 #, c-format
 msgid "Can't remove containers in %s"
 msgstr "%s negalima pašalinti konteinerių"
@@ -259,7 +256,6 @@ msgstr "Vaizdo įrašai"
 
 #: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
 #, c-format
-#| msgid "Failed to move dotfile %s: %s"
 msgid "Failed to remove file %s: %s"
 msgstr "Nepavyko pašalinti failo %s: %s"
 
@@ -357,13 +353,14 @@ msgstr "Nerealizuota"
 #: ../src/librygel-core/rygel-connection-manager.vala:122
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
 #: ../src/librygel-renderer/rygel-rendering-control.vala:128
-#: ../src/librygel-server/rygel-content-directory.vala:266
-#: ../src/librygel-server/rygel-content-directory.vala:294
-#: ../src/librygel-server/rygel-content-directory.vala:313
-#: ../src/librygel-server/rygel-content-directory.vala:348
-#: ../src/librygel-server/rygel-content-directory.vala:373
-#: ../src/librygel-server/rygel-content-directory.vala:398
-#: ../src/librygel-server/rygel-content-directory.vala:617
+#: ../src/librygel-server/rygel-content-directory.vala:270
+#: ../src/librygel-server/rygel-content-directory.vala:298
+#: ../src/librygel-server/rygel-content-directory.vala:317
+#: ../src/librygel-server/rygel-content-directory.vala:352
+#: ../src/librygel-server/rygel-content-directory.vala:377
+#: ../src/librygel-server/rygel-content-directory.vala:402
+#: ../src/librygel-server/rygel-content-directory.vala:621
+#: ../src/librygel-server/rygel-content-directory.vala:772
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Netinkamas argumentas"
@@ -544,7 +541,7 @@ msgstr "Nepavyko naršyti „%s“: %s\n"
 msgid "Not Applicable"
 msgstr "Netaikoma"
 
-#: ../src/librygel-server/rygel-content-directory.vala:638
+#: ../src/librygel-server/rygel-content-directory.vala:642
 msgid "No such file transfer"
 msgstr "Nėra tokio failo siuntimo"
 
@@ -632,7 +629,6 @@ msgid "URI '%s' invalid for importing contents to"
 msgstr "URI „%s“ netinkamas turinio importavimui"
 
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
-#| msgid "'ContainerID' agument missing."
 msgid "ContainerID missing"
 msgstr "Trūksta ContainerID"
 
@@ -648,7 +644,7 @@ msgstr "Nepavyko sunaikinti objekto „%s“: %s"
 
 #: ../src/librygel-server/rygel-item-destroyer.vala:104
 #: ../src/librygel-server/rygel-item-updater.vala:189
-#: ../src/librygel-server/rygel-media-query-action.vala:186
+#: ../src/librygel-server/rygel-media-query-action.vala:194
 #: ../src/librygel-server/rygel-reference-creator.vala:68
 #: ../src/librygel-server/rygel-reference-creator.vala:113
 msgid "No such object"
@@ -665,7 +661,6 @@ msgid "Object removal from %s not allowed"
 msgstr "Objekto pašalinimas iš %s neleidžiamas"
 
 #: ../src/librygel-server/rygel-item-updater.vala:70
-#| msgid "'ObjectID' argument missing."
 msgid "Object id missing"
 msgstr "Trūksta objekto id"
 
@@ -719,7 +714,6 @@ msgstr ""
 
 #: ../src/librygel-server/rygel-m3u-playlist.vala:67
 #: ../src/librygel-server/rygel-m3u-playlist.vala:70
-#| msgid "Unknown error."
 msgid "Unknown"
 msgstr "Nežinoma"
 
@@ -742,21 +736,29 @@ msgstr "Netinkamas URI: %s"
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Nepavyko nustatyti URI %s protokolo. Manoma, tai – „%s“"
 
-#: ../src/librygel-server/rygel-media-query-action.vala:115
-#| msgid "'ObjectID' argument missing."
+#: ../src/librygel-server/rygel-media-query-action.vala:100
+#| msgid "Invalid argument"
+msgid "Invalid number of arguments"
+msgstr "Netinkamas argumentų skaičius"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "Trūksta ObjectID argumento"
 
-#: ../src/librygel-server/rygel-media-query-action.vala:120
+#: ../src/librygel-server/rygel-media-query-action.vala:127
 msgid "Invalid range"
 msgstr "Netinkami rėžiai"
 
-#: ../src/librygel-server/rygel-media-query-action.vala:124
+#: ../src/librygel-server/rygel-media-query-action.vala:131
 msgid "Missing filter"
 msgstr "Trūksta filtro"
 
+#: ../src/librygel-server/rygel-media-query-action.vala:197
+#: ../src/librygel-server/rygel-object-creator.vala:407
+msgid "No such container"
+msgstr "Nėra tokio konteinerio"
+
 #: ../src/librygel-server/rygel-object-creator.vala:151
-#| msgid "upnp:class not supported in %s"
 msgid "upnp:createClass value not supported"
 msgstr "upnp:createClass vertė nepalaikoma"
 
@@ -769,7 +771,6 @@ msgid "Comments not allowed in XML"
 msgstr "XML faile komentarai neleidžiami"
 
 #: ../src/librygel-server/rygel-object-creator.vala:201
-#| msgid "'ContainerID' agument missing."
 msgid "Missing ContainerID argument"
 msgstr "Trūksta ContainerID argumento"
 
@@ -803,13 +804,7 @@ msgstr "Negalima sukurti draudžiamo elemento"
 msgid "UPnP class '%s' not supported"
 msgstr "UPnP klasė „%s“ nepalaikoma"
 
-#: ../src/librygel-server/rygel-object-creator.vala:407
-#| msgid "No such file transfer"
-msgid "No such container"
-msgstr "Nėra tokio konteinerio"
-
 #: ../src/librygel-server/rygel-object-creator.vala:412
-#| msgid "Object creation in %s not allowed"
 msgid " %%% Object creation in %s not allowed"
 msgstr " %%% objekto kūrimas %s neleidžiamas"
 
@@ -867,7 +862,11 @@ msgstr "Trūksta „ObjectID“ argumento."
 msgid "Failed to create object under '%s': %s"
 msgstr "Nepavyko „%s“ sukurti objekto: %s"
 
-#: ../src/librygel-server/rygel-search.vala:93
+#: ../src/librygel-server/rygel-search.vala:70
+msgid "Invalid search criteria given"
+msgstr "Pateikta neteisinga paieškos sąlyga"
+
+#: ../src/librygel-server/rygel-search.vala:94
 #, c-format
 msgid "Failed to search in '%s': %s"
 msgstr "Nepavyko rasti „%s“: %s"
@@ -1091,5 +1090,3 @@ msgstr "Nepavyko paleisti Rygel tarnybos: %s"
 msgid "Failed to stop Rygel service: %s"
 msgstr "Nepavyko sustabdyti Rygel tarnybos: %s"
 
-#~ msgid "XML node '%s' not found."
-#~ msgstr "XML mazgas „%s“ nerastas."
