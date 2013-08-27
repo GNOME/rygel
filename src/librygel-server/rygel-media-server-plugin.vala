@@ -52,7 +52,7 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
     public unowned GLib.List<DLNAProfile> upload_profiles {
         get {
             if (_upload_profiles == null) {
-                return _supported_profiles;
+                return supported_profiles;
             }
 
             return _upload_profiles;
