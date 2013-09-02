@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<scpd xmlns="urn:schemas-upnp-org:service-1-0">
+   <specVersion>
+      <major>1</major>
+      <minor>0</minor>
+   </specVersion>
+
+   <actionList>
+      <action>
+         <name>GetInterfaceInfo</name>
+         <argumentList>
+            <argument>
+               <name>NetworkInterfaceInfo</name>
+               <direction>out</direction>
+               <relatedStateVariable>NetworkInterfaceInfo</relatedStateVariable>
+            </argument>
+            <argument>
+               <name>ProxiedNetworkInterfaceInfo</name>
+               <direction>out</direction>
+               <relatedStateVariable>ProxiedNetworkInterfaceInfo</relatedStateVariable>
+            </argument>
+         </argumentList>
+      </action>
+
+<!--
+      <action>
+         <name>ServiceSubscription</name>
+         <argumentList>
+            <argument>
+               <name>UniqueServiceName</name>
+               <direction>in</direction>
+               <relatedStateVariable>A_ARG_TYPE_UniqueServiceName</relatedStateVariable>
+            </argument>
+            <argument>
+               <name>ResourceURI</name>
+               <direction>in</direction>
+               <relatedStateVariable>A_ARG_TYPE_URI</relatedStateVariable>
+            </argument>
+            <argument>
+               <name>DurationRequest</name>
+               <direction>in</direction>
+               <relatedStateVariable>A_ARG_TYPE_Duration</relatedStateVariable>
+            </argument>
+            <argument>
+               <name>ServiceSubscriptionID</name>
+               <direction>out</direction>
+               <relatedStateVariable>A_ARG_TYPE_ServiceSubscriptionID</relatedStateVariable>
+            </argument>
+            <argument>
+               <name>Duration</name>
+               <direction>out</direction>
+               <relatedStateVariable>A_ARG_TYPE_Duration</relatedStateVariable>
+            </argument>
+         </argumentList>
+      </action>
+
+      <action>
+         <name>ServiceRenewal</name>
+         <argumentList>
+            <argument>
+               <name>DurationRequest</name>
+               <direction>in</direction>
+               <relatedStateVariable>A_ARG_TYPE_Duration</relatedStateVariable>
+            </argument>
+            <argument>
+               <name>ServiceSubscriptionID</name>
+               <direction>in</direction>
+               <relatedStateVariable>A_ARG_TYPE_ServiceSubscriptionID</relatedStateVariable>
+            </argument>
+            <argument>
+               <name>Duration</name>
+               <direction>out</direction>
+               <relatedStateVariable>A_ARG_TYPE_Duration</relatedStateVariable>
+            </argument>
+         </argumentList>
+      </action>
+
+      <action>
+         <name>ServiceRelease</name>
+         <argumentList>
+            <argument>
+               <name>ServiceSubscriptionID</name>
+               <direction>in</direction>
+               <relatedStateVariable>A_ARG_TYPE_ServiceSubscriptionID</relatedStateVariable>
+            </argument>
+         </argumentList>
+      </action>
+-->
+
+   </actionList>
+
+   <serviceStateTable>
+      <stateVariable sendEvents="yes">
+         <name>NetworkInterfaceInfo</name>
+         <dataType>string</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>ProxiedNetworkInterfaceInfo</name>
+         <dataType>string</dataType>
+      </stateVariable>
+
+<!--
+      <stateVariable sendEvents="no">
+         <name>A_ARG_TYPE_Duration</name>
+         <dataType>ui4</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>A_ARG_TYPE_ServiceSubscriptionID</name>
+         <dataType>ui4</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>A_ARG_TYPE_UniqueServiceName</name>
+         <dataType>string</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>A_ARG_TYPE_URI</name>
+         <dataType>string</dataType>
+      </stateVariable>
+-->
+
+   </serviceStateTable>
+
+</scpd>

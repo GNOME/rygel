@@ -1,4 +1,5 @@
-xml_in_files = MediaServer3.xml.in \
+xml_in_files = EnergyManagement.xml.in \
+               MediaServer3.xml.in \
                MediaRenderer2.xml.in \
                RuihServer2.xml.in \
                ContentDirectory.xml.in \
