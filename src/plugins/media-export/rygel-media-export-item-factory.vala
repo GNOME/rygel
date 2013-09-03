@@ -273,7 +273,7 @@ namespace Rygel.MediaExport.ItemFactory {
         if (sample == null) {
             return item;
         }
-        var structure = sample.get_caps ().get_structure (0);
+        unowned Structure structure = sample.get_caps ().get_structure (0);
 
         int image_type;
         structure.get_enum ("image-type",
