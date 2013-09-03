@@ -1,3 +1,52 @@
+0.19.6
+======
+
+A new unstable release of Rygel.
+
+Changes compared to 0.19.5:
+
+- Improve Android compatiblity.
+
+Server:
+ - Fix upload of files.
+ - Fix CreateReference call.
+
+GStreamer Renderer:
+ - Fix warning with newer valac about copying unowned structs.
+
+MediaExport:
+ - Fix warning with newer valac about copying unowned structs.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=706525
+ - https://bugzilla.gnome.org/show_bug.cgi?id=706797
+ - https://bugzilla.gnome.org/show_bug.cgi?id=707065
+ - https://bugzilla.gnome.org/show_bug.cgi?id=707146
+
+All contributors to this release:
+ - Jens Georg <jensg@openismus.com>
+ - Alexandre Franke <alexandre.franke@gmail.com>
+ - Reynaldo H. Verdejo Pinochet <reynaldo@collabora.com>
+ - Regis Merlino <regis.merlino@intel.com>
+ - Rafael Ferreira <rafael.f.f1@gmail.com>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Maciej Piechotka <uzytkownik2@gmail.com>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Funda Wang <fundawang@gmail.com>
+ - Fran Diéguez <fran.dieguez@mabishu.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+
+Added/updated translations
+ - fr, courtesy of Alain Lojewski
+ - gl, courtesy of Fran Dieguez
+ - lt, courtesy of Aurimas Černius
+ - nb, courtesy of Kjartan Maraas
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Rafael Ferreira
+ - sl, courtesy of Matej Urbančič
+ - zh_CN, courtesy of 甘露(Gan  Lu)
+
 0.19.5
 ======
 
