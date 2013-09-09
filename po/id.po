@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-06-27 12:14+0000\n"
-"PO-Revision-Date: 2013-07-04 17:56+0700\n"
+"POT-Creation-Date: 2013-09-07 17:32+0000\n"
+"PO-Revision-Date: 2013-09-09 22:53+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.6\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -79,18 +79,17 @@ msgstr "mediaserver;mediarenderer;berbagi;audio;video;gambar;"
 msgid "Module '%s' could not connect to D-Bus session bus. "
 msgstr "Modul '%s' tak bisa menyambung ke bus sesi D-Bus."
 
-#: ../src/plugins/external/rygel-external-variant-util.vala:29
-#: ../src/plugins/external/rygel-external-variant-util.vala:47
+#: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
-msgid "External provider %s did not provide mandatory "
-msgstr "Penyedia eksternal %s tak menyediakan yang wajib"
+msgid "External provider %s did not provide mandatory property \"%s\""
+msgstr "Penyedia eksternal %s tak menyediakan properti \"%s\" yang wajib"
 
 #: ../src/plugins/media-export/rygel-media-export-database-cursor.vala:81
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Tipe %s tak didukung"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:217
+#: ../src/plugins/media-export/rygel-media-export-database.vala:215
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Gagal memutar balik transaksi: %s"
@@ -135,12 +134,17 @@ msgstr "gagal mengenumerasi folder: %s"
 msgid "Failed to get children of container %s: %s"
 msgstr "Gagal mendapat anak dari suatu wadah %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:129
+#: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
+#, c-format
+msgid "Failed to get child count of query container: %s"
+msgstr "Gagal mendapat cacah anak dari wadah kuiri: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:130
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Gagal menambahkan item dengan ID %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:531
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:564
 msgid "Cannot create references to containers"
 msgstr "Tak bisa membuat acuan ke wadah"
 
@@ -150,38 +154,43 @@ msgstr "Tak bisa membuat acuan ke wadah"
 msgid "Failed to query content type for '%s'"
 msgstr "Gagal melakukan kuiri jenis isi untuk '%s'"
 
-#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:53
+#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
 msgid "All"
 msgstr "Semua"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:57
-#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:63
+#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:93
+#, c-format
+msgid "Failed to get child count: %s"
+msgstr "Gagal mendapat cacah anak: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:70
+#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
 #, c-format
 msgid "Can't create items in %s"
 msgstr "Tak bisa membuat item dalam %s"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:78
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:91
 #, c-format
 msgid "Can't add containers in %s"
 msgstr "Tak bisa menambah wadah dalam %s"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:86
+#: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:99
 #, c-format
 msgid "Can't remove containers in %s"
 msgstr "Tak bisa menghapus wadah dalam %s"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:42
+#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
 msgid "Playlists"
 msgstr "Daftar putar"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:71
+#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
 msgid "Can't remove items in %s"
 msgstr "Tak bisa menghapus item dalam %s"
 
-#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:81
+#: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
 #, c-format
 msgid "upnp:class not supported in %s"
 msgstr "upnp:class tidak didukung dalam %s"
@@ -240,6 +249,16 @@ msgstr "Gambar"
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:584
 msgid "Videos"
 msgstr "Video"
+
+#: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
+#, c-format
+msgid "Failed to remove file %s: %s"
+msgstr "Gagal membuang berkas %s: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:120
+#, c-format
+msgid "Could not find object %d in cache"
+msgstr "Tak bisa temukan objek %d dalam singgahan"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
@@ -327,20 +346,22 @@ msgstr "Tak diimplementasikan"
 
 #: ../src/librygel-core/rygel-connection-manager.vala:91
 #: ../src/librygel-core/rygel-connection-manager.vala:105
-#: ../src/librygel-core/rygel-connection-manager.vala:127
+#: ../src/librygel-core/rygel-connection-manager.vala:122
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
 #: ../src/librygel-renderer/rygel-rendering-control.vala:128
-#: ../src/librygel-server/rygel-content-directory.vala:265
-#: ../src/librygel-server/rygel-content-directory.vala:292
-#: ../src/librygel-server/rygel-content-directory.vala:311
-#: ../src/librygel-server/rygel-content-directory.vala:346
-#: ../src/librygel-server/rygel-content-directory.vala:371
-#: ../src/librygel-server/rygel-content-directory.vala:396
+#: ../src/librygel-server/rygel-content-directory.vala:270
+#: ../src/librygel-server/rygel-content-directory.vala:298
+#: ../src/librygel-server/rygel-content-directory.vala:317
+#: ../src/librygel-server/rygel-content-directory.vala:352
+#: ../src/librygel-server/rygel-content-directory.vala:377
+#: ../src/librygel-server/rygel-content-directory.vala:402
+#: ../src/librygel-server/rygel-content-directory.vala:621
+#: ../src/librygel-server/rygel-content-directory.vala:772
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Argumen tak valid"
 
-#: ../src/librygel-core/rygel-connection-manager.vala:121
+#: ../src/librygel-core/rygel-connection-manager.vala:128
 msgid "Invalid connection reference"
 msgstr "Referensi koneksi tidak sah"
 
@@ -512,12 +533,11 @@ msgstr "Tak bisa meramban anak pada objek"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Gagal menelusuri '%s': %s\n"
 
-#: ../src/librygel-server/rygel-client-hacks.vala:123
+#: ../src/librygel-server/rygel-client-hacks.vala:131
 msgid "Not Applicable"
 msgstr "Tak Berlaku"
 
-#: ../src/librygel-server/rygel-content-directory.vala:284
-#: ../src/librygel-server/rygel-content-directory.vala:303
+#: ../src/librygel-server/rygel-content-directory.vala:642
 msgid "No such file transfer"
 msgstr "Tidak ada transfer berkas"
 
@@ -563,7 +583,7 @@ msgid "Failed to generate playlist"
 msgstr "Gagal menghasilkan daftar putar"
 
 #: ../src/librygel-server/rygel-http-post.vala:62
-#: ../src/librygel-server/rygel-import-resource.vala:189
+#: ../src/librygel-server/rygel-import-resource.vala:188
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Item '%s' tidak kosong, penempatan data tidak diperbolehkan"
@@ -579,7 +599,7 @@ msgstr "Tidak ada URI yang dapat ditulis untuk %s"
 msgid "Failed to move dotfile %s: %s"
 msgstr "Gagal memindah berkas dot %s: %s"
 
-#: ../src/librygel-server/rygel-http-request.vala:92
+#: ../src/librygel-server/rygel-http-request.vala:97
 #, c-format
 msgid "Requested item '%s' not found"
 msgstr "Item '%s' yang dipinta tidak ada"
@@ -599,7 +619,7 @@ msgstr "Stop '%ld' Di Luar Jangkauan"
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Gagal memperoleh URI asli untuk '%s': %s"
 
-#: ../src/librygel-server/rygel-import-resource.vala:186
+#: ../src/librygel-server/rygel-import-resource.vala:185
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URI '%s' tidak sah sebagai tujuan impor"
@@ -618,22 +638,20 @@ msgstr "Berhasil memusnahkan objek '%s'"
 msgid "Failed to destroy object '%s': %s"
 msgstr "Gagal memusnahkan objek '%s': %s"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:102
+#: ../src/librygel-server/rygel-item-destroyer.vala:104
 #: ../src/librygel-server/rygel-item-updater.vala:189
-#: ../src/librygel-server/rygel-media-query-action.vala:115
-#: ../src/librygel-server/rygel-media-query-action.vala:182
-#: ../src/librygel-server/rygel-object-creator.vala:195
+#: ../src/librygel-server/rygel-media-query-action.vala:194
 #: ../src/librygel-server/rygel-reference-creator.vala:68
 #: ../src/librygel-server/rygel-reference-creator.vala:113
 msgid "No such object"
 msgstr "Tidak ada objek"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:105
+#: ../src/librygel-server/rygel-item-destroyer.vala:107
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "Penghapusan objek %s tidak diperbolehkan"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:108
+#: ../src/librygel-server/rygel-item-destroyer.vala:110
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "Penghapusan objek dari %s tidak diperbolehkan"
@@ -703,96 +721,121 @@ msgstr "Tak ditemukan mesin media."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init tak dipanggil. Tak bisa melanjutkan."
 
-#: ../src/librygel-server/rygel-media-item.vala:312
+#: ../src/librygel-server/rygel-media-item.vala:322
 #, c-format
 msgid "Bad URI: %s"
 msgstr "URI jelek: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-item.vala:324
+#: ../src/librygel-server/rygel-media-item.vala:334
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Gagal menduga protokol untuk URI %s. Diandaikan '%s'"
 
-#: ../src/librygel-server/rygel-media-query-action.vala:120
+#: ../src/librygel-server/rygel-media-query-action.vala:100
+msgid "Invalid number of arguments"
+msgstr "Cacah argumen tak valid"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:122
+msgid "ObjectID argument missing"
+msgstr "Kurang argumen ObjectID"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:127
 msgid "Invalid range"
 msgstr "Jangkauan tak valid"
 
-#: ../src/librygel-server/rygel-object-creator.vala:186
+#: ../src/librygel-server/rygel-media-query-action.vala:131
+msgid "Missing filter"
+msgstr "Penyaring hilang"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:197
+#: ../src/librygel-server/rygel-object-creator.vala:407
+msgid "No such container"
+msgstr "Tidak ada wadah tersebut"
+
+#: ../src/librygel-server/rygel-object-creator.vala:151
+msgid "upnp:createClass value not supported"
+msgstr "nilai upnp:createClass tidak didukung"
+
+#: ../src/librygel-server/rygel-object-creator.vala:192
 msgid "'Elements' argument missing."
 msgstr "Kehilangan argumen 'Elements'."
 
-#: ../src/librygel-server/rygel-object-creator.vala:189
+#: ../src/librygel-server/rygel-object-creator.vala:195
 msgid "Comments not allowed in XML"
 msgstr "Komentar tidak diperbolehkan pada format XML"
 
-#: ../src/librygel-server/rygel-object-creator.vala:219
+#: ../src/librygel-server/rygel-object-creator.vala:201
+msgid "Missing ContainerID argument"
+msgstr "Kurang argumen ContainerID"
+
+#: ../src/librygel-server/rygel-object-creator.vala:225
 #, c-format
 msgid "No objects in DIDL-Lite from client: '%s'"
 msgstr "Tidak ada objek dalam DIDL-Lite dari klien: '%s'"
 
-#: ../src/librygel-server/rygel-object-creator.vala:226
+#: ../src/librygel-server/rygel-object-creator.vala:232
 msgid "@id must be set to \"\" in CreateObject call"
 msgstr "@id mesti diisi \"\" dalam panggilan CreateObject"
 
-#: ../src/librygel-server/rygel-object-creator.vala:231
+#: ../src/librygel-server/rygel-object-creator.vala:237
 msgid "dc:title must not be empty in CreateObject call"
 msgstr "dc:title tak boleh kosong dalam panggilan CreateObject"
 
-#: ../src/librygel-server/rygel-object-creator.vala:242
+#: ../src/librygel-server/rygel-object-creator.vala:248
 msgid "Flags that must not be set were found in 'dlnaManaged'"
 msgstr "Flag yang tak boleh diisi ditemukan dalam 'dlnaManaged'"
 
-#: ../src/librygel-server/rygel-object-creator.vala:250
+#: ../src/librygel-server/rygel-object-creator.vala:256
 msgid "Invalid upnp:class given in CreateObject"
 msgstr "upnp:class yang tak valid diberikan dalam CreateObject"
 
-#: ../src/librygel-server/rygel-object-creator.vala:255
+#: ../src/librygel-server/rygel-object-creator.vala:261
 msgid "Cannot create restricted item"
 msgstr "Tak bisa membuat item terbatas"
 
-#: ../src/librygel-server/rygel-object-creator.vala:320
+#: ../src/librygel-server/rygel-object-creator.vala:378
 #, c-format
 msgid "UPnP class '%s' not supported"
 msgstr "Kelas UPnP '%s' tidak didukung"
 
-#: ../src/librygel-server/rygel-object-creator.vala:349
-msgid "No such container"
-msgstr "Tidak ada wadah tersebut"
+#: ../src/librygel-server/rygel-object-creator.vala:412
+msgid " %%% Object creation in %s not allowed"
+msgstr "Pembuatan Objek %%% dalam %s tidak diperbolehkan"
 
-#: ../src/librygel-server/rygel-object-creator.vala:353
-#: ../src/librygel-server/rygel-object-creator.vala:622
-#: ../src/librygel-server/rygel-reference-creator.vala:117
+#: ../src/librygel-server/rygel-object-creator.vala:424
+#: ../src/librygel-server/rygel-object-creator.vala:710
+#: ../src/librygel-server/rygel-reference-creator.vala:116
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Pembuatan objek pada %s tidak diperbolehkan"
 
-#: ../src/librygel-server/rygel-object-creator.vala:381
+#: ../src/librygel-server/rygel-object-creator.vala:469
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Gagal membuat item pada '%s': %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:455
+#: ../src/librygel-server/rygel-object-creator.vala:543
 #, c-format
 msgid "DLNA profile '%s' not supported"
 msgstr "Profil DLNA '%s' tidak didukung"
 
-#: ../src/librygel-server/rygel-object-creator.vala:513
+#: ../src/librygel-server/rygel-object-creator.vala:601
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "Format tanggal tak valid: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:522
+#: ../src/librygel-server/rygel-object-creator.vala:610
 #, c-format
 msgid "Invalid date: %s"
 msgstr "Tanggal tak valid: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:555
+#: ../src/librygel-server/rygel-object-creator.vala:643
 #, c-format
 msgid "Cannot create object of class '%s': Not supported"
 msgstr "Tak bisa membuat objek dengan kelas '%s': Tak didukung"
 
-#: ../src/librygel-server/rygel-object-creator.vala:653
+#: ../src/librygel-server/rygel-object-creator.vala:741
 #, c-format
 msgid ""
 "Error from container '%s' on trying to find the newly added child object "
@@ -814,7 +857,11 @@ msgstr "Kehilangan argumen 'ObjectID'."
 msgid "Failed to create object under '%s': %s"
 msgstr "Gagal membuat objek di bawah '%s': %s"
 
-#: ../src/librygel-server/rygel-search.vala:93
+#: ../src/librygel-server/rygel-search.vala:70
+msgid "Invalid search criteria given"
+msgstr "Kriteria pencarian yang tak valid diberikan"
+
+#: ../src/librygel-server/rygel-search.vala:94
 #, c-format
 msgid "Failed to search in '%s': %s"
 msgstr "Gagal mencari pada '%s': %s"
