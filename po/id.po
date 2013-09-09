@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel rygel-0-18\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-03-18 13:17+0000\n"
-"PO-Revision-Date: 2013-03-28 19:30+0700\n"
+"POT-Creation-Date: 2013-09-07 06:52+0000\n"
+"PO-Revision-Date: 2013-09-09 22:00+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -92,7 +92,7 @@ msgstr "mediaserver;mediarenderer;berbagi;audio;video;gambar;"
 msgid "Module '%s' could not connect to D-Bus session bus. "
 msgstr "Modul '%s' tak bisa menyambung ke bus sesi D-Bus."
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:210
+#: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Gagal memutar balik transaksi: %s"
@@ -103,27 +103,27 @@ msgstr "Gagal memutar balik transaksi: %s"
 msgid "Failed to query content type for '%s'"
 msgstr "Gagal melakukan kuiri jenis isi untuk '%s'"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:122
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:121
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Gagal menambahkan item dengan ID %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:124
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:135
 #, c-format
 msgid "'%s' harvested"
 msgstr "'%s' dikumpulkan"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:187
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:198
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Galat mengambil objek '%s' dari basis data: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:195
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:206
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "Gagal meminta info dari suatu berkas %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:235
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:246
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Galat menghapus objek dari basis data: %s"
@@ -168,25 +168,25 @@ msgstr "Berkas & Folder"
 msgid "@REALNAME@'s media"
 msgstr "Media @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:433
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:492
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:431
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:498
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Gagal menghapus entri: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:571
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:577
 msgid "Music"
 msgstr "Musik"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:574
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:580
 msgid "Pictures"
 msgstr "Gambar"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:576
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:582
 msgid "Videos"
 msgstr "Video"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:578
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:584
 msgid "Playlists"
 msgstr "Daftar putar"
 
@@ -264,12 +264,12 @@ msgstr "Tak diimplementasikan"
 #: ../src/librygel-core/rygel-connection-manager.vala:127
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
 #: ../src/librygel-renderer/rygel-rendering-control.vala:128
-#: ../src/librygel-server/rygel-content-directory.vala:264
-#: ../src/librygel-server/rygel-content-directory.vala:291
-#: ../src/librygel-server/rygel-content-directory.vala:310
-#: ../src/librygel-server/rygel-content-directory.vala:345
-#: ../src/librygel-server/rygel-content-directory.vala:370
-#: ../src/librygel-server/rygel-content-directory.vala:395
+#: ../src/librygel-server/rygel-content-directory.vala:265
+#: ../src/librygel-server/rygel-content-directory.vala:292
+#: ../src/librygel-server/rygel-content-directory.vala:311
+#: ../src/librygel-server/rygel-content-directory.vala:346
+#: ../src/librygel-server/rygel-content-directory.vala:371
+#: ../src/librygel-server/rygel-content-directory.vala:396
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Argumen tak valid"
@@ -372,32 +372,32 @@ msgid "Invalid InstanceID"
 msgstr "InstanceID Tidak Sah"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:255
-#: ../src/librygel-renderer/rygel-av-transport.vala:670
-#: ../src/librygel-renderer/rygel-av-transport.vala:680
+#: ../src/librygel-renderer/rygel-av-transport.vala:271
+#: ../src/librygel-renderer/rygel-av-transport.vala:695
+#: ../src/librygel-renderer/rygel-av-transport.vala:705
 msgid "Resource not found"
 msgstr "Sumber daya tak ditemukan"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:266
+#: ../src/librygel-renderer/rygel-av-transport.vala:281
 msgid "Illegal MIME-type"
 msgstr "Tipe MIME ilegal"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:528
+#: ../src/librygel-renderer/rygel-av-transport.vala:553
 msgid "Play speed not supported"
 msgstr "Manipulasi kecepatan putar tidak didukung"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:545
+#: ../src/librygel-renderer/rygel-av-transport.vala:570
 msgid "Transition not available"
 msgstr "Transisi tidak tersedia"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:574
-#: ../src/librygel-renderer/rygel-av-transport.vala:598
+#: ../src/librygel-renderer/rygel-av-transport.vala:599
+#: ../src/librygel-renderer/rygel-av-transport.vala:623
 msgid "Seek mode not supported"
 msgstr "Mode pelompatan tidak didukung"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:587
-#: ../src/librygel-renderer/rygel-av-transport.vala:608
-#: ../src/librygel-renderer/rygel-av-transport.vala:616
+#: ../src/librygel-renderer/rygel-av-transport.vala:612
+#: ../src/librygel-renderer/rygel-av-transport.vala:633
+#: ../src/librygel-renderer/rygel-av-transport.vala:641
 msgid "Illegal seek target"
 msgstr "Target seek ilegal"
 
@@ -432,8 +432,8 @@ msgstr "Tak bisa meramban anak pada objek"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Gagal menelusuri '%s': %s\n"
 
-#: ../src/librygel-server/rygel-content-directory.vala:283
-#: ../src/librygel-server/rygel-content-directory.vala:302
+#: ../src/librygel-server/rygel-content-directory.vala:284
+#: ../src/librygel-server/rygel-content-directory.vala:303
 msgid "No such file transfer"
 msgstr "Tidak ada transfer berkas"
 
@@ -508,41 +508,46 @@ msgstr "Gagal memperoleh URI asli untuk '%s': %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URI '%s' tidak sah sebagai tujuan impor"
 
-#: ../src/librygel-server/rygel-object-creator.vala:187
+#: ../src/librygel-server/rygel-object-creator.vala:186
 msgid "'Elements' argument missing."
 msgstr "Kehilangan argumen 'Elements'."
 
-#: ../src/librygel-server/rygel-object-creator.vala:190
+#: ../src/librygel-server/rygel-object-creator.vala:189
 msgid "Comments not allowed in XML"
 msgstr "Komentar tidak diperbolehkan pada format XML"
 
-#: ../src/librygel-server/rygel-object-creator.vala:196
-#: ../src/librygel-server/rygel-object-creator.vala:353
-#: ../src/librygel-server/rygel-item-destroyer.vala:53
-#: ../src/librygel-server/rygel-item-destroyer.vala:100
-#: ../src/librygel-server/rygel-item-updater.vala:70
+#: ../src/librygel-server/rygel-object-creator.vala:195
+#: ../src/librygel-server/rygel-item-destroyer.vala:104
 #: ../src/librygel-server/rygel-item-updater.vala:189
 #: ../src/librygel-server/rygel-media-query-action.vala:115
-#: ../src/librygel-server/rygel-media-query-action.vala:182
+#: ../src/librygel-server/rygel-media-query-action.vala:186
 msgid "No such object"
 msgstr "Tidak ada objek"
 
 #. FIXME: Change to object after string freeze
-#: ../src/librygel-server/rygel-object-creator.vala:221
+#: ../src/librygel-server/rygel-object-creator.vala:220
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
 msgstr "Tidak ada item dalam DIDL-Lite dari klien: '%s'"
 
-#: ../src/librygel-server/rygel-object-creator.vala:357
-#: ../src/librygel-server/rygel-object-creator.vala:628
+#: ../src/librygel-server/rygel-object-creator.vala:363
+msgid "No such container"
+msgstr "Tidak ada kontainer itu"
+
+#: ../src/librygel-server/rygel-object-creator.vala:367
+#: ../src/librygel-server/rygel-object-creator.vala:638
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Pembuatan objek pada %s tidak diperbolehkan"
 
-#: ../src/librygel-server/rygel-object-creator.vala:385
+#: ../src/librygel-server/rygel-object-creator.vala:395
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Gagal membuat item pada '%s': %s"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:53
+msgid "ContainerID missing"
+msgstr "Kurang ContainerID"
 
 #: ../src/librygel-server/rygel-item-destroyer.vala:60
 #, c-format
@@ -554,15 +559,19 @@ msgstr "Berhasil memusnahkan objek '%s'"
 msgid "Failed to destroy object '%s': %s"
 msgstr "Gagal memusnahkan objek '%s': %s"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:103
+#: ../src/librygel-server/rygel-item-destroyer.vala:107
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "Penghapusan objek %s tidak diperbolehkan"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:106
+#: ../src/librygel-server/rygel-item-destroyer.vala:110
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "Penghapusan objek dari %s tidak diperbolehkan"
+
+#: ../src/librygel-server/rygel-item-updater.vala:70
+msgid "Object id missing"
+msgstr "Kurang id objek"
 
 #: ../src/librygel-server/rygel-item-updater.vala:77
 #, c-format
@@ -634,6 +643,10 @@ msgstr "Gagal menduga protokol untuk URI %s. Diandaikan '%s'"
 #: ../src/librygel-server/rygel-media-query-action.vala:120
 msgid "Invalid range"
 msgstr "Jangkauan tak valid"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:124
+msgid "Missing filter"
+msgstr "Kurang penyaring"
 
 #: ../src/librygel-server/rygel-media-server.vala:25
 msgid "LibRygelServer"
@@ -742,34 +755,34 @@ msgstr "Gagal membuat RootDevice untuk %s. Alasan: %s"
 msgid "Failed to load user configuration: %s"
 msgstr "Gagal memuat konfigurasi pengguna: %s"
 
-#: ../src/rygel/rygel-user-config.vala:292
-#: ../src/ui/rygel-user-config.vala:292
+#: ../src/rygel/rygel-user-config.vala:294
+#: ../src/ui/rygel-user-config.vala:294
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Tidak ada nilai untuk '%s'"
 
-#: ../src/rygel/rygel-user-config.vala:363
-#: ../src/ui/rygel-user-config.vala:363
+#: ../src/rygel/rygel-user-config.vala:365
+#: ../src/ui/rygel-user-config.vala:365
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Nilai '%s' di luar jangkauan"
 
-#: ../src/ui/rygel-preferences-dialog.vala:94
+#: ../src/ui/rygel-preferences-dialog.vala:95
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Gagal membuat dialog preferensi: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:108
+#: ../src/ui/rygel-writable-user-config.vala:122
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr "Gagal menyimpan konfigurasi pada berkas '%s': %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:196
+#: ../src/ui/rygel-writable-user-config.vala:221
 #, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "Gagal menjalankan layanan Rygel: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:198
+#: ../src/ui/rygel-writable-user-config.vala:223
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Gagal menghentikan layanan Rygel: %s"
