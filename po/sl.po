@@ -89,9 +89,9 @@ msgid "External provider %s did not provide mandatory property \"%s\""
 msgstr ""
 
 #: ../src/plugins/media-export/rygel-media-export-database-cursor.vala:81
-#, fuzzy, c-format
+#, c-format
 msgid "Unsupported type %s"
-msgstr "Nepodprta vrsta medija"
+msgstr "Nepodprta vrsta %s"
 
 #: ../src/plugins/media-export/rygel-media-export-database.vala:215
 #, c-format
@@ -119,19 +119,19 @@ msgid "Error removing object from database: %s"
 msgstr "Napaka med odstranjevanjem predmeta iz podatkovne zbirke: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:114
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to harvest file %s: %s"
-msgstr "Odstranjevanje datoteke `%s' je spodletelo: %s"
+msgstr "Pridobivanje datoteke %s je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:164
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to query database: %s"
-msgstr "Povezovanje s podatkovno zbirko '%s' je spodletelo.\n"
+msgstr "Poizvedovanje podatkovne zbirke je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
-#, fuzzy, c-format
+#, c-format
 msgid "failed to enumerate folder: %s"
-msgstr "Odpiranje mape je spodletelo."
+msgstr "oštevilčenje mape je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
 #, fuzzy, c-format
@@ -170,14 +170,14 @@ msgstr "Štetje stikov strežnika je spodletelo."
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
-#, fuzzy, c-format
+#, c-format
 msgid "Can't create items in %s"
-msgstr "Ni mogoče ustvariti razpredelnic v zbirki podatkov %s"
+msgstr "Ni mogoče ustvariti predmeta v %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:91
-#, fuzzy, c-format
+#, c-format
 msgid "Can't add containers in %s"
-msgstr "<big><b>Upravljalnik vstavkov</b></big>"
+msgstr "Ni mogoče dodajanje vsebnikov v %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:99
 #, fuzzy, c-format
@@ -195,9 +195,9 @@ msgid "Can't remove items in %s"
 msgstr "Nalaganje predmetov v mapo %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
-#, fuzzy, c-format
+#, c-format
 msgid "upnp:class not supported in %s"
-msgstr "\\N ni podprto v razredu"
+msgstr "upnp: razred ni podprt v %s"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
 msgid "Will not monitor file changes"
@@ -580,14 +580,12 @@ msgid "Not Found"
 msgstr "Ni najden"
 
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:50
-#, fuzzy
 msgid "Seeking not supported"
-msgstr "Funkcija ni podprta!"
+msgstr "Iskanje ni podprto"
 
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:97
-#, fuzzy
 msgid "Failed to generate playlist"
-msgstr "Ustvarjanje oblike popravka je spodletelo"
+msgstr "Ustvarjanje seznama predvajanja je spodletelo"
 
 #: ../src/librygel-server/rygel-http-post.vala:62
 #: ../src/librygel-server/rygel-import-resource.vala:188
@@ -665,9 +663,8 @@ msgid "Object removal from %s not allowed"
 msgstr "Odstranjevanje predmeta iz %s ni dovoljeno"
 
 #: ../src/librygel-server/rygel-item-updater.vala:70
-#, fuzzy
 msgid "Object id missing"
-msgstr "Manjkajoči predmet bo prezrt"
+msgstr "Manjka ID predmeta"
 
 #: ../src/librygel-server/rygel-item-updater.vala:77
 #, c-format
@@ -719,7 +716,6 @@ msgstr ""
 
 #: ../src/librygel-server/rygel-m3u-playlist.vala:67
 #: ../src/librygel-server/rygel-m3u-playlist.vala:70
-#, fuzzy
 msgid "Unknown"
 msgstr "Neznano"
 
@@ -743,29 +739,25 @@ msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Neuspešno preiskovanje protokola za naslov URI %s. Uporabljeno bo '%s'"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:100
-#, fuzzy
 msgid "Invalid number of arguments"
 msgstr "Neveljavno število argumentov"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:122
-#, fuzzy
 msgid "ObjectID argument missing"
-msgstr "Manjka argument za %s"
+msgstr "Manjka argument ID predmeta"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:127
 msgid "Invalid range"
 msgstr "Neveljaven obseg"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:131
-#, fuzzy
 msgid "Missing filter"
-msgstr "Manjka vrsta filtra"
+msgstr "Manjka filter"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:197
 #: ../src/librygel-server/rygel-object-creator.vala:407
-#, fuzzy
 msgid "No such container"
-msgstr "Ni takega imenika"
+msgstr "Ni takega vsebnika"
 
 #: ../src/librygel-server/rygel-object-creator.vala:151
 msgid "upnp:createClass value not supported"
@@ -780,9 +772,8 @@ msgid "Comments not allowed in XML"
 msgstr "Opombe v XML niso dovoljene"
 
 #: ../src/librygel-server/rygel-object-creator.vala:201
-#, fuzzy
 msgid "Missing ContainerID argument"
-msgstr "Manjka argument za %s"
+msgstr "Manjka argument za ID vsebnika"
 
 #: ../src/librygel-server/rygel-object-creator.vala:225
 #, fuzzy, c-format
@@ -806,9 +797,8 @@ msgid "Invalid upnp:class given in CreateObject"
 msgstr "Neveljavna vrednost uPnP: razred je podan v predmetu CreateObject"
 
 #: ../src/librygel-server/rygel-object-creator.vala:261
-#, fuzzy
 msgid "Cannot create restricted item"
-msgstr "Ustvari nov preizkusni predmet"
+msgstr "Ni mogoče ustvari omejenega predmeta"
 
 #: ../src/librygel-server/rygel-object-creator.vala:378
 #, c-format
@@ -870,14 +860,13 @@ msgid "'ObjectID' argument missing."
 msgstr "Manjka argument za %s"
 
 #: ../src/librygel-server/rygel-reference-creator.vala:84
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to create object under '%s': %s"
-msgstr "Predmeta GdkPixbufLoader ni mogoče ustvariti."
+msgstr "Predmeta ni mogoče ustvariti pod '%s': %s."
 
 #: ../src/librygel-server/rygel-search.vala:70
-#, fuzzy
 msgid "Invalid search criteria given"
-msgstr "Podani kriteriji so neveljaveni."
+msgstr "Podani kriteriji niso veljaveni"
 
 #: ../src/librygel-server/rygel-search.vala:94
 #, c-format
@@ -894,9 +883,8 @@ msgid "No thumbnailer available: %s"
 msgstr "Ustvarjalnik sličic ni na voljo: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:74
-#, fuzzy
 msgid "Thumbnailing not supported"
-msgstr "Funkcija ni podprta!"
+msgstr "Ustvarjanje sličic ni podprto"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
@@ -978,62 +966,52 @@ msgid "Network Interfaces"
 msgstr "Omrežni vmesniki"
 
 #: ../src/rygel/rygel-cmdline-config.vala:81
-#, fuzzy
 msgid "Disable transcoding"
-msgstr "Prekodiranje pesmi"
+msgstr "Ne dovoli prekodiranja"
 
 #: ../src/rygel/rygel-cmdline-config.vala:83
-#, fuzzy
 msgid "Disallow upload"
-msgstr "Pošlji _vse"
+msgstr "Ne dovoli pošiljanja"
 
 #: ../src/rygel/rygel-cmdline-config.vala:85
-#, fuzzy
 msgid "Disallow deletion"
-msgstr "Neuspel izbris pošte"
+msgstr "Ne dovoli brisanja"
 
 #: ../src/rygel/rygel-cmdline-config.vala:87
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr ""
 
 #: ../src/rygel/rygel-cmdline-config.vala:89
-#, fuzzy
 msgid "Plugin Path"
-msgstr "Prva pot:"
+msgstr "Pot vstavka"
 
 #: ../src/rygel/rygel-cmdline-config.vala:91
-#, fuzzy
 msgid "Engine Path"
-msgstr "Pot _programnika:"
+msgstr "Pot programnika"
 
 #: ../src/rygel/rygel-cmdline-config.vala:94
-#, fuzzy
 msgid "Disable plugin"
-msgstr "Napake vstavkov"
+msgstr "Onemogoči vstavek"
 
 #: ../src/rygel/rygel-cmdline-config.vala:96
-#, fuzzy
 msgid "Set plugin titles"
-msgstr "Pokaži _naslove stolpcev"
+msgstr "Nastavi naslove vstavkov"
 
 #: ../src/rygel/rygel-cmdline-config.vala:98
-#, fuzzy
 msgid "Set plugin options"
-msgstr "Možnosti za vstavek %s"
+msgstr "Nastavi možnosti vstavka"
 
 #: ../src/rygel/rygel-cmdline-config.vala:100
 msgid "Disable UPnP (streaming-only)"
 msgstr "Onemogoči UPnP (le pri pretakanju)"
 
 #: ../src/rygel/rygel-cmdline-config.vala:102
-#, fuzzy
 msgid "Use configuration file instead of user configuration"
-msgstr "uporabi nastavitveno datoteko po meri"
+msgstr "Uporabi nastavitveno datoteko namesto uporabniških nastavitev"
 
 #: ../src/rygel/rygel-cmdline-config.vala:104
-#, fuzzy
 msgid "Shutdown remote Rygel reference"
-msgstr "sklic do oddaljene datoteke"
+msgstr "Izklopi oddaljen sklic do datoteke"
 
 #: ../src/rygel/rygel-cmdline-config.vala:141
 msgid "Shutting down remote Rygel instance\n"
