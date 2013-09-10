@@ -231,6 +231,23 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
         </listitem>
       </varlistentry>
     </variablelist>
+  </refsect1>
+  <refsect1>
+    <title>GStreamer Media Engine settings</title>
+    <para>The settings in the <code>[GstMediaEngine]</code> section are specific to the Gstreamer media engine, which is the default media engine. See the media-engine setting. These following options are available for the <ulink url="http://gstreamer.freedesktop.org">GStreamer</ulink> media engine.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <option>transcoders</option>
+        </term>
+        <listitem>
+          <para>A semicolon-separated list of the active transcoders. This setting has no effect if <option>enable-transcoding</option> is set to <code>false</code>. Possible values are: <code>lpcm,mp3,mp2ts,aac,avc</code> or <code>wmv</code>. Its default value is <code>lpcm;mp3;mp2ts;aac;wmv</code>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+  <refsect1>
+    <title>Plugin-specific settings</title>
     <para>Sections for plugins are denoted with <option>[PluginName]</option>
       and can contain options specific to a plugin (see below)  as well these common options:
     </para>
@@ -255,20 +272,6 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
             You can individually enable or disable plugins by setting this
             to <userinput>true</userinput> or <userinput>false</userinput>.
           </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsect1>
-  <refsect1>
-    <title>GStreamer Media Engine settings</title>
-    <para>The settings in the <code>[GstMediaEngine]</code> section are specific to the Gstreamer media engine, which is the default media engine. See the media-engine setting. These following options are available for the <ulink url="http://gstreamer.freedesktop.org">GStreamer</ulink> media engine.</para>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <option>transcoders</option>
-        </term>
-        <listitem>
-          <para>A semicolon-separated list of the active transcoders. This setting has no effect if <option>enable-transcoding</option> is set to <code>false</code>. Possible values are: <code>lpcm,mp3,mp2ts,aac,avc</code> or <code>wmv</code>. Its default value is <code>lpcm;mp3;mp2ts;aac;wmv</code>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
