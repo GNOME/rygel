@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the rygel package.
 #
 # Andrej Žnidaršič <andrej.znidarsic@gmail.com>, 2010-2011.
+# Matej Urbančič <mateju@svn.gnome.org>, 2012-2013.
 #
 msgid ""
 msgstr ""
@@ -86,7 +87,7 @@ msgstr "Povezovanje modula '%s' z vodilom seje D-Bus je spodletelo."
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
 msgid "External provider %s did not provide mandatory property \"%s\""
-msgstr ""
+msgstr "Zunanji ponudnik %s je brez nastavitve obvezne lastnosti \"%s\""
 
 #: ../src/plugins/media-export/rygel-media-export-database-cursor.vala:81
 #, c-format
@@ -134,14 +135,14 @@ msgid "failed to enumerate folder: %s"
 msgstr "oštevilčenje mape je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get children of container %s: %s"
-msgstr "Napaka pridobivanja naslova URL strežnika."
+msgstr "Štetje podrejenih predmetov vsebnika %s je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get child count of query container: %s"
-msgstr "Pridobivanje povezave je spodletelo: %s"
+msgstr "Štetje podrejenih predmetov vsebnika poizvedbe je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:130
 #, c-format
@@ -164,9 +165,9 @@ msgid "All"
 msgstr "Vse"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:93
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get child count: %s"
-msgstr "Štetje stikov strežnika je spodletelo."
+msgstr "Štetje podrejenih predmetov je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
@@ -180,9 +181,9 @@ msgid "Can't add containers in %s"
 msgstr "Ni mogoče dodajanje vsebnikov v %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:99
-#, fuzzy, c-format
+#, c-format
 msgid "Can't remove containers in %s"
-msgstr "Ni mogoče obrniti %s mod %s v %s"
+msgstr "Ni mogoče odstraniti vsebnikov iz %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
@@ -190,9 +191,9 @@ msgid "Playlists"
 msgstr "Seznami predvajanja"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
-#, fuzzy, c-format
+#, c-format
 msgid "Can't remove items in %s"
-msgstr "Nalaganje predmetov v mapo %s"
+msgstr "Ni mogoče odstraniti predmetov iz %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
 #, c-format
@@ -255,14 +256,14 @@ msgid "Videos"
 msgstr "Video"
 
 #: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to remove file %s: %s"
-msgstr "Odstranjevanje datoteke `%s' je spodletelo: %s"
+msgstr "Odstranjevanje datoteke %s je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:120
-#, fuzzy, c-format
+#, c-format
 msgid "Could not find object %d in cache"
-msgstr "Naslova SoupURI ni mogoče preoblikovati v niz"
+msgstr "V predpomnilniku ni mogoče najti predmeta %d"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
@@ -287,21 +288,21 @@ msgid "Failed to construct URI for folder '%s': %s"
 msgstr "Izgradnja naslova URI za mapo '%s' je spodletela: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:77
-#, fuzzy, c-format
+#, c-format
 msgid "Could not subscribe to Tracker signals: %s"
-msgstr "Ni mogoče vzpostaviti naročil na signale programa tracker: %s"
+msgstr "Ni mogoče vzpostaviti naročil na signale programa Tracker: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:95
 msgid "Not supported"
 msgstr "Ni podprto"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-container.vala:58
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to create Tracker connection: %s"
-msgstr "Ustvarjanje povezave Tracker je spodletelo: %s"
+msgstr "Ustvarjanje povezave s programom Tracker je spodletelo: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-container.vala:110
-#, fuzzy, c-format
+#, c-format
 msgid "Error getting all values for '%s': %s"
 msgstr "Napaka pridobivanja vseh vrednosti za '%s': %s"
 
@@ -370,7 +371,7 @@ msgid "Invalid connection reference"
 msgstr "Neveljaven sklic povezave"
 
 #: ../src/librygel-core/rygel-description-file.vala:339
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Zapisovanje spremenjenega zapisa v %s je spodletelo"
 
@@ -538,9 +539,8 @@ msgid "Failed to browse '%s': %s\n"
 msgstr "Brskanje '%s' je spodletelo: %s\n"
 
 #: ../src/librygel-server/rygel-client-hacks.vala:131
-#, fuzzy
 msgid "Not Applicable"
-msgstr "(ni del programa)"
+msgstr "Ni primerno"
 
 #: ../src/librygel-server/rygel-content-directory.vala:642
 msgid "No such file transfer"
@@ -630,9 +630,8 @@ msgid "URI '%s' invalid for importing contents to"
 msgstr "Naslov URI '%s' je neveljaven za uvažanje vsebine"
 
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
-#, fuzzy
 msgid "ContainerID missing"
-msgstr "Manjka ime"
+msgstr "Manjka ID vsebnika"
 
 #: ../src/librygel-server/rygel-item-destroyer.vala:60
 #, c-format
@@ -776,21 +775,22 @@ msgid "Missing ContainerID argument"
 msgstr "Manjka argument za ID vsebnika"
 
 #: ../src/librygel-server/rygel-object-creator.vala:225
-#, fuzzy, c-format
+#, c-format
 msgid "No objects in DIDL-Lite from client: '%s'"
-msgstr "Ni predmetov v DIDL-Lite od odjemalca: %s"
+msgstr "Ni predmetov odjemalca v modulu DIDL-Lite: '%s'"
 
 #: ../src/librygel-server/rygel-object-creator.vala:232
 msgid "@id must be set to \"\" in CreateObject call"
-msgstr ""
+msgstr "@id mora biti nastavljen na \"\" pri klicu ustvarjanja predmeta"
 
 #: ../src/librygel-server/rygel-object-creator.vala:237
 msgid "dc:title must not be empty in CreateObject call"
-msgstr ""
+msgstr "dc:naslov ne sme biti prazno polje pri klicu ustvarjanja predmeta"
 
 #: ../src/librygel-server/rygel-object-creator.vala:248
 msgid "Flags that must not be set were found in 'dlnaManaged'"
 msgstr ""
+"Zastavic ni mogoče nastaviti na mestih, ki so že označena z 'dlnaManaged'"
 
 #: ../src/librygel-server/rygel-object-creator.vala:256
 msgid "Invalid upnp:class given in CreateObject"
@@ -806,9 +806,8 @@ msgid "UPnP class '%s' not supported"
 msgstr "Razred UPnP '%s' ni podprt."
 
 #: ../src/librygel-server/rygel-object-creator.vala:412
-#, fuzzy
 msgid " %%% Object creation in %s not allowed"
-msgstr "Ustvarjanje predmeta v %s ni dovoljeno"
+msgstr "%%% Ustvarjanje predmeta v %s ni dovoljeno"
 
 #: ../src/librygel-server/rygel-object-creator.vala:424
 #: ../src/librygel-server/rygel-object-creator.vala:710
@@ -840,7 +839,7 @@ msgstr "Neveljaven datum: %s"
 #: ../src/librygel-server/rygel-object-creator.vala:643
 #, c-format
 msgid "Cannot create object of class '%s': Not supported"
-msgstr ""
+msgstr "Ni mogoče ustvariti predmeta razreda '%s': možnost ni podprta"
 
 #: ../src/librygel-server/rygel-object-creator.vala:741
 #, c-format
@@ -848,16 +847,15 @@ msgid ""
 "Error from container '%s' on trying to find the newly added child object "
 "'%s' in it: %s"
 msgstr ""
+"Napaka vsebnika '%s' med poskusom iskanja na novo dodanih predmetov '%s': %s"
 
 #: ../src/librygel-server/rygel-reference-creator.vala:50
-#, fuzzy
 msgid "'ContainerID' agument missing."
-msgstr "Manjkajoče mesto vstavka %s"
+msgstr "Manjka argument 'ID vsebnika'"
 
 #: ../src/librygel-server/rygel-reference-creator.vala:55
-#, fuzzy
 msgid "'ObjectID' argument missing."
-msgstr "Manjka argument za %s"
+msgstr "Manjka argument 'ID predmeta '"
 
 #: ../src/librygel-server/rygel-reference-creator.vala:84
 #, c-format
@@ -942,15 +940,17 @@ msgid "Failed to seek"
 msgstr "Iskanje je spodletelo"
 
 #: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:123
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
-msgstr "Ustvarjanje predmeta pod '%s' je spodletelo: %s"
+msgstr "Ustvarjanje podatkovnega vira GStreamer za %s je spodletelo: %s"
 
 #: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:88
 msgid ""
 "Could not create a transcoder configuration. Your GStreamer installation "
 "might be missing a plug-in"
 msgstr ""
+"Ni mogoče ustvariti nastavitev prekodirnika. Nastavitvi GStrimer morda "
+"manjkajo vstavki."
 
 #: ../src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
@@ -980,6 +980,8 @@ msgstr "Ne dovoli brisanja"
 #: ../src/rygel/rygel-cmdline-config.vala:87
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr ""
+"Z vejico ločen seznam parov domena:raven. Za več podrobnosti si oglejte rygel"
+"(1) ..."
 
 #: ../src/rygel/rygel-cmdline-config.vala:89
 msgid "Plugin Path"
@@ -1015,7 +1017,7 @@ msgstr "Izklopi oddaljen sklic do datoteke"
 
 #: ../src/rygel/rygel-cmdline-config.vala:141
 msgid "Shutting down remote Rygel instance\n"
-msgstr ""
+msgstr "Izklapljanje oddaljenega primerka Rygel.\n"
 
 #: ../src/rygel/rygel-cmdline-config.vala:149
 #, c-format
@@ -1024,20 +1026,23 @@ msgstr "Zaustavljanje drugih storitev rygel je spodletelo: %s"
 
 #: ../src/rygel/rygel-main.vala:83
 msgid "Rygel is running in streaming-only mode."
-msgstr ""
+msgstr "Program Rygel teče v načinu izključno pretoka."
 
 #: ../src/rygel/rygel-main.vala:107
-#, fuzzy, c-format
+#, c-format
 msgid "No plugins found in %d second; giving up..."
 msgid_plural "No plugins found in %d seconds; giving up..."
 msgstr[0] ""
-"V %d sekundah ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
+"V %d sekundah ni bilo mogoče najti nobenega vstavka; iskanje bo "
+"prekinjeno ..."
 msgstr[1] ""
-"V %d sekundi ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
+"V %d sekundi ni bilo mogoče najti nobenega vstavka; iskanje bo prekinjeno ..."
 msgstr[2] ""
-"V %d sekundah ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
+"V %d sekundah ni bilo mogoče najti nobenega vstavka; iskanje bo "
+"prekinjeno ..."
 msgstr[3] ""
-"V %d sekundah ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
+"V %d sekundah ni bilo mogoče najti nobenega vstavka; iskanje bo "
+"prekinjeno ..."
 
 #: ../src/rygel/rygel-main.vala:168
 #, c-format
@@ -1057,9 +1062,9 @@ msgstr "Nalaganje uporabniških nastavitev je spodletelo: %s"
 #. TRANSLATORS: First %s is the file's path, second is the error message
 #: ../src/rygel/rygel-user-config.vala:252
 #: ../src/ui/rygel-user-config.vala:252
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to load user configuration from file '%s': %s"
-msgstr "Podatkov RGB iz datoteke TIFF ni mogoče naložiti"
+msgstr "Nalaganje nastavitev iz datoteke '%s' je spodletelo: %s"
 
 #: ../src/rygel/rygel-user-config.vala:305
 #: ../src/ui/rygel-user-config.vala:305
