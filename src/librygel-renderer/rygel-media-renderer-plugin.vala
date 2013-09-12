@@ -158,7 +158,8 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
             var mime_types = player.get_mime_types ();
 
             foreach (var protocol in protocols) {
-                if (protocols[0] != protocol) {
+                if (protocols[0] != protocol ||
+                    this.sink_protocol_info != "") {
                     this.sink_protocol_info += ",";
                 }
 
