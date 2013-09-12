@@ -84,8 +84,10 @@ internal class Rygel.PlayerController : Object {
                     actions = "Stop,Seek,Pause";
                     break;
                 case "STOPPED":
+                    actions = "Play";
+                    break;
                 case "PAUSED_PLAYBACK":
-                    actions = "Play,Seek";
+                    actions = "Stop,Play,Seek";
                     break;
                 default:
                     break;
