@@ -1,3 +1,57 @@
+0.19.7
+======
+
+A new unstable release of Rygel.
+
+Changes compared to 0.19.6:
+
+Renderer:
+ - Fix compatible actions.
+ - Fix missing , in renderer protocol info.
+ - Initialize mute state from player.
+
+MediaExport:
+ - Fix a crash after disabling virtual folders.
+
+Rygel:
+ - Print version number on startup.
+
+Bugs fixed/addressed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=677552
+ - https://bugzilla.gnome.org/show_bug.cgi?id=701934
+ - https://bugzilla.gnome.org/show_bug.cgi?id=706978
+ - https://bugzilla.gnome.org/show_bug.cgi?id=707962
+
+All contributors to this release:
+ - Jens Georg <jensg@openismus.com>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Мирослав Николић <miroslavnikolic@rocketmail.com>
+ - Ville-Pekka Vainio <vpvainio@iki.fi>
+ - Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+ - Milan Plzik <milan.plzik@streamunlimited.com>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Dmitriy S. Seregin <dseregin@59.ru>
+ - Claudio Arseni <claudio.arseni@ubuntu.com>
+ - Changwoo Ryu <cwryu@debian.org>
+ - Bruce Cowan <bruce@bcowan.me.uk>
+ - Ask H. Larsen <asklarsen@gmail.com>
+ - Andika Triwidada <andika@gmail.com>
+
+Added/updated translations
+ - da, courtesy of Ask Hjorth Larsen
+ - en_GB, courtesy of Bruce Cowan
+ - fi, courtesy of Jiri Grönroos
+ - id, courtesy of Andika Triwidada
+ - it, courtesy of Claudio Arseni
+ - ko, courtesy of Changwoo Ryu
+ - lv, courtesy of Rūdolfs Mazurs
+ - nb, courtesy of Kjartan Maraas
+ - ru, courtesy of Yuri Myasoedov
+ - sl, courtesy of Matej Urbančič
+ - sr, courtesy of Мирослав Николић
+ - sr@latin, courtesy of Miroslav Nikolić
+
+
 0.19.6
 ======
 
