@@ -92,6 +92,7 @@ internal class Rygel.RenderingControl : Service {
         action_invoked["GetVolume"].connect (this.get_volume_cb);
         action_invoked["SetVolume"].connect (this.set_volume_cb);
 
+        this._mute = this.player.volume == 0;
         this._volume = Volume.to_percentage (this.player.volume);
     }
 
