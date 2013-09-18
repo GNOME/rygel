@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-17 00:34+0200\n"
-"PO-Revision-Date: 2013-09-17 00:32+0200\n"
+"POT-Creation-Date: 2013-09-18 14:12+0200\n"
+"PO-Revision-Date: 2013-09-18 14:15+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
@@ -74,9 +74,10 @@ msgstr "média-kiszolgáló;média-renderelő;megosztás;hang;videó;képek;"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
-#, fuzzy, c-format
+#, c-format
 msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
-msgstr "A(z) „%s” modul nem tud csatlakozni a D-Bus munkamenetbuszhoz. Mellőzés…"
+msgstr ""
+"A(z) „%s” modul nem csatlakoztatható a D-Bus munkamenetbuszhoz. Mellőzés…"
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
