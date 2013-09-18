@@ -39,4 +39,4 @@ REQUIRED_INTLTOOL_VERSION=0.40.0 \
 bash gnome-autogen.sh --enable-vala --enable-valadoc --enable-maintainer-mode --enable-debug \
                  --enable-example-plugins \
                  --enable-mediathek-plugin --enable-gst-launch-plugin \
-                 --enable-strict-valac "$@"
+                 "$@"
