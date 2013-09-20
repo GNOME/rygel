@@ -638,7 +638,7 @@
 
       <stateVariable sendEvents="no">
          <name>AbsoluteCounterPosition</name>
-         <dataType>ui4</dataType>
+         <dataType>i4</dataType>
       </stateVariable>
 
       <stateVariable sendEvents="yes">
