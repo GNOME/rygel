@@ -9,17 +9,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-14 22:51+0200\n"
-"PO-Revision-Date: 2013-08-14 22:53+0100\n"
-"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-09-16 17:27+0000\n"
+"PO-Revision-Date: 2013-09-14 20:44+0100\n"
+"Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -80,19 +81,19 @@ msgstr "Medien-Server;Freigabe;Audio;Video;Bilder;Fotos;"
 msgid "Module '%s' could not connect to D-Bus session bus. "
 msgstr "Modul »%s« konnte keine Verbindung zum D-Bus Sitzungsbus herstellen."
 
-# fehlt hier noch der Beisatz zum "mandatory", oder ist hier wirklich »Beauftragter« bzw. »Bevollmächtigter« gemeint?
-#: ../src/plugins/external/rygel-external-variant-util.vala:29
-#: ../src/plugins/external/rygel-external-variant-util.vala:47
+#: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
-msgid "External provider %s did not provide mandatory "
-msgstr "Externer Anbieter »%s« hat Erforderliches nicht zur Verfügung gestellt"
+msgid "External provider %s did not provide mandatory property \"%s\""
+msgstr ""
+"Externer Anbieter »%s« hat die erforderliche Eigenschaft »%s« nicht zur "
+"Verfügung gestellt"
 
 #: ../src/plugins/media-export/rygel-media-export-database-cursor.vala:81
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Nicht unterstützter Typ %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:214
+#: ../src/plugins/media-export/rygel-media-export-database.vala:215
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Zurücknehmen der Transaktion ist fehlgeschlagen: %s"
@@ -137,17 +138,18 @@ msgstr "Ordner konnte nicht aufgelistet werden: %s"
 msgid "Failed to get children of container %s: %s"
 msgstr "Unterelemente von Container %s konnten nicht ermittelt werden: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:61
-#, fuzzy, c-format
+#: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
+#, c-format
 msgid "Failed to get child count of query container: %s"
-msgstr "Unterelemente von Container %s konnten nicht ermittelt werden: %s"
+msgstr ""
+"Anzahl der Unterelemente des Containers konnten nicht ermittelt werden: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:129
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:130
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Hinzufügen des Objekts mit Kennung %s ist fehlgeschlagen: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:563
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:564
 msgid "Cannot create references to containers"
 msgstr "Referenzen zu den Containern konnten nicht erstellt werden"
 
@@ -163,9 +165,9 @@ msgid "All"
 msgstr "Alle"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:93
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get child count: %s"
-msgstr "Unterelemente von Container %s konnten nicht ermittelt werden: %s"
+msgstr "Anzahl der Unterelemente konnten nicht ermittelt werden: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
@@ -184,7 +186,7 @@ msgid "Can't remove containers in %s"
 msgstr "Container in »%s« können nicht entfernen werden"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:590
 msgid "Playlists"
 msgstr "Wiedergabelisten"
 
@@ -235,21 +237,21 @@ msgstr "Dateien und Ordner"
 msgid "@REALNAME@'s media"
 msgstr "Medien von @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:433
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:500
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:437
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:504
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Entfernen des Eintrags ist fehlgeschlagen: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:579
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:583
 msgid "Music"
 msgstr "Musik"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:582
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
 msgid "Pictures"
 msgstr "Bilder"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:584
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:588
 msgid "Videos"
 msgstr "Videos"
 
@@ -352,14 +354,15 @@ msgstr "Nicht implementiert"
 #: ../src/librygel-core/rygel-connection-manager.vala:105
 #: ../src/librygel-core/rygel-connection-manager.vala:122
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
-#: ../src/librygel-renderer/rygel-rendering-control.vala:128
-#: ../src/librygel-server/rygel-content-directory.vala:267
-#: ../src/librygel-server/rygel-content-directory.vala:295
-#: ../src/librygel-server/rygel-content-directory.vala:314
-#: ../src/librygel-server/rygel-content-directory.vala:349
-#: ../src/librygel-server/rygel-content-directory.vala:374
-#: ../src/librygel-server/rygel-content-directory.vala:399
-#: ../src/librygel-server/rygel-content-directory.vala:618
+#: ../src/librygel-renderer/rygel-rendering-control.vala:129
+#: ../src/librygel-server/rygel-content-directory.vala:270
+#: ../src/librygel-server/rygel-content-directory.vala:298
+#: ../src/librygel-server/rygel-content-directory.vala:317
+#: ../src/librygel-server/rygel-content-directory.vala:352
+#: ../src/librygel-server/rygel-content-directory.vala:377
+#: ../src/librygel-server/rygel-content-directory.vala:402
+#: ../src/librygel-server/rygel-content-directory.vala:621
+#: ../src/librygel-server/rygel-content-directory.vala:772
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Ungültiges Argument"
@@ -475,7 +478,7 @@ msgid "Could not load plugin: %s"
 msgstr "Plugin konnte nicht geladen werden: %s"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:220
-#: ../src/librygel-renderer/rygel-rendering-control.vala:134
+#: ../src/librygel-renderer/rygel-rendering-control.vala:135
 msgid "Invalid InstanceID"
 msgstr "Ungültige InstanceID"
 
@@ -509,17 +512,17 @@ msgstr "Suchmodus wird nicht unterstützt"
 msgid "Illegal seek target"
 msgstr "Ungültige Suchposition"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:165
+#: ../src/librygel-renderer/rygel-rendering-control.vala:166
 msgid "Invalid Name"
 msgstr "Ungültiger Name"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:179
+#: ../src/librygel-renderer/rygel-rendering-control.vala:180
 msgid "Invalid Channel"
 msgstr "Ungültiger Kanal"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:215
-#: ../src/librygel-renderer/rygel-rendering-control.vala:257
-#: ../src/librygel-renderer/rygel-rendering-control.vala:266
+#: ../src/librygel-renderer/rygel-rendering-control.vala:216
+#: ../src/librygel-renderer/rygel-rendering-control.vala:258
+#: ../src/librygel-renderer/rygel-rendering-control.vala:267
 msgid "Action Failed"
 msgstr "Vorgang ist fehlgeschlagen"
 
@@ -540,7 +543,7 @@ msgstr "Durchsuchen von »%s« ist fehlgeschlagen: %s\n"
 msgid "Not Applicable"
 msgstr "Nicht anwendbar"
 
-#: ../src/librygel-server/rygel-content-directory.vala:639
+#: ../src/librygel-server/rygel-content-directory.vala:642
 msgid "No such file transfer"
 msgstr "Keine solche Dateiübertragung"
 
@@ -758,9 +761,8 @@ msgid "No such container"
 msgstr "Kein solcher Container"
 
 #: ../src/librygel-server/rygel-object-creator.vala:151
-#, fuzzy
 msgid "upnp:createClass value not supported"
-msgstr "»upnp:class« in »%s« wird nicht unterstützt"
+msgstr "»upnp:createClass« Wert wird nicht unterstützt"
 
 #: ../src/librygel-server/rygel-object-creator.vala:192
 msgid "'Elements' argument missing."
@@ -811,7 +813,7 @@ msgstr " %%% Erstellung eines Objekts in %s ist nicht erlaubt"
 
 #: ../src/librygel-server/rygel-object-creator.vala:424
 #: ../src/librygel-server/rygel-object-creator.vala:710
-#: ../src/librygel-server/rygel-reference-creator.vala:117
+#: ../src/librygel-server/rygel-reference-creator.vala:116
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Erstellung eines Objekts in %s ist nicht erlaubt"
@@ -1030,24 +1032,24 @@ msgstr "Beenden des Rygel-Dienstes ist fehlgeschlagen: %s"
 msgid "Rygel is running in streaming-only mode."
 msgstr "Rygel wird im Streaming-Modus ausgeführt."
 
-#: ../src/rygel/rygel-main.vala:107
+#: ../src/rygel/rygel-main.vala:109
 #, c-format
 msgid "No plugins found in %d second; giving up..."
 msgid_plural "No plugins found in %d seconds; giving up..."
 msgstr[0] "Binnen %d Sekunde wurden keine Plugins gefunden, Abbruch …"
 msgstr[1] "Binnen %d Sekunden wurden keine Plugins gefunden, Abbruch …"
 
-#: ../src/rygel/rygel-main.vala:168
+#: ../src/rygel/rygel-main.vala:170
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Root-Device-Factory konnte nicht erstellt werden: %s"
 
-#: ../src/rygel/rygel-main.vala:226
+#: ../src/rygel/rygel-main.vala:228
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "RootDevice für %s konnte nicht eingerichtet werden. Grund: %s"
 
-#: ../src/rygel/rygel-main.vala:263
+#: ../src/rygel/rygel-main.vala:265
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Benutzerkonfiguration konnte nicht geladen werden: %s"
