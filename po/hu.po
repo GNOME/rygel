@@ -7,17 +7,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Rygel master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-17 00:34+0200\n"
-"PO-Revision-Date: 2013-09-17 00:32+0200\n"
-"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-09-20 16:49+0000\n"
+"PO-Revision-Date: 2013-09-21 19:56+0200\n"
+"Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 1.2\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -74,9 +75,9 @@ msgstr "média-kiszolgáló;média-renderelő;megosztás;hang;videó;képek;"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
-#, fuzzy, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
-msgstr "A(z) „%s” modul nem tud csatlakozni a D-Bus munkamenetbuszhoz. Mellőzés…"
+#, c-format
+msgid "Module '%s' could not connect to D-Bus session bus. "
+msgstr "A(z) „%s” modul nem tud csatlakozni a D-Bus munkamenetbuszhoz. "
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -203,15 +204,11 @@ msgstr "A fájlváltozások nem kerülnek megfigyelésre"
 msgid "Failed to get file info for %s"
 msgstr "Nem sikerült a(z) %s fájlinformációinak lekérése"
 
-#. Titles and definitions of some virtual folders,
-#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Év"
 
-#. Titles and definitions of virtual folders for Music,
-#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Előadó"
@@ -628,7 +625,6 @@ msgstr "A(z) „%s” eredeti URI-címének lekérése meghiúsult: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "A(z) „%s” URI érvénytelen a tartalom importálásához"
 
-#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "A ContainerID hiányzik"
@@ -661,7 +657,6 @@ msgstr "A(z) %s objektum eltávolítása nem engedélyezett"
 msgid "Object removal from %s not allowed"
 msgstr "Az objektumok eltávolítása nem engedélyezett innen: %s"
 
-#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Az objektumazonosító hiányzik"
@@ -743,7 +738,6 @@ msgstr ""
 msgid "Invalid number of arguments"
 msgstr "Érvénytelen számú paraméter"
 
-#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "Az ObjectID argumentum hiányzik"
@@ -773,7 +767,6 @@ msgstr "Az „Elements” argumentum hiányzik."
 msgid "Comments not allowed in XML"
 msgstr "A megjegyzések nem engedélyezettek az XML-ben"
 
-#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "Hiányzó ContainerID argumentum"
@@ -888,8 +881,6 @@ msgstr "Nem érhető el bélyegképkészítő: %s"
 msgid "Thumbnailing not supported"
 msgstr "A bélyegképkészítés nem támogatott"
 
-#. Thumbnailing failed previously, so there's no current thumbnail
-#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -915,7 +906,6 @@ msgstr "Nem hozható létre GstElement a(z) %s URI-hoz"
 msgid "Failed to create pipeline"
 msgstr "Nem sikerült adatcsatornát létrehozni"
 
-#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
