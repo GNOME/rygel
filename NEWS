@@ -1,3 +1,29 @@
+0.20.0
+======
+
+A new stable release of Rygel!
+
+Changes compared to 0.19.7:
+
+- Updated translations
+
+Bugs fixed in this release:
+
+All contributors to this release:
+ - Inaki Larranaga Murgoitio <dooteo@zundan.com>
+ - Gabor Kelemen <kelemeng@gnome.hu>
+ - victory <victory.deb@gmail.com>
+ - Nilamdyuti Goswami <ngoswami@redhat.com>
+ - Josep Sànchez <papapep@gmx.com>
+ - Jens Georg <jensg@openismus.com>
+
+Added/updated translations
+ - as, courtesy of Nilamdyuti Goswami
+ - ca, courtesy of Josep Sànchez Mesegué
+ - eu, courtesy of Iñaki Larrañaga Murgoitio
+ - hu, courtesy of Gabor Kelemen
+ - ja, courtesy of Jiro Matsuzawa
+
 0.19.7
 ======
 
