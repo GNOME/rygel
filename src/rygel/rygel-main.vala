@@ -84,7 +84,7 @@ internal class Rygel.Main : Object {
             }
         } catch (Error error) { }
 
-        message ("Rygel v%s starting…", BuildConfig.PACKAGE_VERSION);
+        message (_("Rygel v%s starting…"), BuildConfig.PACKAGE_VERSION);
 
         this.main_loop.run ();
 
