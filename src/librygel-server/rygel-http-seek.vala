@@ -24,8 +24,8 @@
  */
 
 public errordomain Rygel.HTTPSeekError {
-    INVALID_RANGE = Soup.KnownStatusCode.BAD_REQUEST,
-    OUT_OF_RANGE = Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE,
+    INVALID_RANGE = Soup.Status.BAD_REQUEST,
+    OUT_OF_RANGE = Soup.Status.REQUESTED_RANGE_NOT_SATISFIABLE,
 }
 
 public enum Rygel.HTTPSeekType {

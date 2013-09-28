@@ -155,9 +155,9 @@ internal class Rygel.HTTPGet : HTTPRequest {
             this.server.unpause_message (this.msg);
 
             if (error is HTTPSeekError.INVALID_RANGE) {
-                this.end (Soup.KnownStatusCode.BAD_REQUEST);
+                this.end (Soup.Status.BAD_REQUEST);
             } else if (error is HTTPSeekError.OUT_OF_RANGE) {
-                this.end (Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE);
+                this.end (Soup.Status.REQUESTED_RANGE_NOT_SATISFIABLE);
             } else {
                 throw error;
             }
@@ -170,9 +170,9 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
         // Add general headers
         if (this.msg.request_headers.get_one ("Range") != null) {
-            this.msg.set_status (Soup.KnownStatusCode.PARTIAL_CONTENT);
+            this.msg.set_status (Soup.Status.PARTIAL_CONTENT);
         } else {
-            this.msg.set_status (Soup.KnownStatusCode.OK);
+            this.msg.set_status (Soup.Status.OK);
         }
 
         if (this.handler.knows_size (this)) {
@@ -197,7 +197,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
         yield response.run ();
 
-        this.end (Soup.KnownStatusCode.NONE);
+        this.end (Soup.Status.NONE);
     }
 
     private void ensure_correct_mode () throws HTTPRequestError {

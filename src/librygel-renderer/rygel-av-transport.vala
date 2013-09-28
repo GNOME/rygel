@@ -247,10 +247,10 @@ internal class Rygel.AVTransport : Service {
             message.request_headers.append ("getContentFeatures.dlna.org",
                                             "1");
             message.finished.connect ((msg) => {
-                if ((msg.status_code == KnownStatusCode.MALFORMED ||
-                     msg.status_code == KnownStatusCode.BAD_REQUEST ||
-                     msg.status_code == KnownStatusCode.METHOD_NOT_ALLOWED ||
-                     msg.status_code == KnownStatusCode.NOT_IMPLEMENTED) &&
+                if ((msg.status_code == Status.MALFORMED ||
+                     msg.status_code == Status.BAD_REQUEST ||
+                     msg.status_code == Status.METHOD_NOT_ALLOWED ||
+                     msg.status_code == Status.NOT_IMPLEMENTED) &&
                     msg.method == "HEAD") {
                     debug ("Peer does not support HEAD, trying GET");
                     msg.method = "GET";
@@ -263,7 +263,7 @@ internal class Rygel.AVTransport : Service {
                     return;
                 }
 
-                if (msg.status_code != KnownStatusCode.OK) {
+                if (msg.status_code != Status.OK) {
                     warning ("Failed to access %s: %s",
                              _uri,
                              msg.reason_phrase);

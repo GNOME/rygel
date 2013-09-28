@@ -40,7 +40,7 @@ internal abstract class Rygel.Mediathek.PlaylistParser : Object {
             throw new VideoItemError.NETWORK_ERROR
                                         ("Playlist download failed: %u (%s)",
                                          message.status_code,
-                                         Soup.status_get_phrase
+                                         Status.get_phrase
                                                       (message.status_code));
         }
 

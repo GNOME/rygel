@@ -164,7 +164,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
         try {
             this.stream.close (this.cancellable);
         } catch (Error error) {
-            this.end (KnownStatusCode.INTERNAL_SERVER_ERROR);
+            this.end (Status.INTERNAL_SERVER_ERROR);
             this.handle_continue ();
 
             return;
@@ -188,7 +188,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
                      move_error.message);
 
             this.server.unpause_message (this.msg);
-            this.end (KnownStatusCode.INTERNAL_SERVER_ERROR);
+            this.end (Status.INTERNAL_SERVER_ERROR);
             this.handle_continue ();
 
             return;
@@ -197,7 +197,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
         yield wait_for_item (this.object.parent, this.object.id, 5);
 
         this.server.unpause_message (this.msg);
-        this.end (KnownStatusCode.OK);
+        this.end (Status.OK);
         this.handle_continue ();
     }
 

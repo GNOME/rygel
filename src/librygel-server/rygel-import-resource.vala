@@ -211,7 +211,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
                 file.delete (this.cancellable);
             } catch (Error error) {};
 
-            var phrase = status_get_phrase (message.status_code);
+            var phrase = Status.get_phrase (message.status_code);
             if (message.status_code == 404) {
                 this.action.return_error (714, phrase);
             } else {
@@ -235,8 +235,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
             } else {
                 this.status = TransferStatus.ERROR;
             }
-            this.session.cancel_message (message,
-                                         KnownStatusCode.CANCELLED);
+            this.session.cancel_message (message, Status.CANCELLED);
         }
     }
 
@@ -265,7 +264,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
             if (!(message.status_code >= 200 && message.status_code <= 299)) {
                 this.status = TransferStatus.ERROR;
 
-                var phrase = status_get_phrase (message.status_code);
+                var phrase = Status.get_phrase (message.status_code);
                 this.action.return_error (714, phrase);
             }
         }

@@ -69,7 +69,7 @@ public class Rygel.Mediathek.RssContainer : Rygel.TrackableContainer,
                 warning ("Unexpected response %u for %s: %s",
                          message.status_code,
                          message.uri.to_string (false),
-                         Soup.status_get_phrase (message.status_code));
+                         Soup.Status.get_phrase (message.status_code));
                 break;
         }
     }
