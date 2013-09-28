@@ -102,14 +102,21 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
         this.file_hash.unset (info.get_uri ());
 
-        if ((info.get_result () & DiscovererResult.TIMEOUT) != 0) {
-            debug ("Extraction timed out on %s", file.get_uri ());
-            this.extract_basic_information (file, null, null);
+        if (info.get_result () == DiscovererResult.ERROR ||
+            info.get_result () == DiscovererResult.URI_INVALID) {
+            this.error (file, err);
 
             return;
-        } else if ((info.get_result () &
-                    DiscovererResult.ERROR) != 0) {
-            this.error (file, err);
+        } else if (info.get_result () == DiscovererResult.TIMEOUT ||
+                   info.get_result () == DiscovererResult.BUSY ||
+                   info.get_result () == DiscovererResult.MISSING_PLUGINS) {
+            if (info.get_result () == DiscovererResult.MISSING_PLUGINS) {
+                debug ("Plugins are missing for extraction of file %s",
+                       file.get_uri ());
+            } else {
+                debug ("Extraction timed out on %s", file.get_uri ());
+            }
+            this.extract_basic_information (file, null, null);
 
             return;
         }
