@@ -356,26 +356,27 @@ dnl documenation
 AC_PATH_PROG([XSLTPROC], [xsltproc])
 AM_CONDITIONAL([HAVE_XSLTPROC], [test x"$XSLTPROC" != x])
 
-dnl Use valadoc for API documentation:
+dnl Use valadoc and gtk-doc for API documentation:
 dnl This is on by default when using autogen.sh 
 dnl (so it is not on by default when building from a tarball with configure.)
-AC_ARG_ENABLE(valadoc,
-  AS_HELP_STRING([--enable-valadoc[=@<:@no/auto/yes@:>@]], [Enable valadoc support]),,
-    [enable_valadoc=auto])
+AC_ARG_ENABLE(apidocs,
+              AS_HELP_STRING([--enable-apidocs[=@<:@no/auto/yes@:>@]],
+                             [Create API documentation using valadoc and GTK-Doc]),,
+    [enable_apidocs=auto])
 
 found_valadoc=no
-AS_IF([test "x$enable_valadoc" != "xno"], [
+AS_IF([test "x$enable_apidocs" != "xno"], [
     AC_PATH_PROG(VALADOC, valadoc, :)
     AS_IF([test -x "$VALADOC"], [
       found_valadoc=yes
       AC_SUBST(VALADOC)
       PKG_CHECK_MODULES([GTKDOC],[gtk-doc >= 1.0],,
-                        AS_IF([test "x$enable_valadoc" == "xyes"],
+                        AS_IF([test "x$enable_apidocs" == "xyes"],
                               [AC_MSG_ERROR([Unable to find gtk-doc])],
                               [found_valadoc=no])
                         )
     ], [
-      AS_IF([test "x$enable_valadoc" == "xyes"], AC_MSG_ERROR([Unable to find valadoc]))
+      AS_IF([test "x$enable_apidocs" == "xyes"], AC_MSG_ERROR([Unable to find valadoc]))
     ])
   ])
 
@@ -455,6 +456,7 @@ echo "
         uninstalled:            ${enable_uninstalled}
         preferences ui:         ${HAVE_GTK}
         Media Engine:           ${with_media_engine}
+        API documentation:      ${found_valadoc}
     Plugins:
         examples:               ${enable_example_plugins}
         tracker:                ${enable_tracker_plugin}
