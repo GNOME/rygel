@@ -361,7 +361,7 @@ dnl This is on by default when using autogen.sh
 dnl (so it is not on by default when building from a tarball with configure.)
 AC_ARG_ENABLE(valadoc,
   AS_HELP_STRING([--enable-valadoc[=@<:@no/auto/yes@:>@]], [Enable valadoc support]),,
-    [enable_valadoc=no])
+    [enable_valadoc=auto])
 
 found_valadoc=no
 AS_IF([test "x$enable_valadoc" != "xno"], [
@@ -369,7 +369,11 @@ AS_IF([test "x$enable_valadoc" != "xno"], [
     AS_IF([test -x "$VALADOC"], [
       found_valadoc=yes
       AC_SUBST(VALADOC)
-      PKG_CHECK_MODULES([GTKDOC],[gtk-doc >= 1.0])
+      PKG_CHECK_MODULES([GTKDOC],[gtk-doc >= 1.0],,
+                        AS_IF([test "x$enable_valadoc" == "xyes"],
+                              [AC_MSG_ERROR([Unable to find gtk-doc])],
+                              [found_valadoc=no])
+                        )
     ], [
       AS_IF([test "x$enable_valadoc" == "xyes"], AC_MSG_ERROR([Unable to find valadoc]))
     ])
