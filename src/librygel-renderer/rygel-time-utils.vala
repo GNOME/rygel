@@ -32,18 +32,24 @@ internal abstract class Rygel.TimeUtils {
         switch (str[0]) {
             case '-':
                 sign = -1;
-                time_str = str.substring(1);
+                time_str = str.substring (1);
+
                 break;
             case '+':
-                time_str = str.substring(1);
+                time_str = str.substring (1);
+
                 break;
             default:
                 break;
         }
 
-        time_str.scanf ("%llu:%2llu:%2llu%*s", out hours, out minutes, out seconds);
+        time_str.scanf ("%llu:%2llu:%2llu%*s",
+                        out hours,
+                        out minutes,
+                        out seconds);
 
-        return sign*(int64)(hours * 3600 + minutes * 60 + seconds) * TimeSpan.SECOND;
+        return sign * (int64)(hours * 3600 + minutes * 60 + seconds) *
+               TimeSpan.SECOND;
     }
 
     public static string time_to_string (int64 time) {
@@ -52,7 +58,7 @@ internal abstract class Rygel.TimeUtils {
 
         if (time < 0) {
             sign = "-";
-            time = - time;
+            time = -time;
         };
 
         hours   = time / TimeSpan.SECOND / 3600;
