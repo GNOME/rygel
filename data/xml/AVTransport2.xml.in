@@ -500,6 +500,10 @@
       <stateVariable sendEvents="no">
          <name>PossiblePlaybackStorageMedia</name>
          <dataType>string</dataType>
+         <allowedValueList>
+             <allowedValue>None</allowedValue>
+             <allowedValue>Network</allowedValue>
+         </allowedValueList>
       </stateVariable>
 
       <stateVariable sendEvents="no">

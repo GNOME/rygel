@@ -504,7 +504,7 @@ internal class Rygel.AVTransport : Service {
 
         action.set ("PlayMedia",
                         typeof (string),
-                        "NOT_IMPLEMENTED",
+                        "None,Network",
                     "RecMedia",
                         typeof (string),
                         "NOT_IMPLEMENTED",
