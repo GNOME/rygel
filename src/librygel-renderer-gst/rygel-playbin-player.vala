@@ -321,6 +321,12 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     }
 
     public bool seek (int64 time) {
+        // Playbin doesn't return false when seeking beyond the end of the
+        // file
+        if (time > this.duration) {
+            return false;
+        }
+
         return this.playbin.seek (1.0,
                                   Format.TIME,
                                   SeekFlags.FLUSH,
