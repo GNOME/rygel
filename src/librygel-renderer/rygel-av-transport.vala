@@ -595,7 +595,7 @@ internal class Rygel.AVTransport : Service {
             debug ("Seeking to %s.", target);
 
             if (!this.player.seek (TimeUtils.time_from_string (target))) {
-                action.return_error (710, _("Seek mode not supported"));
+                action.return_error (711, _("Illegal seek target"));
 
                 return;
             }
@@ -610,7 +610,7 @@ internal class Rygel.AVTransport : Service {
                               TimeUtils.time_from_string (target);
 
             if (!this.player.seek (seek_target)) {
-                action.return_error (710, _("Seek mode not supported"));
+                action.return_error (711, _("Illegal seek target"));
 
                 return;
             }
