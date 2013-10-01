@@ -392,9 +392,6 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                         ("MPEG_TS_SD_EU_ISO",
                                          "video/mpeg"));
                 _supported_profiles.prepend (new DLNAProfile
-                                        ("MPEG_TS_HD_EU_ISO",
-                                         "video/mpeg"));
-                _supported_profiles.prepend (new DLNAProfile
                                         ("MPEG_TS_SD_NA_ISO",
                                          "video/mpeg"));
                 _supported_profiles.prepend (new DLNAProfile
