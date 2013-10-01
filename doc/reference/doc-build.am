@@ -14,7 +14,7 @@ VALADOC_FLAGS = --force \
 		--pkg rygel-build-config \
 		-b $(top_srcdir)/src/lib$(RYGEL_DOCBUILD_MODULE) \
 		--package-name lib$(RYGEL_DOCBUILD_MODULE) \
-		--package-version 2.0 \
+		--package-version 2.2 \
 		$(VALA_SOURCE_FILES_WITH_PATHS)
 
 
@@ -41,7 +41,7 @@ gtkdoc-gen: $(VALA_SOURCE_FILES_WITH_PATHS) $(RYGEL_GTKDOC_DOCS_XML)
 	$(AM_V_GEN)$(VALADOC) \
 		-X $(top_srcdir)/src/lib$(RYGEL_DOCBUILD_MODULE)/$(RYGEL_DOCBUILD_MODULE).h \
 		$(RYGEL_DOCBUILD_EXTRA_GTKDOC_OPTIONS) \
-		-X -l -X $(top_builddir)/src/lib$(RYGEL_DOCBUILD_MODULE)/.libs/lib$(RYGEL_DOCBUILD_MODULE)-2.0.so \
+		-X -l -X $(top_builddir)/src/lib$(RYGEL_DOCBUILD_MODULE)/.libs/lib$(RYGEL_DOCBUILD_MODULE)-2.2.so \
 		-o gtkdoc \
 		--doclet gtkdoc \
 		$(VALADOC_FLAGS)

@@ -19,8 +19,8 @@ RYGEL_DOCBUILD_VALADOC_FLAGS = \
 		$(LIBRYGEL_RENDERER_GST_DEPS_VALAFLAGS) \
 		$(RYGEL_COMMON_LIBRYGEL_RENDERER_VALAFLAGS)
 
-RYGEL_DOCBUILD_EXTRA_GTKDOC_OPTIONS = -X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-2.0.so \
-                                      -X -l -X $(top_builddir)/src/librygel-renderer/.libs/librygel-renderer-2.0.so
+RYGEL_DOCBUILD_EXTRA_GTKDOC_OPTIONS = -X -l -X $(top_builddir)/src/librygel-core/.libs/librygel-core-2.2.so \
+                                      -X -l -X $(top_builddir)/src/librygel-renderer/.libs/librygel-renderer-2.2.so
 RYGEL_GTKDOC_DOCS_XML_EXTRA = $(top_srcdir)/doc/reference/lib$(RYGEL_DOCBUILD_MODULE)/gtkdoc/implementing-renderers-gst.xml
 
 endif
