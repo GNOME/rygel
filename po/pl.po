@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-21 00:59+0200\n"
-"PO-Revision-Date: 2013-08-21 01:00+0200\n"
+"POT-Creation-Date: 2013-10-01 17:24+0200\n"
+"PO-Revision-Date: 2013-10-01 17:25+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -81,8 +81,9 @@ msgstr ""
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "Moduł \"%s\" nie może połączyć się z magistralą sesji D-Bus. "
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr ""
+"Moduł \"%s\" nie może połączyć się z magistralą sesji D-Bus. Ignorowanie…"
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -186,7 +187,7 @@ msgid "Can't remove containers in %s"
 msgstr "Nie można usunąć kontenerów w %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:590
 msgid "Playlists"
 msgstr "Listy odtwarzania"
 
@@ -209,11 +210,15 @@ msgstr "Zmiany plików nie będą monitorowane"
 msgid "Failed to get file info for %s"
 msgstr "Pobranie informacji o pliku dla %s się nie powiodło"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Rok"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Wykonawca"
@@ -237,21 +242,21 @@ msgstr "Pliki i katalogi"
 msgid "@REALNAME@'s media"
 msgstr "Multimedia użytkownika @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:433
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:500
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:437
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:504
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Usunięcie wpisu się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:579
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:583
 msgid "Music"
 msgstr "Muzyka"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:582
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
 msgid "Pictures"
 msgstr "Obrazy"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:584
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:588
 msgid "Videos"
 msgstr "Wideo"
 
@@ -353,7 +358,7 @@ msgstr "Niezaimplementowane"
 #: ../src/librygel-core/rygel-connection-manager.vala:105
 #: ../src/librygel-core/rygel-connection-manager.vala:122
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
-#: ../src/librygel-renderer/rygel-rendering-control.vala:128
+#: ../src/librygel-renderer/rygel-rendering-control.vala:129
 #: ../src/librygel-server/rygel-content-directory.vala:270
 #: ../src/librygel-server/rygel-content-directory.vala:298
 #: ../src/librygel-server/rygel-content-directory.vala:317
@@ -478,7 +483,7 @@ msgid "Could not load plugin: %s"
 msgstr "Nie można wczytać wtyczki: %s"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:220
-#: ../src/librygel-renderer/rygel-rendering-control.vala:134
+#: ../src/librygel-renderer/rygel-rendering-control.vala:135
 msgid "Invalid InstanceID"
 msgstr "Nieprawidłowy identyfikator wywołania"
 
@@ -512,17 +517,17 @@ msgstr "Tryb przewijania nie jest obsługiwany"
 msgid "Illegal seek target"
 msgstr "Niedozwolony cel przewijania"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:165
+#: ../src/librygel-renderer/rygel-rendering-control.vala:166
 msgid "Invalid Name"
 msgstr "Nieprawidłowa nazwa"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:179
+#: ../src/librygel-renderer/rygel-rendering-control.vala:180
 msgid "Invalid Channel"
 msgstr "Nieprawidłowy kanał"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:215
-#: ../src/librygel-renderer/rygel-rendering-control.vala:257
-#: ../src/librygel-renderer/rygel-rendering-control.vala:266
+#: ../src/librygel-renderer/rygel-rendering-control.vala:216
+#: ../src/librygel-renderer/rygel-rendering-control.vala:258
+#: ../src/librygel-renderer/rygel-rendering-control.vala:267
 msgid "Action Failed"
 msgstr "Działanie się nie powiodło"
 
@@ -630,6 +635,7 @@ msgstr "Uzyskanie pierwotnego adresu URI dla \"%s\" się nie powiodło: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Adres URI \"%s\" jest nieprawidłowy do importowania zawartości"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Brak identyfikatora kontenera"
@@ -662,6 +668,7 @@ msgstr "Usunięcie obiektu %s nie jest dozwolone"
 msgid "Object removal from %s not allowed"
 msgstr "Usunięcie obiektu z %s nie jest dozwolone"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Brak identyfikatora obiektu"
@@ -743,6 +750,7 @@ msgstr ""
 msgid "Invalid number of arguments"
 msgstr "Nieprawidłowa liczba parametrów"
 
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "Brak parametru ObjectID"
@@ -772,6 +780,7 @@ msgstr "Brak parametru \"Elements\"."
 msgid "Comments not allowed in XML"
 msgstr "Komentarze nie są dozwolone w XML"
 
+#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "Brak parametru ContainerID"
@@ -812,7 +821,7 @@ msgstr " %%% Utworzenie obiektu w %s nie jest dozwolone"
 
 #: ../src/librygel-server/rygel-object-creator.vala:424
 #: ../src/librygel-server/rygel-object-creator.vala:710
-#: ../src/librygel-server/rygel-reference-creator.vala:117
+#: ../src/librygel-server/rygel-reference-creator.vala:116
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Utworzenie obiektu w %s nie jest dozwolone"
@@ -886,6 +895,8 @@ msgstr "Brak dostępnego narzędzia do tworzenia miniatur: %s"
 msgid "Thumbnailing not supported"
 msgstr "Tworzenie miniatur nie jest obsługiwane"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -911,6 +922,7 @@ msgstr "Nie można utworzyć GstElement dla adresu URI %s"
 msgid "Failed to create pipeline"
 msgstr "Utworzenie potoku się nie powiodło"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
@@ -1031,7 +1043,7 @@ msgstr "Wyłączenie innej usługi Rygel się nie powiodło: %s"
 msgid "Rygel is running in streaming-only mode."
 msgstr "Usługa Rygel jest uruchomiona w trybie wyłącznie strumieniowania."
 
-#: ../src/rygel/rygel-main.vala:107
+#: ../src/rygel/rygel-main.vala:109
 #, c-format
 msgid "No plugins found in %d second; giving up..."
 msgid_plural "No plugins found in %d seconds; giving up..."
@@ -1039,17 +1051,17 @@ msgstr[0] "Nie odnaleziono wtyczek w ciągu %d sekundy, anulowanie..."
 msgstr[1] "Nie odnaleziono wtyczek w ciągu %d sekund, anulowanie..."
 msgstr[2] "Nie odnaleziono wtyczek w ciągu %d sekund, anulowanie..."
 
-#: ../src/rygel/rygel-main.vala:168
+#: ../src/rygel/rygel-main.vala:170
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Utworzenie generatora urządzenia głównego się nie powiodło: %s"
 
-#: ../src/rygel/rygel-main.vala:226
+#: ../src/rygel/rygel-main.vala:228
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Utworzenie urządzenia głównego dla %s się nie powiodło. Przyczyna: %s"
 
-#: ../src/rygel/rygel-main.vala:263
+#: ../src/rygel/rygel-main.vala:265
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Wczytanie konfiguracji użytkownika się nie powiodło: %s"
