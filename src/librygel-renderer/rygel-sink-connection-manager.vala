@@ -34,4 +34,11 @@ internal class Rygel.SinkConnectionManager : Rygel.ConnectionManager {
         var plugin = this.root_device.resource_factory as MediaRendererPlugin;
         this.sink_protocol_info = plugin.get_protocol_info ();
     }
+
+    public override string get_current_protocol_info () {
+        var plugin = this.root_device.resource_factory as MediaRendererPlugin;
+        var player = plugin.get_player ();
+
+        return player.protocol_info;
+    }
 }

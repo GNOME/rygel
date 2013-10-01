@@ -139,4 +139,33 @@ public interface Rygel.MediaPlayer : GLib.Object {
 
          return double.parse (rational[0]) / double.parse (rational[1]);
     }
+    
+    /// Return the protocol info of the current track's meta-data
+    public string protocol_info {
+        owned get {
+            if (this.metadata == null || this.uri == null) {
+                return "";
+            }
+
+            // Parse meta-data
+            var p = new GUPnP.DIDLLiteParser ();
+            GUPnP.DIDLLiteObject item = null;
+
+            p.item_available.connect ( (object) => { item = object; });
+            try {
+                p.parse_didl (this.metadata);
+            } catch (Error error) {
+                return "";
+            }
+
+            var resources = item.get_resources ();
+            foreach (var resource in resources) {
+                if (resource.uri == this.uri) {
+                    return resource.protocol_info.to_string ();
+                }
+            }
+
+            return "";
+        }
+    }
 }

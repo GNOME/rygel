@@ -64,6 +64,10 @@ public class Rygel.ConnectionManager : Service {
                                         (this.get_current_connection_info_cb);
     }
 
+    public virtual string get_current_protocol_info () {
+        return "";
+    }
+
     private void query_source_protocol_info_cb (Service   cm,
                                                 string    var,
                                                 ref Value val) {
@@ -138,7 +142,7 @@ public class Rygel.ConnectionManager : Service {
                         this.av_transport_id,
                     "ProtocolInfo",
                         typeof (string),
-                        "",
+                        this.get_current_protocol_info (),
                     "PeerConnectionManager",
                         typeof (string),
                         "",
