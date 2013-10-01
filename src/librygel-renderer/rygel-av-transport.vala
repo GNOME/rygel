@@ -312,6 +312,10 @@ internal class Rygel.AVTransport : Service {
         } else {
             this.controller.metadata = _metadata;
             this.controller.uri = _uri;
+
+            this.track_metadata = _metadata;
+            this.track_uri = _uri;
+
             if (_uri == "") {
                 this.controller.n_tracks = 0;
                 this.controller.track = 0;
