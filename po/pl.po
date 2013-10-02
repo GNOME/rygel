@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-09 18:42+0200\n"
-"PO-Revision-Date: 2013-08-09 18:43+0200\n"
+"POT-Creation-Date: 2013-10-02 14:17+0200\n"
+"PO-Revision-Date: 2013-10-02 14:18+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -96,8 +96,9 @@ msgstr ""
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:42
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:42
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "Moduł \"%s\" nie może połączyć się z magistralą sesji D-Bus. "
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr ""
+"Moduł \"%s\" nie może połączyć się z magistralą sesji D-Bus. Ignorowanie…"
 
 #: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
@@ -144,6 +145,8 @@ msgstr "Zmiany plików nie będą monitorowane"
 msgid "Failed to get file info for %s"
 msgstr "Pobranie informacji o pliku dla %s się nie powiodło"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
@@ -153,6 +156,8 @@ msgstr "Rok"
 msgid "All"
 msgstr "Wszystko"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Wykonawca"
@@ -170,6 +175,8 @@ msgstr "Gatunek"
 msgid "Files & Folders"
 msgstr "Pliki i katalogi"
 
+#. @REALNAME@ is substituted for user's real name and it
+#. doesn't need translation.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
@@ -524,6 +531,8 @@ msgstr "Brak parametru \"elementy\"."
 msgid "Comments not allowed in XML"
 msgstr "Komentarze nie są dozwolone w XML"
 
+#. Sorry we can't do anything without ContainerID
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-object-creator.vala:195
 #: ../src/librygel-server/rygel-item-destroyer.vala:104
 #: ../src/librygel-server/rygel-item-updater.vala:189
@@ -553,6 +562,7 @@ msgstr "Utworzenie obiektu w %s nie jest dozwolone"
 msgid "Failed to create item under '%s': %s"
 msgstr "Utworzenie elementu w \"%s\" się nie powiodło: %s"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Brak identyfikatora kontenera"
@@ -577,6 +587,7 @@ msgstr "Usunięcie obiektu %s nie jest dozwolone"
 msgid "Object removal from %s not allowed"
 msgstr "Usunięcie obiektu z %s nie jest dozwolone"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Brak identyfikatora obiektu"
@@ -679,6 +690,8 @@ msgstr "Brak dostępnego narzędzia do tworzenia miniatur: %s"
 msgid "Thubmnailing not supported"
 msgstr "Tworzenie miniatur nie jest obsługiwane"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -704,6 +717,7 @@ msgstr "Nie można utworzyć GstElement dla adresu URI %s"
 msgid "Failed to create pipeline"
 msgstr "Utworzenie potoku się nie powiodło"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
