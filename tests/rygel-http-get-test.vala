@@ -53,10 +53,10 @@ public class Rygel.ClientHacks {
 
 public class Rygel.TestRequestFactory {
     public Soup.Message msg;
-    public Soup.KnownStatusCode expected_code;
+    public Soup.Status expected_code;
 
     public TestRequestFactory (Soup.Message msg,
-                               Soup.KnownStatusCode expected_code) {
+                               Soup.Status expected_code) {
         this.msg = msg;
         this.expected_code = expected_code;
     }
@@ -132,66 +132,66 @@ public class Rygel.HTTPGetTest : GLib.Object {
 
         Soup.Message request = new Soup.Message ("POST", this.server.uri);
         requests.add (new TestRequestFactory (request,
-                      Soup.KnownStatusCode.BAD_REQUEST));
+                      Soup.Status.BAD_REQUEST));
 
         request = new Soup.Message ("HEAD", this.server.uri);
-        requests.add (new TestRequestFactory (request, Soup.KnownStatusCode.OK));
+        requests.add (new TestRequestFactory (request, Soup.Status.OK));
 
         request = new Soup.Message ("GET", this.server.uri);
-        requests.add (new TestRequestFactory (request, Soup.KnownStatusCode.OK));
+        requests.add (new TestRequestFactory (request, Soup.Status.OK));
 
         string uri = this.server.create_uri ("VideoItem");
         uri = uri + "/tr/MP3";
         request = new Soup.Message ("HEAD", uri);
-        requests.add (new TestRequestFactory (request, Soup.KnownStatusCode.OK));
+        requests.add (new TestRequestFactory (request, Soup.Status.OK));
 
         request = new Soup.Message ("GET", this.server.uri);
         request.request_headers.append ("transferMode.dlna.org", "Streaming");
-        requests.add (new TestRequestFactory (request, Soup.KnownStatusCode.OK));
+        requests.add (new TestRequestFactory (request, Soup.Status.OK));
 
         request = new Soup.Message ("GET", this.server.uri);
         request.request_headers.append ("transferMode.dlna.org", "Interactive");
         requests.add (new TestRequestFactory (request,
-                      Soup.KnownStatusCode.NOT_ACCEPTABLE));
+                      Soup.Status.NOT_ACCEPTABLE));
 
         request = new Soup.Message ("GET", this.server.uri);
         request.request_headers.append ("Range", "bytes=1-2");
         requests.add (new TestRequestFactory (request,
-                      Soup.KnownStatusCode.OK));
+                      Soup.Status.OK));
 
         uri = this.server.create_uri ("AudioItem");
         uri = uri + "/th/0";
 
         request = new Soup.Message ("GET", uri);
         requests.add (new TestRequestFactory (request,
-                      Soup.KnownStatusCode.NOT_FOUND));
+                      Soup.Status.NOT_FOUND));
 
         request = new Soup.Message ("GET", this.server.uri);
         request.request_headers.append ("TimeSeekRange.dlna.org", "0");
         requests.add (new TestRequestFactory (request,
-                      Soup.KnownStatusCode.NOT_ACCEPTABLE));
+                      Soup.Status.NOT_ACCEPTABLE));
 
         uri = this.server.create_uri ("AudioItem");
         request = new Soup.Message ("GET", uri);
         request.request_headers.append ("TimeSeekRange.dlna.org", "0");
         requests.add (new TestRequestFactory (request,
-                      Soup.KnownStatusCode.BAD_REQUEST));
+                      Soup.Status.BAD_REQUEST));
 
         uri = this.server.create_uri ("AudioItem");
         request = new Soup.Message ("GET", uri);
         request.request_headers.append ("TimeSeekRange.dlna.org", "npt=1-2049");
         requests.add (new TestRequestFactory (request,
-                      Soup.KnownStatusCode.REQUESTED_RANGE_NOT_SATISFIABLE));
+                      Soup.Status.REQUESTED_RANGE_NOT_SATISFIABLE));
 
         request = new Soup.Message ("GET", this.server.uri);
         request.request_headers.append ("clienthacks.test.rygel", "f");
         requests.add (new TestRequestFactory (request,
-                      Soup.KnownStatusCode.OK));
+                      Soup.Status.OK));
 
         request = new Soup.Message ("GET", this.server.uri);
         request.request_headers.append ("clienthacks.test.rygel", "t");
         requests.add (new TestRequestFactory (request,
-                      Soup.KnownStatusCode.OK));
+                      Soup.Status.OK));
     }
 
     private HTTPGet create_request (Soup.Message msg) throws Error {
@@ -491,7 +491,7 @@ internal class Rygel.HTTPResponse : Rygel.StateMachine, GLib.Object {
 
         yield;
 
-        this.msg.set_status (Soup.KnownStatusCode.OK);
+        this.msg.set_status (Soup.Status.OK);
         this.server.unpause_message (msg);
 
         this.completed ();

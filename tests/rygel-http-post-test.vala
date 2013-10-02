@@ -44,11 +44,11 @@ public class Rygel.ClientHacks {
 
 public class Rygel.TestRequestFactory {
     public Soup.Message msg;
-    public Soup.KnownStatusCode? expected_code;
+    public Soup.Status? expected_code;
     public bool cancel;
 
     public TestRequestFactory (Soup.Message msg,
-                               Soup.KnownStatusCode? expected_code,
+                               Soup.Status? expected_code,
                                bool cancel = false) {
         this.msg = msg;
         this.expected_code = expected_code;
@@ -122,29 +122,29 @@ public class Rygel.HTTPPostTest : GLib.Object {
         requests = new ArrayList<TestRequestFactory> ();
 
         var request = new Soup.Message ("POST", this.server.uri);
-        requests.add (new TestRequestFactory (request, Soup.KnownStatusCode.OK));
+        requests.add (new TestRequestFactory (request, Soup.Status.OK));
 
         request = new Soup.Message ("POST", this.server.uri);
         requests.add (new TestRequestFactory (request,
-                                             Soup.KnownStatusCode.NOT_FOUND));
+                                             Soup.Status.NOT_FOUND));
 
         request = new Soup.Message ("POST", this.server.create_uri ("NullItem"));
         requests.add (new TestRequestFactory (request,
-                                              Soup.KnownStatusCode.BAD_REQUEST));
+                                              Soup.Status.BAD_REQUEST));
 
         request = new Soup.Message ("POST",
                                     this.server.create_uri ("ErrorItem"));
         requests.add (new TestRequestFactory (request,
-                                              Soup.KnownStatusCode.OK));
+                                              Soup.Status.OK));
 
         request = new Soup.Message ("POST",
                                     this.server.create_uri ("CancelItem"));
         requests.add (new TestRequestFactory (request,
-                                              Soup.KnownStatusCode.OK, true));
+                                              Soup.Status.OK, true));
 
         request = new Soup.Message ("POST",
                                     this.server.create_uri ("VanishingItem"));
-        requests.add (new TestRequestFactory (request, Soup.KnownStatusCode.OK));
+        requests.add (new TestRequestFactory (request, Soup.Status.OK));
     }
 
     private HTTPRequest create_request (Soup.Message msg) throws Error {
@@ -480,7 +480,7 @@ internal class Rygel.HTTPResponse : Rygel.StateMachine, GLib.Object {
 
         yield;
 
-        this.msg.set_status (Soup.KnownStatusCode.OK);
+        this.msg.set_status (Soup.Status.OK);
         this.server.unpause_message (msg);
 
         this.completed ();

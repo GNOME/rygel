@@ -29,7 +29,7 @@ public errordomain Rygel.TestError {
 }
 
 public errordomain Rygel.HTTPRequestError {
-    NOT_FOUND = Soup.KnownStatusCode.NOT_FOUND
+    NOT_FOUND = Soup.Status.NOT_FOUND
 }
 
 public class Rygel.HTTPResponseTest : GLib.Object {
@@ -270,7 +270,7 @@ public class Rygel.HTTPClient : GLib.Object, StateMachine {
 
     private void on_cancelled (Cancellable cancellable) {
         this.context.session.cancel_message (this.msg,
-                                             KnownStatusCode.CANCELLED);
+                                             Status.CANCELLED);
         this.completed ();
     }
 }
@@ -323,7 +323,7 @@ public class Rygel.HTTPGet : GLib.Object {
         this.seek = seek;
         this.cancellable = cancellable;
         this.msg.response_headers.set_encoding (Soup.Encoding.EOF);
-        this.msg.set_status (Soup.KnownStatusCode.OK);
+        this.msg.set_status (Soup.Status.OK);
     }
 }
 

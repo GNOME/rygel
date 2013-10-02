@@ -24,9 +24,9 @@
 using Gee;
 
 private errordomain Rygel.HTTPRequestError {
-    UNACCEPTABLE = Soup.KnownStatusCode.NOT_ACCEPTABLE,
-    BAD_REQUEST = Soup.KnownStatusCode.BAD_REQUEST,
-    NOT_FOUND = Soup.KnownStatusCode.NOT_FOUND
+    UNACCEPTABLE = Soup.Status.NOT_ACCEPTABLE,
+    BAD_REQUEST = Soup.Status.BAD_REQUEST,
+    NOT_FOUND = Soup.Status.NOT_FOUND
 }
 
 private errordomain Rygel.TestError {
@@ -143,7 +143,7 @@ private class Rygel.HTTPItemURITest : GLib.Object {
             var str = this.test_to_string (uri);
             this.test_construction_from_string (str);
         }
-        this.test_error_construction ("/Ttt", Soup.KnownStatusCode.BAD_REQUEST);
+        this.test_error_construction ("/Ttt", Soup.Status.BAD_REQUEST);
     }
 
     private HTTPItemURITest () throws TestError {
@@ -197,7 +197,7 @@ private class Rygel.HTTPItemURITest : GLib.Object {
     }
 
     private void test_error_construction (string str,
-                                          Soup.KnownStatusCode error_code) {
+                                          Soup.Status error_code) {
         try {
             var uri = new HTTPItemURI.from_string (str, this.server);
             assert (uri == null);
